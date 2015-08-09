@@ -1,0 +1,91 @@
+<HTML>
+<HEAD>
+<TITLE>CCTV</TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=euc-kr">
+<!-- meta http-equiv='refresh' content='60;URL=CCTV.jsp?flag=1&ip=211.252.223.175&ch=14&sub=-&mode=2&loc=영동대교 남단&dir1=김포방향&dir2=미사리방향&cctvid=CCL1000220'-->
+<script language="JavaScript">
+  var winl = (screen.width - 388) / 2;
+  window.moveTo(20,20);
+  window.resizeTo(388,596);
+</script>
+</HEAD>
+<body BGCOLOR="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" onLoad='window_onload2();return false' oncontextmenu="return false">
+<base href='http://www.smartway.seoul.kr/roadInfor/' target=_self>
+<TABLE WIDTH=370 BORDER=0 align="center" CELLPADDING=0 CELLSPACING=0>
+  <TR>
+    <TD colspan="3"><TABLE WIDTH=100% BORDER=0 CELLPADDING=0 CELLSPACING=0>
+        <TR>
+          <TD width="327"> <IMG SRC="images/cctv_05_1.gif" WIDTH=327 HEIGHT=67></TD>
+          <TD background="images/cctv_05_2.gif">&nbsp; </TD>
+          <TD width="46"> <img src="images/cctv_05_4.gif" width=46 height=67 USEMAP='' border="0"></TD>
+        </TR>
+      </TABLE></TD>
+  </TR>
+  <TR>
+    <TD width="9" height="5" background="images/cctvskin-04_01.gif"></TD>
+    <TD width="880" height="5" background="images/cctvskin-04_02.gif"><img src="images/sp.gif" width="1" height="5"></TD>
+    <TD width="11" height="5" background="images/cctvskin-04_03.gif"></TD>
+  </TR>
+  <TR>
+    <TD background="images/cctvskin-04_01.gif"> <IMG SRC="images/cctvskin-04_01.gif" WIDTH=9 HEIGHT=100 ALT=""></TD>
+    <TD background="images/cctvskin-04_02.gif"><TABLE WIDTH=330 BORDER=0 align="center" CELLPADDING=0 CELLSPACING=0>
+        <TR>
+          <TD width="5"> <IMG SRC="images/cctv_01_01.gif" WIDTH=5 HEIGHT=5 ALT=""></TD>
+          <TD background="images/cctv_01_02.gif"> <IMG SRC="images/cctv_01_02.gif" WIDTH=5 HEIGHT=5 ALT=""></TD>
+          <TD width="5"> <IMG SRC="images/cctv_01_03.gif" WIDTH=5 HEIGHT=5 ALT=""></TD>
+        </TR>
+        <TR>
+          <TD width="5" background="images/cctv_01_04.gif"> <IMG SRC="images/cctv_01_04.gif" WIDTH=5 HEIGHT=240 ALT=""></TD>
+<!-- 여기부터 동영상 들어갈 곳 -->
+
+          <TD WIDTH="320" HEIGHT="240" ALIGN="CENTER" VALIGN="MIDDLE">
+            <OBJECT ID="DVRView" CODEBASE="http://smartway.seoul.go.kr/roadInfor/WebDVR.cab#version=5,0,5,2" CLASSID="clsid:C575F980-64EA-4D0A-8D2B-2BB611E4602B" WIDTH="320" HEIGHT="240" ></OBJECT>
+          </TD>
+
+<!-- 동영상 들어가는 곳 끝 -->
+          <TD width="5" background="images/cctv_01_06.gif"> <IMG SRC="images/cctv_01_06.gif" WIDTH=5 HEIGHT=240 ALT=""></TD>
+        </TR>
+        <TR>
+          <TD width="5"> <IMG SRC="images/cctv_01_07.gif" WIDTH=5 HEIGHT=25 ALT=""></TD>
+          <TD><TABLE WIDTH=100% height="25" BORDER=0 CELLPADDING=0 CELLSPACING=0>
+              <TR>
+                <TD width="60"> <IMG SRC="images/cctv_06_1.gif" WIDTH=60 HEIGHT=25 ALT=""></TD>
+                <TD background="images/cctv_06_2.gif"><font color="#FFFFFF" size="2" face="돋움"><strong>영동대교 남단</strong></font> </TD>
+                <TD width="30"> <IMG SRC="images/cctv_06_3.gif" WIDTH=30 HEIGHT=25 ALT=""></TD>
+              </TR>
+            </TABLE></TD>
+          <TD width="5"> <IMG SRC="images/cctv_01_09.gif" WIDTH=5 HEIGHT=25 ALT=""></TD>
+        </TR>
+      </TABLE>
+
+<TABLE WIDTH=330 BORDER=0 align="center" CELLPADDING=0 CELLSPACING=0>
+  <tr>
+    <TD>&nbsp;</TD>
+  </tr>
+</table>
+    </TD>
+    <TD background="images/cctvskin-04_03.gif"> <IMG SRC="images/cctvskin-04_03.gif" WIDTH=11 HEIGHT=100 ALT=""></TD>
+  </TR>
+  <TR>
+    <TD> <IMG SRC="images/cctvskin-04_04.gif" WIDTH=9 HEIGHT=23 ALT=""></TD>
+    <TD background="images/cctvskin-04_05.gif"> <div align="right"><IMG SRC="images/cctvskin-04_05.gif" WIDTH=5 HEIGHT=23 ALT=""></div></TD>
+    <TD> <IMG SRC="images/cctvskin-04_06.gif" WIDTH=11 HEIGHT=23 ALT=""></TD>
+  </TR>
+</TABLE>
+</BODY>
+</HTML>
+
+<script language="JavaScript">
+function window_onload2() {
+
+  DVRView.ShowStatus(1,1,0,0);
+
+  DVRView.ChangeCamera(13);
+  DVRView.SetViewStyle(0);
+  DVRView.Connect("211.252.223.175",7942,"guest","guest");
+}
+</script>
+
+<map name='__Map'>
+  <AREA SHAPE="rect" COORDS="5,12,42,30" HREF="/roadInfor/CCTV_pass_200.jsp?cctvid=CCL1000220&selectcode=2" target='cctvHidden'>
+</map>

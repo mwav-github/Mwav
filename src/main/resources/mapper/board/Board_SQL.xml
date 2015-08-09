@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="board">
+	
+	
+	<select id="selectFrontList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT bNews_id, bnTitle, bnUpdateDt 
+		    FROM BoardNews_tbl
+		    ORDER BY bnUpdateDt DESC Limit 5
+		]]>
+	</select>
+
+	<insert id="insertbnsForm" parameterType="hashmap">
+		<![CDATA[
+			INSERT INTO BoardNews_tbl
+				SELECT IFNULL(max(bNews_id)+1,100001), #{bnGroup}, #{bnHighLight}, #{bnTitle}, #{bnSubTitle}, #{bnRelatedLink}, #{bnContent}, #{bnViewCount}, #{bnOrder}, #{bnStatus}, #{staff_id}, DATE_FORMAT( NOW(),'%Y-%m-%d %H:%i'), null, null FROM BoardNews_tbl
+		]]>
+	</insert>
+	
+	<update id="updateHitCnt" parameterType="hashmap">
+    <![CDATA[
+       update BoardNews_tbl set bnViewCount = iFnull(bnViewCount, 0) +1 where bnews_id = #{bnews_id} 
+    ]]>
+    </update>
+    
+    <select id="selectbnsView" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+	    select * from BoardNews_tbl where bnews_id= #{bnews_id}
+	]]>
+	</select>
+	
+	<select id="selectbnsList" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+	select * from BoardNews_tbl WHERE bnDeleteDt IS NULL ORDER BY bNews_id;
+	]]>
+	</select>
+</mapper>

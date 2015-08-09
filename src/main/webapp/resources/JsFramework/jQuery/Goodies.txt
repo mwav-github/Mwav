@@ -1,0 +1,51 @@
+Jquery MS Carousel 
+http://www.marghoobsuleman.com/mywork/jcomponents/carousel/index.html
+
+!Sideswap Content Rotator
+http://plugins.jquery.com/project/Sideswap
+
+# jQuery Menu Style 1 - Drop Down Menu with Visual Effects
+http://apycom.com/
+
+Cloud Carousel - A 3d Carousel in Javascript
+http://www.professorcloud.com/mainsite/carousel.htm
+
+jQuery Animated Border
+http://there4development.com/projects/animatedborder/
+
+bgFlow 1.0 Demo
+http://www.hezad.com/files/bgFlow/demo.php
+
+jQuery Before/After Plugin
+http://www.catchmyfame.com/2009/06/25/jquery-beforeafter-plugin/
+
+jQuery CountDown Plugin
+http://davidwalsh.name/dw-content/jquery-countdown.php
+
+Plugin jQuery Popin
+http://www.babylon-design.com/share/popin/
+
+JavaScript custom dropdown - JavaScript image combobox
+http://plugins.jquery.com/project/image-combobox
+
+JQuery Help Tooltip v1.0
+http://www.expbuilder.com/jquery-help-tooltip-v1-0.html
+
+mopBox 2.5
+http://plugins.jquery.com/project/mopbox
+
+Tagger - A Multi Tag Input Field
+http://plugins.jquery.com/project/tagger
+
+jQuery AltSrc
+http://plugins.jquery.com/project/altsrc
+
+jQuery.SerialScroll by Ariel Flesler
+http://demos.flesler.com/jquery/serialScroll/
+
+jQuery.LocalScroll by Ariel Flesler
+http://demos.flesler.com/jquery/localScroll/#section1
+
+
+FlexBox is a jQuery plugin that is intended to be a very flexible replacement for html textboxes and dropdowns, using ajax to retrieve and bind JSON data.
+http://www.fairwaytech.com/flexbox.aspx

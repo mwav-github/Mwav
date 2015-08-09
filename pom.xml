@@ -13,7 +13,9 @@
         <org.aspectj-version>1.7.3</org.aspectj-version>
         <org.slf4j-version>1.6.6</org.slf4j-version>
     </properties>
-     
+
+
+<!-- 빌트플랫폼인 메이븐 디펜던시를 관리해주는 녀석-->     
     <repositories>
         <repository>
             <id>mvn2</id>
@@ -216,11 +218,6 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
             <version>${org.slf4j-version}</version>
-        </dependency>
-        <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.3alpha-8</version>
         </dependency>
         <dependency>
             <groupId>org.lazyluke</groupId>

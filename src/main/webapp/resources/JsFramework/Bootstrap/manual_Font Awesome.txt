@@ -1,0 +1,17 @@
+Font-AweSome: http://fortawesome.github.io/Font-Awesome/
+
+About   : Font Awesome gives you scalable vector icons that can instantly be customized 
+          ? size, color, drop shadow, and anything that can be done with the power of CSS.
+
+          * Font Awesome even plays nicely with Bootstrap 3!
+
+   
+CrossBrowing : Need IE7 Support?
+               If you need IE7 support, you have my condolences. Really. Font Awesome 4.2.0 doesn't support IE7, 
+               but an older version does. 
+               You'll need to check out the 3.2.1 instructions for using IE7. 
+               Then go complain to whomever decided your project needs IE7 support.
+
+               http://fortawesome.github.io/Font-Awesome/3.2.1/get-started/#need-ie7
+ 
+License      : MIT License

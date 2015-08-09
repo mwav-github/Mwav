@@ -1,0 +1,66 @@
+The Menu of Company Section
+
+*** SPA 라면 마스터페이지 네개 Company / CompanyItem / CustomerService / Index.jsp 
+에 각각 CommonApps 처럼 들어가면 되지만 !!
+지금은 그게 안된다.
+
+**마스터페이지 기술 ~!!
+1. header, left, body 에서 일부분씩만 잘라서 간다.
+     근데 문제는 생각보다 많다. ~!!
+     잘봐 근데 header에서 </header> 가 아니라 중간에 끝난다. !! </td> 에서 끝나고 body <tr>
+     
+2. 기존 => 우리가 각각 include 페이지
+   <header> <LEFT> <footer> 같은 경우 각각 페이지로 들어간다. ~!!! 
+      페이지 각각하니까 수정이 어렵다 특히 left같은 경우도 그렇고
+      다 떨어져있다. ~!!! 
+    APPLICATION 처럼 되는게 아니라 WEB PAGE 처럼 된다.  
+      하나로 모아주는 것도 없고 
+      
+3. SPA 방식의 등장 !!! 
+    즉 2번같은 경우는 각각의 페이지에 끌고 온다. !! 이러면 페이지 뿐만아니라 
+      어플리케이션이된다. !!
+      즉 각각의 페이지는 COMMONAPPS처럼 하나의 모듈이고 마스터 페이지가 온다. 
+      즉 이때 네개의 마스터페이지가 된다. 
+      Company / CompanyItem / CustomerService / Index.jsp 
+      그리고 각각에 페이지의 구성은 다르다 
+      즉 PartOfContent가 필요가 없다. !!
+      그러나 실제로는 사실 필요하다 .~!!! 쓰일 곳은 분명히 있다.
+      
+      위의 방법은 닷넷에서는 master page 라는 방식으로 제공해준다. 
+      
+    추가적으로 방식에는 야매로 !!! www.mwav.net/cws/masterpage?result 
+   와 같은 get문 형태이고 실제 페이지 상에서 <% include 에 따라서 매핑해주는 방법도 있다 
+   그러나 이와 같은 내용은
+   1. url 노출로 인한 매핑이 필요하다 이럴떄 필요한것이 스프링에서 url 노출방지
+   2. 3번 위와 같은 방식은 commonapps 이지만 각각의 url로 페이지가 읽힌다.
+       그러나 바로 위의 get 방식 같은 경우에는 페이지 url이 하나로 돌려쓰기 때문에 검색엔진 seo? 에 좋지 않다. 
+      
+ -현재 정책
+ FrontHeader.jsp는 Index 기준이고
+ 나머지 페이지는 left 처럼 각각의 페이지에 삽입해야 한다.  
+      
+      
+마스터페이지는 partOfContent는 없다.
+
+SPA방식에서는 상대경로가 되게 위험하다 어짜피 경로는 깨지게 되어있다.~!!!
+=> 절대경로로 변경 
+
+추가적으로 경로 노출하는건 상관없다 어짜피 db말고 html 딴의 소스는 다 가져갈 수 있다.
+
+
+
+ActualResults	회사실적			(X)
+BusinessField	사업분야			(O)
+Certificates	회사인증서			(X)
+Cooperation	제휴업체			(0)
+Greetings	대표인사말			(X)
+History		회사연혁			(X)
+HR-Affairs	인사채용정보			(0)
+Introduction	회사소개_개요.조직도		(0)
+LocationMap	회사약도_찾아오시는길		(0)
+MgrPhilosophy	경영이념에 포함됨(철학_비젼)	(X)
+Organization	회사조직(도) - 회사소개에 포함	(X)
+PR-Channel	홍보채널			(0)
+Profitsharing	수익분배프로그램		(0)
+ThePress	언론보도			(X)
+Vision		경영이념(비젼)경영이념에 포함됨(철학_비젼)	(-)

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Advertisements>
+  
+ <Ad>
+  <ImageUrl>Images/focus001.jpg</ImageUrl>
+  <height></height>
+  <width></width>
+  <NavigateUrl>/CustomerServices/Agreements/Agreements.aspx</NavigateUrl>
+  <AlternateText>AlternateText</AlternateText>
+  <Impressions>50</Impressions>
+  <Keyword>Ads1</Keyword>
+  <Caption>This is the caption for Ad#1</Caption>
+ </Ad>
+
+ <Ad>
+  <ImageUrl>Images/focus002.jpg</ImageUrl>
+  <NavigateUrl>/CustomerServices/Summary/Summary.aspx</NavigateUrl>
+  <AlternateText>AlternateText</AlternateText>
+  <Impressions>20</Impressions>
+  <Keyword>Ads2</Keyword>
+ </Ad>
+
+  <Ad>
+  <ImageUrl>Images/focus003.jpg</ImageUrl>
+  <NavigateUrl>/CommonApps/BoardUser/UserNoticeList.aspx</NavigateUrl>
+  <AlternateText>AlternateText</AlternateText>
+  <Impressions>20</Impressions>
+  <Keyword>Ads3</Keyword>
+ </Ad>
+
+ <Ad>
+  <ImageUrl>Images/focus004.jpg</ImageUrl>
+  <NavigateUrl>/CustomerServices/Policies/Policies.aspx</NavigateUrl>
+  <AlternateText>AlternateText</AlternateText>
+  <Impressions>10</Impressions>
+  <Keyword>Ads4</Keyword>
+ </Ad>
+
+</Advertisements>

@@ -1,0 +1,2 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="CompanyLogoHomeLink.ascx.cs" Inherits="WebRoot.PartsOfContents.HomeLanguages.CompanyLogoHomeLink" %>
+<asp:HyperLink ID="hlCompanyLogo" ImageUrl="/Company/zImages/CompanyLogo.png" runat="server">Home</asp:HyperLink>

@@ -1,0 +1,192 @@
+/*
+body {
+	font-size:9pt;
+	font-family:±¼¸²;
+}
+
+td {
+	font-size:9pt;
+	font-family:±¼¸²;
+}
+
+a:link {
+	font-size:9pt;
+	text-decoration:none;
+	color:darkblue
+}
+
+a:visited {
+	text-decoration:none;
+	color:darkblue
+}
+
+a:hover {
+	text-decoration:underline;
+	color:red;
+}
+*/
+
+.Board {
+	background-color: #FFFFFF;
+	width: 600px;
+}
+
+
+span {
+	font-size:9pt;
+	font-family:±¼¸²;
+}
+
+.textbox {
+	font-size:9pt;
+	font-family:±¼¸²;
+	border:1 solid;
+	border-color: #999999;
+}
+
+.buttons {
+	font-size:9pt;
+	font-family:±¼¸²;
+	border:1 solid;
+	border-color: #999999;
+	height: 18px;
+}
+
+
+.Board_Header {
+	font: bold ±¼¸²;
+	font-size: 9pt;
+	color: #000000;
+	background-color: #FFFFFF;
+	height: 25px;
+	text-align: center;
+}
+
+.Board_Item {
+	font-family: ±¼¸²;
+	font-size: 9pt;
+	color: black;
+	background-color: #FFFFFF;
+	height: 20px;
+}
+
+.Board_AlternatingItem {
+	height: 20px;
+	font-family: ±¼¸²;
+	font-size: 9pt;
+	color: black;
+	background-color: #EEEEEE;
+}
+
+.Board_ItemNum {
+	width:  50px;
+	text-align: center;
+}
+
+.Board_ItemSubject {
+}
+
+.Board_ItemWriter {
+	width:  70px;
+	text-align: center;
+}
+
+.Board_ItemFiles {
+	width:  60px;
+	text-align: center;
+}
+
+.Board_ItemRegDate {
+	width:  90px;
+	text-align: center;
+}
+
+.Board_ItemVisited {
+	width:  35px;
+	text-align: center;
+}
+
+.Board_ItemLine1
+{
+	background-color: #36B5BA;
+}
+
+.Board_ItemLine2
+{
+	background-color: #C7C7C7;
+}
+
+.Board_Footer {
+	font-family: ±¼¸²;
+	font-size: 9pt;
+	color: black;
+	background-color: #000000;
+	height: 1px;
+}
+
+.Board_Write
+{
+	background-color: #FFFFFF;
+	width: 600px;
+}
+
+.Board_WriteHeader
+{
+	font: bold ±¼¸²;
+	font-size: 9pt;
+	color: #A8A8A8;
+	background-color: #FFFFFF;
+	width: 60px;
+	text-align: center;
+}
+
+.Board_WriteItem
+{
+	background-color: #FFFFFF;
+}
+
+.Board_WriteItemContent
+{
+	font-family: ±¼¸²;
+	font-size: 9pt;
+	width: 520px;
+	border:1 solid;
+	border-color: #999999;
+}
+
+.Comment_ItemRegDate {
+	width:  90px;
+	text-align: center;
+}
+
+.Comment_Item {
+}
+
+.Comment_ItemUserName {
+	width:  90px;
+}
+
+.Comment_ItemAdmin {
+	width:  60px;
+	text-align: center;
+}
+
+.Comment_Header
+{
+	font: bold ±¼¸²;
+	font-size: 9pt;
+	color: white;
+	background-color: #36B5BA;
+	width: 60px;
+	text-align: center;
+}
+
+.Comment_Content
+{
+	font-family: ±¼¸²;
+	font-size: 9pt;
+	width: 500px;
+	height: 50px;
+	border:1 solid;
+	border-color: #999999;
+}

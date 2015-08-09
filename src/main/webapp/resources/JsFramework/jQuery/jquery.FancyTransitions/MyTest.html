@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>jqFancyTransitions slideshow with strip effects</title>
+    <link href="/App_Themes/Objects.css" rel="stylesheet" type="text/css" />
+    <link href="/App_Themes/OverallPage.css" rel="stylesheet" type="text/css" />
+    <script language="javascript" type="text/javascript" src="/CommonLibrary/jQuery/jquery-1.4.2.min.js"></script>
+    <script language="javascript" type="text/javascript" src="/CommonLibrary/jQuery/jquery.FancyTransitions/jqFancyTransitions.1.8.min.js"></script>
+</head>
+<body style="top:0px; left:0px; text-align:left; padding:0px; margin:0px;">
+<table width="800" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td>&nbsp;</td>
+    <td height="100">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td align="center">
+<div id='slideshowHolder'>  
+    <img alt="1    [락앤락글라스 유로] 10개 세트"  src="Images/01.jpg" />
+    <a href="http://www.ddakk.com/bbs/board.php?bo_table=item_detail&wr_id=41"></a>    
+	<img alt="락앤락 내열 유리밀폐 7개세트,내열유리 전자레인지 OK"  src="Images/02.jpg" />
+    <a href="http://www.ddakk.com/bbs/board.php?bo_table=item_detail&wr_id=42"></a>
+    <img alt="락앤락 내열 유리밀폐 4개세트,내열유리 전자 레인 지 OK"  src="Images/03.jpg" />
+    <a href="http://www.ddakk.com/bbs/board.php?bo_table=item_detail&wr_id=43"></a>
+    <img src="Images/04.jpg" />
+    <a href="http://www.ddakk.com/bbs/board.php?bo_table=item_detail&wr_id=44"></a>
+</div>         
+    </td>
+  </tr>
+
+</table>
+
+
+
+<script>  
+	$('#slideshowHolder').jqFancyTransitions({ 
+		width: 890, height: 400, 
+		effect: 'curtain', strips: 20,
+		delay: 2000, stripDelay: 100,
+		titleOpacity: 0.7, titleSpeed: 1000,
+		position: 'alternate', direction: 'fountainAlternate',	
+		navigation: true,	links: true 
+	});  
+</script> 
+<!--
+effect: 'curtain', // wave, zipper, curtain  
+width: 500, // width of panel  
+height: 332, // height of panel  
+strips: 20, // number of strips  
+delay: 5000, // delay between images in ms  
+stripDelay: 50, // delay beetwen strips in ms  
+titleOpacity: 0.7, // opacity of title  
+titleSpeed: 1000, // speed of title appereance in ms  
+position: 'alternate', // top, bottom, alternate, curtain  
+direction: 'fountainAlternate', // left, right, alternate, random, fountain, fountainAlternate  
+navigation: false, // prev and next navigation buttons  
+links: false // show images as links 
+-->
+</body>
+</html>

@@ -17,33 +17,58 @@
       <param-value>utf-8</param-value>
     </init-param>
   </filter>
-  <filter-mapping>
+  <filter-mapping> <!-- 루트하위 모든 요청에 대한 인코딩 처리를 하겠다는 의미 -->
     <filter-name>encodingFilter</filter-name>
     <url-pattern>*.do</url-pattern>
   </filter-mapping>
    
+  <!-- Creates the Spring Container shared by all Servlets and Filters -->
+  <!-- 이녀석은 말그대로 listener이구요 루트 컨텍스터에 정의되어 있는 것들을 모든 서블릿과 필터가 공유할 수 있게 해준다네요.-->
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
    
+   
+    <!-- Processes application requests -->
+    <!-- url요청이 발생하면 DispatcherServlet이 처리하도록 설정 --> 
 	<servlet>
-		<servlet-name>action</servlet-name>
-		<servlet-class>
+		<servlet-name>mwav</servlet-name> <!--서블릿중 DispatcherServlet이구요. 이 서블릿이 공유할수 있는 것들은 servlet-context에 정의를-->
+		<servlet-class> <!-- 서블릿이 앞단에서 요청정보를 핸들링해주는 서블릿 -->
 			org.springframework.web.servlet.DispatcherServlet
 		</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>
-				/WEB-INF/config/*-servlet.xml
+				/WEB-INF/config/*-servlet.xml  <!-- 설정 파일이 있는 경로 -->
 			</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
-	<servlet-mapping>
-		<servlet-name>action</servlet-name>
+	
+	<!-- mwav에 대한 url-pattern을 정의 앞으로 서블릿에 어떠한 요청을 할 때, .do를 통해서만 요청을 전달
+	     WEB-INF 밑에 위치하지는 않았기 때문에, 절대경로로 호출가능.
+	 -->
+	<servlet-mapping> 
+		<servlet-name>mwav</servlet-name>
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
-     
+	
+	
+	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
+	<!-- 이녀석은 루트 컨텍스트로 모든 서블릿과 필터들이 공유한다고 합니다. 바로 root-context.xml을 정의해 두었네요-->
+	<!-- ContextLoaderListener와 DispatcherServlet은 각각 WebApplicationContext 인스턴스를 생성하게 된다.
+         ContextLoaderListener가 생성한 Context가 root가 되고 DispatcherServlet 이 생성한 인스턴스가 root context를
+              부모로 사용하는 자식 Context가 된다.
+              이때 자식 Context들은 root Context가 제공하는 빈을 사용할 수 있기 때문에  ContextLoaderListener를 이용하여
+              공통 빈을 설정하는 것이다. 
+              
+              아래 classpath*:config/spring/context-*.xml 라고 정의했던것을 기억하자.
+              앞으로 우리는 다양한 SQL 파일을 만들것인데, 그것을 일일이 등록해서 사용할 수는 없다. 
+          (원래는 xml 파일에 XML도 bean으로 설정해야한다.) 
+              그렇지만 다양한 사람들이 작업하는 프로젝트의 특성상, 그것을 일일이 등록할 수 없고, 할 수 있더라도 귀찮은 일이다. 
+              따라서 서버가 시작될 때 자동으로 SQL이 정의되어 있는 XML 파일도 읽어오도록 하는것이 필요하다.      
+              -->
+              
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath*:config/spring/context-*.xml</param-value>

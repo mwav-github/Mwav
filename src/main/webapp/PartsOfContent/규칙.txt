@@ -1,0 +1,19 @@
+PartsOfContent : 각 기능 별로 모듈 형태 제공 (확장자)
+
+
+CenterFocus   => 핵심상품 
+                          예를들어)가장 알리고 싶은 아이템이 있을 때 해당 상품만 따로 모아놓은 모듈(고객이 젤많이 봐줬으면 하는 것)
+
+HomeBookmark  => 홈으로 돌어가거나, bookmark 추가시키는 모듈
+
+HomeLanguages => 다양한 언어 홈 옆에 있고 언어선택 모듈
+
+Menu          => 특별한 메뉴
+
+SiteFooter    => 공통적인 Footer
+
+SiteHeader    => navigation + 슬라이드 쇼까지 포함 예정 (spa형태로 추후 변경)
+
+TrustBanners  => 배너
+
+ZoomImage     => 제품상세 이미지 (zoom)

@@ -1,0 +1,92 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*다른 css 에서는 padding/margin을 주지 말고 html에서 class로 준다. 
+   꼭 필요한 경우에는 html에서 id 나 style 태그로 준다.*/
+
+/*margin top 5%*/
+.mgt5 {
+	margin-top: 5%;
+}
+/*margin top 4% */
+.mgt4 {
+	margin-top: 4%;
+}
+/*margin top 12% */
+.mgt12 {
+	margin-top: 12%;
+}
+/*margin: 9% auto; */
+.mg9xauto {
+	margin: 9% auto;
+}
+
+/*padding top 4%*/
+.pdt4 {
+	padding-top: 4%;
+}
+/*padding top 1.5% */
+.pdt1_5 {
+	padding-top: 1.5%;
+}
+/*padding: 0 2%*/
+.pd0x2 {
+	padding: 0 2%;
+}
+/*padding: 1.5% 0 */
+.pd1_5x0 {
+	padding: 1.5% 0;
+}
+/*padding:1.5% 0 3% 0; */
+.pdt1_5b3 {
+	padding: 1.5% 0 3% 0;
+}
+
+/* 크기에 따른 조정 */
+
+/* 테이블 사이 간격 조정 */
+
+/* 980  ~ 1300 : 5%    높이 500이상
+   1301 ~ 1600 : 8%    높이 600이상
+   1601 ~ 2000 : 12%   높이 700이상
+   최소 값 기준
+*/
+@media screen and (min-width:980px ) and (max-width:1300px ) and
+	(min-height:500px) {
+	dd.mar {
+		margin-top: 5%;
+	}
+}
+
+@media screen and (min-width:1301px ) and (max-width:1600px ) and
+	(min-height:600px) {
+	dd.mar {
+		margin-top: 8%;
+	}
+}
+
+@media screen and (min-width: 1601px) and (min-height: 700px) {
+	dd.mar {
+		margin-top: 15%;
+	}
+}
+
+/* Footer 부분 아래 */
+footer {
+	margin: 5em 0
+}
+
+footer li {
+	float: left;
+	margin-right: 0.5em;
+	margin-bottom: 2.5em
+}
+
+footer a {
+	text-decoration: underline;
+}
+
+footer p {
+	clear: left;
+	margin-bottom: 0
+}

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+프로젝트에서는 기본적으로 여러개의 <mapper>를 가지기 때문에 중복되는 이름을 가진 SQL이 존재할 수 있다. 
+따라서 각 <mapper>마다 namespace 속성을 이용하여 <mapper>간 유일성을 보장해야 한다. 
+여기서는 sample이라는 이름의 namespace를 사용하였다. 
+-->
+<mapper namespace="sample"> <!--이쿼리를 이용하기 위해선 namespace명.id로 접근하면 된다. -->
+	
+	<!-- DAO에서 쿼리 아이디를 잘 생각해보자.
+	     "sample.selectBoardList"라는 이름인것을 확인할 수 있다. 
+	         여기서 앞에 붙은 sample 이라는 부분이 바로 XML에서 설정한 namespace의 이름이다. 
+	         다시말해, 모든 쿼리는 "NAMESPACE . SQL ID" 의 구조로 구성된다. (namespace를 사용하지 않을 경우, 
+	         바로 SQL ID만 호출하여도 되지만 위에서 이야기한것처럼 중복된 아이디가 있을수 있다. 따라서 가능한 namespace를 사용하자.
+	         
+	      - 첫번째로, <select> 태그를 이용하여 이 쿼리가 select문이라는것을 명시하였다. 
+          - id="selectBoardList" 부분은 이 쿼리의 id는 selectBoardList 라고 정의하였다. 
+          - parameterType="hashmap" 부분은 이 쿼리가 실행될때 필요한 변수는 HashMap 형태를 의미한다.
+          - resultType="hashmap" 부분은 이 쿼리의 결과값은 HashMap에 담겨서 반환된다는 것을 의미한다.  
+            VO(DTO)를 사용한다면 타입이 해당 클래스로 변경됨.
+          
+               원래는 HashMap을 사용하려고 하면 parameterType="java.util.HashMap"이라고 패키지명까지 정확히 명시를 해야하지만, 
+          MyBatis에서  우리가 많이 사용하는 변수형은 hashmap 과 같이 간단히 사용할 수 있도록 지원
+	-->
+	<select id="selectBoardList" parameterType="hashmap" resultType="hashmap">
+	<!-- 파라미터를 map으로 넘겼기 때문에 타입을 정의해줘야한다. -->
+		<![CDATA[
+			SELECT
+			    IDX,
+			    TITLE,
+			    HIT_CNT,
+			    CREA_DTM
+			FROM
+			    TB_BOARD
+			WHERE
+				DEL_GB = 'N'    
+			ORDER BY IDX DESC
+		]]>
+	</select>
+	
+	<insert id="insertBoard" parameterType="hashmap">
+		<![CDATA[
+			INSERT INTO TB_BOARD
+			(
+				IDX,
+			    TITLE, 
+			    CONTENTS, 
+			    HIT_CNT, 
+			    DEL_GB, 
+			    CREA_DTM, 
+			    CREA_ID
+			)
+			VALUES
+			(
+				SEQ_TB_BOARD_IDX.NEXTVAL, 
+			    #{TITLE}, 
+			    #{CONTENTS}, 
+			    0, 
+			    'N', 
+			    SYSDATE, 
+			    'Admin'
+			)
+		]]>
+	</insert>
+	
+	<update id="updateHitCnt" parameterType="hashmap">
+		<![CDATA[
+			UPDATE TB_BOARD 
+			SET
+				HIT_CNT = NVL(HIT_CNT, 0) + 1
+			WHERE
+				IDX = #{IDX}	
+		]]>
+	</update>
+	
+	<select id="selectBoardDetail" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				IDX,
+				HIT_CNT,
+				CREA_ID,
+				CREA_DTM,
+				TITLE,
+				CONTENTS
+			FROM
+				TB_BOARD
+			WHERE
+				IDX = #{IDX}		
+		]]>
+	</select>
+	
+	<update id="updateBoard" parameterType="hashmap">
+		<![CDATA[
+			UPDATE TB_BOARD 
+			SET
+				TITLE = #{TITLE},
+				CONTENTS = #{CONTENTS}
+			WHERE
+				IDX = #{IDX}	
+		]]>
+	</update>
+	
+	<update id="deleteBoard" parameterType="hashmap">
+		<![CDATA[
+			UPDATE TB_BOARD
+			SET
+				DEL_GB = 'Y'
+			WHERE
+				IDX = #{IDX}
+		]]>
+	</update>
+</mapper>

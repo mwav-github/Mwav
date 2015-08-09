@@ -1,0 +1,19 @@
+The Menu of CustomerService Section
+
+Agreement	이용약관			(0) - 회원가입시 법적으로 회원동의가 필요한 내용.
+Announcement 	안내발표			(0) - 게시판 형태가 아닌 중요강조 내용으로 이미지형태로 제공
+ClientFTP	고객FTP				(X) - 고객 측에서 대용량 자료를 내부로 전송할 때 사용
+ClientPDS	고객자료실			(0)
+Contact		담당부서안내			(0)
+FAQ		자주하는 질문			(X)
+MemberShip	회원정보			(0) - 템플릿으로 로직은 CommonApps/MemberSystem
+Policy		회사정책			(X) - 동의 필수사항 아님.
+QnA		묻고 답하기			(0)
+RejectMail	메일수신거부			(0)
+SiteGuide	이용방법			(X) - 웹사이트 사용메뉴얼
+SiteMap		사이트맵			(0) - 회사약도 아님
+MyPage		마이페이지			(X) - 마이페이지
+PartsOfCS	Parts Of CustomerService       	(0) - CS 페이지내 컨텐츠부분
+	BankAccountInfo	은행계좌정보			(0) - 페이지 내 삽입
+	CS-Information  고객지원정보			(0) - 페이지 내 삽입
+Summary		CS 요약				(X) - The Menu of CustomerService Section 요약정보

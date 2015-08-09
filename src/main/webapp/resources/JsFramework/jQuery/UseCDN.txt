@@ -1,0 +1,14 @@
+Quick Access
+
+CDN CSS  http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css
+
+CDN JS   http://code.jquery.com/jquery-1.9.1.js
+
+CDN JS   http://code.jquery.com/ui/1.10.3/jquery-ui.js
+
+
+
+
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css" />
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>

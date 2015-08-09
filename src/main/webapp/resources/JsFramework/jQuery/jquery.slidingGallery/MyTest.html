@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Sliding Image Gallery Demo</title>
+    <script language="javascript" type="text/javascript" src="/CommonLibrary/jQuery/jquery-1.4.2.min.js"></script>
+    <script language="javascript" type="text/javascript" src="scripts/jquery.slidingGallery-1.2.min.js"></script>
+	<!--script language="javascript" type="text/javascript">
+	alert('a');
+		//(default settings)
+        $(function() {
+            $('div.gallery img').slidingGallery();
+        });
+    </script>
+    <script language="javascript" type="text/javascript">
+		//(captions enabled)
+        $(function() {
+            $('div.gallery img').slidingGallery({ useCaptions: true });
+        });
+    </script>
+    <script language="javascript" type="text/javascript">
+	    //(smaller zoom, smaller side images, slower sliding)
+        $(function() {
+            var zoomFunc = function(dimension) {
+                return dimension * 1.5;
+            }
+            var shrinkFunc = function(dimension) {
+                return dimension * 0.5;
+            }
+            $('div.gallery img').slidingGallery({'slideSpeed':'slow','Lzoom':zoomFunc, 'Pzoom':zoomFunc,'Lshrink':shrinkFunc,'Pshrink':shrinkFunc});
+        });
+    </script-->    
+
+    <script language="javascript" type="text/javascript">
+		//(container enabled)
+        $(function() {
+            $('div.gallery img').slidingGallery({ useCaptions: true, 'slideSpeed':'normal', container: $('div.gallery') });
+        });
+    </script>    
+    <link href="default.css" type="text/css" rel="stylesheet" />
+    <style type="text/css">
+        div.gallery img 
+        {
+        	border: solid 1px white;
+        }
+    </style>
+</head>
+<body style="top:0px; left:0px; text-align:left; padding:0px; margin:0px;">
+    <div class="gallery" style="top:150px; left:0px; width:1000px; height:500px;">       
+		<img src="Images/SlidingGallery/001.jpg" caption="락앤락 멀티락 종합세트, 국내최저가!" layout="portrait"/>
+		<img src="Images/SlidingGallery/002.jpg" caption="락앤락 멀티락 종합세트, 국내최저가! 31,340원" layout="landscape"/>        
+		<img src="Images/SlidingGallery/003.jpg" caption="국내최저가 죽이는 슬리퍼 31,340원" layout="landscape"/>                
+		<img src="Images/SlidingGallery/atat.jpg" caption="A papercraft AT-AT that I made" />
+        <img src="Images/SlidingGallery/babyLeia.jpg" caption="<a href='http://www.ddakk.com/bbs/board.php?bo_table=item_detail&wr_id=40'><img src='/Images\ImgButtons/view.gif'/></a>My dog when she was a wee puppy" />
+        <img src="Images/SlidingGallery/cutout.jpg" caption="A bit of Photoshop fun" />
+        <img src="Images/SlidingGallery/gunslinger1.jpg" class="start" caption="A woodburning of mine, inspired by Dark Tower series by Stephen King" layout="portrait" />
+        <img src="Images/SlidingGallery/gunslinger2.jpg" caption="Another woodburning of mine, inspired by Dark Tower series by Stephen King" layout="portrait" />
+        <img src="Images/SlidingGallery/lights.jpg" caption="Some lights in the lobby of the Rio in Vegas" layout="landscape" />
+        <img src="Images/SlidingGallery/lion.jpg" caption="A baby lion at the MGM Grand" layout="landscape"/>
+        <img src="Images/SlidingGallery/punisher.jpg" caption="Me dressed up as the Punisher for halloween + a bit of photoshop" layout="portrait" />
+        <img src="Images/SlidingGallery/royBatty.jpg" caption="A cake I made for my friend Matt" layout="portrait" />
+        <img src="Images/SlidingGallery/stainedGlass.jpg" caption="A stained glass roof in Caesar's Palace" layout="landscape"/>
+        <img src="Images/SlidingGallery/tower.jpg" caption="A tower in Solvang" layout="portrait" />
+    </div>
+</body>
+</html>
