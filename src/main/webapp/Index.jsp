@@ -1,9 +1,52 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <jsp:include page="PartsOfContent/Head_Import.jsp" flush="false" />
+
+<%-- 
+1. 템플릿 : 참고하여 꼭 변경 http://wrapbootstrap.com/preview/WB0025522
+                       http://startbootstrap.com/
+                       https://wrapbootstrap.com/
+--%>
+
+
+
+<c:if test="${requestScope.loginCheck eq 2 }">
+	<script type="text/javascript">
+		alert('비밀번호가 틀렸습니다.');
+		history.go(-1)
+	</script>
+</c:if>
+
+<c:if test="${requestScope.loginCheck eq 3 }">
+	<script type="text/javascript">
+		alert('아이디가 존재하지 않습니다.');
+		history.go(-1);
+	</script>
+</c:if>
+<c:if test="${requestScope.loginCheck eq 5 }">
+	<script type="text/javascript">
+		alert('임시패스워드입니다. 비밀번호 변경 후 로그인해주세요.');
+		history.go(-1);
+	</script>
+</c:if>
+<c:if test="${requestScope.updateMemberDelete eq 1 }">
+	<script type="text/javascript">
+		alert('회원탈퇴가 완료되었습니다. 감사합니다.');
+	</script>
+</c:if>
+<c:if test="${requestScope.updateMemberDelete eq 0 }">
+	<script type="text/javascript">
+		alert('회원탈퇴가 되지 않았습니다.');
+		history.go(-1);
+	</script>
+</c:if>
+
 </head>
 <body>
 
@@ -75,23 +118,22 @@
 				</div>
 			</div>
 			<div class="col-md-4 col-sm-4">
-				<div class="bs-component">	
-				<!-- 이클립스 해제 희망시 
+				<div class="bs-component">
+					<!-- 이클립스 해제 희망시 
 				     1. http://ifone420.tistory.com/107
 				     
 				     추가적으로 
 				     
 				     localhost:8080/CWS 이부분은 server.xml 에서 지정한다.
 				-->
-					 <jsp:include page="/board/bnsFrontList.do"
-						flush="false" /> 
-						
+					<jsp:include page="/board/bnsFrontList.do" flush="false" />
+
 					<%--notice/news 순으로 5개씩 삽입 예정
 						    만약에 공간 및 제약시 추후 tab 형태 고려 
 						  --%>
 				</div>
 			</div>
-		</div>	
+		</div>
 		<!-- /.row -->
 		<%--밑에 350x150 적어도 한 줄은 높이 같도록 넓이는 상관없다 --%>
 		<!-- Portfolio Section -->
@@ -101,55 +143,60 @@
 				<!-- 소제목 lg >=1200px -->
 				<h2 class="page-header">IT Products</h2>
 			</div>
-			<%--1행 --%>
-			<div class="col-md-4 col-sm-6">
-				<!-- md >= 992 / sm >=768  2행에서 1-->
-				<a href="/CompanyItem/IT Products/IT Products.jsp"> <img
-					class="img-responsive img-portfolio img-hover"
-					src="/CompanyItem/IT Products/Images/ms_azure(h250).png" alt="">
-				</a>
-				<p>Contents :</p>
-			</div>
-			<div class="col-md-4 col-sm-6">
-				<a href="/CompanyItem/IT Products/IT Products.jsp"> <img
-					class="img-responsive img-portfolio img-hover"
-					src="/CompanyItem/IT Products/Images/ms_onedrive(h250).png" alt="">
-				</a>
-				<p>Contents :</p>
-			</div>
-			<div class="col-md-4 col-sm-6">
-				<a href="/CompanyItem/IT Products/IT Products.jsp"> <img
-					class="img-responsive img-portfolio img-hover"
-					src="/CompanyItem/IT Products/Images/ms_windows10(h250).png" alt="">
-				</a>
-				<p>Contents :</p>
+
+			<div class="col-lg-12">
+				<%--1행 --%>
+				<div class="col-md-4 col-sm-6">
+					<!-- md >= 992 / sm >=768  2행에서 1-->
+					<a href="/CompanyItem/IT Products/IT Products.jsp"> <img
+						class="img-responsive img-portfolio img-hover"
+						src="/CompanyItem/IT Products/Images/ms_windows10(h250).png"
+						alt="">
+					</a>
+					<%--<p>Contents :</p> --%>
+				</div>
+				<div class="col-md-4 col-sm-6">
+					<a href="/CompanyItem/IT Products/IT Products.jsp"> <img
+						class="img-responsive img-portfolio img-hover"
+						src="/CompanyItem/IT Products/Images/ms_onedrive(h250).png" alt="">
+					</a>
+					<%--<p>Contents :</p> --%>
+				</div>
+				<div class="col-md-4 col-sm-6">
+					<a href="/CompanyItem/IT Products/IT Products.jsp"> <img
+						class="img-responsive img-portfolio img-hover"
+						src="/CompanyItem/IT Products/Images/ms_azure(h250).png" alt="">
+					</a>
+					<%--<p>Contents :</p> --%>
+				</div>
 			</div>
 
-			<%--2행 --%>
-			<div class="col-md-4 col-sm-6">
-				<!-- md >= 992 / sm >=768  2행에서 1-->
-				<a href="/CompanyItem/IT Products/IT Products.jsp"> <img
-					class="img-responsive img-portfolio img-hover"
-					src="/CompanyItem/IT Products/Images/AerVison.PNG" alt="">
-				</a>
-				<p>Contents :</p>
+			<div class="col-lg-12">
+				<%--2행 --%>
+				<div class="col-md-4 col-sm-6">
+					<!-- md >= 992 / sm >=768  2행에서 1-->
+					<a href="/CompanyItem/IT Solutions/Aervision/Aervision.jsp"> <img
+						class="img-responsive img-portfolio img-hover"
+						src="/CompanyItem/IT Products/Images/AerVison.PNG" alt="">
+					</a>
+					<%--<p>Contents :</p> --%>
+				</div>
+				<div class="col-md-4 col-sm-6">
+					<a href="/CompanyItem/IT Products/IT Products.jsp"> <img
+						class="img-responsive img-portfolio img-hover"
+						src="/CompanyItem/IT Products/Images/tucows.jpg" alt="">
+					</a>
+					<%--<p>Contents :</p> --%>
+				</div>
+				<div class="col-md-4 col-sm-6">
+					<a href="/CompanyItem/IT Products/IT Products.jsp"> <img
+						class="img-responsive img-portfolio img-hover"
+						src="/CompanyItem/IT Products/Images/ms_outlook(350).png" alt="">
+					</a>
+					<%--<p>Contents :</p> --%>
+				</div>
 			</div>
-			<div class="col-md-4 col-sm-6">
-				<a href="/CompanyItem/IT Products/IT Products.jsp"> <img
-					class="img-responsive img-portfolio img-hover"
-					src="/CompanyItem/IT Products/Images/tucows.jpg" alt="">
-				</a>
-				<p>Contents :</p>
-			</div>
-			<div class="col-md-4 col-sm-6">
-				<a href="/CompanyItem/IT Products/IT Products.jsp"> <img
-					class="img-responsive img-portfolio img-hover"
-					src="/CompanyItem/IT Products/Images/ms_outlook(350).png" alt="">
-				</a>
-				<p>Contents :</p>
-			</div>
-
-			<%--3행 --%>
+			<%-- 3행
 			<div class="col-md-4 col-sm-6">
 				<!-- 2행에서 2 -->
 				<a href="/CompanyItem/IT Products/IT Products.jsp"> <img
@@ -171,7 +218,7 @@
 					src="/CompanyItem/IT Products/Images/ms_publisher(350).png" alt="">
 				</a>
 				<p>Contents :</p>
-			</div>
+			</div> --%>
 		</div>
 		<!-- /.row -->
 
@@ -182,19 +229,22 @@
 				<h2 class="page-header">Website Building</h2>
 			</div>
 			<div class="col-md-6">
-				<p>The Modern Business template by Start Bootstrap includes:</p>
+				<p>Technologies :</p>
 				<ul>
-					<li><strong>Bootstrap v3.2.0</strong></li>
-					<li>jQuery v1.11.0</li>
-					<li>Font Awesome v4.1.0</li>
+					<li>Bootstrap v3.3.2</li>
+					<li>jQuery v1.11.2</li>
+					<li>Font Awesome v4.3.0</li>
 					<li>Working JSP contact form with validation</li>
-					<li>Unstyled page elements for easy customization</li>
+					<li>HTML5 & CSS & JavaScript & Ajax</li>
+					<li>Spring Framework</li>
+					<li>Google Analytics</li>
 					<li>17 HTML pages</li>
 				</ul>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-					Corporis, omnis doloremque non cum id reprehenderit, quisquam totam
-					aspernatur tempora minima unde aliquid ea culpa sunt. Reiciendis
-					quia dolorum ducimus unde.</p>
+				<%--15.10.18 내용수정  <p>Build websites for Company, Brands and online campaigns.
+					Corporate website, Microsites and Promotion webpages, respectively.</p>--%>
+
+				<p>Mwav의 사이트 구축 솔루션으로 회사용 인트라넷이나 팀에서 사용할 프로젝트 사이트, 고객용 포털을 시작할 수
+					있습니다. 단 한 줄의 코드도 작성할 필요가 없습니다.</p>
 				<a class="btn btn-lg btn-default btn-block"
 					href="/CompanyItem/WebSite Building/WebSite Building.jsp">WebSite
 					Building</a>
@@ -215,9 +265,11 @@
 			<div class="row" id="IT Consulting">
 				<!-- 4행 -->
 				<div class="col-md-8">
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-						Molestias, expedita, saepe, vero rerum deleniti beatae veniam
-						harum neque nemo praesentium cum alias asperiores commodi.</p>
+					<p>다양한 고객 비즈니스에 대한 이해와 컨설팅 수행 경험을 바탕으로 IT의 획기적 고도화 및 선진화를 위해 IT
+						계획 수립(IT Planning)에서 구축(Implementation), 운영(Operation),
+						유지보수(Maintenance)의 IT 라이프 사이클 활동을 효율적으로 수행할 수 있는 체계를 수립하고, 수립된 체계에
+						따른 효과적 업무 수행을 지원하여 드립니다..</p>
+					<%-- 15.10.18 내용수정	<p></p>--%>
 				</div>
 				<div class="col-md-4">
 					<a class="btn btn-lg btn-default btn-block"
@@ -232,9 +284,11 @@
 			<div class="row" id="Digital Marketing">
 				<!-- 4행 -->
 				<div class="col-md-8">
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-						Molestias, expedita, saepe, vero rerum deleniti beatae veniam
-						harum neque nemo praesentium cum alias asperiores commodi.</p>
+					<p>Mwav는 디지털 마케팅과 관련된 모든 분야(SNS, Portals ...)를 지원하며, 많은 고객과의 수행
+						경험을 통해 습득한 통합 마케팅에 관한 남다른 노하우를 바탕으로 디지털 마케팅에 대한 통합적인 마케팅 전략을 수립하고
+						실행하고 있습니다.</p>
+					<%--  15.10.18 내용수정p>Digital Ad Agency: Boost online promotions for maximum
+						profits by leveraging digital marketing effectively.</p>--%>
 				</div>
 				<div class="col-md-4">
 					<a class="btn btn-lg btn-default btn-block"
@@ -243,19 +297,19 @@
 				</div>
 			</div>
 		</div>
-		<hr>
-
-		<!-- Footer -->
-		<footer>
-			<!--/////////////////////////////////////////////////// -->
-			<jsp:include page="PartsOfContent/SiteFooter/FrontFooter.jsp"
-				flush="false" />
-			<!--/////////////////////////////////////////////////// -->
-		</footer>
-
-
+		<!-- /.container -->
 	</div>
-	<!-- /.container -->
+
+	<!-- Footer -->
+	<footer>
+		<!--/////////////////////////////////////////////////// -->
+		<jsp:include page="PartsOfContent/SiteFooter/FrontFooter.jsp"
+			flush="false" />
+		<!--/////////////////////////////////////////////////// -->
+	</footer>
+
+
+
 
 	<!-- Script to Activate the Carousel -->
 	<script>

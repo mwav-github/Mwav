@@ -41,4 +41,19 @@ public class BoardDAO extends AbstractDAO{
 		  return (List<Map<String, Object>>)selectList("board.selectbnsList", map);
 	    
 	}
+
+	public void deleteBoard(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		update("board.deleteBoard", map);
+	}
+	
+	public void updatebnsform(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		update("board.updatebnsform", map);
+	}
+
+	public int gettotalCount() {
+		// TODO Auto-generated method stub
+		return (int) selectOne("board.gettotalCount");
+	}
 }

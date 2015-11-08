@@ -1,6 +1,7 @@
 package net.common.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -26,12 +27,10 @@ public class AbstractDAO {
 	
 	protected void printQueryId(String queryId) {
 		if(log.isDebugEnabled()){
-			log.debug("쿼리 출력시작한다. ~@ \t QueryId  \t:  " + queryId);
-		}
+            log.debug("\t QueryId  \t:  " + queryId);
+        }
 	}
-	
-	
-	
+
 	
 	
 	
@@ -75,6 +74,7 @@ public class AbstractDAO {
         printQueryId(queryId);
         return sqlSession.selectOne(queryId, params);
     }
+     
      
     @SuppressWarnings("rawtypes")
     public List selectList(String queryId){

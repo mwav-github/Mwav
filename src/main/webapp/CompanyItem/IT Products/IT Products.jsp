@@ -38,9 +38,14 @@
 									Solutions</a></li>
 							<li><a href="/CompanyItem/IT Products/IT Products.jsp">IT
 									Products</a></li>
-							<li><a href="/CompanyItem/WebSite Building/WebSite Building.jsp">WebSite Building</a></li>
-							<li><a href="/CompanyItem/Digital Marketing/Digital Marketing.jsp">Digital Marketing</a></li>
-							<li><a href="/CompanyItem/IT Consulting/IT Consulting.jsp">IT Consulting</a></li>
+							<li><a
+								href="/CompanyItem/WebSite Building/WebSite Building.jsp">WebSite
+									Building</a></li>
+							<li><a
+								href="/CompanyItem/Digital Marketing/Digital Marketing.jsp">Digital
+									Marketing</a></li>
+							<li><a href="/CompanyItem/IT Consulting/IT Consulting.jsp">IT
+									Consulting</a></li>
 							<li><a href="/CommonApps/Member/MbrLogin.jsp"><i
 									class="fa fa-user fa-lg"></i></a></li>
 							<li><a href="/CommonApps/Member/MbrInput.jsp"><i
@@ -111,113 +116,62 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 
 			<!-- Content Column -->
 			<div class="col-md-9">
-				<!-- Portfolio Item Row -->
+				<!-- Aervision 1Item Row -->
 				<div class="row">
-
-					<div class="col-md-8">
-						<div id="carousel-example-generic" class="carousel slide"
-							data-ride="carousel">
-							<!-- Indicators -->
-							<ol class="carousel-indicators">
-								<li data-target="#carousel-example-generic" data-slide-to="0"
-									class="active"></li>
-								<li data-target="#carousel-example-generic" data-slide-to="1"></li>
-								<li data-target="#carousel-example-generic" data-slide-to="2"></li>
-							</ol>
-
-							<!-- Wrapper for slides -->
-							<div class="carousel-inner">
-								<div class="item active">
-									<img class="img-responsive" src="http://placehold.it/750x500"
-										alt="">
-								</div>
-								<div class="item">
-									<img class="img-responsive" src="http://placehold.it/750x500"
-										alt="">
-								</div>
-								<div class="item">
-									<img class="img-responsive" src="http://placehold.it/750x500"
-										alt="">
-								</div>
-							</div>
-
-							<!-- Controls -->
-							<a class="left carousel-control" href="#carousel-example-generic"
-								data-slide="prev"> <span
-								class="glyphicon glyphicon-chevron-left"></span>
-							</a> <a class="right carousel-control"
-								href="#carousel-example-generic" data-slide="next"> <span
-								class="glyphicon glyphicon-chevron-right"></span>
-							</a>
+					<div class="thumbnail">
+						<img class="img-responsive" src="http://placehold.it/800x300"
+							alt="">
+						<div class="caption-full">
+							<h4 class="pull-right">$24.99</h4>
+							<h4>
+								<a href="#">Product Name</a>
+							</h4>
+							<p>
+								See more snippets like these online store reviews at <a
+									target="_blank" href="http://bootsnipp.com">Bootsnipp -
+									http://bootsnipp.com</a>.
+							</p>
+							<p>
+								Want to make these reviews work? Check out <strong><a
+									href="http://maxoffsky.com/code-blog/laravel-shop-tutorial-1-building-a-review-system/">this
+										building a review system tutorial</a> </strong>over at maxoffsky.com!
+							</p>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+								sed do eiusmod tempor incididunt ut labore et dolore magna
+								aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+								ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+								aute irure dolor in reprehenderit in voluptate velit esse cillum
+								dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+								cupidatat non proident, sunt in culpa qui officia deserunt
+								mollit anim id est laborum</p>
+						</div>
+						<div class="ratings">
+							<p class="pull-right">3 reviews</p>
+							<p>
+								<span class="glyphicon glyphicon-star"></span> <span
+									class="glyphicon glyphicon-star"></span> <span
+									class="glyphicon glyphicon-star"></span> <span
+									class="glyphicon glyphicon-star"></span> <span
+									class="glyphicon glyphicon-star-empty"></span> 4.0 stars
+							</p>
 						</div>
 					</div>
-
-					<div class="col-md-4">
-						<h3>Project Description</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-							Nam viverra euismod odio, gravida pellentesque urna varius vitae.
-							Sed dui lorem, adipiscing in adipiscing et, interdum nec metus.
-							Mauris ultricies, justo eu convallis placerat, felis enim.</p>
-						<h3>Project Details</h3>
-						<ul>
-							<li>Lorem Ipsum</li>
-							<li>Dolor Sit Amet</li>
-							<li>Consectetur</li>
-							<li>Adipiscing Elit</li>
-						</ul>
-					</div>
-
-				</div>
-				<!-- /.row -->
-
-				<!-- Related Projects Row -->
-				<div class="row">
-
-					<div class="col-lg-12">
-						<h3 class="page-header">Related Projects</h3>
-					</div>
-
-					<div class="col-sm-3 col-xs-6">
-						<a href="#"> <img class="img-responsive img-hover img-related"
-							src="http://placehold.it/500x300" alt="">
-						</a>
-					</div>
-
-					<div class="col-sm-3 col-xs-6">
-						<a href="#"> <img class="img-responsive img-hover img-related"
-							src="http://placehold.it/500x300" alt="">
-						</a>
-					</div>
-
-					<div class="col-sm-3 col-xs-6">
-						<a href="#"> <img class="img-responsive img-hover img-related"
-							src="http://placehold.it/500x300" alt="">
-						</a>
-					</div>
-
-					<div class="col-sm-3 col-xs-6">
-						<a href="#"> <img class="img-responsive img-hover img-related"
-							src="http://placehold.it/500x300" alt="">
-						</a>
-					</div>
-
 				</div>
 			</div>
+			<!-- /.row -->
+
+			<hr>
+
+			<!-- Footer -->
+			<footer>
+				<!--/////////////////////////////////////////////////// -->
+				<jsp:include page="/PartsOfContent/SiteFooter/FrontFooter.jsp"
+					flush="false" />
+				<!--/////////////////////////////////////////////////// -->
+			</footer>
+
 		</div>
-		<!-- /.row -->
-
-		<hr>
-
-		<!-- Footer -->
-		<footer>
-			<!--/////////////////////////////////////////////////// -->
-			<jsp:include page="/PartsOfContent/SiteFooter/FrontFooter.jsp"
-				flush="false" />
-			<!--/////////////////////////////////////////////////// -->
-		</footer>
-
-	</div>
-	<!-- /.container -->
+		<!-- /.container -->
 </body>
 
 </html>

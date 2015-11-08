@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
-
+<link rel="icon"  href="/Images/CompanyLogos/CompanyLogo.ico" />
 <title>Mwav</title>
 <!-- Custom font-awesome -->
 <!-- <link href="/resources/JsFramework/Bootstrap/font-awesome.min.css"
@@ -38,6 +38,11 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+
+<!-- jQuery Version 1.11.0 -->
+<script src="/CommonLibrary/Javascript/Common.js"></script>
+<script src="/CommonLibrary/Javascript/validate.js"></script>
 
 
 <!-- jQuery Version 1.11.0 -->

@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -39,6 +40,13 @@ public class BoardServiceImpl implements BoardService{
 			throws Exception {
 		// TODO Auto-generated method stub
 		boardDAO.updateHitCnt(map);
+		Set set = map.entrySet();
+     	Iterator iterator = set.iterator();
+		while (iterator.hasNext()) {
+				    Map.Entry entry = (Map.Entry)iterator.next();
+				    System.out.println("key : "+entry.getKey()+", value : "+entry.getValue());
+				}
+		
 		Map<String, Object> resultMap = boardDAO.selectbnsView(map);
 		return resultMap;
 	}
@@ -48,6 +56,24 @@ public class BoardServiceImpl implements BoardService{
 		// TODO Auto-generated method stub
 		
 		return boardDAO.selectbnsList(map);
+	}
+
+	@Override
+	public void deleteBoard(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		boardDAO.deleteBoard(map);		
+	}
+
+	@Override
+	public void updatebnsform(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		boardDAO.updatebnsform(map);		
+	}
+
+	@Override
+	public int gettotalCount() {
+		// TODO Auto-generated method stub
+		return boardDAO.gettotalCount();		
 	}
  
 }

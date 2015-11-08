@@ -81,11 +81,8 @@
 			<!-- 2행 9/12열-->
 			<div class="col-md-9 col-sm-9">
 				<!-- Content Column -->
-                  BODY 부분으로서 언제든지 편할 때로의 조작이 가능합니다.
-                           내부 공간에 대한 활용은 알아서 하시면 됩니다.
-                  
-                  *아래는 공간에 대한 분할 부분인식         
-                  http://bootstrapk.com/BS3/css#grid-options
+				BODY 부분으로서 언제든지 편할 때로의 조작이 가능합니다. 내부 공간에 대한 활용은 알아서 하시면 됩니다. *아래는
+				공간에 대한 분할 부분인식 http://bootstrapk.com/BS3/css#grid-options
 				<!-- 2-1 8/12열 변경 가능-->
 				<div class="col-md-8 col-sm-8">
 					<!--body 내에서 조작 (수정가능)  -->
@@ -99,20 +96,16 @@
 				<div class="col-md-12 col-sm-12"></div>
 			</div>
 		</div>
-
-		<hr>
-
-		<!-- FrontFooter -->
-		<footer>
-			<!--/////////////////////////////////////////////////// -->
-			<jsp:include page="SiteFooter/FrontFooter.jsp" flush="false" />
-			<!--/////////////////////////////////////////////////// -->
-		</footer>
-
-
-
 	</div>
 	<!-- /.container -->
+
+	<!-- FrontFooter -->
+	<footer>
+		<!--/////////////////////////////////////////////////// -->
+		<jsp:include page="SiteFooter/FrontFooter.jsp" flush="false" />
+		<!--/////////////////////////////////////////////////// -->
+	</footer>
+
 
 </body>
 

@@ -1,2 +1,5 @@
 eclipse.preferences.version=1
 encoding//src/main/java=UTF-8
+encoding//src/main/webapp/CommonApps/Member/MbrDelete.jsp=UTF-8
+encoding//src/main/webapp/CommonApps/PostSeek/PostSeek.jsp=UTF-8
+encoding//src/main/webapp/CommonApps/PostSeek/timer.jsp=UTF-8

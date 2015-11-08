@@ -14,5 +14,10 @@ public interface BoardService {
 	Map<String, Object> selectbnsView(Map<String, Object> map) throws Exception;
 
 	List<Map<String, Object>> selectbnsList(Map<String, Object> map);
+	
+	void deleteBoard(Map<String, Object> map) throws Exception;
 
+	void updatebnsform(Map<String, Object> map) throws Exception;
+
+	int gettotalCount();
 }

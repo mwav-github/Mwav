@@ -1,6 +1,273 @@
 @charset "utf-8";
 /* CSS Document */
 
+/* 로고 수정 위치에 따른 수정 !!
+ * 추후 정확히 변경 필요
+ * */
+@media screen and (max-width:800px) {
+	.logo_800 {
+		margin-left: -40px;
+		margin-top:-7px
+	}
+}
+
+
+/* 
+ * 최상단으로 올리기 
+ * */
+.back-to-top {
+	cursor: pointer;
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	display: none;
+	z-index:1; /* 가장 최상단 */
+}
+
+/*
+ * Footer 1번
+ * http://bootsnipp.com/snippets/featured/e-commerce-footer-responsive
+ */
+.full {
+    width: 100%;	
+}
+.gap {
+	height: 30px;
+	width: 100%;
+	clear: both;
+	display: block;
+}
+.footer {
+	background: #272727; /* #EDEFF1*/
+	height: auto;
+	padding-bottom: 30px;
+	position: relative;
+	width: 100%;
+	/*border-bottom: 1px solid #CCCCCC;*/
+	border-top: 1px solid #DDDDDD;
+}
+.footer p {
+	margin: 0;
+	color: #78828D; /*#7F8C8D */
+}
+.footer img {
+	max-width: 100%;
+}
+.footer h3 {
+	border-bottom: 1px solid #BAC1C8;
+	color: #54697E;
+	font-size: 18px;
+	font-weight: 600;
+	line-height: 27px;
+	padding: 40px 0 10px;
+	text-transform: uppercase;
+}
+.footer ul {
+	font-size: 16px;
+	list-style-type: none;
+	margin-left: 0;
+	padding-left: 0;
+	margin-top: 15px;
+	color: #78828D; /*#7F8C8D */
+	
+}
+.footer ul li a {
+	padding: 0 0 5px 0;
+	display: block;
+}
+.footer a {
+	color: #78828D;
+}
+.footer ul li a:hover {
+	color: #53b847;
+	font-weight: bold;
+}
+
+
+.social li {
+	background: none repeat scroll 0 0 #B5B5B5;
+	border: 2px solid #B5B5B5;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	-o-border-radius: 50%;
+	-ms-border-radius: 50%;
+	border-radius: 50%;
+	float: left;
+	height: 36px;
+	line-height: 36px;
+	margin: 0 8px 0 0;
+	padding: 0;
+	text-align: center;
+	width: 36px;
+	transition: all 0.5s ease 0s;
+	-moz-transition: all 0.5s ease 0s;
+	-webkit-transition: all 0.5s ease 0s;
+	-ms-transition: all 0.5s ease 0s;
+	-o-transition: all 0.5s ease 0s;
+}
+.social li:hover {
+	transform: scale(1.15) rotate(360deg);
+	-webkit-transform: scale(1.1) rotate(360deg);
+	-moz-transform: scale(1.1) rotate(360deg);
+	-ms-transform: scale(1.1) rotate(360deg);
+	-o-transform: scale(1.1) rotate(360deg);
+}
+.social li a {
+	color: #EDEFF1;
+}
+.social li:hover {
+	border: 2px solid #2c3e50;
+	background: #2c3e50;
+}
+.social li a i {
+	font-size: 16px;
+	margin: 0 0 0 5px;
+	color: #EDEFF1 !important;
+}
+.footer-bottom {
+	background: #222; /*#E3E3E3 */
+	/*border-top: 1px solid #DDDDDD;*/
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.footer-bottom p.pull-left {
+	padding-top: 6px;
+	color: white;
+}
+.payments {
+	font-size: 1.5em;	
+	color: #777;
+}
+
+
+/*
+ * 2번안
+ * http://bootsnipp.com/snippets/featured/rainbow-nav
+
+.navbar, .dropdown-menu{
+background:rgba(255,255,255,0.25);
+border: none;
+
+}
+
+.nav>li>a, .dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover, .dropdown-menu>li>a, .dropdown-menu>li{
+  border-bottom: 3px solid transparent;
+}
+.nav>li>a:focus, .nav>li>a:hover,.nav .open>a, .nav .open>a:focus, .nav .open>a:hover, .dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover{
+  border-bottom: 3px solid transparent;
+  background: none;
+}
+.navbar a, .dropdown-menu>li>a, .dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover{
+ color: #fff;
+}
+.dropdown-menu{
+      -webkit-box-shadow: none;
+    box-shadow:none;
+}
+
+.nav li:hover:nth-child(8n+1), .nav li.active:nth-child(8n+1){
+  border-bottom: #C4E17F 3px solid;
+}
+.nav li:hover:nth-child(8n+2), .nav li.active:nth-child(8n+2){
+  border-bottom: #F7FDCA 3px solid;
+}
+.nav li:hover:nth-child(8n+3), .nav li.active:nth-child(8n+3){
+  border-bottom: #FECF71 3px solid;
+}
+.nav li:hover:nth-child(8n+4), .nav li.active:nth-child(8n+4){
+  border-bottom: #F0776C 3px solid;
+}
+.nav li:hover:nth-child(8n+5), .nav li.active:nth-child(8n+5){
+  border-bottom: #DB9DBE 3px solid;
+}
+.nav li:hover:nth-child(8n+6), .nav li.active:nth-child(8n+6){
+  border-bottom: #C49CDE 3px solid;
+}
+.nav li:hover:nth-child(8n+7), .nav li.active:nth-child(8n+7){
+  border-bottom: #669AE1 3px solid;
+}
+.nav li:hover:nth-child(8n+8), .nav li.active:nth-child(8n+8){
+  border-bottom: #62C2E4 3px solid;
+}
+ */
+
+/*nav 메뉴 파란색 // class에 menu만 추가 
+ * http://bootsnipp.com/snippets/z1GdK
+ * 
+ */
+.menu
+{
+background-color: #00547E;
+border-bottom: 4px solid #04A3ED;
+width:100%;
+height: auto;
+padding: 0 10px;
+position: fixed;
+margin: 0px;
+z-index: 1;
+opacity: 0.9;
+}
+
+.menu  .navbar-nav > .active > a
+{
+background-color : #04A3ED;
+color: white;
+font-weight: bold;
+}
+
+.menu  .navbar-nav >  li >  a
+{
+/*font-size: 13px;
+padding: 10px 35px; */
+color: white;
+}
+.menu  .navbar-nav >  li >  a:hover
+{
+background-color: #04A3ED;
+}
+
+.navbar-header > a
+{
+color: white;
+font-size: 25px;
+margin-left : 55px;
+/*font-family: 'Ubuntu Condensed', sans-serif;
+padding: 0px;
+margin: 0px;
+text-decoration: none;
+padding: 5px 30px; */
+
+}
+.navbar-header > a:hover
+{
+text-decoration: none;
+color: #04A3ED;
+}
+
+
+
+
+/* Youtube 배치 css */
+/*
+Reference: http://avexdesigns.com/responsive-youtube-embed/
+*/
+
+.vid {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 30px; height: 0; overflow: hidden;
+}
+ 
+.vid iframe,
+.vid object,
+.vid embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
 
 .res_width{
 	width:100%;
@@ -20,47 +287,65 @@
 /*다른 css 에서는 padding/margin을 주지 말고 html에서 class로 준다. 
    꼭 필요한 경우에는 html에서 id 나 style 태그로 준다.*/
 
+/*엔터 */
+.enter{
+	padding: 20px 0;
+}
+/*margin left 5%*/
+.mgt-1_9 {
+	margin-top : -1.9% !important;
+}
+
+.mgl5 {
+	margin-left: 5% !important;
+}
+.mgt1_8{
+	margin-top : 1.8% !important;
+}
+.mgt2{
+	margin-top : 2% !important;
+}
 /*margin top 5%*/
 .mgt5 {
-	margin-top: 5%;
+	margin-top: 5% !important;
 }
 /*margin bottom 5%*/
 .mgb5 {
-	margin-bottom: 5%;
+	margin-bottom: 5% !important;
 }
 
 /*margin top 4% */
 .mgt4 {
-	margin-top: 4%;
+	margin-top: 4% !important;
 }
 /*margin top 12% */
 .mgt12 {
-	margin-top: 12%;
+	margin-top: 12% !important;
 }
 /*margin: 9% auto; */
 .mg9xauto {
-	margin: 9% auto;
+	margin: 9% auto !important;
 }
 
 /*padding top 4%*/
 .pdt4 {
-	padding-top: 4%;
+	padding-top: 4% !important;
 }
 /*padding top 1.5% */
 .pdt1_5 {
-	padding-top: 1.5%;
+	padding-top: 1.5% !important;
 }
 /*padding: 0 2%*/
 .pd0x2 {
-	padding: 0 2%;
+	padding: 0 2% !important;
 }
 /*padding: 1.5% 0 */
 .pd1_5x0 {
-	padding: 1.5% 0;
+	padding: 1.5% 0 !important;
 }
 /*padding:1.5% 0 3% 0; */
 .pdt1_5b3 {
-	padding: 1.5% 0 3% 0;
+	padding: 1.5% 0 3% 0 !important;
 }
 
 /* 크기에 따른 조정 */
@@ -71,7 +356,7 @@
    1301 ~ 1600 : 8%    높이 600이상
    1601 ~ 2000 : 12%   높이 700이상
    최소 값 기준
-*/
+
 @media screen and (min-width:980px ) and (max-width:1300px ) and
 	(min-height:500px) {
 	dd.mar {
@@ -91,3 +376,4 @@
 		margin-top: 15%;
 	}
 }
+* */

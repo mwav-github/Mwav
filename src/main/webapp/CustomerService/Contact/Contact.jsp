@@ -123,8 +123,8 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 			<!-- 끝 -->
 
 			<div class="col-md-9">
-				<span class="label label-primary">Contact</span> 위에는 사진 형식으로 예정
-
+				<!-- <span class="label label-primary">Contact</span> 위에는 사진 형식으로 예정
+ -->
 				<div class="container">
 					<div class="row">
 						<div class="col-md-8">
@@ -172,7 +172,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 								</form>
 							</div>
 						</div>
-						<div class="col-md-4">
+					<!-- 	<div class="col-md-4">
 							<form>
 								<legend>
 									<span class="glyphicon glyphicon-globe"></span> Our office
@@ -185,7 +185,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 									<strong>Full Name</strong><br> <a href="mailto:#">first.last@example.com</a>
 								</address>
 							</form>
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</div>

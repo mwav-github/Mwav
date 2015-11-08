@@ -21,7 +21,6 @@
 	<table class="table table-striped">
 		<thead>
 			<tr>
-				<th>NO.</th>
 				<th>Title</th>
 				<th>UpdateDate</th>
 			</tr>
@@ -36,9 +35,8 @@
 							<input type="hidden" name="bnViewCount" value="${FrontNewsList.bnViewCount}" />
 							<tr>
 								<!-- a태그로 처리요망 -->
-								<td>${FrontNewsList.bNews_id}</td>
 								<td><a
-									href="javascript:page_move2('${FrontNewsList.bNews_id}');">${FrontNewsList.bnTitle}</a></td>
+									href="/board/bnsView.do?bNews_id=${FrontNewsList.bNews_id}">${FrontNewsList.bnTitle}</a></td>
 								<%--view를 구현하는 방법에 따라 달라진다. get 문 형태 유망 --%>
 								<td>${FrontNewsList.bnUpdateDt}</td>
 							</tr>

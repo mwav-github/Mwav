@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <script src="//cdn.ckeditor.com/4.4.6/basic/ckeditor.js"></script>
 <!-- imsi -->
 <link
@@ -55,14 +57,14 @@
 
 
 			<tbody>
-							<tr>
-								<td>${selectbnsView.bnews_id}</td>
-								<td>${selectbnsView.bnGroup}</td>
-								<td>${selectbnsView.bnViewCount}</td>
-								<td>${selectbnsView.bnInsertDt}</td>
-								<td>${selectbnsView.staff_id}</td>
-								<td>${selectbnsView.bnOrder}</td>
-							</tr>
+					<tr>
+						<td>${selectboardView.bNews_id}</td>
+						<td>${selectboardView.bnGroup}</td>
+						<td>${selectboardView.bnViewCount}</td>
+						<td>${selectboardView.bnInsertDt}</td>
+						<td>${selectboardView.staff_id}</td>
+						<td>${selectboardView.bnOrder}</td>
+					</tr>
 			</tbody>
 		</table>
 
@@ -70,29 +72,30 @@
 
 			<tr>
 				<th class="active">Title</th>
-				<td>${selectbnsView.bnTitle}</td>
 			</tr>
+			<tr> <td>${selectboardView.bnTitle}</td></tr>
+			
 
 
 
 			<tr>
 				<th class="active">SubTitle</th>
-				<td>${selectbnsView.bnSubTitle}</td>
 			</tr>
+			<tr><td>${selectboardView.bnSubTitle}</td></tr>
 
 			<tr>
 				<th class="active">Content</th>
-				<td>${selectbnsView.bnContent}</td>
+				
 			</tr>
+			<tr><td>${selectboardView.bnContent}</td></tr>
 
 		</table>
 	</form>
 
 	<br style="clear: both">
 	<p class="pull-right">
-		<button type="button" class="btn btn-primary">All List</button>
-		<button type="button" class="btn btn-warning">BACK</button>
-		<button type="button" class="btn btn-success">OK</button>
+		<button type="button" class="btn btn-success" onClick="javascript:window.location.href='/board/bnsList.do'">All List</button>
+		<button type="button" class="btn btn-warning" onClick="javascript:history.go(-1)">BACK</button>
 	</p>
 
 </div>

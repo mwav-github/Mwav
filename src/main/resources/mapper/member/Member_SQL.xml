@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- #은 ' ' string // $ 은 숫자 ' ' 없음 -->
+<mapper namespace="member">
+	
+	<select id="selectLogin" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+		SELECT mbrLoginPw, mbrLoginId, member_id
+		FROM Member_tbl
+	    WHERE mbrLoginId = #{mbrLoginId} 
+		
+		]]>
+	</select>
+
+	<select id="selectNextPk" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+	       select IFNULL(max(member_id+1) , 100000) AS member_id from Member_tbl 
+		]]>
+	</select>
+
+	<select id="insertMember_tbl" parameterType="hashmap">
+		<![CDATA[
+	INSERT INTO Member_tbl 
+		Values(#{member_id}, #{mbrLoginId}, #{mbrLoginPw}, #{mbrTempLoginPw}, #{mbrFirstName}, #{mbrLastName}, #{mbrMiddleName}, #{mbrEmail}, #{mbrCellPhone}, #{mbrAddrFlag}, #{mbrZipcode}, #{mbrAddress})
+		]]>
+	</select>
+	<insert id="insertMemberValue_tbl" parameterType="hashmap">
+		<![CDATA[
+	INSERT INTO MemberValue_tbl Values(#{member_id},null,null,null,null,null,null,null,null,null,null,now(),null,null,null,null,null,null)
+		]]>
+	</insert>
+	
+    <select id="selectMemberView" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+	      select * from Member_tbl where member_id= #{member_id}
+		]]>
+	</select>
+	
+    <select id="selectIdCheck" parameterType="string" resultType="string">
+		<![CDATA[
+	      select mbrLoginId from Member_tbl where mbrLoginId = #{mbrLoginId};
+		]]>
+	</select>
+	
+    <select id="selectIdFinder" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+		select mbrLoginId from Member_tbl where mbrCellPhone = #{mbrCellPhone} and mbrEmail = #{mbrEmail}
+		]]>
+	</select>
+	
+	<update id="imsiPWInsert" parameterType="hashmap"> 
+		<![CDATA[
+		UPDATE Member_tbl SET mbrTempLoginPw = #{imsiPW} WHERE mbrEmail = #{mbrEmail} and mbrLoginId = #{mbrLoginId}
+		]]>
+	</update>
+	
+	 <select id="selectPWFinder" parameterType="hashmap" resultType="string">
+		<![CDATA[
+		select mbrLoginId from Member_tbl where mbrCellPhone = #{mbrCellPhone} and mbrEmail = #{mbrEmail}
+		]]>
+	</select>
+	
+	 <select id="imsiPWFinder" parameterType="hashmap" resultType="string">
+		<![CDATA[
+		select mbrTempLoginPw from Member_tbl where mbrTempLoginPw = #{imsiPW}
+		]]>
+	</select>
+	
+	<update id="updatePw" parameterType="hashmap" >
+		<![CDATA[
+		UPDATE member_tbl SET mbrLoginPw = #{mbrLoginPw} WHERE mbrTempLoginPw = #{imsi_mbrLoginPw}
+		]]>
+	</update>
+	
+	<select id="selectGunguFinder" parameterType="String" resultType="String">
+		<![CDATA[
+		select distinct(시군구명) from postcodezibun_tbl where 시도명 = #{sido}
+		]]>
+	</select>
+	
+	<select id="selectpostList_2" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+		select * from postcodezibun_tbl where 시도명 = #{sido} and 시군구명 = #{gungu} and 법정읍면동명 = #{dong} and 지번본번 = ${zibun}
+		]]>
+	</select>
+	
+	<update id="updateMemberDelete" parameterType="hashmap"> 
+		<![CDATA[		
+		update MemberValue_tbl set mbrLeaveDt=NOW() where member_id = (SELECT member_id FROM member_tbl where mbrLoginPw = #{mbrLoginPw} and member_id = #{member_id})
+		]]>
+	</update>		
+</mapper>
+

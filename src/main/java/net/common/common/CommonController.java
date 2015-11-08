@@ -42,6 +42,8 @@ public class CommonController {
 				entry = iterator.next();
 				log.debug("key : " + entry.getKey() + ",\tvalue : "
 						+ entry.getValue());
+				System.out.println("key : " + entry.getKey() + ",\tvalue : "
+						+ entry.getValue());
 			}
 		}
 		return mv;

@@ -261,4 +261,4 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 	<!-- /.container -->
 </body>
 
-</html>
+</html>	

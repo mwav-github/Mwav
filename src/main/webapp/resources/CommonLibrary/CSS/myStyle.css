@@ -1,4 +1,5 @@
-@CHARSET "UTF-8";
+@charset "utf-8";
+/* CSS Document */
 
 /* 로그인 단계 관련 CSS */
 .smpl-step {
@@ -90,28 +91,9 @@
 	pointer-events: none;
 }
 
-/*Footer*/
-.footer-bottom {
-	border-top: 1px solid #DDDDDD;
-	padding-top: 10px;
-	padding-bottom: 10px;
-}
 
-.footer-bottom p.pull-left {
-	padding-top: 6px;
-}
 
-.payments {
-	font-size: 1.5em;
-}
 
-.back-to-top {
-	cursor: pointer;
-	position: fixed;
-	bottom: 20px;
-	right: 20px;
-	display: none;
-}
 
 /* 부트스트랩 main 왼, 오른 아이콘 위치 조정*/
 .carousel-control.left {

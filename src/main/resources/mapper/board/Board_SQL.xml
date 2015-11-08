@@ -3,37 +3,63 @@
 
 <mapper namespace="board">
 	
-	
 	<select id="selectFrontList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			SELECT bNews_id, bnTitle, bnUpdateDt 
+			SELECT bNews_id, bnTitle, date_format(bnUpdateDt,'%Y%m%d') as bnUpdateDt
 		    FROM BoardNews_tbl
-		    ORDER BY bnUpdateDt DESC Limit 5
+		    WHERE bnDeleteDt IS NULL ORDER BY bnUpdateDt DESC Limit 5
 		]]>
 	</select>
 
 	<insert id="insertbnsForm" parameterType="hashmap">
 		<![CDATA[
 			INSERT INTO BoardNews_tbl
-				SELECT IFNULL(max(bNews_id)+1,100001), #{bnGroup}, #{bnHighLight}, #{bnTitle}, #{bnSubTitle}, #{bnRelatedLink}, #{bnContent}, #{bnViewCount}, #{bnOrder}, #{bnStatus}, #{staff_id}, DATE_FORMAT( NOW(),'%Y-%m-%d %H:%i'), null, null FROM BoardNews_tbl
+				SELECT IFNULL(max(bNews_id)+1,100001), #{bnGroup}, #{bnHighLight}, #{bnTitle}, #{bnSubTitle}, #{bnRelatedLink}, #{bnContent}, #{bnViewCount}, #{bnOrder}, #{bnStatus}, #{staff_id}, NOW(), NOW(), null FROM BoardNews_tbl
 		]]>
 	</insert>
 	
 	<update id="updateHitCnt" parameterType="hashmap">
     <![CDATA[
-       update BoardNews_tbl set bnViewCount = iFnull(bnViewCount, 0) +1 where bnews_id = #{bnews_id} 
+       update BoardNews_tbl set bnViewCount = iFnull(bnViewCount, 0) +1 where bNews_id = #{bNews_id} 
     ]]>
     </update>
     
     <select id="selectbnsView" parameterType="hashmap" resultType="hashmap">
 	<![CDATA[
-	    select * from BoardNews_tbl where bnews_id= #{bnews_id}
+	    select * from BoardNews_tbl where bNews_id = #{bNews_id}
 	]]>
 	</select>
 	
 	<select id="selectbnsList" parameterType="hashmap" resultType="hashmap">
 	<![CDATA[
-	select * from BoardNews_tbl WHERE bnDeleteDt IS NULL ORDER BY bNews_id;
+	select c.* from (select @ROWNUM := @ROWNUM + 1 AS ROWNUM, a.* from (select * from BoardNews_tbl order by bnInsertDt desc) a,  (SELECT @ROWNUM := 0) R ) c where c.ROWNUM >= #{startRow} and c.ROWNUM <= #{endRow}
 	]]>
 	</select>
+	
+	
+	<!-- .
+	normal : select bNews_id, bnGroup, bnTitle, bnSubTitle, bnSubTitle, date_format(bnUpdateDt,'%d %b %Y %T') as bnUpdateDt from BoardNews_tbl WHERE bnDeleteDt IS NULL ORDER BY bNews_id;
+	mysql : select c.* from (select @ROWNUM := @ROWNUM + 1 AS ROWNUM, a.* from (select * from BoardNews_tbl order by bnInsertDt desc) a,  (SELECT @ROWNUM := 0) R ) c where c.ROWNUM >= 0 and c.ROWNUM <= 10
+    oracle : select * from (select rownum rnum, news_id, bnGroup, bnHighLight, bnTitle, bnSubTitle, bnRelatedLink, bnContent, bnViewCount, bnOrder, bnStatus, staff_id, bnWriteDt, bnModifyDt, bnDeleteDt from (select * from BoardNews_tbl order by bnWriteDt desc)) where rnum >= ? and rnum <= ?	
+	-->
+	
+	<update id="deleteBoard" parameterType="hashmap">
+    <![CDATA[
+        update BoardNews_tbl set bnDeleteDt = NOW() where bNews_id = #{bNews_id}
+    ]]>
+    </update>
+
+    <update id="updatebnsform" parameterType="hashmap">
+    <![CDATA[
+        update BoardNews_tbl set bnGroup= #{bnGroup}, bnHighLight= #{bnHighLight}, bnTitle= #{bnTitle}, bnSubTitle= #{bnSubTitle}, bnRelatedLink= #{bnRelatedLink}, bnContent= #{bnContent}, bnViewCount= #{bnViewCount}, bnOrder= #{bnOrder}, bnStatus= #{bnStatus}, staff_id= #{staff_id}, bnInsertDt= #{bnInsertDt}, bnUpdateDt= NOW(), bnDeleteDt=null where bNews_id = #{bNews_id}
+    ]]>
+    </update>
+    
+    <select id="gettotalCount" resultType="int">
+	<![CDATA[
+	   select count(*) from BoardNews_tbl
+	]]>
+	</select>
+    
+
 </mapper>

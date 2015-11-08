@@ -1,54 +1,93 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns:context="http://www.springframework.org/schema/context"
-    xmlns:p="http://www.springframework.org/schema/p"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns="http://www.springframework.org/schema/beans"
-    xmlns:mvc="http://www.springframework.org/schema/mvc"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.springframework.org/schema/beans" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-<!--servlet-context는 서블릿 영영의 설정하는 XML 파일 -->
-
-    <!-- net 하위 모든 패키지에 있는 파일의 어노테이션을 스캔해서 빈으로 등록하겠다는 말
-             즉 사용하는 bean을 일일이 xml에 선언하지 않고도 필요한 것을 어노테이션(Annotation)을 자동으로 인식하게 하는 역할
-    -->
+	<!-- net 하위 모든 패키지에 있는 파일의 어노테이션을 스캔해서 빈으로 등록하겠다는 말 즉 사용하는 bean을 일일이 xml에 
+		선언하지 않고도 필요한 것을 어노테이션(Annotation)을 자동으로 인식하게 하는 역할 -->
 	<context:component-scan base-package="net"></context:component-scan>
 
+
+	<!--servlet-context는 서블릿 영영의 설정하는 XML 파일 -->
+
+	<!-- 스프링 메일 설정 -->
+	<!-- gmail -->
+	<!-- 이메일 보내기 -->
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com" />
+		<property name="port" value="587" />
+		<property name="defaultEncoding" value="utf-8"/>
+		<property name="username" value="ebizpromwav@gmail.com" />
+		<property name="password" value="qkqh5501" />
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.transport.protocol">smtp</prop>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.debug">true</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- <bean id="email" class="net.mwav.mail.EmailVO">
+	</bean> -->
+	<bean id="emailSender" class="net.mwav.mail.EmailSender">
+	</bean>
+	<bean id="femailSender" class="net.mwav.mail.SimpleMailMessageTest">
+	</bean>
+
+	<!-- Responsebody 
 	
+	annotation스캔을 <mvc:annotation-driven/> 로 하고 있다면 HttpMessageConverter를 기본적으로
+등록하기 때문에 별다른 설정없이 Jackson 라이브러리만 추가하면 디폴트 전략인 Jackson Json을 사용할 수 있다는 것.
+	-->
+	<bean id="jacksonMessageConverter"
+		class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" />
+
+
 	<!-- Enables the Spring MVC @Controller programming model -->
-	<!-- CustomMapArgumentResolver는 root context 영역에 등록이 되어야 한다. --> 
-	<mvc:annotation-driven> <!-- 어노테이션을 사용하겠다고 선언-->
-		<mvc:argument-resolvers> <!-- <mvc:"argument-resolvers> 태그를 이용하여 우리가 만든 CustomMapArgumentResolver의 빈(bean)을 수동으로 등록했다. -->
-			<bean class="net.common.resolver.CustomMapArgumentResolver"></bean>		
+	<!-- CustomMapArgumentResolver는 root context 영역에 등록이 되어야 한다. -->
+	<mvc:annotation-driven> <!-- 어노테이션을 사용하겠다고 선언 -->
+		<mvc:argument-resolvers> <!-- <mvc:"argument-resolvers> 태그를 이용하여 우리가 만든 CustomMapArgumentResolver의 
+				빈(bean)을 수동으로 등록했다. -->
+			<bean class="net.common.resolver.CustomMapArgumentResolver"></bean>
 		</mvc:argument-resolvers>
 	</mvc:annotation-driven>
-	
+
+	<!-- Interceptor는 Controller가 요청되기 전에 수행된다. 즉, Interceptor는 DispatcherServlet과 
+		같은 위치에 등록이 되어있어야지 정상적으로 수행이 된다. -->
 	<mvc:interceptors>
 		<mvc:interceptor>
-			<mvc:mapping path="/**"/>
-			<bean 	class="net.common.logger.LoggerInterceptor"></bean>
+			<mvc:mapping path="/**" /> <!-- 지금 작성하는 로거는 모든 요청에서 동작을 하기때문에 전체 패스를 의미하는 "/**" 로 설정하였다. -->
+			<bean id="loggerInterceptor" class="net.common.logger.LoggerInterceptor"></bean>
 		</mvc:interceptor>
 	</mvc:interceptors>
-		
-    <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"/>
-    
-    <bean class="org.springframework.web.servlet.view.BeanNameViewResolver" p:order="0" />
-    <bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJacksonJsonView" />    
-    
-    
-    <!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
-    <!-- ViewResolver구요~ jsp와 name을 매핑시켜주는 녀석 Controller을 설명할 때, 서블릿 설정이 자동으로 prefix와 suffix를 붙인다고 해줬는데, 그 역할을 담당한다. 
-              즉, 우리가 일일이 전체경로와 .jsp를 붙이지 않아도 되도록 도와준다. -->
-    <!-- 위에 prefix로 컨트롤러로 넘겨주는 url 결정 만약 /WEB-INF/views 로 되어있다면 앞에 자동으로 붇는다. -->
-    <bean
-    	class="org.springframework.web.servlet.view.UrlBasedViewResolver" p:order="1" 
-    	p:viewClass="org.springframework.web.servlet.view.JstlView" 
-    	p:prefix="/" p:suffix=".jsp">  <!-- prefix는 페이지의 기본 루트 // 페이지의 기본 확장자 -->
-    	
-   	</bean>
-   	
-   	
+
+	<bean
+		class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
+
+	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver"
+		p:order="0" />
+	<bean id="jsonView"
+		class="org.springframework.web.servlet.view.json.MappingJacksonJsonView" />
+
+
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
+		in the /WEB-INF/views directory -->
+	<!-- ViewResolver구요~ jsp와 name을 매핑시켜주는 녀석 Controller을 설명할 때, 서블릿 설정이 자동으로 
+		prefix와 suffix를 붙인다고 해줬는데, 그 역할을 담당한다. 즉, 우리가 일일이 전체경로와 .jsp를 붙이지 않아도 되도록 
+		도와준다. -->
+	<!-- 위에 prefix로 컨트롤러로 넘겨주는 url 결정 만약 /WEB-INF/views 로 되어있다면 앞에 자동으로 붇는다. -->
+	<bean class="org.springframework.web.servlet.view.UrlBasedViewResolver"
+		p:order="1" p:viewClass="org.springframework.web.servlet.view.JstlView"
+		p:prefix="/" p:suffix=".jsp">  <!-- prefix는 페이지의 기본 루트 // 페이지의 기본 확장자 -->
+
+	</bean>
+
+
 </beans>
 
 

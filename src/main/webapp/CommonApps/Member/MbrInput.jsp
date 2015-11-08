@@ -7,145 +7,301 @@ http://planbong.tistory.com/531
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"
 	rel="stylesheet">
+<script
+	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
+<script
+	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/additional-methods.min.js"></script>
 
+<script>
+	//http://www.nextree.co.kr/p11205/
+	//http://godpage.tistory.com/entry/Ajax%EC%A0%95%EB%A6%AC-2-XMLHttpRequest%EC%9D%98-%EB%A9%94%EC%84%9C%EB%93%9C%EC%99%80-%ED%94%84%EB%A1%9C%ED%8D%BC%ED%8B%B0	
+	//http://invincure.tistory.com/100
+	//http://www.ppomppu.co.kr/zboard/view.php?id=developer&no=8206
+	//http://hellogk.tistory.com/84
+	//http://java.ihoney.pe.kr/283
+	//http://techknowdger.blogspot.kr/2014/02/sping-db-json-ajax.html
 
+	//https://developer.mozilla.org/ko/docs/AJAX/Getting_Started
+	var xhr;
+	function createXhr() {
+		if (window.ActiveXObject) { // IE 이전버전
+			xhr = new ActiveXObject("Microsoft.XMLHTTP");
+		} else {
+			xhr = new XMLHttpRequest();
+		}
+	}
 
-<div class="row">
-	<form role="form" method="post" action="/Member/MbrInput">
-		<div class="col-lg-6">
-			<div class="well well-sm">
-				<strong><span class="glyphicon glyphicon-asterisk"></span>Required
-					Field</strong>
-			</div>
-			<!-- 
-                placeholder  요소는  결과에서 보듯이  텍스트필드에 희미하게 글자를 보여주는 기능입니다
-                required 요소는  필드에 값을 입력하지 않고 전송(submit)하면 입력하라고 메세지를 보여줍니다
-                
-                 -->
-			<!-- 로그인 아이디 -->
-			<div class="form-group">
-				<label for="InputName">Enter LoginID</label>
-				<div class="input-group">
-					<input type="text" class="form-control" name="mbrLoginId"
-						id="InputName" placeholder="예) mymg2002" required> <span
-						class="input-group-addon"> <span
-						class="glyphicon glyphicon-asterisk"></span>
-					</span>
-				</div>
-			</div>
+	function idcheck() {
+		var id = document.getElementById("mbrLoginId").value;
 
-			<!-- 패스워드 -->
-			<div class="form-group">
-				<label for="InputPW">Login PW</label>
-				<div class="input-group">
-					<input type="password" class="form-control" name="mbrLoginPw"
-						placeholder="패스워드 입력" required> <span
-						class="input-group-addon"><span
-						class="glyphicon glyphicon-asterisk"></span> </span>
-				</div>
-			</div>
+		var queryString = "mbrLoginId=" + id;
+		if (id.length < 6) {
+			document.getElementById("idcheckLayer").innerHTML = "<font color=red>6자리 이상 입력하세요.</font>";
+		} else {
+			// 1. XMLHttpReqeust 객체 생성
+			createXhr();
+			// 2. 이벤트 핸들러 등록
+			xhr.onreadystatechange = callback; // callback 함수를 등록
+			// 3. open()를 통해 요청관련 설정을 설정
+			xhr.open("POST", "/member/IdCheck.do", true);
+			// 4. Header에 contentType 지정 - post
+			xhr.setRequestHeader("Content-Type",
+					"application/x-www-form-urlencoded");
+			// 5. send()를 통해 요청
+			xhr.send(queryString); // 요청 쿼리를 보내준다.
+		}
+	}
+	function callback() {
+		if (xhr.readyState == 4) { // 응답을 다 받은 경우
+			if (xhr.status == 200) { // 응답코드가 200인 경우 - 정상인 경우
+				var resTxt1 = xhr.responseText; // 서버가 보낸 응답 text
+				//console.log(resTxt);
+				var resTxt = resTxt1.trim(); // 공백제거 안하면 같은게 안됨 
+				var imsiresTxt = "<font color=red><strong>이미 등록된 ID 입니다. 재 입력해주세요.</strong></font>";
+				//alert(resTxt);
+				//alert(imsiresTxt);
+				if (resTxt == imsiresTxt) {
+					//alert('1');
+					document.getElementById("idcheckLayer").innerHTML = resTxt;
+					document.getElementById("mbrLoginId").value = "";
+					return false;
+				} else {
+					//alert('11');
+					document.getElementById("idcheckLayer").innerHTML = resTxt;
 
-			<!-- 패스워드 -->
-			<div class="form-group">
-				<label for="InputPW">Login PW</label>
-				<div class="input-group">
-					<input type="password" class="form-control" name="mbrLoginPw"
-						placeholder="패스워드 입력" required> <span
-						class="input-group-addon"><span
-						class="glyphicon glyphicon-asterisk"></span> </span>
-				</div>
-			</div>
+				}
+			} else {
+				alert("요청 처리가 정상적으로 되지 않았습니다.\n" + xhr.status);
+			}
+		}
+	}
 
-			<!-- 회원명 이름 -->
-			<div class="form-group">
-				<label for="InputCellularP">Name</label>
-				<div class="input-group">
-					<input type="text" class="form-control" name="mbrFirstName"
-						placeholder="예) 김, Kim" required> <input type="text"
-						class="form-control" name="mbrLastName"
-						placeholder="예) 주성, JuSung" required> <input type="text"
-						class="form-control" name="mbrMiddleName" placeholder="예) add"
-						required> <span class="input-group-addon"><span
-						class="glyphicon glyphicon-asterisk"></span> </span>
-				</div>
-			</div>
-
-			<!-- 이메일 -->
-			<div class="form-group">
-				<label for="InputEmail">Email</label>
-				<div class="input-group">
-					<!-- 현재 이메일 형태로 -->
-					<input type="email" class="form-control" id="InputEmailFirst"
-						name="mbrEmail" placeholder="예) mymg99@gmail.com" required>
-					<span class="input-group-addon"><span
-						class="glyphicon glyphicon-asterisk"></span> </span>
-				</div>
-			</div>
-
-			<!-- 핸드폰번호 -->
-			<div class="form-group">
-				<label for="InputCellularP">CellularPhone</label>
-				<div class="input-group">
-					<input type="text" class="form-control" name="member_CellularP_1"
-						MaxLength="3" placeholder="예) 010" required> <input
-						type="text" class="form-control" name="member_CellularP_2"
-						MaxLength="4" placeholder="예) 3180" required> <input
-						type="text" class="form-control" name="member_CellularP_3"
-						MaxLength="4" placeholder="예) 4451" required> <span
-						class="input-group-addon"><span
-						class="glyphicon glyphicon-asterisk"></span> </span>
-				</div>
-			</div>
-
-			<!-- 주소 선택 -->
-			<div class="form-group">
-				<label for="InputCellularP">Address flag</label>
-				<div class="radio">
-					<label class="radio-inline"> <input type="radio"
-						value="mbrAddrFlag"> 0. 지번주소
-					</label> <label class="radio-inline"> <input type="radio"
-						value="mbrAddrFlag"> 0. 도로명 주소
-					</label>
-				</div>
-			</div>
-
-			<!-- 주소 -->
-			<!-- Text input-->
-			<div class="form-group">
-				<label class="col-sm-2 control-label" for="textinput">Zipcode</label>
-				<div class="col-sm-4">
-					<input type="text" placeholder="Zipcode" class="form-control">
-				</div>
-			</div>
-			<!-- Text input-->
-			<div class="form-group">
-				<label class="col-sm-2 control-label" for="textinput">Detail
-					Address</label>
-				<div class="col-sm-10">
-					<input type="text" name="mbrAddress" placeholder="Address"
-						class="form-control">
-				</div>
-			</div>
-
-			<input type="submit" name="submit" id="submit" value="Submit"
-				class="btn btn-info pull-right">
-		</div>
-	</form>
-
-	<!-- 아래는 성공 및 실패 메시지 출력부분 
-	http://garymcallisteronline.blogspot.kr/2013/12/jquery-validation-and-twitter-bootstrap.html
+	function msubmit() {
+		/* $("change_record").validate({
+		    //validation이 끝난 이후의 submit 직전 추가 작업할 부분
+		    //http://hellogk.tistory.com/48
+		    submitHandler: function() {
+		        var f = confirm("회원가입을 완료하겠습니까?");
+		        if(f){
+		            return true;
+		        } else {
+		            return false;
+		        }
+		    },
+		    //규칙
+		    rules: {
+		    	mbrLoginId: {
+		            required : true,
+		            minlength : 5,    
+		        },
+		        mbrLoginPw: {
+		            required : true,
+		            minlength : 10
+		        },
+		        mbrEmail: {
+		            required : true,
+		            minlength : 2,
+		            email : true
+		        }
+		    },
+		    //규칙체크 실패시 출력될 메시지
+		    messages : {
+		    	mbrLoginId: {
+		            required : "필수로입력하세요",
+		            minlength : "최소 {0}글자이상이어야 합니다",
+		            remote : "존재하는 아이디입니다"
+		        },
+		        mbrLoginPw: {
+		            required : "필수로입력하세요",
+		            minlength : "최소 {0}글자이상이어야 합니다"
+		        },
+		        mbrEmail: {
+		            required : "필수로입력하세요",
+		            minlength : "최소 {0}글자이상이어야 합니다",
+		            email : "메일규칙에 어긋납니다"
+		        }
+		    }
+		});	 */
+		document.change_record.submit();
+	}
+</script>
+<script>
 	
-	-->
-	<div class="col-lg-5 col-md-push-1">
-		<div class="col-md-12">
-			<div class="alert alert-success">
-				<strong><span class="glyphicon glyphicon-ok"></span>
-					Success! Message sent.</strong>
-			</div>
-			<div class="alert alert-danger">
-				<span class="glyphicon glyphicon-remove"></span><strong>
-					Error! Please check all page inputs.</strong>
-			</div>
+</script>
+
+<!-- 크기를 줄이고 싶으면 row -->
+<div class='container'>
+	<div class='panel panel-primary dialog-panel'>
+		<div class='panel-heading'>
+			<h5>Mwav - Member Registration</h5>
+		</div>
+		<div class='panel-body'>
+			<form class='form-horizontal' name="change_record" method="post"
+				action="/member/memberForm.do">
+				<%--action="/member/memberForm.do" --%>
+				<div class='form-group'>
+					<label class='control-label col-md-2 col-md-offset-2'
+						for='id_accomodation'>Login Id</label>
+
+					<div class='col-md-4'>
+						<div class='form-group'>
+							<div class='col-md-11'>
+								<input type="text" class="form-control" name="mbrLoginId"
+									id="mbrLoginId" placeholder="예) mymg2002" value=""
+									onchange="chkLoginPolicy(this.form)" required>
+							</div>
+						</div>
+					</div>
+					<p class="col-md-2">
+						<button class="btn btn-primary btn-block" type="button"
+							onclick="idcheck()">ID중복확인</button>
+					</p>
+					<p class="col-md-4 col-md-offset-4">
+						<span id="idcheckLayer"></span>
+					</p>
+				</div>
+				<div class='form-group'>
+					<label class='control-label col-md-2 col-md-offset-2'
+						for='id_accomodation'>Password</label>
+
+					<div class='col-md-6'>
+						<div class='form-group'>
+							<div class='col-md-11'>
+								<input type="password" class="form-control" name="mbrLoginPw"
+									id="mbrLoginPw" placeholder="예) 8자리이상" value=""
+									onchange="chkPWPolicy(this.form)" required>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class='form-group'>
+					<label class='control-label col-md-2 col-md-offset-2'
+						for='id_title'>Name</label>
+					<div class='col-md-8'>
+						<!-- <div class='col-md-2'>
+							<div class='form-group internal'>
+								<select class='form-control' name="" id='id_title'>
+									<option>Mr</option>
+									<option>Ms</option>
+									<option>Mrs</option>
+									<option>Miss</option>
+									<option>Dr</option>
+								</select>
+							</div>
+						</div> -->
+						<div class='col-md-3 indent-small'>
+							<div class='form-group internal'>
+								<input class='form-control' name="mbrFirstName"
+									id='mbrFirstName' placeholder='First Name' type='text' required>
+							</div>
+						</div>
+						<div class='col-md-3 indent-small'>
+							<div class='form-group internal'>
+								<input class='form-control' name="mbrMiddleName"
+									id='mbrMiddleName' placeholder='Middle Name' type='text'>
+							</div>
+						</div>
+						<div class='col-md-3 indent-small'>
+							<div class='form-group internal'>
+								<input class='form-control' name="mbrLastName" id='mbrLastName'
+									placeholder='Last Name' type='text' required>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class='form-group'>
+					<label class='control-label col-md-2 col-md-offset-2'
+						for='id_adults'>Phone</label>
+					<div class='col-md-8'>
+						<div class='col-md-2'>
+							<div class='form-group internal'>
+								<input class='form-control col-md-8' name="member_CellularP_1"
+									id='member_CellularP_1' placeholder='010' type='text'>
+							</div>
+						</div>
+						<div class='col-md-3 indent-small'>
+							<div class='form-group internal'>
+								<input class='form-control' name="member_CellularP_2"
+									id='member_CellularP_2' placeholder='3180' type='text'>
+							</div>
+						</div>
+						<div class='col-md-3 indent-small'>
+							<div class='form-group internal'>
+								<input class='form-control' name="member_CellularP_3"
+									id='member_CellularP_3' placeholder='4451' type='text'>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class='form-group'>
+					<label class='control-label col-md-2 col-md-offset-2'
+						for='id_email'>E-mail</label>
+					<div class='col-md-6'>
+						<div class='form-group'>
+							<div class='col-md-11'>
+								<input class='form-control' name="mbrEmail" id='mbrEmail'
+									placeholder='E-mail' type='text' value=""
+									onchange="chkEmail(this.form)" required>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class='form-group'>
+					<label class='control-label col-md-2 col-md-offset-2' for='id_pets'>Address</label>
+					<p class="col-md-2 col-md-offset-4">
+						<button class="btn btn-primary btn-block" type="button"
+							href="#signup" data-toggle="modal" data-target=".bs-modal-sm">주소찾기</button>
+
+					</p>
+					<!-- <div class='col-md-8'>
+						<label><input type="radio" name="optradio" value="0">지번
+							주소</label> <label><input type="radio" name="optradio" value="1">도로명
+							주소</label>
+					</div> -->
+				</div>
+				<div class='form-group'>
+					<label class='control-label col-md-2 col-md-offset-2' for='id_pets'></label>
+					<div class='col-md-2'>
+						<input class='form-control' name="mbrZipcode_1" id='id_first_name'
+							type='text' required>
+					</div>
+					<p class="col-md-1" style="text-align: center">
+						<strong>-</strong>
+					</p>
+					<div class='col-md-2'>
+						<input class='form-control' name="mbrZipcode_2" id='id_first_name'
+							type='text'>
+					</div>
+				</div>
+
+				<div class='form-group'>
+					<label class='control-label col-md-2 col-md-offset-2' for='id_pets'></label>
+					<div class='col-md-6'>
+						<input class='form-control' name="mbrAddress" id='mbrAddress'
+							placeholder='주소' type='text'>
+					</div>
+				</div>
+
+				<div class='form-group pull-right'>
+					<div class='col-md-offset-4 col-md-3 '>
+						<button type="submit" class='btn-lg btn-primary'
+							style='float: right'>
+							<i class="glyphicon glyphicon-edit"></i>
+						</button>
+						<%-- incldue 시에는 submit이 아니라 자바스크립트로 처리 --%>
+					</div>
+					<div class='col-md-1'></div>
+					<div class='col-md-3'>
+						<button class='btn-lg btn-danger' style='float: right'
+							onClick="javascript:history.go(-1)">
+							<i class="glyphicon glyphicon-remove"></i>
+						</button>
+					</div>
+				</div>
+			</form>
+
+			<%-- 아래의 내용을 위에 주소 위치에 둘 경우 form태그가 해당위치로 닫힌다 추후 확인 필요 --%>
+			<jsp:include page="/CommonApps/PostSeek/PostSeek.jsp" flush="false" />
 		</div>
 	</div>
 </div>
