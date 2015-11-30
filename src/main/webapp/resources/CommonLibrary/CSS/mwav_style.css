@@ -79,7 +79,7 @@
 	color: #78828D;
 }
 .footer ul li a:hover {
-	color: #53b847;
+	color: #00abec; /*53b847;*/
 	font-weight: bold;
 }
 
@@ -280,6 +280,45 @@ Reference: http://avexdesigns.com/responsive-youtube-embed/
 } 
 이미지에 이렇게 부여해버리면 줄어들때도 300이라 부자연스럽다.
 */
+/*========아래는 텍스트 중앙 정렬 블록요소에만 적용 (p h3 등)태그만 http://webdir.tistory.com/31 */
+.back_resimage { text-align: left; 
+background: url(/Images/what-is-azure.jpg)  no-repeat center center fixed;
+ background-size:100%; /* 가로 세로 순  보통 100% auto */
+
+ }
+ 
+ /* bootstrap 기본 hr 변형 */
+.hr_b{
+    border-top: 3px solid #337ab7 !important;
+}
+
+/*========아래는 텍스트 중앙 정렬 블록요소에만 적용 (p h3 등)태그만 http://webdir.tistory.com/31 */
+.align_left { text-align: left; }
+.align_center { text-align: center; } /* bootstrap에 text-align 이랑 동일 */
+.align_right { text-align: right; }
+.align_justify { text-align: justify; }
+/*
+ <p class="text-left">좌측정렬된 텍스트.</p>
+<p class="text-center">중앙정렬된 텍스트.</p>
+<p class="text-right">우측정렬된 텍스트.</p>
+<p class="text-justify">양쪽정렬된 텍스트.</p>
+<p class="text-nowrap">그냥 텍스트.</p>
+* 부트스트랩에 존재 
+ */
+
+/*========아래는 텍스트 세로 중앙 정렬 인라인요소에만 적용 (p h3 등)태그만 http://webdir.tistory.com/31 */
+.vertical_align { vertical-align:middle;  }
+
+/* */
+.vertical_parent {
+   display:table;
+}
+
+.vertical_child {
+   display:table-cell;
+   vertical-align:middle;
+   text-align:center;
+}
 
 
 /*========아래는 margin 및 padding 관련 내용 */
@@ -287,18 +326,24 @@ Reference: http://avexdesigns.com/responsive-youtube-embed/
 /*다른 css 에서는 padding/margin을 주지 말고 html에서 class로 준다. 
    꼭 필요한 경우에는 html에서 id 나 style 태그로 준다.*/
 
-/*엔터 */
+/*엔터 블록 요소 끼리 적용*/
 .enter{
 	padding: 20px 0;
 }
-/*margin left 5%*/
+
 .mgt-1_9 {
 	margin-top : -1.9% !important;
 }
 
+/*margin left 5%*/
 .mgl5 {
 	margin-left: 5% !important;
 }
+
+.mgtl3 {
+    margin-left: 3% !important;
+}
+
 .mgt1_8{
 	margin-top : 1.8% !important;
 }
@@ -312,6 +357,9 @@ Reference: http://avexdesigns.com/responsive-youtube-embed/
 /*margin bottom 5%*/
 .mgb5 {
 	margin-bottom: 5% !important;
+}
+.mgb3 {
+	margin-bottom: 3% !important;
 }
 
 /*margin top 4% */

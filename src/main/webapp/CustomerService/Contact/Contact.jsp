@@ -17,41 +17,10 @@
 	 -->
 	<!--  //////////////////////////////////// -->
 	<div class="container">
-		<div class="row">
-			<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-				<div class="container">
-					<!-- Brand and toggle get grouped for better mobile display -->
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle" data-toggle="collapse"
-							data-target="#bs-example-navbar-collapse-1">
-							<span class="sr-only">Toggle navigation</span> <span
-								class="icon-bar"></span> <span class="icon-bar"></span> <span
-								class="icon-bar"></span>
-						</button>
-						<a class="navbar-brand active" href="/">Mwav</a>
-					</div>
-					<!-- Collect the nav links, forms, and other content for toggling -->
-					<div class="collapse navbar-collapse"
-						id="bs-example-navbar-collapse-1">
-						<ul class="nav navbar-nav navbar-right">
-							<li><a href="/CompanyItem/IT Solutions/IT Solutions.jsp">IT
-									Solutions</a></li>
-							<li><a href="/CompanyItem/IT Products/IT Products.jsp">IT
-									Products</a></li>
-							<li><a href="#WebSite Building">WebSite Building</a></li>
-							<li><a href="#Digital Marketing">Digital Marketing</a></li>
-							<li><a href="#IT Consulting">IT Consulting</a></li>
-							<li><a href="/CommonApps/Member/MbrLogin.jsp"><i
-									class="fa fa-user fa-lg"></i></a></li>
-							<li><a href="/CommonApps/Member/MbrInput.jsp"><i
-									class="fa fa-user-plus fa-lg"></i></a></li>
-						</ul>
-					</div>
-					<!-- /.navbar-collapse -->
-				</div>
-				<!-- /.container -->
-			</nav>
-		</div>
+		<!--  //////////////////////////////////// -->
+		<jsp:include page="/PartsOfContent/SiteHeader/FrontHeader_Master.jsp"
+			flush="false" />
+		<!--  //////////////////////////////////// -->
 		<!-- Image Container 
 container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다. 
 -->
@@ -90,88 +59,58 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 		<div class="row">
 			<!-- Sidebar Column left메뉴 추후 변경 예정<시작>-->
 			<div class="col-md-3">
-				<div class="list-group">
-					<a href="/CustomerService/MyPage/MyPage.jsp"
-						class="list-group-item " data-toggle="tooltip"
-						data-placement="left" data-original-title="마이페이지">MyPage</a> <a
-						href="/CustomerService/Announcement/Announcement.jsp"
-						class="list-group-item " data-toggle="tooltip"
-						data-placement="left" data-original-title="공지사항">Announcement</a>
-					<a href="/CustomerService/MemberShip/MemberShip.jsp"
-						class="list-group-item" data-toggle="tooltip"
-						data-placement="left" data-original-title="회원정보(수정)">MemberShip</a>
-					<a href="/CustomerService/Agreement/Agreement.jsp"
-						class="list-group-item " data-toggle="tooltip"
-						data-placement="left" data-original-title="이용약관">Agreement</a> <a
-						href="/CustomerService/SiteGuide/SiteGuide.jsp"
-						class="list-group-item" data-toggle="tooltip"
-						data-placement="left" data-original-title="이용방법">SiteGuide</a> <a
-						href="/CustomerService/FAQ/FAQ.jsp" class="list-group-item "
-						data-toggle="tooltip" data-placement="left"
-						data-original-title="자주하는 질문">FAQ</a> <a
-						href="/CustomerService/QnA/QnA.jsp" class="list-group-item"
-						data-toggle="tooltip" data-placement="left"
-						data-original-title="묻고 답하기">QnA</a> <a
-						href="/CustomerService/Contact/Contact.jsp"
-						class="list-group-item active" data-toggle="tooltip"
-						data-placement="left" data-original-title="담당자안내">Contact</a> <a
-						href="/CustomerService/SiteMap/SiteMap.jsp"
-						class="list-group-item" data-toggle="tooltip"
-						data-placement="left" data-original-title="사이트맵">SiteMap</a>
-				</div>
+				<jsp:include page="/CustomerService/CS-MasterPageLeftMenu.jsp" flush="false" />
 			</div>
 			<!-- 끝 -->
 
 			<div class="col-md-9">
 				<!-- <span class="label label-primary">Contact</span> 위에는 사진 형식으로 예정
  -->
-				<div class="container">
-					<div class="row">
-						<div class="col-md-8">
-							<div class="well well-sm">
-								<form>
-									<div class="row">
-										<div class="col-md-6">
-											<div class="form-group">
-												<label for="name"> Name</label> <input type="text"
-													class="form-control" id="name" placeholder="Enter name"
-													required="required" />
-											</div>
-											<div class="form-group">
-												<label for="email"> Email Address</label>
-												<div class="input-group">
-													<span class="input-group-addon"><span
-														class="glyphicon glyphicon-envelope"></span> </span> <input
-														type="email" class="form-control" id="email"
-														placeholder="Enter email" required="required" />
-												</div>
-											</div>
-											<div class="form-group">
-												<label for="subject"> Subject</label> <select id="subject"
-													name="subject" class="form-control" required="required">
-													<option value="na" selected="">Choose One:</option>
-													<option value="service">General Customer Service</option>
-													<option value="suggestions">Suggestions</option>
-													<option value="product">Product Support</option>
-												</select>
+				<div class="row">
+	
+						<div class="well well-sm">
+							<form>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="name"> Name</label> <input type="text"
+												class="form-control" id="name" placeholder="Enter name"
+												required="required" />
+										</div>
+										<div class="form-group">
+											<label for="email"> Email Address</label>
+											<div class="input-group">
+												<span class="input-group-addon"><span
+													class="glyphicon glyphicon-envelope"></span> </span> <input
+													type="email" class="form-control" id="email"
+													placeholder="Enter email" required="required" />
 											</div>
 										</div>
-										<div class="col-md-6">
-											<div class="form-group">
-												<label for="name"> Message</label>
-												<textarea name="message" id="message" class="form-control"
-													rows="9" cols="25" required="required"
-													placeholder="Message"></textarea>
-											</div>
-										</div>
-										<div class="col-md-12">
-											<button type="submit" class="btn btn-primary pull-right"
-												id="btnContactUs">Send Message</button>
+										<div class="form-group">
+											<label for="subject"> Subject</label> <select id="subject"
+												name="subject" class="form-control" required="required">
+												<option value="na" selected="">Choose One:</option>
+												<option value="service">General Customer Service</option>
+												<option value="suggestions">Suggestions</option>
+												<option value="product">Product Support</option>
+											</select>
 										</div>
 									</div>
-								</form>
-							</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="name"> Message</label>
+											<textarea name="message" id="message" class="form-control"
+												rows="9" cols="25" required="required" placeholder="Message"></textarea>
+										</div>
+									</div>
+									<div class="col-md-12">
+										<button type="submit" class="btn btn-primary pull-right"
+											id="btnContactUs">Send Message</button>
+									</div>
+								</div>
+							</form>
 						</div>
+					</div>
 					<!-- 	<div class="col-md-4">
 							<form>
 								<legend>
@@ -186,27 +125,22 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 								</address>
 							</form>
 						</div> -->
-					</div>
-				</div>
+			
 			</div>
 		</div>
-
-
 		<!-- /.row -->
-
-		<hr>
-
-		<!-- Footer -->
-		<footer>
-			<!--/////////////////////////////////////////////////// -->
-			<jsp:include page="/PartsOfContent/SiteFooter/FrontFooter.jsp"
-				flush="false" />
-			<!--/////////////////////////////////////////////////// -->
-		</footer>
-
-
 	</div>
 	<!-- /.container -->
+
+	<!-- Footer -->
+	<footer>
+		<!--/////////////////////////////////////////////////// -->
+		<jsp:include page="/PartsOfContent/SiteFooter/FrontFooter.jsp"
+			flush="false" />
+		<!--/////////////////////////////////////////////////// -->
+	</footer>
+
+
 
 </body>
 

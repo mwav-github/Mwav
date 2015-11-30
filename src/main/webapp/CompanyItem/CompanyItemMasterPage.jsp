@@ -153,23 +153,18 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 
 			</div>
 		</div>
-
-
 		<!-- /.row -->
-
-		<hr>
-
-		<!-- Footer -->
-		<footer>
-			<!--/////////////////////////////////////////////////// -->
-			<jsp:include page="/PartsOfContent/SiteFooter/FrontFooter.jsp"
-				flush="false" />
-			<!--/////////////////////////////////////////////////// -->
-		</footer>
-
-
 	</div>
 	<!-- /.container -->
+
+	<!-- Footer -->
+	<footer>
+		<!--/////////////////////////////////////////////////// -->
+		<jsp:include page="/PartsOfContent/SiteFooter/FrontFooter.jsp"
+			flush="false" />
+		<!--/////////////////////////////////////////////////// -->
+	</footer>
+
 
 </body>
 

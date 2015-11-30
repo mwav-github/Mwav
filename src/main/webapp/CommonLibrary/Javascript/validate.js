@@ -86,7 +86,7 @@ function chkEmail(form) {
 	}
 }
 
-//태그제거
+/*//태그제거
 var re = "<[^<|>]*>";
 var re = /[<][^>]*[>]/gi;
 str = str.replace(RegExpTag,"");  
@@ -111,9 +111,9 @@ str = str.replace(RegExpHG,"");
 var RegExpDS = /<!--[^>](.*?)-->/g;
 str6 = str.replace(RegExpDS,"");
 
-/*************************************
+*//*************************************
 //copy & paste 방지 : onkeydown="javascript:preventPaste(event);"
-*************************************/
+*************************************//*
 function preventPaste(e) {
 
  var ctrlKey;
@@ -138,46 +138,46 @@ function preventPaste(e) {
  }
 }
 
-/*************************************
+*//*************************************
 ** 컴마(",") 제거
-*************************************/
+*************************************//*
 function removeComma( strSrc )
 {
     return strSrc.replace(/,/gi,"");
 }
 
-/*************************************
+*//*************************************
 ** 하이픈("-") 제거
-*************************************/
+*************************************//*
 function removeHyphen( strSrc )
 {
     return strSrc.replace(/-/gi,"");
 }
-/*************************************
+*//*************************************
 ** String 에서 왼쪽 빈공백문자 제거 script
-*************************************/
+*************************************//*
 function LTrim(strSrc) {
     return strSrc.replace(/^\s+/,'');
 }
 
-/*************************************
+*//*************************************
 ** String 에서 오른쪽 빈공백문자 제거 script
-*************************************/
+*************************************//*
 function RTrim(strSrc) {
     return strSrc.replace(/\s+$/,'');
 }
 
-/*************************************
+*//*************************************
 ** String 에서 양쪽공백문자 제거 script
-*************************************/
+*************************************//*
 function Trim(strSrc) {
     var strLTrim = strSrc.replace(/^\s+/,'');
     return strLTrim.replace(/\s+$/,'');
 }
 
-/*************************************
+*//*************************************
 ** String 에서 모든 공백문자 제거 script
-*************************************/
+*************************************//*
 function Del_Space( strSrc )
 {
     return strSrc.replace(/ /g, '');
@@ -186,9 +186,9 @@ function Del_Space( strSrc )
 
 
 
-/*************************************
+*//*************************************
 ** 입력값이 한글만 사용못함 체크
-*************************************/
+*************************************//*
 function ishangle(s) {
     for (i = 0; i < s.length; i++) {
         if ((s.charCodeAt(i) != 32) && (s.charCodeAt(i) < 127)) {           
@@ -230,7 +230,7 @@ function Validate() {
 	//사용
 	var str_cell_phone1 = frm.v_hand_f.value;
 	//var str_cell_phone2 = frm.v_hand_l.value;
-	/*
+	
 	if(Validate.prototype.isOnlyNumeric(str_cell_phone1)==false)    {
 	   alert("핸드폰 번호는 숫자만 가능합니다.\n\n다시 입력해 주세요.");
 		frm.v_hand_f.focus();
@@ -402,7 +402,7 @@ function Validate() {
 	 * /^([A-Za-z0-9_-]{1,15})(@{1})([A-Za-z0-9_]{1,15})(\.{1})([A-Za-z0-9_]{2,10})(\.{1}[A-Za-z]{2,10})?(\.{1}[A-Za-z]{2,10})?$/;
 	 * if(emailEx1.test(email)) { flag = true; } else { flag = false; } return
 	 * flag; }
-	 */
+	 
 
 	Validate.prototype.isValidEmail = function(email) {
 		var invalidCharactersRegExp = /^\w(\.?[-\w])*@\w(\.?[-\w])*\.([a-z]{3}(\.[a-z]{2})?|[a-z]{2}(\.[a-z]{2})?)$/i;
@@ -599,8 +599,8 @@ function Validate() {
 		return str.join('').replace(/^,/, '');
 	}
 
-	/* 입력된 값중에 <script 태그가 포함되어 있는지 검사(게시판. 2012.05.25) */
-	/* checkScriptTag(form.name, alert의 컨트럴 표시이름) */
+	 입력된 값중에 <script 태그가 포함되어 있는지 검사(게시판. 2012.05.25) 
+	 checkScriptTag(form.name, alert의 컨트럴 표시이름) 
 	Validate.prototype.checkScriptTag = function(obj, txt) {
 		if (!validator.isAllSpace(obj.value)) {
 			var regExp = /<script/;
@@ -618,30 +618,30 @@ function Validate() {
 		}
 	}
 }
-/*******************************************************************************
+*//*******************************************************************************
  * * 컴마(",") 제거
- ******************************************************************************/
+ ******************************************************************************//*
 function removeComma(strSrc) {
 	return strSrc.replace(/,/gi, "");
 }
 
-/*******************************************************************************
+*//*******************************************************************************
  * * 하이픈("-") 제거
- ******************************************************************************/
+ ******************************************************************************//*
 function removeHyphen(strSrc) {
 	return strSrc.replace(/-/gi, "");
 }
 
-/*******************************************************************************
+*//*******************************************************************************
  * * String 에서 왼쪽 빈공백문자 제거 script
- ******************************************************************************/
+ ******************************************************************************//*
 function LTrim(strSrc) {
 	return strSrc.replace(/^\s+/, '');
 }
 
-/*******************************************************************************
+*//*******************************************************************************
  * * String 에서 오른쪽 빈공백문자 제거 script
- ******************************************************************************/
+ ******************************************************************************//*
 function RTrim(strSrc) {
 	return strSrc.replace(/\s+$/, '');
 }
@@ -650,7 +650,7 @@ function RTrim(strSrc) {
 // http://babo9006.tistory.com/47
 // http://androphil.tistory.com/entry/JavaScript-%EC%98%88%EC%A0%9C-%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EC%A0%95%EA%B7%9C%EC%8B%9D-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%9C%A0%ED%9A%A8%EC%84%B1-%EA%B2%80%EC%82%AC
 // http://warmz.tistory.com/734
-/*
+
  * function validate(form) { var mbrLoginId =
  * document.getElementById('mbrLoginId'); alert(mbrLoginId); var mbrLoginPw =
  * document.getElementById('mbrLoginPw'); alert(mbrLoginPw); //var pass1 =

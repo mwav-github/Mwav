@@ -58,7 +58,9 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 		<!-- Content Row -->
 		<div class="row">
 			<!-- Sidebar Column left메뉴 추후 변경 예정<시작>-->
-			<div class="col-md-3"></div>
+			<div class="col-md-3">
+			<jsp:include page="/Company/CompanyLeftMenu.jsp" flush="false" />
+			</div>
 			<!-- 끝 -->
 
 			<div class="col-md-9">

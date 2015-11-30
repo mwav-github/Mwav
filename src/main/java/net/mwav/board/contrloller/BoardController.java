@@ -149,7 +149,7 @@ public class BoardController {
 		return mv;
 	}
 
-	// 4번 bnsDelete : 수정/삭제가능
+	// 4번 bnsDelete
 	@RequestMapping(value = "/board/bnsDelete.do")
 	public ModelAndView deleteBoard(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
@@ -164,8 +164,8 @@ public class BoardController {
 	@RequestMapping(value = "/board/bnsList.do")
 	public ModelAndView selectbnsList(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("/CommonApps/BoardNews/bnsList");
-
+		ModelAndView mv = new ModelAndView("/Company/CompanyMasterPage_1");
+	
 		String pageNum = (String) commandMap.get("pageNum");
 		Paging_2 paging = new Paging_2();
 		if (pageNum == null) {
@@ -186,6 +186,9 @@ public class BoardController {
 		} else {
 			selectboardList = Collections.emptyList();
 		}
+		System.out.println("찍히낭");
+		mode = "SbnsList";
+		request.setAttribute("mode", mode);
 
 		mv.addObject("selectboardList", selectboardList);
 		mv.addObject("pagingVO", pagingVO);

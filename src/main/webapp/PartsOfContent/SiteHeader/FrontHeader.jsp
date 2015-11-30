@@ -1,17 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!-- 메인 페이지에서만 타겟팅 나머지는 URL 물고가기 
-이놈이 슬라이드쇼 있는놈
--->
-<div class="row">
 
-	<nav id="BackToTop"
-		class="menu navbar navbar-inverse navbar-fixed-top " role="navigation">
-		<%--menu가 css 적용 --%>
+<!-- 메인 페이지에서만 타겟팅 나머지는 URL 물고가기
+이놈이 슬라이드쇼 없는 놈 그러나 아직 반영 x 각 페이지별로 따로 있다.
+ -->
+<div class="row">
+	<nav id="BackToTop" class="menu navbar navbar-fixed-top "
+		role="navigation">
 		<div class="container">
 			<%-- Container를 nav 밖에 놓으면 전체 영역 / 안에놓으면 1170px --%>
-
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse"
@@ -32,7 +30,8 @@
 				<ul class="mgl5 nav navbar-nav">
 					<li><a href="/CompanyItem/IT Solutions/IT Solutions.jsp">IT
 							Solutions</a></li>
-					<li><a href="/CompanyItem/IT Products/IT Products.jsp">IT
+					<li><a
+						href="/CompanyItem/IT Solutions/Aervision/Aervision.jsp">IT
 							Products</a></li>
 					<li><a
 						href="/CompanyItem/WebSite Building/WebSite Building.jsp">WebSite
@@ -50,7 +49,7 @@
 							data-toggle="tooltip" data-placement="bottom"
 							data-original-title="${mbrLoginId}님
 								반갑습니다."> MyPage</a></li>
-						<li><a href="/member/Logout.do">로그아웃</a></li>
+						<li><a href="/member/Logout.do">LogOut</a></li>
 					</c:if>
 					<c:if test="${sessionScope.mbrLoginId eq null }">
 						<li><a href="/MasterPage.jsp?mode=SMbrLogin"><i
@@ -65,6 +64,7 @@
 		<!-- /.navbar-collapse -->
 	</nav>
 </div>
+
 
 <!--  //////////////////////////////////// -->
 
@@ -87,23 +87,26 @@
 		<div class="item active">
 			<div class="fill"
 				style="background-image: url('/Company/zImage/Company_Main(height_300).jpg');"></div>
-			<!-- 	<div class="carousel-caption">
-				<h2>Caption 1(1900x1080)</h2>
-			</div>-->
+			<div class="carousel-caption" style="color:#BCE8F1;">
+			<!-- 	<h2>Company</h2>
+			 -->	<a href="/Company/Introduction/Introduction.jsp" class="btn btn-info btn-lg">Learn More</a>
+			</div>
 		</div>
 		<div class="item">
 			<div class="fill"
 				style="background-image: url('/CompanyItem/zImage/CompanyItem_Main(height_300).jpg');"></div>
-			<!-- <div class="carousel-caption">
-				<h2>Caption 2(1900x1080)</h2>
-			</div>-->
+			<div class="carousel-caption" style="color:#BCE8F1;">
+				<!-- <h2>Company Item</h2> -->
+				<a href="/CompanyItem/IT%20Solutions/Aervision/Aervision.jsp" class="btn btn-info btn-lg">Learn More</a>
+			</div>
 		</div>
 		<div class="item">
 			<div class="fill"
 				style="background-image: url('/CustomerService/zImage/CustomerService_Main(height_300).jpg');"></div>
-			<!-- 	<div class="carousel-caption">
-				<h2>Caption 3(1900x1080)</h2>
-			</div> -->
+			<div class="carousel-caption" style="color:#BCE8F1;">
+				<!-- <h2>Customer Service</h2> -->
+				<a href="#" class="btn btn-info btn-lg">Learn More</a>
+			</div>
 		</div>
 	</div>
 

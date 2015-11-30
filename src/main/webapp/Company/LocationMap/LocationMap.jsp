@@ -66,10 +66,12 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 			<div class="col-md-9">
 				<!-- Content Column -->
 				<div class="col-md-8">
-					<!-- Embedded Google Map -->
+					<!-- Embedded Google Map 
+					http://www.thewordcracker.com/scribblings/how-to-embed-googlemap-to-blogs/
+					-->
 					<iframe width="100%" height="400px" frameborder="0" scrolling="no"
 						marginheight="0" marginwidth="0"
-						src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3167.4012950319825!2d127.129278!3d37.451246000000005!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca8a401f3127b%3A0x39d64e7ee201cd15!2z6rCA7LKc64yA7ZWZ6rWQIOq4gOuhnOuyjOy6oO2NvOyKpA!5e0!3m2!1sko!2sus!4v1413105831080"></iframe>
+						src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3163.9550746795585!2d127.07577181478221!3d37.532556284051026!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca4e4811fdfcd%3A0xdd8daef36b445a0a!2z7ISc7Jq47Yq567OE7IucIOq0keynhOq1rCDsnpDslpEy64-ZIDYwNy0yMA!5e0!3m2!1sko!2skr!4v1448867907317"></iframe>
 				</div>
 				<div class="col-md-4">
 					<h3>Contact Details</h3>
@@ -83,7 +85,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					</p>
 					<p>
 						<i class="fa fa-envelope-o"></i> <abbr title="Email">E</abbr>: <a
-							href="mailto:mymg99@gmail.com">mymg99@gmail.com</a>
+							href="mailto:ebizpromwav@gmail.com">ebizpromwav@gmail.com</a>
 					</p>
 					<p>
 						<i class="fa fa-clock-o"></i> <abbr title="Hours">H</abbr>: Monday

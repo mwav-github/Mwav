@@ -81,10 +81,32 @@
 	
 	<select id="selectpostList_2" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-		select * from postcodezibun_tbl where 시도명 = #{sido} and 시군구명 = #{gungu} and 법정읍면동명 = #{dong} and 지번본번 = ${zibun}
+		select * from postcodebuildinfo_tbl where 시도명 = #{sido} and 시군구명 = #{gungu} and 법정읍면동명 = #{dong} and 지번본번 = ${zibun}
 		]]>
 	</select>
 	
+	<select id="selectpostList_3" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+		select * from postcodebuildinfo_tbl where 시도명 = #{sido} and 시군구명 = #{gungu} and 도로명 = #{doroname} and 건물번호 = ${buildbunho}
+		]]>
+	</select>
+	
+	<select id="selectpostList_4" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+		select * from postcodebuildinfo_tbl where 시도명 = #{sido} and 시군구명 = #{gungu} and 건물명 = #{dong} 
+		]]>
+	</select>
+	
+    <!--
+select * from postcodebuildinfo_tbl where 시도명 = '강원도' and 시군구명 = '춘천시' and 법정읍면동명 = '봉의동' and 지번본번 = '1'
+
+select * from postcodebuildinfo_tbl where 시도명 = '강원도' and 시군구명 = '춘천시' and 도로명 = '봉의산길' and 건물본번 = '28'
+
+
+select * from postcodebuildinfo_tbl where 시도명 = '서울특별시' and 시군구명 = '강동구' and 건축물대장 건물명 = '힐링하우스'
+    
+    -->
+
 	<update id="updateMemberDelete" parameterType="hashmap"> 
 		<![CDATA[		
 		update MemberValue_tbl set mbrLeaveDt=NOW() where member_id = (SELECT member_id FROM member_tbl where mbrLoginPw = #{mbrLoginPw} and member_id = #{member_id})

@@ -30,7 +30,7 @@
 				<ul class="mgl5 nav navbar-nav">
 					<li><a href="/CompanyItem/IT Solutions/IT Solutions.jsp">IT
 							Solutions</a></li>
-					<li><a href="/CompanyItem/IT Products/IT Products.jsp">IT
+					<li><a href="/CompanyItem/IT Solutions/Aervision/Aervision.jsp">IT
 							Products</a></li>
 					<li><a
 						href="/CompanyItem/WebSite Building/WebSite Building.jsp">WebSite
@@ -48,7 +48,7 @@
 							data-toggle="tooltip" data-placement="bottom"
 							data-original-title="${mbrLoginId}님
 								반갑습니다."> MyPage</a></li>
-						<li><a href="/member/Logout.do">로그아웃</a></li>
+						<li><a href="/member/Logout.do">LogOut</a></li>
 					</c:if>
 					<c:if test="${sessionScope.mbrLoginId eq null }">
 						<li><a href="/MasterPage.jsp?mode=SMbrLogin"><i

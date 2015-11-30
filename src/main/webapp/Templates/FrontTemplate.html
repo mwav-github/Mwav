@@ -1,0 +1,523 @@
+<html><head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>TemplatePage</title>
+<!-- Custom font-awesome -->
+<!-- <link href="/resources/JsFramework/Bootstrap/font-awesome.min.css"
+	rel="stylesheet"> -->
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+
+<!-- Bootstrap Core CSS -->
+<!-- <link href="/resources/JsFramework/Bootstrap/bootstrap.min.css" rel="stylesheet">
+ -->
+<link href=" //maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom CSS -->
+<link href="/resources/CommonLibrary/CSS/modern-business.css" rel="stylesheet">
+
+<!-- Ã«ÂÂ´ÃªÂ°Â Ã¬Â ÂÃ¬ÂÂÃ­ÂÂÃ«ÂÂ Ã¬ÂÂ¤Ã­ÂÂÃ¬ÂÂ¼ -->
+<link href="/resources/CommonLibrary/CSS/mwav_style.css" rel="stylesheet">
+
+<!-- Ã«ÂÂ´ÃªÂ°Â Ã¬Â ÂÃ¬ÂÂÃ­ÂÂÃ«ÂÂ Ã¬ÂÂ¤Ã­ÂÂÃ¬ÂÂ¼ -->
+<link href="/resources/CommonLibrary/CSS/myStyle.css" rel="stylesheet">
+
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries  ÃªÂ°ÂÃªÂ°Â Ã«ÂÂ¤Ã«Â¥Â¸ Ã¬ÂÂ¥, Ã«ÂÂ¨Ã¬Â Â (Ã¬ÂÂÃ«ÂÂ Ã«ÂÂÃªÂ°Â)-->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+<!-- jQuery Version 1.11.0 -->
+<script async="" src="//www.google-analytics.com/analytics.js"></script><script src="/CommonLibrary/Javascript/Common.js"></script>
+<script src="/CommonLibrary/Javascript/validate.js"></script>
+
+
+<!-- jQuery Version 1.11.0 -->
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+<script>
+	$(function() {
+		$("[data-toggle='tooltip']").tooltip();
+	});
+</script>
+<script>
+	/*ì¶í ë¹¼ê¸°*/
+	$(document).ready(function() {
+		$('#back-to-top').fadeOut();
+		$(window).scroll(function() {
+			if ($(this).scrollTop() > 550) {
+				$('#back-to-top').fadeIn();
+				$('#back-to-top').tooltip();
+			} else {
+				$('#back-to-top').fadeOut();
+			}
+		});
+		// scroll body to 0px on click
+		$('#back-to-top').click(function() {
+			$('#back-to-top').tooltip('hide');
+			$('body,html').animate({
+				scrollTop : 0
+			}, 800);
+			return false;
+		});
+
+	});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+
+	<!-- Navigation (=메인 메뉴 및 슬라이드 쇼 포함)
+	     Index의 마스터 페이지
+	 -->
+	<!--  //////////////////////////////////// -->
+	
+
+<!-- 메인 페이지에서만 타겟팅 나머지는 URL 물고가기 
+이놈이 슬라이드쇼 있는놈
+-->
+<div class="row">
+  <!-- position 값 absoulte로 해야 상단 안따라옴 -->
+	<nav id="BackToTop" class="menu navbar navbar-inverse navbar-fixed-top " role="navigation" style="position:absoulte;">
+		
+		<div class="container">
+			
+
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+				</button>
+				
+				<a class="navbar-brand active logo_800" href="#"> 
+					<font color="#E5E5E5" style="
+    line-height: 1.7;
+">Company_Logo</font> </a>
+			</div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="mgt2 collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="mgl5 nav navbar-nav">
+					<li><a href="#">GNB_1</a></li>
+					<li><a href="#">GNB_2</a></li>
+					<li><a href="#">GNB_3</a></li>
+					<li><a href="#">GNB_4</a></li>
+					<li><a href="#">GNB_5</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					
+					
+						<li><a href="#"><i class="fa fa-user fa-lg"></i></a></li>
+						<li><a href="#"><i class="fa fa-user-plus fa-lg"></i></a></li>
+					
+				</ul>
+			</div>
+			<!-- /.container -->
+		</div>
+		<!-- /.navbar-collapse -->
+	</nav>
+</div>
+
+<!--  //////////////////////////////////// -->
+
+
+<header id="myCarousel" class="mgt1_8 carousel slide" style="height: 65% !important;">
+	<!-- Indicators -->
+	<ol class="carousel-indicators">
+		<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+		<li data-target="#myCarousel" data-slide-to="1" class=""></li>
+		<li data-target="#myCarousel" data-slide-to="2" class=""></li>
+	</ol>
+
+	<!-- Wrapper for slides 슬라이드쇼 내용 -->
+	<div class="carousel-inner">
+		<div class="item active">
+			<div class="fill" style="background-image: url('http://placehold.it/1900x1080&text=Slide One');"></div>
+			<!-- 	<div class="carousel-caption">
+				<h2>Caption 1(1900x1080)</h2>
+			</div>-->
+		</div>
+		<div class="item">
+			<div class="fill" style="background-image: url('http://placehold.it/1900x1080&text=Slide Two');"></div>
+			<!-- <div class="carousel-caption">
+				<h2>Caption 2(1900x1080)</h2>
+			</div>-->
+		</div>
+		<div class="item">
+			<div class="fill" style="background-image: url('http://placehold.it/1900x1080&text=Slide Three');"></div>
+			<!-- 	<div class="carousel-caption">
+				<h2>Caption 3(1900x1080)</h2>
+			</div> -->
+		</div>
+	</div>
+
+	
+
+	<a class="left carousel-control" href="#myCarousel" data-slide="prev">
+		<span class="glyphicon glyphicon-chevron-left"></span>
+	</a> <a class="right carousel-control" href="#myCarousel" data-slide="next">
+		<span class="glyphicon glyphicon-chevron-right"></span>
+	</a>
+</header>
+
+
+
+	
+	<div class="container">
+		
+
+		<!-- Marketing Icons Section -->
+		<div class="row" id="IT_Solutions">
+			<!-- Fluid row 1행 -->
+			<div class="col-lg-12">
+				<!-- 제목 부분 12개의 열 lg >=1200px  -->
+				<!-- 소제목 lg >=1200px -->
+				<h2 class="col-lg-9 col-md-9 col-sm-9 page-header">Main_Menu_1</h2>
+				<h2 class="col-lg-3 col-md-3 col-sm-3 page-header">Main_Menu_2</h2>
+			</div>
+			<div class="col-md-4 col-sm-4">
+				<!--md >= 992 4/12 -->
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4>
+							<i class="fa fa-fw fa-check"></i>Content_1</h4>
+					</div>
+					<div class="panel-body">
+						<p>Text...................</p>
+						<a href="#" class="btn btn-info">Learn More</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4 col-sm-4">
+				<!-- 8/12 -->
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4>
+							<i class="fa fa-fw fa-gift"></i>Content_2						</h4>
+					</div>
+					<div class="panel-body">
+						<p>Text...................</p>
+						<a href="#" class="btn btn-info">Learn More</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4 col-sm-4">
+				<div class="bs-component">
+					<!-- 이클립스 해제 희망시 
+				     1. http://ifone420.tistory.com/107
+				     
+				     추가적으로 
+				     
+				     localhost:8080/CWS 이부분은 server.xml 에서 지정한다.
+				-->
+					
+
+
+
+<!-- imsi -->
+<!-- <link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"
+	rel="stylesheet"> -->
+<script>
+	function page_move2(s_value) {
+		var f = document.NsmNews; //폼 name
+		f.bNews_id.value = s_value; //POST방식으로 넘기고 싶은 값 (이건 실제 내부 내용)
+		f.submit();
+	}
+	
+	
+</script>
+<div class="bs-component">
+	<!-- NEW  -->
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Title</th>
+				<th>UpdateDate</th>
+			</tr>
+		</thead>
+		<tbody>
+		
+						
+							<tr>
+								<!-- a태그로 처리요망 -->
+								<td><a href="#">News_1</a></td>
+								
+								<td>20150830</td>
+							</tr>
+						
+							<tr>
+								<!-- a태그로 처리요망 -->
+								<td><a href="#">Nems_2</a></td>
+								
+								<td>20150830</td>
+							</tr>
+						
+							<tr>
+								<!-- a태그로 처리요망 -->
+								<td><a href="#">News_3</a></td>
+								
+								<td>20150819</td>
+							</tr>
+						
+							<tr>
+								<!-- a태그로 처리요망 -->
+								<td><a href="#">News_4</a></td>
+								
+								<td>20150819</td>
+							</tr>
+						<tr>
+								<!-- a태그로 처리요망 -->
+								<td><a href="#">News_5</a></td>
+								
+								<td>20150819</td>
+							</tr>
+						
+					
+					
+				
+			
+		</tbody>
+	</table>
+</div>			
+				</div>
+			</div>
+		</div>
+		<!-- /.row -->
+		
+		<!-- Portfolio Section -->
+		<div class="row" id="IT_Products">
+			<!-- 2행 -->
+			<div class="col-lg-12">
+				<!-- 소제목 lg >=1200px -->
+				<h2 class="page-header">Main_Menu_3</h2>
+			</div>
+
+			<div class="col-lg-12">
+				
+				<div class="col-md-4 col-sm-6">
+					<!-- md >= 992 / sm >=768  2행에서 1-->
+					<a href="#"> <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/350x250" alt="">
+					</a>
+					
+				</div>
+				<div class="col-md-4 col-sm-6">
+					<a href="#"> <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/350x250" alt="">
+					</a>
+					
+				</div>
+				<div class="col-md-4 col-sm-6">
+					<a href="#"> <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/350x250" alt="">
+					</a>
+					
+				</div>
+			</div>
+			
+			<div class="col-lg-12">
+				
+				<div class="col-md-4 col-sm-6">
+					<!-- md >= 992 / sm >=768  2행에서 1-->
+					<a href="#"> <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/350x250" alt="">
+					</a>
+					
+				</div>
+				<div class="col-md-4 col-sm-6">
+					<a href="#"> <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/350x250" alt="">
+					</a>
+					
+				</div>
+				<div class="col-md-4 col-sm-6">
+					<a href="#"> <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/350x250" alt="">
+					</a>
+					
+				</div>
+			</div>
+
+			
+		</div>
+		<!-- /.row -->
+
+		<!-- Features Section -->
+		<div class="row" id="WebSite Building">
+			<!-- 3행 -->
+			
+			
+			<!-- 580x357 -->
+			
+		</div>
+		<!-- /.row -->
+
+		<hr>
+
+		<!-- Call to Action Section -->
+		<div class="well">
+			<!-- Call to Action Section -->
+			<div class="row" id="IT Consulting">
+				<!-- 4행 -->
+				<div class="col-md-8">
+					<p>Text..............</p>
+					
+				</div>
+				<div class="col-md-4">
+					<a class="btn btn-lg btn-default btn-block" href="#">Button</a>
+				</div>
+			</div>
+		</div>
+
+		
+		<!-- /.container -->
+	</div>
+
+	<!-- Footer -->
+	<footer>
+		<!--/////////////////////////////////////////////////// -->
+		
+<script>
+	(function(i, s, o, g, r, a, m) {
+		i['GoogleAnalyticsObject'] = r;
+		i[r] = i[r] || function() {
+			(i[r].q = i[r].q || []).push(arguments)
+		}, i[r].l = 1 * new Date();
+		a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+		a.async = 1;
+		a.src = g;
+		m.parentNode.insertBefore(a, m)
+	})(window, document, 'script', '//www.google-analytics.com/analytics.js',
+			'ga');
+
+	ga('create', 'UA-63623427-1', 'auto');
+	ga('send', 'pageview');
+</script>
+<br>
+<!--TOP아이콘 -->
+<a id="back-to-top" href="#" class="pull-right btn btn-primary btn-lg back-to-top" role="button" title="" data-placement="left" style="display: none;" data-original-title="Click to return on the top page"><span class="glyphicon glyphicon-chevron-up"></span></a>
+
+
+<div class="footer mgt5" id="footer">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-4  col-md-4 col-sm-8 col-xs-12">
+		
+				<p style="color:#fff;padding: 40px 0px 10px; border-bottom: 1px solid #BAC1C8; font-size:25px; padding-top:52px;">Company_Logo
+</p>
+				
+					<ul style="
+">
+						<li>회사상호 : 홍길동</li>
+						<li>사업자번호: 111-11-11111</li>
+						<li>주소: 서울특별시 .....</li>
+						<li>TEL : +82-2-1111-1111</li>
+						<li>FAX: +82-2-1111-1111</li>
+						<li>대표이사 : Name | 영업담당자: Name</li>
+						<li>사이트 담당자 : Name | 사업 고문 : Name</li>
+					</ul>
+				
+
+			</div>
+			<div class="col-lg-4  col-md-4 col-sm-8 col-xs-12">
+				<h3>Navigate</h3>
+				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+					<ul>
+						<li><a href="#">Home</a></li>
+						<li><a href="#">Introduction</a></li>
+						<li><a href="#">BusinessField</a></li>
+						<li><a href="#">LocationMap</a></li>
+						<li><a href="#">Profitsharing</a></li>
+					</ul>
+				</div>
+				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+					<ul>
+						<li><a href="#">Contact</a></li>
+						<li><a href="#">SiteMap</a></li>
+						<li><a href="#">개인정보취급방침</a></li>
+						<li><a href="#">이메일주소수집거부</a></li>
+						<li><a href="#">Summary</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-lg-4  col-md-4 col-sm-8 col-xs-12 ">
+				<h3>Contact:</h3>
+				<p>Have a question or feedback?</p>
+				<p>Contact me!</p>
+				<p>
+					<a href="mailto:webmaster@.net" title="Contact me!"><i class="fa fa-envelope"></i> Contact</a>
+					
+				</p>
+				<ul class="social">
+					<li><a href="#"> <i class=" fa fa-facebook"> &nbsp; </i>
+					</a></li>
+					<li><a href="#"> <i class="fa fa-twitter"> &nbsp; </i>
+					</a></li>
+					<li><a href="#"> <i class="fa fa-google-plus"> &nbsp; </i>
+					</a></li>
+					<li><a href="#"> <i class="fa fa-pinterest"> &nbsp; </i>
+					</a></li>
+					<li><a href="#"> <i class="fa fa-youtube"> &nbsp; </i>
+					</a></li>
+				</ul>
+			</div>
+		</div>
+		<!--/.row-->
+	</div>
+	<!--/.container-->
+</div>
+<!--/.footer-->
+
+<div class="footer-bottom">
+	<div class="container">
+		<p class="pull-left">
+			Copyright ⓒ Since 2004 Company_Name All rights reserved | <a href="">Privacy
+				Policy</a> | <a href="">Terms of Use</a>
+		</p>
+		<div class="pull-right">
+			<ul class="nav nav-pills payments">
+				<li class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="visa" aria-describedby="tooltip235096"><i class="fa fa-cc-visa"></i></li>
+				<li class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="mastercard" aria-describedby="tooltip235096"><i class="fa fa-cc-mastercard"></i></li>
+				<li class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="amex" aria-describedby="tooltip235096"><i class="fa fa-cc-amex"></i></li>
+				<li class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="paypal" aria-describedby="tooltip235096"><i class="fa fa-cc-paypal"></i></li>
+			</ul>
+		</div>
+	</div>
+</div>
+<!--/.footer-bottom-->
+
+		<!--/////////////////////////////////////////////////// -->
+	</footer>
+
+
+
+
+	<!-- Script to Activate the Carousel -->
+	<script>
+		$('.carousel').carousel({
+			interval : 5000
+		//changes the speed
+		});
+	</script>
+
+
+
+</body></html>

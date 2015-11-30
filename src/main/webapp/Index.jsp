@@ -4,7 +4,7 @@
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <jsp:include page="PartsOfContent/Head_Import.jsp" flush="false" />
 
@@ -148,9 +148,9 @@
 				<%--1행 --%>
 				<div class="col-md-4 col-sm-6">
 					<!-- md >= 992 / sm >=768  2행에서 1-->
-					<a href="/CompanyItem/IT Products/IT Products.jsp"> <img
+					<a href="/CompanyItem/IT Solutions/OpenSRS/OpenSRS.jsp"> <img
 						class="img-responsive img-portfolio img-hover"
-						src="/CompanyItem/IT Products/Images/ms_windows10(h250).png"
+						src="/CompanyItem/IT Solutions/Images/OpenSRS.jpg"
 						alt="">
 					</a>
 					<%--<p>Contents :</p> --%>
@@ -163,7 +163,7 @@
 					<%--<p>Contents :</p> --%>
 				</div>
 				<div class="col-md-4 col-sm-6">
-					<a href="/CompanyItem/IT Products/IT Products.jsp"> <img
+					<a href="/CompanyItem/IT Solutions/Azure/Azure.jsp"> <img
 						class="img-responsive img-portfolio img-hover"
 						src="/CompanyItem/IT Products/Images/ms_azure(h250).png" alt="">
 					</a>

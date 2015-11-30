@@ -263,14 +263,14 @@ http://planbong.tistory.com/531
 					<label class='control-label col-md-2 col-md-offset-2' for='id_pets'></label>
 					<div class='col-md-2'>
 						<input class='form-control' name="mbrZipcode_1" id='id_first_name'
-							type='text' required>
+							type='text' disabled>
 					</div>
 					<p class="col-md-1" style="text-align: center">
 						<strong>-</strong>
 					</p>
 					<div class='col-md-2'>
 						<input class='form-control' name="mbrZipcode_2" id='id_first_name'
-							type='text'>
+							type='text' disabled>
 					</div>
 				</div>
 
@@ -278,7 +278,7 @@ http://planbong.tistory.com/531
 					<label class='control-label col-md-2 col-md-offset-2' for='id_pets'></label>
 					<div class='col-md-6'>
 						<input class='form-control' name="mbrAddress" id='mbrAddress'
-							placeholder='주소' type='text'>
+							placeholder='주소' type='text' disabled>
 					</div>
 				</div>
 

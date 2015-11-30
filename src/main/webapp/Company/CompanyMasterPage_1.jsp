@@ -61,35 +61,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 		<div class="row">
 			<!-- Sidebar Column left메뉴 추후 변경 예정<시작>-->
 			<div class="col-md-3">
-				<div class="list-group">
-					<a href="/Company/Introduction/Introduction.jsp"
-						class="list-group-item " data-toggle="tooltip"
-						data-placement="left" data-original-title="회사소개">Introduction</a>
-					<a href="/Company/Greetings/Greetings.jsp" class="list-group-item"
-						data-toggle="tooltip" data-placement="top"
-						data-original-title="대표인사말">Greetings</a> <a
-						href="/Company/History/History.jsp" class="list-group-item"
-						data-toggle="tooltip" data-placement="right"
-						data-original-title="회사연혁">History</a> <a
-						href="/Company/BusinessField/BusinessFields.jsp"
-						class="list-group-item" data-toggle="tooltip"
-						data-placement="bottom" data-original-title="사업분야">BusinessField</a>
-					<a href="/Company/ActualResults/ActualResults.jsp"
-						class="list-group-item" data-toggle="tooltip"
-						data-placement="left" data-original-title="회사실적">ActualResults</a>
-					<a href="/Company/ThePress/ThePress.jsp" class="list-group-item"
-						data-toggle="tooltip" data-placement="right"
-						data-original-title="언론보도">ThePress</a> <a
-						href="/Company/HR-Affairs/HR-Affairs.jsp" class="list-group-item"
-						data-toggle="tooltip" data-placement="left"
-						data-original-title="인재채용">HR-Affairs</a> <a
-						href="/Company/LocationMap/LocationMap.jsp"
-						class="list-group-item" data-toggle="tooltip"
-						data-placement="right" data-original-title="회사약도">LocationMap</a>
-					<a href="/Company/Profitsharing/Profitsharing.jsp"
-						class="list-group-item" data-toggle="tooltip"
-						data-placement="right" data-original-title="수익분배 프로그램">Profitsharing</a>
-				</div>
+				<jsp:include page="/Company/CompanyLeftMenu.jsp" flush="false" />
 			</div>
 			<!-- 끝 -->
 
@@ -110,6 +82,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					</c:if>
 
 					<c:if test="${mode == 'SbnsList'}">
+					<script>alert('1');</script>
 						<jsp:include page="/CommonApps/BoardNews/bnsList.jsp"
 							flush="false" />
 					</c:if>

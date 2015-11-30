@@ -400,13 +400,12 @@ public class MemberController {
 
 	// consumes를 통해 POST방식으로 넘어온 요청에서 json 형태로 postData를 넘겨줌을 정의
 	// 9번 추후
-	@RequestMapping(value = "/Post/PostFinder_2.do", method = RequestMethod.POST, consumes="application/json")
-    @ResponseBody
-	public List<Map<String, Object>> selectpostList_2(
-			@RequestBody CommandMap commandMap, HttpServletResponse response)
+	@RequestMapping(value = "/Post/PostFinder_2.do")
+	public @ResponseBody List<Map<String, Object>> selectpostList_2(
+			CommandMap commandMap, HttpServletResponse response)
 			throws Exception {
 		
-		//@RequestParam 어노테이션 : HTTP 요청 파라미터를 메서드의 파라미터로 전달받을 때 사용
+		//@RequestParam 어노테이션 : HTTP 요청 파라미터를 메서드의 파라미터로 전달받을 때 사용 그러나 commandMap에는 안되는듯 serial~ 부분이라
         //@ResponseBody 어노테이션을 이용하면 HTTP요청 몸체를 자바객체로전달받을수 있다.
 		//@ResponseBody 어노테이션을 이요아면 자바객체를 HTTP응답 몸체로 전달 할 수 있다.
 		
@@ -442,6 +441,9 @@ public class MemberController {
 			System.out.println("이름 : " + selectpostList.get(i));
 			//System.out.println("주소 : " + selectpostList.get(i).get("시도명"));
 		}
+		//String postMode = "자료있음";
+		//request.setAttribute("mode", postMode);
+		//request.setAttribute("data", selectpostList);
 		return selectpostList;
 	}
 
