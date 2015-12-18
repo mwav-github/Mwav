@@ -82,7 +82,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					</c:if>
 
 					<c:if test="${mode == 'SbnsList'}">
-					<script>alert('1');</script>
+					<script></script>
 						<jsp:include page="/CommonApps/BoardNews/bnsList.jsp"
 							flush="false" />
 					</c:if>

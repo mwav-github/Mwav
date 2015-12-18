@@ -81,8 +81,8 @@
 									<th scope="row"><code>카멜 표기법</code></th>
 									<td>모든 단어의 명명 규칙 첫 문자에서 첫 단어를 제외하고는 대문자이고 다른 문자는 소문자입니다.</td>
 									<td>예 : supplierCode</td>
-									<td><a href="#Method">2.3 Method</a>, <a href="#Field Names">2.4 Field
-											Names</a></td>
+									<td><a href="#Method">2.3 Method</a>, <a
+										href="#Field Names">2.4 Field Names</a></td>
 								</tr>
 								<tr>
 									<th scope="row"><code>헝가리어 표기법</code></th>
@@ -183,18 +183,21 @@
 								있도록 한다.</p>
 							<p>3. 표준 패키지의 확장/보충 기능을 담당할 경우 표준 패키지의 이름을 따른다.</p>
 							<p>
-								4. package는 최소 2레벨 이상 ( [1레벨].[2레벨])로 구성한다. <br> Mwav에서는,
-								"new.mwav.board"라는 package를 사용하기로 한다.
+								4. package는 최소 3레벨 이상 ( [1레벨].[2레벨], [3레벨])로 구성한다. <br>
+								Mwav에서는, "new.mwav.board"라는 package를 사용하기로 한다.
 							<p>&nbsp; 4.1 1레벨 : 가장 높은 레벨의 도메인 이름 중 하나이어야 한다. 현재는 com,
 								edu, gov, mil, net, org 또는 1981 년 ISO Standard 316 에 명시화 된 나라 구별
 								코드 영어 두문자가 쓰인다.</p>
-							<p>&nbsp; 4.2 2레벨 : 프로젝트 명을 명시한다. (단 common 제외) *이후 패키지명에
-								대해서는 적절한 네이밍으로 나타낸다.</p>
-							<br>
-
+							<p>&nbsp; 4.2 2레벨 : 프로젝트 명을 명시한다. *이후 패키지명에 대해서는 적절한 네이밍으로
+								나타낸다.</p>
+							<p>&nbsp; 4.2 3레벨 : 사용 DB의 마스터 테이블명을 명시한다. (소문자)
+								예)Member_tbl, MemberVaule_tbl ... 등은 Member</p>
+							<p>
+								&nbsp; 4.2 4레벨 : 스프링 MVC 와 관련된다면, 기입한다. (Controller, Dao,
+								Service, VO ) <br>
 							<div class="text-left well">
 								<p class="bg-info">Ex) net.mwav.board / net.mwav.member /
-									net.common</p>
+									net.mwav.member.Controller</p>
 							</div>
 						</div>
 						<a id="Class & Interface"></a>
@@ -210,12 +213,16 @@
 								4. 클래스의 역할을 정확히 표현할 수 있는 단어를 택하되 너무 길어지지 않도록 주의한다. (표현력과 길이 사이의
 								적절한 타협점을 찾도록 할 것)<br>
 							<p>
-								5. 일반적으로 축약어를 사용하지 않으며 광범위하게 사용되는 축약어만을 허용한다. </br> (만약 약어가 URL 이나
+								5. 일반적으로 축약어를 사용하지 않으며 광범위하게 사용되는 축약어만을 허용한다. <br> (만약 약어가 URL 이나
 								HTML 같이 더 많이 넓게 사용되어진다면 사용해도 좋다).
 							</p>
 							<p>6. 복합 단어일 경우 각 단어의 첫 글자는 대문자이어야 한다.</p>
 							<p>
-								7. <strong>DB테이블 명 + 의미있는 단어를 선택한다.</strong>
+								<strong> 7. DB 테이블명 + 의미있는 단어 <br>
+									&nbsp;&nbsp;7.1마스터 테이블 전체에 사용되는 클래스 = 마스터 테이블 명 + 의미있는 단어 <br>
+									&nbsp;&nbsp;7.2특정 테이블에 사용 클래스 = 해당 테이블 명 + 의미있는 단어 
+									<br>&nbsp;&nbsp;&nbsp;*Member의 경우와 많은 DB테이블이 없는 경우 제외 합쳐서 사용 권장! 분리시 협의 필요.
+								</strong>
 							</p>
 							<p>
 								8. <strong>파스칼 표기법을 원칙으로 한다. </strong> <br>
@@ -242,6 +249,20 @@
 							<p>6. 복합 단어일 경우 각 단어의 첫 글자는 대문자이어야 한다.</p>
 
 							<p>7. 이벤트 리스너의 메소드는 ‘명사’+ ‘동사(과거/진행형)’의 형태를 갖는다.</p>
+
+							<p>
+								<strong> 8. DB 테이블 접두어 + 의미있는 단어 <br>
+									&nbsp;&nbsp;8.1마스터 테이블 전체에 사용되는 메소드 = 마스터 테이블 명 + 의미있는 단어 <br>
+									&nbsp;&nbsp;8.2특정 테이블에 사용 메소드 = 해당 테이블 접두어 + 의미있는 단어
+									<br>&nbsp;&nbsp;&nbsp;*Member의 경우와 많은 DB테이블이 없는 경우 제외 합쳐서 사용 권장! 분리시 협의 필요.
+								</strong>
+							</p>
+							<p>
+							    <strong>
+							    9. 기본 메소드 나열 순서<br>
+							      &nbsp;&nbsp; 기본메소드의 경우 등록 (Form) > 보기 (View) > 수정 (Form) 분리시 > 조회(List) > 삭제 (Delete) 순으로 나열한다. 
+							    </strong>
+							</p>
 							<div class="text-left well">
 								<p>
 									<strong>1. Service, DAO, VO 외 에서의 메소드</strong>

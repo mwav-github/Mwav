@@ -58,12 +58,12 @@
 
 			<tbody>
 					<tr>
-						<td>${selectboardView.bNews_id}</td>
-						<td>${selectboardView.bnGroup}</td>
-						<td>${selectboardView.bnViewCount}</td>
-						<td>${selectboardView.bnInsertDt}</td>
-						<td>${selectboardView.staff_id}</td>
-						<td>${selectboardView.bnOrder}</td>
+						<td>${selectOneBnsView.bNews_id}</td>
+						<td>${selectOneBnsView.bnGroup}</td>
+						<td>${selectOneBnsView.bnViewCount}</td>
+						<td>${selectOneBnsView.bnInsertDt}</td>
+						<td>${selectOneBnsView.staff_id}</td>
+						<td>${selectOneBnsView.bnOrder}</td>
 					</tr>
 			</tbody>
 		</table>
@@ -73,7 +73,7 @@
 			<tr>
 				<th class="active">Title</th>
 			</tr>
-			<tr> <td>${selectboardView.bnTitle}</td></tr>
+			<tr> <td>${selectOneBnsView.bnTitle}</td></tr>
 			
 
 
@@ -81,13 +81,13 @@
 			<tr>
 				<th class="active">SubTitle</th>
 			</tr>
-			<tr><td>${selectboardView.bnSubTitle}</td></tr>
+			<tr><td>${selectOneBnsView.bnSubTitle}</td></tr>
 
 			<tr>
 				<th class="active">Content</th>
 				
 			</tr>
-			<tr><td>${selectboardView.bnContent}</td></tr>
+			<tr><td>${selectOneBnsView.bnContent}</td></tr>
 
 		</table>
 	</form>

@@ -48,7 +48,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 				<ol class="breadcrumb">
 					<li><a href="index.html">Home</a></li>
 					<li>CompanyItem</li>
-					<li class="active">IT Solutions</li>
+					<li class="active">IT Products</li>
 				</ol>
 			</div>
 		</div>
@@ -59,15 +59,19 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 			<!-- Sidebar Column left메뉴 추후 변경 예정<시작>-->
 			<div class="col-md-3">
 				<div class="list-group">
-					<a href="/CompanyItem/IT Solutions/Aervision/Aervision.jsp"
+					<a href="/CompanyItem/IT Products/Aervision/Aervision.jsp"
 						class="list-group-item active" data-toggle="tooltip"
 						data-placement="top" data-original-title="Aervision">Aervision</a>
-					<a href="/CompanyItem/IT Solutions/OpenSRS/OpenSRS.jsp"
+					<a href="/CompanyItem/IT Products/OpenSRS/OpenSRS.jsp"
 						class="list-group-item " data-toggle="tooltip"
 						data-placement="top" data-original-title="OpenSRS">OpenSRS</a> <a
-						href="/CompanyItem/IT Solutions/Azure/Azure.jsp"
+						href="/CompanyItem/IT Products/Azure/Azure.jsp"
 						class="list-group-item " data-toggle="tooltip"
 						data-placement="top" data-original-title="Azure">Azure</a>
+						<a
+						href="/CompanyItem/IT Products/Windows/Windows.jsp"
+						class="list-group-item" data-toggle="tooltip"
+						data-placement="top" data-original-title="Windows">Windows</a>
 				</div>
 			</div>
 			<!-- 끝 -->

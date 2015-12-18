@@ -8,52 +8,67 @@ import net.common.dao.AbstractDAO;
 import org.springframework.stereotype.Repository;
 
 @Repository("boardDAO")
-public class BoardDAO extends AbstractDAO{
+public class BoardDAO extends AbstractDAO {
 
-	// Abstrat로 변경 
+	// Abstrat로 변경
+
+	/*========================================등록========================================*/
+	
+	public void insertBnsForm(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+
+		insert("board.insertBnsForm", map);
+	}
+
+	/*========================================보기========================================*/
+	
+	// updateHitCnt 연관
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> selectOneBnsView(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+
+		return (Map<String, Object>) selectOne("board.selectOneBnsView", map);
+	}
+
+	/*========================================수정========================================*/
+	
+	public void updateBnsform(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		update("board.updateBnsform", map);
+	}
+	
+	// 조회수 증가
+	public void updateHitCnt(Map<String, Object> map) throws Exception {
+		update("board.updateHitCnt", map);
+	} 
+
+
+	/*========================================리스트(SelectOne, SelectList 순)========================================*/
+	
+	public int selectOneGetTotalCount() {
+		// TODO Auto-generated method stub
+		return (int) selectOne("board.selectOneGetTotalCount");
+	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Map<String, Object>> selectFrontList(Map<String, Object> map) throws Exception{
-		return (List<Map<String, Object>>)selectList("board.selectFrontList", map);
+	public List<Map<String, Object>> selectListBnsFrontList(
+			Map<String, Object> map) throws Exception {
+		return (List<Map<String, Object>>) selectList(
+				"board.selectListBnsFrontList", map);
 	}
 
-	public List<Map<String, Object>> insertbnsForm(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		
-		insert("board.insertbnsForm", map);
-		return null;
-	}
-	
-	//조회수 증가
-	public void updateHitCnt(Map<String, Object> map) throws Exception{
-	    update("board.updateHitCnt", map);
-	}
-	
 	@SuppressWarnings("unchecked")
-	public Map<String, Object> selectbnsView(Map<String, Object> map) {
+	public List<Map<String, Object>> selectListBnsList(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		
-		return (Map<String, Object>) selectOne("board.selectbnsView", map);
-	}
-	@SuppressWarnings("unchecked")
-	public List<Map<String, Object>> selectbnsList(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		  return (List<Map<String, Object>>)selectList("board.selectbnsList", map);
-	    
+		return (List<Map<String, Object>>) selectList("board.selectListBnsList",
+				map);
+
 	}
 
-	public void deleteBoard(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		update("board.deleteBoard", map);
-	}
+	/*========================================삭제========================================*/
 	
-	public void updatebnsform(Map<String, Object> map) {
+	public void deleteBnsDelete(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		update("board.updatebnsform", map);
-	}
-
-	public int gettotalCount() {
-		// TODO Auto-generated method stub
-		return (int) selectOne("board.gettotalCount");
+		update("board.deleteBnsDelete", map);
 	}
 }

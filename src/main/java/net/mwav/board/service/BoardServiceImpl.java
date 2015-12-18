@@ -21,22 +21,17 @@ public class BoardServiceImpl implements BoardService{
 	@Resource(name="boardDAO")
 	private BoardDAO boardDAO;
 	
+	/*========================================등록========================================*/
 	@Override
-	public List<Map<String, Object>> selectFrontList(Map<String, Object> map)
+	public void insertBnsForm(Map<String, Object> map)
 			throws Exception {
 		// TODO Auto-generated method stub
-		return boardDAO.selectFrontList(map);
+		boardDAO.insertBnsForm(map);
 	}
 
+	/*========================================보기========================================*/
 	@Override
-	public List<Map<String, Object>> insertbnsForm(Map<String, Object> map)
-			throws Exception {
-		// TODO Auto-generated method stub
-		return boardDAO.insertbnsForm(map);
-	}
-
-	@Override
-	public Map<String, Object> selectbnsView(Map<String, Object> map)
+	public Map<String, Object> selectOneBnsView(Map<String, Object> map)
 			throws Exception {
 		// TODO Auto-generated method stub
 		boardDAO.updateHitCnt(map);
@@ -47,33 +42,49 @@ public class BoardServiceImpl implements BoardService{
 				    System.out.println("key : "+entry.getKey()+", value : "+entry.getValue());
 				}
 		
-		Map<String, Object> resultMap = boardDAO.selectbnsView(map);
+		Map<String, Object> resultMap = boardDAO.selectOneBnsView(map);
 		return resultMap;
 	}
+	
+	
+	/*========================================수정========================================*/
+	@Override
+	public void updateBnsform(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		boardDAO.updateBnsform(map);		
+	}
+	
+	/*========================================리스트(SelectOne, SelectList 순)========================================*/
 
 	@Override
-	public List<Map<String, Object>> selectbnsList(Map<String, Object> map) {
+	public int selectOneGetTotalCount() {
+		// TODO Auto-generated method stub
+		return boardDAO.selectOneGetTotalCount();		
+	}
+	
+	@Override
+	public List<Map<String, Object>> selectListBnsFrontList(Map<String, Object> map)
+			throws Exception {
+		// TODO Auto-generated method stub
+		return boardDAO.selectListBnsFrontList(map);
+	}
+	
+
+	@Override
+	public List<Map<String, Object>> selectListBnsList(Map<String, Object> map) {
 		// TODO Auto-generated method stub
 		
-		return boardDAO.selectbnsList(map);
+		return boardDAO.selectListBnsList(map);
 	}
 
+	/*========================================삭제========================================*/
 	@Override
-	public void deleteBoard(Map<String, Object> map) throws Exception {
+	public void deleteBnsDelete(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
-		boardDAO.deleteBoard(map);		
+		boardDAO.deleteBnsDelete(map);		
 	}
 
-	@Override
-	public void updatebnsform(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
-		boardDAO.updatebnsform(map);		
-	}
+	
 
-	@Override
-	public int gettotalCount() {
-		// TODO Auto-generated method stub
-		return boardDAO.gettotalCount();		
-	}
  
 }

@@ -43,12 +43,12 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 		<div class="row">
 			<div class="col-lg-12">
 				<h1 class="page-header">
-					IT Solutions <small>OpenSRS</small>
+					IT Products <small>OpenSRS</small>
 				</h1>
 				<ol class="breadcrumb">
 					<li><a href="index.html">Home</a></li>
 					<li>CompanyItem</li>
-					<li class="active">IT Solutions</li>
+					<li class="active">IT Products</li>
 				</ol>
 			</div>
 		</div>
@@ -59,15 +59,19 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 			<!-- Sidebar Column left메뉴 추후 변경 예정<시작>-->
 			<div class="col-md-3">
 				<div class="list-group">
-					<a href="/CompanyItem/IT Solutions/Aervision/Aervision.jsp"
+					<a href="/CompanyItem/IT Products/Aervision/Aervision.jsp"
 						class="list-group-item" data-toggle="tooltip" data-placement="top"
 						data-original-title="Aervision">Aervision</a> <a
-						href="/CompanyItem/IT Solutions/OpenSRS/OpenSRS.jsp"
+						href="/CompanyItem/IT Products/OpenSRS/OpenSRS.jsp"
 						class="list-group-item active" data-toggle="tooltip"
 						data-placement="top" data-original-title="OpenSRS">OpenSRS</a> <a
-						href="/CompanyItem/IT Solutions/Azure/Azure.jsp"
+						href="/CompanyItem/IT Products/Azure/Azure.jsp"
 						class="list-group-item " data-toggle="tooltip"
 						data-placement="top" data-original-title="Azure">Azure</a>
+						<a
+						href="/CompanyItem/IT Products/Windows/Windows.jsp"
+						class="list-group-item" data-toggle="tooltip"
+						data-placement="top" data-original-title="Windows">Windows</a>
 				</div>
 			</div>
 			<!-- 끝 -->
@@ -88,7 +92,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 
 					<div class="col-md-2">
 						<img class="thumbnail img-responsive" alt="Bootstrap template"
-							src="/CompanyItem/IT Solutions/Images/ssl.png"
+							src="/CompanyItem/IT Products/Images/ssl.png"
 							data-toggle="tooltip" data-placement="top"
 							data-original-title="SSL Certificates">
 						<div class="enter"></div>
@@ -136,7 +140,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					<div class="col-md-1 col-sm-1"></div>
 					<div class="col-md-2 col-sm-2 col-xs-4">
 						<img class="img-responsive"
-							src="/CompanyItem/IT Solutions/Images/symantec.png"
+							src="/CompanyItem/IT Products/Images/symantec.png"
 							data-toggle="tooltip" data-placement="top"
 							data-original-title="symantec">
 						<p>Offer the Norton Secured seal for customer peace of mind at
@@ -144,7 +148,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					</div>
 					<div class="col-md-2 col-sm-2 col-xs-4">
 						<img class="img-responsive"
-							src="/CompanyItem/IT Solutions/Images/thawte.png"
+							src="/CompanyItem/IT Products/Images/thawte.png"
 							data-toggle="tooltip" data-placement="top"
 							data-original-title="thawte">
 						<p>Thawte is a leading provider of domain, business and
@@ -153,7 +157,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					</div>
 					<div class="col-md-2 col-sm-2 col-xs-4">
 						<img class="img-responsive"
-							src="/CompanyItem/IT Solutions/Images/trustwave.png"
+							src="/CompanyItem/IT Products/Images/trustwave.png"
 							data-toggle="tooltip" data-placement="top"
 							data-original-title="trustwave">
 						<p>GeoTrust is one of the world’s largest SSL certificate
@@ -162,7 +166,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					</div>
 					<div class="col-md-2 col-sm-2 col-xs-4">
 						<img class="img-responsive"
-							src="/CompanyItem/IT Solutions/Images/geotrust.png"
+							src="/CompanyItem/IT Products/Images/geotrust.png"
 							data-toggle="tooltip" data-placement="top"
 							data-original-title="geotrust">
 						<p>Trustwave SSL helps companies of all sizes reduce SSL costs
@@ -170,7 +174,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					</div>
 					<div class="col-md-2 col-sm-2 col-xs-4">
 						<img class="img-responsive"
-							src="/CompanyItem/IT Solutions/Images/comodo.png"
+							src="/CompanyItem/IT Products/Images/comodo.png"
 							data-toggle="tooltip" data-placement="top"
 							data-original-title="comodo">
 						<p>Comodo offers a comprehensive range of highly-trusted SSL
@@ -193,7 +197,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 
 					<div class="col-md-2">
 						<img class="thumbnail img-responsive" alt="Bootstrap template"
-							src="/CompanyItem/IT Solutions/Images/security.png"
+							src="/CompanyItem/IT Products/Images/security.png"
 							data-toggle="tooltip" data-placement="top"
 							data-original-title="WebSecurity">
 						<div class="enter"></div>
@@ -239,15 +243,15 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					<div class="row">
 						<div class="col-md-4 col-sm-4 col-xs-6 ">
 							<img class="img-responsive"
-								src="/CompanyItem/IT Solutions/Images/sitelock_large-300x58.png" />
+								src="/CompanyItem/IT Products/Images/sitelock_large-300x58.png" />
 						</div>
 						<div class="col-md-4 col-sm-4 col-xs-6 ">
 							<img class="img-responsive"
-								src="/CompanyItem/IT Solutions/Images/sitelock_large_911.png" />
+								src="/CompanyItem/IT Products/Images/sitelock_large_911.png" />
 						</div>
 						<div class="col-md-4 col-sm-4 col-xs-6 ">
 							<img class="img-responsive"
-								src="/CompanyItem/IT Solutions/Images/geotrustlogo_horizontal.png" />
+								src="/CompanyItem/IT Products/Images/geotrustlogo_horizontal.png" />
 						</div>
 					</div>
 
@@ -285,7 +289,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					</div>
 					<div class="col-md-2">
 						<img class="thumbnail img-responsive" alt="Bootstrap template"
-							src="/CompanyItem/IT Solutions/Images/domain.png"
+							src="/CompanyItem/IT Products/Images/domain.png"
 							data-toggle="tooltip" data-placement="top"
 							data-original-title="Domains">
 						<div class="enter"></div>
@@ -312,19 +316,19 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					<div class="row">
 						<div class="col-md-4 col-sm-4 col-xs-6 ">
 							<img class="img-responsive"
-								src="/CompanyItem/IT Solutions/Images/lightbulb.png"
+								src="/CompanyItem/IT Products/Images/lightbulb.png"
 								data-toggle="tooltip" data-placement="top"
 								data-original-title="Name Suggestion" />
 						</div>
 						<div class="col-md-4 col-sm-4 col-xs-6 ">
 							<img class="img-responsive"
-								src="/CompanyItem/IT Solutions/Images/gears.png"
+								src="/CompanyItem/IT Products/Images/gears.png"
 								data-toggle="tooltip" data-placement="top"
 								data-original-title="Managed DNS" />
 						</div>
 						<div class="col-md-4 col-sm-4 col-xs-6 ">
 							<img class="img-responsive"
-								src="/CompanyItem/IT Solutions/Images/support.png"
+								src="/CompanyItem/IT Products/Images/support.png"
 								data-toggle="tooltip" data-placement="top"
 								data-original-title="Knowledgeable Customer Care" />
 						</div>
@@ -359,20 +363,20 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					<div class="row">
 						<div class="col-md-4 col-sm-4 col-xs-6 ">
 							<img class="img-responsive"
-								src="/CompanyItem/IT Solutions/Images/private.png"
+								src="/CompanyItem/IT Products/Images/private.png"
 								data-toggle="tooltip" data-placement="top"
 								data-original-title="Contact Privacy" />
 						</div>
 						<div class="col-md-4 col-sm-4 col-xs-6 ">
 							<img class="img-responsive"
-								src="/CompanyItem/IT Solutions/Images/keys.png"
+								src="/CompanyItem/IT Products/Images/keys.png"
 								data-toggle="tooltip" data-placement="top"
 								data-original-title="Parked Pages" />
 
 						</div>
 						<div class="col-md-4 col-sm-4 col-xs-6 ">
 							<img class="img-responsive"
-								src="/CompanyItem/IT Solutions/Images/network.png"
+								src="/CompanyItem/IT Products/Images/network.png"
 								data-toggle="tooltip" data-placement="top"
 								data-original-title="Dedicated Support Team" />
 						</div>

@@ -51,7 +51,7 @@
 		href="/Company/ActualResults/ActualResults.jsp"
 		class="list-group-item" data-toggle="tooltip" data-placement="top"
 		data-original-title="회사실적">ActualResults</a> <a
-		href="/Company/ThePress/ThePress.jsp" class="list-group-item"
+		href="/board/bnsList.do" class="list-group-item"
 		data-toggle="tooltip" data-placement="top"
 		data-original-title="언론보도">ThePress</a> <a
 		href="/Company/HR-Affairs/HR-Affairs.jsp" class="list-group-item"

@@ -7,17 +7,28 @@ import net.common.common.CommandMap;
 
 public interface BoardService {
 
-	List<Map<String, Object>> selectFrontList(Map<String, Object> map) throws Exception;
-
-	List<Map<String, Object>> insertbnsForm(Map<String, Object> map) throws Exception;
+	/*========================================등록========================================*/
 	
-	Map<String, Object> selectbnsView(Map<String, Object> map) throws Exception;
-
-	List<Map<String, Object>> selectbnsList(Map<String, Object> map);
+	void insertBnsForm(Map<String, Object> map) throws Exception;
 	
-	void deleteBoard(Map<String, Object> map) throws Exception;
+	/*========================================보기========================================*/
+	
+	Map<String, Object> selectOneBnsView(Map<String, Object> map) throws Exception;
 
-	void updatebnsform(Map<String, Object> map) throws Exception;
+	/*========================================수정========================================*/
+	void updateBnsform(Map<String, Object> map) throws Exception;
 
-	int gettotalCount();
+	/*========================================리스트(SelectOne, SelectList 순)========================================*/
+
+	int selectOneGetTotalCount();
+	
+    List<Map<String, Object>> selectListBnsList(Map<String, Object> map);
+	
+	List<Map<String, Object>> selectListBnsFrontList(Map<String, Object> map) throws Exception;
+	
+	/*========================================삭제========================================*/
+	
+	void deleteBnsDelete(Map<String, Object> map) throws Exception;
+
+	
 }

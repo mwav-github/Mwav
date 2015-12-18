@@ -11,17 +11,19 @@
 		<div class="container">
 			<%-- Container를 nav 밖에 놓으면 전체 영역 / 안에놓으면 1170px --%>
 			<!-- Brand and toggle get grouped for better mobile display -->
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse"
-					data-target="#bs-example-navbar-collapse-1">
+			<div class="navbar-header" >
+			<%--border 칼라 테두리는 style=border || 안의 icon-bar로 구성 --%>
+			
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+					data-target="#bs-example-navbar-collapse-1" style="border:2px solid white">
 					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
+						class="icon-bar" style="background-color:white;"></span> <span class="icon-bar" style="background-color:white;"></span> <span
+						class="icon-bar" style="background-color:white;"></span>
 				</button>
 				<%-- 크기 줄었을 때 우측에 navbar 역할 --%>
-				<a class="navbar-brand active logo_800" href="/"> <img
+				<a class="navbar-brand active logo_800_m" href="/"> <img
 					src="/Images/CompanyLogos/CompanyLogo.gif"
-					class="img-thumbnail img-responsive" alt="Responsive image">
+					class="img-thumbnail img-responsive logo_800_h" alt="Responsive image">
 					<!-- <font color="#E5E5E5">Mwav</font> --></a>
 			</div>
 			<!-- Collect the nav links, forms, and other content for toggling -->
@@ -30,7 +32,7 @@
 				<ul class="mgl5 nav navbar-nav">
 					<li><a href="/CompanyItem/IT Solutions/IT Solutions.jsp">IT
 							Solutions</a></li>
-					<li><a href="/CompanyItem/IT Solutions/Aervision/Aervision.jsp">IT
+					<li><a href="/CompanyItem/IT Products/Aervision/Aervision.jsp">IT
 							Products</a></li>
 					<li><a
 						href="/CompanyItem/WebSite Building/WebSite Building.jsp">WebSite

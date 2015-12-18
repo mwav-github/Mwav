@@ -32,16 +32,16 @@ container 안에 포함시키면된다.
 		</thead>
 		<tbody>
 			<c:choose>
-				<c:when test="${fn:length(selectboardList) > 0}">
-					<c:forEach var="FrontboardList" items="${selectboardList}">
+				<c:when test="${fn:length(selectListBnsList) > 0}">
+					<c:forEach var="VselectListBnsList" items="${selectListBnsList}">
 						<tr>
 							<input type="hidden" id="bNews_id" name="bNews_id"
-								value="${FrontboardList.bNews_id }">
-							<td>${FrontboardList.bNews_id}</td>
-							<td>${FrontboardList.bnGroup}</td>
+								value="${VselectListBnsList.bNews_id }">
+							<td>${VselectListBnsList.bNews_id}</td>
+							<td>${VselectListBnsList.bnGroup}</td>
 							<td><a
-								href="javascript:window.location.href='/board/bnsView.do?bNews_id=${FrontboardList.bNews_id}'">${FrontboardList.bnTitle}</a></td>
-							<td>${FrontboardList.bnUpdateDt}</td>
+								href="javascript:window.location.href='/board/bnsView.do?bNews_id=${VselectListBnsList.bNews_id}'">${VselectListBnsList.bnTitle}</a></td>
+							<td>${VselectListBnsList.bnUpdateDt}</td>
 							<%-- <td> <button type="button" class="btn btn-info" onclick="javascript:window.location.href='/board/bnsView.do?bNews_id=${FrontboardList.bNews_id}'">보기</button>&nbsp;
 <button type="button" class="btn btn-warning" onclick="javascript:window.location.href='/board/bnsModify.do?bNews_id=${FrontboardList.bNews_id}'">수정</button>
 </td> --%>

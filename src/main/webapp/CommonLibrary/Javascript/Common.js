@@ -1,3 +1,106 @@
+// resize image size
+function resizeImageSize() {
+    
+	var secW = $(".sec").width();
+	var secH = $(".sec").height();
+	// 사이즈의 최대치는 선호 해상도로 설정
+	if (secW > orgwindowWidth) {
+		secW = orgwindowWidth;
+	}
+	if (secH > orgwindowHeight) {
+		secH = orgwindowHeight;
+	}
+	var image = $(".res_image");// array of class="res_image"
+
+	// 선호 해상도 (이미지가 정상적으로 보이는 기준점 해상도)
+	var preferredSize = orgwindowWidth * orgwindowHeight;// 800, 720
+	// 현재 해상도
+	var currentSize = secW * secH;
+	// 비율
+	var scalePercentage = Math.sqrt(currentSize) / Math.sqrt(preferredSize);
+
+	// max ofscalePercentage :1
+	if (scalePercentage > 1) {
+		scalePercentage = 1;
+	}
+	// 설정한 윈도우 사이즈에서의 이미지가 가장 큰 이미지 사이즈가 된다.
+	if (secW > orgwindowWidth) {
+		secW = orgwindowWidth;
+	}
+	// 현재 화면 비율
+	var ratioW = secW / orgwindowWidth;
+
+	for ( var i = 0; i < image.length; i++) {
+
+		console.log('이미지 크기중');
+		var imgwidth = image[i].naturalWidth;// 이미지 원본사이즈 너비
+		// 이미지 사이즈가 선호사이즈보다 클수 없도록!!
+		console.log('imgwidth종류'+image[i]);
+		console.log('imgwidth'+image[i].naturalWidth);
+		if (imgwidth > orgwindowWidth) {
+			imgwidth = orgwindowWidth;
+		}
+		// 너비와 해상도 비율 고려(높이까지 고려하여 크기조절)
+		if (imgwidth * scalePercentage < imgwidth * ratioW) {// 해상도 비율 고려
+			$(image[i]).css('width', imgwidth * scalePercentage);
+			$(image[i]).css('height', "auto");
+		} else {// 현재 화면 비율 고려
+			$(image[i]).css('width', imgwidth * ratioW);
+			$(image[i]).css('height', "auto");
+		}
+	}
+}
+
+/**
+ * //------------------res_font.js---------------------
+ */
+
+function res_Text() {
+
+	//선호 해상도 (이미지가 정상적으로 보이는 기준점 해상도-자동화 예정)
+	var preferredSize = 1280 * 720;
+
+	var secW = $(".sec").width();
+	var secH = $(".sec").height();
+
+	//현재  해상도 
+	var currentSize = secW * secH;
+
+	//해상도에 따른 이미지 비율
+	var scalePercentage = Math.sqrt(currentSize) / Math.sqrt(preferredSize);
+
+	//지정 폰트
+	var newFontSize = 0;
+
+	//선호 폰트 사이즈 (자동화 예정)
+	var preferredFontSize = [ 650, 460, 185, 153, 139, 108 ]; // 선호폰트 사이즈 % (/100 하면 em)
+
+	newFontSize = (preferredFontSize[0] * scalePercentage) / 100;
+	$(".large1").css("font-size", newFontSize + 'em');
+
+	//큰 폰트 (기존 60px)
+	newFontSize = (preferredFontSize[1] * scalePercentage) / 100;
+	$(".large2").css("font-size", newFontSize + 'em');
+
+	//중간 폰트 (기존 24px) 
+	newFontSize = (preferredFontSize[2] * scalePercentage) / 100;
+	$(".medium1").css("font-size", newFontSize + 'em');
+
+	//중간 폰트 (기존 20px)
+	newFontSize = (preferredFontSize[3] * scalePercentage) / 100;
+	$(".medium2").css("font-size", newFontSize + 'em');
+
+	//작은 폰트 (기존 18px)
+	newFontSize = (preferredFontSize[4] * scalePercentage) / 100;
+	$(".small1").css("font-size", newFontSize + 'em');
+
+	//작은 폰트 (기존 14px)
+	newFontSize = (preferredFontSize[5] * scalePercentage) / 100;
+	$(".small2").css("font-size", newFontSize + 'em');
+}
+
+
+
 function chkLoginPolicy(mbrLoginId) {
 
 	//로그인 아이디 계정정책 확인

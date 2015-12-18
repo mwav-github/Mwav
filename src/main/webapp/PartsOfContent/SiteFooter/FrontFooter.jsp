@@ -31,7 +31,7 @@
 		
 				<p style="padding: 40px 0px 10px; border-bottom: 1px solid #BAC1C8;">
 					<img src="/Company/zImage/CompanyLogo_gray.gif"
-						class="img-thumbnail img-responsive" alt="Responsive image">
+						class="img-thumbnail img-responsive logo_800_h" alt="Responsive image">
 				</p>
 				
 					<ul>

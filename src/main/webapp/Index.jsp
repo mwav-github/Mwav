@@ -64,14 +64,15 @@
 		                       **추후 수정
 		                       --%>
 
+		<div class="enter"></div>
 		<!-- Marketing Icons Section -->
 		<div class="row" id="IT_Solutions">
 			<!-- Fluid row 1행 -->
 			<div class="col-lg-12">
 				<!-- 제목 부분 12개의 열 lg >=1200px  -->
 				<!-- 소제목 lg >=1200px -->
-				<h2 class="col-lg-9 col-md-9 col-sm-9 page-header">IT Solutions</h2>
-				<h2 class="col-lg-3 col-md-3 col-sm-3 page-header">Notices &
+				<h2 class="col-lg-9 col-md-9 col-sm-9 page-header" style="color:#317eac">IT Solutions</h2>
+				<h2 class="col-lg-3 col-md-3 col-sm-3 page-header" style="color:#317eac">Notices &
 					News</h2>
 			</div>
 			<div class="col-md-4 col-sm-4">
@@ -134,36 +135,40 @@
 				</div>
 			</div>
 		</div>
+
+		<div class="enter"></div>
+
+
 		<!-- /.row -->
-		<%--밑에 350x150 적어도 한 줄은 높이 같도록 넓이는 상관없다 --%>
+		<%--이미지 괄호 높이가 같아야 한다 아래는 500 x 250 으로 통일 즉 비율이 맞아야 함
+		--%>
 		<!-- Portfolio Section -->
 		<div class="row" id="IT_Products">
 			<!-- 2행 -->
 			<div class="col-lg-12">
 				<!-- 소제목 lg >=1200px -->
-				<h2 class="page-header">IT Products</h2>
+				<h2 class="page-header" style="color:#317eac">IT Products</h2>
 			</div>
 
 			<div class="col-lg-12">
 				<%--1행 --%>
 				<div class="col-md-4 col-sm-6">
 					<!-- md >= 992 / sm >=768  2행에서 1-->
-					<a href="/CompanyItem/IT Solutions/OpenSRS/OpenSRS.jsp"> <img
+					<a href="/CompanyItem/IT Products/OpenSRS/OpenSRS.jsp"> <img
 						class="img-responsive img-portfolio img-hover"
-						src="/CompanyItem/IT Solutions/Images/OpenSRS.jpg"
-						alt="">
+						src="/CompanyItem/IT Products/Images/OpenSRS(h250).jpg" alt="">
 					</a>
 					<%--<p>Contents :</p> --%>
 				</div>
 				<div class="col-md-4 col-sm-6">
-					<a href="/CompanyItem/IT Products/IT Products.jsp"> <img
+					<a href="/CompanyItem/IT Products/Windows/Windows.jsp"> <img
 						class="img-responsive img-portfolio img-hover"
-						src="/CompanyItem/IT Products/Images/ms_onedrive(h250).png" alt="">
+						src="/CompanyItem/IT Products/Images/windows10(h250).jpg" alt="">
 					</a>
 					<%--<p>Contents :</p> --%>
 				</div>
 				<div class="col-md-4 col-sm-6">
-					<a href="/CompanyItem/IT Solutions/Azure/Azure.jsp"> <img
+					<a href="/CompanyItem/IT Products/Azure/Azure.jsp"> <img
 						class="img-responsive img-portfolio img-hover"
 						src="/CompanyItem/IT Products/Images/ms_azure(h250).png" alt="">
 					</a>
@@ -175,23 +180,23 @@
 				<%--2행 --%>
 				<div class="col-md-4 col-sm-6">
 					<!-- md >= 992 / sm >=768  2행에서 1-->
-					<a href="/CompanyItem/IT Solutions/Aervision/Aervision.jsp"> <img
+					<a href="/CompanyItem/IT Products/Aervision/Aervision.jsp"> <img
 						class="img-responsive img-portfolio img-hover"
-						src="/CompanyItem/IT Products/Images/AerVison.PNG" alt="">
+						src="/CompanyItem/IT Products/Images/AerVison(h250).png" alt="">
 					</a>
 					<%--<p>Contents :</p> --%>
 				</div>
 				<div class="col-md-4 col-sm-6">
 					<a href="/CompanyItem/IT Products/IT Products.jsp"> <img
 						class="img-responsive img-portfolio img-hover"
-						src="/CompanyItem/IT Products/Images/tucows.jpg" alt="">
+						src="/CompanyItem/IT Products/Images/tucows(h250).jpg" alt="">
 					</a>
 					<%--<p>Contents :</p> --%>
 				</div>
 				<div class="col-md-4 col-sm-6">
 					<a href="/CompanyItem/IT Products/IT Products.jsp"> <img
 						class="img-responsive img-portfolio img-hover"
-						src="/CompanyItem/IT Products/Images/ms_outlook(350).png" alt="">
+						src="/CompanyItem/IT Products/Images/MsOffice(h250).jpg" alt="">
 					</a>
 					<%--<p>Contents :</p> --%>
 				</div>
@@ -221,15 +226,17 @@
 			</div> --%>
 		</div>
 		<!-- /.row -->
-
+		<div class="enter"></div>
 		<!-- Features Section -->
 		<div class="row" id="WebSite Building">
 			<!-- 3행 -->
 			<div class="col-lg-12">
-				<h2 class="page-header">Website Building</h2>
+				<h2 class="page-header" style="color:#317eac">Website Building</h2>
 			</div>
-			<div class="col-md-6">
-				<p>Technologies :</p>
+			<div class="col-md-6 mgt5">
+				<p>
+					<strong>Technologies :</strong>
+				</p>
 				<ul>
 					<li>Bootstrap v3.3.2</li>
 					<li>jQuery v1.11.2</li>
@@ -245,58 +252,75 @@
 
 				<p>Mwav의 사이트 구축 솔루션으로 회사용 인트라넷이나 팀에서 사용할 프로젝트 사이트, 고객용 포털을 시작할 수
 					있습니다. 단 한 줄의 코드도 작성할 필요가 없습니다.</p>
-				<a class="btn btn-lg btn-default btn-block"
+				<br> <a class="btn btn-lg btn-primary btn-block"
 					href="/CompanyItem/WebSite Building/WebSite Building.jsp">WebSite
 					Building</a>
 			</div>
 			<!-- 580x357 -->
 			<div class="col-md-6">
 				<img class="img-responsive"
-					src="/Company/zImage/Website-Builders4-300x182.jpg" alt="">
+					src="/CompanyItem/WebSite Building/Images/WebSiteBuilding.jpg"
+					alt="">
 			</div>
 		</div>
 		<!-- /.row -->
 
-		<hr>
 
+
+		<div class="enter"></div>
+		<!-- 
+		<div class="well">
+		 -->
+		<div class="row" id="IT Consulting">
+			<div class="col-lg-12">
+				<h2 class="page-header" style="color:#317eac">IT Consulting</h2>
+			</div>
+			<!-- 4행 -->
+
+			<div class="col-md-8">
+				<img class="img-responsive"
+					src="/CompanyItem/IT Consulting/Images/ITConsulting.jpg" alt="">
+			</div>
+			<div class="col-md-4 mgt5">
+				<p>다양한 고객 비즈니스에 대한 이해와 컨설팅 수행 경험을 바탕으로 IT의 획기적 고도화 및 선진화를 위해 IT
+					계획 수립(IT Planning)에서 구축(Implementation), 운영(Operation),
+					유지보수(Maintenance)의 IT 라이프 사이클 활동을 효율적으로 수행할 수 있는 체계를 수립하고, 수립된 체계에
+					따른 효과적 업무 수행을 지원하여 드립니다..</p>
+				<%-- 15.10.18 내용수정	<p></p>--%>
+				<a class="btn btn-lg btn-primary btn-block"
+					href="/CompanyItem/IT Consulting/IT Consulting.jsp">IT
+					Consulting</a>
+			</div>
+
+		</div>
+
+		<div class="enter"></div>
+
+		<!-- <div class="well"> -->
 		<!-- Call to Action Section -->
-		<div class="well">
-			<!-- Call to Action Section -->
-			<div class="row" id="IT Consulting">
-				<!-- 4행 -->
-				<div class="col-md-8">
-					<p>다양한 고객 비즈니스에 대한 이해와 컨설팅 수행 경험을 바탕으로 IT의 획기적 고도화 및 선진화를 위해 IT
-						계획 수립(IT Planning)에서 구축(Implementation), 운영(Operation),
-						유지보수(Maintenance)의 IT 라이프 사이클 활동을 효율적으로 수행할 수 있는 체계를 수립하고, 수립된 체계에
-						따른 효과적 업무 수행을 지원하여 드립니다..</p>
-					<%-- 15.10.18 내용수정	<p></p>--%>
-				</div>
-				<div class="col-md-4">
-					<a class="btn btn-lg btn-default btn-block"
-						href="/CompanyItem/IT Consulting/IT Consulting.jsp">IT
-						Consulting</a>
-				</div>
+		<div class="row" id="Digital Marketing">
+			<div class="col-lg-12">
+				<h2 class="page-header" style="color:#317eac">Digital Marketing</h2>
 			</div>
-		</div>
-
-		<div class="well">
-			<!-- Call to Action Section -->
-			<div class="row" id="Digital Marketing">
-				<!-- 4행 -->
-				<div class="col-md-8">
-					<p>Mwav는 디지털 마케팅과 관련된 모든 분야(SNS, Portals ...)를 지원하며, 많은 고객과의 수행
-						경험을 통해 습득한 통합 마케팅에 관한 남다른 노하우를 바탕으로 디지털 마케팅에 대한 통합적인 마케팅 전략을 수립하고
-						실행하고 있습니다.</p>
-					<%--  15.10.18 내용수정p>Digital Ad Agency: Boost online promotions for maximum
+			<!-- 4행 -->
+			<div class="col-md-6 mgt5">
+				<p>Mwav는 디지털 마케팅과 관련된 모든 분야(SNS, Portals ...)를 지원하며, 많은 고객과의 수행
+					경험을 통해 습득한 통합 마케팅에 관한 남다른 노하우를 바탕으로 디지털 마케팅에 대한 통합적인 마케팅 전략을 수립하고
+					실행하고 있습니다.</p>
+				<br>
+				<%--  15.10.18 내용수정p>Digital Ad Agency: Boost online promotions for maximum
 						profits by leveraging digital marketing effectively.</p>--%>
-				</div>
-				<div class="col-md-4">
-					<a class="btn btn-lg btn-default btn-block"
-						href="/CompanyItem/Digital Marketing/Digital Marketing.jsp">Digital
-						Marketing</a>
-				</div>
+				<a class="btn btn-lg btn-primary btn-block"
+					href="/CompanyItem/Digital Marketing/Digital Marketing.jsp">Digital
+					Marketing</a>
+			</div>
+			<div class="col-md-6">
+				<img class="img-responsive"
+					src="/CompanyItem/Digital Marketing/Images/DigitalMarketing.jpg"
+					alt="">
 			</div>
 		</div>
+		<!-- </div> -->
 		<!-- /.container -->
 	</div>
 

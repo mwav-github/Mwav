@@ -59,21 +59,19 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 			<!-- Sidebar Column left메뉴 추후 변경 예정<시작>-->
 			<div class="col-md-3">
 				<div class="list-group">
-					<a href="/CompanyItem/IT Solutions/IT Solutions.jsp"
+					<a href="#"
 						class="list-group-item" data-toggle="tooltip" data-placement="top"
-						data-original-title="IT솔루션">IT Solutions</a> <a
-						href="/CompanyItem/IT Products/IT Products.jsp"
+						data-original-title="바이럴마케팅(PC)">Viral Marketing(PC)</a> 
+						<a href="#"
+						class="list-group-item" data-toggle="tooltip" data-placement="top"
+						data-original-title="바이럴마케팅(모바일)">Viral Marketing(Mobile)</a>
+						<a
+						href="#"
 						class="list-group-item " data-toggle="tooltip"
-						data-placement="top" data-original-title="IT제품">IT Products</a> <a
-						href="/CompanyItem/WebSite Building/WebSite Building.jsp"
+						data-placement="top" data-original-title="소셜마케팅">SNS Marketing</a> <a
+						href="#"
 						class="list-group-item" data-toggle="tooltip" data-placement="top"
-						data-original-title="웹사이트 제작">WebSite Building</a> <a
-						href="/CompanyItem/Digital Marketing/Digital Marketing.jsp"
-						class="list-group-item active" data-toggle="tooltip"
-						data-placement="top" data-original-title="디지털 마케팅">Digital
-						Marketing</a> <a href="/CompanyItem/IT Consulting/IT Consulting.jsp"
-						class="list-group-item" data-toggle="tooltip" data-placement="top"
-						data-original-title="IT 컨설팅">IT Consulting</a>
+						data-original-title="키워드마케팅">Keyword Marketing</a> 
 				</div>
 			</div>
 			<!-- 끝 -->
