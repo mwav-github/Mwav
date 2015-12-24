@@ -72,6 +72,10 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 						href="/CompanyItem/IT Products/Windows/Windows.jsp"
 						class="list-group-item" data-toggle="tooltip"
 						data-placement="top" data-original-title="Windows">Windows</a>
+						<a
+						href="/CompanyItem/IT Products/MSOffice/MSOffice.jsp"
+						class="list-group-item" data-toggle="tooltip" data-placement="top"
+						data-original-title="OpenSRS">MSOffice</a>
 				</div>
 			</div>
 			<!-- 끝 -->
