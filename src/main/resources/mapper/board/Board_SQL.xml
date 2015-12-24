@@ -73,8 +73,71 @@
     ]]>
     </update>
 
+
+	<!-- =================================Notice부분========================================== -->
+	
+	<!--/*========================================등록========================================*/  -->
+	<insert id="insertBnForm" parameterType="hashmap">
+		<![CDATA[
+			INSERT INTO BoardNews_tbl
+				SELECT IFNULL(max(bNews_id)+1,100001), #{bnGroup}, #{bnHighLight}, #{bnTitle}, #{bnSubTitle}, #{bnRelatedLink}, #{bnContent}, #{bnViewCount}, #{bnOrder}, #{bnStatus}, #{staff_id}, NOW(), NOW(), null FROM BoardNews_tbl
+		]]>
+	</insert>
     
+    <!--/*========================================보기========================================*/  -->
+
+   <select id="selectOneBnView" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+	    select * from BoardNews_tbl where bNews_id = #{bNews_id}
+	]]>
+	</select>
+	
+	<!--/*========================================수정========================================*/  -->
+	
+	<update id="updateNoticeHitCnt" parameterType="hashmap">
+    <![CDATA[
+       update BoardNews_tbl set bnViewCount = iFnull(bnViewCount, 0) +1 where bNews_id = #{bNews_id} 
+    ]]>
+    </update>
     
+    <update id="updateBnform" parameterType="hashmap">
+    <![CDATA[
+        update BoardNews_tbl set bnGroup= #{bnGroup}, bnHighLight= #{bnHighLight}, bnTitle= #{bnTitle}, bnSubTitle= #{bnSubTitle}, bnRelatedLink= #{bnRelatedLink}, bnContent= #{bnContent}, bnViewCount= #{bnViewCount}, bnOrder= #{bnOrder}, bnStatus= #{bnStatus}, staff_id= #{staff_id}, bnInsertDt= #{bnInsertDt}, bnUpdateDt= NOW(), bnDeleteDt=null where bNews_id = #{bNews_id}
+    ]]>
+    </update>
+ 
+	
+	<!--/*========================================리스트(SelctOne, SelectList 순)========================================*/  -->
+	
+	<select id="selectNoticeOneGetTotalCount" resultType="int">
+	<![CDATA[
+	   select count(*) from BoardNews_tbl
+	]]>
+	</select>
+	
+	<select id="selectListBnFrontList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT bNews_id, bnTitle, date_format(bnUpdateDt,'%Y%m%d') as bnUpdateDt
+		    FROM BoardNews_tbl
+		    WHERE bnDeleteDt IS NULL ORDER BY bnUpdateDt DESC Limit 5
+		]]>
+	</select>
+    
+    <select id="selectListBnList" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+	select c.* from (select @ROWNUM := @ROWNUM + 1 AS ROWNUM, a.* from (select * from BoardNews_tbl order by bnInsertDt desc) a,  (SELECT @ROWNUM := 0) R ) c where c.ROWNUM >= #{startRow} and c.ROWNUM <= #{endRow}
+	]]>
+	</select>
+	
+	
+	<!--/*========================================삭제========================================*/  -->
+	
+	
+	<update id="deleteBnDelete" parameterType="hashmap">
+    <![CDATA[
+        update BoardNews_tbl set bnDeleteDt = NOW() where bNews_id = #{bNews_id}
+    ]]>
+    </update>
 
     
 
