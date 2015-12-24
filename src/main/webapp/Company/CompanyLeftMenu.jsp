@@ -62,8 +62,4 @@
 		href="/Company/Profitsharing/Profitsharing.jsp"
 		class="list-group-item" data-toggle="tooltip" data-placement="top"
 		data-original-title="수익분배 프로그램">Profitsharing</a>
-		<a
-		href="/board/bnsList.do" class="list-group-item"
-		data-toggle="tooltip" data-placement="top"
-		data-original-title="공지사항">Notice</a>
 </div>
