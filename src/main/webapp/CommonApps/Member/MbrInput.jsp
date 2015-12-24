@@ -250,7 +250,7 @@ http://planbong.tistory.com/531
 					<label class='control-label col-md-2 col-md-offset-2' for='id_pets'>Address</label>
 					<p class="col-md-2 col-md-offset-4">
 						<button class="btn btn-primary btn-block" type="button"
-							href="#signup" data-toggle="modal" data-target=".bs-modal-sm">주소찾기</button>
+							 data-toggle="modal" data-target=".modal_post">주소찾기</button>
 
 					</p>
 					<!-- <div class='col-md-8'>

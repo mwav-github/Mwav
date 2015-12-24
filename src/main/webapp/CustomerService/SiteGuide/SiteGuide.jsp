@@ -26,7 +26,8 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 -->
 		<div class="row">
 			<div class="col-lg-12">
-				<img src="/CustomerService/zImage/CustomerService_IN(height_280).jpg"
+				<img
+					src="/CustomerService/zImage/CustomerService_IN(height_280).jpg"
 					class="img-responsive res_width" alt="Responsive image">
 			</div>
 		</div>
@@ -58,35 +59,8 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 		<div class="row">
 			<!-- Sidebar Column left메뉴 추후 변경 예정<시작>-->
 			<div class="col-md-3">
-				<div class="list-group">
-					<a href="/CustomerService/MyPage/MyPage.jsp"
-						class="list-group-item " data-toggle="tooltip"
-						data-placement="left" data-original-title="마이페이지">MyPage</a> <a
-						href="/CustomerService/Announcement/Announcement.jsp"
-						class="list-group-item " data-toggle="tooltip"
-						data-placement="left" data-original-title="공지사항">Announcement</a>
-					<a href="/CustomerService/MemberShip/MemberShip.jsp"
-						class="list-group-item" data-toggle="tooltip"
-						data-placement="left" data-original-title="회원정보(수정)">MemberShip</a>
-					<a href="/CustomerService/Agreement/Agreement.jsp"
-						class="list-group-item " data-toggle="tooltip"
-						data-placement="left" data-original-title="이용약관">Agreement</a> <a
-						href="/CustomerService/SiteGuide/SiteGuide.jsp"
-						class="list-group-item active" data-toggle="tooltip"
-						data-placement="left" data-original-title="이용방법">SiteGuide</a> <a
-						href="/CustomerService/FAQ/FAQ.jsp" class="list-group-item  "
-						data-toggle="tooltip" data-placement="left"
-						data-original-title="자주하는 질문">FAQ</a> <a
-						href="/CustomerService/QnA/QnA.jsp" class="list-group-item "
-						data-toggle="tooltip" data-placement="left"
-						data-original-title="묻고 답하기">QnA</a> <a
-						href="/CustomerService/Contact/Contact.jsp"
-						class="list-group-item " data-toggle="tooltip"
-						data-placement="left" data-original-title="담당자안내">Contact</a> <a
-						href="/CustomerService/SiteMap/SiteMap.jsp"
-						class="list-group-item" data-toggle="tooltip"
-						data-placement="left" data-original-title="사이트맵">SiteMap</a>
-				</div>
+				<jsp:include page="/CustomerService/CS-MasterPageLeftMenu.jsp"
+					flush="false" />
 			</div>
 			<!-- 끝 -->
 

@@ -61,8 +61,8 @@
 					<ul>
 						<li><a href="/CustomerService/Contact/Contact.jsp">Contact</a></li>
 						<li><a href="/CustomerService/SiteMap/SiteMap.jsp">SiteMap</a></li>
-						<li><a href="#terms3" data-toggle="modal" data-target=".bs-modal-sm">개인정보취급방침</a></li>
-						<li><a href="#terms1" data-toggle="modal" data-target=".bs-modal-sm">이메일주소수집거부</a></li>
+						<li><a href="#terms3" data-toggle="modal" data-target=".modal_terms">개인정보취급방침</a></li>
+						<li><a href="#terms1" data-toggle="modal" data-target=".modal_terms">이메일주소수집거부</a></li>
 						<li><a href="/CustomerService/Summary/Summary.jsp">Summary</a></li>
 					</ul>
 				</div>
@@ -126,7 +126,7 @@
 
 <!-- 모달영역 -->
 
-<div class="modal fade bs-modal-sm" id="myModal" tabindex="-1"
+<div class="modal fade modal_terms" id="myModal" tabindex="-1"
 		role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="overflow: auto;">
 		<div class="modal-dialog modal-md">
 			<div class="modal-content">
@@ -146,10 +146,10 @@
 				<div class="modal-body">
 					<div class="container-fluid">
 						<div id="myTabContent" class="tab-content">
-							<div class="tab-pane active fade in" id="terms1">
+							<div class="tab-pane fade in active" id="terms1">
 								<jsp:include page="/CustomerService/Policy/_EmailExtract.html" flush="false" />
 							</div>
-							<div class="tab-pane fade " id="terms2">
+							<div class="tab-pane fade" id="terms2">
 								
 								<jsp:include page="/CustomerService/Policy/_Juvenile.html" flush="false" />
 							</div>

@@ -80,7 +80,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4>
-							<i class="fa fa-fw fa-check"></i> Bootstrap v3.2.0
+							<i class="fa fa-fw fa-check"></i> AerVision	
 						</h4>
 					</div>
 					<div class="panel-body">
@@ -104,7 +104,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4>
-							<i class="fa fa-fw fa-gift"></i> Free &amp; Open Source
+							<i class="fa fa-fw fa-gift"></i> OpenSRS
 						</h4>
 					</div>
 					<div class="panel-body">

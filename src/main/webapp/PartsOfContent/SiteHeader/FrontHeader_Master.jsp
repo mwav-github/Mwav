@@ -2,8 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<!-- 메인 페이지에서만 타겟팅 나머지는 URL 물고가기
-이놈이 슬라이드쇼 없는 놈 그러나 아직 반영 x 각 페이지별로 따로 있다.
+<!-- 메인 페이지 제외 페이지
  -->
 <div class="row">
 	<nav id="BackToTop" class="menu navbar navbar-fixed-top "
@@ -30,7 +29,7 @@
 			<div class="mgt2 collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="mgl5 nav navbar-nav">
-					<li><a href="/CompanyItem/IT Solutions/IT Solutions.jsp">IT
+					<li><a href="/CompanyItem/IT Products/OpenSRS/OpenSRS.jsp">IT
 							Solutions</a></li>
 					<li><a href="/CompanyItem/IT Products/Aervision/Aervision.jsp">IT
 							Products</a></li>
@@ -65,5 +64,6 @@
 		<!-- /.navbar-collapse -->
 	</nav>
 </div>
+<div class="enter"></div>
 
 

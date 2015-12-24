@@ -54,7 +54,8 @@
 	      설명 : Header Footer 제외 전 부분
 	      기타 :
 	-->
-	<div class="container mg9xauto">
+	<%-- 로그인 페이지는 내부 넓이때문에 mg5xauto --%>
+	<div class="container mg5xauto">
 		<div class="row">
 			<div class="col-md-12 col-sm-12">
 				<c:if test="${param.mode != null || mode != null}">

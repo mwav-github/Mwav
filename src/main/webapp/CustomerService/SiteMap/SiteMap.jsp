@@ -26,7 +26,8 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 -->
 		<div class="row">
 			<div class="col-lg-12">
-				<img src="/CustomerService/zImage/CustomerService_IN(height_280).jpg"
+				<img
+					src="/CustomerService/zImage/CustomerService_IN(height_280).jpg"
 					class="img-responsive res_width" alt="Responsive image">
 			</div>
 		</div>
@@ -58,60 +59,79 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 		<div class="row">
 			<!-- Sidebar Column left메뉴 추후 변경 예정<시작>-->
 			<div class="col-md-3">
-				<div class="list-group">
-					<a href="/CustomerService/MyPage/MyPage.jsp"
-						class="list-group-item " data-toggle="tooltip"
-						data-placement="left" data-original-title="마이페이지">MyPage</a> <a
-						href="/CustomerService/Announcement/Announcement.jsp"
-						class="list-group-item " data-toggle="tooltip"
-						data-placement="left" data-original-title="공지사항">Announcement</a>
-					<a href="/CustomerService/MemberShip/MemberShip.jsp"
-						class="list-group-item" data-toggle="tooltip"
-						data-placement="left" data-original-title="회원정보(수정)">MemberShip</a>
-					<a href="/CustomerService/Agreement/Agreement.jsp"
-						class="list-group-item " data-toggle="tooltip"
-						data-placement="left" data-original-title="이용약관">Agreement</a> <a
-						href="/CustomerService/SiteGuide/SiteGuide.jsp"
-						class="list-group-item " data-toggle="tooltip"
-						data-placement="left" data-original-title="이용방법">SiteGuide</a> <a
-						href="/CustomerService/FAQ/FAQ.jsp" class="list-group-item  "
-						data-toggle="tooltip" data-placement="left"
-						data-original-title="자주하는 질문">FAQ</a> <a
-						href="/CustomerService/QnA/QnA.jsp" class="list-group-item "
-						data-toggle="tooltip" data-placement="left"
-						data-original-title="묻고 답하기">QnA</a> <a
-						href="/CustomerService/Contact/Contact.jsp"
-						class="list-group-item " data-toggle="tooltip"
-						data-placement="left" data-original-title="담당자안내">Contact</a> <a
-						href="/CustomerService/SiteMap/SiteMap.jsp"
-						class="list-group-item active" data-toggle="tooltip"
-						data-placement="left" data-original-title="사이트맵">SiteMap</a>
-				</div>
+				<jsp:include page="/CustomerService/CS-MasterPageLeftMenu.jsp" flush="false" />
 			</div>
 			<!-- 끝 -->
 
 			<div class="col-md-9">
-				<span class="label label-primary">SiteMap</span>
+				<div class="row">
+				<div class="col-lg-12">
+						<h2 class="page-header">SiteMap</h2>
+					</div>
+				
+					<div class="col-md-4 col-sm-4 col-xs-12"
+						style="border-radius: 5px 20px 5px; border: 3px solid #BADA55;">
+						<h3>
+							<strong>Company</strong>
+						</h3>
+						<h5>All information and story about Mwav.</h5>
+						<div class="list-group">
+							<a href="/Company/Introduction/Introduction.jsp"
+								class="list-group-item">Introduction</a> <a
+								href="/Company/Greetings/Greetings.jsp" class="list-group-item">Greetings</a>
+							<a href="/Company/History/History.jsp" class="list-group-item">History</a>
+							<a href="/Company/BusinessField/BusinessFields.jsp"
+								class="list-group-item">BusinessField</a> <a
+								href="/Company/ActualResults/ActualResults.jsp"
+								class="list-group-item">ActualResults</a> <a
+								href="/board/bnsList.do" class="list-group-item">ThePress</a> <a
+								href="/Company/HR-Affairs/HR-Affairs.jsp"
+								class="list-group-item">HR-Affairs</a> <a
+								href="/Company/LocationMap/LocationMap.jsp"
+								class="list-group-item">LocationMap</a> <a
+								href="/Company/Profitsharing/Profitsharing.jsp"
+								class="list-group-item">Profitsharing</a>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-4 col-xs-12"
+						style="border-radius: 5px 20px 5px; border: 3px solid #A05C37;">
+						<strong><h3>Our Business</h3></strong>
+						<h5>We serve you the best solution.</h5>
+						<ul class="list-group">
+							<li><a href="#" class="list-group-item">Company
+									Background</a></li>
 
+						</ul>
+					</div>
+					<div class="col-md-4 col-sm-4 col-xs-12"
+						style="border-radius: 5px 20px 5px; border: 3px solid #EB3232;">
+						<strong><h3>Newsroom</h3></strong>
+						<h5>They talk about us.</h5>
+						<ul class="list-group">
+							<li><a href="#" class="list-group-item">Company
+									Background</a></li>
+
+						</ul>
+					</div>
+				</div>
 			</div>
+
 		</div>
 
 
 		<!-- /.row -->
 
-		<hr>
-
-		<!-- Footer -->
-		<footer>
-			<!--/////////////////////////////////////////////////// -->
-			<jsp:include page="/PartsOfContent/SiteFooter/FrontFooter.jsp"
-				flush="false" />
-			<!--/////////////////////////////////////////////////// -->
-		</footer>
-
-
 	</div>
 	<!-- /.container -->
+	<!-- Footer -->
+	<footer>
+		<!--/////////////////////////////////////////////////// -->
+		<jsp:include page="/PartsOfContent/SiteFooter/FrontFooter.jsp"
+			flush="false" />
+		<!--/////////////////////////////////////////////////// -->
+	</footer>
+
+
 
 </body>
 

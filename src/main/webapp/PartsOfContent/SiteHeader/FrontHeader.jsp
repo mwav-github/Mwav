@@ -11,29 +11,30 @@
 		<div class="container">
 			<%-- Container를 nav 밖에 놓으면 전체 영역 / 안에놓으면 1170px --%>
 			<!-- Brand and toggle get grouped for better mobile display -->
-			<div class="navbar-header" >
-			<%--border 칼라 테두리는 style=border || 안의 icon-bar로 구성 --%>
-			
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-					data-target="#bs-example-navbar-collapse-1" style="border:2px solid white">
+			<div class="navbar-header">
+				<%--border 칼라 테두리는 style=border || 안의 icon-bar로 구성 --%>
+
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+					style="border: 2px solid white">
 					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar" style="background-color:white;"></span> <span class="icon-bar" style="background-color:white;"></span> <span
-						class="icon-bar" style="background-color:white;"></span>
+						class="icon-bar" style="background-color: white;"></span> <span
+						class="icon-bar" style="background-color: white;"></span> <span
+						class="icon-bar" style="background-color: white;"></span>
 				</button>
 				<%-- 크기 줄었을 때 우측에 navbar 역할 --%>
 				<a class="navbar-brand active logo_800_m" href="/"> <img
 					src="/Images/CompanyLogos/CompanyLogo.gif"
-					class="img-thumbnail img-responsive logo_800_h" alt="Responsive image">
-					<!-- <font color="#E5E5E5">Mwav</font> --></a>
+					class="img-thumbnail img-responsive logo_800_h"
+					alt="Responsive image"> <!-- <font color="#E5E5E5">Mwav</font> --></a>
 			</div>
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="mgt2 collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="mgl5 nav navbar-nav">
-					<li><a href="/CompanyItem/IT Solutions/IT Solutions.jsp">IT
+					<li><a href="/CompanyItem/IT Products/OpenSRS/OpenSRS.jsp">IT
 							Solutions</a></li>
-					<li><a
-						href="/CompanyItem/IT Products/Aervision/Aervision.jsp">IT
+					<li><a href="/CompanyItem/IT Products/Aervision/Aervision.jsp">IT
 							Products</a></li>
 					<li><a
 						href="/CompanyItem/WebSite Building/WebSite Building.jsp">WebSite
@@ -89,25 +90,46 @@
 		<div class="item active">
 			<div class="fill"
 				style="background-image: url('/Company/zImage/Company_Main(height_300).jpg');"></div>
-			<div class="carousel-caption" style="color:#BCE8F1;">
-			<!-- 	<h2>Company</h2>
-			 -->	<a href="/Company/Introduction/Introduction.jsp" class="btn btn-info btn-lg">Learn More</a>
+			<div class="carousel-caption" style="color: #BCE8F1;">
+
+				<div class="row pull-right">
+					<div class="col-sm-12 col-md-offset-1 ">
+						<a href="#" class="btn btn-danger btn-lg" role="button"><span
+							class="glyphicon glyphicon-list-alt"></span> <br />Apps</a> <a
+							href="#" class="btn btn-warning btn-lg" role="button"><span
+							class="glyphicon glyphicon-bookmark"></span> <br />Bookmarks</a> <a
+							href="#" class="btn btn-success btn-lg" role="button"><span
+							class="glyphicon glyphicon-user"></span> <br />Users</a> <a href="#"
+							class="btn btn-info btn-lg" role="button"><span
+							class="glyphicon glyphicon-file"></span> <br />Notes</a>
+					</div>
+				</div>
 			</div>
 		</div>
 		<div class="item">
 			<div class="fill"
 				style="background-image: url('/CompanyItem/zImage/CompanyItem_Main(height_300).jpg');"></div>
-			<div class="carousel-caption" style="color:#BCE8F1;">
+			<div class="carousel-caption" style="color: #BCE8F1;">
 				<!-- <h2>Company Item</h2> -->
-				<a href="/CompanyItem/IT%20Solutions/Aervision/Aervision.jsp" class="btn btn-info btn-lg">Learn More</a>
+				<a href="/CompanyItem/IT%20Solutions/Aervision/Aervision.jsp"
+					class="btn btn-info btn-lg">Learn More</a>
 			</div>
 		</div>
 		<div class="item">
 			<div class="fill"
 				style="background-image: url('/CustomerService/zImage/CustomerService_Main(height_300).jpg');"></div>
-			<div class="carousel-caption" style="color:#BCE8F1;">
-				<!-- <h2>Customer Service</h2> -->
-				<a href="#" class="btn btn-info btn-lg">Learn More</a>
+			<div class="carousel-caption" style="color:#317eac">
+
+				<div class="col-xs-3 pull-right">
+					<div class="text">
+						<div class="content-text">
+							<h3 class="lead">Project label</h3>
+							<p>
+								And a little description. <br> and so one
+							</p>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

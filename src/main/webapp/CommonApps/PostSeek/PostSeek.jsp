@@ -159,7 +159,7 @@ function sendAddress(zipcode, sido, gugun, dong, ri, bunji) {
 
 <div class="container">
 	<!-- Modal -->
-	<div class="modal fade bs-modal-sm" id="myModal" tabindex="-1"
+	<div class="modal fade modal_post" id="myModal" tabindex="-1"
 		role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-md">
 			<div class="modal-content">
