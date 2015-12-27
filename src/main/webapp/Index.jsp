@@ -22,6 +22,18 @@
 		history.go(-1)
 	</script>
 </c:if>
+<c:if test="${requestScope.loginCheck eq 7 }">
+	<script type="text/javascript">
+		alert('탈퇴한 회원입니다.');
+		msg = '재 가입하시겠습니까.?'
+		if (confirm(msg)!=0) {
+			location.replace("/MasterPage_1.jsp?mode=Default"); // 이전 url 기록안하는 경우 , location.href 의 경우 이전기록이 남아 login.do로 포워딩
+		}
+		else{
+		history.go(-1)
+		}
+	</script>
+</c:if>
 
 <c:if test="${requestScope.loginCheck eq 3 }">
 	<script type="text/javascript">
@@ -80,7 +92,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4>
-							<i class="fa fa-fw fa-check"></i> AerVision	
+							<i class="fa fa-fw fa-check"></i> WebSite Building
 						</h4>
 					</div>
 					<div class="panel-body">

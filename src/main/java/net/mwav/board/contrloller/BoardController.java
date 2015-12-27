@@ -70,7 +70,7 @@ public class BoardController {
 	}
 
 	/*========================================보기========================================*/
-	// 2번 bnsView : 수정/삭제가능
+	// 1번 bnsView : 수정/삭제가능
 	@RequestMapping(value = "/board/bnsView.do")
 	public ModelAndView selectOneBnsView(CommandMap commandMap,
 			HttpServletRequest request, HttpSession session) throws Exception {
@@ -110,7 +110,7 @@ public class BoardController {
 	}
 
 	/*========================================수정========================================*/
-	// 3번 bnsUpdate : 리스트 업데이트
+	// 1번 bnsUpdate : 리스트 업데이트
 	@RequestMapping(value = "/board/bnsUpdate.do")
 	public ModelAndView updateBnsform(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
@@ -136,7 +136,7 @@ public class BoardController {
 	 */
 
 	/*========================================리스트(SelectOne, SelectList 순)========================================*/
-	// 4번 FrontNewsList : 메인페이지 앞단 5개씩 출력, 작성일 기준
+	// 1번 FrontNewsList : 메인페이지 앞단 5개씩 출력, 작성일 기준
 	@RequestMapping(value = "/board/bnsFrontList.do")
 	public ModelAndView selectListBnsFrontList(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
@@ -166,7 +166,7 @@ public class BoardController {
 		return mv;
 	}
 
-	// 5번 bnsList : 리스트
+	// 2번 bnsList : 리스트
 	@RequestMapping(value = "/board/bnsList.do")
 	public ModelAndView selectListBnsList(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
@@ -204,7 +204,7 @@ public class BoardController {
 	}
 
 	/*========================================삭제========================================*/
-	// 6번 bnsDelete
+	// 1번 bnsDelete
 	@RequestMapping(value = "/board/bnsDelete.do")
 	public ModelAndView deleteBnsDelete(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {

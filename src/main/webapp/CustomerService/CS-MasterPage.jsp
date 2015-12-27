@@ -122,7 +122,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 			<div class="col-md-9">
 
 				<c:if test="${param.mode == 'SDMyPage'}">
-					<jsp:include page="/member/MbrView.do" flush="false" />
+					<jsp:include page="/member/mbrView.do" flush="false" />
 				</c:if>
 				<c:if test="${param.mode == 'SDMbrDelete'}">
 					<jsp:include page="/CommonApps/Member/MbrDelete.jsp" flush="false" />

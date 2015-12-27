@@ -12,7 +12,7 @@
         <br/>
 
 		<form class='form-horizontal mgt4' name="change_record" method="post"
-			action="/member/memberDelete.do" >
+			action="/member/mbrDelete.do" >
 			<div class="col-md-8">	    
 				<input type="password" name="mbrLoginPw" class="form-control"
 					placeholder="암호" value="" required>

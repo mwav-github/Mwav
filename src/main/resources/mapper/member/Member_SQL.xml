@@ -4,72 +4,64 @@
 <!-- #은 ' ' string // $ 은 숫자 ' ' 없음 -->
 <mapper namespace="member">
 	
-	<select id="selectLogin" parameterType="hashmap" resultType="hashmap">
-		<![CDATA[
-		SELECT mbrLoginPw, mbrLoginId, member_id
-		FROM Member_tbl
-	    WHERE mbrLoginId = #{mbrLoginId} 
-		
-		]]>
-	</select>
-
-	<select id="selectNextPk" parameterType="hashmap" resultType="hashmap">
-		<![CDATA[
-	       select IFNULL(max(member_id+1) , 100000) AS member_id from Member_tbl 
-		]]>
-	</select>
-
-	<select id="insertMember_tbl" parameterType="hashmap">
+	<!-- /*========================================등록========================================*/ -->
+	<select id="insertMbrForm" parameterType="hashmap">
 		<![CDATA[
 	INSERT INTO Member_tbl 
 		Values(#{member_id}, #{mbrLoginId}, #{mbrLoginPw}, #{mbrTempLoginPw}, #{mbrFirstName}, #{mbrLastName}, #{mbrMiddleName}, #{mbrEmail}, #{mbrCellPhone}, #{mbrAddrFlag}, #{mbrZipcode}, #{mbrAddress})
 		]]>
 	</select>
+	
 	<insert id="insertMemberValue_tbl" parameterType="hashmap">
 		<![CDATA[
 	INSERT INTO MemberValue_tbl Values(#{member_id},null,null,null,null,null,null,null,null,null,null,now(),null,null,null,null,null,null)
 		]]>
 	</insert>
 	
-    <select id="selectMemberView" parameterType="hashmap" resultType="hashmap">
+	<!-- /*========================================보기========================================*/ -->
+	<select id="selectMbrView" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 	      select * from Member_tbl where member_id= #{member_id}
 		]]>
 	</select>
 	
-    <select id="selectIdCheck" parameterType="string" resultType="string">
+	<!-- /*========================================수정========================================*/ -->
+	<update id="updateMbrLoginPw" parameterType="hashmap" >
+		<![CDATA[
+		UPDATE member_tbl SET mbrLoginPw = #{mbrLoginPw} WHERE mbrTempLoginPw = #{imsi_mbrLoginPw}
+		]]>
+	</update>
+	
+	<update id="updateMbrTempLoginPw" parameterType="hashmap"> 
+		<![CDATA[
+		UPDATE Member_tbl SET mbrTempLoginPw = #{mbrTempLoginPw} WHERE mbrEmail = #{mbrEmail} and mbrLoginId = #{mbrLoginId}
+		]]>
+	</update>
+	
+	/*========================================리스트(SelectOne, SelectList 순)========================================*/
+	
+	<select id="selectOneMbrLoginIdCheck" parameterType="string" resultType="string">
 		<![CDATA[
 	      select mbrLoginId from Member_tbl where mbrLoginId = #{mbrLoginId};
 		]]>
 	</select>
 	
-    <select id="selectIdFinder" parameterType="hashmap" resultType="hashmap">
+    <select id="selectOneMbrLoginIdSeek" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 		select mbrLoginId from Member_tbl where mbrCellPhone = #{mbrCellPhone} and mbrEmail = #{mbrEmail}
 		]]>
 	</select>
 	
-	<update id="imsiPWInsert" parameterType="hashmap"> 
-		<![CDATA[
-		UPDATE Member_tbl SET mbrTempLoginPw = #{imsiPW} WHERE mbrEmail = #{mbrEmail} and mbrLoginId = #{mbrLoginId}
-		]]>
-	</update>
-	
-	 <select id="selectPWFinder" parameterType="hashmap" resultType="string">
-		<![CDATA[
-		select mbrLoginId from Member_tbl where mbrCellPhone = #{mbrCellPhone} and mbrEmail = #{mbrEmail}
-		]]>
-	</select>
-	
-	 <select id="imsiPWFinder" parameterType="hashmap" resultType="string">
+	 <select id="selectOneMbrTempLoginPwSeek" parameterType="hashmap" resultType="string">
 		<![CDATA[
 		select mbrTempLoginPw from Member_tbl where mbrTempLoginPw = #{imsiPW}
 		]]>
 	</select>
 	
-	<update id="updatePw" parameterType="hashmap" >
-		<![CDATA[
-		UPDATE member_tbl SET mbrLoginPw = #{mbrLoginPw} WHERE mbrTempLoginPw = #{imsi_mbrLoginPw}
+	/*========================================삭제========================================*/
+	<update id="deleteMbrDelete" parameterType="hashmap"> 
+		<![CDATA[		
+		update MemberValue_tbl set mbrLeaveDt=NOW() where member_id = (SELECT member_id FROM member_tbl where mbrLoginPw = #{mbrLoginPw} and member_id = #{member_id})
 		]]>
 	</update>
 	
@@ -106,11 +98,30 @@ select * from postcodebuildinfo_tbl where 시도명 = '강원도' and 시군구�
 select * from postcodebuildinfo_tbl where 시도명 = '서울특별시' and 시군구명 = '강동구' and 건축물대장 건물명 = '힐링하우스'
     
     -->
-
-	<update id="updateMemberDelete" parameterType="hashmap"> 
-		<![CDATA[		
-		update MemberValue_tbl set mbrLeaveDt=NOW() where member_id = (SELECT member_id FROM member_tbl where mbrLoginPw = #{mbrLoginPw} and member_id = #{member_id})
+    <select id="selectNextPk" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+	       select IFNULL(max(member_id+1) , 100000) AS member_id from Member_tbl 
 		]]>
-	</update>		
+	</select>
+	
+    
+	<select id="selectLogin" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+		SELECT a.mbrLoginPw, a.mbrLoginId, a.member_id, b.mbrLeaveDt
+		FROM Member_tbl a, MemberValue_tbl b
+	    WHERE a.member_id = b.member_id and mbrLoginId = #{mbrLoginId} 		
+		]]>
+	</select>
+
+
+
+	
+	
+	
+    
+	
+    
+
+			
 </mapper>
 

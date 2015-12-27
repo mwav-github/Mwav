@@ -32,7 +32,7 @@ $.ajax({
 		}
 	}
 
-	function idFindercheck() {
+	function selectOneMbrLoginIdSeek() { //idFindercheck()
 		var phone = document.getElementById("mbrCellPhone").value;
 		var email = document.getElementById("mbrEmail").value;
 
@@ -45,7 +45,7 @@ $.ajax({
 			// 2. 이벤트 핸들러 등록
 			xhr.onreadystatechange = callback; // callback 함수를 등록
 			// 3. open()를 통해 요청관련 설정을 설정
-			xhr.open("POST", "/member/IdFinder.do", true);
+			xhr.open("POST", "/member/mbrLoginIdSeek.do", true);
 			// 4. Header에 contentType 지정 - post
 			xhr.setRequestHeader("Content-Type",
 					"application/x-www-form-urlencoded");
@@ -66,7 +66,7 @@ $.ajax({
 	}
 </script>
 <script>
-	function PWFinder() {
+	function mbrTempLoginPwUpdate() { //PWFinder()
 		var aa = $('#pwid').val();
 		var bb = $('#pwemail').val()
 
@@ -74,7 +74,7 @@ $.ajax({
 
 		$.ajax({
 			type : 'POST', // Http Request Method로 POST로 지정
-			url : '/member/PWFinder.do', // 서버 요청 주소
+			url : '/member/mbrTempLoginPwUpdate.do', // 서버 요청 주소
 			data : URL, // JavaScript 객체를 JSON 객체로 변환하여 서버 요청시 전송
 			success : function(data) {
 				alert('입력해주신 이메일로 임시PW를 발급완료했습니다. (5분안에 입력해주세요.)');
@@ -94,14 +94,14 @@ $.ajax({
 </script>
 
 <script>
-	function imsiPWFinder() {
+	function mbrTempLoginPwSeek() { //imsiPWFinder()
 		var aa = $('#imsipw').val();
 
 		var URL = "imsiPW=" + aa;
 
 		$.ajax({
 			type : 'POST', // Http Request Method로 POST로 지정
-			url : '/member/imsiPWFinder.do', // 서버 요청 주소
+			url : '/member/mbrTempLoginPwSeek.do', // 서버 요청 주소
 			data : URL, // JavaScript 객체를 JSON 객체로 변환하여 서버 요청시 전송
 			success : function(data) {
 
@@ -223,7 +223,7 @@ $.ajax({
 								</div>
 								<div class="col-md-4">
 									<button type="button" class="btn btn-primary"
-										onclick="idFindercheck()">확인</button>
+										onclick="selectOneMbrLoginIdSeek()">확인</button>
 								</div>
 								<p class="col-md-4 col-md-offset-4">
 									<span id="idcheckLayer"></span>
@@ -252,7 +252,7 @@ $.ajax({
 									</div>
 									<div class="col-md-4">
 										<button type="button" id="pwok" class="btn btn-primary"
-											onclick="PWFinder()">확인</button>
+											onclick="mbrTempLoginPwUpdate()">확인</button>
 									</div>
 								</form>
 								<form class="form-horizontal" name="pwform_1">
@@ -268,7 +268,7 @@ $.ajax({
 										</div>
 										<div class="col-md-4">
 											<button type="button" class="btn btn-primary"
-												onclick="imsiPWFinder()">확인</button>
+												onclick="mbrTempLoginPwSeek()">확인</button>
 										</div>
 									</div>
 									<p></p>
@@ -278,7 +278,7 @@ $.ajax({
 
 							<div class="tab-pane fade" id="pwfinder_1" style="display: none;">
 								<form name="pwform" class="form-horizontal" method="post"
-									action="/member/PWUpdate.do"
+									action="/member/mbrLoginPwUpdate.do"
 									onsubmit="return check(document.pwform)">
 									<h2>비밀번호 변경</h2>
 									<p>비밀번호를 변경합니다.</p>

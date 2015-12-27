@@ -59,59 +59,85 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 		<div class="row">
 			<!-- Sidebar Column left메뉴 추후 변경 예정<시작>-->
 			<div class="col-md-3">
-				<jsp:include page="/CustomerService/CS-MasterPageLeftMenu.jsp" flush="false" />
+				<jsp:include page="/CustomerService/CS-MasterPageLeftMenu.jsp"
+					flush="false" />
 			</div>
 			<!-- 끝 -->
 
 			<div class="col-md-9">
 				<!-- <span class="label label-primary">Contact</span> 위에는 사진 형식으로 예정
  -->
+
 				<div class="row">
-	
-						<div class="well well-sm">
-							<form>
-								<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											<label for="name"> Name</label> <input type="text"
-												class="form-control" id="name" placeholder="Enter name"
-												required="required" />
-										</div>
-										<div class="form-group">
-											<label for="email"> Email Address</label>
-											<div class="input-group">
-												<span class="input-group-addon"><span
-													class="glyphicon glyphicon-envelope"></span> </span> <input
-													type="email" class="form-control" id="email"
-													placeholder="Enter email" required="required" />
-											</div>
-										</div>
-										<div class="form-group">
-											<label for="subject"> Subject</label> <select id="subject"
-												name="subject" class="form-control" required="required">
-												<option value="na" selected="">Choose One:</option>
-												<option value="service">General Customer Service</option>
-												<option value="suggestions">Suggestions</option>
-												<option value="product">Product Support</option>
-											</select>
+					<div class="col-lg-12">
+						<h2 class="page-header">Contact</h2>
+					</div>
+					<div class="col-lg-4 well text-center">
+								<img
+								src="http://m.c.lnkd.licdn.com/mpr/pub/image-0em6ZpPcOdZ5lNMcu6cP5vOTrPn4Gvnzr-mkepfGr4nX-Rp70emkiNscr_K_GnWmBylB/prasad-phule.jpg"
+								name="aboutme" width="140" height="140" class="img-circle">
+							<h3>CEO</h3>
+							<em>click on me to see Image Manager</em>
+					</div>
+					<div class="col-lg-4 well text-center">
+								<img
+								src="http://m.c.lnkd.licdn.com/mpr/pub/image-0em6ZpPcOdZ5lNMcu6cP5vOTrPn4Gvnzr-mkepfGr4nX-Rp70emkiNscr_K_GnWmBylB/prasad-phule.jpg"
+								name="aboutme" width="140" height="140" class="img-circle">
+							<h3>CIO</h3>
+							<em>click on me to see Image Manager</em>
+					</div>
+					<div class="col-lg-4 well text-center">
+								<img
+								src="http://m.c.lnkd.licdn.com/mpr/pub/image-0em6ZpPcOdZ5lNMcu6cP5vOTrPn4Gvnzr-mkepfGr4nX-Rp70emkiNscr_K_GnWmBylB/prasad-phule.jpg"
+								name="aboutme" width="140" height="140" class="img-circle">
+							<h3>CTO</h3>
+							<em>click on me to see Image Manager</em>
+					</div>
+				</div>
+				<!-- <div class="well well-sm">
+						<form>
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label for="name"> Name</label> <input type="text"
+											class="form-control" id="name" placeholder="Enter name"
+											required="required" />
+									</div>
+									<div class="form-group">
+										<label for="email"> Email Address</label>
+										<div class="input-group">
+											<span class="input-group-addon"><span
+												class="glyphicon glyphicon-envelope"></span> </span> <input
+												type="email" class="form-control" id="email"
+												placeholder="Enter email" required="required" />
 										</div>
 									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label for="name"> Message</label>
-											<textarea name="message" id="message" class="form-control"
-												rows="9" cols="25" required="required" placeholder="Message"></textarea>
-										</div>
-									</div>
-									<div class="col-md-12">
-										<button type="submit" class="btn btn-primary pull-right"
-											id="btnContactUs">Send Message</button>
+									<div class="form-group">
+										<label for="subject"> Subject</label> <select id="subject"
+											name="subject" class="form-control" required="required">
+											<option value="na" selected="">Choose One:</option>
+											<option value="service">General Customer Service</option>
+											<option value="suggestions">Suggestions</option>
+											<option value="product">Product Support</option>
+										</select>
 									</div>
 								</div>
-							</form>
-						</div>
-					</div>
-					<!-- 	<div class="col-md-4">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label for="name"> Message</label>
+										<textarea name="message" id="message" class="form-control"
+											rows="9" cols="25" required="required" placeholder="Message"></textarea>
+									</div>
+								</div>
+								<div class="col-md-12">
+									<button type="submit" class="btn btn-primary pull-right"
+										id="btnContactUs">Send Message</button>
+								</div>
+							</div>
+						</form>
+					</div> -->
+
+				<!-- 	<div class="col-md-4">
 							<form>
 								<legend>
 									<span class="glyphicon glyphicon-globe"></span> Our office
@@ -125,7 +151,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 								</address>
 							</form>
 						</div> -->
-			
+
 			</div>
 		</div>
 		<!-- /.row -->
