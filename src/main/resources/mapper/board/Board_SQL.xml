@@ -79,8 +79,8 @@
 	<!--/*========================================등록========================================*/  -->
 	<insert id="insertBnForm" parameterType="hashmap">
 		<![CDATA[
-			INSERT INTO BoardNews_tbl
-				SELECT IFNULL(max(bNews_id)+1,100001), #{bnGroup}, #{bnHighLight}, #{bnTitle}, #{bnSubTitle}, #{bnRelatedLink}, #{bnContent}, #{bnViewCount}, #{bnOrder}, #{bnStatus}, #{staff_id}, NOW(), NOW(), null FROM BoardNews_tbl
+			INSERT INTO BoardNotices_tbl Values(
+				SELECT IFNULL(max(bNews_id)+1,100001), #{bnGroup}, #{bnHighLight}, #{bnTitle}, #{bnSubTitle}, #{bnRelatedLink}, #{bnContent}, #{bnViewCount}, #{bnOrder}, #{bnStatus}, #{staff_id}, NOW(), NOW(), null)
 		]]>
 	</insert>
     
