@@ -295,7 +295,7 @@ public class MemberDAO extends AbstractDAO {
 			System.out.println("mbrLeaveDt =" + mbrLeaveDt);
 
 			SimpleDateFormat sdfCurrent = new SimpleDateFormat();
-
+			memberLogin.put("mbrLoginPw", decrypted1);
 			mbrLeaveDt = sdfCurrent.format(memberLogin.get("mbrLeaveDt")); // java.sql.Timestamp
 																			// cannot
 																			// be
@@ -306,11 +306,12 @@ public class MemberDAO extends AbstractDAO {
 			if (mbrLeaveDt != null) {
 				System.out.println("탈퇴한 회원?");
 				memberLogin.put("logincheck", 7);
-				memberLogin.put("mbrLoginPw", decrypted1);
+
+				System.out.println("탈퇴");
 			} else {
 
 				memberLogin.put("logincheck", 6);
-				memberLogin.put("mbrLoginPw", decrypted1);
+				System.out.println("탈퇴 x");
 			}
 
 		} catch (Exception e) {

@@ -12,8 +12,10 @@
 <div class="col-md-12"
 	style="padding: 60px; box-shadow: 0 0 20px 3px #04A3ED; background: #f7f7f7;">
 	<form name="login_form" action="/member/Login.do"
-		onsubmit="return check(document.login_form)" method="post">
-
+		 method="post">
+<!-- 
+	<form name="login_form" action="/member/Login.do"
+		onsubmit="return check(document.login_form)" method="post"> -->
 		<!-- <div class="form-group">
 			<div class="col-md-4 col-sm-12">
 				<button type="button" class="btn btn-primary btn-block">Facebook</button>
@@ -35,10 +37,10 @@
 			<input type="password" class="form-control input-lg"
 				placeholder="Password" name="mbrLoginPw">
 		</div>
-		<div class="form-group">
+		<!-- <div class="form-group">
 			<input type="password" class="form-control input-lg"
 				placeholder="Confirm Password" name="mbrLoginPw_check">
-		</div>
+		</div> -->
 		<div class="form-group">
 			<button type="submit" class="btn btn-primary btn-lg btn-block">Sign
 				In</button>

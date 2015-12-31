@@ -13,8 +13,7 @@
 			href="/member/Logout.do">Logout</A> <br>
 		<p class=" text-info">May 05,2014,03:00 pm</p>
 	</div> -->
-	<div
-		class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
 
 		<div class="panel panel-info">
@@ -46,29 +45,29 @@
 							<tbody>
 								<tr>
 									<td>아이디:</td>
-									<td>${selectMemberView.mbrLoginId}</td>
+									<td>${selectMbrView.mbrLoginId}</td>
 								</tr>
 								<tr>
 									<td>이름:</td>
-									<td>${selectMemberView.mbrFirstName}</td>
+									<td>${selectMbrView.mbrFirstName}</td>
 								</tr>
 								<tr>
 									<td>이메일:</td>
-									<td><a href="mailto:${selectMemberView.mbrEmail}">${selectMemberView.mbrEmail}</a></td>
+									<td><a href="mailto:${selectMbrView.mbrEmail}">${selectMbrView.mbrEmail}</a></td>
 								</tr>
 
 								<tr>
 									<td>핸드폰번호:</td>
-									<td>${selectMemberView.mbrCellPhone}</td>
+									<td>${selectMbrView.mbrCellPhone}</td>
 								</tr>
 								<tr>
 									<td>주소구분:</td>
-									<td>${selectMemberView.mbrAddrFlag}</td>
+									<td>${selectMbrView.mbrAddrFlag}</td>
 								</tr>
 								<tr>
 									<td>주소:</td>
-									<td>${selectMemberView.mbrZipcode}//
-										${selectMemberView.mbrAddress}</td>
+									<td>${selectMbrView.mbrZipcode}//
+										${selectMbrView.mbrAddress}</td>
 								</tr>
 							</tbody>
 						</table>
@@ -81,14 +80,11 @@
 			<div class="panel-footer">
 				<a data-original-title="Broadcast Message" data-toggle="tooltip"
 					type="button" class="btn btn-sm btn-primary"><i
-					class="glyphicon glyphicon-envelope"></i></a> 
-					
-					<span class="pull-right">
+					class="glyphicon glyphicon-envelope"></i></a> <span class="pull-right">
 					<a href="edit.html" data-original-title="Edit this user"
 					data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i
-						class="glyphicon glyphicon-edit"></i></a> 
-						
-						<a href ="/CustomerService/CS-MasterPage.jsp?mode=SDMbrDelete"
+						class="glyphicon glyphicon-edit"></i></a> <a
+					href="/CustomerService/CS-MasterPage.jsp?mode=SDMbrDelete"
 					data-original-title="Remove this user" data-toggle="tooltip"
 					type="button" class="btn btn-sm btn-danger"><i
 						class="glyphicon glyphicon-remove"></i></a>

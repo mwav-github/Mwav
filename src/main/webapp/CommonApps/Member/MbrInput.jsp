@@ -43,7 +43,7 @@ http://planbong.tistory.com/531
 			// 2. 이벤트 핸들러 등록
 			xhr.onreadystatechange = callback; // callback 함수를 등록
 			// 3. open()를 통해 요청관련 설정을 설정
-			xhr.open("POST", "/member/IdCheck.do", true);
+			xhr.open("POST", "/member/mbrLoginIdCheck.do", true);
 			// 4. Header에 contentType 지정 - post
 			xhr.setRequestHeader("Content-Type",
 					"application/x-www-form-urlencoded");
