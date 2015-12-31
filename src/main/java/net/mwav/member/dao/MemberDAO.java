@@ -306,6 +306,7 @@ public class MemberDAO extends AbstractDAO {
 			if (mbrLeaveDt != null) {
 				System.out.println("탈퇴한 회원?");
 				memberLogin.put("logincheck", 7);
+				memberLogin.put("mbrLoginPw", decrypted1);
 			} else {
 
 				memberLogin.put("logincheck", 6);

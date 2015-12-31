@@ -38,7 +38,7 @@
 		]]>
 	</update>
 	
-	/*========================================리스트(SelectOne, SelectList 순)========================================*/
+	<!--/*========================================리스트(SelectOne, SelectList 순)========================================*/-->
 	
 	<select id="selectOneMbrLoginIdCheck" parameterType="string" resultType="string">
 		<![CDATA[
@@ -58,7 +58,7 @@
 		]]>
 	</select>
 	
-	/*========================================삭제========================================*/
+	<!--/*========================================삭제========================================*/-->
 	<update id="deleteMbrDelete" parameterType="hashmap"> 
 		<![CDATA[		
 		update MemberValue_tbl set mbrLeaveDt=NOW() where member_id = (SELECT member_id FROM member_tbl where mbrLoginPw = #{mbrLoginPw} and member_id = #{member_id})
@@ -91,12 +91,8 @@
 	
     <!--
 select * from postcodebuildinfo_tbl where 시도명 = '강원도' and 시군구명 = '춘천시' and 법정읍면동명 = '봉의동' and 지번본번 = '1'
-
 select * from postcodebuildinfo_tbl where 시도명 = '강원도' and 시군구명 = '춘천시' and 도로명 = '봉의산길' and 건물본번 = '28'
-
-
-select * from postcodebuildinfo_tbl where 시도명 = '서울특별시' and 시군구명 = '강동구' and 건축물대장 건물명 = '힐링하우스'
-    
+select * from postcodebuildinfo_tbl where 시도명 = '서울특별시' and 시군구명 = '강동구' and 건축물대장 건물명 = '힐링하우스'   
     -->
     <select id="selectNextPk" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
@@ -112,16 +108,6 @@ select * from postcodebuildinfo_tbl where 시도명 = '서울특별시' and 시�
 	    WHERE a.member_id = b.member_id and mbrLoginId = #{mbrLoginId} 		
 		]]>
 	</select>
-
-
-
-	
-	
-	
-    
-	
-    
-
-			
+		
 </mapper>
 

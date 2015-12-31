@@ -17,7 +17,7 @@
 
 body {
 font-family:'맑은 고딕', 'Malgun Gothic', '굴림', Gulim, 'NanumGothic';
-
+/* body 선언은 테이블 적용 안된다. -> 별도 적용 필요.*/
 }
 
 /*
@@ -25,19 +25,12 @@ font-family:'맑은 고딕', 'Malgun Gothic', '굴림', Gulim, 'NanumGothic';
  * @font-face {
 
     font-family:'NanumGothic';
-
     src: url('images/NanumGothic.eot');
-
     src: url('images/NanumGothic.eot?#iefix') format('embedded-opentype'),
-
          url('images/NanumGothic.woff') format('woff'),
-
          url('images/NanumGothic.ttf') format('truetype');
-
     font-weight: normal;
-
     font-style: normal;
-
 }
  * 
  */
