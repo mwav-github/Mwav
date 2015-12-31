@@ -37,39 +37,39 @@ public class BoardNoticeController {
 
 	// 페이지별 세션지정 -> GET문
 	/*
-	 * 1. BnForm : mode = SBnForm /CommonApps/BoardNews/BnForm.jsp 2. BnList
-	 * : mode = SBnList /CommonApps/BoardNews/BnList.jsp 3. BnView : mode =
-	 * SBnView /CommonApps/BoardNews/BnView.jsp 4. FrontNewsList : mode =
-	 * SFBnList /CommonApps/BoardNews/FrontNewsList.jsp 5. BnUpdate : mode =
-	 * SBnUpdate /CommonApps/BoardNews/BnForm.jsp
+	 * 1. BuForm : mode = SBuForm /CommonApps/BoardNews/BuForm.jsp 2. BuList
+	 * : mode = SBuList /CommonApps/BoardNews/BuList.jsp 3. BuView : mode =
+	 * SBuView /CommonApps/BoardNews/BuView.jsp 4. FrontNewsList : mode =
+	 * SFBuList /CommonApps/BoardNews/FrontNewsList.jsp 5. BuUpdate : mode =
+	 * SBuUpdate /CommonApps/BoardNews/BuForm.jsp
 	 */
 	@Resource(name = "boardNoticeService")
 	private BoardNoticeService boardNoticeService;
 
 	/*========================================등록========================================*/
-	// 1번 BnForm : Form 입력만 가능 (뒤로가기, list)
-	@RequestMapping(value = "/board/BnForm.do")
-	public ModelAndView insertBnForm(CommandMap commandMap,
+	// 1번 BuForm : Form 입력만 가능 (뒤로가기, list)
+	@RequestMapping(value = "/board/buForm.do")
+	public ModelAndView insertBuForm(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/Company/CompanyMasterPage_1");
 
 		System.out.println("순서");
 		log.debug("인터셉터 테스트");
-		boardNoticeService.insertBnForm(commandMap.getMap());
+		boardNoticeService.insertBuForm(commandMap.getMap());
 
-		mode = "SBnForm";
+		mode = "SbuForm";
 		request.setAttribute("mode", mode);
 
-		// mv.addObject("insertBnForm", insertBnForm);
+		// mv.addObject("insertBuForm", insertBuForm);
 		// mv.addObject("IDX", commandMap.get("IDX"));
 
 		return mv;
 	}
 
 	/*========================================보기========================================*/
-	// 2번 BnView : 수정/삭제가능
-	@RequestMapping(value = "/board/BnView.do")
-	public ModelAndView selectOneBnView(CommandMap commandMap,
+	// 2번 BuView : 수정/삭제가능
+	@RequestMapping(value = "/board/buView.do")
+	public ModelAndView selectOneBuView(CommandMap commandMap,
 			HttpServletRequest request, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView("/Company/CompanyMasterPage_1");
 
@@ -91,56 +91,56 @@ public class BoardNoticeController {
 
 		log.debug("인터셉터 테스트");
 		System.out.println("테스트");
-		Map<String, Object> selectOneBnView = boardNoticeService
-				.selectOneBnView(commandMap.getMap());
+		Map<String, Object> selectOneBuView = boardNoticeService
+				.selectOneBuView(commandMap.getMap());
 
-		if (selectOneBnView != null && !selectOneBnView.isEmpty()) {
+		if (selectOneBuView != null && !selectOneBuView.isEmpty()) {
 			System.out.println("view 줄랭");
 
-			mode = "SBnView";
+			mode = "SbuView";
 			request.setAttribute("mode", mode);
 
-			mv.addObject("selectOneBnView", selectOneBnView);
+			mv.addObject("selectOneBuView", selectOneBuView);
 		}
 
 		return mv;
 	}
 
 	/*========================================수정========================================*/
-	// 3번 BnUpdate : 리스트 업데이트
-	@RequestMapping(value = "/board/BnUpdate.do")
-	public ModelAndView updateBnform(CommandMap commandMap,
+	// 3번 BuUpdate : 리스트 업데이트
+	@RequestMapping(value = "/board/buUpdate.do")
+	public ModelAndView updateBuform(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/Company/CompanyMasterPage_1");
 
-		mode = "SBnUpdate";
+		mode = "SbuUpdate";
 		request.setAttribute("mode", mode);
 
 		// 위의 view랑 동일하게 사용
 
-		boardNoticeService.updateBnform(commandMap.getMap());
+		boardNoticeService.updateBuform(commandMap.getMap());
 		return mv;
 	}
 
 	/*
-	 * // 7번 BnUpdatePro : 리스트 업데이트
+	 * // 7번 BuUpdatePro : 리스트 업데이트
 	 * 
-	 * @RequestMapping(value = "/board/BnUpdatePro.do") public ModelAndView
-	 * updateBnform(CommandMap commandMap) throws Exception { ModelAndView mv =
+	 * @RequestMapping(value = "/board/BuUpdatePro.do") public ModelAndView
+	 * updateBuform(CommandMap commandMap) throws Exception { ModelAndView mv =
 	 * new ModelAndView("/Company/CompanyMasterPage_1");
 	 * 
-	 * boardService.updateBnform(commandMap.getMap()); return mv; }
+	 * boardService.updateBuform(commandMap.getMap()); return mv; }
 	 */
 
 	/*========================================리스트(SelectOne, SelectList 순)========================================*/
 	// 4번 FrontNewsList : 메인페이지 앞단 5개씩 출력, 작성일 기준
-	@RequestMapping(value = "/board/BnFrontList.do")
-	public ModelAndView selectListBnFrontList(CommandMap commandMap,
+	@RequestMapping(value = "/board/buFrontList.do")
+	public ModelAndView selectListBuFrontList(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView(
 				"/CommonApps/BoardNews/FrontNewsList");
 		/*
-		 * mode = "SFBnList"; session.setAttribute("mode", mode); String
+		 * mode = "SFBuList"; session.setAttribute("mode", mode); String
 		 * sessiontest = (String) session.getAttribute(mode);
 		 * 
 		 * System.out.println("sessiontest=" + sessiontest);
@@ -149,23 +149,23 @@ public class BoardNoticeController {
 		// * action-servlet.xml에서 위에 .jsp 설정해줘서 위의 CommonApps 부터 되는거
 		cou.selectListCommandMap(commandMap); // 키 출력
 
-		List<Map<String, Object>> selectListBnFrontList = boardNoticeService
-				.selectListBnFrontList(commandMap.getMap());
+		List<Map<String, Object>> selectListBuFrontList = boardNoticeService
+				.selectListBuFrontList(commandMap.getMap());
 
-		if (selectListBnFrontList != null && !selectListBnFrontList.isEmpty()) {
+		if (selectListBuFrontList != null && !selectListBuFrontList.isEmpty()) {
 
-			mode = "SFBnList";
+			mode = "SFbuList";
 			request.setAttribute("mode", mode);
 
-			mv.addObject("selectListBnFrontList", selectListBnFrontList);
+			mv.addObject("selectListBuFrontList", selectListBuFrontList);
 		}
 
 		return mv;
 	}
 
-	// 5번 BnList : 리스트
-	@RequestMapping(value = "/board/BnList.do")
-	public ModelAndView selectListBnList(CommandMap commandMap,
+	// 5번 BuList : 리스트
+	@RequestMapping(value = "/board/buList.do")
+	public ModelAndView selectListBuList(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/Company/CompanyMasterPage_1");
 
@@ -177,23 +177,23 @@ public class BoardNoticeController {
 		int totalCount = boardNoticeService.selectOneGetTotalCount();
 
 		// Paging pv = new Paging(pageNum, 10 , 10, totalCount);
-		List<Map<String, Object>> selectListBnList;
+		List<Map<String, Object>> selectListBuList;
 		PagingVO pagingVO = paging.pagevalue(totalCount, 5);
 		commandMap.put("startRow", paging.getStartRow(pageNum));
 		commandMap.put("endRow", paging.getEndRow(pageNum));
 		if (totalCount > 0) {
-			selectListBnList = boardNoticeService.selectListBnList(commandMap.getMap());
+			selectListBuList = boardNoticeService.selectListBuList(commandMap.getMap());
 			// selectboardList =
-			// boardService.selectBnList(commandMap.getMap());
+			// boardService.selectBuList(commandMap.getMap());
 
 		} else {
-			selectListBnList = Collections.emptyList();
+			selectListBuList = Collections.emptyList();
 		}
 		System.out.println("찍히낭");
-		mode = "SBnList";
+		mode = "SbuList";
 		request.setAttribute("mode", mode);
 
-		mv.addObject("selectListBnList", selectListBnList);
+		mv.addObject("selectListBuList", selectListBuList);
 		mv.addObject("pagingVO", pagingVO);
 		mv.addObject("totalCount", totalCount);
 		// mv.addObject("paging", pv.print());
@@ -201,15 +201,17 @@ public class BoardNoticeController {
 	}
 
 	/*========================================삭제========================================*/
-	// 6번 BnDelete
-	@RequestMapping(value = "/board/BnDelete.do")
-	public ModelAndView deleteBnDelete(CommandMap commandMap,
+	// 6번 BuDelete
+	@RequestMapping(value = "/board/buDelete.do")
+	public ModelAndView deleteBuDelete(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/Company/CompanyMasterPage_1");
 
-		boardNoticeService.deleteBnDelete(commandMap.getMap());
+		boardNoticeService.deleteBuDelete(commandMap.getMap());
 
 		return mv;
 	}
+	
+	
 
 }

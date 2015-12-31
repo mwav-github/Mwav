@@ -130,6 +130,9 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					<a href="/Company/Profitsharing/Profitsharing.jsp"
 						class="list-group-item" data-toggle="tooltip"
 						data-placement="right" data-original-title="수익분배 프로그램">Profitsharing</a>
+						<a href="/Company/Profitsharing/Profitsharing.jsp"
+						class="list-group-item" data-toggle="tooltip"
+						data-placement="right" data-original-title="공지사항">Notice</a>
 				</div>
 			</div>
 			<!-- 끝 -->

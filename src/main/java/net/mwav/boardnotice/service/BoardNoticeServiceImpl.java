@@ -22,15 +22,16 @@ public class BoardNoticeServiceImpl implements BoardNoticeService{
 	
 	/*========================================등록========================================*/
 	@Override
-	public void insertBnForm(Map<String, Object> map)
+	public void insertBuForm(Map<String, Object> map)
 			throws Exception {
 		// TODO Auto-generated method stub
-		boardDAO.insertBnForm(map);
+		System.out.println("map = "+map);
+		boardDAO.insertBuForm(map);
 	}
 
 	/*========================================보기========================================*/
 	@Override
-	public Map<String, Object> selectOneBnView(Map<String, Object> map)
+	public Map<String, Object> selectOneBuView(Map<String, Object> map)
 			throws Exception {
 		// TODO Auto-generated method stub
 		boardDAO.updateHitCnt(map);
@@ -41,16 +42,16 @@ public class BoardNoticeServiceImpl implements BoardNoticeService{
 				    System.out.println("key : "+entry.getKey()+", value : "+entry.getValue());
 				}
 		
-		Map<String, Object> resultMap = boardDAO.selectOneBnView(map);
+		Map<String, Object> resultMap = boardDAO.selectOneBuView(map);
 		return resultMap;
 	}
 	
 	
 	/*========================================수정========================================*/
 	@Override
-	public void updateBnform(Map<String, Object> map) throws Exception {
+	public void updateBuform(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
-		boardDAO.updateBnform(map);		
+		boardDAO.updateBuform(map);		
 	}
 	
 	/*========================================리스트(SelectOne, SelectList 순)========================================*/
@@ -62,28 +63,28 @@ public class BoardNoticeServiceImpl implements BoardNoticeService{
 	}
 	
 	@Override
-	public List<Map<String, Object>> selectListBnFrontList(Map<String, Object> map)
+	public List<Map<String, Object>> selectListBuFrontList(Map<String, Object> map)
 			throws Exception {
 		// TODO Auto-generated method stub
-		return boardDAO.selectListBnFrontList(map);
+		return boardDAO.selectListBuFrontList(map);
 	}
 	
 
 	@Override
-	public List<Map<String, Object>> selectListBnList(Map<String, Object> map) {
+	public List<Map<String, Object>> selectListBuList(Map<String, Object> map) {
 		// TODO Auto-generated method stub
 		
-		return boardDAO.selectListBnList(map);
+		return boardDAO.selectListBuList(map);
 	}
 
 	/*========================================삭제========================================*/
 	@Override
-	public void deleteBnDelete(Map<String, Object> map) throws Exception {
+	public void deleteBuDelete(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
-		boardDAO.deleteBnDelete(map);		
+		boardDAO.deleteBuDelete(map);		
 	}
-
 	
 
+	
  
 }

@@ -26,6 +26,7 @@ public class BoardServiceImpl implements BoardService{
 	public void insertBnsForm(Map<String, Object> map)
 			throws Exception {
 		// TODO Auto-generated method stub
+		System.out.println("map="+map);
 		boardDAO.insertBnsForm(map);
 	}
 

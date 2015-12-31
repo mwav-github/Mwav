@@ -7,26 +7,26 @@
 <script src="/CommonLibrary/Javascript/Common.js"></script>
 <script>
 	function check() {
-	/* 	if (document.bnsForm.staff_id.value == "") {
+	/* 	if (document.buForm.staff_id.value == "") {
 			alert("이름을 입력하십시오.");
-			document.bnsForm.staff_id.focus();
+			document.buForm.staff_id.focus();
 			return false;
 		}
 	
 	
 		 */
 		if (confirm("정말 입력 또는 수정하시겠습니까??") == true){    //확인
-			if (document.bnsForm.bnGroup.value == "") {
+			if (document.buForm.buGroup.value == "") {
 				alert("분류를 선택하세요.");
-				document.bnsForm.bnGroup.focus();
+				document.buForm.buGroup.focus();
 				return false;
 			}
-			if (document.bnsForm.bnTitle.value == "") {
+			if (document.buForm.buTitle.value == "") {
 				alert("제목을 입력하십시요.");
-				document.bnsForm.bnTitle.focus();
+				document.buForm.buTitle.focus();
 				return false;
 			}
-			document.bnsForm.submit();
+			document.buForm.submit();
 		}else{   //취소
 		    return;
 		}
@@ -37,7 +37,7 @@
 	function check2(obj) {
 		if (confirm("정말 삭제하시겠습니까??") == true){    //확인
 			var bbb = obj;
-			location.href= "/board/bnsDelete.do?bNews_id="+bbb;
+			location.href= "/board/buDelete.do?bUsers_id="+bbb;
 		}else{   //취소
 		    return;
 		}
@@ -67,8 +67,8 @@
 
 	<c:choose>
 		<c:when test="${fn:length(selectboardUpdate) > 0}">
-			<form role="form" method="post" name="bnsForm"
-				action="/board/bnsUpdatePro.do">
+			<form role="form" method="post" name="buForm"
+				action="/board/buUpdatePro.do">
 				<table class="table table-striped">
 
 					<thead>
@@ -76,17 +76,19 @@
 
 							<div class="pull-right">
 								<%--기본값 --%>
-								<input type="hidden" name="bNews_id" value="${selectboardUpdate.bNews_id}"/> <input type="hidden"
-									name="bnHighLight" value="0" /> <input type="hidden"
-									name="bnViewCount" value="0" MaxLength="10" />
-									<input type="hidden" name="bnInsertDt" value="${selectboardUpdate.bnInsertDt}"/>
+								<input type="hidden" name="bUsers_id"
+									value="${selectboardUpdate.bUsers_id}" /> <input type="hidden"
+									name="buHighLight" value="0" /> <input type="hidden"
+									name="buViewCount" value="0" MaxLength="10" /> <input
+									type="hidden" name="buInsertDt"
+									value="${selectboardUpdate.buInsertDt}" />
 
 								<%--높을수록 TOP (추후 반영)_15.08.01 --%>
-								<input type="hidden" name="bnOrder" value="0" />
+								<input type="hidden" name="buOrder" value="0" />
 								<%--직원담당자 staff_id 추후 반영예정 --%>
 								<input type="hidden" name="staff_id" value="0" /> <select
-									class="form-control" name="bnStatus"
-									value="${selectboardUpdate.bnStatus}">
+									class="form-control" name="buStatus"
+									value="${selectboardUpdate.butatus}">
 									<option value="0">임시저장상태</option>
 									<option value="1">현재공지상태</option>
 								</select>
@@ -103,8 +105,9 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td>${selectboardUpdate.bNews_id}</td>
-							<td><select name="bnGroup" value="${selectboardUpdate.bnGroup}">
+							<td>${selectboardUpdate.bUsers_id}</td>
+							<td><select name="buGroup"
+								value="${selectboardUpdate.buGroup}">
 									<option value="전체">전체</option>
 									<option value="휴대폰">휴대폰</option>
 									<option value="인터넷">인터넷</option>
@@ -112,10 +115,10 @@
 									<option value="유통">유통</option>
 									<option value="SI개발">SI개발</option>
 							</select></td>
-							<td>${selectboardUpdate.bnViewCount}</td>
-							<td>${selectboardUpdate.bnInsertDt}</td>
+							<td>${selectboardUpdate.buViewCount}</td>
+							<td>${selectboardUpdate.buInsertDt}</td>
 							<td>${selectboardUpdate.staff_id}</td>
-							<td>${selectboardUpdate.bnOrder}</td>
+							<td>${selectboardUpdate.buOrder}</td>
 						</tr>
 					</tbody>
 				</table>
@@ -125,8 +128,8 @@
 					<tr>
 						<th class="active">Title</th>
 						<td><input type="text" class="form-control"
-							placeholder="Text input" name="bnTitle"
-							value="${selectboardUpdate.bnTitle}"></td>
+							placeholder="Text input" name="buTitle"
+							value="${selectboardUpdate.buTitle}"></td>
 					</tr>
 
 
@@ -134,25 +137,22 @@
 					<tr>
 						<th class="active">SubTitle</th>
 						<td><input type="text" class="form-control"
-							placeholder="Text input" name="bnSubTitle"
-							value="${selectboardUpdate.bnSubTitle}"></td>
+							placeholder="Text input" name="buSubTitle"
+							value="${selectboardUpdate.buSubTitle}"></td>
 					</tr>
 
 					<tr>
 						<th class="active">Content</th>
-						<td><textarea name="bnContent"
+						<td><textarea name="buContent"
 								class="form-control input-sm ckeditor" id="message"
 								placeholder="Message" maxlength="140" rows="7"
-								style="width: 100%; height: 200px;"
-								>${selectboardUpdate.bnContent}</textarea>
-								<script type="text/javascript">
+								style="width: 100%; height: 200px;">${selectboardUpdate.buContent}</textarea>
+							<script type="text/javascript">
 															//<![CDATA[
 															CKEDITOR
-																	.replace('bnContent');
+																	.replace('buContent');
 															//]]
-														</script>
-								 <span
-							class="help-block"></span></td>
+														</script> <span class="help-block"></span></td>
 					</tr>
 
 				</table>
@@ -161,20 +161,21 @@
 				<br style="clear: both">
 				<p class="pull-right">
 					<button type="button" class="btn btn-success"
-						onClick="javascript:window.location.href='/board/bnsList.do'">All
+						onClick="javascript:window.location.href='/board/buList.do'">All
 						List</button>
 					<button type="button" class="btn btn-warning"
 						onClick="javascript:history.go(-1)">BACK</button>
-						
-						<button type="button" class="btn btn-danger" onclick="check2(${selectboardUpdate.bNews_id})">Delete</button>
+
+					<button type="button" class="btn btn-danger"
+						onclick="check2(${selectboardUpdate.bUsers_id})">Delete</button>
 					<button type="button" class="btn btn-primary" onclick="check()">Modify</button>
 				</p>
 			</form>
 
 		</c:when>
 		<c:otherwise>
-			<form role="form" method="post" name="bnsForm"
-				action="/board/bnsForm.do">
+			<form role="form" method="post" name="buForm"
+				action="/board/buForm.do">
 				<table class="table table-striped">
 
 					<thead>
@@ -182,15 +183,15 @@
 
 							<div class="pull-right">
 								<%--기본값 --%>
-								<input type="hidden" name="bNews_id" /> <input type="hidden"
-									name="bnHighLight" value="0" /> <input type="hidden"
-									name="bnViewCount" value="0" MaxLength="10" />
+								<input type="hidden" name="bUsers_id" /> 
+								<input type="hidden" name="buHighLight" value="0" /> 
+								<input type="hidden" name="buViewCount" value="0" MaxLength="10" />
 
 								<%--높을수록 TOP (추후 반영)_15.08.01 --%>
-								<input type="hidden" name="bnOrder" value="0" />
+								<input type="hidden" name="buOrder" value="0" />
 								<%--직원담당자 staff_id 추후 반영예정 --%>
 								<input type="hidden" name="staff_id" value="0" /> <select
-									class="form-control" name="bnStatus">
+									class="form-control" name="buStatus">
 									<option value="0">임시저장상태</option>
 									<option value="1">현재공지상태</option>
 								</select>
@@ -208,7 +209,7 @@
 					<tbody>
 						<tr>
 							<td></td>
-							<td><select name="bnGroup">
+							<td><select name="buGroup">
 									<option value="전체">전체</option>
 									<option value="휴대폰">휴대폰</option>
 									<option value="인터넷">인터넷</option>
@@ -229,7 +230,7 @@
 					<tr>
 						<th class="active">Title</th>
 						<td><input type="text" class="form-control"
-							placeholder="Text input" name="bnTitle"></td>
+							placeholder="Text input" name="buTitle"></td>
 					</tr>
 
 
@@ -237,12 +238,12 @@
 					<tr>
 						<th class="active">SubTitle</th>
 						<td><input type="text" class="form-control"
-							placeholder="Text input" name="bnSubTitle"></td>
+							placeholder="Text input" name="buSubTitle"></td>
 					</tr>
 
 					<tr>
 						<th class="active">Content</th>
-						<td><textarea name="bnContent"
+						<td><textarea name="buContent"
 								class="form-control input-sm ckeditor" id="message"
 								placeholder="Message" maxlength="140" rows="7"
 								style="width: 100%; height: 200px;"></textarea> <span
@@ -255,7 +256,7 @@
 				<br style="clear: both">
 				<p class="pull-right">
 					<button type="button" class="btn btn-success"
-						onClick="javascript:window.location.href='/board/bnsList.do'">All
+						onClick="javascript:window.location.href='/board/buList.do'">All
 						List</button>
 					<button type="button" class="btn btn-warning"
 						onClick="javascript:history.go(-1)">BACK</button>

@@ -75,27 +75,27 @@ public class BoardDAO extends AbstractDAO {
 	/////////////////////////////Notice부분////////////////////////////////////////
 /*========================================등록========================================*/
 	
-	public void insertBnForm(Map<String, Object> map) {
+	public void insertBuForm(Map<String, Object> map) {
 		// TODO Auto-generated method stub
 
-		insert("board.insertBnForm", map);
+		insert("board.insertBuForm", map);
 	}
 
 	/*========================================보기========================================*/
 	
 	// updateHitCnt 연관
 	@SuppressWarnings("unchecked")
-	public Map<String, Object> selectOneBnView(Map<String, Object> map) {
+	public Map<String, Object> selectOneBuView(Map<String, Object> map) {
 		// TODO Auto-generated method stub
 
-		return (Map<String, Object>) selectOne("board.selectOneBnView", map);
+		return (Map<String, Object>) selectOne("board.selectOneBuView", map);
 	}
 
 	/*========================================수정========================================*/
 	
-	public void updateBnform(Map<String, Object> map) {
+	public void updateBuform(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		update("board.updateBnform", map);
+		update("board.updateBuform", map);
 	}
 	
 	// 조회수 증가
@@ -112,24 +112,24 @@ public class BoardDAO extends AbstractDAO {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Map<String, Object>> selectListBnFrontList(
+	public List<Map<String, Object>> selectListBuFrontList(
 			Map<String, Object> map) throws Exception {
 		return (List<Map<String, Object>>) selectList(
-				"board.selectListBnFrontList", map);
+				"board.selectListBuFrontList", map);
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Map<String, Object>> selectListBnList(Map<String, Object> map) {
+	public List<Map<String, Object>> selectListBuList(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return (List<Map<String, Object>>) selectList("board.selectListBnList",
+		return (List<Map<String, Object>>) selectList("board.selectListBuList",
 				map);
 
 	}
 
 	/*========================================삭제========================================*/
 	
-	public void deleteBnDelete(Map<String, Object> map) {
+	public void deleteBuDelete(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		update("board.deleteBnDelete", map);
+		update("board.deleteBuDelete", map);
 	}
 }
