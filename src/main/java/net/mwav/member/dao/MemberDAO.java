@@ -1,6 +1,7 @@
 package net.mwav.member.dao;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
 
@@ -23,55 +24,12 @@ public class MemberDAO extends AbstractDAO {
 
 	// Abstrat로 변경
 
-	@SuppressWarnings("unchecked")
-	public Map<String, Object> selectLogin(Map<String, Object> map)
-			throws IOException {
-		// TODO Auto-generated method stub
-		byte[] decrypted = null;
-		// (Map<String, Object>) selectOne("member.selectLogin", map)
-		int logincheck; // loginCheck = 0 로그인 안됨 //loginCheck=1 로그인
+	/*
+	 * ========================================등록================================
+	 * ========
+	 */
 
-		// 디비 다녀오기 전 값
-		String mbrLoginPw = (String) map.get("mbrLoginPw");
-		Map<String, Object> memberLogin = null;
-
-		memberLogin = (Map<String, Object>) selectOne("member.selectLogin", map);
-		System.out.println("memberLogin=" + memberLogin);
-		// 디비 다녀와서 온 값
-		String Decrypt_mbrLoginPw = null;
-
-		try {
-			Decrypt_mbrLoginPw = (String) memberLogin.get("mbrLoginPw");
-			byte[] b_decrypted = AesTest.aesDecodeBuf(Decrypt_mbrLoginPw);
-			decrypted = AesTest.aesDecryptCbc(AesTest.sKey, b_decrypted,
-					AesTest.sInitVector);
-			String decrypted1 = null;
-			decrypted1 = new String(decrypted);
-			System.out.println("decrypted1" + decrypted1);
-
-			memberLogin.put("logincheck", 6);
-			memberLogin.put("mbrLoginPw", decrypted1);
-		} catch (Exception e) {
-			if (memberLogin != null) {
-				memberLogin.put("logincheck", 5);
-			}
-		}
-
-		// Convert Map to byte array
-		/*
-		 * ByteArrayOutputStream byteOut = new ByteArrayOutputStream();
-		 * ObjectOutputStream out = new ObjectOutputStream(byteOut);
-		 * out.writeObject(memberLogin.get("mbrLoginPw"));
-		 */
-
-		// http://linuxism.tistory.com/1089
-
-		// new String(decrypted, "UTF-8");
-
-		return memberLogin;
-	}
-
-	public Map<String, Object> insertMemberForm(Map<String, Object> map) {
+	public Map<String, Object> insertMbrForm(Map<String, Object> map) {
 		// TODO Auto-generated method stub
 
 		try {
@@ -105,60 +63,63 @@ public class MemberDAO extends AbstractDAO {
 			e.printStackTrace();
 		}
 
-				
-		Map<String, Object> imsimap= (Map<String, Object>) selectOne("member.selectNextPk",map);
+		Map<String, Object> imsimap = (Map<String, Object>) selectOne(
+				"member.selectNextPk", map);
 		// map을 위에서 써버리면 그 다음 쿼리시 null 값 나온다. !! (가져오는값이라?)
 		String m_pk = String.valueOf(imsimap.get("member_id"));
-		System.out.println("m_pk"+m_pk);
-		map.put("member_id", m_pk);		
-		insert("member.insertMember_tbl", map); // Membertbl	
-		
+		System.out.println("m_pk" + m_pk);
+		map.put("member_id", m_pk);
+		insert("member.insertMbrForm", map); // Membertbl
+
 		// Insert
 		insert("member.insertMemberValue_tbl", map); // Membertbl Insert
 
 		return null;
 	}
 
+	/*
+	 * ========================================보기================================
+	 * ========
+	 */
 	@SuppressWarnings("unchecked")
-	public Map<String, Object> selectMemberView(Map<String, Object> map) {
+	public Map<String, Object> selectMbrView(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return (Map<String, Object>) selectOne("member.selectMemberView", map);
+		return (Map<String, Object>) selectOne("member.selectMbrView", map);
 	}
 
-	public boolean selectIdCheck(String mbrLoginId) {
+	/*
+	 * ========================================수정================================
+	 * ========
+	 */
+
+
+	@SuppressWarnings("unchecked")
+	public boolean updateMbrLoginPw(Map<String, Object> map) throws IOException {
 		// TODO Auto-generated method stub
-		boolean check;
-		System.out.println("값이?="
-				+ selectOne("member.selectIdCheck", mbrLoginId));
-		if (selectOne("member.selectIdCheck", mbrLoginId) == null) {
-			check = false; // 아이디가 없는 경우
+		boolean flag;
+		String b_mbrLoginPw = (String) map.get("mbrLoginPw");
+		System.out.println("* AES/CBC/IV");
+		System.out.println("b_mbrLoginPw=" + b_mbrLoginPw);
+		System.out.println("    - KEY : " + AesTest.sKey);
+		System.out.println("    - IV : " + AesTest.sInitVector);
+		System.out.println("    - TEXT : " + b_mbrLoginPw);
+
+		// AES/CBC/IV 암호화
+		encrypted = AesTest.aesEncryptCbc(AesTest.sKey, b_mbrLoginPw,
+				AesTest.sInitVector);
+		String sBase = AesTest.aesEncodeBuf(encrypted);
+
+		// String b2_mbrLoginPw = AesTest.toHexString(encrypted);
+		System.out.println("    - TEXT2 : " + sBase);
+
+		map.put("mbrLoginPw", sBase);
+		if (encrypted == null) {
+			System.out.println("    - Encrypted : ERROR!!!");
 		} else {
-			check = true; // 아이디가 있는 경우
+			System.out.println("    - Encrypted : " + sBase);
 		}
 
-		return check;
-	}
-
-	public String selectIdFinder(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		String mbrLoginId;
-		Map<String, Object> imsimap = (Map<String, Object>) selectOne(
-				"member.selectIdFinder", map);
-		mbrLoginId = (String) imsimap.get("mbrLoginId");
-
-		return mbrLoginId;
-	}
-
-	public boolean imsiPWInsert(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		Common_Util rndStr = new Common_Util();
-		String imsiPW = rndStr.getString(20, ""); // 15 -> 20으로 변경 (150926)
-		System.out.println("임시pw=" + imsiPW);
-		map.put("imsiPW", imsiPW);
-		boolean flag;
-
-		// update의 결과는 Integer
-		int imsiflag = (int) update("member.imsiPWInsert", map);
+		int imsiflag = (int) update("member.updateMbrLoginPw", map);
 		if (imsiflag == 1) {
 			System.out.println("성공");
 			flag = true;
@@ -170,34 +131,77 @@ public class MemberDAO extends AbstractDAO {
 		return flag;
 	}
 
+	
+
+	public boolean updateMbrTempLoginPw(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		Common_Util rndStr = new Common_Util();
+		String mbrTempLoginPw = rndStr.getString(20, ""); // 15 -> 20으로 변경
+															// (150926)
+		System.out.println("임시pw=" + mbrTempLoginPw);
+		map.put("mbrTempLoginPw", mbrTempLoginPw);
+		boolean flag;
+
+		// update의 결과는 Integer
+		int imsiflag = (int) update("member.updateMbrTempLoginPw", map);
+		if (imsiflag == 1) {
+			System.out.println("성공");
+			flag = true;
+		} else {
+			System.out.println("실패");
+			flag = true;
+		}
+
+		return flag;
+	}
+	
+	
 	/*
-	 * public boolean selectPWFinder(Map<String, Object> map) { // TODO
-	 * Auto-generated method stub
-	 * 
-	 * Map<String, Object> imsimap = (Map<String, Object>) selectOne(
-	 * "member.selectMemberView", map); String mbrLoginPW = (String)
-	 * imsimap.get("mbrLoginPW"); System.out.println("mbrLoginPW=" +
-	 * mbrLoginPW);
-	 * 
-	 * return mbrLoginPW; }
+	 * ========================================리스트(SelectOne, SelectList
+	 * 순)========================================
 	 */
-
-	@SuppressWarnings("unchecked")
-	public List<String> selectGunguFinder(String sido) {
+	public boolean selectOneMbrLoginIdCheck(String mbrLoginId) {
 		// TODO Auto-generated method stub
+		boolean check;
+		System.out.println("값이?="
+				+ selectOne("member.selectOneMbrLoginIdCheck", mbrLoginId));
+		if (selectOne("member.selectOneMbrLoginIdCheck", mbrLoginId) == null) {
+			check = false; // 아이디가 없는 경우
+		} else {
+			check = true; // 아이디가 있는 경우
+		}
 
-		return (List<String>) selectList("member.selectGunguFinder", sido);
+		return check;
 	}
 
-	@SuppressWarnings("unchecked")
-	public List<Map<String, Object>> selectpostList_2(Map<String, Object> map) {
+	public String selectOneMbrLoginIdSeek(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return (List<Map<String, Object>>) selectList(
-				"member.selectpostList_2", map);
-	}
+		String mbrLoginId;
+		Map<String, Object> imsimap = (Map<String, Object>) selectOne(
+				"member.selectOneMbrLoginIdSeek", map);
+		mbrLoginId = (String) imsimap.get("mbrLoginId");
 
+		return mbrLoginId;
+	}
+	
+
+	public boolean selectOneMbrTempLoginPwSeek(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		String imsiCheck = (String) selectOne("member.selectOneMbrTempLoginPwSeek", map);
+		boolean check;
+		if (imsiCheck == null) {
+			check = false;
+		} else {
+			check = true;
+		}
+
+		return check;
+	}
+	
+	/*========================================삭제========================================*/
+	
 	@SuppressWarnings("unchecked")
-	public boolean updateMemberDelete(Map<String, Object> map) {
+	public boolean deleteMbrDelete(Map<String, Object> map) {
 		// TODO Auto-generated method stub
 		String b_mbrLoginPw = (String) map.get("mbrLoginPw");
 		System.out.println("* AES/CBC/IV");
@@ -227,67 +231,106 @@ public class MemberDAO extends AbstractDAO {
 			System.out.println("    - Encrypted : " + sBase);
 		}
 
-		int imsiflag = (int) update("member.updateMemberDelete", map);
+		int imsiflag = (int) update("member.deleteMbrDelete", map);
 		boolean flag;
 		if (imsiflag == 1) {
-			System.out.println("성공");
+			System.out.println("탈퇴성공");
 			flag = true;
 		} else {
-			System.out.println("실패");
+			System.out.println("탈퇴실패");
 			flag = true;
 		}
 		return flag;
 	}
+	
+	
+	
+	
 
-	public boolean imsiPWFinder(Map<String, Object> map) {
+	@SuppressWarnings("unchecked")
+	public List<String> selectGunguFinder(String sido) {
 		// TODO Auto-generated method stub
-		String imsiCheck = (String) selectOne("member.imsiPWFinder", map);
-		boolean check;
-		if (imsiCheck == null) {
-			check = false;
-		} else {
-			check = true;
-		}
 
-		return check;
+		return (List<String>) selectList("member.selectGunguFinder", sido);
 	}
 
 	@SuppressWarnings("unchecked")
-	public boolean updatePw(Map<String, Object> map) throws IOException {
+	public List<Map<String, Object>> selectpostList_2(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		boolean flag;
-		String b_mbrLoginPw = (String) map.get("mbrLoginPw");
-		System.out.println("* AES/CBC/IV");
-		System.out.println("b_mbrLoginPw=" + b_mbrLoginPw);
-		System.out.println("    - KEY : " + AesTest.sKey);
-		System.out.println("    - IV : " + AesTest.sInitVector);
-		System.out.println("    - TEXT : " + b_mbrLoginPw);
+		return (List<Map<String, Object>>) selectList(
+				"member.selectpostList_2", map);
+	}
 
-		// AES/CBC/IV 암호화
-		encrypted = AesTest.aesEncryptCbc(AesTest.sKey, b_mbrLoginPw,
-				AesTest.sInitVector);
-		String sBase = AesTest.aesEncodeBuf(encrypted);
 
-		// String b2_mbrLoginPw = AesTest.toHexString(encrypted);
-		System.out.println("    - TEXT2 : " + sBase);
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> selectLogin(Map<String, Object> map)
+			throws IOException {
+		// TODO Auto-generated method stub
+		byte[] decrypted = null;
+		// (Map<String, Object>) selectOne("member.selectLogin", map)
+		int logincheck; // loginCheck = 0 로그인 안됨 //loginCheck=1 로그인
 
-		map.put("mbrLoginPw", sBase);
-		if (encrypted == null) {
-			System.out.println("    - Encrypted : ERROR!!!");
-		} else {
-			System.out.println("    - Encrypted : " + sBase);
+		// 디비 다녀오기 전 값
+		String mbrLoginPw = (String) map.get("mbrLoginPw");
+		Map<String, Object> memberLogin = null;
+
+		memberLogin = (Map<String, Object>) selectOne("member.selectLogin", map);
+		System.out.println("memberLogin=" + memberLogin);
+		// 디비 다녀와서 온 값
+
+		// 아래와 같이 미리 선언해줘야지 에러가 x
+		String Decrypt_mbrLoginPw = null;
+		String mbrLeaveDt = null;
+		try {
+			Decrypt_mbrLoginPw = (String) memberLogin.get("mbrLoginPw");
+			byte[] b_decrypted = AesTest.aesDecodeBuf(Decrypt_mbrLoginPw);
+			decrypted = AesTest.aesDecryptCbc(AesTest.sKey, b_decrypted,
+					AesTest.sInitVector);
+			String decrypted1 = null;
+			decrypted1 = new String(decrypted);
+			System.out.println("decrypted1=" + decrypted1);
+
+			System.out.println("?");
+
+			System.out.println("mbrLeaveDt =" + mbrLeaveDt);
+
+			SimpleDateFormat sdfCurrent = new SimpleDateFormat();
+
+			mbrLeaveDt = sdfCurrent.format(memberLogin.get("mbrLeaveDt")); // java.sql.Timestamp
+																			// cannot
+																			// be
+																			// cast
+																			// to
+																			// java.lang.String
+			System.out.println("mbrLeaveDt =" + mbrLeaveDt);
+			if (mbrLeaveDt != null) {
+				System.out.println("탈퇴한 회원?");
+				memberLogin.put("logincheck", 7);
+			} else {
+
+				memberLogin.put("logincheck", 6);
+				memberLogin.put("mbrLoginPw", decrypted1);
+			}
+
+		} catch (Exception e) {
+			if (memberLogin != null) {
+				// 보통 null 포인터 Exception 뜬 경우.
+				memberLogin.put("logincheck", 5);
+			}
 		}
 
-		int imsiflag = (int) update("member.updatePw", map);
-		if (imsiflag == 1) {
-			System.out.println("성공");
-			flag = true;
-		} else {
-			System.out.println("실패");
-			flag = true;
-		}
+		// Convert Map to byte array
+		/*
+		 * ByteArrayOutputStream byteOut = new ByteArrayOutputStream();
+		 * ObjectOutputStream out = new ObjectOutputStream(byteOut);
+		 * out.writeObject(memberLogin.get("mbrLoginPw"));
+		 */
 
-		return flag;
+		// http://linuxism.tistory.com/1089
+
+		// new String(decrypted, "UTF-8");
+
+		return memberLogin;
 	}
 
 }

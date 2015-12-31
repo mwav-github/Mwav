@@ -52,7 +52,7 @@
 							data-toggle="tooltip" data-placement="bottom"
 							data-original-title="${mbrLoginId}님
 								반갑습니다."> MyPage</a></li>
-						<li><a href="/member/Logout.do">LogOut</a></li>
+						<li><a href="/member/LogOut.do">LogOut</a></li>
 					</c:if>
 					<c:if test="${sessionScope.mbrLoginId eq null }">
 						<li><a href="/MasterPage.jsp?mode=SMbrLogin"><i
@@ -109,16 +109,55 @@
 		<div class="item">
 			<div class="fill"
 				style="background-image: url('/CompanyItem/zImage/CompanyItem_Main(height_300).jpg');"></div>
-			<div class="carousel-caption" style="color: #BCE8F1;">
+			<div class="carousel-caption" style="color: #000;">
+
+				<div class="row pull-left">
+					<h1>Contact Address</h1>
+					<br>
+					<div class="row text-center">
+						<div class="col-sm-3 col-xs-6 first-box" style="padding:10px;background:#9C0;">
+							<h1>
+								<span class="glyphicon glyphicon-earphone"></span>
+							</h1>
+							<h3>Phone</h3>
+							<p>+880-1700-987654</p>
+							<br>
+						</div>
+						<div class="col-sm-3 col-xs-6 second-box" style="padding:10px; background:#39F;">
+							<h1>
+								<span class="glyphicon glyphicon-home"></span>
+							</h1>
+							<h3>Location</h3>
+							<p>1036 Gulshan Road</p>
+							<br>
+						</div>
+						<div class="col-sm-3 col-xs-6 third-box" style="padding:10px;background:#F66;">
+							<h1>
+								<span class="glyphicon glyphicon-send"></span>
+							</h1>
+							<h3>E-mail</h3>
+							<p>info@yourdomain.com</p>
+							<br>
+						</div>
+						<div class="col-sm-3 col-xs-6 fourth-box" style="padding:10px;background:#6CC;">
+							<h1>
+								<span class="glyphicon glyphicon-leaf"></span>
+							</h1>
+							<h3>Web</h3>
+							<p>www.yourdomain.com</p>
+							<br>
+						</div>
+					</div>
+				</div>
 				<!-- <h2>Company Item</h2> -->
-				<a href="/CompanyItem/IT%20Solutions/Aervision/Aervision.jsp"
-					class="btn btn-info btn-lg">Learn More</a>
+				<!-- <a href="/CompanyItem/IT%20Solutions/Aervision/Aervision.jsp"
+					class="btn btn-info btn-lg">Learn More</a> -->
 			</div>
 		</div>
 		<div class="item">
 			<div class="fill"
 				style="background-image: url('/CustomerService/zImage/CustomerService_Main(height_300).jpg');"></div>
-			<div class="carousel-caption" style="color:#317eac">
+			<div class="carousel-caption" style="color: #317eac">
 
 				<div class="col-xs-3 pull-right">
 					<div class="text">

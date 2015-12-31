@@ -24,42 +24,46 @@ public class MemberServiceImpl implements MemberService {
 	@Resource(name = "memberDAO")
 	private MemberDAO memberDAO;
 
+	/*
+	 * ========================================등록================================
+	 * ========
+	 */
+
 	@Override
-	public Map<String, Object> selectLogin(Map<String, Object> map)
-			throws Exception {
+	public Map<String, Object> insertMbrForm(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return memberDAO.selectLogin(map);
+
+		return memberDAO.insertMbrForm(map);
+	}
+
+	/*
+	 * ========================================보기================================
+	 * ========
+	 */
+
+	@Override
+	public Map<String, Object> selectMbrView(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return memberDAO.selectMbrView(map);
+	}
+
+	/*
+	 * ========================================수정================================
+	 * ========
+	 */
+	@Override
+	public boolean updateMbrLoginPw(Map<String, Object> map) throws IOException {
+		// TODO Auto-generated method stub
+
+		boolean flag = false;
+		flag = memberDAO.updateMbrLoginPw(map);
+		return flag;
 	}
 
 	@Override
-	public Map<String, Object> insertMemberForm(Map<String, Object> map) {
+	public boolean updateMbrTempLoginPw(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-
-		return memberDAO.insertMemberForm(map);
-	}
-
-	@Override
-	public Map<String, Object> selectMemberView(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return memberDAO.selectMemberView(map);
-	}
-
-	@Override
-	public boolean selectIdCheck(String mbrLoginId) {
-		// TODO Auto-generated method stub
-		return memberDAO.selectIdCheck(mbrLoginId);
-	}
-
-	@Override
-	public String selectIdFinder(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return memberDAO.selectIdFinder(map);
-	}
-
-	@Override
-	public boolean selectPWFinder(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		boolean flag = memberDAO.imsiPWInsert(map);
+		boolean flag = memberDAO.updateMbrTempLoginPw(map);
 		/*
 		 * if (flag = false) { flag = false; } else { flag = true;
 		 * memberDAO.selectPWFinder(map); }
@@ -67,6 +71,43 @@ public class MemberServiceImpl implements MemberService {
 		return flag;
 	}
 
+	
+	/*
+	 * ========================================리스트(SelectOne, SelectList
+	 * 순)========================================
+	 */
+
+	@Override
+	public boolean selectOneMbrLoginIdCheck(String mbrLoginId) {
+		// TODO Auto-generated method stub
+		return memberDAO.selectOneMbrLoginIdCheck(mbrLoginId);
+	}
+
+	@Override
+	public String selectOneMbrLoginIdSeek(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return memberDAO.selectOneMbrLoginIdSeek(map);
+	}
+
+	@Override
+	public boolean selectOneMbrTempLoginPwSeek(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		boolean flag = memberDAO.selectOneMbrTempLoginPwSeek(map);
+		/*
+		 * if (flag = false) { flag = false; } else { flag = true;
+		 * memberDAO.selectPWFinder(map); }
+		 */
+		return flag;
+	}
+	
+	/*========================================삭제========================================*/
+	@Override
+	public boolean deleteMbrDelete(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return memberDAO.deleteMbrDelete(map);
+	}
+
+	
 	@Override
 	public List<String> selectGunguFinder(String sido) {
 		// TODO Auto-generated method stub
@@ -80,33 +121,10 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public boolean updateMemberDelete(Map<String, Object> map) {
+	public Map<String, Object> selectLogin(Map<String, Object> map)
+			throws Exception {
 		// TODO Auto-generated method stub
-		return memberDAO.updateMemberDelete(map);
+		return memberDAO.selectLogin(map);
 	}
 
-	@Override
-	public boolean selectimsiPWFinder(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		boolean flag = memberDAO.imsiPWFinder(map);
-		/*
-		 * if (flag = false) { flag = false; } else { flag = true;
-		 * memberDAO.selectPWFinder(map); }
-		 */
-		return flag;
-	}
-
-	@Override
-	public boolean updatePw(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		
-		boolean flag = false;
-		try {
-			flag = memberDAO.updatePw(map);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return flag;
-	}
 }

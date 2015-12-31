@@ -137,7 +137,7 @@ http://planbong.tistory.com/531
 		</div>
 		<div class='panel-body'>
 			<form class='form-horizontal' name="change_record" method="post"
-				action="/member/memberForm.do">
+				action="/member/mbrForm.do">
 				<%--action="/member/memberForm.do" --%>
 				<div class='form-group'>
 					<label class='control-label col-md-2 col-md-offset-2'
