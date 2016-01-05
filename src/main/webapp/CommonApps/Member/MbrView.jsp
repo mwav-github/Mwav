@@ -49,7 +49,7 @@
 								</tr>
 								<tr>
 									<td>이름:</td>
-									<td>${selectMbrView.mbrFirstName}</td>
+									<td>${selectMbrView.mbrFirstName}-${selectMbrView.mbrMiddleName}-${selectMbrView.mbrLastName}</td>
 								</tr>
 								<tr>
 									<td>이메일:</td>
@@ -81,7 +81,7 @@
 				<a data-original-title="Broadcast Message" data-toggle="tooltip"
 					type="button" class="btn btn-sm btn-primary"><i
 					class="glyphicon glyphicon-envelope"></i></a> <span class="pull-right">
-					<a href="edit.html" data-original-title="Edit this user"
+					<a href="/member/mbrUpdate.do" data-original-title="Edit this user"
 					data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i
 						class="glyphicon glyphicon-edit"></i></a> <a
 					href="/CustomerService/CS-MasterPage.jsp?mode=SDMbrDelete"

@@ -58,7 +58,7 @@ container 안에 포함시키면된다.
 	</table>
 </div>
 <!-- Pagination -->
-<c:if test="${totalCount > 0}">
+<c:if test="${totalRow > 0}">
 	<div class="row text-center">
 		<div class="col-lg-12">
 			<ul class="pagination">

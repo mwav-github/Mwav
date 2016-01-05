@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 import net.common.common.CommandMap;
 import net.common.common.Common_Util;
 import net.common.common.PagingVO;
-import net.common.common.Paging_2;
+import net.common.common.Paging;
 import net.mwav.boardnotice.service.BoardNoticeService;
 
 import org.apache.log4j.Logger;
@@ -170,7 +170,7 @@ public class BoardNoticeController {
 		ModelAndView mv = new ModelAndView("/Company/CompanyMasterPage_1");
 
 		String pageNum = (String) commandMap.get("pageNum");
-		Paging_2 paging = new Paging_2();
+		Paging paging = new Paging();
 		if (pageNum == null) {
 			pageNum = "1";
 		}

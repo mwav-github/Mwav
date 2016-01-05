@@ -154,6 +154,40 @@ public class MemberController {
 	 * ========================================수정================================
 	 * ========
 	 */
+	@RequestMapping(value = "/member/mbrUpdate.do")
+	public ModelAndView updateBnsform(CommandMap commandMap,
+			HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("/CommonApps/Member/MbrShipForm");
+
+		mode = "SmbrUpdate";
+		request.setAttribute("mode", mode);
+
+		// 위의 view랑 동일하게 사용
+
+		Map<String, Object> updateMbrForm = memberService.updateMbrForm(commandMap.getMap());
+		if (updateMbrForm != null && !updateMbrForm.isEmpty()) {
+			System.out.println("view 줄랭");
+			mv.addObject("mode", "SmbrUpdate");
+			mv.addObject("updateMbrForm", updateMbrForm);
+		}
+		return mv;
+	}
+	@RequestMapping(value = "/member/mbrUpdatePro.do")
+	public ModelAndView updateMbrformPro(CommandMap commandMap,
+			HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("/CommonApps/Member/MbrShipForm");
+
+		mode = "SmbrUpdatePro";
+		request.setAttribute("mode", mode);
+
+		// 위의 view랑 동일하게 사용
+
+		memberService.updateMbrformPro(commandMap.getMap());
+		
+		return mv;
+	}
+	
+	
 	// 4번 추후 패스워드 찾기 순서 mbrTempLoginPwUpdate -> mbrTempLoginPwSeek ->
 	// mbrLoginPwUpdate
 	@RequestMapping(value = "/member/mbrLoginPwUpdate.do")

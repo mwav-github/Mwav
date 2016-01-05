@@ -2,149 +2,100 @@ package net.common.common;
 
 public class Paging {
 
-	private int totalRows = 0;
-	private int currentPage = 1;
-	private int pageSize = 10;
-	private int blockSize = 10;
-	private int totalPages;
-	private int totalBlocks;
-	private int startPageNum;
-	private int endPageNum;
-	private int currentBlock;
+	PagingVO paging = new PagingVO();
+	int pageSize; // 한 페이지의 글의 개수
+	int currentPage; // 현재 페이지 
+	// *pageNum도 현재 페이지 단! pageNum은 세션으로 고정 // currentPage는 계산으로 쓰이기에 분리  
+	int startRow; // 한 페이지의 시작글 번호  =쿼리에서 ROWNUM (시작)
+	              // ex) pageSize가 5인경우 1페이지 - 1 // 2페이지 - 6
+	int endRow;   // 한 페이지의 마지막 글번호 = ROWNUM (끝)
+	              // ex) pageSize가 5인경우 1페이지 - 5 // 2페이지 - 10
+	int totalRow; // 전체 글의 갯수 
+	
+	int pageCount; // 전체 페이지수 
+	               // 위는 전체 글의 갯수이고 해당 필드는 전체 페이지의 수이다. 
+	
+	int remainRow; // 남은 행이 있는지 검사
+	               // 전체 행(=COUNT) % 페이지 크기(10)0이면 딱 맞는 것이고 1이면 false 적거나 많은 것
+	int pageBlock; // 하나의 블록에 몇 페이지가 속해있는지
+	               // 즉 3이면 보이지는 곳에는 1,2,3 페이지가 한블록 // 4,5,6 페이지가 한 블록
+	int result;    // 시작페이지를 잡아준다. 
+	int startPage; // 현재 블록의 시작 페이지 아래를 보면 6페이지부터는 2블록이 된다. 
+	               // 1페이지 는  0 * 1/5 + 1 => 1
+                   // 6페이지 는  6 * 6/5 + 1 => 2 
 
-	private String amp = "";
+	int endPage;   // 현재 블록의 마지막 페이지 
 
-	// for design
-	public String firstLink = "[<<]";
-	public String firstOffLink = "";
-	public String prevLink = "[<]";
-	public String prevOffLink = "";
-	public String nextLink = "[>]";
-	public String nextOffLink = "";
-	public String lastLink = "[>>]";
-	public String lastOffLink = "";
+	int number; // 실제 화면에 보여지는 시작 글 번호 1페이지 맨위 번호  
+    // count는 요청시마다 다시 온다.
+    // -> 계층형게시판시 사용
 
-	public String delimiter = "|";
-
-	// current Page Wrapper
-	public String preWrap = "<b>";
-	public String postWrap = "</b>";
-
-	public String linkPage = "";
-	public String queryString = "";
-
-	// result temp object
-	public StringBuffer pageString = new StringBuffer();
-
-	public Paging(int currentPage, int pageSize, int blockSize, int totalRows) {
-		this.currentPage = currentPage;
-		this.pageSize = pageSize;
-		this.blockSize = blockSize;
-		this.totalRows = totalRows;
-
+	
+	public PagingVO setPagingInfo(int totalRow, int pageSize, String pageNum) {
+		this.totalRow = totalRow;
+		this.pageSize = pageSize; // 한 페이지에 5개의 게시글 노출
+		this.currentPage = Integer.parseInt(pageNum);
 		initialize();
+
+		return paging;
 	}
 
 	public void initialize() {
-		this.totalPages = (int) Math.ceil((double) this.totalRows
-				/ this.pageSize);
-		this.totalBlocks = (int) Math.ceil((double) this.totalPages
-				/ this.blockSize);
-		this.currentBlock = (int) Math
-				.ceil((double) ((this.currentPage - 1) / this.blockSize)) + 1;
-		this.startPageNum = ((this.currentBlock - 1) * this.pageSize) + 1;
-		this.endPageNum = this.startPageNum + this.pageSize;
-	}
 
-	public void prePrint() {
-		// set first block link
-		if (this.currentBlock > 1)
-			pageString.append("<a href=\"" + this.linkPage + "?"
-					+ this.queryString + this.amp + "pageNum="
-					+ (((this.currentBlock - 2) * this.pageSize) + 1) + "\">"
-					+ this.firstLink + "</a> ");
-		else
-			pageString.append(this.firstOffLink + " ");
-
-		// set prev page link
-		if (this.currentPage > 1)
-			pageString.append("<a href=\"" + this.linkPage + "?"
-					+ this.queryString + this.amp + "pageNum="
-					+ (this.currentPage - 1) + "\">" + this.prevLink + "</a> ");
-		else
-			pageString.append(this.prevOffLink + " ");
-	}
-
-	public void postPrint() {
-		// set next page link
-		if (this.currentPage < this.totalPages)
-			pageString.append("<a href=\"" + this.linkPage + "?"
-					+ this.queryString + this.amp + "pageNum="
-					+ (this.currentPage + 1) + "\">" + this.nextLink + "</a> ");
-		else
-			pageString.append(this.nextOffLink + " ");
-
-		// set last page link
-		if (this.currentBlock < this.totalBlocks)
-			pageString.append("<a href=\"" + this.linkPage + "?"
-					+ this.queryString + this.amp + "pageNum="
-					+ ((this.currentBlock * this.pageSize) + 1) + "\">"
-					+ this.lastLink + "</a> ");
-		else
-			pageString.append(this.lastOffLink);
-	}
-
-	public void printList() {
-		for (int i = startPageNum; i <= endPageNum; i++) {
-			if (i > this.totalPages || i == endPageNum)
-				break;
-			else if (i > startPageNum)
-				pageString.append(this.delimiter);
-
-			if (i == this.currentPage)
-				pageString.append(" " + this.preWrap + i + this.postWrap + " ");
-			else
-				pageString.append(" <a href=\"" + this.linkPage + "?"
-						+ this.queryString + this.amp + "pageNum=" + i + "\">"
-						+ i + "</a> ");
-		}
-	}
-
-	public String print() {
-		// set amp if already to set up queryString property
-		if (!this.queryString.equals(""))
-			this.amp = "&";
-
-		if (this.totalPages > 1) {
-			this.prePrint();
-			this.printList();
-			this.postPrint();
+		if (totalRow % pageSize == 0) {
+			remainRow = 0;
+		} else {
+			remainRow = 1;
 		}
 
-		return (pageString.toString());
+		pageCount = totalRow / pageSize + remainRow;
+		System.out.println("pageCount"+pageCount);
+		pageBlock = 3;
+		
+		result = (currentPage - 1) / pageBlock;
+		System.out.println("result="+result);
+		
+		startPage = result * pageBlock + 1;
+		System.out.println("startPage="+startPage);
+		
+		endPage = startPage + pageBlock - 1;
+		startRow = (currentPage - 1) * pageSize + 1;
+		endRow = currentPage * pageSize;
+		
+		// 남는 페이지에 대한 처리를 위해서 사용
+		// 만약에 내가 페이지 블록으로 1~5까지 설정했을 때, endPage 즉 3,4,5에 내용이 없어도 페이지는 생성하게 된다. 
+		// 즉 endPage = pageCount로 잡아주어 해당 페이지까지만 생성해주는 것이다. 
+		if (endPage > pageCount){ 
+			endPage = pageCount;
+		}
+		
+		
+
+		paging.setStartPage(startPage);
+		paging.setEndPage(endPage);
+		paging.setPageBlock(pageBlock);
+		paging.setPageCount(pageCount);
+		paging.setEndRow(endRow);
+		paging.setStartRow(startRow);
 	}
 
-	/**
-	 * @param args
-	 */
-	/*
-	 * public static void main(String[] args) {
-	 * 
-	 * // TODO Auto-generated method stub PagingHepler pageNum = new
-	 * PagingHepler(1 , 10, 10 , 11); pageNum.linkPage = "pagenum.jsp";
-	 * pageNum.queryString = "param1=test&param2=test2";
-	 * 
-	 * // for design pageNum.firstLink = "<img src=\"/first.gif\">";
-	 * pageNum.prevLink = "<img src=\"/prev.gif\">"; pageNum.nextLink =
-	 * "<img src=\"/next.gif\">"; pageNum.lastLink = "<img src=\"/last.gif\">";
-	 * 
-	 * pageNum.firstOffLink = "[<<]"; pageNum.prevOffLink = "[<]";
-	 * pageNum.nextOffLink = "[>]"; pageNum.lastOffLink = "[>>]";
-	 * 
-	 * pageNum.delimiter = "||";
-	 * 
-	 * 
-	 * //print System.out.println(pageNum.print()); }
-	 */
+	public int getStartRow(String pageNum) {  // 현재 페이지에서 첫 열 계산
+		//currentPage = Integer.parseInt(pageNum);
+		startRow = (currentPage - 1) * pageSize + 1;
+		System.out.println("currentPage="+currentPage);
+		//System.out.println("pageSize="+pageSize);
+		System.out.println("startRow="+startRow);
+		return startRow;
 
+	}
+
+	public int getEndRow(String pageNum) { // 현재 페이지에 마지막 열 계산
+		currentPage = Integer.parseInt(pageNum);
+		endRow = currentPage * pageSize;
+		//System.out.println("currentPage="+currentPage);
+		//System.out.println("pageSize="+pageSize);
+		System.out.println("endRow="+endRow);
+		return endRow;
+
+	}
 }

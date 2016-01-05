@@ -51,6 +51,20 @@ public class MemberServiceImpl implements MemberService {
 	 * ========================================수정================================
 	 * ========
 	 */
+
+	@Override
+	public Map<String, Object> updateMbrForm(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return memberDAO.updateMbrForm(map);
+	}
+	
+	@Override
+	public void updateMbrformPro(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		memberDAO.updateMbrformPro(map);
+		return;
+	}
+	
 	@Override
 	public boolean updateMbrLoginPw(Map<String, Object> map) throws IOException {
 		// TODO Auto-generated method stub
@@ -126,5 +140,11 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		return memberDAO.selectLogin(map);
 	}
+
+
+
+
+
+
 
 }

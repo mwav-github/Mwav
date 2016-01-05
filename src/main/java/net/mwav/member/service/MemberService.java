@@ -18,6 +18,10 @@ public interface MemberService {
 	/*========================================수정========================================*/
 	boolean updateMbrLoginPw(Map<String, Object> map) throws IOException;
 	
+	Map<String, Object> updateMbrForm(Map<String, Object> map);
+	
+	void updateMbrformPro(Map<String, Object> map);
+
 	boolean updateMbrTempLoginPw(Map<String, Object> map); 
 
 

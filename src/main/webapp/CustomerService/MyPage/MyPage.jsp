@@ -63,6 +63,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 			<!-- 끝 -->
 
 			<div class="col-md-9">
+			<%--마이페이지란 말그대로 이것저것 다 담긴거. --%>
 				<jsp:include page="/member/mbrView.do" flush="false" />
 			</div>
 		</div>

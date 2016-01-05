@@ -92,7 +92,11 @@
 				style="background-image: url('/Company/zImage/Company_Main(height_300).jpg');"></div>
 			<div class="carousel-caption" style="color: #BCE8F1;">
 
-				<div class="row pull-right">
+				<div class="col-md-5 pull-right">
+					<iframe width="350px" height="170px" src="http://player.vimeo.com/video/117455204" ></iframe>
+
+				</div>
+				<!-- <div class="row pull-right">
 					<div class="col-sm-12 col-md-offset-1 ">
 						<a href="#" class="btn btn-danger btn-lg" role="button"><span
 							class="glyphicon glyphicon-list-alt"></span> <br />Apps</a> <a
@@ -103,7 +107,7 @@
 							class="btn btn-info btn-lg" role="button"><span
 							class="glyphicon glyphicon-file"></span> <br />Notes</a>
 					</div>
-				</div>
+				</div> -->
 			</div>
 		</div>
 		<div class="item">
@@ -115,7 +119,8 @@
 					<h1>Contact Address</h1>
 					<br>
 					<div class="row text-center">
-						<div class="col-sm-3 col-xs-6 first-box" style="padding:10px;background:#9C0;">
+						<div class="col-sm-3 col-xs-6 first-box"
+							style="padding: 10px; background: #9C0;">
 							<h1>
 								<span class="glyphicon glyphicon-earphone"></span>
 							</h1>
@@ -123,7 +128,8 @@
 							<p>+880-1700-987654</p>
 							<br>
 						</div>
-						<div class="col-sm-3 col-xs-6 second-box" style="padding:10px; background:#39F;">
+						<div class="col-sm-3 col-xs-6 second-box"
+							style="padding: 10px; background: #39F;">
 							<h1>
 								<span class="glyphicon glyphicon-home"></span>
 							</h1>
@@ -131,7 +137,8 @@
 							<p>1036 Gulshan Road</p>
 							<br>
 						</div>
-						<div class="col-sm-3 col-xs-6 third-box" style="padding:10px;background:#F66;">
+						<div class="col-sm-3 col-xs-6 third-box"
+							style="padding: 10px; background: #F66;">
 							<h1>
 								<span class="glyphicon glyphicon-send"></span>
 							</h1>
@@ -139,7 +146,8 @@
 							<p>info@yourdomain.com</p>
 							<br>
 						</div>
-						<div class="col-sm-3 col-xs-6 fourth-box" style="padding:10px;background:#6CC;">
+						<div class="col-sm-3 col-xs-6 fourth-box"
+							style="padding: 10px; background: #6CC;">
 							<h1>
 								<span class="glyphicon glyphicon-leaf"></span>
 							</h1>

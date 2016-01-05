@@ -92,6 +92,17 @@ public class MemberDAO extends AbstractDAO {
 	 * ========
 	 */
 
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> updateMbrForm(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return (Map<String, Object>) selectOne("member.updateMbrForm", map);
+	}
+	
+	public void updateMbrformPro(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		update("member.updateMbrformPro", map);
+	}
+
 
 	@SuppressWarnings("unchecked")
 	public boolean updateMbrLoginPw(Map<String, Object> map) throws IOException {
@@ -334,5 +345,7 @@ public class MemberDAO extends AbstractDAO {
 
 		return memberLogin;
 	}
+
+
 
 }

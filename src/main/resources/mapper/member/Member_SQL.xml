@@ -26,6 +26,17 @@
 	</select>
 	
 	<!-- /*========================================수정========================================*/ -->
+	<select id="updateMbrForm" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+	      select * from Member_tbl where member_id= #{member_id}
+		]]>
+	</select>
+	<update id="updateProMbrForm" parameterType="hashmap" >
+		<![CDATA[
+	       update Member_tbl set mbrFirstName=#{mbrFirstName}, mbrMiddleName= #{mbrMiddleName}, mbrLastName= #{mbrLastName} , mbrEmail= #{mbrEmail}, mbrCellPhone= #{mbrCellPhone}where member_id = #{member_id}
+		]]>
+	</update>
+	
 	<update id="updateMbrLoginPw" parameterType="hashmap" >
 		<![CDATA[
 		UPDATE member_tbl SET mbrLoginPw = #{mbrLoginPw} WHERE mbrTempLoginPw = #{imsi_mbrLoginPw}

@@ -20,7 +20,7 @@ import net.common.common.CommandMap;
 import net.common.common.Common_Util;
 import net.common.common.Paging;
 import net.common.common.PagingVO;
-import net.common.common.Paging_2;
+import net.common.common.Paging;
 import net.mwav.board.service.BoardService;
 
 @Controller
@@ -173,18 +173,19 @@ public class BoardController {
 		ModelAndView mv = new ModelAndView("/Company/CompanyMasterPage_1");
 
 		String pageNum = (String) commandMap.get("pageNum");
-		Paging_2 paging = new Paging_2();
+		Paging paging = new Paging();
 		if (pageNum == null) {
 			pageNum = "1";
 		}
-		int totalCount = boardService.selectOneGetTotalCount();
-
+		int totalRow = boardService.selectOneGetTotalCount();
+        System.out.println("totalRow="+totalRow);
+		
 		// Paging pv = new Paging(pageNum, 10 , 10, totalCount);
 		List<Map<String, Object>> selectListBnsList;
-		PagingVO pagingVO = paging.pagevalue(totalCount, 5);
-		commandMap.put("startRow", paging.getStartRow(pageNum));
-		commandMap.put("endRow", paging.getEndRow(pageNum));
-		if (totalCount > 0) {
+		PagingVO pagingVO = paging.setPagingInfo(totalRow, 5, pageNum);  // 총 숫자, 한페이지에 노출 수 
+		commandMap.put("startRow", paging.getStartRow(pageNum)); // 시작 열
+		commandMap.put("endRow", paging.getEndRow(pageNum));  // 끝 열
+		if (totalRow > 0) {
 			selectListBnsList = boardService.selectListBnsList(commandMap.getMap());
 			// selectboardList =
 			// boardService.selectbnsList(commandMap.getMap());
@@ -198,7 +199,7 @@ public class BoardController {
 
 		mv.addObject("selectListBnsList", selectListBnsList);
 		mv.addObject("pagingVO", pagingVO);
-		mv.addObject("totalCount", totalCount);
+		mv.addObject("totalRow", totalRow);
 		// mv.addObject("paging", pv.print());
 		return mv;
 	}
