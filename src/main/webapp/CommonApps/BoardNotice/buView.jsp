@@ -58,12 +58,12 @@
 
 			<tbody>
 					<tr>
-						<td>${selectOneBnsView.bNews_id}</td>
-						<td>${selectOneBnsView.bnGroup}</td>
-						<td>${selectOneBnsView.bnViewCount}</td>
-						<td>${selectOneBnsView.bnInsertDt}</td>
-						<td>${selectOneBnsView.staff_id}</td>
-						<td>${selectOneBnsView.bnOrder}</td>
+						<td>${selectOneBuView.bUsers_id}</td>
+						<td>${selectOneBuView.buGroup}</td>
+						<td>${selectOneBuView.buViewCount}</td>
+						<td>${selectOneBuView.buInsertDt}</td>
+						<td>${selectOneBuView.staff_id}</td>
+						<td>${selectOneBuView.buOrder}</td>
 					</tr>
 			</tbody>
 		</table>
@@ -73,7 +73,7 @@
 			<tr>
 				<th class="active">Title</th>
 			</tr>
-			<tr> <td>${selectOneBnsView.bnTitle}</td></tr>
+			<tr> <td>${selectOneBuView.buTitle}</td></tr>
 			
 
 
@@ -81,20 +81,20 @@
 			<tr>
 				<th class="active">SubTitle</th>
 			</tr>
-			<tr><td>${selectOneBnsView.bnSubTitle}</td></tr>
+			<tr><td>${selectOneBuView.buSubTitle}</td></tr>
 
 			<tr>
 				<th class="active">Content</th>
 				
 			</tr>
-			<tr><td>${selectOneBnsView.bnContent}</td></tr>
+			<tr><td>${selectOneBuView.buContent}</td></tr>
 
 		</table>
 	</form>
 
 	<br style="clear: both">
 	<p class="pull-right">
-		<button type="button" class="btn btn-success" onClick="javascript:window.location.href='/board/bnsList.do'">All List</button>
+		<button type="button" class="btn btn-success" onClick="javascript:window.location.href='/boardNotice/buList.do'">All List</button>
 		<button type="button" class="btn btn-warning" onClick="javascript:history.go(-1)">BACK</button>
 	</p>
 

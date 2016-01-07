@@ -71,7 +71,7 @@ public class BoardNoticeController {
 	@RequestMapping(value = "/boardNotice/buView.do")
 	public ModelAndView selectOneBuView(CommandMap commandMap,
 			HttpServletRequest request, HttpSession session) throws Exception {
-		ModelAndView mv = new ModelAndView("/Company/CompanyMasterPage_1");
+		ModelAndView mv = new ModelAndView("/Company/CompanyMasterPage_2");
 
 		//Common_Util.selectListCommandMap(commandMap); // 키 출력
 		

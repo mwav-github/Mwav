@@ -85,6 +85,16 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 						<jsp:include page="/CommonApps/BoardNotice/buList.jsp"
 							flush="false" />
 					</c:if>
+					
+					<c:if test="${mode == 'SbuView'}">
+						<jsp:include page="/CommonApps/BoardNotice/buView.jsp"
+							flush="false" />
+					</c:if>
+					
+					<c:if test="${sessionScope.mode == 'SbuUpdate'}">
+						<jsp:include page="/CommonApps/BoardNotice/buForm.jsp"
+							flush="false" />
+					</c:if>
 
 				</div>
 

@@ -37,7 +37,7 @@
 	function check2(obj) {
 		if (confirm("정말 삭제하시겠습니까??") == true){    //확인
 			var bbb = obj;
-			location.href= "/board/buDelete.do?bUsers_id="+bbb;
+			location.href= "/boardNotice/buDelete.do?bUsers_id="+bbb;
 		}else{   //취소
 		    return;
 		}
@@ -68,7 +68,7 @@
 	<c:choose>
 		<c:when test="${fn:length(selectboardUpdate) > 0}">
 			<form role="form" method="post" name="buForm"
-				action="/board/buUpdatePro.do">
+				action="/boardNotice/buUpdate.do">
 				<table class="table table-striped">
 
 					<thead>
@@ -256,7 +256,7 @@
 				<br style="clear: both">
 				<p class="pull-right">
 					<button type="button" class="btn btn-success"
-						onClick="javascript:window.location.href='/board/buList.do'">All
+						onClick="javascript:window.location.href='/boardNotice/buList.do'">All
 						List</button>
 					<button type="button" class="btn btn-warning"
 						onClick="javascript:history.go(-1)">BACK</button>

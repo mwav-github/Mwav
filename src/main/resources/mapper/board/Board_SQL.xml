@@ -19,7 +19,7 @@
 	]]>
 	</select>
 	
-	<!--/*========================================수정========================================*/  -->
+	<!--/*======================+==================수정========================================*/  -->
 	
 	<update id="updateHitCnt" parameterType="hashmap">
     <![CDATA[
@@ -102,13 +102,12 @@
     
     <update id="updateBuform" parameterType="hashmap">
     <![CDATA[
-        update BoardUser_tbl set bnGroup= #{bnGroup}, bnHighLight= #{bnHighLight}, bnTitle= #{bnTitle}, bnSubTitle= #{bnSubTitle}, bnRelatedLink= #{bnRelatedLink}, bnContent= #{bnContent}, bnViewCount= #{bnViewCount}, bnOrder= #{bnOrder}, bnStatus= #{bnStatus}, staff_id= #{staff_id}, bnInsertDt= #{bnInsertDt}, bnUpdateDt= NOW(), bnDeleteDt=null where bUsers_id = #{bUsers_id}
+        update BoardUser_tbl set buGroup= #{buGroup}, buHighLight= #{buHighLight}, buTitle= #{buTitle}, buSubTitle= #{buSubTitle}, buRelatedLink= #{buRelatedLink}, buContent= #{buContent}, buViewCount= #{buViewCount}, buOrder= #{buOrder}, buStatus= #{buStatus}, staff_id= #{staff_id}, buInsertDt= #{buInsertDt}, buUpdateDt= NOW(), buDeleteDt=null where bUsers_id = #{bUsers_id}
     ]]>
     </update>
  
 	
 	<!--/*========================================리스트(SelctOne, SelectList 순)========================================*/  -->
-	
 	
 	<select id="selectNoticeOneGetTotalCount" resultType="int">
 	<![CDATA[
