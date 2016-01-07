@@ -79,8 +79,8 @@
 	<!--/*========================================등록========================================*/  -->
 	<insert id="insertBuForm" parameterType="hashmap">
 		<![CDATA[
-			INSERT INTO BoardNotices_tbl
-				SELECT IFNULL(max(bUsers_id)+1,100001), #{buGroup}, #{buHighLight}, #{buTitle}, #{buSubTitle}, #{buRelatedLink}, #{buContent}, #{buViewCount}, #{buOrder}, #{buStatus}, #{staff_id}, NOW(), NOW(), null FROM BoardNotices_tbl
+			INSERT INTO BoardUser_tbl
+				SELECT IFNULL(max(bUsers_id)+1,100001), #{buGroup}, #{buHighLight}, #{buTitle}, #{buSubTitle}, #{buRelatedLink}, #{buContent}, #{buViewCount}, #{buOrder}, #{buStatus}, #{staff_id}, NOW(), NOW(), null FROM BoardUser_tbl
 		]]>
 	</insert>
     
@@ -88,7 +88,7 @@
 
    <select id="selectOneBuView" parameterType="hashmap" resultType="hashmap">
 	<![CDATA[
-	    select * from BoardNotices_tbl where bUsers_id = #{bUsers_id}
+	    select * from BoardUser_tbl where bUsers_id = #{bUsers_id}
 	]]>
 	</select>
 	
@@ -96,13 +96,13 @@
 	
 	<update id="updateNoticeHitCnt" parameterType="hashmap">
     <![CDATA[
-       update BoardNotices_tbl set buViewCount = iFnull(BuViewCount, 0) +1 where bUsers_id = #{bUsers_id} 
+       update BoardUser_tbl set buViewCount = iFnull(BuViewCount, 0) +1 where bUsers_id = #{bUsers_id} 
     ]]>
     </update>
     
     <update id="updateBuform" parameterType="hashmap">
     <![CDATA[
-        update BoardNotices_tbl set bnGroup= #{bnGroup}, bnHighLight= #{bnHighLight}, bnTitle= #{bnTitle}, bnSubTitle= #{bnSubTitle}, bnRelatedLink= #{bnRelatedLink}, bnContent= #{bnContent}, bnViewCount= #{bnViewCount}, bnOrder= #{bnOrder}, bnStatus= #{bnStatus}, staff_id= #{staff_id}, bnInsertDt= #{bnInsertDt}, bnUpdateDt= NOW(), bnDeleteDt=null where bUsers_id = #{bUsers_id}
+        update BoardUser_tbl set bnGroup= #{bnGroup}, bnHighLight= #{bnHighLight}, bnTitle= #{bnTitle}, bnSubTitle= #{bnSubTitle}, bnRelatedLink= #{bnRelatedLink}, bnContent= #{bnContent}, bnViewCount= #{bnViewCount}, bnOrder= #{bnOrder}, bnStatus= #{bnStatus}, staff_id= #{staff_id}, bnInsertDt= #{bnInsertDt}, bnUpdateDt= NOW(), bnDeleteDt=null where bUsers_id = #{bUsers_id}
     ]]>
     </update>
  
@@ -111,21 +111,21 @@
 	
 	<select id="selectNoticeOneGetTotalCount" resultType="int">
 	<![CDATA[
-	   select count(*) from BoardNotices_tbl
+	   select count(*) from BoardUser_tbl
 	]]>
 	</select>
 	
 	<select id="selectListBuFrontList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			SELECT bUsers_id, buTitle, date_format(buUpdateDt,'%Y%m%d') as buUpdateDt
-		    FROM BoardNotices_tbl
+		    FROM BoardUser_tbl
 		    WHERE buDeleteDt IS NULL ORDER BY buUpdateDt DESC Limit 5
 		]]>
 	</select>
     
     <select id="selectListBuList" parameterType="hashmap" resultType="hashmap">
 	<![CDATA[
-	select c.* from (select @ROWNUM := @ROWNUM + 1 AS ROWNUM, a.* from (select * from BoardNotices_tbl order by buInsertDt desc) a,  (SELECT @ROWNUM := 0) R ) c where c.ROWNUM >= #{startRow} and c.ROWNUM <= #{endRow}
+	select c.* from (select @ROWNUM := @ROWNUM + 1 AS ROWNUM, a.* from (select * from BoardUser_tbl order by buInsertDt desc) a,  (SELECT @ROWNUM := 0) R ) c where c.ROWNUM >= #{startRow} and c.ROWNUM <= #{endRow}
 	]]>
 	</select>
 	
@@ -135,7 +135,7 @@
 	
 	<update id="deleteBuDelete" parameterType="hashmap">
     <![CDATA[
-        update BoardNotices_tbl set buDeleteDt = NOW() where bUsers_id = #{bUsers_id}
+        update BoardUser_tbl set buDeleteDt = NOW() where bUsers_id = #{bUsers_id}
     ]]>
     </update>
 

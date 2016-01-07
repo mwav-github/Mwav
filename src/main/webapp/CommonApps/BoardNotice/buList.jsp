@@ -31,19 +31,20 @@ container 안에 포함시키면된다.
 			</tr>
 		</thead>
 		<tbody>
+
 			<c:choose>
-				<c:when test="${fn:length(selectListBnsList) > 0}">
-					<c:forEach var="VselectListBnsList" items="${selectListBnsList}">
+				<c:when test="${fn:length(selectListBuList) > 0}">
+					<c:forEach var="VselectListBuList" items="${selectListBuList}">
 						<tr>
-							<input type="hidden" id="bNews_id" name="bNews_id"
-								value="${VselectListBnsList.bNews_id }">
-							<td>${VselectListBnsList.bNews_id}</td>
-							<td>${VselectListBnsList.bnGroup}</td>
+							<input type="hidden" id="bUsers_id" name="bUsers_id"
+								value="${VselectListBuList.bUsers_id }">
+							<td>${VselectListBuList.bUsers_id}</td>
+							<td>${VselectListBuList.buGroup}</td>
 							<td><a
-								href="javascript:window.location.href='/board/bnView.do?bNews_id=${VselectListBnsList.bNews_id}'">${VselectListBnsList.bnTitle}</a></td>
-							<td>${VselectListBnsList.bnUpdateDt}</td>
-							<%-- <td> <button type="button" class="btn btn-info" onclick="javascript:window.location.href='/board/bnsView.do?bNews_id=${FrontboardList.bNews_id}'">보기</button>&nbsp;
-<button type="button" class="btn btn-warning" onclick="javascript:window.location.href='/board/bnsModify.do?bNews_id=${FrontboardList.bNews_id}'">수정</button>
+								href="javascript:window.location.href='/boardNotice/buView.do?bUsers_id=${VselectListBuList.bUsers_id}'">${VselectListBuList.buTitle}</a></td>
+							<td>${VselectListBuList.buUpdateDt}</td>
+							<%-- <td> <button type="button" class="btn btn-info" onclick="javascript:window.location.href='/board/bnsView.do?bUsers_id=${FrontboardList.bUsers_id}'">보기</button>&nbsp;
+<button type="button" class="btn btn-warning" onclick="javascript:window.location.href='/board/bnsModify.do?bUsers_id=${FrontboardList.bUsers_id}'">수정</button>
 </td> --%>
 						</tr>
 					</c:forEach>
@@ -58,22 +59,22 @@ container 안에 포함시키면된다.
 	</table>
 </div>
 <!-- Pagination -->
-<c:if test="${totalCount > 0}">
+<c:if test="${totalRow > 0}">
 	<div class="row text-center">
 		<div class="col-lg-12">
 			<ul class="pagination">
 
 				<c:if test="${pagingVO.startPage > pagingVO.pageBlock}">
 					<li><a
-						href="/board/bnsList.do?pageNum=${pagingVO.startPage - pagingVO.pageBlock}">&laquo;</a></li>
+						href="/boardNotice/buList.do?pageNum=${pagingVO.startPage - pagingVO.pageBlock}">&laquo;</a></li>
 				</c:if>
 				<c:forEach var="i" begin="${pagingVO.startPage}"
 					end="${pagingVO.endPage}">
-					<li><a href="/board/bnsList.do?pageNum=${i}">${i}</a></li>
+					<li><a href="/boardNotice/buList.do?pageNum=${i}">${i}</a></li>
 				</c:forEach>
 				<c:if test="${pagingVO.endPage < pagingVO.pageCount}">
 					<li><a
-						href="/board/bnsList.do?pageNum=${pagingVO.startPage + pagingVO.pageBlock}">&raquo;</a></li>
+						href="/boardNotice/buList.do?pageNum=${pagingVO.startPage + pagingVO.pageBlock}">&raquo;</a></li>
 				</c:if>
 				<!-- <li><a href="">&laquo;</a></li>
 			<li class="active"><a href="#">1</a></li>
@@ -89,40 +90,40 @@ container 안에 포함시키면된다.
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		$("#bnsForm").on("click", function(e) { //목록으로 버튼
+		$("#buForm").on("click", function(e) { //목록으로 버튼
 			e.preventDefault();
 			fn_insertbnsForm();
 		});
 
-		$("#bnsView").on("click", function(e) { //저장하기 버튼
+		$("#buView").on("click", function(e) { //저장하기 버튼
 			e.preventDefault();
 			fn_selectbnsView();
 		});
 
-		$("#bnsDelete").on("click", function(e) { //삭제하기 버튼
+		$("#buDelete").on("click", function(e) { //삭제하기 버튼
 			e.preventDefault();
 			fn_deleteBoard();
 		});
 	});
 
-	function fn_insertbnsForm() {
+	function fn_insertbuForm() {
 		var comSubmit = new ComSubmit();
-		comSubmit.setUrl("<c:url value='/board/bnsForm.do' />");
+		comSubmit.setUrl("<c:url value='/boardNotice/buForm.do' />");
 		comSubmit.submit();
 	}
 
-	function fn_selectbnsView() {
+	function fn_selectbuView() {
 		var comSubmit = new ComSubmit();
-		comSubmit.setUrl("<c:url value='/board/bnsView.do'/>");
+		comSubmit.setUrl("<c:url value='/boardNotice/buView.do'/>");
 		alert('sdf');
-		comSubmit.addParam("bNews_id", $("#bNews_id").val());
+		comSubmit.addParam("bUsers_id", $("#bUsers_id").val());
 		comSubmit.submit();
 	}
 
 	function fn_deleteBoard() {
 		var comSubmit = new ComSubmit();
-		comSubmit.setUrl("<c:url value='/board/bnsDelete.do' />");
-		comSubmit.addParam("bNews_id", $("#bNews_id").val());
+		comSubmit.setUrl("<c:url value='/boardNotice/buDelete.do' />");
+		comSubmit.addParam("bUsers_id", $("#bUsers_id").val());
 		comSubmit.submit();
 
 	}

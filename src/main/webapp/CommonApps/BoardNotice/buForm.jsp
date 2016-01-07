@@ -175,7 +175,7 @@
 		</c:when>
 		<c:otherwise>
 			<form role="form" method="post" name="buForm"
-				action="/board/buForm.do">
+				action="/boardNotice/buForm.do">
 				<table class="table table-striped">
 
 					<thead>

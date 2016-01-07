@@ -44,12 +44,12 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 		<div class="row">
 			<div class="col-lg-12">
 				<h1 class="page-header">
-					Company <small> ThePress</small>
+					Company <small> Notice</small>
 				</h1>
 				<ol class="breadcrumb">
 					<li><a href="index.html">Home</a></li>
 					<li>Company</li>
-					<li class="active">ThePress</li>
+					<li class="active">Notice</li>
 				</ol>
 			</div>
 		</div>
@@ -73,7 +73,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 				<!-- Content Column -->
 				<div class="col-lg-12">
 
-					<jsp:include page="/board/bnList.do" flush="false" />
+					<jsp:include page="/boardNotice/buList.do" flush="false" />
 
 				</div>
 
