@@ -93,7 +93,7 @@
 			<div class="carousel-caption" style="color: #BCE8F1;">
 
 				<div class="col-md-5 pull-right">
-					<iframe width="350px" height="170px" src="http://player.vimeo.com/video/117455204" ></iframe>
+					<iframe width="100%" src="http://player.vimeo.com/video/117455204" ></iframe>
 
 				</div>
 				<!-- <div class="row pull-right">
