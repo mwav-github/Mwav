@@ -123,15 +123,15 @@ public class MemberServiceImpl implements MemberService {
 
 	
 	@Override
-	public List<String> selectGunguFinder(String sido) {
+	public List<String> selectListZcGunGuSeek(String zcSiDoName) {
 		// TODO Auto-generated method stub
-		return memberDAO.selectGunguFinder(sido);
+		return memberDAO.selectListZcGunGuSeek(zcSiDoName);
 	}
 
 	@Override
-	public List<Map<String, Object>> selectpostList_2(Map<String, Object> map) {
+	public List<Map<String, Object>> selectListZcAll(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return memberDAO.selectpostList_2(map);
+		return memberDAO.selectListZcAll(map);
 	}
 
 	@Override

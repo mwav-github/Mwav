@@ -261,17 +261,17 @@ http://planbong.tistory.com/531
 				</div>
 				<div class='form-group'>
 					<label class='control-label col-md-2 col-md-offset-2' for='id_pets'></label>
-					<div class='col-md-2'>
-						<input class='form-control' name="mbrZipcode_1" id='id_first_name'
-							type='text' disabled>
+					<div class='col-md-5'>
+						<input class='form-control' name="mbrZipcode" id='mbrZipcode'
+							type='text' placeholder='우편번호' disabled>
 					</div>
-					<p class="col-md-1" style="text-align: center">
+					<!-- <p class="col-md-1" style="text-align: center">
 						<strong>-</strong>
 					</p>
 					<div class='col-md-2'>
 						<input class='form-control' name="mbrZipcode_2" id='id_first_name'
 							type='text' disabled>
-					</div>
+					</div> -->
 				</div>
 
 				<div class='form-group'>

@@ -9,7 +9,7 @@
 <jsp:include page="/PartsOfContent/Head_Import.jsp" flush="false" />
 <!-- /////////// -->
 </head>
-
+<%--http://bootsnipp.com/snippets/featured/resonsive-features-comparison-table-without-js --%>
 <body>
 	<!-- FrontHeader
 	Company의 마스터 페이지 상에서 Header 

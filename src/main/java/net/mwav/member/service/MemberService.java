@@ -39,9 +39,9 @@ public interface MemberService {
 	boolean deleteMbrDelete(Map<String, Object> map);
 
 	
-	List<String> selectGunguFinder(String sido);
+	List<String> selectListZcGunGuSeek(String zcSiDoName);
 
-	List<Map<String, Object>> selectpostList_2(Map<String, Object> map);
+	List<Map<String, Object>> selectListZcAll(Map<String, Object> map);
 
 
 

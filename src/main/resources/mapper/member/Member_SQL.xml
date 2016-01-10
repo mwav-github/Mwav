@@ -76,27 +76,27 @@
 		]]>
 	</update>
 	
-	<select id="selectGunguFinder" parameterType="String" resultType="String">
+	<select id="selectListZcGunGuSeek" parameterType="String" resultType="String">
 		<![CDATA[
-		select distinct(시군구명) from postcodezibun_tbl where 시도명 = #{sido}
+		select distinct(zcSiGunGuName) from ZipCode_tbl where zcSiDoName = #{zcSiDoName}
 		]]>
 	</select>
 	
-	<select id="selectpostList_2" parameterType="hashmap" resultType="hashmap">
+	<select id="post_zcRoadName" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-		select * from postcodebuildinfo_tbl where 시도명 = #{sido} and 시군구명 = #{gungu} and 법정읍면동명 = #{dong} and 지번본번 = ${zibun}
+		select * from ZipCode_tbl where zcSiDoName = #{zcSiDoName} and zcSiGunGuName = #{zcSiGunGuName} and zcRoadName = #{zcRoadName} and zcBuildingMainNo = #{zcBuildingMainNo}
 		]]>
 	</select>
 	
-	<select id="selectpostList_3" parameterType="hashmap" resultType="hashmap">
+	<select id="post_zcLegalEupMyeonDongName" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-		select * from postcodebuildinfo_tbl where 시도명 = #{sido} and 시군구명 = #{gungu} and 도로명 = #{doroname} and 건물번호 = ${buildbunho}
+		select * from ZipCode_tbl where zcSiDoName = #{zcSiDoName} and zcSiGunGuName = #{zcSiGunGuName} and zcLegalEupMyeonDongName = #{zcLegalEupMyeonDongName} and zcJiBunMain = #{zcJiBunMain}
 		]]>
 	</select>
-	
-	<select id="selectpostList_4" parameterType="hashmap" resultType="hashmap">
+		
+	<select id="post_post_zcBuildingBook" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-		select * from postcodebuildinfo_tbl where 시도명 = #{sido} and 시군구명 = #{gungu} and 건물명 = #{dong} 
+		select * from ZipCode_tbl where zcSiDoName = #{zcSiDoName} and zcSiGunGuName = #{zcSiGunGuName} and zcBuildingBook = #{zcBuildingBook} 
 		]]>
 	</select>
 	

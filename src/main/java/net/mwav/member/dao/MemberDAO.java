@@ -97,12 +97,11 @@ public class MemberDAO extends AbstractDAO {
 		// TODO Auto-generated method stub
 		return (Map<String, Object>) selectOne("member.updateMbrForm", map);
 	}
-	
+
 	public void updateMbrformPro(Map<String, Object> map) {
 		// TODO Auto-generated method stub
 		update("member.updateMbrformPro", map);
 	}
-
 
 	@SuppressWarnings("unchecked")
 	public boolean updateMbrLoginPw(Map<String, Object> map) throws IOException {
@@ -142,8 +141,6 @@ public class MemberDAO extends AbstractDAO {
 		return flag;
 	}
 
-	
-
 	public boolean updateMbrTempLoginPw(Map<String, Object> map) {
 		// TODO Auto-generated method stub
 		Common_Util rndStr = new Common_Util();
@@ -165,8 +162,7 @@ public class MemberDAO extends AbstractDAO {
 
 		return flag;
 	}
-	
-	
+
 	/*
 	 * ========================================리스트(SelectOne, SelectList
 	 * 순)========================================
@@ -194,11 +190,11 @@ public class MemberDAO extends AbstractDAO {
 
 		return mbrLoginId;
 	}
-	
 
 	public boolean selectOneMbrTempLoginPwSeek(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		String imsiCheck = (String) selectOne("member.selectOneMbrTempLoginPwSeek", map);
+		String imsiCheck = (String) selectOne(
+				"member.selectOneMbrTempLoginPwSeek", map);
 		boolean check;
 		if (imsiCheck == null) {
 			check = false;
@@ -208,9 +204,12 @@ public class MemberDAO extends AbstractDAO {
 
 		return check;
 	}
-	
-	/*========================================삭제========================================*/
-	
+
+	/*
+	 * ========================================삭제================================
+	 * ========
+	 */
+
 	@SuppressWarnings("unchecked")
 	public boolean deleteMbrDelete(Map<String, Object> map) {
 		// TODO Auto-generated method stub
@@ -253,25 +252,60 @@ public class MemberDAO extends AbstractDAO {
 		}
 		return flag;
 	}
-	
-	
-	
-	
 
 	@SuppressWarnings("unchecked")
-	public List<String> selectGunguFinder(String sido) {
+	public List<String> selectListZcGunGuSeek(String zcSiDoName) {
 		// TODO Auto-generated method stub
 
-		return (List<String>) selectList("member.selectGunguFinder", sido);
+		return (List<String>) selectList("member.selectListZcGunGuSeek",
+				zcSiDoName);
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Map<String, Object>> selectpostList_2(Map<String, Object> map) {
+	public List<Map<String, Object>> selectListZcAll(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return (List<Map<String, Object>>) selectList(
-				"member.selectpostList_2", map);
-	}
 
+		List<Map<String, Object>> selectListZcAll = null;
+
+	/*	String zcRoadName = null;
+		zcRoadName = (String) map.get("zcRoadName");
+		System.out.println("zcRoadName"+zcRoadName);
+
+		String zcLegalEupMyeonDongName = null;
+		zcLegalEupMyeonDongName = (String) map.get("zcLegalEupMyeonDongName");
+		System.out.println("zcLegalEupMyeonDongName"+zcLegalEupMyeonDongName);
+		
+		String zcBuildingBook = null;
+		zcBuildingBook = (String) map.get("zcBuildingBook");
+		System.out.println("zcBuildingBook"+zcBuildingBook);*/
+		
+	/*	if (zcRoadName != null) {
+			selectListZcAll = selectList("member.post_zcRoadName", map);
+			System.out.println("zcRoadName");
+		}
+		else if (zcLegalEupMyeonDongName != null){
+			selectListZcAll = selectList("member.post_zcLegalEupMyeonDongName", map);
+			System.out.println("zcLegalEupMyeonDongName");
+		}
+		else if (zcBuildingBook != null){
+			selectListZcAll = selectList("member.post_zcBuildingBook", map);
+			System.out.println("zcBuildingBook");
+		}*/
+		
+		String post_mode = null;
+		post_mode = (String) map.get("post_mode");
+		System.out.println("post_mode"+post_mode);
+		if (post_mode.equals("post_zcRoadName")) {
+			selectListZcAll = selectList("member.post_zcRoadName", map);
+		}
+		else if (post_mode.equals("post_zcLegalEupMyeonDongName")){
+			selectListZcAll = selectList("member.post_zcLegalEupMyeonDongName", map);
+		}
+		else if (post_mode.equals("post_post_zcBuildingBook")){
+			selectListZcAll = selectList("member.post_zcBuildingBook", map);
+		}
+		return selectListZcAll;
+	}
 
 	@SuppressWarnings("unchecked")
 	public Map<String, Object> selectLogin(Map<String, Object> map)
@@ -345,7 +379,5 @@ public class MemberDAO extends AbstractDAO {
 
 		return memberLogin;
 	}
-
-
 
 }

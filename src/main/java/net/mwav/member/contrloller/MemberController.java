@@ -344,22 +344,22 @@ public class MemberController {
 	
 	
 	// 8번 추후
-	@RequestMapping(value = "/Post/GunguFinder.do")
-	public @ResponseBody List<String> selectGunguFinder(
+	@RequestMapping(value = "/PostSeek/zcGunGuSeek.do")
+	public @ResponseBody List<String> selectListZcGunGuSeek(
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 
-		String sido = request.getParameter("sido");
-		System.out.println("sido" + sido);
-		List<String> selectGunguFinder = memberService.selectGunguFinder(sido);
+		String zcSiDoName = request.getParameter("zcSiDoName");
+		System.out.println("zcSiDoName" + zcSiDoName);
+		List<String> selectListZcGunGuSeek = memberService.selectListZcGunGuSeek(zcSiDoName);
 
-		return selectGunguFinder;
+		return selectListZcGunGuSeek;
 	}
 
 	// consumes를 통해 POST방식으로 넘어온 요청에서 json 형태로 postData를 넘겨줌을 정의
 	// 9번 추후
-	@RequestMapping(value = "/Post/PostFinder_2.do")
-	public @ResponseBody List<Map<String, Object>> selectpostList_2(
+	@RequestMapping(value = "/PostSeek/zcAll.do")
+	public @ResponseBody List<Map<String, Object>> selectListZcAll(
 			CommandMap commandMap, HttpServletResponse response)
 			throws Exception {
 
@@ -379,6 +379,10 @@ public class MemberController {
 		Iterator<Entry<String, Object>> iterator = commandMap.getMap()
 				.entrySet().iterator();
 		Entry<String, Object> entry = null;
+		
+		//String post_mode = (String) commandMap.get("post_mode");
+		//System.out.println("post_mode_controller "+post_mode);
+		
 		while (iterator.hasNext()) {
 			entry = iterator.next();
 			log.debug("key : " + entry.getKey() + ",\tvalue : "
@@ -387,8 +391,8 @@ public class MemberController {
 					+ entry.getValue());
 		}
 
-		List<Map<String, Object>> selectpostList = memberService
-				.selectpostList_2(commandMap.getMap());
+		List<Map<String, Object>> selectListZcAll = memberService
+				.selectListZcAll(commandMap.getMap());
 
 		// Service에서 리턴된 값을 받는 부분. 주로 DB처리 후의 값을
 		// Service단(jsonControllerService.selectDashboardList)에서 해줌
@@ -399,14 +403,14 @@ public class MemberController {
 
 		// @ResponseBody를 사용하고 해당 객체를 return해주기만 하면 ajax success함수의 data에
 		// person객체가 Json객체로 변환 후 전송되어 파싱이 필요없습니다.
-		for (int i = 0; i < selectpostList.size(); i++) {
-			System.out.println("이름 : " + selectpostList.get(i));
+		for (int i = 0; i < selectListZcAll.size(); i++) {
+			System.out.println("이름 : " + selectListZcAll.get(i));
 			// System.out.println("주소 : " + selectpostList.get(i).get("시도명"));
 		}
 		// String postMode = "자료있음";
 		// request.setAttribute("mode", postMode);
 		// request.setAttribute("data", selectpostList);
-		return selectpostList;
+		return selectListZcAll;
 	}
 
 	// 3번 추후 return 필요없을ㄷ스 고민
