@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 
@@ -92,7 +93,18 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 			<!-- 끝 -->
 
 			<div class="col-md-9">
-				<span class="label label-primary">Announcement</span>
+				<!-- 소제목 -->
+				<div class="col-lg-12">
+					<h2 class="page-header">Announcement</h2>
+				</div>
+				<!-- ----- -->
+
+				<!-- Content Column -->
+				<div class="col-lg-12">
+
+					<jsp:include page="/boardNotice/buList.do" flush="false" />
+					
+				</div>
 
 			</div>
 		</div>

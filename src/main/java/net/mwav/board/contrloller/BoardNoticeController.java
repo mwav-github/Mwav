@@ -51,7 +51,7 @@ public class BoardNoticeController {
 	@RequestMapping(value = "/boardNotice/buForm.do")
 	public ModelAndView insertBuForm(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("/Company/CompanyMasterPage_2");
+		ModelAndView mv = new ModelAndView("/CustomerService/CS-MasterPage_1");
 
 		System.out.println("순서");
 		log.debug("인터셉터 테스트");
@@ -71,7 +71,7 @@ public class BoardNoticeController {
 	@RequestMapping(value = "/boardNotice/buView.do")
 	public ModelAndView selectOneBuView(CommandMap commandMap,
 			HttpServletRequest request, HttpSession session) throws Exception {
-		ModelAndView mv = new ModelAndView("/Company/CompanyMasterPage_2");
+		ModelAndView mv = new ModelAndView("/CustomerService/CS-MasterPage_1");
 
 		//Common_Util.selectListCommandMap(commandMap); // 키 출력
 		
@@ -111,7 +111,7 @@ public class BoardNoticeController {
 	@RequestMapping(value = "/boardNotice/buUpdate.do")
 	public ModelAndView updateBuform(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("/Company/CompanyMasterPage_1");
+		ModelAndView mv = new ModelAndView("/CustomerService/CS-MasterPage_1");
 
 		mode = "SbuUpdate";
 		request.setAttribute("mode", mode);
@@ -167,7 +167,7 @@ public class BoardNoticeController {
 	@RequestMapping(value = "/boardNotice/buList.do")
 	public ModelAndView selectListBuList(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("/Company/CompanyMasterPage_2");
+		ModelAndView mv = new ModelAndView("/CustomerService/CS-MasterPage_1");
 
 		String pageNum = (String) commandMap.get("pageNum");
 		Paging paging = new Paging();
@@ -208,7 +208,7 @@ public class BoardNoticeController {
 	@RequestMapping(value = "/boardNotice/buDelete.do")
 	public ModelAndView deleteBuDelete(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("/Company/CompanyMasterPage_1");
+		ModelAndView mv = new ModelAndView("/CustomerService/CS-MasterPage_1");
 
 		boardNoticeService.deleteBuDelete(commandMap.getMap());
 

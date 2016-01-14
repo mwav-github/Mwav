@@ -46,12 +46,12 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 		<div class="row">
 			<div class="col-lg-12">
 				<h1 class="page-header">
-					Company <small> Notice</small>
+					Company <small> Announcement</small>
 				</h1>
 				<ol class="breadcrumb">
 					<li><a href="index.html">Home</a></li>
 					<li>Company</li>
-					<li class="active">Notice</li>
+					<li class="active">Announcement</li>
 				</ol>
 			</div>
 		</div>
@@ -68,7 +68,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 			<div class="col-md-9">
 				<!-- 소제목 -->
 				<div class="col-lg-12">
-					<h2 class="page-header">Notice</h2>
+					<h2 class="page-header">Announcement</h2>
 				</div>
 				<!-- ----- -->
 
