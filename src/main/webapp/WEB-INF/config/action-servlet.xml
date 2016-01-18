@@ -17,11 +17,11 @@
 	<!-- gmail -->
 	<!-- 이메일 보내기 -->
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-		<property name="host" value="smtp.gmail.com" />
-		<property name="port" value="587" />
-		<property name="defaultEncoding" value="utf-8"/>
-		<property name="username" value="ebizpromwav@gmail.com" />
-		<property name="password" value="qkqh5501" />
+		<property name="host" value="smtp.gmail.com" /> <!-- 서버주소 -->
+		<property name="port" value="587" /> <!-- 포트번호 기본 25 -->
+		<property name="defaultEncoding" value="utf-8"/> <!-- 기본인코딩 -->
+		<property name="username" value="ebizpromwav@gmail.com" /> <!-- 메일주소 -->
+		<property name="password" value="qkqh5501" /> <!-- 메일비밀번호 -->
 		<property name="javaMailProperties">
 			<props>
 				<prop key="mail.transport.protocol">smtp</prop>
@@ -31,13 +31,17 @@
 			</props>
 		</property>
 	</bean>
-
+  
+   
 	<!-- <bean id="email" class="net.mwav.mail.EmailVO">
 	</bean> -->
-	<bean id="emailSender" class="net.mwav.mail.EmailSender">
+	 <bean id="emailTemplates" class="net.mwav.common.module.EmailTemplates">
+	</bean> 
+	<bean id="emailSender" class="net.mwav.common.module.EmailSender">
 	</bean>
-	<bean id="femailSender" class="net.mwav.mail.SimpleMailMessageTest">
-	</bean>
+	
+	
+	
 
 	<!-- Responsebody 
 	

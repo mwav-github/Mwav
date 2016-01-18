@@ -6,7 +6,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
-import net.common.common.AesTest;
+import net.mwav.common.module.AesEncryption;
 import net.mwav.member.dao.MemberDAO;
 
 import org.apache.log4j.Logger;

@@ -17,11 +17,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import net.common.common.CommandMap;
-import net.common.common.Common_Util;
-import net.common.common.Paging;
-import net.common.common.PagingVO;
-import net.common.common.Paging;
 import net.mwav.board.service.BoardService;
+import net.mwav.common.module.Common_Util;
+import net.mwav.common.module.Paging;
+import net.mwav.common.module.PagingVO;
 
 @Controller
 public class BoardController {

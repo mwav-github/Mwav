@@ -1,8 +1,10 @@
-package net.common.common;
+package net.mwav.common.module;
 
 import java.util.Iterator;
 import java.util.Random;
 import java.util.Map.Entry;
+
+import net.common.common.CommandMap;
 
 import org.apache.log4j.Logger;
 

@@ -27,7 +27,7 @@
 <div class="footer mgt5" id="footer">
 	<div class="container">
 		<div class="row">
-			<div class="col-lg-4  col-md-4 col-sm-8 col-xs-12">
+			<div class="col-xs-12 col-sm-8 col-md-4">
 		
 				<p style="padding: 40px 0px 10px; border-bottom: 1px solid #BAC1C8;">
 					<img src="/Company/zImage/CompanyLogo_gray.gif"
@@ -35,6 +35,17 @@
 				</p>
 				
 					<ul>
+						<li>CompanyName : Mwav Inc.</li>
+						<li>Business Registration Number : 206-09-41373</li>
+						<li>Address: 607-20, Jayang-dong, Gwangjin-gu, Seoul, Korea GV4F</li>
+						<li>TEL : +82-2-6214-7039</li>
+						<li>FAX: +82-2-6214-1122</li>
+						<li>CEO : Zeus | Sales Manager: Song</li>
+						<li>Site Manager : James | Business Consultant : Peter</li>
+					</ul>
+				<%--
+				
+				<ul>
 						<li>회사상호 : 엠웨이브넷(Mwav.net)</li>
 						<li>사업자번호: 206-09-41373</li>
 						<li>주소: 서울 광진 자양2동 607-20 GV4F</li>
@@ -43,10 +54,10 @@
 						<li>대표이사 : Zeus | 영업담당자: Song</li>
 						<li>사이트 담당자 : James | 사업 고문 : Peter</li>
 					</ul>
-				
+				 --%>
 
 			</div>
-			<div class="col-lg-4  col-md-4 col-sm-8 col-xs-12">
+			<div class="col-xs-12 col-sm-8 col-md-4">
 				<h3>Navigate</h3>
 				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 					<ul>
@@ -67,12 +78,12 @@
 					</ul>
 				</div>
 			</div>
-			<div class="col-lg-4  col-md-4 col-sm-8 col-xs-12 ">
+			<div class="col-xs-12 col-sm-8 col-md-4">
 				<h3>Contact:</h3>
 				<p>Have a question or feedback?</p>
 				<p>Contact me!</p>
 				<p>
-					<a href="mailto:webmaster@mwav.net" title="Contact me!"><i
+					<a href="mailto:ebizpromwav@gmail.com" title="Contact me!"><i
 						class="fa fa-envelope"></i> Contact</a>
 					<%--줄 없애기 + 그다음에 메일로 바로연결이아닌 qa쪽 고민 --%>
 				</p>

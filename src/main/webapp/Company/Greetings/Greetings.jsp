@@ -95,7 +95,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 						<p>고객감동을 통한 최고의 기업가치를 제공할 수 있도록 열정을 가지고 임하겠습니다.</p>
 						<br> <br>
 						<p class="text-right">
-							<strong>대표이사: 김주성(사인)</strong>
+							<strong>CEO: Mr.Kim</strong>
 						</p>
 					</div>
 

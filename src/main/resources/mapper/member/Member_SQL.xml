@@ -94,7 +94,7 @@
 		]]>
 	</select>
 		
-	<select id="post_post_zcBuildingBook" parameterType="hashmap" resultType="hashmap">
+	<select id="post_zcBuildingBook" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 		select * from ZipCode_tbl where zcSiDoName = #{zcSiDoName} and zcSiGunGuName = #{zcSiGunGuName} and zcBuildingBook = #{zcBuildingBook} 
 		]]>

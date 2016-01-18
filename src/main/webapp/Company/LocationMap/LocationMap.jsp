@@ -64,6 +64,8 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 			<!-- 끝 -->
 
 			<div class="col-md-9">
+
+				<div class="enter"></div>
 				<!-- Content Column -->
 				<div class="col-md-8">
 					<!-- Embedded Google Map 
@@ -76,12 +78,12 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 				<div class="col-md-4">
 					<h3>Contact Details</h3>
 					<p>
-						Gachon University,<br>Bokjeong-dong, Sujeong-gu, <br />Seongnam-si,
-						Gyeonggi-do, Korea<br>
+						607-20, Jayang-dong, <br>Gwangjin-gu, Seoul, <br> Korea
+						GV4F
 					</p>
 					<p>
-						<i class="fa fa-phone"></i> <abbr title="Phone">P</abbr>: (031)
-						339-4451
+						<i class="fa fa-phone"></i> <abbr title="Phone">P</abbr>:
+						+82-2-6214-7039
 					</p>
 					<p>
 						<i class="fa fa-envelope-o"></i> <abbr title="Email">E</abbr>: <a

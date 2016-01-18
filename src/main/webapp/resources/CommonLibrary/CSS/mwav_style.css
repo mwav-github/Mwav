@@ -1,6 +1,13 @@
 @charset "utf-8";
 /* CSS Document */
 
+/* Font Responsive */
+
+/* responsive text queries */
+  .res_font_1 {
+    font-size: 100% !important;
+    line-height:100% !important;
+  }
 
 /* ---------------------------------------------------------Start--------------------------------------------------------- */
 /* 폰트 적용 최상단

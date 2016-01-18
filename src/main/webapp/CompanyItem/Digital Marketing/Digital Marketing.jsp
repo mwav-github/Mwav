@@ -59,19 +59,20 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 			<!-- Sidebar Column left메뉴 추후 변경 예정<시작>-->
 			<div class="col-md-3">
 				<div class="list-group">
-					<a href="#"
-						class="list-group-item" data-toggle="tooltip" data-placement="top"
-						data-original-title="바이럴마케팅(PC)">Viral Marketing(PC)</a> 
-						<a href="#"
-						class="list-group-item" data-toggle="tooltip" data-placement="top"
-						data-original-title="바이럴마케팅(모바일)">Viral Marketing(Mobile)</a>
-						<a
-						href="#"
-						class="list-group-item " data-toggle="tooltip"
-						data-placement="top" data-original-title="소셜마케팅">SNS Marketing</a> <a
-						href="#"
-						class="list-group-item" data-toggle="tooltip" data-placement="top"
-						data-original-title="키워드마케팅">Keyword Marketing</a> 
+					<a href="#marketing_1" class="list-group-item"
+						data-toggle="tooltip" data-placement="top"
+						data-original-title="키워드마케팅">Keyword Marketing</a> <a
+						href="#marketing_2" class="list-group-item" data-toggle="tooltip"
+						data-placement="top" data-original-title="바이럴마케팅">바이럴마케팅</a>
+					<!-- <a
+						href="#" class="list-group-item" data-toggle="tooltip"
+						data-placement="top" data-original-title="바이럴마케팅(PC)">Viral
+						Marketing(PC)</a> -->
+					<a href="#marketing_3" class="list-group-item"
+						data-toggle="tooltip" data-placement="top"
+						data-original-title="바이럴마케팅(모바일)">Viral Marketing(Mobile)</a> <a
+						href="#marketing_4" class="list-group-item " data-toggle="tooltip"
+						data-placement="top" data-original-title="소셜마케팅">SNS Marketing</a>
 				</div>
 			</div>
 			<!-- 끝 -->
@@ -80,12 +81,53 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 			<div class="col-md-9">
 
 				<div class="row">
-					<div class="col-lg-12">
-						<h2 class="page-header">Digital Marketing</h2>
+					<!-- <div class="col-md-8 col-md-offset-2" style="background-color: #990085; color: white;">
+						<h1 class="text-center">What Is AerPass™?</h1>
+					</div>
+					<br> -->
+
+					<div class="text-center">
+						<h1 style="color: #04A3ED;">DIGITAL MARKETING</h1>
+						<hr class="hr_b">
 					</div>
 
+					<div class="enter"></div>
+					<h5 class="text-left"><strong>Keyword Marketing</strong></h5>
+					<hr>
+					<div id="marketing_1" class="col-md-12">
+						<img src="/CompanyItem/Digital Marketing/Images/1_1.png"
+							class="img-responsive" alt="Responsive image">
+					</div>
 
+					<div class="enter"></div>
+					
+					<h5 class="text-left"><strong>Viral Marketing</strong></h5>
+					<hr>
+					<div id="marketing_2" class="col-md-12">
+						<img src="/CompanyItem/Digital Marketing/Images/2_1.png"
+							class="img-responsive" alt="Responsive image">
+					</div>
+
+					<div class="enter"></div>
+
+					<h5 class="text-left"><strong>SNS Marketing</strong></h5>
+					<hr>
+
+					<div id="marketing_4" class="col-md-12">
+						<img src="/CompanyItem/Digital Marketing/Images/2_3.png"
+							class="img-responsive" alt="Responsive image">
+					</div>
+
+					<div class="enter"></div>
+
+					<h5 class="text-left"><strong>Viral Marketing(Mobile)</strong></h5>
+					<hr>
+					<div class="col-md-12">
+						<img src="/CompanyItem/Digital Marketing/Images/2_4.png"
+							class="img-responsive" alt="Responsive image">
+					</div>
 				</div>
+
 			</div>
 		</div>
 		<!-- /.row -->

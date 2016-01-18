@@ -39,16 +39,30 @@
 	});
 </script>
 <div id="left_menu" class="list-group">
-	<a href="/CustomerService/MyPage/MyPage.jsp" class="list-group-item "
-		data-toggle="tooltip" data-placement="top"
-		data-original-title="마이페이지">MyPage</a> <a
-		href="/CustomerService/Announcement/Announcement.jsp"
+	<a href="javascript:window.alert('권한이 없습니다. \n 로그인 후 이용해주시기 바랍니다.');"
+		class="list-group-item " data-toggle="tooltip" data-placement="top"
+		data-original-title="마이페이지">MyPage</a>
+
+	<c:if test="${sessionScope.mbrLoginId ne null }">
+		<a href="/CustomerService/MyPage/MyPage.jsp" class="list-group-item "
+			data-toggle="tooltip" data-placement="top"
+			data-original-title="마이페이지">MyPage</a>
+	</c:if>
+
+	<a href="/CustomerService/Announcement/Announcement.jsp"
 		class="list-group-item" data-toggle="tooltip" data-placement="top"
 		data-original-title="공지사항">Announcement</a> <a
-		href="/CustomerService/MemberShip/MemberShip.jsp"
+		href="javascript:window.alert('권한이 없습니다. \n 로그인 후 이용해주시기 바랍니다.');"
 		class="list-group-item" data-toggle="tooltip" data-placement="top"
-		data-original-title="회원정보(수정)">MemberShip</a> <a
-		href="/CustomerService/Agreement/Agreement.jsp"
+		data-original-title="회원정보(수정)">MemberShip</a>
+
+	<c:if test="${sessionScope.mbrLoginId ne null }">
+		<a href="/CustomerService/MemberShip/MemberShip.jsp"
+			class="list-group-item" data-toggle="tooltip" data-placement="top"
+			data-original-title="회원정보(수정)">MemberShip</a>
+	</c:if>
+	
+	<a href="/CustomerService/Agreement/Agreement.jsp"
 		class="list-group-item" data-toggle="tooltip" data-placement="top"
 		data-original-title="이용약관">Agreement</a> <a
 		href="/CustomerService/SiteGuide/SiteGuide.jsp"
@@ -61,8 +75,7 @@
 		data-toggle="tooltip" data-placement="top"
 		data-original-title="묻고 답하기">QnA</a> <a
 		href="/CustomerService/Contact/Contact.jsp" class="list-group-item"
-		data-toggle="tooltip" data-placement="top"
-		data-original-title="담당자안내">Contact</a> <a
-		href="/CustomerService/SiteMap/SiteMap.jsp" class="list-group-item"
+		data-toggle="tooltip" data-placement="top" data-original-title="담당자안내">Contact</a>
+	<a href="/CustomerService/SiteMap/SiteMap.jsp" class="list-group-item"
 		data-toggle="tooltip" data-placement="top" data-original-title="사이트맵">SiteMap</a>
 </div>

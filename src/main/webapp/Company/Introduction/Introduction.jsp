@@ -65,7 +65,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 
 				<!-- Summary -->
 				<!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
-				<div class="row">
+				<!-- <div class="row">
 					<div class="col-lg-12">
 						<h2 class="page-header">Summary</h2>
 					</div>
@@ -74,7 +74,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 						<a href="#" class="btn btn-primary">Learn More</a>
 					</div>
-				</div>
+				</div> -->
 
 				<!-- (2) Vision -->
 				<div class="row">
@@ -82,14 +82,11 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 						<h2 class="page-header">The Vision</h2>
 					</div>
 					<div class="col-lg-12">
-
-						<ul id="myTab" class="nav nav-tabs nav-justified">
-							<li class="active"><a href="#Vision" data-toggle="tab"><i
-									class="fa fa-plus-square"></i> The Vision (Mission)</a></li>
-							<li class=""><a href="#Goals" data-toggle="tab"><i
-									class="fa fa-gratipay"></i> The Goals (Objectives)</a></li>
-							<li class=""><a href="#Strategy" data-toggle="tab"><i
-									class="fa fa-hand-o-right"></i> Strategy</a></li>
+<%--nav-justified 양쪽 정렬된! --%>
+						<ul id="myTab" class="nav nav-pills nav-justified">
+							<li class="active"><a href="#Vision" data-toggle="tab">The Vision (Mission)</a></li>
+							<li class=""><a href="#Goals" data-toggle="tab"> The Goals (Objectives)</a></li>
+							<li class=""><a href="#Strategy" data-toggle="tab"> Strategy</a></li>
 						</ul>
 
 						<div id="myTabContent" class="tab-content">
