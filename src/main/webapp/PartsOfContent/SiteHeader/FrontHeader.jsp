@@ -137,6 +137,8 @@
 							</h1>
 							<h3>Location</h3>
 							<p>607-20, Jayang-dong, Gwangjin-gu, Seoul, Korea</p>
+							<br>
+							
 						</div>
 						<div class="col-xs-3 col-sm-3 col-md-3"
 							style="padding: 10px; background: #F66;">

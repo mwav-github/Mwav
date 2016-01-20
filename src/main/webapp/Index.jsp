@@ -107,7 +107,7 @@
 								States (particularly in the phrase "pull oneself over a fence by
 								one's bootstraps"), to mean an absurdly impossible action, an
 								adynaton.</p>
-							<a href="CompanyItem/IT Solutions/IT Solutions.jsp"
+							<a href="/CompanyItem/WebSite Building/WebSite Building.jsp"
 								class="btn btn-info btn-sm btn-block">Learn More</a>
 						</div>
 					</div>
@@ -126,7 +126,7 @@
 								the 10,000 most visited websites, jQuery is the most popular
 								JavaScript library in use today. jQuery is free, open-source
 								software licensed under the MIT License.</p>
-							<a href="CompanyItem/IT Solutions/IT Solutions.jsp"
+							<a href="/CompanyItem/IT Products/OpenSRS/OpenSRS.jsp"
 								class="btn btn-info btn-sm btn-block">Learn More</a>
 						</div>
 					</div>

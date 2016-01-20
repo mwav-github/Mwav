@@ -66,37 +66,54 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 
 			<div class="col-md-9">
 				<div class="row">
-					<!-- <div class="col-lg-12">
+					<div class="col-lg-12">
 						<h2 class="page-header">SiteMap</h2>
 					</div>
- -->
-					<div class="col-xs-12 col-md-4 col-sm-4 ">
+
+					<div class="col-md-4 col-sm-4 col-xs-12"
+						style="border-radius: 5px 20px 5px; border: 3px solid #BADA55;">
 						<h3>
 							<strong>Company</strong>
 						</h3>
 						<h5>All information and story about Mwav.</h5>
-						<br>
-						<ul class="font_color_faq">
-							<li><a href="/Company/Introduction/Introduction.jsp"
-								>Introduction</a></li>
-							<li><a href="/Company/Greetings/Greetings.jsp"
-								>Greetings</a></li>
-							<li><a href="/Company/History/History.jsp"
-								>History</a></li>
-							<li><a href="/Company/BusinessField/BusinessFields.jsp"
-								>BusinessField</a></li>
-							<li><a href="/Company/ActualResults/ActualResults.jsp"
-								>ActualResults</a></li>
-							<li><a href="/board/bnsList.do" >ThePress</a></li>
-							<li><a href="/Company/HR-Affairs/HR-Affairs.jsp"
-								>HR-Affairs</a></li>
-							<li><a href="/Company/LocationMap/LocationMap.jsp"
-								>LocationMap</a></li>
-							<li><a href="/Company/Profitsharing/Profitsharing.jsp"
-								>Profitsharing</a></li>
+						<div class="list-group">
+							<a href="/Company/Introduction/Introduction.jsp"
+								class="list-group-item">Introduction</a> <a
+								href="/Company/Greetings/Greetings.jsp" class="list-group-item">Greetings</a>
+							<a href="/Company/History/History.jsp" class="list-group-item">History</a>
+							<a href="/Company/BusinessField/BusinessFields.jsp"
+								class="list-group-item">BusinessField</a> <a
+								href="/Company/ActualResults/ActualResults.jsp"
+								class="list-group-item">ActualResults</a> <a
+								href="/board/bnsList.do" class="list-group-item">ThePress</a> <a
+								href="/Company/HR-Affairs/HR-Affairs.jsp"
+								class="list-group-item">HR-Affairs</a> <a
+								href="/Company/LocationMap/LocationMap.jsp"
+								class="list-group-item">LocationMap</a> <a
+								href="/Company/Profitsharing/Profitsharing.jsp"
+								class="list-group-item">Profitsharing</a>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-4 col-xs-12"
+						style="border-radius: 5px 20px 5px; border: 3px solid #A05C37;">
+						<strong><h3>Our Business</h3></strong>
+						<h5>We serve you the best solution.</h5>
+						<ul class="list-group">
+							<li><a href="#" class="list-group-item">Company
+									Background</a></li>
+
 						</ul>
 					</div>
-					
+					<div class="col-md-4 col-sm-4 col-xs-12"
+						style="border-radius: 5px 20px 5px; border: 3px solid #EB3232;">
+						<strong><h3>Newsroom</h3></strong>
+						<h5>They talk about us.</h5>
+						<ul class="list-group">
+							<li><a href="#" class="list-group-item">Company
+									Background</a></li>
+
+						</ul>
+					</div>
 				</div>
 			</div>
 

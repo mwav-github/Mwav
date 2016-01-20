@@ -47,19 +47,19 @@
 		data-original-title="회사연혁">History</a> <a
 		href="/Company/BusinessField/BusinessFields.jsp"
 		class="list-group-item" data-toggle="tooltip" data-placement="top"
-		data-original-title="사업분야">BusinessField</a> <a
+		data-original-title="사업분야">Business Field</a> <a
 		href="/Company/ActualResults/ActualResults.jsp"
 		class="list-group-item" data-toggle="tooltip" data-placement="top"
-		data-original-title="회사실적">ActualResults</a> <a
+		data-original-title="회사실적">Actual Results</a> <a
 		href="/board/bnsList.do" class="list-group-item"
 		data-toggle="tooltip" data-placement="top"
-		data-original-title="언론보도">ThePress</a> <a
+		data-original-title="언론보도">The Press</a> <a
 		href="/Company/HR-Affairs/HR-Affairs.jsp" class="list-group-item"
 		data-toggle="tooltip" data-placement="top" data-original-title="인재채용">HR-Affairs</a>
 	<a href="/Company/LocationMap/LocationMap.jsp" class="list-group-item"
 		data-toggle="tooltip" data-placement="top"
-		data-original-title="회사약도">LocationMap</a> <a
+		data-original-title="회사약도">Location Map</a> <a
 		href="/Company/Profitsharing/Profitsharing.jsp"
 		class="list-group-item" data-toggle="tooltip" data-placement="top"
-		data-original-title="수익분배 프로그램">Profitsharing</a>
+		data-original-title="수익분배 프로그램">Profit sharing</a>
 </div>

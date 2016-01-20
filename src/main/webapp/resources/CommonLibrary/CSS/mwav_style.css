@@ -9,6 +9,8 @@
     line-height:100% !important;
   }
 
+
+
 /* ---------------------------------------------------------Start--------------------------------------------------------- */
 /* 폰트 적용 최상단
  * 
@@ -41,6 +43,21 @@ font-family:'맑은 고딕', 'Malgun Gothic', '굴림', Gulim, 'NanumGothic';
 }
  * 
  */
+.font_color_faq li{
+	margin : 15px 0 !important;
+} 
+ 
+.font_color_faq li a{
+	color: #005262 !important;
+    text-decoration: none !important;
+    font-weight:bold !important;
+}
+
+.font_color_faq li a:hover {
+    color: #04A3ED !important;
+    text-decoration: underline !important;
+    
+}
 
 /* ---------------------------------------------------------END--------------------------------------------------------- */
 

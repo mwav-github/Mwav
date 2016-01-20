@@ -67,7 +67,7 @@
 		data-original-title="이용약관">Agreement</a> <a
 		href="/CustomerService/SiteGuide/SiteGuide.jsp"
 		class="list-group-item" data-toggle="tooltip" data-placement="top"
-		data-original-title="이용방법">SiteGuide</a> <a
+		data-original-title="이용방법">Site Guide</a> <a
 		href="/CustomerService/FAQ/FAQ.jsp" class="list-group-item"
 		data-toggle="tooltip" data-placement="top"
 		data-original-title="자주하는 질문">FAQ</a> <a

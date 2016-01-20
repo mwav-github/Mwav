@@ -74,21 +74,21 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					</div>
 					<div class="col-lg-4 well text-center">
 								<img
-								src="http://m.c.lnkd.licdn.com/mpr/pub/image-0em6ZpPcOdZ5lNMcu6cP5vOTrPn4Gvnzr-mkepfGr4nX-Rp70emkiNscr_K_GnWmBylB/prasad-phule.jpg"
+								src="/CustomerService/Contact/Images/fan-1027184_640.jpg"
 								name="aboutme" width="140" height="140" class="img-circle">
 							<h3>CEO</h3>
 							<em>click on me to see Image Manager</em>
 					</div>
 					<div class="col-lg-4 well text-center">
 								<img
-								src="http://m.c.lnkd.licdn.com/mpr/pub/image-0em6ZpPcOdZ5lNMcu6cP5vOTrPn4Gvnzr-mkepfGr4nX-Rp70emkiNscr_K_GnWmBylB/prasad-phule.jpg"
+								src="/CustomerService/Contact/Images/fan-1027188_640.jpg"
 								name="aboutme" width="140" height="140" class="img-circle">
 							<h3>CIO</h3>
 							<em>click on me to see Image Manager</em>
 					</div>
 					<div class="col-lg-4 well text-center">
 								<img
-								src="http://m.c.lnkd.licdn.com/mpr/pub/image-0em6ZpPcOdZ5lNMcu6cP5vOTrPn4Gvnzr-mkepfGr4nX-Rp70emkiNscr_K_GnWmBylB/prasad-phule.jpg"
+								src="/CustomerService/Contact/Images/direction-1014031_640.jpg"
 								name="aboutme" width="140" height="140" class="img-circle">
 							<h3>CTO</h3>
 							<em>click on me to see Image Manager</em>
