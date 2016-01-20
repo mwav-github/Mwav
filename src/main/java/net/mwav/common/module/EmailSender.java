@@ -1,4 +1,4 @@
-package net.mwav.mail;
+package net.mwav.common.module;
 
 import javax.annotation.Resource;
 
@@ -23,7 +23,7 @@ import net.mwav.member.service.MemberService;
 //http://www.mflow.kr/?p=894
 //@Controller
 @Service
-public class SimpleMailMessageTest {
+public class EmailSender {
 
 	// 기존의 autowired로 빈등록은 <context:component-scan
 	// base-package="net"></context:component-scan>
@@ -35,7 +35,7 @@ public class SimpleMailMessageTest {
 	// -> memberController 에 이 클래스 자체를 빈 지정하고 거기서 autowire로 사용한다. 
 	
 	@Autowired
-	private EmailSender emailSender;    
+	private EmailTemplates emailTemplates;    
 	private EmailVO email = new EmailVO();
 
 	private static Logger log = Logger.getLogger("sendMail");
@@ -53,7 +53,7 @@ public class SimpleMailMessageTest {
 		email.setContent("비밀번호는 "+imsiPW+" 입니다.");
 		email.setReceiver(e_mail);
 		email.setSubject(mbrLoginId+"님 비밀번호 찾기 메일입니다.");
-		emailSender.SendEmail(email);
+		emailTemplates.sendBasicEmail(email);
 		// String pw = memberService.getPw(commandMap);
 		// System.out.println(pw);
 		/*

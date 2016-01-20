@@ -212,48 +212,81 @@
 					$("#postfinder_2").html(content);
 				}
 				/*  */
-				if ($(".ondis").css("display") == "none") {
-					//alert("on");
-					$(".ondis").show();
-					$(".offdis").hide();
-				}
 
-				var list = data;
-				var listLen = list.length;
-				//var col-md-8 = "col-md-8 text-center";
-				var content = "";
-				var address_zibun;
-				var address_doro;
-				// var address = "<a href="+ javascript:sendAddress(list[i].zcSiDoName + list[i].zcSiGunGuName + list[i].zcLegalEupMyeonDongName + list[i].zcLegalRiName + list[i].zcJiBunMain) +">";
-				for (i = 0; i < listLen; i++) {
-					if (list[i].zcBuildingSubNo == 0) {
-						address_zibun = list[i].zcSiDoName
-								+ list[i].zcSiGunGuName
-								+ list[i].zcLegalEupMyeonDongName
-								+ list[i].zcLegalRiName + list[i].zcJiBunMain;
-						address_doro = list[i].zcSiDoName
-								+ list[i].zcSiGunGuName + list[i].zcRoadName
-								+ list[i].zcBuildingMainNo;
-					} else {
-						address = list[i].zcSiDoName + list[i].zcSiGunGuName
-								+ list[i].zcLegalEupMyeonDongName
-								+ list[i].zcLegalRiName + list[i].zcJiBunMain
-								+ "-" + list[i].zcJiBunSub;
-						address = list[i].zcSiDoName + list[i].zcSiGunGuName
-								+ list[i].zcRoadName + list[i].zcBuildingMainNo
-								+ "-" + list[i].zcBuildingSubNo;
+				/* 	alert(data);
+					var aa = JSON.stringify(data);
+					alert(aa); */
+
+				// 데이터가 없는 경우 undefined이다.
+				
+
+				if ($.trim(data)) {
+					//즉 공백제거시에도 데이터가 true 인 경우
+
+					if ($(".ondis").css("display") == "none") {
+						//alert("on");
+						$(".ondis").show();
+						$(".offdis").hide();
 					}
-					content += "<tr>"
-							+ "<td class=" + "col-md-8" + " text-center" +" >"
-							+ "<a href=" + "javascript:" + "sendAddress('"
-							+ address_zibun + "','" + list[i].zcZipCode + "')"
-							+ ">" + address + "</a></td>";
-					content += "<td class=" +"col-md-4" + " text-center" + ">"
-							+ list[i].zcZipCode + "</td>" + "</tr>";
+					var list = data;
+					var listLen = list.length;
+					//var col-md-8 = "col-md-8 text-center";
+					var content = "";
+					var address_zibun;
+					var address_doro;
+					// var address = "<a href="+ javascript:sendAddress(list[i].zcSiDoName + list[i].zcSiGunGuName + list[i].zcLegalEupMyeonDongName + list[i].zcLegalRiName + list[i].zcJiBunMain) +">";
+					for (i = 0; i < listLen; i++) {
+						// 좀더 상세하게 구분 모두 0 / 둘중 하나 0 - 2가지 / 둘다 1 = 총 4가지
+						if (list[i].zcBuildingSubNo == 0
+								|| list[i].zcJiBunSub == 0) {
+							address_zibun = list[i].zcSiDoName
+									+ list[i].zcSiGunGuName
+									+ list[i].zcLegalEupMyeonDongName
+									+ list[i].zcLegalRiName
+									+ list[i].zcJiBunMain;
+							address_doro = list[i].zcSiDoName
+									+ list[i].zcSiGunGuName
+									+ list[i].zcRoadName
+									+ list[i].zcBuildingMainNo;
+						} else {
+							address_zibun = list[i].zcSiDoName
+									+ list[i].zcSiGunGuName
+									+ list[i].zcLegalEupMyeonDongName
+									+ list[i].zcLegalRiName
+									+ list[i].zcJiBunMain + "-"
+									+ list[i].zcJiBunSub;
 
+							address_doro = list[i].zcSiDoName
+									+ list[i].zcSiGunGuName
+									+ list[i].zcRoadName
+									+ list[i].zcBuildingMainNo + "-"
+									+ list[i].zcBuildingSubNo;
+						}
+						content += "<tr>"
+								+ "<td class=" + "\"col-md-8 text-center\">"
+								+ "<a href=" + "javascript:" + "sendAddress('"
+								+ address_doro + "','" + list[i].zcZipCode
+								+ "')" + ">" + address_doro + "</br>"
+								+ address_zibun + "</a></td>";
+						content += "<td class=" +"\"col-md-8 text-center\">"
+								+ list[i].zcZipCode + "</td>" + "</tr>";
+
+					}
+
+					$("#postresult").append(content);
+				} else {
+					//alert('1');
+					if ($(".ondis").css("display") == "none") {
+						//alert("on");
+						$(".ondis").show();
+						$(".offdis").hide();
+					}
+
+					var content = "";
+					content += "<tr>" + "<td colspan=\"4\" class=\"text-center\">조회된 결과가 없습니다.</td>"
+							+ "</tr>";
+					$("#postnull").append(content);
 				}
-
-				$("#postresult").append(content);
 			},
 			/*
 			$.each(aa, function(key) {
@@ -280,8 +313,21 @@
 			ajax의 결과 처리 부분은 client 처리인 javascript만으로 처리하셔야 합니다.
 			 */
 
-			error : function() {
-				alert('없는 주소입니다. 다시조회해주세요.')
+			error : function(status,error) {
+				//alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+				if(status==0){
+		            alert('You are offline!!n Please Check Your Network.');
+		            }else if(status==404){
+		            alert('Requested URL not found.');
+		            }else if(status==500){
+		            alert('Internel Server Error.');
+		            }else if(error=='parsererror'){
+		            alert('Error.nParsing JSON Request failed.');
+		            }else if(error=='timeout'){
+		            alert('Request Time out.');
+		            }else {
+		            alert('Unknow Error.n'+request.responseText);
+		            }
 			} // 서버로부터 응답 데이터 실패시 로직 처리
 		});
 	}
@@ -300,23 +346,23 @@
 				<br>
 				<div class="bs-example bs-example-tabs">
 					<ul id="myTab" class="nav nav-tabs">
-						<li class="active"><a href="#signin" data-toggle="tab">도로명+건물번호</a></li>
-						<li class=""><a href="#signup" data-toggle="tab">동(읍/면)+지번</a></li>
-						<li class=""><a href="#signup2" data-toggle="tab">건물명(아파트명)</a></li>
+						<li class="active"><a href="#postfinder_1" data-toggle="tab">도로명+건물번호</a></li>
+						<li class=""><a href="#postfinder_2" data-toggle="tab">동(읍/면)+지번</a></li>
+						<li class=""><a href="#postfinder_3" data-toggle="tab">건물명(아파트명)</a></li>
 					</ul>
 				</div>
 				<div class="modal-body">
 					<div class="container-fluid">
 						<div id="myTabContent" class="tab-content">
 							<div class="tab-pane active fade in" id="postfinder_1">
-								<form class="form-horizontal" id="postfinder_1"
-									name="postfinder_1">
-									<h3>검색방법</h3>
-									<p>예) 테헤란로 152 -> '서울시' '강남구' 선택후 테헤란로(도로명) + 152(건물번호) 주소를
-										모르실 경우, http://www.juso.go.kr 에서 정확한 주소를 확인하실 수 있습니다.</p>
-									<br />
-									<!--  <input type="hidden" name="post_mode" value="post_zcRoadName" /> -->
-									<div class="col-md-12">
+								<form class="form-horizontal" name="postfinder_1" method="post">
+									<%--method="post" 없으면 안된다.! 이상한 페이지로 포워딩 및 정확한 값이 들어가도 오류발생--%>
+									<div class="col-md-12 offdis">
+										<h3>검색방법</h3>
+										<p>예) 테헤란로 152 -> '서울시' '강남구' 선택후 테헤란로(도로명) + 152(건물번호)
+											주소를 모르실 경우, http://www.juso.go.kr 에서 정확한 주소를 확인하실 수 있습니다.</p>
+										<br />
+										<!--  <input type="hidden" name="post_mode" value="post_zcRoadName" /> -->
 										<div class="row">
 											<div class="col-md-2">특별, 광역시/도</div>
 											<div class="col-md-3">
@@ -377,7 +423,7 @@
 											</div>
 											<div class="col-md-1 col-sm-offset-1">
 												<button type="submit" class="btn"
-													onclick="SelectPostFinder_2(1)"
+													onclick="SelectPostFinder_2(1);"
 													style="background-color: black; color: white;">검색
 												</button>
 											</div>
@@ -385,9 +431,8 @@
 									</div>
 								</form>
 							</div>
-							<div class="tab-pane fade " id="signup">
-								<form class="form-horizontal " id="postfinder_2"
-									name="postfinder_2" method="post">
+							<div class="tab-pane fade " id="postfinder_2">
+								<form class="form-horizontal " name="postfinder_2" method="post">
 									<div class="col-md-12 offdis">
 										<h3>검색방법</h3>
 										<p>예) 잠실동 27 -> '서울시' '송파구' 선택 후 잠실동(동명) + 27(지번) 주소를 모르실
@@ -456,7 +501,7 @@
 											<div class="col-md-1 col-sm-offset-1">
 												<button type="button" class="btn"
 													style="background-color: black; color: white;"
-													onclick="SelectPostFinder_2(2)">검색</button>
+													onclick="SelectPostFinder_2(2);">검색</button>
 											</div>
 										</div>
 									</div>
@@ -465,14 +510,13 @@
 								<hr />
 							</div>
 							<div class="tab-pane fade" id="postfinder_3">
-								<form class="form-horizontal" id="postfinder_3"
-									name="postfinder_3" action="/Post/PostFinder.do">
-									<h3>검색방법</h3>
-									<p>예) '서울시' '강남구' 선택 후 강남파이낸스센터(건물명) 주소를 모르실 경우,
-										http://www.juso.go.kr 에서 정확한 주소를 확인하실 수 있습니다.</p>
-									<br />
+								<form class="form-horizontal" name="postfinder_3" method="post">
+									<div class="col-md-12 offdis">
+										<h3>검색방법</h3>
+										<p>예) '서울시' '강남구' 선택 후 강남파이낸스센터(건물명) 주소를 모르실 경우,
+											http://www.juso.go.kr 에서 정확한 주소를 확인하실 수 있습니다.</p>
+										<br />
 
-									<div class="col-md-12">
 										<div class="row">
 											<div class="col-md-2">특별, 광역시/도</div>
 											<div class="col-md-3">
@@ -529,7 +573,7 @@
 										</div>
 										<div class="col-md-1 col-sm-offset-5">
 											<button type="submit" class="btn"
-												onclick="SelectPostFinder_2(3)"
+												onclick="SelectPostFinder_2(3);"
 												style="background-color: black; color: white;">검색</button>
 										</div>
 
@@ -556,17 +600,12 @@
 												
 											</tr> --%>
 								</tbody>
-							</table>
-						</div>
-						<div class="table-responsive offdis">
-							<table class="table table-striped table-bordered">
-								<tbody>
-									<tr>
-										<td colspan="4">조회된 결과가 없습니다.</td>
-									</tr>
+								<tbody id="postnull">
+
 								</tbody>
 							</table>
 						</div>
+
 					</div>
 				</div>
 				<div class="modal-footer">

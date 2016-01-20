@@ -88,14 +88,14 @@
 	<!-- Wrapper for slides 슬라이드쇼 내용 -->
 	<div class="carousel-inner">
 		<div class="item active">
-			<div class="fill"
+			<div class="fill img-responsive"
 				style="background-image: url('/Company/zImage/Company_Main(height_300).jpg');"></div>
 			<div class="carousel-caption" style="color: #BCE8F1;">
 
-				<div class="col-md-5 pull-right">
+				<!-- <div class="col-md-5 pull-right">
 					<iframe width="100%" src="http://player.vimeo.com/video/117455204" ></iframe>
 
-				</div>
+				</div> -->
 				<!-- <div class="row pull-right">
 					<div class="col-sm-12 col-md-offset-1 ">
 						<a href="#" class="btn btn-danger btn-lg" role="button"><span
@@ -111,49 +111,53 @@
 			</div>
 		</div>
 		<div class="item">
-			<div class="fill"
+			<div class="fill img-responsive"
 				style="background-image: url('/CompanyItem/zImage/CompanyItem_Main(height_300).jpg');"></div>
 			<div class="carousel-caption" style="color: #000;">
 
-				<div class="row pull-left">
+<!-- 전체크기는 일괄되게 -->
+				<div class="hidden-xs hidden-sm col-md-8 row pull-left">
 					<h1>Contact Address</h1>
-					<br>
+					<br/>
 					<div class="row text-center">
-						<div class="col-sm-3 col-xs-6 first-box"
+						<div class="col-xs-3 col-sm-3 col-md-3"
 							style="padding: 10px; background: #9C0;">
 							<h1>
 								<span class="glyphicon glyphicon-earphone"></span>
 							</h1>
-							<h3>Phone</h3>
-							<p>+880-1700-987654</p>
-							<br>
+							<h3>Tel</h3>
+							<br/>
+							<p>+82-2-6214-7039</p>
+							<br/>
 						</div>
-						<div class="col-sm-3 col-xs-6 second-box"
+						<div class="col-xs-3 col-sm-3 col-md-3"
 							style="padding: 10px; background: #39F;">
 							<h1>
 								<span class="glyphicon glyphicon-home"></span>
 							</h1>
 							<h3>Location</h3>
-							<p>1036 Gulshan Road</p>
-							<br>
+							<p>607-20, Jayang-dong, Gwangjin-gu, Seoul, Korea</p>
 						</div>
-						<div class="col-sm-3 col-xs-6 third-box"
+						<div class="col-xs-3 col-sm-3 col-md-3"
 							style="padding: 10px; background: #F66;">
 							<h1>
 								<span class="glyphicon glyphicon-send"></span>
-							</h1>
+							</h1>							
 							<h3>E-mail</h3>
-							<p>info@yourdomain.com</p>
-							<br>
+							<br/>
+							<p>ebizpromwav@gmail.com</p>
+							<%--추후 클릭스 Contact 쪽으로 넘기면 좋을듯. --%>
+							<br/>
 						</div>
-						<div class="col-sm-3 col-xs-6 fourth-box"
+						<div class="col-xs-3 col-sm-3 col-md-3"
 							style="padding: 10px; background: #6CC;">
 							<h1>
 								<span class="glyphicon glyphicon-leaf"></span>
 							</h1>
 							<h3>Web</h3>
-							<p>www.yourdomain.com</p>
-							<br>
+							<br/>
+							<p>Mwav.net</p>
+							<br/>
 						</div>
 					</div>
 				</div>
@@ -163,20 +167,20 @@
 			</div>
 		</div>
 		<div class="item">
-			<div class="fill"
+			<div class="fill img-responsive"
 				style="background-image: url('/CustomerService/zImage/CustomerService_Main(height_300).jpg');"></div>
 			<div class="carousel-caption" style="color: #317eac">
 
-				<div class="col-xs-3 pull-right">
+				<!-- <div class="col-xs-3 pull-right">
 					<div class="text">
 						<div class="content-text">
 							<h3 class="lead">Project label</h3>
 							<p>
-								And a little description. <br> and so one
+								And a little description. <br/> and so one
 							</p>
 						</div>
 					</div>
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</div>

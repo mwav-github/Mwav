@@ -7,9 +7,9 @@ import java.util.Map;
 
 import javax.crypto.IllegalBlockSizeException;
 
-import net.common.common.AesTest;
-import net.common.common.Common_Util;
 import net.common.dao.AbstractDAO;
+import net.mwav.common.module.AesEncryption;
+import net.mwav.common.module.Common_Util;
 
 import org.springframework.stereotype.Repository;
 
@@ -41,14 +41,16 @@ public class MemberDAO extends AbstractDAO {
 			String b_mbrLoginPw = (String) map.get("mbrLoginPw");
 			System.out.println("* AES/CBC/IV");
 			System.out.println("b_mbrLoginPw=" + b_mbrLoginPw);
-			System.out.println("    - KEY : " + AesTest.sKey);
-			System.out.println("    - IV : " + AesTest.sInitVector);
+			System.out.println("    - KEY : " + AesEncryption.sKey); // Static 변수
+			System.out.println("    - IV : " + AesEncryption.sInitVector); //Static 변수 
 			System.out.println("    - TEXT : " + b_mbrLoginPw);
 
-			// AES/CBC/IV 암호화
-			encrypted = AesTest.aesEncryptCbc(AesTest.sKey, b_mbrLoginPw,
-					AesTest.sInitVector);
-			String sBase = AesTest.aesEncodeBuf(encrypted);
+			// AES/CBC/IV 암호화 (키,암호화텍스트,iv)
+			encrypted = AesEncryption.aesEncryptCbc(AesEncryption.sKey, b_mbrLoginPw,
+					AesEncryption.sInitVector);
+			
+			//암호화된 값이 String으로 반환
+			String sBase = AesEncryption.aesEncodeBuf(encrypted);
 
 			// String b2_mbrLoginPw = AesTest.toHexString(encrypted);
 			System.out.println("    - TEXT2 : " + sBase);
@@ -57,7 +59,7 @@ public class MemberDAO extends AbstractDAO {
 			if (encrypted == null) {
 				System.out.println("    - Encrypted : ERROR!!!");
 			} else {
-				System.out.println("    - Encrypted : " + sBase);
+				System.out.println("    - Encrypted : " + sBase); //암호화된 String 값
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -110,14 +112,14 @@ public class MemberDAO extends AbstractDAO {
 		String b_mbrLoginPw = (String) map.get("mbrLoginPw");
 		System.out.println("* AES/CBC/IV");
 		System.out.println("b_mbrLoginPw=" + b_mbrLoginPw);
-		System.out.println("    - KEY : " + AesTest.sKey);
-		System.out.println("    - IV : " + AesTest.sInitVector);
+		System.out.println("    - KEY : " + AesEncryption.sKey);
+		System.out.println("    - IV : " + AesEncryption.sInitVector);
 		System.out.println("    - TEXT : " + b_mbrLoginPw);
 
 		// AES/CBC/IV 암호화
-		encrypted = AesTest.aesEncryptCbc(AesTest.sKey, b_mbrLoginPw,
-				AesTest.sInitVector);
-		String sBase = AesTest.aesEncodeBuf(encrypted);
+		encrypted = AesEncryption.aesEncryptCbc(AesEncryption.sKey, b_mbrLoginPw,
+				AesEncryption.sInitVector);
+		String sBase = AesEncryption.aesEncodeBuf(encrypted);
 
 		// String b2_mbrLoginPw = AesTest.toHexString(encrypted);
 		System.out.println("    - TEXT2 : " + sBase);
@@ -216,16 +218,16 @@ public class MemberDAO extends AbstractDAO {
 		String b_mbrLoginPw = (String) map.get("mbrLoginPw");
 		System.out.println("* AES/CBC/IV");
 		System.out.println("b_mbrLoginPw=" + b_mbrLoginPw);
-		System.out.println("    - KEY : " + AesTest.sKey);
-		System.out.println("    - IV : " + AesTest.sInitVector);
+		System.out.println("    - KEY : " + AesEncryption.sKey);
+		System.out.println("    - IV : " + AesEncryption.sInitVector);
 		System.out.println("    - TEXT : " + b_mbrLoginPw);
 
 		// AES/CBC/IV 암호화
-		encrypted = AesTest.aesEncryptCbc(AesTest.sKey, b_mbrLoginPw,
-				AesTest.sInitVector);
+		encrypted = AesEncryption.aesEncryptCbc(AesEncryption.sKey, b_mbrLoginPw,
+				AesEncryption.sInitVector);
 		String sBase = null;
 		try {
-			sBase = AesTest.aesEncodeBuf(encrypted);
+			sBase = AesEncryption.aesEncodeBuf(encrypted);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -328,9 +330,13 @@ public class MemberDAO extends AbstractDAO {
 		String mbrLeaveDt = null;
 		try {
 			Decrypt_mbrLoginPw = (String) memberLogin.get("mbrLoginPw");
-			byte[] b_decrypted = AesTest.aesDecodeBuf(Decrypt_mbrLoginPw);
-			decrypted = AesTest.aesDecryptCbc(AesTest.sKey, b_decrypted,
-					AesTest.sInitVector);
+			
+			//복호화 전 암호화된 값 바이트 배열로 변경
+			byte[] b_decrypted = AesEncryption.aesDecodeBuf(Decrypt_mbrLoginPw);
+			
+			//복호화 메소드 (키, 복호화대상, iv)
+			decrypted = AesEncryption.aesDecryptCbc(AesEncryption.sKey, b_decrypted,
+					AesEncryption.sInitVector);
 			String decrypted1 = null;
 			decrypted1 = new String(decrypted);
 			System.out.println("decrypted1=" + decrypted1);

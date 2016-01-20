@@ -27,9 +27,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import net.common.common.AesTest;
 import net.common.common.CommandMap;
-import net.mwav.mail.*;
+import net.mwav.common.module.*;
 import net.mwav.member.service.MemberService;
 
 @Controller
@@ -40,7 +39,7 @@ public class MemberController {
 	HttpServletRequest request;
 
 	@Autowired
-	SimpleMailMessageTest femailSender;
+	EmailSender emailSender;
 	// HttpServletRequest request = null;
 	// 자바에서 세션사용을 위해서는 아래와 같이 필요
 	// HttpSession session = request.getSession();
@@ -164,7 +163,8 @@ public class MemberController {
 
 		// 위의 view랑 동일하게 사용
 
-		Map<String, Object> updateMbrForm = memberService.updateMbrForm(commandMap.getMap());
+		Map<String, Object> updateMbrForm = memberService
+				.updateMbrForm(commandMap.getMap());
 		if (updateMbrForm != null && !updateMbrForm.isEmpty()) {
 			System.out.println("view 줄랭");
 			mv.addObject("mode", "SmbrUpdate");
@@ -172,6 +172,7 @@ public class MemberController {
 		}
 		return mv;
 	}
+
 	@RequestMapping(value = "/member/mbrUpdatePro.do")
 	public ModelAndView updateMbrformPro(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
@@ -183,11 +184,10 @@ public class MemberController {
 		// 위의 view랑 동일하게 사용
 
 		memberService.updateMbrformPro(commandMap.getMap());
-		
+
 		return mv;
 	}
-	
-	
+
 	// 4번 추후 패스워드 찾기 순서 mbrTempLoginPwUpdate -> mbrTempLoginPwSeek ->
 	// mbrLoginPwUpdate
 	@RequestMapping(value = "/member/mbrLoginPwUpdate.do")
@@ -218,7 +218,7 @@ public class MemberController {
 
 		if (updateMbrTempLoginPw == true) {
 			// 찾았다.
-			femailSender.sendEmailAction(commandMap); // 메일발송
+			emailSender.sendEmailAction(commandMap); // 메일발송
 		} else {
 			// 없다.
 
@@ -315,34 +315,35 @@ public class MemberController {
 		return selectOneMbrTempLoginPwSeek;
 
 	}
-	
-	
-	/*========================================삭제========================================*/
+
+	/*
+	 * ========================================삭제================================
+	 * ========
+	 */
 
 	// 4번 추후
-		@RequestMapping(value = "/member/mbrDelete.do")
-		public ModelAndView deleteMbrDelete(CommandMap commandMap,
-				HttpServletRequest request) throws Exception {
-			ModelAndView mv = new ModelAndView("/Index");
+	@RequestMapping(value = "/member/mbrDelete.do")
+	public ModelAndView deleteMbrDelete(CommandMap commandMap,
+			HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("/Index");
 
-			HttpSession session = request.getSession();
-			int member_id = (int) session.getAttribute("member_id");
-			String mbrLoginId = (String) session.getAttribute("mbrLoginId");
-			System.out.println("member_id=" + member_id);
-			System.out.println("mbrLoginId=" + mbrLoginId);
-			commandMap.put("member_id", member_id);
-			commandMap.put("mbrLoginId", mbrLoginId);
-			boolean deleteMbrDelete = memberService.deleteMbrDelete(commandMap
-					.getMap());
+		HttpSession session = request.getSession();
+		int member_id = (int) session.getAttribute("member_id");
+		String mbrLoginId = (String) session.getAttribute("mbrLoginId");
+		System.out.println("member_id=" + member_id);
+		System.out.println("mbrLoginId=" + mbrLoginId);
+		commandMap.put("member_id", member_id);
+		commandMap.put("mbrLoginId", mbrLoginId);
+		boolean deleteMbrDelete = memberService.deleteMbrDelete(commandMap
+				.getMap());
 
-			mv.addObject("deleteMbrDelete", deleteMbrDelete);
+		mv.addObject("deleteMbrDelete", deleteMbrDelete);
 
-			session.invalidate();
+		session.invalidate();
 
-			return mv;
-		}
-	
-	
+		return mv;
+	}
+
 	// 8번 추후
 	@RequestMapping(value = "/PostSeek/zcGunGuSeek.do")
 	public @ResponseBody List<String> selectListZcGunGuSeek(
@@ -351,7 +352,8 @@ public class MemberController {
 
 		String zcSiDoName = request.getParameter("zcSiDoName");
 		System.out.println("zcSiDoName" + zcSiDoName);
-		List<String> selectListZcGunGuSeek = memberService.selectListZcGunGuSeek(zcSiDoName);
+		List<String> selectListZcGunGuSeek = memberService
+				.selectListZcGunGuSeek(zcSiDoName);
 
 		return selectListZcGunGuSeek;
 	}
@@ -379,10 +381,10 @@ public class MemberController {
 		Iterator<Entry<String, Object>> iterator = commandMap.getMap()
 				.entrySet().iterator();
 		Entry<String, Object> entry = null;
-		
-		//String post_mode = (String) commandMap.get("post_mode");
-		//System.out.println("post_mode_controller "+post_mode);
-		
+
+		// String post_mode = (String) commandMap.get("post_mode");
+		// System.out.println("post_mode_controller "+post_mode);
+
 		while (iterator.hasNext()) {
 			entry = iterator.next();
 			log.debug("key : " + entry.getKey() + ",\tvalue : "
@@ -391,8 +393,11 @@ public class MemberController {
 					+ entry.getValue());
 		}
 
-		List<Map<String, Object>> selectListZcAll = memberService
-				.selectListZcAll(commandMap.getMap());
+		List<Map<String, Object>> selectListZcAll = null;
+
+		selectListZcAll = memberService.selectListZcAll(commandMap.getMap());
+
+		System.out.println("selectListZcAll_1" + selectListZcAll);
 
 		// Service에서 리턴된 값을 받는 부분. 주로 DB처리 후의 값을
 		// Service단(jsonControllerService.selectDashboardList)에서 해줌
@@ -410,6 +415,13 @@ public class MemberController {
 		// String postMode = "자료있음";
 		// request.setAttribute("mode", postMode);
 		// request.setAttribute("data", selectpostList);
+
+		// 자바스크립트에서 [] 로 가니까 자바딴에서 list가 null 이면 null로 변환
+		if (selectListZcAll.isEmpty()) {
+			selectListZcAll = null;
+			System.out.println("selectListZcAll_2" + selectListZcAll);
+		}
+
 		return selectListZcAll;
 	}
 

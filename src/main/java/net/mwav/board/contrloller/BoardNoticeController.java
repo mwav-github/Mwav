@@ -10,10 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import net.common.common.CommandMap;
-import net.common.common.Common_Util;
-import net.common.common.Paging;
-import net.common.common.PagingVO;
 import net.mwav.board.service.BoardNoticeServiceImpl;
+import net.mwav.common.module.Common_Util;
+import net.mwav.common.module.Paging;
+import net.mwav.common.module.PagingVO;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;

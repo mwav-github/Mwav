@@ -1,4 +1,4 @@
-package net.common.common;
+package net.mwav.common.module;
 
 public class PagingVO {
 

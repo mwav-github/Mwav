@@ -86,30 +86,31 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 
 							</a>
 					</div> -->
+					<div class="col-lg-12">
 					<a href="#Web / Ad Agency">
 						<button type="button"
-							class="btn btn-info btn-sm col-lg-6 col-md-6 col-sm-6 col-xs-6">
-							<h1>Web / Ad Agency</h1>
+							class="btn btn-info btn-sm col-lg-6 col-md-6 col-sm-6 col-xs-12">
+							<h3>Web / Ad Agency</h3>
 						</button>
 					</a> <a href="#IT Solutions Provider">
 						<button type="button"
-							class="btn btn-warning btn-sm col-lg-6 col-md-6 col-sm-6 col-xs-6">
-							<h1>IT Solutions Provider</h1>
+							class="btn btn-warning btn-sm col-lg-6 col-md-6 col-sm-6 col-xs-12">
+							<h3>IT Solutions Provider</h3>
 						</button>
 					</a> <a href="#IT Edu. / Consulting">
 						<button type="button"
-							class="btn btn-primary btn-sm col-lg-6 col-md-6 col-sm-6 col-xs-6">
-							<h1>IT Edu. / Consulting</h1>
+							class="btn btn-primary btn-sm col-lg-6 col-md-6 col-sm-6 col-xs-12">
+							<h3>IT Edu. / Consulting</h3>
 						</button>
 					</a> <a href="#E-Commerce Services">
 						<button type="button"
-							class="btn btn-danger btn-sm col-lg-6 col-md-6 col-sm-6 col-xs-6">
-							<h1>E-Commerce Services</h1>
+							class="btn btn-danger btn-sm col-lg-6 col-md-6 col-sm-6 col-xs-12">
+							<h3>E-Commerce Services</h3>
 						</button>
 					</a>
+					</div>
 
-
-					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-6">
+					<div class="col-md-12 mgt1_8">
 						<br>
 						<p>
 							<i class="fa fa-chevron-right"></i> Provides 4 business models

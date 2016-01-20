@@ -26,11 +26,10 @@
 	<script type="text/javascript">
 		alert('탈퇴한 회원입니다.');
 		msg = '재 가입하시겠습니까.?'
-		if (confirm(msg)!=0) {
+		if (confirm(msg) != 0) {
 			location.replace("/MasterPage_1.jsp?mode=Default"); // 이전 url 기록안하는 경우 , location.href 의 경우 이전기록이 남아 login.do로 포워딩
-		}
-		else{
-		history.go(-1)
+		} else {
+			history.go(-1)
 		}
 	</script>
 </c:if>
@@ -80,70 +79,81 @@
 		<!-- Marketing Icons Section -->
 		<div class="row" id="IT_Solutions">
 			<!-- Fluid row 1행 -->
-			<div class="col-lg-12">
-				<!-- 제목 부분 12개의 열 lg >=1200px  -->
-				<!-- 소제목 lg >=1200px -->
-				<h2 class="col-lg-9 col-md-9 col-sm-9 page-header" style="color:#317eac">IT Solutions</h2>
-				<h2 class="col-lg-3 col-md-3 col-sm-3 page-header" style="color:#317eac">Notices &
-					News</h2>
-			</div>
-			<div class="col-md-4 col-sm-4">
-				<!--md >= 992 4/12 -->
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h4>
-							<i class="fa fa-fw fa-check"></i> WebSite Building
-						</h4>
+
+			<div class="col-xs-12 col-sm-12 col-md-8">
+				<div class="col-lg-12">
+
+					<h2 class="col-md-12 page-header" style="color: #317eac">IT
+						Solutions</h2>
+				</div>
+
+				<div class="col-xs-12 col-sm-6  col-md-6">
+					<!--md >= 992 4/12 -->
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4>
+								<i class="fa fa-fw fa-check"></i> WebSite Building
+							</h4>
+						</div>
+						<div class="panel-body">
+							<p>In general parlance, bootstrapping usually refers to the
+								starting of a self-sustaining process that is supposed to
+								proceed without external input. In computer technology the term
+								(usually shortened to booting) usually refers to the process of
+								loading the basic software into the memory of a computer after
+								power-on or general reset, especially the operating system which
+								will then take care of loading other software as needed. The
+								term appears to have originated in the early 19th century United
+								States (particularly in the phrase "pull oneself over a fence by
+								one's bootstraps"), to mean an absurdly impossible action, an
+								adynaton.</p>
+							<a href="CompanyItem/IT Solutions/IT Solutions.jsp"
+								class="btn btn-info btn-sm btn-block">Learn More</a>
+						</div>
 					</div>
-					<div class="panel-body">
-						<p>In general parlance, bootstrapping usually refers to the
-							starting of a self-sustaining process that is supposed to proceed
-							without external input. In computer technology the term (usually
-							shortened to booting) usually refers to the process of loading
-							the basic software into the memory of a computer after power-on
-							or general reset, especially the operating system which will then
-							take care of loading other software as needed. The term appears
-							to have originated in the early 19th century United States
-							(particularly in the phrase "pull oneself over a fence by one's
-							bootstraps"), to mean an absurdly impossible action, an adynaton.</p>
-						<a href="CompanyItem/IT Solutions/IT Solutions.jsp"
-							class="btn btn-info">Learn More</a>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-6">
+					<!-- 8/12 -->
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4>
+								<i class="fa fa-fw fa-gift"></i> OpenSRS
+							</h4>
+						</div>
+						<div class="panel-body">
+							<p>jQuery is a cross-platform JavaScript library designed to
+								simplify the client-side scripting of HTML. Used by over 60% of
+								the 10,000 most visited websites, jQuery is the most popular
+								JavaScript library in use today. jQuery is free, open-source
+								software licensed under the MIT License.</p>
+							<a href="CompanyItem/IT Solutions/IT Solutions.jsp"
+								class="btn btn-info btn-sm btn-block">Learn More</a>
+						</div>
 					</div>
 				</div>
 			</div>
-			<div class="col-md-4 col-sm-4">
-				<!-- 8/12 -->
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h4>
-							<i class="fa fa-fw fa-gift"></i> OpenSRS
-						</h4>
-					</div>
-					<div class="panel-body">
-						<p>jQuery is a cross-platform JavaScript library designed to
-							simplify the client-side scripting of HTML. Used by over 60% of
-							the 10,000 most visited websites, jQuery is the most popular
-							JavaScript library in use today. jQuery is free, open-source
-							software licensed under the MIT License.</p>
-						<a href="CompanyItem/IT Solutions/IT Solutions.jsp"
-							class="btn btn-info">Learn More</a>
-					</div>
+			<%-- 추가시 테블릿에서 공지, 뉴스 반반씩으로 변경 예정 --%>
+			<div class="col-xs-12 col-sm-12 col-md-4">
+				<div class="col-lg-12">
+
+					<h2 class="col-md-12 page-header" style="color: #317eac">Notices
+						& News</h2>
 				</div>
-			</div>
-			<div class="col-md-4 col-sm-4">
-				<div class="bs-component">
-					<!-- 이클립스 해제 희망시 
+				<div class="col-xs-12 col-sm-12 col-md-12">
+					<div class="bs-component">
+						<!-- 이클립스 해제 희망시 
 				     1. http://ifone420.tistory.com/107
 				     
 				     추가적으로 
 				     
 				     localhost:8080/CWS 이부분은 server.xml 에서 지정한다.
 				-->
-					<jsp:include page="/board/bnsFrontList.do" flush="false" />
+						<jsp:include page="/board/bnsFrontList.do" flush="false" />
 
-					<%--notice/news 순으로 5개씩 삽입 예정
+						<%--notice/news 순으로 5개씩 삽입 예정
 						    만약에 공간 및 제약시 추후 tab 형태 고려 
 						  --%>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -159,12 +169,12 @@
 			<!-- 2행 -->
 			<div class="col-lg-12">
 				<!-- 소제목 lg >=1200px -->
-				<h2 class="page-header" style="color:#317eac">IT Products</h2>
+				<h2 class="page-header" style="color: #317eac">IT Products</h2>
 			</div>
 
 			<div class="col-lg-12">
 				<%--1행 --%>
-				<div class="col-md-4 col-sm-6">
+				<div class="col-xs-12 col-sm-6 col-md-4">
 					<!-- md >= 992 / sm >=768  2행에서 1-->
 					<a href="/CompanyItem/IT Products/OpenSRS/OpenSRS.jsp"> <img
 						class="img-responsive img-portfolio img-hover"
@@ -172,14 +182,14 @@
 					</a>
 					<%--<p>Contents :</p> --%>
 				</div>
-				<div class="col-md-4 col-sm-6">
+				<div class="col-xs-12 col-sm-6 col-md-4">
 					<a href="/CompanyItem/IT Products/Windows/Windows.jsp"> <img
 						class="img-responsive img-portfolio img-hover"
 						src="/CompanyItem/IT Products/Images/windows10(h250).jpg" alt="">
 					</a>
 					<%--<p>Contents :</p> --%>
 				</div>
-				<div class="col-md-4 col-sm-6">
+				<div class="col-xs-12 col-sm-6 col-md-4">
 					<a href="/CompanyItem/IT Products/Azure/Azure.jsp"> <img
 						class="img-responsive img-portfolio img-hover"
 						src="/CompanyItem/IT Products/Images/ms_azure(h250).png" alt="">
@@ -190,7 +200,7 @@
 
 			<div class="col-lg-12">
 				<%--2행 --%>
-				<div class="col-md-4 col-sm-6">
+				<div class="col-xs-12 col-sm-6 col-md-4">
 					<!-- md >= 992 / sm >=768  2행에서 1-->
 					<a href="/CompanyItem/IT Products/Aervision/Aervision.jsp"> <img
 						class="img-responsive img-portfolio img-hover"
@@ -198,14 +208,14 @@
 					</a>
 					<%--<p>Contents :</p> --%>
 				</div>
-				<div class="col-md-4 col-sm-6">
+				<div class="col-xs-12 col-sm-6 col-md-4">
 					<a href="/CompanyItem/IT Products/IT Products.jsp"> <img
 						class="img-responsive img-portfolio img-hover"
 						src="/CompanyItem/IT Products/Images/tucows(h250).jpg" alt="">
 					</a>
 					<%--<p>Contents :</p> --%>
 				</div>
-				<div class="col-md-4 col-sm-6">
+				<div class="col-xs-12 col-sm-6 col-md-4">
 					<a href="/CompanyItem/IT Products/IT Products.jsp"> <img
 						class="img-responsive img-portfolio img-hover"
 						src="/CompanyItem/IT Products/Images/MsOffice(h250).jpg" alt="">
@@ -240,12 +250,24 @@
 		<!-- /.row -->
 		<div class="enter"></div>
 		<!-- Features Section -->
+
+		<%--http://nayap122582.dothome.co.kr/bootstrap/scaffolding.html 
+		html 순서와 보여지는 순서의 차등 부여
+		 --%>
 		<div class="row" id="WebSite Building">
 			<!-- 3행 -->
 			<div class="col-lg-12">
-				<h2 class="page-header" style="color:#317eac">Website Building</h2>
+				<h2 class="page-header" style="color: #317eac">Website Building</h2>
 			</div>
-			<div class="col-md-6 mgt5">
+
+			<!-- 580x357 -->
+			<div class="col-xs-12 col-md-6 col-md-push-6">
+				<img class="img-responsive"
+					src="/CompanyItem/WebSite Building/Images/WebSiteBuilding.jpg"
+					alt="">
+			</div>
+
+			<div class="col-xs-12 col-md-6 col-md-pull-6 mgt5">
 				<p>
 					<strong>Technologies :</strong>
 				</p>
@@ -268,12 +290,6 @@
 					href="/CompanyItem/WebSite Building/WebSite Building.jsp">WebSite
 					Building</a>
 			</div>
-			<!-- 580x357 -->
-			<div class="col-md-6">
-				<img class="img-responsive"
-					src="/CompanyItem/WebSite Building/Images/WebSiteBuilding.jpg"
-					alt="">
-			</div>
 		</div>
 		<!-- /.row -->
 
@@ -285,7 +301,7 @@
 		 -->
 		<div class="row" id="IT Consulting">
 			<div class="col-lg-12">
-				<h2 class="page-header" style="color:#317eac">IT Consulting</h2>
+				<h2 class="page-header" style="color: #317eac">IT Consulting</h2>
 			</div>
 			<!-- 4행 -->
 
@@ -312,10 +328,18 @@
 		<!-- Call to Action Section -->
 		<div class="row" id="Digital Marketing">
 			<div class="col-lg-12">
-				<h2 class="page-header" style="color:#317eac">Digital Marketing</h2>
+				<h2 class="page-header" style="color: #317eac">Digital
+					Marketing</h2>
 			</div>
 			<!-- 4행 -->
-			<div class="col-md-6 mgt5">
+
+			<div class="col-xs-12 col-md-6 col-md-push-6">
+				<img class="img-responsive"
+					src="/CompanyItem/Digital Marketing/Images/DigitalMarketing.jpg"
+					alt="">
+			</div>
+
+			<div class="col-xs-12 col-md-6 col-md-pull-6 mgt5">
 				<p>Mwav는 디지털 마케팅과 관련된 모든 분야(SNS, Portals ...)를 지원하며, 많은 고객과의 수행
 					경험을 통해 습득한 통합 마케팅에 관한 남다른 노하우를 바탕으로 디지털 마케팅에 대한 통합적인 마케팅 전략을 수립하고
 					실행하고 있습니다.</p>
@@ -326,15 +350,12 @@
 					href="/CompanyItem/Digital Marketing/Digital Marketing.jsp">Digital
 					Marketing</a>
 			</div>
-			<div class="col-md-6">
-				<img class="img-responsive"
-					src="/CompanyItem/Digital Marketing/Images/DigitalMarketing.jpg"
-					alt="">
-			</div>
 		</div>
 		<!-- </div> -->
 		<!-- /.container -->
 	</div>
+
+	<div class="enter"></div>
 
 	<!-- Footer -->
 	<footer>

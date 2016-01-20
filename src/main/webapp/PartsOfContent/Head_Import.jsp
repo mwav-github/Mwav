@@ -1,17 +1,20 @@
-
+<%@ page contentType = "text/html;charset=utf-8" %>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
 <link rel="icon"  href="/Images/CompanyLogos/CompanyLogo.ico" />
-<title>Mwav</title>
+<title>Mwav에 오신것을 환영합니다.</title>
+
+<%--인코딩 설정 --%>
+
 <!-- Custom font-awesome -->
 <!-- <link href="/resources/JsFramework/Bootstrap/font-awesome.min.css"
 	rel="stylesheet"> -->
 <link rel="stylesheet"
 	href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-<%--중요 부트스트랩보다 위에 위치해야 한다. --%>
+<%--ì¤ì ë¶í¸ì¤í¸ë©ë³´ë¤ ìì ìì¹í´ì¼ íë¤. --%>
 
 <!-- Bootstrap Core CSS -->
 <!-- <link href="/resources/JsFramework/Bootstrap/bootstrap.min.css" rel="stylesheet">
@@ -24,15 +27,15 @@
 <link href="/resources/CommonLibrary/CSS/modern-business.css"
 	rel="stylesheet">
 
-<!-- ë´ê° ì ìíë ì¤íì¼ -->
+<!-- Ã«ÂÂ´ÃªÂ°Â Ã¬Â ÂÃ¬ÂÂÃ­ÂÂÃ«ÂÂ Ã¬ÂÂ¤Ã­ÂÂÃ¬ÂÂ¼ -->
 <link href="/resources/CommonLibrary/CSS/mwav_style.css"
 	rel="stylesheet">
 
-<!-- ë´ê° ì ìíë ì¤íì¼ -->
+<!-- Ã«ÂÂ´ÃªÂ°Â Ã¬Â ÂÃ¬ÂÂÃ­ÂÂÃ«ÂÂ Ã¬ÂÂ¤Ã­ÂÂÃ¬ÂÂ¼ -->
 <link href="/resources/CommonLibrary/CSS/myStyle.css" rel="stylesheet">
 
 
-<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries  ê°ê° ë¤ë¥¸ ì¥, ë¨ì  (ìë ëê°)-->
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries  ÃªÂ°ÂÃªÂ°Â Ã«ÂÂ¤Ã«Â¥Â¸ Ã¬ÂÂ¥, Ã«ÂÂ¨Ã¬Â Â (Ã¬ÂÂÃ«ÂÂ Ã«ÂÂÃªÂ°Â)-->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -58,7 +61,7 @@
 	});
 </script>
 <script>
-	/*추후 빼기*/
+	/*ì¶í ë¹¼ê¸°*/
 	$(document).ready(function() {
 		$('#back-to-top').fadeOut();
 		$(window).scroll(function() {
