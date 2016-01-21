@@ -88,8 +88,8 @@
 	<!-- Wrapper for slides 슬라이드쇼 내용 -->
 	<div class="carousel-inner">
 		<div class="item active">
-			<div class="fill img-responsive"
-				style="background-image: url('/Company/zImage/Company_Main(height_300).jpg');"></div>
+			<div class="fill img-responsive company_slideImg_600"
+				style="background-image: url('/Company/zImage/keyboard-428326_1920.jpg');"></div>
 			<div class="carousel-caption" style="color: #BCE8F1;">
 
 				<!-- <div class="col-md-5 pull-right">
@@ -111,14 +111,24 @@
 			</div>
 		</div>
 		<div class="item">
-			<div class="fill img-responsive"
-				style="background-image: url('/CompanyItem/zImage/CompanyItem_Main(height_300).jpg');"></div>
+			<div class="fill img-responsive companyItem_slideImg_600"
+				style="background-image: url('/CompanyItem/zImage/businessmen-1039905_1920.jpg');"></div>
 			<div class="carousel-caption" style="color: #000;">
 
-<!-- 전체크기는 일괄되게 -->
-				<div class="hidden-xs hidden-sm col-md-8 row pull-left">
+
+				<!-- <h2>Company Item</h2> -->
+				<!-- <a href="/CompanyItem/IT%20Solutions/Aervision/Aervision.jsp"
+					class="btn btn-info btn-lg">Learn More</a> -->
+			</div>
+		</div>
+		<div class="item">
+			<div class="fill img-responsive customer_slideImg_600"
+				style="background-image: url('/CustomerService/zImage/pretty-351884_1920.jpg');"></div>
+			<%-- <div class="carousel-caption" style="color: rgba(138, 109, 59, 0.14)">
+				<!-- 전체크기는 일괄되게 -->
+				<div class="hidden-xs hidden-sm col-md-8 row pull-right">
 					<h1>Contact Address</h1>
-					<br/>
+					<br />
 					<div class="row text-center">
 						<div class="col-xs-3 col-sm-3 col-md-3"
 							style="padding: 10px; background: #9C0;">
@@ -126,9 +136,9 @@
 								<span class="glyphicon glyphicon-earphone"></span>
 							</h1>
 							<h3>Tel</h3>
-							<br/>
+							<br />
 							<p>+82-2-6214-7039</p>
-							<br/>
+							<br />
 						</div>
 						<div class="col-xs-3 col-sm-3 col-md-3"
 							style="padding: 10px; background: #39F;">
@@ -138,18 +148,18 @@
 							<h3>Location</h3>
 							<p>607-20, Jayang-dong, Gwangjin-gu, Seoul, Korea</p>
 							<br>
-							
+
 						</div>
 						<div class="col-xs-3 col-sm-3 col-md-3"
 							style="padding: 10px; background: #F66;">
 							<h1>
 								<span class="glyphicon glyphicon-send"></span>
-							</h1>							
+							</h1>
 							<h3>E-mail</h3>
-							<br/>
+							<br />
 							<p>ebizpromwav@gmail.com</p>
-							<%--추후 클릭스 Contact 쪽으로 넘기면 좋을듯. --%>
-							<br/>
+							추후 클릭스 Contact 쪽으로 넘기면 좋을듯.
+							<br />
 						</div>
 						<div class="col-xs-3 col-sm-3 col-md-3"
 							style="padding: 10px; background: #6CC;">
@@ -157,22 +167,12 @@
 								<span class="glyphicon glyphicon-leaf"></span>
 							</h1>
 							<h3>Web</h3>
-							<br/>
+							<br />
 							<p>Mwav.net</p>
-							<br/>
+							<br />
 						</div>
 					</div>
 				</div>
-				<!-- <h2>Company Item</h2> -->
-				<!-- <a href="/CompanyItem/IT%20Solutions/Aervision/Aervision.jsp"
-					class="btn btn-info btn-lg">Learn More</a> -->
-			</div>
-		</div>
-		<div class="item">
-			<div class="fill img-responsive"
-				style="background-image: url('/CustomerService/zImage/CustomerService_Main(height_300).jpg');"></div>
-			<div class="carousel-caption" style="color: #317eac">
-
 				<!-- <div class="col-xs-3 pull-right">
 					<div class="text">
 						<div class="content-text">
@@ -183,7 +183,7 @@
 						</div>
 					</div>
 				</div> -->
-			</div>
+			</div> --%>
 		</div>
 	</div>
 

@@ -1,6 +1,33 @@
 @charset "utf-8";
 /* CSS Document */
 
+
+
+
+
+
+
+/*
+ * slideshow images
+ * 
+ */
+
+
+@media screen and (max-width:600px) {
+	.company_slideImg_600 {
+	background-image: url("/Company/zImage/learn-977543_1280.jpg") !important;
+	}
+	.customer_slideImg_600 {
+	background-image: url("/CustomerService/zImage/hand-851207_1920.jpg") !important;
+	}
+	.companyItem_slideImg_600 {
+	background-image: url("/CompanyItem/zImage/business-561388_1920.jpg") !important;
+	}
+}
+
+
+
+
 /* Font Responsive */
 
 /* responsive text queries */
