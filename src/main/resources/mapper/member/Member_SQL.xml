@@ -78,27 +78,68 @@
 	
 	<select id="selectListZcGunGuSeek" parameterType="String" resultType="String">
 		<![CDATA[
-		select distinct(zcSiGunGuName) from ZipCode_tbl where zcSiDoName = #{zcSiDoName}
+		select distinct(zcSiGunGuName) from ZipCodeGunGuSeek_tbl where zcSiDoName = #{zcSiDoName}
 		]]>
 	</select>
 	
 	<select id="post_zcRoadName" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-		select * from ZipCode_tbl where zcSiDoName = #{zcSiDoName} and zcSiGunGuName = #{zcSiGunGuName} and zcRoadName = #{zcRoadName} and zcBuildingMainNo = #{zcBuildingMainNo}
+		SELECT ZipCode_tbl.zcSiDoName,
+       ZipCode_tbl.zcSiGunGuName,
+       ZipCode_tbl.zcLegalEupMyeonDongName,
+       ZipCode_tbl.zcLegalRiName,
+       ZipCode_tbl.zcJiBunMain,
+       ZipCode_tbl.zcJiBunSub,
+       ZipCode_tbl.zcRoadName,
+       ZipCode_tbl.zcBuildingMainNo,
+       ZipCode_tbl.zcBuildingSubNo,
+       ZipCode_tbl.zcBuildingMgrNo,
+       ZipCode_tbl.zcZipCode
+  FROM mwav.zipcode_tbl zipcode_tbl
+ WHERE ZipCode_tbl.zcSiDoName = #{zcSiDoName} and ZipCode_tbl.zcSiGunGuName = #{zcSiGunGuName} and ZipCode_tbl.zcRoadName = #{zcRoadName} and ZipCode_tbl.zcBuildingMainNo = #{zcBuildingMainNo}
 		]]>
 	</select>
+	<!-- select * from ZipCode_tbl where zcSiDoName = #{zcSiDoName} and zcSiGunGuName = #{zcSiGunGuName} and zcRoadName = #{zcRoadName} and zcBuildingMainNo = #{zcBuildingMainNo}-->
 	
 	<select id="post_zcLegalEupMyeonDongName" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-		select * from ZipCode_tbl where zcSiDoName = #{zcSiDoName} and zcSiGunGuName = #{zcSiGunGuName} and zcLegalEupMyeonDongName = #{zcLegalEupMyeonDongName} and zcJiBunMain = #{zcJiBunMain}
+		
+		SELECT ZipCode_tbl.zcSiDoName,
+       ZipCode_tbl.zcSiGunGuName,
+       ZipCode_tbl.zcLegalEupMyeonDongName,
+       ZipCode_tbl.zcLegalRiName,
+       ZipCode_tbl.zcJiBunMain,
+       ZipCode_tbl.zcJiBunSub,
+       ZipCode_tbl.zcRoadName,
+       ZipCode_tbl.zcBuildingMainNo,
+       ZipCode_tbl.zcBuildingSubNo,
+       ZipCode_tbl.zcBuildingMgrNo,
+       ZipCode_tbl.zcZipCode
+  FROM mwav.zipcode_tbl zipcode_tbl
+ WHERE ZipCode_tbl.zcSiDoName = #{zcSiDoName} and ZipCode_tbl.zcSiGunGuName = #{zcSiGunGuName} and ZipCode_tbl.zcLegalEupMyeonDongName = #{zcLegalEupMyeonDongName} and ZipCode_tbl.zcJiBunMain = #{zcJiBunMain}
+		
 		]]>
 	</select>
-		
+	<!-- select * from ZipCode_tbl where zcSiDoName = #{zcSiDoName} and zcSiGunGuName = #{zcSiGunGuName} and zcLegalEupMyeonDongName = #{zcLegalEupMyeonDongName} and zcJiBunMain = #{zcJiBunMain}-->	
 	<select id="post_zcBuildingBook" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-		select * from ZipCode_tbl where zcSiDoName = #{zcSiDoName} and zcSiGunGuName = #{zcSiGunGuName} and zcBuildingBook = #{zcBuildingBook} 
+			SELECT ZipCode_tbl.zcSiDoName,
+       ZipCode_tbl.zcSiGunGuName,
+       ZipCode_tbl.zcLegalEupMyeonDongName,
+       ZipCode_tbl.zcLegalRiName,
+       ZipCode_tbl.zcJiBunMain,
+       ZipCode_tbl.zcJiBunSub,
+       ZipCode_tbl.zcRoadName,
+       ZipCode_tbl.zcBuildingMainNo,
+       ZipCode_tbl.zcBuildingSubNo,
+       ZipCode_tbl.zcBuildingMgrNo,
+       ZipCode_tbl.zcZipCode
+  FROM mwav.zipcode_tbl zipcode_tbl
+ WHERE ZipCode_tbl.zcSiDoName = #{zcSiDoName} and ZipCode_tbl.zcSiGunGuName = #{zcSiGunGuName} and ZipCode_tbl.zcBuildingBook = #{zcBuildingBook} 
+
 		]]>
 	</select>
+	<!--select * from ZipCode_tbl where zcSiDoName = #{zcSiDoName} and zcSiGunGuName = #{zcSiGunGuName} and zcBuildingBook = #{zcBuildingBook} -->
 	
     <!--
 select * from postcodebuildinfo_tbl where 시도명 = '강원도' and 시군구명 = '춘천시' and 법정읍면동명 = '봉의동' and 지번본번 = '1'

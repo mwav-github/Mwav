@@ -2,6 +2,7 @@ package net.mwav.member.dao;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -263,7 +264,7 @@ public class MemberDAO extends AbstractDAO {
 				zcSiDoName);
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "null" })
 	public List<Map<String, Object>> selectListZcAll(Map<String, Object> map) {
 		// TODO Auto-generated method stub
 
@@ -296,7 +297,11 @@ public class MemberDAO extends AbstractDAO {
 		
 		String post_mode = null;
 		post_mode = (String) map.get("post_mode");
+	/*	map = new HashMap<String, Object>();
+		map.put("post_mode", post_mode);
 		System.out.println("post_mode"+post_mode);
+		selectListZcAll.add(map);
+	*/	
 		if (post_mode.equals("post_zcRoadName")) {
 			selectListZcAll = selectList("member.post_zcRoadName", map);
 		}
@@ -306,6 +311,7 @@ public class MemberDAO extends AbstractDAO {
 		else if (post_mode.equals("post_post_zcBuildingBook")){
 			selectListZcAll = selectList("member.post_zcBuildingBook", map);
 		}
+		
 		return selectListZcAll;
 	}
 

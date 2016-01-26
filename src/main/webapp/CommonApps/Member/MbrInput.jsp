@@ -250,7 +250,7 @@ http://planbong.tistory.com/531
 					<label class='control-label col-md-2 col-md-offset-2' for='id_pets'>Address</label>
 					<p class="col-md-2 col-md-offset-4">
 						<button class="btn btn-primary btn-block" type="button"
-							 data-toggle="modal" data-target=".modal_post">주소찾기</button>
+							 data-toggle="modal" data-target=".modal_post" onclick="showhide();">주소찾기</button>
 
 					</p>
 					<!-- <div class='col-md-8'>
@@ -260,8 +260,8 @@ http://planbong.tistory.com/531
 					</div> -->
 				</div>
 				<div class='form-group'>
-					<label class='control-label col-md-2 col-md-offset-2' for='id_pets'></label>
-					<div class='col-md-5'>
+					<label class='control-label col-md-2 col-md-offset-2'></label>
+					<div class='col-md-3'>
 						<input class='form-control' name="mbrZipcode" id='mbrZipcode'
 							type='text' placeholder='우편번호' disabled>
 					</div>
@@ -275,10 +275,18 @@ http://planbong.tistory.com/531
 				</div>
 
 				<div class='form-group'>
-					<label class='control-label col-md-2 col-md-offset-2' for='id_pets'></label>
+					<label class='control-label col-md-2 col-md-offset-2'></label>
 					<div class='col-md-6'>
-						<input class='form-control' name="mbrAddress" id='mbrAddress'
+						<input class='form-control' name="mbrAddress_1" id='mbrAddress'
 							placeholder='주소' type='text' disabled>
+					</div>
+				</div>
+				
+				<div class='form-group'>
+					<label class='control-label col-md-2 col-md-offset-2'></label>
+					<div class='col-md-6'>
+						<input class='form-control' name="mbrAddress_2" id='mbrAddress'
+							placeholder='나머지 주소' type='text'>
 					</div>
 				</div>
 

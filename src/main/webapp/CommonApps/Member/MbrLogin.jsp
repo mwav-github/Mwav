@@ -11,23 +11,37 @@
 <%--padding 으로 안쪽 추후 딴건 변경가능 #04A3ED --%>
 <div class="col-md-12"
 	style="padding: 60px; box-shadow: 0 0 20px 3px #04A3ED; background: #f7f7f7;">
-	<form name="login_form" action="/member/Login.do"
-		 method="post">
-<!-- 
+	<form name="login_form" action="/member/Login.do" method="post">
+		<!-- 
 	<form name="login_form" action="/member/Login.do"
 		onsubmit="return check(document.login_form)" method="post"> -->
-		<!-- <div class="form-group">
-			<div class="col-md-4 col-sm-12">
-				<button type="button" class="btn btn-primary btn-block">Facebook</button>
-			</div>
-			<div class="col-md-4 col-sm-12">
-				<button type="button" class="btn btn-info btn-block">Twitter</button>
-			</div>
-			<div class="col-md-4 col-sm-12">
-				<button type="button" class="btn btn-danger btn-block">Google+</button>
-			</div>
-		</div> -->
+		<div class="form-group">
+			<div class="col-xs-6 col-sm-6 col-md-2">
+				<button type="button" class="btn btn-primary btn-block ">
+					<i class="fa fa-facebook"></i>
+				</button>
 
+			</div>
+			<div class="col-xs-6 col-sm-6 col-md-2">
+				<button type="button" class="btn btn-info btn-block">
+					<i class="fa fa-twitter"></i>
+				</button>
+
+			</div>
+			<div class="col-xs-6 col-sm-6 col-md-2">
+				<button type="button" class="btn btn-danger btn-block ">
+					<i class="fa fa-google-plus"></i>
+				</button>
+			</div>
+			<div class="col-xs-6 col-sm-6 col-md-2">
+				<button type="button" class="btn btn-primary btn-block ">
+					<i class="fa fa-linkedin"></i>
+				</button>
+			</div>
+		</div>
+
+		<div class="enter"></div>
+		<div class="enter"></div>
 
 		<div class="form-group">
 			<input type="text" name="mbrLoginId" class="form-control input-lg"
@@ -53,7 +67,8 @@
 
 			<jsp:include page="/CommonApps/IDSeek/IDSeek.jsp" flush="false" />
 			<span class="pull-left"><a
-				href="/MasterPage_1.jsp?mode=Default"><strong>Sign up now</strong></a></span>
+				href="/MasterPage_1.jsp?mode=Default"><strong>Sign up
+						now</strong></a></span>
 		</div>
 	</form>
 </div>

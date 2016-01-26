@@ -13,7 +13,7 @@
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
 				<%--border 칼라 테두리는 style=border || 안의 icon-bar로 구성 --%>
-
+<%--768px 이하부터 변형 --%>
 				<button type="button" class="navbar-toggle collapsed"
 					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
 					style="border: 2px solid white">

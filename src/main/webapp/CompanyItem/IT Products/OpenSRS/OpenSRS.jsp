@@ -67,12 +67,10 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 						data-placement="top" data-original-title="OpenSRS">OpenSRS</a> <a
 						href="/CompanyItem/IT Products/Azure/Azure.jsp"
 						class="list-group-item " data-toggle="tooltip"
-						data-placement="top" data-original-title="Azure">Azure</a>
-						<a
+						data-placement="top" data-original-title="Azure">Azure</a> <a
 						href="/CompanyItem/IT Products/Windows/Windows.jsp"
-						class="list-group-item" data-toggle="tooltip"
-						data-placement="top" data-original-title="Windows">Windows</a>
-						<a
+						class="list-group-item" data-toggle="tooltip" data-placement="top"
+						data-original-title="Windows">Windows</a> <a
 						href="/CompanyItem/IT Products/MSOffice/MSOffice.jsp"
 						class="list-group-item" data-toggle="tooltip" data-placement="top"
 						data-original-title="OpenSRS">MSOffice</a>
@@ -88,20 +86,20 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 						<h1 class="text-center">What Is AerPass™?</h1>
 					</div>
 					<br> -->
-
-					<div class="text-center">
+					<div class="col-md-12 text-center">
 						<h1 style="color: #f37d27;">SSL Certificates</h1>
 						<hr>
 					</div>
 
-					<div class="col-md-2">
+					<div
+						class="col-xs-8 col-xs-offset-2 col-sm-8 col-sm-offset-2 col-md-2 col-md-offset-0">
 						<img class="thumbnail img-responsive" alt="Bootstrap template"
 							src="/CompanyItem/IT Products/Images/ssl.png"
 							data-toggle="tooltip" data-placement="top"
 							data-original-title="SSL Certificates">
 						<div class="enter"></div>
 					</div>
-					<div class="col-md-10">
+					<div class="col-xs-12 col-sm-12 col-md-10">
 						<h3>SSL Certificates for every customer need.</h3>
 						<p>OpenSRS partners with leading providers so you can offer
 							your customers the right SSL certificates no matter what their
@@ -123,7 +121,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 								for small- to mid-sized business sites where validation of the
 								company is important. Highly recommended for sites with
 								low-volume eCommerce transactions.</p>
-							<br /> <br />
+
 							<%--br은 <p>근처에서 작동하므로 가장 긴 글아래에 투입 --%>
 						</div>
 						<div class="col-md-4">
@@ -135,78 +133,84 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 						</div>
 					</div>
 
-					<div class="text-center">
+					<div class="col-xs-12 col-sm-12 col-md-12 text-center">
 						<h3>The leading SSL providers with dozens of certificate
 							options.</h3>
 						<br />
-
 					</div>
 					<div class="col-md-1 col-sm-1"></div>
-					<div class="col-md-2 col-sm-2 col-xs-4">
-						<img class="img-responsive"
-							src="/CompanyItem/IT Products/Images/symantec.png"
-							data-toggle="tooltip" data-placement="top"
-							data-original-title="symantec">
-						<p>Offer the Norton Secured seal for customer peace of mind at
-							all points of their online experience.</p>
-					</div>
-					<div class="col-md-2 col-sm-2 col-xs-4">
-						<img class="img-responsive"
-							src="/CompanyItem/IT Products/Images/thawte.png"
-							data-toggle="tooltip" data-placement="top"
-							data-original-title="thawte">
-						<p>Thawte is a leading provider of domain, business and
-							extended validation SSL certificates. Particularly strong in
-							Europe.</p>
-					</div>
-					<div class="col-md-2 col-sm-2 col-xs-4">
-						<img class="img-responsive"
-							src="/CompanyItem/IT Products/Images/trustwave.png"
-							data-toggle="tooltip" data-placement="top"
-							data-original-title="trustwave">
-						<p>GeoTrust is one of the world’s largest SSL certificate
-							providers. Its product line is extremely popular with small
-							businesses.</p>
-					</div>
-					<div class="col-md-2 col-sm-2 col-xs-4">
-						<img class="img-responsive"
-							src="/CompanyItem/IT Products/Images/geotrust.png"
-							data-toggle="tooltip" data-placement="top"
-							data-original-title="geotrust">
-						<p>Trustwave SSL helps companies of all sizes reduce SSL costs
-							while maintaining a high level of trust and security.</p>
-					</div>
-					<div class="col-md-2 col-sm-2 col-xs-4">
-						<img class="img-responsive"
-							src="/CompanyItem/IT Products/Images/comodo.png"
-							data-toggle="tooltip" data-placement="top"
-							data-original-title="comodo">
-						<p>Comodo offers a comprehensive range of highly-trusted SSL
-							certificate products designed to meet the needs of every
-							business.</p>
+					<div class="col-md-12">
+						<div class="col-xs-6 col-md-offset-1 col-md-2 ">
+							<img class="img-responsive"
+								src="/CompanyItem/IT Products/Images/symantec.png"
+								data-toggle="tooltip" data-placement="top"
+								data-original-title="symantec">
+							<p>Offer the Norton Secured seal for customer peace of mind
+								at all points of their online experience.</p>
+							<br>
+						</div>
+						<div class="col-xs-6 col-md-2">
+							<img class="img-responsive"
+								src="/CompanyItem/IT Products/Images/thawte.png"
+								data-toggle="tooltip" data-placement="top"
+								data-original-title="thawte">
+							<p>Thawte is a leading provider of domain, business and
+								extended validation SSL certificates. Particularly strong in
+								Europe.</p>
+							<br>
+						</div>
+						<div class="col-xs-6 col-md-2">
+							<img class="img-responsive"
+								src="/CompanyItem/IT Products/Images/trustwave.png"
+								data-toggle="tooltip" data-placement="top"
+								data-original-title="trustwave">
+							<p>GeoTrust is one of the world’s largest SSL certificate
+								providers. Its product line is extremely popular with small
+								businesses.</p>
+							<br>
+						</div>
+						<div class="col-xs-6 col-md-2">
+							<img class="img-responsive"
+								src="/CompanyItem/IT Products/Images/geotrust.png"
+								data-toggle="tooltip" data-placement="top"
+								data-original-title="geotrust">
+							<p>Trustwave SSL helps companies of all sizes reduce SSL
+								costs while maintaining a high level of trust and security.</p>
+							<br>
+						</div>
+						<div class="col-xs-6 col-xs-pull-6 col-md-2 col-md-pull-0">
+							<img class="img-responsive"
+								src="/CompanyItem/IT Products/Images/comodo.png"
+								data-toggle="tooltip" data-placement="top"
+								data-original-title="comodo">
+							<p>Comodo offers a comprehensive range of highly-trusted SSL
+								certificate products designed to meet the needs of every
+								business.</p>
+							<br>
+						</div>
 					</div>
 					<div class="col-md-1 col-sm-1"></div>
 				</div>
-				<div class="enter"></div>
 				<div class="enter"></div>
 				<!-- /.row -->
 
 
 				<!-- OpenSRS_WebSecurity -->
 				<div class="row">
-					<div class="text-center">
+					<div class="col-md-12 text-center">
 						<h1 style="color: #f37d27;">WebSecurity</h1>
 						<hr>
 					</div>
 
-					<div class="col-md-2">
+					<div
+						class="col-xs-8 col-xs-offset-2 col-sm-8 col-sm-offset-2 col-md-2 col-md-offset-0">
 						<img class="thumbnail img-responsive" alt="Bootstrap template"
 							src="/CompanyItem/IT Products/Images/security.png"
 							data-toggle="tooltip" data-placement="top"
 							data-original-title="WebSecurity">
 						<div class="enter"></div>
 					</div>
-					<div class="col-md-10">
+					<div class="col-xs-12 col-sm-12 col-md-10">
 						<h3>Safeguard against any possible online threats.</h3>
 						<p>Ensuring the safety and security of websites is a must for
 							all site owners, no matter their size or industry. OpenSRS gives
@@ -229,7 +233,6 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 								for small- to mid-sized business sites where validation of the
 								company is important. Highly recommended for sites with
 								low-volume eCommerce transactions.</p>
-							<br /> <br />
 							<%--br은 <p>근처에서 작동하므로 가장 긴 글아래에 투입 --%>
 						</div>
 						<div class="col-md-4">
@@ -241,64 +244,69 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 						</div>
 					</div>
 					<div class="enter"></div>
-					<h3>Our security offerings:</h3>
 
-					<div class="enter"></div>
-					<div class="row">
-						<div class="col-md-4 col-sm-4 col-xs-6 ">
+					<div class="col-xs-12 col-sm-12 col-md-12 text-center">
+						<h3>Our security offerings:</h3>
+					</div>
+
+					<div class="col-md-12">
+
+						<div class="col-xs-12 col-md-4">
 							<img class="img-responsive"
 								src="/CompanyItem/IT Products/Images/sitelock_large-300x58.png" />
+							<br>
 						</div>
-						<div class="col-md-4 col-sm-4 col-xs-6 ">
+						<div class="col-xs-12 col-md-4">
 							<img class="img-responsive"
 								src="/CompanyItem/IT Products/Images/sitelock_large_911.png" />
+							<br>
 						</div>
-						<div class="col-md-4 col-sm-4 col-xs-6 ">
+						<div class="col-xs-12 col-md-4">
 							<img class="img-responsive"
 								src="/CompanyItem/IT Products/Images/geotrustlogo_horizontal.png" />
+							<br>	
 						</div>
 					</div>
 
 					<div class="enter"></div>
-					<div class="row">
-						<div class="col-md-4 col-sm-4 col-xs-6 ">
+					<div class="col-md-12 hidden-xs">
+						<div class="col-md-4">
 							<h4>
 								<b>From $10/yr</b>
 							</h4>
 						</div>
-						<div class="col-md-4 col-sm-4 col-xs-6 ">
+						<div class="col-md-4">
 							<h4>
 								<b>$200 one-time free</b>
 							</h4>
 						</div>
-						<div class="col-md-4 col-sm-4 col-xs-6 ">
+						<div class="col-md-4">
 							<h4>
 								<b>$50/yr</b>
 							</h4>
 						</div>
 					</div>
 
-					<div class="enter"></div>
 				</div>
 				<div class="enter"></div>
-				<div class="enter"></div>
+				
 				<!-- /.row -->
 
 				<!-- OpenSRS_Domains -->
 				<div class="row">
-					<div class="text-center">
+					<div class="col-md-12 text-center">
 						<%--아래 a태그 자체에 색 적용시 가능하다. --%>
 						<h1 style="color: #f37d27;">Domains</h1>
 						<hr>
 					</div>
-					<div class="col-md-2">
+					<div class="col-xs-8 col-xs-offset-2 col-sm-8 col-sm-offset-2 col-md-2 col-md-offset-0">
 						<img class="thumbnail img-responsive" alt="Bootstrap template"
 							src="/CompanyItem/IT Products/Images/domain.png"
 							data-toggle="tooltip" data-placement="top"
 							data-original-title="Domains">
 						<div class="enter"></div>
 					</div>
-					<div class="col-md-10">
+					<div class="col-xs-12 col-sm-12 col-md-10">
 						<h3>Every domain extension you will ever need...and more.</h3>
 						<p>
 							OpenSRS gives you access to the largest selection of domain names
@@ -312,25 +320,25 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 
 
 					</div>
-					<div class="text-center">
+					<div class="col-xs-12 col-sm-12 col-md-12 text-center">
 						<h3>Included with our domain service:</h3>
 						<br />
 					</div>
 
-					<div class="row">
-						<div class="col-md-4 col-sm-4 col-xs-6 ">
+					<div class="col-md-12">
+						<div class="col-xs-4 col-md-4">
 							<img class="img-responsive"
 								src="/CompanyItem/IT Products/Images/lightbulb.png"
 								data-toggle="tooltip" data-placement="top"
 								data-original-title="Name Suggestion" />
 						</div>
-						<div class="col-md-4 col-sm-4 col-xs-6 ">
+						<div class="col-xs-4 col-md-4">
 							<img class="img-responsive"
 								src="/CompanyItem/IT Products/Images/gears.png"
 								data-toggle="tooltip" data-placement="top"
 								data-original-title="Managed DNS" />
 						</div>
-						<div class="col-md-4 col-sm-4 col-xs-6 ">
+						<div class="col-xs-4 col-md-4">
 							<img class="img-responsive"
 								src="/CompanyItem/IT Products/Images/support.png"
 								data-toggle="tooltip" data-placement="top"
@@ -339,8 +347,8 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					</div>
 
 					<div class="enter"></div>
-					<div class="row">
-						<div class="col-md-4 col-sm-4 col-xs-6 ">
+					<div class="col-md-12 hidden-xs">
+						<div class="col-md-4">
 							<p>
 								<b>Name Suggestion</b>
 							</p>
@@ -348,14 +356,14 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 								based on keyword popularity, domain extension and word
 								relevance.</p>
 						</div>
-						<div class="col-md-4 col-sm-4 col-xs-6 ">
+						<div class="col-md-4 ">
 							<p>
 								<b>Managed DNS</b>
 							</p>
 							<p>Provide reliable and extensive managed DNS service with
 								guaranteed uptime and increased website performance.</p>
 						</div>
-						<div class="col-md-4 col-sm-4 col-xs-6 ">
+						<div class="col-md-4 ">
 							<p>
 								<b>Knowledgeable Customer Care</b>
 							</p>
@@ -364,21 +372,21 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 						</div>
 					</div>
 					<br />
-					<div class="row">
-						<div class="col-md-4 col-sm-4 col-xs-6 ">
+					<div class="col-md-12">
+						<div class="col-xs-4 col-md-4">
 							<img class="img-responsive"
 								src="/CompanyItem/IT Products/Images/private.png"
 								data-toggle="tooltip" data-placement="top"
 								data-original-title="Contact Privacy" />
 						</div>
-						<div class="col-md-4 col-sm-4 col-xs-6 ">
+						<div class="col-xs-4 col-md-4">
 							<img class="img-responsive"
 								src="/CompanyItem/IT Products/Images/keys.png"
 								data-toggle="tooltip" data-placement="top"
 								data-original-title="Parked Pages" />
 
 						</div>
-						<div class="col-md-4 col-sm-4 col-xs-6 ">
+						<div class="col-xs-4 col-md-4">
 							<img class="img-responsive"
 								src="/CompanyItem/IT Products/Images/network.png"
 								data-toggle="tooltip" data-placement="top"
@@ -386,22 +394,22 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 						</div>
 					</div>
 					<div class="enter"></div>
-					<div class="row">
-						<div class="col-md-4 col-sm-4 col-xs-6 ">
+					<div class="col-md-12 hidden-xs">
+						<div class="col-md-4 ">
 							<p>
 								<b>Contact Privacy</b>
 							</p>
 							<p>For some, having their sensitive WHOIS information
 								protected is a priority. OpenSRS offers</p>
 						</div>
-						<div class="col-md-4 col-sm-4 col-xs-6 ">
+						<div class="col-md-4 ">
 							<p>
 								<b>Parked Pages</b>
 							</p>
 							<p>By placing pay-per-click (PPC) advertisements on unused
 								domain names, you earn additional revenue with no effort.</p>
 						</div>
-						<div class="col-md-4 col-sm-4 col-xs-6 ">
+						<div class="col-md-4">
 							<p>
 								<b>Dedicated Support Team</b>
 							</p>

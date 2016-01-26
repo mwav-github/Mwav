@@ -174,171 +174,231 @@
 		//var URL = "sido=" + aa + " &dong="+ bb + "&gungu="+ cc + "&zibun="+dd;  //+ 후에는 띄워쓰기되나 "" 안에서는 띄어쓰기하면 띄어쓰기 값으로 인식
 
 		//alert("URL="+URL);
-		$.ajax({
-			type : 'POST', // Http Request Method로 POST로 지정
-			url : '/PostSeek/zcAll.do', // 서버 요청 주소
-			//dataType: "json",
-			data : url, //formData JavaScript 객체를 JSON 객체로 변환하여 서버 요청시 전송
-			success : function(data) {
-				//https://darobin.github.io/formic/specs/json/
-				//alert("data" + data)
-				//alert(data.length);
-				//responsebody 의 경우 파싱되서 넘어오므로  // json으로 넘어오므로 파싱이 필요없음 data=JSON.parse(data);
-				//var aa = JSON.stringify(data); // 윈도우 8이상 지원
-				//alert(aa);
-				//var parse = JSON.parse(aa);
-				//var obj = JSON.parse(returnValue.responseText);
-				/* var obj = JSON.parse(data);
-				alert("obj"+obj);
-				var obj2 = JSON.parse(data.responsText);   
-				
-				var stringify = JSON.stringify(testJSON); // 자바스크립트 객체를 JSON 문자열로 변환;
-				var parse = JSON.parse(stringify); // JSON 문자열을 자바스크립트 객체로 변환;
-				
-				
-				alert("obj2"+obj2);
-				 */
+		$
+				.ajax({
+					type : 'POST', // Http Request Method로 POST로 지정
+					url : '/PostSeek/zcAll.do', // 서버 요청 주소
+					//dataType: "json",
+					data : url, //formData JavaScript 객체를 JSON 객체로 변환하여 서버 요청시 전송
+					success : function(data) {
+						//alert('성공');
+						//https://darobin.github.io/formic/specs/json/
+						//alert("data" + data)
+						//alert(data.length);
+						//responsebody 의 경우 파싱되서 넘어오므로  // json으로 넘어오므로 파싱이 필요없음 data=JSON.parse(data);
+						//var aa = JSON.stringify(data); // 윈도우 8이상 지원
+						//alert(aa);
+						//var parse = JSON.parse(aa);
+						//var obj = JSON.parse(returnValue.responseText);
+						/* var obj = JSON.parse(data);
+						alert("obj"+obj);
+						var obj2 = JSON.parse(data.responsText);   
+						
+						var stringify = JSON.stringify(testJSON); // 자바스크립트 객체를 JSON 문자열로 변환;
+						var parse = JSON.parse(stringify); // JSON 문자열을 자바스크립트 객체로 변환;
+						
+						
+						alert("obj2"+obj2);
+						 */
 
-				/* 	alert('aa' + aa);
-					alert('parse' + parse);
-					alert('parse' + parse.시도명);
-				 */
-				/* var content = "<table>"
-				for ( var i in data) {
-					content += "<td>" + data[i].건물부번 + "</td>";
-					content += "<td>" + data[i].시도명 + "</td>";
-					content += "</table>";
+						/* 	alert('aa' + aa);
+							alert('parse' + parse);
+							alert('parse' + parse.시도명);
+						 */
+						/* var content = "<table>"
+						for ( var i in data) {
+							content += "<td>" + data[i].건물부번 + "</td>";
+							content += "<td>" + data[i].시도명 + "</td>";
+							content += "</table>";
 
-					$("#postfinder_2").html(content);
-				}
-				/*  */
-
-				/* 	alert(data);
-					var aa = JSON.stringify(data);
-					alert(aa); */
-
-				// 데이터가 없는 경우 undefined이다.
-				
-
-				if ($.trim(data)) {
-					//즉 공백제거시에도 데이터가 true 인 경우
-
-					if ($(".ondis").css("display") == "none") {
-						//alert("on");
-						$(".ondis").show();
-						$(".offdis").hide();
-					}
-					var list = data;
-					var listLen = list.length;
-					//var col-md-8 = "col-md-8 text-center";
-					var content = "";
-					var address_zibun;
-					var address_doro;
-					// var address = "<a href="+ javascript:sendAddress(list[i].zcSiDoName + list[i].zcSiGunGuName + list[i].zcLegalEupMyeonDongName + list[i].zcLegalRiName + list[i].zcJiBunMain) +">";
-					for (i = 0; i < listLen; i++) {
-						// 좀더 상세하게 구분 모두 0 / 둘중 하나 0 - 2가지 / 둘다 1 = 총 4가지
-						if (list[i].zcBuildingSubNo == 0
-								|| list[i].zcJiBunSub == 0) {
-							address_zibun = list[i].zcSiDoName
-									+ list[i].zcSiGunGuName
-									+ list[i].zcLegalEupMyeonDongName
-									+ list[i].zcLegalRiName
-									+ list[i].zcJiBunMain;
-							address_doro = list[i].zcSiDoName
-									+ list[i].zcSiGunGuName
-									+ list[i].zcRoadName
-									+ list[i].zcBuildingMainNo;
-						} else {
-							address_zibun = list[i].zcSiDoName
-									+ list[i].zcSiGunGuName
-									+ list[i].zcLegalEupMyeonDongName
-									+ list[i].zcLegalRiName
-									+ list[i].zcJiBunMain + "-"
-									+ list[i].zcJiBunSub;
-
-							address_doro = list[i].zcSiDoName
-									+ list[i].zcSiGunGuName
-									+ list[i].zcRoadName
-									+ list[i].zcBuildingMainNo + "-"
-									+ list[i].zcBuildingSubNo;
+							$("#postfinder_2").html(content);
 						}
-						content += "<tr>"
-								+ "<td class=" + "\"col-md-8 text-center\">"
-								+ "<a href=" + "javascript:" + "sendAddress('"
-								+ address_doro + "','" + list[i].zcZipCode
-								+ "')" + ">" + address_doro + "</br>"
-								+ address_zibun + "</a></td>";
-						content += "<td class=" +"\"col-md-8 text-center\">"
-								+ list[i].zcZipCode + "</td>" + "</tr>";
+						/*  */
 
-					}
+						/* 	alert(data);
+							var aa = JSON.stringify(data);
+							alert(aa); */
 
-					$("#postresult").append(content);
-				} else {
-					//alert('1');
-					if ($(".ondis").css("display") == "none") {
-						//alert("on");
-						$(".ondis").show();
-						$(".offdis").hide();
-					}
+						// 데이터가 없는 경우 undefined이다.
+						if ($.trim(data)) {
+							//즉 공백제거시에도 데이터가 true 인 경우
 
-					var content = "";
-					content += "<tr>" + "<td colspan=\"4\" class=\"text-center\">조회된 결과가 없습니다.</td>"
-							+ "</tr>";
-					$("#postnull").append(content);
-				}
-			},
-			/*
-			$.each(aa, function(key) {
-					var list = aa[key];
+							if ($(".ondis").css("display") == "none") {
+								//alert("on");
+								$(".ondis").show();
+								$(".offdis").hide();
+							}
+							var list = data;
+							var listLen = list.length;
+							//alert('listLen'+listLen);
+							//alert('list'+list);
+							//var col-md-8 = "col-md-8 text-center";
+							var content = "";
+							var address_zibun;
+							var address_doro;
+							//alert('구분' + list.post_mode);
+							$("#postresult").empty();
+							//재 검색시 이부분을 안해주면 이전 쿠키 즉 검색결과에 동일한게 밑에 출력 
+							//empty()는 관련 html의 텍스트 제거  http://findfun.tistory.com/243
+
+							// var address = "<a href="+ javascript:sendAddress(list[i].zcSiDoName + list[i].zcSiGunGuName + list[i].zcLegalEupMyeonDongName + list[i].zcLegalRiName + list[i].zcJiBunMain) +">";
+							for (i = 0; i < listLen; i++) {
+
+								// 좀더 상세하게 구분 모두 0 / 둘중 하나 0 - 2가지 / 둘다 1 = 총 4가지
+								if (list[i].zcBuildingSubNo == 0
+										|| list[i].zcJiBunSub == 0) {
+									address_zibun = list[i].zcSiDoName
+											+ list[i].zcSiGunGuName
+											+ list[i].zcLegalEupMyeonDongName
+											+ list[i].zcLegalRiName
+											+ list[i].zcJiBunMain;
+									address_doro = list[i].zcSiDoName
+											+ list[i].zcSiGunGuName
+											+ list[i].zcRoadName
+											+ list[i].zcBuildingMainNo;
+								} else {
+									address_zibun = list[i].zcSiDoName
+											+ list[i].zcSiGunGuName
+											+ list[i].zcLegalEupMyeonDongName
+											+ list[i].zcLegalRiName
+											+ list[i].zcJiBunMain + "-"
+											+ list[i].zcJiBunSub;
+
+									address_doro = list[i].zcSiDoName
+											+ list[i].zcSiGunGuName
+											+ list[i].zcRoadName
+											+ list[i].zcBuildingMainNo + "-"
+											+ list[i].zcBuildingSubNo;
+								}
+								content += "<tr id=" + "\"refresh\">"
+										+ "<td class=" + "\"col-md-8 text-center \">"
+										+ "<a href=" + "javascript:"
+										+ "sendAddress('" + address_doro
+										+ "','" + list[i].zcZipCode + "')"
+										+ ">" + address_doro + "</br>"
+										+ address_zibun + "</a></td>";
+								content += "<td class=" +"\"col-md-8 text-center\">"
+										+ list[i].zcZipCode + "</td>" + "</tr>";
+
+							}
+							$("#postresult").append(content);
+						} else {
+							
+							$("#postresult").empty();
+							//alert('1');
+							if ($(".ondis").css("display") == "none") {
+								//alert("on");
+								$(".ondis").show();
+								$(".offdis").hide();
+							}
+
+							var content = "";
+							content += "<tr>"
+									+ "<td colspan=\"4\" class=\"text-center\">조회된 결과가 없습니다.</td>"
+									+ "</tr>";
+							$("#postnull").append(content);
+						}
+					},
+					/*
+					$.each(aa, function(key) {
+							var list = aa[key];
+							
+							alert("list"+list);
+							var content = "<table>"
+							alert('d'+list.length);
+							for (i = 0; i < list.length; i++) {
+								content += "<tr>";
+								content += "<td>" + list[i].건물부번 + "</td>";
+								content += "<td>" + list[i].시도명 + "</td>";
+								content += "<td>" + list[i].도로명코드 + "</td>";
+
+							}
+							content += "</table>";
+
+							$("#postfinder_2").html(content);
+						}); 
+					//}, // 서버로부터 응답 데이터 도착시 로직 처리, 응답 데이터는 JavaScript 객체로 바로 사용 가능
 					
-					alert("list"+list);
-					var content = "<table>"
-					alert('d'+list.length);
-					for (i = 0; i < list.length; i++) {
-						content += "<tr>";
-						content += "<td>" + list[i].건물부번 + "</td>";
-						content += "<td>" + list[i].시도명 + "</td>";
-						content += "<td>" + list[i].도로명코드 + "</td>";
+					ajax는 client 부분만 처리 되기 때문에 JSTL을 적용하실 수 없습니다.
+					JSTL은 서버에서 한번만 처리되고 ajax의 결과를 받을 수 없습니다.
+					ajax의 결과 처리 부분은 client 처리인 javascript만으로 처리하셔야 합니다.
+					 */
+					 beforeSend:function(){
+				        //(이미지 보여주기 처리)
+				        //alert('1');
+				        $('.wrap-loading').removeClass('display-none');
+				    },
+					complete:function(){
+				        //(이미지 감추기 처리)
+				        //alert('2');
+				        $('.wrap-loading').addClass('display-none');
+				 
+				    }, 
 
-					}
-					content += "</table>";
-
-					$("#postfinder_2").html(content);
-				}); 
-			//}, // 서버로부터 응답 데이터 도착시 로직 처리, 응답 데이터는 JavaScript 객체로 바로 사용 가능
-			
-			ajax는 client 부분만 처리 되기 때문에 JSTL을 적용하실 수 없습니다.
-			JSTL은 서버에서 한번만 처리되고 ajax의 결과를 받을 수 없습니다.
-			ajax의 결과 처리 부분은 client 처리인 javascript만으로 처리하셔야 합니다.
-			 */
-
-			error : function(status,error) {
-				//alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-				if(status==0){
-		            alert('You are offline!!n Please Check Your Network.');
-		            }else if(status==404){
-		            alert('Requested URL not found.');
-		            }else if(status==500){
-		            alert('Internel Server Error.');
-		            }else if(error=='parsererror'){
-		            alert('Error.nParsing JSON Request failed.');
-		            }else if(error=='timeout'){
-		            alert('Request Time out.');
-		            }else {
-		            alert('Unknow Error.n'+request.responseText);
-		            }
-			} // 서버로부터 응답 데이터 실패시 로직 처리
-		});
+					error : function(status, error) {
+						//alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+						if (status == 0) {
+							alert('You are offline!!n Please Check Your Network.');
+						} else if (status == 404) {
+							alert('Requested URL not found.');
+						} else if (status == 500) {
+							alert('Internel Server Error.');
+						} else if (error == 'parsererror') {
+							alert('Error.nParsing JSON Request failed.');
+						} else if (error == 'timeout') {
+							alert('Request Time out.');
+						} else {
+							alert('Unknow Error.n' + request.responseText);
+						}
+					} // 서버로부터 응답 데이터 실패시 로직 처리
+				});
 	}
 </script>
 
+<script>
+	function showhide() {
+
+		if ($(".offdis").css("display") == "none") {
+			//alert("on");
+			$(".offdis").show();
+			$(".ondis").hide();
+		}
+	}
+</script>
+<style>
+.wrap-loading_images { /*로딩 이미지*/
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin-left: -21px;
+	margin-top: -21px;
+}
+
+.display-none { /*감추기*/
+	display: none;
+}
+
+.wrap-loading { /*화면 전체를 어둡게 합니다.*/
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	background: rgba(0, 0, 0, 0.2); /*not in ie */
+	filter: progid:DXImageTransform.Microsoft.Gradient(startColorstr='#20000000',
+		endColorstr='#20000000'); /* ie */
+}
+</style>
 <div class="container">
 	<!-- Modal -->
 	<div class="modal fade modal_post" id="myModal" tabindex="-1"
 		role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-md">
 			<div class="modal-content">
+			<div class="wrap-loading display-none">
+				<img class="wrap-loading_images "
+					src="/CommonApps/PostSeek/Images/ajax-loader.gif">
+			</div>		
 				<div class="modal-header"
 					style="border-bottom: 0px solid #eee; background-color: #0480be; color: white;">
 					<h4 class="modal-title">주소찾기</h4>
@@ -346,9 +406,12 @@
 				<br>
 				<div class="bs-example bs-example-tabs">
 					<ul id="myTab" class="nav nav-tabs">
-						<li class="active"><a href="#postfinder_1" data-toggle="tab">도로명+건물번호</a></li>
-						<li class=""><a href="#postfinder_2" data-toggle="tab">동(읍/면)+지번</a></li>
-						<li class=""><a href="#postfinder_3" data-toggle="tab">건물명(아파트명)</a></li>
+						<li class="active"><a href="#postfinder_1" data-toggle="tab"
+							onclick="showhide();">도로명+건물번호</a></li>
+						<li class=""><a href="#postfinder_2" data-toggle="tab"
+							onclick="showhide();">동(읍/면)+지번</a></li>
+						<li class=""><a href="#postfinder_3" data-toggle="tab"
+							onclick="showhide();">건물명(아파트명)</a></li>
 					</ul>
 				</div>
 				<div class="modal-body">
@@ -422,7 +485,8 @@
 													class="form-control" placeholder="건물번호...">
 											</div>
 											<div class="col-md-1 col-sm-offset-1">
-												<button type="submit" class="btn"
+												<%--버튼으로 넣어놔야한다. 아래 submit 으로 넣어놓으면 창 없어지면서 변경 --%>
+												<button type="button" class="btn"
 													onclick="SelectPostFinder_2(1);"
 													style="background-color: black; color: white;">검색
 												</button>
@@ -572,7 +636,7 @@
 												class="form-control" placeholder="건물명(아파트명 등)...">
 										</div>
 										<div class="col-md-1 col-sm-offset-5">
-											<button type="submit" class="btn"
+											<button type="button" class="btn"
 												onclick="SelectPostFinder_2(3);"
 												style="background-color: black; color: white;">검색</button>
 										</div>
@@ -599,6 +663,10 @@
 												</c:forEach>
 												
 											</tr> --%>
+									<tr>
+										<a href="#" class="btn btn-info btn-sm btn-block"
+											onclick="showhide();">재 검색</a>
+									</tr>
 								</tbody>
 								<tbody id="postnull">
 

@@ -117,6 +117,14 @@ public class MemberController {
 		String mbrCellPhone = member_CellularP_1 + member_CellularP_2
 				+ member_CellularP_3;
 		commandMap.put("mbrCellPhone", mbrCellPhone);
+		
+		String mbrAddress_1 = (String) commandMap.get("mbrAddress_1");
+		String mbrAddress_2 = (String) commandMap.get("mbrAddress_2");
+		
+		String mbrAddress = mbrAddress_1 + mbrAddress_2;
+		System.out.println("mbrAddress="+mbrAddress);
+		
+		commandMap.put("mbrAddress", mbrAddress);
 		memberService.insertMbrForm(commandMap.getMap());
 
 		mv.addObject("mode", "SDMbrInput");
