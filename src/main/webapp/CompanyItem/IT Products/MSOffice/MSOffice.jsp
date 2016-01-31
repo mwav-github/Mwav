@@ -71,7 +71,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 						href="/CompanyItem/IT Products/Windows/Windows.jsp"
 						class="list-group-item" data-toggle="tooltip" data-placement="top"
 						data-original-title="Windows">Windows</a> <a
-						href="/CompanyItem/IT Solutions/MSOffice/MSOffice.jsp"
+						href="/CompanyItem/IT Products/MSOffice/MSOffice.jsp"
 						class="list-group-item active" data-toggle="tooltip"
 						data-placement="top" data-original-title="MSOffice">MSOffice</a>
 				</div>
@@ -124,37 +124,28 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 				<!-- 2번 -->
 				<div class="row">
 					<div class="text-center">
-						<h1 style="color: #04A3ED;">원하는 방식으로 작업하는 유연성</h1>
+						<h1 style="color: #04A3ED;">모든 새 Office 응용 프로그램</h1>
 						<hr>
 					</div>
 
 					<!-- 2.1번 -->
-
-					<%-- block 요소 끼리 중앙정렬 중요. vertical_parent / vertical_child--%>
-					<div class="row vertical_parent"
-						style="background: url(../Images/MSOffice_1.jpg) no-repeat; background-size: 130% auto; height: 300px;">
-
-						<br>
-						<div
-							class="col-md-offset-0 col-sm-offset-8 col-xs-offset-8 col-md-8 col-sm-8 col-xs-18">
-							<div class="vertical_child" style="text-align: left;">
-								<h3 style="color: #04A3ED;">모든 새 Office 응용 프로그램</h3>
-								<br>
-								<p>Office 365에는 새로운 Office 2016 버전의 Word, Excel, PowerPoint
-									등이 포함되어 있습니다.</p>
-							</div>
-
+					<div class="row">
+						<div class="col-md-12">
+							<p>Office 365에는 새로운 Office 2016 버전의 Word, Excel, PowerPoint
+								등이 포함되어 있습니다.</p>
 						</div>
 					</div>
+
+					<div class="enter"></div>
 
 					<!-- 2.2번 -->
 					<div class="row">
 
-						<div class="col-md-6">
+						<div class="col-xs-12 col-sm-12 col-md-6">
 							<img class="thumbnail img-responsive" alt="Bootstrap template"
 								src="/CompanyItem/IT Products/Images/MSOffice_2.jpg">
 						</div>
-						<div class="col-md-6">
+						<div class="col-xs-12 col-sm-12 col-md-6">
 							<h3 class="text-left mgb3" style="color: #04A3ED;">Word 2016</h3>
 							<p>최신의 편집, 검토 및 공유 도구가 포함되어 있습니다.</p>
 
@@ -163,30 +154,31 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 
 					<!-- 2.3번 -->
 					<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-6 col-md-push-6">
+							<img class="thumbnail img-responsive" alt="Bootstrap template"
+								src="/CompanyItem/IT Products/Images/MSOffice_3.jpg">
+						</div>
 
-
-						<div class="col-md-6">
+						<div class="col-xs-12 col-sm-12 col-md-6 col-md-pull-6">
 							<h3 class="text-left mgb3" style="color: #04A3ED;">Excel
 								2016</h3>
 							<p>클릭 한 번으로 미래의 추세를 쉽게 예측 할 수 있습니다.</p>
 
 						</div>
-						<div class="col-md-6">
-							<img class="thumbnail img-responsive" alt="Bootstrap template"
-								src="/CompanyItem/IT Products/Images/MSOffice_3.jpg">
-						</div>
+
 
 					</div>
-					
+
 					<!-- 2.4번 -->
 					<div class="row">
 
-						<div class="col-md-6">
+						<div class="col-xs-12 col-sm-12 col-md-6">
 							<img class="thumbnail img-responsive" alt="Bootstrap template"
 								src="/CompanyItem/IT Products/Images/MSOffice_4.jpg">
 						</div>
-						<div class="col-md-6">
-							<h3 class="text-left mgb3" style="color: #04A3ED;">PowerPoint 2016</h3>
+						<div class="col-xs-12 col-sm-12 col-md-6">
+							<h3 class="text-left mgb3" style="color: #04A3ED;">PowerPoint
+								2016</h3>
 							<p>발표자 보기에는 청중에게는 슬라이드만 보이지만 발표자는 모니터로 메모를 볼 수 있습니다.</p>
 
 						</div>
@@ -195,86 +187,71 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					<!-- 2.5번 -->
 					<div class="row">
 
-
-						<div class="col-md-6">
-							<h3 class="text-left mgb3" style="color: #04A3ED;">Outlook 2016</h3>
-							<p>피플 카드에서 바로 회의 일정을 잡거나, 인스턴트 메시지를 보내거나, 전화를 걸 수 있습니다.</p>
-
-						</div>
-						<div class="col-md-6">
+						<div class="col-xs-12 col-sm-12 col-md-6 col-md-push-6">
 							<img class="thumbnail img-responsive" alt="Bootstrap template"
 								src="/CompanyItem/IT Products/Images/MSOffice_5.jpg">
 						</div>
 
-					</div>
+						<div class="col-xs-12 col-sm-12 col-md-6 col-md-pull-6">
+							<h3 class="text-left mgb3" style="color: #04A3ED;">Outlook
+								2016</h3>
+							<p>피플 카드에서 바로 회의 일정을 잡거나, 인스턴트 메시지를 보내거나, 전화를 걸 수 있습니다.</p>
 
+						</div>
+					</div>
+				</div>
+				
+				<div class="enter"></div>
+
+				<div class="row vertical_parent col-md-12"
+					style="background: url(../Images/MSOffice_6.jpg) no-repeat; background-size: 100% auto;">
+					<div
+						class="col-md-offset-6 col-sm-offset-6 col-xs-offset-0 col-md-6 col-sm-12 col-xs-12">
+						<div class="vertical_child" style="text-align: left;">
+							<h3 style="color: #04A3ED;">모든 기기에서 사용할 수 있는 Office</h3>
+							<br>
+							<p>PC, Mac, 태블릿, 스마트폰 어디에서나 Office가 원활하게 작동 합니다.</p>
+						</div>
+
+					</div>
+				</div>
+
+				<div class="row vertical_parent col-md-12"
+					style="background: url(../Images/MSOffice_7.jpg) no-repeat; background-size: 100% auto;">
+
+					<br>
+					<div class="col-md-6 col-sm-12 col-xs-12">
+						<div class="vertical_child" style="text-align: left;">
+							<h3 style="color: #04A3ED;">언제 어디서든 필요한 파일을 이용</h3>
+							<br>
+							<p>Office 365에 포함되어 있는 1TB OneDrive 클라우드 저장소로 문서, 사진, 동영상,
+								음악을 보관, 액세스, 공유하세요.</p>
+						</div>
+
+					</div>
+				</div>
+
+				<div class="row vertical_parent col-md-12"
+					style="background: url(../Images/MSOffice_8.jpg) no-repeat; background-size: 100% auto;">
+
+					<br>
+					<div
+						class="col-md-offset-6 col-sm-offset-0 col-xs-offset-0 col-md-6 col-sm-12 col-xs-12">
+						<div class="vertical_child" style="text-align: right;">
+							<h3 style="color: #04A3ED;">항상 업그레이드가 포함</h3>
+							<br>
+							<p>Office 365를 사용하면 오래된 소프트웨어를 사용할 일이 없습니다. 모든 새 업그레이드가 구독에
+								포함되기 때문입니다.</p>
+						</div>
+
+					</div>
 				</div>
 
 
-				<div class="enter"></div>
-				
-				<!-- 3번 -->
-				<div class="row">
-
-					<div class="text-center">
-						<h1 style="color: #04A3ED;">모든 기기에서 사용할 수 있는 Office</h1>
-						<hr>
-					</div>
-
-				</div>
-
-				<div class="row vertical_parent"
-						style="background: url(../Images/MSOffice_6.jpg) no-repeat; background-size: 150% auto; height: 300px;">
-
-						<br>
-						<div
-							class="col-md-offset-10 col-sm-offset-10 col-xs-offset-10 col-md-10 col-sm-10 col-xs-10">
-							<div class="vertical_child" style="text-align: right;">
-								<h3 style="color: #04A3ED;">모든 기기에서 사용할 수 있는 Office</h3>
-								<br>
-								<p>PC, Mac, 태블릿, 스마트폰 어디에서나 Office가 원활하게 작동 합니다.</p>
-							</div>
-
-						</div>
-					</div>
-					
-				<div class="row vertical_parent"
-						style="background: url(../Images/MSOffice_7.jpg) no-repeat; background-size: 100% auto; height: 300px;">
-
-						<br>
-						<div
-							class="col-md-offset-0 col-sm-offset-6 col-xs-offset-6 col-md-6 col-sm-10 col-xs-10">
-							<div class="vertical_child" style="text-align: left;">
-								<h3 style="color: #04A3ED;">언제 어디서든 필요한 파일을 이용</h3>
-								<br>
-								<p>Office 365에 포함되어 있는 1TB OneDrive 클라우드 저장소로 
-								문서, 사진, 동영상, 음악을 보관, 액세스, 공유하세요.</p>
-							</div>
-
-						</div>
-					</div>
-					
-				<div class="row vertical_parent"
-						style="background: url(../Images/MSOffice_8.jpg) no-repeat; background-size: 100% auto; height: 300px;">
-
-						<br>
-						<div
-							class="col-md-offset-6 col-sm-offset-6 col-xs-offset-6 col-md-6 col-sm-6 col-xs-6">
-							<div class="vertical_child" style="text-align: right;">
-								<h3 style="color: #04A3ED;">항상 업그레이드가 포함</h3>
-								<br>
-								<p>Office 365를 사용하면 오래된 소프트웨어를 사용할 일이
-								 없습니다. 모든 새 업그레이드가 구독에 포함되기 때문입니다.</p>
-							</div>
-
-						</div>
-					</div>
-						
-				
 
 				<div class="enter"></div>
 
-				
+
 
 			</div>
 

@@ -23,9 +23,9 @@ container 안에 포함시키면된다.
 		<thead>
 			<tr>
 				<th>NO.</th>
-				<th>Group</th>
-				<th>Title</th>
-				<th>WriteDate</th>
+				<th class="hidden-xs">Group</th>
+				<th class="hidden-xs">Title</th>
+				<th class="hidden-xs">WriteDate</th>
 				<%-- <th>관리메뉴</th> 삭제예정 --%>
 
 			</tr>
@@ -37,11 +37,11 @@ container 안에 포함시키면된다.
 						<tr>
 							<input type="hidden" id="bNews_id" name="bNews_id"
 								value="${VselectListBnsList.bNews_id }">
-							<td>${VselectListBnsList.bNews_id}</td>
-							<td>${VselectListBnsList.bnGroup}</td>
+							<td class="hidden-xs">${VselectListBnsList.bNews_id}</td>
+							<td class="hidden-xs">${VselectListBnsList.bnGroup}</td>
 							<td><a
 								href="javascript:window.location.href='/board/bnsView.do?bNews_id=${VselectListBnsList.bNews_id}'">${VselectListBnsList.bnTitle}</a></td>
-							<td>${VselectListBnsList.bnUpdateDt}</td>
+							<td class="hidden-xs">${VselectListBnsList.bnUpdateDt}</td>
 							<%-- <td> <button type="button" class="btn btn-info" onclick="javascript:window.location.href='/board/bnsView.do?bNews_id=${FrontboardList.bNews_id}'">보기</button>&nbsp;
 <button type="button" class="btn btn-warning" onclick="javascript:window.location.href='/board/bnsModify.do?bNews_id=${FrontboardList.bNews_id}'">수정</button>
 </td> --%>

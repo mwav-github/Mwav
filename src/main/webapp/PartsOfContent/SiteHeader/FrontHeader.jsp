@@ -14,6 +14,10 @@
 			<div class="navbar-header">
 				<%--border 칼라 테두리는 style=border || 안의 icon-bar로 구성 --%>
 <%--768px 이하부터 변형 --%>
+<%--navbar-collapse 이게 부트스트랩꺼를 무조권 !important 인식 변경하려면 
+    cdn 말고 직접해서 아래 사이트와 같이 변경
+    http://www.bootply.com/120951
+ --%> 
 				<button type="button" class="navbar-toggle collapsed"
 					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
 					style="border: 2px solid white">

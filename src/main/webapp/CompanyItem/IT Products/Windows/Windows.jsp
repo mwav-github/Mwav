@@ -73,7 +73,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 						data-placement="top" data-original-title="Windows">Windows</a> <a
 						href="/CompanyItem/IT Products/MSOffice/MSOffice.jsp"
 						class="list-group-item" data-toggle="tooltip" data-placement="top"
-						data-original-title="OpenSRS">MSOffice</a>
+						data-original-title="MSOffice">MSOffice</a>
 				</div>
 			</div>
 			<!-- 끝 -->
@@ -96,7 +96,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 						<hr>
 					</div>
 
-					<div class="col-md-6">
+					<div class="col-md-6 col-md-6 col-md-6">
 						<h3 class="text-left mgb3" style="color: #04A3ED;">전보다 친숙하고
 							향상되었습니다.</h3>
 						<p>Windows 10은 시작 메뉴를 포함하여 Windows 7과 상당히 비슷하므로 사용하기 쉽고 친숙합니다.
@@ -122,10 +122,9 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					<br> -->
 					<%-- block 요소 끼리 중앙정렬 중요. vertical_parent / vertical_child--%>
 					<div class="row vertical_parent"
-						style="background: url(../Images/lifestyle_guy_computer_1x_flipped.jpg) no-repeat; background-size: 100% auto; height: 300px;">
-
-						<br>
-						<div class="col-md-offset-6 col-sm-offset-6 col-xs-offset-6 col-md-6 col-sm-6 col-xs-6">
+						style="background: url(../Images/lifestyle_guy_computer_1x_flipped.jpg) no-repeat; background-size: 100% auto;">
+						<div
+							class="col-md-offset-6 col-sm-offset-6 col-xs-offset-0 col-md-6 col-sm-6 col-xs-12">
 							<div class="vertical_child" style="text-align: right">
 								<h3 style="color: #04A3ED;">수 많은 사람들이 이미 Windows 10을 사용하고
 									있습니다.</h3>
@@ -146,11 +145,6 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 						<h1 style="color: #04A3ED;">작업을 수행하는 방식</h1>
 						<hr>
 					</div>
-
-					<div class="col-md-6">
-						<img class="thumbnail img-responsive" alt="Bootstrap template"
-							src="/CompanyItem/IT Products/Images/device_squeejee_newbrowser_1x_ko_KRfiletype.png">
-					</div>
 					<div class="col-md-6">
 						<h3 class="text-left mgb3" style="color: #04A3ED;">원하는 방식으로
 							웹을 작동하게 합니다.</h3>
@@ -159,15 +153,16 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 							읽으세요.</p>
 
 					</div>
+					<div class="col-md-6">
+						<img class="thumbnail img-responsive" alt="Bootstrap template"
+							src="/CompanyItem/IT Products/Images/device_squeejee_newbrowser_1x_ko_KRfiletype.png">
+					</div>
 
 				</div>
 				<!-- 같은 3번 -->
 				<div class="row">
 
-					<div class="col-md-6">
-						<img class="thumbnail img-responsive" alt="Bootstrap template"
-							src="/CompanyItem/IT Products/Images/device_squeejee_multidoing_1x.png">
-					</div>
+
 					<div class="col-md-6">
 						<h3 class="text-left mgb3" style="color: #04A3ED;">다중 작업을 통해
 							업무를 빠르게 “완료”</h3>
@@ -177,6 +172,10 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 						<br>
 						<p>다른 어떤 Windows 버전보다도 훨씬 더 뛰어난 Windows입니다. Windows Insider</p>
 
+					</div>
+					<div class="col-md-6">
+						<img class="thumbnail img-responsive" alt="Bootstrap template"
+							src="/CompanyItem/IT Products/Images/device_squeejee_multidoing_1x.png">
 					</div>
 
 				</div>
@@ -189,10 +188,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 						<hr>
 					</div>
 
-					<div class="col-md-6">
-						<img class="thumbnail img-responsive" alt="Bootstrap template"
-							src="/CompanyItem/IT Products/Images/device_2in1_store_1x.jpg">
-					</div>
+
 					<div class="col-md-6">
 						<h3 class="text-left mgb3" style="color: #04A3ED;">새로운
 							Windows 스토어에는 원하는 모든 것이 있습니다.</h3>
@@ -201,13 +197,16 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 							무료/유료 디지털 콘텐츠를 손쉽게 다운로드하세요.</p>
 
 					</div>
+					<div class="col-md-6">
+						<img class="thumbnail img-responsive" alt="Bootstrap template"
+							src="/CompanyItem/IT Products/Images/device_2in1_store_1x.jpg">
+					</div>
 
 				</div>
 
 
 				<!-- 5번 -->
 				<div class="row">
-
 
 					<div class="col-md-6">
 						<h3 class="text-left mgb3" style="color: #04A3ED;">Xbox가
@@ -220,7 +219,6 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 						<img class="thumbnail img-responsive" alt="Bootstrap template"
 							src="/CompanyItem/IT Products/Images/device_pc_xbox.jpg">
 					</div>
-
 				</div>
 
 				<div class="enter"></div>
@@ -267,16 +265,17 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 
 				<!-- 7번 -->
 				<div class="row">
-					<div class="col-md-6">
-						<img class="thumbnail img-responsive" alt="Bootstrap template"
-							src="/CompanyItem/IT Products/Images/device_family_continuum_Non-CortanaMarket.jpg">
-					</div>
+
 					<div class="col-md-6">
 						<h3 class="text-left mgb3" style="color: #04A3ED;">최적의 화면을 항상
 							표시</h3>
 						<p>Windows 10에서 앱은 모든 터치 PC와 태블릿의 모든 모드에서 잘 보이고 훌륭하게 작동할 수
 							있습니다.</p>
 
+					</div>
+					<div class="col-md-6">
+						<img class="thumbnail img-responsive" alt="Bootstrap template"
+							src="/CompanyItem/IT Products/Images/device_family_continuum_Non-CortanaMarket.jpg">
 					</div>
 
 				</div>
@@ -291,22 +290,25 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					<br> -->
 					<%-- block 요소 끼리 중앙정렬 중요. vertical_parent / vertical_child--%>
 					<div class="row vertical_parent"
-						style="background: url(../Images/lifestyle_girl_tablet_1x.jpg) no-repeat; background-size: 100% 520px;">
-						<br>
+						style="background: url(../Images/lifestyle_girl_tablet_1x.jpg) no-repeat; background-size: 100% auto;">
 						<div class="col-md-6">
-							<div class="vertical_child" style="text-align: Left">
+							<div style="text-align: Left">
 								<h3 style="color: #04A3ED;">원하는 디바이스와 상호 작용</h3>
-								<br>
-								<p>터치, 입력, 필기 또는 말하기: 사용자가 작업에 가장 적합한 방식을 선택할 수 있습니다.</p>
+							</div>
+						</div>
+						<div class="col-md-12">
+							<br>
+							<p>터치, 입력, 필기 또는 말하기: 사용자가 작업에 가장 적합한 방식을 선택할 수 있습니다.</p>
+							<div class="hidden-xs">
 								<br> <br>
-								<div class="col-md-6 col-sm-6 col-xs-6">
+								<div class="col-md-3 col-sm-3 col-xs-3">
 									<img class="img-responsive"
 										src="/CompanyItem/IT Products/Images/touch.png"
 										data-toggle="tooltip" data-placement="bottom"
 										data-original-title="터치">
 									<p>웹 페이지에 글쓰기, 살짝 밀어 사진 탐색하기, 앱 고정시키기와 같은 작업을 하세요.</p>
 								</div>
-								<div class="col-md-6 col-sm-6 col-xs-6 enter">
+								<div class="col-md-3 col-sm-3 col-xs-3">
 									<img class="img-responsive"
 										src="/CompanyItem/IT Products/Images/type.png"
 										data-toggle="tooltip" data-placement="bottom"
@@ -315,7 +317,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 								</div>
 
 
-								<div class="col-md-6 col-sm-6 col-xs-6">
+								<div class="col-md-3 col-sm-3 col-xs-3">
 									<img class="img-responsive"
 										src="/CompanyItem/IT Products/Images/stylus.png"
 										data-toggle="tooltip" data-placement="bottom"
@@ -323,7 +325,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 									<p>펜을 사용해 자연스럽게 그림을 그리거나 파일에 메모를 추가하거나 문서에 서명하거나 그리기 앱을
 										즐겨보세요.</p>
 								</div>
-								<div class="col-md-6 col-sm-6 col-xs-6">
+								<div class="col-md-3 col-sm-3 col-xs-3">
 									<img class="img-responsive"
 										src="/CompanyItem/IT Products/Images/voice.png"
 										data-toggle="tooltip" data-placement="bottom"
@@ -331,18 +333,15 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 									<p>Skype에서 친구나 가족과 채팅하세요.</p>
 								</div>
 							</div>
-							<br />
 						</div>
+						<br />
 					</div>
 				</div>
 
 
 				<!-- 9번 -->
 				<div class="row">
-					<div class="col-md-6">
-						<img class="thumbnail img-responsive" alt="Bootstrap template"
-							src="/CompanyItem/IT Products/Images/device_laptop_smile.jpg">
-					</div>
+
 					<div class="col-md-6">
 						<h3 class="text-left mgb3" style="color: #04A3ED;">당신만의
 							Windows</h3>
@@ -352,6 +351,10 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 						<br>
 						<p>참고: Windows Hello는 일부 신제품에서 곧 사용할 수 있습니다.</p>
 
+					</div>
+					<div class="col-md-6">
+						<img class="thumbnail img-responsive" alt="Bootstrap template"
+							src="/CompanyItem/IT Products/Images/device_laptop_smile.jpg">
 					</div>
 
 				</div>

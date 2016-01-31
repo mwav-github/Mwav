@@ -3,10 +3,6 @@
 
 
 
-
-
-
-
 /*
  * slideshow images
  * 
@@ -52,7 +48,7 @@
  */
 
 body {
-font-family:'맑은 고딕', 'Malgun Gothic', '굴림', Gulim, 'NanumGothic';
+font-family:'맑은 고딕', 'Malgun Gothic', '굴림', Gulim, 'NanumGothic' !important;
 /* body 선언은 테이블 적용 안된다. -> 별도 적용 필요.*/
 }
 

@@ -67,15 +67,13 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 						data-original-title="OpenSRS">OpenSRS</a> <a
 						href="/CompanyItem/IT Products/Azure/Azure.jsp"
 						class="list-group-item active" data-toggle="tooltip"
-						data-placement="top" data-original-title="Azure">Azure</a>
-						<a
+						data-placement="top" data-original-title="Azure">Azure</a> <a
 						href="/CompanyItem/IT Products/Windows/Windows.jsp"
-						class="list-group-item" data-toggle="tooltip"
-						data-placement="top" data-original-title="Windows">Windows</a>
-						<a
+						class="list-group-item" data-toggle="tooltip" data-placement="top"
+						data-original-title="Windows">Windows</a> <a
 						href="/CompanyItem/IT Products/MSOffice/MSOffice.jsp"
 						class="list-group-item" data-toggle="tooltip" data-placement="top"
-						data-original-title="OpenSRS">MSOffice</a>
+						data-original-title="MSOffice">MSOffice</a>
 				</div>
 			</div>
 			<!-- 끝 -->
@@ -91,15 +89,14 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					</div>
 					<br> -->
 					<%-- block 요소 끼리 중앙정렬 중요. vertical_parent / vertical_child--%>
-					<div class="row vertical_parent"
-						style="color: #fff; background: url(../Images/what-is-azure.jpg) no-repeat; background-size: 100% auto; height: 300px;">
+					<div class="row vertical_parent col-xs-12 col-sm-12 col-md-12"
+						style="color: #fff; background: url(../Images/what-is-azure.jpg) no-repeat; background-size: 100% auto;">
 						<div class="vertical_child">
 							<h3 class="align_center">앱 프레임워크 플랫폼 반갑습니다.</h3>
 							<h4 class="mgt5">Microsoft Azure는 분석, 컴퓨팅, 데이터베이스, 모바일,
 								네트워킹, 저장소 및 웹이 통합된 클라우드 서비스의 모음입니다. 이를 통해 작동이 더 빨라지고 더 많은 성과를 거둘
 								수 있으며 비용을 절감할 수 있습니다. Azure에서 수행할 수 있는 작업은 다음과 같습니다.</h4>
 						</div>
-						<br />
 					</div>
 				</div>
 
@@ -109,7 +106,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 
 				<!-- 2_Azure -->
 				<div class="row">
-					<div class="col-md-8">
+					<div class="col-xs-12 col-sm-8 col-md-8">
 						<h3 class="text-left mgb3" style="color: #78828D;">
 							<strong>더 많은 작업 수행</strong>
 						</h3>
@@ -127,7 +124,8 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 							하f세요.
 						</p>
 					</div>
-					<div class="col-md-4">
+					<div
+						class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-0 col-md-4 col-md-offset-0">
 						<img class="thumbnail img-responsive" alt="Bootstrap template"
 							src="/CompanyItem/IT Products/Images/01-get-more-done.png">
 					</div>
@@ -138,11 +136,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 				<hr class="hr_b">
 				<!-- 3_Azure -->
 				<div class="row">
-					<div class="col-md-4">
-						<img class="thumbnail img-responsive" alt="Bootstrap template"
-							src="/CompanyItem/IT Products/Images/02-open.png">
-					</div>
-					<div class="col-md-8">
+					<div class="col-xs-12 col-sm-8 col-sm-push-4 col-md-8 col-md-push-4">
 						<h3 class="text-left mgb3" style="color: #78828D;">
 							<strong>유연한 개방형 플랫폼 사용</strong>
 						</h3>
@@ -155,6 +149,11 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 							합니다.
 						</p>
 					</div>
+					<div
+						class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-0 col-sm-pull-8 col-md-4 col-md-offset-0 col-md-pull-8">
+						<img class="thumbnail img-responsive" alt="Bootstrap template"
+							src="/CompanyItem/IT Products/Images/02-open.png">
+					</div>
 				</div>
 
 				<div class="enter"></div>
@@ -162,7 +161,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 				<hr class="hr_b">
 				<!-- 4_Azure -->
 				<div class="row">
-					<div class="col-md-8">
+					<div class="col-xs-12 col-sm-8 col-md-8">
 						<h3 class="text-left mgb3" style="color: #78828D;">
 							<strong>기존 IT 확장</strong>
 						</h3>
@@ -175,7 +174,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 							모두에서 최고의 성과를 자랑하며 더 많은 IT 옵션을 제공하고 복잡성과 비용을 낮춥니다.
 						</p>
 					</div>
-					<div class="col-md-4">
+					<div class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-0 col-md-4 col-md-offset-0">
 						<img class="thumbnail img-responsive" alt="Bootstrap template"
 							src="/CompanyItem/IT Products/Images/03-existing.png">
 					</div>
@@ -188,11 +187,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 
 				<!-- 5_Azure -->
 				<div class="row">
-					<div class="col-md-4">
-						<img class="thumbnail img-responsive" alt="Bootstrap template"
-							src="/CompanyItem/IT Products/Images/04-pay.png">
-					</div>
-					<div class="col-md-8">
+					<div class="col-xs-12 col-sm-8 col-sm-push-4 col-md-8 col-md-push-4">
 						<h3 class="text-left mgb3" style="color: #78828D;">
 							<strong>필요에 따라 확장하고 사용한 만큼 지불 </strong>
 						</h3>
@@ -203,6 +198,10 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 							하고 분당 청구 기능도 제공하므로 항상 성능 대비 가장 저렴한 요금이 청구됩니다.
 						</p>
 					</div>
+					<div class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-0 col-sm-pull-8 col-md-4 col-md-offset-0 col-md-pull-8">
+						<img class="thumbnail img-responsive" alt="Bootstrap template"
+							src="/CompanyItem/IT Products/Images/04-pay.png">
+					</div>
 				</div>
 
 				<div class="enter"></div>
@@ -211,7 +210,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 
 				<!-- 6_Azure -->
 				<div class="row">
-					<div class="col-md-8">
+					<div class="col-xs-12 col-sm-8 col-md-8">
 						<h3 class="text-left mgb3" style="color: #78828D;">
 							<strong>데이터 보호</strong>
 						</h3>
@@ -226,7 +225,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 							도 출시했습니다.
 						</p>
 					</div>
-					<div class="col-md-4">
+					<div class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-0 col-md-4 col-md-offset-0">
 						<img class="thumbnail img-responsive" alt="Bootstrap template"
 							src="/CompanyItem/IT Products/Images/05-protect.png">
 					</div>
@@ -238,11 +237,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 
 				<!-- 7_Azure -->
 				<div class="row">
-					<div class="col-md-4">
-						<img class="thumbnail img-responsive" alt="Bootstrap template"
-							src="/CompanyItem/IT Products/Images/06-everywhere.png">
-					</div>
-					<div class="col-md-8">
+					<div class="col-xs-12 col-sm-8 col-sm-push-4 col-md-8 col-md-push-4">
 						<h3 class="text-left mgb3" style="color: #78828D;">
 							<strong>어디서든 앱 실행</strong>
 						</h3>
@@ -254,6 +249,10 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 							다양한 옵션을 제공하고 있습니다. Azure는 중국 본토에서 최초의 다국적 클라우드 공급자이기도 합니다.
 						</p>
 					</div>
+					<div class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-0 col-sm-pull-8 col-md-4 col-md-offset-0 col-md-pull-8">
+						<img class="thumbnail img-responsive" alt="Bootstrap template"
+							src="/CompanyItem/IT Products/Images/06-everywhere.png">
+					</div>
 				</div>
 
 				<div class="enter"></div>
@@ -262,7 +261,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 
 				<!-- 8_Azure -->
 				<div class="row">
-					<div class="col-md-8">
+					<div class="col-xs-12 col-sm-8 col-md-8">
 						<h3 class="text-left mgb3" style="color: #78828D;">
 							<strong>더 현명한 결정 내리기</strong>
 						</h3>
@@ -270,7 +269,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 							비즈니스 인텔리전스를 좀 더 구체적으로 조정합니다. 더 나은 결정을 내리고, 고객 서비스를 향상시키고, 구조적,
 							비구조적, 스트리밍 사물 인터넷 데이터에서 새로운 비즈니스의 가능성을 실현해 보세요.</p>
 					</div>
-					<div class="col-md-4">
+					<div class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-0 col-md-4 col-md-offset-0">
 						<img class="thumbnail img-responsive" alt="Bootstrap template"
 							src="/CompanyItem/IT Products/Images/07-smarter.png">
 					</div>
@@ -281,10 +280,6 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 				<hr class="hr_b">
 				<!-- 9_Azure -->
 				<div class="row">
-					<div class="col-md-4">
-						<img class="thumbnail img-responsive" alt="Bootstrap template"
-							src="/CompanyItem/IT Products/Images/08-trusted.png">
-					</div>
 					<div class="col-md-8">
 						<h3 class="text-left mgb3" style="color: #78828D;">
 							<strong>신뢰할 수 있는 클라우드 사용 </strong>
@@ -299,6 +294,10 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 							McKesson, Milliman, Towers Watson, NBC Sports, TVB를 비롯한 다양한 기업이
 							있습니다.
 						</p>
+					</div>
+					<div class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-0 col-sm-pull-8 col-md-4 col-md-offset-0 col-md-pull-8">
+						<img class="thumbnail img-responsive" alt="Bootstrap template"
+							src="/CompanyItem/IT Products/Images/08-trusted.png">
 					</div>
 				</div>
 				<div class="enter"></div>

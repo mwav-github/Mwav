@@ -73,7 +73,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 						data-original-title="Windows">Windows</a> <a
 						href="/CompanyItem/IT Products/MSOffice/MSOffice.jsp"
 						class="list-group-item" data-toggle="tooltip" data-placement="top"
-						data-original-title="OpenSRS">MSOffice</a>
+						data-original-title="MSOffice">MSOffice</a>
 				</div>
 			</div>
 			<!-- 끝 -->
@@ -138,9 +138,8 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 							options.</h3>
 						<br />
 					</div>
-					<div class="col-md-1 col-sm-1"></div>
-					<div class="col-md-12">
-						<div class="col-xs-6 col-md-offset-1 col-md-2 ">
+					<div class="col-xs-12 col-sm-12 col-md-12">
+						<div class="col-xs-6 col-sm-6 col-md-offset-1 col-md-2 ">
 							<img class="img-responsive"
 								src="/CompanyItem/IT Products/Images/symantec.png"
 								data-toggle="tooltip" data-placement="top"
@@ -149,7 +148,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 								at all points of their online experience.</p>
 							<br>
 						</div>
-						<div class="col-xs-6 col-md-2">
+						<div class="col-xs-6 col-sm-6 col-md-2">
 							<img class="img-responsive"
 								src="/CompanyItem/IT Products/Images/thawte.png"
 								data-toggle="tooltip" data-placement="top"
@@ -159,7 +158,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 								Europe.</p>
 							<br>
 						</div>
-						<div class="col-xs-6 col-md-2">
+						<div class="col-xs-6 col-sm-6 col-md-2">
 							<img class="img-responsive"
 								src="/CompanyItem/IT Products/Images/trustwave.png"
 								data-toggle="tooltip" data-placement="top"
@@ -169,7 +168,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 								businesses.</p>
 							<br>
 						</div>
-						<div class="col-xs-6 col-md-2">
+						<div class="col-xs-6 col-sm-6 col-md-2">
 							<img class="img-responsive"
 								src="/CompanyItem/IT Products/Images/geotrust.png"
 								data-toggle="tooltip" data-placement="top"
@@ -178,7 +177,8 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 								costs while maintaining a high level of trust and security.</p>
 							<br>
 						</div>
-						<div class="col-xs-6 col-xs-pull-6 col-md-2 col-md-pull-0">
+						<div class="col-xs-6 col-sm-6 col-md-2">
+						<!-- col-xs-6 col-xs-pull-6 col-sm-6 col-sm-pull-6 col-md-2 col-md-pull-0 -->
 							<img class="img-responsive"
 								src="/CompanyItem/IT Products/Images/comodo.png"
 								data-toggle="tooltip" data-placement="top"
@@ -189,7 +189,6 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 							<br>
 						</div>
 					</div>
-					<div class="col-md-1 col-sm-1"></div>
 				</div>
 				<div class="enter"></div>
 				<!-- /.row -->
@@ -269,7 +268,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					</div>
 
 					<div class="enter"></div>
-					<div class="col-md-12 hidden-xs">
+					<div class="col-md-12 hidden-xs hidden-sm">
 						<div class="col-md-4">
 							<h4>
 								<b>From $10/yr</b>
@@ -347,7 +346,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					</div>
 
 					<div class="enter"></div>
-					<div class="col-md-12 hidden-xs">
+					<div class="col-md-12 hidden-xs hidden-sm">
 						<div class="col-md-4">
 							<p>
 								<b>Name Suggestion</b>
@@ -394,7 +393,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 						</div>
 					</div>
 					<div class="enter"></div>
-					<div class="col-md-12 hidden-xs">
+					<div class="col-md-12 hidden-xs hidden-sm">
 						<div class="col-md-4 ">
 							<p>
 								<b>Contact Privacy</b>

@@ -9,6 +9,10 @@
 
 <%--인코딩 설정 --%>
 
+<!-- Ã«ÂÂ´ÃªÂ°Â Ã¬Â ÂÃ¬ÂÂÃ­ÂÂÃ«ÂÂ Ã¬ÂÂ¤Ã­ÂÂÃ¬ÂÂ¼ -->
+<link href="/resources/CommonLibrary/CSS/mwav_style.css"
+	rel="stylesheet">
+
 <!-- Custom font-awesome -->
 <!-- <link href="/resources/JsFramework/Bootstrap/font-awesome.min.css"
 	rel="stylesheet"> -->
@@ -27,9 +31,7 @@
 <link href="/resources/CommonLibrary/CSS/modern-business.css"
 	rel="stylesheet">
 
-<!-- Ã«ÂÂ´ÃªÂ°Â Ã¬Â ÂÃ¬ÂÂÃ­ÂÂÃ«ÂÂ Ã¬ÂÂ¤Ã­ÂÂÃ¬ÂÂ¼ -->
-<link href="/resources/CommonLibrary/CSS/mwav_style.css"
-	rel="stylesheet">
+
 
 <!-- Ã«ÂÂ´ÃªÂ°Â Ã¬Â ÂÃ¬ÂÂÃ­ÂÂÃ«ÂÂ Ã¬ÂÂ¤Ã­ÂÂÃ¬ÂÂ¼ -->
 <link href="/resources/CommonLibrary/CSS/myStyle.css" rel="stylesheet">

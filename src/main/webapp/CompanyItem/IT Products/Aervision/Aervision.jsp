@@ -75,7 +75,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 						<a
 						href="/CompanyItem/IT Products/MSOffice/MSOffice.jsp"
 						class="list-group-item" data-toggle="tooltip" data-placement="top"
-						data-original-title="OpenSRS">MSOffice</a>
+						data-original-title="MSOffice">MSOffice</a>
 				</div>
 			</div>
 			<!-- 끝 -->
@@ -94,23 +94,24 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 						<hr>
 					</div>
 
-					<div class="col-md-6">
-						<img class="thumbnail img-responsive" alt="Bootstrap template"
+					<div class="col-xs-12 col-sm-6 col-md-6">
+						<img class="thumbnail img-responsive text-center" alt="Bootstrap template"
 							src="/CompanyItem/zImage/AerPass.jpg" data-toggle="tooltip"
 							data-placement="top" data-original-title="AerPass">
 						<div class="enter"></div>
 					</div>
-					<div class="col-md-6">
+					<div class="col-xs-12 col-sm-6 col-md-6">
 						<strong>AerPass 에어패스</strong> <br>
 						<p>에어패스는 세계 최초로 스스로 레벨링을 맞출 수 있는 홍채인식기입니다.</p>
 						<p>홍채인식을 끊김없이 자연스럽게 하도록 설계되었습니다.</p>
 						<p>즉시 사용 가능한 수 많은 애플리케이션에서 홍채인식을 자연스럽고 쉽게 처리합니다.</p>
 						<p>에어패스는 자동화 되어 별도 조작 없이, 출입통제와 대상검열에 바로 적용이 가능한 완제품입니다.</p>
 						<p>제품에 대한 브로셔와 자세한 정보는 연락 주시면 상세히 설명드리겠습니다.</p>
+						<br/>
 					</div>
 
 
-					<div class="vid col-md-10 col-md-push-1">
+					<div class="vid col-xs-push-1 col-xs-10 col-sm-10 col-sm-push-1  col-md-10 col-md-push-1">
 						<iframe width="560" height="315"
 							src="http://player.vimeo.com/video/117455204" allowfullscreen=""></iframe>
 
