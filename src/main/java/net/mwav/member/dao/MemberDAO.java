@@ -391,5 +391,18 @@ public class MemberDAO extends AbstractDAO {
 
 		return memberLogin;
 	}
+	
+	public Map<String, Object> insertSnsForm(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+
+		try {
+			insert("member.insertSnsForm", map);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return null;
+	}
 
 }

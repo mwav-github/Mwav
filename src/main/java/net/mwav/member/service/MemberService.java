@@ -42,6 +42,9 @@ public interface MemberService {
 	List<String> selectListZcGunGuSeek(String zcSiDoName);
 
 	List<Map<String, Object>> selectListZcAll(Map<String, Object> map);
+	
+	/*======================================페북 로그인======================================*/
+	Map<String, Object> insertSnsForm(Map<String, Object> map);
 
 
 

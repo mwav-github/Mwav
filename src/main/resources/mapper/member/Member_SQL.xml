@@ -160,6 +160,14 @@ select * from postcodebuildinfo_tbl where 시도명 = '서울특별시' and 시�
 	    WHERE a.member_id = b.member_id and mbrLoginId = #{mbrLoginId} 		
 		]]>
 	</select>
+	
+	<!-- /*========================================SNS========================================*/ -->
+	<select id="insertSnsForm" parameterType="hashmap">
+		<![CDATA[
+	INSERT INTO MemberSns_tbl 
+		Values(#{fId}, #{fName}, #{fEmail}, #{fCellPhone}, #{fAddr})
+		]]>
+	</select>
 		
 </mapper>
 
