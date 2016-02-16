@@ -578,8 +578,11 @@ public class MemberController {
 		System.out.println("fId = "+fId);
 		System.out.println("fEmail = "+fEmail);
 		System.out.println("fName = "+fName);
+
+		/* ID가 없으면 (Insert), 있으면 (로그인) */
 		
-		memberService.insertSnsForm(commandMap.getMap());
+		//memberService.insertSnsForm(commandMap.getMap());
+		
 		/*
 		 * String b_mbrLoginPw = (String) commandMap.get("mbrLoginPw");
 		 * System.out.println("b_mbrLoginPw" + b_mbrLoginPw);
@@ -600,6 +603,9 @@ public class MemberController {
 		 */
 		//mv.addObject("memberLogin", memberLogin);
 		
-		return null;
+		mode = "";
+		request.setAttribute("mode", mode);
+		
+		return mv;
 	}
 }
