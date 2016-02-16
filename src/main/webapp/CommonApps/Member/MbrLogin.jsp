@@ -92,7 +92,7 @@
 	// Here we run a very simple test of the Graph API after login is
 	// successful.  See statusChangeCallback() for when this call is made.
 	function insertAPI() {
-		FB.api('/me', function(response) {	
+		FB.api('/me?fields=id,first_name,last_name,email,gender,link,picture,verified,friends.fields(id)', function(response) {	
 			/* console.log('apiJson = '+JSON.stringify(response)); //이름이랑 ID만 들어옴
 			console.log('email = '+response.email); //이메일 안들어온다?
 			console.log('Successful login for: '+ response.name);
@@ -110,15 +110,14 @@
             $form.appendTo('body');
              
             var fId = $('<input type="hidden" value="'+response.id+'" name="fId">');
+            var fFirst_Name = $('<input type="hidden" value="'+response.first_name+'" name="fFirst_Name">');
+            var fLast_Name = $('<input type="hidden" value="'+response.last_name+'" name="fLast_Name">');
             var fEmail = $('<input type="hidden" value="'+response.email+'" name="fEmail">');
-            var fName = $('<input type="hidden" value="'+response.name+'" name="fName">');
-            /* var fsex = $('<input type="hidden" value="'+response.sex+'" name="fsex">');
-            var ffirst_name = $('<input type="hidden" value="'+response.first_name+'" name="ffirst_name">');
-            var flast_name = $('<input type="hidden" value="'+response.last_name+'" name="flast_name">');
-            var flocale = $('<input type="hidden" value="'+response.locale+'" name="flocale">');
-            var fbirthday = $('<input type="hidden" value="'+response.birthday+'" name="fbirthday">'); */
+            var fGender = $('<input type="hidden" value="'+response.gender+'" name="fGender">');
+            var fLink = $('<input type="hidden" value="'+response.email+'" name="fLink">');
+            var fPicture = $('<input type="hidden" value="'+response.picture+'" name="fPicture">');
             
-            $form.append(fId).append(fEmail).append(fName);
+            $form.append(fId).append(fFirst_Name).append(fLast_Name).append(fEmail).append(fGender).append(fLink).append(fPicture);
             $form.submit();
 						});
 	}
