@@ -164,7 +164,7 @@ select * from postcodebuildinfo_tbl where 시도명 = '서울특별시' and 시�
 	<!-- /*========================================SNS========================================*/ -->
 	<select id="insertSnsForm" parameterType="hashmap">
 		<![CDATA[
-	INSERT INTO MemberSns_tbl 
+	INSERT INTO SnsMember_tbl 
 		Values(#{fId}, #{fName}, #{fEmail}, #{fCellPhone}, #{fAddr})
 		]]>
 	</select>
