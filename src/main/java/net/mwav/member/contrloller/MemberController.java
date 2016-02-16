@@ -572,17 +572,38 @@ public class MemberController {
 
 		ModelAndView mv = new ModelAndView("/Index");
 
-		String fId = (String) commandMap.get("fId");
+		String fsmMember_id = (String) commandMap.get("fsmMember_id");
+		String fFirst_Name = (String) commandMap.get("fFirst_Name");
+		String fLast_Name = (String) commandMap.get("fLast_Name");
 		String fEmail = (String) commandMap.get("fEmail");
-		String fName = (String) commandMap.get("fName");
-		System.out.println("fId = "+fId);
-		System.out.println("fEmail = "+fEmail);
-		System.out.println("fName = "+fName);
+		String fGender = (String) commandMap.get("fGender");
+		String fLink = (String) commandMap.get("fLink");
+		Object fPicture = (Object) commandMap.get("fPicture");
+
+		System.out.println("fsmMember_id = " + fsmMember_id);
+		System.out.println("fFirst_Name = " + fFirst_Name);
+		System.out.println("fLast_Name = " + fLast_Name);
+		System.out.println("fEmail = " + fEmail);
+		System.out.println("fGender = " + fGender);
+		System.out.println("fLink = " + fLink);
+		System.out.println("fPicture = " + fPicture);
 
 		/* ID가 없으면 (Insert), 있으면 (로그인) */
-		
-		//memberService.insertSnsForm(commandMap.getMap());
-		
+		boolean check;
+		check = memberService.selectOneSnsMbrLoginIdCheck(fsmMember_id);
+
+		if (check == false) {
+
+			if(fGender.equals("male")){
+				commandMap.put("fGender", 1);
+			} else {
+				commandMap.put("fGender", 0);
+			}
+			
+			memberService.insertSnsForm(commandMap.getMap());
+			System.out.println("insertSnsForm 성공!!!!!!");
+		}
+
 		/*
 		 * String b_mbrLoginPw = (String) commandMap.get("mbrLoginPw");
 		 * System.out.println("b_mbrLoginPw" + b_mbrLoginPw);
@@ -601,8 +622,8 @@ public class MemberController {
 		 * 
 		 * mv.addObject("mode", "SDMbrInput");
 		 */
-		//mv.addObject("memberLogin", memberLogin);
-		
+		// mv.addObject("memberLogin", memberLogin);
+
 		mode = "";
 		request.setAttribute("mode", mode);
 		

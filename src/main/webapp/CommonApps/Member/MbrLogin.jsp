@@ -23,9 +23,8 @@
 			//console.log('document = '+document.getElementById('id').innerHTML);
 			FBtoken = response.authResponse.accessToken;
 			console.log('FBtoken = '+FBtoken); //자체적인 accessToken으로 로그인 관리중인듯
-			console.log('public_profile = '+response.authResponse.public_profile);
 			fbLogin();
-			permissionAPI();
+			//permissionAPI();
 			//insertAPI();
 			console.log('connected finished')
 		} else if (response.status === 'not_authorized') {
@@ -56,7 +55,7 @@
 			appId : '{1746137728947385}',
 			cookie : true, // enable cookies to allow the server to access 
 			xfbml : true, // parse social plugins on this page
-			version : 'v2.2' // use version 2.2
+			version : 'v2.5' // use version 2.2
 		});
 
 		// Now that we've initialized the JavaScript SDK, we call 
@@ -79,13 +78,12 @@
 
 	// Load the SDK asynchronously
 	(function(d, s, id) {
-		console.log('Load SDK!');
 		var js, fjs = d.getElementsByTagName(s)[0];
 		if (d.getElementById(id))
 			return;
 		js = d.createElement(s);
 		js.id = id;
-		js.src = "//connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v2.2&appId=1746137728947385";
+		js.src = "//connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v2.5&appId=1746137728947385";
 		fjs.parentNode.insertBefore(js, fjs);
 	}(document, 'script', 'facebook-jssdk'));
 
@@ -93,36 +91,27 @@
 	// successful.  See statusChangeCallback() for when this call is made.
 	function insertAPI() {
 		FB.api('/me?fields=id,first_name,last_name,email,gender,link,picture,verified,friends.fields(id)', function(response) {	
-			/* console.log('apiJson = '+JSON.stringify(response)); //이름이랑 ID만 들어옴
-			console.log('email = '+response.email); //이메일 안들어온다?
-			console.log('Successful login for: '+ response.name);
-			console.log('ID1 = '+response.id);
-			$('#name').html(response.name);
-			ID = documnet.getElementByID()
-			Name = response.name;
-			console.log('ID2 = '+ID.value);
-			console.log('Name = '+Name.innerHTML);
-			document.getElementById('status').innerHTML = 'Thanks for logging in, ' + response.name + '!'; */
-			
+			console.log(response);
 			var $form = $('<form></form>');
             $form.attr('action', '/member/snsForm.do');
             $form.attr('method', 'post');
             $form.appendTo('body');
              
-            var fId = $('<input type="hidden" value="'+response.id+'" name="fId">');
+            var fsmMember_id = $('<input type="hidden" value="'+response.id+'" name="fsmMember_id">');
             var fFirst_Name = $('<input type="hidden" value="'+response.first_name+'" name="fFirst_Name">');
             var fLast_Name = $('<input type="hidden" value="'+response.last_name+'" name="fLast_Name">');
             var fEmail = $('<input type="hidden" value="'+response.email+'" name="fEmail">');
             var fGender = $('<input type="hidden" value="'+response.gender+'" name="fGender">');
-            var fLink = $('<input type="hidden" value="'+response.email+'" name="fLink">');
+            var fLink = $('<input type="hidden" value="'+response.link+'" name="fLink">');
             var fPicture = $('<input type="hidden" value="'+response.picture+'" name="fPicture">');
             
-            $form.append(fId).append(fFirst_Name).append(fLast_Name).append(fEmail).append(fGender).append(fLink).append(fPicture);
+            $form.append(fsmMember_id).append(fFirst_Name).append(fLast_Name).append(fEmail).append(fGender).append(fLink).append(fPicture);
             $form.submit();
 						});
+		
 	}
 	
-	function permissionAPI() {
+	function permissionAPI() { // permission 거부하였을때 쓰이는 기능
 		FB.api('/me/permissions', function(response) {
 			console.log('permission');
 			console.log(response);
@@ -136,20 +125,31 @@
 						});
 	}
 	
-	function fbLogin() { //이 기능은 안 쓰이는중
+	function fbLogin() {
 	FB.login(function(response) {
 	    if (response.authResponse) {
-	     console.log('Welcome!  FBlogin() ');
 	     FB.api('/me?fields=id,first_name,last_name,email,gender,link,picture,verified,friends.fields(id)', function(response) {
-	       console.log('reponse = ' + response);
-	       console.log(JSON.stringify(response));
-	       console.log('email = '+response.email);
-	       //console.log('firstnaem = '+response.email);
+	    	 	console.log(response);
+	    	 	var $form = $('<form></form>');
+	            $form.attr('action', '/member/snsForm.do');
+	            $form.attr('method', 'post');
+	            $form.appendTo('body');
+	             
+	            var fsmMember_id = $('<input type="hidden" value="'+response.id+'" name="fsmMember_id">');
+	            var fFirst_Name = $('<input type="hidden" value="'+response.first_name+'" name="fFirst_Name">');
+	            var fLast_Name = $('<input type="hidden" value="'+response.last_name+'" name="fLast_Name">');
+	            var fEmail = $('<input type="hidden" value="'+response.email+'" name="fEmail">');
+	            var fGender = $('<input type="hidden" value="'+response.gender+'" name="fGender">');
+	            var fLink = $('<input type="hidden" value="'+response.link+'" name="fLink">');
+	            var fPicture = $('<input type="hidden" value="'+response.picture+'" name="fPicture">');
+	            
+	            $form.append(fsmMember_id).append(fFirst_Name).append(fLast_Name).append(fEmail).append(fGender).append(fLink).append(fPicture);
+	            $form.submit();
 	     });
 	    } else {
 	     console.log('User cancelled login or did not fully authorize.');
 	    }
-	}, {scope: 'public_profile, email, user_friends'});
+	}, {scope: 'public_profile, email, user_friends'}); // permission 거부 아래 grant?인가를 써서 다시 재 건의 할 수 있음
 	}
 	
 	

@@ -147,6 +147,12 @@ public class MemberServiceImpl implements MemberService {
 		return memberDAO.insertSnsForm(map);
 	}
 
+	@Override
+	public boolean selectOneSnsMbrLoginIdCheck(String fsmMember_id) {
+		// TODO Auto-generated method stub
+		return memberDAO.selectOneSnsMbrLoginIdCheck(fsmMember_id);
+	}
+
 
 
 

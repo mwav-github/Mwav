@@ -45,6 +45,8 @@ public interface MemberService {
 	
 	/*======================================페북 로그인======================================*/
 	Map<String, Object> insertSnsForm(Map<String, Object> map);
+	
+	boolean selectOneSnsMbrLoginIdCheck(String fsmMember_id);
 
 
 

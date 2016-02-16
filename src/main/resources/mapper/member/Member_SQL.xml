@@ -164,10 +164,17 @@ select * from postcodebuildinfo_tbl where 시도명 = '서울특별시' and 시�
 	<!-- /*========================================SNS========================================*/ -->
 	<select id="insertSnsForm" parameterType="hashmap">
 		<![CDATA[
-	INSERT INTO SnsMember_tbl 
-		Values(#{fId}, #{fName}, #{fEmail}, #{fCellPhone}, #{fAddr})
+			INSERT INTO SnsMember_tbl 
+			Values(#{fsmMember_id}, #{fFirst_Name}, #{fLast_Name}, NULL, #{fEmail}, #{fGender}, #{fPicture}, #{fLink}, NULL)
 		]]>
 	</select>
+	
+	<select id="selectOneSnsMbrLoginIdCheck" parameterType="int" resultType="int">
+		<![CDATA[
+			select smMember_id from SnsMember_tbl where smMember_id IN (#{fsmMember_id}); 		
+		]]>
+	</select>
+	
 		
 </mapper>
 
