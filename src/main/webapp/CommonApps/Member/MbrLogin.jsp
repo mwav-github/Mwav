@@ -14,19 +14,18 @@
 	
 	// This is called with the results from from FB.getLoginStatus().
 	function statusChangeCallback(response) {
-		console.log('statusChangeCallback');
-		console.log(response);
 		// The response object is returned with a status field that lets the
 		// app know the current login status of the person.
 		// Full docs on the response object can be found in the documentation
 		// for FB.getLoginStatus().
 		if (response.status === 'connected') {
 			// Logged into your app and Facebook.
+			//console.log('document = '+document.getElementById('id').innerHTML);
 			FBtoken = response.authResponse.accessToken;
-			console.log('id = '+response.authResponse.id);
 			console.log('FBtoken = '+FBtoken); //자체적인 accessToken으로 로그인 관리중인듯
 			console.log('public_profile = '+response.authResponse.public_profile);
 			fbLogin();
+			permissionAPI();
 			//insertAPI();
 			console.log('connected finished')
 		} else if (response.status === 'not_authorized') {
@@ -47,7 +46,6 @@
 	// Button.  See the onlogin handler attached to it in the sample
 	// code below.
 	function checkLoginState() {
-		console.log('statusChangeCallback');
 		FB.getLoginStatus(function(response) {
 			statusChangeCallback(response);
 		});
@@ -55,11 +53,10 @@
 
 	window.fbAsyncInit = function() {
 		FB.init({
-			appId : '{1742261129335045}',
+			appId : '{1746137728947385}',
 			cookie : true, // enable cookies to allow the server to access 
-			// the session
 			xfbml : true, // parse social plugins on this page
-			version : 'v2.5' // use version 2.2
+			version : 'v2.2' // use version 2.2
 		});
 
 		// Now that we've initialized the JavaScript SDK, we call 
@@ -82,12 +79,13 @@
 
 	// Load the SDK asynchronously
 	(function(d, s, id) {
+		console.log('Load SDK!');
 		var js, fjs = d.getElementsByTagName(s)[0];
 		if (d.getElementById(id))
 			return;
 		js = d.createElement(s);
 		js.id = id;
-		js.src = "//connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v2.5&appId=1742261129335045";
+		js.src = "//connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v2.2&appId=1746137728947385";
 		fjs.parentNode.insertBefore(js, fjs);
 	}(document, 'script', 'facebook-jssdk'));
 
@@ -126,8 +124,16 @@
 	}
 	
 	function permissionAPI() {
-		FB.api('/me', function(response) {	
-			
+		FB.api('/me/permissions', function(response) {
+			console.log('permission');
+			console.log(response);
+			var declined = [];
+			  for (i = 0; i < response.data.length; i++) {
+				console.log('de = '+response.data[i]);
+			    if (response.data[i].status == 'declined') {
+			      declined.push(response.data[i].permission);
+			    }
+			  }			
 						});
 	}
 	
@@ -135,13 +141,16 @@
 	FB.login(function(response) {
 	    if (response.authResponse) {
 	     console.log('Welcome!  FBlogin() ');
-	     FB.api('/me', function(response) {
-	       console.log('Good to see you, ' + response.name + '.');
+	     FB.api('/me?fields=id,first_name,last_name,email,gender,link,picture,verified,friends.fields(id)', function(response) {
+	       console.log('reponse = ' + response);
+	       console.log(JSON.stringify(response));
+	       console.log('email = '+response.email);
+	       //console.log('firstnaem = '+response.email);
 	     });
 	    } else {
 	     console.log('User cancelled login or did not fully authorize.');
 	    }
-	}, {scope: 'email'});
+	}, {scope: 'public_profile, email, user_friends'});
 	}
 	
 	
