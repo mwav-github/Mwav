@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 
@@ -77,26 +78,71 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 						<h5>All information and story about Mwav.</h5>
 						<br>
 						<ul class="font_color_faq">
-							<li><a href="/Company/Introduction/Introduction.jsp"
-								>Introduction</a></li>
-							<li><a href="/Company/Greetings/Greetings.jsp"
-								>Greetings</a></li>
-							<li><a href="/Company/History/History.jsp"
-								>History</a></li>
-							<li><a href="/Company/BusinessField/BusinessFields.jsp"
-								>BusinessField</a></li>
-							<li><a href="/Company/ActualResults/ActualResults.jsp"
-								>ActualResults</a></li>
-							<li><a href="/board/bnsList.do" >ThePress</a></li>
-							<li><a href="/Company/HR-Affairs/HR-Affairs.jsp"
-								>HR-Affairs</a></li>
-							<li><a href="/Company/LocationMap/LocationMap.jsp"
-								>LocationMap</a></li>
-							<li><a href="/Company/Profitsharing/Profitsharing.jsp"
-								>Profitsharing</a></li>
+							<li><a href="/Company/Introduction/Introduction.jsp">Introduction</a></li>
+							<li><a href="/Company/Greetings/Greetings.jsp">Greetings</a></li>
+							<li><a href="/Company/History/History.jsp">History</a></li>
+							<li><a href="/Company/BusinessField/BusinessFields.jsp">BusinessField</a></li>
+							<li><a href="/Company/ActualResults/ActualResults.jsp">ActualResults</a></li>
+							<li><a href="/board/bnsList.do">ThePress</a></li>
+							<li><a href="/Company/HR-Affairs/HR-Affairs.jsp">HR-Affairs</a></li>
+							<li><a href="/Company/LocationMap/LocationMap.jsp">LocationMap</a></li>
+							<li><a href="/Company/Profitsharing/Profitsharing.jsp">Profitsharing</a></li>
 						</ul>
 					</div>
-					
+
+					<div class="col-xs-12 col-sm-4 col-md-4 ">
+						<h3>
+							<strong>CompanyItem</strong>
+						</h3>
+						<h5>All CompanyItem about Mwav.</h5>
+						<br>
+						<ul class="font_color_faq">
+							<li><a href="/CompanyItem/IT Products/OpenSRS/OpenSRS.jsp">IT
+									Solutions</a></li>
+							<li><a
+								href="/CompanyItem/IT Products/Aervision/Aervision.jsp">IT
+									Products</a></li>
+							<li><a
+								href="/CompanyItem/WebSite Building/WebSite Building.jsp">Wesite
+									Building</a></li>
+							<li><a
+								href="/CompanyItem/Digital Marketing/Digital Marketing.jsp">Digital
+									Marketing</a></li>
+							<li><a href="/CompanyItem/IT Consulting/IT Consulting.jsp">IT
+									Consulting</a></li>
+						</ul>
+					</div>
+
+					<div class="col-xs-12 col-sm-4 col-md-4 ">
+						<h3>
+							<strong>CusmterService</strong>
+						</h3>
+						<h5>CustomerSerice about Mwav.</h5>
+						<br>
+						<ul class="font_color_faq">
+							<li><a
+								href="javascript:window.alert('권한이 없습니다. \n 로그인 후 이용해주시기 바랍니다.');">MyPage</a></li>
+							<c:if test="${sessionScope.mbrLoginId ne null }">
+								<li><a href="/CustomerService/MyPage/MyPage.jsp">MyPage</a></li>
+							</c:if>
+
+							<li><a href="/CustomerService/Announcement/Announcement.jsp">Announcement</a></li>
+
+							<li><a
+								href="javascript:window.alert('권한이 없습니다. \n 로그인 후 이용해주시기 바랍니다.');">MemberShip</a></li>
+							<c:if test="${sessionScope.mbrLoginId ne null }">
+								<a href="/CustomerService/MemberShip/MemberShip.jsp">MemberShip</a>
+							</c:if>
+
+							<li><a href="/Company/History/History.jsp">History</a></li>
+
+							<li><a href="/CustomerService/FAQ/FAQ.jsp">FAQ</a></li>
+							<li><a href="/CustomerService/QnA/QnA.jsp">QnA</a></li>
+							<li><a href="/CustomerService/Contact/Contact.jsp">Contact</a></li>
+							<li><a href="/CustomerService/SiteMap/SiteMap.jsp">SiteMap</a></li>
+						</ul>
+					</div>
+
 				</div>
 			</div>
 

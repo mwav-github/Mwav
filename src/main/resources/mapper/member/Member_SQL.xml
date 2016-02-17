@@ -5,12 +5,12 @@
 <mapper namespace="member">
 	
 	<!-- /*========================================등록========================================*/ -->
-	<select id="insertMbrForm" parameterType="hashmap">
+	<insert id="insertMbrForm" parameterType="hashmap">
 		<![CDATA[
 	INSERT INTO Member_tbl 
 		Values(#{member_id}, #{mbrLoginId}, #{mbrLoginPw}, #{mbrTempLoginPw}, #{mbrFirstName}, #{mbrLastName}, #{mbrMiddleName}, #{mbrEmail}, #{mbrCellPhone}, #{mbrAddrFlag}, #{mbrZipcode}, #{mbrAddress})
 		]]>
-	</select>
+	</insert>
 	
 	<insert id="insertMemberValue_tbl" parameterType="hashmap">
 		<![CDATA[
@@ -45,7 +45,7 @@
 	
 	<update id="updateMbrTempLoginPw" parameterType="hashmap"> 
 		<![CDATA[
-		UPDATE Member_tbl SET mbrTempLoginPw = #{mbrTempLoginPw} WHERE mbrEmail = #{mbrEmail} and mbrLoginId = #{mbrLoginId}
+		UPDATE Member_tbl SET mbrLoginPw=null, mbrTempLoginPw = #{mbrTempLoginPw} WHERE mbrEmail = #{mbrEmail} and mbrLoginId = #{mbrLoginId}
 		]]>
 	</update>
 	

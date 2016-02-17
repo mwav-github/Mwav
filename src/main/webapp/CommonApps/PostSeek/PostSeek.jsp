@@ -395,10 +395,10 @@
 		role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-md">
 			<div class="modal-content">
-			<div class="wrap-loading display-none">
-				<img class="wrap-loading_images "
-					src="/CommonApps/PostSeek/Images/ajax-loader.gif">
-			</div>		
+				<div class="wrap-loading display-none">
+					<img class="wrap-loading_images "
+						src="/CommonApps/PostSeek/Images/ajax-loader.gif">
+				</div>
 				<div class="modal-header"
 					style="border-bottom: 0px solid #eee; background-color: #0480be; color: white;">
 					<h4 class="modal-title">주소찾기</h4>
@@ -427,8 +427,8 @@
 										<br />
 										<!--  <input type="hidden" name="post_mode" value="post_zcRoadName" /> -->
 										<div class="row">
-											<div class="col-md-2">특별, 광역시/도</div>
-											<div class="col-md-3">
+											<div class="col-xs-12 col-sm-6 col-md-6">특별, 광역시/도</div>
+											<div class="col-xs-12 col-sm-6 col-md-6">
 												<select name="zcSiDoName" class="form-control zcSiDoName_1"
 													onchange="SelectFindercheck(1)">
 													<option selected="selected">전체</option>
@@ -467,8 +467,9 @@
 													<option value="충청북도">충청북도</option>
 												</select>
 											</div>
-											<div class="col-md-2 col-sm-offset-1">시/군구</div>
-											<div class="col-md-3">
+											<div class="enter"></div>
+											<div class="col-xs-12 col-sm-6 col-md-6">시/군구</div>
+											<div class="col-xs-12 col-sm-6 col-md-6">
 												<select class="form-control" id="zcSiGunGuName"
 													name="zcSiGunGuName">
 												</select>
@@ -476,20 +477,26 @@
 										</div>
 										<br />
 										<div class="row">
-											<div class="col-md-4">
+											<div class="col-xs-12 col-sm-12 col-md-12">
 												<input type="text" name="zcRoadName" id="zcRoadName"
 													class="form-control" placeholder="도로명...">
 											</div>
-											<div class="col-md-4 col-sm-offset-1">
+
+											<div class="enter hiddien-sm hidden-md"></div>
+
+
+											<div class="col-xs-12 col-sm-12 col-md-12 ">
 												<input type="text" id="zcBuildingMainNo"
 													class="form-control" placeholder="건물번호...">
 											</div>
-											<div class="col-md-1 col-sm-offset-1">
+
+											<div class="enter"></div>
+
+
+											<div class="col-xs-12 col-sm-12 col-md-12">
 												<%--버튼으로 넣어놔야한다. 아래 submit 으로 넣어놓으면 창 없어지면서 변경 --%>
-												<button type="button" class="btn"
-													onclick="SelectPostFinder_2(1);"
-													style="background-color: black; color: white;">검색
-												</button>
+												<button type="button" class="btn btn-info btn-sm btn-block"
+													onclick="SelectPostFinder_2(1);">검색</button>
 											</div>
 										</div>
 									</div>
@@ -504,8 +511,8 @@
 										<br />
 
 										<div class="row">
-											<div class="col-md-2">특별, 광역시/도</div>
-											<div class="col-md-3">
+											<div class="col-xs-12 col-sm-6 col-md-6">특별, 광역시/도</div>
+											<div class="col-xs-12 col-sm-6 col-md-6">
 												<select name="zcSiDoName" class="form-control zcSiDoName_2"
 													onchange="SelectFindercheck(2)">
 													<option selected="selected">전체</option>
@@ -544,8 +551,9 @@
 													<option value="충청북도">충청북도</option>
 												</select>
 											</div>
-											<div class="col-md-2 col-sm-offset-1">시/군구</div>
-											<div class="col-md-3">
+											<div class="enter"></div>
+											<div class="col-xs-12 col-sm-6 col-md-6">시/군구</div>
+											<div class="col-xs-12 col-sm-6 col-md-6">
 												<select class="form-control" id="zcSiGunGuName"
 													name="zcSiGunGuName">
 												</select>
@@ -553,18 +561,23 @@
 										</div>
 										<br />
 										<div class="row">
-											<div class="col-md-4">
+											<div class="col-xs-12 col-sm-12 col-md-12">
 												<input type="text" name="zcLegalEupMyeonDongName"
 													id="zcLegalEupMyeonDongName" class="form-control"
 													placeholder="동(읍/면)...">
 											</div>
-											<div class="col-md-4 col-sm-offset-1">
+
+											<div class="enter hiddien-sm hidden-md"></div>
+
+											<div class="col-xs-12 col-sm-12 col-md-12">
 												<input type="text" name="zcJiBunMain" id="zcJiBunMain"
 													class="form-control" placeholder="지번...">
 											</div>
-											<div class="col-md-1 col-sm-offset-1">
-												<button type="button" class="btn"
-													style="background-color: black; color: white;"
+
+											<div class="enter "></div>
+
+											<div class="col-xs-12 col-sm-12 col-md-12">
+												<button type="button" class="btn btn-info btn-sm btn-block"
 													onclick="SelectPostFinder_2(2);">검색</button>
 											</div>
 										</div>
@@ -582,8 +595,8 @@
 										<br />
 
 										<div class="row">
-											<div class="col-md-2">특별, 광역시/도</div>
-											<div class="col-md-3">
+											<div class="col-xs-12 col-sm-6 col-md-6">특별, 광역시/도</div>
+											<div class="col-xs-12 col-sm-6 col-md-6">
 												<select name="zcSiDoName" class="form-control zcSiDoName_3"
 													onchange="SelectFindercheck(3)">
 													<option selected="selected">전체</option>
@@ -622,23 +635,28 @@
 													<option value="충청북도">충청북도</option>
 												</select>
 											</div>
-											<div class="col-md-2 col-sm-offset-1">시/군구</div>
-											<div class="col-md-3">
+
+											<div class="enter"></div>
+
+											<div class="col-xs-12 col-sm-6 col-md-6">시/군구</div>
+											<div class="col-xs-12 col-sm-6 col-md-6">
 												<select class="form-control" id="zcSiGunGuName"
 													name="zcSiGunGuName">
 												</select>
 											</div>
 										</div>
 										<br />
+										<div class="row">
+											<div class="col-xs-12 col-sm-12 col-md-12">
+												<input type="text" name="zcBuildingBook" id="zcBuildingBook"
+													class="form-control" placeholder="건물명(아파트명 등)...">
+											</div>
 
-										<div class="col-md-5">
-											<input type="text" name="zcBuildingBook" id="zcBuildingBook"
-												class="form-control" placeholder="건물명(아파트명 등)...">
-										</div>
-										<div class="col-md-1 col-sm-offset-5">
-											<button type="button" class="btn"
-												onclick="SelectPostFinder_2(3);"
-												style="background-color: black; color: white;">검색</button>
+											<div class="enter "></div>
+											<div class="col-xs-12 col-sm-12 col-md-12">
+												<button type="button" class="btn btn-info btn-sm btn-block"
+													onclick="SelectPostFinder_2(3);">검색</button>
+											</div>
 										</div>
 
 									</div>

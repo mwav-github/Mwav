@@ -4,6 +4,25 @@
 
 
 /*
+ * center-block
+ * 
+ 콘텐츠 블록 중앙정렬
+display: block 와 margin 로 요소를 설정하세요. 믹스인과 클래스로 사용가능합니다
+ * 
+ * 
+ */
+/*
+ * Modal Height
+ * 
+ * 모달 전체 바디 조정
+ */
+.modal-body {
+    max-height: calc(100vh - 210px) !important;
+    overflow-y: auto !important;
+}
+
+
+/*
  * slideshow images
  * 
  */
@@ -592,8 +611,12 @@ background: url(/Images/what-is-azure.jpg)  no-repeat center center fixed;
 	margin-left: 5% !important;
 }
 
-.mgtl3 {
+.mgl3 {
     margin-left: 3% !important;
+}
+
+.mgr3 {
+    margin-right: 3% !important;
 }
 
 .mgt1_8{

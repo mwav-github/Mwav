@@ -26,7 +26,8 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 -->
 		<div class="row">
 			<div class="col-lg-12">
-				<img src="/CustomerService/zImage/CustomerService_IN(height_280).jpg"
+				<img
+					src="/CustomerService/zImage/CustomerService_IN(height_280).jpg"
 					class="img-responsive res_width" alt="Responsive image">
 			</div>
 		</div>
@@ -64,20 +65,49 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 			<!-- 끝 -->
 
 			<div class="col-md-9">
-				<span class="label label-primary">Agreement</span>
+				<div class="enter"></div>
+				<div class="row">
+					<ul class="nav nav-pills nav-justified">
+						<li role="presentation" class="active"><a data-toggle="tab"
+							href="#terms1">이메일 주소 무단 수집거부</a></li>
+						<li role="presentation"><a data-toggle="tab" href="#terms2">청소년보호정책</a></li>
+						<li role="presentation"><a data-toggle="tab" href="#terms3">개인정보취급방침</a></li>
+						<li role="presentation"><a data-toggle="tab" href="#terms4">Mwav
+								약관</a></li>
+					</ul>
+
+					<div class="enter"></div>
+
+
+					<div class="tab-content col-md-offset-1 col-md-10">
+						<div class="tab-pane fade active in" id="terms1">
+							<jsp:include page="/CustomerService/Policy/_EmailExtract.jsp"
+								flush="false" />
+						</div>
+						<div class="tab-pane fade" id="terms2">
+
+							<jsp:include page="/CustomerService/Policy/_Juvenile.jsp"
+								flush="false" />
+						</div>
+						<div class="tab-pane fade" id="terms3">
+							<jsp:include page="/CustomerService/Policy/_PrivateInfo.jsp"
+								flush="false" />
+						</div>
+					</div>
+				</div>
 
 			</div>
 		</div>
 	</div>
 	<!-- /.container -->
 
-		<!-- Footer -->
-		<footer>
-			<!--/////////////////////////////////////////////////// -->
-			<jsp:include page="/PartsOfContent/SiteFooter/FrontFooter.jsp"
-				flush="false" />
-			<!--/////////////////////////////////////////////////// -->
-		</footer>
+	<!-- Footer -->
+	<footer>
+		<!--/////////////////////////////////////////////////// -->
+		<jsp:include page="/PartsOfContent/SiteFooter/FrontFooter.jsp"
+			flush="false" />
+		<!--/////////////////////////////////////////////////// -->
+	</footer>
 
 
 </body>

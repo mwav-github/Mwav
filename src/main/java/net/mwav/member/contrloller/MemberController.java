@@ -33,6 +33,12 @@ import net.mwav.member.service.MemberService;
 
 @Controller
 // Anotation 으로 Conroller 호출
+
+/*
+ * 프로세스 
+ * 1) 비밀번호 찾기 : mbrTempLoginPwUpdate -> mbrTempLoginPwSeek ->
+	// mbrLoginPwUpdate
+ */
 public class MemberController {
 	Logger log = Logger.getLogger(this.getClass());
 	String mode;
@@ -102,7 +108,7 @@ public class MemberController {
 	 * ========
 	 */
 
-	// 1번 mbrForm : Form 입력만 가능
+	// 1번 mbrForm : Form 입력만 가능 (form update 같이사용.)
 	@RequestMapping(value = "/member/mbrForm.do")
 	public ModelAndView insertMbrForm(CommandMap commandMap,
 			HttpServletRequest request, HttpServletResponse response,
@@ -137,7 +143,7 @@ public class MemberController {
 	 * ========
 	 */
 
-	// 1번 MbrView : 수정/삭제가능
+	// 2번 MbrView : 수정/삭제가능 (view만사용.)
 	@RequestMapping(value = "/member/mbrView.do")
 	public ModelAndView selectMbrView(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
@@ -160,6 +166,12 @@ public class MemberController {
 	/*
 	 * ========================================수정================================
 	 * ========
+	 */
+	
+	/*
+	 *  board 와 같이 하나의 form 에 등록 수정을 같이 사용하면, update 할때 최초 select 후 update 즉 update> updatePro 가 필요없다
+	 *  그러나 아래와 같이 하려면, 별도 controller을 해줘야하며 어짜피 쿼리는 동일하므로 view 이용하면된다. ~! 
+	 *  즉 controller에서만 작업 후 이후 꺼는 view 이용
 	 */
 	@RequestMapping(value = "/member/mbrUpdate.do")
 	public ModelAndView updateBnsform(CommandMap commandMap,
@@ -217,6 +229,11 @@ public class MemberController {
 	}
 
 	// 7번 추후 패스워드 찾기 1단계 맞으면 imsi 패스워드 넣으니
+	/*
+	 * 변경 내역
+	 * 16.02.17 updateMbrTempLoginPw 시 기 mbrLoginPw는 null 로 변경해야 할 필요성 느끼고 변경 처리 
+	 *          만약 중간에 창을 닫고 로그인 시도하면 안되므로~! 
+	 */
 	@RequestMapping(value = "/member/mbrTempLoginPwUpdate.do")
 	public @ResponseBody boolean updateMbrTempLoginPw(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
@@ -450,6 +467,14 @@ public class MemberController {
 		return mv;
 	}
 
+	/*
+	 * logincheck = 1 :  정상로그인
+logincheck = 2 :  비밀번호 틀림
+logincheck = 3 :  아이디 존재하지 않음
+logincheck = 5 :  DB 조회시 NULL (임시패스워드 발급 단계에서 중간하였을때 포함)
+logincheck = 6 :  탈퇴하지 않음
+logincheck = 7 :  탈퇴
+	 */
 	@RequestMapping(value = "/member/Login.do")
 	public ModelAndView selectLogin(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
@@ -464,8 +489,9 @@ public class MemberController {
 
 		int loginCheck = 0; // 초기값
 
+		//암호화 복호화 할 필요는없지.
 		if (memberLogin != null && loginCheck != 5) {
-			loginCheck = (int) memberLogin.get("logincheck");
+			loginCheck = (int) memberLogin.get("loginCheck");
 			// 페이지에서 온 값
 			System.out.println("loginCheck =" + loginCheck);
 			String b_mbrLoginPw = null;

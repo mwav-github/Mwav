@@ -144,7 +144,7 @@
 				<div class="modal-header"
 					style="border-bottom: 0px solid #eee; background-color: #0480be; color: white;">
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<h4 class="modal-title">약관</h4>
+					<h4 class="modal-title">Policy</h4>
 				</div>
 				<br>
 				<div class="bs-example bs-example-tabs">
@@ -158,14 +158,14 @@
 					<div class="container-fluid">
 						<div id="myTabContent" class="tab-content">
 							<div class="tab-pane fade in active" id="terms1">
-								<jsp:include page="/CustomerService/Policy/_EmailExtract.html" flush="false" />
+								<jsp:include page="/CustomerService/Policy/_EmailExtract.jsp" flush="false" />
 							</div>
 							<div class="tab-pane fade" id="terms2">
 								
-								<jsp:include page="/CustomerService/Policy/_Juvenile.html" flush="false" />
+								<jsp:include page="/CustomerService/Policy/_Juvenile.jsp" flush="false" />
 							</div>
 							<div class="tab-pane fade" id="terms3">
-								<jsp:include page="/CustomerService/Policy/_PrivateInfo.html" flush="false" />
+								<jsp:include page="/CustomerService/Policy/_PrivateInfo.jsp" flush="false" />
 							</div>
 						</div>
 					</div>

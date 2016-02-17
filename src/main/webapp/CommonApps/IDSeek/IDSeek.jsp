@@ -95,9 +95,9 @@ $.ajax({
 
 <script>
 	function mbrTempLoginPwSeek() { //imsiPWFinder()
-		var aa = $('#imsipw').val();
+		var aa = $('#mbrTempLoginPw').val();
 
-		var URL = "imsiPW=" + aa;
+		var URL = "mbrTempLoginPw=" + aa;
 
 		$.ajax({
 			type : 'POST', // Http Request Method로 POST로 지정
@@ -206,72 +206,82 @@ $.ajax({
 								<p>아이디를 잊어버리셨나요? 아래 입력사항에 가입하실때 작성하신 정보를 입력해주세요! 가입시 이메일로
 									전송됩니다.</p>
 								<br />
-								<div class="col-md-8">
-									<div class="col-md-4">휴대폰</div>
-									<div class="col-md-8">
+								<div class="col-xs-12 col-sm-12 col-md-12">
+									<div class="col-md-4 mgt4">휴대폰</div>
+									<div class="col-md-8 mgt4">
 										<input type="text" id="mbrCellPhone" class="form-control"
-											placeholder="CellularPhone...">
+											placeholder="01031804451 -없이 입력해주시면 됩니다.">
 									</div>
-									<p class="text-center">&nbsp;&nbsp;* -없이 입력해주시면 됩니다.</p>
-
 									<br />
-									<div class="col-md-4">이메일</div>
-									<div class="col-md-8">
+									<div class="col-md-4 mgt4">이메일</div>
+									<div class="col-md-8 mgt4">
 										<input type="text" id="mbrEmail" class="form-control"
-											placeholder="Email...">
+											placeholder="aa@gmail.com">
 									</div>
 								</div>
-								<div class="col-md-4">
-									<button type="button" class="btn btn-primary"
-										onclick="selectOneMbrLoginIdSeek()">확인</button>
-								</div>
-								<p class="col-md-4 col-md-offset-4">
+
+								<p class="col-md-4">
 									<span id="idcheckLayer"></span>
 								</p>
+
+								<div class="col-md-12">
+									<button type="button" class="btn btn-block btn-sm btn-info"
+										onclick="selectOneMbrLoginIdSeek()">확인</button>
+								</div>
+
 							</div>
 							<div class="tab-pane fade" id="PwFinder">
 								<form class="form-horizontal">
-									<h2>비밀번호 찾기</h2>
-									<p>비밀번호를 잊어버리셨나요? 아래 입력사항에 가입하실때 작성하신 정보를 입력해주세요! 가입시 이메일로
-										전송됩니다.</p>
-									<br />
+									<div class="row">
+										<h2>비밀번호 찾기</h2>
+										<p>비밀번호를 잊어버리셨나요? 아래 입력사항에 가입하실때 작성하신 정보를 입력해주세요! 가입시 이메일로
+											전송됩니다.</p>
+										<br />
 
 
-									<div class="col-md-8">
-										<div class="col-md-4">아이디</div>
-										<div class="col-md-8">
-											<input type="text" id="pwid" class="form-control"
-												placeholder="Name...">
+										<div class="col-md-12">
+											<div class="col-md-4 mgt4">아이디</div>
+											<div class="col-md-8 mgt4">
+												<input type="text" id="pwid" class="form-control"
+													placeholder="aaa2221">
+											</div>
+
+											<div class="col-md-4 mgt4">이메일</div>
+											<div class="col-md-8 mgt4">
+												<input type="text" id="pwemail" class="form-control"
+													placeholder="aa@gmail.com">
+											</div>
+											
 										</div>
 
-										<div class="col-md-4 mgt4">이메일</div>
-										<div class="col-md-8 mgt4">
-											<input type="text" id="pwemail" class="form-control"
-												placeholder="Email...">
+										<div class="col-md-12 enter">
+											<button type="button" id="pwok"
+												class="btn btn-block btn-sm btn-info"
+												onclick="mbrTempLoginPwUpdate()">찾기</button>
 										</div>
-									</div>
-									<div class="col-md-4">
-										<button type="button" id="pwok" class="btn btn-primary"
-											onclick="mbrTempLoginPwUpdate()">확인</button>
 									</div>
 								</form>
 								<form class="form-horizontal" name="pwform_1">
-									<div class="col-md-12 mgt5" id="imsipwdisplay"
-										style="display: none;">
-										<div class="col-md-8">
-											<div class="col-md-4">남은시간</div>
-											<div class="col-md-8" id="time1" style="color: red"></div>
-											<div class="col-md-8 col-md-offset-4">
-												<input type="text" name="imsipw_" id="imsipw"
-													class="form-control" placeholder="ImsiPw...">
+									<div class="row">
+										<div class="col-md-12 mgt5" id="imsipwdisplay"
+											style="display: none;">
+											<div class="col-md-12">
+												<div class="col-sm-4 col-sm-4 col-md-4">남은시간</div>
+												<div class="col-sm-8 col-sm-8" id="time1" style="color: red"></div>
+												<div class="col-md-8 col-md-offset-4">
+													<input type="text" name="imsipw_" id="mbrTempLoginPw"
+														class="form-control" placeholder="ImsiPw...">
+												</div>
+											</div>
+
+											<div class="col-md-12 enter">
+												<button type="button"
+													class="btn btn-block btn-sm btn-danger"
+													onclick="mbrTempLoginPwSeek()">찾기</button>
 											</div>
 										</div>
-										<div class="col-md-4">
-											<button type="button" class="btn btn-primary"
-												onclick="mbrTempLoginPwSeek()">확인</button>
-										</div>
+										<p></p>
 									</div>
-									<p></p>
 								</form>
 								<!-- 리로드 -> imsipw 확인시 ajax 후 변경처리 reload -->
 							</div>
@@ -285,8 +295,8 @@ $.ajax({
 									<br />
 
 									<div class="col-md-8">
-										<div class="col-md-4">변경 할 PW</div>
-										<div class="col-md-8">
+										<div class="col-md-4 mgt4">변경 할 PW</div>
+										<div class="col-md-8 mgt4">
 											<input type="password" name="mbrLoginPw" class="form-control"
 												placeholder="mbrLoginPW">
 										</div>
@@ -298,8 +308,10 @@ $.ajax({
 												placeholder="Confirm Password" name="mbrLoginPw_check">
 										</div>
 									</div>
-									<div class="col-md-4">
-										<button type="submit" id="pwok" class="btn btn-primary">변경</button>
+
+									<div class="col-md-12 enter">
+										<button type="submit" id="pwok"
+											class="btn btn-block btn-sm btn-primary">변경</button>
 									</div>
 								</form>
 								<form class="form-horizontal">
@@ -313,8 +325,8 @@ $.ajax({
 													placeholder="ImsiPw...">
 											</div>
 										</div>
-										<div class="col-md-4">
-											<button type="button" class="btn btn-primary" onclick="">확인</button>
+										<div>
+											<button type="button" class="btn btn-sm btn-info" onclick="">확인</button>
 										</div>
 									</div>
 									<p></p>

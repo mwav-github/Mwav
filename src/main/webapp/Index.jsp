@@ -148,6 +148,12 @@
 				     
 				     localhost:8080/CWS 이부분은 server.xml 에서 지정한다.
 				-->
+						<h4><strong>Notices</strong></h4>
+
+						<jsp:include page="/boardNotice/buFrontList.do" flush="false" />
+
+						<div class="enter"></div>
+						<h4><strong>News</strong></h4>
 						<jsp:include page="/board/bnsFrontList.do" flush="false" />
 
 						<%--notice/news 순으로 5개씩 삽입 예정

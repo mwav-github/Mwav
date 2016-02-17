@@ -13,11 +13,11 @@
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
 				<%--border 칼라 테두리는 style=border || 안의 icon-bar로 구성 --%>
-<%--768px 이하부터 변형 --%>
-<%--navbar-collapse 이게 부트스트랩꺼를 무조권 !important 인식 변경하려면 
+				<%--768px 이하부터 변형 --%>
+				<%--navbar-collapse 이게 부트스트랩꺼를 무조권 !important 인식 변경하려면 
     cdn 말고 직접해서 아래 사이트와 같이 변경
     http://www.bootply.com/120951
- --%> 
+ --%>
 				<button type="button" class="navbar-toggle collapsed"
 					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
 					style="border: 2px solid white">
@@ -123,15 +123,29 @@
 				<!-- <h2>Company Item</h2> -->
 				<!-- <a href="/CompanyItem/IT%20Solutions/Aervision/Aervision.jsp"
 					class="btn btn-info btn-lg">Learn More</a> -->
+				<div class="row pull-right hidden-xs col-sm-6 col-md-6">
+					<h2 class="page-header" style="color: #317eac">News</h2>
+					<div class="bs-component" style="background-color: white;">
+						<!-- 이클립스 해제 희망시 
+				     1. http://ifone420.tistory.com/107
+				     
+				     추가적으로 
+				     
+				     localhost:8080/CWS 이부분은 server.xml 에서 지정한다.
+				-->
+						<jsp:include page="/board/bnsFrontList.do" flush="false" />
+					</div>
+				</div>
+
 			</div>
 		</div>
 		<div class="item">
 			<div class="fill img-responsive customer_slideImg_600"
 				style="background-image: url('/CustomerService/zImage/pretty-351884_1920.jpg');"></div>
-			<%-- <div class="carousel-caption" style="color: rgba(138, 109, 59, 0.14)">
+			 <div class="carousel-caption" style="color: rgba(138, 109, 59, 0.14)">
 				<!-- 전체크기는 일괄되게 -->
 				<div class="hidden-xs hidden-sm col-md-8 row pull-right">
-					<h1>Contact Address</h1>
+					<h1 style="color:white;">Contact Address</h1>
 					<br />
 					<div class="row text-center">
 						<div class="col-xs-3 col-sm-3 col-md-3"
@@ -162,7 +176,7 @@
 							<h3>E-mail</h3>
 							<br />
 							<p>ebizpromwav@gmail.com</p>
-							추후 클릭스 Contact 쪽으로 넘기면 좋을듯.
+							<!-- 추후 클릭스 Contact 쪽으로 넘기면 좋을듯. -->
 							<br />
 						</div>
 						<div class="col-xs-3 col-sm-3 col-md-3"
@@ -187,7 +201,7 @@
 						</div>
 					</div>
 				</div> -->
-			</div> --%>
+			</div>
 		</div>
 	</div>
 

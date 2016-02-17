@@ -47,6 +47,11 @@ public class BoardController {
 	 */
 	@Resource(name = "boardService")
 	private BoardService boardService;
+	
+	
+	/* ======================BoardNews====================== */
+	
+	
 
 	/*========================================등록========================================*/
 	// 1번 bnsForm : Form 입력만 가능 (뒤로가기, list)

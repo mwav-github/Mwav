@@ -38,10 +38,13 @@
 		})
 	});
 </script>
+<%-- 추후 choose로 변경하기 http://stackoverflow.com/questions/5935892/if-else-within-jsp-or-jstl --%>
 <div id="left_menu" class="list-group">
-	<a href="javascript:window.alert('권한이 없습니다. \n 로그인 후 이용해주시기 바랍니다.');"
-		class="list-group-item " data-toggle="tooltip" data-placement="top"
-		data-original-title="마이페이지">MyPage</a>
+	<c:if test="${sessionScope.mbrLoginId eq null }">
+		<a href="javascript:window.alert('권한이 없습니다. \n 로그인 후 이용해주시기 바랍니다.');"
+			class="list-group-item " data-toggle="tooltip" data-placement="top"
+			data-original-title="마이페이지">MyPage</a>
+	</c:if>
 
 	<c:if test="${sessionScope.mbrLoginId ne null }">
 		<a href="/CustomerService/MyPage/MyPage.jsp" class="list-group-item "
@@ -49,19 +52,23 @@
 			data-original-title="마이페이지">MyPage</a>
 	</c:if>
 
+
 	<a href="/CustomerService/Announcement/Announcement.jsp"
 		class="list-group-item" data-toggle="tooltip" data-placement="top"
-		data-original-title="공지사항">Announcement</a> <a
-		href="javascript:window.alert('권한이 없습니다. \n 로그인 후 이용해주시기 바랍니다.');"
-		class="list-group-item" data-toggle="tooltip" data-placement="top"
-		data-original-title="회원정보(수정)">MemberShip</a>
+		data-original-title="공지사항">Announcement</a>
+
+	<c:if test="${sessionScope.mbrLoginId eq null }">
+		<a href="javascript:window.alert('권한이 없습니다. \n 로그인 후 이용해주시기 바랍니다.');"
+			class="list-group-item" data-toggle="tooltip" data-placement="top"
+			data-original-title="회원정보(수정)">MemberShip</a>
+	</c:if>
 
 	<c:if test="${sessionScope.mbrLoginId ne null }">
 		<a href="/CustomerService/MemberShip/MemberShip.jsp"
 			class="list-group-item" data-toggle="tooltip" data-placement="top"
 			data-original-title="회원정보(수정)">MemberShip</a>
 	</c:if>
-	
+
 	<a href="/CustomerService/Agreement/Agreement.jsp"
 		class="list-group-item" data-toggle="tooltip" data-placement="top"
 		data-original-title="이용약관">Agreement</a> <a

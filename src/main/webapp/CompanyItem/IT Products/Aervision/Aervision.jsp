@@ -111,9 +111,9 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					</div>
 
 
-					<div class="vid col-xs-push-1 col-xs-10 col-sm-10 col-sm-push-1  col-md-10 col-md-push-1">
-						<iframe width="560" height="315"
-							src="http://player.vimeo.com/video/117455204" allowfullscreen=""></iframe>
+					<div class="vid col-xs-push-1 col-xs-10 col-sm-10 col-sm-push-1  col-md-10 col-md-push-1 embed-responsive embed-responsive-16by9">
+						<iframe class="embed-responsive-item" 
+							src="http://player.vimeo.com/video/117455204" ></iframe>
 
 					</div>
 				</div>

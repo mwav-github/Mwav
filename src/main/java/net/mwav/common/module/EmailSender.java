@@ -45,13 +45,13 @@ public class EmailSender {
 
 		// ModelAndView mv = new ModelAndView("/Index");
 		// String id = (String) commandMap.get("id");
-		String e_mail = (String) commandMap.get("mbrEmail");
-		String imsiPW =	(String) commandMap.get("imsiPW");
+		String mbrEmail = (String) commandMap.get("mbrEmail");
+		String mbrTempLoginPw =	(String) commandMap.get("mbrTempLoginPw");
 		String mbrLoginId =	(String) commandMap.get("mbrLoginId");
 
 		//log.debug("메일");
-		email.setContent("비밀번호는 "+imsiPW+" 입니다.");
-		email.setReceiver(e_mail);
+		email.setContent("비밀번호는 "+mbrTempLoginPw+" 입니다.");
+		email.setReceiver(mbrEmail);
 		email.setSubject(mbrLoginId+"님 비밀번호 찾기 메일입니다.");
 		emailTemplates.sendBasicEmail(email);
 		// String pw = memberService.getPw(commandMap);

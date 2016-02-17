@@ -250,7 +250,8 @@ http://planbong.tistory.com/531
 					<label class='control-label col-md-2 col-md-offset-2' for='id_pets'>Address</label>
 					<p class="col-md-2 col-md-offset-4">
 						<button class="btn btn-primary btn-block" type="button"
-							 data-toggle="modal" data-target=".modal_post" onclick="showhide();">주소찾기</button>
+							data-toggle="modal" data-target=".modal_post"
+							onclick="showhide();">주소찾기</button>
 
 					</p>
 					<!-- <div class='col-md-8'>
@@ -260,57 +261,54 @@ http://planbong.tistory.com/531
 					</div> -->
 				</div>
 				<div class='form-group'>
-					<label class='control-label col-md-2 col-md-offset-2'></label>
-					<div class='col-md-3'>
-						<input class='form-control' name="mbrZipcode" id='mbrZipcode'
-							type='text' placeholder='우편번호' disabled>
-					</div>
-					<!-- <p class="col-md-1" style="text-align: center">
+					<div class="col-md-offset-4 col-md-6">
+						<div class='col-md-11'>
+							<input class='form-control' name="mbrZipcode" id='mbrZipcode'
+								type='text' placeholder='우편번호' disabled>
+						</div>
+						<!-- <p class="col-md-1" style="text-align: center">
 						<strong>-</strong>
 					</p>
 					<div class='col-md-2'>
 						<input class='form-control' name="mbrZipcode_2" id='id_first_name'
 							type='text' disabled>
 					</div> -->
-				</div>
 
-				<div class='form-group'>
-					<label class='control-label col-md-2 col-md-offset-2'></label>
-					<div class='col-md-6'>
-						<input class='form-control' name="mbrAddress_1" id='mbrAddress'
-							placeholder='주소' type='text' disabled>
-					</div>
-				</div>
-				
-				<div class='form-group'>
-					<label class='control-label col-md-2 col-md-offset-2'></label>
-					<div class='col-md-6'>
-						<input class='form-control' name="mbrAddress_2" id='mbrAddress'
-							placeholder='나머지 주소' type='text'>
+						<div class="enter hidden-xs hidden-sm"></div>
+						<div class='col-md-11'>
+							<input class='form-control' name="mbrAddress_1" id='mbrAddress'
+								placeholder='주소' type='text' disabled>
+						</div>
+						<div class="enter hidden-xs hidden-sm"></div>
+
+						<div class='col-md-11'>
+							<input class='form-control' name="mbrAddress_2" id='mbrAddress'
+								placeholder='나머지 주소' type='text'>
+						</div>
+						<div class="enter"></div>
 					</div>
 				</div>
 
-				<div class='form-group pull-right'>
-					<div class='col-md-offset-4 col-md-3 '>
-						<button type="submit" class='btn-lg btn-primary'
-							style='float: right'>
+				<div class='form-group pull-right'> <%--pull-right 너무 끝까지 간다. --%>
+					<div style="padding-right:50px;">
+						<button type="submit" class='btn btn-lg btn-primary'
+							>
 							<i class="glyphicon glyphicon-edit"></i>
 						</button>
 						<%-- incldue 시에는 submit이 아니라 자바스크립트로 처리 --%>
-					</div>
-					<div class='col-md-1'></div>
-					<div class='col-md-3'>
-						<button class='btn-lg btn-danger' style='float: right'
-							onClick="javascript:history.go(-1)">
-							<i class="glyphicon glyphicon-remove"></i>
-						</button>
+					
+					<button class='btn btn-lg btn-danger' 
+						onClick="javascript:history.go(-1)">
+						<i class="glyphicon glyphicon-remove"></i>
+					</button>
 					</div>
 				</div>
 			</form>
-
-			<%-- 아래의 내용을 위에 주소 위치에 둘 경우 form태그가 해당위치로 닫힌다 추후 확인 필요 --%>
-			<jsp:include page="/CommonApps/PostSeek/PostSeek.jsp" flush="false" />
 		</div>
+
+
+		<%-- 아래의 내용을 위에 주소 위치에 둘 경우 form태그가 해당위치로 닫힌다 추후 확인 필요 --%>
+		<jsp:include page="/CommonApps/PostSeek/PostSeek.jsp" flush="false" />
 	</div>
 </div>
 

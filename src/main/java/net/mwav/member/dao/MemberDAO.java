@@ -362,19 +362,19 @@ public class MemberDAO extends AbstractDAO {
 			System.out.println("mbrLeaveDt =" + mbrLeaveDt);
 			if (mbrLeaveDt != null) {
 				System.out.println("탈퇴한 회원?");
-				memberLogin.put("logincheck", 7);
+				memberLogin.put("loginCheck", 7);
 
 				System.out.println("탈퇴");
 			} else {
 
-				memberLogin.put("logincheck", 6);
+				memberLogin.put("loginCheck", 6);
 				System.out.println("탈퇴 x");
 			}
 
 		} catch (Exception e) {
 			if (memberLogin != null) {
 				// 보통 null 포인터 Exception 뜬 경우.
-				memberLogin.put("logincheck", 5);
+				memberLogin.put("loginCheck", 5);
 			}
 		}
 
