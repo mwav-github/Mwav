@@ -1,0 +1,82 @@
+@CHARSET "EUC-KR";
+			body, h1, p, input, label, select { 
+				margin:0px;
+				padding:0px;
+				font-family:µ¸¿ò;
+				font-size:13px;
+				}
+			body {
+				margin-top:50px;
+				}
+				#success{
+					color:blue;
+					align:right;
+				}
+				#failed{
+					color:red;
+					align:right;
+				}
+			#wrapper {
+				border:5px solid #FF6633;
+				width:250px;
+				margin:0px auto;
+				border-radius:10px;
+				padding:15px;
+				}
+			#idCheckForm {
+				display:table;
+				margin:10px auto;
+				border-collapse:collapse;
+				}
+			#idCheckForm h1 {
+				display:	table-caption;
+				font-size:15px;
+				padding:5px;
+				margin-bottom:10px;
+				}
+			#idCheckForm h1 span {
+				text-align:center;
+				display:block;
+				color:#fff;
+				background-color:#333;
+				padding:5px;
+				margin:0 auto;
+				}
+			#idCheckForm p {
+				display:table-row;
+				padding:5px;
+				border-bottom:1px solid #B6B6B6;
+				}
+			#idCheckForm label {
+				display:table-cell;
+				padding-left:40px;
+				}
+			#idCheckForm .celStyle {
+				display:table-cell;
+				padding:5px;
+				}
+			#idCheckForm #id {
+				width:80px;
+				}
+			#idCheckForm input[type="text"], #idCheckForm select {
+				border:1px solid #FF6633;
+				padding:3px;
+				background-color:#efefef;
+				margin:5px;
+				width:60px;
+				}
+			#idCheckForm p.btnRow {
+				display:	block;
+				text-align:center;
+				position:relative;
+				left:55px;
+				top:2px;
+				border-bottom-style:none;
+				}
+		#btnSubmit {
+				background-color:#FF6633;
+				padding:5px 25px;
+				color:#fff;
+				border:1px solid #FF6633;
+				border-radius:5px;
+				}

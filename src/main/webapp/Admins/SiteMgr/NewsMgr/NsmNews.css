@@ -1,0 +1,13 @@
+a{text-decoration:none; color:#000000;}
+
+#nav1 body{clear:both; padding-top:20px;}
+#nav1 body,table,tr,td,p{
+	display:inline;
+	font-size:10px;
+	font-weight:bold;
+	border-left:1px solid #666666;
+	}
+#nav1 body,table,tr,td,a:first-child{border-left:none;}
+
+#nav1 body,table,tr,td,p, a{margin:0 10px 0 10px;}
+#nav1 body,table,tr,td,p, a:hover{color:#ff9900;}

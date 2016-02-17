@@ -1,0 +1,333 @@
+<%@ Import namespace="KistelSite.Admins.CompanyMgr.Staffs" %>
+<%@ Page language="c#" Inherits="KistelSite.Admins.Members.MbrView" CodeFile="MbrView1.aspx.cs" CodeFileBaseClass="KistelSite.Admins.Members.MbrBaseLib" %>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" >
+<HTML>
+	<HEAD>
+		<title>MbrView</title>
+		<meta content="Microsoft Visual Studio .NET 7.1" name="GENERATOR">
+		<meta content="C#" name="CODE_LANGUAGE">
+		<meta content="JavaScript" name="vs_defaultClientScript">
+		<meta content="http://schemas.microsoft.com/intellisense/ie5" name="vs_targetSchema">
+		<LINK href="../../StyleSheets/Objects.css" type="text/css" rel="stylesheet">
+		<LINK href="../../StyleSheets/OverallPage.css" type="text/css" rel="stylesheet">
+		<script language="JavaScript" src="../../CommonLibrary/CommonLibrary.js"></script>
+	</HEAD>
+	<body>
+		<form id="frmMember" method="post" runat="server">
+			<table id="Table5" cellSpacing="0" cellPadding="0" width="810" border="0">
+				<tr>
+					<td bgColor="#ffffff">
+						<table cellSpacing="0" cellPadding="0" width="100%" border="0">
+							<tr>
+								<td width="22"><IMG height="27" src="../zImages/admin_top009.gif" width="22"></td>
+								<td bgColor="#dfdfdf">현재위치 :
+									<%= KistelSite.Admins.WebPageParts.MakeLocationBar("mbvw") %>
+								</td>
+								<td width="10"><IMG height="27" src="../zImages/admin_top010.gif" width="10"></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td bgColor="#ffffff" height="20">&nbsp;</td>
+				</tr>
+				<tr>
+					<td align="center" bgColor="#ffffff">
+						<table cellSpacing="0" cellPadding="0" width="800" border="0">
+							<tr>
+								<td width="192"><IMG height="54" src="Images/member_004.gif" width="192"></td>
+								<td background="Images/member_005.gif">&nbsp;</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td bgColor="#ffffff">&nbsp;</td>
+				</tr>
+				<tr vAlign="top" align="center" bgColor="#ffffff">
+					<td height="300">
+						<table cellSpacing="0" cellPadding="0" width="780" border="0">
+							<tr>
+								<td>
+									<table cellSpacing="0" cellPadding="0" width="780" border="0">
+										<tr>
+											<td vAlign="top" width="60%">
+												<table cellSpacing="1" cellPadding="2" width="100%" border="0">
+													<tr>
+														<td class="Bwhite" align="center" bgColor="#005983" colSpan="2" height="25">기본정보</td>
+													</tr>
+													<tr>
+														<td class="Bwhite" width="100" bgColor="#707070" height="22">&nbsp;회원번호</td>
+														<td>&nbsp;
+															<asp:literal id="member_id" runat="server"></asp:literal></td>
+													</tr>
+													<tr>
+														<td class="Bwhite" bgColor="#707070" height="22">&nbsp;로그인아이디</td>
+														<td>&nbsp;
+															<asp:literal id="loginID" runat="server"></asp:literal></td>
+													</tr>
+													<tr>
+														<td class="Bwhite" bgColor="#707070" height="22">&nbsp;로그인암호</td>
+														<td>&nbsp;
+															<asp:literal id="loginPW" runat="server"></asp:literal></td>
+													</tr>
+													<tr>
+														<td class="Bwhite" bgColor="#707070" height="22">&nbsp;회원명</td>
+														<td>&nbsp;
+															<asp:literal id="MbrName" runat="server"></asp:literal></td>
+													</tr>
+													<tr>
+														<td class="Bwhite" style="HEIGHT: 22px" bgColor="#707070" height="22">&nbsp;연락전화번호</td>
+														<td style="HEIGHT: 22px">&nbsp;
+															<asp:literal id="phone" runat="server"></asp:literal></td>
+													</tr>
+													<tr>
+														<td class="Bwhite" bgColor="#707070" height="22">&nbsp;핸드폰번호</td>
+														<td>&nbsp;
+															<asp:literal id="cellularP" runat="server"></asp:literal></td>
+													</tr>
+													<tr>
+														<td class="Bwhite" bgColor="#707070" height="22">&nbsp;이메일</td>
+														<td>&nbsp;
+															<asp:hyperlink id="hlEmail" runat="server"></asp:hyperlink></td>
+													</tr>
+													<tr>
+														<td class="Bwhite" bgColor="#707070" height="22">&nbsp;주민등록번호</td>
+														<td>&nbsp;
+															<asp:literal id="SSN" runat="server"></asp:literal></td>
+													</tr>
+													<tr>
+														<td class="Bwhite" bgColor="#707070" height="22">&nbsp;주소</td>
+														<td>&nbsp;
+															<asp:literal id="mAddress" runat="server"></asp:literal></td>
+													</tr>
+													<tr>
+														<td class="Bwhite" bgColor="#707070" height="22">&nbsp;뉴스레더신청</td>
+														<td>&nbsp;
+															<asp:literal id="newsLetter" runat="server"></asp:literal></td>
+													</tr>
+													<tr>
+														<td class="Bwhite" bgColor="#707070" height="22">&nbsp;PW찾기질문</td>
+														<td>&nbsp;
+															<asp:literal id="findingID" runat="server"></asp:literal></td>
+													</tr>
+													<tr>
+														<td class="Bwhite" bgColor="#707070" height="22">&nbsp;PW찾기답</td>
+														<td>&nbsp;
+															<asp:literal id="findingA" runat="server"></asp:literal></td>
+													</tr>
+													<tr>
+														<td class="Bwhite" bgColor="#707070" height="22">&nbsp;FakeMember</td>
+														<td>&nbsp;
+															<asp:literal id="litFakeMbr" runat="server"></asp:literal></td>
+													</tr>
+												</table>
+											</td>
+											<td vAlign="top">
+											
+												<table cellSpacing="1" cellPadding="2" width="100%" border="0">
+													<tr>
+														<td class="Bwhite" align="center" bgColor="#005983" colSpan="2" height="25">평가치</td>
+													</tr>
+													<tr>
+														<td class="Bwhite" width="120" bgColor="#707070" height="22">&nbsp;회원등급</td>
+														<td>&nbsp;
+															<asp:literal id="mLevel" runat="server"></asp:literal></td>
+													</tr>
+													<tr>
+														<td class="Bwhite" bgColor="#707070" height="22">&nbsp;누적구매액/횟수</td>
+														<td>&nbsp;
+															<asp:literal id="howMuch" runat="server"></asp:literal>&nbsp;/
+															<asp:literal id="howMany" runat="server"></asp:literal></td>
+													</tr>
+													<tr>
+														<td class="Bwhite" bgColor="#707070" height="22">&nbsp;현재/누적적립금&nbsp;</td>
+														<td>&nbsp;
+															<asp:literal id="RFund" runat="server"></asp:literal>&nbsp;/
+															<asp:literal id="RFundAC" runat="server"></asp:literal></td>
+													</tr>
+													<tr>
+														<td class="Bwhite" bgColor="#707070" height="22">&nbsp;현재/누적포인트</td>
+														<td>&nbsp;
+															<asp:literal id="point" runat="server"></asp:literal>&nbsp;/
+															<asp:literal id="pointAC" runat="server"></asp:literal></td>
+													</tr>
+													<tr>
+														<td class="Bwhite" bgColor="#707070" height="22">&nbsp;미지불금액</td>
+														<td>&nbsp;
+															<asp:literal id="unpaid" runat="server"></asp:literal></td>
+													</tr>
+													<tr>
+														<td class="Bwhite" bgColor="#707070" height="22">&nbsp;누적미지불금액</td>
+														<td>&nbsp;
+															<asp:literal id="unpaidAC" runat="server"></asp:literal></td>
+													</tr>
+													<tr>
+														<td class="Bwhite" bgColor="#707070" height="22">&nbsp;추천인ID</td>
+														<td>&nbsp;
+															<asp:literal id="rcmderID" runat="server"></asp:literal></td>
+													</tr>
+													<tr>
+														<td class="Bwhite" bgColor="#707070" height="22">&nbsp;가입일</td>
+														<td>&nbsp;
+															<asp:literal id="joinDT" runat="server"></asp:literal></td>
+													</tr>
+													<tr>
+														<td class="Bwhite" bgColor="#707070" height="22">&nbsp;수정일</td>
+														<td>&nbsp;
+															<asp:literal id="modifyDT" runat="server"></asp:literal></td>
+													</tr>
+													<tr>
+														<td class="Bwhite" bgColor="#707070" height="22">&nbsp;최근방문일</td>
+														<td>&nbsp;
+															<asp:literal id="recentLogin" runat="server"></asp:literal></td>
+													</tr>
+													<tr>
+														<td class="Bwhite" bgColor="#707070" height="22">&nbsp;최근IP</td>
+														<td>&nbsp;
+															<asp:literal id="IPaddress" runat="server"></asp:literal></td>
+													</tr>
+													<tr>
+														<td class="Bwhite" bgColor="#707070" height="22">&nbsp;탈퇴일</td>
+														<td>&nbsp;
+															<asp:literal id="leaveDT" runat="server"></asp:literal></td>
+													</tr>
+												</table>
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<asp:panel id="pnAdditionalInfo" runat="server" Visible="False">
+								<TR>
+									<TD height="2"></TD>
+								</TR>
+								<TR>
+									<TD height="2" bgcolor="#aaaaaa"></TD>
+								</TR>
+								<TR>
+									<TD height="5"></TD>
+								</TR>
+								<TR>
+									<TD class="Bwhite" align="center" bgColor="#005983" height="25">부가정보</TD>
+								</TR>
+								<TR>
+									<TD>
+										<TABLE cellSpacing="0" cellPadding="0" width="780" border="0">
+											<TR>
+												<TD vAlign="top" width="30%">
+													<TABLE cellSpacing="1" cellPadding="2" width="100%" border="0">
+														<TR>
+															<TD class="Bwhite" align="center" bgColor="#707070" height="25">아바타이미지</TD>
+														</TR>
+														<TR>
+															<TD vAlign="middle" align="center" height="200">
+																<asp:image id="avataImage" runat="server" ImageUrl="../../xUpload/MbrData/Avata/AvaPic_default.gif"></asp:image></TD>
+														</TR>
+													</TABLE>
+												</TD>
+												<TD vAlign="top">
+													<TABLE cellSpacing="1" cellPadding="2" width="100%" border="0">
+														<TR>
+															<TD class="Bwhite" width="100" bgColor="#707070" height="22">&nbsp;홈페이지</TD>
+															<TD colSpan="3">&nbsp;
+																<asp:hyperlink id="hlHomepage" runat="server"></asp:hyperlink></TD>
+														</TR>
+														<TR>
+															<TD class="Bwhite" bgColor="#707070" height="22">&nbsp;메신져</TD>
+															<TD colSpan="3">&nbsp;
+																<asp:literal id="messenger" runat="server"></asp:literal></TD>
+														</TR>
+														<TR>
+															<TD class="Bwhite" bgColor="#707070" height="22">&nbsp;취미&nbsp;</TD>
+															<TD colSpan="3">&nbsp;
+																<asp:literal id="hobbies" runat="server"></asp:literal></TD>
+														</TR>
+														<TR>
+															<TD class="Bwhite" bgColor="#707070" height="22">&nbsp;차량정보</TD>
+															<TD colSpan="3">&nbsp;
+																<asp:literal id="carInfo" runat="server"></asp:literal></TD>
+														</TR>
+														<TR>
+															<TD class="Bwhite" bgColor="#707070" height="22">&nbsp;생일</TD>
+															<TD>&nbsp;
+																<asp:literal id="litBirthDay" runat="server"></asp:literal></TD>
+															<TD class="Bwhite" width="100" bgColor="#707070" height="22">&nbsp;결혼기념일</TD>
+															<TD width="120">&nbsp;
+																<asp:literal id="litWeddingDay" runat="server"></asp:literal></TD>
+														</TR>
+														<TR>
+															<TD class="Bwhite" bgColor="#707070" height="22">&nbsp;월급</TD>
+															<TD width="170">&nbsp;
+																<asp:literal id="monthlyPay" runat="server"></asp:literal></TD>
+															<TD class="Bwhite" bgColor="#707070" height="22">&nbsp;자녀수</TD>
+															<TD>&nbsp;
+																<asp:literal id="children" runat="server"></asp:literal></TD>
+														</TR>
+														<TR>
+															<TD class="Bwhite" bgColor="#707070" height="22">&nbsp;</TD>
+															<TD bgColor="#707070" colSpan="3">&nbsp;<SPAN class="Bwhite">남기고 싶은 말 </SPAN>
+															</TD>
+														</TR>
+														<TR>
+															<TD colSpan="4" height="22">
+																<DIV class="ContentBreak">
+																	<asp:literal id="mark" runat="server"></asp:literal></DIV>
+															</TD>
+														</TR>
+														<TR>
+															<TD class="Bwhite" bgColor="#707070" height="22">&nbsp;</TD>
+															<TD bgColor="#707070" colSpan="3">&nbsp;<SPAN class="Bwhite">회사정보</SPAN></TD>
+														</TR>
+														<TR>
+															<TD class="Bwhite" bgColor="#707070" height="22">&nbsp;회사명</TD>
+															<TD colSpan="3">&nbsp;
+																<asp:literal id="company" runat="server"></asp:literal></TD>
+														</TR>
+														<TR>
+															<TD class="Bwhite" bgColor="#707070" height="22">&nbsp;직업명</TD>
+															<TD colSpan="3">&nbsp;
+																<asp:literal id="jobType" runat="server"></asp:literal></TD>
+														</TR>
+														<TR>
+															<TD class="Bwhite" bgColor="#707070" height="22">&nbsp;연락번호</TD>
+															<TD colSpan="3">&nbsp;
+																<asp:literal id="officeP" runat="server"></asp:literal></TD>
+														</TR>
+														<TR>
+															<TD class="Bwhite" bgColor="#707070" height="22">&nbsp;회사주소</TD>
+															<TD colSpan="3">&nbsp;
+																<asp:literal id="oAddress" runat="server"></asp:literal></TD>
+														</TR>
+													</TABLE>
+												</TD>
+											</TR>
+										</TABLE>
+									</TD>
+								</TR>
+							</asp:panel>
+							<tr>
+							<td height="5"></td>
+							</tr>
+							<tr>
+								<td bgColor="#005983" height="2"></td>
+							</tr>
+						</table>
+						<table cellSpacing="0" cellPadding="0" width="98%" border="0">
+							<tr>
+								<td align="right" height="30">&nbsp;</td>
+							</tr>
+							<tr>
+								<td align="center" height="50"><asp:hyperlink id="hlList" runat="server" ImageUrl="../zImages/btn_view_list.gif" NavigateUrl="MbrList.aspx"></asp:hyperlink>&nbsp;<asp:hyperlink id="hlBack" runat="server" ImageUrl="../zImages/btn_admin_back.gif" NavigateUrl="javascript:history.back();"></asp:hyperlink>&nbsp;<asp:imagebutton id="ibModfy" runat="server" Visible="False" ImageUrl="../zImages/btn_admin_modify.gif"></asp:imagebutton>&nbsp;<asp:imagebutton id="ibDelete" runat="server" Visible="False" ImageUrl="../zImages/btn_admin_delete.gif"></asp:imagebutton>&nbsp;<asp:imagebutton id="ibEliminate" runat="server" Visible="False" ImageUrl="../zImages/btn_admin_completedel.gif"></asp:imagebutton></td>
+							</tr>
+							<tr>
+								<td align="center">&nbsp;</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+			</table>
+		</form>
+	</body>
+</HTML>

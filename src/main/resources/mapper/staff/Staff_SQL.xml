@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- #은 ' ' string // $ 은 숫자 ' ' 없음 -->
+<mapper namespace="staff">
+	
+	<!-- /*========================================등록========================================*/ -->
+	<insert id="insertStfForm" parameterType="hashmap">
+		<![CDATA[
+		INSERT INTO Staff_tbl 
+		SELECT IFNULL(max(staff_id)+1,101), #{stfLoginId}, #{stfLoginPw}, #{stfNumber}, #{stfName}, #{stfNickname}, #{stfBranch}, #{stfDeptName}, #{stfClass}, #{stfSubJobs}, #{stfPhone}, #{stfCellularP}, #{stfExtNbr},#{stfEmail},#{stfSsn1},#{stfSsn2},#{stfZipcode},#{stfAddress},#{stfMessengerName},#{stfMessengerId},#{stfHomepage},#{stfMark},#{stfLevel},#{stfBusinessPic},#{stfAvataImage},#{stfData},#{stfPoint},#{stfPointAc},#{stfJoinDt},#{stfDeleteDt},NOW(),#{stfUpdateDt},#{stfRecentLoginDt},#{stfIpAddress} FROM Staff_tbl
+		]]>
+	</insert>
+	
+	<!--/*========================================리스트(SelctOne, SelectList 순)========================================*/  -->
+	
+	<select id="selectOneGetTotalCount" resultType="int">
+	<![CDATA[
+	   select count(*) from Staff_tbl
+	]]>
+	</select>
+	
+	<select id="selectListStfList" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+	select c.* from (select @ROWNUM := @ROWNUM + 1 AS ROWNUM, a.* from (select * from Staff_tbl order by staff_id) a,  (SELECT @ROWNUM := 0) R ) c where c.ROWNUM >= #{startRow} and c.ROWNUM <= #{endRow}
+	]]>
+	</select>
+	
+	
+	<!-- /*========================================보기========================================*/ -->
+	<select id="selectStfView" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+	      select * from Staff_tbl where staff_id= #{staff_id}
+		]]>
+	</select>
+		
+	<update id="updateStfForm" parameterType="hashmap" >
+		<![CDATA[
+	       update Member_tbl set mbrFirstName=#{mbrFirstName}, mbrMiddleName= #{mbrMiddleName}, mbrLastName= #{mbrLastName} , mbrEmail= #{mbrEmail}, mbrCellPhone= #{mbrCellPhone}where member_id = #{member_id}
+		]]>
+	</update>
+	
+	
+	<select id="selectStfLogin" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+		SELECT staff_id, stfLoginId, stfLoginPw, stfDeleteDt
+		FROM Staff_tbl
+	    WHERE stfLoginId = #{stfLoginId}
+		]]>
+	</select>
+</mapper>
+

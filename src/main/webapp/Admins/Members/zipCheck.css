@@ -1,0 +1,81 @@
+@CHARSET "utf-8";
+			body, h1, p, input, label, select { 
+				margin:0px;
+				padding:0px;
+				font-family:돋움;
+				font-size:13px;
+				}
+			body {
+				margin-top:50px;
+				}
+				a{
+					text-align:center;
+					text-decoline:none;
+				}
+			#wrapper {
+				border:5px solid #FF6633;
+				width:530px;
+				margin:0px auto;
+				border-radius:10px;
+				padding:15px;
+				}
+			#zipForm {
+				display:table;
+				margin:10px auto;
+				border-collapse:collapse;
+				}
+			#zipForm h1 {
+				display:	table-caption;
+				font-size:15px;
+				padding:5px;
+				margin-bottom:10px;
+				}
+			#zipForm h1 span {
+				text-align:center;
+				display:block;
+				color:#fff;
+				background-color:#333;
+				padding:5px;
+				margin:0 auto;
+				}
+			#zipForm p {
+				display:table-row;
+				padding:5px;
+				border-bottom:1px solid #B6B6B6;
+				}
+			#zipForm label {
+				display:table-cell;
+				padding-left:40px;
+				}
+			#zipForm .celStyle {
+				display:table-cell;
+				padding:5px;
+				}
+			#zipForm input[type="button"] {
+				background-color:#fff;
+				border:2px solid #f39;
+				padding:3px 10px;
+				border-radius:20px;
+				}
+			#zipForm input[type="text"], #zipForm select {
+				border:1px solid #FF6633;
+				padding:3px;
+				background-color:#efefef;
+				margin:5px;
+				width:60px;
+				}
+			#zipForm p.btnRow {
+				display:	block;
+				text-align:center;
+				position:relative;
+				left:250px;
+				top:2px;
+				border-bottom-style:none;
+				}
+		#btnSubmit {
+				background-color:#FF6633;
+				padding:5px 25px;
+				color:#fff;
+				border:1px solid #FF6633;
+				border-radius:5px;
+				}
