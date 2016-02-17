@@ -391,5 +391,31 @@ public class MemberDAO extends AbstractDAO {
 
 		return memberLogin;
 	}
+	
+	public Map<String, Object> insertSnsForm(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+
+		try {
+			insert("member.insertSnsForm", map);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+
+	public boolean selectOneSnsMbrLoginIdCheck(String fsmMember_id) {
+		// TODO Auto-generated method stub
+		boolean check;
+		System.out.println("값이?="+ selectOne("member.selectOneSnsMbrLoginIdCheck", fsmMember_id));
+		if (selectOne("member.selectOneSnsMbrLoginIdCheck", fsmMember_id) == null) {
+			check = false; // 아이디가 없는 경우
+		} else {
+			check = true; // 아이디가 있는 경우
+		}
+
+		return check;
+	}
 
 }
