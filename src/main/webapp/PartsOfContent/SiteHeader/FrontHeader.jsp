@@ -50,6 +50,7 @@
 							Consulting</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
+				<!-- 일반로그인 부분 -->
 					<c:if test="${sessionScope.mbrLoginId ne null }">
 						<li><a
 							href="/CustomerService/CS-MasterPage.jsp?mode=SDMyPage"
@@ -64,6 +65,7 @@
 						<li><a href="/MasterPage_1.jsp?mode=Default"><i
 								class="fa fa-user-plus fa-lg"></i></a></li>
 					</c:if>
+				
 				</ul>
 			</div>
 			<!-- /.container -->

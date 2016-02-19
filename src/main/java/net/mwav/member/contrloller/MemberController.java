@@ -597,6 +597,9 @@ logincheck = 7 :  탈퇴
 			throws Exception {
 
 		ModelAndView mv = new ModelAndView("/Index");
+		
+		HttpSession session = request.getSession();
+		int loginCheck = 0;
 
 		String fsmMember_id = (String) commandMap.get("fsmMember_id");
 		String fFirst_Name = (String) commandMap.get("fFirst_Name");
@@ -629,29 +632,14 @@ logincheck = 7 :  탈퇴
 			memberService.insertSnsForm(commandMap.getMap());
 			System.out.println("insertSnsForm 성공!!!!!!");
 		}
-
-		/*
-		 * String b_mbrLoginPw = (String) commandMap.get("mbrLoginPw");
-		 * System.out.println("b_mbrLoginPw" + b_mbrLoginPw);
-		 * 
-		 * String mbrCellPhone = member_CellularP_1 + member_CellularP_2 +
-		 * member_CellularP_3; commandMap.put("mbrCellPhone", mbrCellPhone);
-		 * 
-		 * String mbrAddress_1 = (String) commandMap.get("mbrAddress_1"); String
-		 * mbrAddress_2 = (String) commandMap.get("mbrAddress_2");
-		 * 
-		 * String mbrAddress = mbrAddress_1 + mbrAddress_2;
-		 * System.out.println("mbrAddress="+mbrAddress);
-		 * 
-		 * commandMap.put("mbrAddress", mbrAddress);
-		 * memberService.insertMbrForm(commandMap.getMap());
-		 * 
-		 * mv.addObject("mode", "SDMbrInput");
-		 */
+		
+		String mbrLoginId = fLast_Name + " " + fFirst_Name;
+		loginCheck = 1;
+		session.setAttribute("mbrLoginId", mbrLoginId);
+		
+		
 		// mv.addObject("memberLogin", memberLogin);
-
-		mode = "";
-		request.setAttribute("mode", mode);
+		request.setAttribute("loginCheck", loginCheck);
 		
 		return mv;
 	}

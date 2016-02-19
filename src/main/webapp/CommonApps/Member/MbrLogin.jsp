@@ -70,9 +70,9 @@
 		//
 		// These three cases are handled in the callback function.
 
-		FB.getLoginStatus(function(response) {
+		/* FB.getLoginStatus(function(response) {
 			statusChangeCallback(response);
-		});
+		}); */
 
 	};
 
@@ -89,7 +89,7 @@
 
 	// Here we run a very simple test of the Graph API after login is
 	// successful.  See statusChangeCallback() for when this call is made.
-	function insertAPI() {
+	/* function insertAPI() {
 		FB.api('/me?fields=id,first_name,last_name,email,gender,link,picture,verified,friends.fields(id)', function(response) {	
 			console.log(response);
 			var $form = $('<form></form>');
@@ -109,7 +109,7 @@
             $form.submit();
 						});
 		
-	}
+	} */
 	
 	function permissionAPI() { // permission 거부하였을때 쓰이는 기능
 		FB.api('/me/permissions', function(response) {
@@ -159,12 +159,10 @@
 <div class="col-md-12"
 	style="padding: 60px; box-shadow: 0 0 20px 3px #04A3ED; background: #f7f7f7;">
 	<form name="login_form" action="/member/Login.do" method="post">
-		<!-- 
-	<form name="login_form" action="/member/Login.do"
-		onsubmit="return check(document.login_form)" method="post"> -->
+
 		<div class="form-group">
 			<div class="col-xs-6 col-sm-6 col-md-2">
-				<button type="button" class="btn btn-primary btn-block ">
+				<button type="button" class="btn btn-primary btn-block " onclick="checkLoginState();">
 					<i class="fa fa-facebook"></i>
 				</button>
 
@@ -219,36 +217,14 @@
 		</div>
 		
 		<!-- 페북 로그인 연동 -->
-		<!-- <input type="text" id="id" value="ID" name="snsId"> -->
 		
-		<div class="form-group">
-			<button type="button" class="btn btn-primary btn-lg btn-block">Facebook</button>
-		</div>
-		
-		<fb:login-button scope="public_profile,email"
+		<!-- <fb:login-button scope="public_profile,email"
 			onlogin="checkLoginState();">
-		</fb:login-button>
+		</fb:login-button> -->
 		
-		<div class="fb-login-button" data-max-rows="12" data-size="large" scope="public_profile,email"
-				data-show-faces="true" data-auto-logout-link="true"></div>
+		<!-- <div class="fb-login-button" data-max-rows="12" data-size="large" scope="public_profile,email"
+				data-show-faces="true" data-auto-logout-link="true"></div> -->
 
-			<!-- 
-			<script>
-				(function(d, s, id) {
-					var js, fjs = d.getElementsByTagName(s)[0];
-					if (d.getElementById(id))
-						return;
-					js = d.createElement(s);
-					js.id = id;
-					js.src = "//connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v2.5&appId=1737556269805531";
-					fjs.parentNode.insertBefore(js, fjs);
-				}(document, 'script', 'facebook-jssdk'));
-			</script> -->
-
-
-
-		<!-- <a href="#" onclick="FB.logout();">logout</a> -->
-		
 	</form>
 </div>
 <!-- Login - END -->
