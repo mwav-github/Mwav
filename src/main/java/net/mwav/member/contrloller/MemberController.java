@@ -620,7 +620,7 @@ logincheck = 7 :  탈퇴
 		/* ID가 없으면 (Insert), 있으면 (로그인) */
 		boolean check;
 		check = memberService.selectOneSnsMbrLoginIdCheck(fsmMember_id);
-
+		System.out.println("check = " + check);
 		if (check == false) {
 
 			if(fGender.equals("male")){
@@ -634,8 +634,11 @@ logincheck = 7 :  탈퇴
 		}
 		
 		String mbrLoginId = fLast_Name + " " + fFirst_Name;
+		//long member_id = (long) Integer.parseInt(fsmMember_id);
+		//System.out.println("member_id = "+member_id);
 		loginCheck = 1;
 		session.setAttribute("mbrLoginId", mbrLoginId);
+		//session.setAttribute("member_id", member_id);
 		
 		
 		// mv.addObject("memberLogin", memberLogin);

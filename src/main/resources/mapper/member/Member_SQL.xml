@@ -169,7 +169,7 @@ select * from postcodebuildinfo_tbl where 시도명 = '서울특별시' and 시�
 		]]>
 	</select>
 	
-	<select id="selectOneSnsMbrLoginIdCheck" parameterType="int" resultType="int">
+	<select id="selectOneSnsMbrLoginIdCheck" parameterType="String" resultType="String">
 		<![CDATA[
 			select smMember_id from SnsMember_tbl where smMember_id IN (#{fsmMember_id}); 		
 		]]>
