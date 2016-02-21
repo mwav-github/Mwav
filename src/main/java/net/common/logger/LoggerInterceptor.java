@@ -2,20 +2,23 @@ package net.common.logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import net.common.logger.LoggerInterceptor;
+
 //
 public class LoggerInterceptor extends HandlerInterceptorAdapter {
-	private final Logger log = LoggerFactory.getLogger(this.getClass());
-	//protected Log log = LogFactory.getLog(LoggerInterceptor.class);
+	// private final Logger log = LoggerFactory.getLogger(this.getClass());
+	Logger log = Logger.getLogger(this.getClass());
 
-	//http://dev.anyframejava.org/docs/anyframe/plugin/essential/core/1.6.0/reference/html/ch21.html
-	
+	// protected Log log = LogFactory.getLog(LoggerInterceptor.class);
+
+	// http://dev.anyframejava.org/docs/anyframe/plugin/essential/core/1.6.0/reference/html/ch21.html
+
 	// *전, 후 처리기 만들기 :
 	// http://debop.blogspot.kr/2013/02/spring-mvc-controller.html 사이트 참조
 	// *인터셉터 로그인 등 사용예제 : http://roqkffhwk.tistory.com/116
@@ -40,19 +43,52 @@ public class LoggerInterceptor extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler) throws Exception {
 
+		System.out.println(request.getRequestURI());
+		System.out.println(request.getRequestURL());
+		System.out.println("LoggerInterceptor에 들어왔다.");
 		if (log.isDebugEnabled()) {
 			log.debug("======================================          START         ======================================");
 			log.debug(" Request URI \t:  " + request.getRequestURI());
+			System.out.println(request.getRequestURI());
+			System.out.println("LoggerInterceptor에 들어왔다.");
 		}
-		/* try{
-        	 if(request.getSession().getAttribute("mbrLoginId") == null){
-        		 //로그인페이지로 리다이렉트
-        		 response.sendRedirect("/");
-        		 return false;
-        	 }
-         }catch(Exception e){
-        	 	e.printStackTrace();
-         }*/
+		String URL = request.getRequestURL().toString();
+		String URI = request.getRequestURI().toString();
+		// String contextPath = request.getContextPath();
+
+		if (URI.length() >= 7) {
+			String command_1 = URI.substring(0, 6);
+			String command_2 = URI.substring(0, 7);
+			System.out.println("command_1=" + command_1);
+			System.out.println("command_2=" + command_2);
+
+			// String command = URI.IndexOf("/admin");
+			System.out.println("String URL=" + URL);
+			System.out.println("String URI=" + URI);
+
+			// System.out.println("contextPath="+command);
+
+			if (command_1.equals("/admin") || command_2.equals("/Admins")) {
+				System.out.println("권한부여 필요.");
+
+				HttpSession session = request.getSession();
+				try {
+					if (session.getAttribute("staff_id") == null) {
+						System.out.println("콜");
+						response.sendRedirect("/Admins/CompanyMgr/Staff/StfLogin");
+						return false;
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		// if(request.getRequestURL() == "/admin")
+		/*
+		 * try{ if(request.getSession().getAttribute("mbrLoginId") == null){
+		 * //로그인페이지로 리다이렉트 response.sendRedirect("/"); return false; }
+		 * }catch(Exception e){ e.printStackTrace(); }
+		 */
 		/*
 		 * try { //admin이라는 세션key를 가진 정보가 널일경우 로그인페이지로 이동
 		 * if(request.getSession().getAttribute("admin") == null ){
@@ -67,7 +103,7 @@ public class LoggerInterceptor extends HandlerInterceptorAdapter {
 	public void postHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
-		System.out.println("LoggerInterceptor에 나갔다.");
+		System.out.println("LoggerInterceptor에 나갔다.11");
 		log.debug("======================================           END          ======================================\n");
 		log.info("======================================           END          ======================================\n");
 

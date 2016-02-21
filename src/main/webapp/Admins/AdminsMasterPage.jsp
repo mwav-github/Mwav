@@ -1,88 +1,229 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<script>
-	$(function() {
-		/* 		
-		http://webdesignerhut.com/active-class-navigation-menu/
-		
-		var pgurl = window.location.href.substr(window.location.href
-		 .lastIndexOf("/") + 1); 
-		 실행url -  http://localhost:8088/login/login.do?key=value
-		
-		 -javascript-
-		 location.href  -> http://localhost:8088/login/login.do?key=value
-		 location.protocol ->  http:
-		 location.host -> localhost:8088 
-		 location.pathname -> /login/login.do
-		 location.search -> ?key=value
-		 ﻿
-		 -jquery-
-		 ﻿jQuery(location).attr('href') -> http://localhost:8088/login/login.do?key=value
-		 jQuery(location).attr('protocol') -> http:
-		 jQuery(location).attr('host') -> localhost:8088 
-		 jQuery(location).attr('pathname') -> /login/login.do
-		 jQuery(location).attr('search')-> ?key=value
-		 [출처] javascript & jquery location object 정보 - 현재 실행중이 URL정보|작성자 미친꼬북		
-		 */
-		var pgurl = window.location.pathname;
-		//alert(pgurl);
-
-		$("#left_menu a").each(function() {
-			//alert($(this).attr("href"));
-			//alert($(this).attr(''));
-			if ($(this).attr("href") == pgurl || $(this).attr("href") == '')
-				$(this).addClass("active");
-			
-			//.do 로 즉 마스터 페이지로 온 경우에 대한 내용도 필요
-		})
-	});
-</script>
-<%-- 추후 choose로 변경하기 http://stackoverflow.com/questions/5935892/if-else-within-jsp-or-jstl --%>
-<div id="left_menu" class="list-group">
-	<c:if test="${sessionScope.mbrLoginId eq null }">
-		<a href="javascript:window.alert('권한이 없습니다. \n 로그인 후 이용해주시기 바랍니다.');"
-			class="list-group-item " data-toggle="tooltip" data-placement="top"
-			data-original-title="마이페이지">MyPage</a>
-	</c:if>
-
-	<c:if test="${sessionScope.mbrLoginId ne null }">
-		<a href="/CustomerService/MyPage/MyPage.jsp" class="list-group-item "
-			data-toggle="tooltip" data-placement="top"
-			data-original-title="마이페이지">MyPage</a>
-	</c:if>
 
 
-	<a href="/CustomerService/Announcement/Announcement.jsp"
-		class="list-group-item" data-toggle="tooltip" data-placement="top"
-		data-original-title="공지사항">Announcement</a>
+<!DOCTYPE html>
+<html>
+<head>
+<jsp:include page="/PartsOfContent/Head_Import.jsp" flush="false" />
 
-	<c:if test="${sessionScope.mbrLoginId eq null }">
-		<a href="javascript:window.alert('권한이 없습니다. \n 로그인 후 이용해주시기 바랍니다.');"
-			class="list-group-item" data-toggle="tooltip" data-placement="top"
-			data-original-title="회원정보(수정)">MemberShip</a>
-	</c:if>
+<%-- 
+1. 템플릿 : 참고하여 꼭 변경 http://wrapbootstrap.com/preview/WB0025522
+                       http://startbootstrap.com/
+                       https://wrapbootstrap.com/
+--%>
 
-	<c:if test="${sessionScope.mbrLoginId ne null }">
-		<a href="/CustomerService/MemberShip/MemberShip.jsp"
-			class="list-group-item" data-toggle="tooltip" data-placement="top"
-			data-original-title="회원정보(수정)">MemberShip</a>
-	</c:if>
 
-	<a href="/CustomerService/Agreement/Agreement.jsp"
-		class="list-group-item" data-toggle="tooltip" data-placement="top"
-		data-original-title="이용약관">Agreement</a> <a
-		href="/CustomerService/SiteGuide/SiteGuide.jsp"
-		class="list-group-item" data-toggle="tooltip" data-placement="top"
-		data-original-title="이용방법">Site Guide</a> <a
-		href="/CustomerService/FAQ/FAQ.jsp" class="list-group-item"
-		data-toggle="tooltip" data-placement="top"
-		data-original-title="자주하는 질문">FAQ</a> <a
-		href="/CustomerService/QnA/QnA.jsp" class="list-group-item"
-		data-toggle="tooltip" data-placement="top"
-		data-original-title="묻고 답하기">QnA</a> <a
-		href="/CustomerService/Contact/Contact.jsp" class="list-group-item"
-		data-toggle="tooltip" data-placement="top" data-original-title="담당자안내">Contact</a>
-	<a href="/CustomerService/SiteMap/SiteMap.jsp" class="list-group-item"
-		data-toggle="tooltip" data-placement="top" data-original-title="사이트맵">SiteMap</a>
-</div>
+
+<c:if test="${requestScope.loginCheck eq 2 }">
+	<script type="text/javascript">
+		alert('비밀번호가 틀렸습니다.');
+		history.go(-1)
+	</script>
+</c:if>
+<c:if test="${requestScope.loginCheck eq 7 }">
+	<script type="text/javascript">
+		alert('탈퇴한 회원입니다.');
+		msg = '재 가입하시겠습니까.?'
+		if (confirm(msg) != 0) {
+			location.replace("/MasterPage_1.jsp?mode=Default"); // 이전 url 기록안하는 경우 , location.href 의 경우 이전기록이 남아 login.do로 포워딩
+		} else {
+			history.go(-1)
+		}
+	</script>
+</c:if>
+
+<c:if test="${requestScope.loginCheck eq 3 }">
+	<script type="text/javascript">
+		alert('아이디가 존재하지 않습니다.');
+		history.go(-1);
+	</script>
+</c:if>
+<c:if test="${requestScope.loginCheck eq 5 }">
+	<script type="text/javascript">
+		alert('임시패스워드입니다. 비밀번호 변경 후 로그인해주세요.');
+		history.go(-1);
+	</script>
+</c:if>
+<c:if test="${requestScope.updateMemberDelete eq 1 }">
+	<script type="text/javascript">
+		alert('회원탈퇴가 완료되었습니다. 감사합니다.');
+	</script>
+</c:if>
+<c:if test="${requestScope.updateMemberDelete eq 0 }">
+	<script type="text/javascript">
+		alert('회원탈퇴가 되지 않았습니다.');
+		history.go(-1);
+	</script>
+</c:if>
+
+</head>
+<body>
+
+	<!-- Navigation (=메인 메뉴 및 슬라이드 쇼 포함)
+	     Index의 마스터 페이지
+	 -->
+	<!--  //////////////////////////////////// -->
+	<jsp:include page="/Admins/AdminsHeader.jsp" flush="false" />
+
+	<%-- Page Content (슬라이드 쇼 제외 실제 본문 내용)--%>
+	<div class="row" style="background: url(/zImages/bg.png) #eee;">
+		<div class="container">
+			<%-- Fluid container : .container 로 콘텐츠를 감싸는 것으로 페이지의 콘텐츠를 쉽게 중앙으로 가져오세요. 
+		                       .container 는 우리의 그리드 시스템에 맞는 다양한 미디어 쿼리 분기점에서 max-width 가 설정되어 있습니다. 
+		                       **추후 수정
+		                       --%>
+
+
+			<div class="enter"></div>
+			<!-- Marketing Icons Section -->
+			<div class="row mg9xauto">
+				<div class="col-lg-3 col-md-6">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							<div class="row">
+								<div class="col-xs-3">
+									<i class="fa fa-comments fa-5x"></i>
+								</div>
+								<div class="col-xs-9 text-right">
+									<div class="huge">26</div>
+									<div>New Comments!</div>
+								</div>
+							</div>
+						</div>
+						<a href="#">
+							<div class="panel-footer">
+								<span class="pull-left">View Details</span> <span
+									class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+								<div class="clearfix"></div>
+							</div>
+						</a>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<div class="panel panel-green" style="border-color: #5cb85c">
+						<div class="panel-heading"
+							style="background-color: #5cb85c; color: #fff">
+							<div class="row">
+								<div class="col-xs-3">
+									<i class="fa fa-tasks fa-5x"></i>
+								</div>
+								<div class="col-xs-9 text-right">
+									<div class="huge">12</div>
+									<div>New Tasks!</div>
+								</div>
+							</div>
+						</div>
+						<a href="#">
+							<div class="panel-footer">
+								<span class="pull-left">View Details</span> <span
+									class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+								<div class="clearfix"></div>
+							</div>
+						</a>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<div class="panel panel-yellow" style="border-color: #f0ad4e">
+						<div class="panel-heading"
+							style="background-color: #f0ad4e; color: #fff">
+							<div class="row">
+								<div class="col-xs-3">
+									<i class="fa fa-shopping-cart fa-5x"></i>
+								</div>
+								<div class="col-xs-9 text-right">
+									<div class="huge">124</div>
+									<div>New Orders!</div>
+								</div>
+							</div>
+						</div>
+						<a href="#">
+							<div class="panel-footer">
+								<span class="pull-left">View Details</span> <span
+									class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+								<div class="clearfix"></div>
+							</div>
+						</a>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<div class="panel panel-red" style="border-color: #d9534f">
+						<div class="panel-heading"
+							style="background-color: #d9534f; color: #fff">
+							<div class="row">
+								<div class="col-xs-3">
+									<i class="fa fa-support fa-5x"></i>
+								</div>
+								<div class="col-xs-9 text-right">
+									<div class="huge">
+										<h3>13</h3>
+									</div>
+									<div>Support Tickets!</div>
+								</div>
+							</div>
+						</div>
+						<a href="#">
+							<div class="panel-footer">
+								<span class="pull-left">View Details</span> <span
+									class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+								<div class="clearfix"></div>
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+
+
+			<!-- /.row -->
+			<%--이미지 괄호 높이가 같아야 한다 아래는 500 x 250 으로 통일 즉 비율이 맞아야 함
+		--%>
+			<!-- Portfolio Section -->
+			<div class="row" id="IT_Products">
+				<div class="col-md-6 col-sm-6">
+					<div class="panel panel-primary">
+						<div class="panel-heading">Notices</div>
+						<div class="panel-body">
+							<jsp:include page="/boardNotice/buFrontList.do" flush="false" />
+						</div>
+					</div>
+
+				</div>
+				<div class="col-md-6 col-sm-6">
+					<div class="panel panel-primary">
+						<div class="panel-heading">News</div>
+						<div class="panel-body">
+							<jsp:include page="/board/bnsFrontList.do" flush="false" />
+						</div>
+					</div>
+
+				</div>
+
+
+
+			</div>
+
+			<!-- /.row -->
+			<div class="enter"></div>
+			<!-- Features Section -->
+
+
+
+
+		</div>
+
+	</div>
+
+	<div class="enter"></div>
+
+	<!-- Footer -->
+	<footer>
+		<!--/////////////////////////////////////////////////// -->
+		<jsp:include page="/Admins/AdminsFooter.jsp" flush="false" />
+		<!--/////////////////////////////////////////////////// -->
+	</footer>
+
+
+</body>
+
+</html>

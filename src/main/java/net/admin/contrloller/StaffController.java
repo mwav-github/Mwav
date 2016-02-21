@@ -1,4 +1,4 @@
-package net.mwav.staff.contrloller;
+package net.admin.contrloller;
 
 import java.util.Collections;
 import java.util.Iterator;
@@ -16,8 +16,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import net.admin.service.StaffService;
 import net.common.common.CommandMap;
-import net.mwav.staff.service.StaffService;
 import net.mwav.common.module.Common_Util;
 import net.mwav.common.module.Paging;
 import net.mwav.common.module.PagingVO;

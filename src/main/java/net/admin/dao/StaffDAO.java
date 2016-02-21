@@ -1,4 +1,4 @@
-package net.mwav.staff.dao;
+package net.admin.dao;
 
 import java.text.SimpleDateFormat;
 import java.util.List;

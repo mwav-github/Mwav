@@ -37,29 +37,18 @@
 	});
 </script>
 <div id="left_menu" class="list-group">
-	<a href="/Company/Introduction/Introduction.jsp"
-		class="list-group-item " data-toggle="tooltip" data-placement="top"
-		data-original-title="회사소개">Introduction</a> <a
-		href="/Company/Greetings/Greetings.jsp" class="list-group-item"
-		data-toggle="tooltip" data-placement="top" data-original-title="대표인사말">Greetings</a>
-	<a href="/Company/History/History.jsp" class="list-group-item"
-		data-toggle="tooltip" data-placement="top"
-		data-original-title="회사연혁">History</a> <a
-		href="/Company/BusinessField/BusinessFields.jsp"
-		class="list-group-item" data-toggle="tooltip" data-placement="top"
-		data-original-title="사업분야">Business Field</a> <a
-		href="/Company/ActualResults/ActualResults.jsp"
-		class="list-group-item" data-toggle="tooltip" data-placement="top"
-		data-original-title="회사실적">Actual Results</a> <a
-		href="/board/bnsList.do" class="list-group-item"
-		data-toggle="tooltip" data-placement="top"
-		data-original-title="언론보도">The Press</a> <a
-		href="/Company/HR-Affairs/HR-Affairs.jsp" class="list-group-item"
-		data-toggle="tooltip" data-placement="top" data-original-title="인재채용">HR-Affairs</a>
-	<a href="/Company/LocationMap/LocationMap.jsp" class="list-group-item"
-		data-toggle="tooltip" data-placement="top"
-		data-original-title="회사약도">Location Map</a> <a
-		href="/Company/Profitsharing/Profitsharing.jsp"
-		class="list-group-item" data-toggle="tooltip" data-placement="top"
-		data-original-title="수익분배 프로그램">Profit sharing</a>
+
+
+	<c:if test="${mm eq null}">
+		<a href="#" >존재하지 않습니다.</a>
+	</c:if>
+
+
+	<c:if test="${mm ne null}">
+		<c:forEach var="vo" items="${vo }">
+
+			<a href="${vo.url }" class="list-group-item " data-toggle="tooltip"
+				data-placement="top" data-original-title="${vo.hKName}">${vo.hEName}</a>
+		</c:forEach>
+	</c:if>
 </div>

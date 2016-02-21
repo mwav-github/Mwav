@@ -1,4 +1,4 @@
-package net.mwav.staff.service;
+package net.admin.service;
 
 import java.util.List;
 import java.util.Map;

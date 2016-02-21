@@ -1,4 +1,4 @@
-package net.mwav.staff.service;
+package net.admin.service;
 
 import java.util.Iterator;
 import java.util.List;
@@ -8,8 +8,8 @@ import java.util.Set;
 
 import javax.annotation.Resource;
 
+import net.admin.dao.StaffDAO;
 import net.common.common.CommandMap;
-import net.mwav.staff.dao.StaffDAO;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;

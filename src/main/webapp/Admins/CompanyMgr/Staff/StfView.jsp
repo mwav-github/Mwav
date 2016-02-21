@@ -31,28 +31,11 @@
 </head>
 
 <body>
-	<!-- FrontHeader
-	Company의 마스터 페이지 상에서 Header 
-	1. 마스터 헤더 한번 변경해보기 ~!!! container 안으로
-	 -->
-	<!--  //////////////////////////////////// -->
-	<div class="container">
+	<%--mwav는 container 영역만 쓰기때문에 그랬으나 이건 전체 쓴다. 그러므로 container로 감싸면 안된다.  --%>
 		<!--  //////////////////////////////////// -->
 		<jsp:include page="/Admins/AdminsHeader.jsp" flush="false" />
 		<!--  //////////////////////////////////// -->
-		<!-- Image Container 
-container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다. 
--->
-		<div class="row">
-			<div class="col-lg-12">
-				<img src="/Company/zImage/Company_IN(height_280).jpg"
-					class="img-responsive res_width" alt="Responsive image">
-			</div>
-		</div>
-	</div>
-	<!--  //////////////////////////////////// 
-	Header 끝
-	-->
+
 
 
 	<!-- Page Content -->
