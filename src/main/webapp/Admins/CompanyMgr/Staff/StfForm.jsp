@@ -61,7 +61,7 @@
 		<div class="row">
 			<!-- Sidebar Column left메뉴 추후 변경 예정<시작>-->
 			<div class="col-md-3">
-				<jsp:include page="/admin/LeftMenu.do" flush="false" />
+				<jsp:include page="/admins/LeftMenu.do" flush="false" />
 			</div>
 			<!-- 끝 -->
 
@@ -83,7 +83,7 @@
 	</div> -->
 
 						<form class='form-horizontal' name="change_record" method="post"
-							action="/staff/stfForm.do">
+							action="/admins/staff/stfForm.do">
 							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
 								<div class="panel panel-primary">

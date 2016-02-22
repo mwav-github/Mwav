@@ -166,7 +166,7 @@
 			<label for="inputEmail" class="sr-only">StaffLoginId</label
 			--%>
 				<form name="stf_login_form" class="form-signin" method="post"
-					action="/staff/stfLogin.do">
+					action="/admins/staff/stfLogin.do">
 					<h2 class="form-signin-heading">Mwav StaffMember sign in</h2>
 
 					<div class='form-group'>

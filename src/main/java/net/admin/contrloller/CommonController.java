@@ -56,10 +56,10 @@ public class CommonController {
 	 * ========
 	 */
 	// 1번 StfForm : Form 입력만 가능 (뒤로가기, list)
-	@RequestMapping(value = "/admin/Default.do")
+	@RequestMapping(value = "/admins/Default.do")
 	public ModelAndView adminDefault(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("/Company/CompanyMasterPage_1");
+		ModelAndView mv = new ModelAndView("/Admins/AdminsMasterPage");
 
 		
 
@@ -72,7 +72,7 @@ public class CommonController {
 		return mv;
 	}
 	
-	@RequestMapping(value = "/admin/LeftMenu.do")
+	@RequestMapping(value = "/admins/LeftMenu.do")
 	public ModelAndView getLeftMenu(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/AdminsLeftMenu");

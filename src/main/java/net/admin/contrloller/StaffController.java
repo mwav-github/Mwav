@@ -54,7 +54,7 @@ public class StaffController {
 	 * ========
 	 */
 	// 1번 StfForm : Form 입력만 가능 (뒤로가기, list)
-	@RequestMapping(value = "/staff/stfForm.do")
+	@RequestMapping(value = "/admins/staff/stfForm.do")
 	public ModelAndView insertStfForm(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/Company/CompanyMasterPage_1");
@@ -94,7 +94,7 @@ public class StaffController {
 		return mv;
 	}
 
-	@RequestMapping(value = "/staff/stfList.do")
+	@RequestMapping(value = "/admins/staff/stfList.do")
 	public ModelAndView selectListStfList(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/CompanyMgr/Staff/StfList");
@@ -134,7 +134,7 @@ public class StaffController {
 	}
 
 	// 2번 StfView : 수정, 삭제버튼
-	@RequestMapping(value = "/staff/stfView.do")
+	@RequestMapping(value = "/admins/staff/stfView.do")
 	public ModelAndView selectStfView(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
 		HttpSession session = request.getSession();
@@ -163,7 +163,7 @@ public class StaffController {
 	 *  즉 controller에서만 작업 후 이후 꺼는 view 이용
 	 */
 
-	@RequestMapping(value = "/staff/stfUpdate.do")
+	@RequestMapping(value = "/admins/staff/stfUpdate.do")
 	public ModelAndView updateBnsform(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/CommonApps/Member/MbrShipForm");
@@ -192,7 +192,7 @@ logincheck = 5 :  DB 조회시 NULL (임시패스워드 발급 단계에서 중�
 logincheck = 6 :  탈퇴하지 않음
 logincheck = 7 :  탈퇴
 	 */
-	@RequestMapping(value = "/staff/stfLogin.do")
+	@RequestMapping(value = "/admins/staff/stfLogin.do")
 	public ModelAndView selectLogin(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/CompanyMgr/Staff/StfView");

@@ -76,7 +76,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 				<!-- Content Column -->
 				<div class="col-lg-12">
 
-					<form name="StfList" method="post" action="/staff/stfList.do">
+					<form name="StfList" method="post" action="/admins/staff/stfList.do">
 						<div class="row">
 							<div class="input-group custom-search-form">
 								<input type="text" class="form-control" placeholder="Search...">
@@ -146,15 +146,15 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 
 											<c:if test="${pagingVO.startPage > pagingVO.pageBlock}">
 												<li><a
-													href="/staff/stfList.do?pageNum=${pagingVO.startPage - pagingVO.pageBlock}">&laquo;</a></li>
+													href="/admins/staff/stfList.do?pageNum=${pagingVO.startPage - pagingVO.pageBlock}">&laquo;</a></li>
 											</c:if>
 											<c:forEach var="i" begin="${pagingVO.startPage}"
 												end="${pagingVO.endPage}">
-												<li><a href="/staff/stfList.do?pageNum=${i}">${i}</a></li>
+												<li><a href="/admins/staff/stfList.do?pageNum=${i}">${i}</a></li>
 											</c:forEach>
 											<c:if test="${pagingVO.endPage < pagingVO.pageCount}">
 												<li><a
-													href="/staff/stfList.do?pageNum=${pagingVO.startPage + pagingVO.pageBlock}">&raquo;</a></li>
+													href="/admins/staff/stfList.do?pageNum=${pagingVO.startPage + pagingVO.pageBlock}">&raquo;</a></li>
 											</c:if>
 											<!-- <li><a href="">&laquo;</a></li>
 			<li class="active"><a href="#">1</a></li>

@@ -10,7 +10,7 @@
 				class="icon-bar"></span><span class="icon-bar"></span>
 		</button>
 
-		<a class="navbar-brand active logo_800_m" href="/"> <img
+		<a class="navbar-brand active logo_800_m" href="/admins/Default.do"> <img
 					src="/Company/zImage/CompanyLogo_gray.gif"
 					class="img-thumbnail img-responsive logo_800_h"
 					alt="Responsive image"></a>

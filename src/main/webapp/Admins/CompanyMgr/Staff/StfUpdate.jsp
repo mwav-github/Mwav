@@ -100,7 +100,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 	</div> -->
 
 						<form class='form-horizontal' name="change_record" method="post"
-							action="/staff/stfForm.do">
+							action="/admins/staff/stfForm.do">
 							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
 								<div class="panel panel-primary">

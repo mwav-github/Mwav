@@ -19,7 +19,7 @@
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host" value="smtp.gmail.com" /> <!-- 서버주소 -->
 		<property name="port" value="587" /> <!-- 포트번호 기본 25 -->
-		<property name="defaultEncoding" value="utf-8"/> <!-- 기본인코딩 -->
+		<property name="defaultEncoding" value="utf-8" /> <!-- 기본인코딩 -->
 		<property name="username" value="ebizpromwav@gmail.com" /> <!-- 메일주소 -->
 		<property name="password" value="qkqh5501" /> <!-- 메일비밀번호 -->
 		<property name="javaMailProperties">
@@ -31,23 +31,20 @@
 			</props>
 		</property>
 	</bean>
-  
-   
-	<!-- <bean id="email" class="net.mwav.mail.EmailVO">
-	</bean> -->
-	 <bean id="emailTemplates" class="net.mwav.common.module.EmailTemplates">
-	</bean> 
+
+
+	<!-- <bean id="email" class="net.mwav.mail.EmailVO"> </bean> -->
+	<bean id="emailTemplates" class="net.mwav.common.module.EmailTemplates">
+	</bean>
 	<bean id="emailSender" class="net.mwav.common.module.EmailSender">
 	</bean>
-	
-	
-	
 
-	<!-- Responsebody 
-	
-	annotation스캔을 <mvc:annotation-driven/> 로 하고 있다면 HttpMessageConverter를 기본적으로
-등록하기 때문에 별다른 설정없이 Jackson 라이브러리만 추가하면 디폴트 전략인 Jackson Json을 사용할 수 있다는 것.
-	-->
+
+
+
+	<!-- Responsebody annotation스캔을 <mvc:annotation-driven/> 로 하고 있다면 HttpMessageConverter를 
+		기본적으로 등록하기 때문에 별다른 설정없이 Jackson 라이브러리만 추가하면 디폴트 전략인 Jackson Json을 사용할 수 있다는 
+		것. -->
 	<bean id="jacksonMessageConverter"
 		class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" />
 
@@ -63,9 +60,17 @@
 
 	<!-- Interceptor는 Controller가 요청되기 전에 수행된다. 즉, Interceptor는 DispatcherServlet과 
 		같은 위치에 등록이 되어있어야지 정상적으로 수행이 된다. -->
+	<!-- Log4js 설정 http://dev.anyframejava.org/docs/anyframe/plugin/essential/core/1.6.0/reference/html/ch21.html 
+		http://logging.apache.org/log4j/1.2/apidocs/index.html -->
+	<!-- 20160223 admin 권한부여를 위하여 변경 <mvc:interceptors> <mvc:interceptor> <mvc:mapping 
+		path="/**" /> 지금 작성하는 로거는 모든 요청에서 동작을 하기때문에 전체 패스를 의미하는 "/**" 로 설정하였다. <bean 
+		id="loggerInterceptor" class="net.common.logger.LoggerInterceptor"></bean> 
+		</mvc:interceptor> </mvc:interceptors> -->
+
 	<mvc:interceptors>
 		<mvc:interceptor>
-			<mvc:mapping path="/**" /> <!-- 지금 작성하는 로거는 모든 요청에서 동작을 하기때문에 전체 패스를 의미하는 "/**" 로 설정하였다. -->
+			<mvc:mapping path="/admins/**" />			
+			<mvc:mapping path="/Admins/**" />			
 			<bean id="loggerInterceptor" class="net.common.logger.LoggerInterceptor"></bean>
 		</mvc:interceptor>
 	</mvc:interceptors>
