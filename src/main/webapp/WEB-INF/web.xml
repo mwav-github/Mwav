@@ -52,6 +52,7 @@
 		<servlet-name>mwav</servlet-name>
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
+
 	
 	
 	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
@@ -66,9 +67,17 @@
               앞으로 우리는 다양한 SQL 파일을 만들것인데, 그것을 일일이 등록해서 사용할 수는 없다. 
           (원래는 xml 파일에 XML도 bean으로 설정해야한다.) 
               그렇지만 다양한 사람들이 작업하는 프로젝트의 특성상, 그것을 일일이 등록할 수 없고, 할 수 있더라도 귀찮은 일이다. 
-              따라서 서버가 시작될 때 자동으로 SQL이 정의되어 있는 XML 파일도 읽어오도록 하는것이 필요하다.      
-              -->
+              따라서 서버가 시작될 때 자동으로 SQL이 정의되어 있는 XML 파일도 읽어오도록 하는것이 필요하다.  
               
+                           
+  	위의 내용과 다른 부분이건 class 파일 생성 후 해당 적용인듯 
+  	위는 mwav에 대한 적용부분
+  	 ContextLoaderListener가 생성한 Context가 root가 되고 DispatcherServlet 이 생성한 인스턴스가 root context를
+              부모로 사용하는 자식 Context가 된다.
+              이때 자식 Context들은 root Context가 제공하는 빈을 사용할 수 있기 때문에  ContextLoaderListener를 이용하여
+              공통 빈을 설정하는 것이다. 
+              이말이다.
+              -->
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath*:config/spring/context-*.xml</param-value>

@@ -39,7 +39,7 @@
 	
 	<update id="updateMbrLoginPw" parameterType="hashmap" >
 		<![CDATA[
-		UPDATE member_tbl SET mbrLoginPw = #{mbrLoginPw} WHERE mbrTempLoginPw = #{imsi_mbrLoginPw}
+		UPDATE Member_tbl SET mbrLoginPw = #{mbrLoginPw} WHERE mbrTempLoginPw = #{imsi_mbrLoginPw}
 		]]>
 	</update>
 	

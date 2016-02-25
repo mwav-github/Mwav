@@ -184,7 +184,7 @@
 					<!-- md >= 992 / sm >=768  2행에서 1-->
 					<a href="/CompanyItem/IT Products/OpenSRS/OpenSRS.jsp"> <img
 						class="img-responsive img-portfolio img-hover"
-						src="/CompanyItem/IT Products/Images/OpenSRS(h250).jpg" alt="">
+						src="/CompanyItem/IT Products/Images/OpenSRS_RapidSSL.png" alt="">
 					</a>
 					<%--<p>Contents :</p> --%>
 				</div>

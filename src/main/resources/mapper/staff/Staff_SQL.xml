@@ -43,7 +43,7 @@
 	
 	<select id="selectStfLogin" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-		SELECT staff_id, stfLoginId, stfLoginPw, stfDeleteDt
+		SELECT *
 		FROM Staff_tbl
 	    WHERE stfLoginId = #{stfLoginId}
 		]]>

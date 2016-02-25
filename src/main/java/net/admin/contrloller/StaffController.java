@@ -185,7 +185,7 @@ public class StaffController {
 	
 	/*
 	 * 
-	 * logincheck = 1 :  정상로그인
+logincheck = 1 :  정상로그인
 logincheck = 2 :  비밀번호 틀림
 logincheck = 3 :  아이디 존재하지 않음
 logincheck = 5 :  DB 조회시 NULL (임시패스워드 발급 단계에서 중간하였을때 포함)
@@ -195,7 +195,7 @@ logincheck = 7 :  탈퇴
 	@RequestMapping(value = "/admins/staff/stfLogin.do")
 	public ModelAndView selectLogin(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("/Admins/CompanyMgr/Staff/StfView");
+		ModelAndView mv = new ModelAndView("/Admins/AdminsMasterPage");
 
 		HttpSession session = request.getSession();
 		// * action-servlet.xml에서 위에 .jsp 설정해줘서 위의 CommonApps 부터 되는거

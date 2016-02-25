@@ -121,6 +121,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 														</td>
 														<td class="hidden-xs">${VselectListStfList.stfEmail}</td>
 														<td>
+														<!-- <span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td> -->
 															<button type="button" class="btn btn-info"
 																onclick="javascript:window.location.href='/board/bnsView.do?bNews_id=${VselectListStfList.bNews_id}'">보기</button>&nbsp;
 															<button type="button" class="btn btn-warning"

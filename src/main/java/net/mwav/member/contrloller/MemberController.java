@@ -318,7 +318,7 @@ public class MemberController {
 		System.out.println("selectIdFinder" + selectIdFinder);
 		if (selectIdFinder == null) {
 			// 응답 메세지 1 : 이미 등록된 ID 입니다.
-			result = "<font color=red><strong>이미 등록된 ID 입니다.</strong></font>";
+			result = "<font color=red><strong>존재하지 않는 ID 입니다.</strong></font>";
 		} else {
 			// 응답 메세지 2 : 사용할 수 있는 ID 입니다.
 			result = "<font color=green><strong>당신의 아이디는 " + selectIdFinder

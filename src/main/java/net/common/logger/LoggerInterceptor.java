@@ -10,11 +10,12 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import net.common.logger.LoggerInterceptor;
-
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 //
 public class LoggerInterceptor extends HandlerInterceptorAdapter {
 	// private final Logger log = LoggerFactory.getLogger(this.getClass());
-	Logger log = Logger.getLogger(this.getClass());
+	//Logger log = Logger.getLogger(this.getClass());
 
 	// protected Log log = LogFactory.getLog(LoggerInterceptor.class);
 
@@ -54,9 +55,16 @@ public class LoggerInterceptor extends HandlerInterceptorAdapter {
 	/*
 	 * 최초 actionservlet 에서 mapping 가능하다 ~!! 즉 분류별로 나눠서 관리 가능
 	 */
+	
+	/*
+	 * redirect 와 response 차이 
+	 */
+	protected Log log = LogFactory.getLog(LoggerInterceptor.class);
 	@Override
 	public boolean preHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler) throws Exception {
+		log.debug("======================================          START         ======================================");
+		log.debug(" Request URI \t:  " + request.getRequestURI());
 		System.out.println("LoggerInterceptor에 들어왔다.");
 		if (log.isDebugEnabled()) {
 			log.debug("======================================          START         ======================================");
@@ -65,19 +73,20 @@ public class LoggerInterceptor extends HandlerInterceptorAdapter {
 			System.out.println("LoggerInterceptor에 들어왔다.");
 		}
 		/*
-		 * 1. 전체 url 중 /admins /Admins 만 substring 등을 이용해서 조건 부여
-		 * 2. 그러나 여기서 계속 redirect 먹히지 않음
-		 * 3. url.substring // url.equals 에서 계속안먹음 원인 파악 불가
-		 * 4. actionservlet에서 그냥 매핑설정하여 /admins , /Admins일때 들어오도록 설정
-		 * 
+		 * 1. 전체 url 중 /admins /Admins 만 substring 등을 이용해서 조건 부여 2. 그러나 여기서 계속
+		 * redirect 먹히지 않음 3. url.substring // url.equals 에서 계속안먹음 원인 파악 불가 4.
+		 * actionservlet에서 그냥 매핑설정하여 /admins , /Admins일때 들어오도록 설정
 		 */
 
-		if (request.getSession().getAttribute("staff_id") == null) {
-			System.out.println("콜");
-			response.sendRedirect("/Admins/CompanyMgr/Staff/StfLogin.jsp");
-
-			return false;
-		}
+		/*try {
+			if (request.getSession().getAttribute("staff_id") == null) {
+				System.out.println("콜");
+				response.sendRedirect("/Admins/CompanyMgr/Staff/StfLogin.jsp");
+				return false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}*/
 		/*
 		 * System.out.println("LoggerInterceptor에 들어왔다."); if
 		 * (log.isDebugEnabled()) { log.debug(
@@ -182,5 +191,7 @@ public class LoggerInterceptor extends HandlerInterceptorAdapter {
 		log.debug("======================================           END          ======================================\n");
 		log.info("======================================           END          ======================================\n");
 
+		
+		
 	}
 }
