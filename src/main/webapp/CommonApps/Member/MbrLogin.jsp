@@ -5,6 +5,10 @@
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"
 	rel="stylesheet">
+	<!-- 구글 API관련 -->
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="881218558153-ndr868i68rlofoo4l2gb488ksabi5q23.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
 
 </head>
 
@@ -29,15 +33,13 @@
 			console.log('connected finished')
 		} else if (response.status === 'not_authorized') {
 			// The person is logged into Facebook, but not your app.
-			document.getElementById('status').innerHTML = 'Please log '
-					+ 'into this app.';
 			console.log('not authorized!!');
 			
 		} else {
 			// The person is not logged into Facebook, so we're not sure if
 			// they are logged into this app or not.
-			document.getElementById('status').innerHTML = 'Please log '
-					+ 'into Facebook.';
+			// 미리 로그인 안됐을시 이쪽으로 들어옴 유지보수 필요!
+			console.log('not logged into this app or not!!');
 		}
 	}
 
@@ -155,6 +157,42 @@
 	
 </script>
 
+<script>
+	  //구글 로그인 api
+	  
+      function onSignIn(googleUser) {
+        // Useful data for your client-side scripts:
+        var profile = googleUser.getBasicProfile();
+        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+        console.log("Name: " + profile.getName());
+        console.log("Image URL: " + profile.getImageUrl());
+        console.log("Email: " + profile.getEmail()); 
+        console.log(JSON.stringify(profile));
+        
+
+        
+       /*  var $form = $('<form></form>');
+        $form.attr('action', '/member/snsForm.do');
+        $form.attr('method', 'post');
+        $form.appendTo('body');
+         
+        var fsmMember_id = $('<input type="hidden" value="'+profile.getId()+'" name="fsmMember_id">');
+        var fFirst_Name = $('<input type="hidden" value="'+profile.getName()+'" name="fFirst_Name">');
+        //var fLast_Name = $('<input type="hidden" value="'+response.last_name+'" name="fLast_Name">');
+        var fEmail = $('<input type="hidden" value="'+profile.getEmail()+'" name="fEmail">');
+        //var fGender = $('<input type="hidden" value="'+response.gender+'" name="fGender">');
+        //var fLink = $('<input type="hidden" value="'+response.link+'" name="fLink">');
+        var fPicture = $('<input type="hidden" value="'+profile.getImageUrl()+'" name="fPicture">');
+        
+        $form.append(fsmMember_id).append(fFirst_Name).append(fLast_Name).append(fEmail).append(fGender).append(fLink).append(fPicture);
+        $form.submit(); */
+
+        // The ID token you need to pass to your backend:
+        var id_token = googleUser.getAuthResponse().id_token;
+        console.log("ID Token: " + id_token);
+        };
+</script>
+
 <%--padding 으로 안쪽 추후 딴건 변경가능 #04A3ED --%>
 <div class="col-md-12"
 	style="padding: 60px; box-shadow: 0 0 20px 3px #04A3ED; background: #f7f7f7;">
@@ -215,6 +253,7 @@
 				href="/MasterPage_1.jsp?mode=Default"><strong>Sign up
 						now</strong></a></span>
 		</div>
+		 <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" ></div>
 		
 		<!-- 페북 로그인 연동 -->
 		
