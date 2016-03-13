@@ -154,13 +154,8 @@
 	}, {scope: 'public_profile, email, user_friends'}); // permission 거부 아래 grant?인가를 써서 다시 재 건의 할 수 있음
 	}
 	
-	
-</script>
-
-<script>
-	  //구글 로그인 api
-	  
-      function onSignIn(googleUser) {
+	//구글 로그인 api
+	function onSignIn(googleUser) {
         // Useful data for your client-side scripts:
         var profile = googleUser.getBasicProfile();
         console.log("ID: " + profile.getId()); // Don't send this directly to your server!
@@ -171,26 +166,23 @@
         
 
         
-       /*  var $form = $('<form></form>');
+        /* var $form = $('<form></form>');
         $form.attr('action', '/member/snsForm.do');
         $form.attr('method', 'post');
         $form.appendTo('body');
          
         var fsmMember_id = $('<input type="hidden" value="'+profile.getId()+'" name="fsmMember_id">');
         var fFirst_Name = $('<input type="hidden" value="'+profile.getName()+'" name="fFirst_Name">');
-        //var fLast_Name = $('<input type="hidden" value="'+response.last_name+'" name="fLast_Name">');
         var fEmail = $('<input type="hidden" value="'+profile.getEmail()+'" name="fEmail">');
-        //var fGender = $('<input type="hidden" value="'+response.gender+'" name="fGender">');
-        //var fLink = $('<input type="hidden" value="'+response.link+'" name="fLink">');
         var fPicture = $('<input type="hidden" value="'+profile.getImageUrl()+'" name="fPicture">');
         
-        $form.append(fsmMember_id).append(fFirst_Name).append(fLast_Name).append(fEmail).append(fGender).append(fLink).append(fPicture);
+        $form.append(fsmMember_id).append(fFirst_Name).append(fEmail).append(fPicture);
         $form.submit(); */
 
         // The ID token you need to pass to your backend:
         var id_token = googleUser.getAuthResponse().id_token;
         console.log("ID Token: " + id_token);
-        };
+        }
 </script>
 
 <%--padding 으로 안쪽 추후 딴건 변경가능 #04A3ED --%>

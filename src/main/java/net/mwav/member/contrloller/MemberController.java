@@ -604,10 +604,18 @@ logincheck = 7 :  탈퇴
 		String fsmMember_id = (String) commandMap.get("fsmMember_id");
 		String fFirst_Name = (String) commandMap.get("fFirst_Name");
 		String fLast_Name = (String) commandMap.get("fLast_Name");
+		if(fLast_Name == null)
+			fLast_Name = null;
 		String fEmail = (String) commandMap.get("fEmail");
 		String fGender = (String) commandMap.get("fGender");
+		if(fGender == null)
+			fGender = null;
 		String fLink = (String) commandMap.get("fLink");
-		Object fPicture = (Object) commandMap.get("fPicture");
+		if(fLink == null)
+			fLink = null;
+		String fPicture = (String) commandMap.get("fPicture");
+		if(fPicture == null)
+			fPicture = null;
 
 		System.out.println("fsmMember_id = " + fsmMember_id);
 		System.out.println("fFirst_Name = " + fFirst_Name);
