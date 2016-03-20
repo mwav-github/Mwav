@@ -154,7 +154,7 @@
 	}, {scope: 'public_profile, email, user_friends'}); // permission 거부 아래 grant?인가를 써서 다시 재 건의 할 수 있음
 	}
 	
-	//구글 로그인 api
+	//구글 로그인 api(Spring Security적용 후 완료 예정)
 	function onSignIn(googleUser) {
         // Useful data for your client-side scripts:
         var profile = googleUser.getBasicProfile();
