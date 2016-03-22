@@ -107,7 +107,7 @@
 								States (particularly in the phrase "pull oneself over a fence by
 								one's bootstraps"), to mean an absurdly impossible action, an
 								adynaton.</p>
-							<a href="/CompanyItem/WebSite Building/WebSite Building.jsp"
+							<a href="/CompanyItem/WebSiteBuilding/WebSiteBuilding.jsp"
 								class="btn btn-info btn-sm btn-block">Learn More</a>
 						</div>
 					</div>
@@ -126,7 +126,7 @@
 								the 10,000 most visited websites, jQuery is the most popular
 								JavaScript library in use today. jQuery is free, open-source
 								software licensed under the MIT License.</p>
-							<a href="/CompanyItem/IT Products/OpenSRS/OpenSRS.jsp"
+							<a href="/CompanyItem/ITProducts/OpenSRS/OpenSRS.jsp"
 								class="btn btn-info btn-sm btn-block">Learn More</a>
 						</div>
 					</div>
@@ -182,23 +182,23 @@
 				<%--1행 --%>
 				<div class="col-xs-12 col-sm-6 col-md-4">
 					<!-- md >= 992 / sm >=768  2행에서 1-->
-					<a href="/CompanyItem/IT Products/OpenSRS/OpenSRS.jsp"> <img
+					<a href="/CompanyItem/ITProducts/OpenSRS/OpenSRS.jsp"> <img
 						class="img-responsive img-portfolio img-hover"
-						src="/CompanyItem/IT Products/Images/OpenSRS_RapidSSL.png" alt="">
+						src="/CompanyItem/ITProducts/Images/RapidSSL_logo.png" alt="">
 					</a>
 					<%--<p>Contents :</p> --%>
 				</div>
 				<div class="col-xs-12 col-sm-6 col-md-4">
-					<a href="/CompanyItem/IT Products/Windows/Windows.jsp"> <img
+					<a href="/CompanyItem/ITProducts/Windows/Windows.jsp"> <img
 						class="img-responsive img-portfolio img-hover"
-						src="/CompanyItem/IT Products/Images/windows10(h250).jpg" alt="">
+						src="/CompanyItem/ITProducts/Images/windows10(h250).jpg" alt="">
 					</a>
 					<%--<p>Contents :</p> --%>
 				</div>
 				<div class="col-xs-12 col-sm-6 col-md-4">
-					<a href="/CompanyItem/IT Products/Azure/Azure.jsp"> <img
+					<a href="/CompanyItem/ITProducts/Azure/Azure.jsp"> <img
 						class="img-responsive img-portfolio img-hover"
-						src="/CompanyItem/IT Products/Images/ms_azure(h250).png" alt="">
+						src="/CompanyItem/ITProducts/Images/ms_azure(h250).png" alt="">
 					</a>
 					<%--<p>Contents :</p> --%>
 				</div>
@@ -208,23 +208,23 @@
 				<%--2행 --%>
 				<div class="col-xs-12 col-sm-6 col-md-4">
 					<!-- md >= 992 / sm >=768  2행에서 1-->
-					<a href="/CompanyItem/IT Products/Aervision/Aervision.jsp"> <img
+					<a href="/CompanyItem/ITProducts/Aervision/Aervision.jsp"> <img
 						class="img-responsive img-portfolio img-hover"
-						src="/CompanyItem/IT Products/Images/AerVison(h250).png" alt="">
+						src="/CompanyItem/ITProducts/Images/AerVison(h250).png" alt="">
 					</a>
 					<%--<p>Contents :</p> --%>
 				</div>
 				<div class="col-xs-12 col-sm-6 col-md-4">
-					<a href="/CompanyItem/IT Products/IT Products.jsp"> <img
+					<a href="/CompanyItem/ITProducts/InsWave/InsWave.jsp"> <img
 						class="img-responsive img-portfolio img-hover"
-						src="/CompanyItem/IT Products/Images/tucows(h250).jpg" alt="">
+						src="/CompanyItem/ITProducts/Images/CMS_01.png" alt="">
 					</a>
 					<%--<p>Contents :</p> --%>
 				</div>
 				<div class="col-xs-12 col-sm-6 col-md-4">
-					<a href="/CompanyItem/IT Products/IT Products.jsp"> <img
+					<a href="/CompanyItem/ITProducts/MSOffice/MSOffice.jsp"> <img
 						class="img-responsive img-portfolio img-hover"
-						src="/CompanyItem/IT Products/Images/MsOffice(h250).jpg" alt="">
+						src="/CompanyItem/ITProducts/Images/MsOffice(h250).jpg" alt="">
 					</a>
 					<%--<p>Contents :</p> --%>
 				</div>
@@ -269,7 +269,7 @@
 			<!-- 580x357 -->
 			<div class="col-xs-12 col-md-6 col-md-push-6">
 				<img class="img-responsive"
-					src="/CompanyItem/WebSite Building/Images/WebSiteBuilding.jpg"
+					src="/CompanyItem/WebSiteBuilding/Images/WebSiteBuilding.jpg"
 					alt="">
 			</div>
 
@@ -293,7 +293,7 @@
 				<p>Mwav의 사이트 구축 솔루션으로 회사용 인트라넷이나 팀에서 사용할 프로젝트 사이트, 고객용 포털을 시작할 수
 					있습니다. 단 한 줄의 코드도 작성할 필요가 없습니다.</p>
 				<br> <a class="btn btn-lg btn-primary btn-block"
-					href="/CompanyItem/WebSite Building/WebSite Building.jsp">WebSite
+					href="/CompanyItem/WebSiteBuilding/WebSiteBuilding.jsp">WebSite
 					Building</a>
 			</div>
 		</div>
@@ -313,7 +313,7 @@
 
 			<div class="col-md-8">
 				<img class="img-responsive"
-					src="/CompanyItem/IT Consulting/Images/ITConsulting.jpg" alt="">
+					src="/CompanyItem/ITConsulting/Images/ITConsulting.jpg" alt="">
 			</div>
 			<div class="col-md-4 mgt5">
 				<p>다양한 고객 비즈니스에 대한 이해와 컨설팅 수행 경험을 바탕으로 IT의 획기적 고도화 및 선진화를 위해 IT
@@ -322,7 +322,7 @@
 					따른 효과적 업무 수행을 지원하여 드립니다..</p>
 				<%-- 15.10.18 내용수정	<p></p>--%>
 				<a class="btn btn-lg btn-primary btn-block"
-					href="/CompanyItem/IT Consulting/IT Consulting.jsp">IT
+					href="/CompanyItem/ITConsulting/ITConsulting.jsp">IT
 					Consulting</a>
 			</div>
 
@@ -341,7 +341,7 @@
 
 			<div class="col-xs-12 col-md-6 col-md-push-6">
 				<img class="img-responsive"
-					src="/CompanyItem/Digital Marketing/Images/DigitalMarketing.jpg"
+					src="/CompanyItem/DigitalMarketing/Images/DigitalMarketing.jpg"
 					alt="">
 			</div>
 
@@ -353,7 +353,7 @@
 				<%--  15.10.18 내용수정p>Digital Ad Agency: Boost online promotions for maximum
 						profits by leveraging digital marketing effectively.</p>--%>
 				<a class="btn btn-lg btn-primary btn-block"
-					href="/CompanyItem/Digital Marketing/Digital Marketing.jsp">Digital
+					href="/CompanyItem/DigitalMarketing/DigitalMarketing.jsp">Digital
 					Marketing</a>
 			</div>
 		</div>

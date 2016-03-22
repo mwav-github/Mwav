@@ -60,7 +60,7 @@ public class StaffServiceImpl implements StaffService {
 	@Override
 	public List<Map<String, Object>> selectListStfList(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return null;
+		return staffDAO.selectListStfList(map);
 	}
 
 }

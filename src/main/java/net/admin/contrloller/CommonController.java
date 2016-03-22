@@ -80,11 +80,14 @@ public class CommonController {
 		/* Service 쪽 안간다. */
 		String url = "";
 		String mm = request.getParameter("mm");
+		System.out.println("mm이 controller 까지 = "+mm);
 		List<LeftFrame_VO> vo = null;
 		LeftFrame_Fucntion voF = new LeftFrame_Fucntion();
+		System.out.println("mm="+mm);
 		
 		vo = voF.getMbrList(mm);
-	
+	System.out.println("mm 나가기전"+vo);
+		
 		request.setAttribute("mm", mm);
 		request.setAttribute("url", url);
 		request.setAttribute("vo", vo);

@@ -68,7 +68,7 @@ public class LeftFrame_Fucntion {
 						"계좌관리" };
 				String[] strhEName = { "문서자료", "StaffList", "자산리스트", "FTP자료실",
 				"계좌관리" };
-				String[] strurl = { "#", "/HomePage/S_List.do?mm=firm", "#",
+				String[] strurl = { "#", "/admins/staff/stfList.do?mm=firm", "#",
 						"#", "#" };
 				String[] strmAuthority = { "1", "1", "1", "1", "1" };
 				String[] strdAuthority = { "*", "*", "*", "*", "*" };

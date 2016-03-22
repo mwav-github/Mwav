@@ -19,7 +19,7 @@
 	1. 마스터 헤더 한번 변경해보기 ~!!! container 안으로
 	 -->
 	<!--  //////////////////////////////////// -->
-	<div class="container">
+
 		<!--  //////////////////////////////////// -->
 		<jsp:include page="/Admins/AdminsHeader.jsp"
 			flush="false" />
@@ -27,13 +27,7 @@
 		<!-- Image Container 
 container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다. 
 -->
-		<div class="row">
-			<div class="col-lg-12">
-				<img src="/Company/zImage/Company_IN(height_280).jpg"
-					class="img-responsive res_width" alt="Responsive image">
-			</div>
-		</div>
-	</div>
+
 	<!--  //////////////////////////////////// 
 	Header 끝
 	-->
@@ -62,7 +56,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 		<div class="row">
 			<!-- Sidebar Column left메뉴 추후 변경 예정<시작>-->
 			<div class="col-md-3">
-				<jsp:include page="/Admins/AdminsLeftMenu.jsp" flush="false" />
+				<jsp:include page="/admins/LeftMenu.do" flush="false" />
 			</div>
 			<!-- 끝 -->
 
@@ -123,9 +117,9 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 														<td>
 														<!-- <span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td> -->
 															<button type="button" class="btn btn-info"
-																onclick="javascript:window.location.href='/board/bnsView.do?bNews_id=${VselectListStfList.bNews_id}'">보기</button>&nbsp;
+																onclick="javascript:window.location.href='/admins/staff/stfView.do?staff_id=${VselectListStfList.staff_id}&mm=firm'">보기</button>&nbsp;
 															<button type="button" class="btn btn-warning"
-																onclick="javascript:window.location.href='/board/bnsModify.do?bNews_id=${VselectListStfList.bNews_id}'">수정</button>
+																onclick="javascript:window.location.href='/board/bnsModify.do?bNews_id=${VselectListStfList.staff_id}&mm=firm'">수정</button>
 														</td>
 													</tr>
 												</c:forEach>

@@ -58,7 +58,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 			<!-- Sidebar Column left메뉴 추후 변경 예정<시작>-->
 			<div class="col-md-3">
 				<div class="list-group">
-					<a href="/CompanyItem/IT Solutions/IT Solutions.jsp"
+					<a href="/CompanyItem/ITSolutions/ITSolutions.jsp"
 						class="list-group-item active" data-toggle="tooltip" data-placement="top"
 						data-original-title="IT솔루션">IT Solutions</a> <%-- <a
 						href="/CompanyItem/IT Products/IT Products.jsp"

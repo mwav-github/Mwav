@@ -59,21 +59,25 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 			<!-- Sidebar Column left메뉴 추후 변경 예정<시작>-->
 			<div class="col-md-3">
 				<div class="list-group">
-					<a href="/CompanyItem/IT Products/Aervision/Aervision.jsp"
+					<a href="/CompanyItem/ITProducts/Aervision/Aervision.jsp"
 						class="list-group-item" data-toggle="tooltip" data-placement="top"
 						data-original-title="Aervision">Aervision</a> <a
-						href="/CompanyItem/IT Products/OpenSRS/OpenSRS.jsp"
+						href="/CompanyItem/ITProducts/OpenSRS/OpenSRS.jsp"
 						class="list-group-item" data-toggle="tooltip" data-placement="top"
 						data-original-title="OpenSRS">OpenSRS</a> <a
-						href="/CompanyItem/IT Products/Azure/Azure.jsp"
+						href="/CompanyItem/ITProducts/Azure/Azure.jsp"
 						class="list-group-item " data-toggle="tooltip"
 						data-placement="top" data-original-title="Azure">Azure</a> <a
-						href="/CompanyItem/IT Products/Windows/Windows.jsp"
+						href="/CompanyItem/ITProducts/Windows/Windows.jsp"
 						class="list-group-item active" data-toggle="tooltip"
 						data-placement="top" data-original-title="Windows">Windows</a> <a
-						href="/CompanyItem/IT Products/MSOffice/MSOffice.jsp"
+						href="/CompanyItem/ITProducts/MSOffice/MSOffice.jsp"
 						class="list-group-item" data-toggle="tooltip" data-placement="top"
 						data-original-title="MSOffice">MSOffice</a>
+							<a
+						href="/CompanyItem/ITProducts/InsWave/InsWave.jsp"
+						class="list-group-item " data-toggle="tooltip" data-placement="top"
+						data-original-title="InsWave">InsWave</a>
 				</div>
 			</div>
 			<!-- 끝 -->
@@ -108,7 +112,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					</div>
 					<div class="col-md-6">
 						<img class="thumbnail img-responsive" alt="Bootstrap template"
-							src="/CompanyItem/IT Products/Images/device_pc_mini_start_nocortana.jpg">
+							src="/CompanyItem/ITProducts/Images/device_pc_mini_start_nocortana.jpg">
 					</div>
 				</div>
 
@@ -155,7 +159,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					</div>
 					<div class="col-md-6">
 						<img class="thumbnail img-responsive" alt="Bootstrap template"
-							src="/CompanyItem/IT Products/Images/device_squeejee_newbrowser_1x_ko_KRfiletype.png">
+							src="/CompanyItem/ITProducts/Images/device_squeejee_newbrowser_1x_ko_KRfiletype.png">
 					</div>
 
 				</div>
@@ -175,7 +179,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					</div>
 					<div class="col-md-6">
 						<img class="thumbnail img-responsive" alt="Bootstrap template"
-							src="/CompanyItem/IT Products/Images/device_squeejee_multidoing_1x.png">
+							src="/CompanyItem/ITProducts/Images/device_squeejee_multidoing_1x.png">
 					</div>
 
 				</div>
@@ -199,7 +203,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					</div>
 					<div class="col-md-6">
 						<img class="thumbnail img-responsive" alt="Bootstrap template"
-							src="/CompanyItem/IT Products/Images/device_2in1_store_1x.jpg">
+							src="/CompanyItem/ITProducts/Images/device_2in1_store_1x.jpg">
 					</div>
 
 				</div>
@@ -217,7 +221,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					</div>
 					<div class="col-md-6">
 						<img class="thumbnail img-responsive" alt="Bootstrap template"
-							src="/CompanyItem/IT Products/Images/device_pc_xbox.jpg">
+							src="/CompanyItem/ITProducts/Images/device_pc_xbox.jpg">
 					</div>
 				</div>
 
@@ -232,32 +236,32 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 
 					<div class="col-md-2 col-sm-2 col-xs-4">
 						<img class="img-responsive"
-							src="/CompanyItem/IT Products/Images/Apps_Icons_Map.png">
+							src="/CompanyItem/ITProducts/Images/Apps_Icons_Map.png">
 						<p style="color: #04A3ED;">지도</p>
 					</div>
 					<div class="col-md-2 col-sm-2 col-xs-4">
 						<img class="img-responsive"
-							src="/CompanyItem/IT Products/Images/Apps_Icons_Photos.png">
+							src="/CompanyItem/ITProducts/Images/Apps_Icons_Photos.png">
 						<p style="color: #04A3ED;">사진</p>
 					</div>
 					<div class="col-md-2 col-sm-2 col-xs-4">
 						<img class="img-responsive"
-							src="/CompanyItem/IT Products/Images/Apps_Icons_Mail.png">
+							src="/CompanyItem/ITProducts/Images/Apps_Icons_Mail.png">
 						<p style="color: #04A3ED;">메일</p>
 					</div>
 					<div class="col-md-2 col-sm-2 col-xs-4">
 						<img class="img-responsive"
-							src="/CompanyItem/IT Products/Images/Apps_Icons_Music.png">
+							src="/CompanyItem/ITProducts/Images/Apps_Icons_Music.png">
 						<p style="color: #04A3ED;">Groov 음악</p>
 					</div>
 					<div class="col-md-2 col-sm-2 col-xs-4">
 						<img class="img-responsive"
-							src="/CompanyItem/IT Products/Images/Apps_Icons_MovieTV.png">
+							src="/CompanyItem/ITProducts/Images/Apps_Icons_MovieTV.png">
 						<p style="color: #04A3ED;">영화 및 TV</p>
 					</div>
 					<div class="col-md-2 col-sm-2 col-xs-4">
 						<img class="img-responsive"
-							src="/CompanyItem/IT Products/Images/icon_onedrive.png">
+							src="/CompanyItem/ITProducts/Images/icon_onedrive.png">
 						<p style="color: #04A3ED;">OneDrive</p>
 					</div>
 				</div>
@@ -275,7 +279,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					</div>
 					<div class="col-md-6">
 						<img class="thumbnail img-responsive" alt="Bootstrap template"
-							src="/CompanyItem/IT Products/Images/device_family_continuum_Non-CortanaMarket.jpg">
+							src="/CompanyItem/ITProducts/Images/device_family_continuum_Non-CortanaMarket.jpg">
 					</div>
 
 				</div>
@@ -303,14 +307,14 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 								<br> <br>
 								<div class="col-md-3 col-sm-3 col-xs-3">
 									<img class="img-responsive"
-										src="/CompanyItem/IT Products/Images/touch.png"
+										src="/CompanyItem/ITProducts/Images/touch.png"
 										data-toggle="tooltip" data-placement="bottom"
 										data-original-title="터치">
 									<p>웹 페이지에 글쓰기, 살짝 밀어 사진 탐색하기, 앱 고정시키기와 같은 작업을 하세요.</p>
 								</div>
 								<div class="col-md-3 col-sm-3 col-xs-3">
 									<img class="img-responsive"
-										src="/CompanyItem/IT Products/Images/type.png"
+										src="/CompanyItem/ITProducts/Images/type.png"
 										data-toggle="tooltip" data-placement="bottom"
 										data-original-title="키보드입력">
 									<p>더 많은 작업을 해야 한다면 터치 기능이 있는 디바이스에서 키보드 또는 터치 키보드를 사용하세요.</p>
@@ -319,7 +323,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 
 								<div class="col-md-3 col-sm-3 col-xs-3">
 									<img class="img-responsive"
-										src="/CompanyItem/IT Products/Images/stylus.png"
+										src="/CompanyItem/ITProducts/Images/stylus.png"
 										data-toggle="tooltip" data-placement="bottom"
 										data-original-title="필기">
 									<p>펜을 사용해 자연스럽게 그림을 그리거나 파일에 메모를 추가하거나 문서에 서명하거나 그리기 앱을
@@ -327,7 +331,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 								</div>
 								<div class="col-md-3 col-sm-3 col-xs-3">
 									<img class="img-responsive"
-										src="/CompanyItem/IT Products/Images/voice.png"
+										src="/CompanyItem/ITProducts/Images/voice.png"
 										data-toggle="tooltip" data-placement="bottom"
 										data-original-title="말하기">
 									<p>Skype에서 친구나 가족과 채팅하세요.</p>
@@ -354,7 +358,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					</div>
 					<div class="col-md-6">
 						<img class="thumbnail img-responsive" alt="Bootstrap template"
-							src="/CompanyItem/IT Products/Images/device_laptop_smile.jpg">
+							src="/CompanyItem/ITProducts/Images/device_laptop_smile.jpg">
 					</div>
 
 				</div>

@@ -95,7 +95,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					<h5 class="text-left"><strong>Keyword Marketing</strong></h5>
 					<hr>
 					<div id="marketing_1" class="col-md-12">
-						<img src="/CompanyItem/Digital Marketing/Images/1_1.png"
+						<img src="/CompanyItem/DigitalMarketing/Images/1_1.png"
 							class="img-responsive" alt="Responsive image">
 					</div>
 
@@ -104,7 +104,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					<h5 class="text-left"><strong>Viral Marketing</strong></h5>
 					<hr>
 					<div id="marketing_2" class="col-md-12">
-						<img src="/CompanyItem/Digital Marketing/Images/2_1.png"
+						<img src="/CompanyItem/DigitalMarketing/Images/2_1.png"
 							class="img-responsive" alt="Responsive image">
 					</div>
 
@@ -114,7 +114,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					<hr>
 
 					<div id="marketing_4" class="col-md-12">
-						<img src="/CompanyItem/Digital Marketing/Images/2_3.png"
+						<img src="/CompanyItem/DigitalMarketing/Images/2_3.png"
 							class="img-responsive" alt="Responsive image">
 					</div>
 
@@ -123,7 +123,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					<h5 class="text-left"><strong>Viral Marketing(Mobile)</strong></h5>
 					<hr>
 					<div class="col-md-12">
-						<img src="/CompanyItem/Digital Marketing/Images/2_4.png"
+						<img src="/CompanyItem/DigitalMarketing/Images/2_4.png"
 							class="img-responsive" alt="Responsive image">
 					</div>
 				</div>

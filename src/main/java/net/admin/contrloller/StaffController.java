@@ -116,6 +116,7 @@ public class StaffController {
 		commandMap.put("startRow", paging.getStartRow(pageNum)); // 시작 열
 		commandMap.put("endRow", paging.getEndRow(pageNum)); // 끝 열
 		if (totalRow > 0) {
+			System.out.println("전체행의 갯수 1이상");
 			selectListStfList = staffService.selectListStfList(commandMap
 					.getMap());
 			// selectboardList =
@@ -125,10 +126,12 @@ public class StaffController {
 			selectListStfList = Collections.emptyList();
 		}
 		System.out.println("찍히낭");
+		String mm = "firms";
 
 		mv.addObject("selectListStfList", selectListStfList);
 		mv.addObject("pagingVO", pagingVO);
 		mv.addObject("totalRow", totalRow);
+		mv.addObject("mm", mm);
 		// mv.addObject("paging", pv.print());
 		return mv;
 	}
@@ -138,7 +141,8 @@ public class StaffController {
 	public ModelAndView selectStfView(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
 		HttpSession session = request.getSession();
-		int staff_id = (int) session.getAttribute("staff_id");
+		String staff_id = null;
+		staff_id = (String) commandMap.get("staff_id");
 		System.out.println("staff_id=" + staff_id);
 		commandMap.put("staff_id", staff_id);
 		ModelAndView mv = new ModelAndView("/Admins/CompanyMgr/Staff/StfView");
@@ -158,9 +162,9 @@ public class StaffController {
 	 * ========
 	 */
 	/*
-	 *  board 처러 하나의 form 에 등록 수정을 같이 사용하면, update 할때 최초 select 후 update 즉 update> updatePro 가 필요없다
-	 *  그러나 아래와 같이 하려면, 별도 controller을 해줘야하며 어짜피 쿼리는 동일하므로 view 이용하면된다. ~! 
-	 *  즉 controller에서만 작업 후 이후 꺼는 view 이용
+	 * board 처러 하나의 form 에 등록 수정을 같이 사용하면, update 할때 최초 select 후 update 즉
+	 * update> updatePro 가 필요없다 그러나 아래와 같이 하려면, 별도 controller을 해줘야하며 어짜피 쿼리는
+	 * 동일하므로 view 이용하면된다. ~! 즉 controller에서만 작업 후 이후 꺼는 view 이용
 	 */
 
 	@RequestMapping(value = "/admins/staff/stfUpdate.do")
@@ -182,15 +186,12 @@ public class StaffController {
 		}
 		return mv;
 	}
-	
+
 	/*
 	 * 
-logincheck = 1 :  정상로그인
-logincheck = 2 :  비밀번호 틀림
-logincheck = 3 :  아이디 존재하지 않음
-logincheck = 5 :  DB 조회시 NULL (임시패스워드 발급 단계에서 중간하였을때 포함)
-logincheck = 6 :  탈퇴하지 않음
-logincheck = 7 :  탈퇴
+	 * logincheck = 1 : 정상로그인 logincheck = 2 : 비밀번호 틀림 logincheck = 3 : 아이디 존재하지
+	 * 않음 logincheck = 5 : DB 조회시 NULL (임시패스워드 발급 단계에서 중간하였을때 포함) logincheck = 6
+	 * : 탈퇴하지 않음 logincheck = 7 : 탈퇴
 	 */
 	@RequestMapping(value = "/admins/staff/stfLogin.do")
 	public ModelAndView selectLogin(CommandMap commandMap,
@@ -251,7 +252,8 @@ logincheck = 7 :  탈퇴
 		 */
 
 		// http://linuxism.tistory.com/1089
-
+		
+		session.setAttribute("selectStfLogin", selectStfLogin);
 		mv.addObject("selectStfLogin", selectStfLogin);
 		request.setAttribute("loginCheck", loginCheck);
 		return mv;

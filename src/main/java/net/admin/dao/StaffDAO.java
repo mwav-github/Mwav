@@ -203,4 +203,10 @@ public class StaffDAO extends AbstractDAO {
 		return selectStfLogin;
 	}
 
+	public List<Map<String, Object>> selectListStfList(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return (List<Map<String, Object>>) selectList("staff.selectListStfList",
+				map);
+	}
+
 }

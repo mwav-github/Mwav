@@ -368,7 +368,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 											</div>
 											<div class="col-md-12 ">
 												<div class='col-md-12 form-group center-block'>
-													<textarea class="form-control" class="stfMark" rows="15">가입되신것을 환영합니다.</textarea>
+													<textarea class="form-control" class="stfMark" rows="15"></textarea>
 												</div>
 
 											</div>

@@ -59,21 +59,25 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 			<!-- Sidebar Column left메뉴 추후 변경 예정<시작>-->
 			<div class="col-md-3">
 				<div class="list-group">
-					<a href="/CompanyItem/IT Products/Aervision/Aervision.jsp"
+					<a href="/CompanyItem/ITProducts/Aervision/Aervision.jsp"
 						class="list-group-item" data-toggle="tooltip" data-placement="top"
 						data-original-title="Aervision">Aervision</a> <a
-						href="/CompanyItem/IT Products/OpenSRS/OpenSRS.jsp"
+						href="/CompanyItem/ITProducts/OpenSRS/OpenSRS.jsp"
 						class="list-group-item" data-toggle="tooltip" data-placement="top"
 						data-original-title="OpenSRS">OpenSRS</a> <a
-						href="/CompanyItem/IT Products/Azure/Azure.jsp"
+						href="/CompanyItem/ITProducts/Azure/Azure.jsp"
 						class="list-group-item " data-toggle="tooltip"
 						data-placement="top" data-original-title="Azure">Azure</a> <a
-						href="/CompanyItem/IT Products/Windows/Windows.jsp"
+						href="/CompanyItem/ITProducts/Windows/Windows.jsp"
 						class="list-group-item" data-toggle="tooltip" data-placement="top"
 						data-original-title="Windows">Windows</a> <a
-						href="/CompanyItem/IT Products/MSOffice/MSOffice.jsp"
+						href="/CompanyItem/ITProducts/MSOffice/MSOffice.jsp"
 						class="list-group-item active" data-toggle="tooltip"
 						data-placement="top" data-original-title="MSOffice">MSOffice</a>
+						<a
+						href="/CompanyItem/ITProducts/InsWave/InsWave.jsp"
+						class="list-group-item " data-toggle="tooltip" data-placement="top"
+						data-original-title="InsWave">InsWave</a>
 				</div>
 			</div>
 
@@ -143,7 +147,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 
 						<div class="col-xs-12 col-sm-12 col-md-6">
 							<img class="thumbnail img-responsive" alt="Bootstrap template"
-								src="/CompanyItem/IT Products/Images/MSOffice_2.jpg">
+								src="/CompanyItem/ITProducts/Images/MSOffice_2.jpg">
 						</div>
 						<div class="col-xs-12 col-sm-12 col-md-6">
 							<h3 class="text-left mgb3" style="color: #04A3ED;">Word 2016</h3>
@@ -156,7 +160,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					<div class="row">
 						<div class="col-xs-12 col-sm-12 col-md-6 col-md-push-6">
 							<img class="thumbnail img-responsive" alt="Bootstrap template"
-								src="/CompanyItem/IT Products/Images/MSOffice_3.jpg">
+								src="/CompanyItem/ITProducts/Images/MSOffice_3.jpg">
 						</div>
 
 						<div class="col-xs-12 col-sm-12 col-md-6 col-md-pull-6">
@@ -174,7 +178,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 
 						<div class="col-xs-12 col-sm-12 col-md-6">
 							<img class="thumbnail img-responsive" alt="Bootstrap template"
-								src="/CompanyItem/IT Products/Images/MSOffice_4.jpg">
+								src="/CompanyItem/ITProducts/Images/MSOffice_4.jpg">
 						</div>
 						<div class="col-xs-12 col-sm-12 col-md-6">
 							<h3 class="text-left mgb3" style="color: #04A3ED;">PowerPoint
@@ -189,7 +193,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 
 						<div class="col-xs-12 col-sm-12 col-md-6 col-md-push-6">
 							<img class="thumbnail img-responsive" alt="Bootstrap template"
-								src="/CompanyItem/IT Products/Images/MSOffice_5.jpg">
+								src="/CompanyItem/ITProducts/Images/MSOffice_5.jpg">
 						</div>
 
 						<div class="col-xs-12 col-sm-12 col-md-6 col-md-pull-6">

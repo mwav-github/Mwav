@@ -44,7 +44,7 @@
 					</c:when>
 					<c:otherwise>
 						<tr>
-							<td>조회된 결과가 없습니다.</td>
+							<td colspan="2">조회된 결과가 없습니다.</td>
 						</tr>
 					</c:otherwise>
 				</c:choose>

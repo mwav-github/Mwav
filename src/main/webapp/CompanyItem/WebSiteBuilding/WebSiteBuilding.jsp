@@ -69,7 +69,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 						 --%>
 						
 						<a
-						href="/CompanyItem/WebSite Building/WebSite Building.jsp"
+						href="/CompanyItem/WebSiteBuilding/WebSiteBuilding.jsp"
 						class="list-group-item active" data-toggle="tooltip"
 						data-placement="top" data-original-title="웹사이트 제작">WebSite
 						Building</a> <%--<a
@@ -91,7 +91,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 				<div class="row">
 					<div class="col-md-8">
 						<a href="/Templates/FrontTemplate.html"> <img class="img-responsive well"
-							src="/CompanyItem/WebSite Building/Images/CompanyTemplate.PNG"
+							src="/CompanyItem/WebSiteBuilding/Images/CompanyTemplate.PNG"
 							alt=""></a>
 					</div>
 					<div class="col-md-4">

@@ -35,17 +35,17 @@
 					<div class="collapse navbar-collapse"
 						id="bs-example-navbar-collapse-1">
 						<ul class="nav navbar-nav navbar-right">
-							<li><a href="/CompanyItem/IT Solutions/IT Solutions.jsp">IT
+							<li><a href="/CompanyItem/ITSolutions/ITSolutions.jsp">IT
 									Solutions</a></li>
-							<li><a href="/CompanyItem/IT Products/IT Products.jsp">IT
+							<li><a href="/CompanyItem/ITProducts/ITProducts.jsp">IT
 									Products</a></li>
 							<li><a
-								href="/CompanyItem/WebSite Building/WebSite Building.jsp">WebSite
+								href="/CompanyItem/WebSiteBuilding/WebSiteBuilding.jsp">WebSite
 									Building</a></li>
 							<li><a
-								href="/CompanyItem/Digital Marketing/Digital Marketing.jsp">Digital
+								href="/CompanyItem/DigitalMarketing/DigitalMarketing.jsp">Digital
 									Marketing</a></li>
-							<li><a href="/CompanyItem/IT Consulting/IT Consulting.jsp">IT
+							<li><a href="/CompanyItem/ITConsulting/ITConsulting.jsp">IT
 									Consulting</a></li>
 							<c:if test="${sessionScope.mbrLoginId ne null }">
 								<li><a href="/member/MbrView.do"><font color="#9d9d9d">${mbrLoginId}님

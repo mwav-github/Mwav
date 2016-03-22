@@ -61,7 +61,7 @@
 		<div class="row">
 			<!-- Sidebar Column left메뉴 추후 변경 예정<시작>-->
 			<div class="col-md-3">
-				<jsp:include page="/Admins/AdminsLeftMenu.jsp" flush="false" />
+				<jsp:include page="/admins/LeftMenu.do" flush="false" />
 			</div>
 			<!-- 끝 -->
 

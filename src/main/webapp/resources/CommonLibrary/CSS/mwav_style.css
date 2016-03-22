@@ -563,6 +563,10 @@ background: url(/Images/what-is-azure.jpg)  no-repeat center center fixed;
     border-top: 3px solid #337ab7 !important;
 }
 
+.hr_g{
+    border-top: 2px solid #a1d490 !important;
+}
+
 /*========아래는 텍스트 중앙 정렬 블록요소에만 적용 (p h3 등)태그만 http://webdir.tistory.com/31 */
 .align_left { text-align: left; }
 .align_center { text-align: center; } /* bootstrap에 text-align 이랑 동일 */
@@ -591,6 +595,14 @@ background: url(/Images/what-is-azure.jpg)  no-repeat center center fixed;
    text-align:center;
 }
 
+/*float left, right */
+.float_left{
+	float:left;
+}
+
+.float_right{
+	float:right;
+}
 
 /*========아래는 margin 및 padding 관련 내용 */
 

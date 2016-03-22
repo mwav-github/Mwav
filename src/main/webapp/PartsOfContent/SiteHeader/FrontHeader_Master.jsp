@@ -29,17 +29,17 @@
 			<div class="mgt2 collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="mgl5 nav navbar-nav">
-					<li><a href="/CompanyItem/IT Products/OpenSRS/OpenSRS.jsp">IT
+					<li><a href="/CompanyItem/ITProducts/OpenSRS/OpenSRS.jsp">IT
 							Solutions</a></li>
-					<li><a href="/CompanyItem/IT Products/Aervision/Aervision.jsp">IT
+					<li><a href="/CompanyItem/ITProducts/Aervision/Aervision.jsp">IT
 							Products</a></li>
 					<li><a
-						href="/CompanyItem/WebSite Building/WebSite Building.jsp">WebSite
+						href="/CompanyItem/WebSiteBuilding/WebSiteBuilding.jsp">WebSite
 							Building</a></li>
 					<li><a
-						href="/CompanyItem/Digital Marketing/Digital Marketing.jsp">Digital
+						href="/CompanyItem/DigitalMarketing/DigitalMarketing.jsp">Digital
 							Marketing</a></li>
-					<li><a href="/CompanyItem/IT Consulting/IT Consulting.jsp">IT
+					<li><a href="/CompanyItem/ITConsulting/ITConsulting.jsp">IT
 							Consulting</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">

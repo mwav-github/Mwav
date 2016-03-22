@@ -59,23 +59,24 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 			<!-- Sidebar Column left메뉴 추후 변경 예정<시작>-->
 			<div class="col-md-3">
 				<div class="list-group">
-					<a href="/CompanyItem/IT Products/Aervision/Aervision.jsp"
+					<a href="/CompanyItem/ITProducts/Aervision/Aervision.jsp"
 						class="list-group-item active" data-toggle="tooltip"
 						data-placement="top" data-original-title="Aervision">Aervision</a>
-					<a href="/CompanyItem/IT Products/OpenSRS/OpenSRS.jsp"
+					<a href="/CompanyItem/ITProducts/OpenSRS/OpenSRS.jsp"
 						class="list-group-item " data-toggle="tooltip"
 						data-placement="top" data-original-title="OpenSRS">OpenSRS</a> <a
-						href="/CompanyItem/IT Products/Azure/Azure.jsp"
+						href="/CompanyItem/ITProducts/Azure/Azure.jsp"
 						class="list-group-item " data-toggle="tooltip"
-						data-placement="top" data-original-title="Azure">Azure</a>
-						<a
-						href="/CompanyItem/IT Products/Windows/Windows.jsp"
-						class="list-group-item" data-toggle="tooltip"
-						data-placement="top" data-original-title="Windows">Windows</a>
-						<a
-						href="/CompanyItem/IT Products/MSOffice/MSOffice.jsp"
+						data-placement="top" data-original-title="Azure">Azure</a> <a
+						href="/CompanyItem/ITProducts/Windows/Windows.jsp"
 						class="list-group-item" data-toggle="tooltip" data-placement="top"
-						data-original-title="MSOffice">MSOffice</a>
+						data-original-title="Windows">Windows</a> <a
+						href="/CompanyItem/ITProducts/MSOffice/MSOffice.jsp"
+						class="list-group-item" data-toggle="tooltip" data-placement="top"
+						data-original-title="MSOffice">MSOffice</a> <a
+						href="/CompanyItem/ITProducts/InsWave/InsWave.jsp"
+						class="list-group-item " data-toggle="tooltip"
+						data-placement="top" data-original-title="InsWave">InsWave</a>
 				</div>
 			</div>
 			<!-- 끝 -->
@@ -95,9 +96,10 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					</div>
 
 					<div class="col-xs-12 col-sm-6 col-md-6">
-						<img class="thumbnail img-responsive text-center" alt="Bootstrap template"
-							src="/CompanyItem/zImage/AerPass.jpg" data-toggle="tooltip"
-							data-placement="top" data-original-title="AerPass">
+						<img class="thumbnail img-responsive text-center"
+							alt="Bootstrap template" src="/CompanyItem/zImage/AerPass.jpg"
+							data-toggle="tooltip" data-placement="top"
+							data-original-title="AerPass">
 						<div class="enter"></div>
 					</div>
 					<div class="col-xs-12 col-sm-6 col-md-6">
@@ -107,13 +109,14 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 						<p>즉시 사용 가능한 수 많은 애플리케이션에서 홍채인식을 자연스럽고 쉽게 처리합니다.</p>
 						<p>에어패스는 자동화 되어 별도 조작 없이, 출입통제와 대상검열에 바로 적용이 가능한 완제품입니다.</p>
 						<p>제품에 대한 브로셔와 자세한 정보는 연락 주시면 상세히 설명드리겠습니다.</p>
-						<br/>
+						<br />
 					</div>
 
 
-					<div class="vid col-xs-push-1 col-xs-10 col-sm-10 col-sm-push-1  col-md-10 col-md-push-1 embed-responsive embed-responsive-16by9">
-						<iframe class="embed-responsive-item" 
-							src="http://player.vimeo.com/video/117455204" ></iframe>
+					<div
+						class="vid col-xs-push-1 col-xs-10 col-sm-10 col-sm-push-1  col-md-10 col-md-push-1 embed-responsive embed-responsive-16by9">
+						<iframe class="embed-responsive-item"
+							src="http://player.vimeo.com/video/117455204"></iframe>
 
 					</div>
 				</div>
@@ -137,7 +140,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 							적용될 수 있는 다양한 사례 중에 대기시간측정과 참석시간측정은 즉시 적용 가능한 분야입니다.이 제품은
 							standalone으로 제공되는 솔루션입니다. OEM 버전에 대한 문의는 메일로 주시기 바랍니다.</p>
 						<p class="text-right">
-							<A href="mailto:sales@aervision.com" style="color: #990085;">sales@aervision.com</a>
+							<A href="mailto:sales@aervision.com" style="color: #990085;">JuSung.kim@mwav.net</a>
 						</p>
 					</div>
 					<div class="enter"></div>
@@ -178,10 +181,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 				<div class="row">
 					<div class="text-center">
 						<%--아래 a태그 자체에 색 적용시 가능하다. --%>
-						<h1>
-							<a href="https://www.aercloud.net/>What is AerCloud™?"
-								style="color: #990085;">What is AerCloud™?</a>
-						</h1>
+						<h1 style="color: #990085;">What is AerCloud™?</h1>
 						<hr>
 					</div>
 
@@ -193,7 +193,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 							서비스사용 건에 대한 유료결제 방식이며 웹서비스 형태로 제공됩니다. 물론 저희가 private cloud 형태로
 							설치해 드릴 수도 있습니다.비용과 자세한 서비스에 관한 문의는 연락주세요.</p>
 						<p class="text-right">
-							<A href="mailto:sales@aervision.com" style="color: #990085;">sales@aervision.com</a>
+							<A href="mailto:sales@aervision.com" style="color: #990085;">JuSung.kim@mwav.net</a>
 						</p>
 					</div>
 					<div class="enter"></div>
@@ -213,6 +213,93 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 							src="/CompanyItem/zImage/AerCloud_03.jpg" data-toggle="tooltip"
 							data-placement="top" data-original-title="Powerful tools" />
 					</div>
+				</div>
+				<div class="enter"></div>
+				<!-- /.row -->
+
+				<!-- Aervision_AerPalm -->
+				<div class="row">
+					<div class="text-center">
+						<%--아래 a태그 자체에 색 적용시 가능하다. --%>
+						<h1 style="color: #990085;">What is AerPalm?</h1>
+						<hr>
+					</div>
+
+					<div class="col-md-12">
+						<strong>AerPalm</strong> <br>
+						<p>AerPalm Wave is biometrics identification at its best. It
+							uses Fujitsu’s Palm Vein Scanner for identification purpose with
+							tens of immediate applications. AerPalm Wave is touchless and
+							extremely accurate. It is as simple of waving your hand against a
+							scanner the same way one uses a proxy card except without a card!</p>
+
+						<p>This cutting edge technology is a palm vein based strong
+							authentication solution that utilises industry-leading vascular
+							pattern biometric technology. This offers a highly reliable,
+							contactless biometric authentication solution that is
+							non-intrusive and easy to use. The scanner uses near-infrared
+							light to capture a person's palm vein pattern, generating a
+							unique biometric template that is matched against pre-registered
+							user palm vein patterns. The palm vein device can only recognise
+							the pattern if the blood is actively flowing within the
+							individual's veins, which means that forgery is virtually
+							impossible. This advanced, vascular pattern recognition
+							technology provides highly reliable authentication. The false
+							accept rate is just 0.00000008 percent with an exceptional false
+							reject rate of 0.01 percent, all in a small form factor that
+							generates extremely fast authentication, under third of a second.</p>
+						<p class="text-right">
+							<A href="mailto:sales@aervision.com" style="color: #990085;">JuSung.kim@mwav.net</a>
+						</p>
+					</div>
+
+					<div class="col-md-12">
+						<p>
+							<strong>Features:</strong>
+						</p>
+						<ul>
+							<li>Advanced biometric authentication algorithm delivers
+								ultra-low FAR (false accept rate) and FRR (false reject rate)</li>
+							<li>Contactless palm vein authentication is hygienic and
+								noninvasive - No Residual Trace Technology</li>
+							<li>Integer molestie lorem at massa</li>
+							<li>Encrypted repository for template storage & enterprise
+								level event logging capability</li>
+							<li>Fast and easy registration with virtually no enrolment
+								error.</li>
+						</ul>
+
+						<div class="enter"></div>
+
+						<p>
+							<strong>Typical applications are:</strong>
+						</p>
+						<ul>
+							<li>Authentication token for online transaction for banks</li>
+							<li>Physical access control</li>
+							<li>Logical access control (login to applications and
+								websites)</li>
+							<li>Retail POS systems</li>
+							<li>Self Service Kiosks</li>
+							<li>Time and attendance management systems</li>
+							<li>Visitor ID management</li>
+						</ul>
+
+
+						<div class="enter"></div>
+					</div>
+
+					<div
+						class="col-md-push-3 col-md-6 col-sm-push-3 col-sm-6 col-xs-12 ">
+						<img class="img-responsive"
+							src="/CompanyItem/zImage/AerVision_AerPalm_01.PNG" />
+					</div>
+					<div
+						class="col-md-push-1 col-md-10 col-sm-push-1 col-sm-10 col-xs-12 ">
+						<img class="img-responsive"
+							src="/CompanyItem/zImage/AerVision_AerPalm_02.PNG" />
+					</div>
+
 				</div>
 				<div class="enter"></div>
 				<!-- /.row -->

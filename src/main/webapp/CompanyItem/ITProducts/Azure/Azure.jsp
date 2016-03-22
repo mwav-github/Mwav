@@ -59,21 +59,24 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 			<!-- Sidebar Column left메뉴 추후 변경 예정<시작>-->
 			<div class="col-md-3">
 				<div class="list-group">
-					<a href="/CompanyItem/IT Products/Aervision/Aervision.jsp"
+					<a href="/CompanyItem/ITProducts/Aervision/Aervision.jsp"
 						class="list-group-item" data-toggle="tooltip" data-placement="top"
 						data-original-title="Aervision">Aervision</a> <a
-						href="/CompanyItem/IT Products/OpenSRS/OpenSRS.jsp"
+						href="/CompanyItem/ITProducts/OpenSRS/OpenSRS.jsp"
 						class="list-group-item" data-toggle="tooltip" data-placement="top"
 						data-original-title="OpenSRS">OpenSRS</a> <a
-						href="/CompanyItem/IT Products/Azure/Azure.jsp"
+						href="/CompanyItem/ITProducts/Azure/Azure.jsp"
 						class="list-group-item active" data-toggle="tooltip"
 						data-placement="top" data-original-title="Azure">Azure</a> <a
-						href="/CompanyItem/IT Products/Windows/Windows.jsp"
+						href="/CompanyItem/ITProducts/Windows/Windows.jsp"
 						class="list-group-item" data-toggle="tooltip" data-placement="top"
 						data-original-title="Windows">Windows</a> <a
-						href="/CompanyItem/IT Products/MSOffice/MSOffice.jsp"
+						href="/CompanyItem/ITProducts/MSOffice/MSOffice.jsp"
 						class="list-group-item" data-toggle="tooltip" data-placement="top"
-						data-original-title="MSOffice">MSOffice</a>
+						data-original-title="MSOffice">MSOffice</a> <a
+						href="/CompanyItem/ITProducts/InsWave/InsWave.jsp"
+						class="list-group-item " data-toggle="tooltip"
+						data-placement="top" data-original-title="InsWave">InsWave</a>
 				</div>
 			</div>
 			<!-- 끝 -->
@@ -127,7 +130,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					<div
 						class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-0 col-md-4 col-md-offset-0">
 						<img class="thumbnail img-responsive" alt="Bootstrap template"
-							src="/CompanyItem/IT Products/Images/01-get-more-done.png">
+							src="/CompanyItem/ITProducts/Images/01-get-more-done.png">
 					</div>
 				</div>
 
@@ -136,7 +139,8 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 				<hr class="hr_b">
 				<!-- 3_Azure -->
 				<div class="row">
-					<div class="col-xs-12 col-sm-8 col-sm-push-4 col-md-8 col-md-push-4">
+					<div
+						class="col-xs-12 col-sm-8 col-sm-push-4 col-md-8 col-md-push-4">
 						<h3 class="text-left mgb3" style="color: #78828D;">
 							<strong>유연한 개방형 플랫폼 사용</strong>
 						</h3>
@@ -152,7 +156,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					<div
 						class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-0 col-sm-pull-8 col-md-4 col-md-offset-0 col-md-pull-8">
 						<img class="thumbnail img-responsive" alt="Bootstrap template"
-							src="/CompanyItem/IT Products/Images/02-open.png">
+							src="/CompanyItem/ITProducts/Images/02-open.png">
 					</div>
 				</div>
 
@@ -174,9 +178,10 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 							모두에서 최고의 성과를 자랑하며 더 많은 IT 옵션을 제공하고 복잡성과 비용을 낮춥니다.
 						</p>
 					</div>
-					<div class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-0 col-md-4 col-md-offset-0">
+					<div
+						class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-0 col-md-4 col-md-offset-0">
 						<img class="thumbnail img-responsive" alt="Bootstrap template"
-							src="/CompanyItem/IT Products/Images/03-existing.png">
+							src="/CompanyItem/ITProducts/Images/03-existing.png">
 					</div>
 
 				</div>
@@ -187,7 +192,8 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 
 				<!-- 5_Azure -->
 				<div class="row">
-					<div class="col-xs-12 col-sm-8 col-sm-push-4 col-md-8 col-md-push-4">
+					<div
+						class="col-xs-12 col-sm-8 col-sm-push-4 col-md-8 col-md-push-4">
 						<h3 class="text-left mgb3" style="color: #78828D;">
 							<strong>필요에 따라 확장하고 사용한 만큼 지불 </strong>
 						</h3>
@@ -198,9 +204,10 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 							하고 분당 청구 기능도 제공하므로 항상 성능 대비 가장 저렴한 요금이 청구됩니다.
 						</p>
 					</div>
-					<div class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-0 col-sm-pull-8 col-md-4 col-md-offset-0 col-md-pull-8">
+					<div
+						class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-0 col-sm-pull-8 col-md-4 col-md-offset-0 col-md-pull-8">
 						<img class="thumbnail img-responsive" alt="Bootstrap template"
-							src="/CompanyItem/IT Products/Images/04-pay.png">
+							src="/CompanyItem/ITProducts/Images/04-pay.png">
 					</div>
 				</div>
 
@@ -225,9 +232,10 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 							도 출시했습니다.
 						</p>
 					</div>
-					<div class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-0 col-md-4 col-md-offset-0">
+					<div
+						class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-0 col-md-4 col-md-offset-0">
 						<img class="thumbnail img-responsive" alt="Bootstrap template"
-							src="/CompanyItem/IT Products/Images/05-protect.png">
+							src="/CompanyItem/ITProducts/Images/05-protect.png">
 					</div>
 				</div>
 
@@ -237,7 +245,8 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 
 				<!-- 7_Azure -->
 				<div class="row">
-					<div class="col-xs-12 col-sm-8 col-sm-push-4 col-md-8 col-md-push-4">
+					<div
+						class="col-xs-12 col-sm-8 col-sm-push-4 col-md-8 col-md-push-4">
 						<h3 class="text-left mgb3" style="color: #78828D;">
 							<strong>어디서든 앱 실행</strong>
 						</h3>
@@ -249,9 +258,10 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 							다양한 옵션을 제공하고 있습니다. Azure는 중국 본토에서 최초의 다국적 클라우드 공급자이기도 합니다.
 						</p>
 					</div>
-					<div class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-0 col-sm-pull-8 col-md-4 col-md-offset-0 col-md-pull-8">
+					<div
+						class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-0 col-sm-pull-8 col-md-4 col-md-offset-0 col-md-pull-8">
 						<img class="thumbnail img-responsive" alt="Bootstrap template"
-							src="/CompanyItem/IT Products/Images/06-everywhere.png">
+							src="/CompanyItem/ITProducts/Images/06-everywhere.png">
 					</div>
 				</div>
 
@@ -269,9 +279,10 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 							비즈니스 인텔리전스를 좀 더 구체적으로 조정합니다. 더 나은 결정을 내리고, 고객 서비스를 향상시키고, 구조적,
 							비구조적, 스트리밍 사물 인터넷 데이터에서 새로운 비즈니스의 가능성을 실현해 보세요.</p>
 					</div>
-					<div class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-0 col-md-4 col-md-offset-0">
+					<div
+						class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-0 col-md-4 col-md-offset-0">
 						<img class="thumbnail img-responsive" alt="Bootstrap template"
-							src="/CompanyItem/IT Products/Images/07-smarter.png">
+							src="/CompanyItem/ITProducts/Images/07-smarter.png">
 					</div>
 				</div>
 
@@ -295,9 +306,10 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 							있습니다.
 						</p>
 					</div>
-					<div class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-0 col-sm-pull-8 col-md-4 col-md-offset-0 col-md-pull-8">
+					<div
+						class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-0 col-sm-pull-8 col-md-4 col-md-offset-0 col-md-pull-8">
 						<img class="thumbnail img-responsive" alt="Bootstrap template"
-							src="/CompanyItem/IT Products/Images/08-trusted.png">
+							src="/CompanyItem/ITProducts/Images/08-trusted.png">
 					</div>
 				</div>
 				<div class="enter"></div>
@@ -317,19 +329,19 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					<p class="mgb3">고객 예)</p>
 					<div class="col-md-2 col-sm-2 col-xs-3">
 						<img class="img-responsive"
-							src="/CompanyItem/IT Products/Images/skanska_m.png" />
+							src="/CompanyItem/ITProducts/Images/skanska_m.png" />
 					</div>
 					<div class="col-md-2 col-sm-2 col-xs-3">
 						<img class="img-responsive"
-							src="/CompanyItem/IT Products/Images/heineken_m.png" />
+							src="/CompanyItem/ITProducts/Images/heineken_m.png" />
 					</div>
 					<div class="col-md-2 col-sm-2 col-xs-3">
 						<img class="img-responsive"
-							src="/CompanyItem/IT Products/Images/3m_s.png" />
+							src="/CompanyItem/ITProducts/Images/3m_s.png" />
 					</div>
 					<div class="col-md-2 col-sm-2 col-xs-3">
 						<img class="img-responsive"
-							src="/CompanyItem/IT Products/Images/real_s.png" />
+							src="/CompanyItem/ITProducts/Images/real_s.png" />
 					</div>
 				</div>
 				<div class="enter"></div>
@@ -341,11 +353,11 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					<p class="mgb3">고객 예)</p>
 					<div class="col-md-2 col-sm-2 col-xs-3">
 						<img class="img-responsive"
-							src="/CompanyItem/IT Products/Images/paul-smith_s.png" />
+							src="/CompanyItem/ITProducts/Images/paul-smith_s.png" />
 					</div>
 					<div class="col-md-2 col-sm-2 col-xs-3">
 						<img class="img-responsive"
-							src="/CompanyItem/IT Products/Images/mazda_s.png" />
+							src="/CompanyItem/ITProducts/Images/mazda_s.png" />
 					</div>
 				</div>
 				<div class="enter"></div>
@@ -357,11 +369,11 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					<p class="mgb3">고객 예)</p>
 					<div class="col-md-2 col-sm-2 col-xs-3">
 						<img class="img-responsive"
-							src="/CompanyItem/IT Products/Images/ge-healthcare_m.png" />
+							src="/CompanyItem/ITProducts/Images/ge-healthcare_m.png" />
 					</div>
 					<div class="col-md-2 col-sm-2 col-xs-3">
 						<img class="img-responsive"
-							src="/CompanyItem/IT Products/Images/trek_m.png" />
+							src="/CompanyItem/ITProducts/Images/trek_m.png" />
 					</div>
 				</div>
 				<div class="enter"></div>
@@ -373,11 +385,11 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					<p class="mgb3">고객 예)</p>
 					<div class="col-md-2 col-sm-2 col-xs-3">
 						<img class="img-responsive"
-							src="/CompanyItem/IT Products/Images/milliman_m.png" />
+							src="/CompanyItem/ITProducts/Images/milliman_m.png" />
 					</div>
 					<div class="col-md-2 col-sm-2 col-xs-3">
 						<img class="img-responsive"
-							src="/CompanyItem/IT Products/Images/towers-watson_m.png" />
+							src="/CompanyItem/ITProducts/Images/towers-watson_m.png" />
 					</div>
 				</div>
 				<div class="enter"></div>
@@ -389,11 +401,11 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					<p class="mgb3">고객 예)</p>
 					<div class="col-md-2 col-sm-2 col-xs-3">
 						<img class="img-responsive"
-							src="/CompanyItem/IT Products/Images/nbc-sports_m.png" />
+							src="/CompanyItem/ITProducts/Images/nbc-sports_m.png" />
 					</div>
 					<div class="col-md-2 col-sm-2 col-xs-3">
 						<img class="img-responsive"
-							src="/CompanyItem/IT Products/Images/tvb_m.png" />
+							src="/CompanyItem/ITProducts/Images/tvb_m.png" />
 					</div>
 				</div>
 				<div class="enter"></div>
@@ -405,19 +417,19 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					<p class="mgb3">고객 예)</p>
 					<div class="col-md-2 col-sm-2 col-xs-3">
 						<img class="img-responsive"
-							src="/CompanyItem/IT Products/Images/thyssenkrupp_m.png" />
+							src="/CompanyItem/ITProducts/Images/thyssenkrupp_m.png" />
 					</div>
 					<div class="col-md-2 col-sm-2 col-xs-3">
 						<img class="img-responsive"
-							src="/CompanyItem/IT Products/Images/lido_m.png" />
+							src="/CompanyItem/ITProducts/Images/lido_m.png" />
 					</div>
 					<div class="col-md-2 col-sm-2 col-xs-3">
 						<img class="img-responsive"
-							src="/CompanyItem/IT Products/Images/rockwell-automation_m.png" />
+							src="/CompanyItem/ITProducts/Images/rockwell-automation_m.png" />
 					</div>
 					<div class="col-md-2 col-sm-2 col-xs-3">
 						<img class="img-responsive"
-							src="/CompanyItem/IT Products/Images/slac_m.png" />
+							src="/CompanyItem/ITProducts/Images/slac_m.png" />
 					</div>
 				</div>
 
