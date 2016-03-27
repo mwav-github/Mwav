@@ -11,8 +11,16 @@
 	function sendAddress(address, zcZipCode) {
 		var address = address;
 		var zcZipCode = zcZipCode;
-		$("#mbrAddress").val(address);
-		$("#mbrZipcode").val(zcZipCode);
+		//$("#mbrAddress").val(address);
+
+		/*
+		
+		mbrAddress로 가게되면 mbr에만 종속되므로 id로 포괄적으로 변경 
+		 */
+
+		$("#Address").attr('value', address);
+		$("#Zipcode").attr('value', zcZipCode);
+		//$("#mbrZipcode").val(zcZipCode);
 		//아래는 팝업창일때 특히 dialog는 jquery ui가 있어야 한다.
 		//opener.document.change_record.mbrZipcode.value = zipcode;
 		//opener.document.change_record.mbrAddress.value = address;
@@ -81,8 +89,33 @@
 					}
 				}
 			}, // 서버로부터 응답 데이터 도착시 로직 처리, 응답 데이터는 JavaScript 객체로 바로 사용 가능
-			error : function() {
-				alert('실패내잉')
+			beforeSend : function() {
+				//(이미지 보여주기 처리)
+				//alert('1');
+				$('.wrap-loading').removeClass('display-none');
+			},
+			complete : function() {
+				//(이미지 감추기 처리)
+				//alert('2');
+				$('.wrap-loading').addClass('display-none');
+
+			},
+
+			error : function(status, error) {
+				//alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+				if (status == 0) {
+					alert('You are offline!!n Please Check Your Network.');
+				} else if (status == 404) {
+					alert('Requested URL not found.');
+				} else if (status == 500) {
+					alert('Internel Server Error.');
+				} else if (error == 'parsererror') {
+					alert('Error.nParsing JSON Request failed.');
+				} else if (error == 'timeout') {
+					alert('Request Time out.');
+				} else {
+					alert('Unknow Error.n' + request.responseText);
+				}
 			} // 서버로부터 응답 데이터 실패시 로직 처리
 		});
 	}
@@ -283,7 +316,7 @@
 							}
 							$("#postresult").append(content);
 						} else {
-							
+
 							$("#postresult").empty();
 							//alert('1');
 							if ($(".ondis").css("display") == "none") {
@@ -323,17 +356,17 @@
 					JSTL은 서버에서 한번만 처리되고 ajax의 결과를 받을 수 없습니다.
 					ajax의 결과 처리 부분은 client 처리인 javascript만으로 처리하셔야 합니다.
 					 */
-					 beforeSend:function(){
-				        //(이미지 보여주기 처리)
-				        //alert('1');
-				        $('.wrap-loading').removeClass('display-none');
-				    },
-					complete:function(){
-				        //(이미지 감추기 처리)
-				        //alert('2');
-				        $('.wrap-loading').addClass('display-none');
-				 
-				    }, 
+					beforeSend : function() {
+						//(이미지 보여주기 처리)
+						//alert('1');
+						$('.wrap-loading').removeClass('display-none');
+					},
+					complete : function() {
+						//(이미지 감추기 처리)
+						//alert('2');
+						$('.wrap-loading').addClass('display-none');
+
+					},
 
 					error : function(status, error) {
 						//alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
@@ -384,21 +417,25 @@
 	right: 0;
 	top: 0;
 	bottom: 0;
+	z-index: 10000;
 	background: rgba(0, 0, 0, 0.2); /*not in ie */
 	filter: progid:DXImageTransform.Microsoft.Gradient(startColorstr='#20000000',
-		endColorstr='#20000000'); /* ie */
+		endColorstr='#20000000'; /* ie */
 }
 </style>
+<!-- 모든필드 필수값으로 ~!  -->
 <div class="container">
 	<!-- Modal -->
+	<%--http://www.ajaxload.info/ --%>
 	<div class="modal fade modal_post" id="myModal" tabindex="-1"
 		role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-md">
+			<div class="wrap-loading display-none">
+				<img class="wrap-loading_images "
+					src="/CommonApps/PostSeek/Images/ajax-loader.gif">
+			</div>
 			<div class="modal-content">
-				<div class="wrap-loading display-none">
-					<img class="wrap-loading_images "
-						src="/CommonApps/PostSeek/Images/ajax-loader.gif">
-				</div>
+
 				<div class="modal-header"
 					style="border-bottom: 0px solid #eee; background-color: #0480be; color: white;">
 					<h4 class="modal-title">주소찾기</h4>
@@ -430,7 +467,7 @@
 											<div class="col-xs-12 col-sm-6 col-md-6">특별, 광역시/도</div>
 											<div class="col-xs-12 col-sm-6 col-md-6">
 												<select name="zcSiDoName" class="form-control zcSiDoName_1"
-													onchange="SelectFindercheck(1)">
+													onchange="SelectFindercheck(1)" required>
 													<option selected="selected">전체</option>
 													<option value="강원도">강원도</option>
 
@@ -471,7 +508,7 @@
 											<div class="col-xs-12 col-sm-6 col-md-6">시/군구</div>
 											<div class="col-xs-12 col-sm-6 col-md-6">
 												<select class="form-control" id="zcSiGunGuName"
-													name="zcSiGunGuName">
+													name="zcSiGunGuName" required>
 												</select>
 											</div>
 										</div>
@@ -479,7 +516,7 @@
 										<div class="row">
 											<div class="col-xs-12 col-sm-12 col-md-12">
 												<input type="text" name="zcRoadName" id="zcRoadName"
-													class="form-control" placeholder="도로명...">
+													class="form-control" placeholder="도로명..." required>
 											</div>
 
 											<div class="enter hiddien-sm hidden-md"></div>
@@ -487,7 +524,7 @@
 
 											<div class="col-xs-12 col-sm-12 col-md-12 ">
 												<input type="text" id="zcBuildingMainNo"
-													class="form-control" placeholder="건물번호...">
+													class="form-control" placeholder="건물번호..." required>
 											</div>
 
 											<div class="enter"></div>
@@ -514,7 +551,7 @@
 											<div class="col-xs-12 col-sm-6 col-md-6">특별, 광역시/도</div>
 											<div class="col-xs-12 col-sm-6 col-md-6">
 												<select name="zcSiDoName" class="form-control zcSiDoName_2"
-													onchange="SelectFindercheck(2)">
+													onchange="SelectFindercheck(2)" required>
 													<option selected="selected">전체</option>
 													<option value="강원도">강원도</option>
 
@@ -555,7 +592,7 @@
 											<div class="col-xs-12 col-sm-6 col-md-6">시/군구</div>
 											<div class="col-xs-12 col-sm-6 col-md-6">
 												<select class="form-control" id="zcSiGunGuName"
-													name="zcSiGunGuName">
+													name="zcSiGunGuName" required>
 												</select>
 											</div>
 										</div>
@@ -564,14 +601,14 @@
 											<div class="col-xs-12 col-sm-12 col-md-12">
 												<input type="text" name="zcLegalEupMyeonDongName"
 													id="zcLegalEupMyeonDongName" class="form-control"
-													placeholder="동(읍/면)...">
+													placeholder="동(읍/면)..." required>
 											</div>
 
 											<div class="enter hiddien-sm hidden-md"></div>
 
 											<div class="col-xs-12 col-sm-12 col-md-12">
 												<input type="text" name="zcJiBunMain" id="zcJiBunMain"
-													class="form-control" placeholder="지번...">
+													class="form-control" placeholder="지번..." required>
 											</div>
 
 											<div class="enter "></div>
@@ -598,7 +635,7 @@
 											<div class="col-xs-12 col-sm-6 col-md-6">특별, 광역시/도</div>
 											<div class="col-xs-12 col-sm-6 col-md-6">
 												<select name="zcSiDoName" class="form-control zcSiDoName_3"
-													onchange="SelectFindercheck(3)">
+													onchange="SelectFindercheck(3)" required>
 													<option selected="selected">전체</option>
 													<option value="강원도">강원도</option>
 
@@ -641,7 +678,7 @@
 											<div class="col-xs-12 col-sm-6 col-md-6">시/군구</div>
 											<div class="col-xs-12 col-sm-6 col-md-6">
 												<select class="form-control" id="zcSiGunGuName"
-													name="zcSiGunGuName">
+													name="zcSiGunGuName" required>
 												</select>
 											</div>
 										</div>
@@ -649,7 +686,7 @@
 										<div class="row">
 											<div class="col-xs-12 col-sm-12 col-md-12">
 												<input type="text" name="zcBuildingBook" id="zcBuildingBook"
-													class="form-control" placeholder="건물명(아파트명 등)...">
+													class="form-control" placeholder="건물명(아파트명 등)..." required>
 											</div>
 
 											<div class="enter "></div>

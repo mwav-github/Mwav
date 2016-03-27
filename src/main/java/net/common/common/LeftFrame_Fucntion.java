@@ -60,7 +60,7 @@ public class LeftFrame_Fucntion {
 
 					menuList.add(vo);
 				}
-			} else if (mm.equals("firm")) {
+			} else if (mm.equals("firms")) {
 
 				String[] streName = { "docs", "staff", "asset", "pds", "mmail",
 						"accut" };
@@ -68,7 +68,7 @@ public class LeftFrame_Fucntion {
 						"계좌관리" };
 				String[] strhEName = { "문서자료", "StaffList", "자산리스트", "FTP자료실",
 				"계좌관리" };
-				String[] strurl = { "#", "/admins/staff/stfList.do?mm=firm", "#",
+				String[] strurl = { "#", "/admins/staff/stfList.do", "#",
 						"#", "#" };
 				String[] strmAuthority = { "1", "1", "1", "1", "1" };
 				String[] strdAuthority = { "*", "*", "*", "*", "*" };

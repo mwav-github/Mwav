@@ -139,9 +139,9 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 							에어크라우드에 활용된 최신기술은 생체정보를 표시하는 최소형 전자장치에서 방출한 디지털 신호를 이용합니다. 이 기술이
 							적용될 수 있는 다양한 사례 중에 대기시간측정과 참석시간측정은 즉시 적용 가능한 분야입니다.이 제품은
 							standalone으로 제공되는 솔루션입니다. OEM 버전에 대한 문의는 메일로 주시기 바랍니다.</p>
-						<p class="text-right">
+						<!-- <p class="text-right">
 							<A href="mailto:sales@aervision.com" style="color: #990085;">JuSung.kim@mwav.net</a>
-						</p>
+						</p> -->
 					</div>
 					<div class="enter"></div>
 
@@ -192,9 +192,9 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 							추가된다고 생각해 보세요. 에어클라우드는 이런 작업을 쉽고 무척 저렴한 비용으로 가능하게 합니다. 에어크라우드는
 							서비스사용 건에 대한 유료결제 방식이며 웹서비스 형태로 제공됩니다. 물론 저희가 private cloud 형태로
 							설치해 드릴 수도 있습니다.비용과 자세한 서비스에 관한 문의는 연락주세요.</p>
-						<p class="text-right">
+					<!-- 	<p class="text-right">
 							<A href="mailto:sales@aervision.com" style="color: #990085;">JuSung.kim@mwav.net</a>
-						</p>
+						</p> -->
 					</div>
 					<div class="enter"></div>
 
@@ -248,9 +248,9 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 							accept rate is just 0.00000008 percent with an exceptional false
 							reject rate of 0.01 percent, all in a small form factor that
 							generates extremely fast authentication, under third of a second.</p>
-						<p class="text-right">
+<!-- 						<p class="text-right">
 							<A href="mailto:sales@aervision.com" style="color: #990085;">JuSung.kim@mwav.net</a>
-						</p>
+						</p> -->
 					</div>
 
 					<div class="col-md-12">

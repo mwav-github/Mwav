@@ -40,7 +40,7 @@
 						<li>Address: 607-20, Jayang-dong, Gwangjin-gu, Seoul, Korea GV4F</li>
 						<li>TEL : +82-2-6214-7039</li>
 						<li>FAX: +82-2-6214-1122</li>
-						<li>CEO : Zeus | Sales Manager: Song</li>
+						<li>CEO : Zeus | Sales Manager: ${param.pgl} </li>
 						<li>Site Manager : James | Business Consultant : Peter</li>
 					</ul>
 				<%--

@@ -115,7 +115,7 @@
 				<li class="active"><a
 					href="/HomePage/DefaultFrameset.do?mm=crm"
 					title="1.통계관리 2.인적자원 3.상품통계 4.회원메일 5.임박기념일 6.이벤트목록 7.고객충성도">마켓팅관리</a></li>
-				<li><a href="/Admins/CompanyMgr/Staff/StfForm.jsp"
+				<li><a href="/Admins/CompanyMgr/Staff/StfForm.jsp?mm=firm"
 					title="1.시스템상태요약 2.로그관리">시스템관리</a></li>
 
 

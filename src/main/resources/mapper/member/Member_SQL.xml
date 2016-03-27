@@ -31,9 +31,9 @@
 	      select * from Member_tbl where member_id= #{member_id}
 		]]>
 	</select>
-	<update id="updateProMbrForm" parameterType="hashmap" >
+	<update id="updateMbrformPro" parameterType="hashmap" >
 		<![CDATA[
-	       update Member_tbl set mbrFirstName=#{mbrFirstName}, mbrMiddleName= #{mbrMiddleName}, mbrLastName= #{mbrLastName} , mbrEmail= #{mbrEmail}, mbrCellPhone= #{mbrCellPhone}where member_id = #{member_id}
+	       update Member_tbl set mbrFirstName=#{mbrFirstName}, mbrMiddleName= #{mbrMiddleName}, mbrLastName= #{mbrLastName} , mbrEmail= #{mbrEmail}, mbrCellPhone= #{mbrCellPhone}, mbrAddrFlag =  #{mbrAddrFlag}, mbrZipcode = #{mbrZipcode}, mbrAddress = #{mbrAddress} where member_id = #{member_id}
 		]]>
 	</update>
 	
@@ -78,7 +78,7 @@
 	
 	<select id="selectListZcGunGuSeek" parameterType="String" resultType="String">
 		<![CDATA[
-		select distinct(zcSiGunGuName) from ZipCodeGunGuSeek_tbl where zcSiDoName = #{zcSiDoName}
+		select distinct(zcSiGunGuName) from ZipCode_tbl where zcSiDoName = #{zcSiDoName}
 		]]>
 	</select>
 	

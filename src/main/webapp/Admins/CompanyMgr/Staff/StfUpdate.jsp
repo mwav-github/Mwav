@@ -9,25 +9,7 @@
 <!-- /////////// -->
 <jsp:include page="/PartsOfContent/Head_Import.jsp" flush="false" />
 <!-- /////////// -->
-<script>
-	function numberCheck(temp)
 
-	{
-
-		var temp = temp;
-		var num = parseInt(temp);
-		if (!(10000 <= num && num <= 20030222)) {
-
-			alert("입력된 값 : " + temp + " 잘못입력했습니다. (10000-20030222)");
-			document.stfForm.stfNumber.focus();
-
-		} else {
-
-			alert("입력된 값 : " + temp + " 제대로 입력했습니다.");
-
-		}
-	}
-</script>
 </head>
 
 <body>

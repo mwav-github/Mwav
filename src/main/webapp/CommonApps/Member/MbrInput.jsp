@@ -32,8 +32,12 @@ http://planbong.tistory.com/531
 	}
 
 	function idcheck() {
-		var id = document.getElementById("mbrLoginId").value;
-
+		var id = document.getElementsByName("mbrLoginId")[0].value;
+		//alert(id);
+		
+		//유효성 체크 
+		chkLoginPolicy();
+		
 		var queryString = "mbrLoginId=" + id;
 		if (id.length < 6) {
 			document.getElementById("idcheckLayer").innerHTML = "<font color=red>6자리 이상 입력하세요.</font>";
@@ -63,7 +67,8 @@ http://planbong.tistory.com/531
 				if (resTxt == imsiresTxt) {
 					//alert('1');
 					document.getElementById("idcheckLayer").innerHTML = resTxt;
-					document.getElementById("mbrLoginId").value = "";
+					document.getElementsByName("mbrLoginId")[0].value = "";
+					document.getElementsByName("mbrLoginId")[0].focus();
 					return false;
 				} else {
 					//alert('11');
@@ -136,26 +141,31 @@ http://planbong.tistory.com/531
 			<h5>Mwav - Member Registration</h5>
 		</div>
 		<div class='panel-body'>
-			<form class='form-horizontal' name="change_record" method="post"
+			<form role="form" class='form-horizontal' name="change_record" method="post"
 				action="/member/mbrForm.do">
 				<%--action="/member/memberForm.do" --%>
 				<div class='form-group'>
 					<label class='control-label col-md-2 col-md-offset-2'
 						for='id_accomodation'>Login Id</label>
 
-					<div class='col-md-4'>
+					<div class='col-md-6'>
 						<div class='form-group'>
 							<div class='col-md-11'>
 								<input type="text" class="form-control" name="mbrLoginId"
-									id="mbrLoginId" placeholder="예) mymg2002" value=""
-									onchange="chkLoginPolicy(this.form)" required>
+									id="chkLoginId" placeholder="예) mymg2002" 
+									onchange="idcheck()" maxlength="20" required>
 							</div>
 						</div>
 					</div>
+					<!-- 
+					ID 중복확인 버튼 클릭없이도 가입 가능하게끔 되어있어서 
+					VALIDATION 생각하는 중 ~! 
+					> 그냥 AJAX 이기 때문에 자체 무조권 변경하게 끔 설정 
 					<p class="col-md-2">
 						<button class="btn btn-primary btn-block" type="button"
 							onclick="idcheck()">ID중복확인</button>
 					</p>
+					 -->
 					<p class="col-md-4 col-md-offset-4">
 						<span id="idcheckLayer"></span>
 					</p>
@@ -168,8 +178,8 @@ http://planbong.tistory.com/531
 						<div class='form-group'>
 							<div class='col-md-11'>
 								<input type="password" class="form-control" name="mbrLoginPw"
-									id="mbrLoginPw" placeholder="예) 8자리이상" value=""
-									onchange="chkPWPolicy(this.form)" required>
+									id="chkLoginPW" placeholder="예) 8자리이상" value=""
+									onchange="chkPWPolicy()" required>
 							</div>
 						</div>
 					</div>
@@ -215,20 +225,20 @@ http://planbong.tistory.com/531
 					<div class='col-md-8'>
 						<div class='col-md-2'>
 							<div class='form-group internal'>
-								<input class='form-control col-md-8' name="member_CellularP_1"
-									id='member_CellularP_1' placeholder='010' type='text'>
+								<input type='text' class='form-control col-md-8'
+									name="mbrCellPhone_1" placeholder='010' value="" required>
 							</div>
 						</div>
 						<div class='col-md-3 indent-small'>
 							<div class='form-group internal'>
-								<input class='form-control' name="member_CellularP_2"
-									id='member_CellularP_2' placeholder='3180' type='text'>
+								<input type='text' class='form-control' name="mbrCellPhone_2"
+									placeholder='3180' value="" required>
 							</div>
 						</div>
 						<div class='col-md-3 indent-small'>
 							<div class='form-group internal'>
-								<input class='form-control' name="member_CellularP_3"
-									id='member_CellularP_3' placeholder='4451' type='text'>
+								<input type='text' class='form-control' name="mbrCellPhone_3"
+									placeholder='4451' value="" required>
 							</div>
 						</div>
 					</div>
@@ -239,9 +249,9 @@ http://planbong.tistory.com/531
 					<div class='col-md-6'>
 						<div class='form-group'>
 							<div class='col-md-11'>
-								<input class='form-control' name="mbrEmail" id='mbrEmail'
-									placeholder='E-mail' type='text' value=""
-									onchange="chkEmail(this.form)" required>
+								<input class='form-control' name="mbrEmail" id='chkEmail'
+									placeholder='E-mail' type='text' onchange="chkEmailPolicy()"
+									required>
 							</div>
 						</div>
 					</div>
@@ -260,11 +270,12 @@ http://planbong.tistory.com/531
 							주소</label>
 					</div> -->
 				</div>
+				<!-- disable는 제출되지 않는다 즉 값이 전달되지 않음. *중요 -->
 				<div class='form-group'>
 					<div class="col-md-offset-4 col-md-6">
 						<div class='col-md-11'>
-							<input class='form-control' name="mbrZipcode" id='mbrZipcode'
-								type='text' placeholder='우편번호' disabled>
+							<input class='form-control' name="mbrZipcode" id='Zipcode'
+								type='text' placeholder='우편번호' value ="" readonly="readonly">
 						</div>
 						<!-- <p class="col-md-1" style="text-align: center">
 						<strong>-</strong>
@@ -276,38 +287,39 @@ http://planbong.tistory.com/531
 
 						<div class="enter hidden-xs hidden-sm"></div>
 						<div class='col-md-11'>
-							<input class='form-control' name="mbrAddress_1" id='mbrAddress'
-								placeholder='주소' type='text' disabled>
+							<input name="mbrAddress_1" class='form-control' id='Address'
+								placeholder='주소' type='text' value ="" readonly="readonly">
 						</div>
 						<div class="enter hidden-xs hidden-sm"></div>
 
-						<div class='col-md-11'>
-							<input class='form-control' name="mbrAddress_2" id='mbrAddress'
-								placeholder='나머지 주소' type='text'>
+						<div class="col-md-11">
+							<input name="mbrAddress_2" class="form-control" 
+								 placeholder='나머지 주소' type="text"  />
 						</div>
+						
 						<div class="enter"></div>
 					</div>
 				</div>
 
-				<div class='form-group pull-right'> <%--pull-right 너무 끝까지 간다. --%>
-					<div style="padding-right:50px;">
-						<button type="submit" class='btn btn-lg btn-primary'
-							>
+				<div class='form-group pull-right'>
+					<%--pull-right 너무 끝까지 간다. --%>
+					<div style="padding-right: 50px;">
+						<button type="submit" class='btn btn-lg btn-primary'>
 							<i class="glyphicon glyphicon-edit"></i>
 						</button>
 						<%-- incldue 시에는 submit이 아니라 자바스크립트로 처리 --%>
-					
-					<button class='btn btn-lg btn-danger' 
-						onClick="javascript:history.go(-1)">
-						<i class="glyphicon glyphicon-remove"></i>
-					</button>
+
+						<button class='btn btn-lg btn-danger'
+							onClick="javascript:history.go(-1)">
+							<i class="glyphicon glyphicon-remove"></i>
+						</button>
 					</div>
 				</div>
 			</form>
 		</div>
 
 
-		<%-- 아래의 내용을 위에 주소 위치에 둘 경우 form태그가 해당위치로 닫힌다 추후 확인 필요 --%>
+		<%-- 아래의 내용을 위에 주소 위치에 둘 경우 form태그가 해당위치로 닫힌다 form태그 중복 추후 확인 필요 --%>
 		<jsp:include page="/CommonApps/PostSeek/PostSeek.jsp" flush="false" />
 	</div>
 </div>

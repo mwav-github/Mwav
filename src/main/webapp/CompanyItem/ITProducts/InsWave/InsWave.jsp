@@ -62,7 +62,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					<a href="/CompanyItem/ITProducts/Aervision/Aervision.jsp"
 						class="list-group-item" data-toggle="tooltip" data-placement="top"
 						data-original-title="Aervision">Aervision</a> <a
-						href="/CompanyItem/IT Products/OpenSRS/OpenSRS.jsp"
+						href="/CompanyItem/ITProducts/OpenSRS/OpenSRS.jsp"
 						class="list-group-item" data-toggle="tooltip" data-placement="top"
 						data-original-title="OpenSRS">OpenSRS</a> <a
 						href="/CompanyItem/ITProducts/Azure/Azure.jsp"
@@ -97,9 +97,9 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 						<p>Mwav에서 제공하는 인터넷 뉴스의 특별한 서비스 내용을 안내해드립니다.</p>
 
 						<p>제품에 대한 브로셔와 자세한 정보는 연락 주시면 상세히 설명드리겠습니다.</p>
-						<p class="text-right">
+<!-- 						<p class="text-right">
 							<A href="mailto:sales@aervision.com" style="color: #990085;">JuSung.kim@mwav.net</a>
-						</p>
+						</p> -->
 						<div class="enter"></div>
 
 					</div>
@@ -195,9 +195,9 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 						<p>인터넷 뉴스 유형별 서비스 내용을 상세하게 안내 해 드립니다.</p>
 
 						<p>제품에 대한 브로셔와 자세한 정보는 연락 주시면 상세히 설명드리겠습니다.</p>
-						<p class="text-right">
+<!-- 						<p class="text-right">
 							<A href="mailto:JuSung.kim@mwav.net" style="color: #990085;">JuSung.kim@mwav.net</a>
-						</p>
+						</p> -->
 						<div class="enter"></div>
 
 					</div>

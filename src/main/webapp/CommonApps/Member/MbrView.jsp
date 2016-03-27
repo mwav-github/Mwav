@@ -66,7 +66,7 @@
 								</tr>
 								<tr>
 									<td>주소:</td>
-									<td>${selectMbrView.mbrZipcode}//
+									<td>${selectMbrView.mbrZipcode}<br>
 										${selectMbrView.mbrAddress}</td>
 								</tr>
 							</tbody>
@@ -88,6 +88,8 @@
 					data-original-title="Remove this user" data-toggle="tooltip"
 					type="button" class="btn btn-sm btn-danger"><i
 						class="glyphicon glyphicon-remove"></i></a>
+						
+						
 				</span>
 			</div>
 

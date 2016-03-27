@@ -61,158 +61,64 @@
 </head>
 <body>
 
-	<!-- Navigation (=메인 메뉴 및 슬라이드 쇼 포함)
-	     Index의 마스터 페이지
-	 -->
+	<%-- 구조 2
+
+     상단읜 메인메뉴 및 슬라이드 쇼 부분
+ --%>
+
 	<!--  //////////////////////////////////// -->
 	<jsp:include page="/Admins/AdminsHeader.jsp" flush="false" />
-
-	<%-- Page Content (슬라이드 쇼 제외 실제 본문 내용)--%>
-	<div class="row" style="background: url(/zImages/bg.png) #eee;">
-		<div class="container">
-			<%-- Fluid container : .container 로 콘텐츠를 감싸는 것으로 페이지의 콘텐츠를 쉽게 중앙으로 가져오세요. 
-		                       .container 는 우리의 그리드 시스템에 맞는 다양한 미디어 쿼리 분기점에서 max-width 가 설정되어 있습니다. 
-		                       **추후 수정
-		                       --%>
+	<!-- Image Container 
+container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다. 
+-->
 
 
-			<div class="enter"></div>
-			<!-- Marketing Icons Section -->
-			<div class="row mg9xauto">
-				<div class="col-lg-3 col-md-6">
-					<div class="panel panel-primary">
-						<div class="panel-heading">
-							<div class="row">
-								<div class="col-xs-3">
-									<i class="fa fa-comments fa-5x"></i>
-								</div>
-								<div class="col-xs-9 text-right">
-									<div class="huge">26</div>
-									<div>New Comments!</div>
-								</div>
-							</div>
-						</div>
-						<a href="#">
-							<div class="panel-footer">
-								<span class="pull-left">View Details</span> <span
-									class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-								<div class="clearfix"></div>
-							</div>
-						</a>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6">
-					<div class="panel panel-green" style="border-color: #5cb85c">
-						<div class="panel-heading"
-							style="background-color: #5cb85c; color: #fff">
-							<div class="row">
-								<div class="col-xs-3">
-									<i class="fa fa-tasks fa-5x"></i>
-								</div>
-								<div class="col-xs-9 text-right">
-									<div class="huge">12</div>
-									<div>New Tasks!</div>
-								</div>
-							</div>
-						</div>
-						<a href="#">
-							<div class="panel-footer">
-								<span class="pull-left">View Details</span> <span
-									class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-								<div class="clearfix"></div>
-							</div>
-						</a>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6">
-					<div class="panel panel-yellow" style="border-color: #f0ad4e">
-						<div class="panel-heading"
-							style="background-color: #f0ad4e; color: #fff">
-							<div class="row">
-								<div class="col-xs-3">
-									<i class="fa fa-shopping-cart fa-5x"></i>
-								</div>
-								<div class="col-xs-9 text-right">
-									<div class="huge">124</div>
-									<div>New Orders!</div>
-								</div>
-							</div>
-						</div>
-						<a href="#">
-							<div class="panel-footer">
-								<span class="pull-left">View Details</span> <span
-									class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-								<div class="clearfix"></div>
-							</div>
-						</a>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6">
-					<div class="panel panel-red" style="border-color: #d9534f">
-						<div class="panel-heading"
-							style="background-color: #d9534f; color: #fff">
-							<div class="row">
-								<div class="col-xs-3">
-									<i class="fa fa-support fa-5x"></i>
-								</div>
-								<div class="col-xs-9 text-right">
-									<div class="huge">13</div>
-									<div>Support Tickets!</div>
-								</div>
-							</div>
-						</div>
-						<a href="#">
-							<div class="panel-footer">
-								<span class="pull-left">View Details</span> <span
-									class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-								<div class="clearfix"></div>
-							</div>
-						</a>
-					</div>
-				</div>
+
+
+	<!-- Page Content -->
+	<div class="container">
+
+
+		<!-- Content Row -->
+		<div class="row">
+
+			<!-- Sidebar Column left메뉴 추후 변경 예정<시작>-->
+			<div class="col-md-3">
+				<jsp:include page="/admins/LeftMenu.do" flush="false" />
 			</div>
+			<!-- 끝 -->
 
 
-			<!-- /.row -->
-			<%--이미지 괄호 높이가 같아야 한다 아래는 500 x 250 으로 통일 즉 비율이 맞아야 함
-		--%>
-			<!-- Portfolio Section -->
-			<div class="row" id="IT_Products">
-				<div class="col-md-6 col-sm-6">
-					<div class="panel panel-primary">
-						<div class="panel-heading">Notices</div>
-						<div class="panel-body">
-							<jsp:include page="/boardNotice/buFrontList.do" flush="false" />
-						</div>
-					</div>
 
-				</div>
-				<div class="col-md-6 col-sm-6">
-					<div class="panel panel-primary">
-						<div class="panel-heading">News</div>
-						<div class="panel-body">
-							<jsp:include page="/board/bnsFrontList.do" flush="false" />
-						</div>
-					</div>
-
-				</div>
-
-
+			<div class="col-md-9">
+				<%--param.mode 는 get문으로 올때 // mode는 setattribute일때 --%>
+				<c:if test="${param.mode == 'm_stfList' || mode == 'm_stfList'}">
+					<jsp:include page="/Admins/CompanyMgr/Staff/StfList.jsp"
+						flush="false" />
+				</c:if>
+				<c:if test="${param.mode == 'm_stfForm' || mode == 'm_stfForm'}">
+					<jsp:include page="/Admins/CompanyMgr/Staff/StfForm.jsp"
+						flush="false" />
+				</c:if>
+				<c:if test="${param.mode == 'm_stfView' || mode == 'm_stfView'}">
+					<jsp:include page="/Admins/CompanyMgr/Staff/StfView.jsp"
+						flush="false" />
+				</c:if>
+				<c:if test="${param.mode == 'm_stfUpdate' || mode == 'm_stfUpdate'}">
+					<jsp:include page="/Admins/CompanyMgr/Staff/StfUpdate.jsp"
+						flush="false" />
+				</c:if>
 
 			</div>
-
-			<!-- /.row -->
-			<div class="enter"></div>
-			<!-- Features Section -->
-
-
-
-
 		</div>
-
 	</div>
-
-	<div class="enter"></div>
+	<!-- /.container -->
+	<%--
+		구조 7
+		
+		사이트에서 Footer 하단 부분을 의미한다. 
+		
+		 --%>
 
 	<!-- Footer -->
 	<footer>
@@ -220,7 +126,6 @@
 		<jsp:include page="/Admins/AdminsFooter.jsp" flush="false" />
 		<!--/////////////////////////////////////////////////// -->
 	</footer>
-
 
 </body>
 

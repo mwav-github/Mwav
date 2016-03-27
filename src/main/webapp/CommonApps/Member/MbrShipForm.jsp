@@ -14,7 +14,7 @@
 	</div> -->
 
 	<form class='form-horizontal' name="change_record" method="post"
-		action="/member/mbrForm.do">
+		action="/member/mbrUpdatePro.do">
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
 			<div class="panel panel-info">
@@ -73,10 +73,10 @@
 										<td>이메일:</td>
 										<td><div class='form-group'>
 												<div class='col-md-11'>
-													<input class='form-control' name="mbrEmail" id='mbrEmail'
+													<input class='form-control' name="mbrEmail" id='chkEmail'
 														placeholder='E-mail' type='text'
 														value="${updateMbrForm.mbrEmail}"
-														onchange="chkEmail(this.form)" required>
+														onchange="chkEmailPolicy()" required>
 												</div>
 											</div></td>
 									</tr>
@@ -97,14 +97,41 @@
 									</tr>
 									<tr>
 										<td>주소:</td>
-										<td>${updateMbrForm.mbrZipcode}//
-											${updateMbrForm.mbrAddress}</td>
-									</tr>
-									<tr>
-										<button type="submit" class='btn-lg btn-primary'
-											style='float: right'>
-											<i class="glyphicon glyphicon-edit"></i>
-										</button>
+										<td>
+											<div class='form-group'>
+
+												<p class="col-md-3 ">
+													<button class="btn btn-primary btn-block" type="button"
+														data-toggle="modal" data-target=".modal_post"
+														onclick="showhide();">주소찾기</button>
+
+												</p>
+												<!-- <div class='col-md-8'>
+						<label><input type="radio" name="optradio" value="0">지번
+							주소</label> <label><input type="radio" name="optradio" value="1">도로명
+							주소</label>
+					</div> -->
+											</div>
+											<div class='form-group'>
+												<div class='col-md-11'>
+													<input class='form-control' name="mbrZipcode"
+														id='Zipcode' value="${updateMbrForm.mbrZipcode}" />
+												</div>
+												<div class='col-md-11'>
+													<input name="mbrAddress_1" class='form-control'
+														id='Address' placeholder='주소' type='text'
+														value="${updateMbrForm.mbrAddress}" readonly="readonly">
+												</div>
+												<div class="enter hidden-xs hidden-sm"></div>
+
+												<div class="col-md-11">
+													<input name="mbrAddress_2" class="form-control"
+														placeholder='나머지 주소' type="text" />
+												</div>
+											</div>
+										</td>
+
+
 									</tr>
 								</tbody>
 							</table>
@@ -115,22 +142,24 @@
 					</div>
 				</div>
 				<div class="panel-footer">
+
+					<button type="submit" class='btn btn-sm btn-primary'
+						style='float: right' data-original-title="Edit this user"
+						data-toggle="tooltip">
+						<i class="glyphicon glyphicon-edit"></i>
+					</button>
 					<a data-original-title="Broadcast Message" data-toggle="tooltip"
-						type="button" class="btn btn-sm btn-primary"><i
-						class="glyphicon glyphicon-envelope"></i></a> <span class="pull-right">
-						<a href="/member/mbrUpdate.do"
-						data-original-title="Edit this user" data-toggle="tooltip"
 						type="button" class="btn btn-sm btn-warning"><i
-							class="glyphicon glyphicon-edit"></i></a> <a
-						href="/CustomerService/CS-MasterPage.jsp?mode=SDMbrDelete"
-						data-original-title="Remove this user" data-toggle="tooltip"
-						type="button" class="btn btn-sm btn-danger"><i
-							class="glyphicon glyphicon-remove"></i></a>
+						class="glyphicon glyphicon-envelope"></i></a> <span class="pull-right">
+
 					</span>
 				</div>
 
 			</div>
 		</div>
-		</form>
+	</form>
+
+	<%-- 아래의 내용을 위에 주소 위치에 둘 경우 form태그가 해당위치로 닫힌다 form태그 중복 추후 확인 필요 --%>
+	<jsp:include page="/CommonApps/PostSeek/PostSeek.jsp" flush="false" />
 </div>
 

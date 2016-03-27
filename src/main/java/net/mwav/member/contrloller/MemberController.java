@@ -33,11 +33,9 @@ import net.mwav.member.service.MemberService;
 
 @Controller
 // Anotation 으로 Conroller 호출
-
 /*
- * 프로세스 
- * 1) 비밀번호 찾기 : mbrTempLoginPwUpdate -> mbrTempLoginPwSeek ->
-	// mbrLoginPwUpdate
+ * 프로세스 1) 비밀번호 찾기 : mbrTempLoginPwUpdate -> mbrTempLoginPwSeek -> //
+ * mbrLoginPwUpdate
  */
 public class MemberController {
 	Logger log = Logger.getLogger(this.getClass());
@@ -111,26 +109,49 @@ public class MemberController {
 	// 1번 mbrForm : Form 입력만 가능 (form update 같이사용.)
 	@RequestMapping(value = "/member/mbrForm.do")
 	public ModelAndView insertMbrForm(CommandMap commandMap,
-			HttpServletRequest request, HttpServletResponse response,
-			String member_CellularP_1, String member_CellularP_2,
-			String member_CellularP_3) throws Exception {
+			HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
 
 		ModelAndView mv = new ModelAndView("/MasterPage_1");
 		// * action-servlet.xml에서 위에 .jsp 설정해줘서 위의 CommonApps 부터 되는거
 		String b_mbrLoginPw = (String) commandMap.get("mbrLoginPw");
 		System.out.println("b_mbrLoginPw" + b_mbrLoginPw);
 
-		String mbrCellPhone = member_CellularP_1 + member_CellularP_2
-				+ member_CellularP_3;
+		String mbrCellPhone = null;
+		mbrCellPhone = (String) commandMap.get("mbrCellPhone_1")
+				+ (String) commandMap.get("mbrCellPhone_2")
+				+ (String) commandMap.get("mbrCellPhone_3");
 		commandMap.put("mbrCellPhone", mbrCellPhone);
+		/*
+		 * System.out.println("mbrCellPhone" + mbrCellPhone); if (mbrCellPhone_1
+		 * ==null && mbrCellPhone_2 == null && mbrCellPhone_3 ==null) {
+		 * commandMap.put("mbrCellPhone", null); System.out.println("null이당"); }
+		 * else {
+		 * 
+		 * mbrCellPhone = mbrCellPhone_1 + mbrCellPhone_2 + mbrCellPhone_3;
+		 * commandMap.put("mbrCellPhone", mbrCellPhone);
+		 * System.out.println("mbrCellPhone=" + mbrCellPhone); }
+		 */
+		String mbrAddress = null;
 
-		String mbrAddress_1 = (String) commandMap.get("mbrAddress_1");
-		String mbrAddress_2 = (String) commandMap.get("mbrAddress_2");
+		String mbrAddress_1 = null;
+		mbrAddress_1 = (String) commandMap.get("mbrAddress_1");
+		System.out.println("mbrAddress_1=" + mbrAddress_1);
 
-		String mbrAddress = mbrAddress_1 + mbrAddress_2;
-		System.out.println("mbrAddress=" + mbrAddress);
+		String mbrAddress_2 = null;
+		mbrAddress_2 = (String) commandMap.get("mbrAddress_2");
 
-		commandMap.put("mbrAddress", mbrAddress);
+		if (mbrAddress_1 == null && mbrAddress_2 == null) {
+			commandMap.put("mbrAddress", null);
+			System.out.println("null이당");
+
+		} else {
+			mbrAddress = mbrAddress_1 + mbrAddress_2;
+			commandMap.put("mbrAddress", mbrAddress);
+			System.out.println("mbrAddress=" + mbrAddress);
+
+		}
+
 		memberService.insertMbrForm(commandMap.getMap());
 
 		mv.addObject("mode", "SDMbrInput");
@@ -149,6 +170,7 @@ public class MemberController {
 			HttpServletRequest request) throws Exception {
 		HttpSession session = request.getSession();
 		int member_id = (int) session.getAttribute("member_id");
+		// 데이터타입 int
 		System.out.println("member_id=" + member_id);
 		commandMap.put("member_id", member_id);
 		ModelAndView mv = new ModelAndView("/CommonApps/Member/MbrView");
@@ -167,27 +189,32 @@ public class MemberController {
 	 * ========================================수정================================
 	 * ========
 	 */
-	
+
 	/*
-	 *  board 와 같이 하나의 form 에 등록 수정을 같이 사용하면, update 할때 최초 select 후 update 즉 update> updatePro 가 필요없다
-	 *  그러나 아래와 같이 하려면, 별도 controller을 해줘야하며 어짜피 쿼리는 동일하므로 view 이용하면된다. ~! 
-	 *  즉 controller에서만 작업 후 이후 꺼는 view 이용
+	 * board 와 같이 하나의 form 에 등록 수정을 같이 사용하면, update 할때 최초 select 후 update 즉
+	 * update> updatePro 가 필요없다 그러나 아래와 같이 하려면, 별도 controller을 해줘야하며 어짜피 쿼리는
+	 * 동일하므로 view 이용하면된다. ~! 즉 controller에서만 작업 후 이후 꺼는 view 이용
 	 */
 	@RequestMapping(value = "/member/mbrUpdate.do")
-	public ModelAndView updateBnsform(CommandMap commandMap,
+	public ModelAndView updateMbrform(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("/CommonApps/Member/MbrShipForm");
+		ModelAndView mv = new ModelAndView("/CustomerService/CS-MasterPage");
 
 		mode = "SmbrUpdate";
-		request.setAttribute("mode", mode);
 
+		HttpSession session = request.getSession();
+		int member_id = (int) session.getAttribute("member_id");
+
+		System.out.println("member_id=" + member_id);
+		commandMap.put("member_id", member_id);
 		// 위의 view랑 동일하게 사용
 
 		Map<String, Object> updateMbrForm = memberService
 				.updateMbrForm(commandMap.getMap());
 		if (updateMbrForm != null && !updateMbrForm.isEmpty()) {
 			System.out.println("view 줄랭");
-			mv.addObject("mode", "SmbrUpdate");
+			System.out.println("mode 출력" + mode);
+			mv.addObject("mode", mode);
 			mv.addObject("updateMbrForm", updateMbrForm);
 		}
 		return mv;
@@ -196,12 +223,37 @@ public class MemberController {
 	@RequestMapping(value = "/member/mbrUpdatePro.do")
 	public ModelAndView updateMbrformPro(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("/CommonApps/Member/MbrShipForm");
+		ModelAndView mv = new ModelAndView("/CustomerService/CS-MasterPage");
 
 		mode = "SmbrUpdatePro";
 		request.setAttribute("mode", mode);
 
 		// 위의 view랑 동일하게 사용
+		HttpSession session = request.getSession();
+		int member_id = (int) session.getAttribute("member_id");
+
+		System.out.println("member_id=" + member_id);
+		commandMap.put("member_id", member_id);
+
+		String mbrAddress = null;
+
+		String mbrAddress_1 = null;
+		mbrAddress_1 = (String) commandMap.get("mbrAddress_1");
+		System.out.println("mbrAddress_1=" + mbrAddress_1);
+
+		String mbrAddress_2 = null;
+		mbrAddress_2 = (String) commandMap.get("mbrAddress_2");
+
+		if (mbrAddress_1 == null && mbrAddress_2 == null) {
+			commandMap.put("mbrAddress", null);
+			System.out.println("null이당");
+
+		} else {
+			mbrAddress = mbrAddress_1 + mbrAddress_2;
+			commandMap.put("mbrAddress", mbrAddress);
+			System.out.println("mbrAddress=" + mbrAddress);
+
+		}
 
 		memberService.updateMbrformPro(commandMap.getMap());
 
@@ -230,9 +282,8 @@ public class MemberController {
 
 	// 7번 추후 패스워드 찾기 1단계 맞으면 imsi 패스워드 넣으니
 	/*
-	 * 변경 내역
-	 * 16.02.17 updateMbrTempLoginPw 시 기 mbrLoginPw는 null 로 변경해야 할 필요성 느끼고 변경 처리 
-	 *          만약 중간에 창을 닫고 로그인 시도하면 안되므로~! 
+	 * 변경 내역 16.02.17 updateMbrTempLoginPw 시 기 mbrLoginPw는 null 로 변경해야 할 필요성 느끼고
+	 * 변경 처리 만약 중간에 창을 닫고 로그인 시도하면 안되므로~!
 	 */
 	@RequestMapping(value = "/member/mbrTempLoginPwUpdate.do")
 	public @ResponseBody boolean updateMbrTempLoginPw(CommandMap commandMap,
@@ -468,12 +519,9 @@ public class MemberController {
 	}
 
 	/*
-	 * logincheck = 1 :  정상로그인
-logincheck = 2 :  비밀번호 틀림
-logincheck = 3 :  아이디 존재하지 않음
-logincheck = 5 :  DB 조회시 NULL (임시패스워드 발급 단계에서 중간하였을때 포함)
-logincheck = 6 :  탈퇴하지 않음
-logincheck = 7 :  탈퇴
+	 * logincheck = 1 : 정상로그인 logincheck = 2 : 비밀번호 틀림 logincheck = 3 : 아이디 존재하지
+	 * 않음 logincheck = 5 : DB 조회시 NULL (임시패스워드 발급 단계에서 중간하였을때 포함) logincheck = 6
+	 * : 탈퇴하지 않음 logincheck = 7 : 탈퇴
 	 */
 	@RequestMapping(value = "/member/Login.do")
 	public ModelAndView selectLogin(CommandMap commandMap,
@@ -489,7 +537,7 @@ logincheck = 7 :  탈퇴
 
 		int loginCheck = 0; // 초기값
 
-		//암호화 복호화 할 필요는없지.
+		// 암호화 복호화 할 필요는없지.
 		if (memberLogin != null && loginCheck != 5) {
 			loginCheck = (int) memberLogin.get("loginCheck");
 			// 페이지에서 온 값
@@ -597,24 +645,24 @@ logincheck = 7 :  탈퇴
 			throws Exception {
 
 		ModelAndView mv = new ModelAndView("/Index");
-		
+
 		HttpSession session = request.getSession();
 		int loginCheck = 0;
 
 		String fsmMember_id = (String) commandMap.get("fsmMember_id");
 		String fFirst_Name = (String) commandMap.get("fFirst_Name");
 		String fLast_Name = (String) commandMap.get("fLast_Name");
-		if(fLast_Name == null)
+		if (fLast_Name == null)
 			fLast_Name = null;
 		String fEmail = (String) commandMap.get("fEmail");
 		String fGender = (String) commandMap.get("fGender");
-		if(fGender == null)
+		if (fGender == null)
 			fGender = null;
 		String fLink = (String) commandMap.get("fLink");
-		if(fLink == null)
+		if (fLink == null)
 			fLink = null;
 		String fPicture = (String) commandMap.get("fPicture");
-		if(fPicture == null)
+		if (fPicture == null)
 			fPicture = null;
 
 		System.out.println("fsmMember_id = " + fsmMember_id);
@@ -631,27 +679,26 @@ logincheck = 7 :  탈퇴
 		System.out.println("check = " + check);
 		if (check == false) {
 
-			if(fGender.equals("male")){
+			if (fGender.equals("male")) {
 				commandMap.put("fGender", 1);
 			} else {
 				commandMap.put("fGender", 0);
 			}
-			
+
 			memberService.insertSnsForm(commandMap.getMap());
 			System.out.println("insertSnsForm 성공!!!!!!");
 		}
-		
+
 		String mbrLoginId = fLast_Name + " " + fFirst_Name;
-		//long member_id = (long) Integer.parseInt(fsmMember_id);
-		//System.out.println("member_id = "+member_id);
+		// long member_id = (long) Integer.parseInt(fsmMember_id);
+		// System.out.println("member_id = "+member_id);
 		loginCheck = 1;
 		session.setAttribute("mbrLoginId", mbrLoginId);
-		//session.setAttribute("member_id", member_id);
-		
-		
+		// session.setAttribute("member_id", member_id);
+
 		// mv.addObject("memberLogin", memberLogin);
 		request.setAttribute("loginCheck", loginCheck);
-		
+
 		return mv;
 	}
 }

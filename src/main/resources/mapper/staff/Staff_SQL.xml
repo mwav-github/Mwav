@@ -36,7 +36,7 @@
 		
 	<update id="updateStfForm" parameterType="hashmap" >
 		<![CDATA[
-	       update Member_tbl set mbrFirstName=#{mbrFirstName}, mbrMiddleName= #{mbrMiddleName}, mbrLastName= #{mbrLastName} , mbrEmail= #{mbrEmail}, mbrCellPhone= #{mbrCellPhone}where member_id = #{member_id}
+	       select * from Staff_tbl where staff_id= #{staff_id}
 		]]>
 	</update>
 	

@@ -38,6 +38,7 @@
 </script>
 <div id="left_menu" class="list-group">
 
+<%--param은 get문 setattribute // mode 가 addObject // 그냥 mm은 넘어온 값  --%>
 
 	<c:if test="${mm eq null}">
 		<a href="#" >존재하지 않습니다.</a>
@@ -46,7 +47,6 @@
 
 	<c:if test="${mm ne null}">
 		<c:forEach var="vo" items="${vo }">
-
 			<a href="${vo.url }" class="list-group-item " data-toggle="tooltip"
 				data-placement="top" data-original-title="${vo.hKName}">${vo.hEName}</a>
 		</c:forEach>

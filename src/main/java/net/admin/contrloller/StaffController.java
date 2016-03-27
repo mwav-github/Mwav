@@ -57,7 +57,7 @@ public class StaffController {
 	@RequestMapping(value = "/admins/staff/stfForm.do")
 	public ModelAndView insertStfForm(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("/Company/CompanyMasterPage_1");
+		ModelAndView mv = new ModelAndView("/Admins/AdminsMasterPage");
 
 		System.out.println("순서");
 		log.debug("인터셉터 테스트");
@@ -85,18 +85,17 @@ public class StaffController {
 
 		staffService.insertStfForm(commandMap.getMap());
 
-		// mode = "SbnsForm";
-		// request.setAttribute("mode", mode);
-
-		// mv.addObject("insertBnsForm", insertBnsForm);
-		// mv.addObject("IDX", commandMap.get("IDX"));
+		String mm = "firms";
+		mv.addObject("mm", mm);
+		mv.addObject("mode", "m_stfForm");
+		
 
 		return mv;
 	}
 
 	@RequestMapping(value = "/admins/staff/stfList.do")
 	public ModelAndView selectListStfList(CommandMap commandMap,
-			HttpServletRequest request) throws Exception {
+			HttpServletRequest request, HttpServletResponse reponse) throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/CompanyMgr/Staff/StfList");
 
 		String pageNum = (String) commandMap.get("pageNum");
@@ -126,12 +125,16 @@ public class StaffController {
 			selectListStfList = Collections.emptyList();
 		}
 		System.out.println("찍히낭");
-		String mm = "firms";
+
 
 		mv.addObject("selectListStfList", selectListStfList);
 		mv.addObject("pagingVO", pagingVO);
 		mv.addObject("totalRow", totalRow);
+		
+		String mm = "firms";
 		mv.addObject("mm", mm);
+		mv.addObject("mode", "m_stfList");
+		
 		// mv.addObject("paging", pv.print());
 		return mv;
 	}
@@ -145,13 +148,16 @@ public class StaffController {
 		staff_id = (String) commandMap.get("staff_id");
 		System.out.println("staff_id=" + staff_id);
 		commandMap.put("staff_id", staff_id);
-		ModelAndView mv = new ModelAndView("/Admins/CompanyMgr/Staff/StfView");
+		ModelAndView mv = new ModelAndView("/Admins/AdminsMasterPage");
 		Map<String, Object> selectStfView = staffService
 				.selectStfView(commandMap.getMap());
 
 		if (selectStfView != null && !selectStfView.isEmpty()) {
 			System.out.println("view 줄랭");
-			mv.addObject("mode", "SstfView");
+			String mm = "firms";
+			mv.addObject("mm", mm);
+			mv.addObject("mode", "m_stfView");
+			
 			mv.addObject("selectStfView", selectStfView);
 		}
 		return mv;
@@ -168,12 +174,16 @@ public class StaffController {
 	 */
 
 	@RequestMapping(value = "/admins/staff/stfUpdate.do")
-	public ModelAndView updateBnsform(CommandMap commandMap,
+	public ModelAndView updateStfform(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("/CommonApps/Member/MbrShipForm");
+		ModelAndView mv = new ModelAndView("/Admins/AdminsMasterPage");
 
-		mode = "SmbrUpdate";
-		request.setAttribute("mode", mode);
+		HttpSession session = request.getSession();
+		int staff_id = (int) session.getAttribute("staff_id");
+
+		System.out.println("staff_id=" + staff_id);
+		commandMap.put("staff_id", staff_id);
+	
 
 		// 위의 view랑 동일하게 사용
 
@@ -181,7 +191,10 @@ public class StaffController {
 				.updateStfForm(commandMap.getMap());
 		if (updateStfForm != null && !updateStfForm.isEmpty()) {
 			System.out.println("view 줄랭");
-			mv.addObject("mode", "SstfUpdate");
+			String mm = "firms";
+			mv.addObject("mm", mm);
+			mv.addObject("mode", "m_stfUpdate");
+			
 			mv.addObject("updateStfForm", updateStfForm);
 		}
 		return mv;
@@ -196,7 +209,7 @@ public class StaffController {
 	@RequestMapping(value = "/admins/staff/stfLogin.do")
 	public ModelAndView selectLogin(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("/Admins/AdminsMasterPage");
+		ModelAndView mv = new ModelAndView("/Admins/AdminsIndex");
 
 		HttpSession session = request.getSession();
 		// * action-servlet.xml에서 위에 .jsp 설정해줘서 위의 CommonApps 부터 되는거

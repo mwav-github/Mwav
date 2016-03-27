@@ -32,9 +32,9 @@
 
 <body>
 	<%--mwav는 container 영역만 쓰기때문에 그랬으나 이건 전체 쓴다. 그러므로 container로 감싸면 안된다.  --%>
-		<!--  //////////////////////////////////// -->
-		<jsp:include page="/Admins/AdminsHeader.jsp" flush="false" />
-		<!--  //////////////////////////////////// -->
+	<!--  //////////////////////////////////// -->
+	<jsp:include page="/Admins/AdminsHeader.jsp" flush="false" />
+	<!--  //////////////////////////////////// -->
 
 
 
@@ -61,7 +61,10 @@
 		<div class="row">
 			<!-- Sidebar Column left메뉴 추후 변경 예정<시작>-->
 			<div class="col-md-3">
-				<jsp:include page="/admins/LeftMenu.do" flush="false" />
+				<%--http://egloos.zum.com/tiger5net/v/5828786 --%>
+				<jsp:include page="/admins/LeftMenu.do" flush="false">
+					<jsp:param name="mm" value="${mm}" />
+				</jsp:include>
 			</div>
 			<!-- 끝 -->
 
@@ -144,7 +147,7 @@
 											<div class=" col-md-9 col-lg-9 ">
 												<table class="table">
 													<tbody>
-														
+
 														<tr>
 															<td class="info">소속:</td>
 															<td>${selectStfView.stfBranch}</td>
@@ -169,7 +172,7 @@
 															<td class="info">주민등록번호:</td>
 															<td>${selectStfView.stfSsn1}-
 																${selectStfView.stfSsn2}</td>
-														</tr>														
+														</tr>
 														<tr>
 															<td class="info">등록일:</td>
 															<td>${selectStfView.stfInsertDt}</td>
@@ -215,7 +218,9 @@
 													<div class="col-sm-4 col-md-3">
 														<div class="panel panel-info">
 															<div class="panel-heading">포인트/누적포인트</div>
-															<div class="panel-body">${selectStfView.stfPoint} /<br/> ${selectStfView.stfPointAc}</div>
+															<div class="panel-body">${selectStfView.stfPoint}
+																/<br /> ${selectStfView.stfPointAc}
+															</div>
 														</div>
 													</div>
 													<div class="col-sm-4 col-md-3">

@@ -61,8 +61,6 @@ public class CommonController {
 			HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/AdminsMasterPage");
 
-		
-
 		// mode = "SbnsForm";
 		// request.setAttribute("mode", mode);
 
@@ -71,26 +69,51 @@ public class CommonController {
 
 		return mv;
 	}
-	
+
 	@RequestMapping(value = "/admins/LeftMenu.do")
 	public ModelAndView getLeftMenu(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/AdminsLeftMenu");
 
+		/*
+		 * 현재 전달 프로세스가 ! 
+		 * 예)
+		 *  
+		 *  문제 제기 : get문이 아닌 header에다가 값 저장 후 left 구분값을 가져오고 싶다.
+		 *           그러나 한페이지에서 두번의 비즈니스 로직을 호출하는 경우 세션이 아닌 이상 값 전달이 안된다. 
+		 *  
+		 * StaffList 인 경우 > StaffController > mm 지정 
+		 * > staffList에서 left 메뉴 호출 
+		 * 
+		 * - 그러나 여기 한 페이지에서 /admins/stfList.do 와 /admins/LeftMenu.do 를 호출
+		 * - 즉 저장된 mm값이 /admins/LeftMenu.do 로 넘어가지 않는다.
+		 * - jstl 에서 param 이용 하여 전달한다. 
+		 * - 비즈니스 로직에서 페이지 보여주는 경우 get문으로 mm값을 전달하지 않기 위하여 
+		 * - 추후 권한 과도 연계
+		 */
+		
 		/* Service 쪽 안간다. */
 		String url = "";
-		String mm = request.getParameter("mm");
-		System.out.println("mm이 controller 까지 = "+mm);
-		List<LeftFrame_VO> vo = null;
-		LeftFrame_Fucntion voF = new LeftFrame_Fucntion();
-		System.out.println("mm="+mm);
-		
-		vo = voF.getMbrList(mm);
-	System.out.println("mm 나가기전"+vo);
-		
-		request.setAttribute("mm", mm);
-		request.setAttribute("url", url);
-		request.setAttribute("vo", vo);
+		String mm = null;
+		mm = request.getParameter("mm");
+	
+		if (mm != null) {
+
+			System.out.println("mm이 controller 까지 = " + mm);
+			List<LeftFrame_VO> vo = null;
+			LeftFrame_Fucntion voF = new LeftFrame_Fucntion();
+			System.out.println("mm=" + mm);
+
+			vo = voF.getMbrList(mm);
+			System.out.println("mm 나가기전" + vo);
+
+			request.setAttribute("mm", mm);
+			request.setAttribute("url", url);
+			request.setAttribute("vo", vo);
+		} else {
+			System.out.println("이쪽으로 온다.");
+			request.setAttribute("mm", null);
+		}
 
 		// mode = "SbnsForm";
 		// request.setAttribute("mode", mode);
@@ -100,6 +123,5 @@ public class CommonController {
 
 		return mv;
 	}
-
 
 }

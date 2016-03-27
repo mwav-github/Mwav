@@ -1,10 +1,8 @@
-function chkLoginPolicy(form) {
+function chkLoginPolicy() {
 
-	
-	/*alert('1');
-	
-	*/
-	var mbrLoginId = form.mbrLoginId.value;
+
+	chkLoginId_1 = document.getElementById("chkLoginId");
+	var chkLoginId = chkLoginId_1.value;
 	//var mbrLoginId = mbrLoginId;
 	
 	//로그인 아이디 계정정책 확인
@@ -15,38 +13,50 @@ function chkLoginPolicy(form) {
 
 /*	alert(re1.test(mbrLoginId));
 	alert(re1.test(mbrLoginId) == false)
-*/	if((re1.test(mbrLoginId)) == false){
+*/	if((re1.test(chkLoginId)) == false){
 		alert("첫글자는 영문자만 가능합니다.");
-		form.mbrLoginId.value=""; //value 초기화를 위해서는 input 태그에 value="" 가 되어있어야 한다.
+		chkLoginId_1.value=""; //value 초기화를 위해서는 input 태그에 value="" 가 되어있어야 한다.
+		chkLoginId_1.focus();
 		return false;
 		
 	}
 //	alert(re2.test(mbrLoginId));
-	if((re2.test(mbrLoginId)) == true){
+	if((re2.test(chkLoginId)) == true){
 		alert("공백은 허용하지 않습니다.");
-		form.mbrLoginId.value="";
+		//form.mbrLoginId.value="";
+		chkLoginId_1 ="";
+		chkLoginId_1.focus();
 		return false;
 		
 	}
 //	alert(re3.test(mbrLoginId));
-	if(re3.test(mbrLoginId) == true){
+	if(re3.test(chkLoginId) == true){
 		alert("특수문자는 허용하지 않습니다.");
-		form.mbrLoginId.value="";
+		
+		chkLoginId_1 ="";
+		chkLoginId_1.focus();
 		return false;
 	}
-	if( (mbrLoginId.length  < 4 ) || (mbrLoginId.length > 20) ){
+	if( (chkLoginId.length  < 4 ) || (chkLoginId.length > 20) ){
 		alert("아이디는 4~20글자 까지 가능합니다..");
-		form.mbrLoginId.value="";
+		chkLoginId_1 ="";
+		chkLoginId_1.focus();
 		return false;
 	}
 }
-function chkPWPolicy(form) {
+function chkPWPolicy() {
 
 /*	alert('1');
 	var mbrLoginPw = form.mbrLoginPw.value;
 */	
 	//로그인 아이디 계정정책 확인
-	var mbrLoginPw = form.mbrLoginPw.value;
+	//var mbrLoginPw = form.mbrLoginPw.value;
+	chkLoginPW_1 = document.getElementById("chkLoginPW");
+	var chkLoginPW = chkLoginPW_1.value;
+	//alert(chk_LoginPW);
+	
+	//alert('chk_LoginPW'+chk_LoginPW)
+	
 	var re1 = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,255}$/; // 영문+숫자+특수문자를 혼용하여 사용 255자사용.
 	var re2 = /\s/; // 공백인 경우 true
 
@@ -59,29 +69,35 @@ function chkPWPolicy(form) {
 	
 /*	alert(re1.test(mbrLoginPw));
 	alert(re1.test(mbrLoginPw) == false)
-*/	if((re1.test(mbrLoginPw)) == false){
+*/	if((re1.test(chkLoginPW)) == false){
 		alert("비밀번호는 영문+숫자+특수문자를 혼용하여, 8~255자로 사용해주셔야합니다.");
-		form.mbrLoginPw.value="";
+		chkLoginPW_1.value="";
+		chkLoginPW_1.focus();
 		return false;
 	}
 /*	alert(re2.test(mbrLoginPw));
-*/	if((re2.test(mbrLoginPw)) == true){
+*/	if((re2.test(chkLoginPW)) == true){
 		alert("공백은 허용하지 않습니다.");
-		form.mbrLoginPw.value="";
+		chkLoginPW_1.value="";
+		chkLoginPW_1.focus();
 		return false;
 	}
 }
-function chkEmail(form) {
+function chkEmailPolicy() {
 
-	var mbrEmail = form.mbrEmail.value;
+	//var mbrEmail = form.mbrEmail.value;
+	
+	chkEmail_1 = document.getElementById("chkEmail");
+	var chkEmail = chkEmail_1.value;
 	
 	//로그인 아이디 계정정책 확인
 	var re1 = /[a-z0-9]{2,}@[a-z0-9-]{2,}.[a-z0-9]{2,}/i;
 
 //	alert(re1.test(mbrEmail));
-	if((re1.test(mbrEmail)) == false){
+	if((re1.test(chkEmail)) == false){
 		alert("이메일형식이 올바르지 않습니다.");
-		form.mbrEmail.value="";
+		chkEmail_1="";
+		chkEmail_1.focus();
 		return false;
 	}
 }

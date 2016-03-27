@@ -20,11 +20,10 @@
 	 -->
 	<!--  //////////////////////////////////// -->
 
-		<!--  //////////////////////////////////// -->
-		<jsp:include page="/Admins/AdminsHeader.jsp"
-			flush="false" />
-		<!--  //////////////////////////////////// -->
-		<!-- Image Container 
+	<!--  //////////////////////////////////// -->
+	<jsp:include page="/Admins/AdminsHeader.jsp" flush="false" />
+	<!--  //////////////////////////////////// -->
+	<!-- Image Container 
 container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다. 
 -->
 
@@ -56,7 +55,10 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 		<div class="row">
 			<!-- Sidebar Column left메뉴 추후 변경 예정<시작>-->
 			<div class="col-md-3">
-				<jsp:include page="/admins/LeftMenu.do" flush="false" />
+	<%--http://egloos.zum.com/tiger5net/v/5828786 --%>
+				<jsp:include page="/admins/LeftMenu.do" flush="false">
+					<jsp:param name="mm" value="${mm}" />
+				</jsp:include>
 			</div>
 			<!-- 끝 -->
 
@@ -70,7 +72,8 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 				<!-- Content Column -->
 				<div class="col-lg-12">
 
-					<form name="StfList" method="post" action="/admins/staff/stfList.do">
+					<form name="StfList" method="post"
+						action="/admins/staff/stfList.do">
 						<div class="row">
 							<div class="input-group custom-search-form">
 								<input type="text" class="form-control" placeholder="Search...">
@@ -80,7 +83,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 									</button>
 								</span>
 							</div>
-							
+
 							<div class="table-responsive">
 								<table class="table table-striped">
 									<thead>
@@ -115,7 +118,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 														</td>
 														<td class="hidden-xs">${VselectListStfList.stfEmail}</td>
 														<td>
-														<!-- <span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td> -->
+															<!-- <span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td> -->
 															<button type="button" class="btn btn-info"
 																onclick="javascript:window.location.href='/admins/staff/stfView.do?staff_id=${VselectListStfList.staff_id}&mm=firm'">보기</button>&nbsp;
 															<button type="button" class="btn btn-warning"
@@ -173,8 +176,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 	<!-- Footer -->
 	<footer>
 		<!--/////////////////////////////////////////////////// -->
-		<jsp:include page="/Admins/AdminsFooter.jsp"
-			flush="false" />
+		<jsp:include page="/Admins/AdminsFooter.jsp" flush="false" />
 		<!--/////////////////////////////////////////////////// -->
 	</footer>
 
