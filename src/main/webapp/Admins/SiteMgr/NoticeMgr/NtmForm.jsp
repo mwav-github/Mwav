@@ -1,164 +1,336 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<!DOCTYPE html>
 <html>
+
 <head>
- <link href="/HomePage/App_Themes/Objects.css" rel="stylesheet" type="text/css"/>
-    <link href="/HomePage/App_Themes/OverallPage.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="/HomePage/CommonLibrary/ckeditor/ckeditor.js"></script>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>The Notice Management</title>
-<script type="text/javascript">
-function writeSave(){
-	if(document.NtmForm.staff_id.value==""){
-		alert("이름을 입력하십시오.");
-		document.NtmForm.staff_id.focus();
-		return false;
-	}
-	if(document.NtmForm.buGroup.value==""){
-		alert("분류를 선택하세요.");
-		NtmForm.buGroup.focus();
-		return false;
-	}
-	if(document.NtmForm.buTitle.value==""){
-		alert("제목을 입력하십시요.");
-		document.NtmForm.buTitle.focus();
-		return false;
-	}
-	if(document.NtmForm.buContent.value==""){
-		alert("내용을 입력 하십시요.");
-		document.NtmForm.buContent.focus();
-		return false;
-	}
-}
-</script>
+
+<!-- /////////// -->
+<jsp:include page="/PartsOfContent/Head_Import.jsp" flush="false" />
+<!-- /////////// -->
 </head>
 
 <body>
-    <form method="post" name="NtmForm" action="/HomePage/U_WritePro.do">
-  <input type="hidden" name="bUser_id" value="${bUser_id}">
-  <table cellspacing="0" cellpadding="0" width="600" border="0">
-    <tr>
-      <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
-          <tr>
-            <td width="26"><img src="/HomePage/Admins/zImages/admin_top009.gif" width="26" height="27" /></td>
-            <td bgcolor="#f4f4f4">현재위치 : </td>
-            <td width="10"><img src="/HomePage/Admins/zImages/admin_top010.gif" width="10" height="27" /></td>
-          </tr>
-        </table></td>
-    </tr>
-        <tr>
-      <td height="20" bgcolor="#ffffff">&nbsp;</td>
-    </tr>
-       <tr>
-      <td bgcolor="#ffffff"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-            <tr>
-            <td width="160"><img src="/HomePage/Admins/SiteMgr/zImages/admin_notice_004.gif" height="53" /></td>
-            <td background="/HomePage/Admins/SiteMgr/zImages/admin_notice_005.gif">&nbsp;</td>
-          </tr>
-        </table></td>
-    </tr>
-    <tr>
-      <td bgcolor="#ffffff">&nbsp;</td>
-    </tr>
-    <tr>
-      <td align="center" bgcolor="#ffffff">
-        <table cellspacing="2" cellpadding="1" width="98%" border="0">
-          <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td><select name="buStatus">
-				<option value="0">임시저장상태</option>
-				<option value="1">현재공지상태</option>
-				</select>
-			</td>
-          </tr>
-          <tr align="center" bgcolor="#3a8bb1">
-            <td width="11%" height="30">공지번호</td>
-            <td width="20%">분류</td>
-            <td width="13%">조회수</td>
-            <td width="19%">작성일</td>
-            <td width="17%">작성자</td>
-            <td width="20%">정렬순서</td>
-          </tr>
-            <tr align="center">
-            <td><input type="hidden" name="bUser_id" width="40px"/></td>
-            <td><select name="buGroup">
-				<option value="전체">전체</option>
-				<option value="휴대폰">휴대폰</option>
-				<option value="인터넷">인터넷</option>
-                <option value="영어">영어</option>
-                <option value="유통">유통</option>
-                <option value="SI개발">SI개발</option>
-				</select>
-				</td>
-            <td><input type="hidden" name="buViewCount" MaxLength="10" Width="70px"> 
-            </td>
-            <td><input name="writeDT" Width="70px"></td>
-            <td><input name="sLoginID" Width="70px"></td>
-            <td><input type="text" name="buOrder" MaxLength="3" Width="30px"></td>
-          </tr>
-          </table></td>
-          </tr>
-          <tr>
-      <td bgcolor="#ffffff">&nbsp;&nbsp;</td>
-    </tr>
-      <tr>
-      <td align="center" bgcolor="#ffffff"><table width="98%" border="0" cellspacing="0" cellpadding="0">
-          <tr>
-            <td align="left">
-              <table cellspacing="1" cellpadding="3" width="600" border="0">
-                <tr bgcolor="#ffffff">
-                  <td width="101" align="center" bgcolor="#3a8bb1">제 목</td>
-                  <td width="484"><input type="text" Width="450px" MaxLength="200" name="buTitle"></td>
-                </tr>
-                <tr bgcolor="#ffffff">
-                  <td align="center" bgcolor="#3a8bb1">부제목</td>
-                  <td><input type="text" name="buSubTitle" Width="450px" rows="2"  maxlength="500"></td>
-                </tr>
-            </table></td>
-          </tr>   
-          <tr>
-          	<td align="left">
-            <table cellspacing="1" cellpadding="3" width="800" border="0">
-                <tr>
-                  <td width="101" align="center" bgcolor="#3a8bb1">내 용</td>
-                  <td>
-                  <textarea  name="buContent" cols="150" rows="80"></textarea>
-					<script type="text/javascript">
-						//<![CDATA[
-						CKEDITOR.replace('buContent');
-						//]]
-					</script>
-				  </td>
-                  </tr>
-    		</table>
-            </td>
-            </tr>
-        <tr>
-      <td bgcolor="#ffffff">&nbsp;&nbsp;</td>
-    </tr>
-     <tr>
-    <td align="center" bgcolor="#ffffff" height="31">
-            <button type="button" name="hiList" style="border:solid 0px #FFFFFF;"  onclick="javascript:window.location.href='/HomePage/U_List.do'" >
- <img src="/HomePage/Admins/zImages/btn_view_list.gif"  border="0"> 
-</button>
-            <button type="button" name="hiBack" style="border:solid 0px #FFFFFF;" onclick="javascript:window.location.href='/HomePage/U_List.do'" >
- <img src="/HomePage/Admins/zImages/btn_admin_back.gif"  border="0"> 
-</button>
-            <button type="submit" name="iblInsert" style="border:solid 0px #FFFFFF;" >
- <img src="/HomePage/Admins/zImages/admin_btn_enter.gif"  border="0"> 
-</button> 
-            </td>
-        </tr>
-    </table>
-    </td>
-    </tr>
-    </table>
-    </form>
+	<%--mwav는 container 영역만 쓰기때문에 그랬으나 이건 전체 쓴다. 그러므로 container로 감싸면 안된다.  --%>
+	<!--  //////////////////////////////////// -->
+	<jsp:include page="/Admins/AdminsHeader.jsp" flush="false" />
+	<!--  //////////////////////////////////// -->
+
+
+
+	<!-- Page Content -->
+	<div class="container">
+
+		<!-- Page Heading/Breadcrumbs -->
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">
+					Admins <small> NewsForm</small>
+				</h1>
+				<ol class="breadcrumb">
+					<li><a href="index.html">Home</a></li>
+					<li>Admins</li>
+					<li>SiteMgr</li>
+					<li class="active">NsmForm</li>
+				</ol>
+			</div>
+		</div>
+		<!-- /.row -->
+
+		<!-- Content Row -->
+		<div class="row">
+			<!-- Sidebar Column left메뉴 추후 변경 예정<시작>-->
+			<div class="col-md-3">
+				<%-- 
+			- param으로 같은 이름 지정시 위의 named으로 인식
+			- getparameter는 param.mm // setattribute는 mm
+			- value에 두개다 넣는 경우 비즈니스로직 + 파라미터인경우 문제발생
+			- jsp param 안에 choose, when, otherwise 사용 불가
+			 --%>
+				<c:choose>
+					<c:when test="${param.mm eq null}">
+						<c:set value="${mm}" var="mm" />
+					</c:when>
+					<c:otherwise>
+						<c:set value="${param.mm}" var="mm" />
+					</c:otherwise>
+				</c:choose>
+				<jsp:include page="/admins/LeftMenu.do" flush="false">
+					<jsp:param name="mm" value="${mm}" />
+				</jsp:include>
+			</div>
+			<!-- 끝 -->
+
+			<div class="col-md-9">
+				<!-- 소제목 -->
+				<div class="col-lg-12">
+					<h2 class="page-header">NsmForm</h2>
+				</div>
+				<!-- ----- -->
+
+				<!-- Content Column -->
+				<div class="col-lg-12">
+
+					<div class="row">
+
+						<%--================================================시작========================================================== --%>
+
+						<script>
+	function check() {
+	/* 	if (document.buForm.staff_id.value == "") {
+			alert("이름을 입력하십시오.");
+			document.buForm.staff_id.focus();
+			return false;
+		}
+	
+	
+		 */
+		if (confirm("정말 입력 또는 수정하시겠습니까??") == true){    //확인
+			if (document.buForm.buGroup.value == "") {
+				alert("분류를 선택하세요.");
+				document.buForm.buGroup.focus();
+				return false;
+			}
+			if (document.buForm.buTitle.value == "") {
+				alert("제목을 입력하십시요.");
+				document.buForm.buTitle.focus();
+				return false;
+			}
+			document.buForm.submit();
+		}else{   //취소
+		    return;
+		}
+	
+	}
+</script>
+						
+						<!-- Content Column -->
+						<div class="table-responsive">
+
+							<c:choose>
+								<c:when test="${fn:length(updateNtmForm) > 0}">
+									<form role="form" method="post" name="buForm"
+										action="/admin/boardNotice/ntmUpdatePro.do">
+										<table class="table table-striped">
+
+											<thead>
+												<tr>
+
+													<div class="pull-right">
+														<%--기본값 --%>
+														<input type="hidden" name="bUsers_id"
+															value="${updateNtmForm.bUsers_id}" /> <input
+															type="hidden" name="buHighLight" value="0" /> <input
+															type="hidden" name="buViewCount" value="0" MaxLength="10" />
+														<input type="hidden" name="buInsertDt"
+															value="${updateNtmForm.buInsertDt}" />
+
+														<%--높을수록 TOP (추후 반영)_15.08.01 --%>
+														<input type="hidden" name="buOrder" value="0" />
+														<%--직원담당자 staff_id 추후 반영예정 --%>
+														<input type="hidden" name="staff_id" value="0" /> <select
+															class="form-control" name="buStatus"
+															value="${updateNtmForm.butatus}">
+															<option value="0">임시저장상태</option>
+															<option value="1">현재공지상태</option>
+														</select>
+													</div>
+												</tr>
+												<tr class="active">
+													<th>NO.</th>
+													<th>Group</th>
+													<th>ViewCount</th>
+													<th>InsertDt</th>
+													<th>staff_id</th>
+													<th>Order</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>${selectboardUpdate.bUsers_id}</td>
+													<td><select name="buGroup"
+														value="${updateNtmForm.buGroup}">
+															<option value="전체">전체</option>
+															<option value="휴대폰">휴대폰</option>
+															<option value="인터넷">인터넷</option>
+															<option value="영어">영어</option>
+															<option value="유통">유통</option>
+															<option value="SI개발">SI개발</option>
+													</select></td>
+													<td>${updateNtmForm.buViewCount}</td>
+													<td>${updateNtmForm.buInsertDt}</td>
+													<td>${updateNtmForm.staff_id}</td>
+													<td>${updateNtmForm.buOrder}</td>
+												</tr>
+											</tbody>
+										</table>
+
+										<table class="table table-striped">
+
+											<tr>
+												<th class="active">Title</th>
+												<td><input type="text" class="form-control"
+													placeholder="Text input" name="buTitle"
+													value="${updateNtmForm.buTitle}"></td>
+											</tr>
+
+
+
+											<tr>
+												<th class="active">SubTitle</th>
+												<td><input type="text" class="form-control"
+													placeholder="Text input" name="buSubTitle"
+													value="${updateNtmForm.buSubTitle}"></td>
+											</tr>
+
+											<tr>
+												<th class="active">Content</th>
+												<td><textarea name="buContent"
+														class="form-control input-sm ckeditor" id="message"
+														placeholder="Message" maxlength="140" rows="7"
+														style="width: 100%; height: 200px;">${updateNtmForm.buContent}</textarea>
+													<script type="text/javascript">
+															//<![CDATA[
+															CKEDITOR
+																	.replace('buContent');
+															//]]
+														</script> <span class="help-block"></span></td>
+											</tr>
+
+										</table>
+
+
+										<br style="clear: both">
+										<p class="pull-right">
+											<button type="button" class="btn btn-success"
+												onClick="javascript:window.location.href='/admin/boardNotice/ntmList.do'">All
+												List</button>
+											<button type="button" class="btn btn-warning"
+												onClick="javascript:history.go(-1)">BACK</button>
+
+
+											<button type="button" class="btn btn-primary"
+												onclick="check()">Modify</button>
+										</p>
+									</form>
+
+								</c:when>
+								<c:otherwise>
+									<form role="form" method="post" name="buForm"
+										action="/admin/boardNotice/ntmForm.do">
+										<table class="table table-striped">
+
+											<thead>
+												<tr>
+
+													<div class="pull-right">
+														<%--기본값 --%>
+														<input type="hidden" name="bUsers_id" /> <input
+															type="hidden" name="buHighLight" value="0" /> <input
+															type="hidden" name="buViewCount" value="0" MaxLength="10" />
+
+														<%--높을수록 TOP (추후 반영)_15.08.01 --%>
+														<input type="hidden" name="buOrder" value="0" />
+														<%--직원담당자 staff_id 추후 반영예정 --%>
+														<input type="hidden" name="staff_id" value="0" /> <select
+															class="form-control" name="buStatus">
+															<option value="0">임시저장상태</option>
+															<option value="1">현재공지상태</option>
+														</select>
+													</div>
+												</tr>
+												<tr class="active">
+													<th>NO.</th>
+													<th>Group</th>
+													<th>ViewCount</th>
+													<th>InsertDt</th>
+													<th>staff_id</th>
+													<th>Order</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td></td>
+													<td><select name="buGroup">
+															<option value="전체">전체</option>
+															<option value="휴대폰">휴대폰</option>
+															<option value="인터넷">인터넷</option>
+															<option value="영어">영어</option>
+															<option value="유통">유통</option>
+															<option value="SI개발">SI개발</option>
+													</select></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+												</tr>
+											</tbody>
+										</table>
+
+										<table class="table table-striped">
+
+											<tr>
+												<th class="active">Title</th>
+												<td><input type="text" class="form-control"
+													placeholder="Text input" name="buTitle"></td>
+											</tr>
+
+
+
+											<tr>
+												<th class="active">SubTitle</th>
+												<td><input type="text" class="form-control"
+													placeholder="Text input" name="buSubTitle"></td>
+											</tr>
+
+											<tr>
+												<th class="active">Content</th>
+												<td><textarea name="buContent"
+														class="form-control input-sm ckeditor" id="message"
+														placeholder="Message" maxlength="140" rows="7"
+														style="width: 100%; height: 200px;"></textarea> <span
+													class="help-block"></span></td>
+											</tr>
+
+										</table>
+
+
+										<br style="clear: both">
+										<p class="pull-right">
+											<button type="button" class="btn btn-success"
+												onClick="javascript:window.location.href='/boardNotice/buList.do'">All
+												List</button>
+											<button type="button" class="btn btn-warning"
+												onClick="javascript:history.go(-1)">BACK</button>
+											<button type="button" class="btn btn-primary"
+												onclick="check()">Insert</button>
+										</p>
+									</form>
+								</c:otherwise>
+							</c:choose>
+
+						</div>
+
+						<%--================================================끝========================================================== --%>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /.container -->
+
+	<!-- Footer -->
+	<footer>
+		<!--/////////////////////////////////////////////////// -->
+		<jsp:include page="/Admins/AdminsFooter.jsp" flush="false" />
+		<!--/////////////////////////////////////////////////// -->
+	</footer>
+
+
 </body>
+
 </html>
+

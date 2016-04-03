@@ -34,11 +34,23 @@
 		]]>
 	</select>
 		
-	<update id="updateStfForm" parameterType="hashmap" >
+	<select id="updateStfForm" parameterType="hashmap"  resultType="hashmap">
 		<![CDATA[
 	       select * from Staff_tbl where staff_id= #{staff_id}
 		]]>
+	</select>
+	
+    <update id="updateProStfForm" parameterType="hashmap"  >
+		<![CDATA[
+	       
+		]]>
 	</update>
+	
+	<select id="selectNextStfPk" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+	       select IFNULL(max(staff_id+1) , 100) AS staff_id from Staff_tbl 
+		]]>
+	</select>
 	
 	
 	<select id="selectStfLogin" parameterType="hashmap" resultType="hashmap">

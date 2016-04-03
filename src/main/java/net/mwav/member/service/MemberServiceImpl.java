@@ -59,9 +59,9 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public void updateMbrformPro(Map<String, Object> map) {
+	public void updateProMbrform(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		memberDAO.updateMbrformPro(map);
+		memberDAO.updateProMbrform(map);
 		return;
 	}
 	

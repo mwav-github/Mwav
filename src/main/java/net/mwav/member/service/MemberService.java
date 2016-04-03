@@ -20,7 +20,7 @@ public interface MemberService {
 	
 	Map<String, Object> updateMbrForm(Map<String, Object> map);
 	
-	void updateMbrformPro(Map<String, Object> map);
+	void updateProMbrform(Map<String, Object> map);
 
 	boolean updateMbrTempLoginPw(Map<String, Object> map); 
 

@@ -76,18 +76,18 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 				<div class="col-lg-12">
 
 
-					<c:if test="${mode == 'SbnsForm'}">
+					<c:if test="${mode == 'm_bnsForm'}">
 						<jsp:include page="/CommonApps/BoardNews/bnsForm.jsp"
 							flush="false" />
 					</c:if>
 
-					<c:if test="${mode == 'SbnsList'}">
+					<c:if test="${mode == 'm_bnsList'}">
 					<script></script>
 						<jsp:include page="/CommonApps/BoardNews/bnsList.jsp"
 							flush="false" />
 					</c:if>
 
-					<c:if test="${mode == 'SbnsView'}">
+					<c:if test="${mode == 'm_bnsView'}">
 						<jsp:include page="/CommonApps/BoardNews/bnsView.jsp"
 							flush="false" />
 					</c:if>

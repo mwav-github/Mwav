@@ -10,7 +10,7 @@ import javax.crypto.IllegalBlockSizeException;
 
 import net.common.dao.AbstractDAO;
 import net.mwav.common.module.AesEncryption;
-import net.mwav.common.module.Common_Util;
+import net.mwav.common.module.Common_Utils;
 
 import org.springframework.stereotype.Repository;
 
@@ -101,9 +101,9 @@ public class MemberDAO extends AbstractDAO {
 		return (Map<String, Object>) selectOne("member.updateMbrForm", map);
 	}
 
-	public void updateMbrformPro(Map<String, Object> map) {
+	public void updateProMbrform(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		update("member.updateMbrformPro", map);
+		update("member.updateProMbrform", map);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -146,7 +146,7 @@ public class MemberDAO extends AbstractDAO {
 
 	public boolean updateMbrTempLoginPw(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		Common_Util rndStr = new Common_Util();
+		Common_Utils rndStr = new Common_Utils();
 		String mbrTempLoginPw = rndStr.getString(20, ""); // 15 -> 20으로 변경
 															// (150926)
 		System.out.println("임시pw=" + mbrTempLoginPw);

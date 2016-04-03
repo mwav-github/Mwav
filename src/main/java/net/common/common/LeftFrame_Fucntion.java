@@ -43,8 +43,9 @@ public class LeftFrame_Fucntion {
 
 				String[] streName = { "ntl", "nsl", "qal", "pl", "mmail" };
 				String[] strhName = { "공지관리", "뉴스관리", "Q&A관리", "폴관리", "회원메일발송" };
-				String[] strurl = { "/HomePage/U_List.do?mm=site",
-						"/HomePage/N_List.do?mm=site", "#", "#", "#" };
+				String[] strhEName = { "공지관리", "뉴스관리", "Q&A관리", "폴관리", "회원메일발송"  };
+				String[] strurl = { "/admin/boardNews/nsmList.do",
+						"/admin/boardNotice/ntmList.do", "#", "#", "#" };
 				String[] strmAuthority = { "1", "1", "1", "1", "1" };
 				String[] strdAuthority = { "*", "*", "*", "*", "*" };
 
@@ -54,6 +55,7 @@ public class LeftFrame_Fucntion {
 
 					vo.seteName(streName[i]);
 					vo.sethKName(strhName[i]);
+					vo.sethEName(strhEName[i]);
 					vo.seturl(strurl[i]);
 					vo.setmAuthority(strmAuthority[i]); // 선택 가능 권한 (레벨)
 					vo.setdAuthority(strdAuthority[i]); // 선택 가능 부서

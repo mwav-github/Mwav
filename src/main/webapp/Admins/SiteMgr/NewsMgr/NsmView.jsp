@@ -1,155 +1,201 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<!DOCTYPE html>
 <html>
+
 <head>
-   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link href="/HomePage/App_Themes/Objects.css" rel="stylesheet" type="text/css"/>
-<link href="/HomePage/App_Themes/OverallPage.css" rel="stylesheet" type="text/css"/>
 
-<title>The News Management</title>
+<!-- /////////// -->
+<jsp:include page="/PartsOfContent/Head_Import.jsp" flush="false" />
+<!-- /////////// -->
 </head>
-<body> 
+
+<body>
+	<%--mwav는 container 영역만 쓰기때문에 그랬으나 이건 전체 쓴다. 그러므로 container로 감싸면 안된다.  --%>
+	<!--  //////////////////////////////////// -->
+	<jsp:include page="/Admins/AdminsHeader.jsp" flush="false" />
+	<!--  //////////////////////////////////// -->
 
 
-<table width="1000" border="0" align="center" cellpadding="0" cellspacing="0">
-  <tr>
-    <td colspan="3" >&nbsp;
-    <%@ include file ="/Admins/TopFrame.jsp" %>
-   <%-- 첫번째--%></td>
-  </tr>
-  <tr>
-    <td width="200" valign="top" ><table width="190" border="0" cellspacing="0" cellpadding="0">
-      <tr>
-        <td width="10">        
-         <%@ include file ="/Admins/LeftFrame.jsp" %>
-        <%-- 두번째--%></td>
-        </tr>
-    </table>
-     </td>
-     
-     
-    <td width="10">&nbsp;</td>
-    <td valign="top" >&nbsp;
-    
-    <%-- 세번째--%>
-    <form name="NsmView" method="post">
-  <table cellspacing="0" cellpadding="0" width="810" border="0">
-    <tr>
-      <td bgcolor="#ffffff"><table width="100%"  border="0" cellspacing="0" cellpadding="0">
-          <tr>
-            <td width="26"><img src="/HomePage/Admins/zImages/admin_top009.gif" width="26" height="27" /></td>
-            <td bgcolor="#f4f4f4">현재위치 : </td>
-            <td width="10"><img src="/HomePage/Admins/zImages/admin_top010.gif" width="10" height="27" /></td>
-          </tr>
-        </table></td>
-    </tr>
-    <tr>
-      <td height="20" bgcolor="#ffffff">&nbsp;</td>
-    </tr>
-    <tr>
-      <td bgcolor="#ffffff"><table width="100%"  border="0" cellspacing="0" cellpadding="0">
-          <tr>
-            <td width="160"><img src="/HomePage/Admins/SiteMgr/zImages/admin_news_003.gif" height="53" /></td>
-            <td background="/HomePage/Admins/SiteMgr/zImages/admin_notice_005.gif">&nbsp;</td>
-          </tr>
-        </table></td>
-    </tr>
-    <tr>
-      <td bgcolor="#ffffff">&nbsp;</td>
-    </tr>
-    <tr valign="top" align="center" bgcolor="#ffffff">
-      <td height="300"><table cellspacing="2" cellpadding="1" width="98%" border="0">
-          <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-			<td>&nbsp;</td>
-          </tr>
-          <tr align="center" bgcolor="#3a8bb1" >
-            <td align="center" width="11%" height="30">공지번호</td>
-            <td align="center" width="20%">분류</td>
-            <td align="center" width="13%">조회수</td>
-            <td align="center" width="19%">작성일</td>
-            <td align="center" width="17%">작성자</td>
-            <td align="center" width="20%">정렬순서</td>
-          </tr>
-          <tr align="center">
-            <td align="center" width="11%">${article.news_id}</td>
-            <td align="center" width="20%">${article.bnGroup}</td>
-            <td align="center" width="13%">${article.bnViewCount}</td>
-            <td align="center" width="19%">${article.bnWriteDt}</td>
-            <td align="center" width="17%">${article.staff_id}</td>
-            <td align="center" width="20%">${article.bnOrder}</td>
-          </tr>
-        </table>
-     
-        <table cellspacing="0" cellpadding="0" width="98%" border="0">
-          <tr>
-            <td align="left" bgcolor="#3a8bb1" height="25">&nbsp;&nbsp;
-              </td>
-          </tr>
-          <tr>
-            <td valign="top" align="center" ><br />
-              <table cellspacing="1" cellpadding="3" width="600" border="0">
-                <tr bgcolor="#ffffff">
-                  <td width="101" align="center" bgcolor="#3a8bb1">제 목</td>
-                  <td width="484" colspan="3" align="center">${article.bnTitle}</td>
-                </tr>
-                <tr bgcolor="#ffffff">
-                  <td align="center" bgcolor="#3a8bb1">부제목</td>
-                  <td colspan="3" align="center">${article.bnSubTitle}</td>
-                </tr>
-            </table></td>
-          </tr>   
-          <tr>
-          	<td align="center">
-            <table cellspacing="1" cellpadding="3" width="600" border="0">
-                <tr>
-                  <td width="101" align="center" bgcolor="#3a8bb1">내 용</td>
-                  <td align="left" width="484" colspan="3">
-                  <pre>${article.bnContent}</pre>
-                  </td>
-                  </tr>
-                  </table>
-                   <tr>
-                     <td height="20"></td>
-                   </tr>
-                   									<tr>
-										<td align="right"><button type="button" name="hlAllModify" style="border: solid 0px #FFFFFF;"
-onclick="javascript:window.location.href='/HomePage/N_UpdateForm.do?news_id=${article.news_id}'">
-<img src="/HomePage/Admins/zImages/btn_admin_modify.gif" border="0">
-</button></td>
+
+	<!-- Page Content -->
+	<div class="container">
+
+		<!-- Page Heading/Breadcrumbs -->
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">
+					Admins <small> NoticeView</small>
+				</h1>
+				<ol class="breadcrumb">
+					<li><a href="index.html">Home</a></li>
+					<li>Admins</li>
+					<li>SiteMgr</li>
+					<li class="active">NtmView</li>
+				</ol>
+			</div>
+		</div>
+		<!-- /.row -->
+
+		<!-- Content Row -->
+		<div class="row">
+			<!-- Sidebar Column left메뉴 추후 변경 예정<시작>-->
+			<div class="col-md-3">
+				<%-- 
+			- param으로 같은 이름 지정시 위의 named으로 인식
+			- getparameter는 param.mm // setattribute는 mm
+			- value에 두개다 넣는 경우 비즈니스로직 + 파라미터인경우 문제발생
+			- jsp param 안에 choose, when, otherwise 사용 불가
+			 --%>
+				<c:choose>
+					<c:when test="${param.mm eq null}">
+						<c:set value="${mm}" var="mm" />
+					</c:when>
+					<c:otherwise>
+						<c:set value="${param.mm}" var="mm" />
+					</c:otherwise>
+				</c:choose>
+				<jsp:include page="/admins/LeftMenu.do" flush="false">
+					<jsp:param name="mm" value="${mm}" />
+				</jsp:include>
+			</div>
+			<!-- 끝 -->
+
+			<div class="col-md-9">
+				<!-- 소제목 -->
+				<div class="col-lg-12">
+					<h2 class="page-header">NtmView</h2>
+				</div>
+				<!-- ----- -->
+
+				<!-- Content Column -->
+				<div class="col-lg-12">
+
+					<div class="row">
+						<%--================================================시작========================================================== --%>
+
+						<script>
+	function check2(obj) {
+		if (confirm("정말 삭제하시겠습니까??") == true){    //확인
+			var bbb = obj;
+			location.href= "/admin/boardNews/nsmDelete.do?bNews_id="+bbb;
+		}else{   //취소
+		    return;
+		}
+
+	}
+</script>
+						<!-- Content Column -->
+						<div class="table-responsive">
+							<form role="form">
+								<table class="table table-striped">
+									<thead>
+										<tr>
+											<div class="dropdown pull-right">
+												<button class="btn btn-default dropdown-toggle"
+													type="button" id="dropdownMenu1" data-toggle="dropdown"
+													aria-expanded="true">
+													Dropdown <span class="caret"></span>
+												</button>
+												<ul class="dropdown-menu" role="menu"
+													aria-labelledby="dropdownMenu1">
+													<li role="presentation"><a role="menuitem"
+														tabindex="-1" href="#">휴대폰</a></li>
+													<li role="presentation"><a role="menuitem"
+														tabindex="-1" href="#">휴대폰1</a></li>
+													<li role="presentation"><a role="menuitem"
+														tabindex="-1" href="#">휴대폰2</a></li>
+													<li role="presentation"><a role="menuitem"
+														tabindex="-1" href="#">휴대폰3</a></li>
+												</ul>
+											</div>
+										</tr>
+										<tr class="active">
+											<th>NO.</th>
+											<th>Group</th>
+											<th>ViewCount</th>
+											<th>InsertDt</th>
+											<th>staff_id</th>
+											<th>Order</th>
+										</tr>
+									</thead>
+
+
+									<tbody>
+										<tr>
+											<td>${selectOneNsmView.bNews_id}</td>
+											<td>${selectOneNsmView.bnGroup}</td>
+											<td>${selectOneNsmView.bnViewCount}</td>
+											<td>${selectOneNsmView.bnInsertDt}</td>
+											<td>${selectOneNsmView.staff_id}</td>
+											<td>${selectOneBnsView.bnOrder}</td>
+										</tr>
+									</tbody>
+								</table>
+
+								<table class="table table-striped">
+
+									<tr>
+										<th class="active">Title</th>
 									</tr>
-                  <tr height="30">
-										<td colspan="4" align="center">
-<button type="button" name="hlAllList"
-															style="border: solid 0px #FFFFFF;"
-															onclick="javascript:window.location.href='/HomePage/N_List.do'">
-														<img src="/HomePage/Admins/zImages/btn_view_list.gif" border="0">
-														</button>
-</button>
-<button type="button" name="ibDelete" style="border:solid 0px #FFFFFF;" onclick=
-"javascript:window.location.href='/HomePage/N_DeleteForm.do?news_id=${article.news_id}'">
- <img src="/HomePage/Admins/zImages/btn_admin_delete.gif"  border="0"> 
-</button>
-              </table>
-  			</td>
-  			</tr>
-  </table>
-</form>
-    
-    </td>
-  </tr>
-  <tr>
-    <td colspan="3" >&nbsp;
-    <%@ include file ="/Admins/BottomFrame.jsp" %>
-    <%-- 네번째--%>
-    </td>
-  </tr>
-</table>
+									<tr>
+										<td>${selectOneNsmView.bnTitle}</td>
+									</tr>
+
+
+
+
+									<tr>
+										<th class="active">SubTitle</th>
+									</tr>
+									<tr>
+										<td>${selectOneNsmView.bnSubTitle}</td>
+									</tr>
+
+									<tr>
+										<th class="active">Content</th>
+
+									</tr>
+									<tr>
+										<td>${selectOneNsmView.bnContent}</td>
+									</tr>
+
+								</table>
+							</form>
+
+							<br style="clear: both">
+							<p class="pull-right">
+								<button type="button" class="btn btn-success"
+									onClick="javascript:window.location.href='/admin/boardNews/nsmList.do'">All
+									List</button>
+								<button type="button" class="btn btn-warning"
+									onClick="javascript:history.go(-1)">BACK</button>
+								<button type="button" class="btn btn-danger"
+									onclick="check2(${updateNsmForm.bNews_id})">Delete</button>
+							</p>
+
+						</div>
+
+						<%--================================================끝========================================================== --%>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /.container -->
+
+	<!-- Footer -->
+	<footer>
+		<!--/////////////////////////////////////////////////// -->
+		<jsp:include page="/Admins/AdminsFooter.jsp" flush="false" />
+		<!--/////////////////////////////////////////////////// -->
+	</footer>
+
 
 </body>
+
 </html>
+

@@ -27,18 +27,18 @@
 		</thead>
 		<tbody>
 		<%--xml mapper에서 사용한 id는 사용불가능하다. --%>
-			<form name="NsmNews" action="/board/buView.do" method="post">
+			<form name="NsmNews" action="/admin/boardNotice/nsmView.do" method="post">
 				<c:choose>
-					<c:when test="${fn:length(selectListBuFrontList) > 0}">
-						<c:forEach var="VselectListBuFrontList" items="${selectListBuFrontList}">
-							<input type="hidden" name="bUsers_id" value="${VselectListBuFrontList.bUsers_id}" />
-							<input type="hidden" name="buViewCount" value="${VselectListBuFrontList.buViewCount}" />
+					<c:when test="${fn:length(selectListNtmFrontList) > 0}">
+						<c:forEach var="VselectListNtmFrontList" items="${selectListNtmFrontList}">
+							<input type="hidden" name="bUsers_id" value="${VselectListNtmFrontList.bUsers_id}" />
+							<input type="hidden" name="buViewCount" value="${VselectListNtmFrontList.buViewCount}" />
 							<tr>
 								<!-- a태그로 처리요망 -->
 								<td><a
-									href="/board/buView.do?bUsers_id=${VselectListBuFrontList.bUsers_id}">${VselectListBuFrontList.buTitle}</a></td>
+									href="/boardNotice/buView.do?bUsers_id=${VselectListNtmFrontList.bUsers_id}">${VselectListNtmFrontList.buTitle}</a></td>
 								<%--view를 구현하는 방법에 따라 달라진다. get 문 형태 유망 --%>
-								<td>${VselectListBuFrontList.buUpdateDt}</td>
+								<td>${VselectListNtmFrontList.buUpdateDt}</td>
 							</tr>
 						</c:forEach>
 					</c:when>

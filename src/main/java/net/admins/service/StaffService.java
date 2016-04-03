@@ -1,4 +1,4 @@
-package net.admin.service;
+package net.admins.service;
 
 import java.util.List;
 import java.util.Map;
@@ -20,6 +20,8 @@ public interface StaffService {
 	Map<String, Object> updateStfForm(Map<String, Object> map);
 
 	Map<String, Object> selectStfLogin(Map<String, Object> map);
+
+	void updateProStfForm(Map<String, Object> map);
 	
 
 	

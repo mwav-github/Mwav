@@ -1,225 +1,176 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<!DOCTYPE html>
 <html>
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>The Notice Management</title>
-<script type="text/javascript">
 
-function page_move(s_value,p_value){
-    var f=document.NtmList; //폼 name
-    f.bUser_id.value = s_value; //POST방식으로 넘기고 싶은 값
-    f.pageNum.value = p_value;
-    f.submit();
-    
-}
-</script>
+<!-- /////////// -->
+<jsp:include page="/PartsOfContent/Head_Import.jsp" flush="false" />
+<!-- /////////// -->
 </head>
+
 <body>
-	<table width="1000" border="0" align="center" cellpadding="0"
-		cellspacing="0">
-		<tr>
-			<td colspan="3">&nbsp; <%@ include file="/Admins/TopFrame.jsp"%>
-				<%-- 첫번째--%></td>
-		</tr>
-		<tr>
-			<td width="200" valign="top"><table width="190" border="0"
-					cellspacing="0" cellpadding="0">
-					<tr>
-						<td width="10"><%@ include file="/Admins/LeftFrame.jsp"%>
-							<%-- 두번째--%></td>
-					</tr>
-				</table></td>
+	<%--mwav는 container 영역만 쓰기때문에 그랬으나 이건 전체 쓴다. 그러므로 container로 감싸면 안된다.  --%>
+	<!--  //////////////////////////////////// -->
+	<jsp:include page="/Admins/AdminsHeader.jsp" flush="false" />
+	<!--  //////////////////////////////////// -->
 
-			<td width="10">&nbsp;</td>
-			<td valign="top">&nbsp; <%-- 세번째--%>
-			<form name="NtmList" method="post" action="/HomePage/U_View.do">
-            <input type="hidden" name="bUser_id" /> <input type="hidden"
-						name="pageNum" />
-					<table cellspacing="0" cellpadding="0" width="815" border="0">
-						<tr>
-							<td colspan="2">
-								<table cellspacing="0" cellpadding="0" width="100%" border="0">
-									<tr>
-										<td width="22"><img height="27"
-											src="/HomePage/Admins/zImages/admin_top009.gif" width="26" /></td>
-										<td bgcolor="#f4f4f4">현재위치 :</td>
-										<td width="10"><img height="27"
-											src="/HomePage/Admins/zImages/admin_top010.gif" width="10" /></td>
-									</tr>
+
+
+	<!-- Page Content -->
+	<div class="container">
+
+		<!-- Page Heading/Breadcrumbs -->
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">
+					Admins <small> NoticeForm</small>
+				</h1>
+				<ol class="breadcrumb">
+					<li><a href="index.html">Home</a></li>
+					<li>Admins</li>
+					<li>SiteMgr</li>
+					<li class="active">NtmForm</li>
+				</ol>
+			</div>
+		</div>
+		<!-- /.row -->
+
+		<!-- Content Row -->
+		<div class="row">
+			<!-- Sidebar Column left메뉴 추후 변경 예정<시작>-->
+			<div class="col-md-3">
+				<%-- 
+			- param으로 같은 이름 지정시 위의 named으로 인식
+			- getparameter는 param.mm // setattribute는 mm
+			- value에 두개다 넣는 경우 비즈니스로직 + 파라미터인경우 문제발생
+			- jsp param 안에 choose, when, otherwise 사용 불가
+			 --%>
+				<c:choose>
+					<c:when test="${param.mm eq null}">
+						<c:set value="${mm}" var="mm" />
+					</c:when>
+					<c:otherwise>
+						<c:set value="${param.mm}" var="mm" />
+					</c:otherwise>
+				</c:choose>
+				<jsp:include page="/admins/LeftMenu.do" flush="false">
+					<jsp:param name="mm" value="${mm}" />
+				</jsp:include>
+			</div>
+			<!-- 끝 -->
+
+			<div class="col-md-9">
+				<!-- 소제목 -->
+				<div class="col-lg-12">
+					<h2 class="page-header">NtmForm</h2>
+				</div>
+				<!-- ----- -->
+
+				<!-- Content Column -->
+				<div class="col-lg-12">
+
+					<div class="row">
+						<%--================================================시작========================================================== --%>
+						<form name="ntmList" method="post"
+							action="/admin/boardNotice/ntmList.do">
+
+							<div class="input-group custom-search-form">
+								<input type="text" class="form-control" placeholder="Search...">
+								<span class="input-group-btn">
+									<button class="btn btn-default" type="submit">
+										<i class="fa fa-search"></i>
+									</button>
+								</span>
+							</div>
+							<input type="hidden" name="pageNum" />
+							<div class="table-responsive">
+								<table class="table table-striped">
+									<thead>
+										<tr>
+											<th>NO.</th>
+											<th class="hidden-xs">Group</th>
+											<th class="hidden-xs">Title</th>
+											<th class="hidden-xs">WriteDate</th>
+											<%-- <th>관리메뉴</th> 삭제예정 --%>
+
+										</tr>
+									</thead>
+									<tbody>
+										<c:choose>
+											<c:when test="${fn:length(selectListNtmList) > 0}">
+												<c:forEach var="RselectListNtmList"
+													items="${selectListNtmList}">
+													<tr>
+														<input type="hidden" id="bUsers_id" name="bUsers_id"
+															value="${RselectListNtmList.bUsers_id }">
+														<td class="hidden-xs">${RselectListNtmList.bUsers_id}</td>
+														<td class="hidden-xs">${RselectListNtmList.buGroup}</td>
+														<td><a
+															href="javascript:window.location.href='/admin/boardNotice/ntmView.do?bUsers_id=${RselectListNtmList.bUsers_id}'">${RselectListNtmList.buTitle}</a></td>
+														<td class="hidden-xs">${RselectListNtmList.buUpdateDt}</td>
+														<td>
+															<button type="button" class="btn btn-info"
+																onclick="javascript:window.location.href='/admin/boardNotice/ntmView.do?bUsers_id=${RselectListNtmList.bUsers_id}'">보기</button>&nbsp;
+															<button type="button" class="btn btn-warning"
+																onclick="javascript:window.location.href='/admin/boardNotice/ntmUpdate.do?bUsers_id=${RselectListNtmList.bUsers_id}'">수정</button>
+														</td>
+													</tr>
+												</c:forEach>
+											</c:when>
+											<c:otherwise>
+												<tr>
+													<td colspan="4">조회된 결과가 없습니다.</td>
+												</tr>
+											</c:otherwise>
+										</c:choose>
+									</tbody>
 								</table>
-							</td>
-						</tr>
-						<tr>
-							<td colspan="2" height="20">&nbsp;</td>
-						</tr>
-						<tr>
-							<td>&nbsp;</td>
-							<td>
-								<table id="Table5" cellspacing="0" cellpadding="0" width="100%"
-									bgcolor="#ffffff" border="0">
-									<tr>
-										<td valign="top" align="center" height="300">
-											<table height="49" cellspacing="0" cellpadding="0"
-												width="800" border="0">
-												<tr>
-													<td width="204"><img height="49"
-														src="/HomePage/Admins/SiteMgr/zImages/admin_notice_001.gif"
-														width="204" /></td>
-													<td
-														background="/HomePage/Admins/SiteMgr/zImages/admin_notice_002.gif">
-														<table id="Table1" cellspacing="0" cellpadding="0"
-															width="98%" border="0">
-															<tr>
-																<td valign="bottom" align="left" colspan="3" height="25">
-																	<table cellspacing="0" cellpadding="0" width="100%"
-																		border="0">
-																		<tr>
-																			<td width="64%"><select name="ddlSearch">
-														<option value="bUser_id">공지번호</option>
-														<option value="buTitle">제목</option>
-														<option value="buGroup">분류</option>
-														<option value="staff_id">작성자</option>
-														<option value="buContent">내용</option>
-												</select>  <input type="text" name="tbSearchString"
-																				maxlength="8" value="검색 키워드" size="25" /> <input
-																				type="hidden" name="searchflag" value="false" /> <%--List.jsp 한번이라도 호출시 => searchflag는 false --%>
-																				<input name="btnSearch" type="submit" value="검색" />
-																				<%--검색창 http://javaclass1.tistory.com/95
-               http://www.devpia.com/Maeul/Contents/Detail.aspx?BoardID=56&MaeulNo=22&no=66203&ref=66203
-            --%></td>
-																			<td width="36%" align="right">
-																				<%-- http://snix.tistory.com/557 --%> 
-																				<select name="ddlSelMenu">
-																					<option value="1">현재공지상태</option>
-																					<option value="0">임시저장상태</option>
-																				</select>
-																			</td>
-																		</tr>
-																	</table>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*공백,특수문자를
-																	제외한 두글자 이상을 입력하세요
-																</td>
-															</tr>
-														</table>
-													<td width="8"><img height="49" src="/HomePage/Admins/Members/Images/member_003.gif" width="8" /></td>
-												</tr>
-											</table>
+							</div>
+							<!-- Pagination -->
+							<c:if test="${totalRow > 0}">
+								<div class="row text-center">
+									<div class="col-lg-12">
+										<ul class="pagination">
 
-											<table cellspacing="0" cellpadding="0" width="800" height="30" border="0">
-												<tr>
-													<td height="20"></td>
-													<td valign="bottom" align="left"></td>
-													<td valign="bottom" align="right"></td>
-												</tr>
-											</table>
-											<table cellspacing="1" cellpadding="2" width="800" border="0">
-												<tr align="center" bgcolor="#66ffcc">
-													<td width="55" height="30" bgcolor="#3a8bb1">공지번호</td>
-													<td width="70" bgcolor="#3a8bb1">분류</td>
-													<td width="171" bgcolor="#3a8bb1">제 목</td>
-													<td width="82" bgcolor="#3a8bb1">기록일</td>
-													<td width="91" bgcolor="#3a8bb1">작성자</td>
-													<td width="89" bgcolor="#3a8bb1">조회수</td>
-													<td width="74" bgcolor="#3a8bb1">정렬</td>
-													<td width="127" bgcolor="#3a8bb1">관리메뉴</td>
-												</tr>
-											</table> <!-- 회원기본정보, 회원부가정보, 회원평가치, 회원가입작성 --> 
-												<c:if test="${count == 0 } ">
-													<table width="800" cellpadding="2" cellspacing="1">
-														<tr>
-															<td align="center">게시판에 저장된 글이 없습니다.</td>
-														</tr>
-													</table>
-												</c:if> 
-												<c:if test="${count > 0}">
-													<table width="800" cellpadding="2" cellspacing="1">
-													<c:forEach var="article" items="${articleList}">
-													<tr height="30">
-														<td align="center" width="55">${article.bUser_id}</td>
-														<td align="center" width="70">${article.buGroup}</td>
-														<td align="center" width="171">${article.buTitle}</td>
-														<td align="center" width="83">${article.buWriteDt}</td>
-														<td align="center" width="91">${article.staff_id}</td>
-														<td align="center" width="89">${article.buViewCount}</td>
-														<td align="center" width="74">${article.buOrder}</td>
-														<td width="124" align="center">
-															<button type="button" name="hlAllView" style="border: solid 0px #FFFFFF;"
-																onclick="javascript:window.location.href='/HomePage/U_View.do?bUser_id=${article.bUser_id}'">
-																<%--이 경우 searchflag 는 null --%>
-																<img src="/HomePage/Admins/zImages/btn_admin_view.gif" border="0">
-															</button>
-															<button type="button" name="hlAllModify" style="border: solid 0px #FFFFFF;"
-																onclick="javascript:window.location.href='/HomePage/U_UpdateForm.do?bUser_id=${article.bUser_id}'">
-																<img src="/HomePage/Admins/zImages/btn_admin_modify.gif" border="0">
-															</button>
-															</td>
-														</tr>
-													</c:forEach>
-												</table>
+											<c:if test="${pagingVO.startPage > pagingVO.pageBlock}">
+												<li><a
+													href="/admin/boardNews/nsmList.do?pageNum=${pagingVO.startPage - pagingVO.pageBlock}">&laquo;</a></li>
 											</c:if>
+											<c:forEach var="i" begin="${pagingVO.startPage}"
+												end="${pagingVO.endPage}">
+												<li><a href="/admin/boardNews/nsmList.do?pageNum=${i}">${i}</a></li>
+											</c:forEach>
+											<c:if test="${pagingVO.endPage < pagingVO.pageCount}">
+												<li><a
+													href="/admin/boardNews/nsmList.do?pageNum=${pagingVO.startPage + pagingVO.pageBlock}">&raquo;</a></li>
+											</c:if>
+										</ul>
+									</div>
+								</div>
+							</c:if>
+						</form>
+						<%--================================================끝========================================================== --%>
+					</div>
 
-											<table width="800" cellpadding="0" cellspacing="0" height="1" bgcolor="#cccccc">
-												<tr>
-													<td height="1"></td>
-												</tr>
-											</table> <br /> <br /> 전체 글의 갯수는 ${count}개 입니다. <br /> <br />
-											<table cellspacing="0" cellpadding="0" width="800" border="0">
-												<tr>
-													<td align="center">&nbsp;</td>
-													<td align="center"></td>
-													<td align="center">
-														<button type="button" name="hlAllList"
-															style="border: solid 0px #FFFFFF;"
-															onclick="javascript:window.location.href='/HomePage/U_List.do'">
-															<%--이 경우 searchflag 는 null --%>
-															<img src="/HomePage/Admins/zImages/btn_view_list.gif" border="0">
-														</button>
-														<button type="button" name="hlInsert" style="border: solid 0px #FFFFFF;"
-															onclick="javascript:window.location.href='/HomePage/U_WriteForm.do'">
-															<img src="/HomePage/Admins/zImages/btn_admin_write.gif" border="0">
-														</button>
-													</td>
-												</tr>
-											</table>
-										</td>
-									</tr>
-								 </table>
-								 <c:if test="${count > 0}">
-        							<c:set var="imsi" value="${count % pageSize == 0 ? 0: 1 }"/>
-						        	<c:set var="pageCount" value="${count / pageSize + imsi}"/>
-						        	<c:set var="pageBlock" value="${3}"/>
-						        	<fmt:parseNumber var="result" value="${(currentPage-1) / pageBlock}" integerOnly="true"/>
-						        	<c:set var="startPage" value="${result * pageBlock + 1}"/>
-						        	<c:set var="endPage" value="${startPage + pageBlock - 1}"/>
-						        	<c:if test="${endPage > pageCount }">
-						        		<c:set var="endPage" value="${pageCount}"/>
-						        	</c:if>
-						        	<c:if test="${startPage > pageBlock}">
-						        		<a href="/HomePage/U_List.do?pageNum=${startPage - pageBlock}">[이전]</a>
-						        		<input type = "hidden" name ="pageNum" value ="${startPage - pageBlock}"/>
-						        	</c:if>
-						        	<c:forEach var="i" begin="${startPage}" end="${endPage}">
-						        	<a href="/HomePage/U_List.do?pageNum=${i}">[${i}]</a>
-						        	</c:forEach>
-						        	<c:if test="${endPage < pageCount}">
-						        		<a href="/HomePage/U_List.do?pageNum=${startPage + pageBlock}">[다음]</a>
-						        	</c:if>
-        						  </c:if>
-								<tr>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-						</tr>
-					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /.container -->
 
-				</form>	
-			</td>
-		</tr>
-		<tr>
-			<td colspan="3">&nbsp; <%@ include file="/Admins/BottomFrame.jsp"%> <%-- 네번째--%></td>
-		</tr>
-	</table>
+	<!-- Footer -->
+	<footer>
+		<!--/////////////////////////////////////////////////// -->
+		<jsp:include page="/Admins/AdminsFooter.jsp" flush="false" />
+		<!--/////////////////////////////////////////////////// -->
+	</footer>
+
+
 </body>
+
 </html>
+

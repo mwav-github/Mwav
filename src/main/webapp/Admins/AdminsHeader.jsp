@@ -104,7 +104,7 @@
 				<li><a href="/HomePage/DefaultFrameset.do?mm=cStk"
 					title="1.상품재고관리">재고관리</a></li>
 				<li class="active"><a
-					href="/HomePage/DefaultFrameset.do?mm=site"
+					href="/Admins/SiteMgr/NoticeMgr/NtmList.jsp?mm=site"
 					title="1.공지관리 2.뉴스관리 3.Q&A관리 4.폴관리">사이트관리</a></li>
 				<li><a href="/HomePage/DefaultFrameset.do?mm=firm"
 					title="1.문서자료 2.직원조회 3.회사자산">회사관리</a></li>
@@ -115,7 +115,7 @@
 				<li class="active"><a
 					href="/HomePage/DefaultFrameset.do?mm=crm"
 					title="1.통계관리 2.인적자원 3.상품통계 4.회원메일 5.임박기념일 6.이벤트목록 7.고객충성도">마켓팅관리</a></li>
-				<li><a href="/Admins/CompanyMgr/Staff/StfForm.jsp?mm=firm"
+				<li><a href="/admins/staff/stfList.do"
 					title="1.시스템상태요약 2.로그관리">시스템관리</a></li>
 
 

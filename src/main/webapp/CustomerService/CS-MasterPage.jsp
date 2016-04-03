@@ -120,17 +120,25 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 		 --%>
 
 			<div class="col-md-9">
-<%--param.mode 는 get문으로 올때 // mode는 setattribute일때 --%>
+				<%--param.mode 는 get문으로 올때 // mode는 setattribute일때 --%>
 				<c:if test="${param.mode == 'SDMyPage' || mode == 'SmbrUpdatePro'}">
 					<jsp:include page="/member/mbrView.do" flush="false" />
 				</c:if>
 				<c:if test="${mode == 'SmbrUpdate'}">
-					<jsp:include page="/CommonApps/Member/MbrShipForm.jsp" flush="false" />
+					<jsp:include page="/CommonApps/Member/MbrShipForm.jsp"
+						flush="false" />
 				</c:if>
-				
+
 				<c:if test="${param.mode == 'SDMbrDelete'}">
 					<jsp:include page="/CommonApps/Member/MbrDelete.jsp" flush="false" />
 				</c:if>
+
+				<c:if test="${mode == 'm_buView'}">
+					<jsp:include page="/CommonApps/BoardNotice/buView.jsp"
+						flush="false" />
+				</c:if>
+
+
 
 			</div>
 		</div>

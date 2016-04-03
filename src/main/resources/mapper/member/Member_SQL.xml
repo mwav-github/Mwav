@@ -31,7 +31,7 @@
 	      select * from Member_tbl where member_id= #{member_id}
 		]]>
 	</select>
-	<update id="updateMbrformPro" parameterType="hashmap" >
+	<update id="updateProMbrform" parameterType="hashmap" >
 		<![CDATA[
 	       update Member_tbl set mbrFirstName=#{mbrFirstName}, mbrMiddleName= #{mbrMiddleName}, mbrLastName= #{mbrLastName} , mbrEmail= #{mbrEmail}, mbrCellPhone= #{mbrCellPhone}, mbrAddrFlag =  #{mbrAddrFlag}, mbrZipcode = #{mbrZipcode}, mbrAddress = #{mbrAddress} where member_id = #{member_id}
 		]]>
@@ -76,9 +76,14 @@
 		]]>
 	</update>
 	
+	<!--
+	http://blog.naver.com/PostView.nhn?blogId=nebadak&logNo=90098352281&redirect=Dlog&widgetTypeCall=true
+		select distinct(zcSiGunGuName) from ZipCode_tbl where zcSiDoName = #{zcSiDoName}
+	-->
 	<select id="selectListZcGunGuSeek" parameterType="String" resultType="String">
 		<![CDATA[
-		select distinct(zcSiGunGuName) from ZipCode_tbl where zcSiDoName = #{zcSiDoName}
+		SELECT zcSiGunGuName FROM ZipCode_tbl where zcSiDoName =#{zcSiDoName}
+        GROUP BY zcSiGunGuName
 		]]>
 	</select>
 	

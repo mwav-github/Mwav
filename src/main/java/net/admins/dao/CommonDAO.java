@@ -1,4 +1,4 @@
-package net.admin.dao;
+package net.admins.dao;
 
 import java.text.SimpleDateFormat;
 import java.util.List;

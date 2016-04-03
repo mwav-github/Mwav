@@ -1,4 +1,4 @@
-package net.admin.contrloller;
+package net.admins.contrloller;
 
 import java.util.Collections;
 import java.util.Iterator;
@@ -8,19 +8,20 @@ import java.util.Map.Entry;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import net.admin.service.CommonService;
+import net.admins.service.CommonService;
 import net.common.common.CommandMap;
 import net.common.common.LeftFrame_Fucntion;
 import net.common.common.LeftFrame_VO;
-import net.mwav.common.module.Common_Util;
+import net.mwav.common.module.Common_Utils;
 import net.mwav.common.module.Paging;
 import net.mwav.common.module.PagingVO;
 
@@ -32,7 +33,7 @@ public class CommonController {
 	// 세션 관련 설정은 prehandle 에서 추후 지정(들어오는 url에 따라서)
 	// HttpSession session = request.getSession();
 
-	Common_Util cou = new Common_Util();
+	Common_Utils cou = new Common_Utils();
 
 	String mode;
 
@@ -59,7 +60,7 @@ public class CommonController {
 	@RequestMapping(value = "/admins/Default.do")
 	public ModelAndView adminDefault(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("/Admins/AdminsMasterPage");
+		ModelAndView mv = new ModelAndView("/Admins/AdminsIndex");
 
 		// mode = "SbnsForm";
 		// request.setAttribute("mode", mode);
@@ -122,6 +123,20 @@ public class CommonController {
 		// mv.addObject("IDX", commandMap.get("IDX"));
 
 		return mv;
+	}
+	
+	@RequestMapping(value = "/common/fileUpLoader.do")
+	public ModelAndView insertGdsUpLoader(CommandMap commandMap,
+			HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("/Admins/Goods/GdsUpLoader");
+
+		//http://stackoverflow.com/questions/19922358/how-to-upload-an-image-to-webapp-resources-images-directory-using-spring-mvc
+		//서버 루트로 파일저장
+		// 그냥 하면 해당 c드라이브 루트로 잡는다. 서버루트가아닌 
+		CommonService.insertGdsUpLoader(commandMap.getMap(), request);
+	     
+	    return mv;
+		
 	}
 
 }

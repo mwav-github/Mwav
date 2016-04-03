@@ -150,7 +150,7 @@
 				-->
 						<h4><strong>Notices</strong></h4>
 
-						<jsp:include page="/boardNotice/buFrontList.do" flush="false" />
+						<jsp:include page="/board/buFrontList.do" flush="false" />
 
 						<div class="enter"></div>
 						<h4><strong>News</strong></h4>

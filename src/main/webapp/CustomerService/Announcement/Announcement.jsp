@@ -77,7 +77,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 				<!-- Content Column -->
 				<div class="col-lg-12">
 
-					<jsp:include page="/boardNotice/buList.do" flush="false" />
+					<jsp:include page="/board/buList.do" flush="false" />
 
 				</div>
 

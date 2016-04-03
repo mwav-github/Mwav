@@ -15,12 +15,12 @@ display: block 와 margin 로 요소를 설정하세요. 믹스인과 클래스�
  * Modal Height
  * 
  * 모달 전체 바디 조정
- */
+/*
 .modal-body {
     max-height: calc(100vh - 210px) !important;
     overflow-y: auto !important;
 }
-
+ */
 
 /*
  * slideshow images

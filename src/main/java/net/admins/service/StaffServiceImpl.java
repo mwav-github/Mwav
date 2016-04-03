@@ -1,4 +1,4 @@
-package net.admin.service;
+package net.admins.service;
 
 import java.util.Iterator;
 import java.util.List;
@@ -8,7 +8,7 @@ import java.util.Set;
 
 import javax.annotation.Resource;
 
-import net.admin.dao.StaffDAO;
+import net.admins.dao.StaffDAO;
 import net.common.common.CommandMap;
 
 import org.apache.log4j.Logger;
@@ -61,6 +61,13 @@ public class StaffServiceImpl implements StaffService {
 	public List<Map<String, Object>> selectListStfList(Map<String, Object> map) {
 		// TODO Auto-generated method stub
 		return staffDAO.selectListStfList(map);
+	}
+
+	@Override
+	public void updateProStfForm(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		staffDAO.updateProStfForm(map);
+		
 	}
 
 }

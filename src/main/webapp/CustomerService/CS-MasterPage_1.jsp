@@ -30,7 +30,7 @@
 							flush="false" />
 					</c:if>
 					
-					<c:if test="${mode == 'SbuView'}">
+					<c:if test="${mode == 'm_stfForm'}">
 						<jsp:include page="/CommonApps/BoardNotice/buView.jsp"
 							flush="false" />
 					</c:if>

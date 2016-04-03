@@ -114,6 +114,7 @@ public class MemberController {
 
 		ModelAndView mv = new ModelAndView("/MasterPage_1");
 		// * action-servlet.xml에서 위에 .jsp 설정해줘서 위의 CommonApps 부터 되는거
+        // html에서 disabled 할시 값이 안넘어 온다. ~! readonly로 하는 경우 값이 null로 넘어온다.
 		String b_mbrLoginPw = (String) commandMap.get("mbrLoginPw");
 		System.out.println("b_mbrLoginPw" + b_mbrLoginPw);
 
@@ -221,11 +222,11 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/member/mbrUpdatePro.do")
-	public ModelAndView updateMbrformPro(CommandMap commandMap,
+	public ModelAndView updateProMbrform(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/CustomerService/CS-MasterPage");
 
-		mode = "SmbrUpdatePro";
+		mode = "SUpdateProMbr";
 		request.setAttribute("mode", mode);
 
 		// 위의 view랑 동일하게 사용
@@ -255,7 +256,7 @@ public class MemberController {
 
 		}
 
-		memberService.updateMbrformPro(commandMap.getMap());
+		memberService.updateProMbrform(commandMap.getMap());
 
 		return mv;
 	}

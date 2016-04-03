@@ -43,7 +43,20 @@
 		<div class="row">
 			<!-- Sidebar Column left메뉴 추후 변경 예정<시작>-->
 			<div class="col-md-3">
-				<%--http://egloos.zum.com/tiger5net/v/5828786 --%>
+				<%-- 
+			- param으로 같은 이름 지정시 위의 named으로 인식
+			- getparameter는 param.mm // setattribute는 mm
+			- value에 두개다 넣는 경우 비즈니스로직 + 파라미터인경우 문제발생
+			- jsp param 안에 choose, when, otherwise 사용 불가
+			 --%>
+				<c:choose>
+					<c:when test="${param.mm eq null}">
+						<c:set value="${mm}" var="mm" />
+					</c:when>
+					<c:otherwise>
+						<c:set value="${param.mm}" var="mm" />
+					</c:otherwise>
+				</c:choose>
 				<jsp:include page="/admins/LeftMenu.do" flush="false">
 					<jsp:param name="mm" value="${mm}" />
 				</jsp:include>
@@ -92,10 +105,11 @@
 																	<td><div class='form-group'>
 																			<div class='col-md-8'>
 
-																				<input class='form-control' name="stfLoginId" id="chkLoginId"
-																					type='text' maxlength="20"
+																				<input class='form-control' name="stfLoginId"
+																					id="chkLoginId" type='text' maxlength="20"
 																					value="${updateStfForm.stfLoginId }"
-																					readonly="readonly" onchange="chkLoginPolicy()" required>
+																					readonly="readonly" onchange="chkLoginPolicy()"
+																					required>
 																			</div>
 																		</div></td>
 																</tr>
@@ -107,7 +121,8 @@
 																				<input class='form-control' name="stfLoginPw"
 																					type='password' id="chkLoginPW"
 																					value="${updateStfForm.stfLoginPw }"
-																					readonly="readonly" onchange="chkPWPolicy()" required>
+																					readonly="readonly" onchange="chkPWPolicy()"
+																					required>
 																			</div>
 																		</div></td>
 																</tr>
@@ -117,7 +132,7 @@
 																			<div class='col-md-8'>
 
 																				<input class="form-control" name="stfNumber"
-																					type="text" value="${updateStfForm.stfLoginPw }"
+																					type="text" value="${updateStfForm.stfNumber}"
 																					readonly="readonly" required />
 
 
@@ -241,8 +256,9 @@
 																	<td>이메일:</td>
 																	<td><div class='form-group'>
 																			<div class='col-md-8'>
-																				<input class="form-control" name="stfEmail" id="chkEmail"
-																					type="text" value="${updateStfForm.stfEmail}"
+																				<input class="form-control" name="stfEmail"
+																					id="chkEmail" type="text"
+																					value="${updateStfForm.stfEmail}"
 																					onchange="chkEmailPolicy()" required />
 																			</div>
 																		</div></td>
@@ -366,13 +382,13 @@
 												<div class="panel-footer">
 
 													<button type="button" class="btn btn-sm btn-primary"
-														onclick="javascript:window.location.href='/HomePage/S_List.do'">
+														onclick="javascript:window.location.href='/admins/staff/stfList.do'">
 														리스트</button>
 
 													<button type="button" class="btn btn-sm btn-primary"
 														onClick="javascript:history.go(-1)">뒤로가기</button>
 
-													<button type="submit" class="btn btn-sm btn-primary">가입하기
+													<button type="submit" class="btn btn-sm btn-primary">수정하기
 													</button>
 
 												</div>
@@ -412,8 +428,9 @@
 																	<td><div class='form-group'>
 																			<div class='col-md-8'>
 
-																				<input class='form-control' name="stfLoginId" id="chkLoginId"
-																					type='text' maxlength="15" onchange="chkLoginPolicy()" required>
+																				<input class='form-control' name="stfLoginId"
+																					id="chkLoginId" type='text' maxlength="15"
+																					onchange="chkLoginPolicy()" required>
 																			</div>
 																		</div></td>
 																</tr>
@@ -423,7 +440,8 @@
 																			<div class='col-md-8'>
 
 																				<input class='form-control' name="stfLoginPw"
-																					id="chkLoginPW" type='password' onchange="chkPWPolicy()" required>
+																					id="chkLoginPW" type='password'
+																					onchange="chkPWPolicy()" required>
 																			</div>
 																		</div></td>
 																</tr>
@@ -567,8 +585,9 @@
 																	<td>이메일:</td>
 																	<td><div class='form-group'>
 																			<div class='col-md-8'>
-																				<input class="form-control" name="stfEmail" id="chkEmail"
-																					type="text" onchange="chkEmailPolicy()" required />
+																				<input class="form-control" name="stfEmail"
+																					id="chkEmail" type="text"
+																					onchange="chkEmailPolicy()" required />
 																			</div>
 																		</div></td>
 																</tr>
@@ -617,8 +636,7 @@
 																			<div class='col-md-8'>
 																				<input class="form-control" id="Zipcode"
 																					name="stfZipcode" type="text" maxlength="6"
-																					value=""
-																					readonly="readonly" />
+																					value="" readonly="readonly" />
 																			</div>
 																		</div></td>
 																</tr>
@@ -642,8 +660,7 @@
 
 																			<div class='col-md-8'>
 																				<input class="form-control" id="Address"
-																					name="stfAddress_1" type="text"
-																					value=""
+																					name="stfAddress_1" type="text" value=""
 																					placeholder='주소' readonly="readonly" />
 																			</div>
 																			<div class='col-md-8'>
@@ -666,8 +683,10 @@
 																	<td class="active">아바타:</td>
 																	<td><div class='form-group'>
 																			<div class='col-md-8'>
-																				<input class="form-control" name="stfAvataImage"
-																					type="file" />
+																				<button type="button" name="stfAvataImage"
+																					class="btn btn-sm btn-primary" data-toggle="modal"
+																					data-target=".modalUploadImages">이미지업로드</button>
+
 																			</div>
 																		</div></td>
 																</tr>
@@ -687,7 +706,7 @@
 												<div class="panel-footer">
 
 													<button type="button" class="btn btn-sm btn-primary"
-														onclick="javascript:window.location.href='/HomePage/S_List.do'">
+														onclick="javascript:window.location.href='/admins/staff/stfList.do'">
 														리스트</button>
 
 													<button type="button" class="btn btn-sm btn-primary"
@@ -716,6 +735,11 @@
 
 	<%-- 아래의 내용을 위에 주소 위치에 둘 경우 form태그가 해당위치로 닫힌다 form태그 중복 추후 확인 필요 --%>
 	<jsp:include page="/CommonApps/PostSeek/PostSeek.jsp" flush="false" />
+	
+	
+	<%-- <!-- --> 주석처리해도 include는 된다.  --%>
+	<jsp:include page="/Admins/Goods/GdsUpLoader.jsp" flush="false" />
+ 
 
 	<!-- Footer -->
 	<footer>

@@ -9,7 +9,6 @@ import org.apache.log4j.Logger;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import net.common.logger.LoggerInterceptor;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 //
@@ -17,7 +16,7 @@ public class LoggerInterceptor extends HandlerInterceptorAdapter {
 	// private final Logger log = LoggerFactory.getLogger(this.getClass());
 	//Logger log = Logger.getLogger(this.getClass());
 
-	// protected Log log = LogFactory.getLog(LoggerInterceptor.class);
+	 protected Log log = LogFactory.getLog(LoggerInterceptor.class);
 
 	// Log4js 설정
 	// http://dev.anyframejava.org/docs/anyframe/plugin/essential/core/1.6.0/reference/html/ch21.html
@@ -59,7 +58,6 @@ public class LoggerInterceptor extends HandlerInterceptorAdapter {
 	/*
 	 * redirect 와 response 차이 
 	 */
-	protected Log log = LogFactory.getLog(LoggerInterceptor.class);
 	@Override
 	public boolean preHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler) throws Exception {
@@ -72,6 +70,8 @@ public class LoggerInterceptor extends HandlerInterceptorAdapter {
 			System.out.println(request.getRequestURI());
 			System.out.println("LoggerInterceptor에 들어왔다.");
 		}
+		
+		request.setAttribute("msm", "출력되나");
 		/*
 		 * 1. 전체 url 중 /admins /Admins 만 substring 등을 이용해서 조건 부여 2. 그러나 여기서 계속
 		 * redirect 먹히지 않음 3. url.substring // url.equals 에서 계속안먹음 원인 파악 불가 4.
@@ -187,11 +187,14 @@ public class LoggerInterceptor extends HandlerInterceptorAdapter {
 	public void postHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
-		System.out.println("LoggerInterceptor에 나갔다.11");
+		System.out.println("모든 것을 수행한 후 LoggerInterceptor에 나갔다.11");
 		log.debug("======================================           END          ======================================\n");
+		
+		request.setAttribute("test", "테스트입니다.");
 		log.info("======================================           END          ======================================\n");
 
 		
 		
 	}
+	
 }

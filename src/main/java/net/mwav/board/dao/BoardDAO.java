@@ -12,6 +12,10 @@ public class BoardDAO extends AbstractDAO {
 
 	// Abstrat로 변경
 
+	
+	/////////////////////////////////////BoardNews/////////////////////////////////////
+
+	
 	/*========================================등록========================================*/
 	
 	public void insertBnsForm(Map<String, Object> map) {
@@ -72,7 +76,13 @@ public class BoardDAO extends AbstractDAO {
 		update("board.deleteBnsDelete", map);
 	}
 	
-	/////////////////////////////Notice부분////////////////////////////////////////
+	
+	
+	
+	
+	
+/////////////////////////////////////BoardNotices/////////////////////////////////////
+	
 /*========================================등록========================================*/
 	
 	public void insertBuForm(Map<String, Object> map) {

@@ -1,94 +1,90 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<!DOCTYPE html>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>큰 이미지보기</title>
-<link rel="stylesheet" type="text/css" href="App_Themes/Objects.css"
-	charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="App_Themes/OverallPage.css"
-	charset="UTF-8">
-<style type="text/css">
-</style>
-</head>
-<body>
 
-				<form id="frmShop">
-					<table cellspacing="0" cellpadding="0" width="100%" border="0">
-						<tbody>
-							<tr>
-								<td colspan="3">
-									<table cellspacing="0" cellpadding="0" width="100%" border="0">
-										<tbody>
-											<tr>
-												<td align="right" colspan="3" height="41">
-													<table cellspacing="0" cellpadding="0" width="100%"
-														border="0">
-														<tbody>
-															<tr>
-																<td align="left"
-																	background="Admins/Goods/Images/title_bg.gif"><img
-																	src="Admins/Goods/Images/title.gif" width="751"
-																	height="41" /></td>
-															</tr>
-														</tbody>
-													</table>
-												</td>
-											</tr>
-										</tbody>
-									</table>
-								</td>
-							</tr>
-							<tr>
-								<td valign="top" align="center" style="padding: 5px">
-									<table width="100%" height="500" border="1" cellpadding="0"
-										cellspacing="0" bordercolor="#d7e5f1">
-										<tbody>
-											<tr>
-												<td align="center"><img id="imgLIV"
-													src="xUpload/GdsData/${id}/${images.get(0).getgFileName()}"></img>
-												</td>
-											</tr>
-										</tbody>
-									</table>
-								</td>
-								<td valign="top" width="1" bgcolor="#ffffff"></td>
-								<td valign="top" align="center" width="160" height="100%">
-									<div id="Layer1"
-										style="OVERFLOW-Y: scroll; VISIBILITY: visible; OVERFLOW-X: hidden; WIDTH: 100%; HEIGHT: 580px">
-										<ItemTemplate>
-										<table width="100%" border="0" cellpadding="5" cellspacing="0"
-											align="center">
-											<c:forEach var="images" items="${images}">
-												<tr>
-													<td width="100%"><img
-														src="xUpload/GdsData/${id}/n${images.getgFileName()}"
-														width="160" height="160" /></td>
-												</tr>
-											</c:forEach>
-										</table>
-										</ItemTemplate>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<td colspan="3">
-									<table cellspacing="0" cellpadding="0" width="90%" border="0">
-										<tbody>
-											<tr>
-												<td valign="bottom" align="right" height="10"><img
-													src="Admins/Goods/Images/btnClose.gif" width="108"
-													height="34" onclick="self.close();" /></td>
-											</tr>
-										</tbody>
-									</table>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</form>
+<head>
+
+<!-- /////////// -->
+<jsp:include page="/PartsOfContent/Head_Import.jsp" flush="false" />
+<!-- /////////// -->
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+    var $lightbox = $('#lightbox');
+    
+    $('[data-target="#lightbox"]').on('click', function(event) {
+        var $img = $(this).find('img'), 
+            src = $img.attr('src'),
+            alt = $img.attr('alt'),
+            css = {
+                'maxWidth': $(window).width() - 100,
+                'maxHeight': $(window).height() - 100
+            };
+    
+        $lightbox.find('.close').addClass('hidden');
+        $lightbox.find('img').attr('src', src);
+        $lightbox.find('img').attr('alt', alt);
+        $lightbox.find('img').css(css);
+    });
+    
+    $lightbox.on('shown.bs.modal', function (e) {
+        var $img = $lightbox.find('img');
+            
+        $lightbox.find('.modal-dialog').css({'width': $img.width()});
+        $lightbox.find('.close').removeClass('hidden');
+    });
+});
+</script>
+
+<style>
+
+#lightbox .modal-content {
+    display: inline-block;
+    text-align: center;   
+}
+
+#lightbox .close {
+    opacity: 1;
+    color: rgb(255, 255, 255);
+    background-color: rgb(25, 25, 25);
+    padding: 5px 8px;
+    border-radius: 30px;
+    border: 2px solid rgb(255, 255, 255);
+    position: absolute;
+    top: -15px;
+    right: -55px;
+    
+    z-index:1032;
+}
+
+#lightbox a.zoom:hover img { transform: scale(1.3); -ms-transform: scale(1.3); -webkit-transform: scale(1.3); -o-transform: scale(1.3); -moz-transform: scale(1.3); }
+#lightbox a.zoom span.overlay { position: absolute; top: 0; left: 0; visibility: hidden; height: 100%; width: 100%; background-color: #000; opacity: 0; 
+    transition: opacity .25s ease-out;
+    -moz-transition: opacity .25s ease-out;
+    -webkit-transition: opacity .25s ease-out;
+    -o-transition: opacity .25s ease-out;
+}     
+
+</style>
+
+</head>
+
+<body>
+	<div id="lightbox" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <button type="button" class="close hidden" data-dismiss="modal" aria-hidden="true">×</button>
+        <div class="modal-content">
+            <div class="modal-body">
+                <img src="" alt="" />
+            </div>
+        </div>
+    </div>
+</div>
+
 
 </body>
 </html>

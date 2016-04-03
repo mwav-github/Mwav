@@ -45,13 +45,13 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<h1 class="page-header">
-					Admins <small> StfForm</small>
+					Admins <small> StfView</small>
 				</h1>
 				<ol class="breadcrumb">
 					<li><a href="index.html">Home</a></li>
 					<li>Admins</li>
 					<li>CompanyMgr</li>
-					<li class="active">StfForm</li>
+					<li class="active">StfView</li>
 				</ol>
 			</div>
 		</div>
@@ -62,6 +62,14 @@
 			<!-- Sidebar Column left메뉴 추후 변경 예정<시작>-->
 			<div class="col-md-3">
 				<%--http://egloos.zum.com/tiger5net/v/5828786 --%>
+				<c:choose>
+					<c:when test="${param.mm eq null}">
+						<c:set value="${mm}" var="mm" />
+					</c:when>
+					<c:otherwise>
+						<c:set value="${param.mm}" var="mm" />
+					</c:otherwise>
+				</c:choose>
 				<jsp:include page="/admins/LeftMenu.do" flush="false">
 					<jsp:param name="mm" value="${mm}" />
 				</jsp:include>
@@ -86,7 +94,7 @@
 	</div> -->
 
 						<form class='form-horizontal' name="change_record" method="post"
-							action="/admins/staff/stfForm.do">
+							action="/admins/staff/stf.do">
 							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
 								<div class="panel panel-primary">
@@ -248,15 +256,18 @@
 										<div class="panel-footer">
 
 											<button type="button" class="btn btn-sm btn-primary"
-												onclick="javascript:window.location.href='/HomePage/S_List.do'">
+												onclick="javascript:window.location.href='/admins/staff/stfList.do'">
 												리스트</button>
 
 											<button type="button" class="btn btn-sm btn-primary"
-												onClick="javascript:history.go(-1)">수정하기</button>
+												onClick="/admins/staff/stfUpdate.do?staff_id=${selectStfView.staff_id}">수정하기</button>
 
 											<button type="submit" class="btn btn-sm btn-primary">탈퇴하기
 											</button>
 
+
+											<input type="hidden" name="staff_id"
+												value="${selectStfView.staff_id}">
 										</div>
 
 									</div>

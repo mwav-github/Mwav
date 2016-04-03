@@ -55,7 +55,20 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 		<div class="row">
 			<!-- Sidebar Column left메뉴 추후 변경 예정<시작>-->
 			<div class="col-md-3">
-	<%--http://egloos.zum.com/tiger5net/v/5828786 --%>
+
+				<%--http://egloos.zum.com/tiger5net/v/5828786 
+${param.name} => request.getParameter("name");
+${member} => request.getAttribute("member");
+	--%>
+
+				<c:choose>
+					<c:when test="${param.mm eq null}">
+						<c:set value="${mm}" var="mm" />
+					</c:when>
+					<c:otherwise>
+						<c:set value="${param.mm}" var="mm" />
+					</c:otherwise>
+				</c:choose>
 				<jsp:include page="/admins/LeftMenu.do" flush="false">
 					<jsp:param name="mm" value="${mm}" />
 				</jsp:include>
@@ -120,9 +133,9 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 														<td>
 															<!-- <span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td> -->
 															<button type="button" class="btn btn-info"
-																onclick="javascript:window.location.href='/admins/staff/stfView.do?staff_id=${VselectListStfList.staff_id}&mm=firm'">보기</button>&nbsp;
+																onclick="javascript:window.location.href='/admins/staff/stfView.do?staff_id=${VselectListStfList.staff_id}'">보기</button>&nbsp;
 															<button type="button" class="btn btn-warning"
-																onclick="javascript:window.location.href='/board/bnsModify.do?bNews_id=${VselectListStfList.staff_id}&mm=firm'">수정</button>
+																onclick="javascript:window.location.href='/admins/staff/stfUpdate.do?staff_id=${VselectListStfList.staff_id}'">수정</button>
 														</td>
 													</tr>
 												</c:forEach>

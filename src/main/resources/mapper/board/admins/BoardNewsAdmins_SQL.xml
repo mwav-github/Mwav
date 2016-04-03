@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="boardNewsAdminsDAO">
+	
+	<!--/*========================================등록========================================*/  -->
+	<insert id="insertNsmForm" parameterType="hashmap">
+		<![CDATA[
+			INSERT INTO BoardNews_tbl
+				SELECT IFNULL(max(bNews_id)+1,100001), #{bnGroup}, #{bnHighLight}, #{bnTitle}, #{bnSubTitle}, #{bnRelatedLink}, #{bnContent}, #{bnViewCount}, #{bnOrder}, #{bnStatus}, #{staff_id}, NOW(), NOW(), null FROM BoardNews_tbl
+		]]>
+	</insert>
+
+    <!--/*========================================보기========================================*/  -->
+
+   <select id="selectOneNsmView" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+	    select * from BoardNews_tbl where bNews_id = #{bNews_id}
+	]]>
+	</select>
+	
+	<!--/*======================+==================수정========================================*/  -->
+	
+	<update id="updateNsmHitCnt" parameterType="hashmap">
+    <![CDATA[
+       update BoardNews_tbl set bnViewCount = iFnull(bnViewCount, 0) +1 where bNews_id = #{bNews_id} 
+    ]]>
+    </update>
+    
+    <select id="updateNsmform" parameterType="hashmap" resultType="hashmap">
+    <![CDATA[
+        select * from BoardNews_tbl where bNews_id = #{bNews_id}
+    ]]>
+    </select>
+    
+    <update id="updateProNsmform" parameterType="hashmap">
+    <![CDATA[
+        update BoardNews_tbl set bnGroup= #{bnGroup}, bnHighLight= #{bnHighLight}, bnTitle= #{bnTitle}, bnSubTitle= #{bnSubTitle}, bnRelatedLink= #{bnRelatedLink}, bnContent= #{bnContent}, bnViewCount= #{bnViewCount}, bnOrder= #{bnOrder}, bnStatus= #{bnStatus}, staff_id= #{staff_id}, bnInsertDt= #{bnInsertDt}, bnUpdateDt= NOW(), bnDeleteDt=null where bNews_id = #{bNews_id}
+    ]]>
+    </update>
+ 
+	
+	<!--/*========================================리스트(SelctOne, SelectList 순)========================================*/  -->
+	
+	<select id="selectOneGetNsmTotalCount" resultType="int">
+	<![CDATA[
+	   select count(*) from BoardNews_tbl
+	]]>
+	</select>
+	
+	<select id="selectListNsmFrontList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT bNews_id, bnTitle, date_format(bnUpdateDt,'%Y%m%d') as bnUpdateDt
+		    FROM BoardNews_tbl
+		    WHERE bnDeleteDt IS NULL ORDER BY bnUpdateDt DESC Limit 5
+		]]>
+	</select>
+
+	
+	<!-- .
+	normal : select bNews_id, bnGroup, bnTitle, bnSubTitle, bnSubTitle, date_format(bnUpdateDt,'%d %b %Y %T') as bnUpdateDt from BoardNews_tbl WHERE bnDeleteDt IS NULL ORDER BY bNews_id;
+	mysql : select c.* from (select @ROWNUM := @ROWNUM + 1 AS ROWNUM, a.* from (select * from BoardNews_tbl order by bnInsertDt desc) a,  (SELECT @ROWNUM := 0) R ) c where c.ROWNUM >= 0 and c.ROWNUM <= 10
+    oracle : select * from (select rownum rnum, news_id, bnGroup, bnHighLight, bnTitle, bnSubTitle, bnRelatedLink, bnContent, bnViewCount, bnOrder, bnStatus, staff_id, bnWriteDt, bnModifyDt, bnDeleteDt from (select * from BoardNews_tbl order by bnWriteDt desc)) where rnum >= ? and rnum <= ?	
+	-->
+	
+	<select id="selectListNsmList" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+	select c.* from (select @ROWNUM := @ROWNUM + 1 AS ROWNUM, a.* from (select * from BoardNews_tbl order by bnInsertDt desc) a,  (SELECT @ROWNUM := 0) R ) c where c.ROWNUM >= #{startRow} and c.ROWNUM <= #{endRow}
+	]]>
+	</select>
+	
+	
+	<!--/*========================================삭제========================================*/  -->
+	
+	
+	<update id="deleteNsmDelete" parameterType="hashmap">
+    <![CDATA[
+        update BoardNews_tbl set bnDeleteDt = NOW() where bNews_id = #{bNews_id}
+    ]]>
+    </update>
+
+</mapper>

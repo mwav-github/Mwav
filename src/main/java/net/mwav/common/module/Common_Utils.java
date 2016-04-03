@@ -8,14 +8,14 @@ import net.common.common.CommandMap;
 
 import org.apache.log4j.Logger;
 
-public class Common_Util {
+public class Common_Utils {
 
 	Logger log = Logger.getLogger(this.getClass());
 	private static String pattern = "[a-zA-Z0-9]+$";
 	private static StringBuffer returnString = null;
 
 	public static void main(String[] args) {
-		Common_Util rndStr = new Common_Util();
+		Common_Utils rndStr = new Common_Utils();
 
 		System.out.println("[랜덤 문자열]");
 		System.out.println("숫자 (50자리) : " + rndStr.getString(50, "1"));
@@ -28,27 +28,27 @@ public class Common_Util {
 	}
 
 	// Overload Constructor
-	public Common_Util() {
+	public Common_Utils() {
 		returnString = new StringBuffer();
 	}
 
-	public Common_Util(int len) {
+	public Common_Utils(int len) {
 		returnString = new StringBuffer();
 		this.setLength(len);
 	}
 
-	public Common_Util(String type) {
+	public Common_Utils(String type) {
 		returnString = new StringBuffer();
 		this.setType(type);
 	}
 
-	public Common_Util(int len, String type) {
+	public Common_Utils(int len, String type) {
 		returnString = new StringBuffer();
 		this.setLength(len);
 		this.setType(type);
 	}
 
-	public Common_Util(String type, int len) {
+	public Common_Utils(String type, int len) {
 		returnString = new StringBuffer();
 		this.setType(type);
 		this.setLength(len);

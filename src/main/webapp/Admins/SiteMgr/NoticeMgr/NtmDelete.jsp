@@ -1,59 +1,98 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<!DOCTYPE html>
 <html>
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>The Notice Management</title>
+
+<!-- /////////// -->
+<jsp:include page="/PartsOfContent/Head_Import.jsp" flush="false" />
+<!-- /////////// -->
 </head>
+
 <body>
-
-	<table width="1000" border="0" align="center" cellpadding="0"
-		cellspacing="0">
-		<tr>
-			<td colspan="3">&nbsp; <%@ include file="/Admins/TopFrame.jsp"%>
-				<%-- 첫번째--%></td>
-		</tr>
-		<tr>
-			<td width="200" valign="top"><table width="190" border="0"
-					cellspacing="0" cellpadding="0">
-					<tr>
-						<td width="10"><%@ include file="/Admins/LeftFrame.jsp"%>
-							<%-- 두번째--%></td>
-					</tr>
-				</table></td>
+	<%--mwav는 container 영역만 쓰기때문에 그랬으나 이건 전체 쓴다. 그러므로 container로 감싸면 안된다.  --%>
+	<!--  //////////////////////////////////// -->
+	<jsp:include page="/Admins/AdminsHeader.jsp" flush="false" />
+	<!--  //////////////////////////////////// -->
 
 
-			<td width="10">&nbsp;</td>
-			<td valign="top">&nbsp; <%-- 세번째--%>
-				<form method="post" name="NtmDelete"
-					action="/HomePage/U_DeletePro.do">
-					<input type="hidden" name="bUser_id" value="${bUser_id}"> 
-					<input type="hidden" name="pageNum" value="${pageNum}">
-					<table align="center">
-						<tr height="30">
-							<td align="center"><b>삭제 하시겠습니까?</b></td>
-						</tr>
-						<tr height="30">
-							<td align="center">            
-							<button type="submit" name="ibDelete" style="border:solid 0px #FFFFFF;" onclick="javascript:window.location.href='/HomePage/U_Delete.do?staff_id=${staff_id}'" >
- 								<img src="/HomePage/Admins/zImages/btn_admin_delete.gif"  border="0"> 
-							</button>
-							<button type="button" name="hiList" style="border:solid 0px #FFFFFF;"  onclick="javascript:window.location.href='/HomePage/U_List.do?pageNum=${pageNum}'" >
- 								<img src="/HomePage/Admins/zImages/btn_view_list.gif"  border="0"> 
-							</button>
-							</td>
-						</tr>
-					</table>
-				</form>
 
-			</td>
-		</tr>
-		<tr>
-			<td colspan="3">&nbsp; <%@ include file="/Admins/BottomFrame.jsp"%> <%-- 네번째--%>
-			</td>
-		</tr>
-	</table>
+	<!-- Page Content -->
+	<div class="container">
+
+		<!-- Page Heading/Breadcrumbs -->
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">
+					Admins <small> NoticeView</small>
+				</h1>
+				<ol class="breadcrumb">
+					<li><a href="index.html">Home</a></li>
+					<li>Admins</li>
+					<li>SiteMgr</li>
+					<li class="active">NtmView</li>
+				</ol>
+			</div>
+		</div>
+		<!-- /.row -->
+
+		<!-- Content Row -->
+		<div class="row">
+			<!-- Sidebar Column left메뉴 추후 변경 예정<시작>-->
+			<div class="col-md-3">
+				<%-- 
+			- param으로 같은 이름 지정시 위의 named으로 인식
+			- getparameter는 param.mm // setattribute는 mm
+			- value에 두개다 넣는 경우 비즈니스로직 + 파라미터인경우 문제발생
+			- jsp param 안에 choose, when, otherwise 사용 불가
+			 --%>
+				<c:choose>
+					<c:when test="${param.mm eq null}">
+						<c:set value="${mm}" var="mm" />
+					</c:when>
+					<c:otherwise>
+						<c:set value="${param.mm}" var="mm" />
+					</c:otherwise>
+				</c:choose>
+				<jsp:include page="/admins/LeftMenu.do" flush="false">
+					<jsp:param name="mm" value="${mm}" />
+				</jsp:include>
+			</div>
+			<!-- 끝 -->
+
+			<div class="col-md-9">
+				<!-- 소제목 -->
+				<div class="col-lg-12">
+					<h2 class="page-header">NtmView</h2>
+				</div>
+				<!-- ----- -->
+
+				<!-- Content Column -->
+				<div class="col-lg-12">
+
+					<div class="row">
+<%--================================================시작========================================================== --%>
+<%--================================================끝========================================================== --%>						
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /.container -->
+
+	<!-- Footer -->
+	<footer>
+		<!--/////////////////////////////////////////////////// -->
+		<jsp:include page="/Admins/AdminsFooter.jsp" flush="false" />
+		<!--/////////////////////////////////////////////////// -->
+	</footer>
+
 
 </body>
+
 </html>
+

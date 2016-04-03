@@ -1,88 +1,177 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>이미지파일 업로드</title>
-<script type="text/javascript" src="Admins/Goods/script.js"
-	charset="UTF-8"></script>
-<link rel="stylesheet" type="text/css" href="App_Themes/Objects.css" charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="App_Themes/OverallPage.css" charset="UTF-8">
-</head>
-<body>
-<!--http://www.albumbang.com/board/board_view.jsp?board_name=free&no=292 파일업로드 관련 -->
-    <form name="GdsUpLoader" method="post"
-		action="GdsUpLoader.do?position=${position}" 
-		enctype="multipart/form-data">
-  <table cellSpacing="0" cellPadding="0" width="500" border="0">
-   <tr>
-    <td align="center" bgColor="#efefef" height="60"><strong>파일업로드</strong>
-   </tr>
-   <tr>
-    <td height="10"></td>
-   </tr>
-   <tr>
-    <td class="bbold" vAlign="bottom" align="center" height="80">
-     <table cellSpacing="0" cellPadding="0" width="100%" border="0">
-      <tr>
-       <td height="220" align="center">
-        <table width="100%" border="0" cellspacing="0" cellpadding="0">
-		 <tr>
-		  <td align="center">
-		   <c:if test="${empty image}">
-			<img id="imgUpload" src="xUpload/GdsData/GdsPic_default.gif" />
-		   </c:if> 
-		   <c:if test="${!empty image}">
-			<img id="imgUpload" width="200" height="200" src="xUpload/GdsData/TempImages/${image}" />
-		   </c:if>
-		  </td>
-		 </tr>
-		</table>
-	   </td>
-	   <td align="center" width="320">
-		<table cellSpacing="0" cellPadding="0" width="300" border="0">
-		 <tr>
-		  <td height="60" align="center">이미지는 가능하면 큰 사이즈(500px
-											이상)으로<br /> 업로드되어야 좋습니다.
-		  </td>
-		 </tr>
-		 <tr>
-		  <td align="center">파일명 : 
-		   <input class="box003" id="bnUpload" type="file" size="20" name="imagefile"
-											value="${image}">
-		  </td>
-	     </tr>
-		 <tr>
-		  <td height="60" align="center">
-		   <img onclick="upload_click()" src="Admins/zImages/medit_bt.gif">
-		  </td>
-		 </tr>
-		</table>
-	   </td>
-	  </tr>
-	 </table>
-	</td>
-   </tr>
-   <tr>
-	<td height="40" align="center" valign="top">
-	 <c:if test="${empty image}">
-	  <img src="Admins/zImages/btnClose.gif" width="108" height="34"
-							onclick="self.close();" />
-	 </c:if> 
-	 <c:if test="${!empty image}">
-	  <img src="Admins/zImages/btnClose.gif" width="108" height="34"
-							onclick="sendImage('${position}', '${image}')" />
-	 </c:if>
-	</td>
-   </tr>
-   <tr>
-	<td height="20" align="center" bgcolor="#efefef">&nbsp;</td>
-   </tr>
-  </table>
- </form>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%-- html 추가시키면 이상하게 꼬인다.  --%>
+<script type="text/javascript">
+$(document).on('click', '#close-preview', function(){ 
+    $('.image-preview').popover('hide');
+    // Hover befor close the preview
+    $('.image-preview').hover(
+        function () {
+           $('.image-preview').popover('show');
+        }, 
+         function () {
+           $('.image-preview').popover('hide');
+        }
+    );    
+});
 
- 
-</body>
-</html>
+$(function() {
+    // Create the close button
+    var closebtn = $('<button/>', {
+        type:"button",
+        text: 'x',
+        id: 'close-preview',
+        style: 'font-size: initial;',
+    });
+    closebtn.attr("class","close pull-right");
+    // Set the popover default content
+    $('.image-preview').popover({
+        trigger:'manual',
+        html:true,
+        title: "<strong>Preview</strong>"+$(closebtn)[0].outerHTML,
+        content: "There's no image",
+        placement:'bottom'
+    });
+    // Clear event
+    $('.image-preview-clear').click(function(){
+        $('.image-preview').attr("data-content","").popover('hide');
+        $('.image-preview-filename').val("");
+        $('.image-preview-clear').hide();
+        $('.image-preview-input input:file').val("");
+        $(".image-preview-input-title").text("Browse"); 
+    }); 
+    // Create the preview image
+    $(".image-preview-input input:file").change(function (){     
+        var img = $('<img/>', {
+            id: 'dynamic',
+            width:250,
+            height:200
+        });      
+        var file = this.files[0];
+        var reader = new FileReader();
+        // Set preview image into the popover data-content
+        reader.onload = function (e) {
+            $(".image-preview-input-title").text("Change");
+            $(".image-preview-clear").show();
+            $(".image-preview-filename").val(file.name);            
+            img.attr('src', e.target.result);
+            $(".image-preview").attr("data-content",$(img)[0].outerHTML).popover("show");
+        }        
+        reader.readAsDataURL(file);
+    });  
+});
+</script>
+
+<style>
+
+.image-preview-input {
+	position: relative;
+	overflow: hidden;
+	margin: 0px;
+	color: #333;
+	background-color: #fff;
+	border-color: #ccc;
+}
+
+.image-preview-input input[type=file] {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 0;
+	padding: 0;
+	font-size: 20px;
+	cursor: pointer;
+	opacity: 0;
+	filter: alpha(opacity = 0);
+}
+
+.image-preview-input-title {
+	margin-left: 2px;
+}
+</style>
+<div class="container">
+	<div class="modal fade modalUploadImages">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form id="form" method="post" enctype="multipart/form-data" role="form"
+					action="/common/fileUpLoader.do">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">
+							<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+						</button>
+						<h4 class="modal-title">Upload Photo</h4>
+					</div>
+					<div class="modal-body">
+						<div id="messages"></div>
+						<div
+							class="col-xs-12 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+							<!-- image-preview-filename input [CUT FROM HERE]-->
+							<div class="input-group image-preview">
+								<input type="text" class="form-control image-preview-filename"
+									disabled="disabled">
+								<!-- don't give a name === doesn't send on POST/GET -->
+								<span class="input-group-btn"> <!-- image-preview-clear button -->
+									<button type="button"
+										class="btn btn-default image-preview-clear"
+										style="display: none;">
+										<span class="glyphicon glyphicon-remove"></span> Clear
+									</button> <!-- image-preview-input -->
+									<div class="btn btn-default image-preview-input">
+										<span class="glyphicon glyphicon-folder-open"></span> <span
+											class="image-preview-input-title">Browse</span> <input
+											type="file" accept="image/png, image/jpeg, image/gif"
+											name="input-file-preview" />
+										<!-- rename it -->
+									</div>
+								</span>
+							</div>
+							<!-- /input-group image-preview [TO HERE]-->
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn-primary">Save</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+	<script src="http://code.jquery.com/jquery.js"></script>
+	<script
+		src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<!-- <script>
+            $('#form').submit(function(e) {
+
+                var form = $(this);
+                var formdata = false;
+                if(window.FormData){
+                    formdata = new FormData(form[0]);
+                }
+
+                var formAction = form.attr('action');
+
+                $.ajax({
+                    type        : 'POST',
+                    url         : '/common/fileUpLoader.do',
+                    cache       : false,
+                    data        : formdata ? formdata : form.serialize(),
+                    contentType : false,
+                    processData : false,
+
+                    success: function(response) {
+                        if(response != 'error') {
+                            //$('#messages').addClass('alert alert-success').text(response);
+                            // OP requested to close the modal
+                            $('#myModal').modal('hide');
+                        } else {
+                            $('#messages').addClass('alert alert-danger').text(response);
+                        }
+                    }
+                });
+                e.preventDefault();
+            });
+        </script> -->

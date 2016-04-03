@@ -44,6 +44,9 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+<!-- jQuery 달력에 사용. -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
 
 <!-- jQuery Version 1.11.0 -->
 <script src="/CommonLibrary/Javascript/Common.js"></script>
@@ -52,6 +55,8 @@
 
 <!-- jQuery Version 1.11.0 -->
 <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+
 
 <!-- Bootstrap Core JavaScript -->
 <script

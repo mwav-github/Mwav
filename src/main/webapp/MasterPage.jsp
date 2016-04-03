@@ -58,6 +58,10 @@
 	<div class="container mg5xauto">
 		<div class="row">
 			<div class="col-md-12 col-sm-12">
+			<%--
+${param.name} => request.getParameter("name");
+${member} => request.getAttribute("member");
+			--%>
 				<c:if test="${param.mode != null || mode != null}">
 					<c:if test="${param.mode == 'SMbrLogin' || mode == 'SMbrLogin'}">
 						<div class="col-md-6 col-md-offset-3">

@@ -1,4 +1,4 @@
-package net.admin.dao;
+package net.admins.dao;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -82,6 +82,11 @@ public class StaffDAO extends AbstractDAO {
 	public Map<String, Object> updateStfForm(Map<String, Object> map) {
 		// TODO Auto-generated method stub
 		return (Map<String, Object>) selectOne("staff.updateStfForm", map);
+	}
+	
+	public void updateProStfForm(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		update("staff.updateProStfForm", map);
 	}
 
 	public Map<String, Object> selectStfView(Map<String, Object> map) {

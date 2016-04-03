@@ -11,6 +11,19 @@
 	<context:component-scan base-package="net"></context:component-scan>
 
 
+
+	<!-- 파일 업로드 MultipartResolver 설정 CommonsMultipartResolver 등록 / CommonsMultipartResolver은 
+		스프링 파일업로드 기능 구현 10MB로 설정
+		제대로 설정안하면, java.lang.classcastexception multiparthttpservletrequest 오류발생
+		 -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="100000000" />
+		<property name="maxInMemorySize" value="100000000" />
+		<property name="defaultEncoding" value="UTF-8" />
+	</bean>
+
+
 	<!--servlet-context는 서블릿 영영의 설정하는 XML 파일 -->
 
 	<!-- 스프링 메일 설정 -->
@@ -52,8 +65,9 @@
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<!-- CustomMapArgumentResolver는 root context 영역에 등록이 되어야 한다. -->
 	<mvc:annotation-driven> <!-- 어노테이션을 사용하겠다고 선언 -->
-		<mvc:argument-resolvers> <!-- <mvc:argument-resolvers> 태그를 이용하여 우리가 만든 CustomMapArgumentResolver의 빈(bean)을 수동으로 등록했다. -->
-		<bean class="net.common.resolver.CustomMapArgumentResolver"></bean>
+		<mvc:argument-resolvers> <!-- <mvc:argument-resolvers> 태그를 이용하여 우리가 만든 CustomMapArgumentResolver의 
+				빈(bean)을 수동으로 등록했다. -->
+			<bean class="net.common.resolver.CustomMapArgumentResolver"></bean>
 		</mvc:argument-resolvers>
 	</mvc:annotation-driven>
 
@@ -65,13 +79,11 @@
 		path="/**" /> 지금 작성하는 로거는 모든 요청에서 동작을 하기때문에 전체 패스를 의미하는 "/**" 로 설정하였다. <bean 
 		id="loggerInterceptor" class="net.common.logger.LoggerInterceptor"></bean> 
 		</mvc:interceptor> </mvc:interceptors> -->
-		<!-- 제외하고 싶을떄
-		http://krespo.net/192
-		 -->
+	<!-- 제외하고 싶을떄 http://krespo.net/192 -->
 
 	<mvc:interceptors>
 		<mvc:interceptor>
-			<mvc:mapping path="/admins/**" />			
+			<mvc:mapping path="/admins/**" />
 			<bean id="loggerInterceptor" class="net.common.logger.LoggerInterceptor"></bean>
 		</mvc:interceptor>
 	</mvc:interceptors>

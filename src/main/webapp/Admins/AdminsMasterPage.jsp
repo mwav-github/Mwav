@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <!DOCTYPE html>
 <html>
@@ -84,7 +84,23 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 
 			<!-- Sidebar Column left메뉴 추후 변경 예정<시작>-->
 			<div class="col-md-3">
-				<jsp:include page="/admins/LeftMenu.do" flush="false" />
+				<%-- 
+			- param으로 같은 이름 지정시 위의 named으로 인식
+			- getparameter는 param.mm // setattribute는 mm
+			- value에 두개다 넣는 경우 비즈니스로직 + 파라미터인경우 문제발생
+			- jsp param 안에 choose, when, otherwise 사용 불가
+			 --%>
+				<c:choose>
+					<c:when test="${param.mm eq null}">
+						<c:set value="${mm}" var="mm" />
+					</c:when>
+					<c:otherwise>
+						<c:set value="${param.mm}" var="mm" />
+					</c:otherwise>
+				</c:choose>
+				<jsp:include page="/admins/LeftMenu.do" flush="false">
+					<jsp:param name="mm" value="${mm}" />
+				</jsp:include>
 			</div>
 			<!-- 끝 -->
 
@@ -108,6 +124,16 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					<jsp:include page="/Admins/CompanyMgr/Staff/StfUpdate.jsp"
 						flush="false" />
 				</c:if>
+				
+				
+				
+				<c:if test="${param.mode == 'm_nsmList' || mode == 'm_nsmList'}">
+					<jsp:include page="/admin/boardNews/nsmList.do"
+						flush="false" />
+				</c:if>
+				
+				
+				
 
 			</div>
 		</div>
