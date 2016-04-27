@@ -12,6 +12,12 @@
 
 <script src="/CommonApps/Calendar/DateSelector/DatePicker.js"></script>
 <!-- /////////// -->
+
+
+
+
+
+
 </head>
 
 <body>
@@ -404,7 +410,8 @@
 
 							<c:otherwise>
 								<%-- 1. 회원정보 입력 --%>
-								<form class='form-horizontal' method="post" action="">
+								<form class='form-horizontal' method="post"
+									action="/admins/goods/gdsForm.do">
 									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
 										<div class="panel panel-primary">
@@ -569,343 +576,326 @@
 													<div class="col-sm-12 col-md-8 col-lg-8 ">
 														<table class="table table-user-information">
 															<tbody>
-																<!-- 																<tr>
+																<tr>
+
 																	<td>상품코드:</td>
 																	<td><div class='form-group'>
-																			<div class='col-md-12'>
+																			<div class='col-md-8'>
 
 																				<input class='form-control' name="goods_id"
-																					type='text' maxlength="15"
-																					readonly ="readonly">
+																					type='text' maxlength="15" readonly="readonly">
 																			</div>
 																		</div></td>
-																</tr> -->
-																<tr>
-																	<td class='col-md-3'>모델번호:</td>
-																	<td class='col-md-9'><div class='form-group'>
-
-																			<input class='form-control' name="gModelNbr" value=""
-																				required>
-
-																		</div></td>
 																</tr>
 
+																<%-- 테이블은 td 크기가 전체 영향 즉! 최상단 모델번호쪽에 col-md 먹으면 그 열은 전체가 다 쭉 아래로 똑같이 먹는다.
+																     유의 행 안에 또 잘게 쪼개야 한다.
+																     
+																     즉 tr td 자체에는 col-~ 사용하지 않기.
+																 --%>
 																<tr>
-																	<td class='col-md-3'>상품명:</td>
-																	<td class='col-md-9'><div class='form-group'>
-
-																			<input class='form-control' name="gName" value=""
-																				required>
-
-																		</div></td>
-																</tr>
-
-																<tr>
-																	<td class='col-md-3'>일반판매가:</td>
-																	<td class='col-md-3'><div class='form-group'>
-
-																			<input class='form-control' name="gModelNbr" value=""
-																				required>
-
-																		</div></td>
-
-																	<td class='col-md-3'>회원판매가:</td>
-																	<td class='col-md-3'><div class='form-group'>
-
-																			<input class='form-control' name="gModelNbr" value=""
-																				required>
-
-																		</div></td>
-																</tr>
-
-
-																<tr>
-																	<td class='col-md-3'>제조(개발)사:
-																	<td>
-																	<td class='col-md-9'><div class='form-group'>
-
-																			<input class='form-control' name="gManufacturer"
-																				value="" required>
-
-																		</div></td>
-																</tr>
-
-																<tr>
-																	<td class='col-md-3'>원산지:
-																	<td>
-																	<td class='col-md-9'><div class='form-group'>
-
-																			<input class='form-control' name="gPlaceofOrigin"
-																				value="" required>
-
-																		</div></td>
-																</tr>
-
-
-																<tr>
-																	<td class='col-md-3'>배송비:</td>
-																	<td class='col-md-3'><div class='form-group'>
-
-																			<select class='form-control' name="gDeliveryCost"
-																				required>
-																				<option value="2500">2500</option>
-																				<option value="0">0</option>
-																			</select>
-																			<p>※제주/도서산간의 경우 추가비용 발생</p>
-
-																		</div></td>
-																	<td class='col-md-3'>배송비:</td>
-																	<td class='col-md-3'><div class='form-group'>
-
-																			<select class='form-control' name="gDeliveryCost"
-																				required>
-																				<option value="2500">2500</option>
-																				<option value="0">0</option>
-																			</select>
-																			<p>※제주/도서산간의 경우 추가비용 발생</p>
-
-																		</div></td>
-																</tr>
-
-
-																<tr>
-																	<td class='col-md-3'>키워드:
-																	<td>
-																	<td class='col-md-9'><div class='form-group'>
-
-																			<input class='form-control' name="keywords" value=""
-																				required>
-
-																		</div>
-																		<p>※키워들르 통한 웹 프로모션 메타페이지 다중생성[WebSpawner]</p></td>
-																</tr>
-
-
-																<tr>
-																	<td class='col-md-3'>정렬순서:
-																	<td>
-																	<td class='col-md-9'><div class='form-group'>
-
-																			<input class='form-control' name="gOrder" value=""
-																				required>
-
-																		</div>
-																		<p>※키워들르 통한 웹 프로모션 메타페이지 다중생성[WebSpawner]</p></td>
-																</tr>
-
-																<tr>
-																	<td>게시기간:</td>
+																	<td>모델번호:</td>
 																	<td><div class='form-group'>
-																			조회기간: <input type="text" class="form-control"
-																				id="datepicker_kor_1_1"> ~ <input
-																				type="text" class="form-control"
-																				id="datepicker_kor_1_2">
+																			<div class="col-md-8">
+																				<input class='form-control' name="gModelNbr"
+																					value="" required>
+																			</div>
 																		</div></td>
 																</tr>
-																<tr>
-																	<td>직급/권한:</td>
-																	<td><div class='form-group'>
-																			<div class='col-md-12'>
 
-																				<select class="form-control" name="stfClass"
+																<tr>
+																	<td>상품명:</td>
+																	<td><div class='form-group'>
+																			<div class="col-md-8">
+																				<input class='form-control' name="gName" value=""
 																					required>
-																					<option value="0">*대기*</option>
-																					<option value="05">임시</option>
-																					<option value="10">사원</option>
-																					<option value="15">주임</option>
-																					<option value="20">계장</option>
-																					<option value="25">대리</option>
-																					<option value="30">실장</option>
-																					<option value="35">팀장</option>
-																					<option value="40">과장</option>
-																					<option value="45">차장</option>
-																					<option value="50">부부장</option>
-																					<option value="55">부장</option>
-																					<option value="60">소장</option>
-																					<option value="65">이사</option>
-																					<option value="70">상무이사</option>
-																					<option value="75">전무이사</option>
-																					<option value="80">대표이사</option>
-																					<option value="85">회장</option>
+																			</div>
+																		</div></td>
+																</tr>
+
+																<tr>
+																	<td>셋트상품여부:</td>
+																	<td><div class='form-group'>
+																			<div class="col-md-8">
+																				<select class='form-control' name="isGoodsSet"
+																					required>
+																					<option value="1">예</option>
+																					<option value="0">아니오</option>
 																				</select>
 																			</div>
 																		</div></td>
 																</tr>
+
+
+																<%-- 한 행에 따른 대는 td 두개인데 여기만 4개 이렇게 할 수가 없다 그러면 틀어지기 때문에 아래와 같이 임시방편으로.. --%>
 																<tr>
-																	<td>직원명:</td>
+																	<td>일반판매가:</td>
 																	<td><div class='form-group'>
-																			<div class='col-md-12'>
-																				<input class="form-control" name="stfName"
-																					type="text" maxlength="20" required />
+																			<div class="col-md-4">
+																				<input class='form-control' name="gConsumerPrice"
+																					value="" required>
 																			</div>
-																		</div></td>
-																</tr>
-																<tr>
-																	<td>닉네임:</td>
-																	<td><div class='col-md-12'>
-																			<div class='col-md-8'>
-																				<input class="form-control" name="stfNickname"
-																					type="text" maxlength="20" required />
+
+
+																			<div class="col-md-3">
+
+																				<p>회원판매가:</p>
 																			</div>
-																		</div></td>
-																</tr>
-																<tr>
-																	<td>회사 내선번호 Ext#:</td>
-																	<td><div class='form-group'>
-																			<div class='col-md-12'>
-																				<input class="form-control" name="stfExtNbr"
-																					type="text" maxlength="5" />
-																			</div>
-																		</div></td>
-																</tr>
-																<tr>
-																	<td>자택전화:</td>
-																	<td><div class='form-group'>
-																			<div class='col-md-12'>
-																				<input class="form-control" name="stfPhone_1"
-																					type="text" maxlength="4" required /> - <input
-																					class="form-control" name="stfPhone_2" type="text"
-																					maxlength="4" required /> - <input
-																					class="form-control" name="stfPhone_3" type="text"
-																					maxlength="4" required />
-																			</div>
-																		</div></td>
-																</tr>
-																<tr>
-																	<td>핸드폰번호:</td>
-																	<td><div class='form-group'>
-																			<div class='col-md-4'>
-																				<input class="form-control" name="stfCellularP_1"
-																					type="text" maxlength="4" required />
-																			</div>
+
+
 
 																			<div class="col-md-4">
-																				<input class="form-control" name="stfCellularP_2"
-																					type="text" maxlength="4" required />
-																			</div>
+																				<input class='form-control' name="gMemberPrice"
+																					value="" required>
 
-																			<div class='col-md-4'>
-																				<input class="form-control" name="stfCellularP_3"
-																					type="text" maxlength="4" required />
 																			</div>
 																		</div></td>
 																</tr>
+
+
+
 																<tr>
-																	<td>이메일:</td>
+																	<td>제조(개발)사:</td>
 																	<td><div class='form-group'>
-																			<div class='col-md-12'>
-																				<input class="form-control" name="stfEmail"
-																					id="chkEmail" type="text"
-																					onchange="chkEmailPolicy()" required />
+																			<div class="col-md-8">
+																				<input class='form-control' name="gManufacturer"
+																					value="" required>
 																			</div>
 																		</div></td>
 																</tr>
+
 																<tr>
-																	<td>홈페이지:</td>
+																	<td>원산지:</td>
 																	<td><div class='form-group'>
-																			<div class='col-md-12'>
-																				<input class="form-control" name="stfHomepage"
-																					type="text" placeholder="http:// " />
+																			<div class="col-md-8">
+																				<input class='form-control' name="gPlaceofOrigin"
+																					value="" required>
 																			</div>
 																		</div></td>
 																</tr>
+
 																<tr>
-																	<td>주민등록번호:</td>
+																	<td>배송비 지불 주체:</td>
 																	<td><div class='form-group'>
-																			<div class='col-md-5'>
-																				<input class="form-control" name="stfSsn1"
-																					type="text" maxlength="6" />
-																			</div>
-																			<div class='col-md-5'>
-																				<input class="form-control" name="stfSsn2"
-																					type="text" maxlength="7" />
+																			<div class="col-md-4">
+																				<select class='form-control' name="gWhoDeliveryCost"
+																					required>
+																					<option value="C">고객</option>
+																					<option value="P">파트너사, 제조사</option>
+																					<option value="S">자사</option>
+																				</select>
+																				
 																			</div>
 																		</div></td>
 																</tr>
+
 																<tr>
-																	<td>등록일:</td>
-																	<td></td>
-																</tr>
-																<tr>
-																	<td>입사일:</td>
-																	<td></td>
-																</tr>
-																<tr>
-																	<td>부업무:</td>
+																	<td>배송비:</td>
 																	<td><div class='form-group'>
-																			<div class='col-md-12'>
-																				<input class="form-control" name="stfSubJobs"
-																					type="text" maxlength="200" />
+																			<div class="col-md-4">
+																				<select class='form-control' name="gDeliveryCost"
+																					required>
+																					<option value="2500">2500</option>
+																					<option value="0">0</option>
+																				</select>
+																				<p>※제주/도서산간의 경우 추가비용 발생</p>
+																			</div>
+																			<div class="col-md-3">
+
+																				<p>상품상태:</p>
+																			</div>
+																			<div class="col-md-4">
+																				<select class='form-control' name="gStatus" required>
+																					<option value="1">판매가능</option>
+																				</select>
 																			</div>
 																		</div></td>
+
 																</tr>
+
+
 																<tr>
-																	<td>우편번호:</td>
+																	<td>적립금:</td>
 																	<td><div class='form-group'>
-																			<div class='col-md-12'>
-																				<input class="form-control" id="Zipcode"
-																					name="stfZipcode" type="text" maxlength="6"
-																					value="" readonly="readonly" />
+																			<div class="col-md-4">
+																				<input class='form-control' name="gRsvFund" value="">
+																			</div>
+																			<div class="col-md-3">
+
+																				<p>포인트:</p>
+																			</div>
+																			<div class="col-md-4">
+																				<input class='form-control' name="gPoint" value="">
+																			</div>
+																		</div></td>
+
+																</tr>
+
+																<tr>
+																	<td>키워드:</td>
+																	<td><div class='form-group'>
+																			<div class="col-md-8">
+																				<input class='form-control' name="gKeywords"
+																					value="" required>
+
+																			</div>
+																		</div>
+																		<p>※키워들르 통한 웹 프로모션 메타페이지 다중생성[WebSpawner]</p></td>
+																</tr>
+
+																<tr>
+																	<td>성과급률:</td>
+																	<td><div class='form-group'>
+																			<div class="col-md-8">
+																				<input class='form-control' name="gFruitRate"
+																					value="" required>
+																			</div>
+																		</div>
+																		<p>% 성과급률은 0~100 숫자 안에서 입력하세요.</p></td>
+																</tr>
+
+
+																<tr>
+																	<td>정렬순서:</td>
+																	<td><div class='form-group'>
+																			<div class="col-md-8">
+																				<input class='form-control' name="gOrder" value=""
+																					required>
+																			</div>
+																		</div>
+																		<p>정렬순서는 -9999~99999 숫자 안에서 사이 값을 입력하세요.</p></td>
+																</tr>
+
+
+																<tr>
+																	<td>게시기간:</td>
+																	<td><div class='form-group'>
+																			<div class="col-md-3">
+																				<p>시작일 :</p>
+																			</div>
+																			<div class="col-md-8">
+																				<input type="text" name="gPostStart"
+																					class="form-control" id="datepicker_kor_1_1">
+																			</div>
+																			<div class="col-md-3">
+																				<p>종료일 :</p>
+																			</div>
+																			<div class="col-md-8">
+																				<input type="text" class="form-control"
+																					name="gPostEnd" id="datepicker_kor_1_2">
 																			</div>
 																		</div></td>
 																</tr>
+
+																<tr class="active">
+																	<td colspan="2"><p>이미지정보 (550 x 550픽셀 이상)</p></td>
+																</tr>
+
 																<tr>
-																	<td>주소:</td>
+																	<td class="active">대표(표준)</td>
 																	<td>
-
-																		<div class='form-group'>
-
-																			<p class="col-md-3 pull-right">
-																				<button class="btn btn-primary btn-block"
-																					type="button" data-toggle="modal"
-																					data-target=".modal_post" onclick="showhide();">주소찾기</button>
-
-																			</p>
-																			<!-- <div class='col-md-8'>
-						<label><input type="radio" name="optradio" value="0">지번
-							주소</label> <label><input type="radio" name="optradio" value="1">도로명
-							주소</label>
-					</div> -->
-
-																			<div class='col-md-8'>
-																				<input class="form-control" id="Address"
-																					name="stfAddress_1" type="text" value=""
-																					placeholder='주소' readonly="readonly" />
-																			</div>
-																			<div class='col-md-8'>
-																				<input class="form-control" name="stfAddress_2"
-																					type="text" placeholder='나머지 주소' required />
-																			</div>
+																		<div class='col-md-8'>
+																			<button type="button" name="bnUpload0"
+																				class="btn btn-sm btn-primary"
+																				onclick="showImageWindow('Basic')">이미지업로드</button>
 																		</div>
 																	</td>
 																</tr>
+
 																<tr>
-																	<td class="active">직원명함데이터:</td>
-																	<td><div class='form-group'>
-																			<div class='col-md-8'>
-																				<input class="form-control" name="stfBusinessPic"
-																					type="file" />
-																			</div>
-																		</div></td>
+																	<td class="active">전면</td>
+																	<td>
+																		<div class='col-md-8'>
+																			<button type="button" name="bnUpload1"
+																				class="btn btn-sm btn-primary"
+																				onclick="showImageWindow('Front')">이미지업로드</button>
+																		</div>
+																	</td>
 																</tr>
+
 																<tr>
-																	<td class="active">아바타:</td>
-																	<td><div class='form-group'>
-																			<div class='col-md-8'>
-																				<input class="form-control" name="stfAvataImage"
-																					type="file" />
-																			</div>
-																		</div></td>
+																	<td class="active">후면</td>
+																	<td>
+																		<div class='col-md-8'>
+																			<button type="button" name="bnUpload2"
+																				class="btn btn-sm btn-primary"
+																				onclick="showImageWindow('Rear')">이미지업로드</button>
+																		</div>
+																	</td>
 																</tr>
-																<tr class="info">
+
+
+																<tr>
+																	<td class="active">우측면</td>
+																	<td>
+
+																		<div class='col-md-8'>
+																			<button type="button" name="bnUpload3"
+																				class="btn btn-sm btn-primary"
+																				onclick="showImageWindow('Right')">이미지업로드</button>
+																		</div>
+																	</td>
 																</tr>
+
+
+																<tr>
+																	<td class="active">좌측면</td>
+																	<td>
+																		<div class='col-md-8'>
+																			<button type="button" name="bnUpload4"
+																				class="btn btn-sm btn-primary"
+																				onclick="showImageWindow('Left')">이미지업로드</button>
+																		</div>
+
+																	</td>
+																</tr>
+
+																<tr>
+																	<td class="active">상단면</td>
+																	<td>
+																		<div class='col-md-8'>
+																			<button type="button" name="bnUpload5"
+																				class="btn btn-sm btn-primary"
+																				onclick="showImageWindow('Top')">이미지업로드</button>
+																		</div>
+																	</td>
+																</tr>
+
+																<tr>
+																	<td class="active">하단면</td>
+																	<td>
+
+																		<div class='col-md-8'>
+																			<button type="button" name="bnUpload6"
+																				class="btn btn-sm btn-primary"
+																				onclick="showImageWindow('Bottom')">이미지업로드</button>
+																		</div>
+																	</td>
+																</tr>
+
+																<script type="text/javascript">
+																	//open GdsUpLoader window
+																	function showImageWindow(
+																			position) {
+																		//var myBookId = $(this).data('id');
+																		var modalUploadImages = position;
+																		$(
+																				"#modalUploadImages")
+																				.modal(
+																						"show");
+																		$(
+																				"#images_position")
+																				.val(
+																						modalUploadImages);
+
+																	}
+																</script>
 															</tbody>
 														</table>
 													</div>
 													<div class="col-md-12 ">
 														<div class='col-md-12 form-group center-block'>
-															<textarea class="form-control" name="stfMark"
-																class="stfMark" rows="15">가입되신것을 환영합니다.</textarea>
+															<textarea class="form-control" name="gNote" rows="15">특이사항....</textarea>
 														</div>
 
 													</div>
@@ -938,6 +928,10 @@
 		</div>
 	</div>
 	<!-- /.container -->
+
+
+	<%-- <!-- --> 주석처리해도 include는 된다.  --%>
+	<jsp:include page="/Admins/Goods/GdsUpLoader.jsp" flush="false" />
 
 
 	<!-- Footer -->

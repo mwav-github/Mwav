@@ -145,8 +145,7 @@ public class StaffController {
 	public ModelAndView selectStfView(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
 		HttpSession session = request.getSession();
-		String staff_id = null;
-		staff_id = (String) commandMap.get("staff_id");
+		int staff_id = (int) session.getAttribute("staff_id");
 		System.out.println("staff_id=" + staff_id);
 		commandMap.put("staff_id", staff_id);
 		ModelAndView mv = new ModelAndView("/Admins/CompanyMgr/Staff/StfView");
@@ -282,6 +281,7 @@ public class StaffController {
 		// http://linuxism.tistory.com/1089
 
 		session.setAttribute("selectStfLogin", selectStfLogin);
+		
 		mv.addObject("selectStfLogin", selectStfLogin);
 		request.setAttribute("loginCheck", loginCheck);
 		return mv;

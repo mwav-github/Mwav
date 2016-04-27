@@ -8,6 +8,7 @@ import java.util.Set;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import net.admins.dao.CommonDAO;
 import net.admins.dao.StaffDAO;
@@ -30,7 +31,7 @@ public class CommonServiceImpl implements CommonService {
 	private CommonDAO commonDAO;
 
 	@Override
-	public void insertGdsUpLoader(Map<String, Object> map,
+	public Map<String, Object> insertGdsUpLoader(Map<String, Object> map,
 			HttpServletRequest request) throws Exception{
 		// TODO Auto-generated method stub
 		/* 파일업로드
@@ -100,6 +101,7 @@ public class CommonServiceImpl implements CommonService {
 			}
 		}
 		// ////////////////////////	
+		return map;
 	}
 
 }

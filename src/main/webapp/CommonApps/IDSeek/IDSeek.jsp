@@ -85,9 +85,21 @@ $.ajax({
 				start_timer();
 
 			}, // 서버로부터 응답 데이터 도착시 로직 처리, 응답 데이터는 JavaScript 객체로 바로 사용 가능
-			error : function() {
-				alert('잘못입력했습니다. 다시 입력해주세요.');
-
+			error : function(status, error) {
+				//alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+				if (status == 0) {
+					alert('You are offline!!n Please Check Your Network.');
+				} else if (status == 404) {
+					alert('Requested URL not found.');
+				} else if (status == 500) {
+					alert('Internel Server Error.');
+				} else if (error == 'parsererror') {
+					alert('Error.nParsing JSON Request failed.');
+				} else if (error == 'timeout') {
+					alert('Request Time out.');
+				} else {
+					alert('Unknow Error.n' + request.responseText);
+				}
 			} // 서버로부터 응답 데이터 실패시 로직 처리
 		});
 	}

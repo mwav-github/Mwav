@@ -429,9 +429,12 @@ public class MemberController {
 
 		String zcSiDoName = request.getParameter("zcSiDoName");
 		System.out.println("zcSiDoName" + zcSiDoName);
+		
+		
 		List<String> selectListZcGunGuSeek = memberService
 				.selectListZcGunGuSeek(zcSiDoName);
 
+		
 		return selectListZcGunGuSeek;
 	}
 

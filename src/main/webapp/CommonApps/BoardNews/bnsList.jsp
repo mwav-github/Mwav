@@ -18,7 +18,7 @@ container 안에 포함시키면된다.
 	rel="stylesheet">
 
 <input type="hidden" name="pageNum" />
-<div class="table-responsive">
+<div id="table_reset" class="table-responsive">
 	<table class="table table-striped">
 		<thead>
 			<tr>
@@ -50,6 +50,7 @@ container 안에 포함시키면된다.
 				</c:when>
 				<c:otherwise>
 					<tr>
+					<%-- HTML 요소로 강제 텍스트 입력시  --%>
 						<td colspan="4">조회된 결과가 없습니다.</td>
 					</tr>
 				</c:otherwise>

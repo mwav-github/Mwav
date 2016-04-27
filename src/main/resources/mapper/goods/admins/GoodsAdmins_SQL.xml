@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="goods">
+	
+	<!--/*========================================등록========================================*/  -->
+	<insert id="insertGdsFiles" parameterType="hashmap">
+		<![CDATA[
+			INSERT INTO GoodsFiles_tbl VALUES(#{gFileName}, #{goods_id}, #{gFileDesc});
+		]]>
+	</insert>
+	
+	<insert id="insertGdsForm" parameterType="hashmap">
+		<![CDATA[
+	INSERT INTO GoodsMaster_tbl
+		SELECT IFNULL(max(goods_id)+1,10001), #{isGoodsSet}, #{gModelNbr}, #{gName}, #{gMemberPrice}, #{gConsumerPrice}, #{gPoint}, #{gRsvFund}, #{gWhoDeliveryCost}, #{gDeliveryCost}, #{gManufacturer}, #{gPlaceofOrigin}, #{gAuthCode}, #{gNote}, #{gDescription}, #{gDetailPageUrl}, #{gFruitRate}, #{gOrder}, #{gPostStart}, #{gPostEnd}, #{gStatus}, #{gKeywords}, Now(), #{gUdateDt}, #{gRegister}, #{gRegisterId}, #{gIpAddress}, #{gCompetitiveness}, #{gCompetitiveMark}, #{gPayMethod}, #{gDistAllowedLv}, #{gDistAllowedGrp}, #{gManualFileName}, #{partner_id} FROM GoodsMaster_tbl    
+		]]>
+	</insert>
+
+    <!--/*========================================보기========================================*/  -->
+	
+	<!--/*========================================수정========================================*/  -->
+
+	<!--/*========================================리스트(SelctOne, SelectList 순)========================================*/  -->
+	
+	 <select id="selectNextGoodsPk" parameterType="hashmap" resultType="java.lang.String">
+		<![CDATA[
+	        select IFNULL(max(goods_id+1) , 10000) AS goods_id from GoodsMaster_tbl
+		]]>
+	</select>
+	
+	<select id="selectOneGetGdsTotalCount" resultType="int">
+	<![CDATA[
+	   select count(*) from GoodsMaster_tbl
+	]]>
+	</select>
+	
+	<select id="selectListGdsList" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+	select c.* from (select @ROWNUM := @ROWNUM + 1 AS ROWNUM, a.* from (select * from GoodsMaster_tbl order by gInsertDt desc) a,  (SELECT @ROWNUM := 0) R ) c where c.ROWNUM >= #{startRow} and c.ROWNUM <= #{endRow}
+	]]>
+	</select>
+	
+	<select id="selectListGdsFilesList" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+	      select * from GoodsFiles_tbl where goods_id = #{goods_id};
+	]]>
+	</select>	
+	<!--/*========================================삭제========================================*/  -->
+	
+</mapper>

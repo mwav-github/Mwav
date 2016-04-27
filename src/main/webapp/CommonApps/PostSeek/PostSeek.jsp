@@ -318,6 +318,9 @@
 						} else {
 
 							$("#postresult").empty();
+							$("#postnull").empty();
+							//위의 이게 조회된 결과값 중복 해서 나오지 않도록 해주는 것이다. !!!! 
+							// form도 마찬가지 
 							//alert('1');
 							if ($(".ondis").css("display") == "none") {
 								//alert("on");
@@ -329,6 +332,7 @@
 							content += "<tr>"
 									+ "<td colspan=\"4\" class=\"text-center\">조회된 결과가 없습니다.</td>"
 									+ "</tr>";
+							
 							$("#postnull").append(content);
 						}
 					},
@@ -395,6 +399,12 @@
 			//alert("on");
 			$(".offdis").show();
 			$(".ondis").hide();
+			/*
+			$("#postresult").empty();
+							$("#postnull").empty();
+							조회된 결과 값이 계속해서 나오지 않도록 empty로 해준다 상단 ajax 결과에서 참고~! 
+			*/
+
 		}
 	}
 </script>
@@ -720,7 +730,7 @@
 											</tr> --%>
 									<tr>
 										<a href="#" class="btn btn-info btn-sm btn-block"
-											onclick="showhide();">재 검색</a>
+											onclick="showhide(this.form);">재 검색</a>
 									</tr>
 								</tbody>
 								<tbody id="postnull">

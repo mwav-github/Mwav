@@ -192,7 +192,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 							추가된다고 생각해 보세요. 에어클라우드는 이런 작업을 쉽고 무척 저렴한 비용으로 가능하게 합니다. 에어크라우드는
 							서비스사용 건에 대한 유료결제 방식이며 웹서비스 형태로 제공됩니다. 물론 저희가 private cloud 형태로
 							설치해 드릴 수도 있습니다.비용과 자세한 서비스에 관한 문의는 연락주세요.</p>
-					<!-- 	<p class="text-right">
+						<!-- 	<p class="text-right">
 							<A href="mailto:sales@aervision.com" style="color: #990085;">JuSung.kim@mwav.net</a>
 						</p> -->
 					</div>
@@ -227,69 +227,124 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 
 					<div class="col-md-12">
 						<strong>AerPalm</strong> <br>
-						<p>AerPalm Wave is biometrics identification at its best. It
-							uses Fujitsu’s Palm Vein Scanner for identification purpose with
-							tens of immediate applications. AerPalm Wave is touchless and
-							extremely accurate. It is as simple of waving your hand against a
-							scanner the same way one uses a proxy card except without a card!</p>
+						<p>“AerPalm Wave” 는 최고의 생체정보인식 식별방법입니다. 식별 목적을 위해 후지쯔 사의 손바닥
+							정맥 스캐너를 이용하고, 10개 이상의 즉시 적용할 수 있는 애플리케이션과 함께 제공합니다. “AerPalm
+							Wave”는 접촉식이 아니며 극도로 정확합니다. 보안카드를 이용할 때처럼 동일한 방법으로 스캐너에 간단히 손을 움직여
+							인식시키면 됩니다. 단지 보안카드가 없다는 것이 다른 점입니다.</p>
 
-						<p>This cutting edge technology is a palm vein based strong
-							authentication solution that utilises industry-leading vascular
-							pattern biometric technology. This offers a highly reliable,
-							contactless biometric authentication solution that is
-							non-intrusive and easy to use. The scanner uses near-infrared
-							light to capture a person's palm vein pattern, generating a
-							unique biometric template that is matched against pre-registered
-							user palm vein patterns. The palm vein device can only recognise
-							the pattern if the blood is actively flowing within the
-							individual's veins, which means that forgery is virtually
-							impossible. This advanced, vascular pattern recognition
-							technology provides highly reliable authentication. The false
-							accept rate is just 0.00000008 percent with an exceptional false
-							reject rate of 0.01 percent, all in a small form factor that
-							generates extremely fast authentication, under third of a second.</p>
-<!-- 						<p class="text-right">
+						<p>이런 최신 기술은 손바닥 정맥을 바탕으로 하는 강력한 인증 솔루션으로 업계를 선도하는 혈관모양 생체정보인식
+							기술을 이용합니다. 이것은 고도로 신뢰가능하며, 비간섭적이고 사용이 쉬운 비접촉식 생체정보인식 솔루션을 제공합니다.
+							스캐너가 근적외선을 사용하여 사람의 손바닥 정맥모양을 잡고 고유의 생체정보 템플릿을 생성하면 이것을 사전에 등록된
+							사용자 손바닥 정맥모양과 대조합니다. 손바닥 정맥 장비는 단지, 혈액이 개인의 정맥 내에서 활동적으로 흐를 때만 그
+							형태만 인식할 수 있으며 이것은 가상적인 위조가 불가능하다는 것을 의미합니다. 이 진보된 혈관모양 인지 기술은 고도로
+							신뢰할 수 있는 인증수단을 제공합니다. 일반적으로 위조에 대해 이례적으로 높은 방어율이 0.01% 인 것을 감안할
+							때, 이 혈관모양 인지 기술은 위조될 가능성이 단지 0.00000008%에 불과합니다. 모든 기능을 작은 크기의
+							하드웨어 하나로 제공하고, 인증처리시간을 1/3 초 미만으로 극도로 빠르게 완료합니다.</p>
+						<!-- 						<p class="text-right">
 							<A href="mailto:sales@aervision.com" style="color: #990085;">JuSung.kim@mwav.net</a>
 						</p> -->
 					</div>
 
-					<div class="col-md-12">
+					<div class="col-md-12 enter">
+						<div class="row text-left">
+							<div class="col-md-4 col-sm-4 col-xs-6">
+								<div class="panel panel-primary">
+									<div class="panel-heading">
+										<h5>
+											높은 안정성 & 성능 <br /> - 혈관이용
+										</h5>
+									</div>
+									<div class="panel-body text-left">
+										<ul>
+											<li><strong>피하 은닉 - 위조가 어려움</strong></li>
+											<li><strong>어떤 개인들과 또는 쌍둥이 사이에도 유일무이</strong></li>
+											<li><strong>변화 없음 – 인생을 걸쳐 동일</strong></li>
+										</ul>
+									</div>
+									<!-- <div class="panel-footer">
+										<a href="#" class="btn btn-danger ">BUY NOW</a>
+									</div> -->
+								</div>
+							</div>
+							<div class="col-md-4 col-sm-4 col-xs-6">
+								<div class="panel panel-primary">
+									<div class="panel-heading">
+										<h5>
+											높은 정확성 <br /> – 손가락에 대한 손바닥의 비교우위
+										</h5>
+									</div>
+									<div class="panel-body">
+										<ul>
+											<li><strong>손바닥 정맥모양은 복잡하다. -> 오백만 개의 비교기준</strong></li>
+											<li><strong>손바닥은 손가락 보다 굵은 혈관을 가져 인식이 쉽다.</strong></li>
+
+
+										</ul>
+									</div>
+									<!-- <div class="panel-footer">
+										<a href="#" class="btn btn-danger ">BUY NOW</a>
+									</div> -->
+								</div>
+							</div>
+
+							<div class="col-md-4 col-sm-4 col-xs-6">
+								<div class="panel panel-primary">
+									<div class="panel-heading">
+										<h5>
+											높은 수용성 <br>&nbsp;
+										</h5>
+										<%-- 그냥 br태그로는 엔터 크기가 먹히지 않는다. ~! &nbsp; 로사용. --%>
+									</div>
+									<div class="panel-body">
+										<ul>
+											<li><strong>비접촉식 운영으로 매우 위생적</strong></li>
+											<li><strong>매우 쉽고 직관적인 사용법</strong></li>
+											<li><strong>체내에 은닉된 생체무늬정보</strong></li>
+										</ul>
+									</div>
+									<!-- <div class="panel-footer">
+										<a href="#" class="btn btn-danger ">BUY NOW</a>
+									</div> -->
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-12 enter">
 						<p>
-							<strong>Features:</strong>
+							<strong>제품특성:</strong>
 						</p>
 						<ul>
-							<li>Advanced biometric authentication algorithm delivers
-								ultra-low FAR (false accept rate) and FRR (false reject rate)</li>
-							<li>Contactless palm vein authentication is hygienic and
-								noninvasive - No Residual Trace Technology</li>
-							<li>Integer molestie lorem at massa</li>
-							<li>Encrypted repository for template storage & enterprise
-								level event logging capability</li>
-							<li>Fast and easy registration with virtually no enrolment
-								error.</li>
+							<li>진보된 생체정보인식 알고리즘은 극도로 낮은 FAR (false accept rate)과 FRR
+								(false reject rate)실현합니다.</li>
+							<li>비접촉식 손바닥 정맥 인식방식은 위생적이고 비간섭적 입니다.</li>
+							<li>잠재추적기술 비사용.</li>
+							<li>템플릿 저장과 엔터프라이즈 수준의 이벤트로깅 기능을 위한 암호화된 저장소</li>
+							<li>가상의 정확한 입력으로 빠르고 쉬운 등록작업</li>
 						</ul>
 
 						<div class="enter"></div>
 
 						<p>
-							<strong>Typical applications are:</strong>
+							<strong>적용사례:</strong>
 						</p>
+						<p>전형적인 적용 사례는 아래와 같습니다.</p>
 						<ul>
-							<li>Authentication token for online transaction for banks</li>
-							<li>Physical access control</li>
-							<li>Logical access control (login to applications and
-								websites)</li>
-							<li>Retail POS systems</li>
-							<li>Self Service Kiosks</li>
-							<li>Time and attendance management systems</li>
-							<li>Visitor ID management</li>
+							<li>은행업무용 온라인 거래를 위한 인증표시</li>
+							<li>물리적 접근통제</li>
+							<li>논리적 접근통제 (애플리케이션이나 웹사이트에 로그인)</li>
+							<li>소매 POS 시스템</li>
+							<li>자체 서비스 키오스크</li>
+							<li>출석관리 시스템</li>
+							<li>방문자 ID관리</li>
 						</ul>
 
+						<p>데모 예약, 프로셔 문의 등 이 제품에 대해서 더 많은 정보를 받아보시려면 연락주세요.</p>
 
 						<div class="enter"></div>
 					</div>
 
-					<div
+					<!-- <div
 						class="col-md-push-3 col-md-6 col-sm-push-3 col-sm-6 col-xs-12 ">
 						<img class="img-responsive"
 							src="/CompanyItem/zImage/AerVision_AerPalm_01.PNG" />
@@ -298,10 +353,9 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 						class="col-md-push-1 col-md-10 col-sm-push-1 col-sm-10 col-xs-12 ">
 						<img class="img-responsive"
 							src="/CompanyItem/zImage/AerVision_AerPalm_02.PNG" />
-					</div>
+					</div> -->
 
 				</div>
-				<div class="enter"></div>
 				<!-- /.row -->
 
 			</div>

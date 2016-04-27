@@ -54,7 +54,7 @@
 
 
 <!-- jQuery Version 1.11.0 -->
-<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 
 

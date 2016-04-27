@@ -7,10 +7,6 @@
 
 <head>
 
-<!-- /////////// -->
-<jsp:include page="/PartsOfContent/Head_Import.jsp" flush="false" />
-<!-- /////////// -->
-
 <script type="text/javascript">
 
 $(document).ready(function() {
