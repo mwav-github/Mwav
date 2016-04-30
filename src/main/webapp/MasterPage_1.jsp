@@ -124,7 +124,7 @@
 					</div>
 				</c:if>
 
-				<c:if test="${mode == 'SDMbrInput'}">
+				<c:if test="${param.mode == 'SDMbrInput'}">
 
 					<div class="row setup-content" id="step-3">
 						<div class="col-xs-12">

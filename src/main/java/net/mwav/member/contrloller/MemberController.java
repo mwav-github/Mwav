@@ -1,11 +1,5 @@
 package net.mwav.member.contrloller;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import java.io.ByteArrayOutputStream;
-import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Date;
@@ -16,27 +10,26 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import net.common.common.CommandMap;
+import net.mwav.common.module.EmailSender;
+import net.mwav.member.service.MemberService;
 
 import org.apache.log4j.Logger;
+import org.apache.maven.model.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import net.common.common.CommandMap;
-import net.mwav.common.module.*;
-import net.mwav.member.service.MemberService;
-
-@Controller
-// Anotation 으로 Conroller 호출
-/*
+/**
  * 프로세스 1) 비밀번호 찾기 : mbrTempLoginPwUpdate -> mbrTempLoginPwSeek -> //
- * mbrLoginPwUpdate
  */
+@Controller
 public class MemberController {
 	Logger log = Logger.getLogger(this.getClass());
 	String mode;
@@ -44,12 +37,10 @@ public class MemberController {
 
 	@Autowired
 	EmailSender emailSender;
-	// HttpServletRequest request = null;
-	// 자바에서 세션사용을 위해서는 아래와 같이 필요
-	// HttpSession session = request.getSession();
 
-	// - Controller > Service > ServiceImpl > DAO > SQL(XML) > JSP
-	// 페이지별 세션지정
+	@Resource(name = "memberService")
+	private MemberService memberService;
+
 	/*
 	 * 1. MbrLogin : mode = SMbrLogin /CommonApps/Member/MbrLogin.jsp 2.
 	 * TermsOfUse : mode = STermsOfUse /CommonApps/Member/TermsOfUse.jsp 3.
@@ -58,106 +49,62 @@ public class MemberController {
 	 * 5. bnsUpdate : mode = SbnsUpdate /CommonApps/BoardNews/bnsForm.jsp
 	 */
 
-	@Resource(name = "memberService")
-	private MemberService memberService;
-
-	// Anotation을 이용하여 사용할 Service Class 호출
-	// Service단에서 memberService 로 정의된 Service항목을 자동 매핑 해준다.
-	// 0번
 	@RequestMapping(value = "/memberDefault.do")
-	// ROOT/ /memberDefault.do 경로로 오는 URL은 모두 이 Controller에 매핑
-	// RequestMapping을 이용한 URL mapping. / memberService 다음에 /memberDefault가 오면
-	// 아래 메서드로 매핑된다.
-	// 예) http://localhost/프로젝트명/ memberService /memberDefault
-	// 또한 RequestMethod.POST 정의를 통해, POST방식으로 요청을 받게끔 정의한다. (GET 요청은 매핑 안시켜줌)
 	public ModelAndView defaultMember(CommandMap commandMap,
 			HttpServletRequest request, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView("/MasterPage_1");
 
-		log.isDebugEnabled();
-		// log4js 확인 false 면 안되는거
-		String mode = (String) request.getAttribute("mode");
+		// String mode = (String) request.getAttribute("mode");
 
-		String spath = request.getServletPath();
-		String url = request.getRequestURL().toString();
-		System.out.println("디폴트로 접근시=" + url);
-		// 필요에 따라서 사용
-		String strCurrentUrl = request.getScheme() + "://"
-				+ request.getServerName() + ":" + request.getServerPort()
-				+ request.getContextPath();
+		/**
+		 * @date 2016.04.27
+		 * @author Kim YJ
+		 * @param commandMap
+		 * @param request
+		 * @param session
+		 *            - 해당 컨트롤러 사용여부, 파라미터 사용여부 체크 확인 필요
+		 */
 
-		String getContextPath = request.getContextPath().toString();
-		System.out.println("getContextPath=" + getContextPath);
-		// 들어오는 url에 따라서 분기 실시 위의 url은 /* 형태로
-		// prehandle 인터셉터로 처리하면 될듯 ~! 확인 요망
-		if (mode != null) {
-			if (mode == "SMbrLogin")
-				;
-			{
-
-			}
-		}
+		/*
+		 * String spath = request.getServletPath(); String url =
+		 * request.getRequestURL().toString(); String strCurrentUrl =
+		 * request.getScheme() + "://" + request.getServerName() + ":" +
+		 * request.getServerPort() + request.getContextPath();
+		 * 
+		 * String getContextPath = request.getContextPath().toString(); // 들어오는
+		 * url에 따라서 분기 실시 위의 url은 /* 형태로 // prehandle 인터셉터로 처리하면 될듯 ~! 확인 요망 if
+		 * (mode != null) { if (mode == "SMbrLogin") ; {
+		 * 
+		 * } }
+		 */
 
 		return mv;
 	}
 
-	/*
-	 * ========================================등록================================
-	 * ========
+	/**
+	 * @date 2016.04.27
+	 * @author Kim YJ
+	 * @param b_mbrLoginPw
+	 *            - js에서 pw값을 수정후 보내면 이에 대한 확인부분이 미흡하다
+	 * @param mbrCellPhone
+	 *            - 각각의 값이 문자, 조합, 불필요한 칸 나눔이 포함되어 있다
+	 * @param mbrAddress
+	 *            - 기능 사용 안됨(API를 만들어서 주소를 호출해야됨! 중요!!), 로직 불합리
+	 * @throws Exception
+	 *             - Exception 발생시 무엇에 대한 에러인지 처리 미흡, 에러 페이지로 redirect??
+	 * @see 컨트롤러 부분과 서비스로직 분리
 	 */
-
-	// 1번 mbrForm : Form 입력만 가능 (form update 같이사용.)
 	@RequestMapping(value = "/member/mbrForm.do")
-	public ModelAndView insertMbrForm(CommandMap commandMap,
-			HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
+	public String insertMbrForm(CommandMap commandMap, Model model) throws Exception {
 
-		ModelAndView mv = new ModelAndView("/MasterPage_1");
-		// * action-servlet.xml에서 위에 .jsp 설정해줘서 위의 CommonApps 부터 되는거
-        // html에서 disabled 할시 값이 안넘어 온다. ~! readonly로 하는 경우 값이 null로 넘어온다.
-		String b_mbrLoginPw = (String) commandMap.get("mbrLoginPw");
-		System.out.println("b_mbrLoginPw" + b_mbrLoginPw);
+		//model.addProperty("mode", "SDMbrInput");
+		String result = memberService.insertMbrForm(commandMap.getMap());
 
-		String mbrCellPhone = null;
-		mbrCellPhone = (String) commandMap.get("mbrCellPhone_1")
-				+ (String) commandMap.get("mbrCellPhone_2")
-				+ (String) commandMap.get("mbrCellPhone_3");
-		commandMap.put("mbrCellPhone", mbrCellPhone);
-		/*
-		 * System.out.println("mbrCellPhone" + mbrCellPhone); if (mbrCellPhone_1
-		 * ==null && mbrCellPhone_2 == null && mbrCellPhone_3 ==null) {
-		 * commandMap.put("mbrCellPhone", null); System.out.println("null이당"); }
-		 * else {
-		 * 
-		 * mbrCellPhone = mbrCellPhone_1 + mbrCellPhone_2 + mbrCellPhone_3;
-		 * commandMap.put("mbrCellPhone", mbrCellPhone);
-		 * System.out.println("mbrCellPhone=" + mbrCellPhone); }
-		 */
-		String mbrAddress = null;
-
-		String mbrAddress_1 = null;
-		mbrAddress_1 = (String) commandMap.get("mbrAddress_1");
-		System.out.println("mbrAddress_1=" + mbrAddress_1);
-
-		String mbrAddress_2 = null;
-		mbrAddress_2 = (String) commandMap.get("mbrAddress_2");
-
-		if (mbrAddress_1 == null && mbrAddress_2 == null) {
-			commandMap.put("mbrAddress", null);
-			System.out.println("null이당");
-
-		} else {
-			mbrAddress = mbrAddress_1 + mbrAddress_2;
-			commandMap.put("mbrAddress", mbrAddress);
-			System.out.println("mbrAddress=" + mbrAddress);
-
+		if(!"insertForm Success".equals(result)) {
+			return "redirect:/MasterPage_1.jsp?mode=SMbrInput";
 		}
 
-		memberService.insertMbrForm(commandMap.getMap());
-
-		mv.addObject("mode", "SDMbrInput");
-		// mv.addObject("IDX", commandMap.get("IDX"));
-		return mv;
+		return "redirect:/MasterPage_1.jsp?mode=SDMbrInput";
 	}
 
 	/*

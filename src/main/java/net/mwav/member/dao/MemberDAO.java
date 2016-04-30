@@ -2,20 +2,14 @@ package net.mwav.member.dao;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.crypto.IllegalBlockSizeException;
 
 import net.common.dao.AbstractDAO;
 import net.mwav.common.module.AesEncryption;
 import net.mwav.common.module.Common_Utils;
 
 import org.springframework.stereotype.Repository;
-
-import sun.misc.BASE64Decoder;
-import sun.misc.BASE64Encoder;
 
 @Repository("memberDAO")
 public class MemberDAO extends AbstractDAO {
@@ -30,14 +24,9 @@ public class MemberDAO extends AbstractDAO {
 	 * ========
 	 */
 
-	public Map<String, Object> insertMbrForm(Map<String, Object> map) {
-		// TODO Auto-generated method stub
+	public String insertMbrForm(Map<String, Object> map) {
 
 		try {
-			/*
-			 * String sKey = "ABC"; String sInitVector = "123가나다";
-			 */
-			// byte[] encrypted = null;
 
 			String b_mbrLoginPw = (String) map.get("mbrLoginPw");
 			System.out.println("* AES/CBC/IV");
@@ -53,7 +42,6 @@ public class MemberDAO extends AbstractDAO {
 			//암호화된 값이 String으로 반환
 			String sBase = AesEncryption.aesEncodeBuf(encrypted);
 
-			// String b2_mbrLoginPw = AesTest.toHexString(encrypted);
 			System.out.println("    - TEXT2 : " + sBase);
 
 			map.put("mbrLoginPw", sBase);
@@ -62,22 +50,22 @@ public class MemberDAO extends AbstractDAO {
 			} else {
 				System.out.println("    - Encrypted : " + sBase); //암호화된 String 값
 			}
+			
+			Map<String, Object> imsimap = (Map<String, Object>) selectOne(
+					"member.selectNextPk", map);
+			// map을 위에서 써버리면 그 다음 쿼리시 null 값 나온다. !! (가져오는값이라?)
+			String m_pk = String.valueOf(imsimap.get("member_id"));
+			map.put("member_id", m_pk);
+			insert("member.insertMbrForm", map); // Membertbl
+
+			// Insert
+			insert("member.insertMemberValue_tbl", map); // Membertbl Insert
 		} catch (Exception e) {
 			e.printStackTrace();
+			return "insertForm Error";
 		}
 
-		Map<String, Object> imsimap = (Map<String, Object>) selectOne(
-				"member.selectNextPk", map);
-		// map을 위에서 써버리면 그 다음 쿼리시 null 값 나온다. !! (가져오는값이라?)
-		String m_pk = String.valueOf(imsimap.get("member_id"));
-		System.out.println("m_pk" + m_pk);
-		map.put("member_id", m_pk);
-		insert("member.insertMbrForm", map); // Membertbl
-
-		// Insert
-		insert("member.insertMemberValue_tbl", map); // Membertbl Insert
-
-		return null;
+		return "insertForm Success";
 	}
 
 	/*

@@ -4,13 +4,11 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-import net.common.common.CommandMap;
-
 public interface MemberService {
 
 	/*========================================등록========================================*/
 	
-	Map<String, Object> insertMbrForm(Map<String, Object> map);
+	String insertMbrForm(Map<String, Object> map);
 
 	/*========================================보기========================================*/
 	Map<String, Object> selectMbrView(Map<String, Object> map);
