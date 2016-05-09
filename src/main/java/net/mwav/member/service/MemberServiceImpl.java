@@ -6,14 +6,10 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
-import net.mwav.common.module.AesEncryption;
 import net.mwav.member.dao.MemberDAO;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
-
-import sun.misc.BASE64Decoder;
-import sun.misc.BASE64Encoder;
 
 @Service("memberService")
 public class MemberServiceImpl implements MemberService {
@@ -29,11 +25,41 @@ public class MemberServiceImpl implements MemberService {
 	 * ========
 	 */
 
+	/**
+	 * @date 2016.04.27
+	 * @author Kim YJ
+	 * @see 서비스단 로직 활용
+	 */
 	@Override
-	public Map<String, Object> insertMbrForm(Map<String, Object> map) {
-		// TODO Auto-generated method stub
+	public String insertMbrForm(Map<String, Object> map) {
 
-		return memberDAO.insertMbrForm(map);
+		String result = null;
+
+		String b_mbrLoginPw = String.valueOf(map.get("mbrLoginPw"));
+		if (b_mbrLoginPw.isEmpty()) { //비번처리 로직
+			return "pwEmpty"; //null exception 처리
+		} else if (b_mbrLoginPw.length() < 8 || b_mbrLoginPw.length() > 15) {
+			return "pwLengthWrong"; //pw 자리수 return
+		} else if (b_mbrLoginPw.trim().length() == 0) {
+			return "pwWrongType"; //공백일 경우 처리
+		}
+
+		String mbrCellPhone = String.valueOf(map.get("mbrCellPhone_1"))
+				+ String.valueOf(map.get("mbrCellPhone_2"))
+				+ String.valueOf(map.get("mbrCellPhone_3"));
+		map.put("mbrCellPhone", mbrCellPhone);
+
+		String mbrAddress_1 = String.valueOf(map.get("mbrAddress_1"));
+		String mbrAddress_2 = String.valueOf(map.get("mbrAddress_2"));
+		if (mbrAddress_1 == null && mbrAddress_2 == null) {
+			map.put("mbrAddress", null);
+		} else {
+			map.put("mbrAddress", mbrAddress_1 + mbrAddress_2);
+		}
+
+		result = memberDAO.insertMbrForm(map);
+
+		return result;
 	}
 
 	/*
@@ -57,14 +83,14 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		return memberDAO.updateMbrForm(map);
 	}
-	
+
 	@Override
 	public void updateProMbrform(Map<String, Object> map) {
 		// TODO Auto-generated method stub
 		memberDAO.updateProMbrform(map);
 		return;
 	}
-	
+
 	@Override
 	public boolean updateMbrLoginPw(Map<String, Object> map) throws IOException {
 		// TODO Auto-generated method stub
@@ -85,7 +111,6 @@ public class MemberServiceImpl implements MemberService {
 		return flag;
 	}
 
-	
 	/*
 	 * ========================================리스트(SelectOne, SelectList
 	 * 순)========================================
@@ -113,15 +138,17 @@ public class MemberServiceImpl implements MemberService {
 		 */
 		return flag;
 	}
-	
-	/*========================================삭제========================================*/
+
+	/*
+	 * ========================================삭제================================
+	 * ========
+	 */
 	@Override
 	public boolean deleteMbrDelete(Map<String, Object> map) {
 		// TODO Auto-generated method stub
 		return memberDAO.deleteMbrDelete(map);
 	}
 
-	
 	@Override
 	public List<String> selectListZcGunGuSeek(String zcSiDoName) {
 		// TODO Auto-generated method stub
@@ -152,11 +179,5 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		return memberDAO.selectOneSnsMbrLoginIdCheck(fsmMember_id);
 	}
-
-
-
-
-
-
 
 }
