@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import net.mwav.member.auth.AuthUser;
 import net.mwav.member.auth.GoogleAuthentication;
 import net.mwav.member.auth.UserInfo;
-import net.mwav.member.auth.VersionProperty;
 import net.mwav.member.service.AuthService;
 
 import org.apache.log4j.Logger;
@@ -29,15 +28,6 @@ public class AuthController {
 	
 	@Autowired private AuthService authService;
 	
-	@Autowired 
-	private VersionProperty property;
-
-	@RequestMapping(value = "/google", method = RequestMethod.GET)
-	public String login(Model model) {
-		model.addAttribute("mainUrl", property.getUrl());
-		model.addAttribute("apiUrl", property.getApiUrl());
-		return "login";
-	}
 
 	@RequestMapping(value = "/accessDenied", method = RequestMethod.GET)
 	public String accessDenied(Model model) {

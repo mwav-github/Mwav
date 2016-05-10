@@ -16,13 +16,15 @@ import javax.servlet.http.HttpSession;
 
 import net.common.common.CommandMap;
 import net.mwav.common.module.EmailSender;
+import net.mwav.member.auth.VersionProperty;
 import net.mwav.member.service.MemberService;
 
 import org.apache.log4j.Logger;
-import org.apache.maven.model.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -40,7 +42,10 @@ public class MemberController {
 
 	@Resource(name = "memberService")
 	private MemberService memberService;
-
+	
+	@Autowired 
+	private VersionProperty property;
+	
 	/*
 	 * 1. MbrLogin : mode = SMbrLogin /CommonApps/Member/MbrLogin.jsp 2.
 	 * TermsOfUse : mode = STermsOfUse /CommonApps/Member/TermsOfUse.jsp 3.
@@ -48,6 +53,15 @@ public class MemberController {
 	 * FrontNewsList : mode = SFbnsList /CommonApps/BoardNews/FrontNewsList.jsp
 	 * 5. bnsUpdate : mode = SbnsUpdate /CommonApps/BoardNews/bnsForm.jsp
 	 */
+	
+
+	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
+	public String login(Model model) {
+		model.addAttribute("mainUrl", property.getUrl());
+		model.addAttribute("apiUrl", property.getApiUrl());
+		
+		return "redirect:/MasterPage.jsp?mode=SMbrLogin";
+	}
 
 	@RequestMapping(value = "/memberDefault.do")
 	public ModelAndView defaultMember(CommandMap commandMap,

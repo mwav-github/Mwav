@@ -203,12 +203,10 @@
 				</button>
 
 			</div>
-			<div class="col-xs-6 col-sm-6 col-md-2">
-				<a href="${apiUrl}/auth?callback=${mainUrl}${pageContext.request.contextPath}/authentication">
-				<i class="fa fa-google-plus"></i></a>
-				<!-- <button type="button" class="btn btn-danger btn-block ">
+			<div class="col-xs-6 col-sm-6 col-md-2"><%-- ${pageContext.request.contextPath} --%>
+				<button type="button" class="btn btn-danger btn-block" onclick="location.href='${param.apiUrl}/auth?callback=${param.mainUrl}/authentication'">
 					<i class="fa fa-google-plus"></i>
-				</button> -->
+				</button>
 			</div>
 			<div class="col-xs-6 col-sm-6 col-md-2">
 				<button type="button" class="btn btn-primary btn-block ">

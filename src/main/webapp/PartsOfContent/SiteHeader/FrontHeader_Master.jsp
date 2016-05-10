@@ -52,7 +52,7 @@
 						<li><a href="/member/LogOut.do">LogOut</a></li>
 					</c:if>
 					<c:if test="${sessionScope.mbrLoginId eq null }">
-						<li><a href="/MasterPage.jsp?mode=SMbrLogin"><i
+						<li><a href="/login.do"><i
 								class="fa fa-user fa-lg"></i></a></li>
 						<li><a href="/MasterPage_1.jsp?mode=Default"><i
 								class="fa fa-user-plus fa-lg"></i></a></li>
