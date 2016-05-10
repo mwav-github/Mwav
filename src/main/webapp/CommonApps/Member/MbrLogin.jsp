@@ -204,9 +204,11 @@
 
 			</div>
 			<div class="col-xs-6 col-sm-6 col-md-2">
-				<button type="button" class="btn btn-danger btn-block ">
+				<a href="${apiUrl}/auth?callback=${mainUrl}${pageContext.request.contextPath}/authentication">
+				<i class="fa fa-google-plus"></i></a>
+				<!-- <button type="button" class="btn btn-danger btn-block ">
 					<i class="fa fa-google-plus"></i>
-				</button>
+				</button> -->
 			</div>
 			<div class="col-xs-6 col-sm-6 col-md-2">
 				<button type="button" class="btn btn-primary btn-block ">
@@ -245,7 +247,7 @@
 				href="/MasterPage_1.jsp?mode=Default"><strong>Sign up
 						now</strong></a></span>
 		</div>
-		 <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" ></div>
+		 <!-- <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" ></div> -->
 		
 		<!-- 페북 로그인 연동 -->
 		
