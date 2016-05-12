@@ -1,27 +1,27 @@
 function SubmitMbr(MbrFrm)
 {
-	<!-- ±âº» Ç×¸ñ check -->
+	<!-- ï¿½âº» ï¿½×¸ï¿½ check -->
 	<!-- ID check -->
-	if (!CheckID(MbrFrm.MbrID, 4, 15, "È¸¿ø¾ÆÀÌµð")){
+	if (!CheckID(MbrFrm.MbrID, 4, 15, "È¸ï¿½ï¿½ï¿½ï¿½ï¿½Ìµï¿½")){
 		return false
 	}
 
-	<!-- name check -->
+	/*name check*/
 	if (MbrFrm.MbrName.value.length == 0 )	{
-		alert("¼º¸íÀ» ±âÀÔÇÏ¿© ÁÖ½Ê½Ã¿À");
+		alert("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½Ö½Ê½Ã¿ï¿½");
 		MbrFrm.MbrName.focus();
 		return false;
 	}
 	if (MbrFrm.MbrName.value.indexOf(" ") >= 0 )	{
-		alert("¼º¸íÀ» ºóÄ­¾øÀÌ ÀÔ·ÂÇÏ½Ê½Ã¿À.");
+		alert("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä­ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï½Ê½Ã¿ï¿½.");
 		MbrFrm.MbrName.focus();
 		return false;
 	}
 
-	// ÀÚÅÃÀüÈ­¹øÈ£
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È­ï¿½ï¿½È£
 	if (MbrFrm.HTEL1.value.length ==0 || MbrFrm.HTEL2.value.length ==0 || MbrFrm.HTEL3.value.length ==0)
 	{
-		alert("ÀüÈ­¹øÈ£¸¦ ÀÔ·ÂÇÏ½Ê½Ã¿À.");
+		alert("ï¿½ï¿½È­ï¿½ï¿½È£ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï½Ê½Ã¿ï¿½.");
 
 		MbrFrm.HTEL1.focus();
 		return false;
@@ -30,72 +30,72 @@ function SubmitMbr(MbrFrm)
 	{
 		if (isNaN(MbrFrm.HTEL1.value) || isNaN(MbrFrm.HTEL2.value) || isNaN(MbrFrm.HTEL3.value))
 		{
-			alert("ÀüÈ­¹øÈ£¸¦ ¼ýÀÚ·Î ÀÔ·ÂÇÏ½Ê½Ã¿À.");
+			alert("ï¿½ï¿½È­ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½Ú·ï¿½ ï¿½Ô·ï¿½ï¿½Ï½Ê½Ã¿ï¿½.");
 
 			MbrFrm.HTEL1.focus();
 			return false;
 		}
 	}
 	if(/^[0-9]+$/.test(MbrFrm.HTEL1.value) == false){
-                alert("ÀüÈ­¹øÈ£¸¦ ÀÔ·ÂÇÏ½Ê½Ã¿À.");
+                alert("ï¿½ï¿½È­ï¿½ï¿½È£ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï½Ê½Ã¿ï¿½.");
                 MbrFrm.HTEL1.select();
                 MbrFrm.HTEL1.focus();
                 return false;
      }
 	if(/^[0-9]+$/.test(MbrFrm.HTEL2.value) == false){
-		alert("ÀüÈ­¹øÈ£¸¦ ÀÔ·ÂÇÏ½Ê½Ã¿À.");
+		alert("ï¿½ï¿½È­ï¿½ï¿½È£ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï½Ê½Ã¿ï¿½.");
 		MbrFrm.HTEL2.select();
 		MbrFrm.HTEL2.focus();
 		return false;
 	}
 	if(/^[0-9]+$/.test(MbrFrm.HTEL3.value) == false){
-		alert("ÀüÈ­¹øÈ£¸¦ ÀÔ·ÂÇÏ½Ê½Ã¿À.");
+		alert("ï¿½ï¿½È­ï¿½ï¿½È£ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï½Ê½Ã¿ï¿½.");
 		MbrFrm.HTEL3.select();
 		MbrFrm.HTEL3.focus();
 		return false;
 	}
 
-	//Á¶¼ÒÃ¼Å©
+	//ï¿½ï¿½ï¿½ï¿½Ã¼Å©
 	if(/^[0-9-]{7}$/.test(MbrFrm.AddrZip.value) == false) {
-	    alert("¿ìÆí¹øÈ£¸¦ ÀÔ·ÂÇØÁÖ½Ê½Ã¿ä.");
+	    alert("ï¿½ï¿½ï¿½ï¿½ï¿½È£ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ï¿½Ö½Ê½Ã¿ï¿½.");
 	    MbrFrm.AddrZip.select();
 	    MbrFrm.AddrZip.focus();
 	    return false;
 	}
 	if (MbrFrm.AddrStt.value.length ==0) {
-		alert("»ó¼¼ÁÖ¼Ò¸¦ ÀÔ·ÂÇÏ½Ê½Ã¿À.");
+		alert("ï¿½ï¿½ï¿½Ö¼Ò¸ï¿½ ï¿½Ô·ï¿½ï¿½Ï½Ê½Ã¿ï¿½.");
 		MbrFrm.AddrStt.focus();
 		return false;
 	}
 
 	<!-- passwd check -->
 	if(/^.{4,15}$/.test(MbrFrm.MbrPW.value) == false){
-	        alert("¾ÏÈ£´Â ÃÖ¼Ò4ÀÚ¿¡¼­ ÃÖ´ë 15ÀÚ±îÁöÀÇ ¿µ¹®ÀÚ ¶Ç´Â ¼ýÀÚ¿©¾ß ÇÕ´Ï´Ù.\n´Ù½Ã ÀÔ·ÂÇØ ÁÖ¼¼¿ä.");
+	        alert("ï¿½ï¿½È£ï¿½ï¿½ ï¿½Ö¼ï¿½4ï¿½Ú¿ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ 15ï¿½Ú±ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ ï¿½Õ´Ï´ï¿½.\nï¿½Ù½ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½ï¿½ï¿½.");
 	        MbrFrm.MbrPW.select();
 	        MbrFrm.MbrPW.focus();
 	        return false;
      }
 	if (MbrFrm.MbrPW.value != MbrFrm.MbrPW1.value ) {
-	    alert ("ºñ¹Ð¹øÈ£°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.");
+	    alert ("ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½.");
 	    MbrFrm.MbrPW.focus();
 	    return false;
 	}
 	if (MbrFrm.MbrID.value == MbrFrm.MbrPW.value ) {
-	    alert("¾ÆÀÌµð¿Í ºñ¹Ð¹øÈ£¸¦ ¼­·Î ´Ù¸£°Ô ÇØÁÖ½Ê½Ã¿À.");
+	    alert("ï¿½ï¿½ï¿½Ìµï¿½ï¿½ ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ö½Ê½Ã¿ï¿½.");
 	    MbrFrm.MbrPW.focus();
 	    return false;
 	}
-	//ºñ¹Ð¹øÈ£ ÈùÆ® Ãß°¡
+	//ï¿½ï¿½Ð¹ï¿½È£ ï¿½ï¿½Æ® ï¿½ß°ï¿½
 	if (MbrFrm.findingA.value.length == 0 ) {
-	    alert("ºñ¹Ð¹øÈ£ ÈùÆ®¿ë ´äº¯À» ±âÀÔÇÏ¿© ÁÖ½Ê½Ã¿À");
+	    alert("ï¿½ï¿½Ð¹ï¿½È£ ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½äº¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½Ö½Ê½Ã¿ï¿½");
 	    MbrFrm.findingA.focus();
 	    return false;
 	}
-	<!-- ÁÖ¹Îµî·Ï, ¿Ü±¹ÀÎµî·Ï¹øÈ£ check -->
+	<!-- ï¿½Ö¹Îµï¿½ï¿½, ï¿½Ü±ï¿½ï¿½Îµï¿½Ï¹ï¿½È£ check -->
 	if(CheckNumbers(MbrFrm)==false){
 		return false;
 	}
-	//¸ÞÀÏ ÀçÈ®ÀÎ
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È®ï¿½ï¿½
  	//alert(typeof(MbrFrm.MbrEmail1));
  	//alert(typeof(MbrFrm.MbrEmail));
  	if (MbrFrm.MbrEmail1 == "object" || MbrFrm.MbrEmail2 == "object") {
@@ -103,7 +103,7 @@ function SubmitMbr(MbrFrm)
 	}
 	if(MbrFrm.MbrEmail.value.length == 0 ||MbrFrm.MbrEmail.value.indexOf("@") == 0 || MbrFrm.MbrEmail.value.indexOf("@")  == (MbrFrm.MbrEmail.value.length-1))
 	{
-		alert("ºÎÁ¤È®ÇÑ ÀÌ¸ÞÀÏ ÁÖ¼ÒÀÔ´Ï´Ù.\n´Ù½ÃÇÑ¹ø ÀÔ·ÂÇØ ÁÖ½Ê½Ã¿À.\n"+"(ÇöÀç ÀÔ·ÂµÈ °ª : "+MbrFrm.MbrEmail1.value+")");
+		alert("ï¿½ï¿½ï¿½ï¿½È®ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½ï¿½Ô´Ï´ï¿½.\nï¿½Ù½ï¿½ï¿½Ñ¹ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ ï¿½Ö½Ê½Ã¿ï¿½.\n"+"(ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·Âµï¿½ ï¿½ï¿½ : "+MbrFrm.MbrEmail1.value+")");
 		return false;
 	}
 return true;
@@ -115,12 +115,12 @@ function mailAddr(MbrFrm)
 	var str_id = MbrFrm.MbrEmail1.value;
 	var str_addr = MbrFrm.MbrEmail2.value;
 	if(str_id == "" && !MbrFrm.MbrEmail2.options[0].selected){
-		alert("ºóÄ­À» Ã¤¿öÁÖ¼¼¿ä.");
+		alert("ï¿½ï¿½Ä­ï¿½ï¿½ Ã¤ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½.");
 		MbrFrm.MbrEmail1.focus();
 		MbrFrm.MbrEmail2.options[0].selected = true;
 		return;
 	}else if(str_id != "" && str_id.indexOf("@") > -1){
-		alert("@ÀÇ ¾ÕºÎºÐ¸¸ ÀÔ·ÂÇØ ÁÖ½Ã°í,\nµÞºÎºÐÀº ¼±ÅÃÇØ ÁÖ¼¼¿ä.");
+		alert("@ï¿½ï¿½ ï¿½ÕºÎºÐ¸ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ ï¿½Ö½Ã°ï¿½,\nï¿½ÞºÎºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½ï¿½ï¿½.");
 		MbrFrm.MbrEmail1.focus();
 		MbrFrm.MbrEmail2.options[0].selected = true;
 		return;
@@ -140,16 +140,16 @@ function email_popup(MbrFrm) {
 }
 
 function CheckNumbers(form){
-//ÁÖ¹Îµî·ÏÃ¼Å©
+//ï¿½Ö¹Îµï¿½ï¿½Ã¼Å©
 
 	var Digit = '1234567890';
 
-	if(TTcheck(form.SSN1, Digit, 6, 6,"ÁÖ¹Î¹øÈ£ ¾ÕÀÚ¸®"))
+	if(TTcheck(form.SSN1, Digit, 6, 6,"ï¿½Ö¹Î¹ï¿½È£ ï¿½ï¿½ï¿½Ú¸ï¿½"))
 	{
 		form.SSN1.focus();
 		return false;
 	}
-	if(TTcheck(form.SSN2, Digit, 7, 7,"ÁÖ¹Î¹øÈ£ µÞÀÚ¸®"))
+	if(TTcheck(form.SSN2, Digit, 7, 7,"ï¿½Ö¹Î¹ï¿½È£ ï¿½ï¿½ï¿½Ú¸ï¿½"))
 	{
 		form.SSN2.focus();
 		return false;
@@ -170,7 +170,7 @@ function CheckNumbers(form){
 			return true;
 		}
 	}else{
-		alert('ÁÖ¹Îµî·Ï¹øÈ£¿¡ ¿À·ù°¡ ÀÖ½À´Ï´Ù. ´Ù½Ã È®ÀÎÇÏ½Ê½Ã¿À.');
+		alert('ï¿½Ö¹Îµï¿½Ï¹ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö½ï¿½ï¿½Ï´ï¿½. ï¿½Ù½ï¿½ È®ï¿½ï¿½ï¿½Ï½Ê½Ã¿ï¿½.');
 		form.SSN1.focus();
 		return false;
 	}
@@ -188,12 +188,12 @@ function CheckIdnNo(form){
 	var idn_no = ssn1 + ssn2;
 
 	if (idn_no == ''){
-		alert('ÁÖ¹Îµî·Ï¹øÈ£¸¦ ÀÔ·ÂÇÏ½Ê½Ã¿À.');
+		alert('ï¿½Ö¹Îµï¿½Ï¹ï¿½È£ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï½Ê½Ã¿ï¿½.');
 		return false;
 	}
 
 	if (idn_no.length != 13) {
-		alert('ÁÖ¹Îµî·Ï¹øÈ£ ÀÚ¸®¼ö°¡ ¸ÂÁö ¾Ê½À´Ï´Ù.');
+		alert('ï¿½Ö¹Îµï¿½Ï¹ï¿½È£ ï¿½Ú¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½.');
 		return false;
 	}
 
@@ -209,12 +209,12 @@ function CheckIdnNo(form){
 	}
 
 	if ( (fullyr-parseInt(born))<14) {
-		alert("¸¸ 14¼¼ÀÌ»ó¸¸ °¡ÀÔÇÒ¼ö ÀÖ½À´Ï´Ù.");
+		alert("ï¿½ï¿½ 14ï¿½ï¿½ï¿½Ì»ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ò¼ï¿½ ï¿½Ö½ï¿½ï¿½Ï´ï¿½.");
 		 return false;
 	}
 
 	if(idn_no_checksum(ssn1+ssn2)== false){
-            	alert('ÁÖ¹Îµî·Ï¹øÈ£¿¡ ¿À·ù°¡ ÀÖ½À´Ï´Ù. ´Ù½Ã È®ÀÎÇÏ½Ê½Ã¿À.');
+            	alert('ï¿½Ö¹Îµï¿½Ï¹ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö½ï¿½ï¿½Ï´ï¿½. ï¿½Ù½ï¿½ È®ï¿½ï¿½ï¿½Ï½Ê½Ã¿ï¿½.');
             	return false;
 	}else{
 		return true;
@@ -223,12 +223,12 @@ function CheckIdnNo(form){
 function checkForeignNo(form){
 	var fgn_reg_no = form.SSN1.value + form.SSN2.value;
 	if (fgn_reg_no == ''){
-		alert('¿Ü±¹ÀÎµî·Ï¹øÈ£¸¦ ÀÔ·ÂÇÏ½Ê½Ã¿À.');
+		alert('ï¿½Ü±ï¿½ï¿½Îµï¿½Ï¹ï¿½È£ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï½Ê½Ã¿ï¿½.');
 		return false;
 	}
 
 	if (fgn_reg_no.length != 13) {
-		alert('¿Ü±¹ÀÎµî·Ï¹øÈ£ ÀÚ¸®¼ö°¡ ¸ÂÁö ¾Ê½À´Ï´Ù.');
+		alert('ï¿½Ü±ï¿½ï¿½Îµï¿½Ï¹ï¿½È£ ï¿½Ú¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½.');
 		return false;
 	}
 
@@ -249,7 +249,7 @@ function checkForeignNo(form){
 	}
 	else
 	{
-		alert("µî·Ï¹øÈ£¿¡ ¿À·ù°¡ ÀÖ½À´Ï´Ù. ´Ù½Ã È®ÀÎÇÏ½Ê½Ã¿À.");
+		alert("ï¿½ï¿½Ï¹ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö½ï¿½ï¿½Ï´ï¿½. ï¿½Ù½ï¿½ È®ï¿½ï¿½ï¿½Ï½Ê½Ã¿ï¿½.");
 		return false;
 	}
 
@@ -259,19 +259,19 @@ function checkForeignNo(form){
 	birth = new Date(birthYear, birthMonth, birthDate);
 
 	if ( (fullyr-parseInt(birthYear))<14) {
-		alert("¸¸ 14¼¼ÀÌ»ó¸¸ °¡ÀÔÇÒ¼ö ÀÖ½À´Ï´Ù.");
+		alert("ï¿½ï¿½ 14ï¿½ï¿½ï¿½Ì»ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ò¼ï¿½ ï¿½Ö½ï¿½ï¿½Ï´ï¿½.");
 		 return false;
 	}
 
 	if ( birth.getYear() % 100 != fgn_reg_no.substr(0, 2) ||
 		birth.getMonth() != birthMonth ||
 		birth.getDate() != birthDate) {
-		alert('»ý³â¿ùÀÏ¿¡ ¿À·ù°¡ ÀÖ½À´Ï´Ù. ´Ù½Ã È®ÀÎÇÏ½Ê½Ã¿À.');
+		alert('ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö½ï¿½ï¿½Ï´ï¿½. ï¿½Ù½ï¿½ È®ï¿½ï¿½ï¿½Ï½Ê½Ã¿ï¿½.');
 		return false;
 	}
 
 	if (fgn_no_chksum(fgn_reg_no) == false){
-		alert('¿Ü±¹ÀÎµî·Ï¹øÈ£¿¡ ¿À·ù°¡ ÀÖ½À´Ï´Ù. ´Ù½Ã È®ÀÎÇÏ½Ê½Ã¿À.');
+		alert('ï¿½Ü±ï¿½ï¿½Îµï¿½Ï¹ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö½ï¿½ï¿½Ï´ï¿½. ï¿½Ù½ï¿½ È®ï¿½ï¿½ï¿½Ï½Ê½Ã¿ï¿½.');
 		return false;
 	}
 	else {
@@ -285,8 +285,8 @@ function TTcheck(target, astr, lmin, lmax, targetname)
 
 	if (t.length < lmin || t.length > lmax)
 	{
-		if (lmin == lmax) alert( + lmin + "±ÛÀÚ·Î  " + targetname + "¸¦ ÀÔ·ÂÇÏ½Ê½Ã¿À.");
-		else alert(+ lmin + ' ~ ' + lmax + "±ÛÀÚ·Î  " + targetname + "¸¦ ÀÔ·ÂÇÏ½Ê½Ã¿À.");
+		if (lmin == lmax) alert( + lmin + "ï¿½ï¿½ï¿½Ú·ï¿½  " + targetname + "ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï½Ê½Ã¿ï¿½.");
+		else alert(+ lmin + ' ~ ' + lmax + "ï¿½ï¿½ï¿½Ú·ï¿½  " + targetname + "ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï½Ê½Ã¿ï¿½.");
 		return true
 	}
 
@@ -295,7 +295,7 @@ function TTcheck(target, astr, lmin, lmax, targetname)
 		for (i=0; i<t.length; i++)
 			if(astr.indexOf(t.substring(i,i+1))<0)
 			{
-				alert(targetname + "¿¡ Çã¿ëÇÒ ¼ö ¾ø´Â ¹®ÀÚ°¡ ÀÔ·ÂµÇ¾ú½À´Ï´Ù.     ");
+				alert(targetname + "ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú°ï¿½ ï¿½Ô·ÂµÇ¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.     ");
 				target.focus()
 				return true
 			}
@@ -325,7 +325,7 @@ function DupIdnNo()
 	var idnNo = idnNo1 + idnNo2;
 	if( idnNo == "")
 	{
-		alert("ÁÖ¹Îµî·Ï¹øÈ£¸¦ ÀÔ·ÂÇÏ½Ê½Ã¿À.");
+		alert("ï¿½Ö¹Îµï¿½Ï¹ï¿½È£ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï½Ê½Ã¿ï¿½.");
 		document.MemberForm.SSN1.focus();
 		return (false);
 	}
@@ -336,9 +336,9 @@ function DupIdnNo()
 
 function checkAddr(zipWhere)
 {
-	<!-- ÁÖ¼ÒÇ×¸ñ ¿ìÆí¹øÈ£ buttonÀ¸·Î¸¸ ÀÔ·ÂÇÏ°Ô ¾È³» -->
+	<!-- ï¿½Ö¼ï¿½ï¿½×¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½È£ buttonï¿½ï¿½ï¿½Î¸ï¿½ ï¿½Ô·ï¿½ï¿½Ï°ï¿½ ï¿½È³ï¿½ -->
 
-	alert("¿ìÆí¹øÈ£¹× ÁÖ¼Ò(µ¿ÀÌÀü)´Â ¿ìÆí¹øÈ£ Ã£±â ¹öÆ°À» ÀÌ¿ëÇØ ÁÖ½Ê½Ã¿À");
+	alert("ï¿½ï¿½ï¿½ï¿½ï¿½È£ï¿½ï¿½ ï¿½Ö¼ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½È£ Ã£ï¿½ï¿½ ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½ï¿½ ï¿½Ö½Ê½Ã¿ï¿½");
 	return(false);
 }
 

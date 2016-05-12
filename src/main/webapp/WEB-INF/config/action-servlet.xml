@@ -10,6 +10,29 @@
 		선언하지 않고도 필요한 것을 어노테이션(Annotation)을 자동으로 인식하게 하는 역할 -->
 	<context:component-scan base-package="net"></context:component-scan>
 
+	<!-- 구글 프로퍼티 파일 연결 -->
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="ignoreResourceNotFound" value="true" />
+        <property name="locations">
+           <list>
+	            <value>classpath:googleProperties/googleApi.properties</value>
+	            <value>classpath:googleProperties/version.properties</value>
+			</list>
+        </property>
+    </bean>
+    
+    <!-- restTemplate 사용위한 bean 생성 -->
+    <bean id="jsonConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+		<property name="supportedMediaTypes" value="application/json" />
+	</bean>
+	
+    <bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
+		<property name="messageConverters">		
+            <list>
+				<ref bean="jsonConverter" />
+            </list>
+		</property>
+	</bean>
 
 
 	<!-- 파일 업로드 MultipartResolver 설정 CommonsMultipartResolver 등록 / CommonsMultipartResolver은 
