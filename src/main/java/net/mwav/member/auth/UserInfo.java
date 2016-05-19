@@ -96,7 +96,7 @@ public class UserInfo  {
 		userInfo.picture = user.getPicture();
 		userInfo.signdate = user.getSigndate().toString("yyyy-MM-dd");
 		userInfo.lastDate = user.getLastDate().toString("yyyy-MM-dd");
-		userInfo.state = (user.getState() == State.ACTIVE) ? true: false;
+		userInfo.state = (user.getState() == State.ACTIVE);
 		userInfo.result = new CommonResult();
 		userInfo.result.setSuccess(true);
 		userInfo.result.setMessage("");
