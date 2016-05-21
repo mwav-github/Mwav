@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+
+	<bean id="dataSourceSpied" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="org.gjt.mm.mysql.Driver"/>  <!-- 읽어온 정보를 매핑시켜 가지고 있는 빈 -->
+		<property name="url" value="jdbc:mysql://localhost:3306/mwav"/>
+		<property name="username" value="mwav"/>
+		<property name="password" value="tiger"/><!-- 12485154 // tiger-->
+		<property name="maxActive" value="100"/>
+		<property name="maxWait" value="1000"/>
+    </bean>
+    
+    <bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
+		<constructor-arg ref="dataSourceSpied" />
+		<property name="logFormatter">
+			<bean class="net.sf.log4jdbc.tools.Log4JdbcCustomFormatter">
+				<property name="loggingType" value="MULTI_LINE" />
+				<property name="sqlPrefix" value="SQL         :  "/>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">
+	<!-- 데이터베이스 정보 name은 위에서 등록한 sqlSession 빈(bean)에서 사용할 이름이 dataSource이고, 
+	     ref의 dataSource는 우리가 context-datasource.xml에서 정의한 빈(bean)을 참조하는 것을 의미한다. -->
+		<property name="dataSource" ref="dataSource" /> 
+		
+		<!-- 매퍼 xml이 있는 경로 정의   SQL이 위치할 mapper 폴더를 잡아주고, 
+		        그 안에 모든 폴더를 의미하는 **를 붙여준 후, 마지막으로 _SQL로 끝나는 모든 xml 파일을 읽어주도록 한다-->
+		<property name="mapperLocations" value="classpath:/mapper/**/*_SQL.xml" /> 
+	</bean>
+	<!-- 
+	10번째 줄의 sqlSessionTemplate은 마이바티스 스프링 연동모듈의 핵심이다. 
+	SQLSessionTemplate은 SqlSession을 구현하고, 코드에서 SqlSessoin을 대체하는 역할을 한다.  -->
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg index="0" ref="sqlSession"/>
+    </bean>
+	
+	<!-- Configures transaction management around @Transactional components -->
+	<tx:annotation-driven transaction-manager="transactionManager" />
+		
+	<!-- Local, JDBC-based TransactionManager -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<!-- Shared JDBC Data Access Template -->
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<constructor-arg ref="dataSource" />
+	</bean>
+
+	<!-- Embedded database for storing connections -->
+	<!-- <jdbc:embedded-database id="dataSource" type="H2">
+		<jdbc:script location="classpath:/org/springframework/social/connect/jdbc/JdbcUsersConnectionRepository.sql" />
+	</jdbc:embedded-database> -->	
+	
+	<!-- <jdbc:embedded-database id="dataSource" type="H2">
+		<jdbc:script location="classpath:/org/springframework/social/connect/jdbc/JdbcUsersConnectionRepository.sql" />
+		<jdbc:script location="classpath:/org/springframework/social/showcase/account/Account.sql" />
+		<jdbc:script location="classpath:/org/springframework/social/showcase/account/data.sql" />
+	</jdbc:embedded-database> -->
+</beans>
