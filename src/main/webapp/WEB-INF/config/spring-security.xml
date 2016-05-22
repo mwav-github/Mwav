@@ -9,7 +9,7 @@
 
 	<http use-expressions="true">
 		<!-- Authentication policy -->
-		<form-login login-page="/signin" login-processing-url="/signin/authenticate" authentication-failure-url="/signin?param.error=bad_credentials" />
+		<form-login login-page="/signin.do" login-processing-url="/signin/authenticate.do" authentication-failure-url="/signin?param.error=bad_credentials" />
 		<logout logout-url="/signout" delete-cookies="JSESSIONID" />
 		<intercept-url pattern="/favicon.ico" access="permitAll" />
 		<intercept-url pattern="/resources/**" access="permitAll" />
@@ -18,25 +18,25 @@
 		<intercept-url pattern="/signup/**" access="permitAll" />
 		<intercept-url pattern="/disconnect/facebook" access="permitAll" />
 		<intercept-url pattern="/**" access="isAuthenticated()"  />
-		<remember-me />
+		<!-- <remember-me /> -->
 		
 		<!--  Spring Social Security authentication filter -->
-		<custom-filter ref="socialAuthenticationFilter" before="PRE_AUTH_FILTER" />
+		<!-- <custom-filter ref="socialAuthenticationFilter" before="PRE_AUTH_FILTER" /> -->
 	</http>
 
 	<authentication-manager alias="authenticationManager">
-		<authentication-provider user-service-ref="userDetailsService">
+		<!-- <authentication-provider user-service-ref="userDetailsService">
 			<password-encoder ref="passwordEncoder" />
-		</authentication-provider>
+		</authentication-provider> -->
 		
 		<!-- Spring Social Security authentication provider -->
-		<authentication-provider ref="socialAuthenticationProvider" />
+		<!-- <authentication-provider ref="socialAuthenticationProvider" /> -->
 	</authentication-manager>	
 
-	<jdbc-user-service id="userDetailsService" 
+	<!-- <jdbc-user-service id="userDetailsService" 
 					data-source-ref="dataSource" 
 					users-by-username-query="select username, password, true from Account where username = ?"
-					authorities-by-username-query="select username, 'ROLE_USER' from Account where username = ?"/>
+					authorities-by-username-query="select username, 'ROLE_USER' from Account where username = ?"/> -->
 	
 	<beans:bean id="textEncryptor" class="org.springframework.security.crypto.encrypt.Encryptors"
 		factory-method="noOpText" />

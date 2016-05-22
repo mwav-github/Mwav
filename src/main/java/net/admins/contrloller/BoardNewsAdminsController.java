@@ -47,7 +47,7 @@ public class BoardNewsAdminsController {
 	 * SFbnsList /CommonApps/BoardNews/FrontNewsList.jsp 5. bnsUpdate : mode =
 	 * SbnsUpdate /CommonApps/BoardNews/bnsForm.jsp
 	 */
-	@Resource(name = "boardNewsAdminsService")
+	@Resource(name = "boardNewsAdminsService.do")
 	private BoardNewsAdminsService boardNewsAdminsService;
 
 	// ///////////////////////////////////BoardNews/////////////////////////////////////
@@ -162,7 +162,7 @@ public class BoardNewsAdminsController {
 	/*
 	 * // 7번 bnsUpdatePro : 리스트 업데이트
 	 * 
-	 * @RequestMapping(value = "/board/bnsUpdatePro.do") public ModelAndView
+	 * @RequestMapping(value = "/board/bnsUpdatePro") public ModelAndView
 	 * updatebnsform(CommandMap commandMap) throws Exception { ModelAndView mv =
 	 * new ModelAndView("/Company/CompanyMasterPage_1");
 	 * 

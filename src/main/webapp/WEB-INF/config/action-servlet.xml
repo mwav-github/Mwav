@@ -17,6 +17,7 @@
            <list>
 	            <value>classpath:googleProperties/googleApi.properties</value>
 	            <value>classpath:googleProperties/version.properties</value>
+	            <value>classpath:googleProperties/datasource.properties</value>
 			</list>
         </property>
     </bean>
@@ -131,20 +132,63 @@
 		p:prefix="/" p:suffix=".jsp">  <!-- prefix는 페이지의 기본 루트 // 페이지의 기본 확장자 -->
 
 	</bean>
+	
+	<context:property-placeholder location="classpath:googleProperties/datasource.properties" />
+	<context:property-placeholder location="classpath:googleProperties/application.properties"/>
+	
+	<bean id="dataSource"  class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	  <property name="driverClassName" value="${jdbc.driverClassName}" />
+	  <property name="url" value="${jdbc.url}" />
+	  <property name="username" value="${jdbc.user}" />
+	  <property name="password" value="${jdbc.pass}" />
+	</bean>
 
-	<!-- <import resource="root-context.xml" /> -->
+	<bean id="dataSourceSpied" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="org.gjt.mm.mysql.Driver"/>  <!-- 읽어온 정보를 매핑시켜 가지고 있는 빈 -->
+		<property name="url" value="jdbc:mysql://localhost:3306/mwav"/>
+		<property name="username" value="mwav"/>
+		<property name="password" value="tiger"/><!-- 12485154 // tiger-->
+		<property name="maxActive" value="100"/>
+		<property name="maxWait" value="1000"/>
+    </bean>
+    
+    <!-- <bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
+		<constructor-arg ref="dataSourceSpied" />
+		<property name="logFormatter">
+			<bean class="net.sf.log4jdbc.tools.Log4JdbcCustomFormatter">
+				<property name="loggingType" value="MULTI_LINE" />
+				<property name="sqlPrefix" value="SQL         :  "/>
+			</bean>
+		</property>
+	</bean> -->
+	
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">
+	<!-- 데이터베이스 정보 name은 위에서 등록한 sqlSession 빈(bean)에서 사용할 이름이 dataSource이고, 
+	     ref의 dataSource는 우리가 context-datasource.xml에서 정의한 빈(bean)을 참조하는 것을 의미한다. -->
+		<property name="dataSource" ref="dataSource" /> 
+		
+		<!-- 매퍼 xml이 있는 경로 정의   SQL이 위치할 mapper 폴더를 잡아주고, 
+		        그 안에 모든 폴더를 의미하는 **를 붙여준 후, 마지막으로 _SQL로 끝나는 모든 xml 파일을 읽어주도록 한다-->
+		<property name="mapperLocations" value="classpath:/mapper/**/*_SQL.xml" /> 
+	</bean>
+	<!-- 
+	10번째 줄의 sqlSessionTemplate은 마이바티스 스프링 연동모듈의 핵심이다. 
+	SQLSessionTemplate은 SqlSession을 구현하고, 코드에서 SqlSessoin을 대체하는 역할을 한다.  -->
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg index="0" ref="sqlSession"/>
+    </bean>  
 	
 	<import resource="mvc.xml" />
 
-	<!-- <import resource="data.xml" /> -->
+	<import resource="data.xml" />
 
 	<import resource="spring-security.xml" />
 
-	<import resource="social.xml" />
+	<!-- <import resource="social.xml" /> -->
 
-	<import resource="social-security.xml" />
+	<!-- <import resource="social-security.xml" /> -->
 
-	<context:property-placeholder location="classpath:googleProperties/application.properties"/>
+	
 	
 	
 	

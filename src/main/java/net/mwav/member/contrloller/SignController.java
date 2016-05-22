@@ -15,6 +15,8 @@
  */
 package net.mwav.member.contrloller;
 
+import java.security.Principal;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
@@ -26,12 +28,12 @@ import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.ConnectionFactoryLocator;
 import org.springframework.social.connect.UsersConnectionRepository;
 import org.springframework.social.connect.web.ProviderSignInUtils;
+import org.springframework.social.google.api.Google;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.WebRequest;
-
-import com.mysql.fabric.xmlrpc.base.Member;
 
 
 @Controller
@@ -50,24 +52,39 @@ public class SignController {
 	@RequestMapping(value = "/signin", method = RequestMethod.GET)
 	public void signin() {
 	}
+	
+	@RequestMapping(value = "/signout", method = RequestMethod.GET)
+	public void signout() {
+	}
 
 	@RequestMapping("/google/expired")
 	public void simulateExpiredToken() { // 만료된 토큰 관리
 		throw new ExpiredAuthorizationException("google");
+	}
+	
+	@RequestMapping(value = "/signin/google", method = RequestMethod.GET)
+	public void signinTest(@RequestParam(value = "state", required = false) String state, 
+							 @RequestParam(value = "code", required = false) String authCode) {
+		System.out.println("/signin/google");
+		System.out.println("state = "+state);
+		System.out.println("code = "+authCode);
+		//return "redirect:/signup";
 	}
 
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)
 	public String signupForm(WebRequest req, Model model, HttpServletRequest request) {
 		Connection<?> connection = providerSignInUtils.getConnectionFromSession(req);
 		String member_email = connection.fetchUserProfile().getEmail();
+		System.out.println("signup!!");
+		System.out.println("member_email = "+member_email);
 
-		if (connection != null) {
+		/*if (connection != null) {
 			String getUserName = connection.fetchUserProfile().getUsername();
 			SignInUtils.signin(member_email); // 인증
-			//providerSignInUtils.doPostSignUp(getUserName, request); // userConnection Row 생성
+			//providerSignInUtilsPostSignUp(getUserName, request); // userConnection Row 생성
 			
 			// Member Row 생성
-			/*boolean checkCreateMember = memberService.selectEmailMember(member_email);
+			boolean checkCreateMember = memberService.selectEmailMember(member_email);
 			System.out.println("checkCreateMember = "+checkCreateMember);
 			if (checkCreateMember) {
 				Member member = new Member(memberService.selectCountMember(), connection.getDisplayName(), member_email,
@@ -75,11 +92,13 @@ public class SignController {
 				memberService.insertMember(member);
 				
 				request.getSession().setAttribute("member_email", member_email);
-			}*/
+			}
 
-		}
+		}*/
 		
-		return "/memberDefault.do";
+		return "/memberDefault";
 	}
+	
+		
 
 }

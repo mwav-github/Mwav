@@ -188,6 +188,14 @@
 <%--padding 으로 안쪽 추후 딴건 변경가능 #04A3ED --%>
 <div class="col-md-12"
 	style="padding: 60px; box-shadow: 0 0 20px 3px #04A3ED; background: #f7f7f7;">
+	
+	<!-- GOOGLE SIGNIN -->
+			${pageContext.request.contextPath}
+			<form id="go_signin" name="go_signin" action="<c:url value="/signin/google"/>" method="POST">
+				<input type="hidden" name="scope" value="email profile" />
+				<input type="Image" name="submit button" src="/resources/images/google_login.png" ></input>
+			</form>
+		
 	<form name="login_form" action="/member/Login.do" method="post">
 
 		<div class="form-group">

@@ -12,6 +12,8 @@
 		http://www.springframework.org/schema/social http://www.springframework.org/schema/social/spring-social.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
+	<context:property-placeholder location="classpath:googleProperties/application.properties" />
+	
 	<bean id="usersConnectionRepository" class="org.springframework.social.connect.jdbc.JdbcUsersConnectionRepository">
 		<constructor-arg ref="dataSource" />
 		<constructor-arg ref="connectionFactoryLocator" />
@@ -19,12 +21,12 @@
 		<!-- <aop:scoped-proxy proxy-target-class="false" /> -->
 	</bean>
 	
-	<!-- <bean id="connectionRepository" factory-method="createConnectionRepository" factory-bean="usersConnectionRepository" scope="request">
+	<bean id="connectionRepository" factory-method="createConnectionRepository" factory-bean="usersConnectionRepository" scope="request">
 		<constructor-arg value="#{request.userPrincipal.name}" />
-		<aop:scoped-proxy proxy-target-class="false" />
-	</bean> -->
+		<!-- <aop:scoped-proxy proxy-target-class="false" /> -->
+	</bean>
 
-	<context:property-placeholder location="classpath:googleProperties/application.properties" />
+	
 
 	<!-- <facebook:config app-id="${facebook.clientId}" app-secret="${facebook.clientSecret}" app-namespace="socialshowcase" />
 	<twitter:config app-id="${twitter.consumerKey}" app-secret="${twitter.consumerSecret}"/> -->
@@ -57,7 +59,7 @@
 	                <constructor-arg value="${google.appKey}" />
 	                <constructor-arg value="${google.appSecret}" />				
 	            </bean>
-	            <!-- <bean class="org.springframework.social.facebook.connect.FacebookConnectionFactory">
+	          <!--   <bean class="org.springframework.social.facebook.connect.FacebookConnectionFactory">
 	                <constructor-arg value="${facebook.clientId}" />
 	                <constructor-arg value="${facebook.clientSecret}" />				
 	            </bean> -->
