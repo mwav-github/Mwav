@@ -188,8 +188,7 @@
 <%--padding 으로 안쪽 추후 딴건 변경가능 #04A3ED --%>
 <div class="col-md-12"
 	style="padding: 60px; box-shadow: 0 0 20px 3px #04A3ED; background: #f7f7f7;">
-	<form name="login_form" action="/member/Login.do" method="post">
-
+	
 		<div class="form-group">
 			<div class="col-xs-6 col-sm-6 col-md-2">
 				<button type="button" class="btn btn-primary btn-block " onclick="checkLoginState();">
@@ -203,11 +202,16 @@
 				</button>
 
 			</div>
-			<div class="col-xs-6 col-sm-6 col-md-2"><%-- ${pageContext.request.contextPath} --%>
-				<button type="button" class="btn btn-danger btn-block" onclick="location.href='${param.apiUrl}'">
-					<i class="fa fa-google-plus"></i>
-				</button>
-			</div>
+			
+			<!-- GOOGLE SIGNIN -->
+			<form id="go_signin" name="go_signin" action="<c:url value="/signin/google.do"/>" method="POST">
+				<div class="col-xs-6 col-sm-6 col-md-2">
+					<button type="submit" class="btn btn-danger btn-block"><i class="fa fa-google-plus"></i></button>
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+					<input type="hidden" name="scope" value="email profile" />
+				</div>
+			</form>
+			
 			<div class="col-xs-6 col-sm-6 col-md-2">
 				<button type="button" class="btn btn-primary btn-block ">
 					<i class="fa fa-linkedin"></i>
@@ -215,6 +219,8 @@
 			</div>
 		</div>
 
+		<form name="login_form" action="/member/Login.do" method="post">
+		
 		<div class="enter"></div>
 		<div class="enter"></div>
 
@@ -234,6 +240,7 @@
 			<button type="submit" class="btn btn-primary btn-lg btn-block">Sign
 				In</button>
 		</div>
+		
 		<div class="form-group">
 
 			<span class="pull-left"><a href="#IDPWSeek"
@@ -257,5 +264,6 @@
 				data-show-faces="true" data-auto-logout-link="true"></div> -->
 
 	</form>
+	
 </div>
 <!-- Login - END -->

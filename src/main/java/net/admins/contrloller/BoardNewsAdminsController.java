@@ -162,7 +162,7 @@ public class BoardNewsAdminsController {
 	/*
 	 * // 7번 bnsUpdatePro : 리스트 업데이트
 	 * 
-	 * @RequestMapping(value = "/board/bnsUpdatePro.do") public ModelAndView
+	 * @RequestMapping(value = "/board/bnsUpdatePro") public ModelAndView
 	 * updatebnsform(CommandMap commandMap) throws Exception { ModelAndView mv =
 	 * new ModelAndView("/Company/CompanyMasterPage_1");
 	 * 

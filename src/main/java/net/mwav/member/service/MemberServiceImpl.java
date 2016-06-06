@@ -175,9 +175,9 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public boolean selectOneSnsMbrLoginIdCheck(String fsmMember_id) {
+	public boolean selectOneSnsMbrLoginIdCheck(String smMember_id) {
 		// TODO Auto-generated method stub
-		return memberDAO.selectOneSnsMbrLoginIdCheck(fsmMember_id);
+		return memberDAO.selectOneSnsMbrLoginIdCheck(smMember_id);
 	}
 
 }

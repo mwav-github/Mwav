@@ -5,22 +5,24 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class VersionProperty {
-	@Value("${auth.url}")
-	private String url;
-	@Value("${auth.api.url}")
-	private String apiUrl;
+	@Value("${google.appKey}")
+	private String appKey;
+	@Value("${google.appSecret}")
+	private String appSecret;
 	
-	public String getUrl() {
-		return url;
+	
+	public String getAppKey() {
+		return appKey;
 	}
-	public void setUrl(String url) {
-		this.url = url;
+	public void setAppKey(String appKey) {
+		this.appKey = appKey;
 	}
-	public String getApiUrl() {
-		return apiUrl;
+	public String getAppSecret() {
+		return appSecret;
 	}
-	public void setApiUrl(String apiUrl) {
-		this.apiUrl = apiUrl;
+	public void setAppSecret(String appSecret) {
+		this.appSecret = appSecret;
 	}
+	
 	
 }

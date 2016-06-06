@@ -5,7 +5,6 @@ import java.util.List;
 
 
 public class UserInfo  {
-	private CommonResult result;
 	private String googleIdentifier;
 	private String email;
 	private String name;
@@ -67,12 +66,6 @@ public class UserInfo  {
 	public void setRoleList(List<String> roleList) {
 		this.roleList = roleList;
 	}
-	public CommonResult getResult() {
-		return result;
-	}
-	public void setResult(CommonResult result) {
-		this.result = result;
-	}
 
 	public String getLastDate() {
 		return lastDate;
@@ -96,18 +89,14 @@ public class UserInfo  {
 		userInfo.picture = user.getPicture();
 		userInfo.signdate = user.getSigndate().toString("yyyy-MM-dd");
 		userInfo.lastDate = user.getLastDate().toString("yyyy-MM-dd");
-		userInfo.state = (user.getState() == State.ACTIVE);
-		userInfo.result = new CommonResult();
-		userInfo.result.setSuccess(true);
-		userInfo.result.setMessage("");
+		userInfo.state = (user.getState() == State.ACTIVE) ? true: false;
+
 		return userInfo;
 	}
 	
 	public static UserInfo createFailUserInfo(String message) {
 		UserInfo userInfo = new UserInfo();
-		userInfo.result = new CommonResult();
-		userInfo.result.setSuccess(false);
-		userInfo.result.setMessage(message);
+
 		userInfo.roleList = new ArrayList<String>();		
 		return userInfo;
 	}
