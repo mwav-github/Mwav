@@ -204,7 +204,7 @@
 
 			</div>
 			<div class="col-xs-6 col-sm-6 col-md-2"><%-- ${pageContext.request.contextPath} --%>
-				<button type="button" class="btn btn-danger btn-block" onclick="location.href='${param.apiUrl}/auth?callback=${param.mainUrl}/authentication'">
+				<button type="button" class="btn btn-danger btn-block" onclick="location.href='${param.apiUrl}'">
 					<i class="fa fa-google-plus"></i>
 				</button>
 			</div>
