@@ -399,33 +399,6 @@
 			<version>1.1.1</version>
 		</dependency>
 		
-		<!-- Google Auth -->
-		<dependency>
-			<groupId>com.google.apis</groupId>
-			<artifactId>google-api-services-oauth2</artifactId>
-			<version>v2-rev29-1.13.2-beta</version>
-		</dependency>
-		<dependency>
-			<groupId>com.google.http-client</groupId>
-			<artifactId>google-http-client</artifactId>
-			<version>1.13.1-beta</version>
-		</dependency>
-		<dependency>
-			<groupId>com.google.http-client</groupId>
-			<artifactId>google-http-client-jackson</artifactId>
-			<version>1.13.1-beta</version>
-		</dependency>
-		<dependency>
-			<groupId>com.google.appengine</groupId>
-			<artifactId>appengine-api-1.0-sdk</artifactId>
-			<version>1.8.2</version>
-		</dependency>
-		<dependency>
-			<groupId>com.google.guava</groupId>
-			<artifactId>guava</artifactId>
-			<version>r09</version>
-		</dependency>
-		
 		<!-- social -->
 		<dependency>
 			<groupId>org.springframework.social</groupId>
@@ -451,6 +424,12 @@
 			<groupId>org.springframework.social</groupId>
 			<artifactId>spring-social-google</artifactId>
 			<version>1.0.0.RELEASE</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.apache.httpcomponents</groupId>
+		    <artifactId>httpclient</artifactId>
+		    <version>4.3.6</version>
 		</dependency>
 		
 		<!-- @Inject -->

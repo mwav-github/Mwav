@@ -143,14 +143,14 @@
 	  <property name="password" value="${jdbc.pass}" />
 	</bean>
 
-	<bean id="dataSourceSpied" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-        <property name="driverClassName" value="org.gjt.mm.mysql.Driver"/>  <!-- 읽어온 정보를 매핑시켜 가지고 있는 빈 -->
+	<!-- <bean id="dataSourceSpied" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="org.gjt.mm.mysql.Driver"/>  읽어온 정보를 매핑시켜 가지고 있는 빈
 		<property name="url" value="jdbc:mysql://localhost:3306/mwav"/>
 		<property name="username" value="mwav"/>
-		<property name="password" value="tiger"/><!-- 12485154 // tiger-->
+		<property name="password" value="tiger"/>12485154 // tiger
 		<property name="maxActive" value="100"/>
 		<property name="maxWait" value="1000"/>
-    </bean>
+    </bean> -->
     
     <!-- <bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
 		<constructor-arg ref="dataSourceSpied" />
@@ -184,14 +184,6 @@
 
 	<import resource="spring-security.xml" />
 
-	<!-- <import resource="social.xml" /> -->
-
-	<!-- <import resource="social-security.xml" /> -->
-
-	
-	
-	
-	
 </beans>
 
 

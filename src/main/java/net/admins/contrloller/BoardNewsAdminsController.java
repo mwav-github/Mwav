@@ -47,7 +47,7 @@ public class BoardNewsAdminsController {
 	 * SFbnsList /CommonApps/BoardNews/FrontNewsList.jsp 5. bnsUpdate : mode =
 	 * SbnsUpdate /CommonApps/BoardNews/bnsForm.jsp
 	 */
-	@Resource(name = "boardNewsAdminsService.do")
+	@Resource(name = "boardNewsAdminsService")
 	private BoardNewsAdminsService boardNewsAdminsService;
 
 	// ///////////////////////////////////BoardNews/////////////////////////////////////

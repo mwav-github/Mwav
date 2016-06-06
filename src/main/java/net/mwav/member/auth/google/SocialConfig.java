@@ -91,7 +91,8 @@ public class SocialConfig implements SocialConfigurer {
 			ConnectionRepository connectionRepository) {
 		ConnectController connectController = new ConnectController(connectionFactoryLocator, connectionRepository);
 		connectController.addInterceptor(new PostToWallAfterConnectInterceptor());
-		// connectController.addInterceptor(new google());
+		//connectController.setApplicationUrl(environment.getProperty("application.url");
+		//http://localhost:8080/spring-social-extending-existing-api
 		return connectController;
 	}
 
@@ -103,11 +104,23 @@ public class SocialConfig implements SocialConfigurer {
 	}
 
 	// Web Controller and Filter Beans
-	@Bean
+	/*@Bean
 	public ProviderSignInController providerSignInController(ConnectionFactoryLocator connectionFactoryLocator,
 			UsersConnectionRepository usersConnectionRepository) {
 		return new ProviderSignInController(connectionFactoryLocator, usersConnectionRepository,
 				new SimpleSignInAdapter(new HttpSessionRequestCache()));
+	}*/
+	
+	@Bean
+	public ProviderSignInController providerSignInController(
+	            ConnectionFactoryLocator connectionFactoryLocator,
+	            UsersConnectionRepository usersConnectionRepository) {
+	    ProviderSignInController controller = new ProviderSignInController(
+	        connectionFactoryLocator,
+	        usersConnectionRepository,
+	        new SimpleSignInAdapter(new HttpSessionRequestCache()));
+	    controller.setSignUpUrl("/signup.do");
+	    return controller;
 	}
 
 	@Bean

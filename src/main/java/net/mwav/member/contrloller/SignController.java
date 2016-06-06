@@ -15,12 +15,16 @@
  */
 package net.mwav.member.contrloller;
 
-import java.security.Principal;
+import java.util.HashMap;
+import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import net.mwav.member.auth.google.SignInUtils;
+import net.mwav.member.service.MemberService;
 
 import org.apache.maven.model.Model;
 import org.springframework.social.ExpiredAuthorizationException;
@@ -28,77 +32,119 @@ import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.ConnectionFactoryLocator;
 import org.springframework.social.connect.UsersConnectionRepository;
 import org.springframework.social.connect.web.ProviderSignInUtils;
-import org.springframework.social.google.api.Google;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.WebRequest;
-
 
 @Controller
 public class SignController {
 	private final ProviderSignInUtils providerSignInUtils;
 
-	/*@Autowired
-	MemberService memberService;*/
+	@Resource(name = "memberService")
+	private MemberService memberService;
 
 	@Inject
 	public SignController(ConnectionFactoryLocator connectionFactoryLocator,
 			UsersConnectionRepository connectionRepository) {
-		this.providerSignInUtils = new ProviderSignInUtils(connectionFactoryLocator, connectionRepository);
+		this.providerSignInUtils = new ProviderSignInUtils(
+				connectionFactoryLocator, connectionRepository);
 	}
 
 	@RequestMapping(value = "/signin", method = RequestMethod.GET)
 	public void signin() {
-	}
-	
-	@RequestMapping(value = "/signout", method = RequestMethod.GET)
-	public void signout() {
 	}
 
 	@RequestMapping("/google/expired")
 	public void simulateExpiredToken() { // 만료된 토큰 관리
 		throw new ExpiredAuthorizationException("google");
 	}
-	
-	@RequestMapping(value = "/signin/google", method = RequestMethod.GET)
-	public void signinTest(@RequestParam(value = "state", required = false) String state, 
-							 @RequestParam(value = "code", required = false) String authCode) {
-		System.out.println("/signin/google");
-		System.out.println("state = "+state);
-		System.out.println("code = "+authCode);
-		//return "redirect:/signup";
-	}
 
-	@RequestMapping(value = "/signup", method = RequestMethod.GET)
-	public String signupForm(WebRequest req, Model model, HttpServletRequest request) {
-		Connection<?> connection = providerSignInUtils.getConnectionFromSession(req);
-		String member_email = connection.fetchUserProfile().getEmail();
-		System.out.println("signup!!");
-		System.out.println("member_email = "+member_email);
+	@RequestMapping(value = "/signup.do", method = RequestMethod.GET)
+	public String signupForm2(WebRequest req, Model model,
+			HttpServletRequest request, HttpServletResponse response) {
+		Connection<?> connection = providerSignInUtils
+				.getConnectionFromSession(req);
 
-		/*if (connection != null) {
-			String getUserName = connection.fetchUserProfile().getUsername();
-			SignInUtils.signin(member_email); // 인증
-			//providerSignInUtilsPostSignUp(getUserName, request); // userConnection Row 생성
-			
-			// Member Row 생성
-			boolean checkCreateMember = memberService.selectEmailMember(member_email);
-			System.out.println("checkCreateMember = "+checkCreateMember);
-			if (checkCreateMember) {
-				Member member = new Member(memberService.selectCountMember(), connection.getDisplayName(), member_email,
-						connection.getImageUrl(), getUserName);
-				memberService.insertMember(member);
-				
-				request.getSession().setAttribute("member_email", member_email);
+		int loginCheck = 0;
+		Map<String, Object> map = new HashMap<String, Object>();
+		HttpSession session = request.getSession();
+
+		String smMember_id = connection.getKey().getProviderUserId();
+		String First_Name = connection.fetchUserProfile().getFirstName();
+		String Last_Name = connection.fetchUserProfile().getLastName();
+		String Email = connection.fetchUserProfile().getEmail();
+		if (Last_Name == null)
+			Last_Name = null;
+		String Gender = null;
+		String Link = connection.getProfileUrl();
+		if (Link == null)
+			Link = null;
+		String Picture = connection.getImageUrl();
+		if (Picture == null)
+			Picture = null;
+
+		System.out.println("smMember_id = " + smMember_id);
+		System.out.println("First_Name = " + First_Name);
+		System.out.println("Last_Name = " + Last_Name);
+		System.out.println("Email = " + Email);
+		System.out.println("Gender = " + Gender);
+		System.out.println("Link = " + Link);
+		System.out.println("Picture = " + Picture);
+
+		/* ID가 없으면 (Insert), 있으면 (로그인) */
+		boolean check;
+		check = memberService.selectOneSnsMbrLoginIdCheck(smMember_id);
+		System.out.println("check = " + check);
+		if (check == false) {
+
+			map.put("smMember_id", smMember_id);
+			map.put("First_Name", First_Name);
+			map.put("Last_Name", Last_Name);
+			map.put("Email", Email);
+			if (Gender != null) {
+				if (Gender.equals("male")) {
+					map.put("Gender", 1);
+				} else {
+					map.put("Gender", 0);
+				}
+			} else {
+				map.put("Gender", 3);
 			}
+			map.put("Link", Link);
+			map.put("Picture", Picture);
 
-		}*/
-		
-		return "/memberDefault";
+			memberService.insertSnsForm(map);
+			System.out.println("insertSnsForm 성공!!!!!!");
+		}
+
+		String mbrLoginId = connection.getDisplayName();
+
+		loginCheck = 1;
+		session.setAttribute("mbrLoginId", mbrLoginId);
+		request.setAttribute("loginCheck", loginCheck);
+
+		/*
+		 * if (connection != null) { String getUserName =
+		 * connection.fetchUserProfile().getUsername();
+		 * SignInUtils.signin(member_email); // 인증
+		 * //providerSignInUtilsPostSignUp(getUserName, request); //
+		 * userConnection Row 생성
+		 * 
+		 * // Member Row 생성 boolean checkCreateMember =
+		 * memberService.selectEmailMember(member_email);
+		 * System.out.println("checkCreateMember = "+checkCreateMember); if
+		 * (checkCreateMember) { Member member = new
+		 * Member(memberService.selectCountMember(),
+		 * connection.getDisplayName(), member_email, connection.getImageUrl(),
+		 * getUserName); memberService.insertMember(member);
+		 * 
+		 * request.getSession().setAttribute("member_email", member_email); }
+		 * 
+		 * }
+		 */
+
+		return "/Index";
 	}
-	
-		
 
 }
