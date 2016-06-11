@@ -27,13 +27,13 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<h1 class="page-header">
-					Admins <small> NewsForm</small>
+					Admins <small> NoticeForm</small>
 				</h1>
 				<ol class="breadcrumb">
 					<li><a href="index.html">Home</a></li>
 					<li>Admins</li>
 					<li>SiteMgr</li>
-					<li class="active">NsmForm</li>
+					<li class="active">NtmForm</li>
 				</ol>
 			</div>
 		</div>
@@ -149,7 +149,7 @@
 											</thead>
 											<tbody>
 												<tr>
-													<td>${selectboardUpdate.bUsers_id}</td>
+													<td>${updateNtmForm.bUsers_id}</td>
 													<td><select name="buGroup"
 														value="${updateNtmForm.buGroup}">
 															<option value="전체">전체</option>

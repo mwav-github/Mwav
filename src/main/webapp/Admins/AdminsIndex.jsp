@@ -79,6 +79,15 @@
 			<div class="enter"></div>
 			<!-- Marketing Icons Section -->
 			<div class="row mg9xauto">
+			<%--장바구니 테스트 --%>
+			<span class="pull-right"><a href="#orderCart"
+				data-toggle="modal" data-target=".orderCart" role="button"
+				data-toggle="modal"><i class="fa fa-cart-arrow-down fa-2x"></i></a></span>
+
+			<jsp:include page="/Admins/OrderMgr/OrderList.jsp" flush="false" />
+			
+			
+			
 				<div class="col-lg-3 col-md-6">
 					<div class="panel panel-primary">
 						<div class="panel-heading">

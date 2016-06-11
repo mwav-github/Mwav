@@ -16,7 +16,6 @@ import javax.servlet.http.HttpSession;
 
 import net.common.common.CommandMap;
 import net.mwav.common.module.EmailSender;
-import net.mwav.member.auth.VersionProperty;
 import net.mwav.member.service.MemberService;
 
 import org.apache.log4j.Logger;
@@ -43,8 +42,6 @@ public class MemberController {
 	@Resource(name = "memberService")
 	private MemberService memberService;
 	
-	@Autowired 
-	private VersionProperty property;
 	
 	/*
 	 * 1. MbrLogin : mode = SMbrLogin /CommonApps/Member/MbrLogin.jsp 2.
@@ -54,14 +51,6 @@ public class MemberController {
 	 * 5. bnsUpdate : mode = SbnsUpdate /CommonApps/BoardNews/bnsForm.jsp
 	 */
 	
-
-	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
-	public String login(Model model) {
-		model.addAttribute("mainUrl", property.getUrl());
-		model.addAttribute("apiUrl", property.getApiUrl());
-		
-		return "redirect:/MasterPage.jsp?mode=SMbrLogin";
-	}
 
 	@RequestMapping(value = "/memberDefault.do")
 	public ModelAndView defaultMember(CommandMap commandMap,

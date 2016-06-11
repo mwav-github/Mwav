@@ -5,9 +5,24 @@ import java.util.Map;
 
 public interface GoodsAdminsService {
 	
-	void insertGdsForm(Map<String, Object> map);
+	Map<String, Object> insertGdsForm(Map<String, Object> map);
 	
 	int selectOneGetGdsTotalCount();
 	
 	List<Map<String, Object>> selectListGdsList(Map<String, Object> map);
+
+	Map<String, Object> updateGdsForm(Map<String, Object> map);
+
+	void updateProGdsForm(Map<String, Object> map);
+
+	void insertGdsFiles(Map<String, Object> map);
+
+	String selectNextPk();
+
+	List<Map<String, Object>> selectListGdsFilesList(Map<String, Object> map);
+
+	Map<String, Object> selectOneGdsView(Map<String, Object> map);
+	
+	
+	List<Map<String, Object>> selectCategoryGoodsList();
 }

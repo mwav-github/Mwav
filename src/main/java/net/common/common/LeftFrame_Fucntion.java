@@ -43,7 +43,7 @@ public class LeftFrame_Fucntion {
 
 				String[] streName = { "ntl", "nsl", "qal", "pl", "mmail" };
 				String[] strhName = { "공지관리", "뉴스관리", "Q&A관리", "폴관리", "회원메일발송" };
-				String[] strhEName = { "공지관리", "뉴스관리", "Q&A관리", "폴관리", "회원메일발송"  };
+				String[] strhEName = { "공지관리", "뉴스관리", "Q&A관리", "폴관리", "회원메일발송" };
 				String[] strurl = { "/admin/boardNews/nsmList.do",
 						"/admin/boardNotice/ntmList.do", "#", "#", "#" };
 				String[] strmAuthority = { "1", "1", "1", "1", "1" };
@@ -69,9 +69,9 @@ public class LeftFrame_Fucntion {
 				String[] strhKName = { "문서자료", "직원리스트", "자산리스트", "FTP자료실",
 						"계좌관리" };
 				String[] strhEName = { "문서자료", "StaffList", "자산리스트", "FTP자료실",
-				"계좌관리" };
-				String[] strurl = { "#", "/admins/staff/stfList.do", "#",
-						"#", "#" };
+						"계좌관리" };
+				String[] strurl = { "#", "/admins/staff/stfList.do", "#", "#",
+						"#" };
 				String[] strmAuthority = { "1", "1", "1", "1", "1" };
 				String[] strdAuthority = { "*", "*", "*", "*", "*" };
 
@@ -92,10 +92,12 @@ public class LeftFrame_Fucntion {
 
 			else if (mm.equals("cGds")) {
 
+				// .jsp는 컨트롤러를 부르지 않기 때문에, 직접 파라미터 뒤에 mm 설정해줘야 한다. !! 
 				String[] streName = { "gcl", "gci" };
-				String[] strhName = { "상품리스트", "상품등록" };
-				String[] strurl = { "/HomePage/GdsCellList.do?mm=cGds",
-						"/HomePage/GdsCellForm.do?mm=cGds", };
+				String[] strhKName = { "상품리스트", "상품등록" };
+				String[] strhEName = { "상품리스트", "상품등록" };
+				String[] strurl = { "/admins/goods/gdsList.do",
+						"/Admins/Goods/GdsCellForm.jsp?mm=cGds", };
 				String[] strmAuthority = { "1", "1" };
 				String[] strdAuthority = { "*", "*" };
 
@@ -104,7 +106,8 @@ public class LeftFrame_Fucntion {
 					// 안에다가 생성할 경우 vo 라는 인스턴스 하나에 참조값 네개 가 생성된다.
 
 					vo.seteName(streName[i]);
-					vo.sethKName(strhName[i]);
+					vo.sethKName(strhKName[i]);
+					vo.sethEName(strhEName[i]);
 					vo.seturl(strurl[i]);
 					vo.setmAuthority(strmAuthority[i]); // 선택 가능 권한 (레벨)
 					vo.setdAuthority(strdAuthority[i]); // 선택 가능 부서
@@ -115,8 +118,9 @@ public class LeftFrame_Fucntion {
 
 				String[] streName = { "gcl", "gci" };
 				String[] strhName = { "카테고리등록", "릴레이션등록" };
-				String[] strurl = { "/HomePage/GdsCaInsert.do?mm=category",
-						"/HomePage/GdsCaRelation.do?mm=category",
+				String[] strhEName = { "카테고리등록", "릴레이션등록" };
+				String[] strurl = { "/Admins/Goods/GdsCaInsert.jsp?mm=category",
+						"/admins/goods/categoryList.do",
 
 				};
 				String[] strmAuthority = { "1", "1" };
@@ -128,15 +132,15 @@ public class LeftFrame_Fucntion {
 
 					vo.seteName(streName[i]);
 					vo.sethKName(strhName[i]);
+					vo.sethEName(strhEName[i]);
 					vo.seturl(strurl[i]);
 					vo.setmAuthority(strmAuthority[i]); // 선택 가능 권한 (레벨)
 					vo.setdAuthority(strdAuthority[i]); // 선택 가능 부서
 
 					menuList.add(vo);
 				}
-			}
-			else{
-			
+			} else {
+
 			}
 
 		} catch (Exception e) {

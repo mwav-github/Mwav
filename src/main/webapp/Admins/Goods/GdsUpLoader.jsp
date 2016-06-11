@@ -48,6 +48,9 @@
 								$('#messages')
 										.append(
 												"<font color=green><strong>업로드가 완료되었습니다.</strong></font>");
+								$('#fileUploaderBtn').css("display") == "none";
+								
+								
 							},
 						    error: function(XMLHttpRequest, textStatus, errorThrown)
 						    {
@@ -157,21 +160,24 @@
 					<input type="hidden" id="images_position" name="images_position"
 						value="" />
 						
-					<input type="hidden" name="goods_id"
-						value="${goods_id}" />	
+					<%--
+					 GdsCellForm.jsp와 다른 페이지만 한페이지에서 include 하기 때문에 아래와 같이 goods_id 호출이 가능하다.
+					 --%>	
+					<input type="hidden" name="goods_id" id="goods_id"
+						value="${updateGdsForm.goods_id}" />	
 					<input type="hidden" name="file_classification"
 						value="goods" />	
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal">
 							<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
 						</button>
-						<h4 class="modal-title">Upload Photo // ${goods_id}</h4>
+						<h4 class="modal-title">Upload Photo</h4>
 					</div>
 					<div class="modal-body">
 						<div id="messages"></div>
 						<div class="enter"></div>
 						<div
-							class="col-xs-12 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+							class="col-xs-12 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2" id="filebody">
 							<!-- image-preview-filename input [CUT FROM HERE]-->
 							<div class="input-group image-preview">
 								<input type="text" class="form-control image-preview-filename"
@@ -199,7 +205,7 @@
 					<div class="enter"></div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						<button type="submit" class="btn btn-primary"
+						<button type="submit" class="btn btn-primary" id="fileUploaderBtn"
 							onclick="insertFileUploader()">Save</button>
 					</div>
 				</form>

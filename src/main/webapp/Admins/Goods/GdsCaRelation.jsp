@@ -1,171 +1,221 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<!DOCTYPE html>
 <html>
+
 <head>
-<link href="/HomePage/App_Themes/Objects.css" rel="stylesheet"
-	type="text/css" />
-<link href="/HomePage/App_Themes/OverallPage.css" rel="stylesheet"
-	type="text/css" />
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href="/App_Themes/Objects.css" rel="stylesheet" type="text/css" />
-<link href="/App_Themes/OverallPage.css" rel="stylesheet"
-	type="text/css" />
-<script language="JavaScript" src="/CommonLibrary/CommonLibrary.js"
-	type="text/javascript"></script>
-<title>The Staff Management</title>
-<script>
-function numberCheck(temp)
 
-{
-
-              var temp = temp;
-			  var num = parseInt(temp);
-if( !(10000 <=num && num<= 20030222) ) {
-
-				alert("입력된 값 : " + temp + " 잘못입력했습니다. (10000-20030222)");
-				document.stfForm.stfNumber.focus();
-
-			} else {
-
-				alert("입력된 값 : " + temp + " 제대로 입력했습니다.");
-
-			}
-}
-
-</script>
-<script>
-function DMCheck(check) {
-	if (check == true) {
-		alert("등록성공");
-	} else if(check == false) {
-		alert("등록실패");
-	} else {
-		// 그냥 접근
-	}
-}
-</script>
+<!-- /////////// -->
+<jsp:include page="/PartsOfContent/Head_Import.jsp" flush="false" />
+<!-- /////////// -->
 </head>
-<body onLoad="DMCheck(${check})">
-<table width="1000" border="0" align="center" cellpadding="0"
-		cellspacing="0">
-  <tr>
-    <td colspan="3" >&nbsp;
-      <%@ include
-					file="/Admins/TopFrame.jsp"%>
-      <%-- 첫번째--%></td>
-  </tr>
-  <tr>
-    <td width="200" valign="top" ><table
-					width="190" border="0" cellspacing="0" cellpadding="0">
-        <tr>
-          <td width="10"><%@ include file="/Admins/LeftFrame.jsp"%>
-            <%-- 두번째--%></td>
-        </tr>
-      </table></td>
-    <td width="10">&nbsp;</td>
-    <td valign="top" >&nbsp;
-      <%-- 세번째--%>
-      <form name="GdsCaRelation" method="post" action="/HomePage/GdsCaRelationPro.do">
-        <table cellSpacing="0" cellPadding="0" width="815" border="0">
-          <tr>
-            <td bgColor="#ffffff"><table cellSpacing="0" cellPadding="0"
-									width="100%" border="0">
-                <tr>
-                  <td width="26"><IMG height="27"
-											src="/HomePage/Admins/zImages/admin_top009.gif" width="26"></td>
-                  <td bgColor="#f4f4f4">현재위치: 카테고리등록</td>
-                  <td width="10"><IMG height="27"
-											src="/HomePage/Admins/zImages/admin_top010.gif" width="10"></td>
-                </tr>
-              </table></td>
-          </tr>
-          <tr vAlign="top" align="center" bgColor="#ffffff">
-            <td height="20">&nbsp;</td>
-          </tr>
-          <tr vAlign="top" align="center" bgColor="#ffffff">
-            <td height="150"><table cellSpacing="0" cellPadding="0"
-									width="800" border="0">
-                <tr>
-                  <td width="149"><IMG height="53"
-											src="/HomePage/Admins/CompanyMgr/Staff/Images/staff_004.gif"
-											width="176"></td>
-                  <td
-											background="/HomePage/Admins/CompanyMgr/Staff/Images/staff_008.gif">&nbsp;</td>
-                </tr>
-              </table>
-              <br>
-              <table cellSpacing="0" cellPadding="0" width="780" border="0">
-                <tr>
-                  <td vAlign="top" align="center" width="150" height="200">&nbsp;</td>
-                  <td vAlign="top" align="center" width="1" bgColor="#999999"
-											rowSpan="2"></td>
-                  <td vAlign="top" align="center" rowSpan="2"><table
-												cellSpacing="1" cellPadding="0" width="600" border="0">
-                      <tr>
-                        <td class="Bwhite" align="center" bgColor="#3a8bb1">상품유일코드</td>
-                        <td align="left">&nbsp;
-                          <input name="Goods_id"
-														type="text" maxlength="15" class="box003"
-														style="width: 100px;" /></td>
-                      </tr>
-                     
-                      <tr>
-                        <td class="Bwhite" align="center" bgColor="#3a8bb1">카테고리ID</td>
-                        <td align="left">&nbsp;
-                          <c:if test="${count>0}">
-                          
-                          <select name="gCategory_id" class="box003"><c:forEach var="categorykey" items="${categorykey }">
-                     
-                            <%--10번 --%>
-                            <option value="${categorykey}">${categorykey }
-                            </option>
-                               </c:forEach>
-                          </select>
-                          
-                           </c:if>
-                       <c:if test="${count==0}">
-                       카테고리가 0개입니다.
-                       </c:if>
-                          </td>
-                      </tr>
-                      
-                     </table></td>
-                </tr>
-                <tr>
-                  <td align="center">&nbsp;</td>
-                </tr>
-                <tr>
-                  <td colSpan="2">&nbsp;</td>
-                </tr>
-                <tr vAlign="top"> </tr>
-              </table></td>
-          </tr>
-          <tr>
-            <td align="center" bgcolor="#ffffff" height="31"><button type="button" name="hiList"
-									style="border: solid 0px #FFFFFF;"
-									onclick="javascript:window.location.href='/HomePage/GdsCellList.do'"> <img src="/HomePage/Admins/zImages/btn_view_list.gif"
-										border="0"> </button>
-              <button type="button" name="hiBack"
-									style="border: solid 0px #FFFFFF;"
-									onClick="javascript:history.go(-1)"> <img src="/HomePage/Admins/zImages/btn_admin_back.gif"
-										border="0"> </button>
-              <button type="submit" name="iblInsert"
-									style="border: solid 0px #FFFFFF;"> <img src="/HomePage/Admins/zImages/admin_btn_enter.gif"
-										border="0"> </button></td>
-          </tr>
-        </table>
-        <div id="ValidationSummary1"
-						style="color: Red; height: 17px; width: 163px; Z-INDEX: 101; LEFT: 624px; POSITION: absolute; TOP: 24px; display: none;"> </div>
-      </form></td>
-  </tr>
-  <tr>
-    <td colspan="3" >&nbsp;
-      <%@ include
-					file="/Admins/BottomFrame.jsp"%>
-      <%-- 네번째--%></td>
-  </tr>
-</table>
+
+<body>
+	<%--mwav는 container 영역만 쓰기때문에 그랬으나 이건 전체 쓴다. 그러므로 container로 감싸면 안된다.  --%>
+	<!--  //////////////////////////////////// -->
+	<jsp:include page="/Admins/AdminsHeader.jsp" flush="false" />
+	<!--  //////////////////////////////////// -->
+
+
+
+	<!-- Page Content -->
+	<div class="container">
+
+		<!-- Page Heading/Breadcrumbs -->
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">
+					Admins <small> CategoryRelationForm</small>
+				</h1>
+				<ol class="breadcrumb">
+					<li><a href="index.html">Home</a></li>
+					<li>Admins</li>
+					<li>Goods</li>
+					<li class="active">CategoryRelationForm</li>
+				</ol>
+			</div>
+		</div>
+		<!-- /.row -->
+
+		<!-- Content Row -->
+		<div class="row">
+			<!-- Sidebar Column left메뉴 추후 변경 예정<시작>-->
+			<div class="col-md-3">
+				<%-- 
+			- param으로 같은 이름 지정시 위의 named으로 인식
+			- getparameter는 param.mm // setattribute는 mm
+			- value에 두개다 넣는 경우 비즈니스로직 + 파라미터인경우 문제발생
+			- jsp param 안에 choose, when, otherwise 사용 불가
+			 --%>
+				<c:choose>
+					<c:when test="${param.mm eq null}">
+						<c:set value="${mm}" var="mm" />
+					</c:when>
+					<c:otherwise>
+						<c:set value="${param.mm}" var="mm" />
+					</c:otherwise>
+				</c:choose>
+				<jsp:include page="/admins/LeftMenu.do" flush="false">
+					<jsp:param name="mm" value="${mm}" />
+				</jsp:include>
+			</div>
+			<!-- 끝 -->
+
+			<div class="col-md-9">
+				<!-- 소제목 -->
+				<div class="col-lg-12">
+					<h2 class="page-header">CategoryRelationForm</h2>
+				</div>
+				<!-- ----- -->
+
+				<!-- Content Column -->
+				<div class="col-lg-12">
+
+					<div class="row">
+
+						<%--================================================시작========================================================== --%>
+
+
+
+						<!-- Content Column -->
+						<div class="table-responsive">
+
+
+							<form role="form" method="post" name="categoryForm"
+								action="/admins/goods/categoryRelationForm.do">
+
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+									<div class="panel panel-primary">
+										<div class="panel-heading">
+											<h3 class="panel-title">Mwav - CategoryRelation
+												Registration</h3>
+										</div>
+										<div class="panel-body">
+											<div class="row">
+												<div class="col-md-3 col-lg-3 " align="center">
+													<img alt="User Pic"
+														src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=100"
+														class="img-circle">
+												</div>
+
+
+												<div class=" col-md-9 col-lg-9 ">
+													<table class="table table-user-information">
+														<tbody>
+															<tr>
+																<td>상품유일코드 :</td>
+																<td><div class='form-group'>
+																		<div class='col-md-8'>
+
+
+																			<c:choose>
+																				<c:when
+																					test="${fn:length(selectCategoryGoodsList) > 0}">
+																					<select name="goods_id">
+																						<c:forEach var="vselectCategoryGoodsList"
+																							items="${selectCategoryGoodsList}">
+
+																							<option
+																								value="${vselectCategoryGoodsList.goods_id}">${vselectCategoryGoodsList.goods_id} / ${vselectCategoryGoodsList.gName}</option>
+
+																						</c:forEach>
+																					</select>
+																				</c:when>
+																				<c:otherwise>
+																					<p>등록된 상품이 0개입니다.</p>
+																				</c:otherwise>
+																			</c:choose>
+																		</div>
+																	</div></td>
+															</tr>
+
+															<tr>
+																<td>카테고리 ID:</td>
+																<td><div class='form-group'>
+																		<div class='col-md-8'>
+
+																			<!-- 		<select name="gCategory_id">
+																				<option value="1000">스페셜</option>
+																				<option value="1001">패션/잡화</option>
+																				<option value="1002">스포츠/레져</option>
+																				<option value="1003">식품/건강</option>
+																				<option value="1004">뷰티/미용</option>
+																				<option value="1005">생활/주방</option>
+																				<option value="1006">가구/인테리어</option>
+																				<option value="1007">디지털/가전</option>
+																				<option value="1008">출산/유아</option>
+																				<option value="1009">휴대폰</option>
+
+																			</select> -->
+
+																			<%-- 현재의 경우 자동화가 아니니까 하드코딩으로 --%>
+																			<c:choose>
+																				<c:when test="${fn:length(selectListCategory) > 0}">
+																					<select name="gCategory_id">
+																						<c:forEach var="vselectListCategory"
+																							items="${selectListCategory}">
+
+																							<option
+																								value="${vselectListCategory.gCategory_id}">${vselectListCategory.gcategory_id} / ${vselectListCategory.gcName}</option>
+
+																						</c:forEach>
+																					</select>
+																				</c:when>
+																				<c:otherwise>
+																					<p>카테고리가 0개입니다.</p>
+																				</c:otherwise>
+																			</c:choose>
+																		</div>
+																	</div></td>
+															</tr>
+
+
+														</tbody>
+													</table>
+												</div>
+
+											</div>
+											<div class="panel-footer">
+
+												<button type="button" class="btn btn-sm btn-primary"
+													onclick="javascript:window.location.href='/admins/staff/stfList.do'">
+													리스트</button>
+
+												<button type="button" class="btn btn-sm btn-primary"
+													onClick="javascript:history.go(-1)">뒤로가기</button>
+
+												<button type="submit" class="btn btn-sm btn-primary">등록하기
+												</button>
+
+											</div>
+
+										</div>
+									</div>
+								</div>
+							</form>
+
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /.container -->
+
+	<!-- Footer -->
+	<footer>
+		<!--/////////////////////////////////////////////////// -->
+		<jsp:include page="/Admins/AdminsFooter.jsp" flush="false" />
+		<!--/////////////////////////////////////////////////// -->
+	</footer>
+
+
 </body>
+
 </html>
+

@@ -1,5 +1,8 @@
 package net.admins.contrloller;
 
+
+
+import java.io.File;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -21,6 +24,8 @@ import org.springframework.web.servlet.ModelAndView;
 import net.admins.service.GoodsAdminsService;
 import net.common.common.CommandMap;
 import net.mwav.common.module.Common_Utils;
+import net.mwav.common.module.FileUtils;
+import net.mwav.common.module.ImageUtill;
 import net.mwav.common.module.Paging;
 import net.mwav.common.module.PagingVO;
 
@@ -49,6 +54,9 @@ public class GoodsAdminsController {
 	@Resource(name = "goodsAdminsService")
 	private GoodsAdminsService goodsAdminsService;
 
+	@Resource(name = "fileUtils")
+	private FileUtils fileUtils;
+
 	/* ======================Staff====================== */
 
 	/*
@@ -58,16 +66,121 @@ public class GoodsAdminsController {
 	// 1번 StfForm : Form 입력만 가능 (뒤로가기, list)
 	@RequestMapping(value = "/admins/goods/gdsForm.do")
 	public ModelAndView insertGdsForm(CommandMap commandMap,
+			HttpServletRequest request, HttpSession session) throws Exception {
+		ModelAndView mv = new ModelAndView("/Admins/Goods/GdsCellList");
+
+		Map<String, Object> map = goodsAdminsService.insertGdsForm(commandMap
+				.getMap());
+
+		// 이미지 전체 등록 goods_id 전달해줘야 한다. 고민
+		// FileUtils fileutill = new FileUtils(); 이렇게 빈등록안하고 사용하면 null 값 오류 뜬다.
+		String uploadRootPath = session.getServletContext().getRealPath("\\");
+		System.out.println("루트경로" + uploadRootPath);
+
+		map.put("uploadRootPath", uploadRootPath);
+
+		fileUtils.totalFileProcess(map);
+
+		String mm = "cGds";
+		mv.addObject("mm", mm);
+		mv.addObject("mode", "m_gdsForm");
+
+		return mv;
+	}
+
+	/*
+	 * ========================================수정================================
+	 * ========
+	 */
+
+	// 1번 bnsView : 수정/삭제가능
+	@RequestMapping(value = "/admins/goods/gdsView.do")
+	public ModelAndView selectOneGdsView(CommandMap commandMap,
+			HttpServletRequest request, HttpSession session) throws Exception {
+		ModelAndView mv = new ModelAndView("/Admins/Goods/GdsCellView");
+
+		log.debug("인터셉터 테스트");
+		System.out.println("테스트");
+		Map<String, Object> selectOneGdsView = goodsAdminsService
+				.selectOneGdsView(commandMap.getMap());
+		
+		
+		List<Map<String, Object>> selectListGdsList =  goodsAdminsService.selectListGdsList(commandMap
+				.getMap());
+
+		if (selectOneGdsView != null && !selectOneGdsView.isEmpty()) {
+			System.out.println("view 줄랭");
+
+			String mm = "cGds";
+			mv.addObject("mm", mm);
+
+			mv.addObject("selectOneGdsView", selectOneGdsView);
+			mv.addObject("selectListGdsList", selectListGdsList);
+		}
+
+		return mv;
+	}
+
+	/*
+	 * ========================================수정================================
+	 * ========
+	 */
+
+	// 1번 bnsUpdate : 리스트 업데이트
+	@RequestMapping(value = "/admin/goods/gdsUpdate.do")
+	public ModelAndView updateGdsForm(CommandMap commandMap,
+			HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("/Admins/Goods/GdsCellForm");
+
+		// 위의 view랑 동일하게 사용
+
+		Map<String, Object> updateGdsForm = goodsAdminsService
+				.updateGdsForm(commandMap.getMap());
+		if (updateGdsForm != null && !updateGdsForm.isEmpty()) {
+			System.out.println("view 줄랭");
+			String mm = "cGds";
+
+			mv.addObject("mm", mm);
+			
+			String goods_id = String.valueOf(updateGdsForm.get("goods_id"));
+
+			String path = "xUpload/GdsData/GC"+goods_id+"/";
+			System.out.println("경로 =="+path);
+			
+			mv.addObject("updateGdsForm", updateGdsForm);
+			
+			/*List<File> fileList = fileUtils.getDirFileList(path);
+			 * 좀더 상세 
+			 * http://jungws55.tistory.com/227
+			 * */
+			File filepath = new File( path );
+	        
+	        if( filepath.exists() == false ){
+	            System.out.println("경로가 존재하지 않습니다");
+	        }
+	        File[] fileList = filepath.listFiles();
+	        		
+			for(int i=0; i < fileList.length; i++){
+		        System.out.println(fileList[i]) ;
+		    }
+			
+			
+		}
+		return mv;
+	}
+
+	// 1번 bnsUpdate : 리스트 업데이트
+	@RequestMapping(value = "/admin/goods/gdsUpdatePro.do")
+	public ModelAndView updateProGdsForm(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/Goods/GdsCellList");
 
-	
+		// 위의 view랑 동일하게 사용
 
-		goodsAdminsService.insertGdsForm(commandMap.getMap());
+		goodsAdminsService.updateProGdsForm(commandMap.getMap());
 
-		String mm = "firms";
+		String mm = "cGds";
 		mv.addObject("mm", mm);
-		mv.addObject("mode", "m_gdsForm");
 
 		return mv;
 	}
@@ -110,13 +223,12 @@ public class GoodsAdminsController {
 		mv.addObject("pagingVO", pagingVO);
 		mv.addObject("totalRow", totalRow);
 
-		String mm = "firms";
+		String mm = "cGds";
 		mv.addObject("mm", mm);
 		mv.addObject("mode", "m_stfList");
 
 		// mv.addObject("paging", pv.print());
 		return mv;
 	}
-
 
 }

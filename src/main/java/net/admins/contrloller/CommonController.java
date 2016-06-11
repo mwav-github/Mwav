@@ -149,9 +149,14 @@ public class CommonController {
 */		String goods_id = null;
 		goods_id = (String) commandMap.get("goods_id");
 		// staff_id 로그인 !!  후가 아닌 입력시 시점
+		System.out.println("goods_id=" + goods_id);
+		
+		/*goods_id = String.valueOf(commandMap.get("goods_id"));
+		System.out.println("goods_id =" + goods_id);*/
+		
 		
 		//System.out.println("staff_id=" + staff_id);
-		System.out.println("goods_id=" + goods_id);
+		
 		//commandMap.put("staff_id", staff_id);		
 		commandMap.put("uploadRootPath", uploadRootPath);
 

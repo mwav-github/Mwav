@@ -4,6 +4,8 @@ import java.util.Iterator;
 import java.util.Random;
 import java.util.Map.Entry;
 
+import javax.servlet.http.HttpServletRequest;
+
 import net.common.common.CommandMap;
 
 import org.apache.log4j.Logger;
@@ -112,6 +114,39 @@ public class Common_Utils {
 		this.setLength(len);
 		return this.getString();
 	}
+
+	// 접속 IP 확인
+	/*
+	 * 접속하는 클라이언트의 아이피를 확인 하려면 HttpServletRequest 객체에서 가져와서 확인하면 된다.
+	 * request.getRemoteAddr() ; 그러나 프록시나 Load Balancer 같은것을 겨쳐 오게 되는 경우 위의
+	 * 방법으로는 정확한 아이피를 가져 오지 못하게 된다.
+	 * 
+	 * URL : http://apieceofspace.blogspot.kr/2014/01/jsp.html
+	 * https://www.lesstif.com/pages/viewpage.action?pageId=20775886 (참고)
+	 */
+	public String getClientIP(HttpServletRequest request) {
+
+		String ip = request.getHeader("X-Forwarded-For");
+		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+			ip = request.getHeader("Proxy-Client-IP");
+		}
+		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+			ip = request.getHeader("WL-Proxy-Client-IP");
+		}
+		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+			ip = request.getHeader("HTTP_CLIENT_IP");
+		}
+		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+			ip = request.getHeader("HTTP_X_FORWARDED_FOR");
+		}
+		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+			ip = request.getRemoteAddr();
+		}
+		return ip;
+
+	}
+
+	// map 객체 뿌려주는 메소드
 
 	public void selectListCommandMap(CommandMap commandMap) {
 		if (commandMap.isEmpty() == false) {

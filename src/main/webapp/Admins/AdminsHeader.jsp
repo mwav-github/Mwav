@@ -97,10 +97,10 @@
 				<li class="active"><a
 					href="/HomePage/DefaultFrameset.do?mm=mine"
 					title="1.나의업무 2.쪽지관리 3.명함관리 4.메일관리">마이존</a></li>
-				<li><a href="/HomePage/DefaultFrameset.do?mm=mine"
+				<li><a href="/Admins/Goods/GdsCaInsert.jsp?mm=category"
 					title="1.카테고리등록">카테고리등록</a></li>
 				<li class="active"><a
-					href="/HomePage/DefaultFrameset.do?mm=cGds" title="1.상품입력 2.상품 리스트">상품관리</a></li>
+					href="/admins/goods/gdsList.do" title="1.상품입력 2.상품 리스트">상품관리</a></li>
 				<li><a href="/HomePage/DefaultFrameset.do?mm=cStk"
 					title="1.상품재고관리">재고관리</a></li>
 				<li class="active"><a

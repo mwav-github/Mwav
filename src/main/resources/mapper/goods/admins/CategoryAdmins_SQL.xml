@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="category">
+	
+	<!--/*========================================등록========================================*/  -->
+	<!-- gcategory_id 체크를 해줘야할듯 왜냐면 재등록시 goodid에 대한 체크가 필요할듯 -->
+	<insert id="insertCategoryForm" parameterType="hashmap">
+		<![CDATA[			
+			INSERT INTO GoodsCategory_tbl VALUES (#{gcategory_id},#{gcName},#{gcEngName},#{gcUpper_id},#{gcDepth},#{staff_id},NOW(),#{gcDisableDt},#{gcIpAddress});
+		]]>
+	</insert>
+	
+	<insert id="insertCategoryRelationForm" parameterType="hashmap">
+		<![CDATA[			
+			INSERT INTO GoodsCategoryRelation_tbl VALUES (#{gcr_id}, #{goods_id}, #{gCategory_id}, #{gCategory_id1}, #{gCategory_id2}, #{gCategory_id3}, #{gCategory_id4}, NOW(), #{gcrIpAddress});	
+		]]>
+	</insert>
+	
+
+    <!--/*========================================보기========================================*/  -->
+	
+	<!--/*========================================수정========================================*/  -->
+	
+
+
+	<!--/*========================================리스트(SelctOne, SelectList 순)========================================*/  -->
+	<select id="selectNextCategoryPk" parameterType="hashmap" resultType="java.lang.String">
+		<![CDATA[
+	        select IFNULL(max(gcategory_id+1) , 1000) AS gcategory_id from GoodsCategory_tbl
+		]]>
+	</select>
+	
+	<select id="selectNextCategoryRelationPk" parameterType="hashmap" resultType="java.lang.String">
+		<![CDATA[
+	        select IFNULL(max(gcr_id+1) , 1000) AS gcr_id from GoodsCategoryRelation_tbl
+		]]>
+	</select>
+	
+		<select id="selectListCategory" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+	        select gCategory_id, gcName, gcEngName from GoodsCategory_tbl
+		]]>
+	</select>
+	
+	<!--/*========================================삭제========================================*/  -->
+	
+</mapper>

@@ -89,8 +89,11 @@ public class ImageUtill {
 	 */
 	public static void saveImage(String path, BufferedImage rescaledImage,
 			String format) {
+		System.out.println("path= "+path);
 		File destFile = new File(path);
 		try {
+			
+			System.out.println("rescaledImage ="+rescaledImage);
 			ImageIO.write(rescaledImage, format, destFile);
 			System.out.println("성공적으로 저장되었습니다.");
 		} catch (IOException e) {
