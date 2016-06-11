@@ -46,9 +46,9 @@
 	<!--/*========================================삭제========================================*/  -->
 	<delete id="selectListCategory" parameterType="hashmap" >
 		<![CDATA[
-	        delete from GoodsCategoryRelation_tbl where no='3'
+	        delete from GoodsCategoryRelation_tbl where goods_id = #{goods_id};
 		]]>
-	</select>
+	</delete>
 	
 	
 </mapper>
