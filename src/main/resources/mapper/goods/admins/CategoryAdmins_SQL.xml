@@ -37,12 +37,18 @@
 		]]>
 	</select>
 	
-		<select id="selectListCategory" parameterType="hashmap" resultType="hashmap">
+	<select id="selectListCategory" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 	        select gCategory_id, gcName, gcEngName from GoodsCategory_tbl
 		]]>
 	</select>
 	
 	<!--/*========================================삭제========================================*/  -->
+	<delete id="selectListCategory" parameterType="hashmap" >
+		<![CDATA[
+	        delete from GoodsCategoryRelation_tbl where no='3'
+		]]>
+	</select>
+	
 	
 </mapper>

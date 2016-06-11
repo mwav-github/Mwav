@@ -30,6 +30,11 @@ public class CategoryAdminsDAO extends AbstractDAO {
 	public void insertCategoryRelationForm(Map<String, Object> map) {
 		// TODO Auto-generated method stub
 		
+		
+		
+		
+		delete("category.deleteCategory", map);
+		
 		String gcr_id = null;
 		// System.out.println("11=="+selectOne("goodsAdminsDAO.selectNextPk"));
 		gcr_id = (String) selectOne(

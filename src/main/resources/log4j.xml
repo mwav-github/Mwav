@@ -17,7 +17,7 @@
     	
 	<!-- Application Loggers -->
 	<logger name="mwav" additivity="false">
-		<level value="debug" />
+		<level value="INFO" />
 		<appender-ref ref="console"/>
 	</logger>
 	
@@ -31,11 +31,27 @@
     	<level value="INFO"/>  
         <appender-ref ref="console"/>  
     </logger>  
+	
+	<!-- 3rdparty Loggers -->
+	<logger name="org.springframework.core">
+		<level value="info" />
+	</logger>
+	
+	<logger name="org.springframework.beans">
+		<level value="info" />
+	</logger>
+	
+	<logger name="org.springframework.context">
+		<level value="info" />
+	</logger>
 
-
-	<!-- Root Logger -->
-	<root>
-		<priority value="off"/>
+	<logger name="org.springframework.web">
+		<level value="info" />
+	</logger>
+ 
+    <!-- root 로거 기본 설정 -->
+    <root>
+		<priority value="info" />
 		<appender-ref ref="console" />
 	</root>
 	

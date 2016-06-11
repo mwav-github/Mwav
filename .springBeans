@@ -8,8 +8,13 @@
 	<enableImports><![CDATA[true]]></enableImports>
 	<configs>
 		<config>src/main/webapp/WEB-INF/config/action-servlet.xml</config>
+		<config>src/main/webapp/WEB-INF/config/data.xml</config>
+		<config>src/main/webapp/WEB-INF/config/mvc.xml</config>
+		<config>src/main/webapp/WEB-INF/config/spring-security.xml</config>
 	</configs>
 	<autoconfigs>
+		<config>src/main/resources/config/spring/context-mapper.xml</config>
+		<config>src/main/resources/config/spring/context-datasource.xml</config>
 	</autoconfigs>
 	<configSets>
 	</configSets>

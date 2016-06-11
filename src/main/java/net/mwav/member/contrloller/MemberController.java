@@ -52,6 +52,12 @@ public class MemberController {
 	 */
 	
 
+	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
+	public String login(Model model) {
+		
+		return "redirect:/MasterPage.jsp?mode=SMbrLogin";
+	}
+
 	@RequestMapping(value = "/memberDefault.do")
 	public ModelAndView defaultMember(CommandMap commandMap,
 			HttpServletRequest request, HttpSession session) throws Exception {
@@ -603,54 +609,49 @@ public class MemberController {
 		HttpSession session = request.getSession();
 		int loginCheck = 0;
 
-		String fsmMember_id = (String) commandMap.get("fsmMember_id");
-		String fFirst_Name = (String) commandMap.get("fFirst_Name");
-		String fLast_Name = (String) commandMap.get("fLast_Name");
-		if (fLast_Name == null)
-			fLast_Name = null;
-		String fEmail = (String) commandMap.get("fEmail");
-		String fGender = (String) commandMap.get("fGender");
-		if (fGender == null)
-			fGender = null;
-		String fLink = (String) commandMap.get("fLink");
-		if (fLink == null)
-			fLink = null;
-		String fPicture = (String) commandMap.get("fPicture");
-		if (fPicture == null)
-			fPicture = null;
+		String smMember_id = (String) commandMap.get("fsmMember_id");
+		String First_Name = (String) commandMap.get("fFirst_Name");
+		String Last_Name = (String) commandMap.get("fLast_Name");
+		if (Last_Name == null)
+			Last_Name = null;
+		String Email = (String) commandMap.get("fEmail");
+		String Gender = (String) commandMap.get("fGender");
+		if (Gender == null)
+			Gender = null;
+		String Link = (String) commandMap.get("fLink");
+		if (Link == null)
+			Link = null;
+		String Picture = (String) commandMap.get("fPicture");
+		if (Picture == null)
+			Picture = null;
 
-		System.out.println("fsmMember_id = " + fsmMember_id);
-		System.out.println("fFirst_Name = " + fFirst_Name);
-		System.out.println("fLast_Name = " + fLast_Name);
-		System.out.println("fEmail = " + fEmail);
-		System.out.println("fGender = " + fGender);
-		System.out.println("fLink = " + fLink);
-		System.out.println("fPicture = " + fPicture);
+		System.out.println("smMember_id = " + smMember_id);
+		System.out.println("First_Name = " + First_Name);
+		System.out.println("Last_Name = " + Last_Name);
+		System.out.println("Email = " + Email);
+		System.out.println("Gender = " + Gender);
+		System.out.println("Link = " + Link);
+		System.out.println("Picture = " + Picture);
 
 		/* ID가 없으면 (Insert), 있으면 (로그인) */
 		boolean check;
-		check = memberService.selectOneSnsMbrLoginIdCheck(fsmMember_id);
+		check = memberService.selectOneSnsMbrLoginIdCheck(smMember_id);
 		System.out.println("check = " + check);
 		if (check == false) {
 
-			if (fGender.equals("male")) {
-				commandMap.put("fGender", 1);
+			if (Gender.equals("male")) {
+				commandMap.put("Gender", 1);
 			} else {
-				commandMap.put("fGender", 0);
+				commandMap.put("Gender", 0);
 			}
 
 			memberService.insertSnsForm(commandMap.getMap());
 			System.out.println("insertSnsForm 성공!!!!!!");
 		}
 
-		String mbrLoginId = fLast_Name + " " + fFirst_Name;
-		// long member_id = (long) Integer.parseInt(fsmMember_id);
-		// System.out.println("member_id = "+member_id);
+		String mbrLoginId = Last_Name + " " + First_Name;
 		loginCheck = 1;
 		session.setAttribute("mbrLoginId", mbrLoginId);
-		// session.setAttribute("member_id", member_id);
-
-		// mv.addObject("memberLogin", memberLogin);
 		request.setAttribute("loginCheck", loginCheck);
 
 		return mv;
