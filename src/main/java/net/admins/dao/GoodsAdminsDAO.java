@@ -88,16 +88,23 @@ public class GoodsAdminsDAO extends AbstractDAO {
 		Map<String, Object> imsi_gdsMasterMap = (Map<String, Object>) selectOne(
 				"goods.updateGdsform", map);
 
+		/*
 		String gdsMaster_goodsid = null;
 
 		Map<String, Object> resultmap = null;
 
 		// java.lang.Integer cannot be cast to java.lang.String 에러를
 		// String.valueOf로 처리
+		
+		 먼저 map 끼리 merge 유의 
+		 이부분은 필요가 없다 왜냐면, 파일 호출시 폴더내의 부분은 db 저장이 안되어있고 file io에서 읽어오는 부분이기 때문이다. 
+		 * 
 		gdsMaster_goodsid = String.valueOf(imsi_gdsMasterMap.get("goods_id"));
 		System.out.println("gdsMaster_goodsid =" + gdsMaster_goodsid);
 
-		Map<String, Object> imsi_gdsFilesMap = (Map<String, Object>) selectOne(
+		
+		 
+		 * Map<String, Object> imsi_gdsFilesMap = (Map<String, Object>) selectOne(
 				"goods.goodsfiles", map);
 		String gdsFiles_goodsid = null;
 
@@ -113,10 +120,10 @@ public class GoodsAdminsDAO extends AbstractDAO {
 		} else if (gdsFiles_goodsid == gdsMaster_goodsid) {
 			// 파일도 마스터에도 있는 경우
 
-			/*
+			
 			 * map 끼리 merge commonutill 생성
 			 * http://stackoverflow.com/questions/8795945/merging-two-maps
-			 */
+			 
 			String gFileName = (String) imsi_gdsFilesMap.get("gFileName");
 			String gFileDesc = (String) imsi_gdsFilesMap.get("gFileDesc");
 
@@ -124,8 +131,8 @@ public class GoodsAdminsDAO extends AbstractDAO {
 			imsi_gdsMasterMap.put("gFileDesc", gFileDesc);
 			resultmap = imsi_gdsMasterMap;
 
-		}
-		return resultmap;
+		}*/
+		return imsi_gdsMasterMap;
 	}
 
 	public void updateProGdsform(Map<String, Object> map) {

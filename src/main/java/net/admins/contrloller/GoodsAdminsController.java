@@ -1,7 +1,5 @@
 package net.admins.contrloller;
 
-
-
 import java.io.File;
 import java.util.Collections;
 import java.util.Iterator;
@@ -103,10 +101,9 @@ public class GoodsAdminsController {
 		System.out.println("테스트");
 		Map<String, Object> selectOneGdsView = goodsAdminsService
 				.selectOneGdsView(commandMap.getMap());
-		
-		
-		List<Map<String, Object>> selectListGdsList =  goodsAdminsService.selectListGdsList(commandMap
-				.getMap());
+
+		List<Map<String, Object>> selectListGdsList = goodsAdminsService
+				.selectListGdsList(commandMap.getMap());
 
 		if (selectOneGdsView != null && !selectOneGdsView.isEmpty()) {
 			System.out.println("view 줄랭");
@@ -129,7 +126,7 @@ public class GoodsAdminsController {
 	// 1번 bnsUpdate : 리스트 업데이트
 	@RequestMapping(value = "/admin/goods/gdsUpdate.do")
 	public ModelAndView updateGdsForm(CommandMap commandMap,
-			HttpServletRequest request) throws Exception {
+			HttpServletRequest request, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/Goods/GdsCellForm");
 
 		// 위의 view랑 동일하게 사용
@@ -141,30 +138,65 @@ public class GoodsAdminsController {
 			String mm = "cGds";
 
 			mv.addObject("mm", mm);
-			
+
 			String goods_id = String.valueOf(updateGdsForm.get("goods_id"));
 
-			String path = "xUpload/GdsData/GC"+goods_id+"/";
-			System.out.println("경로 =="+path);
-			
+			String uploadRootPath = session.getServletContext().getRealPath(
+					"\\");
+			System.out.println("루트경로" + uploadRootPath);
+
+			// 파일 루트 경로 표현시 / 이 아닌, \\ 로 표기해야한다.
+			String path = uploadRootPath + "\\xUpload\\GdsData\\GC" + goods_id
+					+ "\\";
+			// String path = "\\xUpload\\GdsData\\GC"+goods_id+"\\";
+			System.out.println("경로 ==" + path);
+
 			mv.addObject("updateGdsForm", updateGdsForm);
-			
-			/*List<File> fileList = fileUtils.getDirFileList(path);
-			 * 좀더 상세 
-			 * http://jungws55.tistory.com/227
-			 * */
-			File filepath = new File( path );
-	        
-	        if( filepath.exists() == false ){
-	            System.out.println("경로가 존재하지 않습니다");
-	        }
-	        File[] fileList = filepath.listFiles();
-	        		
-			for(int i=0; i < fileList.length; i++){
-		        System.out.println(fileList[i]) ;
-		    }
-			
-			
+
+			/*
+			 * http://www.tutorialspoint.com/java/util/arrays_aslist.htm >
+			 * aslist란
+			 * 
+			 * http://seemoon.tistory.com/entry/JAVA-Array-%EB%B3%B5%EC%82%AC >
+			 * aslist 출력방법
+			 * 
+			 * 중요 아래와 같이 출력하면 경로가 아래와 같이 잡힌다.
+			 * file:///F:/Mwav/dev/git/mwav/mwav/src/main/webapp/xUpload/GdsData/GC10045/m_S1_20160522133939_Basic.png
+			 * 문제는 ! 
+			 *  > 이럴 경우 html 상 value 에는 서버 /로읽어온다 즉 차이가 발생한다. 
+			 *
+			 */
+
+			try {
+				List<String> fileList = fileUtils.getDirFileList(path);
+
+				//List<Map<String, Object>> fileList = fileUtils.getDirFileList(path);
+
+				System.out.println("fileList" + fileList);
+
+				System.out.println("fileList 사이즈 : " + fileList.size());
+
+				for (int i = 0; i < fileList.size(); i++) {
+					System.out.println(i + ") = " + fileList.get(i));
+					
+				}
+
+				mv.addObject("goodsFileList", fileList);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			/*
+			 * 예외 처리 필수 파일 없으면 null 이니까 좀더 상세 http://jungws55.tistory.com/227
+			 * 
+			 * File filepath = new File( path );
+			 * 
+			 * File[] fileList = filepath.listFiles();
+			 * 
+			 * for(int i=0; i < fileList.length; i++){
+			 * System.out.println(fileList[i]) ; }
+			 */
+
 		}
 		return mv;
 	}
@@ -187,7 +219,7 @@ public class GoodsAdminsController {
 
 	@RequestMapping(value = "/admins/goods/gdsList.do")
 	public ModelAndView selectListGdsList(CommandMap commandMap,
-			HttpServletRequest request, HttpServletResponse reponse)
+			HttpServletRequest request, HttpServletResponse reponse,  HttpSession session)
 			throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/Goods/GdsCellList");
 
@@ -228,6 +260,7 @@ public class GoodsAdminsController {
 		mv.addObject("mode", "m_stfList");
 
 		// mv.addObject("paging", pv.print());
+			
 		return mv;
 	}
 

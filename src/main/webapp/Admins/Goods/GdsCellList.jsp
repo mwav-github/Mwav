@@ -123,7 +123,7 @@ ${member} => request.getAttribute("member");
 														<input type="hidden" id="goods_id" name="goods_id"
 															value="${VselectListGdsList.goods_id }">
 														<td class="hidden-xs">${VselectListGdsList.goods_id}</td>
-														<td class="hidden-xs">${VselectListGdsList.gModelNbr}</td>
+														<td class="hidden-xs"><img src="/xUpload/GdsData/GC${VselectListGdsList.goods_id }/s_S1_Basic.png"></td>
 														<td class="hidden-xs">${VselectListGdsList.gModelNbr}
 															/ ${VselectListGdsList.gName}</td>
 														<td class="hidden-xs">${VselectListGdsList.gManufacturer}
@@ -158,15 +158,15 @@ ${member} => request.getAttribute("member");
 
 											<c:if test="${pagingVO.startPage > pagingVO.pageBlock}">
 												<li><a
-													href="/admins/staff/stfList.do?pageNum=${pagingVO.startPage - pagingVO.pageBlock}">&laquo;</a></li>
+													href="/admins/goods/gdsList.do?pageNum=${pagingVO.startPage - pagingVO.pageBlock}">&laquo;</a></li>
 											</c:if>
 											<c:forEach var="i" begin="${pagingVO.startPage}"
 												end="${pagingVO.endPage}">
-												<li><a href="/admins/staff/stfList.do?pageNum=${i}">${i}</a></li>
+												<li><a href="/admins/goods/gdsList.do?pageNum=${i}">${i}</a></li>
 											</c:forEach>
 											<c:if test="${pagingVO.endPage < pagingVO.pageCount}">
 												<li><a
-													href="/admins/staff/stfList.do?pageNum=${pagingVO.startPage + pagingVO.pageBlock}">&raquo;</a></li>
+													href="/admins/goods/gdsList.do?pageNum=${pagingVO.startPage + pagingVO.pageBlock}">&raquo;</a></li>
 											</c:if>
 											<!-- <li><a href="">&laquo;</a></li>
 			<li class="active"><a href="#">1</a></li>

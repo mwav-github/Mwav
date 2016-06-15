@@ -21,11 +21,11 @@
 	// 입력에서는 호출이 안된다 그래서 head에 올림.
 	function showImageWindow(position) {
 		//var myBookId = $(this).data('id');
-		
+
 		var modalUploadImages = position;
 		$("#modalUploadImages").modal("show");
 		$("#images_position").val(modalUploadImages);
-		
+
 		//기존 정보 초기화 
 		$('#filebody').empty();
 	}
@@ -39,61 +39,28 @@
 </style>
 
 <script>
-															jQuery(document)
-																	.ready(
-																			function(
-																					$) {
+	jQuery(document).ready(function($) {
 
-																				$(
-																						'#myCarousel')
-																						.carousel(
-																								{
-																									interval : false
-																								});
+		$('#myCarousel').carousel({
+			interval : false
+		});
 
-																				$(
-																						'#carousel-text')
-																						.html(
-																								$(
-																										'#slide-content-0')
-																										.html());
+		$('#carousel-text').html($('#slide-content-0').html());
 
-																				//Handles the carousel thumbnails
-																				$(
-																						'[id^=carousel-selector-]')
-																						.click(
-																								function() {
-																									var id = this.id
-																											.substr(this.id
-																													.lastIndexOf("-") + 1);
-																									var id = parseInt(id);
-																									$(
-																											'#myCarousel')
-																											.carousel(
-																													id);
-																								});
+		//Handles the carousel thumbnails
+		$('[id^=carousel-selector-]').click(function() {
+			var id = this.id.substr(this.id.lastIndexOf("-") + 1);
+			var id = parseInt(id);
+			$('#myCarousel').carousel(id);
+		});
 
-																				// When the carousel slides, auto update the text
-																				$(
-																						'#myCarousel')
-																						.on(
-																								'slid.bs.carousel',
-																								function(
-																										e) {
-																									var id = $(
-																											'.item.active')
-																											.data(
-																													'slide-number');
-																									$(
-																											'#carousel-text')
-																											.html(
-																													$(
-																															'#slide-content-'
-																																	+ id)
-																															.html());
-																								});
-																			});
-														</script>
+		// When the carousel slides, auto update the text
+		$('#myCarousel').on('slid.bs.carousel', function(e) {
+			var id = $('.item.active').data('slide-number');
+			$('#carousel-text').html($('#slide-content-' + id).html());
+		});
+	});
+</script>
 <%--http://bootsnipp.com/snippets/featured/carousel-extended-320-compatible --%>
 
 </head>
@@ -175,6 +142,8 @@
 											</div>
 											<div class="panel-body">
 												<div class="row">
+
+
 													<div class="col-sm-12 col-md-4 col-lg-4 " align="center">
 														<%--http://bootsnipp.com/snippets/featured/carousel-extended-320-compatible --%>
 														<!-- Slider -->
@@ -185,37 +154,38 @@
 																	<div class="col-sm-12" id="carousel-bounding-box">
 																		<div class="carousel slide" id="myCarousel">
 																			<!-- Carousel items -->
+
 																			<div class="carousel-inner">
 
-																				<%--http://bootsnipp.com/snippets/featured/bootstrap-lightbox --%>
-																				<div class="active item" data-slide-number="0">
-																					<a href="#" class="thumbnail" data-toggle="modal"
-																						data-target="#lightbox"> <img
-																						src="http://placehold.it/770x770&text=one">
-																					</a>
-																				</div>
 
-																				<div class="item" data-slide-number="1">
-																					<a href="#" class="thumbnail" data-toggle="modal"
-																						data-target="#lightbox"> <img
-																						src="http://placehold.it/770x770&text=two">
-																					</a>
-																				</div>
+																				<c:choose>
+																					<c:when test="${fn:length(goodsFileList) > 0}">
+																						<!-- http://fruitdev.tistory.com/132 -->
+																						<%--http://marobiana.tistory.com/9 --%>
+																						<c:forEach var="VgoodsFileList"
+																							items="${goodsFileList}" varStatus="status">
+																							<%--http://bootsnipp.com/snippets/featured/bootstrap-lightbox --%>
+																							
+																							<div ${status.first ? 'class="active item"' : 'class="item"'} data-slide-number="${status.index}">
+																								<a href="#" class="thumbnail"
+																									data-toggle="modal" data-target="#lightbox">
+																									<img src="/xUpload/GdsData/GC${updateGdsForm.goods_id}/${VgoodsFileList}">
+																								</a>
+																							</div>
 
-																				<div class="item" data-slide-number="2">
-																					<a href="#" class="thumbnail" data-toggle="modal"
-																						data-target="#lightbox"> <img
-																						src="http://placehold.it/770x300&text=three">
-																					</a>
-																				</div>
+																						</c:forEach>
+																					</c:when>
 
-																				<div class="item" data-slide-number="3">
-																					<a href="#" class="thumbnail" data-toggle="modal"
-																						data-target="#lightbox"> <img
-																						src="http://placehold.it/770x300&text=four">
-																					</a>
-																				</div>
-
+																					<c:otherwise>
+																						<div class="item" data-slide-number="0">
+																								<a href="#" class="thumbnail"
+																									data-toggle="modal" data-target="#lightbox">
+																									<img
+																									src="http://placehold.it/770x300&text=four">
+																								</a>
+																						</div>
+																					</c:otherwise>
+																				</c:choose>
 																			</div>
 																			<%-- 
 																			<!-- Carousel nav -->
@@ -237,24 +207,28 @@
 
 														<div class="row hidden-xs" id="slider-thumbs">
 															<!-- Bottom switcher of slider -->
-															<ul class="hide-bullets">
-																<li class="col-sm-6"><a class="thumbnail"
-																	id="carousel-selector-0"><img
-																		src="xUpload/GdsData/GC${updateGdsForm.goods_id}/L_S1_Basic.png"></a></li>
+															<c:choose>
+																<c:when test="${fn:length(goodsFileList) > 0}">
+																	<!-- http://fruitdev.tistory.com/132 -->
+																	<%--http://marobiana.tistory.com/9 --%>
+																	<c:forEach var="VgoodsFileList"
+																		items="${goodsFileList}" varStatus="status">
 
-																<li class="col-sm-6"><a class="thumbnail"
-																	id="carousel-selector-1"><img
-																		src="http://placehold.it/170x100&text=two"></a></li>
+																		<ul class="hide-bullets">
+																			<li class="col-sm-6"><a class="thumbnail"
+																				<%--start.count는 1부터 시작 // index는 0부터 시작 --%>
+																				id="carousel-selector-${status.index}"><img
+																					src="/xUpload/GdsData/GC${updateGdsForm.goods_id}/${VgoodsFileList}"></a></li>
+																		</ul>
+																	</c:forEach>
+																</c:when>
 
-																<li class="col-sm-6"><a class="thumbnail"
-																	id="carousel-selector-2"><img
-																		src="http://placehold.it/170x100&text=three"></a></li>
-
-																<li class="col-sm-6"><a class="thumbnail"
-																	id="carousel-selector-3"><img
-																		src="http://placehold.it/170x100&text=four"></a></li>
-
-															</ul>
+																<c:otherwise>
+																	<li class="col-sm-6"><a class="thumbnail"
+																		id="carousel-selector-0"><img
+																			src="http://placehold.it/170x100&text=one"></a></li>
+																</c:otherwise>
+															</c:choose>
 														</div>
 
 

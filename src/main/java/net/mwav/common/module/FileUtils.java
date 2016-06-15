@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -202,18 +203,19 @@ public class FileUtils {
 						 * "_" + images_position + originalFileExtension; 만약
 						 * 난수발생으로도 가능하긴 하다.!! 다만 기 저장된 값을 db에서 불러와서 비교해서 해야한다.
 						 */
-						/*storedBFileName = "S1" + "_" + now + "_"
-								+ images_position + originalFileExtension;
-						
-						 위와 같이하면 now 때문에 파일을 절대 찾을 수 없다.
-						*/
-						
-						storedRFileName = "S1" + "_"
-								+ images_position + originalFileExtension;
-						
+						/*
+						 * storedBFileName = "S1" + "_" + now + "_" +
+						 * images_position + originalFileExtension;
+						 * 
+						 * 위와 같이하면 now 때문에 파일을 절대 찾을 수 없다.
+						 */
+
+						storedRFileName = "S1" + "_" + images_position
+								+ originalFileExtension;
+
 						storedBFileName = "S1" + "_" + now + "_"
 								+ images_position + originalFileExtension;
-						
+
 						String RfilePath = uploadRootPath
 								+ filePath_TempImages_Goods + storedBFileName;
 
@@ -324,9 +326,8 @@ public class FileUtils {
 		return list;
 	}
 
-	
-	//실제 등록시 (temp > imageutil 후 이동)
-	//goods_id 기준 db에 temp는 저장되어있기 때문에 가져온다. 
+	// 실제 등록시 (temp > imageutil 후 이동)
+	// goods_id 기준 db에 temp는 저장되어있기 때문에 가져온다.
 	public void totalFileProcess(Map<String, Object> map) throws Exception {
 		// 스프링 파일 읽기 참고
 
@@ -384,13 +385,15 @@ public class FileUtils {
 				BufferedImage resizeimage30 = ImageUtill.scaleSize(srcimage,
 						250, 250);
 
-				String moveFilePath = uploadRootPath + filePath_Goods
-						+ "GC" + goods_id;
+				String moveFilePath = uploadRootPath + filePath_Goods + "GC"
+						+ goods_id;
 
-				/*String moveFilePath_images = uploadRootPath + filePath_Goods
-						+ goods_id ;*/
-				
-				System.out.println("이동시킬 경로"+moveFilePath);
+				/*
+				 * String moveFilePath_images = uploadRootPath + filePath_Goods
+				 * + goods_id ;
+				 */
+
+				System.out.println("이동시킬 경로" + moveFilePath);
 
 				File file_move = new File(moveFilePath);
 				if (file_move.exists() == false) {
@@ -398,43 +401,40 @@ public class FileUtils {
 					System.out.println("폴더생성");
 				}
 
-				
-				String Ltargetpath = moveFilePath +
-						"\\L_" + gFileName;// 만들 이미지경로 
-				// 중간이미지 
-				
-				String mtargetpath = moveFilePath +
-						"\\M_" +gFileName;// 만들 이미지경로 
-				// 중간이미지 
-				//File file_mtargetpath = new File(mtargetpath);
-				
-				String stargetpath = moveFilePath +
-						"\\S_"+gFileName;// 만들 이미지경로
-				//File stargetpath = new File(stargetpath);
-				
-				String format = gFileName.substring(gFileName.lastIndexOf(".") + 1);// 확장자
-				System.out.println("확장자="+format);
+				String Ltargetpath = moveFilePath + "\\L_" + gFileName;// 만들
+																		// 이미지경로
+				// 중간이미지
+
+				String mtargetpath = moveFilePath + "\\M_" + gFileName;// 만들
+																		// 이미지경로
+				// 중간이미지
+				// File file_mtargetpath = new File(mtargetpath);
+
+				String stargetpath = moveFilePath + "\\S_" + gFileName;// 만들
+																		// 이미지경로
+				// File stargetpath = new File(stargetpath);
+
+				String format = gFileName
+						.substring(gFileName.lastIndexOf(".") + 1);// 확장자
+				System.out.println("확장자=" + format);
 				// 이미지 저장..
 				// 각 goods_id에 맞게
 				System.out.println("image save");
 				ImageUtill.saveImage(mtargetpath, resizeimage50, format); // 이미지
-																				// 유틸
-																				// 클래스
+																			// 유틸
+																			// 클래스
 				ImageUtill.saveImage(stargetpath, resizeimage30, format);
 
-				
-				//goodsAdminsService.insertGdsFiles(map);
-				// temp > 실제 파일이동시에는 db 저장은 없다. 
-				
-				
+				// goodsAdminsService.insertGdsFiles(map);
+				// temp > 실제 파일이동시에는 db 저장은 없다.
+
 				// 원본이미지 이동..
 				System.out.println("image move");
 				fileMove(fullFileName, Ltargetpath);
-				//File toFile = new File(moveFilePath);
-				//boolean result = file.renameTo(toFile);
-				//System.out.println("이동 성공여부 : " + result);
-		
-				
+				// File toFile = new File(moveFilePath);
+				// boolean result = file.renameTo(toFile);
+				// System.out.println("이동 성공여부 : " + result);
+
 				// 파일 삭제를 원한다면
 				// fileDelete(inFolder+"\\"+fileName);
 
@@ -522,7 +522,7 @@ public class FileUtils {
 			fos.close();
 
 			// 복사한뒤 원본파일을 삭제함
-			//fileDelete(inFileName);
+			// fileDelete(inFileName);
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -531,27 +531,57 @@ public class FileUtils {
 	}
 
 	// 디렉토리의 파일 리스트를 읽는 메소드
-	public static List<File> getDirFileList(String dirPath) {
+	// > 파일이름만 리스트로 저장 
+	public static List<String> getDirFileList(String dirPath) {
 		// 디렉토리 파일 리스트
 		List<File> dirFileList = null;
 
-		System.out.println("들어오나");
+		List<String> FileName = new ArrayList<String>();
+		//Map<String, Object> dirFileMap = null;
+		//List<Map<String, Object>> dirFileListMap = null;
 		
-		System.out.println("dirpath+"+dirPath);
+		System.out.println("들어오나");
+
+		System.out.println("dirpath=" + dirPath);
 		// 파일 목록을 요청한 디렉토리를 가지고 파일 객체를 생성함
 		File dir = new File(dirPath);
 
-		// 디렉토리가 존재한다면
+		// 디렉토리가 존재하지 않는다면
+		if (dir.exists() == false) {
+			System.out.println("경로가 존재하지 않습니다 또는 해당 상품코드에 이미지파일이 존재하지 않습니다. ");
+		}
+
 		if (dir.exists()) {
 			// 파일 목록을 구함
+
+			// 폴더라면 폴더가 가진 파일객체를 리스트로 받는다.
 			File[] files = dir.listFiles();
 
 			System.out.println("들어오나");
+
 			// 파일 배열을 파일 리스트로 변화함
 			dirFileList = Arrays.asList(files);
+
+			for (File f : dirFileList) {
+				// 파일일 경우만 출력
+				if (f.isFile()) {
+
+					// 날짜 출력을 위한 Date객체 생성 생성자로 마지막 수정날짜인 lastModified메소드의
+					// long리턴값을 넣는다.
+					Date d = new Date(f.lastModified());
+
+					// 파일명, 날짜, 크기를 출력한다.
+					System.out.println(f.getName() + "\t" + d.toString() + "\t"
+							+ f.length());
+					
+					String fileName = f.getName();
+					FileName.add(fileName);
+					//dirFileMap.put("FileName", fileName);
+				}
+
+			}
+			//dirFileListMap.add(dirFileMap);
 		}
-
-		return dirFileList;
+		return FileName;
 	}
-
 }
