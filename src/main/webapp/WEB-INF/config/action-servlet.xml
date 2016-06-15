@@ -11,35 +11,36 @@
 	<context:component-scan base-package="net"></context:component-scan>
 
 	<!-- 구글 프로퍼티 파일 연결 -->
-	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="ignoreResourceNotFound" value="true" />
-        <property name="locations">
-           <list>
-	            <value>classpath:googleProperties/googleApi.properties</value>
-	            <value>classpath:googleProperties/version.properties</value>
-	            <value>classpath:googleProperties/datasource.properties</value>
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="ignoreResourceNotFound" value="true" />
+		<property name="locations">
+			<list>
+				<value>classpath:googleProperties/googleApi.properties</value>
+				<value>classpath:googleProperties/version.properties</value>
+				<value>classpath:googleProperties/datasource.properties</value>
 			</list>
-        </property>
-    </bean>
-    
-    <!-- restTemplate 사용위한 bean 생성 -->
-    <bean id="jsonConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+		</property>
+	</bean>
+
+	<!-- restTemplate 사용위한 bean 생성 -->
+	<bean id="jsonConverter"
+		class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
 		<property name="supportedMediaTypes" value="application/json" />
 	</bean>
-	
-    <bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
-		<property name="messageConverters">		
-            <list>
+
+	<bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
+		<property name="messageConverters">
+			<list>
 				<ref bean="jsonConverter" />
-            </list>
+			</list>
 		</property>
 	</bean>
 
 
 	<!-- 파일 업로드 MultipartResolver 설정 CommonsMultipartResolver 등록 / CommonsMultipartResolver은 
-		스프링 파일업로드 기능 구현 10MB로 설정
-		제대로 설정안하면, java.lang.classcastexception multiparthttpservletrequest 오류발생
-		 -->
+		스프링 파일업로드 기능 구현 10MB로 설정 제대로 설정안하면, java.lang.classcastexception multiparthttpservletrequest 
+		오류발생 -->
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="maxUploadSize" value="100000000" />
@@ -132,52 +133,61 @@
 		p:prefix="/" p:suffix=".jsp">  <!-- prefix는 페이지의 기본 루트 // 페이지의 기본 확장자 -->
 
 	</bean>
-	
-	<context:property-placeholder location="classpath:googleProperties/datasource.properties" />
-	<context:property-placeholder location="classpath:googleProperties/application.properties"/>
-	
-	<bean id="dataSource"  class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-	  <property name="driverClassName" value="${jdbc.driverClassName}" />
-	  <property name="url" value="${jdbc.url}" />
-	  <property name="username" value="${jdbc.user}" />
-	  <property name="password" value="${jdbc.pass}" />
+
+	<context:property-placeholder
+		location="classpath:googleProperties/datasource.properties" />
+	<context:property-placeholder
+		location="classpath:googleProperties/application.properties" />
+
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="${jdbc.driverClassName}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.user}" />
+		<property name="password" value="${jdbc.pass}" />
 	</bean>
 
-	<!-- <bean id="dataSourceSpied" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-        <property name="driverClassName" value="org.gjt.mm.mysql.Driver"/>  읽어온 정보를 매핑시켜 가지고 있는 빈
-		<property name="url" value="jdbc:mysql://localhost:3306/mwav"/>
-		<property name="username" value="mwav"/>
-		<property name="password" value="tiger"/>12485154 // tiger
-		<property name="maxActive" value="100"/>
-		<property name="maxWait" value="1000"/>
-    </bean> -->
-    
-    <!-- <bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
-		<constructor-arg ref="dataSourceSpied" />
+	<bean id="dataSourceSpied" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
+		<constructor-arg ref="dataSource" />
 		<property name="logFormatter">
 			<bean class="net.sf.log4jdbc.tools.Log4JdbcCustomFormatter">
 				<property name="loggingType" value="MULTI_LINE" />
-				<property name="sqlPrefix" value="SQL         :  "/>
+				<property name="sqlPrefix" value="SQL : " />
 			</bean>
 		</property>
-	</bean> -->
-	
-	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">
-	<!-- 데이터베이스 정보 name은 위에서 등록한 sqlSession 빈(bean)에서 사용할 이름이 dataSource이고, 
-	     ref의 dataSource는 우리가 context-datasource.xml에서 정의한 빈(bean)을 참조하는 것을 의미한다. -->
-		<property name="dataSource" ref="dataSource" /> 
-		
-		<!-- 매퍼 xml이 있는 경로 정의   SQL이 위치할 mapper 폴더를 잡아주고, 
-		        그 안에 모든 폴더를 의미하는 **를 붙여준 후, 마지막으로 _SQL로 끝나는 모든 xml 파일을 읽어주도록 한다-->
-		<property name="mapperLocations" value="classpath:/mapper/**/*_SQL.xml" /> 
 	</bean>
-	<!-- 
-	10번째 줄의 sqlSessionTemplate은 마이바티스 스프링 연동모듈의 핵심이다. 
-	SQLSessionTemplate은 SqlSession을 구현하고, 코드에서 SqlSessoin을 대체하는 역할을 한다.  -->
+
+	<!-- <bean id="dataSourceSpied" class="org.apache.commons.dbcp.BasicDataSource" 
+		destroy-method="close"> <property name="driverClassName" value="org.gjt.mm.mysql.Driver"/> 
+		읽어온 정보를 매핑시켜 가지고 있는 빈 <property name="url" value="jdbc:mysql://localhost:3306/mwav"/> 
+		<property name="username" value="mwav"/> <property name="password" value="tiger"/>12485154 
+		// tiger <property name="maxActive" value="100"/> <property name="maxWait" 
+		value="1000"/> </bean> -->
+
+	<!-- <bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource"> 
+		<constructor-arg ref="dataSourceSpied" /> <property name="logFormatter"> 
+		<bean class="net.sf.log4jdbc.tools.Log4JdbcCustomFormatter"> <property name="loggingType" 
+		value="MULTI_LINE" /> <property name="sqlPrefix" value="SQL : "/> </bean> 
+		</property> </bean> -->
+
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- 데이터베이스 정보 name은 위에서 등록한 sqlSession 빈(bean)에서 사용할 이름이 dataSource이고, 
+			ref의 dataSource는 우리가 context-datasource.xml에서 정의한 빈(bean)을 참조하는 것을 의미한다. 
+			
+			dataSourceSpied 위의 log4.js와 연결되어 쿼리 출력
+			-->
+		<property name="dataSource" ref="dataSourceSpied" />
+
+		<!-- 매퍼 xml이 있는 경로 정의 SQL이 위치할 mapper 폴더를 잡아주고, 그 안에 모든 폴더를 의미하는 **를 붙여준 
+			후, 마지막으로 _SQL로 끝나는 모든 xml 파일을 읽어주도록 한다 -->
+		<property name="mapperLocations" value="classpath:/mapper/**/*_SQL.xml" />
+	</bean>
+	<!-- 10번째 줄의 sqlSessionTemplate은 마이바티스 스프링 연동모듈의 핵심이다. SQLSessionTemplate은 
+		SqlSession을 구현하고, 코드에서 SqlSessoin을 대체하는 역할을 한다. -->
 	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
-        <constructor-arg index="0" ref="sqlSession"/>
-    </bean>  
-	
+		<constructor-arg index="0" ref="sqlSession" />
+	</bean>
+
 	<import resource="mvc.xml" />
 
 	<import resource="data.xml" />

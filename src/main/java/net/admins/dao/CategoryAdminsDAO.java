@@ -33,13 +33,20 @@ public class CategoryAdminsDAO extends AbstractDAO {
 		
 		
 		
-		delete("category.deleteCategory", map);
+		
 		
 		String gcr_id = null;
 		// System.out.println("11=="+selectOne("goodsAdminsDAO.selectNextPk"));
 		gcr_id = (String) selectOne(
 				"category.selectNextCategoryRelationPk", map);
 		// map을 위에서 써버리면 그 다음 쿼리시 null 값 나온다. !! (가져오는값이라?)
+		
+		/* 
+		 pk 전에 하면 기존거를 삭제한다 !! 
+		 우리는 카테고리는 의미없지만 누적해서 가기 떄문에 이부분은 현재 위치가 맞다. 
+		 pk 확인 및 발급 > delete 진행 > 
+		 * */
+		delete("category.deleteCategory", map);
 		
 		map.put("gcr_id", gcr_id);
 		

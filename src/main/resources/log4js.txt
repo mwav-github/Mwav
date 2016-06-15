@@ -7,9 +7,16 @@
 		</layout>
 	</appender>
 	
-	<!-- Application Loggers -->
+	<!-- Application Loggers 
+	 참고 INFO 레벨이면 겁나 호출
+    <logger name="first" additivity="false">
+        <level value="debug" />
+        <appender-ref ref="console"/>
+    </logger>
+	
+	-->
 	<logger name="net.mwav">
-		<level value="info" />
+		<level value="debug" />
 	</logger>
 	
 	<!-- 3rdparty Loggers -->
@@ -28,6 +35,18 @@
 	<logger name="org.springframework.web">
 		<level value="info" />
 	</logger>
+	
+	 <!-- Query Loggers  이것까지하면 너무 많아진다. -->
+    <logger name="jdbc.sqltiming" additivity="false">  
+        <level value="info"/>  
+        <appender-ref ref="console-infolog"/>  
+    </logger>
+    
+     
+    <logger name="jdbc.resultsettable" additivity="false">  
+        <level value="info"/>  
+        <appender-ref ref="console"/>  
+    </logger> 
 
 	<!-- Root Logger -->
 	<root>
@@ -35,4 +54,5 @@
 		<appender-ref ref="console" />
 	</root>
 	
+
 -->

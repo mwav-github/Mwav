@@ -21,11 +21,12 @@
 		<appender-ref ref="console"/>
 	</logger>
 	
-	<!-- Query Loggers -->
+	<!-- Query Loggers 이것까지하면 넘많아진다.-->
 	<logger name="jdbc.sqlonly" additivity="false">  
     	<level value="INFO"/>  
         <appender-ref ref="console-infolog"/>  
     </logger>
+    
     
     <logger name="jdbc.resultsettable" additivity="false">  
     	<level value="INFO"/>  

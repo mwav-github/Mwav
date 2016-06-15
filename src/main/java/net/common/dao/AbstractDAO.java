@@ -27,28 +27,10 @@ public class AbstractDAO {
 	
 	protected void printQueryId(String queryId) {
 		if(log.isDebugEnabled()){
+			System.out.println("쿼리 로그 시작");
             log.debug("\t QueryId  \t:  " + queryId);
         }
 	}
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	 
     public Object insert(String queryId, Object params){
         printQueryId(queryId);

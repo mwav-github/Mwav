@@ -183,7 +183,7 @@ public class FileUtils {
 					 * originalFileExtension;
 					 */
 
-					System.out.println("storedRFileName = " + storedBFileName);
+					System.out.println("storedRFileName = " + storedRFileName);
 					System.out.println("storedBFileName = " + storedBFileName);
 					System.out.println("====================================");
 					/*
@@ -208,15 +208,17 @@ public class FileUtils {
 						 위와 같이하면 now 때문에 파일을 절대 찾을 수 없다.
 						*/
 						
-						storedBFileName = "S1" + "_"
+						storedRFileName = "S1" + "_"
 								+ images_position + originalFileExtension;
 						
+						storedBFileName = "S1" + "_" + now + "_"
+								+ images_position + originalFileExtension;
 						
 						String RfilePath = uploadRootPath
 								+ filePath_TempImages_Goods + storedBFileName;
 
 						System.out.println("(실 파일명)_storedRFileName = "
-								+ storedBFileName);
+								+ storedRFileName);
 						System.out.println("(백업파일명)_storedBFileName = "
 								+ RfilePath);
 						/*
@@ -322,6 +324,9 @@ public class FileUtils {
 		return list;
 	}
 
+	
+	//실제 등록시 (temp > imageutil 후 이동)
+	//goods_id 기준 db에 temp는 저장되어있기 때문에 가져온다. 
 	public void totalFileProcess(Map<String, Object> map) throws Exception {
 		// 스프링 파일 읽기 참고
 
@@ -399,12 +404,12 @@ public class FileUtils {
 				// 중간이미지 
 				
 				String mtargetpath = moveFilePath +
-						"\\m_" +gFileName;// 만들 이미지경로 
+						"\\M_" +gFileName;// 만들 이미지경로 
 				// 중간이미지 
 				//File file_mtargetpath = new File(mtargetpath);
 				
 				String stargetpath = moveFilePath +
-						"\\s_"+gFileName;// 만들 이미지경로
+						"\\S_"+gFileName;// 만들 이미지경로
 				//File stargetpath = new File(stargetpath);
 				
 				String format = gFileName.substring(gFileName.lastIndexOf(".") + 1);// 확장자
@@ -418,7 +423,9 @@ public class FileUtils {
 				ImageUtill.saveImage(stargetpath, resizeimage30, format);
 
 				
-				goodsAdminsService.insertGdsFiles(map);
+				//goodsAdminsService.insertGdsFiles(map);
+				// temp > 실제 파일이동시에는 db 저장은 없다. 
+				
 				
 				// 원본이미지 이동..
 				System.out.println("image move");

@@ -61,12 +61,12 @@ public class LoggerInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler) throws Exception {
-		log.debug("======================================          START         ======================================");
-		log.debug(" Request URI \t:  " + request.getRequestURI());
+		log.info("======================================          START         ======================================");
+		log.info(" Request URI \t:  " + request.getRequestURI());
 		System.out.println("LoggerInterceptor에 들어왔다.");
 		if (log.isDebugEnabled()) {
-			log.debug("======================================          START         ======================================");
-			log.debug(" Request URI \t:  " + request.getRequestURI());
+			log.info("======================================          START         ======================================");
+			log.info(" Request URI \t:  " + request.getRequestURI());
 			System.out.println(request.getRequestURI());
 			System.out.println("LoggerInterceptor에 들어왔다.");
 		}
@@ -188,9 +188,7 @@ public class LoggerInterceptor extends HandlerInterceptorAdapter {
 			HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
 		System.out.println("모든 것을 수행한 후 LoggerInterceptor에 나갔다.11");
-		log.debug("======================================           END          ======================================\n");
 		
-		request.setAttribute("test", "테스트입니다.");
 		log.info("======================================           END          ======================================\n");
 
 		

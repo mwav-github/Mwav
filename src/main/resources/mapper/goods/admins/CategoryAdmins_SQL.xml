@@ -44,7 +44,7 @@
 	</select>
 	
 	<!--/*========================================삭제========================================*/  -->
-	<delete id="selectListCategory" parameterType="hashmap" >
+	<delete id="deleteCategory" parameterType="hashmap" >
 		<![CDATA[
 	        delete from GoodsCategoryRelation_tbl where goods_id = #{goods_id};
 		]]>

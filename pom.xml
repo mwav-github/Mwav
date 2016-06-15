@@ -217,7 +217,10 @@
             <version>1.0</version>
         </dependency>
              
-        <!-- Logging -->
+        <!-- Logging 
+        org.lazyluke
+        http://sbs20011.tistory.com/entry/log4j-%EC%84%A4%EC%A0%95
+        -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
@@ -239,21 +242,8 @@
     <version>0.2.7</version>
     <!-- http://addio3305.tistory.com/66 -->
 </dependency>
-        <dependency>
-    <groupId>org.lazyluke</groupId>
-    <artifactId>log4jdbc-remix</artifactId>
-    <version>0.2.7</version>
-</dependency>
-        <dependency>
-    <groupId>org.slf4j</groupId>
-    <artifactId>slf4j-simple</artifactId>  
-    <version>${org.slf4j-version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.lazyluke</groupId>
-            <artifactId>log4jdbc-remix</artifactId>
-            <version>0.2.7</version>
-        </dependency>
+
+
          
         <!-- MappingJacksonJsonView -->
         <dependency>
