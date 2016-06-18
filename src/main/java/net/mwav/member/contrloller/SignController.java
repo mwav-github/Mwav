@@ -124,26 +124,6 @@ public class SignController {
 		session.setAttribute("mbrLoginId", mbrLoginId);
 		request.setAttribute("loginCheck", loginCheck);
 
-		/*
-		 * if (connection != null) { String getUserName =
-		 * connection.fetchUserProfile().getUsername();
-		 * SignInUtils.signin(member_email); // 인증
-		 * //providerSignInUtilsPostSignUp(getUserName, request); //
-		 * userConnection Row 생성
-		 * 
-		 * // Member Row 생성 boolean checkCreateMember =
-		 * memberService.selectEmailMember(member_email);
-		 * System.out.println("checkCreateMember = "+checkCreateMember); if
-		 * (checkCreateMember) { Member member = new
-		 * Member(memberService.selectCountMember(),
-		 * connection.getDisplayName(), member_email, connection.getImageUrl(),
-		 * getUserName); memberService.insertMember(member);
-		 * 
-		 * request.getSession().setAttribute("member_email", member_email); }
-		 * 
-		 * }
-		 */
-
 		return "/Index";
 	}
 

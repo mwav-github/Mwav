@@ -13,12 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.mwav.member.auth.google;
+package net.mwav.member.auth.config;
 
 import javax.inject.Inject;
 import javax.sql.DataSource;
 
-import net.mwav.member.auth.VersionProperty;
+import net.mwav.member.auth.google.PostToWallAfterConnectInterceptor;
+import net.mwav.member.auth.util.SimpleSignInAdapter;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -43,6 +44,8 @@ import org.springframework.social.connect.web.ProviderSignInController;
 import org.springframework.social.connect.web.ReconnectFilter;
 import org.springframework.social.google.api.Google;
 import org.springframework.social.google.connect.GoogleConnectionFactory;
+import org.springframework.social.linkedin.api.LinkedIn;
+import org.springframework.social.linkedin.connect.LinkedInConnectionFactory;
 
 /**
  * Spring Social Configuration. This configuration demonstrates the use of the
@@ -63,7 +66,9 @@ public class SocialConfig implements SocialConfigurer {
 	@Override
 	public void addConnectionFactories(ConnectionFactoryConfigurer cfConfig, Environment env) {
 		cfConfig.addConnectionFactory(
-				new GoogleConnectionFactory(versionProperty.getAppKey(), versionProperty.getAppSecret()));
+				new GoogleConnectionFactory(versionProperty.getGoogleKey(), versionProperty.getGoogleSecret()));
+		cfConfig.addConnectionFactory(
+				new LinkedInConnectionFactory(versionProperty.getLinkedinKey(), versionProperty.getLinkedinSecret()));
 	}
 
 	@Override
@@ -91,8 +96,6 @@ public class SocialConfig implements SocialConfigurer {
 			ConnectionRepository connectionRepository) {
 		ConnectController connectController = new ConnectController(connectionFactoryLocator, connectionRepository);
 		connectController.addInterceptor(new PostToWallAfterConnectInterceptor());
-		//connectController.setApplicationUrl(environment.getProperty("application.url");
-		//http://localhost:8080/spring-social-extending-existing-api
 		return connectController;
 	}
 
@@ -102,14 +105,13 @@ public class SocialConfig implements SocialConfigurer {
 		Connection<Google> connection = repository.findPrimaryConnection(Google.class);
 		return connection != null ? connection.getApi() : null;
 	}
-
-	// Web Controller and Filter Beans
-	/*@Bean
-	public ProviderSignInController providerSignInController(ConnectionFactoryLocator connectionFactoryLocator,
-			UsersConnectionRepository usersConnectionRepository) {
-		return new ProviderSignInController(connectionFactoryLocator, usersConnectionRepository,
-				new SimpleSignInAdapter(new HttpSessionRequestCache()));
-	}*/
+	
+	@Bean
+	@Scope(value="request", proxyMode=ScopedProxyMode.INTERFACES)
+	public LinkedIn linkedin(ConnectionRepository repository) {
+		Connection<LinkedIn> connection = repository.findPrimaryConnection(LinkedIn.class);
+		return connection != null ? connection.getApi() : null;
+	}
 	
 	@Bean
 	public ProviderSignInController providerSignInController(
