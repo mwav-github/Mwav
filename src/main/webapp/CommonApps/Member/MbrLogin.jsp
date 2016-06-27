@@ -212,11 +212,13 @@
 				</div>
 			</form>
 			
-			<div class="col-xs-6 col-sm-6 col-md-2">
-				<button type="button" class="btn btn-primary btn-block ">
-					<i class="fa fa-linkedin"></i>
-				</button>
-			</div>
+			<!-- LINKEDIN SIGNIN -->
+			<form id="go_signin" name="go_signin" action="<c:url value="/signin/linkedin.do"/>" method="POST">
+				<div class="col-xs-6 col-sm-6 col-md-2">
+					<button type="submit" class="btn btn-danger btn-block"><i class="fa fa-linkedin"></i></button>
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+				</div>
+			</form>
 		</div>
 
 		<form name="login_form" action="/member/Login.do" method="post">

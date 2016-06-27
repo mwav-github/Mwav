@@ -26,6 +26,7 @@ import javax.servlet.http.HttpSession;
 
 import net.mwav.member.service.MemberService;
 
+import org.apache.log4j.Logger;
 import org.apache.maven.model.Model;
 import org.springframework.social.ExpiredAuthorizationException;
 import org.springframework.social.connect.Connection;
@@ -39,6 +40,7 @@ import org.springframework.web.context.request.WebRequest;
 
 @Controller
 public class SignController {
+	Logger logger = Logger.getLogger(this.getClass());
 	private final ProviderSignInUtils providerSignInUtils;
 
 	@Resource(name = "memberService")
@@ -69,7 +71,7 @@ public class SignController {
 		int loginCheck = 0;
 		Map<String, Object> map = new HashMap<String, Object>();
 		HttpSession session = request.getSession();
-
+		
 		String smMember_id = connection.getKey().getProviderUserId();
 		String First_Name = connection.fetchUserProfile().getFirstName();
 		String Last_Name = connection.fetchUserProfile().getLastName();
@@ -84,38 +86,31 @@ public class SignController {
 		if (Picture == null)
 			Picture = null;
 
-		System.out.println("smMember_id = " + smMember_id);
-		System.out.println("First_Name = " + First_Name);
-		System.out.println("Last_Name = " + Last_Name);
-		System.out.println("Email = " + Email);
-		System.out.println("Gender = " + Gender);
-		System.out.println("Link = " + Link);
-		System.out.println("Picture = " + Picture);
+		logger.debug("smMember_id = " + smMember_id);
+		logger.debug("smMember_id = " + smMember_id);
+		logger.debug("First_Name = " + First_Name);
+		logger.debug("Last_Name = " + Last_Name);
+		logger.debug("Email = " + Email);
+		logger.debug("Gender = " + Gender);
+		logger.debug("Link = " + Link);
+		logger.debug("Picture = " + Picture);
 
 		/* ID가 없으면 (Insert), 있으면 (로그인) */
 		boolean check;
 		check = memberService.selectOneSnsMbrLoginIdCheck(smMember_id);
-		System.out.println("check = " + check);
+		logger.info("check = " + check);
 		if (check == false) {
 
 			map.put("smMember_id", smMember_id);
 			map.put("First_Name", First_Name);
 			map.put("Last_Name", Last_Name);
 			map.put("Email", Email);
-			if (Gender != null) {
-				if (Gender.equals("male")) {
-					map.put("Gender", 1);
-				} else {
-					map.put("Gender", 0);
-				}
-			} else {
-				map.put("Gender", 3);
-			}
+			map.put("Gender", 3);
 			map.put("Link", Link);
 			map.put("Picture", Picture);
 
 			memberService.insertSnsForm(map);
-			System.out.println("insertSnsForm 성공!!!!!!");
+			logger.info("insertSnsForm success!!!!!!");
 		}
 
 		String mbrLoginId = connection.getDisplayName();
@@ -123,26 +118,6 @@ public class SignController {
 		loginCheck = 1;
 		session.setAttribute("mbrLoginId", mbrLoginId);
 		request.setAttribute("loginCheck", loginCheck);
-
-		/*
-		 * if (connection != null) { String getUserName =
-		 * connection.fetchUserProfile().getUsername();
-		 * SignInUtils.signin(member_email); // 인증
-		 * //providerSignInUtilsPostSignUp(getUserName, request); //
-		 * userConnection Row 생성
-		 * 
-		 * // Member Row 생성 boolean checkCreateMember =
-		 * memberService.selectEmailMember(member_email);
-		 * System.out.println("checkCreateMember = "+checkCreateMember); if
-		 * (checkCreateMember) { Member member = new
-		 * Member(memberService.selectCountMember(),
-		 * connection.getDisplayName(), member_email, connection.getImageUrl(),
-		 * getUserName); memberService.insertMember(member);
-		 * 
-		 * request.getSession().setAttribute("member_email", member_email); }
-		 * 
-		 * }
-		 */
 
 		return "/Index";
 	}

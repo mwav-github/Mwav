@@ -1,4 +1,4 @@
-package net.mwav.member.auth.google;
+package net.mwav.member.auth.util;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;

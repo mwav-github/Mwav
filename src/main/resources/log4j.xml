@@ -16,43 +16,43 @@
     </appender>
     	
 	<!-- Application Loggers -->
-	<logger name="mwav" additivity="false">
-		<level value="INFO" />
+	<!-- <logger name="mwav" additivity="false">
+		<level value="ERROR" />
 		<appender-ref ref="console"/>
 	</logger>
 	
-	<!-- Query Loggers 이것까지하면 넘많아진다.-->
+	Query Loggers 이것까지하면 넘많아진다.
 	<logger name="jdbc.sqlonly" additivity="false">  
-    	<level value="INFO"/>  
+    	<level value="ERROR"/>  
         <appender-ref ref="console-infolog"/>  
     </logger>
     
     
     <logger name="jdbc.resultsettable" additivity="false">  
-    	<level value="INFO"/>  
+    	<level value="ERROR"/>  
         <appender-ref ref="console"/>  
-    </logger>  
+    </logger>   -->
 	
 	<!-- 3rdparty Loggers -->
-	<logger name="org.springframework.core">
-		<level value="info" />
+	<!-- <logger name="org.springframework.core">
+		<level value="ERROR" />
 	</logger>
 	
 	<logger name="org.springframework.beans">
-		<level value="info" />
+		<level value="ERROR" />
 	</logger>
 	
 	<logger name="org.springframework.context">
-		<level value="info" />
+		<level value="ERROR" />
 	</logger>
 
 	<logger name="org.springframework.web">
-		<level value="info" />
-	</logger>
+		<level value="ERROR" />
+	</logger> -->
  
     <!-- root 로거 기본 설정 -->
     <root>
-		<priority value="info" />
+		<priority value="DEBUG" />
 		<appender-ref ref="console" />
 	</root>
 	
