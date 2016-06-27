@@ -1,6 +1,25 @@
+function myconfirm(type) {
+
+	switch (type) {
+	case 'delete':
+		msg = "정말로 삭제하시겠습니까? 다시 한번 확인해보세요.";
+		break;
+	default : break;
+	}
+
+	if (confirm(msg) != 0) {
+		// Yes click
+		return true;
+	} else {
+		// no click
+		
+		return false;
+	}
+} // myconfirm
+
 // resize image size
 function resizeImageSize() {
-    
+
 	var secW = $(".sec").width();
 	var secH = $(".sec").height();
 	// 사이즈의 최대치는 선호 해상도로 설정
@@ -30,13 +49,13 @@ function resizeImageSize() {
 	// 현재 화면 비율
 	var ratioW = secW / orgwindowWidth;
 
-	for ( var i = 0; i < image.length; i++) {
+	for (var i = 0; i < image.length; i++) {
 
 		console.log('이미지 크기중');
 		var imgwidth = image[i].naturalWidth;// 이미지 원본사이즈 너비
 		// 이미지 사이즈가 선호사이즈보다 클수 없도록!!
-		console.log('imgwidth종류'+image[i]);
-		console.log('imgwidth'+image[i].naturalWidth);
+		console.log('imgwidth종류' + image[i]);
+		console.log('imgwidth' + image[i].naturalWidth);
 		if (imgwidth > orgwindowWidth) {
 			imgwidth = orgwindowWidth;
 		}
@@ -99,25 +118,22 @@ function res_Text() {
 	$(".small2").css("font-size", newFontSize + 'em');
 }
 
-
-
 function chkLoginPolicy(mbrLoginId) {
 
 	//로그인 아이디 계정정책 확인
 	var re1 = "/^[a-zA-Z]{4,20}/g"; // 첫글자는 영문자 및 4~20글자 = true
 	var re2 = "/s$/"; // 공백인 경우 true
-	var re3 = "/[`~!@#$%^&*|\\\'\";,:\/?=<>+-]/gi";  //[]들어가있다면 false ^가 반대를 의미
+	var re3 = "/[`~!@#$%^&*|\\\'\";,:\/?=<>+-]/gi"; //[]들어가있다면 false ^가 반대를 의미
 
-	
-	if(re1.test(mbrLoginId) == false){
+	if (re1.test(mbrLoginId) == false) {
 		alert("첫글자는 영문자 및 4~20글자로 구성되어야 합니다.");
 		return false;
 	}
-	if(re2.test(mbrLoginId) == true){
+	if (re2.test(mbrLoginId) == true) {
 		alert("공백은 허용하지 않습니다.");
 		return false;
 	}
-	if(re3.test(mbrLoginId) == true){
+	if (re3.test(mbrLoginId) == true) {
 		alert("특수문자는 허용하지 않습니다.");
 		return false;
 	}

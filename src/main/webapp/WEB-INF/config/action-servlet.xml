@@ -2,8 +2,8 @@
 <beans xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:p="http://www.springframework.org/schema/p" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns="http://www.springframework.org/schema/beans" xmlns:mvc="http://www.springframework.org/schema/mvc"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
 	<!-- net 하위 모든 패키지에 있는 파일의 어노테이션을 스캔해서 빈으로 등록하겠다는 말 즉 사용하는 bean을 일일이 xml에 
@@ -89,9 +89,11 @@
 
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<!-- CustomMapArgumentResolver는 root context 영역에 등록이 되어야 한다. -->
-	<mvc:annotation-driven> <!-- 어노테이션을 사용하겠다고 선언 -->
-		<mvc:argument-resolvers> <!-- <mvc:argument-resolvers> 태그를 이용하여 우리가 만든 CustomMapArgumentResolver의 
-				빈(bean)을 수동으로 등록했다. -->
+	<!-- 어노테이션을 사용하겠다고 선언 -->
+	<!-- <mvc:argument-resolvers> 태그를 이용하여 우리가 만든 CustomMapArgumentResolver의 
+		빈(bean)을 수동으로 등록했다. -->
+	<mvc:annotation-driven>
+		<mvc:argument-resolvers>
 			<bean class="net.common.resolver.CustomMapArgumentResolver"></bean>
 		</mvc:argument-resolvers>
 	</mvc:annotation-driven>
@@ -173,9 +175,7 @@
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<!-- 데이터베이스 정보 name은 위에서 등록한 sqlSession 빈(bean)에서 사용할 이름이 dataSource이고, 
 			ref의 dataSource는 우리가 context-datasource.xml에서 정의한 빈(bean)을 참조하는 것을 의미한다. 
-			
-			dataSourceSpied 위의 log4.js와 연결되어 쿼리 출력
-			-->
+			dataSourceSpied 위의 log4.js와 연결되어 쿼리 출력 -->
 		<property name="dataSource" ref="dataSourceSpied" />
 
 		<!-- 매퍼 xml이 있는 경로 정의 SQL이 위치할 mapper 폴더를 잡아주고, 그 안에 모든 폴더를 의미하는 **를 붙여준 

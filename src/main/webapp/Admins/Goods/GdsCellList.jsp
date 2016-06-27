@@ -133,7 +133,7 @@ ${member} => request.getAttribute("member");
 														<td class="hidden-xs">${VselectListGdsList.gInsertDt}</td>
 														<td>
 															<button type="button" class="btn btn-info"
-																onclick="javascript:window.location.href='/board/bnsView.do?bNews_id=${FrontboardList.bNews_id}'">보기</button>&nbsp;
+																onclick="javascript:window.location.href='/admins/goods/gdsView.do?goods_id=${VselectListGdsList.goods_id}'">보기</button>&nbsp;
 															<button type="button" class="btn btn-warning"
 																onclick="javascript:window.location.href='/admin/goods/gdsUpdate.do?goods_id=${VselectListGdsList.goods_id}'">수정</button>
 														</td>

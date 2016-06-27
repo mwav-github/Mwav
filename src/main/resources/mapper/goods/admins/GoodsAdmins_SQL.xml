@@ -101,4 +101,10 @@
 	</select>	
 	<!--/*========================================삭제========================================*/  -->
 	
+	
+	<update id="deleteGdsDelete" parameterType="hashmap">
+    <![CDATA[
+        update GoodsMaster_tbl set gPostEnd = null where goods_id = #{goods_id};
+    ]]>
+    </update>
 </mapper>

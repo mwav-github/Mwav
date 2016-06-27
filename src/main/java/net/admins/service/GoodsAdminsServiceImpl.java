@@ -131,4 +131,10 @@ public class GoodsAdminsServiceImpl implements GoodsAdminsService {
 		return goodsAdminsDAO.selectCategoryGoodsList();
 	}
 
+	@Override
+	public void deleteGdsDelete(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		goodsAdminsDAO.deleteGdsDelete(map);
+	}
+
 }

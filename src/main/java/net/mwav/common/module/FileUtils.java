@@ -194,6 +194,7 @@ public class FileUtils {
 
 					// String RfilePath = filePath + storedFileName;
 					// 위와 같이 가면, 루트파일이 말그대로 폴더 루트로 잡힌다. ~!!
+					// 최초 등록인 경우
 					if (file_classification.equals("goods")) {
 
 						// 난수발생으로 하면 안된다.!
@@ -210,11 +211,12 @@ public class FileUtils {
 						 * 위와 같이하면 now 때문에 파일을 절대 찾을 수 없다.
 						 */
 
+						// 여기는 임시파일 저장이니까 안도니다. ㅠ
 						storedRFileName = "S1" + "_" + images_position
 								+ originalFileExtension;
 
-						storedBFileName = "S1" + "_" + now + "_"
-								+ images_position + originalFileExtension;
+						storedBFileName = cu.getString(5, "A1") + "_" + now
+								+ "_" + images_position + originalFileExtension;
 
 						String RfilePath = uploadRootPath
 								+ filePath_TempImages_Goods + storedBFileName;
@@ -352,7 +354,16 @@ public class FileUtils {
 			for (int i = 0; i < dirListMap.size(); i++) {
 				String gFileName = (String) dirListMap.get(i).get("gFileName");
 
-				System.out.println("파일네임 = " + gFileName);
+				// 가장 최근건에 대한 체크 필요.
+				// http://blog.daum.net/_blog/BlogTypeView.do?blogid=0HOSO&articleno=5387841&_bloghome_menu=recenttext
+				// > db 딴에서 일부 잘라서 orderby 해도될듯
+
+				// 임시파일에서 이기 때문에 난수_+now (20자)
+
+				String gFileNameExcept = gFileName.substring(20);
+
+				System.out.println("파일네임 다포함= " + gFileName);
+				System.out.println("파일네임 미포함= " + gFileNameExcept);
 
 				System.out.println("파일경로 =" + filePath_TempImages_Goods
 						+ gFileName);
@@ -401,17 +412,17 @@ public class FileUtils {
 					System.out.println("폴더생성");
 				}
 
-				String Ltargetpath = moveFilePath + "\\L_" + gFileName;// 만들
-																		// 이미지경로
+				String Ltargetpath = moveFilePath + "\\L_" + gFileNameExcept;// 만들
+				// 이미지경로
 				// 중간이미지
 
-				String mtargetpath = moveFilePath + "\\M_" + gFileName;// 만들
-																		// 이미지경로
+				String mtargetpath = moveFilePath + "\\M_" + gFileNameExcept;// 만들
+				// 이미지경로
 				// 중간이미지
 				// File file_mtargetpath = new File(mtargetpath);
 
-				String stargetpath = moveFilePath + "\\S_" + gFileName;// 만들
-																		// 이미지경로
+				String stargetpath = moveFilePath + "\\S_" + gFileNameExcept;// 만들
+				// 이미지경로
 				// File stargetpath = new File(stargetpath);
 
 				String format = gFileName
@@ -531,15 +542,17 @@ public class FileUtils {
 	}
 
 	// 디렉토리의 파일 리스트를 읽는 메소드
-	// > 파일이름만 리스트로 저장 
-	public static List<String> getDirFileList(String dirPath) {
+	// > 파일이름만 리스트로 저장
+	public static List<Map<String, Object>> getDirFileList(String dirPath) {
 		// 디렉토리 파일 리스트
 		List<File> dirFileList = null;
 
+		List<Map<String, Object>> maps = new ArrayList<Map<String, Object>>();
+		Map<String, Object> integerMap = new HashMap<String, Object>();
 		List<String> FileName = new ArrayList<String>();
-		//Map<String, Object> dirFileMap = null;
-		//List<Map<String, Object>> dirFileListMap = null;
-		
+		// Map<String, Object> dirFileMap = null;
+		// List<Map<String, Object>> dirFileListMap = null;
+
 		System.out.println("들어오나");
 
 		System.out.println("dirpath=" + dirPath);
@@ -561,8 +574,12 @@ public class FileUtils {
 
 			// 파일 배열을 파일 리스트로 변화함
 			dirFileList = Arrays.asList(files);
+			String fileName = null;
+			String filePosition = null;
 
 			for (File f : dirFileList) {
+				// fileName = f.getName();
+				// FileName.add(fileName);
 				// 파일일 경우만 출력
 				if (f.isFile()) {
 
@@ -573,15 +590,79 @@ public class FileUtils {
 					// 파일명, 날짜, 크기를 출력한다.
 					System.out.println(f.getName() + "\t" + d.toString() + "\t"
 							+ f.length());
-					
-					String fileName = f.getName();
+					fileName = f.getName();
+
+					// List에 파일이름만 넣는다. !!
+					// dirFileList 아래 contain 을 못한다.
+
 					FileName.add(fileName);
-					//dirFileMap.put("FileName", fileName);
+
+					System.out.println("FileName.size() = " + FileName.size());
+					System.out.println("dirFileList.size() = "
+							+ dirFileList.size());
+
+					// dirFileMap.put("FileName", fileName);
 				}
 
 			}
-			//dirFileListMap.add(dirFileMap);
+			for (int i = 0; i < FileName.size(); i++) {
+				System.out.println(i + ") = " + FileName.get(i));
+				System.out.println("파일사이즈 =" + FileName.size());
+				// contains를 이용한 방법(true, false 반환)
+				// http://fruitdev.tistory.com/72
+
+				if (FileName.get(i).contains("Basic")) {
+					System.out.println("Basic 파일있음!");
+					filePosition = "Basic";
+					integerMap.put("filePosition", filePosition);
+
+				} else if (FileName.get(i).contains("Front")) {
+					System.out.println("Front 파일있음!");
+					filePosition = "Front";
+					integerMap.put("filePosition", filePosition);
+
+				} else if (FileName.get(i).contains("Rear")) {
+					System.out.println("Rear 파일있음!");
+					filePosition = "Rear";
+					integerMap.put("filePosition", filePosition);
+				} else if (FileName.get(i).contains("Right")) {
+					System.out.println("Right 파일있음!");
+					filePosition = "Right";
+					integerMap.put("filePosition", filePosition);
+				} else if (FileName.get(i).contains("Left")) {
+					System.out.println("Left 파일있음!");
+					filePosition = "Left";
+					integerMap.put("filePosition", filePosition);
+				} else if (FileName.get(i).contains("Top")) {
+					System.out.println("Top");
+					filePosition = "Top";
+					integerMap.put("filePosition", filePosition);
+				} else if (FileName.get(i).contains("Bottom")) {
+					System.out.println("Bottom");
+					filePosition = "Bottom";
+					integerMap.put("filePosition", filePosition);
+				}
+
+				integerMap.put("fileName", FileName.get(i).trim());
+				// 확장자 제외
+				integerMap.put(
+						"fileNameExcept",
+						FileName.get(i)
+								.substring(0, FileName.get(i).lastIndexOf('.'))
+								.trim());
+
+				integerMap.put("fileSize", FileName.get(i).length());
+				// integerMap.put("fileDate", d.toString().trim());
+
+			}
+			maps.add(integerMap);
+			// dirFileListMap.add(dirFileMap);
+
+			for (Map map : maps) { // loop through the maps
+				FileName.addAll(map.values()); // append the values in
+												// listOfValue
+			}
 		}
-		return FileName;
+		return maps;
 	}
 }

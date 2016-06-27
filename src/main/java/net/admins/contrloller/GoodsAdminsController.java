@@ -161,25 +161,33 @@ public class GoodsAdminsController {
 			 * aslist 출력방법
 			 * 
 			 * 중요 아래와 같이 출력하면 경로가 아래와 같이 잡힌다.
-			 * file:///F:/Mwav/dev/git/mwav/mwav/src/main/webapp/xUpload/GdsData/GC10045/m_S1_20160522133939_Basic.png
-			 * 문제는 ! 
-			 *  > 이럴 경우 html 상 value 에는 서버 /로읽어온다 즉 차이가 발생한다. 
-			 *
+			 * file:///F:/Mwav/dev/git/mwav/mwav/src
+			 * /main/webapp/xUpload/GdsData/
+			 * GC10045/m_S1_20160522133939_Basic.png 문제는 ! > 이럴 경우 html 상 value
+			 * 에는 서버 /로읽어온다 즉 차이가 발생한다.
 			 */
 
 			try {
-				List<String> fileList = fileUtils.getDirFileList(path);
+				List<Map<String, Object>> fileList = fileUtils
+						.getDirFileList(path);
 
-				//List<Map<String, Object>> fileList = fileUtils.getDirFileList(path);
+				//String filePosition = null;
+				// List<Map<String, Object>> fileList =
+				// fileUtils.getDirFileList(path);
 
 				System.out.println("fileList" + fileList);
 
 				System.out.println("fileList 사이즈 : " + fileList.size());
-
 				for (int i = 0; i < fileList.size(); i++) {
-					System.out.println(i + ") = " + fileList.get(i));
-					
+					Map<String, Object> excelMap = fileList.get(i);
+					System.out.println("=============" + excelMap.get("fileName"));
+					System.out.println("=============" + excelMap.get("fileNameExcept"));
+					System.out.println("=============" + excelMap.get("fileSize"));
+					System.out.println("=============" + excelMap.get("fileDate"));
+					System.out.println("=============" + excelMap.get("filePosition"));
 				}
+
+				
 
 				mv.addObject("goodsFileList", fileList);
 			} catch (Exception e) {
@@ -219,8 +227,8 @@ public class GoodsAdminsController {
 
 	@RequestMapping(value = "/admins/goods/gdsList.do")
 	public ModelAndView selectListGdsList(CommandMap commandMap,
-			HttpServletRequest request, HttpServletResponse reponse,  HttpSession session)
-			throws Exception {
+			HttpServletRequest request, HttpServletResponse reponse,
+			HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/Goods/GdsCellList");
 
 		String pageNum = (String) commandMap.get("pageNum");
@@ -260,7 +268,17 @@ public class GoodsAdminsController {
 		mv.addObject("mode", "m_stfList");
 
 		// mv.addObject("paging", pv.print());
-			
+
+		return mv;
+	}
+	
+	@RequestMapping(value = "/admins/goods/gdsDelete.do")
+	public ModelAndView deleteGdsDelete(CommandMap commandMap,
+			HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("/Admins/Goods/GdsCellForm");
+
+		goodsAdminsService.deleteGdsDelete(commandMap.getMap());
+
 		return mv;
 	}
 

@@ -165,11 +165,14 @@
 																						<c:forEach var="VgoodsFileList"
 																							items="${goodsFileList}" varStatus="status">
 																							<%--http://bootsnipp.com/snippets/featured/bootstrap-lightbox --%>
-																							
-																							<div ${status.first ? 'class="active item"' : 'class="item"'} data-slide-number="${status.index}">
+
+																							<div
+																								${status.first ? 'class="active item"' : 'class="item"'}
+																								data-slide-number="${status.index}">
 																								<a href="#" class="thumbnail"
 																									data-toggle="modal" data-target="#lightbox">
-																									<img src="/xUpload/GdsData/GC${updateGdsForm.goods_id}/${VgoodsFileList}">
+																									<img
+																									src="/xUpload/GdsData/GC${updateGdsForm.goods_id}/${VgoodsFileList.fileName}">
 																								</a>
 																							</div>
 
@@ -177,12 +180,11 @@
 																					</c:when>
 
 																					<c:otherwise>
-																						<div class="item" data-slide-number="0">
-																								<a href="#" class="thumbnail"
-																									data-toggle="modal" data-target="#lightbox">
-																									<img
-																									src="http://placehold.it/770x300&text=four">
-																								</a>
+																						<div class="active item" data-slide-number="0">
+																							<a href="#" class="thumbnail" data-toggle="modal"
+																								data-target="#lightbox"> <img
+																								src="http://placehold.it/770x300&text=one">
+																							</a>
 																						</div>
 																					</c:otherwise>
 																				</c:choose>
@@ -218,15 +220,15 @@
 																			<li class="col-sm-6"><a class="thumbnail"
 																				<%--start.count는 1부터 시작 // index는 0부터 시작 --%>
 																				id="carousel-selector-${status.index}"><img
-																					src="/xUpload/GdsData/GC${updateGdsForm.goods_id}/${VgoodsFileList}"></a></li>
+																					src="/xUpload/GdsData/GC${updateGdsForm.goods_id}/${VgoodsFileList.fileName}"></a></li>
 																		</ul>
 																	</c:forEach>
 																</c:when>
 
 																<c:otherwise>
-																	<li class="col-sm-6"><a class="thumbnail"
+																	<!-- <li class="col-sm-6"><a class="thumbnail"
 																		id="carousel-selector-0"><img
-																			src="http://placehold.it/170x100&text=one"></a></li>
+																			src="http://placehold.it/170x100&text=one"></a></li> -->
 																</c:otherwise>
 															</c:choose>
 														</div>
@@ -409,7 +411,7 @@
 
 																			</div>
 																		</div>
-																		<p>※키워들르 통한 웹 프로모션 메타페이지 다중생성[WebSpawner]</p></td>
+																		<p>※키워드를 통한 웹 프로모션 메타페이지 다중생성[WebSpawner]</p></td>
 																</tr>
 
 																<tr>
@@ -461,95 +463,326 @@
 																<tr class="active">
 																	<td colspan="2"><p>이미지정보 (550 x 550픽셀 이상)</p></td>
 																</tr>
+																<%-- <c:forEach var="FgoodsFileList" items="${goodsFileList}"
+																	varStatus="status">
+
+																	<c:set var="filePosition"
+																		value="${FgoodsFileList.filePosition} " />
+																	<c:out value="${filePosition}" />
+																	<c:set var="fileNameExcept"
+																		value="${FgoodsFileList.fileNameExcept} " />
+																	<c:out value="${fileNameExcept}" />
+																	<tr>
+																		<td class="active">${FgoodsFileList.fileName}</td>
+
+																		<td>
+																			<%--
+																			1.
+																			c:choose는 각각 when 마다 써줘야 한다. 
+																			
+																			2. 
+																			foreach를 각각 해줘야 한다.
+																			안그러면 case 마다 하나씩 생긴다 즉
+																			20개라면 아래 걸리는게 그럼 저 전체가 20개 생긴다.
+																			
+																			만약 저렇게 안하려면 foreach문으로 <tr> </tr> 하나만 커버해야하며 그럼 전체를 다 할 수 있게 해야 한다.
+																			--%>
+																<%--자바에서 공백을 제거한다고 하더라도 jstl 자체에서 공백이 생성된다.
+																		http://blog.hometown.co.kr/413
+																		
+																		추가로 만약 크기가 5개 쪼개지면 5개 아래 각각 나오기 때문에 조건을 AND 조건으로 두개 준다.
+																		 --%>
+																<%--  <c:choose>
+																				<c:when
+																					test="${ (fn:trim(fn:substring(fileNameExcept,0, 4)) == 's_S1')}">
+																					<div class='col-md-8'>
+
+																						<button type="button"
+																							name="bnUpload${status.index}"
+																							class="btn btn-sm btn-danger"
+																							onclick="showImageWindow('${fn:trim(filePosition)}')">재이미지업로드</button>
+																						<p class="text-danger">
+																							<strong>${FgoodsFileList.fileName} /
+																								${FgoodsFileList.fileSize} </strong>
+																							${FgoodsFileList.fileDate}
+																						</p>
+
+																					</div>
+																				</c:when>
+																				<c:otherwise>
+																					<div class='col-md-8'>
+																						<button type="button"
+																							name="bnUpload${status.index}"
+																							class="btn btn-sm btn-primary"
+																							onclick="showImageWindow('${filePosition}')">이미지업로드</button>
+																					</div>
+																				</c:otherwise>
+																			</c:choose>  --%>
+																<%-- <c:choose>
+																				<c:when
+																					test="${ (fn:trim(filePosition) == 'Basic') && (fn:trim(fileNameExcept) == 's_S1_Basic')}">
+																					<div class='col-md-8'>
+
+																						<button type="button" name="bnUpload0"
+																							class="btn btn-sm btn-danger"
+																							onclick="showImageWindow('Basic')">재이미지업로드</button>
+																						<p class="text-danger">
+																							<strong>${FgoodsFileList.fileName} /
+																								${FgoodsFileList.fileSize} </strong>
+																							${FgoodsFileList.fileDate}
+																						</p>
+																					</div>
+																				</c:when>
+																				<c:otherwise>
+																					<div class='col-md-8'>
+																						<button type="button" name="bnUpload0"
+																							class="btn btn-sm btn-primary"
+																							onclick="showImageWindow('Basic')">이미지업로드</button>
+																					</div>
+																				</c:otherwise>
+																			</c:choose> 
+																		</td>
+																	</tr>
+																</c:forEach>--%>
+
+
+
 
 																<tr>
 																	<td class="active">대표(표준)</td>
-																	<td>
-																		<div class='col-md-8'>
-																			<button type="button" name="bnUpload0"
-																				class="btn btn-sm btn-primary"
-																				onclick="showImageWindow('Basic')">이미지업로드</button>
-																		</div>
-																	</td>
+																	<td><c:forEach var="FgoodsFileList"
+																			items="${goodsFileList}" varStatus="status">
+
+																			<c:set var="filePosition"
+																				value="${FgoodsFileList.filePosition} " />
+																			<%-- <c:out value="${filePosition}" /> --%>
+																			<c:set var="fileNameExcept"
+																				value="${FgoodsFileList.fileNameExcept} " />
+																			<%-- <c:out value="${fileNameExcept}" /> --%>
+																			<c:choose>
+																				<c:when
+																					test="${ (fn:trim(filePosition) == 'Basic') && (fn:trim(fileNameExcept) == 's_S1_Basic')}">
+																					<div class='col-md-8'>
+
+																						<button type="button" name="bnUpload0"
+																							class="fileclear btn btn-sm btn-danger"
+																							onclick="showImageWindow('Basic')">재이미지업로드</button>
+																						<p class="text-danger">
+																							<strong>${FgoodsFileList.fileName} /
+																								${FgoodsFileList.fileSize} 
+																							${FgoodsFileList.fileDate}
+																							</strong>
+																						</p>
+																					</div>
+																				</c:when>
+																				<c:otherwise>
+
+																					<div class='col-md-8'>
+																						<button type="button" name="bnUpload0"
+																							class="fileclear btn btn-sm btn-primary"
+																							onclick="showImageWindow('Basic')">이미지업로드</button>
+																					</div>
+																				</c:otherwise>
+																			</c:choose>
+																		</c:forEach></td>
 																</tr>
 
 																<tr>
 																	<td class="active">전면</td>
-																	<td>
-																		<div class='col-md-8'>
-																			<button type="button" name="bnUpload1"
-																				class="btn btn-sm btn-primary"
-																				onclick="showImageWindow('Front')">이미지업로드</button>
-																		</div>
-																	</td>
+																	<td><c:forEach var="FgoodsFileList"
+																			items="${goodsFileList}" varStatus="status">
+																			<c:choose>
+																				<c:when
+																					test="${ (fn:trim(filePosition) == 'Front') && (fn:trim(fileNameExcept) == 's_S1_Front')}">
+																					<div class='col-md-8'>
+
+																						<button type="button" name="bnUpload1"
+																							class="fileclear btn btn-sm btn-danger"
+																							onclick="showImageWindow('Front')">재이미지업로드</button>
+																						<p class="text-danger">
+																							<strong>${FgoodsFileList.fileName} /
+																								${FgoodsFileList.fileSize} </strong>
+																							${FgoodsFileList.fileDate}
+																						</p>
+																					</div>
+																				</c:when>
+																				<c:otherwise>
+
+																					<div class='col-md-8'>
+																						<button type="button" name="bnUpload1"
+																							class="fileclear btn btn-sm btn-primary"
+																							onclick="showImageWindow('Front')">이미지업로드</button>
+																					</div>
+																				</c:otherwise>
+																			</c:choose>
+																		</c:forEach></td>
 																</tr>
 
 																<tr>
 																	<td class="active">후면</td>
-																	<td>
-																		<div class='col-md-8'>
-																			<button type="button" name="bnUpload2"
-																				class="btn btn-sm btn-primary"
-																				onclick="showImageWindow('Rear')">이미지업로드</button>
-																		</div>
-																	</td>
+																	<td><c:forEach var="FgoodsFileList"
+																			items="${goodsFileList}" varStatus="status">
+																			<c:choose>
+																				<c:when
+																					test="${ (fn:trim(filePosition) == 'Rear') && (fn:trim(fileNameExcept) == 's_S1_Rear')}">
+																					<div class='col-md-8'>
+
+																						<button type="button" name="bnUpload2"
+																							class="fileclear btn btn-sm btn-danger"
+																							onclick="showImageWindow('Rear')">재이미지업로드</button>
+																						<p class="text-danger">
+																							<strong>${FgoodsFileList.fileName} /
+																								${FgoodsFileList.fileSize} </strong>
+																							${FgoodsFileList.fileDate}
+																						</p>
+																					</div>
+																				</c:when>
+																				<c:otherwise>
+
+																					<div class='col-md-8'>
+																						<button type="button" name="bnUpload2"
+																							class="fileclear btn btn-sm btn-primary"
+																							onclick="showImageWindow('Rear')">이미지업로드</button>
+																					</div>
+																				</c:otherwise>
+																			</c:choose>
+																		</c:forEach></td>
 																</tr>
 
 
 																<tr>
 																	<td class="active">우측면</td>
-																	<td>
+																	<td><c:forEach var="FgoodsFileList"
+																			items="${goodsFileList}" varStatus="status">
+																			<c:choose>
+																				<c:when
+																					test="${ (fn:trim(filePosition) == 'Right') && (fn:trim(fileNameExcept) == 's_S1_Right')}">
+																					<div class='col-md-8'>
 
-																		<div class='col-md-8'>
-																			<button type="button" name="bnUpload3"
-																				class="btn btn-sm btn-primary"
-																				onclick="showImageWindow('Right')">이미지업로드</button>
-																		</div>
-																	</td>
+																						<button type="button" name="bnUpload3"
+																							class="fileclear btn btn-sm btn-danger"
+																							onclick="showImageWindow('Right')">재이미지업로드</button>
+																						<p class="text-danger">
+																							<strong>${FgoodsFileList.fileName} /
+																								${FgoodsFileList.fileSize} </strong>
+																							${FgoodsFileList.fileDate}
+																						</p>
+																					</div>
+																				</c:when>
+																				<c:otherwise>
+
+																					<div class='col-md-8'>
+																						<button type="button" name="bnUpload3"
+																							class="fileclear btn btn-sm btn-primary"
+																							onclick="showImageWindow('Right')">이미지업로드</button>
+																					</div>
+																				</c:otherwise>
+																			</c:choose>
+																		</c:forEach></td>
 																</tr>
 
 
 																<tr>
 																	<td class="active">좌측면</td>
-																	<td>
-																		<div class='col-md-8'>
-																			<button type="button" name="bnUpload4"
-																				class="btn btn-sm btn-primary"
-																				onclick="showImageWindow('Left')">이미지업로드</button>
-																		</div>
+																	<td><c:forEach var="FgoodsFileList"
+																			items="${goodsFileList}" varStatus="status">
+																			<c:choose>
+																				<c:when
+																					test="${ (fn:trim(filePosition) == 'Left') && (fn:trim(fileNameExcept) == 's_S1_Left')}">
+																					<div class='col-md-8'>
 
-																	</td>
+																						<button type="button" name="bnUpload4"
+																							class="fileclear btn btn-sm btn-danger"
+																							onclick="showImageWindow('Left')">재이미지업로드</button>
+																						<p class="text-danger">
+																							<strong>${FgoodsFileList.fileName} /
+																								${FgoodsFileList.fileSize} </strong>
+																							${FgoodsFileList.fileDate}
+																						</p>
+																					</div>
+																				</c:when>
+																				<c:otherwise>
+
+																					<div class='col-md-8'>
+																						<button type="button" name="bnUpload4"
+																							class="fileclear btn btn-sm btn-primary"
+																							onclick="showImageWindow('Left')">이미지업로드</button>
+																					</div>
+																				</c:otherwise>
+																			</c:choose>
+																		</c:forEach></td>
 																</tr>
 
 																<tr>
 																	<td class="active">상단면</td>
-																	<td>
-																		<div class='col-md-8'>
-																			<button type="button" name="bnUpload5"
-																				class="btn btn-sm btn-primary"
-																				onclick="showImageWindow('Top')">이미지업로드</button>
-																		</div>
-																	</td>
+																	<td><c:forEach var="FgoodsFileList"
+																			items="${goodsFileList}" varStatus="status">
+																			<c:choose>
+																				<c:when
+																					test="${ (fn:trim(filePosition) == 'Top') && (fn:trim(fileNameExcept) == 's_S1_Top')}">
+																					<div class='col-md-8'>
+
+																						<button type="button" name="bnUpload5"
+																							class="fileclear btn btn-sm btn-danger"
+																							onclick="showImageWindow('Left')">재이미지업로드</button>
+																						<p class="text-danger">
+																							<strong>${FgoodsFileList.fileName} /
+																								${FgoodsFileList.fileSize} </strong>
+																							${FgoodsFileList.fileDate}
+																						</p>
+																					</div>
+																				</c:when>
+																				<c:otherwise>
+
+																					<div class='col-md-8'>
+																						<button type="button" name="bnUpload5"
+																							class="fileclear btn btn-sm btn-primary"
+																							onclick="showImageWindow('Top')">이미지업로드</button>
+																					</div>
+																				</c:otherwise>
+																			</c:choose>
+																		</c:forEach></td>
 																</tr>
 
 																<tr>
 																	<td class="active">하단면</td>
-																	<td>
+																	<td><c:forEach var="FgoodsFileList"
+																			items="${goodsFileList}" varStatus="status">
+																			<c:choose>
+																				<c:when
+																					test="${ (fn:trim(filePosition) == 'Bottom') && (fn:trim(fileNameExcept) == 's_S1_Bottom')}">
+																					<div class='col-md-8'>
 
-																		<div class='col-md-8'>
-																			<button type="button" name="bnUpload6"
-																				class="btn btn-sm btn-primary"
-																				onclick="showImageWindow('Bottom')">이미지업로드</button>
-																		</div>
-																	</td>
+																						<button type="button" name="bnUpload6"
+																							class="fileclear btn btn-sm btn-danger"
+																							onclick="showImageWindow('Bottom')">재이미지업로드</button>
+																						<p class="text-danger">
+																							<strong>${FgoodsFileList.fileName} /
+																								${FgoodsFileList.fileSize} </strong>
+																							${FgoodsFileList.fileDate}
+																						</p>
+																					</div>
+																				</c:when>
+																				<c:otherwise>
+
+																					<div class='col-md-8'>
+																						<button type="button" name="bnUpload6"
+																							class="fileclear btn btn-sm btn-primary"
+																							onclick="showImageWindow('Bottom')">이미지업로드</button>
+																					</div>
+																				</c:otherwise>
+																			</c:choose>
+																		</c:forEach></td>
 																</tr>
+
+
 															</tbody>
 														</table>
 													</div>
 													<div class="col-md-12 ">
 														<div class='col-md-12 form-group center-block'>
 															<textarea class="form-control" name="gNote" rows="15"
-																value="${updateGdsForm.gNote}">특이사항....</textarea>
+																value="${updateGdsForm.gNote}" placeholder="특이사항...."></textarea>
 														</div>
 
 													</div>
@@ -844,7 +1077,7 @@
 
 																			</div>
 																		</div>
-																		<p>※키워들르 통한 웹 프로모션 메타페이지 다중생성[WebSpawner]</p></td>
+																		<p>※키워드를 통한 웹 프로모션 메타페이지 다중생성[WebSpawner]</p></td>
 																</tr>
 
 																<tr>
@@ -900,7 +1133,7 @@
 																	<td>
 																		<div class='col-md-8'>
 																			<button type="button" name="bnUpload0"
-																				class="btn btn-sm btn-primary"
+																				class="fileclear btn btn-sm btn-primary"
 																				onclick="showImageWindow('Basic')">이미지업로드</button>
 																		</div>
 																	</td>
@@ -911,7 +1144,7 @@
 																	<td>
 																		<div class='col-md-8'>
 																			<button type="button" name="bnUpload1"
-																				class="btn btn-sm btn-primary"
+																				class="fileclear btn btn-sm btn-primary"
 																				onclick="showImageWindow('Front')">이미지업로드</button>
 																		</div>
 																	</td>
@@ -922,7 +1155,7 @@
 																	<td>
 																		<div class='col-md-8'>
 																			<button type="button" name="bnUpload2"
-																				class="btn btn-sm btn-primary"
+																				class="fileclear btn btn-sm btn-primary"
 																				onclick="showImageWindow('Rear')">이미지업로드</button>
 																		</div>
 																	</td>
@@ -935,7 +1168,7 @@
 
 																		<div class='col-md-8'>
 																			<button type="button" name="bnUpload3"
-																				class="btn btn-sm btn-primary"
+																				class="fileclear btn btn-sm btn-primary"
 																				onclick="showImageWindow('Right')">이미지업로드</button>
 																		</div>
 																	</td>
@@ -947,7 +1180,7 @@
 																	<td>
 																		<div class='col-md-8'>
 																			<button type="button" name="bnUpload4"
-																				class="btn btn-sm btn-primary"
+																				class="fileclear btn btn-sm btn-primary"
 																				onclick="showImageWindow('Left')">이미지업로드</button>
 																		</div>
 
@@ -959,7 +1192,7 @@
 																	<td>
 																		<div class='col-md-8'>
 																			<button type="button" name="bnUpload5"
-																				class="btn btn-sm btn-primary"
+																				class="fileclear btn btn-sm btn-primary"
 																				onclick="showImageWindow('Top')">이미지업로드</button>
 																		</div>
 																	</td>
@@ -971,7 +1204,7 @@
 
 																		<div class='col-md-8'>
 																			<button type="button" name="bnUpload6"
-																				class="btn btn-sm btn-primary"
+																				class="fileclear btn btn-sm btn-primary"
 																				onclick="showImageWindow('Bottom')">이미지업로드</button>
 																		</div>
 																	</td>
@@ -999,7 +1232,8 @@
 													</div>
 													<div class="col-md-12 ">
 														<div class='col-md-12 form-group center-block'>
-															<textarea class="form-control" name="gNote" rows="15">특이사항....</textarea>
+															<textarea class="form-control" name="gNote" rows="15"
+																placeholder="특이사항...."></textarea>
 														</div>
 
 													</div>

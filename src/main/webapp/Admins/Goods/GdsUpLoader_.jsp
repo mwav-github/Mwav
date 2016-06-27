@@ -21,48 +21,44 @@
 --%>
 
 <script>
-	function insertFileUploader() {
+	+function($) {
+		'use strict';
 
-		$('#insertFileForm')
-				.ajaxForm(
-						{
-							dataType : 'json',
-							beforeSend : function() {
-								$("#messages").show();
-								$('#messages').html(' <div class="progress"><div id="progressBar" class="progress-bar progress-bar-striped active" style="width: 0%;">0%</div></div>');
-						    },
-						    uploadProgress: function ( event, position, total, percentComplete ) {
-						    	
-						    	//에러가 아닐때는 나오면 안된다. 그부분 체크 필요.
-						        if (percentComplete == 100) {
-						            $('#progressBar').css('width',percentComplete+'%').html('Complete...');
-						        } else {
-						            $('#progressBar').css('width',percentComplete+'%').html(percentComplete+'%');
-						        }
-						    },
-						    
-							complete : function(data) {
-								/* $('#fileResult').append("complete...\n").append(
-										JSON.stringify(data.responseJSON) + "\n"); */
+		// UPLOAD CLASS DEFINITION
+		// ======================
 
-								$('#messages')
-										.append(
-												"<font color=green><strong>업로드가 완료되었습니다.</strong></font>");
-								$('#fileUploaderBtn').css("display") == "none";
-								
-								<div class="list-group">
-					              <a href="#" class="list-group-item list-group-item-success"><span class="badge alert-success pull-right">Success</span>image-01.jpg</a>
-					              <a href="#" class="list-group-item list-group-item-success"><span class="badge alert-success pull-right">Success</span>image-02.jpg</a>
-					            </div>
-								
-							},
-						    error: function(XMLHttpRequest, textStatus, errorThrown)
-						    {
-						       alert('Internal server error');
-						       //some stuff on failure
-						    } 
-						});
-	}
+		var dropZone = document.getElementById('drop-zone');
+		var uploadForm = document.getElementById('js-upload-form');
+
+		var startUpload = function(files) {
+			console.log(files)
+		}
+
+		uploadForm.addEventListener('submit', function(e) {
+			var uploadFiles = document.getElementById('js-upload-files').files;
+			e.preventDefault()
+
+			startUpload(uploadFiles)
+		})
+
+		dropZone.ondrop = function(e) {
+			e.preventDefault();
+			this.className = 'upload-drop-zone';
+
+			startUpload(e.dataTransfer.files)
+		}
+
+		dropZone.ondragover = function() {
+			this.className = 'upload-drop-zone drop';
+			return false;
+		}
+
+		dropZone.ondragleave = function() {
+			this.className = 'upload-drop-zone';
+			return false;
+		}
+
+	}(jQuery);
 </script>
 
 
@@ -103,9 +99,7 @@
 			$(".image-preview-input-title").text("Browse");
 			$("#messages").hide(); // browse 누를때는 show
 		});
-		
-		
-		
+
 		// Create the preview image
 		$(".image-preview-input input:file").change(
 				function() {
@@ -131,32 +125,26 @@
 </script>
 
 <style>
-.image-preview-input {
-	position: relative;
-	overflow: hidden;
-	margin: 0px;
-	color: #333;
-	background-color: #fff;
+/* layout.css Style */
+.upload-drop-zone {
+	height: 200px;
+	border-width: 2px;
+	margin-bottom: 20px;
+}
+
+/* skin.css Style*/
+.upload-drop-zone {
+	color: #ccc;
+	border-style: dashed;
 	border-color: #ccc;
+	line-height: 200px;
+	text-align: center
 }
 
-.image-preview-input input[type=file] {
-	position: absolute;
-	top: 0;
-	right: 0;
-	margin: 0;
-	padding: 0;
-	font-size: 20px;
-	cursor: pointer;
-	opacity: 0;
-	filter: alpha(opacity = 0);
+.upload-drop-zone.drop {
+	color: #222;
+	border-color: #222;
 }
-
-.image-preview-input-title {
-	margin-left: 2px;
-}
-
-
 </style>
 <div class="container">
 	<div class="modal fade modalUploadImages" id="modalUploadImages">
@@ -169,14 +157,13 @@
 
 					<input type="hidden" id="images_position" name="images_position"
 						value="" />
-						
+
 					<%--
 					 GdsCellForm.jsp와 다른 페이지만 한페이지에서 include 하기 때문에 아래와 같이 goods_id 호출이 가능하다.
-					 --%>	
+					 --%>
 					<input type="hidden" name="goods_id" id="goods_id"
-						value="${updateGdsForm.goods_id}" />	
-					<input type="hidden" name="file_classification"
-						value="goods" />	
+						value="${updateGdsForm.goods_id}" /> <input type="hidden"
+						name="file_classification" value="goods" />
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal">
 							<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
@@ -187,29 +174,35 @@
 						<div id="messages"></div>
 						<div class="enter"></div>
 						<div
-							class="col-xs-12 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2" id="filebody">
+							class="col-xs-12 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2"
+							id="filebody">
 							<!-- image-preview-filename input [CUT FROM HERE]-->
-							<div class="input-group image-preview">
-								<input type="text" class="form-control image-preview-filename"
-									disabled="disabled">
-								<!-- don't give a name === doesn't send on POST/GET -->
-								<span class="input-group-btn"> <!-- image-preview-clear button -->
-									<button type="button"
-										class="btn btn-default image-preview-clear"
-										style="display: none;">
-										<span class="glyphicon glyphicon-remove"></span> Clear
-									</button> <!-- image-preview-input -->
-									<div class="btn btn-default image-preview-input">
-										<span class="glyphicon glyphicon-folder-open"></span> <span
-											class="image-preview-input-title">Browse</span> <input
-											type="file" accept="image/png, image/jpeg, image/gif"
-											name="input-file-preview" />
-										<!-- rename it -->
+
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<strong>Upload Files</strong> <small>Bootstrap files
+										upload</small>
+								</div>
+								<div class="panel-body">
+									<div
+										class="col-xs-12 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2"
+										id="filebody">
+										<!-- Standar Form -->
+										<h4>Select files from your computer</h4>
+										<form action="" method="post" enctype="multipart/form-data"
+											id="js-upload-form">
+											<!-- Drop Zone -->
+											<h4>Or drag and drop files below</h4>
+											<div class="upload-drop-zone" id="drop-zone">Just drag
+												and drop files here</div>
+										</form>
 									</div>
-								</span>
+								</div>
 							</div>
+
+
 							<!-- /input-group image-preview [TO HERE]-->
-			
+
 						</div>
 					</div>
 					<div class="enter"></div>

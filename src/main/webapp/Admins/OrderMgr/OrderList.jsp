@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%--
+http://bootsnipp.com/snippets/featured/responsive-shopping-cart 
+반응형 체크 필요.
+ --%>
 <div class="container">
 	<!-- Modal -->
 	<div class="modal fade orderCart" id="orderCart" tabindex="-1"

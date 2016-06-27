@@ -152,4 +152,9 @@ public class GoodsAdminsDAO extends AbstractDAO {
 				"goods.selectCategoryGoodsList");
 	}
 
+	public void deleteGdsDelete(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		update("goods.deleteGdsDelete", map);
+	}
+
 }

@@ -24,6 +24,15 @@ import org.springframework.web.method.support.ModelAndViewContainer;
  * 
  * 두가지 메서드를 반드시 구현해야 하는데, supportsParameter 메서드와 resolveArgument 메서드가 그것이다. 
  * 
+ * 
+ * http://www.egovframe.go.kr/wiki/doku.php?id=egovframework:rte2:ptl:annotationcommandmapargumentresolver
+ * >히스토리
+ * 
+ * http://kwonnam.pe.kr/wiki/springframework/mvc/handlermethodargumentresolver
+ * >간략설명
+ * 
+ * http://tedock.tistory.com/203
+ * >예시
  */
 public class CustomMapArgumentResolver implements HandlerMethodArgumentResolver {
 	/*

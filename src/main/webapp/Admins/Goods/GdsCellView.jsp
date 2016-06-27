@@ -118,7 +118,7 @@
 				<ol class="breadcrumb">
 					<li><a href="index.html">Home</a></li>
 					<li>Goods</li>
-					<li class="active">GdsCellForm</li>
+					<li class="active">GdsCellView</li>
 				</ol>
 			</div>
 		</div>
@@ -159,45 +159,64 @@
 				<div class="col-lg-12">
 
 					<div class="row">
-								<%-- 1. 회원정보 입력 --%>
-								<form class='form-horizontal' method="post"
-									action="/admins/goods/gdsForm.do">
-									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<%-- 1. 회원정보 입력 --%>
+						<form class='form-horizontal' method="post"
+							action="/admins/goods/gdsDelete.do"
+							onsubmit="return myconfirm('delete')">
+							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
-										<div class="panel panel-primary">
-											<div class="panel-heading">
-												<h3 class="panel-title">Mwav - Goods View</h3>
-											</div>
-											<div class="panel-body">
+								<div class="panel panel-primary">
+									<div class="panel-heading">
+										<h3 class="panel-title">Mwav - Goods View</h3>
+									</div>
+									<div class="panel-body">
+										<div class="row">
+											<div class="col-sm-12 col-md-4 col-lg-4 " align="center">
+
+
+												<!-- Slider -->
 												<div class="row">
-													<div class="col-sm-12 col-md-4 col-lg-4 " align="center">
-
-
-														<!-- Slider -->
+													<div class="col-xs-12" id="slider">
+														<!-- Top part of the slider -->
 														<div class="row">
-														
-														<c:forEach var="VselectOneGdsView"
-													items="${selectOneGdsView}">
-															<div class="col-xs-12" id="slider">
-																<!-- Top part of the slider -->
-																<div class="row">
-																	<div class="col-sm-12" id="carousel-bounding-box">
-																		<div class="carousel slide" id="myCarousel">
-																			<!-- Carousel items -->
-																			<div class="carousel-inner">
+															<div class="col-sm-12" id="carousel-bounding-box">
+																<div class="carousel slide" id="myCarousel">
+																	<!-- Carousel items -->
 
-																				<%--http://bootsnipp.com/snippets/featured/bootstrap-lightbox --%>
-																				<div class="item" data-slide-number="0">
+																	<div class="carousel-inner">
+
+
+																		<c:choose>
+																			<c:when test="${fn:length(selectListGdsList) > 0}">
+																				<!-- http://fruitdev.tistory.com/132 -->
+																				<%--http://marobiana.tistory.com/9 --%>
+																				<c:forEach var="VgoodsFileList"
+																					items="${selectListGdsList}" varStatus="status">
+																					<%--http://bootsnipp.com/snippets/featured/bootstrap-lightbox --%>
+
+																					<div
+																						${status.first ? 'class="active item"' : 'class="item"'}
+																						data-slide-number="${status.index}">
+																						<a href="#" class="thumbnail" data-toggle="modal"
+																							data-target="#lightbox"> <img
+																							src="/xUpload/GdsData/GC${selectOneGdsView.goods_id}/${VgoodsFileList.fileName}">
+																						</a>
+																					</div>
+
+																				</c:forEach>
+																			</c:when>
+
+																			<c:otherwise>
+																				<div class="active item" data-slide-number="0">
 																					<a href="#" class="thumbnail" data-toggle="modal"
 																						data-target="#lightbox"> <img
-																						src="xUpload/GdsData/${selectOneGdsView.getgFileName()">
+																						src="http://placehold.it/770x300&text=one">
 																					</a>
 																				</div>
-
-																			
-
-																			</div>
-																			<%-- 
+																			</c:otherwise>
+																		</c:choose>
+																	</div>
+																	<%-- 
 																			<!-- Carousel nav -->
 																			<a class="left carousel-control" href="#myCarousel"
 																				role="button" data-slide="prev"> <span
@@ -206,392 +225,209 @@
 																				role="button" data-slide="next"> <span
 																				class="glyphicon glyphicon-chevron-right"></span>
 																			</a> --%>
-																		</div>
-																	</div>
-
-
 																</div>
 															</div>
+
+
+														</div>
+													</div>
+												</div>
+												<!--/Slider-->
+
+												<div class="row hidden-xs" id="slider-thumbs">
+													<!-- Bottom switcher of slider -->
+													<c:choose>
+														<c:when test="${fn:length(selectListGdsList) > 0}">
+															<!-- http://fruitdev.tistory.com/132 -->
+															<%--http://marobiana.tistory.com/9 --%>
+															<c:forEach var="VgoodsFileList"
+																items="${selectListGdsList}" varStatus="status">
+
+																<ul class="hide-bullets">
+																	<li class="col-sm-6"><a class="thumbnail"
+																		<%--start.count는 1부터 시작 // index는 0부터 시작 --%>
+																				id="carousel-selector-${status.index}"><img
+																			src="/xUpload/GdsData/GC${selectOneGdsView.goods_id}/${VgoodsFileList.fileName}"></a></li>
+																</ul>
 															</c:forEach>
-														</div>
-														<!--/Slider-->
+														</c:when>
 
-														<div class="row hidden-xs" id="slider-thumbs">
-															<!-- Bottom switcher of slider -->
-															<ul class="hide-bullets">
-																<li class="col-sm-6"><a class="thumbnail"
-																	id="carousel-selector-0"><img
-																		src="http://placehold.it/170x100&text=one"></a></li>
-
-																<li class="col-sm-6"><a class="thumbnail"
-																	id="carousel-selector-1"><img
-																		src="http://placehold.it/170x100&text=two"></a></li>
-
-																<li class="col-sm-6"><a class="thumbnail"
-																	id="carousel-selector-2"><img
-																		src="http://placehold.it/170x100&text=three"></a></li>
-
-																<li class="col-sm-6"><a class="thumbnail"
-																	id="carousel-selector-3"><img
-																		src="http://placehold.it/170x100&text=four"></a></li>
-
-															</ul>
-														</div>
+														<c:otherwise>
+															<!-- <li class="col-sm-6"><a class="thumbnail"
+																		id="carousel-selector-0"><img
+																			src="http://placehold.it/170x100&text=one"></a></li> -->
+														</c:otherwise>
+													</c:choose>
+												</div>
 
 
 
-														<jsp:include page="/Admins/Goods/LargeImageView.jsp"
-															flush="false"></jsp:include></div>
+												<jsp:include page="/Admins/Goods/LargeImageView.jsp"
+													flush="false"></jsp:include></div>
 
 
-													<div class="col-sm-12 col-md-8 col-lg-8 ">
-														<table class="table table-user-information">
-															<tbody>
-																<tr>
+											<div class="col-sm-12 col-md-8 col-lg-8 ">
+												<table class="table table-user-information">
+													<tbody>
+														<input type="hidden" name="goods_id"
+															value="${selectOneGdsView.goods_id }" />
+														<tr>
 
-																	<td>상품코드:</td>
-																	<td><div class='form-group'>
-																			<div class='col-md-8'>
+															<td class="info">상품코드:</td>
+															<td>${selectOneGdsView.goods_id }</td>
+														</tr>
 
-																				<input class='form-control' name="goods_id"
-																					type='text' maxlength="15" readonly="readonly">
-																			</div>
-																		</div></td>
-																</tr>
-
-																<%-- 테이블은 td 크기가 전체 영향 즉! 최상단 모델번호쪽에 col-md 먹으면 그 열은 전체가 다 쭉 아래로 똑같이 먹는다.
+														<%-- 테이블은 td 크기가 전체 영향 즉! 최상단 모델번호쪽에 col-md 먹으면 그 열은 전체가 다 쭉 아래로 똑같이 먹는다.
 																     유의 행 안에 또 잘게 쪼개야 한다.
 																     
 																     즉 tr td 자체에는 col-~ 사용하지 않기.
 																 --%>
-																<tr>
-																	<td>모델번호:</td>
-																	<td><div class='form-group'>
-																			<div class="col-md-8">
-																				<input class='form-control' name="gModelNbr"
-																					value="" required>
-																			</div>
-																		</div></td>
-																</tr>
+														<tr>
+															<td class="info">모델번호:</td>
+															<td>${selectOneGdsView.gModelNbr}</td>
+														</tr>
 
-																<tr>
-																	<td>상품명:</td>
-																	<td><div class='form-group'>
-																			<div class="col-md-8">
-																				<input class='form-control' name="gName" value=""
-																					required>
-																			</div>
-																		</div></td>
-																</tr>
+														<tr>
+															<td class="info">상품명:</td>
+															<td>${selectOneGdsView.gName}</td>
+														</tr>
 
-																<tr>
-																	<td>셋트상품여부:</td>
-																	<td><div class='form-group'>
-																			<div class="col-md-8">
-																				<select class='form-control' name="isGoodsSet"
-																					required>
-																					<option value="1">예</option>
-																					<option value="0">아니오</option>
-																				</select>
-																			</div>
-																		</div></td>
-																</tr>
+														<tr>
+															<td class="info">셋트상품여부:</td>
+															<td>${selectOneGdsView.isGoodsSet}</td>
+														</tr>
 
 
-																<%-- 한 행에 따른 대는 td 두개인데 여기만 4개 이렇게 할 수가 없다 그러면 틀어지기 때문에 아래와 같이 임시방편으로.. --%>
-																<tr>
-																	<td>일반판매가:</td>
-																	<td><div class='form-group'>
-																			<div class="col-md-4">
-																				<input class='form-control' name="gConsumerPrice"
-																					value="" required>
-																			</div>
+														<%-- 한 행에 따른 대는 td 두개인데 여기만 4개 이렇게 할 수가 없다 그러면 틀어지기 때문에 아래와 같이 임시방편으로.. --%>
+														<tr>
+															<td class="info">일반판매가:</td>
+															<td><div class='form-group'>
+																	<div class="col-md-4">${selectOneGdsView.gConsumerPrice}
+																	</div>
 
+																	<div class="col-md-3">
 
-																			<div class="col-md-3">
-
-																				<p>회원판매가:</p>
-																			</div>
+																		<p>회원판매가:</p>
+																	</div>
 
 
 
-																			<div class="col-md-4">
-																				<input class='form-control' name="gMemberPrice"
-																					value="" required>
-
-																			</div>
-																		</div></td>
-																</tr>
+																	<div class="col-md-4">
+																		${selectOneGdsView.gMemberPrice}</div>
+																</div></td>
+														</tr>
 
 
 
-																<tr>
-																	<td>제조(개발)사:</td>
-																	<td><div class='form-group'>
-																			<div class="col-md-8">
-																				<input class='form-control' name="gManufacturer"
-																					value="" required>
-																			</div>
-																		</div></td>
-																</tr>
+														<tr>
+															<td class="info">제조(개발)사:</td>
+															<td>${selectOneGdsView.gManufacturer}</td>
+														</tr>
 
-																<tr>
-																	<td>원산지:</td>
-																	<td><div class='form-group'>
-																			<div class="col-md-8">
-																				<input class='form-control' name="gPlaceofOrigin"
-																					value="" required>
-																			</div>
-																		</div></td>
-																</tr>
+														<tr>
+															<td class="info">원산지:</td>
+															<td>${selectOneGdsView.gPlaceofOrigin}</td>
+														</tr>
 
-																<tr>
-																	<td>배송비 지불 주체:</td>
-																	<td><div class='form-group'>
-																			<div class="col-md-4">
-																				<select class='form-control' name="gWhoDeliveryCost"
-																					required>
-																					<option value="C">고객</option>
-																					<option value="P">파트너사, 제조사</option>
-																					<option value="S">자사</option>
-																				</select>
+														<tr>
+															<td class="info">배송비 지불 주체:</td>
+															<td>${selectOneGdsView.gWhoDeliveryCost}</td>
+														</tr>
 
-																			</div>
-																		</div></td>
-																</tr>
+														<tr>
+															<td class="info">배송비:</td>
+															<td><div class='form-group'>
+																	<div class="col-md-4">
 
-																<tr>
-																	<td>배송비:</td>
-																	<td><div class='form-group'>
-																			<div class="col-md-4">
-																				<select class='form-control' name="gDeliveryCost"
-																					required>
-																					<option value="2500">2500</option>
-																					<option value="0">0</option>
-																				</select>
-																				<p>※제주/도서산간의 경우 추가비용 발생</p>
-																			</div>
-																			<div class="col-md-3">
+																		${selectOneGdsView.gDeliveryCost}</div>
+																	<div class="col-md-3">
 
-																				<p>상품상태:</p>
-																			</div>
-																			<div class="col-md-4">
-																				<select class='form-control' name="gStatus" required>
-																					<option value="1">판매가능</option>
-																				</select>
-																			</div>
-																		</div></td>
+																		<p>상품상태:</p>
+																	</div>
+																	<div class="col-md-4">
 
-																</tr>
+																		${selectOneGdsView.gStatus}</div>
+																</div></td>
+
+														</tr>
 
 
-																<tr>
-																	<td>적립금:</td>
-																	<td><div class='form-group'>
-																			<div class="col-md-4">
-																				<input class='form-control' name="gRsvFund" value="">
-																			</div>
-																			<div class="col-md-3">
-
-																				<p>포인트:</p>
-																			</div>
-																			<div class="col-md-4">
-																				<input class='form-control' name="gPoint" value="">
-																			</div>
-																		</div></td>
-
-																</tr>
-
-																<tr>
-																	<td>키워드:</td>
-																	<td><div class='form-group'>
-																			<div class="col-md-8">
-																				<input class='form-control' name="gKeywords"
-																					value="" required>
-
-																			</div>
-																		</div>
-																		<p>※키워들르 통한 웹 프로모션 메타페이지 다중생성[WebSpawner]</p></td>
-																</tr>
-
-																<tr>
-																	<td>성과급률:</td>
-																	<td><div class='form-group'>
-																			<div class="col-md-8">
-																				<input class='form-control' name="gFruitRate"
-																					value="" required>
-																			</div>
-																		</div>
-																		<p>% 성과급률은 0~100 숫자 안에서 입력하세요.</p></td>
-																</tr>
+														<tr>
+															<td class="info">적립금:</td>
+															<td><div class='form-group'>
+																	<div class="col-md-4">
+																		${selectOneGdsView.gRsvFund}</div>
 
 
-																<tr>
-																	<td>정렬순서:</td>
-																	<td><div class='form-group'>
-																			<div class="col-md-8">
-																				<input class='form-control' name="gOrder" value=""
-																					required>
-																			</div>
-																		</div>
-																		<p>정렬순서는 -9999~99999 숫자 안에서 사이 값을 입력하세요.</p></td>
-																</tr>
+																	<div class="col-md-3">
+
+																		<p>포인트:</p>
+																	</div>
+																	<div class="col-md-4">${selectOneGdsView.gPoint}
+																	</div>
+																</div></td>
+
+														</tr>
+
+														<tr>
+															<td class="info">키워드:</td>
+															<td>${selectOneGdsView.gKeywords}</td>
+														</tr>
+
+														<tr>
+															<td class="info">성과급률:</td>
+															<td>${selectOneGdsView.gFruitRate}</td>
+														</tr>
 
 
-																<tr>
-																	<td>게시기간:</td>
-																	<td><div class='form-group'>
-																			<div class="col-md-3">
-																				<p>시작일 :</p>
-																			</div>
-																			<div class="col-md-8">
-																				<input type="text" name="gPostStart"
-																					class="form-control" id="datepicker_kor_1_1">
-																			</div>
-																			<div class="col-md-3">
-																				<p>종료일 :</p>
-																			</div>
-																			<div class="col-md-8">
-																				<input type="text" class="form-control"
-																					name="gPostEnd" id="datepicker_kor_1_2">
-																			</div>
-																		</div></td>
-																</tr>
-
-																<tr class="active">
-																	<td colspan="2"><p>이미지정보 (550 x 550픽셀 이상)</p></td>
-																</tr>
-
-																<tr>
-																	<td class="active">대표(표준)</td>
-																	<td>
-																		<div class='col-md-8'>
-																			<button type="button" name="bnUpload0"
-																				class="btn btn-sm btn-primary"
-																				onclick="showImageWindow('Basic')">이미지업로드</button>
-																		</div>
-																	</td>
-																</tr>
-
-																<tr>
-																	<td class="active">전면</td>
-																	<td>
-																		<div class='col-md-8'>
-																			<button type="button" name="bnUpload1"
-																				class="btn btn-sm btn-primary"
-																				onclick="showImageWindow('Front')">이미지업로드</button>
-																		</div>
-																	</td>
-																</tr>
-
-																<tr>
-																	<td class="active">후면</td>
-																	<td>
-																		<div class='col-md-8'>
-																			<button type="button" name="bnUpload2"
-																				class="btn btn-sm btn-primary"
-																				onclick="showImageWindow('Rear')">이미지업로드</button>
-																		</div>
-																	</td>
-																</tr>
+														<tr>
+															<td class="info">정렬순서:</td>
+															<td>${selectOneGdsView.gOrder}</td>
+														</tr>
 
 
-																<tr>
-																	<td class="active">우측면</td>
-																	<td>
-
-																		<div class='col-md-8'>
-																			<button type="button" name="bnUpload3"
-																				class="btn btn-sm btn-primary"
-																				onclick="showImageWindow('Right')">이미지업로드</button>
-																		</div>
-																	</td>
-																</tr>
-
-
-																<tr>
-																	<td class="active">좌측면</td>
-																	<td>
-																		<div class='col-md-8'>
-																			<button type="button" name="bnUpload4"
-																				class="btn btn-sm btn-primary"
-																				onclick="showImageWindow('Left')">이미지업로드</button>
-																		</div>
-
-																	</td>
-																</tr>
-
-																<tr>
-																	<td class="active">상단면</td>
-																	<td>
-																		<div class='col-md-8'>
-																			<button type="button" name="bnUpload5"
-																				class="btn btn-sm btn-primary"
-																				onclick="showImageWindow('Top')">이미지업로드</button>
-																		</div>
-																	</td>
-																</tr>
-
-																<tr>
-																	<td class="active">하단면</td>
-																	<td>
-
-																		<div class='col-md-8'>
-																			<button type="button" name="bnUpload6"
-																				class="btn btn-sm btn-primary"
-																				onclick="showImageWindow('Bottom')">이미지업로드</button>
-																		</div>
-																	</td>
-																</tr>
-
-																<script type="text/javascript">
-																	//open GdsUpLoader window
-																	function showImageWindow(
-																			position) {
-																		//var myBookId = $(this).data('id');
-																		var modalUploadImages = position;
-																		$(
-																				"#modalUploadImages")
-																				.modal(
-																						"show");
-																		$(
-																				"#images_position")
-																				.val(
-																						modalUploadImages);
-
-																	}
-																</script>
-															</tbody>
-														</table>
-													</div>
-													<div class="col-md-12 ">
-														<div class='col-md-12 form-group center-block'>
-															<textarea class="form-control" name="gNote" rows="15">특이사항....</textarea>
-														</div>
-
-													</div>
-												</div>
-												<div class="panel-footer">
-
-													<button type="button" class="btn btn-sm btn-primary"
-														onclick="javascript:window.location.href='/admins/goods/gdsList.do'">
-														리스트</button>
-
-													<button type="button" class="btn btn-sm btn-primary"
-														onClick="javascript:history.go(-1)">뒤로가기</button>
-
-													<button type="submit" class="btn btn-sm btn-primary">등록하기
-													</button>
-
-												</div>
+														<tr>
+															<td class="info">게시기간:</td>
+															<td><div class='form-group'>
+																	<div class="col-md-3">
+																		<p>시작일 :</p>
+																	</div>
+																	<div class="col-md-3">
+																		${selectOneGdsView.gPostStart}</div>
+																	<div class="col-md-3">
+																		<p>종료일 :</p>
+																	</div>
+																	<div class="col-md-3">
+																		${selectOneGdsView.gPostEnd}</div>
+																</div></td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+											<div class="col-md-12 ">
+												<div class='col-md-12 form-group center-block'>
+													${selectOneGdsView.gNote}</div>
 
 											</div>
 										</div>
-									</div>
-								</form>
+										<div class="panel-footer">
 
-							</c:otherwise>
-						</c:choose>
+											<button type="button" class="btn btn-sm btn-primary"
+												onclick="javascript:window.location.href='/admins/goods/gdsList.do'">
+												리스트</button>
+
+											<button type="button" class="btn btn-sm btn-primary"
+												onClick="javascript:history.go(-1)">뒤로가기</button>
+
+											<button type="submit" class="btn btn-sm btn-danger">삭제하기
+											</button>
+
+										</div>
+
+									</div>
+								</div>
+							</div>
+						</form>
 					</div>
 
 				</div>
@@ -599,12 +435,6 @@
 		</div>
 	</div>
 	<!-- /.container -->
-
-
-	<%-- <!-- --> 주석처리해도 include는 된다.  --%>
-	<jsp:include page="/Admins/Goods/GdsUpLoader.jsp" flush="false" />
-
-
 	<!-- Footer -->
 	<footer>
 		<!--/////////////////////////////////////////////////// -->
