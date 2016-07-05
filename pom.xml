@@ -18,7 +18,10 @@
     </properties>
 
 
-<!-- 빌트플랫폼인 메이븐 디펜던시를 관리해주는 녀석-->     
+<!-- 빌트플랫폼인 메이븐 디펜던시를 관리해주는 녀석
+http://www.egovframe.go.kr/wiki/doku.php?id=egovframework:dev:dep:build:maven
+중요
+-->     
     <repositories>
         <repository>
             <id>mvn2</id>

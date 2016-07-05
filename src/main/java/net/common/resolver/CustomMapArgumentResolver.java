@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import net.common.common.CommandMap;
 
 import org.springframework.core.MethodParameter;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
@@ -34,6 +35,7 @@ import org.springframework.web.method.support.ModelAndViewContainer;
  * http://tedock.tistory.com/203
  * >예시
  */
+@Component
 public class CustomMapArgumentResolver implements HandlerMethodArgumentResolver {
 	/*
 	 * supportsParameter 메서드는 Resolver가 적용 가능한지 검사하는 역할을 하고, supportsparameter

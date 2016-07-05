@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+
+import org.springframework.stereotype.Component;
  
 
 /*
@@ -16,6 +18,7 @@ import java.util.Set;
       여기서 중요한점은 절대로 Map을 상속받으면 안된다.
  * 
  */
+@Component
 public class CommandMap {
     Map<String,Object> map = new HashMap<String,Object>();
      

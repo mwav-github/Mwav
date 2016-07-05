@@ -7,7 +7,6 @@
 	</configSuffixes>
 	<enableImports><![CDATA[true]]></enableImports>
 	<configs>
-		<config>src/main/webapp/WEB-INF/config/action-servlet.xml</config>
 		<config>src/main/webapp/WEB-INF/config/data.xml</config>
 		<config>src/main/webapp/WEB-INF/config/mvc.xml</config>
 		<config>src/main/webapp/WEB-INF/config/spring-security.xml</config>

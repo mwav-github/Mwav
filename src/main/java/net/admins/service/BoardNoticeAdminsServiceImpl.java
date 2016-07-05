@@ -12,6 +12,7 @@ import net.common.common.CommandMap;
 import net.admins.dao.BoardNoticeAdminsDAO;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service("boardNoticeAdminsService")
@@ -19,6 +20,7 @@ public class BoardNoticeAdminsServiceImpl implements BoardNoticeAdminsService {
 	Logger log = Logger.getLogger(this.getClass());
 
 	@Resource(name = "boardNoticeAdminsDAO")
+	@Autowired(required=true)
 	private BoardNoticeAdminsDAO boardNoticeAdminsDAO;
 
 /////////////////////////////////////BoardNews/////////////////////////////////////

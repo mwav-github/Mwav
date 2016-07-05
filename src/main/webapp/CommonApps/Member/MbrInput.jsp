@@ -152,7 +152,7 @@ http://planbong.tistory.com/531
 						<div class='form-group'>
 							<div class='col-md-11'>
 								<input type="text" class="form-control" name="mbrLoginId"
-									id="chkLoginId" placeholder="예) mymg2002" 
+									id="chkLoginId" placeholder="예) abc2006" 
 									onchange="idcheck()" maxlength="20" required>
 							</div>
 						</div>
@@ -232,13 +232,13 @@ http://planbong.tistory.com/531
 						<div class='col-md-3 indent-small'>
 							<div class='form-group internal'>
 								<input type='text' class='form-control' name="mbrCellPhone_2"
-									placeholder='3180' value="" required>
+									placeholder='1111' value="" required>
 							</div>
 						</div>
 						<div class='col-md-3 indent-small'>
 							<div class='form-group internal'>
 								<input type='text' class='form-control' name="mbrCellPhone_3"
-									placeholder='4451' value="" required>
+									placeholder='2222' value="" required>
 							</div>
 						</div>
 					</div>

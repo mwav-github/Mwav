@@ -2,6 +2,50 @@
 /* CSS Document */
 
 
+/*
+ * 
+megamenu
+ * 
+ */
+
+	
+.mega-dropdown {
+  position: static !important;
+}
+.mega-dropdown-menu {
+    padding: 20px 0px;
+    width: 100%;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+}
+.mega-dropdown-menu > li > ul {
+  padding: 0;
+  margin: 0;
+}
+.mega-dropdown-menu > li > ul > li {
+  list-style: none;
+}
+.mega-dropdown-menu > li > ul > li > a {
+  display: block;
+  color: #222;
+  padding: 3px 5px;
+}
+.mega-dropdown-menu > li ul > li > a:hover,
+.mega-dropdown-menu > li ul > li > a:focus {
+  text-decoration: none;
+}
+.mega-dropdown-menu .dropdown-header {
+  font-size: 18px;
+  color: #ff3546;
+  padding: 5px 60px 5px 5px;
+  line-height: 30px;
+}
+
+.left.carousel-control {
+  right: 30px;
+  left: inherit;
+}
+
 
 /*
  * center-block
@@ -475,6 +519,19 @@ z-index: 1;
 opacity: 0.9;
 }
 
+.menu_shop
+{
+background-color: #00acff;
+border-bottom: 4px solid #e49171 !important;  /* navbar 와 충돌  */
+width:100%;
+height: auto;
+padding: 0 10px;
+position: fixed;
+margin: 0px;
+z-index: 1;
+opacity: 0.9;
+}
+
 .menu  .navbar-nav > .active > a
 {
 background-color : #04A3ED;
@@ -482,15 +539,29 @@ color: white;
 font-weight: bold;
 }
 
+
 .menu  .navbar-nav >  li >  a
 {
 /*font-size: 13px;
 padding: 10px 35px; */
 color: white;
 }
+
+.menu_shop  .navbar-nav >  li >  a
+{
+/*font-size: 13px;
+padding: 10px 35px; */
+color: white;
+}
+
 .menu  .navbar-nav >  li >  a:hover
 {
 background-color: #04A3ED;
+}
+
+.menu_shop  .navbar-nav >  li >  a:hover
+{
+background-color: #31708f;
 }
 
 .navbar-header > a
