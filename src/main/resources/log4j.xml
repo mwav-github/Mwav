@@ -16,12 +16,12 @@
     </appender>
     	
 	<!-- Application Loggers -->
-	<!-- <logger name="mwav" additivity="false">
+	 <logger name="mwav" additivity="false">
 		<level value="ERROR" />
 		<appender-ref ref="console"/>
 	</logger>
 	
-	Query Loggers 이것까지하면 넘많아진다.
+	<!--Query Loggers 이것까지하면 넘많아진다. 바로위에서 부터 바로 밑까지-->
 	<logger name="jdbc.sqlonly" additivity="false">  
     	<level value="ERROR"/>  
         <appender-ref ref="console-infolog"/>  
@@ -31,7 +31,7 @@
     <logger name="jdbc.resultsettable" additivity="false">  
     	<level value="ERROR"/>  
         <appender-ref ref="console"/>  
-    </logger>   -->
+    </logger>   
 	
 	<!-- 3rdparty Loggers -->
 	<!-- <logger name="org.springframework.core">
@@ -50,10 +50,10 @@
 		<level value="ERROR" />
 	</logger> -->
  
-    <!-- root 로거 기본 설정 -->
+    <!-- root 로거 기본 설정-->
     <root>
 		<priority value="DEBUG" />
 		<appender-ref ref="console" />
-	</root>
+	</root>  
 	
 </log4j:configuration>

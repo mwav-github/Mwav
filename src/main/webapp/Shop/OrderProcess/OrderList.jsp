@@ -1,9 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%--
 http://bootsnipp.com/snippets/featured/responsive-shopping-cart 
 반응형 체크 필요.
+
+16.07.09 Admins/Order에는 있었으나 여기에는 동일 파일명으로 신규생성
+wish 는 https://www.wish.com/#cid=563db50683b75d5a54fedcfc 와 같이 id 값은 변경 	
  --%>
 <div class="container">
 	<!-- Modal -->
@@ -15,7 +19,7 @@ http://bootsnipp.com/snippets/featured/responsive-shopping-cart
 				<div class="modal-body">
 					<div class="container-fluid">
 						<div class="row">
-							<div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1">
+							<div class="col-sm-12 col-md-10 col-md-offset-1">
 								<table class="table table-hover">
 									<thead>
 										<tr>
@@ -23,7 +27,11 @@ http://bootsnipp.com/snippets/featured/responsive-shopping-cart
 											<th>Quantity</th>
 											<th class="text-center">Price</th>
 											<th class="text-center">Total</th>
-											<th> </th>
+											<th></th>
+											
+											
+	
+					
 										</tr>
 									</thead>
 									<tbody>
@@ -47,7 +55,7 @@ http://bootsnipp.com/snippets/featured/responsive-shopping-cart
 													</div>
 												</div>
 											</td>
-											<td class="col-xs-1 col-sm-1 col-md-1" style="text-align: center">
+											<td class="col-sm-1 col-md-1" style="text-align: center">
 												<input type="email" class="form-control"
 												id="exampleInputEmail1" value="3">
 											</td>

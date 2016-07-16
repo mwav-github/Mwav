@@ -98,9 +98,14 @@
 		<div class="row text-center">
 
 			<!--/////////////////////////////////////////////////// -->
-		<jsp:include page="/Shop/GdsList/CellList.jsp"
+		<%--<jsp:include page="/Shop/GdsList/CellList.jsp"
+			flush="false" /> --%>
+			<jsp:include page="/shop/goods/gdsList.do"
 			flush="false" />
 		<!--/////////////////////////////////////////////////// -->
+		
+		
+
 
 		</div>
 	</div>

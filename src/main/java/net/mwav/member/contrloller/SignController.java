@@ -55,6 +55,7 @@ public class SignController {
 
 	@RequestMapping(value = "/signin", method = RequestMethod.GET)
 	public void signin() {
+		System.out.println("출력3");
 	}
 
 	@RequestMapping("/google/expired")

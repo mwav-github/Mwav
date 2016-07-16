@@ -51,7 +51,7 @@ public class Paging {
 
 		pageCount = totalRow / pageSize + remainRow;
 		System.out.println("pageCount"+pageCount);
-		pageBlock = 3;
+		pageBlock = 5;  // <<1,2,3,4,5>> 
 		
 		result = (currentPage - 1) / pageBlock;
 		System.out.println("result="+result);

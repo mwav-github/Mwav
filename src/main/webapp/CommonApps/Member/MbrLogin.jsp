@@ -203,6 +203,15 @@
 
 			</div>
 			
+			<!-- facebook SIGNIN -->
+			<form id="go_signin" name="go_signin" action="<c:url value="/signin/facebook.do"/>" method="POST">
+				<div class="col-xs-6 col-sm-6 col-md-2">
+					<button type="submit" class="btn btn-primary btn-block"><i class="fa fa-facebook"></i></button>
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+					
+				</div>
+			</form>
+			
 			<!-- GOOGLE SIGNIN -->
 			<form id="go_signin" name="go_signin" action="<c:url value="/signin/google.do"/>" method="POST">
 				<div class="col-xs-6 col-sm-6 col-md-2">

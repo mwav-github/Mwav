@@ -14,16 +14,16 @@ public class GoodsAdminsDAO extends AbstractDAO {
 		// TODO Auto-generated method stub
 		String selectNextPk = null;
 		// System.out.println("11=="+selectOne("goodsAdminsDAO.selectNextPk"));
-		selectNextPk = (String) selectOne("goods.selectNextGoodsPk");
+		selectNextPk = (String) selectOne("goodsAdmins.selectNextGoodsPk");
 		System.out.println("selectNextPk ="+selectNextPk);
 		map.put("goods_id", selectNextPk);
-		insert("goods.insertGdsForm", map); // Membertbl
+		insert("goodsAdmins.insertGdsForm", map); // Membertbl
 		return map;
 	}
 
 	public int selectOneGetGdsTotalCount() {
 		// TODO Auto-generated method stub
-		return (int) selectOne("goods.selectOneGetGdsTotalCount");
+		return (int) selectOne("goodsAdmins.selectOneGetGdsTotalCount");
 	}
 
 	public void insertGdsFiles(Map<String, Object> map) {
@@ -47,7 +47,7 @@ public class GoodsAdminsDAO extends AbstractDAO {
 		map.put("goods_id", g_pk);
 		}*/
 		
-		insert("goods.insertGdsFiles", map); // Membertbl
+		insert("goodsAdmins.insertGdsFiles", map); // Membertbl
 	}
 
 	public String selectNextPk() {
@@ -55,7 +55,7 @@ public class GoodsAdminsDAO extends AbstractDAO {
 		System.out.println("시작");
 		String selectNextPk = null;
 		// System.out.println("11=="+selectOne("goodsAdminsDAO.selectNextPk"));
-		selectNextPk = (String) selectOne("goods.selectNextGoodsPk");
+		selectNextPk = (String) selectOne("goodsAdmins.selectNextGoodsPk");
 
 		// selectNextPk = (String) selectOne("goodsAdminsDAO.selectNextPk"); //
 		// Membertbl
@@ -70,7 +70,7 @@ public class GoodsAdminsDAO extends AbstractDAO {
 		// TODO Auto-generated method stub
 
 		return (List<Map<String, Object>>) selectList(
-				"goods.selectListGdsFilesList", map); // Membertbl
+				"goodsAdmins.selectListGdsFilesList", map); // Membertbl
 	}
 
 	@SuppressWarnings("unchecked")
@@ -78,7 +78,7 @@ public class GoodsAdminsDAO extends AbstractDAO {
 		// TODO Auto-generated method stub
 
 		return (List<Map<String, Object>>) selectList(
-				"goods.selectListGdsList", map); // Membertbl
+				"goodsAdmins.selectListGdsList", map); // Membertbl
 	}
 
 	@SuppressWarnings("unchecked")
@@ -86,7 +86,7 @@ public class GoodsAdminsDAO extends AbstractDAO {
 		// TODO Auto-generated method stub
 
 		Map<String, Object> imsi_gdsMasterMap = (Map<String, Object>) selectOne(
-				"goods.updateGdsform", map);
+				"goodsAdmins.updateGdsform", map);
 
 		/*
 		String gdsMaster_goodsid = null;
@@ -137,13 +137,13 @@ public class GoodsAdminsDAO extends AbstractDAO {
 
 	public void updateProGdsform(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		update("goods.updateProGdsform", map);
+		update("goodsAdmins.updateProGdsform", map);
 	}
 
 	public Map<String, Object> selectOneGdsView(Map<String, Object> map) {
 		// TODO Auto-generated method stub
 		return (Map<String, Object>) selectOne(
-				"goods.selectOneGdsView", map);
+				"goodsAdmins.selectOneGdsView", map);
 	}
 
 	public List<Map<String, Object>> selectCategoryGoodsList() {
@@ -154,7 +154,7 @@ public class GoodsAdminsDAO extends AbstractDAO {
 
 	public void deleteGdsDelete(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		update("goods.deleteGdsDelete", map);
+		update("goodsAdmins.deleteGdsDelete", map);
 	}
 
 }

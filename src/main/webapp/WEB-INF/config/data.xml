@@ -10,6 +10,7 @@
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
 
 
+
 	<!-- Configures transaction management around @Transactional components -->
 	<tx:annotation-driven transaction-manager="transactionManager" />
 		
@@ -23,10 +24,15 @@
 		<constructor-arg ref="dataSource" />
 	</bean>
 
-	<!-- Embedded database for storing connections -->
-	<!-- <jdbc:embedded-database id="dataSource" type="H2">
-		<jdbc:script location="classpath:/org/springframework/social/connect/jdbc/JdbcUsersConnectionRepository.sql" />
-	</jdbc:embedded-database>	 -->
+	 <!-- Embedded database for storing connections 
+	
+	테스트용이다.
+	UserConnection 테이블  -->
+	<!--  <jdbc:embedded-database id="dataSource">
+		<jdbc:script location="classpath:/org/springframework/social/connect/jdbc/JdbcUsersConnectionRepository.sql"/>
+	</jdbc:embedded-database> -->
+	
+	
 	
 	<!-- <jdbc:embedded-database id="dataSource" type="H2">
 		<jdbc:script location="classpath:/org/springframework/social/connect/jdbc/JdbcUsersConnectionRepository.sql" />

@@ -8,7 +8,34 @@
 	<http pattern="/resources/**" security="none" />
 
 	<http use-expressions="true">
-		<!-- Authentication policy -->
+		<!-- Authentication policy 
+		     스프링 시큐리티 설정
+		     
+		     1. 로그인 페이지는 = /signin
+		     2. 로그인 폼 제출은 = /signin/authenticate
+		     3. 로그인 폼 실패는 = /signin?param.error=bad_credentials
+		     4. 로그아웃 페이지는 = /signout 
+		        > 로그아웃 이후에 JSESSIONID 라고 불리는 쿠키를 제거
+
+              isAuthenticated 은?
+              
+             1. Spring-security 와 SecurityContext
+                            소셜로그인이고 자시고 간에 일단 "로그인"을 하는 만큼 Spring security 를 빼놓을 수 없다. 
+                              아니.. 빼놓을 수 없는 정도가 아니라, 사실 소셜로그인을 구현하는 대부분의 코드가 Spring security 에 의한 것이다.  
+              SecurityConfig 기본 설정을 보면 단순히 접근 Url 정도나 컨트롤하는 것 같지만, 그렇지 않다.. 사실 여기엔 많은 것이 숨겨져 있다.  
+              
+              SecurityContext는 인증된 유저 정보를 담아, 웹 어플리케이션 어디서든 유저 정보에 접근할 수 있도록 돕는다. 
+                                그리고 SecurityContext에 전달할 "인증된 유저 정보"는 UserDetails 객체로 전달한다.
+                                
+                                (1) 사용자 로그인
+(2) 폼에서 사용자 정보를 받아 UserDetailsService에 전달
+(3) 전달받은 정보로 UserDetails 객체를 생성
+(4) 해당 객체를 Authentication 에 전달하여 인증함
+(5) 인증한 정보를 SecurityContext에 전달하여 "인증된 유저"로 정의함
+(6) jsp에서 인증된 사용자 정보에 접근할 때 SecurityContext를 사용함 
+
+이부분은 자바파일로 이동.
+		-->
 		<form-login login-page="/signin" login-processing-url="/signin/authenticate" authentication-failure-url="/signin?param.error=bad_credentials" />
 		<logout logout-url="/signout" delete-cookies="JSESSIONID" />
 		<intercept-url pattern="/favicon.ico" access="permitAll" />

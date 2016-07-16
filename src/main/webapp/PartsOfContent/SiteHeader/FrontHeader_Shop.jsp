@@ -113,10 +113,9 @@ http://bootsnipp.com/snippets/featured/bootstrap-mega-menu
 									<div class="carousel-inner" role="listbox">
 										<div class="item active">
 											<img
-												data-src="holder.js/900x500/auto/#777:#555/text:First slide"
-												alt="First slide [900x500]"
-												src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iOTAwIiBoZWlnaHQ9IjUwMCIgdmlld0JveD0iMCAwIDkwMCA1MDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iOTAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzc3NyIvPjxnPjx0ZXh0IHg9IjMxNy43NDIxODc1IiB5PSIyNTAiIHN0eWxlPSJmaWxsOiM1NTU7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6NDJwdDtkb21pbmFudC1iYXNlbGluZTpjZW50cmFsIj5GaXJzdCBzbGlkZTwvdGV4dD48L2c+PC9zdmc+"
-												data-holder-rendered="true">
+												
+												src="/Shop/zImages/promotion_1.jpg"
+												>
 										</div>
 										<div class="item">
 											<img
@@ -185,10 +184,11 @@ http://bootsnipp.com/snippets/featured/bootstrap-mega-menu
 <div class="container">
 	<div id="myCarousel" class="carousel slide" data-ride="carousel">
 		<!-- Wrapper for slides -->
-		<div class="carousel-inner">
-			<div class="item">
+		<%--높이값 고정 (기획전 이슈) --%>
+		<div class="carousel-inner" style="height:400px;">
+			<div class="item" >
 				<img
-					src="http://placehold.it/1200x400/16a085/ffffff&amp;text=About Us">
+					src="/Shop/zImages/promotion_1.jpg">
 				<div class="carousel-caption">
 					<h3>Headline</h3>
 					<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
@@ -200,7 +200,7 @@ http://bootsnipp.com/snippets/featured/bootstrap-mega-menu
 			<!-- End Item -->
 			<div class="item">
 				<img
-					src="http://placehold.it/1200x400/e67e22/ffffff&amp;text=Projects">
+					src="/Shop/zImages/promotion_2.png">
 				<div class="carousel-caption">
 					<h3>Headline</h3>
 					<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
@@ -212,7 +212,7 @@ http://bootsnipp.com/snippets/featured/bootstrap-mega-menu
 			<!-- End Item -->
 			<div class="item">
 				<img
-					src="http://placehold.it/1200x400/2980b9/ffffff&amp;text=Portfolio">
+					src="/Shop/zImages/promotion_3.jpg">
 				<div class="carousel-caption">
 					<h3>Headline</h3>
 					<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
@@ -224,7 +224,7 @@ http://bootsnipp.com/snippets/featured/bootstrap-mega-menu
 			<!-- End Item -->
 			<div class="item active">
 				<img
-					src="http://placehold.it/1200x400/8e44ad/ffffff&amp;text=Services">
+					src="/Shop/zImages/promotion_4.png">
 				<div class="carousel-caption">
 					<h3>Headline</h3>
 					<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed

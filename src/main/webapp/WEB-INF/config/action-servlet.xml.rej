@@ -1,0 +1,16 @@
+diff a/src/main/webapp/WEB-INF/config/action-servlet.xml b/src/main/webapp/WEB-INF/config/action-servlet.xml	(rejected hunks)
+@@ -184,14 +184,6 @@
+ 
+ 	<import resource="spring-security.xml" />
+ 
+-	<!-- <import resource="social.xml" /> -->
+-
+-	<!-- <import resource="social-security.xml" /> -->
+-
+-	
+-	
+-	
+-	
+ </beans>
+ 
+ 

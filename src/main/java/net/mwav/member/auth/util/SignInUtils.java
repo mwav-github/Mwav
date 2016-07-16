@@ -10,6 +10,7 @@ public class SignInUtils {
 	 */
 	public static void signin(String userId) {
 		// 인증 부분 GoogleAuthentication으로 넣기
+		System.out.println("출력2");
 		SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(userId, null, null));	
 	}
 	

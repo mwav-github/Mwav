@@ -15,6 +15,11 @@ public class VersionProperty {
 	@Value("${linkedin.appSecret}")
 	private String linkedinSecret;
 	
+	@Value("${facebook.appKey}")
+	private String facebookKey;
+	@Value("${facebook.appSecret}")
+	private String facebookSecret;
+	
 	
 	public String getGoogleKey() {
 		return googleKey;
@@ -40,6 +45,19 @@ public class VersionProperty {
 	public void setLinkedinSecret(String linkedinSecret) {
 		this.linkedinSecret = linkedinSecret;
 	}
+	public String getFacebookKey() {
+		return facebookKey;
+	}
+	public void setFacebookKey(String facebookKey) {
+		this.facebookKey = facebookKey;
+	}
+	public String getFacebookSecret() {
+		return facebookSecret;
+	}
+	public void setFacebookSecret(String facebookSecret) {
+		this.facebookSecret = facebookSecret;
+	}
+
 	
 	
 	

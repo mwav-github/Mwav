@@ -40,6 +40,7 @@ public class SimpleSignInAdapter implements SignInAdapter {
 	public String signIn(String localUserId, Connection<?> connection, NativeWebRequest request) {
 		
 		SignInUtils.signin(localUserId);
+		System.out.println("출력");
 		return extractOriginalUrl(request);
 	}
 

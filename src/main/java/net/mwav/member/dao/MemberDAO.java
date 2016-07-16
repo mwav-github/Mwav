@@ -252,7 +252,8 @@ public class MemberDAO extends AbstractDAO {
 				zcSiDoName);
 	}
 
-	@SuppressWarnings({ "unchecked", "null" })
+	//@SuppressWarnings({ "unchecked", "null" })
+	@SuppressWarnings("unchecked")
 	public List<Map<String, Object>> selectListZcAll(Map<String, Object> map) {
 		// TODO Auto-generated method stub
 
