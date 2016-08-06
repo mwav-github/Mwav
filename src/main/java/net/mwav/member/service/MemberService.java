@@ -46,6 +46,7 @@ public interface MemberService {
 	
 	boolean selectOneSnsMbrLoginIdCheck(String fsmMember_id);
 
+	String selectOneMemberPkCheck ();
 
 
 

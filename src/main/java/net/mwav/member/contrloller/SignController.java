@@ -73,6 +73,10 @@ public class SignController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		HttpSession session = request.getSession();
 		
+		/*API 마다 메소드가 다르기때문에 이부분은 체크 필요. 
+		 * http://docs.spring.io/spring-social/docs/1.0.3.RELEASE/api/org/springframework/social/connect/Connection.html#fetchUserProfile()
+		 * 
+		 * */ 
 		String smMember_id = connection.getKey().getProviderUserId();
 		String First_Name = connection.fetchUserProfile().getFirstName();
 		String Last_Name = connection.fetchUserProfile().getLastName();
@@ -96,9 +100,16 @@ public class SignController {
 		logger.debug("Link = " + Link);
 		logger.debug("Picture = " + Picture);
 
-		/* ID가 없으면 (Insert), 있으면 (로그인) */
+		/* ID가 없으면 (Insert), 있으면 (로그인)
+		 * 
+		 *  */
 		boolean check;
 		check = memberService.selectOneSnsMbrLoginIdCheck(smMember_id);
+		
+		String m_id = memberService.selectOneMemberPkCheck();
+		int member_id = Integer.parseInt(m_id);
+		System.out.println("멤버아이디="+member_id);
+		
 		logger.info("check = " + check);
 		if (check == false) {
 
@@ -111,6 +122,31 @@ public class SignController {
 			map.put("Picture", Picture);
 
 			memberService.insertSnsForm(map);
+			
+			if(First_Name == null){
+				First_Name = "sns_imsi";
+			}
+			
+			if(Last_Name == null){
+				Last_Name = "sns_imsi";
+			}
+			if(Email == null){
+				Email = "sns_imsi";
+			}
+			
+			map.put("mbrLoginId", "sns_imsi");
+			map.put("mbrLoginPw", "sns_imsi");
+			map.put("mbrTempLoginPw", null);
+			map.put("mbrFirstName", First_Name);
+			map.put("mbrLastName", Last_Name);
+			map.put("mbrMiddleNam", "sns_imsi");
+			map.put("mbrEmail", Email);
+			map.put("mbrCellPhone", "sns_imsi");
+			map.put("mbrAddrFlag", 0);
+			map.put("mbrZipcode", 123456);
+			map.put("mbrAddress", "sns_imsi");
+
+			memberService.insertMbrForm(map);
 			logger.info("insertSnsForm success!!!!!!");
 		}
 
@@ -118,6 +154,7 @@ public class SignController {
 
 		loginCheck = 1;
 		session.setAttribute("mbrLoginId", mbrLoginId);
+		session.setAttribute("member_id", member_id);
 		request.setAttribute("loginCheck", loginCheck);
 
 		return "/Index";

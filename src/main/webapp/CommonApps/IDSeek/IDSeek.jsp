@@ -209,6 +209,7 @@ $.ajax({
 						<li class=""><a href="#PwFinder" data-toggle="tab">PWSeek</a></li>
 						<!-- <li class=""><a href="#why" data-toggle="tab">Why?</a></li> -->
 					</ul>
+				
 				</div>
 				<div class="modal-body">
 					<div class="container-fluid">
@@ -222,7 +223,7 @@ $.ajax({
 									<div class="col-md-4 mgt4">휴대폰</div>
 									<div class="col-md-8 mgt4">
 										<input type="text" id="mbrCellPhone" class="form-control"
-											placeholder="01031804451 -없이 입력해주시면 됩니다.">
+											placeholder="01011111111 -없이 입력해주시면 됩니다.">
 									</div>
 									<br />
 									<div class="col-md-4 mgt4">이메일</div>

@@ -190,7 +190,7 @@
 	style="padding: 60px; box-shadow: 0 0 20px 3px #04A3ED; background: #f7f7f7;">
 	
 		<div class="form-group">
-			<div class="col-xs-6 col-sm-6 col-md-2">
+			<!-- <div class="col-xs-6 col-sm-6 col-md-2">
 				<button type="button" class="btn btn-primary btn-block " onclick="checkLoginState();">
 					<i class="fa fa-facebook"></i>
 				</button>
@@ -201,7 +201,7 @@
 					<i class="fa fa-twitter"></i>
 				</button>
 
-			</div>
+			</div> -->
 			
 			<!-- facebook SIGNIN -->
 			<form id="go_signin" name="go_signin" action="<c:url value="/signin/facebook.do"/>" method="POST">
@@ -225,6 +225,14 @@
 			<form id="go_signin" name="go_signin" action="<c:url value="/signin/linkedin.do"/>" method="POST">
 				<div class="col-xs-6 col-sm-6 col-md-2">
 					<button type="submit" class="btn btn-danger btn-block"><i class="fa fa-linkedin"></i></button>
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+				</div>
+			</form>
+			
+			<!-- TWITTER SIGNIN -->
+			<form id="go_signin" name="go_signin" action="<c:url value="/signin/twitter.do"/>" method="POST">
+				<div class="col-xs-6 col-sm-6 col-md-2">
+					<button type="submit" class="btn btn-info btn-block"><i class="fa fa-twitter"></i></button>
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 				</div>
 			</form>

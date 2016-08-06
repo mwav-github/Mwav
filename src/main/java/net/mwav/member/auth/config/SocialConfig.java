@@ -18,7 +18,7 @@ package net.mwav.member.auth.config;
 
 import javax.inject.Inject;
 import javax.sql.DataSource;
-
+import net.mwav.member.auth.VersionProperty;
 import net.mwav.member.auth.google.PostToWallAfterConnectInterceptor;
 import net.mwav.member.auth.util.SimpleSignInAdapter;
 
@@ -52,6 +52,8 @@ import org.springframework.social.linkedin.connect.LinkedInConnectionFactory;
 import org.springframework.social.facebook.api.Facebook;
 import org.springframework.social.facebook.connect.FacebookConnectionFactory;
 
+import org.springframework.social.twitter.api.Twitter;
+import org.springframework.social.twitter.connect.TwitterConnectionFactory;
 
 import net.mwav.member.auth.config.SimpleConnectionSignUp;
 
@@ -131,6 +133,9 @@ public class SocialConfig implements SocialConfigurer {
 				new LinkedInConnectionFactory(versionProperty.getLinkedinKey(), versionProperty.getLinkedinSecret()));
 		cfConfig.addConnectionFactory(
 				new FacebookConnectionFactory(versionProperty.getFacebookKey(), versionProperty.getFacebookSecret()));
+		cfConfig.addConnectionFactory(
+				new TwitterConnectionFactory(versionProperty.getTwitterKey(), versionProperty.getTwitterSecret()));
+
 	}
 	
 	
@@ -181,14 +186,21 @@ client_secret : client_id를 위한 secret 값이다. 이 값으로 Client를 �
          디폴트 셋팅은 inmemroy 지만, jdbc-based repository 도 제공한다. 
          이 이야기인즉슨 RDBMS 와 연결이 되어 있는 동안 내내 user의 Connection 을 유지시켜 줄 수 있다는 뜻. 
          예제도 jdbcUserRepository 를 채택하고 있어서 나도 그걸로 그냥 따라했다. 
+         
+         http://www.programcreek.com/java-api-examples/index.php?class=org.springframework.social.connect.jdbc.JdbcUsersConnectionRepository&method=setConnectionSignUp
 	 * (non-Javadoc)
 	 * @see org.springframework.social.config.annotation.SocialConfigurer#getUsersConnectionRepository(org.springframework.social.connect.ConnectionFactoryLocator)
 	 */
 	@Override
 	public UsersConnectionRepository getUsersConnectionRepository(ConnectionFactoryLocator connectionFactoryLocator) {
+	
+		logger.debug("여기까지왔다.");
+		System.out.println("요기요기");
+		logger.debug("inside the usersConnectionRepository");
+		
 		JdbcUsersConnectionRepository repository = new JdbcUsersConnectionRepository(
 		        dataSource, connectionFactoryLocator, Encryptors.noOpText());
-		        repository.setConnectionSignUp(new SimpleConnectionSignUp());
+		        //repository.setConnectionSignUp(new SimpleConnectionSignUp());
 		    return repository;
 	
 	}

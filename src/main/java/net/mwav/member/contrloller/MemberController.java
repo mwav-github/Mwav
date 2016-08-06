@@ -637,6 +637,8 @@ public class MemberController {
 		boolean check;
 		check = memberService.selectOneSnsMbrLoginIdCheck(smMember_id);
 		System.out.println("check = " + check);
+		
+		
 		if (check == false) {
 
 			if (Gender.equals("male")) {
@@ -652,6 +654,7 @@ public class MemberController {
 		String mbrLoginId = Last_Name + " " + First_Name;
 		loginCheck = 1;
 		session.setAttribute("mbrLoginId", mbrLoginId);
+		
 		request.setAttribute("loginCheck", loginCheck);
 
 		return mv;

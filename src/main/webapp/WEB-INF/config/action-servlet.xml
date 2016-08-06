@@ -31,7 +31,7 @@
 		<property name="ignoreResourceNotFound" value="true" />
 		<property name="locations">
 			<list>
-				<value>classpath:googleProperties/googleApi.properties</value>
+				<!-- <value>classpath:googleProperties/googleApi.properties</value> -->
 				<value>classpath:googleProperties/version.properties</value>
 				<value>classpath:googleProperties/datasource.properties</value>
 			</list>

@@ -407,4 +407,13 @@ public class MemberDAO extends AbstractDAO {
 		return check;
 	}
 
+	public String selectOneMemberPkCheck() {
+		// TODO Auto-generated method stub
+		Map<String, Object> memberid = (Map<String, Object>) selectOne(
+				"member.selectNextPk");
+
+		String member_id = String.valueOf(memberid.get("member_id"));
+		return member_id;
+	}
+
 }

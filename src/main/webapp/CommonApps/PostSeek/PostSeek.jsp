@@ -144,14 +144,35 @@
 
 		var zcBuildingBook;
 		var post_mode;
-
+		
+		
 		switch (post_mode) {
 		case 1:
 			frm = document.forms["postfinder_1"]
+
 			zcSiDoName = frm.zcSiDoName.value;
 			zcSiGunGuName = frm.zcSiGunGuName.value;
+
 			zcRoadName = frm.zcRoadName.value;
 			zcBuildingMainNo = frm.zcBuildingMainNo.value;
+			
+			if (($.trim(zcSiDoName) =="")||(zcSiDoName==null)){
+				alert("시도명을 입력해주셔야 합니다.")
+				return;
+			}
+			if (($.trim(zcSiGunGuName) =="")||(zcSiGunGuName==null)){
+				alert("시군구명을 입력해주셔야 합니다.")
+				return;
+			}
+			if (($.trim(zcRoadName) =="")||(zcRoadName==null)){
+				alert("도로명을 입력해주셔야 합니다.")
+				return;
+			}
+			if (($.trim(zcBuildingMainNo) =="" ) ||(zcBuildingMainNo==null)){
+				alert("건물번호을 입력해주셔야 합니다.")
+				return;
+			}
+			
 			//alert(zcBuildingMainNo);
 			post_mode = "post_zcRoadName";
 
@@ -170,6 +191,24 @@
 			zcLegalEupMyeonDongName = frm.zcLegalEupMyeonDongName.value;
 			zcJiBunMain = frm.zcJiBunMain.value;
 
+			if (($.trim(zcSiDoName) =="")||(zcSiDoName==null)){
+				alert("시도명을 입력해주셔야 합니다.")
+				return;
+			}
+			if (($.trim(zcSiGunGuName) =="")||(zcSiGunGuName==null)){
+				alert("시군구명을 입력해주셔야 합니다.")
+				return;
+			}
+			if (($.trim(zcLegalEupMyeonDongName) =="")||(zcLegalEupMyeonDongName==null)){
+				alert("동(읍/면)을 입력해주셔야 합니다.")
+				return;
+			}
+			if (($.trim(zcJiBunMain) =="")||(zcJiBunMain==null)){
+				alert("지번을 입력해주셔야 합니다.")
+				return;
+			}
+			
+			
 			post_mode = "post_zcLegalEupMyeonDongName";
 			//formData = $("#postfinder_1").serialize(); 
 			url = "zcSiDoName=" + zcSiDoName + " &zcSiGunGuName="
@@ -188,6 +227,20 @@
 			//zcJiBunMain = frm.elements["zcJiBunMain"];
 			post_mode = "post_zcBuildingBook";
 
+			if (($.trim(zcSiDoName) =="")||(zcSiDoName==null)){
+				alert("시도명을 입력해주셔야 합니다.")
+				return;
+			}
+			if (($.trim(zcSiGunGuName) =="")||(zcSiGunGuName==null)){
+				alert("시군구명을 입력해주셔야 합니다.")
+				return;
+			}
+			if (($.trim(zcBuildingBook) =="")||(zcBuildingBook==null)){
+				alert("건물명(아파트 등)을 입력해주셔야 합니다.")
+				return;
+			}
+			
+			
 			//formData = $("#postfinder_1").serialize(); 
 			url = "zcSiDoName=" + zcSiDoName + " &zcSiGunGuName="
 					+ zcSiGunGuName + "&zcBuildingBook=" + zcBuildingBook
@@ -260,6 +313,14 @@
 								//alert("on");
 								$(".ondis").show();
 								$(".offdis").hide();
+								
+								// 영역을 초과하면 스크롭생성 이거는 추후 높이값에 따라 하는걸로 변경
+								// overflow-y 는 아래와 같이 쓴다.
+								var objSet   = document.getElementById("resultpostseek"); 
+								
+								objSet.style.height="300px";
+								objSet.style.overflowY ="scroll";
+								
 							}
 							var list = data;
 							var listLen = list.length;
@@ -314,6 +375,7 @@
 										+ list[i].zcZipCode + "</td>" + "</tr>";
 
 							}
+							$("#postnull").empty();
 							$("#postresult").append(content);
 						} else {
 
@@ -710,7 +772,7 @@
 								</form>
 							</div>
 						</div>
-						<div class="table-responsive ondis" style="display: none">
+						<div id="resultpostseek" class="table-responsive ondis" style="display: none">
 							<table class="table table-striped table-bordered">
 								<thead>
 									<tr>

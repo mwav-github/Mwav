@@ -2,7 +2,68 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<script>
 
+
+$('document').ready(function(){  
+    updatestatus();  
+    scrollalert();  
+});  
+function updatestatus(){  
+    //Show number of loaded items  
+    var totalItems=$('#gdsList').length;  
+    $('#status').text('Loaded '+totalItems+' Items');  
+}  
+function scrollalert(){  
+    var scrolltop=$('#gdsList').attr('scrollTop');  
+    var scrollheight=$('#gdsList').attr('scrollHeight');  
+    var windowheight=$('#gdsList').attr('clientHeight');  
+    var scrolloffset=20;  
+    if(scrolltop>=(scrollheight-(windowheight+scrolloffset)))  
+    {  
+        //fetch new items  
+        $('#status').text('Loading more items...');  
+        $.get('CellList.jsp', '', function(newitems){  
+            $('#gdsList').append(newitems);  
+            updatestatus();  
+        });  
+    }  
+    setTimeout('scrollalert();', 1500);  
+} 
+
+/* 
+$(document).ready(function() {
+	var win = $(window);
+
+	// Each time the user scrolls
+	win.scroll(function() {
+		// End of the document reached?
+
+  // console.log($('#gdsList').height());
+  // console.log(win.height());
+   console.log(win.scrollTop());
+		
+		if ($('#gdsList').height() - win.height() == win.scrollTop()) {
+			$('#loading').show();
+      
+              console.log("변화");
+              //$(document).height() 로하면 전체 이기때문에 상품리스트만 
+			   console.log($(document).height());
+			   console.log(win.height());
+			   console.log(win.scrollTop());
+
+			$.ajax({
+				url: 'get-post.php',
+				dataType: 'html',
+				success: function(html) {
+					$('#posts').append(html);
+					$('#loading').hide();
+				}
+			});
+		}
+	});
+}); */
+</script>
 
 <%-- 장바구니 --%>
 <jsp:include page="/Shop/OrderProcess/OrderList.jsp" flush="false" />
@@ -10,7 +71,7 @@
 <div class="container">
 	<div class="row">
 
-		<div class="col-md-12">
+		<div class="col-md-12" id="gdsList">
 			<c:choose>
 				<c:when test="${fn:length(selectListGdsList) > 0}">
 					<c:forEach var="VselectListGdsList" items="${selectListGdsList}">

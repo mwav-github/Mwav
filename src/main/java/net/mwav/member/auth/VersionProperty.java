@@ -1,4 +1,4 @@
-package net.mwav.member.auth.config;
+package net.mwav.member.auth;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -20,6 +20,23 @@ public class VersionProperty {
 	@Value("${facebook.appSecret}")
 	private String facebookSecret;
 	
+	@Value("${twitter.appKey}")
+	private String twitterKey;
+	@Value("${twitter.appSecret}")
+	private String twitterSecret;
+	
+	public String getTwitterKey() {
+		return twitterKey;
+	}
+	public void setTwitterKey(String twitterKey) {
+		this.twitterKey = twitterKey;
+	}
+	public String getTwitterSecret() {
+		return twitterSecret;
+	}
+	public void setTwitterSecret(String twitterSecret) {
+		this.twitterSecret = twitterSecret;
+	}
 	
 	public String getGoogleKey() {
 		return googleKey;
@@ -33,6 +50,8 @@ public class VersionProperty {
 	public void setGoogleSecret(String googleSecret) {
 		this.googleSecret = googleSecret;
 	}
+	
+	
 	public String getLinkedinKey() {
 		return linkedinKey;
 	}

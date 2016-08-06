@@ -179,5 +179,11 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		return memberDAO.selectOneSnsMbrLoginIdCheck(smMember_id);
 	}
+	
+	@Override
+	public String selectOneMemberPkCheck() {
+		// TODO Auto-generated method stub
+		return memberDAO.selectOneMemberPkCheck();
+	}
 
 }

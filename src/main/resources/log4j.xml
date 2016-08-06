@@ -50,10 +50,10 @@
 		<level value="ERROR" />
 	</logger> -->
  
-    <!-- root 로거 기본 설정-->
+    <!-- root 로거 기본 설정
     <root>
 		<priority value="DEBUG" />
 		<appender-ref ref="console" />
-	</root>  
+	</root>  -->
 	
 </log4j:configuration>
