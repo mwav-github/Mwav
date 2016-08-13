@@ -36,6 +36,8 @@ public interface GoodsService {
 	
 	int selectOneGetGdsTotalCount();
 
+	Map<String, Object> selectOneGdsView(Map<String, Object> map);
+
 	/*
 	 * ========================================삭제================================
 	 * ========

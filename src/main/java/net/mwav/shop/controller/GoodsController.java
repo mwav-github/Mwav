@@ -1,4 +1,4 @@
-package net.mwav.shop.contrloller;
+package net.mwav.shop.controller;
 
 import java.util.Collections;
 import java.util.Iterator;
@@ -19,8 +19,6 @@ import org.springframework.web.servlet.ModelAndView;
 import net.common.common.CommandMap;
 import net.mwav.shop.service.GoodsService;
 import net.mwav.common.module.Common_Utils;
-import net.mwav.common.module.Paging;
-import net.mwav.common.module.PagingVO;
 
 @Controller
 public class GoodsController {
@@ -55,6 +53,29 @@ public class GoodsController {
 	 * ========================================보기================================
 	 * ========
 	 */
+	@RequestMapping(value = "/shop/goods/gdsView.do")
+	public ModelAndView selectListGdsView(CommandMap commandMap,
+			HttpServletRequest request, HttpServletResponse reponse,
+			HttpSession session) throws Exception {
+		ModelAndView mv = new ModelAndView("/Shop/GdsView/CellView");
+		
+			
+		Map<String, Object> selectOneGdsView = goodsService
+				.selectOneGdsView(commandMap.getMap());
+
+		
+
+		if (selectOneGdsView != null && !selectOneGdsView.isEmpty()) {
+			System.out.println("view 줄랭");
+
+			String mm = "cGds";
+			mv.addObject("mm", mm);
+
+			mv.addObject("selectOneGdsView", selectOneGdsView);
+
+		}
+		return mv;
+	}
 
 	/*
 	 * ========================================수정================================
@@ -72,7 +93,7 @@ public class GoodsController {
 			HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView("/Shop/GdsList/CellList");
 
-		//앞에 보여주는 거니 페이징 불필요.
+		// 앞에 보여주는 거니 페이징 불필요.
 		List<Map<String, Object>> selectListGdsList;
 
 		selectListGdsList = goodsService.selectListGdsList(commandMap.getMap());
@@ -80,7 +101,6 @@ public class GoodsController {
 		System.out.println("찍히낭");
 
 		mv.addObject("selectListGdsList", selectListGdsList);
-
 
 		return mv;
 	}
@@ -105,6 +125,7 @@ public class GoodsController {
 	/*
 	 * ========================================수정================================
 	 * ========
+	 * 
 	 */
 
 	/*

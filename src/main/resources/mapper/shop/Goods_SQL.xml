@@ -18,5 +18,12 @@
 	]]>
 	</select>
     
+    <select id="selectOneGdsView" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+	       	        
+	        select * from GoodsMaster_tbl where goods_id = #{goods_id}
+		]]>
+	</select>
+	<!-- select * from goodscategory_tbl, goodsmaster_tbl where goodsmaster_tbl.goods_id =#{goods_id}-->
 
 </mapper>

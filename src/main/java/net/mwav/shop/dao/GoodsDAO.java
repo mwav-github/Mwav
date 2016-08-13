@@ -48,6 +48,11 @@ public class GoodsDAO extends AbstractDAO {
 	 * ========================================보기================================
 	 * ========
 	 */
+	public Map<String, Object> selectOneGdsView(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return (Map<String, Object>) selectOne(
+				"goods.selectOneGdsView", map);
+	}
 
 	/*
 	 * ========================================수정================================

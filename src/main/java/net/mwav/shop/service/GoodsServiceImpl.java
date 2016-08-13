@@ -33,6 +33,8 @@ public class GoodsServiceImpl implements GoodsService {
 		return goodsDAO.selectOneGetGdsTotalCount();
 	}
 
+	
+
 	/*
 	 * ========================================등록================================
 	 * ========
@@ -44,6 +46,12 @@ public class GoodsServiceImpl implements GoodsService {
 	 * ========================================보기================================
 	 * ========
 	 */
+	
+	@Override
+	public Map<String, Object> selectOneGdsView(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return goodsDAO.selectOneGdsView(map);
+	}
 
 
 	/*

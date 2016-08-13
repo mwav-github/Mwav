@@ -6,6 +6,41 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script>
+function cartSubmit(ocAmount) {
+	var ocAmount = ocAmount;
+	
+	if(ocAmount < "1"){
+		alert('1인당 최소구매수량은 1개입니다.');
+		$("#cart_menu").hide();
+		return false;
+	}
+	else{
+	
+    var formdata = $("#gdsView").serialize(); // serialize() : 입력된 모든Element(을)를 문자열의 데이터에 serialize 한다.
+    jQuery.ajax({
+        url: '/shop/order/orderForm.do',
+        type: 'POST',
+        data: formdata,
+        contentType: 'application/x-www-form-urlencoded; charset=UTF-8', 
+        dataType: 'html',
+        success: function (result) {
+            if (result){
+               //document.gdsView.elements['txt4'].aria-expanded="false"
+            	//document.getElementById("cartbutton").setAttribute("data-toggle", "dropdown");
+            	//document.getElementById("cartbutton").setAttribute("aria-expanded", "true");
+            	//document.getElementById("dropup").addClass('open');
+            	$("#cart_menu").show();
+            	$("#cart_menu").show();
+        }
+        }
+    });
+	}
+}
+</script>
+
+
+
 <jsp:include page="/PartsOfContent/Head_Import.jsp" flush="false" />
 
 <%-- 
@@ -13,52 +48,16 @@
                        http://startbootstrap.com/
                        https://wrapbootstrap.com/
                        
+  http://bootsnipp.com/snippets/MRZjX - 특징
+  
+  http://bootsnipp.com/snippets/featured/product-page-for-online-shop
+  
+  
+  http://bootsnipp.com/snippets/featured/shopping-order-status
+  -> order 순서           
                        
 --%>
 
-
-
-<c:if test="${requestScope.loginCheck eq 2 }">
-	<script type="text/javascript">
-		alert('비밀번호가 틀렸습니다.');
-		history.go(-1)
-	</script>
-</c:if>
-<c:if test="${requestScope.loginCheck eq 7 }">
-	<script type="text/javascript">
-		alert('탈퇴한 회원입니다.');
-		msg = '재 가입하시겠습니까.?'
-		if (confirm(msg) != 0) {
-			location.replace("/MasterPage_1.jsp?mode=Default"); // 이전 url 기록안하는 경우 , location.href 의 경우 이전기록이 남아 login.do로 포워딩
-		} else {
-			history.go(-1)
-		}
-	</script>
-</c:if>
-
-<c:if test="${requestScope.loginCheck eq 3 }">
-	<script type="text/javascript">
-		alert('아이디가 존재하지 않습니다.');
-		history.go(-1);
-	</script>
-</c:if>
-<c:if test="${requestScope.loginCheck eq 5 }">
-	<script type="text/javascript">
-		alert('임시패스워드입니다. 비밀번호 변경 후 로그인해주세요.');
-		history.go(-1);
-	</script>
-</c:if>
-<c:if test="${requestScope.updateMemberDelete eq 1 }">
-	<script type="text/javascript">
-		alert('회원탈퇴가 완료되었습니다. 감사합니다.');
-	</script>
-</c:if>
-<c:if test="${requestScope.updateMemberDelete eq 0 }">
-	<script type="text/javascript">
-		alert('회원탈퇴가 되지 않았습니다.');
-		history.go(-1);
-	</script>
-</c:if>
 
 </head>
 <body>
@@ -67,7 +66,8 @@
 	     Index의 마스터 페이지
 	 -->
 	<!--  //////////////////////////////////// -->
-	<jsp:include page="/PartsOfContent/SiteHeader/FrontHeader_Shop_Left.jsp"
+	<jsp:include
+		page="/PartsOfContent/SiteHeader/FrontHeader_Shop_Left.jsp"
 		flush="false" />
 
 	<!-- Page Content -->
@@ -78,13 +78,13 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<h1 class="page-header">
-					Admins <small> GdsList</small>
+					Admins <small> GdsView</small>
 				</h1>
 				<ol class="breadcrumb">
 					<li><a href="index.html">Home</a></li>
 					<li>Admins</li>
 					<li>Goods</li>
-					<li class="active">GdsList</li>
+					<li class="active">GdsView</li>
 				</ol>
 			</div>
 		</div>
@@ -93,96 +93,237 @@
 		<!-- Content Row -->
 		<div class="row">
 			<!-- Sidebar Column left메뉴 추후 변경 예정<시작>-->
-			<div class="col-md-3">
 
-				<jsp:include page="/Shop/ShopLeftMenu.jsp" flush="false" />
+			<%--제품상세 http://bootsnipp.com/snippets/featured/product-page-for-online-shop --%>
+			<div class="col-md-12">
+
+				<form class="form-horizontal" name="gdsView" id="gdsView"
+					method="post">
+					<div class="container-fluid">
+						<div class="content-wrapper">
+							<div class="item-container">
+								<div class="container">
+									<div class="col-md-6">
+										<div class="product col-md-7 service-image-left">
+
+
+											<img id="item-display"
+												src="http://www.corsair.com/Media/catalog/product/g/s/gs600_psu_sideview_blue_2.png"
+												alt=""></img>
+
+										</div>
+
+										<div class="container service1-items col-md-5 pull-right">
+
+											<a id="item-1" class="service1-item"> <img
+												src="http://www.corsair.com/Media/catalog/product/g/s/gs600_psu_sideview_blue_2.png"
+												alt=""></img>
+											</a> <a id="item-2" class="service1-item"> <img
+												src="http://www.corsair.com/Media/catalog/product/g/s/gs600_psu_sideview_blue_2.png"
+												alt=""></img>
+											</a> <a id="item-3" class="service1-item"> <img
+												src="http://www.corsair.com/Media/catalog/product/g/s/gs600_psu_sideview_blue_2.png"
+												alt=""></img>
+											</a>
+
+										</div>
+									</div>
+
+									<div class="col-md-6">
+										<div class="product-title">Corsair GS600 600 Watt PSU</div>
+										<div class="product-desc">The Corsair Gaming Series
+											GS600 is the ideal price/performance choice for mid-spec
+											gaming PC</div>
+										<div class="product-rating">
+											<i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i>
+											<i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i>
+											<i class="fa fa-star-o"></i>
+										</div>
+										<!-- <hr>
+									<div class="product-price">$ 1234.00</div>
+									<div class="product-stock">In Stock</div>
+									<hr>
+									<div class="btn-group cart">
+										<button type="button" class="btn btn-success">Add to
+											cart</button>
+									</div>
+									<div class="btn-group wishlist">
+										<button type="button" class="btn btn-danger">Add to
+											wishlist</button>
+									</div> -->
+
+										<div class="enter"></div>
+
+
+										<input type="hidden" name="goods_id"
+											value="${selectOneGdsView.goods_id }" />
+
+										<%--추가예정 카테고리 --%>
+										<input type="hidden" name="gcr_id" value="123" /> <input
+											type="hidden" name="type" value="frontCart" />
+										<table class="table table-hover">
+											<tbody>
+												<tr>
+
+													<td><h5>Manufacture</h5></td>
+													<td class="text-right"><h5>
+															<strong>${selectOneGdsView.gManufacturer }</strong>
+														</h5></td>
+												</tr>
+
+												<tr>
+
+													<td><h5>PlaceofOrigin</h5></td>
+													<td class="text-right"><h5>
+															<strong>${selectOneGdsView.gPlaceofOrigin }</strong>
+														</h5></td>
+												</tr>
+
+
+												<tr>
+
+													<td><h5>Price</h5></td>
+													<td class="text-right"><h5>
+															<strong>${selectOneGdsView.gMemberPrice } (회원가)</strong><br>
+															<strong>${selectOneGdsView.gConsumerPrice }
+																(소비자가)</strong>
+														</h5></td>
+												</tr>
+
+												<tr>
+													<td><h5>ModelNumber</h5></td>
+													<td class="text-right"><h5>
+															<strong>${selectOneGdsView.gModelNbr }</strong>
+														</h5></td>
+												</tr>
+
+												<tr>
+
+													<td><h5>Estimated shipping</h5></td>
+													<td class="text-right"><h5>
+															<select name="state" class="ddList">
+																<option value="">(please select a state)</option>
+																<option class="lt" value="--">none</option>
+																<option class="lt" value="AL">Alabama</option>
+																<option class="lt" value="AK">Alaska</option>
+
+															</select>
+														</h5></td>
+												</tr>
+												<tr>
+
+													<td><h3>Total</h3></td>
+
+													<c:if test="${member_LoginId ne null }">
+														<c:set var="price"
+															value="${selectOneGdsView.gMemberPrice }" />
+													</c:if>
+													<c:if test="${member_LoginId eq null }">
+														<c:set var="price"
+															value="${selectOneGdsView.gConsumerPrice}" />
+													</c:if>
+													<td class="text-right"><input type="text"
+														id="ocAmount" name="ocAmount" value="0" />
+
+														<button type="button"
+															class="btn btn-default btn-md qtyplus" field='ocAmount'
+															onClick="qtyplus(${price});">
+															<span class="glyphicon glyphicon glyphicon-plus
+"
+																aria-hidden="true"></span>
+														</button>
+
+														<button type="button"
+															class="btn btn-default btn-md qtyminus" field='ocAmount'
+															onClick="qtyminus(${price});">
+															<span class="glyphicon glyphicon glyphicon-minus
+"
+																aria-hidden="true"></span>
+														</button>
+
+														<h3 class="totalprice" id="totalprice">
+															<strong></strong>
+														</h3></td>
+												</tr>
+
+
+
+												<tr>
+													<td>
+														<div class="dropup" id="dropup">
+															<button type="button" id="cartbutton"
+																class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+																onclick="cartSubmit(this.form.ocAmount.value);">
+																<span class="glyphicon glyphicon-shopping-cart"></span>
+																Add to Cart
+															</button>
+															<ul class="dropdown-menu" id="cart_menu">
+																<li><a href="#">쇼핑계속하기</a></li>
+																<li><a href="#">카트보기</a></li>
+															</ul>
+														</div>
+													</td>
+													<td>
+														<button type="button" class="btn btn-success">
+															Continue Shopping <span class="glyphicon glyphicon-play"></span>
+														</button>
+													</td>
+													
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+							<div class="container-fluid">
+								<div class="col-md-12 product-info">
+									<ul id="myTab" class="nav nav-tabs nav_tabs">
+
+										<li class="active"><a href="#service-one"
+											data-toggle="tab">DESCRIPTION</a></li>
+										<li><a href="#service-two" data-toggle="tab">PRODUCT
+												INFO</a></li>
+										<li><a href="#service-three" data-toggle="tab">REVIEWS</a></li>
+
+									</ul>
+									<div id="myTabContent" class="tab-content">
+										<div class="tab-pane fade in active" id="service-one">
+
+											<section class="container product-info">
+												The Corsair Gaming Series GS600 power supply is the ideal
+												price-performance solution for building or upgrading a
+												Gaming PC. A single +12V rail provides up to 48A of
+												reliable, continuous power for multi-core gaming PCs with
+												multiple graphics cards. The ultra-quiet, dual ball-bearing
+												fan automatically adjusts its speed according to
+												temperature, so it will never intrude on your music and
+												games. Blue LEDs bathe the transparent fan blades in a cool
+												glow. Not feeling blue? You can turn off the lighting with
+												the press of a button.
+
+												<h3>Corsair Gaming Series GS600 Features:</h3>
+
+											</section>
+
+										</div>
+										<div class="tab-pane fade" id="service-two">
+
+											<section class="container"></section>
+
+										</div>
+										<div class="tab-pane fade" id="service-three"></div>
+									</div>
+									<hr>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</form>
 			</div>
-			<!-- 끝 -->
-
-<%--제품상세 http://bootsnipp.com/snippets/featured/product-page-for-online-shop --%>
-			<div class="col-md-9">
-
-                <div class="thumbnail">
-                    <img class="img-responsive" src="http://placehold.it/800x300" alt="">
-                    <div class="caption-full">
-                        <h4 class="pull-right">$24.99</h4>
-                        <h4><a href="#">Product Name</a>
-                        </h4>
-                        <p>See more snippets like these online store reviews at <a target="_blank" href="http://bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
-                        <p>Want to make these reviews work? Check out
-                            <strong><a href="http://maxoffsky.com/code-blog/laravel-shop-tutorial-1-building-a-review-system/">this building a review system tutorial</a>
-                            </strong>over at maxoffsky.com!</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
-                    </div>
-                    <div class="ratings">
-                        <p class="pull-right">3 reviews</p>
-                        <p>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            4.0 stars
-                        </p>
-                    </div>
-                </div>
-
-                <div class="well">
-
-                    <div class="text-right">
-                        <a class="btn btn-success">Leave a Review</a>
-                    </div>
-
-                    <hr>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            Anonymous
-                            <span class="pull-right">10 days ago</span>
-                            <p>This product was great in terms of quality. I would definitely buy another!</p>
-                        </div>
-                    </div>
-
-                    <hr>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            Anonymous
-                            <span class="pull-right">12 days ago</span>
-                            <p>I've alredy ordered another one!</p>
-                        </div>
-                    </div>
-
-                    <hr>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            Anonymous
-                            <span class="pull-right">15 days ago</span>
-                            <p>I've seen some better than this, but not at this price. I definitely recommend this item.</p>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
 		</div>
 	</div>
+
 	<!-- /.container -->
 
 	<div class="enter"></div>
@@ -205,7 +346,6 @@
 		//changes the speed
 		});
 	</script>
-
 </body>
 
 </html>

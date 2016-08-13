@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="order">
+	
+	<!--/*========================================등록========================================*/  -->
+	<insert id="insertOrderForm" parameterType="net.mwav.order.vo.OrderCartVO">
+		<![CDATA[
+			INSERT INTO ordercart_tbl(orderCart_id, ocChoiceDt, goods_id, ocAmount, gcr_id, ocIpAddress) values(#{orderCart_id},#{ocChoiceDt},#{goods_id},#{ocAmount},#{gcr_id},#{ocIpAddress})
+		]]>
+	</insert>
+
+    <!--/*========================================보기========================================*/  -->
+
+  
+	<!--/*======================+==================수정========================================*/  -->
+	
+	<update id="updateOrderCart" parameterType="hashmap" >
+		<![CDATA[
+	       update ordercart_tbl set  ocAmount= #{ocAmount} where orderCart_id = #{orderCart_id} and goods_id = #{goods_id}
+		]]>
+	</update>
+	
+	<!--/*========================================리스트(SelctOne, SelectList 순)========================================*/  -->
+	
+	<select id="selectisOrderCart" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+	      select count(*) as count, ocAmount from ordercart_tbl where orderCart_id= #{ForderCart_id} and goods_id = #{Fgoods_id}
+		]]>
+	</select>
+	
+	<!--/*========================================삭제========================================*/  -->
+	
+	
+
+
+</mapper>

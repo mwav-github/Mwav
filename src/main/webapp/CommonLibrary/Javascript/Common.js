@@ -1,10 +1,138 @@
+// plus minus
+function qtyplus(price) {
+	// Stop acting like a button
+	//e.preventDefault();
+	event.preventDefault();
+	// Get the field name
+	fieldName = $(".qtyplus").attr('field');
+	//alert(fieldName);
+	
+	// Get its current value
+	var currentVal = parseInt($('input[name=' + fieldName + ']').val());
+	var price = price;
+	// If is not undefined
+	if (!isNaN(currentVal)) {
+		
+		var afterCount = currentVal + 1;
+		// Increment
+		$('input[name=' + fieldName + ']').val(afterCount);
+		
+		goodPriceCalutate(price, afterCount);
+	} else {
+		// Otherwise put a 0 there
+		$('input[name=' + fieldName + ']').val(0);
+	}
+	
+	//가격이 0일때
+    if (price == 0){
+    	alert('가격이 0원입니다. ');
+    	return false;
+    }
+}
+
+function qtyminus(price) {
+	// Get the field name
+    fieldName = $(".qtyminus").attr('field');
+    
+    event.preventDefault();
+    //alert(fieldName);
+    // Get its current value
+    var currentVal = parseInt($('input[name='+fieldName+']').val());
+    var price = price;
+    // If it isn't undefined or its greater than 0
+    if (!isNaN(currentVal) && currentVal > 0) {
+        // Decrement one
+    	var afterCount = currentVal - 1;
+        $('input[name='+fieldName+']').val(afterCount);
+        
+        goodPriceCalutate(price, afterCount);
+    } else {
+        // Otherwise put a 0 there
+        $('input[name='+fieldName+']').val(0);
+        alert('갯수는 0 이하는 불가합니다.')
+    }
+    
+    //가격이 0일때
+    if (price == 0){
+    	alert('가격이 0원입니다. ');
+    	return false;
+    }
+}
+
+//goods
+function goodPriceCalutate(price, ocAmount) {
+
+	//alert('1');
+	//var ocAmount = document.getElementById('ocAmount').value;
+	//alert(ocAmount);
+	//var ocAmount = document.getElementById('ocAmount');
+	var exshow1 = document.getElementById('totalprice');
+
+	var totalprice = (price * ocAmount);
+	//alert(totalprice);
+
+	//var content = ex.value;
+	//exshow.innerHTML = content;
+	exshow1.innerHTML = totalprice;
+};
+
+//===================================Order
+
+function orderCartPut(cartForm, type) {
+
+	var frm = cartForm;
+	alert(frm);
+	//var ocAmount = cartForm.value.ocAmount;
+	var goods_id = frm.goods_id.value;
+	//var gcr_id = cartForm.value.gcr_id;
+
+	alert(goods_id);
+
+	var type = type;
+
+	if (type == "frontCart") {
+
+		alert("장바구니왔다");
+		url = "/Shop/Order/orderForm.do?goods_id=" + goods_id + "&type=" + type;
+		//location.href= url;
+	} else {
+
+		alert("장바구니왔다");
+		url = "/Shop/Order/orderForm.do?ocAmount=" + ocAmount + "&goods_id="
+				+ goods_id + "&gcr_id=" + gcr_id + "&type=" + type;
+	}
+}
+function chosenGoodsPutMsg(ocAmount, goods_id, gcr_id) {
+	alert("찜하기왔다");
+	url = "/HomePage/chosenGoodsPut.do?ocAmount=" + ocAmount + "&goods_id="
+			+ goods_id + "&gcr_id=" + gcr_id;
+	window.open(url, "post", "width=300, height=150");
+}
+function changingAction(mode) {
+
+	var theForm = document.goodsDetail;
+	if (mode == "1") {
+		alert("왔네");
+		theForm.action = "orderLoginCheck.do";
+	} else if (mode == "2") {
+		url = "/HomePage/orderCartPut.do?ocAmount=" + ocAmount + "goods_id"
+				+ goods_id + "gcr_id" + gcr_id;
+		theForm.action = "orderCartPut.do";
+	} else if (mode == "3") {
+
+	}
+	theForm.submit();
+}
+//===================================Order
+
 function myconfirm(type) {
 
 	switch (type) {
 	case 'delete':
 		msg = "정말로 삭제하시겠습니까? 다시 한번 확인해보세요.";
 		break;
-	default : break;
+	default:
+		break;
 	}
 
 	if (confirm(msg) != 0) {
@@ -12,7 +140,7 @@ function myconfirm(type) {
 		return true;
 	} else {
 		// no click
-		
+
 		return false;
 	}
 } // myconfirm
