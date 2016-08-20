@@ -42,8 +42,10 @@ public class OrderDAO extends AbstractDAO {
 
 		map = (Map<String, Object>) selectOne("order.selectisOrderCart", map);
 		int isflag = (int)(long) map.get("count");
-		int b_ocAmount = (int) map.get("ocAmount");
 		if (isflag >= 1) { // 기등록내역이 있는 경우 상품과, ordercart_id update{
+			int b_ocAmount = (int) map.get("ocAmount");
+
+			
 			int n_ocAmount = vo.getOcAmount();
 			
 			int ocAmount = b_ocAmount + n_ocAmount;
@@ -81,6 +83,19 @@ public class OrderDAO extends AbstractDAO {
 	 * ========================================리스트(SelectOne, SelectList
 	 * 순)========================================
 	 */
+
+	public int selectOneOrderTotalCount() {
+		// TODO Auto-generated method stub
+		return (int) selectOne("order.selectOneOrderTotalCount");
+	}
+	
+	
+	public List<Map<String, Object>> selectListOrderCartList(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return (List<Map<String, Object>>) selectList("order.selectListOrderCartList",
+				map);
+
+	}
 
 	/*
 	 * ========================================삭제================================

@@ -17,6 +17,10 @@ public interface OrderService {
 
 	boolean insertOrderForm(OrderCartVO vo) throws Exception;
 
+	int selectOneOrderTotalCount();
+
+	List<Map<String, Object>> selectListOrderCartList(Map<String, Object> map);
+
 	/*
 	 * ========================================보기================================
 	 * ========

@@ -29,6 +29,30 @@
 		]]>
 	</select>
 	
+	<select id="selectOneOrderTotalCount" resultType="int">
+	<![CDATA[
+	   select count(*) from ordercart_tbl
+	]]>
+	</select>
+	
+	
+	<!-- SELECT GOODS_ID 고고   -->
+		<select id="selectListOrderCartList" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+	select c.* from (select @ROWNUM := @ROWNUM + 1 AS ROWNUM, a.* from (SELECT oc.orderCart_id,
+       oc.ocChoiceDt,
+       oc.goods_id AS A,
+       oc.ocOption,
+       oc.ocAmount,
+       oc.gcr_id,
+       oc.ocIpAddress,
+       oc.statistics_id,gm.*
+  FROM ordercart_tbl oc, goodsmaster_tbl gm
+    where (oc.orderCart_id = #{orderCart_id} ) and (oc.goods_id = gm.goods_id) order by ocChoiceDt asc) a,  (SELECT @ROWNUM := 0) R ) c where c.ROWNUM >= #{startRow} and c.ROWNUM <= #{endRow}
+	
+	]]>
+	</select>
+	
 	<!--/*========================================삭제========================================*/  -->
 	
 	

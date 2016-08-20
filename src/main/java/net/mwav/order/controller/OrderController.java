@@ -39,19 +39,24 @@ public class OrderController {
 
 	// - Controller > Service > ServiceImpl > DAO > SQL(XML) > Controller > JSP
 
-	// 페이지별 세션지정 -> GET문
-	/*
-	 * 1. bnsForm : mode = SbnsForm /CommonApps/BoardNews/bnsForm.jsp 2. bnsList
-	 * : mode = SbnsList /CommonApps/BoardNews/bnsList.jsp 3. bnsView : mode =
-	 * SbnsView /CommonApps/BoardNews/bnsView.jsp 4. FrontNewsList : mode =
-	 * SFbnsList /CommonApps/BoardNews/FrontNewsList.jsp 5. bnsUpdate : mode =
-	 * SbnsUpdate /CommonApps/BoardNews/bnsForm.jsp
-	 */
+
 	@Resource(name = "orderService")
 	private OrderService orderService;
 
-	// ///////////////////////////////////BoardNews/////////////////////////////////////
 
+	/* 
+	 * 참고
+	 * session.getId() 에서 session 은 HttpSession 객체입니다.
+           개발자가 구현한 로그인,로그아웃 세션개념과 별개로 servlet 엔진에서 처리되는 것이지요.
+            다시말해 사용자가 로그인을 하지 않더라도 일단  어떤 Servlet 엔진에서 제공되는 JSP를 최초로 호출함과 동시에 해당 브라우저에 유일한 세션이 생성되게 됩니다.
+            사용자의 재호출이 없으면 브라우저가 열려있어도 timeout으로 HttpSession은 소멸되게 되고 그 후에 어떤 jsp나 서블릿이 호출되게 되면
+            새로운 session이 생성되어 부여되는 셈이지요.
+            따라서 session.getId() 값이 다르게 나오는것이 맞습니다.
+            
+            즉 위에서 회원이면 lID에는 로그인 아이디 비회원이면 sessio.id를 부여한다.
+	 * */
+	
+	
 	/*
 	 * ========================================등록================================
 	 * ========
@@ -83,6 +88,8 @@ public class OrderController {
 		String lId = (String)session.getAttribute("member_id");
 		if(lId == null)
 			lId = session.getId(); //임의로 
+		
+		session.setAttribute("orderCart_id", lId);
 		
 		System.out.println("비회원 세션 id "+ lId);
 
@@ -136,6 +143,57 @@ public class OrderController {
 	 * 순)========================================
 	 */
 
+	@RequestMapping(value = "/shop/order/orderList.do")
+	public ModelAndView selectListBnsList(CommandMap commandMap,
+			HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("/Shop/OrderProcess/OrderForm");
+
+		HttpSession session = request.getSession();
+		String orderCart_id = (String)session.getAttribute("orderCart_id");
+		if(orderCart_id == null)
+			orderCart_id = session.getId(); //임의로 
+		
+		
+		System.out.println("orderCart_id"+orderCart_id);
+		
+        commandMap.put("orderCart_id", orderCart_id);
+		
+		String pageNum = (String) commandMap.get("pageNum");
+		Paging paging = new Paging();
+		if (pageNum == null) {
+			pageNum = "1";
+		}
+		int totalRow = orderService.selectOneOrderTotalCount();
+		System.out.println("totalRow=" + totalRow);
+
+		// Paging pv = new Paging(pageNum, 10 , 10, totalCount);
+		List<Map<String, Object>> selectListOrderCartList;
+		PagingVO pagingVO = paging.setPagingInfo(totalRow, 5, pageNum); // 총 숫자,
+																		// 한페이지에
+																		// 노출 수
+		commandMap.put("startRow", paging.getStartRow(pageNum)); // 시작 열
+		commandMap.put("endRow", paging.getEndRow(pageNum)); // 끝 열
+		
+		//vo에 채우기 
+		
+		
+		if (totalRow > 0) {
+			selectListOrderCartList = orderService.selectListOrderCartList(commandMap
+					.getMap());
+			// selectboardList =
+			// boardService.selectbnsList(commandMap.getMap());
+
+		} else {
+			selectListOrderCartList = Collections.emptyList();
+		}
+		
+
+		mv.addObject("selectListOrderCartList", selectListOrderCartList);
+		mv.addObject("pagingVO", pagingVO);
+		mv.addObject("totalRow", totalRow);
+		// mv.addObject("paging", pv.print());
+		return mv;
+	}
 	/*
 	 * ========================================삭제================================
 	 * ========

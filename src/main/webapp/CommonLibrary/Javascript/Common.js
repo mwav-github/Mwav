@@ -1,3 +1,12 @@
+function target_show(target) {
+    document.getElementById(target).style.display = 'block';
+}
+
+function target_hide(target) {
+	
+    document.getElementById(target).style.display = 'none';
+}
+
 // plus minus
 function qtyplus(price) {
 	// Stop acting like a button
@@ -66,7 +75,11 @@ function goodPriceCalutate(price, ocAmount) {
 	//var ocAmount = document.getElementById('ocAmount').value;
 	//alert(ocAmount);
 	//var ocAmount = document.getElementById('ocAmount');
-	var exshow1 = document.getElementById('totalprice');
+	// 여러개 써야하는 경우도 있기 때문에 변경 var exshow1 = document.getElementById('totalprice');
+	var exshow1 =  document.getElementsByClassName('totalprice')[0];
+	var exshow2 =  document.getElementsByClassName('totalprice')[1];
+	
+	
 
 	var totalprice = (price * ocAmount);
 	//alert(totalprice);
@@ -74,6 +87,9 @@ function goodPriceCalutate(price, ocAmount) {
 	//var content = ex.value;
 	//exshow.innerHTML = content;
 	exshow1.innerHTML = totalprice;
+	exshow1.value = totalprice;
+	exshow2.innerHTML = totalprice;
+	exshow2.value = totalprice;
 };
 
 //===================================Order

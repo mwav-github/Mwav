@@ -7,6 +7,7 @@
 <html>
 <head>
 <script>
+
 function cartSubmit(ocAmount) {
 	var ocAmount = ocAmount;
 	
@@ -31,7 +32,7 @@ function cartSubmit(ocAmount) {
             	//document.getElementById("cartbutton").setAttribute("aria-expanded", "true");
             	//document.getElementById("dropup").addClass('open');
             	$("#cart_menu").show();
-            	$("#cart_menu").show();
+            	
         }
         }
     });
@@ -214,11 +215,11 @@ function cartSubmit(ocAmount) {
 
 													<td><h3>Total</h3></td>
 
-													<c:if test="${member_LoginId ne null }">
+													<c:if test="${sessionScope.member_LoginId ne null }">
 														<c:set var="price"
 															value="${selectOneGdsView.gMemberPrice }" />
 													</c:if>
-													<c:if test="${member_LoginId eq null }">
+													<c:if test="${sessionScope.member_LoginId eq null }">
 														<c:set var="price"
 															value="${selectOneGdsView.gConsumerPrice}" />
 													</c:if>
@@ -236,13 +237,12 @@ function cartSubmit(ocAmount) {
 														<button type="button"
 															class="btn btn-default btn-md qtyminus" field='ocAmount'
 															onClick="qtyminus(${price});">
-															<span class="glyphicon glyphicon glyphicon-minus
-"
+															<span class="glyphicon glyphicon glyphicon-minus"
 																aria-hidden="true"></span>
 														</button>
 
-														<h3 class="totalprice" id="totalprice">
-															<strong></strong>
+														<h3>
+															<strong class="totalprice" id="totalprice"></strong>
 														</h3></td>
 												</tr>
 
@@ -252,14 +252,17 @@ function cartSubmit(ocAmount) {
 													<td>
 														<div class="dropup" id="dropup">
 															<button type="button" id="cartbutton"
-																class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+																class="btn btn-default dropdown-toggle"
+																data-toggle="dropdown"
 																onclick="cartSubmit(this.form.ocAmount.value);">
 																<span class="glyphicon glyphicon-shopping-cart"></span>
 																Add to Cart
 															</button>
 															<ul class="dropdown-menu" id="cart_menu">
-																<li><a href="#">쇼핑계속하기</a></li>
-																<li><a href="#">카트보기</a></li>
+																<%--href="#" 넣으면 클릭시 최상단으로 이동한다. --%>
+																<li><a onclick="target_hide('cart_menu');">쇼핑계속하기</a></li>
+																<li><a
+																	onclick="javascript:window.location.href='/shop/order/orderList.do?orderCart_id=${sessionScope.orderCart_id}'">카트보기</a></li>
 															</ul>
 														</div>
 													</td>
@@ -268,7 +271,7 @@ function cartSubmit(ocAmount) {
 															Continue Shopping <span class="glyphicon glyphicon-play"></span>
 														</button>
 													</td>
-													
+
 												</tr>
 											</tbody>
 										</table>
@@ -311,7 +314,61 @@ function cartSubmit(ocAmount) {
 											<section class="container"></section>
 
 										</div>
-										<div class="tab-pane fade" id="service-three"></div>
+										<div class="tab-pane fade" id="service-three">
+
+											<%--댓글보기 --%>
+											<div class="well">
+
+												<div class="text-right">
+													<a class="btn btn-success">Leave a Review</a>
+												</div>
+
+												<hr>
+
+												<div class="row">
+													<div class="col-md-12">
+														<span class="glyphicon glyphicon-star"></span> <span
+															class="glyphicon glyphicon-star"></span> <span
+															class="glyphicon glyphicon-star"></span> <span
+															class="glyphicon glyphicon-star"></span> <span
+															class="glyphicon glyphicon-star-empty"></span> Anonymous
+														<span class="pull-right">10 days ago</span>
+														<p>This product was great in terms of quality. I would
+															definitely buy another!</p>
+													</div>
+												</div>
+
+												<hr>
+
+												<div class="row">
+													<div class="col-md-12">
+														<span class="glyphicon glyphicon-star"></span> <span
+															class="glyphicon glyphicon-star"></span> <span
+															class="glyphicon glyphicon-star"></span> <span
+															class="glyphicon glyphicon-star"></span> <span
+															class="glyphicon glyphicon-star-empty"></span> Anonymous
+														<span class="pull-right">12 days ago</span>
+														<p>I've alredy ordered another one!</p>
+													</div>
+												</div>
+
+												<hr>
+
+												<div class="row">
+													<div class="col-md-12">
+														<span class="glyphicon glyphicon-star"></span> <span
+															class="glyphicon glyphicon-star"></span> <span
+															class="glyphicon glyphicon-star"></span> <span
+															class="glyphicon glyphicon-star"></span> <span
+															class="glyphicon glyphicon-star-empty"></span> Anonymous
+														<span class="pull-right">15 days ago</span>
+														<p>I've seen some better than this, but not at this
+															price. I definitely recommend this item.</p>
+													</div>
+												</div>
+
+											</div>
+										</div>
 									</div>
 									<hr>
 								</div>

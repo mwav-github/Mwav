@@ -36,6 +36,19 @@ public class OrderServiceImpl implements OrderService {
 		return false;
 	}
 
+	@Override
+	public int selectOneOrderTotalCount() {
+		// TODO Auto-generated method stub
+		return orderDAO.selectOneOrderTotalCount();
+	}
+
+	@Override
+	public List<Map<String, Object>> selectListOrderCartList(
+			Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return orderDAO.selectListOrderCartList(map);
+	}
+
 
 
 	/*
