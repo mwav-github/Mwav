@@ -327,9 +327,9 @@
 							//alert('listLen'+listLen);
 							//alert('list'+list);
 							//var col-md-8 = "col-md-8 text-center";
-							var content = "";
-							var address_zibun;
-							var address_doro;
+							var content =null; 
+							var address_zibun =null;
+							var address_doro =null;
 							//alert('구분' + list.post_mode);
 							$("#postresult").empty();
 							//재 검색시 이부분을 안해주면 이전 쿠키 즉 검색결과에 동일한게 밑에 출력 
@@ -364,12 +364,19 @@
 											+ list[i].zcBuildingMainNo + "-"
 											+ list[i].zcBuildingSubNo;
 								}
+								
+								//아래 와같이 ""에 대하여 없도록 치환처리 ! // 공백처리 없이 
+								address_doro = address_doro.replace(/"/g, "");
+								address_doro = address_doro.replace( /(\s*)/g, "");
+								
+								address_zibun = address_zibun.replace(/"/g, "");
+								address_zibun = address_zibun.replace( /(\s*)/g, "");
+								
 								content += "<tr id=" + "\"refresh\">"
 										+ "<td class=" + "\"col-md-8 text-center \">"
 										+ "<a href=" + "javascript:"
-										+ "sendAddress('" + address_doro
-										+ "','" + list[i].zcZipCode + "')"
-										+ ">" + address_doro + "</br>"
+										+ "sendAddress('" + address_doro + "','" + list[i].zcZipCode + "')>"
+										+ address_doro + "</br>"
 										+ address_zibun + "</a></td>";
 								content += "<td class=" +"\"col-md-8 text-center\">"
 										+ list[i].zcZipCode + "</td>" + "</tr>";

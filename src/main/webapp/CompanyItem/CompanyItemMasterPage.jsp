@@ -9,6 +9,22 @@
 <!-- /////////// -->
 <jsp:include page="/PartsOfContent/Head_Import.jsp" flush="false" />
 <!-- /////////// -->
+
+
+<script>
+	$(function() {
+		
+		var pgurl = window.location.pathname;
+		//alert(pgurl);
+
+		$("#left_menu a").each(function() {
+			//alert($(this).attr("href"));
+			//alert($(this).attr(''));
+			if ($(this).attr("href") == pgurl || $(this).attr("href") == '')
+				$(this).addClass("active");
+		})
+	});
+</script>
 </head>
 
 <body>

@@ -1,0 +1,3 @@
+GoodsClassHorizontal.asp
+
+통합시킬것.
