@@ -161,20 +161,18 @@ http://m.blog.naver.com/mky1416/220647254648 중요
     </bean>  
 
 
-
+  <!-- 이쪽에서 하위 등록한 xml 등록해줘야한다. -->
 	<import resource="mvc.xml" />
 
 	 <import resource="data.xml" />
 
 	<import resource="spring-security.xml" />
 
+
 	<!-- <import resource="social.xml" /> -->
 
 	<!-- <import resource="social-security.xml" /> -->
 
-	
-	
-	
 	
 </beans>
 

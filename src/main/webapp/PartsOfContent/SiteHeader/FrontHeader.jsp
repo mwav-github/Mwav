@@ -5,85 +5,84 @@
 <!-- 메인 페이지에서만 타겟팅 나머지는 URL 물고가기
 이놈이 슬라이드쇼 없는 놈 그러나 아직 반영 x 각 페이지별로 따로 있다.
  -->
-<div class="row">
-	<nav id="BackToTop" class="menu navbar navbar-fixed-top "
-		role="navigation">
-		<div class="container">
-			<%-- Container를 nav 밖에 놓으면 전체 영역 / 안에놓으면 1170px --%>
-			<!-- Brand and toggle get grouped for better mobile display -->
-			<div class="navbar-header">
-				<%--border 칼라 테두리는 style=border || 안의 icon-bar로 구성 --%>
-				<%--768px 이하부터 변형 --%>
-				<%--navbar-collapse 이게 부트스트랩꺼를 무조권 !important 인식 변경하려면 
+
+<nav id="BackToTop" class="menu navbar navbar-fixed-top "
+	role="navigation">
+	<div class="container">
+		<%-- Container를 nav 밖에 놓으면 전체 영역 / 안에놓으면 1170px --%>
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<%--border 칼라 테두리는 style=border || 안의 icon-bar로 구성 --%>
+			<%--768px 이하부터 변형 --%>
+			<%--navbar-collapse 이게 부트스트랩꺼를 무조권 !important 인식 변경하려면 
     cdn 말고 직접해서 아래 사이트와 같이 변경
     http://www.bootply.com/120951
  --%>
-				<button type="button" class="navbar-toggle collapsed"
-					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-					style="border: 2px solid white">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar" style="background-color: white;"></span> <span
-						class="icon-bar" style="background-color: white;"></span> <span
-						class="icon-bar" style="background-color: white;"></span>
-				</button>
-				<%-- 크기 줄었을 때 우측에 navbar 역할 --%>
-				<a class="navbar-brand active logo_800_m" href="/"> <img
-					src="/Images/CompanyLogos/CompanyLogo.gif"
-					class="img-thumbnail img-responsive logo_800_h"
-					alt="Responsive image"> <!-- <font color="#E5E5E5">Mwav</font> --></a>
-			</div>
-			<!-- Collect the nav links, forms, and other content for toggling -->
-			<div class="mgt2 collapse navbar-collapse"
-				id="bs-example-navbar-collapse-1">
-				<ul class="mgl5 nav navbar-nav">
-					<li><a href="/CompanyItem/ITProducts/OpenSRS/OpenSRS.jsp">IT
-							Solutions</a></li>
-					<li><a href="/CompanyItem/ITProducts/Aervision/Aervision.jsp">IT
-							Products</a></li>
-					<li><a
-						href="/CompanyItem/WebSiteBuilding/WebSiteBuilding.jsp">WebSite
-							Building</a></li>
-					<li><a
-						href="/CompanyItem/DigitalMarketing/DigitalMarketing.jsp">Digital
-							Marketing</a></li>
-					<li><a href="/CompanyItem/ITConsulting/ITConsulting.jsp">IT
-							Consulting</a></li>
-				</ul>
-				<ul class="nav navbar-nav navbar-right">
-				<!-- 일반로그인 부분 -->
-					<c:if test="${sessionScope.mbrLoginId ne null }">
-						<li><a
-							href="/CustomerService/CS-MasterPage.jsp?mode=SDMyPage"
-							data-toggle="tooltip" data-placement="bottom"
-							data-original-title="${mbrLoginId}님
-								반갑습니다."> MyPage</a></li>
-						<li><a href="/member/LogOut.do">LogOut</a></li>
-					</c:if>
-					<c:if test="${sessionScope.mbrLoginId eq null }">
-						<li><a href="/login.do"><i
-								class="fa fa-user fa-lg"></i></a></li>
-						<li><a href="/MasterPage_1.jsp?mode=Default"><i
-								class="fa fa-user-plus fa-lg"></i></a></li>
-					</c:if>
-				
-				</ul>
-			</div>
-			<!-- /.container -->
+			<button type="button" class="navbar-toggle collapsed"
+				data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+				style="border: 2px solid white">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar" style="background-color: white;"></span> <span
+					class="icon-bar" style="background-color: white;"></span> <span
+					class="icon-bar" style="background-color: white;"></span>
+			</button>
+			<%-- 크기 줄었을 때 우측에 navbar 역할 --%>
+			<a class="navbar-brand active logo_800_m" href="/"> <img
+				src="/Images/CompanyLogos/CompanyLogo.gif"
+				class="img-thumbnail img-responsive logo_800_h"
+				alt="Responsive image"> <!-- <font color="#E5E5E5">Mwav</font> --></a>
 		</div>
-		<!-- /.navbar-collapse -->
-	</nav>
-</div>
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="mgt2 collapse navbar-collapse"
+			id="bs-example-navbar-collapse-1">
+			<ul class="mgl5 nav navbar-nav">
+				<li><a href="/CompanyItem/ITProducts/OpenSRS/OpenSRS.jsp">IT
+						Solutions</a></li>
+				<li><a href="/CompanyItem/ITProducts/Aervision/Aervision.jsp">IT
+						Products</a></li>
+				<li><a href="/CompanyItem/WebSiteBuilding/WebSiteBuilding.jsp">WebSite
+						Building</a></li>
+				<li><a
+					href="/CompanyItem/DigitalMarketing/DigitalMarketing.jsp">Digital
+						Marketing</a></li>
+				<li><a href="/CompanyItem/ITConsulting/ITConsulting.jsp">IT
+						Consulting</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<!-- 일반로그인 부분 -->
+				<c:if test="${sessionScope.mbrLoginId ne null }">
+					<li><a href="/CustomerService/CS-MasterPage.jsp?mode=SDMyPage"
+						data-toggle="tooltip" data-placement="bottom"
+						data-original-title="${mbrLoginId}님
+								반갑습니다."> MyPage</a></li>
+					<li><a href="/member/LogOut.do">LogOut</a></li>
+				</c:if>
+				<c:if test="${sessionScope.mbrLoginId eq null }">
+					<li><a href="/login.do"><i class="fa fa-user fa-lg"></i></a></li>
+					<li><a href="/MasterPage_1.jsp?mode=Default"><i
+							class="fa fa-user-plus fa-lg"></i></a></li>
+				</c:if>
+
+			</ul>
+		</div>
+		<!-- /.container -->
+	</div>
+	<!-- /.navbar-collapse -->
+</nav>
+
 
 
 <!--  //////////////////////////////////// -->
 
-<%-- Header Carousel (슬라이드 쇼 부분- 헤더 포함 가능성있음.) 
+<%-- 
+  Header Carousel (슬라이드 쇼 부분- 헤더 포함 가능성있음.) 
      클래스명에 container 추가시 조정가능하나 더 이상한듯 ~!! 조정 요망
      
      중간으로 보내기 위해서 container 추가 (left 메뉴 안의 페이지와 크기 동일) // => 다시 빼고 영역 조절
 --%>
 <header id="myCarousel" class="mgt1_8 carousel slide"
 	style="height: 65% !important;">
+	
 	<!-- Indicators -->
 	<ol class="carousel-indicators">
 		<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -134,8 +133,8 @@
 				     추가적으로 
 				     
 				     localhost:8080/CWS 이부분은 server.xml 에서 지정한다.
-				-->
-						<jsp:include page="/board/bnsFrontList.do" flush="false" />
+				
+						<jsp:include page="/board/bnsFrontList.do" flush="false" />-->
 					</div>
 				</div>
 
@@ -144,10 +143,10 @@
 		<div class="item">
 			<div class="fill img-responsive customer_slideImg_600"
 				style="background-image: url('/CustomerService/zImage/pretty-351884_1920.jpg');"></div>
-			 <div class="carousel-caption" style="color: rgba(138, 109, 59, 0.14)">
+			<div class="carousel-caption" style="color: rgba(138, 109, 59, 0.14)">
 				<!-- 전체크기는 일괄되게 -->
 				<div class="hidden-xs hidden-sm col-md-8 row pull-right">
-					<h1 style="color:white;">Contact Address</h1>
+					<h1 style="color: white;">Contact Address</h1>
 					<br />
 					<div class="row text-center">
 						<div class="col-xs-3 col-sm-3 col-md-3"

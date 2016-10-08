@@ -48,6 +48,8 @@ public interface MemberService {
 
 	String selectOneMemberPkCheck ();
 
+	String selectOneSmMemberPkCheck(String smMember_id);
+
 
 
 

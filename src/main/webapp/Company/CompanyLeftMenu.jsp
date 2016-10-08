@@ -24,6 +24,17 @@
 		 jQuery(location).attr('pathname') -> /login/login.do
 		 jQuery(location).attr('search')-> ?key=value
 		 [출처] javascript & jquery location object 정보 - 현재 실행중이 URL정보|작성자 미친꼬북		
+		 
+		 또는
+		 function setActive() {
+			  aObj = document.getElementById('nav').getElementsByTagName('a');
+			  for(i=0;i<aObj.length;i++) { 
+			    if(document.location.href.indexOf(aObj[i].href)>=0) {
+			      aObj[i].className='active';
+			    }
+			  }
+			}
+			window.onload = setActive;
 		 */
 		var pgurl = window.location.pathname;
 		//alert(pgurl);

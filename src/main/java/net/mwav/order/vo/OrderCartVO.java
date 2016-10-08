@@ -1,11 +1,12 @@
 package net.mwav.order.vo;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 /*DB와 칼럼명 맞춰줘야한다. */
 public class OrderCartVO extends MasterVO { /*상속받았기 때문에 cartActio dao 부분이 가능한 것이다. */ 
 	private String orderCart_id;
-	private Timestamp ocChoiceDt;
+	private Date ocChoiceDt;
 	private int goods_id;
 	private String ocOption;
 	private int ocAmount;
@@ -14,7 +15,7 @@ public class OrderCartVO extends MasterVO { /*상속받았기 때문에 cartActi
 	private int statistics_id;
 	
 	public OrderCartVO() {}
-	public OrderCartVO(String orderCart_id, Timestamp ocChoiceDt, int goods_id, 
+	public OrderCartVO(String orderCart_id, Date ocChoiceDt, int goods_id, 
 				int ocAmount, int gcr_id, String ocIpAddress) {
 		//this.orderCart_id = orderCart_id;
 		this.setOrderCart_id(orderCart_id);
@@ -41,10 +42,10 @@ public class OrderCartVO extends MasterVO { /*상속받았기 때문에 cartActi
 	public void setOrderCart_id(String orderCart_id) {
 		this.orderCart_id = orderCart_id;
 	}
-	public Timestamp getOcChoiceDt() {
+	public Date getOcChoiceDt() {
 		return ocChoiceDt;
 	}
-	public void setOcChoiceDt(Timestamp ocChoiceDt) {
+	public void setOcChoiceDt(Date ocChoiceDt) {
 		this.ocChoiceDt = ocChoiceDt;
 	}
 	public int getGoods_id() {

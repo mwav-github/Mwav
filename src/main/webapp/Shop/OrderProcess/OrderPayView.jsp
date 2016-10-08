@@ -21,6 +21,47 @@ wish 는 https://www.wish.com/#cid=563db50683b75d5a54fedcfc 와 같이 id 값은
 <script>
 	$(document).ready(
 			function() {
+				$.extend({
+					getUrlVars : function() {
+						var vars = [], hash;
+						var hashes = window.location.href.slice(
+								window.location.href.indexOf('?') + 1).split(
+								'&');
+						for (var i = 0; i < hashes.length; i++) {
+							hash = hashes[i].split('=');
+							vars.push(hash[0]);
+							vars[hash[0]] = hash[1];
+						}
+						return vars;
+					},
+					getUrlVar : function(name) {
+						return $.getUrlVars()[name];
+					}
+				});
+				var byName = $.getUrlVar('mode');
+				var mode_ = "<c:out value='${mode}'/>"// 이것도 가능. ${mode} 아래의 단계를 인식 못함.
+
+				if (byName == 'SMbrInput') {
+					$('ul.setup-panel li:eq(1)').removeClass('disabled');
+					$('ul.setup-panel li:eq(0)').removeClass('active');
+					$('ul.setup-panel li:eq(1)').addClass('active');
+
+					$('ul.setup-panel li:eq(2)').addClass('disabled');
+					$('ul.setup-panel li:eq(0)').addClass('disabled');
+					$(this).remove();
+				} else if (mode_ == 'SDMbrInput') {
+					$('ul.setup-panel li:eq(2)').removeClass('disabled');
+					$('ul.setup-panel li:eq(0)').removeClass('active');
+					$('ul.setup-panel li:eq(2)').addClass('active');
+
+					$('ul.setup-panel li:eq(1)').addClass('disabled');
+					$('ul.setup-panel li:eq(0)').addClass('disabled');
+					$(this).remove();
+				}
+			});
+</script><script>
+	$(document).ready(
+			function() {
 
 				$('#openModal').click(function() {
 					$('#contact').modal();
@@ -356,19 +397,6 @@ wish 는 https://www.wish.com/#cid=563db50683b75d5a54fedcfc 와 같이 id 값은
 			});
 </script>
 
-<script>
-function orderCheck(count_sId) {
-			var theForm = document.orderCartForm;
-			if(count_sId == "0") {
-				alert("장바구니에 담긴 물품이 없습니다.");
-				return;
-			} else {
-				theForm.action = "orderPayView.do";
-				theForm.submit();
-			}
-				
-		}
-</script>
 </head>
 <body>
 	<!-- Navigation (=메인 메뉴 및 슬라이드 쇼 포함)
@@ -383,18 +411,76 @@ function orderCheck(count_sId) {
 	<div class="container">
 
 		<div class="enter"></div>
-		<!-- /.row -->
-		<!-- Page Features -->
-		<div class="row col-md-12">
+		<div class="enter"></div>
+		<div class="row">
+			<div class="col-md-12 col-sm-12">
+				<div class="row form-group">
+					<div class="col-xs-12">
+						<ul class="nav nav-pills nav-justified thumbnail setup-panel">
+							<!-- a태그는 css 기본적용 때문에 추가 -->
+							<li class="active"><a>
+									<h4 class="list-group-item-heading">Step 1</h4>
+									<p class="list-group-item-text">First step description</p>
+							</a></li>
+							<li class="disabled"><a>
+									<h4 class="list-group-item-heading">Step 2</h4>
+									<p class="list-group-item-text">Second step description</p>
+							</a></li>
+							<li class="disabled"><a>
+									<h4 class="list-group-item-heading">Step 3</h4>
+									<p class="list-group-item-text">Third step description</p>
+							</a></li>
+						</ul>
+					</div>
+				</div>
+				<c:if test="${param.mode == 'Default'}">
+					<!--/////////////////////////////////////////////////// -->
+					<jsp:include page="/CommonApps/Member/TermsOfUse.jsp" flush="false" />
+					<!--/////////////////////////////////////////////////// -->
+				</c:if>
+				<c:if test="${param.mode == 'SMbrInput'}">
+					<div class="row setup-content" id="step-2">
+						<div class="col-xs-12">
+							<h1 class="text-left">STEP 2</h1>
+
+							<!--/////////////////////////////////////////////////// -->
+							<jsp:include page="/CommonApps/Member/MbrInput.jsp" flush="false" />
+							<!--/////////////////////////////////////////////////// -->
+
+						</div>
+					</div>
+				</c:if>
+
+				<c:if test="${param.mode == 'SDMbrInput'}">
+
+					<div class="row setup-content" id="step-3">
+						<div class="col-xs-12">
+							<h1 class="text-left">STEP 3</h1>
+
+							<!--/////////////////////////////////////////////////// -->
+							<jsp:include page="/CommonApps/Member/MbrLandingPage.jsp"
+								flush="false" />
+							<!--/////////////////////////////////////////////////// -->
+						</div>
+					</div>
+				</c:if>
+
+			</div>
+		</div>
+
+		<div class="enter"></div>
+		<div class="enter"></div>
+
+		<div class="row">
 
 			<!-- Modal -->
 			<div class="orderCart" id="orderCart">
 				<form class="form-horizontal" name="orderCart_frm" id="cart_list"
-					method="post" action="/shop/order/orderPayView.do">
+					method="post">
 
 					<div class="container-fluid">
 						<div class="row">
-							<div class="col-sm-12 col-md-10 col-md-offset-1">
+							<div class="col-sm-12 col-md-12	">
 								<table class="table table-hover">
 									<colgroup>
 										<col class="col-md-1">
@@ -411,34 +497,29 @@ function orderCheck(count_sId) {
 											<th>Quantity</th>
 											<th class="text-center">Price</th>
 											<th class="text-center">Shipping</th>
-											<th class="text-center">Total</th>
+											<th class="text-center">Total </th>
 											<th></th>
 										</tr>
 									</thead>
 									<tbody>
 
 										<c:forEach var="VselectListOrderCartList"
-											items="${selectListOrderCartList}" varStatus="status">
+											items="${selectListOrderCartChecked}" varStatus="status">
 
 											<c:if
 												test="${VselectListOrderCartList.ocChoiceDt != '' || VselectListOrderCartList.ocChoiceDt ne null}">
 
 												<tr class="${VselectListOrderCartList.goods_id }">
-													<input type="hidden" id="goods_id" name="goods_idCount${status.count }"
-														value="${VselectListOrderCartList.goods_id }" />
 													<input type="hidden" id="goods_id" name="goods_id"
-														value="${VselectListOrderCartList.goods_id }" />	
+														value="${VselectListOrderCartList.goods_id }" />
 
 													<input type="hidden" id="orderCart_id" name="orderCart_id"
 														value="${VselectListOrderCartList.orderCart_id}" />
 
-													<input type="hidden" id="ocChoiceDt" name="ocChoiceDtCount${status.count }"
-														value="${VselectListOrderCartList.ocChoiceDt }" />
 													<input type="hidden" id="ocChoiceDt" name="ocChoiceDt"
-														value="${VselectListOrderCartList.ocChoiceDt }" />	
+														value="${VselectListOrderCartList.ocChoiceDt }" />
 
-													<td class="col-sm-1 col-md-1"><input type="checkbox"
-														name="listNum" value="${status.count }" checked></td>
+													<td class="col-sm-1 col-md-1">${status.count }</td>
 													<td class="col-sm-6 col-md-6">
 														<div class="media">
 															<a class="thumbnail pull-left" href="#"> <img
@@ -469,22 +550,7 @@ function orderCheck(count_sId) {
 													</c:if>
 
 
-													<%-- <input type="text" id="ocAmount"
-												name="ocAmount" value="${price}" /> --%>
 
-													<%-- <button type="button" class="btn btn-default btn-md qtyplus"
-													field='ocAmount' onClick="qtyplus(${price});">
-													<span class="glyphicon glyphicon glyphicon-plus
-"
-														aria-hidden="true"></span>
-												</button>
-
-												<button type="button"
-													class="btn btn-default btn-md qtyminus" field='ocAmount'
-													onClick="qtyminus(${price});">
-													<span class="glyphicon glyphicon glyphicon-minus"
-														aria-hidden="true"></span>
-												</button> --%>
 													<td class="col-sm-1 col-md-1 text-center "><select
 														name="ocAmount"
 														class="form-control input-sm ajax_btnUpdate ${VselectListOrderCartList.goods_id }"
@@ -539,7 +605,7 @@ function orderCheck(count_sId) {
 											<td> </td>
 											<td> </td>
 											<td><h5>Subtotal</h5></td>
-											<td class="text-right subtotal_Price"><strong>${map.totalConsumerPrice}</strong></td>
+											<td class="text-right subtotal_Price"><strong></strong></td>
 										</tr>
 										<tr>
 											<td> </td>
@@ -548,7 +614,7 @@ function orderCheck(count_sId) {
 											<td> </td>
 											<td> </td>
 											<td><h5>Estimated shipping</h5></td>
-											<td class="text-right total_DeliveryCost">${map.totalDeliveryCost}<h5>
+											<td class="text-right total_DeliveryCost"><h5>
 													<strong></strong>
 												</h5></td>
 										</tr>
@@ -560,35 +626,11 @@ function orderCheck(count_sId) {
 											<td> </td>
 											<td> </td>
 											<td><h5>Total</h5></td>
-											<td class="text-right total_Price">${map.AllTotal_ConsumerPrice}<h5>
+											<td class="text-right total_Price"><h5>
 													<strong> </strong>
 												</h5></td>
 										</tr>
-										<tr>
-											<td> </td>
-											<td> </td>
-											<td> </td>
-											<td> </td>
-											
-											<td>
-												<button type="button" class="btn btn-default">
-													<span class="glyphicon glyphicon-shopping-cart"></span>
-													Continue Shopping
-												</button>
-											</td>
-											<td>
-												<button type="button" class="btn btn-success">
-													Checkout <span class="glyphicon glyphicon-play"></span>
-												</button>
-											</td>
-											<td>
-												<button type="submit" class="btn btn-success">
-													Pay <span class="glyphicon glyphicon-play"></span>
-												</button>
-											</td>
-										</tr>
 									</tbody>
-
 								</table>
 							</div>
 						</div>
@@ -597,7 +639,185 @@ function orderCheck(count_sId) {
 			</div>
 		</div>
 
+
+		<div class="row marketing">
+			<div class="col-lg-6">
+
+				<h4>
+					<b>Product Name</b>
+				</h4>
+				<hr />
+
+				<form class="form-horizontal" role="form">
+					<fieldset>
+
+						<!-- Text input-->
+						<div class="form-group">
+							<div class="col-sm-12">
+								<input type="text" placeholder="Email Address"
+									class="form-control">
+							</div>
+						</div>
+						<hr>
+
+						<p>
+							<b>Shipping Details</b>
+						</p>
+
+						<!-- Text input-->
+						<div class="form-group">
+							<div class="col-sm-6">
+								<input type="text" placeholder="First Name" class="form-control">
+							</div>
+							<div class="col-sm-6">
+								<input type="text" placeholder="Last Name" class="form-control">
+							</div>
+						</div>
+
+						<!-- Text input-->
+						<div class="form-group">
+							<div class="col-sm-12">
+								<input type="text" placeholder="Shipping Address"
+									class="form-control">
+							</div>
+						</div>
+
+						<!-- Text input-->
+						<div class="form-group">
+							<div class="col-sm-12">
+								<input type="text" placeholder="City" class="form-control">
+							</div>
+						</div>
+
+						<!-- Text input-->
+						<div class="form-group">
+							<div class="col-sm-6">
+								<input type="text" placeholder="Phone #" class="form-control">
+							</div>
+							<div class="col-sm-6">
+								<input type="text" placeholder="Post Code" class="form-control">
+							</div>
+						</div>
+
+						<!-- Select Basic -->
+						<div class="form-group">
+							<div class="col-md-12">
+								<select id="Country" name="Country" class="form-control">
+									<option value="1">Sverige</option>
+								</select>
+							</div>
+						</div>
+
+					</fieldset>
+				</form>
+
+				<hr />
+				<div class="input-group">
+					<input type="text" class="form-control" placeholder="Coupon">
+					<span class="input-group-btn">
+						<button class="btn btn-default" type="button">Apply</button>
+					</span>
+				</div>
+				<!-- /input-group -->
+
+			</div>
+
+			<div class="col-lg-6">
+
+				<p>
+					<b>Product Options</b>
+				</p>
+
+				<p>Variable Type #1</p>
+
+				<div class="btn-group btn-group-justified" data-toggle="buttons">
+					<label class="btn btn-primary active"> <input type="radio"
+						name="options" id="option1" autocomplete="off" checked>Variable
+						#1
+					</label> <label class="btn btn-primary"> <input type="radio"
+						name="options" id="option2" autocomplete="off">Variable #2
+					</label> <label class="btn btn-primary"> <input type="radio"
+						name="options" id="option2" autocomplete="off">Variable #3
+					</label>
+				</div>
+
+				<hr />
+
+				<p>
+					<b>Checkout</b>
+				</p>
+
+				<div class="btn-group btn-group-justified" data-toggle="buttons">
+
+					<label class="btn btn-success"> <input type="radio"
+						name="options" id="option2" autocomplete="on">Once-Off
+					</label> <label class="btn btn-success"> <input type="radio"
+						name="options" id="option2" autocomplete="on">Monthly
+					</label> <label class="btn btn-success"> <input type="radio"
+						name="options" id="option3" autocomplete="off">Quarterly
+					</label>
+				</div>
+
+				<br />
+
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<p>
+							<span class="badge pull-right">249 SEK / monthly</span><span
+								class="badge pull-left">Variable #1</span>
+						</p>
+					</div>
+
+					<div class="panel-body">
+						<form role="form">
+							<div class="form-group">
+								<label for="cardNumber">Card Number</label>
+								<div class="input-group">
+									<input type="text" class="form-control" id="cardNumber"
+										placeholder="XXXX XXXX XXXX XXXX" required  /> <span
+										class="input-group-addon"><span
+										class="glyphicon glyphicon-lock"></span></span>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-7 col-md-7">
+									<div class="form-group">
+										<label for="expityMonth">Expiry Date</label> <br />
+
+										<div class="col-xs-6 col-lg-6 pl-ziro">
+											<input type="text" class="form-control" id="expityMonth"
+												placeholder="MM" required />
+										</div>
+										<div class="col-xs-6 col-lg-6 pl-ziro">
+											<input type="text" class="form-control" id="expityYear"
+												placeholder="YY" required />
+										</div>
+									</div>
+								</div>
+								<div class="col-xs-5 col-md-5 pull-right">
+									<div class="form-group">
+										<label for="cvCode">CVV Code</label> <input type="password"
+											class="form-control" id="cvCode" placeholder="XXX" required />
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+
+				<a href="http://bootsnipp.com/fullscreen/6nOBB"
+					class="btn btn-warning btn-lg btn-block" role="button"><span
+					class="glyphicon glyphicon-play"></span> CONFIRM ORDER</a>
+
+			</div>
+
+
+		</div>
+
 	</div>
+
+	</div>
+	<!-- /container -->
 	<!-- /.container -->
 
 	<div class="enter"></div>

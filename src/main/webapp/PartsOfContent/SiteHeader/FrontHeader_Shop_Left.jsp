@@ -8,11 +8,11 @@ $(document).ready(function(){
     $(".dropdown").hover(            
         function() {
             $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideDown("400");
-            $(this).toggleClass('open');        
+            $(this).toggleClass('open_');        
         },
         function() {
             $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideUp("400");
-            $(this).toggleClass('open');       
+            $(this).toggleClass('open_');       
         }
     )
 });
@@ -49,7 +49,7 @@ $(document).ready(function(){
 			</button>
 
 			<a class="navbar-brand active logo_800" href="/Shop/Index.jsp"> <img
-				src="http://placehold.it/150x40&text=Logo"
+				src="/Images/CompanyLogos/CompanyLogo.gif"
 				class="img-thumbnail img-responsive logo_800_h"
 				alt="Responsive image">
 			</a>
@@ -57,7 +57,7 @@ $(document).ready(function(){
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="mgt2 collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
-			<ul class="mgl5 nav navbar-nav">
+			<ul class="mgl5 mgt2 nav navbar-nav">
 
 				<li class="dropdown mega-dropdown"><a href="#"
 					class="dropdown-toggle" data-toggle="dropdown">Category <span
@@ -149,8 +149,9 @@ $(document).ready(function(){
 					</ul></li>
 				<li><a href="#">GNB_1</a></li>
 				<li><a href="#">GNB_2</a></li>
+				<li><a href="#">GNB_3</a></li>
 			</ul>
-			<div class="col-sm-4 col-md-4">
+			<div class="col-sm-4 col-md-4 mgt2">
 				<form class="navbar-form" role="search">
 					<div class="input-group">
 						<input type="text" class="form-control" placeholder="Search"

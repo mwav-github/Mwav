@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
 <html>
 
 <head>
@@ -18,7 +19,7 @@
     기타 : 추후 SPA 등 변경 예정
 -->
 <!-- /////////// -->
-<jsp:include page="Head_Import.jsp" flush="false" />
+<jsp:include page="/PartsOfContent/Head_Import.jsp" flush="false" />
 <!-- /////////// -->
 </head>
 

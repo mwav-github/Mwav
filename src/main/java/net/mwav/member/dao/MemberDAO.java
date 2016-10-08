@@ -397,11 +397,13 @@ public class MemberDAO extends AbstractDAO {
 	public boolean selectOneSnsMbrLoginIdCheck(String fsmMember_id) {
 		// TODO Auto-generated method stub
 		boolean check;
-		System.out.println("값이?="+ selectOne("member.selectOneSnsMbrLoginIdCheck", fsmMember_id));
+		//System.out.println("값이?="+ selectOne("member.selectOneSnsMbrLoginIdCheck", fsmMember_id));
 		if (selectOne("member.selectOneSnsMbrLoginIdCheck", fsmMember_id) == null) {
 			check = false; // 아이디가 없는 경우
+			System.out.println("아이디가 없는 경우");
 		} else {
 			check = true; // 아이디가 있는 경우
+			System.out.println("아이디가 있는 경우");
 		}
 
 		return check;
@@ -416,4 +418,9 @@ public class MemberDAO extends AbstractDAO {
 		return member_id;
 	}
 
+	public String selectOneSmMemberPkCheck(String smMember_id) {
+		// TODO Auto-generated method stub
+		return smMember_id = (String) selectOne("member.selectOneSmMemberPkCheck", smMember_id);
+	}
+	
 }

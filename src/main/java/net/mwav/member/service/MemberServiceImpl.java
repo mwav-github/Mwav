@@ -186,4 +186,10 @@ public class MemberServiceImpl implements MemberService {
 		return memberDAO.selectOneMemberPkCheck();
 	}
 
+	@Override
+	public String selectOneSmMemberPkCheck(String smMember_id) {
+		// TODO Auto-generated method stub
+		return memberDAO.selectOneSmMemberPkCheck(smMember_id);
+	}
+
 }

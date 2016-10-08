@@ -604,6 +604,7 @@ public class MemberController {
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 
+		//signController 로 진행
 		ModelAndView mv = new ModelAndView("/Index");
 
 		HttpSession session = request.getSession();
@@ -639,16 +640,18 @@ public class MemberController {
 		System.out.println("check = " + check);
 		
 		
-		if (check == false) {
+		if (check == false) { // 신규등록 
 
 			if (Gender.equals("male")) {
 				commandMap.put("Gender", 1);
 			} else {
 				commandMap.put("Gender", 0);
 			}
-
+            
 			memberService.insertSnsForm(commandMap.getMap());
 			System.out.println("insertSnsForm 성공!!!!!!");
+		}else{
+			//기존 있는 경우 
 		}
 
 		String mbrLoginId = Last_Name + " " + First_Name;

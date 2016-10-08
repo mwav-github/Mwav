@@ -24,16 +24,32 @@ function cartSubmit(ocAmount) {
         type: 'POST',
         data: formdata,
         contentType: 'application/x-www-form-urlencoded; charset=UTF-8', 
-        dataType: 'html',
         success: function (result) {
-            if (result){
-               //document.gdsView.elements['txt4'].aria-expanded="false"
+        	//alert(result);
+        	//alert(result.orderCart_id);
+        	//alert(result.goods_id);
+        	//alert(result.flag);
+            if (result.flag != 2){
+            	  //document.gdsView.elements['txt4'].aria-expanded="false"
             	//document.getElementById("cartbutton").setAttribute("data-toggle", "dropdown");
             	//document.getElementById("cartbutton").setAttribute("aria-expanded", "true");
             	//document.getElementById("dropup").addClass('open');
+            	if (result.flag == 1){
+            		//신규등록
+            		
+            		
+            		//document.getElementById("cart_onclick").setAttribute("onClick","javascript:window.location.href='/shop/order/orderList.do?orderCart_id="+result.orderCart_id+"';");
+            		$('#cart_onclick').attr("onClick","javascript:window.location.href='/shop/order/orderList.do?orderCart_id="+result.orderCart_id+"';")
+            	}
+            	//$('#cart_onclick').attr("onClick","sdfsdf");
             	$("#cart_menu").show();
             	
-        }
+            }
+            else{
+            	alert('장바구니 담기에 실패하였습니다.');
+            	
+            	return false;
+            }
         }
     });
 	}
@@ -74,6 +90,8 @@ function cartSubmit(ocAmount) {
 	<!-- Page Content -->
 	<!-- Page Content -->
 	<div class="container">
+
+
 
 		<!-- Page Heading/Breadcrumbs -->
 		<div class="row">
@@ -158,6 +176,8 @@ function cartSubmit(ocAmount) {
 
 										<input type="hidden" name="goods_id"
 											value="${selectOneGdsView.goods_id }" />
+											<input type="hidden" name="ocChoiceDt"
+											value="${selectOneGdsView.ocChoiceDt }" />
 
 										<%--추가예정 카테고리 --%>
 										<input type="hidden" name="gcr_id" value="123" /> <input
@@ -261,8 +281,11 @@ function cartSubmit(ocAmount) {
 															<ul class="dropdown-menu" id="cart_menu">
 																<%--href="#" 넣으면 클릭시 최상단으로 이동한다. --%>
 																<li><a onclick="target_hide('cart_menu');">쇼핑계속하기</a></li>
-																<li><a
-																	onclick="javascript:window.location.href='/shop/order/orderList.do?orderCart_id=${sessionScope.orderCart_id}'">카트보기</a></li>
+																
+																<%-- 최초 세션아이디 없이 접근하는 경우  /shop/order/orderList.do?orderCart_id=
+																     와 같이 비어서 노출된다. 이부분 어떻게 할지 생각 하기  --%>
+																<li><a id="cart_onclick"
+																	onClick="javascript:window.location.href='/shop/order/orderList.do?orderCart_id=${sessionScope.orderCart_id}'">카트보기</a></li>
 															</ul>
 														</div>
 													</td>

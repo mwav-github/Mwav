@@ -22,6 +22,8 @@
     <url-pattern>*.do</url-pattern>
   </filter-mapping>
    
+ 
+   
   <!-- Creates the Spring Container shared by all Servlets and Filters -->
   <!-- 이녀석은 말그대로 listener이구요 루트 컨텍스터에 정의되어 있는 것들을 모든 서블릿과 필터가 공유할 수 있게 해준다네요.-->
   <listener>
@@ -41,6 +43,7 @@
 			<param-value>
 				/WEB-INF/config/*-servlet.xml  <!-- 설정 파일이 있는 경로 -->
 			</param-value>
+			
 		</init-param>
 		<init-param>
             <param-name>enablePooling</param-name>
@@ -81,12 +84,24 @@
               이때 자식 Context들은 root Context가 제공하는 빈을 사용할 수 있기 때문에  ContextLoaderListener를 이용하여
               공통 빈을 설정하는 것이다. 
               이말이다.
-              -->
+                         -->
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath*:config/spring/context-*.xml</param-value>
   	</context-param>
-
+  
+  <!-- 16/09/24 sitemesh로 추가 -->
+  <filter>
+    <filter-name>sitemesh</filter-name>
+    <filter-class>
+        com.opensymphony.module.sitemesh.filter.PageFilter
+    </filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>sitemesh</filter-name>
+    <url-pattern>/Company/*</url-pattern> 
+  </filter-mapping> 
+  
  	<!-- error 페이지 (추후 변동예정) -->
  	<error-page>
     	<exception-type>java.lang.Throwable</exception-type>

@@ -1,15 +1,22 @@
-<%@ page contentType = "text/html;charset=utf-8" %>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<%@ page contentType="text/html;charset=utf-8"%>
+
+<meta name="robots" content="index, follow" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="">
-<meta name="author" content="">
-<link rel="icon"  href="/Images/CompanyLogos/CompanyLogo.ico" />
-<title>Mwav에 오신것을 환영합니다.</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta id="metaKeywords" name="keywords"
+	content="text/html; charset=utf-8" />
+<meta id="metaDescription" name="description"
+	content="text/html; charset=utf-8" />
+<meta name="Owner" content="Mwav.net" />
+<meta name="Author" content="Zeus, Peter J." />
+<meta name="copyright" content="All contents are copyright by Mwav.net" />
+<meta name="distribution" content="global" />
+<link rel="icon" href="/Images/CompanyLogos/CompanyLogo.ico" />
+<title></title>
 
 <%--인코딩 설정 --%>
 
-<!-- Ã«ÂÂ´ÃªÂ°Â Ã¬Â ÂÃ¬ÂÂÃ­ÂÂÃ«ÂÂ Ã¬ÂÂ¤Ã­ÂÂÃ¬ÂÂ¼ -->
+<!-- Mwav CSS-->
 <link href="/resources/CommonLibrary/CSS/mwav_style.css"
 	rel="stylesheet">
 
@@ -32,8 +39,7 @@
 	rel="stylesheet">
 
 
-
-<!-- Ã«ÂÂ´ÃªÂ°Â Ã¬Â ÂÃ¬ÂÂÃ­ÂÂÃ«ÂÂ Ã¬ÂÂ¤Ã­ÂÂÃ¬ÂÂ¼ -->
+<!-- Customize CSS -->
 <link href="/resources/CommonLibrary/CSS/myStyle.css" rel="stylesheet">
 
 
@@ -45,7 +51,8 @@
     <![endif]-->
 
 <!-- jQuery 달력에 사용. -->
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 
 
 <!-- jQuery Version 1.11.0 -->
@@ -68,8 +75,14 @@
 	});
 </script>
 <script>
-	/*ì¶í ë¹¼ê¸°*/
+	/*TOP버튼*/
 	$(document).ready(function() {
+		
+		//url 에 따라 타이틀 지정 
+		setTitle(location.pathname);
+		//alert(set_Title);
+		
+		
 		$('#back-to-top').fadeOut();
 		$(window).scroll(function() {
 			if ($(this).scrollTop() > 550) {

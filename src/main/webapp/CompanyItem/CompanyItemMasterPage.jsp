@@ -20,7 +20,7 @@
 		$("#left_menu a").each(function() {
 			//alert($(this).attr("href"));
 			//alert($(this).attr(''));
-			if ($(this).attr("href") == pgurl || $(this).attr("href") == '')
+			if ($(this).attr("href") == pgurl || $(this).attr("href") == '' || )
 				$(this).addClass("active");
 		})
 	});

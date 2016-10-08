@@ -19,20 +19,6 @@
 	});
 </script>
 
-<script>
-	$(function() {
-
-		var pgurl = window.location.pathname;
-		//alert(pgurl);
-
-		$("#left_menu a").each(function() {
-			//alert($(this).attr("href"));
-			//alert($(this).attr(''));
-			if ($(this).attr("href") == pgurl || $(this).attr("href") == '')
-				$(this).addClass("active");
-		})
-	});
-</script>
 
 <style>
 .affix {
@@ -95,59 +81,8 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 		<div class="row">
 			<!-- Sidebar Column left메뉴 추후 변경 예정<시작>-->
 			<div class="col-md-3">
-				<div class="panel-group">
-					<div class="panel list-group" id="left_menu">
-
-						<a class="list-group-item active" data-toggle="collapse"
-							data-target="#list_menu">Aervision</a>
-						<div id="list_menu" class="collapse child_left_menu">
-							<a href="#AerPass" class="list-group-item " data-toggle="tooltip"
-								data-placement="top" data-original-title="AerPass"><span
-								class="glyphicon glyphicon-chevron-right"></span> AerPass</a> <a
-								href="#AerCrowd" class="list-group-item " data-toggle="tooltip"
-								data-placement="top" data-original-title="AerCrowd"><span
-								class="glyphicon glyphicon-chevron-right"></span> AerCrowd</a> <a
-								href="#AerPalm" class="list-group-item " data-toggle="tooltip"
-								data-placement="top" data-original-title="AerPalm"><span
-								class="glyphicon glyphicon-chevron-right"></span> AerPalm</a> <a
-								href="#AerID" class="list-group-item " data-toggle="tooltip"
-								data-placement="top" data-original-title="AerID"><span
-								class="glyphicon glyphicon-chevron-right"></span> AerID</a> <a
-								href="#AerGate" class="list-group-item " data-toggle="tooltip"
-								data-placement="top" data-original-title="AerGate"><span
-								class="glyphicon glyphicon-chevron-right"></span> AerGate</a> <a
-								href="#IDMatch" class="list-group-item " data-toggle="tooltip"
-								data-placement="top" data-original-title="IDMatch"><span
-								class="glyphicon glyphicon-chevron-right"></span> IDMatch</a> <a
-								href="#eyeLock" class="list-group-item " data-toggle="tooltip"
-								data-placement="top" data-original-title="eyeLock"><span
-								class="glyphicon glyphicon-chevron-right"></span> eyeLock</a> <a
-								href="#Services" class="list-group-item " data-toggle="tooltip"
-								data-placement="top" data-original-title="Services"><span
-								class="glyphicon glyphicon-chevron-right"></span> Services</a> <a
-								href="#AboutUs" class="list-group-item " data-toggle="tooltip"
-								data-placement="top" data-original-title="AboutUs"><span
-								class="glyphicon glyphicon-chevron-right"></span> AboutUs</a>
-						</div>
-
-
-						<a href="/CompanyItem/ITProducts/OpenSRS/OpenSRS.jsp"
-							class="list-group-item " data-toggle="tooltip"
-							data-placement="top" data-original-title="OpenSRS">OpenSRS</a> <a
-							href="/CompanyItem/ITProducts/Azure/Azure.jsp"
-							class="list-group-item " data-toggle="tooltip"
-							data-placement="top" data-original-title="Azure">Azure</a> <a
-							href="/CompanyItem/ITProducts/Windows/Windows.jsp"
-							class="list-group-item" data-toggle="tooltip"
-							data-placement="top" data-original-title="Windows">Windows</a> <a
-							href="/CompanyItem/ITProducts/MSOffice/MSOffice.jsp"
-							class="list-group-item" data-toggle="tooltip"
-							data-placement="top" data-original-title="MSOffice">MSOffice</a>
-						<a href="/CompanyItem/ITProducts/InsWave/InsWave.jsp"
-							class="list-group-item " data-toggle="tooltip"
-							data-placement="top" data-original-title="InsWave">InsWave</a>
-					</div>
-				</div>
+				<jsp:include page="/CompanyItem/ITProducts/ITProductsLeftMenu.jsp" flush="false" />
+				
 			</div>
 			<!-- 끝 -->
 

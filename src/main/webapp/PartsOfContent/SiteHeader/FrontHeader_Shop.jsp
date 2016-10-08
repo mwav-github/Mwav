@@ -8,11 +8,11 @@ $(document).ready(function(){
     $(".dropdown").hover(            
         function() {
             $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideDown("400");
-            $(this).toggleClass('open');        
+            $(this).toggleClass('open_');        
         },
         function() {
             $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideUp("400");
-            $(this).toggleClass('open');       
+            $(this).toggleClass('open_');       
         }
     )
 });
@@ -40,8 +40,6 @@ http://bootsnipp.com/snippets/featured/bootstrap-mega-menu
 <nav id="BackToTop" class="menu_shop navbar" role="navigation">
 
 	<div class="container">
-
-
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse"
@@ -52,7 +50,7 @@ http://bootsnipp.com/snippets/featured/bootstrap-mega-menu
 			</button>
 
 			<a class="navbar-brand active logo_800" href="/Shop/Index.jsp"> <img
-				src="http://placehold.it/150x40&text=Logo"
+				src="/Images/CompanyLogos/CompanyLogo.gif"
 				class="img-thumbnail img-responsive logo_800_h"
 				alt="Responsive image">
 			</a>
@@ -60,7 +58,7 @@ http://bootsnipp.com/snippets/featured/bootstrap-mega-menu
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="mgt2 collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
-			<ul class="mgl5 nav navbar-nav">
+			<ul class="mgl5 mgt2 nav navbar-nav">
 
 				<li class="dropdown mega-dropdown"><a href="#"
 					class="dropdown-toggle" data-toggle="dropdown">Category <span
@@ -112,10 +110,7 @@ http://bootsnipp.com/snippets/featured/bootstrap-mega-menu
 									</ol>
 									<div class="carousel-inner" role="listbox">
 										<div class="item active">
-											<img
-												
-												src="/Shop/zImages/promotion_1.jpg"
-												>
+											<img src="/Shop/zImages/promotion_1.jpg">
 										</div>
 										<div class="item">
 											<img
@@ -151,8 +146,10 @@ http://bootsnipp.com/snippets/featured/bootstrap-mega-menu
 					</ul></li>
 				<li><a href="#">GNB_1</a></li>
 				<li><a href="#">GNB_2</a></li>
+				<li><a href="#">GNB_3</a></li>
+
 			</ul>
-			<div class="col-sm-4 col-md-4">
+			<div class="col-sm-4 col-md-4 mgt2">
 				<form class="navbar-form" role="search">
 					<div class="input-group">
 						<input type="text" class="form-control" placeholder="Search"
@@ -180,71 +177,70 @@ http://bootsnipp.com/snippets/featured/bootstrap-mega-menu
 
 <!--  //////////////////////////////////// -->
 
+<%-- container 는 960 //  row는 전체  --%>
 
-<div class="container">
-	<div id="myCarousel" class="carousel slide" data-ride="carousel">
-		<!-- Wrapper for slides -->
-		<%--높이값 고정 (기획전 이슈) --%>
-		<div class="carousel-inner" style="height:400px;">
-			<div class="item" >
-				<img
-					src="/Shop/zImages/promotion_1.jpg">
-				<div class="carousel-caption">
-					<h3>Headline</h3>
-					<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-						diam nonumy eirmod tempor invidunt ut labore et dolore magna
-						aliquyam erat, sed diam voluptua. Lorem ipsum dolor sit amet,
-						consetetur sadipscing elitr.</p>
-				</div>
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+	<!-- Wrapper for slides -->
+	<%--높이값 고정 (기획전 이슈) --%>
+	<div class="carousel-inner" style="height: 400px; margin-top: -22px;">
+		<div class="item">
+			<img src="/Shop/zImages/promotion_1.jpg">
+			<div class="carousel-caption">
+				<h3>Headline</h3>
+				<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+					diam nonumy eirmod tempor invidunt ut labore et dolore magna
+					aliquyam erat, sed diam voluptua. Lorem ipsum dolor sit amet,
+					consetetur sadipscing elitr.</p>
 			</div>
-			<!-- End Item -->
-			<div class="item">
-				<img
-					src="/Shop/zImages/promotion_2.png">
-				<div class="carousel-caption">
-					<h3>Headline</h3>
-					<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-						diam nonumy eirmod tempor invidunt ut labore et dolore magna
-						aliquyam erat, sed diam voluptua. Lorem ipsum dolor sit amet,
-						consetetur sadipscing elitr.</p>
-				</div>
-			</div>
-			<!-- End Item -->
-			<div class="item">
-				<img
-					src="/Shop/zImages/promotion_3.jpg">
-				<div class="carousel-caption">
-					<h3>Headline</h3>
-					<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-						diam nonumy eirmod tempor invidunt ut labore et dolore magna
-						aliquyam erat, sed diam voluptua. Lorem ipsum dolor sit amet,
-						consetetur sadipscing elitr.</p>
-				</div>
-			</div>
-			<!-- End Item -->
-			<div class="item active">
-				<img
-					src="/Shop/zImages/promotion_4.png">
-				<div class="carousel-caption">
-					<h3>Headline</h3>
-					<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-						diam nonumy eirmod tempor invidunt ut labore et dolore magna
-						aliquyam erat, sed diam voluptua. Lorem ipsum dolor sit amet,
-						consetetur sadipscing elitr.</p>
-				</div>
-			</div>
-			<!-- End Item -->
 		</div>
-		<!-- End Carousel Inner -->
-		<ul class="nav nav-pills nav-justified">
-			<li class="active" data-target="#myCarousel" data-slide-to="0" ><a data-toggle="tab"
-				href="#">About<small>Lorem ipsum dolor sit</small></a></li>
-			<li data-target="#myCarousel" data-slide-to="1" ><a data-toggle="tab"
-				href="#">Projects<small>Lorem ipsum dolor sit</small></a></li>
-			<li data-target="#myCarousel" data-slide-to="2" ><a data-toggle="tab"
-				href="#">Portfolio<small>Lorem ipsum dolor sit</small></a></li>
-			<li data-target="#myCarousel" data-slide-to="3" ><a data-toggle="tab"
-				href="#">Services<small>Lorem ipsum dolor sit</small></a></li>
-		</ul>
+		<!-- End Item -->
+		<div class="item">
+			<img src="/Shop/zImages/promotion_2.png">
+			<div class="carousel-caption">
+				<h3>Headline</h3>
+				<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+					diam nonumy eirmod tempor invidunt ut labore et dolore magna
+					aliquyam erat, sed diam voluptua. Lorem ipsum dolor sit amet,
+					consetetur sadipscing elitr.</p>
+			</div>
+		</div>
+		<!-- End Item -->
+		<div class="item">
+			<img src="/Shop/zImages/promotion_3.jpg">
+			<div class="carousel-caption">
+				<h3>Headline</h3>
+				<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+					diam nonumy eirmod tempor invidunt ut labore et dolore magna
+					aliquyam erat, sed diam voluptua. Lorem ipsum dolor sit amet,
+					consetetur sadipscing elitr.</p>
+			</div>
+		</div>
+		<!-- End Item -->
+		<div class="item active">
+			<img src="/Shop/zImages/promotion_4.png">
+			<div class="carousel-caption">
+				<h3>Headline</h3>
+				<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+					diam nonumy eirmod tempor invidunt ut labore et dolore magna
+					aliquyam erat, sed diam voluptua. Lorem ipsum dolor sit amet,
+					consetetur sadipscing elitr.</p>
+			</div>
+		</div>
+		<!-- End Item -->
 	</div>
+	<!-- End Carousel Inner -->
+	<ul class="nav nav-pills nav-justified">
+		<li class="active" data-target="#myCarousel" data-slide-to="0"><a
+			data-toggle="tab" href="#">About<small>Lorem ipsum dolor
+					sit</small></a></li>
+		<li data-target="#myCarousel" data-slide-to="1"><a
+			data-toggle="tab" href="#">Projects<small>Lorem ipsum
+					dolor sit</small></a></li>
+		<li data-target="#myCarousel" data-slide-to="2"><a
+			data-toggle="tab" href="#">Portfolio<small>Lorem ipsum
+					dolor sit</small></a></li>
+		<li data-target="#myCarousel" data-slide-to="3"><a
+			data-toggle="tab" href="#">Services<small>Lorem ipsum
+					dolor sit</small></a></li>
+	</ul>
 </div>

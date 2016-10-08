@@ -58,27 +58,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 		<div class="row">
 			<!-- Sidebar Column left메뉴 추후 변경 예정<시작>-->
 			<div class="col-md-3">
-				<div class="list-group">
-					<a href="/CompanyItem/ITProducts/Aervision/Aervision.jsp"
-						class="list-group-item" data-toggle="tooltip" data-placement="top"
-						data-original-title="Aervision">Aervision</a> <a
-						href="/CompanyItem/ITProducts/OpenSRS/OpenSRS.jsp"
-						class="list-group-item" data-toggle="tooltip" data-placement="top"
-						data-original-title="OpenSRS">OpenSRS</a> <a
-						href="/CompanyItem/ITProducts/Azure/Azure.jsp"
-						class="list-group-item " data-toggle="tooltip"
-						data-placement="top" data-original-title="Azure">Azure</a> <a
-						href="/CompanyItem/ITProducts/Windows/Windows.jsp"
-						class="list-group-item" data-toggle="tooltip" data-placement="top"
-						data-original-title="Windows">Windows</a> <a
-						href="/CompanyItem/ITProducts/MSOffice/MSOffice.jsp"
-						class="list-group-item active" data-toggle="tooltip"
-						data-placement="top" data-original-title="MSOffice">MSOffice</a>
-						<a
-						href="/CompanyItem/ITProducts/InsWave/InsWave.jsp"
-						class="list-group-item " data-toggle="tooltip" data-placement="top"
-						data-original-title="InsWave">InsWave</a>
-				</div>
+				<jsp:include page="/CompanyItem/ITProducts/ITProductsLeftMenu.jsp" flush="false" />
 			</div>
 
 			<div class="mgtl3 col-md-8">

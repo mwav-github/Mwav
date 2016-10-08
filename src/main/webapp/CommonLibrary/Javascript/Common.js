@@ -1,106 +1,220 @@
+function setTitle(url) {
+	/*
+	 * var pgurl = url.substr(window.location.href .lastIndexOf("/") + 1);
+	 */
+
+	var first_slash = url.indexOf("/");
+	var second_slash = url.indexOf("/", first_slash + 1);
+	var third_slash = url.indexOf("/", second_slash + 1);
+	var fourth_slash = url.indexOf("/", third_slash + 1);
+
+	var last_slash = url.lastIndexOf("/");
+	var lastDot = url.lastIndexOf('.');
+
+	var url_1depth = url.substring(first_slash + 1, second_slash);
+	var url_2depth = url.substring(second_slash + 1, third_slash);
+	var url_3depth = url.substring(third_slash + 1, fourth_slash);
+
+	var last_depth = url.substring(last_slash + 1, lastDot);
+
+	// substring vs substr은 다르다.
+	// http://aljjabaegi.tistory.com/127
+
+	// alert(url);
+	// alert(first_slash);
+	// alert(second_slash);
+	// alert(third_slash);
+	// alert(url_1depth);
+	// alert(url_2depth);
+	// alert(url_1depth);
+	// alert(last_depth);
+
+	var set_Title = "";
+	
+	//이걸 캐치프레이즈라고 한다.
+	var main_Title = "Unleash your infinite possibilities with IT Optimization!!";
+	
+	var aervision_Title = "Biometric authentication & computer vision & machine learning";
+
+	// 대분류 안에 소분류로 !
+	if (url_1depth == "Company") {
+		set_Title = "[Mwav.net] >> [" + url_1depth + " > " + last_depth
+				+ "] - " + main_Title;
+	} else if (url_1depth == "/CustomerService") {
+		url_1depth = "CS";
+		set_Title = "[Mwav.net] >> [" + url_1depth + " > " + last_depth
+				+ "] - " + main_Title;
+
+	} else if (url_1depth == "CompanyItem") {
+		// 여기는 디지털마케팅 등 포함 2depth로
+
+		if (url_2depth == "ITProducts" || url_2depth == "ITSolutions") {
+			if (url_3depth == "OpenSRS") {
+				set_Title = "[Mwav.net] >> [" + url_3depth + "] - "
+						+ main_Title;
+			} else if (url_3depth == "Aervision") {
+				set_Title = "[Mwav.net] >> [" + url_3depth + "> " + aervision_Title +"] - "
+						+ main_Title;
+			} else if (url_3depth == "Microsoft") {
+				set_Title = "[Mwav.net] >> [" + url_3depth + "] - "
+						+ main_Title;
+			} else if (url_3depth == "InsWave") {
+				set_Title = "[Mwav.net] >> [" + url_3depth + "] - "
+						+ main_Title;
+			}
+		}
+		// 디지털 마케팅 등
+		else {
+			set_Title = "[Mwav.net] >> [" + url_2depth + " > " + last_depth
+					+ "] - " + main_Title;
+		}
+	} else {
+		if (url_1depth == "/" && last_depth != "/") {
+			set_Title = "[Mwav.net] >> [" + last_depth + "] - " + main_Title;
+		} else if (url_1depth == "/" && last_depth == "/") {
+			set_Title = "[Mwav.net] >> " + main_Title;
+		} else {
+			//.do 등등 일단은 고객친화적이게 임시 변환
+			set_Title = "[Mwav.net] - " + main_Title;
+		}
+	}
+
+	// alert(set_Title);
+	// not fine이나 없으면안됨 그래서 else로 일괄 처리
+	document.title = set_Title;
+}
+
+function cartlist_sum() {
+	// 계산
+
+	// alert('계산고고');
+	var getSum = function(selector) {
+		var sum = 0;
+		var selector = selector;
+		// alert(selector);
+
+		$('#cart_list').find(selector).each(function(index, element) {
+			sum += parseInt($(element).text());
+		});
+
+		return sum;
+	};
+
+	$('#cart_list').find('.subtotal_Price').each(function(index, element) {
+		// $(this).text('Total: ' + getSum('.eachdelivery'));
+		$(this).text(getSum('.eachPrice'));
+	});
+
+	$('#cart_list').find('.total_DeliveryCost').each(function(index, element) {
+		$(this).text(getSum('.eachDeliveryCost'));
+	});
+	$('#cart_list').find('.total_Price').each(function(index, element) {
+		$(this).text(getSum('.eachTotalPrice'));
+	});
+}
+
 function target_show(target) {
-    document.getElementById(target).style.display = 'block';
+	document.getElementById(target).style.display = 'block';
 }
 
 function target_hide(target) {
-	
-    document.getElementById(target).style.display = 'none';
+
+	document.getElementById(target).style.display = 'none';
 }
 
 // plus minus
 function qtyplus(price) {
 	// Stop acting like a button
-	//e.preventDefault();
+	// e.preventDefault();
 	event.preventDefault();
 	// Get the field name
 	fieldName = $(".qtyplus").attr('field');
-	//alert(fieldName);
-	
+	// alert(fieldName);
+
 	// Get its current value
 	var currentVal = parseInt($('input[name=' + fieldName + ']').val());
 	var price = price;
 	// If is not undefined
 	if (!isNaN(currentVal)) {
-		
+
 		var afterCount = currentVal + 1;
 		// Increment
 		$('input[name=' + fieldName + ']').val(afterCount);
-		
+
 		goodPriceCalutate(price, afterCount);
 	} else {
 		// Otherwise put a 0 there
 		$('input[name=' + fieldName + ']').val(0);
 	}
-	
-	//가격이 0일때
-    if (price == 0){
-    	alert('가격이 0원입니다. ');
-    	return false;
-    }
+
+	// 가격이 0일때
+	if (price == 0) {
+		alert('가격이 0원입니다. ');
+		return false;
+	}
 }
 
 function qtyminus(price) {
 	// Get the field name
-    fieldName = $(".qtyminus").attr('field');
-    
-    event.preventDefault();
-    //alert(fieldName);
-    // Get its current value
-    var currentVal = parseInt($('input[name='+fieldName+']').val());
-    var price = price;
-    // If it isn't undefined or its greater than 0
-    if (!isNaN(currentVal) && currentVal > 0) {
-        // Decrement one
-    	var afterCount = currentVal - 1;
-        $('input[name='+fieldName+']').val(afterCount);
-        
-        goodPriceCalutate(price, afterCount);
-    } else {
-        // Otherwise put a 0 there
-        $('input[name='+fieldName+']').val(0);
-        alert('갯수는 0 이하는 불가합니다.')
-    }
-    
-    //가격이 0일때
-    if (price == 0){
-    	alert('가격이 0원입니다. ');
-    	return false;
-    }
+	fieldName = $(".qtyminus").attr('field');
+
+	event.preventDefault();
+	// alert(fieldName);
+	// Get its current value
+	var currentVal = parseInt($('input[name=' + fieldName + ']').val());
+	var price = price;
+	// If it isn't undefined or its greater than 0
+	if (!isNaN(currentVal) && currentVal > 0) {
+		// Decrement one
+		var afterCount = currentVal - 1;
+		$('input[name=' + fieldName + ']').val(afterCount);
+
+		goodPriceCalutate(price, afterCount);
+	} else {
+		// Otherwise put a 0 there
+		$('input[name=' + fieldName + ']').val(0);
+		alert('갯수는 0 이하는 불가합니다.')
+	}
+
+	// 가격이 0일때
+	if (price == 0) {
+		alert('가격이 0원입니다. ');
+		return false;
+	}
 }
 
-//goods
+// goods
 function goodPriceCalutate(price, ocAmount) {
 
-	//alert('1');
-	//var ocAmount = document.getElementById('ocAmount').value;
-	//alert(ocAmount);
-	//var ocAmount = document.getElementById('ocAmount');
-	// 여러개 써야하는 경우도 있기 때문에 변경 var exshow1 = document.getElementById('totalprice');
-	var exshow1 =  document.getElementsByClassName('totalprice')[0];
-	var exshow2 =  document.getElementsByClassName('totalprice')[1];
-	
-	
+	// alert('1');
+	// var ocAmount = document.getElementById('ocAmount').value;
+	// alert(ocAmount);
+	// var ocAmount = document.getElementById('ocAmount');
+	// 여러개 써야하는 경우도 있기 때문에 변경 var exshow1 =
+	// document.getElementById('totalprice');
+	var exshow1 = document.getElementsByClassName('totalprice')[0];
+	var exshow2 = document.getElementsByClassName('totalprice')[1];
 
 	var totalprice = (price * ocAmount);
-	//alert(totalprice);
+	// alert(totalprice);
 
-	//var content = ex.value;
-	//exshow.innerHTML = content;
+	// var content = ex.value;
+	// exshow.innerHTML = content;
 	exshow1.innerHTML = totalprice;
 	exshow1.value = totalprice;
 	exshow2.innerHTML = totalprice;
 	exshow2.value = totalprice;
 };
 
-//===================================Order
+// ===================================Order
 
 function orderCartPut(cartForm, type) {
 
 	var frm = cartForm;
 	alert(frm);
-	//var ocAmount = cartForm.value.ocAmount;
+	// var ocAmount = cartForm.value.ocAmount;
 	var goods_id = frm.goods_id.value;
-	//var gcr_id = cartForm.value.gcr_id;
+	// var gcr_id = cartForm.value.gcr_id;
 
 	alert(goods_id);
 
@@ -110,7 +224,7 @@ function orderCartPut(cartForm, type) {
 
 		alert("장바구니왔다");
 		url = "/Shop/Order/orderForm.do?goods_id=" + goods_id + "&type=" + type;
-		//location.href= url;
+		// location.href= url;
 	} else {
 
 		alert("장바구니왔다");
@@ -139,7 +253,7 @@ function changingAction(mode) {
 	}
 	theForm.submit();
 }
-//===================================Order
+// ===================================Order
 
 function myconfirm(type) {
 
@@ -220,54 +334,55 @@ function resizeImageSize() {
 
 function res_Text() {
 
-	//선호 해상도 (이미지가 정상적으로 보이는 기준점 해상도-자동화 예정)
+	// 선호 해상도 (이미지가 정상적으로 보이는 기준점 해상도-자동화 예정)
 	var preferredSize = 1280 * 720;
 
 	var secW = $(".sec").width();
 	var secH = $(".sec").height();
 
-	//현재  해상도 
+	// 현재 해상도
 	var currentSize = secW * secH;
 
-	//해상도에 따른 이미지 비율
+	// 해상도에 따른 이미지 비율
 	var scalePercentage = Math.sqrt(currentSize) / Math.sqrt(preferredSize);
 
-	//지정 폰트
+	// 지정 폰트
 	var newFontSize = 0;
 
-	//선호 폰트 사이즈 (자동화 예정)
-	var preferredFontSize = [ 650, 460, 185, 153, 139, 108 ]; // 선호폰트 사이즈 % (/100 하면 em)
+	// 선호 폰트 사이즈 (자동화 예정)
+	var preferredFontSize = [ 650, 460, 185, 153, 139, 108 ]; // 선호폰트 사이즈 %
+																// (/100 하면 em)
 
 	newFontSize = (preferredFontSize[0] * scalePercentage) / 100;
 	$(".large1").css("font-size", newFontSize + 'em');
 
-	//큰 폰트 (기존 60px)
+	// 큰 폰트 (기존 60px)
 	newFontSize = (preferredFontSize[1] * scalePercentage) / 100;
 	$(".large2").css("font-size", newFontSize + 'em');
 
-	//중간 폰트 (기존 24px) 
+	// 중간 폰트 (기존 24px)
 	newFontSize = (preferredFontSize[2] * scalePercentage) / 100;
 	$(".medium1").css("font-size", newFontSize + 'em');
 
-	//중간 폰트 (기존 20px)
+	// 중간 폰트 (기존 20px)
 	newFontSize = (preferredFontSize[3] * scalePercentage) / 100;
 	$(".medium2").css("font-size", newFontSize + 'em');
 
-	//작은 폰트 (기존 18px)
+	// 작은 폰트 (기존 18px)
 	newFontSize = (preferredFontSize[4] * scalePercentage) / 100;
 	$(".small1").css("font-size", newFontSize + 'em');
 
-	//작은 폰트 (기존 14px)
+	// 작은 폰트 (기존 14px)
 	newFontSize = (preferredFontSize[5] * scalePercentage) / 100;
 	$(".small2").css("font-size", newFontSize + 'em');
 }
 
 function chkLoginPolicy(mbrLoginId) {
 
-	//로그인 아이디 계정정책 확인
+	// 로그인 아이디 계정정책 확인
 	var re1 = "/^[a-zA-Z]{4,20}/g"; // 첫글자는 영문자 및 4~20글자 = true
 	var re2 = "/s$/"; // 공백인 경우 true
-	var re3 = "/[`~!@#$%^&*|\\\'\";,:\/?=<>+-]/gi"; //[]들어가있다면 false ^가 반대를 의미
+	var re3 = "/[`~!@#$%^&*|\\\'\";,:\/?=<>+-]/gi"; // []들어가있다면 false ^가 반대를 의미
 
 	if (re1.test(mbrLoginId) == false) {
 		alert("첫글자는 영문자 및 4~20글자로 구성되어야 합니다.");

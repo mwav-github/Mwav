@@ -123,6 +123,13 @@ http://www.egovframe.go.kr/wiki/doku.php?id=egovframework:dev:dep:build:maven
             <version>1.0</version>
         </dependency> 
           
+        <!-- SiteMesh 추가 16/09/24 -->  
+        <dependency>
+   			 <groupId>opensymphony</groupId>
+    	     <artifactId>sitemesh</artifactId>
+   			 <version>2.4.2</version>
+		</dependency>  
+          
          <!-- MyBatis -->
         <dependency>
             <groupId>org.mybatis</groupId>
