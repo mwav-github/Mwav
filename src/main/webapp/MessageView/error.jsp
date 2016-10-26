@@ -47,7 +47,7 @@ body {
  							value="${requestScope['javax.servlet.error.exception_type']}" /> <br>
                                                 exception : 
 						<c:out value="${requestScope['javax.servlet.error.exception']}" /> <br>
-						<%--message : 	
+						message : 	
 						<c:out value="${requestScope['javax.servlet.error.message']}" /> <br>
 						
 						request_uri :
@@ -56,7 +56,7 @@ body {
 						
 						
 						servlet_name : 
-						<c:out value="${requestScope['javax.servlet.error.servlet_name']}" /> <br>--%>
+						<c:out value="${requestScope['javax.servlet.error.servlet_name']}" /> <br>
 					</h6>
 					<h2>		
 						Error
@@ -72,7 +72,7 @@ body {
 						<c:out value="${requestScope['javax.servlet.error.message']}" />
 						<c:out value="${requestScope['javax.servlet.error.request_uri']}" />
 						<c:out value="${requestScope['javax.servlet.error.exception']}" />
-						<c:out value="${requestScope['javax.servlet.error.servlet_name']}" /> --%>
+						<c:out value="${requestScope['javax.servlet.error.servlet_name']}" />  --%>
 					</div>
 					<div class="error-actions">
 						<a href="/" class="btn btn-primary btn-lg"><span

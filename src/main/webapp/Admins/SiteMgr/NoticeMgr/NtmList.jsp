@@ -104,6 +104,7 @@
 											<c:when test="${fn:length(selectListNtmList) > 0}">
 												<c:forEach var="RselectListNtmList"
 													items="${selectListNtmList}">
+												
 													<tr>
 														<input type="hidden" id="bUsers_id" name="bUsers_id"
 															value="${RselectListNtmList.bUsers_id }">
@@ -119,6 +120,7 @@
 																onclick="javascript:window.location.href='/admin/boardNotice/ntmUpdate.do?bUsers_id=${RselectListNtmList.bUsers_id}'">수정</button>
 														</td>
 													</tr>
+												
 												</c:forEach>
 											</c:when>
 											<c:otherwise>

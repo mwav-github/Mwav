@@ -107,6 +107,8 @@
 											<c:when test="${fn:length(selectListNsmList) > 0}">
 												<c:forEach var="RselectListNsmList"
 													items="${selectListNsmList}">
+
+													<%-- <c:if test="${RselectListNsmList.bnDeleteDt ne null}"> --%>
 													<tr>
 														<input type="hidden" id="bNews_id" name="bNews_id"
 															value="${RselectListNsmList.bNews_id}">
@@ -116,13 +118,15 @@
 															href="javascript:window.location.href='/admin/boardNews/nsmView.do?bNews_id=${RselectListNsmList.bNews_id}'">${RselectListNsmList.bnTitle}</a></td>
 														<td class="hidden-xs">${RselectListNsmList.bnUpdateDt}</td>
 														<td>
-															<button type="button" class="btn btn-info"
-																onclick="javascript:window.location.href='/admin/boardNews/nsmView.do?bNews_id=${RselectListNsmList.bNews_id}'">보기</button>&nbsp;
+																<button type="button" class="btn btn-info"
+																	onclick="javascript:window.location.href='/admin/boardNews/nsmView.do?bNews_id=${RselectListNsmList.bNews_id}&pageNum=${pageNum}'">보기</button>&nbsp;
 															<button type="button" class="btn btn-warning"
-																onclick="javascript:window.location.href='/admin/boardNews/nsmUpdate.do?bNews_id=${RselectListNsmList.bNews_id}'">수정</button>
-														</td>
+																	onclick="javascript:window.location.href='/admin/boardNews/nsmUpdate.do?bNews_id=${RselectListNsmList.bNews_id}&pageNum=${pageNum}'">수정</button>
+															</td>
 													</tr>
+													<%-- </c:if> --%>
 												</c:forEach>
+
 											</c:when>
 											<c:otherwise>
 												<tr>

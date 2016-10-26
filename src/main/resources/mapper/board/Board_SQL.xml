@@ -38,7 +38,7 @@
 	
 	<select id="selectOneGetTotalCount" resultType="int">
 	<![CDATA[
-	   select count(*) from BoardNews_tbl
+	   select count(*) from BoardNews_tbl WHERE bnDeleteDt IS NULL 
 	]]>
 	</select>
 	
@@ -59,7 +59,7 @@
 	
 	<select id="selectListBnsList" parameterType="hashmap" resultType="hashmap">
 	<![CDATA[
-	select c.* from (select @ROWNUM := @ROWNUM + 1 AS ROWNUM, a.* from (select * from BoardNews_tbl order by bnInsertDt desc) a,  (SELECT @ROWNUM := 0) R ) c where c.ROWNUM >= #{startRow} and c.ROWNUM <= #{endRow}
+	select c.* from (select @ROWNUM := @ROWNUM + 1 AS ROWNUM, a.* from (select * from BoardNews_tbl where bnDeleteDt IS NULL order by bnInsertDt desc) a,  (SELECT @ROWNUM := 0) R ) c where c.ROWNUM >= #{startRow} and c.ROWNUM <= #{endRow} 
 	]]>
 	</select>
 	
@@ -111,7 +111,7 @@
 	
 	<select id="selectNoticeOneGetTotalCount" resultType="int">
 	<![CDATA[
-	   select count(*) from BoardUser_tbl
+	   select count(*) from BoardUser_tbl WHERE buDeleteDt IS NULL
 	]]>
 	</select>
 	
@@ -125,7 +125,7 @@
     
     <select id="selectListBuList" parameterType="hashmap" resultType="hashmap">
 	<![CDATA[
-	select c.* from (select @ROWNUM := @ROWNUM + 1 AS ROWNUM, a.* from (select * from BoardUser_tbl order by buInsertDt desc) a,  (SELECT @ROWNUM := 0) R ) c where c.ROWNUM >= #{startRow} and c.ROWNUM <= #{endRow}
+	select c.* from (select @ROWNUM := @ROWNUM + 1 AS ROWNUM, a.* from (select * from BoardUser_tbl where buDeleteDt IS NULL order by buInsertDt desc) a,  (SELECT @ROWNUM := 0) R ) c where c.ROWNUM >= #{startRow} and c.ROWNUM <= #{endRow} 
 	]]>
 	</select>
 	

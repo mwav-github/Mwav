@@ -127,6 +127,12 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		return memberDAO.selectOneMbrLoginIdSeek(map);
 	}
+	
+	@Override
+	public String selectOneMbrLoginPWSeek(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return memberDAO.selectOneMbrLoginPWSeek(map);
+	}
 
 	@Override
 	public boolean selectOneMbrTempLoginPwSeek(Map<String, Object> map) {

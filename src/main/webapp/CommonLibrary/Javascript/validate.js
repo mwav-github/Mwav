@@ -1,3 +1,17 @@
+function emptyCheck(checkVar_, alert_txt_) {
+		    var checkVar = checkVar_;
+		    var alert_txt = alert_txt_;
+			
+		    if (checkVar == null || checkVar == "") {
+		        alert(alert_txt);
+		        return false;
+		    }
+		    else{
+		    	return true;
+		    }
+		}
+
+
 function chkLoginPolicy() {
 
 	chkLoginId_1 = document.getElementById("chkLoginId");

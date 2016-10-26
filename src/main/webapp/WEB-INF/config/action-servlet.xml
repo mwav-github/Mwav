@@ -74,7 +74,7 @@
 		<property name="port" value="587" /> <!-- 포트번호 기본 25 -->
 		<property name="defaultEncoding" value="utf-8" /> <!-- 기본인코딩 -->
 		<property name="username" value="ebizpromwav@gmail.com" /> <!-- 메일주소 -->
-		<property name="password" value="qkqh5501" /> <!-- 메일비밀번호 -->
+		<property name="password" value="qkqh1248!!" /> <!-- 메일비밀번호 -->
 		<property name="javaMailProperties">
 			<props>
 				<prop key="mail.transport.protocol">smtp</prop>

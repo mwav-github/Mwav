@@ -8,6 +8,13 @@
 <!-- /////////// -->
 <jsp:include page="/PartsOfContent/Head_Import.jsp" flush="false" />
 <!-- /////////// -->
+<meta property="fb:app_id" content="300013767010843" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="[Mwav.net] >> [Aervision]" />
+<meta property="og:url" content="http:/www.mwav.net/CompanyItem/ITProducts/Aervision/Aervision.jsp" />
+<meta property="og:description" content="[Mwav.net] >> [Aervision> Biometric authentication & computer vision & machine learning] - Unleash your infinite possibilities with IT Optimization!!" />
+<meta property="og:image" content="http:/www.mwav.net/CompanyItem/ITProducts/Images/AerVison(h250).png" />
+
 <script>
 	$(document).ready(function() {
 		/* affix the navbar after scroll below header */
@@ -70,7 +77,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 				</h1>
 				<ol class="breadcrumb">
 					<li><a href="index.html">Home</a></li>
-					<li>CompanyItem</li>
+					<li>Company Item</li>
 					<li class="active">IT Products</li>
 				</ol>
 			</div>
@@ -81,8 +88,9 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 		<div class="row">
 			<!-- Sidebar Column left메뉴 추후 변경 예정<시작>-->
 			<div class="col-md-3">
-				<jsp:include page="/CompanyItem/ITProducts/ITProductsLeftMenu.jsp" flush="false" />
-				
+				<jsp:include page="/CompanyItem/ITProducts/ITProductsLeftMenu.jsp"
+					flush="false" />
+
 			</div>
 			<!-- 끝 -->
 
@@ -221,14 +229,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 						</h3>
 					</div>
 					<div class="enter"></div>
-					<div class="col-xs-6 col-sm-4 col-md-4">
-						<img class="thumbnail img-responsive text-center"
-							alt="Bootstrap template"
-							src="/CompanyItem/zImage/aercrowd_scanner.jpg"
-							data-toggle="tooltip" data-placement="middle"
-							data-original-title="AerCrowd Scanner">
 
-					</div>
 					<div class="col-xs-6 col-sm-8 col-md-8">
 
 						<p>AerCrowd는 분주한 도시지역, 공항, 철도 역, 쇼핑센터, 스포츠 경기장, 고속도로와 같은 유동인구
@@ -241,8 +242,17 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 							감지할 수 있다는 것을 의미입니다.</p>
 						<p>따라서 AerCrowd 스캐너는 특정 시간과 장소에 상주하는 사람과 차량의 수를 측정할 수 있습니다.</p>
 					</div>
-					<div class="enter"></div>
-					<div class="enter"></div>
+					<div class="col-xs-6 col-sm-4 col-md-4">
+						<img class="thumbnail img-responsive text-center"
+							alt="Bootstrap template"
+							src="/CompanyItem/zImage/aercrowd_scanner.jpg"
+							data-toggle="tooltip" data-placement="middle"
+							data-original-title="AerCrowd Scanner">
+
+						<div class="enter"></div>
+						<div class="enter"></div>
+					</div>
+
 					<!-- /.row -->
 				</div>
 
@@ -251,6 +261,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 
 				<!-- Aervision_AerPalm -->
 				<div class="row" id="AerPalm">
+
 					<div class="text-center">
 						<%--아래 a태그 자체에 색 적용시 가능하다. --%>
 						<h1 style="color: #990085;">AerPalm – 손 바닥 생체정보 인증과 출입통제 장치</h1>
@@ -265,7 +276,10 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 						<div class="enter"></div>
 					</div>
 					<div class="col-xs-8 col-sm-8 col-md-8">
-						<strong>AerPalm</strong> <br>
+						<strong>AerPalm     <a href="/CompanyItem/ITProducts/Aervision/Aervision_before.jsp#AerPalm" class="btn btn-danger btn-sm"
+								data-toggle="tooltip" data-placement="right"
+								data-original-title="자세히보기." target="_blank"><span
+									class="glyphicon glyphicon glyphicon-search"></span></a></strong> <br>
 						<p>손 바닥 정맥 생체정보 센서 기술인 AerPalm은 비접촉식이며 극도로 정확합니다. 보안카드를 이용할
 							때처럼 동일한 방법으로 스캐너에 간단히 손을 움직여 인식시키면 됩니다. 단지 보안카드가 없다는 것이 다른 점입니다.</p>
 
@@ -444,7 +458,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 
 				<!-- Aervision_IDMatch -->
 				<div class="row" id="eyeLock">
-					
+
 					<div class="text-center">
 						<%--아래 a태그 자체에 색 적용시 가능하다. --%>
 						<h2 style="color: #990085;">eyeLock – 진보된 홍채 인증 기술</h2>

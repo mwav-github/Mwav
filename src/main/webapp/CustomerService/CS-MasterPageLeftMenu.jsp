@@ -80,7 +80,7 @@
 		data-original-title="자주하는 질문">FAQ</a> <a
 		href="/CustomerService/QnA/QnA.jsp" class="list-group-item"
 		data-toggle="tooltip" data-placement="top"
-		data-original-title="묻고 답하기">QnA</a> <a
+		data-original-title="묻고 답하기">Q&A</a> <a
 		href="/CustomerService/Contact/Contact.jsp" class="list-group-item"
 		data-toggle="tooltip" data-placement="top" data-original-title="담당자안내">Contact</a>
 	<a href="/CustomerService/SiteMap/SiteMap.jsp" class="list-group-item"

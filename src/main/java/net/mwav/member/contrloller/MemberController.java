@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import net.common.common.CommandMap;
+import net.mwav.common.module.Common_Utils;
 import net.mwav.common.module.EmailSender;
 import net.mwav.member.service.MemberService;
 
@@ -41,6 +42,8 @@ public class MemberController {
 
 	@Resource(name = "memberService")
 	private MemberService memberService;
+	
+	Common_Utils cu = new Common_Utils();
 	
 	
 	/*
@@ -243,20 +246,46 @@ public class MemberController {
 	 * 변경 처리 만약 중간에 창을 닫고 로그인 시도하면 안되므로~!
 	 */
 	@RequestMapping(value = "/member/mbrTempLoginPwUpdate.do")
-	public @ResponseBody boolean updateMbrTempLoginPw(CommandMap commandMap,
-			HttpServletRequest request) throws Exception {
+	public @ResponseBody String updateMbrTempLoginPw(CommandMap commandMap,
+			HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-		boolean updateMbrTempLoginPw = memberService
-				.updateMbrTempLoginPw(commandMap.getMap());
+		boolean updateMbrTempLoginPw;
+		
+		System.out.println(commandMap.get("mbrLoginId"));
+		System.out.println(commandMap.get("mbrEmail"));
+		
+		String mbrLoginPw = memberService
+				.selectOneMbrLoginPWSeek(commandMap.getMap());
 
-		if (updateMbrTempLoginPw == true) {
-			// 찾았다.
-			emailSender.sendEmailAction(commandMap); // 메일발송
+	/*	response.setContentType("text/html;charset=UTF-8");
+
+		response.setHeader("Cache-Control", "no-cache");
+		PrintWriter out = response.getWriter();*/
+		// id 중복 처리
+
+		String result = null;
+		System.out.println("mbrLoginPw= " + mbrLoginPw);
+		if (mbrLoginPw == null) {
+			// 응답 메세지 1 : 이미 등록된 ID 입니다.
+			result = "false";
 		} else {
-			// 없다.
+			//commandMap.put("mbrLoginPw", mbrLoginPw);
+			 updateMbrTempLoginPw = memberService
+					.updateMbrTempLoginPw(commandMap.getMap());
 
+			if (updateMbrTempLoginPw == true) {
+				// 찾았다.
+				emailSender.sendEmailAction(commandMap); // 메일발송
+				result = (String) commandMap.get("mbrEmail");
+			} else {
+				// 없다.
+
+			}
 		}
-		return updateMbrTempLoginPw;
+		//out.println(result);
+		
+		
+		return result;
 
 	}
 
@@ -299,7 +328,9 @@ public class MemberController {
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 
-		if (commandMap.isEmpty() == false) {
+		//commandmAP 출력 모듈
+		cu.selectCommandMapList(commandMap);
+		/*if (commandMap.isEmpty() == false) {
 			System.out.println("들어옴");
 			Iterator<Entry<String, Object>> iterator = commandMap.getMap()
 					.entrySet().iterator();
@@ -311,7 +342,7 @@ public class MemberController {
 				System.out.println("key : " + entry.getKey() + ",\tvalue : "
 						+ entry.getValue());
 			}
-		}
+		}*/
 
 		String selectIdFinder = memberService
 				.selectOneMbrLoginIdSeek(commandMap.getMap());
@@ -326,7 +357,7 @@ public class MemberController {
 		System.out.println("selectIdFinder" + selectIdFinder);
 		if (selectIdFinder == null) {
 			// 응답 메세지 1 : 이미 등록된 ID 입니다.
-			result = "<font color=red><strong>존재하지 않는 ID 입니다.</strong></font>";
+			result = "<font color=red><strong>존재하지 않는 ID 입니다.</strong>	</font>";
 		} else {
 			// 응답 메세지 2 : 사용할 수 있는 ID 입니다.
 			result = "<font color=green><strong>당신의 아이디는 " + selectIdFinder

@@ -181,7 +181,7 @@ public class BoardNoticeAdminsController {
 		 */
 
 		// * action-servlet.xml에서 위에 .jsp 설정해줘서 위의 CommonApps 부터 되는거
-		cou.selectListCommandMap(commandMap); // 키 출력
+		cou.selectCommandMapList(commandMap); // 키 출력
 
 		List<Map<String, Object>> selectListNtmFrontList = BoardNoticeAdminsService
 				.selectListNtmFrontList(commandMap.getMap());
@@ -252,7 +252,7 @@ public class BoardNoticeAdminsController {
 	public ModelAndView deleteNtmDelete(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView(
-				"/Admins/SiteMgr/NoticeMgr/NtmDelete");
+				"/Admins/SiteMgr/NoticeMgr/NtmList");
 
 		BoardNoticeAdminsService.deleteNtmDelete(commandMap.getMap());
 

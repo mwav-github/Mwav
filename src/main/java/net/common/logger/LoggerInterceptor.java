@@ -5,10 +5,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import net.mwav.common.module.DomReadXMLFile;
+
 import org.apache.log4j.Logger;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 //
@@ -64,6 +65,11 @@ public class LoggerInterceptor extends HandlerInterceptorAdapter {
 		log.info("======================================          START         ======================================");
 		log.info(" Request URI \t:  " + request.getRequestURI());
 		System.out.println("LoggerInterceptor에 들어왔다.");
+		HttpSession session = request.getSession();
+		String uploadRootPath = session.getServletContext().getRealPath("\\");
+		DomReadXMLFile.xmlParser(uploadRootPath+"/xConfig/general.xml.config");
+		
+		
 		if (log.isDebugEnabled()) {
 			log.info("======================================          START         ======================================");
 			log.info(" Request URI \t:  " + request.getRequestURI());

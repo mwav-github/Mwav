@@ -34,6 +34,7 @@ container 안에 포함시키면된다.
 			<c:choose>
 				<c:when test="${fn:length(selectListBnsList) > 0}">
 					<c:forEach var="VselectListBnsList" items="${selectListBnsList}">
+					
 						<tr>
 							<input type="hidden" id="bNews_id" name="bNews_id"
 								value="${VselectListBnsList.bNews_id }">
@@ -46,6 +47,7 @@ container 안에 포함시키면된다.
 <button type="button" class="btn btn-warning" onclick="javascript:window.location.href='/board/bnsModify.do?bNews_id=${FrontboardList.bNews_id}'">수정</button>
 </td> --%>
 						</tr>
+					
 					</c:forEach>
 				</c:when>
 				<c:otherwise>

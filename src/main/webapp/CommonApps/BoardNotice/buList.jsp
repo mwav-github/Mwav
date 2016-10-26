@@ -35,6 +35,7 @@ container 안에 포함시키면된다.
 			<c:choose>
 				<c:when test="${fn:length(selectListBuList) > 0}">
 					<c:forEach var="VselectListBuList" items="${selectListBuList}">
+					
 						<tr>
 							<input type="hidden" id="bUsers_id" name="bUsers_id"
 								value="${VselectListBuList.bUsers_id }">
@@ -46,6 +47,7 @@ container 안에 포함시키면된다.
 							<%-- <td> <button type="button" class="btn btn-info" onclick="javascript:window.location.href='/board/bnsView.do?bUsers_id=${FrontboardList.bUsers_id}'">보기</button>&nbsp;
 <button type="button" class="btn btn-warning" onclick="javascript:window.location.href='/board/bnsModify.do?bUsers_id=${FrontboardList.bUsers_id}'">수정</button>
 </td> --%>
+
 						</tr>
 					</c:forEach>
 				</c:when>

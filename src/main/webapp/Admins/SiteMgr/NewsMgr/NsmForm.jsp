@@ -9,7 +9,15 @@
 
 <!-- /////////// -->
 <jsp:include page="/PartsOfContent/Head_Import.jsp" flush="false" />
-<!-- /////////// -->
+<!-- ////basePackage
+<script src="//cdn.ckeditor.com/4.5.11/basic/ckeditor.js"></script>
+/////// -->
+
+<!-- StandardPackage 
+<script src="//cdn.ckeditor.com/4.5.11/standard/ckeditor.js"></script>-->
+
+<!-- FullPackage --> 
+<script src="//cdn.ckeditor.com/4.5.11/full/ckeditor.js"></script>
 </head>
 
 <body>
@@ -131,11 +139,12 @@
 														<input type="hidden" name="bnOrder" value="0" />
 														<%--직원담당자 staff_id 추후 반영예정 --%>
 														<input type="hidden" name="staff_id" value="0" /> <select
-															class="form-control" name="bnStatus"
+															class="form-control btn-sm" name="bnStatus"
 															value="${updateNsmForm.bnStatus}">
 															<option value="0">임시저장상태</option>
 															<option value="1">현재공지상태</option>
 														</select>
+														<div class="enter"></div>
 													</div>
 												</tr>
 												<tr class="active">
@@ -189,7 +198,7 @@
 												<th class="active">Content</th>
 												<td><textarea name="bnContent"
 														class="form-control input-sm ckeditor" id="message"
-														placeholder="Message" maxlength="140" rows="7"
+														placeholder="Message" 
 														style="width: 100%; height: 200px;">${updateNsmForm.bnContent}</textarea>
 													<script type="text/javascript">
 															//<![CDATA[
@@ -205,7 +214,7 @@
 										<br style="clear: both">
 										<p class="pull-right">
 											<button type="button" class="btn btn-success"
-												onClick="javascript:window.location.href='/admin/boardNews/nsmList.do'">All
+												onClick="javascript:window.location.href='/admin/boardNews/nsmList.do?pageNum=${pageNum}'">All
 												List</button>
 											<button type="button" class="btn btn-warning"
 												onClick="javascript:history.go(-1)">BACK</button>										
@@ -237,6 +246,7 @@
 															<option value="0">임시저장상태</option>
 															<option value="1">현재공지상태</option>
 														</select>
+														<div class="enter"></div>
 													</div>
 												</tr>
 												<tr class="active">
@@ -287,7 +297,7 @@
 												<th class="active">Content</th>
 												<td><textarea name="bnContent"
 														class="form-control input-sm ckeditor" id="message"
-														placeholder="Message" maxlength="140" rows="7"
+														placeholder="Message"
 														style="width: 100%; height: 200px;"></textarea> <span
 													class="help-block"></span></td>
 											</tr>

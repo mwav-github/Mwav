@@ -174,12 +174,33 @@ public class MemberDAO extends AbstractDAO {
 
 	public String selectOneMbrLoginIdSeek(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		String mbrLoginId;
+		String mbrLoginId = null;
 		Map<String, Object> imsimap = (Map<String, Object>) selectOne(
 				"member.selectOneMbrLoginIdSeek", map);
-		mbrLoginId = (String) imsimap.get("mbrLoginId");
 
+		
+		if(imsimap == null) { 
+			mbrLoginId = null;
+		 } 
+		else{
+			mbrLoginId = (String) imsimap.get("mbrLoginId");
+		}
 		return mbrLoginId;
+	}
+	
+	public String selectOneMbrLoginPWSeek(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		String mbrLoginPw = null;
+		Map<String, Object> imsimap = (Map<String, Object>) selectOne(
+				"member.selectOneMbrLoginPWSeek", map);
+	
+		if(imsimap == null) { 
+			mbrLoginPw = null;
+		 } 
+		else{
+			mbrLoginPw = (String) imsimap.get("mbrLoginPw");
+		}
+		return mbrLoginPw;
 	}
 
 	public boolean selectOneMbrTempLoginPwSeek(Map<String, Object> map) {

@@ -53,15 +53,15 @@
 					<ul>
 						<li><a href="#">Home</a></li>
 						<li><a href="#">Introduction</a></li>
-						<li><a href="#">BusinessField</a></li>
-						<li><a href="#">LocationMap</a></li>
-						<li><a href="#">Profitsharing</a></li>
+						<li><a href="#">Business Field</a></li>
+						<li><a href="#">Location Map</a></li>
+						<li><a href="#">Profit Sharing</a></li>
 					</ul>
 				</div>
 				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 					<ul>
 						<li><a href="#">Contact</a></li>
-						<li><a href="#">SiteMap</a></li>
+						<li><a href="#">Site Map</a></li>
 						<li><a href="#">개인정보취급방침</a></li>
 						<li><a href="#">이메일주소수집거부</a></li>
 						<li><a href="#">Summary</a></li>

@@ -9,6 +9,7 @@ import java.util.Set;
 import javax.annotation.Resource;
 
 import net.common.common.CommandMap;
+import net.mwav.common.module.Common_Utils;
 import net.admins.dao.BoardNewsAdminsDAO;
 
 import org.apache.log4j.Logger;
@@ -20,10 +21,11 @@ public class BoardNewsAdminsServiceImpl implements BoardNewsAdminsService {
 	Logger log = Logger.getLogger(this.getClass());
 
 	@Resource(name = "boardNewsAdminsDAO")
-	@Autowired(required=true)
+	@Autowired(required = true)
 	private BoardNewsAdminsDAO boardNewsAdminsDAO;
+	Common_Utils cou = new Common_Utils();
 
-/////////////////////////////////////BoardNews/////////////////////////////////////
+	// ///////////////////////////////////BoardNews/////////////////////////////////////
 
 	/*
 	 * ========================================등록================================
@@ -33,7 +35,7 @@ public class BoardNewsAdminsServiceImpl implements BoardNewsAdminsService {
 	public void insertNsmForm(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		System.out.println("map=" + map);
-		
+
 		boardNewsAdminsDAO.insertNsmForm(map);
 	}
 
@@ -46,24 +48,24 @@ public class BoardNewsAdminsServiceImpl implements BoardNewsAdminsService {
 			throws Exception {
 		// TODO Auto-generated method stub
 		boardNewsAdminsDAO.updateNsmHitCnt(map);
-		Set set = map.entrySet();
-		Iterator iterator = set.iterator();
-		while (iterator.hasNext()) {
-			Map.Entry entry = (Map.Entry) iterator.next();
-			System.out.println("key : " + entry.getKey() + ", value : "
-					+ entry.getValue());
-		}
+		
+		//map 출력
+		cou.selectMapList(map);
 
 		Map<String, Object> resultMap = boardNewsAdminsDAO.selectOneNsmView(map);
+		int test = (int) resultMap.get("bnStatus");
+		String result = cou.TypeIntToString("board", test);
+		
+		resultMap.put("bnStatus", result);
+		
 		return resultMap;
 	}
 
 	/*
 	 * ========================================수정================================
-	 * ========
+	 * ========	
 	 */
 
-	
 	@Override
 	public Map<String, Object> updateNsmForm(Map<String, Object> map)
 			throws Exception {
@@ -76,7 +78,7 @@ public class BoardNewsAdminsServiceImpl implements BoardNewsAdminsService {
 		// TODO Auto-generated method stub
 		boardNewsAdminsDAO.updateProNsmform(map);
 	}
-	
+
 	/*
 	 * ========================================리스트(SelectOne, SelectList
 	 * 순)========================================
@@ -111,7 +113,5 @@ public class BoardNewsAdminsServiceImpl implements BoardNewsAdminsService {
 		// TODO Auto-generated method stub
 		boardNewsAdminsDAO.deleteNsmDelete(map);
 	}
-
-
 
 }

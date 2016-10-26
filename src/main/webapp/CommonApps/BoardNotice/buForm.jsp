@@ -49,6 +49,15 @@
 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"
 	rel="stylesheet">
 
+<!-- ////basePackage
+<script src="//cdn.ckeditor.com/4.5.11/basic/ckeditor.js"></script>
+/////// -->
+
+<!-- StandardPackage 
+<script src="//cdn.ckeditor.com/4.5.11/standard/ckeditor.js"></script> -->
+
+<!-- FullPackage --> 
+<script src="//cdn.ckeditor.com/4.5.11/full/ckeditor.js"></script>
 
 <!-- 소제목 -->
 <!-- ----- 
@@ -145,7 +154,7 @@
 						<th class="active">Content</th>
 						<td><textarea name="buContent"
 								class="form-control input-sm ckeditor" id="message"
-								placeholder="Message" maxlength="140" rows="7"
+								placeholder="Message"
 								style="width: 100%; height: 200px;">${selectboardUpdate.buContent}</textarea>
 							<script type="text/javascript">
 															//<![CDATA[
@@ -245,7 +254,7 @@
 						<th class="active">Content</th>
 						<td><textarea name="buContent"
 								class="form-control input-sm ckeditor" id="message"
-								placeholder="Message" maxlength="140" rows="7"
+								placeholder="Message" 
 								style="width: 100%; height: 200px;"></textarea> <span
 							class="help-block"></span></td>
 					</tr>
@@ -256,7 +265,7 @@
 				<br style="clear: both">
 				<p class="pull-right">
 					<button type="button" class="btn btn-success"
-						onClick="javascript:window.location.href='/boardNotice/buList.do'">All
+						onClick="javascript:window.location.href='/board/buList.do'">All
 						List</button>
 					<button type="button" class="btn btn-warning"
 						onClick="javascript:history.go(-1)">BACK</button>

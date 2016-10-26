@@ -26,25 +26,7 @@
 	<form role="form">
 		<table class="table table-striped">
 			<thead>
-				<tr>
-					<div class="dropdown pull-right">
-						<button class="btn btn-default dropdown-toggle" type="button"
-							id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-							Dropdown <span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu" role="menu"
-							aria-labelledby="dropdownMenu1">
-							<li role="presentation"><a role="menuitem" tabindex="-1"
-								href="#">휴대폰</a></li>
-							<li role="presentation"><a role="menuitem" tabindex="-1"
-								href="#">휴대폰1</a></li>
-							<li role="presentation"><a role="menuitem" tabindex="-1"
-								href="#">휴대폰2</a></li>
-							<li role="presentation"><a role="menuitem" tabindex="-1"
-								href="#">휴대폰3</a></li>
-						</ul>
-					</div>
-				</tr>
+				
 				<tr class="active">
 					<th>NO.</th>
 					<th>Group</th>
@@ -94,7 +76,7 @@
 
 	<br style="clear: both">
 	<p class="pull-right">
-		<button type="button" class="btn btn-success" onClick="javascript:window.location.href='/boardNotice/buList.do'">All List</button>
+		<button type="button" class="btn btn-success" onClick="javascript:window.location.href='/CustomerService/Announcement/Announcement.jsp'">All List</button>
 		<button type="button" class="btn btn-warning" onClick="javascript:history.go(-1)">BACK</button>
 	</p>
 

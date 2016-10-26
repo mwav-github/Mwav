@@ -36,6 +36,20 @@ $.ajax({
 		var phone = document.getElementById("mbrCellPhone").value;
 		var email = document.getElementById("mbrEmail").value;
 
+		//html element에 대하여 null 또는 비어있는지 체크 및 alert 문구 노출
+		var flag; // return false 여부 체크 이함수도 false 시켜야하므로 
+		flag = emptyCheck(phone, "휴대폰번호를 입력해주세요.");
+		//alert(flag);
+		flag = emptyCheck(email, "이메일을 입력해주세요.");
+		//alert(flag);
+		
+		if(flag == false || flag == undefined){
+			//alert('11');
+			return false;
+		}
+		else{
+			//alert('22');
+		
 		var queryString = "mbrCellPhone=" + phone + "&mbrEmail=" + email;
 		if (name == null || email == null) {
 			document.getElementById("idcheckLayer").innerHTML = "<font color=red>이름 또는 이메일을 입력하세요.</font>";
@@ -51,6 +65,7 @@ $.ajax({
 					"application/x-www-form-urlencoded");
 			// 5. send()를 통해 요청
 			xhr.send(queryString); // 요청 쿼리를 보내준다.
+		}
 		}
 	}
 	function callback() {
@@ -70,6 +85,20 @@ $.ajax({
 		var aa = $('#pwid').val();
 		var bb = $('#pwemail').val()
 
+		//html element에 대하여 null 또는 비어있는지 체크 및 alert 문구 노출
+		var flag; // return false 여부 체크 이함수도 false 시켜야하므로 
+		flag = emptyCheck(aa, "회원아이디를 입력해주세요.");
+		//alert(flag);
+		flag = emptyCheck(bb, "이메일을 입력해주세요.");
+		//alert(flag);
+		
+		if(flag == false || flag == undefined){
+			//alert('11');
+			return false;
+		}
+		else{
+		
+		
 		var URL = "mbrLoginId=" + aa + "&mbrEmail=" + bb;
 
 		$.ajax({
@@ -77,14 +106,33 @@ $.ajax({
 			url : '/member/mbrTempLoginPwUpdate.do', // 서버 요청 주소
 			data : URL, // JavaScript 객체를 JSON 객체로 변환하여 서버 요청시 전송
 			success : function(data) {
-				alert('입력해주신 이메일로 임시PW를 발급완료했습니다. (5분안에 입력해주세요.)');
+				//alert(data);
+				if(data == 'false'){
+					alert('해당 회원정보는 존재하지 않습니다.');
+					return false;
+				}else{
+				
+				alert('입력해주신 '+data+'이메일로 임시PW를 발급완료했습니다. (5분안에 입력해주세요.)');
 				document.getElementById("pwid").readOnly = true;
 				document.getElementById("pwemail").readOnly = true;
 				document.getElementById("pwok").disabled = true;
 				$('#imsipwdisplay').css('display', 'block') //to show
 				start_timer();
+				}
 
 			}, // 서버로부터 응답 데이터 도착시 로직 처리, 응답 데이터는 JavaScript 객체로 바로 사용 가능
+			
+			beforeSend : function() {
+				//(이미지 보여주기 처리)
+				//alert('1');
+				$('.wrap-loading').removeClass('display-none');
+			},
+			complete : function() {
+				//(이미지 감추기 처리)
+				//alert('2');
+				$('.wrap-loading').addClass('display-none');
+
+			},
 			error : function(status, error) {
 				//alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 				if (status == 0) {
@@ -102,6 +150,7 @@ $.ajax({
 				}
 			} // 서버로부터 응답 데이터 실패시 로직 처리
 		});
+		}
 	}
 </script>
 
@@ -128,12 +177,24 @@ $.ajax({
 					alert('lol'+lol); */
 
 				}
-				if (data == false) {
+				else if (data == false) {
 					alert('임시pw가 맞지 않습니다. 메일은 확인하고, 다시 입력해주세요.')
 					document.pwform_1.imsipw_.focus();
 				}
 
 			}, // 서버로부터 응답 데이터 도착시 로직 처리, 응답 데이터는 JavaScript 객체로 바로 사용 가능
+			
+			beforeSend : function() {
+				//(이미지 보여주기 처리)
+				//alert('1');
+				$('.wrap-loading').removeClass('display-none');
+			},
+			complete : function() {
+				//(이미지 감추기 처리)
+				//alert('2');
+				$('.wrap-loading').addClass('display-none');
+
+			},
 			error : function() {
 				alert('임시pw가 맞지 않습니다. 메일은 확인하고, 다시 입력해주세요.');
 
@@ -142,65 +203,40 @@ $.ajax({
 	}
 </script>
 
+<style>
+.wrap-loading_images { /*로딩 이미지*/
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin-left: -21px;
+	margin-top: -21px;
+}
 
-<script>
-	var timerID; // 타이머를 핸들링하기 위한 전역 변수
-	var time = 300; // 타이머 시작시의 시간 3분주고싶다면 180
+.display-none { /*감추기*/
+	display: none;
+}
 
-	/* 타이머를 시작하는 함수 */
-	function start_timer() {
-		timerID = setInterval("decrementTime()", 1000);
-	}
-
-	/* 남은 시간을 감소시키는 함수 */
-	function decrementTime() {
-
-		var x1 = document.getElementById("time1");
-		//var x2 = document.getElementById("time2");
-		x1.innerHTML = toHourMinSec(time);
-		//x2.innerHTML = toHourMinSec(time);
-
-		if (time > 0)
-			time--;
-		else {
-			// 시간이 0이 되었으므로 타이머를 중지함
-			clearInterval(timerID);
-			alert('5분의 시간이 지났습니다. 다시 시도해주세요.');
-			document.location.href = '/';
-
-			// 시간이 만료되고 나서 할 작업을 여기에 작성
-			//document.form.submit(); // 예: 강제로 form 실행
-		}
-	}
-
-	/* 정수형 숫자(초 단위)를 "시:분:초" 형태로 표현하는 함수 */
-	function toHourMinSec(t) {
-		var hour;
-		var min;
-		var sec;
-
-		// 정수로부터 남은 시, 분, 초 단위 계산
-		hour = Math.floor(t / 3600);
-		min = Math.floor((t - (hour * 3600)) / 60);
-		sec = t - (hour * 3600) - (min * 60);
-
-		// hh:mm:ss 형태를 유지하기 위해 한자리 수일 때 0 추가
-		if (hour < 10)
-			hour = "0" + hour;
-		if (min < 10)
-			min = "0" + min;
-		if (sec < 10)
-			sec = "0" + sec;
-
-		return (hour + ":" + min + ":" + sec);
-	}
-</script>
-
+.wrap-loading { /*화면 전체를 어둡게 합니다.*/
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	z-index: 10000;
+	background: rgba(0, 0, 0, 0.2); /*not in ie */
+	filter: progid:DXImageTransform.Microsoft.Gradient(startColorstr='#20000000',
+		endColorstr='#20000000'; /* ie */
+}
+</style>
 <div class="container">
 	<!-- Modal -->
 	<div class="modal fade IDPWSeek" id="IDPWSeek" tabindex="-1"
 		role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-lg">
+			<div class="wrap-loading display-none">
+				<img class="wrap-loading_images "
+					src="/CommonApps/PostSeek/Images/ajax-loader.gif">
+			</div>
 			<div class="modal-content">
 				<br>
 				<div class="bs-example bs-example-tabs">
@@ -209,7 +245,7 @@ $.ajax({
 						<li class=""><a href="#PwFinder" data-toggle="tab">PWSeek</a></li>
 						<!-- <li class=""><a href="#why" data-toggle="tab">Why?</a></li> -->
 					</ul>
-				
+
 				</div>
 				<div class="modal-body">
 					<div class="container-fluid">
@@ -223,21 +259,21 @@ $.ajax({
 									<div class="col-md-4 mgt4">휴대폰</div>
 									<div class="col-md-8 mgt4">
 										<input type="text" id="mbrCellPhone" class="form-control"
-											placeholder="01011111111 -없이 입력해주시면 됩니다.">
+											placeholder="휴대폰 번호" required>
 									</div>
 									<br />
 									<div class="col-md-4 mgt4">이메일</div>
 									<div class="col-md-8 mgt4">
 										<input type="text" id="mbrEmail" class="form-control"
-											placeholder="aa@gmail.com">
+											placeholder="이메일" required>
 									</div>
 								</div>
 
-								<p class="col-md-4">
-									<span id="idcheckLayer"></span>
-								</p>
 
-								<div class="col-md-12">
+								<div id="idcheckLayer" class="col-md-offset-4 col-md-8"></div>
+
+
+								<div class="col-md-12 enter">
 									<button type="button" class="btn btn-block btn-sm btn-info"
 										onclick="selectOneMbrLoginIdSeek()">확인</button>
 								</div>
@@ -256,15 +292,15 @@ $.ajax({
 											<div class="col-md-4 mgt4">아이디</div>
 											<div class="col-md-8 mgt4">
 												<input type="text" id="pwid" class="form-control"
-													placeholder="aaa2221">
+													placeholder="회원아이디" required>
 											</div>
 
 											<div class="col-md-4 mgt4">이메일</div>
 											<div class="col-md-8 mgt4">
 												<input type="text" id="pwemail" class="form-control"
-													placeholder="aa@gmail.com">
+													placeholder="이메일" required>
 											</div>
-											
+
 										</div>
 
 										<div class="col-md-12 enter">

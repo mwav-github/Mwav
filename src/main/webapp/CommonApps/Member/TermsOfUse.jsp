@@ -26,12 +26,16 @@
 		<div class="col-md-12 well text-center mgt4">
 			<div class="form-group">
 
-				<%-- 약관동의 1_Mwav회원약관 --%>
-				<p class="text-left"><label for="comment"> [Mwav]회원약관 </label></p>
+				<%-- 약관동의 1_Mwav회원약관 
+				"Mwav 약관"을 "이용자 약관" 으로 교체 - 16/10/26
+				--%>
+				<p class="text-left">
+					<label for="comment"> 이용자 약관 </label>
+				</p>
 				<textarea class="form-control" rows="15" readonly="readonly"
-					id="comment">
-					 ① 이용자는 “Mwav”이 정한 가입 양식에 따라 회원정보를 기입한 후 이 약관에 동의한다는 의사표시를 함으로서 회원가입을 신청합니다.
-
+					id="comment"> 
+  ① 이용자는 “Mwav”이 정한 가입 양식에 따라 회원정보를 기입한 후 이 약관에 동의한다는 의사표시를 함으로서 회원가입을 신청합니다.
+  
   ② “Mwav”은 제1항과 같이 회원으로 가입할 것을 신청한 이용자 중 다음 각 호에 해당하지 않는 한 회원으로 등록합니다.
 
     1. 가입신청자가 이 약관 제7조제3항에 의하여 이전에 회원자격을 상실한 적이 있는 경우, 다만 제7조제3항에 의한 회원자격 상실 후 3년이 경과한 자로서 “Mwav”의 회원재가입 승낙을 얻은 경우에는 예외로 한다.
@@ -51,8 +55,7 @@
 				</p>
 				<%-- 약관동의 1_Mwav회원약관 --%>
 				<p class="text-left mgt5">
-				<label for="comment"> [Mwav]개인정보 수집 및 이용에
-					대한 안내 </label>
+					<label for="comment"> [Mwav]개인정보 수집 및 이용에 대한 안내 </label>
 				</p>
 				<textarea class="form-control " rows="15" readonly="readonly"
 					id="comment">

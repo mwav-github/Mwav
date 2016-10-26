@@ -44,7 +44,7 @@
 	
 	<select id="selectOneGetNsmTotalCount" resultType="int">
 	<![CDATA[
-	   select count(*) from BoardNews_tbl
+	   select count(*) from BoardNews_tbl WHERE bnDeleteDt IS NULL
 	]]>
 	</select>
 	
@@ -65,7 +65,7 @@
 	
 	<select id="selectListNsmList" parameterType="hashmap" resultType="hashmap">
 	<![CDATA[
-	select c.* from (select @ROWNUM := @ROWNUM + 1 AS ROWNUM, a.* from (select * from BoardNews_tbl order by bnInsertDt desc) a,  (SELECT @ROWNUM := 0) R ) c where c.ROWNUM >= #{startRow} and c.ROWNUM <= #{endRow}
+	select c.* from (select @ROWNUM := @ROWNUM + 1 AS ROWNUM, a.* from (select * from BoardNews_tbl where bnDeleteDt IS NULL order by bnInsertDt desc) a,  (SELECT @ROWNUM := 0) R ) c where c.ROWNUM >= #{startRow} and c.ROWNUM <= #{endRow}
 	]]>
 	</select>
 	

@@ -31,6 +31,7 @@ public class BoardNewsAdminsController {
 	// HttpSession session = request.getSession();
 
 	Common_Utils cou = new Common_Utils();
+	Paging paging = new Paging();
 
 	String mode;
 	String depth_1 = "Admins";
@@ -91,7 +92,7 @@ public class BoardNewsAdminsController {
 			HttpServletRequest request, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/SiteMgr/NewsMgr/NsmView");
 
-
+		
 
 		log.debug("인터셉터 테스트");
 		System.out.println("테스트");
@@ -101,6 +102,7 @@ public class BoardNewsAdminsController {
 		if (selectOneNsmView != null && !selectOneNsmView.isEmpty()) {
 			System.out.println("view 줄랭");
 
+			
 			String mm = "site";
 			mv.addObject("mm", mm);
 			mv.addObject("mode", "m_nsmView");
@@ -108,6 +110,7 @@ public class BoardNewsAdminsController {
 			mv.addObject("depth_1", depth_1);
 	     	mv.addObject("depth_2", depth_2);
 			mv.addObject("depth_3", "NsmView");
+			mv.addObject("pageNum", paging.getPageNum( (String) commandMap.get("pageNum")));
 			
 
 			mv.addObject("selectOneNsmView", selectOneNsmView);
@@ -135,6 +138,7 @@ public class BoardNewsAdminsController {
 		if (updateNsmForm != null && !updateNsmForm.isEmpty()) {
 			System.out.println("view 줄랭");
 			String mm = "site";
+			mv.addObject("pageNum", paging.getPageNum( (String) commandMap.get("pageNum")));
 			mv.addObject("mm", mm);
 			mv.addObject("mode", "m_nsmUpdate");
 			
@@ -150,7 +154,7 @@ public class BoardNewsAdminsController {
 
 		
 		// 위의 view랑 동일하게 사용
-
+		mv.addObject("pageNum", paging.getPageNum( (String) commandMap.get("pageNum")));
 		boardNewsAdminsService.updateProNsmForm(commandMap.getMap());
 		
 		String mm = "site";
@@ -187,7 +191,7 @@ public class BoardNewsAdminsController {
 		 */
 
 		// * action-servlet.xml에서 위에 .jsp 설정해줘서 위의 CommonApps 부터 되는거
-		cou.selectListCommandMap(commandMap); // 키 출력
+		cou.selectCommandMapList(commandMap); // 키 출력
 
 		List<Map<String, Object>> selectListNsmFrontList = boardNewsAdminsService
 				.selectListNsmFrontList(commandMap.getMap());
@@ -209,15 +213,12 @@ public class BoardNewsAdminsController {
 			HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/SiteMgr/NewsMgr/NsmList");
 
-		String pageNum = (String) commandMap.get("pageNum");
-		System.out.println("pageNum="+pageNum);
-		Paging paging = new Paging();
-		if (pageNum == null || pageNum == "") {
-			pageNum = "1";
-		}
-		System.out.println("pageNum2="+pageNum);
+		String pageNum =paging.getPageNum( (String) commandMap.get("pageNum"));
+		
+		//중요한건 이거 역시삭제한것제외하고 가야한다. 
 		int totalRow = boardNewsAdminsService.selectOneGetNsmTotalCount();
 		System.out.println("totalRow=" + totalRow);
+		
 
 		// Paging pv = new Paging(pageNum, 10 , 10, totalCount);
 		List<Map<String, Object>> selectListNsmList;
@@ -231,7 +232,7 @@ public class BoardNewsAdminsController {
 					.getMap());
 			// selectboardList =
 			// boardService.selectbnsList(commandMap.getMap());
-
+			
 		} else {
 			selectListNsmList = Collections.emptyList();
 		}
@@ -240,7 +241,7 @@ public class BoardNewsAdminsController {
 		mv.addObject("mm", mm);
 		mv.addObject("mode", "m_nsmList");
 
-		
+		mv.addObject("pageNum", pageNum);
 		mv.addObject("depth_1", depth_1);
      	mv.addObject("depth_2", depth_2);
 		mv.addObject("depth_3", "NsmList");
@@ -260,9 +261,11 @@ public class BoardNewsAdminsController {
 	@RequestMapping(value = "/admin/boardNews/nsmDelete.do")
 	public ModelAndView deleteNsmDelete(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("/Admins/SiteMgr/NewsMgr/NsmDelete");
+		ModelAndView mv = new ModelAndView("/Admins/SiteMgr/NewsMgr/NsmList");
 
 		boardNewsAdminsService.deleteNsmDelete(commandMap.getMap());
+		
+		mv.addObject("pageNum", paging.getPageNum( (String) commandMap.get("pageNum")));
 		
 		mv.addObject("depth_1", depth_1);
      	mv.addObject("depth_2", depth_2);

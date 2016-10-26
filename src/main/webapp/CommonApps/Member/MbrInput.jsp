@@ -275,7 +275,7 @@ http://planbong.tistory.com/531
 					<div class="col-md-offset-4 col-md-6">
 						<div class='col-md-11'>
 							<input class='form-control' name="mbrZipcode" id='Zipcode'
-								type='text' placeholder='우편번호' value ="" readonly="readonly">
+								type='text' placeholder='우편번호' value ="" readonly="readonly" required>
 						</div>
 						<!-- <p class="col-md-1" style="text-align: center">
 						<strong>-</strong>
@@ -288,13 +288,13 @@ http://planbong.tistory.com/531
 						<div class="enter hidden-xs hidden-sm"></div>
 						<div class='col-md-11'>
 							<input name="mbrAddress_1" class='form-control' id='Address'
-								placeholder='주소' type='text' value ="" readonly="readonly">
+								placeholder='주소' type='text' value ="" readonly="readonly" required>
 						</div>
 						<div class="enter hidden-xs hidden-sm"></div>
 
 						<div class="col-md-11">
 							<input name="mbrAddress_2" class="form-control" 
-								 placeholder='나머지 주소' type="text"  />
+								 placeholder='나머지 주소' type="text"  required/>
 						</div>
 						
 						<div class="enter"></div>

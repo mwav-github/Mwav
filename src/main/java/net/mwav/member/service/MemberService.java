@@ -28,7 +28,10 @@ public interface MemberService {
 
 	boolean selectOneMbrLoginIdCheck(String mbrLoginId);
 	
+	
 	String selectOneMbrLoginIdSeek(Map<String, Object> map);
+	
+	String selectOneMbrLoginPWSeek(Map<String, Object> map);
 
 	boolean selectOneMbrTempLoginPwSeek(Map<String, Object> map);
 	

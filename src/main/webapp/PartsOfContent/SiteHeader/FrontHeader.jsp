@@ -127,14 +127,9 @@
 				<div class="row pull-right hidden-xs col-sm-6 col-md-6">
 					<h2 class="page-header" style="color: #317eac">News</h2>
 					<div class="bs-component" style="background-color: white;">
-						<!-- 이클립스 해제 희망시 
-				     1. http://ifone420.tistory.com/107
-				     
-				     추가적으로 
-				     
-				     localhost:8080/CWS 이부분은 server.xml 에서 지정한다.
+					
 				
-						<jsp:include page="/board/bnsFrontList.do" flush="false" />-->
+						<jsp:include page="/board/bnsFrontList.do" flush="false" />
 					</div>
 				</div>
 

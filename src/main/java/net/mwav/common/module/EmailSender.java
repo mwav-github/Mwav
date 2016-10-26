@@ -46,8 +46,11 @@ public class EmailSender {
 		// ModelAndView mv = new ModelAndView("/Index");
 		// String id = (String) commandMap.get("id");
 		String mbrEmail = (String) commandMap.get("mbrEmail");
+		System.out.println("mbrEmail = "+mbrEmail);
 		String mbrTempLoginPw =	(String) commandMap.get("mbrTempLoginPw");
+		System.out.println("mbrTempLoginPw = "+mbrTempLoginPw);
 		String mbrLoginId =	(String) commandMap.get("mbrLoginId");
+		System.out.println("mbrLoginId = "+mbrLoginId);
 
 		//log.debug("메일");
 		email.setContent("비밀번호는 "+mbrTempLoginPw+" 입니다.");

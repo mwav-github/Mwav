@@ -45,7 +45,7 @@
 	
 	<update id="updateMbrTempLoginPw" parameterType="hashmap"> 
 		<![CDATA[
-		UPDATE Member_tbl SET mbrLoginPw=null, mbrTempLoginPw = #{mbrTempLoginPw} WHERE mbrEmail = #{mbrEmail} and mbrLoginId = #{mbrLoginId}
+		UPDATE Member_tbl SET mbrLoginPw=#{mbrTempLoginPw}, mbrTempLoginPw = #{mbrTempLoginPw} WHERE mbrEmail = #{mbrEmail} and mbrLoginId = #{mbrLoginId}
 		]]>
 	</update>
 	
@@ -60,6 +60,12 @@
     <select id="selectOneMbrLoginIdSeek" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 		select mbrLoginId from Member_tbl where mbrCellPhone = #{mbrCellPhone} and mbrEmail = #{mbrEmail}
+		]]>
+	</select>
+	
+	<select id="selectOneMbrLoginPWSeek" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+		select mbrLoginPw from Member_tbl where mbrLoginId = #{mbrLoginId} and mbrEmail = #{mbrEmail}
 		]]>
 	</select>
 	

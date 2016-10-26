@@ -47,7 +47,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 				</h1>
 				<ol class="breadcrumb">
 					<li><a href="index.html">Home</a></li>
-					<li>CompanyItem</li>
+					<li>Company Item</li>
 					<li class="active">IT Products</li>
 				</ol>
 			</div>
@@ -200,23 +200,23 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 			
 					<div class="col-md-6 col-sm-6 col-xs-12">
 						<ul>
-							<li>Wildcard <a href="#" class="btn btn-info btn-xs"
+							<li>Wildcard <a  class="btn btn-info btn-xs"
 								data-toggle="tooltip" data-placement="right"
 								data-original-title="A wildcard certificate allows for unlimited subdomains to be protected with a single certificate."><span
 									class="glyphicon glyphicon glyphicon-search"></span></a> <span
 								class="float_right">Yes $85/year</span>
 							</li>
-							<li>SAN support <a href="#" class="btn btn-info btn-xs"
+							<li>SAN support <a  class="btn btn-info btn-xs"
 								data-toggle="tooltip" data-placement="right"
 								data-original-title="A SAN certificate allows for multiple domain names to be protected with a single certificate."><span
 									class="glyphicon glyphicon glyphicon-search"></span></a> <a
-								href="#" class="btn btn-danger btn-xs float_right"><span
-									class="glyphicon glyphicon-remove float_right"></span></a></li>
-							<li>Price <span class="float_right">$10/year</span></li>
-							<li>Business validated <a href="#"
 								class="btn btn-danger btn-xs float_right"><span
 									class="glyphicon glyphicon-remove float_right"></span></a></li>
-							<li>Green address bar <a href="#"
+							<li>Price <span class="float_right">$10/year</span></li>
+							<li>Business validated <a 
+								class="btn btn-danger btn-xs float_right"><span
+									class="glyphicon glyphicon-remove float_right"></span></a></li>
+							<li>Green address bar <a 
 								class="btn btn-danger btn-xs float_right"><span
 									class="glyphicon glyphicon-remove float_right"></span></a></li>
 							<li>Security and encryption <span class="float_right">256-bit
@@ -228,15 +228,15 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 
 					<div class="col-md-6 col-sm-6 col-xs-12 text-left">
 						<ul>
-							<li>Vulnerability assessment <a href="#"
+							<li>Vulnerability assessment <a 
 								class="btn btn-danger btn-xs float_right"><span
 									class="glyphicon glyphicon-remove float_right"></span></a></li>
 							<li>Site seal <span class="float_right">Static</span></li>
 							<li>Server licensing <span class="float_right">Unlimited</span></li>
-							<li>Malware scan <a href="#"
+							<li>Malware scan <a 
 								class="btn btn-danger btn-xs float_right"><span
 									class="glyphicon glyphicon-remove float_right"></span></a></li>
-							<li>Mobile friendly <a href="#"
+							<li>Mobile friendly <a 
 								class="btn btn-success btn-xs float_right"><span
 									class="glyphicon glyphicon-ok float_right"></span></a></li>
 							<li>Browser compatibility <span class="float_right">99%</span></li>

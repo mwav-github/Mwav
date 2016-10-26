@@ -63,15 +63,15 @@
 					<ul>
 						<li><a href="/">Home</a></li>
 						<li><a href="/Company/Introduction/Introduction.jsp">Introduction</a></li>
-						<li><a href="/Company/BusinessField/BusinessFields.jsp">BusinessField</a></li>
-						<li><a href="/Company/LocationMap/LocationMap.jsp">LocationMap</a></li>
-						<li><a href="/Company/Profitsharing/Profitsharing.jsp">Profitsharing</a></li>
+						<li><a href="/Company/BusinessField/BusinessFields.jsp">Business Field</a></li>
+						<li><a href="/Company/LocationMap/LocationMap.jsp">Location Map</a></li>
+						<li><a href="/Company/Profitsharing/Profitsharing.jsp">Profit Sharing</a></li>
 					</ul>
 				</div>
 				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 					<ul>
 						<li><a href="/CustomerService/Contact/Contact.jsp">Contact</a></li>
-						<li><a href="/CustomerService/SiteMap/SiteMap.jsp">SiteMap</a></li>
+						<li><a href="/CustomerService/SiteMap/SiteMap.jsp">Site Map</a></li>
 						<li><a href="#terms3" data-toggle="modal" data-target=".modal_terms">개인정보취급방침</a></li>
 						<li><a href="#terms1" data-toggle="modal" data-target=".modal_terms">이메일주소수집거부</a></li>
 						<li><a href="/CustomerService/Summary/Summary.jsp">Summary</a></li>

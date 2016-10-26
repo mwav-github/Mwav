@@ -59,7 +59,7 @@ public class StaffController {
 	@RequestMapping(value = "/admins/staff/stfForm.do")
 	public ModelAndView insertStfForm(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("/Admins/CompanyMgr/Staff/StfList");
+		ModelAndView mv = new ModelAndView("/Admins/CompanyMgr/Staff/StfLogin");
 
 		System.out.println("순서");
 		log.debug("인터셉터 테스트");

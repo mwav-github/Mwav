@@ -1,6 +1,7 @@
 package net.mwav.common.module;
 
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Random;
 import java.util.Map.Entry;
 
@@ -148,7 +149,7 @@ public class Common_Utils {
 
 	// map 객체 뿌려주는 메소드
 
-	public void selectListCommandMap(CommandMap commandMap) {
+	public void selectCommandMapList(CommandMap commandMap) {
 		if (commandMap.isEmpty() == false) {
 			System.out.println("들어옴");
 			Iterator<Entry<String, Object>> iterator = commandMap.getMap()
@@ -162,5 +163,44 @@ public class Common_Utils {
 						+ entry.getValue());
 			}
 		}
+	}
+
+	public void selectMapList(Map<String, Object> map) {
+		if (map.isEmpty() == false) {
+			System.out.println("들어옴");
+			Iterator<Entry<String, Object>> iterator = map.entrySet()
+					.iterator();
+			// map.entryset vs mapkeySet 차이 찾아보기
+			Entry<String, Object> entry = null;
+			while (iterator.hasNext()) {
+				entry = iterator.next();
+				log.debug("key : " + entry.getKey() + ",\tvalue : "
+						+ entry.getValue());
+				System.out.println("key : " + entry.getKey() + ",\tvalue : "
+						+ entry.getValue());
+			}
+		}
+	}
+
+	// Overload getString()
+	public String TypeIntToString(String type, int before) {
+
+		String result = null;
+		if (type == "board") {
+			if (before == 0) {
+				result = "임시저장상태";
+			} else if (before == 1) {
+				result = "현재공지상태";
+			}
+
+		}
+		return result;
+	}
+
+	// null 체크
+	public boolean isEmpty(Object obj) {
+		if (obj == null || obj.toString().equals(""))
+			return true;
+		return false;
 	}
 }

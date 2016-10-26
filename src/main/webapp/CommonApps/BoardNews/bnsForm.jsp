@@ -2,7 +2,16 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<script src="//cdn.ckeditor.com/4.4.6/basic/ckeditor.js"></script>
+<!-- ////basePackage
+<script src="//cdn.ckeditor.com/4.5.11/basic/ckeditor.js"></script>
+/////// -->
+
+<!-- StandardPackage 
+<script src="//cdn.ckeditor.com/4.5.11/standard/ckeditor.js"></script>-->
+
+<!-- FullPackage --> 
+<script src="//cdn.ckeditor.com/4.5.11/full/ckeditor.js"></script>
+
 <!-- jQuery Version 1.11.0 -->
 <script src="/CommonLibrary/Javascript/Common.js"></script>
 <script>
@@ -48,7 +57,7 @@
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"
 	rel="stylesheet">
-
+<script src="//cdn.ckeditor.com/4.5.11/basic/ckeditor.js"></script>
 
 <!-- 소제목 -->
 <!-- ----- 
@@ -85,11 +94,12 @@
 								<input type="hidden" name="bnOrder" value="0" />
 								<%--직원담당자 staff_id 추후 반영예정 --%>
 								<input type="hidden" name="staff_id" value="0" /> <select
-									class="form-control" name="bnStatus"
+									class="form-control btn-sm" name="bnStatus"
 									value="${selectboardUpdate.bnStatus}">
 									<option value="0">임시저장상태</option>
 									<option value="1">현재공지상태</option>
 								</select>
+								<div class="enter"></div>
 							</div>
 						</tr>
 						<tr class="active">
@@ -142,7 +152,7 @@
 						<th class="active">Content</th>
 						<td><textarea name="bnContent"
 								class="form-control input-sm ckeditor" id="message"
-								placeholder="Message" maxlength="140" rows="7"
+								placeholder="Message" 
 								style="width: 100%; height: 200px;"
 								>${selectboardUpdate.bnContent}</textarea>
 								<script type="text/javascript">
@@ -189,11 +199,12 @@
 								<%--높을수록 TOP (추후 반영)_15.08.01 --%>
 								<input type="hidden" name="bnOrder" value="0" />
 								<%--직원담당자 staff_id 추후 반영예정 --%>
-								<input type="hidden" name="staff_id" value="0" /> <select
+								<input type="hidden btn-sm" name="staff_id" value="0" /> <select
 									class="form-control" name="bnStatus">
 									<option value="0">임시저장상태</option>
 									<option value="1">현재공지상태</option>
 								</select>
+								<div class="enter"></div>
 							</div>
 						</tr>
 						<tr class="active">
@@ -244,7 +255,7 @@
 						<th class="active">Content</th>
 						<td><textarea name="bnContent"
 								class="form-control input-sm ckeditor" id="message"
-								placeholder="Message" maxlength="140" rows="7"
+								placeholder="Message" 
 								style="width: 100%; height: 200px;"></textarea> <span
 							class="help-block"></span></td>
 					</tr>

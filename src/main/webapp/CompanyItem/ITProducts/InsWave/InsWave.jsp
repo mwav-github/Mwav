@@ -47,7 +47,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 				</h1>
 				<ol class="breadcrumb">
 					<li><a href="index.html">Home</a></li>
-					<li>CompanyItem</li>
+					<li>Company Item</li>
 					<li class="active">IT Products</li>
 				</ol>
 			</div>

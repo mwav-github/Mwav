@@ -92,24 +92,16 @@
 								<table class="table table-striped">
 									<thead>
 										<tr>
-											<div class="dropdown pull-right">
-												<button class="btn btn-default dropdown-toggle"
-													type="button" id="dropdownMenu1" data-toggle="dropdown"
-													aria-expanded="true">
-													Dropdown <span class="caret"></span>
-												</button>
-												<ul class="dropdown-menu" role="menu"
-													aria-labelledby="dropdownMenu1">
-													<li role="presentation"><a role="menuitem"
-														tabindex="-1" href="#">휴대폰</a></li>
-													<li role="presentation"><a role="menuitem"
-														tabindex="-1" href="#">휴대폰1</a></li>
-													<li role="presentation"><a role="menuitem"
-														tabindex="-1" href="#">휴대폰2</a></li>
-													<li role="presentation"><a role="menuitem"
-														tabindex="-1" href="#">휴대폰3</a></li>
-												</ul>
-											</div>
+										    <c:set var ="buStatus" value="${selectOneNtmView.buStatus }"}/>
+											<c:if test="${fn:contains(buStatus, '임시저장상태')}">
+												<span class="pull-right bg-danger"><strong>
+												</strong></span>
+											</c:if>
+											<c:if test="${selectOneNtmView.buStatus eq '현재공지상태'}">
+												<span class="pull-right bg-primary"><strong>
+												</strong></span>
+											</c:if>
+											<div class="enter"></div>
 										</tr>
 										<tr class="active">
 											<th>NO.</th>
@@ -172,7 +164,7 @@
 								<button type="button" class="btn btn-warning"
 									onClick="javascript:history.go(-1)">BACK</button>
 								<button type="button" class="btn btn-danger"
-									onclick="check2(${updateNtmForm.bUsers_id})">Delete</button>
+									onclick="check2(${selectOneNtmView.bUsers_id})">Delete</button>
 							</p>
 
 						</div>

@@ -171,7 +171,7 @@ public class BoardController {
 		 */
 
 		// * action-servlet.xml에서 위에 .jsp 설정해줘서 위의 CommonApps 부터 되는거
-		cou.selectListCommandMap(commandMap); // 키 출력
+		cou.selectCommandMapList(commandMap); // 키 출력
 
 		List<Map<String, Object>> selectListBnsFrontList = boardService
 				.selectListBnsFrontList(commandMap.getMap());
@@ -360,7 +360,7 @@ public class BoardController {
 		 */
 
 		// * action-servlet.xml에서 위에 .jsp 설정해줘서 위의 CommonApps 부터 되는거
-		cou.selectListCommandMap(commandMap); // 키 출력
+		cou.selectCommandMapList(commandMap); // 키 출력
 
 		List<Map<String, Object>> selectListBuFrontList = boardService
 				.selectListBuFrontList(commandMap.getMap());
@@ -380,7 +380,7 @@ public class BoardController {
 	@RequestMapping(value = "/board/buList.do")
 	public ModelAndView selectListBuList(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("/CommonApps/BoardNotice/buList");
+		ModelAndView mv = new ModelAndView("/CustomerService/CS-MasterPage");
 
 		String pageNum = (String) commandMap.get("pageNum");
 		Paging paging = new Paging();

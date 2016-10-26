@@ -45,11 +45,11 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 		<div class="row">
 			<div class="col-lg-12">
 				<h1 class="page-header">
-					CustomerService <small> SiteMap</small>
+					Customer Service <small> SiteMap</small>
 				</h1>
 				<ol class="breadcrumb">
 					<li><a href="index.html">Home</a></li>
-					<li>CustomerService</li>
+					<li>Customer Service</li>
 					<li class="active">SiteMap</li>
 				</ol>
 			</div>
@@ -81,18 +81,18 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 							<li><a href="/Company/Introduction/Introduction.jsp">Introduction</a></li>
 							<li><a href="/Company/Greetings/Greetings.jsp">Greetings</a></li>
 							<li><a href="/Company/History/History.jsp">History</a></li>
-							<li><a href="/Company/BusinessField/BusinessFields.jsp">BusinessField</a></li>
-							<li><a href="/Company/ActualResults/ActualResults.jsp">ActualResults</a></li>
-							<li><a href="/board/bnsList.do">ThePress</a></li>
+							<li><a href="/Company/BusinessField/BusinessFields.jsp">Business Field</a></li>
+							<li><a href="/Company/ActualResults/ActualResults.jsp">Actual Results</a></li>
+							<li><a href="/board/bnsList.do">The Press</a></li>
 							<li><a href="/Company/HR-Affairs/HR-Affairs.jsp">HR-Affairs</a></li>
-							<li><a href="/Company/LocationMap/LocationMap.jsp">LocationMap</a></li>
-							<li><a href="/Company/Profitsharing/Profitsharing.jsp">Profitsharing</a></li>
+							<li><a href="/Company/LocationMap/LocationMap.jsp">Location Map</a></li>
+							<li><a href="/Company/Profitsharing/Profitsharing.jsp">Profit Sharing</a></li>
 						</ul>
 					</div>
 
 					<div class="col-xs-12 col-sm-4 col-md-4 ">
 						<h3>
-							<strong>CompanyItem</strong>
+							<strong>Company Item</strong>
 						</h3>
 						<h5>All CompanyItem about Mwav.</h5>
 						<br>
@@ -115,9 +115,9 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 
 					<div class="col-xs-12 col-sm-4 col-md-4 ">
 						<h3>
-							<strong>CusmterService</strong>
+							<strong>Cusmter Service</strong>
 						</h3>
-						<h5>CustomerSerice about Mwav.</h5>
+						<h5>Customer Serice about Mwav.</h5>
 						<br>
 						<ul class="font_color_faq">
 							<li><a
@@ -137,9 +137,9 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 							<li><a href="/Company/History/History.jsp">History</a></li>
 
 							<li><a href="/CustomerService/FAQ/FAQ.jsp">FAQ</a></li>
-							<li><a href="/CustomerService/QnA/QnA.jsp">QnA</a></li>
+							<li><a href="/CustomerService/QnA/QnA.jsp">Q%A</a></li>
 							<li><a href="/CustomerService/Contact/Contact.jsp">Contact</a></li>
-							<li><a href="/CustomerService/SiteMap/SiteMap.jsp">SiteMap</a></li>
+							<li><a href="/CustomerService/SiteMap/SiteMap.jsp">Site Map</a></li>
 						</ul>
 					</div>
 
