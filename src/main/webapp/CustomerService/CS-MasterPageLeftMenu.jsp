@@ -43,13 +43,13 @@
 	<c:if test="${sessionScope.mbrLoginId eq null }">
 		<a href="javascript:window.alert('권한이 없습니다. \n 로그인 후 이용해주시기 바랍니다.');"
 			class="list-group-item " data-toggle="tooltip" data-placement="top"
-			data-original-title="마이페이지">MyPage</a>
+			data-original-title="페이지 준비 중입니다.">My Page</a>
 	</c:if>
 
 	<c:if test="${sessionScope.mbrLoginId ne null }">
-		<a href="/CustomerService/MyPage/MyPage.jsp" class="list-group-item "
+		<a  class="list-group-item "
 			data-toggle="tooltip" data-placement="top"
-			data-original-title="마이페이지">MyPage</a>
+			data-original-title="페이지 준비 중입니다.">My Page</a>
 	</c:if>
 
 
@@ -60,27 +60,26 @@
 	<c:if test="${sessionScope.mbrLoginId eq null }">
 		<a href="javascript:window.alert('권한이 없습니다. \n 로그인 후 이용해주시기 바랍니다.');"
 			class="list-group-item" data-toggle="tooltip" data-placement="top"
-			data-original-title="회원정보(수정)">MemberShip</a>
+			data-original-title="회원정보(수정)">Member Ship</a>
 	</c:if>
 
 	<c:if test="${sessionScope.mbrLoginId ne null }">
 		<a href="/CustomerService/MemberShip/MemberShip.jsp"
 			class="list-group-item" data-toggle="tooltip" data-placement="top"
-			data-original-title="회원정보(수정)">MemberShip</a>
+			data-original-title="회원정보(수정)">Member Ship</a>
 	</c:if>
 
 	<a href="/CustomerService/Agreement/Agreement.jsp"
 		class="list-group-item" data-toggle="tooltip" data-placement="top"
 		data-original-title="이용약관">Agreement</a> <a
-		href="/CustomerService/SiteGuide/SiteGuide.jsp"
 		class="list-group-item" data-toggle="tooltip" data-placement="top"
-		data-original-title="이용방법">Site Guide</a> <a
-		href="/CustomerService/FAQ/FAQ.jsp" class="list-group-item"
+		data-original-title="페이지 준비 중입니다.">Site Guide</a> <a
+		 class="list-group-item"
 		data-toggle="tooltip" data-placement="top"
-		data-original-title="자주하는 질문">FAQ</a> <a
-		href="/CustomerService/QnA/QnA.jsp" class="list-group-item"
+		data-original-title="페이지 준비 중입니다.">FAQ</a> <a
+		 class="list-group-item"
 		data-toggle="tooltip" data-placement="top"
-		data-original-title="묻고 답하기">Q&A</a> <a
+		data-original-title="페이지 준비 중입니다.">Q&A</a> <a
 		href="/CustomerService/Contact/Contact.jsp" class="list-group-item"
 		data-toggle="tooltip" data-placement="top" data-original-title="담당자안내">Contact</a>
 	<a href="/CustomerService/SiteMap/SiteMap.jsp" class="list-group-item"

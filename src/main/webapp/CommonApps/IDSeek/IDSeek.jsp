@@ -91,7 +91,6 @@ $.ajax({
 		//alert(flag);
 		flag = emptyCheck(bb, "이메일을 입력해주세요.");
 		//alert(flag);
-		
 		if(flag == false || flag == undefined){
 			//alert('11');
 			return false;
@@ -156,9 +155,12 @@ $.ajax({
 
 <script>
 	function mbrTempLoginPwSeek() { //imsiPWFinder()
-		var aa = $('#mbrTempLoginPw').val();
-
-		var URL = "mbrTempLoginPw=" + aa;
+		var before_value = $('#mbrTempLoginPw').val();
+	    var after_value;
+		//공백값 제거
+		after_value = trim(before_value);
+		var URL = "mbrTempLoginPw=" + after_value;
+		
 
 		$.ajax({
 			type : 'POST', // Http Request Method로 POST로 지정
@@ -167,11 +169,13 @@ $.ajax({
 			success : function(data) {
 
 				if (data == true) {
+					
+					
 					$('#PwFinder').css('display', 'none') //to show
 					$('#pwfinder_1').css('display', 'block') //to show
 					$('#pwfinder_1').addClass('active in') //to show
 					alert('비밀번호를 변경합니다.');
-					$("#imsi_mbrLoginPw").val(aa);
+					$("#imsi_mbrLoginPw").val(after_value);
 					/* alert('aa'+aa);
 					lol = $("#imsi_mbrLoginPw").val();
 					alert('lol'+lol); */
@@ -255,7 +259,7 @@ $.ajax({
 								<p>아이디를 잊어버리셨나요? 아래 입력사항에 가입하실때 작성하신 정보를 입력해주세요! 가입시 이메일로
 									전송됩니다.</p>
 								<br />
-								<div class="col-xs-12 col-sm-12 col-md-12">
+								<div class="col-xs-12 col-sm-12 col-md-12 enter">
 									<div class="col-md-4 mgt4">휴대폰</div>
 									<div class="col-md-8 mgt4">
 										<input type="text" id="mbrCellPhone" class="form-control"
@@ -316,10 +320,12 @@ $.ajax({
 											style="display: none;">
 											<div class="col-md-12">
 												<div class="col-sm-4 col-sm-4 col-md-4">남은시간</div>
-												<div class="col-sm-8 col-sm-8" id="time1" style="color: red"></div>
+												<%--타이머 --%>
+												<div class="col-sm-8 col-sm-8 mgb3"><strong id="time1" class="text-danger"></strong></div>
+												
 												<div class="col-md-8 col-md-offset-4">
 													<input type="text" name="imsipw_" id="mbrTempLoginPw"
-														class="form-control" placeholder="ImsiPw...">
+														class="form-control" placeholder="임시비밀번호.." >
 												</div>
 											</div>
 
@@ -340,14 +346,14 @@ $.ajax({
 									action="/member/mbrLoginPwUpdate.do"
 									onsubmit="return check(document.pwform)">
 									<h2>비밀번호 변경</h2>
-									<p>비밀번호를 변경합니다.</p>
+									<!-- <p>비밀번호를 변경합니다.</p> -->
 									<br />
 
 									<div class="col-md-8">
 										<div class="col-md-4 mgt4">변경 할 PW</div>
 										<div class="col-md-8 mgt4">
 											<input type="password" name="mbrLoginPw" class="form-control"
-												placeholder="mbrLoginPW">
+												placeholder="Password">
 										</div>
 										<input type="hidden" name="imsi_mbrLoginPw"
 											id="imsi_mbrLoginPw" value="">

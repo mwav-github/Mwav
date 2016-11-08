@@ -19,12 +19,12 @@
 <div class="bs-component">
 	<!-- NEW  -->
 	<table class="table table-striped">
-		<thead>
+	<!-- 	<thead>
 			<tr>
 				<th>Title</th>
 				<th>UpdateDate</th>
 			</tr>
-		</thead>
+		</thead> -->
 		<tbody>
 		<%--xml mapper에서 사용한 id는 사용불가능하다. --%>
 			<form name="NsmNews" action="/board/bnsView.do" method="post">

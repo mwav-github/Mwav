@@ -16,6 +16,8 @@ public class MemberDAO extends AbstractDAO {
 
 	byte[] decrypted = null;
 	byte[] encrypted = null;
+	
+	Common_Utils cu = new Common_Utils();
 
 	// Abstrat로 변경
 
@@ -97,7 +99,7 @@ public class MemberDAO extends AbstractDAO {
 	@SuppressWarnings("unchecked")
 	public boolean updateMbrLoginPw(Map<String, Object> map) throws IOException {
 		// TODO Auto-generated method stub
-		boolean flag;
+		boolean flag = true;
 		String b_mbrLoginPw = (String) map.get("mbrLoginPw");
 		System.out.println("* AES/CBC/IV");
 		System.out.println("b_mbrLoginPw=" + b_mbrLoginPw);
@@ -119,14 +121,23 @@ public class MemberDAO extends AbstractDAO {
 		} else {
 			System.out.println("    - Encrypted : " + sBase);
 		}
-
-		int imsiflag = (int) update("member.updateMbrLoginPw", map);
-		if (imsiflag == 1) {
-			System.out.println("성공");
-			flag = true;
-		} else {
-			System.out.println("실패");
-			flag = true;
+		//이전 pw워드와 동일한것으로 바뀌었는지 여부 
+		String before_mbrLoginPw = (String) selectOne("member.selectMbrLoginPw", map);
+		System.out.println("이전"+before_mbrLoginPw);
+		System.out.println("입력"+sBase);
+		if (before_mbrLoginPw.equals(sBase)){
+			//3개월전 입력과 동일하다.
+			
+		}else{
+			int imsiflag = (int) update("member.updateMbrLoginPw", map);
+			if (imsiflag == 1) {
+				System.out.println("성공");
+				flag = true;
+			} else {
+				System.out.println("실패");
+				flag = true;
+			}
+			
 		}
 
 		return flag;

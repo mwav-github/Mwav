@@ -6,7 +6,7 @@
 이놈이 슬라이드쇼 없는 놈 그러나 아직 반영 x 각 페이지별로 따로 있다.
  -->
 
-<nav id="BackToTop" class="menu navbar navbar-fixed-top "
+<nav id="BackToTop" class="menu navbar navbar-fixed-top"
 	role="navigation">
 	<div class="container">
 		<%-- Container를 nav 밖에 놓으면 전체 영역 / 안에놓으면 1170px --%>
@@ -35,18 +35,18 @@
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="mgt2 collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
-			<ul class="mgl5 nav navbar-nav">
-				<li><a href="/CompanyItem/ITProducts/OpenSRS/OpenSRS.jsp">IT
-						Solutions</a></li>
-				<li><a href="/CompanyItem/ITProducts/Aervision/Aervision.jsp">IT
-						Products</a></li>
-				<li><a href="/CompanyItem/WebSiteBuilding/WebSiteBuilding.jsp">WebSite
-						Building</a></li>
-				<li><a
-					href="/CompanyItem/DigitalMarketing/DigitalMarketing.jsp">Digital
-						Marketing</a></li>
-				<li><a href="/CompanyItem/ITConsulting/ITConsulting.jsp">IT
-						Consulting</a></li>
+			<ul class="mgl3 nav navbar-nav lead">
+				<li><a href="/CompanyItem/ITProducts/OpenSRS/OpenSRS.jsp"><h4>IT
+							Solutions</h4></a></li>
+					<li><a href="/CompanyItem/ITProducts/Aervision/Aervision.jsp"><h4>IT
+							Products</h4></a></li>
+					<li><a href="/CompanyItem/WebSiteBuilding/WebSiteBuilding.jsp"><h4>WebSite
+							Building</h4></a></li>
+					<li><a
+						href="/CompanyItem/DigitalMarketing/DigitalMarketing.jsp"><h4>Digital
+							Marketing</h4></a></li>
+					<li><a href="/CompanyItem/ITConsulting/ITConsulting.jsp"><h4>IT
+							Consulting</h4></a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<!-- 일반로그인 부분 -->
@@ -54,8 +54,8 @@
 					<li><a href="/CustomerService/CS-MasterPage.jsp?mode=SDMyPage"
 						data-toggle="tooltip" data-placement="bottom"
 						data-original-title="${mbrLoginId}님
-								반갑습니다."> MyPage</a></li>
-					<li><a href="/member/LogOut.do">LogOut</a></li>
+								반갑습니다."><h5>MyPage</h5></a></li>
+					<li><a href="/member/LogOut.do"><h5>LogOut</h5></a></li>
 				</c:if>
 				<c:if test="${sessionScope.mbrLoginId eq null }">
 					<li><a href="/login.do"><i class="fa fa-user fa-lg"></i></a></li>
@@ -80,8 +80,8 @@
      
      중간으로 보내기 위해서 container 추가 (left 메뉴 안의 페이지와 크기 동일) // => 다시 빼고 영역 조절
 --%>
-<header id="myCarousel" class="mgt1_8 carousel slide"
-	style="height: 65% !important;">
+<header id="myCarousel" class="mgt5.5 carousel slide"
+	style="height: 72% !important; margin-top:5.5% !important;">
 	
 	<!-- Indicators -->
 	<ol class="carousel-indicators">
@@ -117,7 +117,7 @@
 		</div>
 		<div class="item">
 			<div class="fill img-responsive companyItem_slideImg_600"
-				style="background-image: url('/CompanyItem/zImage/businessmen-1039905_1920.jpg');"></div>
+				style="background-image: url('/CompanyItem/zImage/computer-1149148_1920.jpg');"></div>
 			<div class="carousel-caption" style="color: #000;">
 
 
@@ -137,10 +137,10 @@
 		</div>
 		<div class="item">
 			<div class="fill img-responsive customer_slideImg_600"
-				style="background-image: url('/CustomerService/zImage/pretty-351884_1920.jpg');"></div>
+				style="background-image: url('/CustomerService/zImage/education-1651259_1920.jpg');"></div>
 			<div class="carousel-caption" style="color: rgba(138, 109, 59, 0.14)">
 				<!-- 전체크기는 일괄되게 -->
-				<div class="hidden-xs hidden-sm col-md-8 row pull-right">
+				<!-- <div class="hidden-xs hidden-sm col-md-8 row pull-right">
 					<h1 style="color: white;">Contact Address</h1>
 					<br />
 					<div class="row text-center">
@@ -172,7 +172,7 @@
 							<h3>E-mail</h3>
 							<br />
 							<p>ebizpromwav@gmail.com</p>
-							<!-- 추후 클릭스 Contact 쪽으로 넘기면 좋을듯. -->
+							추후 클릭스 Contact 쪽으로 넘기면 좋을듯.
 							<br />
 						</div>
 						<div class="col-xs-3 col-sm-3 col-md-3"
@@ -186,7 +186,7 @@
 							<br />
 						</div>
 					</div>
-				</div>
+				</div> -->
 				<!-- <div class="col-xs-3 pull-right">
 					<div class="text">
 						<div class="content-text">

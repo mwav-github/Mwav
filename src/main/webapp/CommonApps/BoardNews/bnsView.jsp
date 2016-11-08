@@ -26,7 +26,7 @@
 	<form role="form">
 		<table class="table table-striped">
 			<thead>
-				
+
 				<tr class="active">
 					<th>NO.</th>
 					<th>Group</th>
@@ -39,14 +39,14 @@
 
 
 			<tbody>
-					<tr>
-						<td>${selectOneBnsView.bNews_id}</td>
-						<td>${selectOneBnsView.bnGroup}</td>
-						<td>${selectOneBnsView.bnViewCount}</td>
-						<td>${selectOneBnsView.bnInsertDt}</td>
-						<td>${selectOneBnsView.staff_id}</td>
-						<td>${selectOneBnsView.bnOrder}</td>
-					</tr>
+				<tr>
+					<td>${selectOneBnsView.bNews_id}</td>
+					<td>${selectOneBnsView.bnGroup}</td>
+					<td>${selectOneBnsView.bnViewCount}</td>
+					<td>${selectOneBnsView.bnInsertDt}</td>
+					<td>${selectOneBnsView.staff_id}</td>
+					<td>${selectOneBnsView.bnOrder}</td>
+				</tr>
 			</tbody>
 		</table>
 
@@ -55,29 +55,40 @@
 			<tr>
 				<th class="active">Title</th>
 			</tr>
-			<tr> <td>${selectOneBnsView.bnTitle}</td></tr>
-			
-
-
-
 			<tr>
-				<th class="active">SubTitle</th>
+				<td>${selectOneBnsView.bnTitle}</td>
 			</tr>
-			<tr><td>${selectOneBnsView.bnSubTitle}</td></tr>
 
+			<%--subtitle은 우리쪽 내용이 들어가는 부분이므로 null이면 노출하지 않는다. admin 페이지는 전체 노출!!  --%>
+
+			<c:if
+				test="${selectOneBnsView.bnSubTitle != '' or selectOneBnsView.bnSubTitle eq null}">
+				<tr>
+					<th class="active">SubTitle</th>
+				</tr>
+				<tr>
+					<td>${selectOneBnsView.bnSubTitle}</td>
+				</tr>
+
+			</c:if>
 			<tr>
 				<th class="active">Content</th>
-				
+
 			</tr>
-			<tr><td>${selectOneBnsView.bnContent}</td></tr>
+			<tr>
+				<td>${selectOneBnsView.bnContent}</td>
+			</tr>
 
 		</table>
 	</form>
 
 	<br style="clear: both">
 	<p class="pull-right">
-		<button type="button" class="btn btn-success" onClick="javascript:window.location.href='/board/bnsList.do'">All List</button>
-		<button type="button" class="btn btn-warning" onClick="javascript:history.go(-1)">BACK</button>
+		<button type="button" class="btn btn-success"
+			onClick="javascript:window.location.href='/board/bnsList.do'">All
+			List</button>
+		<button type="button" class="btn btn-warning"
+			onClick="javascript:history.go(-1)">BACK</button>
 	</p>
 
 </div>

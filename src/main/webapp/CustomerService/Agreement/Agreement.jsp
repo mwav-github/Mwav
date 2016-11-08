@@ -72,7 +72,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 							href="#terms1">이메일 주소 무단 수집거부</a></li>
 						<li role="presentation"><a data-toggle="tab" href="#terms2">청소년보호정책</a></li>
 						<li role="presentation"><a data-toggle="tab" href="#terms3">개인정보취급방침</a></li>
-						<li role="presentation"><a data-toggle="tab" href="#terms4">Mwav
+						<li role="presentation"><a data-toggle="tab" href="#terms4">이용자
 								약관</a></li>
 					</ul>
 
@@ -91,6 +91,10 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 						</div>
 						<div class="tab-pane fade" id="terms3">
 							<jsp:include page="/CustomerService/Policy/_PrivateInfo.jsp"
+								flush="false" />
+						</div>
+						<div class="tab-pane fade" id="terms4">
+							<jsp:include page="/CustomerService/Policy/_mwav_policy.jsp"
 								flush="false" />
 						</div>
 					</div>

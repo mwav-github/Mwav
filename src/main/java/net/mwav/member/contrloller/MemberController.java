@@ -109,7 +109,7 @@ public class MemberController {
 	@RequestMapping(value = "/member/mbrForm.do")
 	public String insertMbrForm(CommandMap commandMap, Model model) throws Exception {
 
-		//model.addProperty("mode", "SDMbrInput");
+		//model.addAttribute("mode", "SDMbrInput");
 		String result = memberService.insertMbrForm(commandMap.getMap());
 
 		if(!"insertForm Success".equals(result)) {
@@ -185,8 +185,10 @@ public class MemberController {
 			HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/CustomerService/CS-MasterPage");
 
-		mode = "SUpdateProMbr";
-		request.setAttribute("mode", mode);
+		mode = "SDMyPage";
+		//mv.addObject("mode", "SDMyPage");
+		//request.setAttribute("mode", "SDMyPage");
+		mv.addObject("mode", "SmbrUpdatePro");
 
 		// 위의 view랑 동일하게 사용
 		HttpSession session = request.getSession();

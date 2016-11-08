@@ -42,7 +42,7 @@
 					<tr>
 						<td>${selectOneBuView.bUsers_id}</td>
 						<td>${selectOneBuView.buGroup}</td>
-						<td>${selectOneBuView.buViewCount}</td>
+						<td><!-- <span class="badge text-center"> -->${selectOneBuView.buViewCount}</td>
 						<td>${selectOneBuView.buInsertDt}</td>
 						<td>${selectOneBuView.staff_id}</td>
 						<td>${selectOneBuView.buOrder}</td>
@@ -58,13 +58,14 @@
 			<tr> <td>${selectOneBuView.buTitle}</td></tr>
 			
 
-
-
+<%--subtitle은 우리쪽 내용이 들어가는 부분이므로 null이면 노출하지 않는다. admin 페이지는 전체 노출!!  --%>
+            <c:if test ="${selectOneBuView.buSubTitle != '' or selectOneBuView.buSubTitle eq null}">
 			<tr>
 				<th class="active">SubTitle</th>
 			</tr>
 			<tr><td>${selectOneBuView.buSubTitle}</td></tr>
-
+            </c:if>
+            
 			<tr>
 				<th class="active">Content</th>
 				

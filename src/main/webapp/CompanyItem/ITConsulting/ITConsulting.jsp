@@ -97,10 +97,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 							various information technology consulting services and solutions
 							provided by our partner community and Mwav Consulting Services.</p>
 						<br>
-						<p>
-							<i class="fa fa-long-arrow-right"></i> To learn more about the
-							consulting services available contact us: Email@naver.com
-						</p>
+						
 
 					</div>
 

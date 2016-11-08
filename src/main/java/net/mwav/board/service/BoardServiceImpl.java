@@ -10,6 +10,7 @@ import javax.annotation.Resource;
 
 import net.common.common.CommandMap;
 import net.mwav.board.dao.BoardDAO;
+import net.mwav.common.module.Common_Utils;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,8 @@ import org.springframework.stereotype.Service;
 @Service("boardService")
 public class BoardServiceImpl implements BoardService {
 	Logger log = Logger.getLogger(this.getClass());
-
+	Common_Utils cu = new Common_Utils();
+	
 	@Resource(name = "boardDAO")
 	private BoardDAO boardDAO;
 
@@ -43,7 +45,11 @@ public class BoardServiceImpl implements BoardService {
 	public Map<String, Object> selectOneBnsView(Map<String, Object> map)
 			throws Exception {
 		// TODO Auto-generated method stub
-		boardDAO.updateHitCnt(map);
+		
+		//조회수 증가 
+		boardDAO.updateNewsHitCnt(map);
+		
+		
 		Set set = map.entrySet();
 		Iterator iterator = set.iterator();
 		while (iterator.hasNext()) {
@@ -81,7 +87,17 @@ public class BoardServiceImpl implements BoardService {
 	public List<Map<String, Object>> selectListBnsFrontList(
 			Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
-		return boardDAO.selectListBnsFrontList(map);
+		
+		List<Map<String, Object>> resultMap = boardDAO.selectListBnsFrontList(map);
+		/*cu.selectMapList(resultMap);
+		//미완성 타입변형부분은 commonutil 부분과 연계하여 좀더 생각 
+		for (int i = 0; i < resultMap.size(); i++) {
+		String before_date = (String) resultMap.get(i).get("bnUpdateDt");
+		System.out.println("before_date"+ before_date);
+		String after_date = cu.convertStringToDateFormat(before_date, "1");
+		System.out.println("after_date"+ after_date);
+		}*/
+		return resultMap;
 	}
 
 	@Override
@@ -122,7 +138,12 @@ public class BoardServiceImpl implements BoardService {
 	public Map<String, Object> selectOneBuView(Map<String, Object> map)
 			throws Exception {
 		// TODO Auto-generated method stub
-		boardDAO.updateHitCnt(map);
+		
+		
+		//조회수 증가
+		boardDAO.updateNoticeHitCnt(map);
+		
+		
 		Set set = map.entrySet();
 		Iterator iterator = set.iterator();
 		while (iterator.hasNext()) {

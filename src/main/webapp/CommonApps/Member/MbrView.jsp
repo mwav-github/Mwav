@@ -79,14 +79,16 @@
 			</div>
 			<div class="panel-footer">
 				<a data-original-title="Broadcast Message" data-toggle="tooltip"
-					type="button" class="btn btn-sm btn-primary"><i
-					class="glyphicon glyphicon-envelope"></i></a> <span class="pull-right">
+					type="button" class="btn btn-md btn-primary"><i
+					class="glyphicon glyphicon-envelope"></i></a> 
+					
+					<span class="pull-right">
 					<a href="/member/mbrUpdate.do" data-original-title="Edit this user"
-					data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i
+					data-toggle="tooltip" type="button" class="btn btn-md btn-warning"><i
 						class="glyphicon glyphicon-edit"></i></a> <a
 					href="/CustomerService/CS-MasterPage.jsp?mode=SDMbrDelete"
 					data-original-title="Remove this user" data-toggle="tooltip"
-					type="button" class="btn btn-sm btn-danger"><i
+					type="button" class="btn btn-md btn-danger"><i
 						class="glyphicon glyphicon-remove"></i></a>
 						
 						

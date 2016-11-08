@@ -72,8 +72,6 @@
 		                       .container 는 우리의 그리드 시스템에 맞는 다양한 미디어 쿼리 분기점에서 max-width 가 설정되어 있습니다. 
 		                       **추후 수정
 		                       --%>
-
-		<div class="enter"></div>
 		<!-- Marketing Icons Section -->
 		<div class="row" id="IT_Solutions">
 			<!-- Fluid row 1행 -->

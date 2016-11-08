@@ -42,8 +42,8 @@ public class BoardDAO extends AbstractDAO {
 	}
 	
 	// 조회수 증가
-	public void updateHitCnt(Map<String, Object> map) throws Exception {
-		update("board.updateHitCnt", map);
+	public void updateNewsHitCnt(Map<String, Object> map) throws Exception {
+		update("board.updateNewsHitCnt", map);
 	} 
 
 

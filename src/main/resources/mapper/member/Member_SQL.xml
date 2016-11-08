@@ -14,9 +14,16 @@
 	
 	<insert id="insertMemberValue_tbl" parameterType="hashmap">
 		<![CDATA[
-	INSERT INTO MemberValue_tbl Values(#{member_id},null,null,null,null,null,null,null,null,null,null,now(),null,null,null,null,null,null)
+	INSERT INTO MemberValue_tbl 
+	    Values(#{member_id},'0','0','0','0','0','0','0','0','0',null,now(),null,null,null,null,null,null,null,null)
 		]]>
 	</insert>
+	
+	<select id="selectMbrLoginPw" parameterType="hashmap" resultType="string" >
+		<![CDATA[
+		select mbrLoginPw from Member_tbl where mbrTempLoginPw = #{imsi_mbrLoginPw}
+		]]>
+	</select>
 	
 	<!-- /*========================================보기========================================*/ -->
 	<select id="selectMbrView" parameterType="hashmap" resultType="hashmap">
@@ -39,13 +46,13 @@
 	
 	<update id="updateMbrLoginPw" parameterType="hashmap" >
 		<![CDATA[
-		UPDATE Member_tbl SET mbrLoginPw = #{mbrLoginPw} WHERE mbrTempLoginPw = #{imsi_mbrLoginPw}
+		UPDATE Member_tbl SET mbrLoginPw = #{mbrLoginPw} WHERE mbrTempLoginPw = #{imsi_mbrLoginPw} and mbrLoginPw != #{imsi_mbrLoginPw}
 		]]>
 	</update>
 	
 	<update id="updateMbrTempLoginPw" parameterType="hashmap"> 
 		<![CDATA[
-		UPDATE Member_tbl SET mbrLoginPw=#{mbrTempLoginPw}, mbrTempLoginPw = #{mbrTempLoginPw} WHERE mbrEmail = #{mbrEmail} and mbrLoginId = #{mbrLoginId}
+		UPDATE Member_tbl SET mbrTempLoginPw = #{mbrTempLoginPw} WHERE mbrEmail = #{mbrEmail} and mbrLoginId = #{mbrLoginId}
 		]]>
 	</update>
 	
@@ -71,7 +78,7 @@
 	
 	 <select id="selectOneMbrTempLoginPwSeek" parameterType="hashmap" resultType="string">
 		<![CDATA[
-		select mbrTempLoginPw from Member_tbl where mbrTempLoginPw = #{imsiPW}
+		select mbrTempLoginPw from Member_tbl where mbrTempLoginPw = #{mbrTempLoginPw}
 		]]>
 	</select>
 	

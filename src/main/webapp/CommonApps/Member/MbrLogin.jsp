@@ -5,6 +5,9 @@
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"
 	rel="stylesheet">
+<link
+	href="/resources/JsFramework/Bootstrap/bootstrap-social.css"
+	rel="stylesheet">	
 	<!-- 구글 API관련 -->
     <meta name="google-signin-scope" content="profile email">
     <meta name="google-signin-client_id" content="881218558153-ndr868i68rlofoo4l2gb488ksabi5q23.apps.googleusercontent.com">
@@ -186,63 +189,13 @@
 </script>
 
 <%--padding 으로 안쪽 추후 딴건 변경가능 #04A3ED --%>
+<div class="enter"></div>
 <div class="col-md-12"
-	style="padding: 60px; box-shadow: 0 0 20px 3px #04A3ED; background: #f7f7f7;">
-	
-		<div class="form-group">
-			<!-- <div class="col-xs-6 col-sm-6 col-md-2">
-				<button type="button" class="btn btn-primary btn-block " onclick="checkLoginState();">
-					<i class="fa fa-facebook"></i>
-				</button>
+	style="padding: 5%; box-shadow: 0 0 20px 3px #04A3ED; background: #f7f7f7;">
 
-			</div>
-			<div class="col-xs-6 col-sm-6 col-md-2">
-				<button type="button" class="btn btn-info btn-block">
-					<i class="fa fa-twitter"></i>
-				</button>
-
-			</div> -->
-			
-			<!-- facebook SIGNIN -->
-			<form id="go_signin" name="go_signin" action="<c:url value="/signin/facebook.do"/>" method="POST">
-				<div class="col-xs-6 col-sm-6 col-md-2">
-					<button type="submit" class="btn btn-primary btn-block"><i class="fa fa-facebook"></i></button>
-					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-					
-				</div>
-			</form>
-			
-			<!-- GOOGLE SIGNIN -->
-			<form id="go_signin" name="go_signin" action="<c:url value="/signin/google.do"/>" method="POST">
-				<div class="col-xs-6 col-sm-6 col-md-2">
-					<button type="submit" class="btn btn-danger btn-block"><i class="fa fa-google-plus"></i></button>
-					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-					<input type="hidden" name="scope" value="email profile" />
-				</div>
-			</form>
-			
-			<!-- LINKEDIN SIGNIN -->
-			<form id="go_signin" name="go_signin" action="<c:url value="/signin/linkedin.do"/>" method="POST">
-				<div class="col-xs-6 col-sm-6 col-md-2">
-					<button type="submit" class="btn btn-danger btn-block"><i class="fa fa-linkedin"></i></button>
-					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-				</div>
-			</form>
-			
-			<!-- TWITTER SIGNIN -->
-			<form id="go_signin" name="go_signin" action="<c:url value="/signin/twitter.do"/>" method="POST">
-				<div class="col-xs-6 col-sm-6 col-md-2">
-					<button type="submit" class="btn btn-info btn-block"><i class="fa fa-twitter"></i></button>
-					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-				</div>
-			</form>
-		</div>
 
 		<form name="login_form" action="/member/Login.do" method="post">
-		
 		<div class="enter"></div>
-		<div class="enter"></div>
-
 		<div class="form-group">
 			<input type="text" name="mbrLoginId" class="form-control input-lg"
 				placeholder="Email">
@@ -259,8 +212,72 @@
 			<button type="submit" class="btn btn-primary btn-lg btn-block">Sign
 				In</button>
 		</div>
+		</form>
 		
+		<%--소셜 로그인 연동부분 --%>
 		<div class="form-group">
+			<!-- <div class="col-xs-6 col-sm-6 col-md-2">
+				<button type="button" class="btn btn-primary btn-block " onclick="checkLoginState();">
+					<i class="fa fa-facebook"></i>
+				</button>
+
+			</div>
+			<div class="col-xs-6 col-sm-6 col-md-2">
+				<button type="button" class="btn btn-info btn-block">
+					<i class="fa fa-twitter"></i>
+				</button>
+
+			</div> -->
+			
+			
+			<!-- GOOGLE SIGNIN -->
+			<form id="go_signin" name="go_signin" action="<c:url value="/signin/google.do"/>" method="POST">
+				<div class="col-xs-12 col-sm-12 col-md-12 mgt1_8">
+					<%-- <button type="submit" class="btn btn-danger btn-block"><i class="fa fa-google-plus"></i></button>--%>
+					<button type="submit" class="btn btn-block btn-social btn-google"><span class="fa fa-google-plus"></span> <span class="">Sign in with Google</span></button>
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+					<input type="hidden" name="scope" value="email profile" />
+				</div>
+				
+			</form>
+			
+			<!-- facebook SIGNIN -->
+			<form id="go_signin" name="go_signin" action="<c:url value="/signin/facebook.do"/>" method="POST">
+				<div class="col-xs-12 col-sm-12 col-md-12 mgt1_8">
+					<%-- <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-facebook"></i></button>--%>
+					
+					<button type="submit" class="btn btn-block btn-social btn-facebook"><span class="fa fa-facebook"></span> <span class=""> Sign in with Facebook</span></button>
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+					
+				</div>
+			</form>
+			
+			
+			<!-- LINKEDIN SIGNIN -->
+			<form id="go_signin" name="go_signin" action="<c:url value="/signin/linkedin.do"/>" method="POST">
+				<div class="col-xs-12 col-sm-12 col-md-12 mgt1_8">
+				<%-- 이전버전 
+					<button type="submit" class="btn btn-danger btn-block"><i class="fa fa-linkedin"></i></button>
+				--%>	
+					<button type="submit" class="btn btn-block btn-social btn-linkedin"><span class="fa fa-linkedin"></span> <span class="">Sign in with LinkedIn</span></button>
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+				</div>
+			</form>
+			
+			<!-- TWITTER SIGNIN -->
+			<form id="go_signin" name="go_signin" action="<c:url value="/signin/twitter.do"/>" method="POST">
+				<div class="col-xs-12 col-sm-12 col-md-12 mgt1_8 mgb3">
+					<%--<button type="submit" class="btn btn-info btn-block"><i class="fa fa-twitter"></i></button> --%>
+				
+					<button type="submit" class="btn btn-block btn-social btn-twitter"><span class="fa fa-twitter"></span> <span class="">Sign in with Twitter</span></button> 
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+				</div>
+			</form>
+		</div>
+		
+		<%--아이디 비밀번호 찾기 --%>
+		
+		<div class="form-group ">
 
 			<span class="pull-left"><a href="#IDPWSeek"
 				data-toggle="modal" data-target=".IDPWSeek" role="button"
@@ -282,7 +299,7 @@
 		<!-- <div class="fb-login-button" data-max-rows="12" data-size="large" scope="public_profile,email"
 				data-show-faces="true" data-auto-logout-link="true"></div> -->
 
-	</form>
+	
 	
 </div>
 <!-- Login - END -->

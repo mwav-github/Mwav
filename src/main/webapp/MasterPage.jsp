@@ -57,6 +57,7 @@
 	<%-- 로그인 페이지는 내부 넓이때문에 mg5xauto --%>
 	<div class="container mg5xauto">
 		<div class="row">
+		    <div class="enter"></div>
 			<div class="col-md-12 col-sm-12">
 			<%--
 ${param.name} => request.getParameter("name");

@@ -110,8 +110,8 @@
 <div class="footer-bottom">
 	<div class="container">
 		<p class="pull-left">
-			Copyright ⓒ Since 2004 Mwav.net All rights reserved | <a href="">Privacy
-				Policy</a> | <a href="">Terms of Use</a>
+			Copyright ⓒ Since 2004 Mwav.net All rights reserved | <a >Privacy
+				Policy</a> | <a >Terms of Use</a>
 		</p>
 		<div class="pull-right">
 			<ul class="nav nav-pills payments">
@@ -139,8 +139,8 @@
 
 <div class="modal fade modal_terms" id="myModal" tabindex="-1"
 		role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="overflow: auto;">
-		<div class="modal-dialog modal-md">
-			<div class="modal-content">
+		<div class="modal-dialog modal-md" >
+			<div class="modal-content" >
 				<div class="modal-header"
 					style="border-bottom: 0px solid #eee; background-color: #0480be; color: white;">
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -154,9 +154,10 @@
 						<li class=""><a href="#terms3" data-toggle="tab">개인정보취급방침</a></li>
 					</ul>
 				</div>
-				<div class="modal-body">
-					<div class="container-fluid">
-						<div id="myTabContent" class="tab-content">
+				<%--max-height로 아래 설정하면 영역이 안잡혀서 안먹힌다. --%>
+				<div class="modal-body"  style="overflow-y: scroll; height:300px; ">
+					<div class="container-fluid" >
+						<div id="myTabContent" class="tab-content" >
 							<div class="tab-pane fade in active" id="terms1">
 								<jsp:include page="/CustomerService/Policy/_EmailExtract.jsp" flush="false" />
 							</div>
@@ -164,7 +165,7 @@
 								
 								<jsp:include page="/CustomerService/Policy/_Juvenile.jsp" flush="false" />
 							</div>
-							<div class="tab-pane fade" id="terms3">
+							<div class="tab-pane fade" id="terms3" >
 								<jsp:include page="/CustomerService/Policy/_PrivateInfo.jsp" flush="false" />
 							</div>
 						</div>

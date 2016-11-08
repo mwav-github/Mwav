@@ -49,9 +49,9 @@
 					</textarea>
 				<!-- name 으로 안묶이면 중복선택이 안되므로 id값으로 구분 값 변경 -->
 				<p class="text-center pdt1_5">
-					<label><input type="radio" name="agree_1_d"
-						id="agree_1_1_d">Agree</label> <label><input type="radio"
-						name="agree_1_d" id="agree_1_2_d">Disagree</label>
+					<label class="mgr3"><input type="radio" name="agree_1_d"
+						id="agree_1_1_d" > Agree</label> <label><input type="radio"
+						name="agree_1_d" id="agree_1_2_d"> Disagree</label>
 				</p>
 				<%-- 약관동의 1_Mwav회원약관 --%>
 				<p class="text-left mgt5">
@@ -86,9 +86,9 @@
 					</textarea>
 				<!-- name 으로 안묶이면 중복선택이 안되므로 id값으로 구분 값 변경 -->
 				<p class="text-center pdt1_5">
-					<label><input type="radio" name="agree_2_d"
-						id="agree_2_1_d">Agree</label> <label><input type="radio"
-						name="agree_2_d" id="agree_2_2_d">Disagree</label>
+					<label class="mgr3"><input type="radio" name="agree_2_d"
+						id="agree_2_1_d" > Agree</label> <label><input type="radio"
+						name="agree_2_d" id="agree_2_2_d"> Disagree</label>
 				</p>
 				<button class="btn btn-primary btn-lg mgt4" onclick="AllCheck();">동의합니다.</button>
 			</div>

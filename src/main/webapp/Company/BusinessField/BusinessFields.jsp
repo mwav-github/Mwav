@@ -41,12 +41,12 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 		<div class="row">
 			<div class="col-lg-12">
 				<h1 class="page-header">
-					Company <small> BusinessField</small>
+					Company <small> Business Field</small>
 				</h1>
 				<ol class="breadcrumb">
 					<li><a href="index.html">Home</a></li>
 					<li>Company</li>
-					<li class="active">BusinessField</li>
+					<li class="active">Business Field</li>
 				</ol>
 			</div>
 		</div>
@@ -68,7 +68,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 				<div class="row">
 
 					<div class="col-lg-12">
-						<h2 class="page-header">The Business Areas</h2>
+						<h2 class="page-header">Business Field</h2>
 					</div>
 					<%--추후 버튼 변경 예정 또한 추가적으로 ~!! 모달 예정--%>
 					<!-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
@@ -86,29 +86,68 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 
 							</a>
 					</div> -->
-					<div class="col-lg-12">
-					<a href="#Web / Ad Agency">
-						<button type="button"
-							class="btn btn-info btn-sm col-lg-6 col-md-6 col-sm-6 col-xs-12">
-							<h3>Web / Ad Agency</h3>
-						</button>
-					</a> <a href="#IT Solutions Provider">
-						<button type="button"
-							class="btn btn-warning btn-sm col-lg-6 col-md-6 col-sm-6 col-xs-12">
-							<h3>IT Solutions Provider</h3>
-						</button>
-					</a> <a href="#IT Edu. / Consulting">
-						<button type="button"
-							class="btn btn-primary btn-sm col-lg-6 col-md-6 col-sm-6 col-xs-12">
-							<h3>IT Edu. / Consulting</h3>
-						</button>
-					</a> <a href="#E-Commerce Services">
-						<button type="button"
-							class="btn btn-danger btn-sm col-lg-6 col-md-6 col-sm-6 col-xs-12">
-							<h3>E-Commerce Services</h3>
-						</button>
-					</a>
+					<!-- 					<div class="col-lg-12">
+						<a href="#Web / Ad Agency">
+							<button type="button"
+								class="btn btn-info btn-sm col-lg-6 col-md-6 col-sm-6 col-xs-12">
+								<h3>Web / Ad Agency</h3>
+							</button>
+						</a> <a href="#IT Solutions Provider">
+							<button type="button"
+								class="btn btn-warning btn-sm col-lg-6 col-md-6 col-sm-6 col-xs-12">
+								<h3>IT Solutions Provider</h3>
+							</button>
+						</a> <a href="#IT Edu. / Consulting">
+							<button type="button"
+								class="btn btn-primary btn-sm col-lg-6 col-md-6 col-sm-6 col-xs-12">
+								<h3>IT Edu. / Consulting</h3>
+							</button>
+						</a> <a href="#E-Commerce Services">
+							<button type="button"
+								class="btn btn-danger btn-sm col-lg-6 col-md-6 col-sm-6 col-xs-12">
+								<h3>E-Commerce Services</h3>
+							</button>
+						</a>
+					</div> -->
+
+
+					<div class="col-md-12">
+						<div class="enter"></div>
+						<div class="panel panel-primary">
+							<div class="panel-heading">
+								<h3 class="panel-title">
+									<span class="glyphicon glyphicon-bookmark"></span> Quick Menu
+								</h3>
+							</div>
+							<div class="panel-body">
+								<div class="row">
+									<div class="col-xs-12 col-md-12">
+										<a href="#Web / Ad Agency"
+											class="btn btn-success btn-lg col-lg-6 col-md-6 col-sm-6 col-xs-12"
+											 role="button" style="background-color: #2B398F !important; border-color: #FFFFFF !important;"><span class="glyphicon glyphicon-globe"></span>
+											<br />Web / Ad Agency</a> <a href="#IT Solutions Provider"
+											class="btn btn-info btn-lg col-lg-6 col-md-6 col-sm-6 col-xs-12"
+											role="button" style="background-color: #5767FF !important; border-color: #FFFFFF !important;"><span
+											class="glyphicon glyphicon glyphicon-user"></span> <br />IT
+											Solutions Provider</a> <a href="#IT Edu. / Consulting"
+											class="btn btn-primary btn-lg col-lg-6 col-md-6 col-sm-6 col-xs-12"
+											role="button" style="background-color: #D8616D !important; border-color: #FFFFFF !important;"><span
+											class="glyphicon glyphicon glyphicon-list-alt" ></span> <br />IT
+											Edu. / Consulting</a> <a href="#E-Commerce Services"
+											class="btn btn-info btn-lg col-lg-6 col-md-6 col-sm-6 col-xs-12"
+											role="button" style="background-color: #B5917B !important; border-color: #FFFFFF !important;"><span class="glyphicon glyphicon-comment"></span>
+											<br />E-Commerce Services</a>
+									</div>
+
+								</div>
+								<!-- 	<a href="http://www.jquery2dotnet.com/"
+											class="btn btn-success btn-lg btn-block" role="button"><span
+											class="glyphicon glyphicon-globe"></span> Website</a> -->
+							</div>
+						</div>
 					</div>
+
+
 
 					<div class="col-md-12 mgt1_8">
 						<br>
@@ -182,30 +221,42 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
 						<div
 							class="alert alert-info col-lg-12 col-md-12 col-sm-12 col-xs-12">
-							<a href="#" class="btn btn-xs btn-primary pull-right">Learn
-								More</a> <strong>MS Products</strong> (Microsoft, US)
+							<a href="/CompanyItem/ITProducts/MSOffice/MSOffice.jsp"
+								class="btn btn-xs btn-primary pull-right" target="_blank">Learn
+								More</a> <strong>MS Office</strong> (Microsoft, US)
 						</div>
 						<div
 							class="alert alert-info col-lg-12 col-md-12 col-sm-12 col-xs-12">
-							<a href="#" class="btn btn-xs btn-primary pull-right">Learn
-								More</a> <strong>Open ERP, CRM </strong> (India)
+							<a href="/CompanyItem/ITProducts/Azure/Azure.jsp"
+								class="btn btn-xs btn-primary pull-right" target="_blank">Learn
+								More</a> <strong>MS Azure </strong> (Microsoft, US)
 						</div>
 						<div
 							class="alert alert-info col-lg-12 col-md-12 col-sm-12 col-xs-12">
-							<a href="#" class="btn btn-xs btn-primary pull-right">Learn
-								More</a> <strong>Domain, SSL </strong> (Canada)
+							<a href="/CompanyItem/ITProducts/Windows/Windows.jsp"
+								class="btn btn-xs btn-primary pull-right" target="_blank">Learn
+								More</a> <strong>MS Windows </strong> (Microsoft, US)
 						</div>
+
 						<div
 							class="alert alert-info col-lg-12 col-md-12 col-sm-12 col-xs-12">
-							<a href="#" class="btn btn-xs btn-primary pull-right">Learn
-								More</a> <strong>Media Solutions </strong> (Korea)
+							<a href="/CompanyItem/ITProducts/InsWave/InsWave.jsp"
+								class="btn btn-xs btn-primary pull-right" target="_blank">Learn
+								More</a> <strong>Media Solutions </strong> (InsWave, Korea)
 						</div>
 					</div>
 					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
 						<div
 							class="alert alert-danger col-lg-12 col-md-12 col-sm-12 col-xs-12">
-							<a href="#" class="btn btn-xs btn-danger pull-right">Learn
-								More</a> <strong>Trade Certificates </strong> (Russia)
+							<a href="#" class="btn btn-xs btn-danger pull-right"
+								target="_blank">Learn More</a> <strong>IoT, Security
+								Solutions </strong> (Aervision, Australia)
+						</div>
+						<div
+							class="alert alert-danger col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<a href="/CompanyItem/ITProducts/OpenSRS/OpenSRS.jsp"
+								class="btn btn-xs btn-danger pull-right" target="_blank">Learn
+								More</a> <strong>Domain, SSL </strong> (Open SRS, US)
 						</div>
 					</div>
 

@@ -39,6 +39,7 @@
         <pattern>/photo/*</pattern>
     -->
     
+    <!-- 일단 주석
     <decorator name="companyTemplate" title="CompanyPage" page="CompanyMasterPage.jsp">
         <pattern>/Company/*</pattern>
     </decorator>
@@ -48,6 +49,7 @@
     <decorator name="headerMaster" page="/PartsOfContent/SiteHeader/FrontHeader_Master.jsp" />
     <decorator name="header" page="/PartsOfContent/SiteHeader/FrontHeader.jsp" />
     <decorator name="footer" page="/PartsOfContent/SiteFooter/FrontFooter.jsp" />
+    -->
     
     <!-- 
     <decorator  name="mypage" 

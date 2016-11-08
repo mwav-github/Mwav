@@ -34,10 +34,10 @@ http://planbong.tistory.com/531
 	function idcheck() {
 		var id = document.getElementsByName("mbrLoginId")[0].value;
 		//alert(id);
-		
-		//유효성 체크 
+
+		//유효성 체크  후 ajax
 		chkLoginPolicy();
-		
+				
 		var queryString = "mbrLoginId=" + id;
 		if (id.length < 6) {
 			document.getElementById("idcheckLayer").innerHTML = "<font color=red>6자리 이상 입력하세요.</font>";
@@ -54,6 +54,7 @@ http://planbong.tistory.com/531
 			// 5. send()를 통해 요청
 			xhr.send(queryString); // 요청 쿼리를 보내준다.
 		}
+		
 	}
 	function callback() {
 		if (xhr.readyState == 4) { // 응답을 다 받은 경우
@@ -82,6 +83,27 @@ http://planbong.tistory.com/531
 	}
 
 	function msubmit() {
+
+		var Zipcode = $('#Zipcode').val()
+		var Address = $('#Address').val()
+		var rest_address = $('#rest_address').val()
+
+		//html element에 대하여 null 또는 비어있는지 체크 및 alert 문구 노출
+		var flag; // return false 여부 체크 이함수도 false 시켜야하므로 
+
+		//flag 마지막 값만 인식하므로 수정이 필요하긴 함.
+		//필수값은 아니다. 
+		//flag = emptyCheck(rest_address, "나머지 주소를 입력해주세요.");
+		//flag = emptyCheck(Zipcode, "우편번호를 입력해주세요.");
+		//flag = emptyCheck(Address, "주소를 입력해주세요.");
+		
+		/* if (flag == false || flag == undefined) {
+			//alert('11');
+			return false;
+		} else {
+ */			document.change_record.submit();
+		//}
+		//alert(flag);
 		/* $("change_record").validate({
 		    //validation이 끝난 이후의 submit 직전 추가 작업할 부분
 		    //http://hellogk.tistory.com/48
@@ -127,7 +149,7 @@ http://planbong.tistory.com/531
 		        }
 		    }
 		});	 */
-		document.change_record.submit();
+
 	}
 </script>
 <script>
@@ -141,21 +163,23 @@ http://planbong.tistory.com/531
 			<h5>Mwav - Member Registration</h5>
 		</div>
 		<div class='panel-body'>
-			<form role="form" class='form-horizontal' name="change_record" method="post"
-				action="/member/mbrForm.do">
+			<form role="form" class='form-horizontal' name="change_record"
+				method="post" action="/member/mbrForm.do" onsubmit="msubmit();">
 				<%--action="/member/memberForm.do" --%>
 				<div class='form-group'>
 					<label class='control-label col-md-2 col-md-offset-2'
 						for='id_accomodation'>Login Id</label>
-
+						
+						
 					<div class='col-md-6'>
 						<div class='form-group'>
 							<div class='col-md-11'>
 								<input type="text" class="form-control" name="mbrLoginId"
-									id="chkLoginId" placeholder="예) abc2006" 
-									onchange="idcheck()" maxlength="20" required>
+									id="chkLoginId" placeholder="예) abc2006" onchange="idcheck()"
+									maxlength="20" required>
 							</div>
 						</div>
+					
 					</div>
 					<!-- 
 					ID 중복확인 버튼 클릭없이도 가입 가능하게끔 되어있어서 
@@ -273,9 +297,10 @@ http://planbong.tistory.com/531
 				<!-- disable는 제출되지 않는다 즉 값이 전달되지 않음. *중요 -->
 				<div class='form-group'>
 					<div class="col-md-offset-4 col-md-6">
+						<%--readonly에는 required 안먹힌다.  --%>
 						<div class='col-md-11'>
 							<input class='form-control' name="mbrZipcode" id='Zipcode'
-								type='text' placeholder='우편번호' value ="" readonly="readonly" required>
+								type='text' placeholder='우편번호' value="" readonly="readonly">
 						</div>
 						<!-- <p class="col-md-1" style="text-align: center">
 						<strong>-</strong>
@@ -288,15 +313,15 @@ http://planbong.tistory.com/531
 						<div class="enter hidden-xs hidden-sm"></div>
 						<div class='col-md-11'>
 							<input name="mbrAddress_1" class='form-control' id='Address'
-								placeholder='주소' type='text' value ="" readonly="readonly" required>
+								placeholder='주소' type='text' value="" readonly="readonly">
 						</div>
 						<div class="enter hidden-xs hidden-sm"></div>
 
 						<div class="col-md-11">
-							<input name="mbrAddress_2" class="form-control" 
-								 placeholder='나머지 주소' type="text"  required/>
+							<input name="mbrAddress_2" class="form-control"
+								placeholder='나머지 주소' type="text" id="rest_address" />
 						</div>
-						
+
 						<div class="enter"></div>
 					</div>
 				</div>

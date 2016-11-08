@@ -77,16 +77,20 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 						</h3>
 						<h5>All information and story about Mwav.</h5>
 						<br>
-						<ul class="font_color_faq">
-							<li><a href="/Company/Introduction/Introduction.jsp">Introduction</a></li>
-							<li><a href="/Company/Greetings/Greetings.jsp">Greetings</a></li>
-							<li><a href="/Company/History/History.jsp">History</a></li>
-							<li><a href="/Company/BusinessField/BusinessFields.jsp">Business Field</a></li>
-							<li><a href="/Company/ActualResults/ActualResults.jsp">Actual Results</a></li>
-							<li><a href="/board/bnsList.do">The Press</a></li>
-							<li><a href="/Company/HR-Affairs/HR-Affairs.jsp">HR-Affairs</a></li>
-							<li><a href="/Company/LocationMap/LocationMap.jsp">Location Map</a></li>
-							<li><a href="/Company/Profitsharing/Profitsharing.jsp">Profit Sharing</a></li>
+						<ul class="font_color_faq_basic  ">
+							<li><strong><a href="/Company/Introduction/Introduction.jsp">Introduction</a></strong></li>
+							<li><strong><a href="/Company/Greetings/Greetings.jsp">Greetings</a></strong></li>
+							<li><strong><a href="/Company/History/History.jsp">History</a></strong></li>
+							<li><strong><a href="/Company/BusinessField/BusinessFields.jsp">Business
+									Field</a></strong></li>
+							<li><strong><a href="/Company/ActualResults/ActualResults.jsp">Actual
+									Results</a></strong></li>
+							<li><strong><a href="/board/bnsList.do">The Press</a></strong></li>
+							<li><strong><a href="/Company/HR-Affairs/HR-Affairs.jsp">HR-Affairs</a></strong></li>
+							<li><strong><a href="/Company/LocationMap/LocationMap.jsp">Location
+									Map</a></strong></li>
+							<li><strong><a href="/Company/Profitsharing/Profitsharing.jsp">Profit
+									Sharing</a></strong></li>
 						</ul>
 					</div>
 
@@ -96,7 +100,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 						</h3>
 						<h5>All CompanyItem about Mwav.</h5>
 						<br>
-						<ul class="font_color_faq">
+						<ul class="font_color_faq_basic  ">
 							<li><a href="/CompanyItem/IT Products/OpenSRS/OpenSRS.jsp">IT
 									Solutions</a></li>
 							<li><a
@@ -119,17 +123,22 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 						</h3>
 						<h5>Customer Serice about Mwav.</h5>
 						<br>
-						<ul class="font_color_faq">
-							<li><a
-								href="javascript:window.alert('권한이 없습니다. \n 로그인 후 이용해주시기 바랍니다.');">MyPage</a></li>
+						<ul class="font_color_faq_basic  ">
+							<c:if test="${sessionScope.mbrLoginId eq null }">
+								<li><a
+									href="javascript:window.alert('권한이 없습니다. \n 로그인 후 이용해주시기 바랍니다.');">My Page</a></li>
+							</c:if>
+
 							<c:if test="${sessionScope.mbrLoginId ne null }">
-								<li><a href="/CustomerService/MyPage/MyPage.jsp">MyPage</a></li>
+								<li><a href="/CustomerService/MyPage/MyPage.jsp">My Page</a></li>
 							</c:if>
 
 							<li><a href="/CustomerService/Announcement/Announcement.jsp">Announcement</a></li>
 
-							<li><a
-								href="javascript:window.alert('권한이 없습니다. \n 로그인 후 이용해주시기 바랍니다.');">MemberShip</a></li>
+							<c:if test="${sessionScope.mbrLoginId eq null }">
+								<li><a
+									href="javascript:window.alert('권한이 없습니다. \n 로그인 후 이용해주시기 바랍니다.');">MemberShip</a></li>
+							</c:if>
 							<c:if test="${sessionScope.mbrLoginId ne null }">
 								<a href="/CustomerService/MemberShip/MemberShip.jsp">MemberShip</a>
 							</c:if>
@@ -137,9 +146,10 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 							<li><a href="/Company/History/History.jsp">History</a></li>
 
 							<li><a href="/CustomerService/FAQ/FAQ.jsp">FAQ</a></li>
-							<li><a href="/CustomerService/QnA/QnA.jsp">Q%A</a></li>
+							<li><a href="/CustomerService/QnA/QnA.jsp">Q&A</a></li>
 							<li><a href="/CustomerService/Contact/Contact.jsp">Contact</a></li>
-							<li><a href="/CustomerService/SiteMap/SiteMap.jsp">Site Map</a></li>
+							<li><a href="/CustomerService/SiteMap/SiteMap.jsp">Site
+									Map</a></li>
 						</ul>
 					</div>
 

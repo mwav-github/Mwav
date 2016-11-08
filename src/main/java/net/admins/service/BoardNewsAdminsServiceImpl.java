@@ -50,7 +50,7 @@ public class BoardNewsAdminsServiceImpl implements BoardNewsAdminsService {
 		boardNewsAdminsDAO.updateNsmHitCnt(map);
 		
 		//map 출력
-		cou.selectMapList(map);
+		cou.selectMap(map);
 
 		Map<String, Object> resultMap = boardNewsAdminsDAO.selectOneNsmView(map);
 		int test = (int) resultMap.get("bnStatus");

@@ -364,10 +364,10 @@ http://www.egovframe.go.kr/wiki/doku.php?id=egovframework:dev:dep:build:maven
 		</dependency>
        
         <!-- java mail -->
-        <dependency>
+       <dependency>
         <groupId>javax.mail</groupId>
         <artifactId>mail</artifactId>
-        <version>1.4</version>
+        <version>1.4.3</version>
        </dependency>
        
        <!-- Joda time -->

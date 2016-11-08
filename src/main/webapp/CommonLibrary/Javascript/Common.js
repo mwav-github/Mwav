@@ -1,14 +1,17 @@
 /* 타이머를 시작하는 함수 */
-	function start_timer() {
-		var timerID; // 타이머를 핸들링하기 위한 전역 변수
-		var time = 300; // 타이머 시작시의 시간 3분주고싶다면 180
 
+var timerID; // 타이머를 핸들링하기 위한 전역 변수
+var time = 300; // 타이머 시작시의 시간 3분주고싶다면 180
+	function start_timer() {
+		
 		timerID = setInterval("decrementTime()", 1000);
+		
 	}
 
 	/* 남은 시간을 감소시키는 함수 */
 	function decrementTime() {
-
+     
+        
 		var x1 = document.getElementById("time1");
 		//var x2 = document.getElementById("time2");
 		x1.innerHTML = toHourMinSec(time);
@@ -20,7 +23,10 @@
 			// 시간이 0이 되었으므로 타이머를 중지함
 			clearInterval(timerID);
 			alert('5분의 시간이 지났습니다. 다시 시도해주세요.');
-			document.location.href = '/';
+			//$("#PwFinder").empty();
+			//$("#myTabContent").modal('hide');
+			document.location.href = '/MasterPage.jsp?mode=SMbrLogin';
+			
 
 			// 시간이 만료되고 나서 할 작업을 여기에 작성
 			//document.form.submit(); // 예: 강제로 form 실행
@@ -491,6 +497,97 @@ function Alert_UpdateConfirm() {
 	} else { // 취소
 		return;
 	}
+}
+
+//문자열내의 공백 제거
+function trim(varSTR) {
+   var result = "";
+   for( var i = 0; i < varSTR.length; i++ ) {
+      if( varSTR.charAt(i) != ' ' ) result = result + varSTR.charAt(i);
+   }
+   return result;
+   
+}
+
+// form 내의 같은 element 개수
+function getElementsCount(formname, elementname, isvalue){
+   var cntelement=0;
+   var tform = document.forms[formname];
+   for(var i=0;i<tform.elements.length;i++){
+      if(tform.elements[i].name==elementname){
+         if(isvalue==true){   // 값이 있는경우만
+            if(tform.elements[i].value!='')cntelement=cntelement+1;
+         }else{
+            cntelement=cntelement+1;
+         }
+      }
+   }
+   return cntelement
+}
+
+//영문 소문자를 영문대문자로 변환하는 함수
+function nameUpper(arg) {
+   arg.value   = arg.value.toUpperCase();
+}
+
+//쿠키 읽어오기 
+function getCookie(Name)
+{
+   var search = Name + "="      
+   var cookie_value = unescape(document.cookie)
+
+   if (document.cookie.length > 0)
+   {
+   var offset = cookie_value.indexOf(search)
+
+      if (offset != -1)
+      {
+      offset += search.length
+      var end = cookie_value.indexOf(";", offset)
+      if (end == -1)
+         end = document.cookie.length
+      return trim(cookie_value.substring(offset, end))
+      }
+   }
+   return ""
+}
+
+//팝업창 띄우기
+function openWindow( url, wt, ht, urlName, tbar, mbar, st, sbar, rsize )
+{
+
+    wt ='1070';
+    ht='700';
+
+    var dim = new Array(2);
+    dim = CenterWindow(ht,wt);
+    top = dim[0];
+    left = dim[1];
+    var left = left;
+    var top = top;
+    
+    var toolbar    = tbar;
+    var menubar    = mbar;
+    var status     = st;
+    var scrollbars = sbar;
+    var resizable  = rsize;
+    
+    window.open( url, '', 'left='+left+', top='+top+', width='+wt+', height='+ht+', toolbar=no, menubar=no, status=no, scrollbars=yes, resizable=yes');
+
+}
+
+//중앙팝업창 띄우기
+function CenterWindow(height,width){
+
+   var outx = screen.height;
+   var outy = screen.width;
+   var x = (outx - height)/2;
+   var y = (outy - width)/2;
+   dim = new Array(2);
+   dim[0] = x;
+   dim[1] = y;
+
+   return  dim;
 }
 
 /* 1번 널체크 */

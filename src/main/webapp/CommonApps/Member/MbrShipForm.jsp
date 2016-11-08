@@ -115,7 +115,7 @@
 											<div class='form-group'>
 												<div class='col-md-11'>
 													<input class='form-control' name="mbrZipcode"
-														id='Zipcode' value="${updateMbrForm.mbrZipcode}" />
+														id='Zipcode' placeholder='우편번호' type='text' value="${updateMbrForm.mbrZipcode}" readonly="readonly"/>
 												</div>
 												<div class='col-md-11'>
 													<input name="mbrAddress_1" class='form-control'
@@ -143,13 +143,13 @@
 				</div>
 				<div class="panel-footer">
 
-					<button type="submit" class='btn btn-sm btn-primary'
+					<button type="submit" class='btn btn-md btn-primary'
 						style='float: right' data-original-title="Edit this user"
 						data-toggle="tooltip">
 						<i class="glyphicon glyphicon-edit"></i>
 					</button>
 					<a data-original-title="Broadcast Message" data-toggle="tooltip"
-						type="button" class="btn btn-sm btn-warning"><i
+						type="button" class="btn btn-md btn-warning"><i
 						class="glyphicon glyphicon-envelope"></i></a> <span class="pull-right">
 
 					</span>

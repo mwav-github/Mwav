@@ -1,3 +1,5 @@
+
+//아래 참고해보면 다수일때 flag 하나로 쓰면 최종값이 결국은 결과값이 되기때문에 이부분 생각하기
 function emptyCheck(checkVar_, alert_txt_) {
 		    var checkVar = checkVar_;
 		    var alert_txt = alert_txt_;
@@ -10,6 +12,15 @@ function emptyCheck(checkVar_, alert_txt_) {
 		    	return true;
 		    }
 		}
+
+function return_check(flag){
+	var flag_ = flag;
+	if(flag == false || flag == undefined){
+		//alert('11');
+		return false;
+	}
+	return true;
+}
 
 
 function chkLoginPolicy() {

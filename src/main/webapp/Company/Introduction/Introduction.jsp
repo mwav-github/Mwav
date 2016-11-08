@@ -79,102 +79,181 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 				<!-- (2) Vision -->
 				<div class="row">
 					<div class="col-lg-12">
-						<h2 class="page-header">The Vision</h2>
+						<h2 class="page-header">Introduction</h2>
 					</div>
+
 					<div class="col-lg-12">
-<%--nav-justified 양쪽 정렬된! --%>
+						<div class="enter"></div>
+
+
+						<%--nav-justified 양쪽 정렬된! --%>
 						<ul id="myTab" class="nav nav-pills nav-justified">
-							<li class="active"><a href="#Vision" data-toggle="tab">The Vision (Mission)</a></li>
-							<li class=""><a href="#Goals" data-toggle="tab"> The Goals (Objectives)</a></li>
-							<li class=""><a href="#Strategy" data-toggle="tab"> Strategy</a></li>
+							<li class="active"><a href="#Vision" data-toggle="tab">The
+									Vision (Mission)</a></li>
+							<li class=""><a href="#Goals" data-toggle="tab"> The
+									Goals (Objectives)</a></li>
+							<li class=""><a href="#Strategy" data-toggle="tab">
+									Strategy</a></li>
 						</ul>
 
 						<div id="myTabContent" class="tab-content">
 							<!-- The Vision (Mission) -->
 							<div class="tab-pane fade active in" id="Vision">
-								<h4>&nbsp;&nbsp;Vision</h4>
-								<br>
+								<!-- <h4>&nbsp;&nbsp;Vision</h4> -->
+								<br> <br> <br>
 
-								<p>
-									<i class="fa fa-check"></i>&nbsp;To be the best online business
-									provider, creating higher values for the business of our
-									clients.
-								</p>
-								<br>
-								<p>
-									<i class="fa fa-check"></i>&nbsp;Helping staff members together
-									in order to make their dreams come true for the ultimate
-									happiness.
-								</p>
+								<div class="col-md-1">
+									<a class="btn btn-primary btn-xs float_left"><span
+										class="glyphicon glyphicon-ok float_left"></span></a>
+
+								</div>
+								<div class="col-md-11">
+									<p><strong>To be the best online business provider, creating higher
+										values for the business of our clients.</strong></p>
+								</div>
+
+								<div class="col-md-1">
+									<a class="btn btn-primary btn-xs float_left"><span
+										class="glyphicon glyphicon-ok float_left"></span></a>
+
+								</div>
+								<div class="col-md-11">
+									<p><strong>Helping staff members together in order to make their
+										dreams come true for the ultimate happiness.</strong></p>
+								</div>
 							</div>
 
 							<!-- The Goals (Objectives) -->
 							<div class="tab-pane fade" id="Goals">
-								<h4>&nbsp;&nbsp;The Goals (Objectives)</h4>
+								<!-- <h4>&nbsp;&nbsp;The Goals (Objectives)</h4>
+							 -->
+								<br> <br> <br>
+
+
+								<div class="col-md-1">
+									<a class="btn btn-warning btn-xs float_left"><span
+										class="glyphicon glyphicon-ok float_left"></span></a>
+
+								</div>
+								<div class="col-md-11">
+									<p><strong>Make the leading company in online business industry.</strong></p>
+								</div>
+		
+								<div class="col-md-1">
+									<a class="btn btn-warning btn-xs float_left"><span
+										class="glyphicon glyphicon-ok float_left"></span></a>
+
+								</div>
+<p></p>
+								<div class="col-md-11">
+									<p><strong>Listen to our clients and members carefully for better
+										understanding.</strong></p>
+								</div>
+
 								<br>
-								<p>
-									<i class="fa fa-check"></i>&nbsp;Make the leading company in
-									online business industry.
-								</p>
+								<div class="col-md-1">
+									<a class="btn btn-warning btn-xs float_left"><span
+										class="glyphicon glyphicon-ok float_left"></span></a>
+								</div>
+								<div class="col-md-11">
+									<p><strong>Make our clients be successful for their online
+										business.</strong></p>
+								</div>
 								<br>
-								<p>
-									<i class="fa fa-check"></i>&nbsp;Listen to our clients and
-									members carefully for better understanding.
-								</p>
-								<br>
-								<p>
-									<i class="fa fa-check"></i>&nbsp;Make our clients be successful
-									for their online business.
-								</p>
-								<br>
-								<p>
-									<i class="fa fa-check"></i>&nbsp;Contribute to the local
-									communities.
-								</p>
+
+								<div class="col-md-1">
+									<a class="btn btn-warning btn-xs float_left"><span
+										class="glyphicon glyphicon-ok float_left"></span></a>
+								</div>
+								<div class="col-md-11">
+									<p><strong>Contribute to the local communities.</strong></p>
+								</div>
 							</div>
 
 							<!--  -->
 							<div class="tab-pane fade" id="Strategy">
-								<h4>&nbsp;&nbsp;The Strategy</h4>
-								<br>
-								<p>
-									<i class="fa fa-check"></i>&nbsp;Approach clients in online
-									business perspective with the most suitable methodology and
-									technology for both effectiveness and efficiency.
+								<!-- <h4>&nbsp;&nbsp;The Strategy</h4>
+								 -->
+								<br> <br> <br>
 
-								</p>
-								<br>
-								<p>
-									<i class="fa fa-check"></i>&nbsp;You have less than 60 seconds
-									to get an investors attention. Don’t waste it.
+								<div class="col-md-1">
+									<a class="btn btn-success btn-xs float_left"><span
+										class="glyphicon glyphicon-ok float_left"></span></a>
+								</div>
+								<div class="col-md-11">
+									<p><strong>Approach clients in online business perspective with the
+										most suitable methodology and technology for both
+										effectiveness and efficiency.</strong></p>
+								</div>
 
-								</p>
 								<br>
-								<p>
-									<i class="fa fa-check"></i>&nbsp;Get and Learn new trends in
-									our sectors persistently .
-								</p>
-								<br>
-								<p>
-									<i class="fa fa-check"></i>&nbsp;Support leading members in
-									order to make their business successful.
-								</p>
-								<p>
-									<i class="fa fa-check"></i>&nbsp;40% of company resources
-									should be used for doing current works hard, 30% for innovating
-									current work processes best,
-								</p>
-								<p>&nbsp;&nbsp;&nbsp;&nbsp;and finally 30% for creating the
-									next business models in the future.</p>
-								<p>
-									<i class="fa fa-check"></i>&nbsp;Show, don’t tell (order).
 
-								</p>
+								<div class="col-md-1">
+									<a class="btn btn-success btn-xs float_left"><span
+										class="glyphicon glyphicon-ok float_left"></span></a>
+								</div>
+								<div class="col-md-11">
+									<p><strong>You have less than 60 seconds to get an investors
+										attention. Don’t waste it.</strong></p>
+								</div>
+
+
+								<br>
+
+								<div class="col-md-1">
+									<a class="btn btn-success btn-xs float_left"><span
+										class="glyphicon glyphicon-ok float_left"></span></a>
+								</div>
+								<div class="col-md-11">
+								
+									<p><strong>Get and Learn new trends in our sectors persistently .</strong></p>
+								</div>
+
+								<div class="enter"></div>
+
+								<div class="col-md-1">
+									<a class="btn btn-success btn-xs float_left"><span
+										class="glyphicon glyphicon-ok float_left"></span></a>
+								</div>
+								<div class="col-md-11">
+									<p>
+										<strong>Support leading members in order to make
+											their business successful.</strong>
+									</p>
+								</div>
+
+								<div class="col-md-1">
+									<a class="btn btn-success btn-xs float_left"><span
+										class="glyphicon glyphicon-ok float_left"></span></a>
+								</div>
+								<div class="col-md-11">
+									<p>
+										<strong>40% of company resources should be used for
+											doing current works hard, 30% for innovating current work
+											processes best, and finally 30% for creating the next
+											business models in the future.</strong>
+									</p>
+								</div>
+
+								<div class="enter"></div>
+
+								<div class="col-md-1">
+									<a class="btn btn-success btn-xs float_left"><span
+										class="glyphicon glyphicon-ok float_left"></span></a>
+								</div>
+								<div class="col-md-11">
+
+									<p>
+										<strong>Show, don’t tell (order).</strong>
+									</p>
+								</div>
 							</div>
 						</div>
 
 					</div>
 				</div>
+
+				<div class="enter"></div>
 
 				<!-- (3) Organization Chart -->
 				<div class="row">

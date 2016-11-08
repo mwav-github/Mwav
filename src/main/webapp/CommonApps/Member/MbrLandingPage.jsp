@@ -44,7 +44,7 @@ h1 {
 
 		<div class="col-lg-12 text-center v-center">
 
-			<h1>Hello Mr Kim</h1>
+			<h1>Hello</h1><%--추후 필요시 정보가져와서 보여주기  --%>
 			<p class="lead">Mwav SignUp Congratulations!</p>
 
 			<br>

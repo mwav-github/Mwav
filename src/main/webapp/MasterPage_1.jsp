@@ -45,8 +45,8 @@
 						return $.getUrlVars()[name];
 					}
 				});
-				var byName = $.getUrlVar('mode');
-				var mode_ = "<c:out value='${mode}'/>"// 이것도 가능. ${mode} 아래의 단계를 인식 못함.
+				var byName = $.getUrlVar('mode');// 이건 뒤의 get문형태로 넘어올때 
+				var mode_ = "<c:out value='${mode}'/>"//이건 내부적으로 올때 ? 이것도 가능. ${mode} 아래의 단계를 인식 못함.
 
 				if (byName == 'SMbrInput') {
 					$('ul.setup-panel li:eq(1)').removeClass('disabled');
@@ -56,7 +56,7 @@
 					$('ul.setup-panel li:eq(2)').addClass('disabled');
 					$('ul.setup-panel li:eq(0)').addClass('disabled');
 					$(this).remove();
-				} else if (mode_ == 'SDMbrInput') {
+				} else if (byName == 'SDMbrInput') {
 					$('ul.setup-panel li:eq(2)').removeClass('disabled');
 					$('ul.setup-panel li:eq(0)').removeClass('active');
 					$('ul.setup-panel li:eq(2)').addClass('active');
@@ -86,6 +86,7 @@
 	-->
 	<div class="container mg9xauto">
 		<div class="row">
+		<div class="enter"></div>
 			<div class="col-md-12 col-sm-12">
 				<div class="row form-group">
 					<div class="col-xs-12">

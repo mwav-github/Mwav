@@ -21,7 +21,7 @@
 	
 	<!--/*======================+==================수정========================================*/  -->
 	
-	<update id="updateHitCnt" parameterType="hashmap">
+	<update id="updateNewsHitCnt" parameterType="hashmap">
     <![CDATA[
        update BoardNews_tbl set bnViewCount = iFnull(bnViewCount, 0) +1 where bNews_id = #{bNews_id} 
     ]]>
@@ -96,7 +96,7 @@
 	
 	<update id="updateNoticeHitCnt" parameterType="hashmap">
     <![CDATA[
-       update BoardUser_tbl set buViewCount = iFnull(BuViewCount, 0) +1 where bUsers_id = #{bUsers_id} 
+       update BoardUser_tbl set buViewCount = iFnull(buViewCount, 0) +1 where bUsers_id = #{bUsers_id} 
     ]]>
     </update>
     
