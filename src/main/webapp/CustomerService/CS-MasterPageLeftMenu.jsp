@@ -73,15 +73,15 @@
 		class="list-group-item" data-toggle="tooltip" data-placement="top"
 		data-original-title="이용약관">Agreement</a> <a
 		class="list-group-item" data-toggle="tooltip" data-placement="top"
-		data-original-title="페이지 준비 중입니다.">Site Guide</a> <a
+		data-original-title="페이지 준비 중입니다.">Site Guide</a> <a href="/CustomerService/FAQ/FAQ.jsp"
 		 class="list-group-item"
 		data-toggle="tooltip" data-placement="top"
-		data-original-title="페이지 준비 중입니다.">FAQ</a> <a
+		data-original-title="자주 묻는 질문">FAQ</a> <a
 		 class="list-group-item"
 		data-toggle="tooltip" data-placement="top"
 		data-original-title="페이지 준비 중입니다.">Q&A</a> <a
-		href="/CustomerService/Contact/Contact.jsp" class="list-group-item"
-		data-toggle="tooltip" data-placement="top" data-original-title="담당자안내">Contact</a>
+		 class="list-group-item"
+		data-toggle="tooltip" data-placement="top" data-original-title="페이지 준비 중입니다.">Contact</a>
 	<a href="/CustomerService/SiteMap/SiteMap.jsp" class="list-group-item"
 		data-toggle="tooltip" data-placement="top" data-original-title="사이트맵">SiteMap</a>
 </div>

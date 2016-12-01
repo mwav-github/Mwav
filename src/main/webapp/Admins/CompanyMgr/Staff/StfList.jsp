@@ -157,7 +157,7 @@ ${member} => request.getAttribute("member");
 
 											<c:if test="${pagingVO.startPage > pagingVO.pageBlock}">
 												<li><a
-													href="/admins/staff/stfList.do?pageNum=${pagingVO.startPage - pagingVO.pageBlock}">&laquo;</a></li>
+													href="/admins/staff/stfList.do?pageNum=${pagingVO.startPage - pagingVO.pageBlock}"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
 											</c:if>
 											<c:forEach var="i" begin="${pagingVO.startPage}"
 												end="${pagingVO.endPage}">
@@ -165,7 +165,7 @@ ${member} => request.getAttribute("member");
 											</c:forEach>
 											<c:if test="${pagingVO.endPage < pagingVO.pageCount}">
 												<li><a
-													href="/admins/staff/stfList.do?pageNum=${pagingVO.startPage + pagingVO.pageBlock}">&raquo;</a></li>
+													href="/admins/staff/stfList.do?pageNum=${pagingVO.startPage + pagingVO.pageBlock}"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
 											</c:if>
 											<!-- <li><a href="">&laquo;</a></li>
 			<li class="active"><a href="#">1</a></li>

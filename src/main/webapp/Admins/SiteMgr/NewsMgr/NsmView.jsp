@@ -93,8 +93,8 @@
 								<table class="table table-striped">
 									<thead>
 										<tr>
-										
-										    <c:set var ="bnStatus" value="${selectOneNsmView.bnStatus }" />
+
+											<c:set var="bnStatus" value="${selectOneNsmView.bnStatus }" />
 											<c:if test="${fn:contains(bnStatus, '임시저장상태')}">
 												<span class="pull-right text-danger"><strong>${selectOneNsmView.bnStatus }
 												</strong></span>
@@ -103,7 +103,7 @@
 												<span class="pull-right text-primary"><strong>${selectOneNsmView.bnStatus }
 												</strong></span>
 											</c:if>
-											
+
 											<div class="enter"></div>
 										</tr>
 										<tr class="active">
@@ -146,6 +146,13 @@
 									</tr>
 									<tr>
 										<td>${selectOneNsmView.bnSubTitle}</td>
+									</tr>
+
+									<tr>
+										<th class="active">Reference</th>
+									</tr>
+									<tr>
+										<td>${selectOneNsmView.bnRelatedLink}</td>
 									</tr>
 
 									<tr>

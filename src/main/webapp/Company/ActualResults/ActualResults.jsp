@@ -1,9 +1,33 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8"%>
 <%-- 상단에 이부분안해주면 다른 페이지에서 인코딩 깨진다.  --%>
-<body>
-<script>
-document.title = "Unleash your infinite possibilities with IT Optimization!!";
-</script>
+<!-- Page Heading/Breadcrumbs  SPA방식으로 추후변경 -->
+<div class="row">
+	<div class="col-lg-12">
+		<h1 class="page-header">
+			Company<small> ActualResults</small>
+		</h1>
+		<ol class="breadcrumb">
+			<li><a href="/">Home</a></li>
+			<li>Company</li>
+			<li class="active">ActualResults</li>
+		</ol>
+	</div>
+</div>
+<!-- /.row -->
+
+<!-- Content Row -->
+<div class="row">
+	<!-- Sidebar Column left메뉴 추후 변경 예정<시작>-->
+	<div class="col-md-3">
+		<jsp:include page="/Company/CompanyLeftMenu.jsp" flush="false" />
+	</div>
+	<!-- 끝 -->
+
+	<div class="col-md-9">
+		<!-- Content Column -->
+
+		<!-- Gallery - START -->
+
 		<div class="row">
 			<div class="text-center">
 				<h1>Sample Image Gallery</h1>
@@ -70,4 +94,6 @@ document.title = "Unleash your infinite possibilities with IT Optimization!!";
 			</div>
 		</div>
 		<!-- Gallery - END -->
-</body>
+
+	</div>
+</div>

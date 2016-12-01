@@ -38,7 +38,7 @@
 								<td><a
 									href="/boardNotice/buView.do?bUsers_id=${VselectListNtmFrontList.bUsers_id}">${VselectListNtmFrontList.buTitle}</a></td>
 								<%--view를 구현하는 방법에 따라 달라진다. get 문 형태 유망 --%>
-								<td>${VselectListNtmFrontList.buUpdateDt}</td>
+								<td>${VselectListNtmFrontList.buInsertDt}</td>
 							</tr>
 						</c:forEach>
 					</c:when>

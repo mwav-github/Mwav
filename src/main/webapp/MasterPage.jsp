@@ -23,7 +23,6 @@
 <!-- /////////// -->
 <jsp:include page="/PartsOfContent/Head_Import.jsp" flush="false" />
 <!-- /////////// -->
-</head>
 
 <c:if test="${requestScope.loginCheck eq 2 }">
 	<script type="text/javascript">
@@ -38,6 +37,7 @@
 		history.go(-1);
 	</script>
 </c:if>
+</head>
 
 <body>
 	<!-- 2. FrontHeader 
@@ -71,13 +71,13 @@ ${member} => request.getAttribute("member");
 							<!--/////////////////////////////////////////////////// -->
 						</div>
 					</c:if>
-					<c:if test="${param.mode == 'SMbrView'}">
+<%-- 					<c:if test="${param.mode == 'SMbrView'}">
 						<div class="col-md-6 col-md-offset-3">
 							<!--/////////////////////////////////////////////////// -->
 							<jsp:include page="/CommonApps/Member/MbrLogin.jsp" flush="false" />
 							<!--/////////////////////////////////////////////////// -->
 						</div>
-					</c:if>
+					</c:if> --%>
 				</c:if>
 			</div>
 		</div>
@@ -91,8 +91,5 @@ ${member} => request.getAttribute("member");
 			flush="false" />
 		<!--/////////////////////////////////////////////////// -->
 	</footer>
-
-
 </body>
-
 </html>

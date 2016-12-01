@@ -110,7 +110,7 @@
 					title="1.문서자료 2.직원조회 3.회사자산">회사관리</a></li>
 				<li class="active"><a
 					href="/HomePage/DefaultFrameset.do?mm=ptn" title="1.협력사목록 2.협력사입력">관계사관리</a></li>
-				<li><a href="/admins/staff/stfList.do?mm=firm"
+				<li><a href="/admins/staff/stfList.do?mm=firms"
 					title="1.회원기본정보 2.회원부가정보 3.회원평가치 4.회원가입">회원관리</a></li>
 				<li class="active"><a
 					href="/HomePage/DefaultFrameset.do?mm=crm"

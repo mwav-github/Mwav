@@ -27,6 +27,8 @@
 
 <script>
 	$(document).ready(
+			//URL 파라미터 내에서 포함되어있는 경우 그 값을 뱉는다
+			// 예) ab.com?ab=cd =>$.getUrlVar('ab'); 의 결과는 cd이다.  
 			function() {
 				$.extend({
 					getUrlVars : function() {
@@ -94,15 +96,15 @@
 							<!-- a태그는 css 기본적용 때문에 추가 -->
 							<li class="active"><a>
 									<h4 class="list-group-item-heading">Step 1</h4>
-									<p class="list-group-item-text">First step description</p>
+									<p class="list-group-item-text">약관동의.</p>
 							</a></li>
 							<li class="disabled"><a>
 									<h4 class="list-group-item-heading">Step 2</h4>
-									<p class="list-group-item-text">Second step description</p>
+									<p class="list-group-item-text">회원정보 입력.</p>
 							</a></li>
 							<li class="disabled"><a>
 									<h4 class="list-group-item-heading">Step 3</h4>
-									<p class="list-group-item-text">Third step description</p>
+									<p class="list-group-item-text">회원가입 완료 & 추가 정보 입력.</p>
 							</a></li>
 						</ul>
 					</div>

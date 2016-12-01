@@ -112,7 +112,7 @@
 														<td class="hidden-xs">${RselectListNtmList.buGroup}</td>
 														<td><a
 															href="javascript:window.location.href='/admin/boardNotice/ntmView.do?bUsers_id=${RselectListNtmList.bUsers_id}'">${RselectListNtmList.buTitle}</a></td>
-														<td class="hidden-xs">${RselectListNtmList.buUpdateDt}</td>
+														<td class="hidden-xs">${RselectListNtmList.buInsertDt}</td>
 														<td>
 															<button type="button" class="btn btn-info"
 																onclick="javascript:window.location.href='/admin/boardNotice/ntmView.do?bUsers_id=${RselectListNtmList.bUsers_id}'">보기</button>&nbsp;
@@ -140,7 +140,7 @@
 
 											<c:if test="${pagingVO.startPage > pagingVO.pageBlock}">
 												<li><a
-													href="/admin/boardNews/nsmList.do?pageNum=${pagingVO.startPage - pagingVO.pageBlock}">&laquo;</a></li>
+													href="/admin/boardNews/nsmList.do?pageNum=${pagingVO.startPage - pagingVO.pageBlock}"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
 											</c:if>
 											<c:forEach var="i" begin="${pagingVO.startPage}"
 												end="${pagingVO.endPage}">
@@ -148,7 +148,7 @@
 											</c:forEach>
 											<c:if test="${pagingVO.endPage < pagingVO.pageCount}">
 												<li><a
-													href="/admin/boardNews/nsmList.do?pageNum=${pagingVO.startPage + pagingVO.pageBlock}">&raquo;</a></li>
+													href="/admin/boardNews/nsmList.do?pageNum=${pagingVO.startPage + pagingVO.pageBlock}"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
 											</c:if>
 										</ul>
 									</div>

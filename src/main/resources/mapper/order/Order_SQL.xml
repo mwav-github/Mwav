@@ -3,13 +3,16 @@
 
 <mapper namespace="order">
 	
-	<!--/*========================================등록========================================*/  -->
+	<!--
+	parameterType="net.mwav.order.vo.OrderCartVO" vo 타입 에러체크 
+	
+	/*========================================등록========================================*/ 
 	<insert id="insertOrderForm" parameterType="net.mwav.order.vo.OrderCartVO" >
 		<![CDATA[
 			INSERT INTO ordercart_tbl(orderCart_id, ocChoiceDt, goods_id, ocAmount, gcr_id, ocIpAddress) values(#{orderCart_id},#{ocChoiceDt},#{goods_id},#{ocAmount},#{gcr_id},#{ocIpAddress})
 		]]>
 	</insert>
-
+ -->
     <!--/*========================================보기========================================*/  -->
 
   

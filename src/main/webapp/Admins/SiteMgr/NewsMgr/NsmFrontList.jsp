@@ -38,7 +38,7 @@
 								<td><a
 									href="/admin/boardNews/nsmView.do?bNews_id=${selectListNsmFrontList.bNews_id}">${selectListNsmFrontList.bnTitle}</a></td>
 								<%--view를 구현하는 방법에 따라 달라진다. get 문 형태 유망 --%>
-								<td>${selectListNsmFrontList.bnUpdateDt}</td>
+								<td>${selectListNsmFrontList.bnInsertDt}</td>
 							</tr>
 						</c:forEach>
 					</c:when>

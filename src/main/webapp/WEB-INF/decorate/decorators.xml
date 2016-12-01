@@ -1,11 +1,26 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <!--
-    템플릿을 정의한다.
-    Sitemesh에서는 템플릿을 decorator 라고 부른다.
+tiles vs sitemesh
+http://stg.etribe.co.kr/2014/07/29/view-technology/
+타일즈는 페이지안에서 Include하지만 Sitemesh는 외부에서 미리 설정된 layout
+> 즉 sitemesh는 생성된 템플릿 html에 body 영역이 들어간다면
+   tiles는 타일 처럼 부분부분 생성해서 끼워넣는다. !! 내부 include  
+ 
+   sitemesh 는 영역을 정의하여 ~~
+   tiles 는 각각영역이 나누어져 따로따로 ~~ 타일같이 각 페이지에 끼워지는 느낌
 
-    decorators 에 필요한 속성으로
-    defaultdir 이라는 속성이 있는데,
-    이 속성은 decorator의 page가 존재하는 경로를 적는다.
+즉 sitemesh 하나의 레이아웃페이지에 그때그때들어오면서 구성이라면, tiles는 결국 계속 각각 페이지가 따로 따른 파일을 타일들을 묶어서 한페이지로 include개념
+노출되거나 그런개념은 동일하나 결국 한페이지내 레이아웃고정내 내용을 바꿀껀지 // 각페이지를 모아서 한페이지를 할지 차이
+
+1. tiles는 조그만 페이지들을 붙여 큰 페이지를 구성하는 느낌.
+   > tiles는 비슷하지만 결국생성시 타일처럼 각각 분리된걸 페이지별로 다시 다시 붙여서 구성 
+     sitemesh처럼 만들고 그안에 body가 들어가는게 아닌
+ 
+2. sitemesh 는 페이지를 하나 가지고 겉에 포장을 씌우는 느낌 
+   > layout이 먼저 html 생성되고 그리고 그안에 각각 들어갈 body가 포함되서 레이아웃출력
+     header footer 등 정한건 고정
+
+    
 -->
 <decorators defaultdir="/Templates/">
 	<excludes>
@@ -30,6 +45,15 @@
         페이지의 타이틀과 Template page를 정의한다.
         pattern에 정의된 URL로 접근할 때
         해당하는 Decorator를 보여준다.
+    -->        
+    
+    <!-- 
+    <decorator  name="mypage" 
+                title="FinalSpring" 
+                page="template/mypage.jsp">
+        <pattern>/member/mypage</pattern>
+    </decorator>
+    -->
 
         여러개의 URL에 하나의 Template을 정의하고 싶다면
         <pattern>/test/*</pattern> 엘리먼트를
@@ -39,7 +63,7 @@
         <pattern>/photo/*</pattern>
     -->
     
-    <!-- 일단 주석
+    <!-- 일단 주석-->
     <decorator name="companyTemplate" title="CompanyPage" page="CompanyMasterPage.jsp">
         <pattern>/Company/*</pattern>
     </decorator>
@@ -49,13 +73,5 @@
     <decorator name="headerMaster" page="/PartsOfContent/SiteHeader/FrontHeader_Master.jsp" />
     <decorator name="header" page="/PartsOfContent/SiteHeader/FrontHeader.jsp" />
     <decorator name="footer" page="/PartsOfContent/SiteFooter/FrontFooter.jsp" />
-    -->
-    
-    <!-- 
-    <decorator  name="mypage" 
-                title="FinalSpring" 
-                page="template/mypage.jsp">
-        <pattern>/member/mypage</pattern>
-    </decorator>
-    -->
+
 </decorators>

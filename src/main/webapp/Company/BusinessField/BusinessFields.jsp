@@ -1,42 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-
-<head>
-
-<jsp:include page="/PartsOfContent/Head_Import.jsp" flush="false" />
-</head>
-
-<body>
-	<!-- FrontHeader
-	Company의 마스터 페이지 상에서 Header 
-	1. 마스터 헤더 한번 변경해보기 ~!!! container 안으로
-	 -->
-	<!--  //////////////////////////////////// -->
-	<div class="container">
-		<!--  //////////////////////////////////// -->
-		<jsp:include page="/PartsOfContent/SiteHeader/FrontHeader_Master.jsp"
-			flush="false" />
-		<!--  //////////////////////////////////// -->
-		<!-- Image Container 
-container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다. 
--->
-		<div class="row">
-			<div class="col-lg-12">
-				<img src="/Company/zImage/Company_IN(height_280).jpg"
-					class="img-responsive res_width" alt="Responsive image">
-			</div>
-		</div>
-	</div>
-	<!--  //////////////////////////////////// 
-	Header 끝
-	-->
-
-	<!-- Page Content -->
-	<div class="container">
-
-		<!-- Page Heading/Breadcrumbs -->
+<%@ page contentType="text/html; charset=UTF-8"%>
+<%-- 상단에 이부분안해주면 다른 페이지에서 인코딩 깨진다.  --%>
+<%--(1) --%>
+<!-- Page Heading/Breadcrumbs -->
 
 		<div class="row">
 			<div class="col-lg-12">
@@ -124,10 +89,10 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 									<div class="col-xs-12 col-md-12">
 										<a href="#Web / Ad Agency"
 											class="btn btn-success btn-lg col-lg-6 col-md-6 col-sm-6 col-xs-12"
-											 role="button" style="background-color: #2B398F !important; border-color: #FFFFFF !important;"><span class="glyphicon glyphicon-globe"></span>
+											 role="button" style="background-color: #3F729B !important; border-color: #FFFFFF !important;"><span class="glyphicon glyphicon-globe"></span>
 											<br />Web / Ad Agency</a> <a href="#IT Solutions Provider"
 											class="btn btn-info btn-lg col-lg-6 col-md-6 col-sm-6 col-xs-12"
-											role="button" style="background-color: #5767FF !important; border-color: #FFFFFF !important;"><span
+											role="button" style="background-color: #37474F !important; border-color: #FFFFFF !important;"><span
 											class="glyphicon glyphicon glyphicon-user"></span> <br />IT
 											Solutions Provider</a> <a href="#IT Edu. / Consulting"
 											class="btn btn-primary btn-lg col-lg-6 col-md-6 col-sm-6 col-xs-12"
@@ -369,17 +334,3 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 			</div>
 		</div>
 		<!-- /.row -->
-	</div>
-	<!-- /.container -->
-
-	<!-- Footer -->
-	<footer>
-		<!--/////////////////////////////////////////////////// -->
-		<jsp:include page="/PartsOfContent/SiteFooter/FrontFooter.jsp"
-			flush="false" />
-		<!--/////////////////////////////////////////////////// -->
-	</footer>
-
-</body>
-
-</html>

@@ -8,6 +8,8 @@
 <!-- /////////// -->
 <jsp:include page="/PartsOfContent/Head_Import.jsp" flush="false" />
 <!-- /////////// -->
+<link href="/resources/JsFramework/Bootstrap/bootstrap-social.css"
+	rel="stylesheet">
 </head>
 <%--http://bootsnipp.com/snippets/featured/responsive-team-profiles-with-social-links-free --%>
 <body>
@@ -72,86 +74,82 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					<div class="col-lg-12">
 						<h2 class="page-header">Contact</h2>
 					</div>
-					<div class="col-lg-4 well text-center">
-								<img
-								src="/CustomerService/Contact/Images/fan-1027184_640.jpg"
-								name="aboutme" width="140" height="140" class="img-circle">
-							<h3>CEO</h3>
-							<em>click on me to see Image Manager</em>
-					</div>
-					<div class="col-lg-4 well text-center">
-								<img
-								src="/CustomerService/Contact/Images/fan-1027188_640.jpg"
-								name="aboutme" width="140" height="140" class="img-circle">
-							<h3>CIO</h3>
-							<em>click on me to see Image Manager</em>
-					</div>
-					<div class="col-lg-4 well text-center">
-								<img
-								src="/CustomerService/Contact/Images/direction-1014031_640.jpg"
-								name="aboutme" width="140" height="140" class="img-circle">
-							<h3>CTO</h3>
-							<em>click on me to see Image Manager</em>
-					</div>
-				</div>
-				<!-- <div class="well well-sm">
-						<form>
-							<div class="row">
-								<div class="col-md-6">
-									<div class="form-group">
-										<label for="name"> Name</label> <input type="text"
-											class="form-control" id="name" placeholder="Enter name"
-											required="required" />
+					<div class="row">
+						<div class="col-xs-12 col-sm-6 col-md-6">
+							<div class="well well-sm">
+								<div class="row">
+									<div class="col-xs-12 col-sm-6 col-md-4">
+										<img src="http://placehold.it/380x500" alt=""
+											class="img-rounded img-responsive" />
 									</div>
-									<div class="form-group">
-										<label for="email"> Email Address</label>
-										<div class="input-group">
-											<span class="input-group-addon"><span
-												class="glyphicon glyphicon-envelope"></span> </span> <input
-												type="email" class="form-control" id="email"
-												placeholder="Enter email" required="required" />
+									<div class="col-xs-12 col-sm-6 col-md-8">
+										<h4>Bhaumik Patel</h4>
+										<small><cite title="Seoul, KOREA">Seoul, KOREA <i class="glyphicon glyphicon-map-marker">
+											</i>
+										</cite></small>
+										<p>
+											<i class="glyphicon glyphicon-envelope"></i>
+											email@example.com <br /> <i
+												class="glyphicon glyphicon-globe"></i><a
+												href="http://www.jquery2dotnet.com">
+												http://www.mwav.net</a> <br /> <i
+												class="glyphicon glyphicon-gift"></i> June 02, 1988
+										</p>
+										<!-- Split button -->
+										<div class="text-center">
+											<a class="btn btn-social-icon btn-twitter"> <span
+												class="fa fa-twitter"></span>
+											</a> <a class="btn btn-social-icon btn-facebook"> <span
+												class="fa fa-facebook"></span>
+											</a> <a class="btn btn-social-icon btn-google"> <span
+												class="fa fa-google"></span>
+											</a> <a class="btn btn-social-icon btn-linkedin"> <span
+												class="fa fa-linkedin"></span>
+											</a>
 										</div>
 									</div>
-									<div class="form-group">
-										<label for="subject"> Subject</label> <select id="subject"
-											name="subject" class="form-control" required="required">
-											<option value="na" selected="">Choose One:</option>
-											<option value="service">General Customer Service</option>
-											<option value="suggestions">Suggestions</option>
-											<option value="product">Product Support</option>
-										</select>
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-group">
-										<label for="name"> Message</label>
-										<textarea name="message" id="message" class="form-control"
-											rows="9" cols="25" required="required" placeholder="Message"></textarea>
-									</div>
-								</div>
-								<div class="col-md-12">
-									<button type="submit" class="btn btn-primary pull-right"
-										id="btnContactUs">Send Message</button>
 								</div>
 							</div>
-						</form>
-					</div> -->
+						</div>
+						<div class="col-xs-12 col-sm-6 col-md-6">
+							<div class="well well-sm">
+								<div class="row">
+									<div class="col-sm-6 col-md-4">
+										<img src="http://placehold.it/380x500" alt=""
+											class="img-rounded img-responsive" />
+									</div>
+									<div class="col-sm-6 col-md-8">
+										<h4>Bhaumik Patel</h4>
+										<small><cite title="Seoul, KOREA ">Seoul, KOREA <i class="glyphicon glyphicon-map-marker">
+											</i>
+										</cite></small>
+										<p>
+											<i class="glyphicon glyphicon-envelope"></i>
+											email@example.com <br /> <i
+												class="glyphicon glyphicon-globe"></i><a
+												href="http://www.jquery2dotnet.com">
+												http://www.mwav.net</a> <br /> <i
+												class="glyphicon glyphicon-gift"></i> June 02, 1988
+										</p>
+										<div class="text-center">
+											<a class="btn btn-social-icon btn-twitter"> <span
+												class="fa fa-twitter"></span>
+											</a> <a class="btn btn-social-icon btn-facebook"> <span
+												class="fa fa-facebook"></span>
+											</a> <a class="btn btn-social-icon btn-google"> <span
+												class="fa fa-google"></span>
+											</a> <a class="btn btn-social-icon btn-linkedin"> <span
+												class="fa fa-linkedin"></span>
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 
-				<!-- 	<div class="col-md-4">
-							<form>
-								<legend>
-									<span class="glyphicon glyphicon-globe"></span> Our office
-								</legend>
-								<address>
-									<strong>Twitter, Inc.</strong><br> 서울 광진 자양2동 607-20 GV4F
-									<abbr title="Phone"> P:</abbr> +82-2-6214-7039
-								</address>
-								<address>
-									<strong>Full Name</strong><br> <a href="mailto:#">first.last@example.com</a>
-								</address>
-							</form>
-						</div> -->
 
+				</div>
 			</div>
 		</div>
 		<!-- /.row -->
@@ -165,9 +163,6 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 			flush="false" />
 		<!--/////////////////////////////////////////////////// -->
 	</footer>
-
-
-
 </body>
 
 </html>

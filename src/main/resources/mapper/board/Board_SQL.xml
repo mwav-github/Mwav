@@ -44,9 +44,9 @@
 	
 	<select id="selectListBnsFrontList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			SELECT bNews_id, bnTitle, date_format(bnUpdateDt,'%Y%m%d') as bnUpdateDt
+			SELECT bNews_id, bnTitle, date_format(bnInsertDt,'%Y-%m-%d') as bnInsertDt
 		    FROM BoardNews_tbl
-		    WHERE bnDeleteDt IS NULL ORDER BY bnUpdateDt DESC Limit 5
+		    WHERE bnDeleteDt IS NULL ORDER BY bnInsertDt DESC Limit 5
 		]]>
 	</select>
 
@@ -117,9 +117,9 @@
 	
 	<select id="selectListBuFrontList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			SELECT bUsers_id, buTitle, date_format(buUpdateDt,'%Y%m%d') as buUpdateDt
+			SELECT bUsers_id, buTitle, date_format(buInsertDt,'%Y-%m-%d') as buInsertDt
 		    FROM BoardUser_tbl
-		    WHERE buDeleteDt IS NULL ORDER BY buUpdateDt DESC Limit 5
+		    WHERE buDeleteDt IS NULL ORDER BY buInsertDt DESC Limit 5
 		]]>
 	</select>
     

@@ -9,7 +9,7 @@
 <!-- StandardPackage 
 <script src="//cdn.ckeditor.com/4.5.11/standard/ckeditor.js"></script>-->
 
-<!-- FullPackage --> 
+<!-- FullPackage -->
 <script src="//cdn.ckeditor.com/4.5.11/full/ckeditor.js"></script>
 
 <!-- jQuery Version 1.11.0 -->
@@ -85,10 +85,12 @@
 
 							<div class="pull-right">
 								<%--기본값 --%>
-								<input type="hidden" name="bNews_id" value="${selectboardUpdate.bNews_id}"/> <input type="hidden"
+								<input type="hidden" name="bNews_id"
+									value="${selectboardUpdate.bNews_id}" /> <input type="hidden"
 									name="bnHighLight" value="0" /> <input type="hidden"
-									name="bnViewCount" value="0" MaxLength="10" />
-									<input type="hidden" name="bnInsertDt" value="${selectboardUpdate.bnInsertDt}"/>
+									name="bnViewCount" value="0" MaxLength="10" /> <input
+									type="hidden" name="bnInsertDt"
+									value="${selectboardUpdate.bnInsertDt}" />
 
 								<%--높을수록 TOP (추후 반영)_15.08.01 --%>
 								<input type="hidden" name="bnOrder" value="0" />
@@ -114,7 +116,8 @@
 					<tbody>
 						<tr>
 							<td>${selectboardUpdate.bNews_id}</td>
-							<td><select name="bnGroup" value="${selectboardUpdate.bnGroup}">
+							<td><select name="bnGroup"
+								value="${selectboardUpdate.bnGroup}">
 									<option value="전체">전체</option>
 									<option value="휴대폰">휴대폰</option>
 									<option value="인터넷">인터넷</option>
@@ -149,20 +152,22 @@
 					</tr>
 
 					<tr>
+						<th class="active">Reference</th>
+						<td><input type="text" class="form-control"
+							placeholder="Text input" name="bnRelatedLink" value="${selectboardUpdate.bnRelatedLink}"></td>
+					</tr>
+
+					<tr>
 						<th class="active">Content</th>
 						<td><textarea name="bnContent"
 								class="form-control input-sm ckeditor" id="message"
-								placeholder="Message" 
-								style="width: 100%; height: 200px;"
-								>${selectboardUpdate.bnContent}</textarea>
-								<script type="text/javascript">
+								placeholder="Message" style="width: 100%; height: 200px;">${selectboardUpdate.bnContent}</textarea>
+							<script type="text/javascript">
 															//<![CDATA[
 															CKEDITOR
 																	.replace('bnContent');
 															//]]
-														</script>
-								 <span
-							class="help-block"></span></td>
+														</script> <span class="help-block"></span></td>
 					</tr>
 
 				</table>
@@ -175,8 +180,9 @@
 						List</button>
 					<button type="button" class="btn btn-warning"
 						onClick="javascript:history.go(-1)">BACK</button>
-						
-						<button type="button" class="btn btn-danger" onclick="check2(${selectboardUpdate.bNews_id})">Delete</button>
+
+					<button type="button" class="btn btn-danger"
+						onclick="check2(${selectboardUpdate.bNews_id})">Delete</button>
 					<button type="button" class="btn btn-primary" onclick="check()">Modify</button>
 				</p>
 			</form>
@@ -252,12 +258,17 @@
 					</tr>
 
 					<tr>
+						<th class="active">Reference</th>
+						<td><input type="text" class="form-control"
+							placeholder="Text input" name="bnRelatedLink"></td>
+					</tr>
+
+					<tr>
 						<th class="active">Content</th>
 						<td><textarea name="bnContent"
 								class="form-control input-sm ckeditor" id="message"
-								placeholder="Message" 
-								style="width: 100%; height: 200px;"></textarea> <span
-							class="help-block"></span></td>
+								placeholder="Message" style="width: 100%; height: 200px;"></textarea>
+							<span class="help-block"></span></td>
 					</tr>
 
 				</table>

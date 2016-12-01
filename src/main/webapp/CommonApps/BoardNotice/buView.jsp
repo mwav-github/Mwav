@@ -65,6 +65,12 @@
 			</tr>
 			<tr><td>${selectOneBuView.buSubTitle}</td></tr>
             </c:if>
+         
+			<tr>
+				<th class="active">Reference</th>
+				
+			</tr>
+			<tr><td>${selectOneBuView.buRelatedLink}</td></tr>
             
 			<tr>
 				<th class="active">Content</th>
@@ -77,7 +83,7 @@
 
 	<br style="clear: both">
 	<p class="pull-right">
-		<button type="button" class="btn btn-success" onClick="javascript:window.location.href='/CustomerService/Announcement/Announcement.jsp'">All List</button>
+		<button type="button" class="btn btn-success" onClick="javascript:window.location.href='/board/buList.do'">All List</button>
 		<button type="button" class="btn btn-warning" onClick="javascript:history.go(-1)">BACK</button>
 	</p>
 

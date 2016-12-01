@@ -42,10 +42,9 @@ public class MemberController {
 
 	@Resource(name = "memberService")
 	private MemberService memberService;
-	
+
 	Common_Utils cu = new Common_Utils();
-	
-	
+
 	/*
 	 * 1. MbrLogin : mode = SMbrLogin /CommonApps/Member/MbrLogin.jsp 2.
 	 * TermsOfUse : mode = STermsOfUse /CommonApps/Member/TermsOfUse.jsp 3.
@@ -53,11 +52,10 @@ public class MemberController {
 	 * FrontNewsList : mode = SFbnsList /CommonApps/BoardNews/FrontNewsList.jsp
 	 * 5. bnsUpdate : mode = SbnsUpdate /CommonApps/BoardNews/bnsForm.jsp
 	 */
-	
 
 	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
 	public String login(Model model) {
-		
+
 		return "redirect:/MasterPage.jsp?mode=SMbrLogin";
 	}
 
@@ -107,12 +105,13 @@ public class MemberController {
 	 * @see 컨트롤러 부분과 서비스로직 분리
 	 */
 	@RequestMapping(value = "/member/mbrForm.do")
-	public String insertMbrForm(CommandMap commandMap, Model model) throws Exception {
+	public String insertMbrForm(CommandMap commandMap, Model model)
+			throws Exception {
 
-		//model.addAttribute("mode", "SDMbrInput");
+		// model.addAttribute("mode", "SDMbrInput");
 		String result = memberService.insertMbrForm(commandMap.getMap());
 
-		if(!"insertForm Success".equals(result)) {
+		if (!"insertForm Success".equals(result)) {
 			return "redirect:/MasterPage_1.jsp?mode=SMbrInput";
 		}
 
@@ -186,8 +185,8 @@ public class MemberController {
 		ModelAndView mv = new ModelAndView("/CustomerService/CS-MasterPage");
 
 		mode = "SDMyPage";
-		//mv.addObject("mode", "SDMyPage");
-		//request.setAttribute("mode", "SDMyPage");
+		// mv.addObject("mode", "SDMyPage");
+		// request.setAttribute("mode", "SDMyPage");
 		mv.addObject("mode", "SmbrUpdatePro");
 
 		// 위의 view랑 동일하게 사용
@@ -225,21 +224,26 @@ public class MemberController {
 	// 4번 추후 패스워드 찾기 순서 mbrTempLoginPwUpdate -> mbrTempLoginPwSeek ->
 	// mbrLoginPwUpdate
 	@RequestMapping(value = "/member/mbrLoginPwUpdate.do")
-	public ModelAndView updateMbrLoginPw(CommandMap commandMap,
-			HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("/MasterPage");
+	public @ResponseBody boolean updateMbrLoginPw(CommandMap commandMap,
+			HttpServletRequest request, HttpServletResponse response) throws Exception {
+		//ModelAndView mv = new ModelAndView("/MasterPage");
 
 		// String cc = (String) commandMap.get("mbrLoginPw");
+		
+		//임시패스워드
 		String cc = (String) commandMap.get("imsi_mbrLoginPw");
+		
+		//변경예정비밀번호
+		String cc2 = (String) commandMap.get("mbrLoginPw");
 
 		System.out.println("출력+" + cc);
 
 		boolean updateMbrLoginPw = memberService.updateMbrLoginPw(commandMap
 				.getMap());
 
-		mv.addObject("updateMbrLoginPw", updateMbrLoginPw); // updatePw
-		mv.addObject("mode", "SMbrLogin");
-		return mv;
+		//mv.addObject("updateMbrLoginPw", updateMbrLoginPw); // updatePw
+		//mv.addObject("mode", "SMbrLogin");
+		return updateMbrLoginPw;
 	}
 
 	// 7번 추후 패스워드 찾기 1단계 맞으면 imsi 패스워드 넣으니
@@ -249,20 +253,23 @@ public class MemberController {
 	 */
 	@RequestMapping(value = "/member/mbrTempLoginPwUpdate.do")
 	public @ResponseBody String updateMbrTempLoginPw(CommandMap commandMap,
-			HttpServletRequest request, HttpServletResponse response) throws Exception {
+			HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
 
 		boolean updateMbrTempLoginPw;
-		
+
 		System.out.println(commandMap.get("mbrLoginId"));
 		System.out.println(commandMap.get("mbrEmail"));
-		
-		String mbrLoginPw = memberService
-				.selectOneMbrLoginPWSeek(commandMap.getMap());
 
-	/*	response.setContentType("text/html;charset=UTF-8");
+		String mbrLoginPw = memberService.selectOneMbrLoginPWSeek(commandMap
+				.getMap());
 
-		response.setHeader("Cache-Control", "no-cache");
-		PrintWriter out = response.getWriter();*/
+		/*
+		 * response.setContentType("text/html;charset=UTF-8");
+		 * 
+		 * response.setHeader("Cache-Control", "no-cache"); PrintWriter out =
+		 * response.getWriter();
+		 */
 		// id 중복 처리
 
 		String result = null;
@@ -271,8 +278,8 @@ public class MemberController {
 			// 응답 메세지 1 : 이미 등록된 ID 입니다.
 			result = "false";
 		} else {
-			//commandMap.put("mbrLoginPw", mbrLoginPw);
-			 updateMbrTempLoginPw = memberService
+			// commandMap.put("mbrLoginPw", mbrLoginPw);
+			updateMbrTempLoginPw = memberService
 					.updateMbrTempLoginPw(commandMap.getMap());
 
 			if (updateMbrTempLoginPw == true) {
@@ -284,9 +291,8 @@ public class MemberController {
 
 			}
 		}
-		//out.println(result);
-		
-		
+		// out.println(result);
+
 		return result;
 
 	}
@@ -314,10 +320,12 @@ public class MemberController {
 		System.out.println("selectIdCheck" + selectIdCheck);
 		if (selectIdCheck == true) {
 			// 응답 메세지 1 : 이미 등록된 ID 입니다.
-			result = "<font color=red><strong>이미 등록된 ID 입니다. 재 입력해주세요.</strong></font>";
+			// 이때 pw 규칙 알려주기
+			result = "<div class='alert alert-danger text-left'><strong>이미 등록된 ID 입니다. 재 입력해주세요.<br>"
+					+ "<strong>1. 4 ~ 20 자 사이의 문자길이 <br> 2. 첫 문자는 영어로 시작 <br> 3. 특수문자 사용금지 (제외문자: . _ -) <br> 4. 공백문자 사용금지  <br> 5. 대소문자는 식별이 가능하나 구분 및 구별을 하지 않음</strong></strong></div>";
 		} else {
 			// 응답 메세지 2 : 사용할 수 있는 ID 입니다.
-			result = "<font color=green><strong>사용할 수 있는 ID 입니다.</strong></font>";
+			result = "<div class='alert alert-success text-left'><strong>사용할 수 있는 ID 입니다.</strong></div>";
 		}
 		out.println(result);
 		// response.getWriter().print(result); 주석풀면 3번 나온다.
@@ -330,23 +338,24 @@ public class MemberController {
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 
-		//commandmAP 출력 모듈
+		// commandmAP 출력 모듈
 		cu.selectCommandMapList(commandMap);
-		/*if (commandMap.isEmpty() == false) {
-			System.out.println("들어옴");
-			Iterator<Entry<String, Object>> iterator = commandMap.getMap()
-					.entrySet().iterator();
-			Entry<String, Object> entry = null;
-			while (iterator.hasNext()) {
-				entry = iterator.next();
-				log.debug("key : " + entry.getKey() + ",\tvalue : "
-						+ entry.getValue());
-				System.out.println("key : " + entry.getKey() + ",\tvalue : "
-						+ entry.getValue());
-			}
-		}*/
+		/*
+		 * if (commandMap.isEmpty() == false) { System.out.println("들어옴");
+		 * Iterator<Entry<String, Object>> iterator = commandMap.getMap()
+		 * .entrySet().iterator(); Entry<String, Object> entry = null; while
+		 * (iterator.hasNext()) { entry = iterator.next(); log.debug("key : " +
+		 * entry.getKey() + ",\tvalue : " + entry.getValue());
+		 * System.out.println("key : " + entry.getKey() + ",\tvalue : " +
+		 * entry.getValue()); } }
+		 */
 
-		String selectIdFinder = memberService
+		/*
+		 * 리스트 형태로 변경 String selectIdFinder = memberService
+		 * .selectOneMbrLoginIdSeek(commandMap.getMap());
+		 */
+
+		List<String> selectIdFinder = memberService
 				.selectOneMbrLoginIdSeek(commandMap.getMap());
 
 		response.setContentType("text/html;charset=UTF-8");
@@ -357,13 +366,30 @@ public class MemberController {
 
 		String result = null;
 		System.out.println("selectIdFinder" + selectIdFinder);
+
+		List<String> convertTxt = cu.convertStringToMark(selectIdFinder);
+		System.out.println("convertTxt.size()" + convertTxt.size());
 		if (selectIdFinder == null) {
 			// 응답 메세지 1 : 이미 등록된 ID 입니다.
-			result = "<font color=red><strong>존재하지 않는 ID 입니다.</strong>	</font>";
+			// result =
+			// "<font color=red><strong>존재하지 않는 ID 입니다.</strong>	</font>";
+			result = "<div class='alert alert-danger text-center'><strong>존재하지 않는 ID 입니다.</strong></div>";
 		} else {
 			// 응답 메세지 2 : 사용할 수 있는 ID 입니다.
-			result = "<font color=green><strong>당신의 아이디는 " + selectIdFinder
-					+ "입니다.</strong></font>";
+
+			// 값이 여러개인 경우
+
+			if (convertTxt.size() >= 2) {
+
+				result = "<div class='alert alert-success text-center'><strong>당신의 아이디는 아래 중 하나입니다.</strong><br>";
+				for (int i = 0; i < convertTxt.size(); i++) {
+					result = result + "<br><strong>" + convertTxt.get(i)
+							+ "</strong><br>";
+				}
+				result = result + "</div>";
+			} else {
+				result = "<div class='alert alert-success text-center'><strong>당신의 아이디는 "+convertTxt.get(0) +" 입니다.</strong></div>";
+			}
 		}
 		out.println(result);
 		// response.getWriter().print(result); 주석풀면 3번 나온다.
@@ -418,12 +444,10 @@ public class MemberController {
 
 		String zcSiDoName = request.getParameter("zcSiDoName");
 		System.out.println("zcSiDoName" + zcSiDoName);
-		
-		
+
 		List<String> selectListZcGunGuSeek = memberService
 				.selectListZcGunGuSeek(zcSiDoName);
 
-		
 		return selectListZcGunGuSeek;
 	}
 
@@ -637,7 +661,7 @@ public class MemberController {
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 
-		//signController 로 진행
+		// signController 로 진행
 		ModelAndView mv = new ModelAndView("/Index");
 
 		HttpSession session = request.getSession();
@@ -671,26 +695,25 @@ public class MemberController {
 		boolean check;
 		check = memberService.selectOneSnsMbrLoginIdCheck(smMember_id);
 		System.out.println("check = " + check);
-		
-		
-		if (check == false) { // 신규등록 
+
+		if (check == false) { // 신규등록
 
 			if (Gender.equals("male")) {
 				commandMap.put("Gender", 1);
 			} else {
 				commandMap.put("Gender", 0);
 			}
-            
+
 			memberService.insertSnsForm(commandMap.getMap());
 			System.out.println("insertSnsForm 성공!!!!!!");
-		}else{
-			//기존 있는 경우 
+		} else {
+			// 기존 있는 경우
 		}
 
 		String mbrLoginId = Last_Name + " " + First_Name;
 		loginCheck = 1;
 		session.setAttribute("mbrLoginId", mbrLoginId);
-		
+
 		request.setAttribute("loginCheck", loginCheck);
 
 		return mv;

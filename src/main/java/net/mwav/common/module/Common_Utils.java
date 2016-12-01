@@ -290,4 +290,43 @@ public class Common_Utils {
         }
         return dateString;
     }
+    
+    /**
+     * 자바 string 치환하기 
+     * 
+     * @param String textData 대상 문자열
+     * @return result 치환된 문자열
+     * 	 
+     */
+    public static List<String> convertStringToMark(List<String> selectIdFinder) {
+    	
+    	for (int i=0; i < selectIdFinder.size(); i++  ){
+    		
+    		
+    	int txt_length = selectIdFinder.get(i).length();
+    	int start_point = ((txt_length/2)-1);
+    	int end_point = ((txt_length/2)+1);
+    	
+    	String imsi_textData = selectIdFinder.get(i);
+    	String extract_textData = null;
+    	String result = null;
+    	
+    	if (txt_length >= 7){
+    		// 7자리 이상이면 3개이상 변환
+    		
+    		extract_textData = imsi_textData.substring(start_point-1, end_point);
+    		result = selectIdFinder.get(i).replace(extract_textData, "****");
+    		
+    		
+    	}else{
+    		// 7자리 이하이면 2개변환 
+    		extract_textData = imsi_textData.substring(start_point, end_point);
+    		result = selectIdFinder.get(i).replace(extract_textData, "***");
+    		
+    	}
+    	System.out.println("dd"+ result);
+    	selectIdFinder.set(i, result);
+    	}
+    return 	selectIdFinder;
+    }
 }

@@ -129,6 +129,35 @@ http://www.egovframe.go.kr/wiki/doku.php?id=egovframework:dev:dep:build:maven
     	     <artifactId>sitemesh</artifactId>
    			 <version>2.4.2</version>
 		</dependency>  
+		
+		<!-- Tiles 추가 16/11/30
+		단순한 tiles 기능만 사용한다면 extras만 받아도 상관없다고 한다. 
+- tiles3을 이용한다. tiles2와의 차이는 여기를 참고하길바란다. iles3을 사용하기 위해서는 spring 3.2이상 버전을 사용해야한다.
+		-->
+    
+   <!-- http://mvnrepository.com/artifact/org.apache.tiles/tiles-core -->
+<dependency>
+    <groupId>org.apache.tiles</groupId>
+    <artifactId>tiles-core</artifactId>
+    <version>3.0.5</version>
+</dependency>
+ 
+<!-- Tiles Servlet -->
+<!-- http://mvnrepository.com/artifact/org.apache.tiles/tiles-servlet -->
+<dependency>
+    <groupId>org.apache.tiles</groupId>
+    <artifactId>tiles-servlet</artifactId>
+    <version>3.0.5</version>
+</dependency>
+ 
+<!-- Tiles JSP -->
+<!-- http://mvnrepository.com/artifact/org.apache.tiles/tiles-jsp -->
+<dependency>
+    <groupId>org.apache.tiles</groupId>
+    <artifactId>tiles-jsp</artifactId>
+    <version>3.0.5</version>
+</dependency>
+
           
          <!-- MyBatis -->
         <dependency>

@@ -71,6 +71,16 @@
 				</tr>
 
 			</c:if>
+			
+			<tr>
+				<th class="active">Reference</th>
+
+			</tr>
+			<tr>
+				<td>${selectOneBnsView.bnRelatedLink}</td>
+			</tr>
+			
+			
 			<tr>
 				<th class="active">Content</th>
 

@@ -16,7 +16,7 @@
 <!-- StandardPackage 
 <script src="//cdn.ckeditor.com/4.5.11/standard/ckeditor.js"></script>-->
 
-<!-- FullPackage --> 
+<!-- FullPackage -->
 <script src="//cdn.ckeditor.com/4.5.11/full/ckeditor.js"></script>
 </head>
 
@@ -83,7 +83,7 @@
 
 					<div class="row">
 
-<%--================================================시작========================================================== --%>
+						<%--================================================시작========================================================== --%>
 						<script>
 	function check() {
 	/* 	if (document.bnsForm.staff_id.value == "") {
@@ -195,11 +195,17 @@
 											</tr>
 
 											<tr>
+												<th class="active">Reference</th>
+												<td><input type="text" class="form-control"
+													placeholder="Text input" name="bnRelatedLink"
+													value="${updateNsmForm.bnRelatedLink}"></td>
+											</tr>
+
+											<tr>
 												<th class="active">Content</th>
 												<td><textarea name="bnContent"
 														class="form-control input-sm ckeditor" id="message"
-														placeholder="Message" 
-														style="width: 100%; height: 200px;">${updateNsmForm.bnContent}</textarea>
+														placeholder="Message" style="width: 100%; height: 200px;">${updateNsmForm.bnContent}</textarea>
 													<script type="text/javascript">
 															//<![CDATA[
 															CKEDITOR
@@ -217,7 +223,7 @@
 												onClick="javascript:window.location.href='/admin/boardNews/nsmList.do?pageNum=${pageNum}'">All
 												List</button>
 											<button type="button" class="btn btn-warning"
-												onClick="javascript:history.go(-1)">BACK</button>										
+												onClick="javascript:history.go(-1)">BACK</button>
 											<button type="button" class="btn btn-primary"
 												onclick="check()">Modify</button>
 										</p>
@@ -292,14 +298,21 @@
 												<td><input type="text" class="form-control"
 													placeholder="Text input" name="bnSubTitle"></td>
 											</tr>
+											
+											
+											<tr>
+												<th class="active">Reference</th>
+												<td><input type="text" class="form-control"
+													placeholder="Text input" name="bnRelatedLink"></td>
+											</tr>
+											
 
 											<tr>
 												<th class="active">Content</th>
 												<td><textarea name="bnContent"
 														class="form-control input-sm ckeditor" id="message"
-														placeholder="Message"
-														style="width: 100%; height: 200px;"></textarea> <span
-													class="help-block"></span></td>
+														placeholder="Message" style="width: 100%; height: 200px;"></textarea>
+													<span class="help-block"></span></td>
 											</tr>
 
 										</table>

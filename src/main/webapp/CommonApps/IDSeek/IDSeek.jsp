@@ -6,8 +6,9 @@
 	href="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"
 	rel="stylesheet">
 <!-- jQuery Version 1.11.0 -->
-<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
-
+<%--아래 jquery가 들어가있으면 tooltip등 안먹힌다.  --%>
+<!-- <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+ -->
 <!-- function idFindercheck() {
 alert('sdfsdf');
 
@@ -42,30 +43,29 @@ $.ajax({
 		//alert(flag);
 		flag = emptyCheck(email, "이메일을 입력해주세요.");
 		//alert(flag);
-		
-		if(flag == false || flag == undefined){
+
+		if (flag == false || flag == undefined) {
 			//alert('11');
 			return false;
-		}
-		else{
-			//alert('22');
-		
-		var queryString = "mbrCellPhone=" + phone + "&mbrEmail=" + email;
-		if (name == null || email == null) {
-			document.getElementById("idcheckLayer").innerHTML = "<font color=red>이름 또는 이메일을 입력하세요.</font>";
 		} else {
-			// 1. XMLHttpReqeust 객체 생성
-			createXhr();
-			// 2. 이벤트 핸들러 등록
-			xhr.onreadystatechange = callback; // callback 함수를 등록
-			// 3. open()를 통해 요청관련 설정을 설정
-			xhr.open("POST", "/member/mbrLoginIdSeek.do", true);
-			// 4. Header에 contentType 지정 - post
-			xhr.setRequestHeader("Content-Type",
-					"application/x-www-form-urlencoded");
-			// 5. send()를 통해 요청
-			xhr.send(queryString); // 요청 쿼리를 보내준다.
-		}
+			//alert('22');
+
+			var queryString = "mbrCellPhone=" + phone + "&mbrEmail=" + email;
+			if (name == null || email == null) {
+				document.getElementById("idcheckLayer").innerHTML = "<font color=red>이름 또는 이메일을 입력하세요.</font>";
+			} else {
+				// 1. XMLHttpReqeust 객체 생성
+				createXhr();
+				// 2. 이벤트 핸들러 등록
+				xhr.onreadystatechange = callback; // callback 함수를 등록
+				// 3. open()를 통해 요청관련 설정을 설정
+				xhr.open("POST", "/member/mbrLoginIdSeek.do", true);
+				// 4. Header에 contentType 지정 - post
+				xhr.setRequestHeader("Content-Type",
+						"application/x-www-form-urlencoded");
+				// 5. send()를 통해 요청
+				xhr.send(queryString); // 요청 쿼리를 보내준다.
+			}
 		}
 	}
 	function callback() {
@@ -91,64 +91,63 @@ $.ajax({
 		//alert(flag);
 		flag = emptyCheck(bb, "이메일을 입력해주세요.");
 		//alert(flag);
-		if(flag == false || flag == undefined){
+		if (flag == false || flag == undefined) {
 			//alert('11');
 			return false;
-		}
-		else{
-		
-		
-		var URL = "mbrLoginId=" + aa + "&mbrEmail=" + bb;
+		} else {
 
-		$.ajax({
-			type : 'POST', // Http Request Method로 POST로 지정
-			url : '/member/mbrTempLoginPwUpdate.do', // 서버 요청 주소
-			data : URL, // JavaScript 객체를 JSON 객체로 변환하여 서버 요청시 전송
-			success : function(data) {
-				//alert(data);
-				if(data == 'false'){
-					alert('해당 회원정보는 존재하지 않습니다.');
-					return false;
-				}else{
-				
-				alert('입력해주신 '+data+'이메일로 임시PW를 발급완료했습니다. (5분안에 입력해주세요.)');
-				document.getElementById("pwid").readOnly = true;
-				document.getElementById("pwemail").readOnly = true;
-				document.getElementById("pwok").disabled = true;
-				$('#imsipwdisplay').css('display', 'block') //to show
-				start_timer();
-				}
+			var URL = "mbrLoginId=" + aa + "&mbrEmail=" + bb;
 
-			}, // 서버로부터 응답 데이터 도착시 로직 처리, 응답 데이터는 JavaScript 객체로 바로 사용 가능
-			
-			beforeSend : function() {
-				//(이미지 보여주기 처리)
-				//alert('1');
-				$('.wrap-loading').removeClass('display-none');
-			},
-			complete : function() {
-				//(이미지 감추기 처리)
-				//alert('2');
-				$('.wrap-loading').addClass('display-none');
+			$.ajax({
+				type : 'POST', // Http Request Method로 POST로 지정
+				url : '/member/mbrTempLoginPwUpdate.do', // 서버 요청 주소
+				data : URL, // JavaScript 객체를 JSON 객체로 변환하여 서버 요청시 전송
+				success : function(data) {
+					//alert(data);
+					if (data == 'false') {
+						alert('해당 회원정보는 존재하지 않습니다.');
+						return false;
+					} else {
 
-			},
-			error : function(status, error) {
-				//alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-				if (status == 0) {
-					alert('You are offline!!n Please Check Your Network.');
-				} else if (status == 404) {
-					alert('Requested URL not found.');
-				} else if (status == 500) {
-					alert('Internel Server Error.');
-				} else if (error == 'parsererror') {
-					alert('Error.nParsing JSON Request failed.');
-				} else if (error == 'timeout') {
-					alert('Request Time out.');
-				} else {
-					alert('Unknow Error.n' + request.responseText);
-				}
-			} // 서버로부터 응답 데이터 실패시 로직 처리
-		});
+						alert('입력해주신 ' + data
+								+ '이메일로 임시PW를 발급완료했습니다. (5분안에 입력해주세요.)');
+						document.getElementById("pwid").readOnly = true;
+						document.getElementById("pwemail").readOnly = true;
+						document.getElementById("pwok").disabled = true;
+						$('#imsipwdisplay').css('display', 'block') //to show
+						start_timer();
+					}
+
+				}, // 서버로부터 응답 데이터 도착시 로직 처리, 응답 데이터는 JavaScript 객체로 바로 사용 가능
+
+				beforeSend : function() {
+					//(이미지 보여주기 처리)
+					//alert('1');
+					$('.wrap-loading').removeClass('display-none');
+				},
+				complete : function() {
+					//(이미지 감추기 처리)
+					//alert('2');
+					$('.wrap-loading').addClass('display-none');
+
+				},
+				error : function(status, error) {
+					//alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+					if (status == 0) {
+						alert('You are offline!!n Please Check Your Network.');
+					} else if (status == 404) {
+						alert('Requested URL not found.');
+					} else if (status == 500) {
+						alert('Internel Server Error.');
+					} else if (error == 'parsererror') {
+						alert('Error.nParsing JSON Request failed.');
+					} else if (error == 'timeout') {
+						alert('Request Time out.');
+					} else {
+						alert('Unknow Error.n' + request.responseText);
+					}
+				} // 서버로부터 응답 데이터 실패시 로직 처리
+			});
 		}
 	}
 </script>
@@ -156,11 +155,10 @@ $.ajax({
 <script>
 	function mbrTempLoginPwSeek() { //imsiPWFinder()
 		var before_value = $('#mbrTempLoginPw').val();
-	    var after_value;
+		var after_value;
 		//공백값 제거
 		after_value = trim(before_value);
 		var URL = "mbrTempLoginPw=" + after_value;
-		
 
 		$.ajax({
 			type : 'POST', // Http Request Method로 POST로 지정
@@ -169,8 +167,7 @@ $.ajax({
 			success : function(data) {
 
 				if (data == true) {
-					
-					
+
 					$('#PwFinder').css('display', 'none') //to show
 					$('#pwfinder_1').css('display', 'block') //to show
 					$('#pwfinder_1').addClass('active in') //to show
@@ -180,14 +177,13 @@ $.ajax({
 					lol = $("#imsi_mbrLoginPw").val();
 					alert('lol'+lol); */
 
-				}
-				else if (data == false) {
+				} else if (data == false) {
 					alert('임시pw가 맞지 않습니다. 메일은 확인하고, 다시 입력해주세요.')
 					document.pwform_1.imsipw_.focus();
 				}
 
 			}, // 서버로부터 응답 데이터 도착시 로직 처리, 응답 데이터는 JavaScript 객체로 바로 사용 가능
-			
+
 			beforeSend : function() {
 				//(이미지 보여주기 처리)
 				//alert('1');
@@ -201,6 +197,77 @@ $.ajax({
 			},
 			error : function() {
 				alert('임시pw가 맞지 않습니다. 메일은 확인하고, 다시 입력해주세요.');
+
+			} // 서버로부터 응답 데이터 실패시 로직 처리
+		});
+	}
+</script>
+
+
+<script>
+	function updateMbrLoginPw(form) { //imsiPWFinder()
+		
+		// 로그인 및 기타 form 체크
+		
+			// 참고 a태그에서는 this 인지 못함
+			// 원래는 로그인이 최상단 이나, 패스워드 찾기에서 패스워드 변경 부분에서 로그인이 위에있으면 그냥 통과라 변경
+			// 추후 필히 변경 필요.
+			if (form.mbrLoginPw.value.length == 0) {
+				alert("패스워드를 입력해주세요");
+				form.mbrLoginPw.focus();
+				return false;
+			}
+			if (form.mbrLoginPw.value != form.mbrLoginPw_check.value) {
+				alert("패스워드를 다시확인해주세요.");
+				form.mbrLoginPw_check.focus();
+				return false;
+			}
+		
+		
+		
+		
+		var imsi_mbrLoginPw = $('#imsi_mbrLoginPw').val();
+		var mbrLoginPw = $('#mbrLoginPw_chk').val();
+		var after_value;
+		var after_value_;
+		
+		//공백값 제거
+		after_value = trim(imsi_mbrLoginPw);
+		after_value_ = trim(mbrLoginPw);
+		var URL = "imsi_mbrLoginPw=" + after_value +"&mbrLoginPw="+after_value_;
+
+		$.ajax({
+			type : 'POST', // Http Request Method로 POST로 지정
+			url : '/member/mbrLoginPwUpdate.do', // 서버 요청 주소
+			data : URL, // JavaScript 객체를 JSON 객체로 변환하여 서버 요청시 전송
+			success : function(data) {
+
+				if (data == true) {
+					alert('비밀번호를 변경합니다.');
+					document.location="/MasterPage.jsp?mode=SMbrLogin";
+					return true;
+					
+				} else if (data == false) {
+					alert('이전에 사용한 비밀번호로 변경이 불가능합니다.');
+					return false;
+				}
+
+			}, // 서버로부터 응답 데이터 도착시 로직 처리, 응답 데이터는 JavaScript 객체로 바로 사용 가능
+
+			beforeSend : function() {
+				//(이미지 보여주기 처리)
+				//alert('1');
+				$('.wrap-loading').removeClass('display-none');
+			},
+			complete : function() {
+				//(이미지 감추기 처리)
+				//alert('2');
+				$('.wrap-loading').addClass('display-none');
+
+			},
+			error : function() {
+				alert('pw가 맞지 않습니다.다시 입력해주세요.');
+				
 
 			} // 서버로부터 응답 데이터 실패시 로직 처리
 		});
@@ -262,22 +329,23 @@ $.ajax({
 								<div class="col-xs-12 col-sm-12 col-md-12 enter">
 									<div class="col-md-4 mgt4">휴대폰</div>
 									<div class="col-md-8 mgt4">
-										<input type="text" id="mbrCellPhone" class="form-control"
+										<input type="text" id="mbrCellPhone" class="form-control caps_lockchk"
 											placeholder="휴대폰 번호" required>
 									</div>
 									<br />
 									<div class="col-md-4 mgt4">이메일</div>
 									<div class="col-md-8 mgt4">
-										<input type="text" id="mbrEmail" class="form-control"
+										<input type="text" id="mbrEmail" class="form-control caps_lockchk"
 											placeholder="이메일" required>
 									</div>
 								</div>
 
 
-								<div id="idcheckLayer" class="col-md-offset-4 col-md-8"></div>
-
-
-								<div class="col-md-12 enter">
+								<!-- 								<div id="idcheckLayer" class="col-md-offset-4 col-md-8"></div>
+ -->
+								<%--아이디찾기 표기부분 col-xs-12 col-sm-12 표기안하면 전체를 덮는다. --%>
+								<div id="idcheckLayer" class="col-xs-12 col-sm-12 col-md-12"></div>
+								<div class="col-xs-12 col-sm-12 col-md-12 enter">
 									<button type="button" class="btn btn-block btn-sm btn-info"
 										onclick="selectOneMbrLoginIdSeek()">확인</button>
 								</div>
@@ -295,13 +363,13 @@ $.ajax({
 										<div class="col-md-12">
 											<div class="col-md-4 mgt4">아이디</div>
 											<div class="col-md-8 mgt4">
-												<input type="text" id="pwid" class="form-control"
+												<input type="text" id="pwid" class="form-control caps_lockchk"
 													placeholder="회원아이디" required>
 											</div>
 
 											<div class="col-md-4 mgt4">이메일</div>
 											<div class="col-md-8 mgt4">
-												<input type="text" id="pwemail" class="form-control"
+												<input type="text" id="pwemail" class="form-control caps_lockchk"
 													placeholder="이메일" required>
 											</div>
 
@@ -319,13 +387,21 @@ $.ajax({
 										<div class="col-md-12 mgt5" id="imsipwdisplay"
 											style="display: none;">
 											<div class="col-md-12">
-												<div class="col-sm-4 col-sm-4 col-md-4">남은시간</div>
-												<%--타이머 --%>
-												<div class="col-sm-8 col-sm-8 mgb3"><strong id="time1" class="text-danger"></strong></div>
-												
-												<div class="col-md-8 col-md-offset-4">
+												<%-- <div class="col-sm-4 col-sm-4 col-md-4">남은시간</div>
+												타이머
+												<div class="col-sm-8 col-sm-8 mgb3">
+													<strong id="time1" class="text-danger"></strong>
+												</div> --%>
+
+												<div class='alert alert-danger text-center'>
+													<strong class="text-danger">남은 시간은 </strong><strong
+														id="time1" class="text-danger"></strong>
+												</div>
+
+												<div class="col-md-4 mgt4">임시비밀번호</div>
+												<div class="col-md-8 ">
 													<input type="text" name="imsipw_" id="mbrTempLoginPw"
-														class="form-control" placeholder="임시비밀번호.." >
+														class="form-control caps_lockchk" placeholder="임시비밀번호.." >
 												</div>
 											</div>
 
@@ -342,9 +418,7 @@ $.ajax({
 							</div>
 
 							<div class="tab-pane fade" id="pwfinder_1" style="display: none;">
-								<form name="pwform" class="form-horizontal" method="post"
-									action="/member/mbrLoginPwUpdate.do"
-									onsubmit="return check(document.pwform)">
+								<form name="pwform" class="form-horizontal" >
 									<h2>비밀번호 변경</h2>
 									<!-- <p>비밀번호를 변경합니다.</p> -->
 									<br />
@@ -352,21 +426,21 @@ $.ajax({
 									<div class="col-md-8">
 										<div class="col-md-4 mgt4">변경 할 PW</div>
 										<div class="col-md-8 mgt4">
-											<input type="password" name="mbrLoginPw" class="form-control"
-												placeholder="Password">
+											<input type="password" name="mbrLoginPw" id="mbrLoginPw_chk" class="form-control caps_lockchk"
+												onchange="chkPWPolicy()" placeholder="Password">
 										</div>
 										<input type="hidden" name="imsi_mbrLoginPw"
 											id="imsi_mbrLoginPw" value="">
 										<div class="col-md-4 mgt4">PW 재확인</div>
 										<div class="col-md-8 mgt4">
-											<input type="password" class="form-control"
-												placeholder="Confirm Password" name="mbrLoginPw_check">
+											<input type="password" class="form-control caps_lockchk"
+												onchange="chkPWPolicy()" placeholder="Confirm Password" name="mbrLoginPw_check">
 										</div>
 									</div>
 
 									<div class="col-md-12 enter">
-										<button type="submit" id="pwok"
-											class="btn btn-block btn-sm btn-primary">변경</button>
+										<button type="button" id="pwok"
+											class="btn btn-block btn-sm btn-primary" onclick="updateMbrLoginPw(document.pwform)">변경</button>
 									</div>
 								</form>
 								<form class="form-horizontal">
@@ -376,7 +450,7 @@ $.ajax({
 											<div class="col-md-4">남은시간</div>
 											<div class="col-md-8" id="time1" style="color: red"></div>
 											<div class="col-md-8 col-md-offset-4">
-												<input type="text" id="imsipw" class="form-control"
+												<input type="text" id="imsipw" class="form-control caps_lockchk"
 													placeholder="ImsiPw...">
 											</div>
 										</div>

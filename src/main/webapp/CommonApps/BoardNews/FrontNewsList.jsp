@@ -35,10 +35,10 @@
 							<input type="hidden" name="bnViewCount" value="${VselectListBnsFrontList.bnViewCount}" />
 							<tr>
 								<!-- a태그로 처리요망 -->
-								<td><a
+								<td class="col-md-8"><a
 									href="/board/bnsView.do?bNews_id=${VselectListBnsFrontList.bNews_id}">${VselectListBnsFrontList.bnTitle}</a></td>
 								<%--view를 구현하는 방법에 따라 달라진다. get 문 형태 유망 --%>
-								<td>${VselectListBnsFrontList.bnUpdateDt}</td>
+								<td class="col-md-4">${VselectListBnsFrontList.bnInsertDt}</td>
 							</tr>
 						</c:forEach>
 					</c:when>

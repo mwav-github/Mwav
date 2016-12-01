@@ -5,18 +5,16 @@
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"
 	rel="stylesheet">
-<link
-	href="/resources/JsFramework/Bootstrap/bootstrap-social.css"
-	rel="stylesheet">	
-	<!-- 구글 API관련 -->
+<link href="/resources/JsFramework/Bootstrap/bootstrap-social.css"
+	rel="stylesheet">
+<!-- 구글 API관련 
     <meta name="google-signin-scope" content="profile email">
     <meta name="google-signin-client_id" content="881218558153-ndr868i68rlofoo4l2gb488ksabi5q23.apps.googleusercontent.com">
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>-->
 
-</head>
 
 <!-- 페북 로그인 관련 -->
-<script>
+<!-- <script>
 	var FBtoken = "";
 	
 	// This is called with the results from from FB.getLoginStatus().
@@ -186,37 +184,54 @@
         var id_token = googleUser.getAuthResponse().id_token;
         console.log("ID Token: " + id_token);
         }
-</script>
+</script> -->
 
+
+<script>
+function re_check(form){
+	//alert('11');
+	//alert(form.mbrLoginId.value);
+	if(emptyCheck(form.mbrLoginId.value, "아이디를 입력해주세요.") == true && emptyCheck(form.mbrLoginPw.value, "비밀번호를 입력해주세요.") == true)
+	{
+		return true;
+	} else {
+		return false;
+	}
+}
+
+</script>
 <%--padding 으로 안쪽 추후 딴건 변경가능 #04A3ED --%>
 <div class="enter"></div>
 <div class="col-md-12"
 	style="padding: 5%; box-shadow: 0 0 20px 3px #04A3ED; background: #f7f7f7;">
 
 
-		<form name="login_form" action="/member/Login.do" method="post">
+	<form name="login_form" action="/member/Login.do" role="form"
+		class='form-horizontal' method="post" onsubmit="return re_check(document.login_form);">
 		<div class="enter"></div>
 		<div class="form-group">
-			<input type="text" name="mbrLoginId" class="form-control input-lg"
-				placeholder="Email">
+			<input type="text" name="mbrLoginId"
+				class="form-control input-lg caps_lockchk"
+				placeholder="Email or member ID">
 		</div>
 		<div class="form-group">
-			<input type="password" class="form-control input-lg"
+			<input type="password" class="form-control input-lg caps_lockchk"
 				placeholder="Password" name="mbrLoginPw">
 		</div>
 		<!-- <div class="form-group">
 			<input type="password" class="form-control input-lg"
 				placeholder="Confirm Password" name="mbrLoginPw_check">
 		</div> -->
+		
 		<div class="form-group">
 			<button type="submit" class="btn btn-primary btn-lg btn-block">Sign
 				In</button>
 		</div>
-		</form>
-		
-		<%--소셜 로그인 연동부분 --%>
-		<div class="form-group">
-			<!-- <div class="col-xs-6 col-sm-6 col-md-2">
+	</form>
+
+	<%--소셜 로그인 연동부분 --%>
+	<div class="form-group">
+		<!-- <div class="col-xs-6 col-sm-6 col-md-2">
 				<button type="button" class="btn btn-primary btn-block " onclick="checkLoginState();">
 					<i class="fa fa-facebook"></i>
 				</button>
@@ -228,78 +243,99 @@
 				</button>
 
 			</div> -->
-			
-			
-			<!-- GOOGLE SIGNIN -->
-			<form id="go_signin" name="go_signin" action="<c:url value="/signin/google.do"/>" method="POST">
-				<div class="col-xs-12 col-sm-12 col-md-12 mgt1_8">
-					<%-- <button type="submit" class="btn btn-danger btn-block"><i class="fa fa-google-plus"></i></button>--%>
-					<button type="submit" class="btn btn-block btn-social btn-google"><span class="fa fa-google-plus"></span> <span class="">Sign in with Google</span></button>
-					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-					<input type="hidden" name="scope" value="email profile" />
-				</div>
-				
-			</form>
-			
-			<!-- facebook SIGNIN -->
-			<form id="go_signin" name="go_signin" action="<c:url value="/signin/facebook.do"/>" method="POST">
-				<div class="col-xs-12 col-sm-12 col-md-12 mgt1_8">
-					<%-- <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-facebook"></i></button>--%>
-					
-					<button type="submit" class="btn btn-block btn-social btn-facebook"><span class="fa fa-facebook"></span> <span class=""> Sign in with Facebook</span></button>
-					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-					
-				</div>
-			</form>
-			
-			
-			<!-- LINKEDIN SIGNIN -->
-			<form id="go_signin" name="go_signin" action="<c:url value="/signin/linkedin.do"/>" method="POST">
-				<div class="col-xs-12 col-sm-12 col-md-12 mgt1_8">
+
+
+		<!-- GOOGLE SIGNIN -->
+		<form id="go_signin" name="go_signin"
+			action="<c:url value="/signin/google.do"/>" method="POST">
+			<div class="col-xs-12 col-sm-12 col-md-12 mgt1_8">
+				<%-- <button type="submit" class="btn btn-danger btn-block"><i class="fa fa-google-plus"></i></button>--%>
+				<button type="submit" class="btn btn-block btn-social btn-google">
+					<span class="fa fa-google-plus"></span> <span class="">Sign
+						in with Google</span>
+				</button>
+				<input type="hidden" name="${_csrf.parameterName}"
+					value="${_csrf.token}" /> <input type="hidden" name="scope"
+					value="email profile" />
+			</div>
+
+		</form>
+
+		<!-- facebook SIGNIN -->
+		<form id="go_signin" name="go_signin"
+			action="<c:url value="/signin/facebook.do"/>" method="POST">
+			<div class="col-xs-12 col-sm-12 col-md-12 mgt1_8">
+				<%-- <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-facebook"></i></button>--%>
+
+				<button type="submit" class="btn btn-block btn-social btn-facebook">
+					<span class="fa fa-facebook"></span> <span class=""> Sign in
+						with Facebook</span>
+				</button>
+				<input type="hidden" name="${_csrf.parameterName}"
+					value="${_csrf.token}" />
+
+			</div>
+		</form>
+
+
+		<!-- LINKEDIN SIGNIN -->
+		<form id="go_signin" name="go_signin"
+			action="<c:url value="/signin/linkedin.do"/>" method="POST">
+			<div class="col-xs-12 col-sm-12 col-md-12 mgt1_8">
 				<%-- 이전버전 
 					<button type="submit" class="btn btn-danger btn-block"><i class="fa fa-linkedin"></i></button>
-				--%>	
-					<button type="submit" class="btn btn-block btn-social btn-linkedin"><span class="fa fa-linkedin"></span> <span class="">Sign in with LinkedIn</span></button>
-					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-				</div>
-			</form>
-			
-			<!-- TWITTER SIGNIN -->
-			<form id="go_signin" name="go_signin" action="<c:url value="/signin/twitter.do"/>" method="POST">
-				<div class="col-xs-12 col-sm-12 col-md-12 mgt1_8 mgb3">
-					<%--<button type="submit" class="btn btn-info btn-block"><i class="fa fa-twitter"></i></button> --%>
-				
-					<button type="submit" class="btn btn-block btn-social btn-twitter"><span class="fa fa-twitter"></span> <span class="">Sign in with Twitter</span></button> 
-					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-				</div>
-			</form>
-		</div>
-		
-		<%--아이디 비밀번호 찾기 --%>
-		
-		<div class="form-group ">
+				--%>
+				<button type="submit" class="btn btn-block btn-social btn-linkedin">
+					<span class="fa fa-linkedin"></span> <span class="">Sign in
+						with LinkedIn</span>
+				</button>
+				<input type="hidden" name="${_csrf.parameterName}"
+					value="${_csrf.token}" />
+			</div>
+		</form>
 
-			<span class="pull-left"><a href="#IDPWSeek"
-				data-toggle="modal" data-target=".IDPWSeek" role="button"
-				data-toggle="modal"><strong>Forgot your password?</strong></a></span>
+		<!-- TWITTER SIGNIN -->
+		<form id="go_signin" name="go_signin"
+			action="<c:url value="/signin/twitter.do"/>" method="POST">
+			<div class="col-xs-12 col-sm-12 col-md-12 mgt1_8 mgb3">
+				<%--<button type="submit" class="btn btn-info btn-block"><i class="fa fa-twitter"></i></button> --%>
 
-			<jsp:include page="/CommonApps/IDSeek/IDSeek.jsp" flush="false" />
-			<span class="pull-left"><a
-				href="/MasterPage_1.jsp?mode=Default"><strong>Sign up
-						now</strong></a></span>
-		</div>
-		 <!-- <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" ></div> -->
-		
-		<!-- 페북 로그인 연동 -->
-		
-		<!-- <fb:login-button scope="public_profile,email"
+				<button type="submit" class="btn btn-block btn-social btn-twitter">
+					<span class="fa fa-twitter"></span> <span class="">Sign in
+						with Twitter</span>
+				</button>
+				<input type="hidden" name="${_csrf.parameterName}"
+					value="${_csrf.token}" />
+			</div>
+		</form>
+	</div>
+
+	<%--아이디 비밀번호 찾기 --%>
+
+	<div class="form-group ">
+
+		<span class="pull-left"><a href="#IDPWSeek" data-toggle="modal"
+			data-target=".IDPWSeek" role="button" data-toggle="modal"><strong>Forgot
+					your ID or Password?</strong></a></span>
+
+		<%--이것때문에 tooltip등이 오류가난다 --%>
+		<jsp:include page="/CommonApps/IDSeek/IDSeek.jsp" flush="false" />
+		<span class="pull-left"><a
+			href="/MasterPage_1.jsp?mode=Default"><strong>Sign up
+					now</strong></a></span>
+	</div>
+	<!-- <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" ></div> -->
+
+	<!-- 페북 로그인 연동 -->
+
+	<!-- <fb:login-button scope="public_profile,email"
 			onlogin="checkLoginState();">
 		</fb:login-button> -->
-		
-		<!-- <div class="fb-login-button" data-max-rows="12" data-size="large" scope="public_profile,email"
+
+	<!-- <div class="fb-login-button" data-max-rows="12" data-size="large" scope="public_profile,email"
 				data-show-faces="true" data-auto-logout-link="true"></div> -->
 
-	
-	
+
+
 </div>
 <!-- Login - END -->

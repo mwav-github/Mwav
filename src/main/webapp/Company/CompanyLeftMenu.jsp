@@ -64,7 +64,7 @@
 		data-original-title="페이지 준비 중입니다.">Actual Results</a> <a
 		href="/board/bnsList.do" class="list-group-item"
 		data-toggle="tooltip" data-placement="top"
-		data-original-title="언론보도">The Press</a> <a
+		data-original-title="IT 트렌드">IT Trends</a> <a
 		 class="list-group-item"
 		data-toggle="tooltip" data-placement="top" data-original-title="페이지 준비 중입니다.">HR-Affairs</a>
 	<a href="/Company/LocationMap/LocationMap.jsp" class="list-group-item"

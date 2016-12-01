@@ -192,6 +192,15 @@
 													placeholder="Text input" name="buSubTitle"
 													value="${updateNtmForm.buSubTitle}"></td>
 											</tr>
+											
+											
+											<tr>
+												<th class="active">Reference</th>
+												<td><input type="text" class="form-control"
+													placeholder="Text input" name="buRelatedLink"
+													value="${updateNtmForm.buRelatedLink}"></td>
+											</tr>
+											
 
 											<tr>
 												<th class="active">Content</th>
@@ -291,6 +300,12 @@
 												<th class="active">SubTitle</th>
 												<td><input type="text" class="form-control"
 													placeholder="Text input" name="buSubTitle"></td>
+											</tr>
+											
+											<tr>
+												<th class="active">Reference</th>
+												<td><input type="text" class="form-control"
+													placeholder="Text input" name="buRelatedLink"></td>
 											</tr>
 
 											<tr>

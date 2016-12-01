@@ -43,7 +43,7 @@ container 안에 포함시키면된다.
 							<td>${VselectListBuList.buGroup}</td>
 							<td><a
 								href="javascript:window.location.href='/board/buView.do?bUsers_id=${VselectListBuList.bUsers_id}'">${VselectListBuList.buTitle}</a></td>
-							<td>${VselectListBuList.buUpdateDt}</td>
+							<td>${VselectListBuList.buInsertDt}</td>
 							<%-- <td> <button type="button" class="btn btn-info" onclick="javascript:window.location.href='/board/bnsView.do?bUsers_id=${FrontboardList.bUsers_id}'">보기</button>&nbsp;
 <button type="button" class="btn btn-warning" onclick="javascript:window.location.href='/board/bnsModify.do?bUsers_id=${FrontboardList.bUsers_id}'">수정</button>
 </td> --%>
@@ -68,7 +68,7 @@ container 안에 포함시키면된다.
 
 				<c:if test="${pagingVO.startPage > pagingVO.pageBlock}">
 					<li><a
-						href="/board/buList.do?pageNum=${pagingVO.startPage - pagingVO.pageBlock}">&laquo;</a></li>
+						href="/board/buList.do?pageNum=${pagingVO.startPage - pagingVO.pageBlock}"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
 				</c:if>
 				<c:forEach var="i" begin="${pagingVO.startPage}"
 					end="${pagingVO.endPage}">
@@ -76,7 +76,7 @@ container 안에 포함시키면된다.
 				</c:forEach>
 				<c:if test="${pagingVO.endPage < pagingVO.pageCount}">
 					<li><a
-						href="/board/buList.do?pageNum=${pagingVO.startPage + pagingVO.pageBlock}">&raquo;</a></li>
+						href="/board/buList.do?pageNum=${pagingVO.startPage + pagingVO.pageBlock}"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
 				</c:if>
 				<!-- <li><a href="">&laquo;</a></li>
 			<li class="active"><a href="#">1</a></li>

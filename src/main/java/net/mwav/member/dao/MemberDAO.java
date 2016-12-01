@@ -115,7 +115,7 @@ public class MemberDAO extends AbstractDAO {
 		// String b2_mbrLoginPw = AesTest.toHexString(encrypted);
 		System.out.println("    - TEXT2 : " + sBase);
 
-		map.put("mbrLoginPw", sBase);
+		map.put("hope_mbrLoginPw", sBase);
 		if (encrypted == null) {
 			System.out.println("    - Encrypted : ERROR!!!");
 		} else {
@@ -126,9 +126,12 @@ public class MemberDAO extends AbstractDAO {
 		System.out.println("이전"+before_mbrLoginPw);
 		System.out.println("입력"+sBase);
 		if (before_mbrLoginPw.equals(sBase)){
-			//3개월전 입력과 동일하다.
-			
+			//이전비밀번호 입력과 동일하다.
+			//1차로 거르는거 
+			flag = false;
 		}else{
+			
+			//2차로 동일조건으로 거르는거 
 			int imsiflag = (int) update("member.updateMbrLoginPw", map);
 			if (imsiflag == 1) {
 				System.out.println("성공");
@@ -183,20 +186,20 @@ public class MemberDAO extends AbstractDAO {
 		return check;
 	}
 
-	public String selectOneMbrLoginIdSeek(Map<String, Object> map) {
+	public List<String> selectOneMbrLoginIdSeek(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		String mbrLoginId = null;
-		Map<String, Object> imsimap = (Map<String, Object>) selectOne(
-				"member.selectOneMbrLoginIdSeek", map);
+		List<String> mbrLoginId = null;
+		List<String> imsimap = (List<String>) selectList(
+				"member.selectListMbrLoginIdSeek", map);
 
 		
-		if(imsimap == null) { 
+		/*if(imsimap == null) { 
 			mbrLoginId = null;
 		 } 
 		else{
-			mbrLoginId = (String) imsimap.get("mbrLoginId");
-		}
-		return mbrLoginId;
+			mbrLoginId = (List<String>) imsimap.get("mbrLoginId");
+		}*/
+		return imsimap;
 	}
 	
 	public String selectOneMbrLoginPWSeek(Map<String, Object> map) {

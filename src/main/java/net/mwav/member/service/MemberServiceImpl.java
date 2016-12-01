@@ -123,7 +123,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public String selectOneMbrLoginIdSeek(Map<String, Object> map) {
+	public List<String> selectOneMbrLoginIdSeek(Map<String, Object> map) {
 		// TODO Auto-generated method stub
 		return memberDAO.selectOneMbrLoginIdSeek(map);
 	}

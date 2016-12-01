@@ -3,7 +3,8 @@
 function emptyCheck(checkVar_, alert_txt_) {
 		    var checkVar = checkVar_;
 		    var alert_txt = alert_txt_;
-			
+			//alert(checkVar);
+			//alert(alert_txt);
 		    if (checkVar == null || checkVar == "") {
 		        alert(alert_txt);
 		        return false;

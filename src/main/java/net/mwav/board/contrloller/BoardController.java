@@ -77,6 +77,8 @@ public class BoardController {
 		String mm = "site";
 		mv.addObject("mm", mm);
 		mv.addObject("mode", "m_bnsForm");
+		mv.addObject("breadcrumb", "IT Trends");
+		mv.addObject("page_header", "IT Trends");
 
 		// mv.addObject("insertBnsForm", insertBnsForm);
 		// mv.addObject("IDX", commandMap.get("IDX"));
@@ -117,6 +119,9 @@ public class BoardController {
 			String mm = "site";
 			mv.addObject("mm", mm);
 			mv.addObject("mode", "m_bnsView");
+			mv.addObject("breadcrumb", "IT Trends");
+			mv.addObject("page_header", "IT Trends");
+
 
 			mv.addObject("selectOneBnsView", selectOneBnsView);
 		}
@@ -136,6 +141,10 @@ public class BoardController {
 
 		mode = "SbnsUpdate";
 		request.setAttribute("mode", mode);
+		
+		mv.addObject("breadcrumb", "IT Trends");
+		mv.addObject("page_header", "IT Trends");
+
 
 		// 위의 view랑 동일하게 사용
 
@@ -180,6 +189,9 @@ public class BoardController {
 
 			mode = "SFbnsList";
 			request.setAttribute("mode", mode);
+			mv.addObject("breadcrumb", "IT Trends");
+			mv.addObject("page_header", "IT Trends");
+
 
 			mv.addObject("selectListBnsFrontList", selectListBnsFrontList);
 		}
@@ -222,6 +234,10 @@ public class BoardController {
 		mv.addObject("mm", mm);
 		mv.addObject("mode", "m_bnsList");
 
+		mv.addObject("breadcrumb", "IT Trends");
+		mv.addObject("page_header", "IT Trends");
+
+		
 		mv.addObject("selectListBnsList", selectListBnsList);
 		mv.addObject("pagingVO", pagingVO);
 		mv.addObject("totalRow", totalRow);
@@ -267,6 +283,10 @@ public class BoardController {
 		mv.addObject("mm", mm);
 		mv.addObject("mode", "m_buForm");
 
+		
+		mv.addObject("breadcrumb", "IT Trends");
+		mv.addObject("page_header", "IT Trends");
+
 		// mv.addObject("insertBuForm", insertBuForm);
 		// mv.addObject("IDX", commandMap.get("IDX"));
 
@@ -306,6 +326,10 @@ public class BoardController {
 			String mm = "site";
 			mv.addObject("mm", mm);
 			mv.addObject("mode", "m_buView");
+			
+			mv.addObject("breadcrumb", "IT Trends");
+			mv.addObject("page_header", "IT Trends");
+
 
 			mv.addObject("selectOneBuView", selectOneBuView);
 		}
@@ -325,6 +349,10 @@ public class BoardController {
 
 		mode = "SbuUpdate";
 		request.setAttribute("mode", mode);
+		
+		mv.addObject("breadcrumb", "IT Trends");
+		mv.addObject("page_header", "IT Trends");
+
 
 		// 위의 view랑 동일하게 사용
 
@@ -369,6 +397,10 @@ public class BoardController {
 
 			mode = "SFbuList";
 			request.setAttribute("mode", mode);
+			
+			mv.addObject("breadcrumb", "IT Trends");
+			mv.addObject("page_header", "IT Trends");
+
 
 			mv.addObject("selectListBuFrontList", selectListBuFrontList);
 		}
@@ -407,6 +439,10 @@ public class BoardController {
 		String mm = "site";
 		mv.addObject("mm", mm);
 		mv.addObject("mode", "m_buList");
+		
+		mv.addObject("breadcrumb", "IT Trends");
+		mv.addObject("page_header", "IT Trends");
+
 
 		System.out.println("!!!!!!!!!!selectListBuList = " + selectListBuList);
 		mv.addObject("selectListBuList", selectListBuList);

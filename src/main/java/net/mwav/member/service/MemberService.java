@@ -29,7 +29,7 @@ public interface MemberService {
 	boolean selectOneMbrLoginIdCheck(String mbrLoginId);
 	
 	
-	String selectOneMbrLoginIdSeek(Map<String, Object> map);
+	List<String> selectOneMbrLoginIdSeek(Map<String, Object> map);
 	
 	String selectOneMbrLoginPWSeek(Map<String, Object> map);
 

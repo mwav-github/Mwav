@@ -56,13 +56,11 @@
 
 
 <!-- jQuery Version 1.11.0 -->
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+
 <script src="/CommonLibrary/Javascript/Common.js"></script>
 <script src="/CommonLibrary/Javascript/validate.js"></script>
-
-
-<!-- jQuery Version 1.11.0 -->
-<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 
 
 <!-- Bootstrap Core JavaScript -->
@@ -70,18 +68,17 @@
 	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 
 <script>
-	$(function() {
-		$("[data-toggle='tooltip']").tooltip();
-	});
-</script>
-<script>
 	/*TOP버튼*/
 	$(document).ready(function() {
 		
+		
 		//url 에 따라 타이틀 지정 
 		setTitle(location.pathname);
-		//alert(set_Title);
 		
+		//caps_lockchk();
+		//alert(set_Title);
+		//capslock 
+		caps_lockchk();
 		
 		$('#back-to-top').fadeOut();
 		$(window).scroll(function() {
@@ -100,6 +97,7 @@
 			}, 800);
 			return false;
 		});
+		
 
 	});
 </script>
