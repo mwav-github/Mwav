@@ -196,7 +196,7 @@ http://planbong.tistory.com/531
 
 					<div class='col-md-6'>
 						<div class='form-group'>
-							<div class='col-md-11 col-sm-11 col-xs-11'>
+							<div class='col-md-12 col-sm-12 col-xs-12'>
 
 								<input type="text" class="form-control caps_lockchk" name="mbrLoginId"
 									id="chkLoginId" placeholder="예) Member ID" onchange="idcheck()"
@@ -238,7 +238,7 @@ http://planbong.tistory.com/531
 
 					<div class='col-md-6'>
 						<div class='form-group'>
-							<div class='col-md-11 col-sm-11 col-xs-11'>
+							<div class='col-md-12 col-sm-12 col-xs-12'>
 								<input type="password" class="form-control caps_lockchk" name="mbrLoginPw"
 									id="chkLoginPW" placeholder="예) 8자리이상" value=""
 									onchange="chkPWPolicy()" required>
@@ -413,7 +413,7 @@ http://planbong.tistory.com/531
 
 
 		<%-- 아래의 내용을 위에 주소 위치에 둘 경우 form태그가 해당위치로 닫힌다 form태그 중복 추후 확인 필요 --%>
-		<jsp:include page="/CommonApps/PostSeek/PostSeek_dev.jsp" flush="false" />
+		<jsp:include page="/CommonApps/PostSeek/PostSeek.jsp" flush="false" />
 	</div>
 </div>
 

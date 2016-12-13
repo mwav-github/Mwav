@@ -115,6 +115,14 @@
 		</mvc:interceptor>
 	</mvc:interceptors>
 
+<!-- @RequestMapping 어노테이션을 이용하여 컨트롤러와 매핑한다.
+DefaultAnnotationHandlerMapping은 URL 단위로 interceptor를 적용할 수 없는 듯 체크 필요! 
+
+[이슈확인 필요]
+>https://www.egovframe.go.kr/wiki/doku.php?id=egovframework:rte:ptl:handlermapping
+SimpleUrlAnnotationHandlerMapping은 @Controller 사용시에 url 단위로 Interceptor를 적용하기 위해 개발됬다.
+비슷한 고민과 비슷한 해결 방법을 제시한 분이 있다. Scott Murphy의 블로그를 참고하라.
+ -->
 	<bean
 		class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
 
@@ -129,7 +137,7 @@
 	org.springframework.web.servlet.view.tiles3.TilesViewResolver
 	org.springframework.web.servlet.view.UrlBasedViewResolver
 	-->
-	<bean id="tilesViewResolver"
+	<!-- <bean id="tilesViewResolver"
 		class="org.springframework.web.servlet.view.tiles3.TilesViewResolver">
 		<property name="order" value="0"></property>
 	</bean>
@@ -142,7 +150,7 @@
 			</list>
 		</property>
 	</bean>
-
+ -->
 
 
 
@@ -156,7 +164,7 @@
 		InternalResourceViewResolver보다 우선순위가 높아야 제대로 적용이된다. 이건 InternalResourceViewResolver는 
 		아니지만 어쨌든 -->
 	<bean class="org.springframework.web.servlet.view.UrlBasedViewResolver"
-		p:order="2" p:viewClass="org.springframework.web.servlet.view.JstlView"
+		p:order="1" p:viewClass="org.springframework.web.servlet.view.JstlView"
 		p:prefix="/" p:suffix=".jsp">  <!-- prefix는 페이지의 기본 루트 // 페이지의 기본 확장자 -->
 
 	</bean>
@@ -167,8 +175,11 @@
 	<context:property-placeholder
 		location="classpath:googleProperties/application.properties" />
 
-	<!-- http://m.blog.naver.com/mky1416/220647254648 중요 해당 객체는 스프링에서 제공되는 테스트 
-		용이라서 실제운영환경에서는 심각한 문제 발생소지가 있다. <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> 
+	<!-- http://m.blog.naver.com/mky1416/220647254648 중요 해당 객체는 스프링에서 제공되는 테스트ㅌ
+		용이라서 실제운영환경에서는 심각한 문제 발생소지가 있다. 
+		http://cafe.naver.com/jjdev/2180
+		
+		<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> 
 		<property name="driverClassName" value="${jdbc.driverClassName}" /> <property 
 		name="url" value="${jdbc.url}" /> <property name="username" value="${jdbc.user}" 
 		/> <property name="password" value="${jdbc.pass}" /> <property name="validationQuery" 

@@ -325,14 +325,14 @@ $.ajax({
 								<h2>아이디 찾기</h2>
 								<p>아이디를 잊어버리셨나요? 아래 입력사항에 가입하실때 작성하신 정보를 입력해주세요! 가입시 이메일로
 									전송됩니다.</p>
-								<br />
+								
 								<div class="col-xs-12 col-sm-12 col-md-12 enter">
 									<div class="col-md-4 mgt4">휴대폰</div>
 									<div class="col-md-8 mgt4">
 										<input type="text" id="mbrCellPhone" class="form-control caps_lockchk"
 											placeholder="휴대폰 번호" required>
 									</div>
-									<br />
+									
 									<div class="col-md-4 mgt4">이메일</div>
 									<div class="col-md-8 mgt4">
 										<input type="text" id="mbrEmail" class="form-control caps_lockchk"
@@ -353,14 +353,13 @@ $.ajax({
 							</div>
 							<div class="tab-pane fade" id="PwFinder">
 								<form class="form-horizontal">
-									<div class="row">
 										<h2>비밀번호 찾기</h2>
 										<p>비밀번호를 잊어버리셨나요? 아래 입력사항에 가입하실때 작성하신 정보를 입력해주세요! 가입시 이메일로
 											전송됩니다.</p>
 										<br />
 
 
-										<div class="col-md-12">
+										<div class="col-xs-12 col-sm-12 col-md-12">
 											<div class="col-md-4 mgt4">아이디</div>
 											<div class="col-md-8 mgt4">
 												<input type="text" id="pwid" class="form-control caps_lockchk"
@@ -372,15 +371,18 @@ $.ajax({
 												<input type="text" id="pwemail" class="form-control caps_lockchk"
 													placeholder="이메일" required>
 											</div>
+											<div class="enter"></div>
 
 										</div>
+										
+										
 
 										<div class="col-md-12 enter">
 											<button type="button" id="pwok"
 												class="btn btn-block btn-sm btn-info"
 												onclick="mbrTempLoginPwUpdate()">찾기</button>
 										</div>
-									</div>
+									
 								</form>
 								<form class="form-horizontal" name="pwform_1">
 									<div class="row">

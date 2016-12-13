@@ -22,9 +22,9 @@
 -->
 
 <!-- Content Column -->
-<div class="table-responsive">
+<div class="row">
 	<form role="form">
-		<table class="table table-striped">
+		<table class="table-responsive table table-striped">
 			<thead>
 				
 				<tr class="active">
