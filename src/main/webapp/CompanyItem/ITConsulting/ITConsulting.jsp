@@ -97,10 +97,86 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 							various information technology consulting services and solutions
 							provided by our partner community and Mwav Consulting Services.</p>
 						<br>
-						
-
+						<p>Our partner-led approach affords customers the broadest set
+							of offerings with competitive pricing for IT consulting. Below
+							are examples of various information-technology consulting
+							services and solutions offered by our partner community.</p>
+						<br> <br>
 					</div>
 
+					<div class="row">
+						<div class="col-md-4">
+
+
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4>
+										<i class="fa fa-fw fa-check"></i> Web Security
+									</h4>
+								</div>
+								<div class="panel-body">
+									<p>Minimize known implementation risks</p>
+									<p>Increase protection against ongoing security threat
+										activity</p>
+									<p>Access Symantec’s comprehensive global threat
+										intelligence and security expertise</p>
+									<p>Quickly identify which assets are at risk and how to
+										prioritize incident response within your company</p>
+									<a href="/CompanyItem/ITProducts/OpenSRS/OpenSRS.jsp"
+										class="btn btn-default">Learn More</a>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4>
+										<i class="fa fa-fw fa-gift"></i> WebSite Building
+									</h4>
+								</div>
+								<div class="panel-body">
+									<p>We can provide information about launching your site
+										Hosting plans, Website Design, Layout and forattiong of
+										Website and posts, plugins, Responsive Layouts and Themes</p>
+									<h5>Technologies</h5>
+									<ul>
+										<li>Bootstrap v3.3.2</li>
+										<li>jQuery v1.11.2</li>
+										<li>Font Awesome v4.3.0</li>
+										<li>Working JSP contact form with validation</li>
+										<li>HTML5 &amp; CSS &amp; JavaScript &amp; Ajax</li>
+										<li>Spring Framework</li>
+										<li>Google Analytics</li>
+										<li>17 HTML pages</li>
+									</ul>
+									<a href="/CompanyItem/WebSiteBuilding/WebSiteBuilding.jsp"
+										class="btn btn-default">Learn More</a>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4>
+										<i class="fa fa-fw fa-compass"></i> E-Commerce
+									</h4>
+								</div>
+								<div class="panel-body">
+									<p>We can Advise you how to use information technology in
+										order to meet your business objectives or overcome problems
+										Improve the structure and effciency of an organization's IT
+										systems Provide strategic guidance to organizations with
+										regard to technology We involved in sales and business
+										development, as well as technical duties</p>
+									<a href="#" class="btn btn-default">Learn More</a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- 	
+					
+					
 					<div id="Consulting Services" class="col-lg-12">
 						<h2 class="page-header">Consulting Services Examples</h2>
 					</div>
@@ -145,7 +221,6 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 							<li>Google Analytics</li>
 							<li>17 HTML pages</li>
 						</ul>
-						</p>
 						
 						<p>
 							<i class="fa fa-chevron-right"></i> E-Commerce
@@ -165,7 +240,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					</div>
 
 
-
+ -->
 				</div>
 			</div>
 		</div>
