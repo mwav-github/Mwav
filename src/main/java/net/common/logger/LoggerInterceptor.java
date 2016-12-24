@@ -67,7 +67,9 @@ public class LoggerInterceptor extends HandlerInterceptorAdapter {
 		System.out.println("LoggerInterceptor에 들어왔다.");
 		HttpSession session = request.getSession();
 		String uploadRootPath = session.getServletContext().getRealPath("\\");
-		DomReadXMLFile.xmlParser(uploadRootPath+"/xConfig/general.xml.config");
+		//서버에서 띄우면 (호스팅서버) 루트에러 .
+		DomReadXMLFile.xmlParser("/xConfig/general.xml.config");
+		//DomReadXMLFile.xmlParser(uploadRootPath+"/xConfig/general.xml.config");
 		
 		
 		if (log.isDebugEnabled()) {

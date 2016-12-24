@@ -43,7 +43,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 		<div class="row">
 			<div class="col-lg-12">
 				<h1 class="page-header">
-					Company Item <small>Digital Marketing</small>
+					Company Item <small>IT Consulting</small>
 				</h1>
 				<ol class="breadcrumb">
 					<li><a href="index.html">Home</a></li>
@@ -87,7 +87,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					<div id="Consulting Services" class="col-lg-12">
 						<h2 class="page-header">Consulting Services</h2>
 					</div>
-					<div class="col-md-12 col-lg-12 col-sm-6">
+					<div class="col-md-12 col-lg-12 col-sm-12 well">
 						<p>Mwav provides our customers with focused offerings and
 							practices in areas where we have a unique advantage to providing
 							a solution to their business problems. Together with our
@@ -101,13 +101,13 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 							of offerings with competitive pricing for IT consulting. Below
 							are examples of various information-technology consulting
 							services and solutions offered by our partner community.</p>
-						<br> <br>
 					</div>
-
+					
+					
 					<div class="row">
+						<div class="enter"></div>
+
 						<div class="col-md-4">
-
-
 							<div class="panel panel-default">
 								<div class="panel-heading">
 									<h4>
@@ -122,7 +122,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 										intelligence and security expertise</p>
 									<p>Quickly identify which assets are at risk and how to
 										prioritize incident response within your company</p>
-									<a href="/CompanyItem/ITProducts/OpenSRS/OpenSRS.jsp"
+									<br> <a href="/CompanyItem/ITProducts/OpenSRS/OpenSRS.jsp"
 										class="btn btn-default">Learn More</a>
 								</div>
 							</div>
@@ -149,8 +149,8 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 										<li>Google Analytics</li>
 										<li>17 HTML pages</li>
 									</ul>
-									<a href="/CompanyItem/WebSiteBuilding/WebSiteBuilding.jsp"
-										class="btn btn-default">Learn More</a>
+									<br> <a href="/Templates/FrontTemplate.html"
+										class="btn btn-default"  target="_blank">Learn More</a>
 								</div>
 							</div>
 						</div>
@@ -168,7 +168,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 										systems Provide strategic guidance to organizations with
 										regard to technology We involved in sales and business
 										development, as well as technical duties</p>
-									<a href="#" class="btn btn-default">Learn More</a>
+									<br> <a href="#" class="btn btn-default">Learn More</a>
 								</div>
 							</div>
 						</div>

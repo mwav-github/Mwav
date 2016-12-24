@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	
 <script>
 	(function(i, s, o, g, r, a, m) {
 		i['GoogleAnalyticsObject'] = r;
@@ -20,29 +22,54 @@
 <!--TOP아이콘 -->
 <a id="back-to-top" href="#"
 	class="pull-right btn btn-primary btn-lg back-to-top" role="button"
-	title="Click to return on the top page" data-placement="left"><span
-	class="glyphicon glyphicon-chevron-up"></span></a>
+	title="Click to return on the top page" data-placement="left"
+	style="z-index: 6;"><span class="glyphicon glyphicon-chevron-up"></span></a>
+
 
 <%--아이콘 시작 // footer 간격조정을 위해 mgt5추가--%>
-<div class="footer mgt5" id="footer">
-	<div class="container">
-		<div class="row">
+<div class="mgt5">
+
+
+	<%--QA이슈 z-index로 처리 --%>
+		<!--/////////////////////////////////////////////////// -->
+		<jsp:include page="/CommonApps/BoardQnA/qaForm.jsp" flush="false" />
+		<!--/////////////////////////////////////////////////// -->
+	
+	<div class="col-md-12 col-xs-12 col-sm-12  alert alert-info"
+		style="z-index: 5;">
+		<div class="container">
+			<h3>
+				<strong> <span class="glyphicon glyphicon-question-sign"
+					aria-hidden="true"></span> Still Have Questions?
+				</strong>
+			</h3>
+			<a href="#" data-toggle="modal" data-target="#Contact"
+				class="btn btn-lg btn-primary pull-right">Contact Us</a>
+		</div>
+	</div>
+	<%--footer --%>
+	<div class="footer" id="footer">
+		<%--row로 하면 전체잡힌다. --%>
+		<div class="container">
+
 			<div class="col-xs-12 col-sm-8 col-md-4">
-		
+
 				<p style="padding: 40px 0px 10px; border-bottom: 1px solid #BAC1C8;">
 					<img src="/Company/zImage/CompanyLogo_gray.gif"
-						class="img-thumbnail img-responsive logo_800_h" alt="Responsive image">
+						class="img-thumbnail img-responsive logo_800_h"
+						alt="Responsive image">
 				</p>
-				
-					<ul>
-						<li>CompanyName : Mwav Inc.</li>
-						<li>Business Registration Number : 206-09-41373</li>
-						<li>Address: 607-20, Jayang-dong, Gwangjin-gu, Seoul, Korea GV4F</li>
-						<li>TEL : +82-2-6214-7039</li>
-						<li>FAX: +82-2-6214-1122</li>
-						<li>CEO : Zeus | Sales Manager: ${param.pgl} </li>
-						<li>Site Manager : James | Business Consultant : Peter</li>
-					</ul>
+
+				<ul>
+					<li>CompanyName : Mwav Inc.</li>
+					<li>Business Registration Number : 206-09-41373</li>
+					<li>Address: 607-20, Jayang-dong, Gwangjin-gu, Seoul, Korea
+						GV4F</li>
+					<li>TEL : +82-2-6214-7039</li>
+					<li>FAX: +82-2-6214-1122</li>
+					<li>CEO : Zeus | Sales Manager: ${param.pgl}</li>
+					<li>Site Manager : James | Business Consultant : Peter</li>
+				</ul>
 				<%--
 				
 				<ul>
@@ -63,17 +90,23 @@
 					<ul>
 						<li><a href="/">Home</a></li>
 						<li><a href="/Company/Introduction/Introduction.jsp">Introduction</a></li>
-						<li><a href="/Company/BusinessField/BusinessFields.jsp">Business Field</a></li>
-						<li><a href="/Company/LocationMap/LocationMap.jsp">Location Map</a></li>
-						<li><a href="/Company/Profitsharing/Profitsharing.jsp">Profit Sharing</a></li>
+						<li><a href="/Company/BusinessField/BusinessFields.jsp">Business
+								Field</a></li>
+						<li><a href="/Company/LocationMap/LocationMap.jsp">Location
+								Map</a></li>
+						<li><a href="/Company/Profitsharing/Profitsharing.jsp">Profit
+								Sharing</a></li>
 					</ul>
 				</div>
 				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 					<ul>
-						<li><a href="/CustomerService/Contact/Contact.jsp">Contact</a></li>
-						<li><a href="/CustomerService/SiteMap/SiteMap.jsp">Site Map</a></li>
-						<li><a href="#terms3" data-toggle="modal" data-target=".modal_terms">개인정보취급방침</a></li>
-						<li><a href="#terms1" data-toggle="modal" data-target=".modal_terms">이메일주소수집거부</a></li>
+						<li><a href="#">Contact</a></li>
+						<li><a href="/CustomerService/SiteMap/SiteMap.jsp">Site
+								Map</a></li>
+						<li><a href="#terms3" data-toggle="modal"
+							data-target=".modal_terms">개인정보취급방침</a></li>
+						<li><a href="#terms1" data-toggle="modal"
+							data-target=".modal_terms">이메일주소수집거부</a></li>
 						<li><a href="/CustomerService/Summary/Summary.jsp">Summary</a></li>
 					</ul>
 				</div>
@@ -110,8 +143,8 @@
 <div class="footer-bottom">
 	<div class="container">
 		<p class="pull-left">
-			Copyright ⓒ Since 2004 Mwav.net All rights reserved | <a >Privacy
-				Policy</a> | <a >Terms of Use</a>
+			Copyright ⓒ Since 2004 Mwav.net All rights reserved | <a>Privacy
+				Policy</a> | <a>Terms of Use</a>
 		</p>
 		<div class="pull-right">
 			<ul class="nav nav-pills payments">
@@ -138,42 +171,53 @@
 <!-- 모달영역 -->
 
 <div class="modal fade modal_terms" id="myModal" tabindex="-1"
-		role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="overflow: auto;">
-		<div class="modal-dialog modal-md" >
-			<div class="modal-content" >
-				<div class="modal-header"
-					style="border-bottom: 0px solid #eee; background-color: #0480be; color: white;">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<h4 class="modal-title">Policy</h4>
-				</div>
-				<br>
-				<div class="bs-example bs-example-tabs">
-					<ul id="myTab" class="nav nav-tabs">
-						<li class="active"><a href="#terms1" data-toggle="tab">이메일 주소무단수집거부</a></li>
-						<li class=""><a href="#terms2" data-toggle="tab">청소년보호정책</a></li>
-						<li class=""><a href="#terms3" data-toggle="tab">개인정보취급방침</a></li>
-					</ul>
-				</div>
-				<%--max-height로 아래 설정하면 영역이 안잡혀서 안먹힌다. --%>
-				<div class="modal-body"  style="overflow-y: scroll; height:300px; ">
-					<div class="container-fluid" >
-						<div id="myTabContent" class="tab-content" >
-							<div class="tab-pane fade in active" id="terms1">
-								<jsp:include page="/CustomerService/Policy/_EmailExtract.jsp" flush="false" />
-							</div>
-							<div class="tab-pane fade" id="terms2">
-								
-								<jsp:include page="/CustomerService/Policy/_Juvenile.jsp" flush="false" />
-							</div>
-							<div class="tab-pane fade" id="terms3" >
-								<jsp:include page="/CustomerService/Policy/_PrivateInfo.jsp" flush="false" />
-							</div>
+	role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true"
+	style="overflow: auto;">
+	<div class="modal-dialog modal-md">
+		<div class="modal-content">
+			<div class="modal-header"
+				style="border-bottom: 0px solid #eee; background-color: #0480be; color: white;">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title">Policy</h4>
+			</div>
+			<br>
+			<div class="bs-example bs-example-tabs">
+				<ul id="myTab" class="nav nav-tabs">
+					<li class="active"><a href="#terms1" data-toggle="tab">이메일
+							주소무단수집거부</a></li>
+					<li class=""><a href="#terms2" data-toggle="tab">청소년보호정책</a></li>
+					<li class=""><a href="#terms3" data-toggle="tab">개인정보취급방침</a></li>
+				</ul>
+			</div>
+			<%--max-height로 아래 설정하면 영역이 안잡혀서 안먹힌다. --%>
+			<div class="modal-body" style="overflow-y: scroll; height: 300px;">
+				<div class="container-fluid">
+					<div id="myTabContent" class="tab-content">
+						<div class="tab-pane fade in active" id="terms1">
+							<jsp:include page="/CustomerService/Policy/_EmailExtract.jsp"
+								flush="false" />
+						</div>
+						<div class="tab-pane fade" id="terms2">
+
+							<jsp:include page="/CustomerService/Policy/_Juvenile.jsp"
+								flush="false" />
+						</div>
+						<div class="tab-pane fade" id="terms3">
+							<jsp:include page="/CustomerService/Policy/_PrivateInfo.jsp"
+								flush="false" />
 						</div>
 					</div>
 				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				</div>
-	     </div>
-	 </div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
 </div>
+
+
+

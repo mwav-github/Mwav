@@ -144,12 +144,16 @@
 				     
 				     localhost:8080/CWS 이부분은 server.xml 에서 지정한다.
 				-->
-						<h4><strong>Notices</strong></h4>
+						<h4>
+							<strong>Notices</strong>
+						</h4>
 
 						<jsp:include page="/board/buFrontList.do" flush="false" />
 
 						<div class="enter"></div>
-						<h4><strong>News</strong></h4>
+						<h4>
+							<strong>News</strong>
+						</h4>
 						<jsp:include page="/board/bnsFrontList.do" flush="false" />
 
 						<%--notice/news 순으로 5개씩 삽입 예정
@@ -318,8 +322,7 @@
 					따른 효과적 업무 수행을 지원하여 드립니다..</p>
 				<%-- 15.10.18 내용수정	<p></p>--%>
 				<a class="btn btn-lg btn-primary btn-block"
-					href="/CompanyItem/ITConsulting/ITConsulting.jsp">IT
-					Consulting</a>
+					href="/CompanyItem/ITConsulting/ITConsulting.jsp">IT Consulting</a>
 			</div>
 
 		</div>
@@ -353,11 +356,16 @@
 					Marketing</a>
 			</div>
 		</div>
+		<div class="enter"></div>
+		<div class="enter"></div>
 		<!-- </div> -->
 		<!-- /.container -->
 	</div>
 
-	<div class="enter"></div>
+	
+
+
+
 
 	<!-- Footer -->
 	<footer>

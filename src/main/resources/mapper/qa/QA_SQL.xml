@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="qa">
+	
+	<!--/*========================================등록========================================*/  -->
+	<insert id="insertQAForm" parameterType="hashmap">
+		<![CDATA[
+			INSERT INTO UserQuestion_tbl
+				SELECT IFNULL(max(QnA_id)+1,1000000), "Company", #{uqGroupItem}, #{member_id}, #{uqUserName}, #{uqUserEmail}, #{uqUserPw}, #{uqUserPhone}, #{uqRelatedLink}, #{uqTitle}, #{uqContent}, "0", #{uqAttachFile}, NOW(), #{uqUpdateDt}, #{uqDeleteDt}, #{uqIpAddress}, "0", #{uqOption1}, #{uqOption2}, #{uqOption3}, #{uqInvoker}, #{uqInvoker_id}, #{statistics_id}, #{uqAdminNotice} FROM UserQuestion_tbl
+		]]>
+	</insert>
+
+    <!--/*========================================보기========================================*/  -->
+
+ 
+	
+	<!--/*======================+==================수정========================================*/  -->
+	
+	
+ 
+	
+	<!--/*========================================리스트(SelctOne, SelectList 순)========================================*/  -->
+	
+	
+	
+	
+	<!--/*========================================삭제========================================*/  -->
+	
+	
+
+
+
+	
+    
+
+</mapper>

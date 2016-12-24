@@ -71,7 +71,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 						<a
 						href="/CompanyItem/WebSiteBuilding/WebSiteBuilding.jsp"
 						class="list-group-item active" data-toggle="tooltip"
-						data-placement="top" data-original-title="웹사이트 제작">WebSite
+						data-placement="top" data-original-title="웹사이트 제작" target="_blank">WebSite
 						Building</a> <%--<a
 						href="/CompanyItem/Digital Marketing/Digital Marketing.jsp"
 						class="list-group-item " data-toggle="tooltip"

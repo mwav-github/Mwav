@@ -21,8 +21,7 @@
     <filter-name>encodingFilter</filter-name>
     <url-pattern>*.do</url-pattern>
   </filter-mapping>
-   
- 
+
    
   <!-- Creates the Spring Container shared by all Servlets and Filters -->
   <!-- 이녀석은 말그대로 listener이구요 루트 컨텍스터에 정의되어 있는 것들을 모든 서블릿과 필터가 공유할 수 있게 해준다네요.-->

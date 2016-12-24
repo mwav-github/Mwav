@@ -69,8 +69,9 @@
 						<br> <br> <br>
 
 						<div class="col-md-1">
-							<a class="btn btn-primary btn-xs float_left"><span
-								class="glyphicon glyphicon-ok float_left"></span></a>
+							<!-- <a class="btn btn-primary btn-xs float_left"><span
+								class="glyphicon glyphicon-ok float_left"></span></a> -->
+							<i class="fa fa-fw fa-check"></i>
 
 						</div>
 						<div class="col-md-11">
@@ -81,8 +82,9 @@
 						</div>
 
 						<div class="col-md-1">
-							<a class="btn btn-primary btn-xs float_left"><span
-								class="glyphicon glyphicon-ok float_left"></span></a>
+							<!-- <a class="btn btn-primary btn-xs float_left"><span
+								class="glyphicon glyphicon-ok float_left"></span></a> -->
+							<i class="fa fa-fw fa-check"></i>
 
 						</div>
 						<div class="col-md-11">
@@ -101,8 +103,9 @@
 
 
 						<div class="col-md-1">
-							<a class="btn btn-warning btn-xs float_left"><span
-								class="glyphicon glyphicon-ok float_left"></span></a>
+							<!-- <a class="btn btn-warning btn-xs float_left"><span
+								class="glyphicon glyphicon-ok float_left"></span></a> -->
+							<i class="fa fa-fw fa-check"></i>
 
 						</div>
 						<div class="col-md-11">
@@ -113,9 +116,9 @@
 						</div>
 
 						<div class="col-md-1">
-							<a class="btn btn-warning btn-xs float_left"><span
-								class="glyphicon glyphicon-ok float_left"></span></a>
-
+							<!-- <a class="btn btn-warning btn-xs float_left"><span
+								class="glyphicon glyphicon-ok float_left"></span></a> -->
+							<i class="fa fa-fw fa-check"></i>
 						</div>
 						<p></p>
 						<div class="col-md-11">
@@ -127,8 +130,9 @@
 
 						<br>
 						<div class="col-md-1">
-							<a class="btn btn-warning btn-xs float_left"><span
-								class="glyphicon glyphicon-ok float_left"></span></a>
+							<!-- <a class="btn btn-warning btn-xs float_left"><span
+								class="glyphicon glyphicon-ok float_left"></span></a> -->
+							<i class="fa fa-fw fa-check"></i>
 						</div>
 						<div class="col-md-11">
 							<p>
@@ -139,8 +143,9 @@
 						<br>
 
 						<div class="col-md-1">
-							<a class="btn btn-warning btn-xs float_left"><span
-								class="glyphicon glyphicon-ok float_left"></span></a>
+							<!-- <a class="btn btn-warning btn-xs float_left"><span
+								class="glyphicon glyphicon-ok float_left"></span></a> -->
+							<i class="fa fa-fw fa-check"></i>
 						</div>
 						<div class="col-md-11">
 							<p>
@@ -156,8 +161,9 @@
 						<br> <br> <br>
 
 						<div class="col-md-1">
-							<a class="btn btn-success btn-xs float_left"><span
-								class="glyphicon glyphicon-ok float_left"></span></a>
+							<!-- <a class="btn btn-success btn-xs float_left"><span
+								class="glyphicon glyphicon-ok float_left"></span></a> -->
+							<i class="fa fa-fw fa-check"></i>
 						</div>
 						<div class="col-md-11">
 							<p>
@@ -170,8 +176,9 @@
 						<br>
 
 						<div class="col-md-1">
-							<a class="btn btn-success btn-xs float_left"><span
-								class="glyphicon glyphicon-ok float_left"></span></a>
+							<!-- <a class="btn btn-success btn-xs float_left"><span
+								class="glyphicon glyphicon-ok float_left"></span></a> -->
+							<i class="fa fa-fw fa-check"></i>
 						</div>
 						<div class="col-md-11">
 							<p>
@@ -184,8 +191,9 @@
 						<br>
 
 						<div class="col-md-1">
-							<a class="btn btn-success btn-xs float_left"><span
-								class="glyphicon glyphicon-ok float_left"></span></a>
+							<!-- <a class="btn btn-success btn-xs float_left"><span
+								class="glyphicon glyphicon-ok float_left"></span></a> -->
+							<i class="fa fa-fw fa-check"></i>
 						</div>
 						<div class="col-md-11">
 
@@ -198,8 +206,9 @@
 						<div class="enter"></div>
 
 						<div class="col-md-1">
-							<a class="btn btn-success btn-xs float_left"><span
-								class="glyphicon glyphicon-ok float_left"></span></a>
+							<!-- <a class="btn btn-success btn-xs float_left"><span
+								class="glyphicon glyphicon-ok float_left"></span></a> -->
+							<i class="fa fa-fw fa-check"></i>
 						</div>
 						<div class="col-md-11">
 							<p>
@@ -209,8 +218,9 @@
 						</div>
 
 						<div class="col-md-1">
-							<a class="btn btn-success btn-xs float_left"><span
-								class="glyphicon glyphicon-ok float_left"></span></a>
+							<!-- <a class="btn btn-success btn-xs float_left"><span
+								class="glyphicon glyphicon-ok float_left"></span></a> -->
+							<i class="fa fa-fw fa-check"></i>
 						</div>
 						<div class="col-md-11">
 							<p>
@@ -224,8 +234,9 @@
 						<div class="enter"></div>
 
 						<div class="col-md-1">
-							<a class="btn btn-success btn-xs float_left"><span
-								class="glyphicon glyphicon-ok float_left"></span></a>
+							<!-- <a class="btn btn-success btn-xs float_left"><span
+								class="glyphicon glyphicon-ok float_left"></span></a> -->
+							<i class="fa fa-fw fa-check"></i>
 						</div>
 						<div class="col-md-11">
 
