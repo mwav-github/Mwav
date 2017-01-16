@@ -145,8 +145,9 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 							alt="">
 					</div>
 				</div>
-				<!-- Contact Us -->
-				<div class="row">
+				<%--아래 만약 넣더라도 이슈체크 모바일 버전에서 좌우 스크롤생김 row 부분 및 영역이슈 일듯  --%>
+				<!-- Contact Us  -->
+				<!-- <div class="row">
 					<div class="col-lg-12">
 						<h2 class="page-header">Contact Us</h2>
 					</div>
@@ -194,7 +195,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 							</form>
 						</div>
 					</div>
-				</div>
+				</div> -->
 			</div>
 		</div>
 		<!-- /.row -->

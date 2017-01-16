@@ -120,7 +120,8 @@ public class BoardController {
 			mv.addObject("mm", mm);
 			mv.addObject("mode", "m_bnsView");
 			mv.addObject("breadcrumb", "IT Trends");
-			mv.addObject("page_header", "IT Trends");
+			//mv.addObject("page_header", "IT Trends");
+			mv.addObject("page_header", null);
 
 
 			mv.addObject("selectOneBnsView", selectOneBnsView);
@@ -235,8 +236,8 @@ public class BoardController {
 		mv.addObject("mode", "m_bnsList");
 
 		mv.addObject("breadcrumb", "IT Trends");
-		mv.addObject("page_header", "IT Trends");
-
+		//mv.addObject("page_header", "IT Trends");
+		mv.addObject("page_header", null);
 		
 		mv.addObject("selectListBnsList", selectListBnsList);
 		mv.addObject("pagingVO", pagingVO);
@@ -328,7 +329,7 @@ public class BoardController {
 			mv.addObject("mode", "m_buView");
 			
 			mv.addObject("breadcrumb", "IT Trends");
-			mv.addObject("page_header", "IT Trends");
+			//mv.addObject("page_header", "IT Trends");
 
 
 			mv.addObject("selectOneBuView", selectOneBuView);
@@ -412,7 +413,8 @@ public class BoardController {
 	@RequestMapping(value = "/board/buList.do")
 	public ModelAndView selectListBuList(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("/CustomerService/CS-MasterPage");
+		//ModelAndView mv = new ModelAndView("/CustomerService/CS-MasterPage");
+		ModelAndView mv = new ModelAndView("/CommonApps/BoardNotice/buList");
 
 		String pageNum = (String) commandMap.get("pageNum");
 		Paging paging = new Paging();

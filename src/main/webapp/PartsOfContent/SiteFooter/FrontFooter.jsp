@@ -15,8 +15,24 @@
 	})(window, document, 'script', '//www.google-analytics.com/analytics.js',
 			'ga');
 
-	ga('create', 'UA-63623427-1', 'auto');
+	var perfData = window.performance.timing;
+	var pageLoadTime = perfData.domComplete - perfData.navigationStart;
+	var loadTime = "";
+	 
+	//https://www.simoahava.com/analytics/page-load-time-universal-analytics/
+	
+	 
+	
+	//ga('create', 'UA-63623427-1', 'auto');
+	ga('create', 'UA-63623427-1', {'cookieDomain' : 'http://www.mwav.net', 'siteSpeedSampleRate' : 100}); // 사이트 속도 측정 100은 전체 체크 (2017_01_10)
 	ga('send', 'pageview');
+	ga('require', 'displayfeatures'); //인구통계부분 추가 (2017_01_10)
+    ga('require', 'linkid', 'linkid.js'); //향상된 링크 추적코드  (2017_01_10)
+    
+    
+  //https://www.simoahava.com/analytics/page-load-time-universal-analytics/
+    //ga.push({'event': 'GAEvent', 'eventCategory' : 'PageLoadTime', 'eventAction' : loadTime, 'nonInteratction':1});  //  사이트 속도 이벤트 작성중
+
 </script>
 <br />
 <!--TOP아이콘 -->
@@ -26,7 +42,6 @@
 	style="z-index: 6;"><span class="glyphicon glyphicon-chevron-up"></span></a>
 
 
-<%--아이콘 시작 // footer 간격조정을 위해 mgt5추가--%>
 <div class="mgt5">
 
 
@@ -34,8 +49,8 @@
 		<!--/////////////////////////////////////////////////// -->
 		<jsp:include page="/CommonApps/BoardQnA/qaForm.jsp" flush="false" />
 		<!--/////////////////////////////////////////////////// -->
-	
-	<div class="col-md-12 col-xs-12 col-sm-12  alert alert-info"
+	<%--LayerPopup Alert 아이콘 시작 // footer 간격조정을 위해 mgt5추가--%>	
+	<!-- <div class="col-md-12 col-xs-12 col-sm-12  alert alert-info"
 		style="z-index: 5;">
 		<div class="container">
 			<h3>
@@ -46,8 +61,9 @@
 			<a href="#" data-toggle="modal" data-target="#Contact"
 				class="btn btn-lg btn-primary pull-right">Contact Us</a>
 		</div>
-	</div>
+	</div> -->
 	<%--footer --%>
+	
 	<div class="footer" id="footer">
 		<%--row로 하면 전체잡힌다. --%>
 		<div class="container">
@@ -114,12 +130,15 @@
 			<div class="col-xs-12 col-sm-8 col-md-4">
 				<h3>Contact:</h3>
 				<p>Have a question or feedback?</p>
-				<p>Contact me!</p>
+				<br>
 				<p>
-					<a href="mailto:ebizpromwav@gmail.com" title="Contact me!"><i
-						class="fa fa-envelope"></i> Contact</a>
+					<!-- <a href="mailto:ebizpromwav@gmail.com" title="Contact me!"><i
+						class="fa fa-envelope"></i> Contact</a> -->
 					<%--줄 없애기 + 그다음에 메일로 바로연결이아닌 qa쪽 고민 --%>
+					
+					<a href="#" class="btn btn-block btn-primary" data-toggle="modal" data-target="#Contact"><span class="glyphicon glyphicon-envelope"></span> Contact</a>
 				</p>
+				<p>&nbsp;</p>
 				<ul class="social">
 					<li><a href="#"> <i class=" fa fa-facebook">   </i>
 					</a></li>

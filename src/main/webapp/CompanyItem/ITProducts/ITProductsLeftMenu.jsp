@@ -26,27 +26,46 @@
 		 [출처] javascript & jquery location object 정보 - 현재 실행중이 URL정보|작성자 미친꼬북		
 		 */
 		var pgurl = window.location.pathname;
+		 var pgurl_ = window.location.search;
 		//alert(pgurl);
 
 		$("#left_menu a").each(function() {
 			//alert($(this).attr("href"));
 			//alert($(this).attr(''));
 			if ($(this).attr("href") == pgurl || $(this).attr("href") == '' || $(this).attr("alt") == pgurl)
-				$(this).addClass("active");
+				{$(this).addClass("active");} /* else if($(this).attr("href") == pgurl){
+					
+				} */
 		})
+		
+		/* $("#list_menu a").each(function() {
+			//alert($(this).attr("href"));
+			//alert($(this).attr(''));
+			alert('11');
+			alert($(this));
+			if ($(this).attr("href") == pgurl || $(this).attr("href") == '' || $(this).attr("alt") == pgurl)
+				{$(this).addClass("active");} /* else if($(this).attr("href") == pgurl){
+					
+				} 
+		}) */
 	});
 </script>
 <div class="panel-group">
 	<div class="panel list-group" id="left_menu">
 
-
-		<a class="list-group-item" data-toggle="collapse"
-			data-target="#list_menu" alt="/CompanyItem/ITProducts/Aervision/Aervision.jsp">Aervision</a>
+         <%--사용자 시각에서 hover시 포인터가 떠야한다.
+         
+         1. href="#"을 하면 자꾸 상단으로 이동
+         2. 없애면 hover시 포인터가 없다 
+         3. btn 클래스 등록하면 포인터 등장
+         4. inline-stye로 btn이 중앙정렬이라  --%>
+		<a  class="btn list-group-item" data-toggle="collapse"
+			data-target="#list_menu_Aervision" alt="/CompanyItem/ITProducts/Aervision/Aervision.jsp" style="text-align:left !important">Aervision</a>
 <%--
 /CompanyItem/ITProducts/Aervision/Aervision.jsp
 붙여줘야지 #만해주면 다른 페이지에서는 안먹는다.
  --%>
-		<div id="list_menu" class="collapse child_left_menu">
+		<div id="list_menu_Aervision" class="collapse child_left_menu">
 			<a href="/CompanyItem/ITProducts/Aervision/Aervision.jsp#AerPass" class="list-group-item " data-toggle="tooltip"
 				data-placement="top" data-original-title="AerPass"><span
 				class="glyphicon glyphicon-chevron-right"></span> AerPass</a> <a
@@ -74,6 +93,22 @@
 				href="/CompanyItem/ITProducts/Aervision/Aervision.jsp#AboutUs" class="list-group-item " data-toggle="tooltip"
 				data-placement="top" data-original-title="AboutUs"><span
 				class="glyphicon glyphicon-chevron-right"></span> AboutUs</a>
+		</div>
+		
+		
+		<a class="btn list-group-item " data-toggle="collapse"
+			data-target="#list_menu_highsofts" alt="/CompanyItem/ITProducts/HighSofts/HighSofts.jsp" style="text-align:left !important">HighSofts</a>
+						
+		<div id="list_menu_highsofts" class="collapse child_left_menu">
+			<a href="/hightsofts/hightsofts.do?items=Highcharts" class="list-group-item " data-toggle="tooltip"
+				data-placement="top" data-original-title="Highcharts"><span
+				class="glyphicon glyphicon-chevron-right"></span> Highcharts</a> <a
+				href="/hightsofts/hightsofts.do?items=Highstock" class="list-group-item " data-toggle="tooltip"
+				data-placement="top" data-original-title="Highstock"><span
+				class="glyphicon glyphicon-chevron-right"></span> Highstock</a> <a
+				href="/hightsofts/hightsofts.do?items=Highmaps" class="list-group-item " data-toggle="tooltip"
+				data-placement="top" data-original-title="Highmaps"><span
+				class="glyphicon glyphicon-chevron-right"></span> Highmaps</a> 
 		</div>
 
 

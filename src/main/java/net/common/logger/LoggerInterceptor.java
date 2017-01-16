@@ -5,9 +5,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import net.mwav.common.module.Common_Utils;
 import net.mwav.common.module.DomReadXMLFile;
+import net.mwav.statistics.controller.StatisticsController;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import org.apache.commons.logging.Log;
@@ -16,8 +20,10 @@ import org.apache.commons.logging.LogFactory;
 public class LoggerInterceptor extends HandlerInterceptorAdapter {
 	// private final Logger log = LoggerFactory.getLogger(this.getClass());
 	//Logger log = Logger.getLogger(this.getClass());
-
 	 protected Log log = LogFactory.getLog(LoggerInterceptor.class);
+	 
+	 @Autowired
+		private StatisticsController statisticsController;
 
 	// Log4js 설정
 	// http://dev.anyframejava.org/docs/anyframe/plugin/essential/core/1.6.0/reference/html/ch21.html
@@ -59,6 +65,8 @@ public class LoggerInterceptor extends HandlerInterceptorAdapter {
 	/*
 	 * redirect 와 response 차이 
 	 */
+	 
+	 
 	@Override
 	public boolean preHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler) throws Exception {
@@ -68,16 +76,24 @@ public class LoggerInterceptor extends HandlerInterceptorAdapter {
 		HttpSession session = request.getSession();
 		String uploadRootPath = session.getServletContext().getRealPath("\\");
 		//서버에서 띄우면 (호스팅서버) 루트에러 .
-		DomReadXMLFile.xmlParser("/xConfig/general.xml.config");
-		//DomReadXMLFile.xmlParser(uploadRootPath+"/xConfig/general.xml.config");
 		
+		System.out.println("루트 경로"+uploadRootPath);
+		//DomReadXMLFile.xmlParser("/xConfig/general.xml.config");
+		DomReadXMLFile.xmlParser(uploadRootPath+"/xConfig/general.xml.config");
+		statisticsController.insertStatics(request);
 		
+		//디버그 레벨일때 true
+		//http://planmaster.tistory.com/66
 		if (log.isDebugEnabled()) {
 			log.info("======================================          START         ======================================");
 			log.info(" Request URI \t:  " + request.getRequestURI());
 			System.out.println(request.getRequestURI());
 			System.out.println("LoggerInterceptor에 들어왔다.");
 		}
+		
+		
+
+	
 		
 		request.setAttribute("msm", "출력되나");
 		/*

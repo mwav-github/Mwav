@@ -18,48 +18,37 @@ container 안에 포함시키면된다.
 	rel="stylesheet">
 
 <input type="hidden" name="pageNum" />
-<div class="table-responsive">
-	<table class="table table-striped">
-		<thead>
-			<tr>
-				<th>NO.</th>
-				<th>Group</th>
-				<th>Title</th>
-				<th>WriteDate</th>
-				<%-- <th>관리메뉴</th> 삭제예정 --%>
 
-			</tr>
-		</thead>
-		<tbody>
 
-			<c:choose>
-				<c:when test="${fn:length(selectListBuList) > 0}">
-					<c:forEach var="VselectListBuList" items="${selectListBuList}">
+<c:choose>
+	<c:when test="${fn:length(selectListBuList) > 0}">
+		<c:forEach var="VselectListBnsList" items="${selectListBuList}">
+			<input type="hidden" id="bNews_id" name="bNews_id"
+				value="${VselectListBuList.bUsers_id }">
+			<div class="row">
+				<div class="col-md-12">
 					
-						<tr>
-							<input type="hidden" id="bUsers_id" name="bUsers_id"
-								value="${VselectListBuList.bUsers_id }">
-							<td>${VselectListBuList.bUsers_id}</td>
-							<td>${VselectListBuList.buGroup}</td>
-							<td><a
-								href="javascript:window.location.href='/board/buView.do?bUsers_id=${VselectListBuList.bUsers_id}'">${VselectListBuList.buTitle}</a></td>
-							<td>${VselectListBuList.buInsertDt}</td>
-							<%-- <td> <button type="button" class="btn btn-info" onclick="javascript:window.location.href='/board/bnsView.do?bUsers_id=${FrontboardList.bUsers_id}'">보기</button>&nbsp;
-<button type="button" class="btn btn-warning" onclick="javascript:window.location.href='/board/bnsModify.do?bUsers_id=${FrontboardList.bUsers_id}'">수정</button>
-</td> --%>
+					<h4 style="color: #23527c !important;">
+						<strong><a
+							href="javascript:window.location.href='/board/buView.do?bUsers_id=${VselectListBnsList.bUsers_id}'">${VselectListBnsList.buTitle}</a></strong>
+					</h4>
 
-						</tr>
-					</c:forEach>
-				</c:when>
-				<c:otherwise>
-					<tr>
-						<td colspan="4">조회된 결과가 없습니다.</td>
-					</tr>
-				</c:otherwise>
-			</c:choose>
-		</tbody>
-	</table>
-</div>
+					<p style="color: #78828D;">${VselectListBnsList.buSubTitle}</p>
+					<h6 class="pull-right">
+						<span class="glyphicon glyphicon-calendar" aria-hidden="true"> ${VselectListBnsList.fmbuInsertDt}</span>
+					</h6>
+				</div>
+			</div>
+			<div class="enter"></div>
+		</c:forEach>
+	</c:when>
+	<c:otherwise>
+		<div class="col-md-12">
+			<h4>조회된 결과가 없습니다.</h4>
+		</div>
+	</c:otherwise>
+</c:choose>
+
 <!-- Pagination -->
 <c:if test="${totalRow > 0}">
 	<div class="row text-center">

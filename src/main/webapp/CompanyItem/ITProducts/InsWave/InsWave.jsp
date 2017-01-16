@@ -58,109 +58,105 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 		<div class="row">
 			<!-- Sidebar Column left메뉴 추후 변경 예정<시작>-->
 			<div class="col-md-3">
-				<jsp:include page="/CompanyItem/ITProducts/ITProductsLeftMenu.jsp" flush="false" />
+				<jsp:include page="/CompanyItem/ITProducts/ITProductsLeftMenu.jsp"
+					flush="false" />
 			</div>
 			<!-- 끝 -->
 
 			<!-- Content Column -->
-			<div class="mgtl3 col-md-8 ">
+			<div class="col-md-9">
 
 
 				<!-- 인터넷 뉴스안내  -->
-				<div class="row">
-					<div class="text-center">
-						<%--아래 a태그 자체에 색 적용시 가능하다. --%>
-						<h1 style="color: #90ba82;">인터넷 뉴스 안내</h1>
-						<hr class="hr_g">
-					</div>
 
-					<div class="col-md-12">
-						<p>Mwav에서 제공하는 인터넷 뉴스의 특별한 서비스 내용을 안내해드립니다.</p>
+				<div class="text-center">
+					<%--아래 a태그 자체에 색 적용시 가능하다. --%>
+					<h1 style="color: #90ba82;">인터넷 뉴스 안내</h1>
+					<hr class="hr_g">
+				</div>
 
-						<p>제품에 대한 브로셔와 자세한 정보는 연락 주시면 상세히 설명드리겠습니다.</p>
-<!-- 						<p class="text-right">
+				<div class="col-md-12">
+					<p>Mwav에서 제공하는 인터넷 뉴스의 특별한 서비스 내용을 안내해드립니다.</p>
+
+					<p>제품에 대한 브로셔와 자세한 정보는 연락 주시면 상세히 설명드리겠습니다.</p>
+					<!-- 						<p class="text-right">
 							<A href="mailto:sales@aervision.com" style="color: #990085;">JuSung.kim@mwav.net</a>
 						</p> -->
-						<div class="enter"></div>
-
-					</div>
-					<!-- One -->
-					<div class="row">
-						<div class="col-md-4">
-							 <img
-								class="img-responsive img-hover"
-								src="/CompanyItem/ITProducts/Images/InsWave_Service_01.gif"
-								alt="">
-							
-						</div>
-						<div class="col-md-8">
-							<p>- 언론사의 특성에 맞는 화면 구성과 디자인으로 빠르게 세팅 해 드립니다.</p>
-							<p>- 고객센터를 통해 신속한 업무지원을 해 드립니다.</p>
-
-						</div>
-					</div>
 					<div class="enter"></div>
-					<hr>
 
-					<!-- Two -->
-					<div class="row">
-						<div class="col-md-4">
-							<img
-								class="img-responsive img-hover"
-								src="/CompanyItem/ITProducts/Images/InsWave_Service_02.gif"
-								alt="">
-							
-						</div>
-						<div class="col-md-8">
-							<p>- 전문 보도자료 제작 업체의 기사를 제공 해 드립니다.</p>
-							<p>- 인스정보 회원사들간의 기사공유 시스템으로 다양한 기사이용이 가능합니다.</p>
-
-						</div>
-					</div>
-					<div class="enter"></div>
-					<hr>
-
-
-					<!-- Three -->
-					<div class="row">
-						<div class="col-md-4">
-							<img
-								class="img-responsive img-hover"
-								src="/CompanyItem/ITProducts/Images/InsWave_Service_03.gif"
-								alt="">
-							
-						</div>
-						<div class="col-md-8">
-							<p>- 네이버, 다음, 줌, 구글 등 포털로 기사전송 기능을 제공합니다.</p>
-							<p>- PC와 태블릿, 스마트 폰 등 다양한 환경에도 동영상 뉴스를 안정적으로 제공하는 와우자 미디어 서버
-							</p>
-							<p>- 지면신문을 발행하는 언론사를 위한 PDF.Ebook</p>
-
-						</div>
-					</div>
-					<div class="enter"></div>
-					<hr>
-
-
-					<!-- Four -->
-					<div class="row">
-						<div class="col-md-4">
-							<img
-								class="img-responsive img-hover"
-								src="/CompanyItem/ITProducts/Images/InsWave_Service_04.gif"
-								alt="">
-							
-						</div>
-						<div class="col-md-8">
-							<p>- 모바일 웹을 제공하며 언론사의 특성에 맞는 구성으로 운영하세요.</p>
-							<p>- 초고속 검색엔진 사용으로 방대한 양의 데이터도 빠르게 검색됩니다.</p>
-							<p>- 타언론사 기사 검색 기능도 있어 연계 검색이 가능합니다.</p>
-							<p>- 빠른 변화의 흐름에 맞춘 기능개발과 디자인 스킨등 다양한 업데이트가 이루어집니다.</p>
-
-						</div>
-					</div>
-					<!-- /.row -->
 				</div>
+				<!-- One -->
+				<div class="row">
+					<div class="col-md-4">
+						<img class="img-responsive img-hover"
+							src="/CompanyItem/ITProducts/Images/InsWave_Service_01.gif"
+							alt="">
+
+					</div>
+					<div class="col-md-8">
+						<p>- 언론사의 특성에 맞는 화면 구성과 디자인으로 빠르게 세팅 해 드립니다.</p>
+						<p>- 고객센터를 통해 신속한 업무지원을 해 드립니다.</p>
+
+					</div>
+				</div>
+				<div class="enter"></div>
+				<hr>
+
+				<!-- Two -->
+				<div class="row">
+					<div class="col-md-4">
+						<img class="img-responsive img-hover"
+							src="/CompanyItem/ITProducts/Images/InsWave_Service_02.gif"
+							alt="">
+
+					</div>
+					<div class="col-md-8">
+						<p>- 전문 보도자료 제작 업체의 기사를 제공 해 드립니다.</p>
+						<p>- 인스정보 회원사들간의 기사공유 시스템으로 다양한 기사이용이 가능합니다.</p>
+
+					</div>
+				</div>
+				<div class="enter"></div>
+				<hr>
+
+
+				<!-- Three -->
+				<div class="row">
+					<div class="col-md-4">
+						<img class="img-responsive img-hover"
+							src="/CompanyItem/ITProducts/Images/InsWave_Service_03.gif"
+							alt="">
+
+					</div>
+					<div class="col-md-8">
+						<p>- 네이버, 다음, 줌, 구글 등 포털로 기사전송 기능을 제공합니다.</p>
+						<p>- PC와 태블릿, 스마트 폰 등 다양한 환경에도 동영상 뉴스를 안정적으로 제공하는 와우자 미디어 서버</p>
+						<p>- 지면신문을 발행하는 언론사를 위한 PDF.Ebook</p>
+
+					</div>
+				</div>
+				<div class="enter"></div>
+				<hr>
+
+
+				<!-- Four -->
+				<div class="row">
+					<div class="col-md-4">
+						<img class="img-responsive img-hover"
+							src="/CompanyItem/ITProducts/Images/InsWave_Service_04.gif"
+							alt="">
+
+					</div>
+					<div class="col-md-8">
+						<p>- 모바일 웹을 제공하며 언론사의 특성에 맞는 구성으로 운영하세요.</p>
+						<p>- 초고속 검색엔진 사용으로 방대한 양의 데이터도 빠르게 검색됩니다.</p>
+						<p>- 타언론사 기사 검색 기능도 있어 연계 검색이 가능합니다.</p>
+						<p>- 빠른 변화의 흐름에 맞춘 기능개발과 디자인 스킨등 다양한 업데이트가 이루어집니다.</p>
+
+					</div>
+				</div>
+				<!-- /.row -->
+
 				<div class="enter"></div>
 
 
@@ -176,7 +172,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 						<p>인터넷 뉴스 유형별 서비스 내용을 상세하게 안내 해 드립니다.</p>
 
 						<p>제품에 대한 브로셔와 자세한 정보는 연락 주시면 상세히 설명드리겠습니다.</p>
-<!-- 						<p class="text-right">
+						<!-- 						<p class="text-right">
 							<A href="mailto:JuSung.kim@mwav.net" style="color: #990085;">JuSung.kim@mwav.net</a>
 						</p> -->
 						<div class="enter"></div>

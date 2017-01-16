@@ -10,28 +10,45 @@
 				SELECT IFNULL(max(QnA_id)+1,1000000), "Company", #{uqGroupItem}, #{member_id}, #{uqUserName}, #{uqUserEmail}, #{uqUserPw}, #{uqUserPhone}, #{uqRelatedLink}, #{uqTitle}, #{uqContent}, "0", #{uqAttachFile}, NOW(), #{uqUpdateDt}, #{uqDeleteDt}, #{uqIpAddress}, "0", #{uqOption1}, #{uqOption2}, #{uqOption3}, #{uqInvoker}, #{uqInvoker_id}, #{statistics_id}, #{uqAdminNotice} FROM UserQuestion_tbl
 		]]>
 	</insert>
-
     <!--/*========================================보기========================================*/  -->
-
+  <select id="selectOneQAView" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+	    select *, date_format(uqInsertDt,'%Y-%m-%d') as fmuqInsertDt from UserQuestion_tbl where QnA_id = #{QnA_id}
+	]]>
+	</select>
  
-	
 	<!--/*======================+==================수정========================================*/  -->
-	
+	<update id="updateNewsHitCnt" parameterType="hashmap">
+    <![CDATA[
+       update UserQuestion_tbl set uqViewCount = iFnull(uqViewCount, 0) +1 where QnA_id = #{QnA_id} 
+    ]]>
+    </update>
 	
  
 	
 	<!--/*========================================리스트(SelctOne, SelectList 순)========================================*/  -->
+	<select id="selectOneGetTotalCount" resultType="int">
+	<![CDATA[
+	   select count(*) from UserQuestion_tbl WHERE uqDeleteDt IS NULL 
+	]]>
+	</select>
+	
+	<select id="selectListQAFrontList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT QnA_id, uqViewCount, member_id, uqGroup,  uqTitle, date_format(uqInsertDt,'%Y-%m-%d') as uqInsertDt
+		    FROM UserQuestion_tbl
+		    WHERE uqDeleteDt IS NULL ORDER BY uqDeleteDt DESC Limit 5
+		]]>
+	</select>
 	
 	
+	<select id="selectListQAList" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+	select c.*, date_format(uqDeleteDt,'%Y-%m-%d') as fmuqDeleteDt from (select @ROWNUM := @ROWNUM + 1 AS ROWNUM, a.* from (select * from UserQuestion_tbl where uqDeleteDt IS NULL order by uqInsertDt desc) a,  (SELECT @ROWNUM := 0) R ) c where c.ROWNUM >= #{startRow} and c.ROWNUM <= #{endRow} 
+	]]>
+	</select>
 	
 	
 	<!--/*========================================삭제========================================*/  -->
-	
-	
-
-
-
-	
-    
 
 </mapper>

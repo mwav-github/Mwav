@@ -42,16 +42,57 @@ public class QAServiceImpl implements QAService {
 		return flag;
 	}
 
+	@Override
+	public List<Map<String, Object>> selectListQAList(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return qaDAO.selectListQAList(map);
+	}
 	/*
 	 * ========================================보기================================
 	 * ========
 	 */
 
+	@Override
+	public int selectOneGetTotalCount() {
+		// TODO Auto-generated method stub
+		return qaDAO.selectOneGetTotalCount();
+	}
+
+	@Override
+	public List<Map<String, Object>> selectListQAFrontList(
+			Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return qaDAO.selectListQAFrontList(map);
+	}
+
+	@Override
+	public Map<String, Object> selectOneQAView(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub
+				try {
+					qaDAO.updateQAHitCnt(map);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				//map 출력
+				cou.selectMap(map);
+
+				Map<String, Object> resultMap = qaDAO.selectOneQAView(map);
+				int test = (int) resultMap.get("uqStatus");
+				String result = cou.TypeIntToString("uqStatus", test);
+				
+				resultMap.put("uqStatus", result);
+				
+				return resultMap;
+	}
+
 	/*
 	 * ========================================수정================================
 	 * ========
 	 */
-
+	
 	/*
 	 * ========================================리스트(SelectOne, SelectList
 	 * 순)========================================

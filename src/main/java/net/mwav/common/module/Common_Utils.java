@@ -2,6 +2,8 @@ package net.mwav.common.module;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -188,24 +190,24 @@ public class Common_Utils {
 			}
 		}
 	}
-	
-	public void selectMapList(List<Map<String, Object>> mapList) {
-		Iterator<Entry<String,Object>> iterator = null;
-	    Entry<String,Object> entry = null;
-	    log.debug("--------------------printList--------------------\n");
-	    int listSize = mapList.size();
-	    for(int i=0; i<listSize; i++){
-	        log.debug("list index : "+i);
-	        iterator = mapList.get(i).entrySet().iterator();
-	        while(iterator.hasNext()){
-	            entry = iterator.next();
-	            log.debug("key : "+entry.getKey()+",\tvalue : "+entry.getValue());
-	        }
-	        log.debug("\n");
-	    }
-	    log.debug("------------------------------------------------\n");
-	}
 
+	public void selectMapList(List<Map<String, Object>> mapList) {
+		Iterator<Entry<String, Object>> iterator = null;
+		Entry<String, Object> entry = null;
+		log.debug("--------------------printList--------------------\n");
+		int listSize = mapList.size();
+		for (int i = 0; i < listSize; i++) {
+			log.debug("list index : " + i);
+			iterator = mapList.get(i).entrySet().iterator();
+			while (iterator.hasNext()) {
+				entry = iterator.next();
+				log.debug("key : " + entry.getKey() + ",\tvalue : "
+						+ entry.getValue());
+			}
+			log.debug("\n");
+		}
+		log.debug("------------------------------------------------\n");
+	}
 
 	// Overload getString()
 	public String TypeIntToString(String type, int before) {
@@ -228,105 +230,119 @@ public class Common_Utils {
 			return true;
 		return false;
 	}
-	
-	
-	   /**
-     * 자바 dateformat 변경하기 
-     * String expectedPattern = "yyyyMMddkkmmss";
-     *
-     * @param textDate ex) 20141219093040
-     * @return yyyy년MM월dd일 HH시mm분ss초
-     * 
-     * 이슈 최초 입력되는 타입에 대한 확인 후 변형되어야한다
-     * 최초 입력되는 타입을 어떻게 할지 부분 고민 
-     */
-    public static String convertStringToDateFormat(String textDate, String type) {
-        String dateString = null;
-    	String type_dateFormat = null;
-        try {
-        	if (type.equals("1")){
-        		type_dateFormat = "yyyyMMddhhmmss";
-        	}else if(type.equals("2")){
-        		type_dateFormat = "yyyyMMdd";
-        	}else if(type.equals("3")){
-        		type_dateFormat = "yyyy년MM월dd일 HH시mm분ss초";
-        	}else if(type.equals("4")){
-        		type_dateFormat = "yyyy-MM-dd hh:mm:ss";
-        	}else if(type.equals("5")){
-        		type_dateFormat = "yyyyMMddhhmmss";
-        	}else{
-        		type_dateFormat = "yyyy-MM-dd";
-        	}
-        	
-        	SimpleDateFormat format1 = new SimpleDateFormat(type_dateFormat);
-        	 Date date = format1.parse(textDate);
-            dateString = format1.format(date);
 
-          //현재 날짜 구하기
-           // 자바의 String 형을 날짜로 변환하여 오늘의 날짜와의 차이를 구하려고 합니다. 
-          /*  String todate=  formatter.format(new Date());
-            
-            
-            log.info("현재시간 년월일 = " + todate01);
-            log.info("현재시간 년월일 = " + todate02);
-            log.info("현재시간 년월일 = " + todate03);
-                    
-            String testDate = "20160421";
-            Date todate_date =  formatter03.parse(todate03);
-            Date test_date =  formatter03.parse(testDate);
-                    
-            log.info(todate_date + "====== " + test_date);
-            long diff = todate_date.getTime() - test_date.getTime();
-            // 시간차이를 시간,분,초를 곱한 값으로 나누면 하루 단위가 나옴
-            long diffDays = diff / (24 * 60 * 60 * 1000);
-                 
-            log.info("날짜계산차이 : " + diff);
-            log.info("일차이 : " + diffDays);
-            log.info("년차이 : " + diffDays / 365);*/
-            
-            
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-        return dateString;
-    }
-    
-    /**
-     * 자바 string 치환하기 
-     * 
-     * @param String textData 대상 문자열
-     * @return result 치환된 문자열
-     * 	 
-     */
-    public static List<String> convertStringToMark(List<String> selectIdFinder) {
-    	
-    	for (int i=0; i < selectIdFinder.size(); i++  ){
-    		
-    		
-    	int txt_length = selectIdFinder.get(i).length();
-    	int start_point = ((txt_length/2)-1);
-    	int end_point = ((txt_length/2)+1);
-    	
-    	String imsi_textData = selectIdFinder.get(i);
-    	String extract_textData = null;
-    	String result = null;
-    	
-    	if (txt_length >= 7){
-    		// 7자리 이상이면 3개이상 변환
-    		
-    		extract_textData = imsi_textData.substring(start_point-1, end_point);
-    		result = selectIdFinder.get(i).replace(extract_textData, "****");
-    		
-    		
-    	}else{
-    		// 7자리 이하이면 2개변환 
-    		extract_textData = imsi_textData.substring(start_point, end_point);
-    		result = selectIdFinder.get(i).replace(extract_textData, "***");
-    		
-    	}
-    	System.out.println("dd"+ result);
-    	selectIdFinder.set(i, result);
-    	}
-    return 	selectIdFinder;
-    }
+	/**
+	 * 자바 dateformat 변경하기 String expectedPattern = "yyyyMMddkkmmss";
+	 *
+	 * @param textDate
+	 *            ex) 20141219093040
+	 * @return yyyy년MM월dd일 HH시mm분ss초
+	 * 
+	 *         이슈 최초 입력되는 타입에 대한 확인 후 변형되어야한다 최초 입력되는 타입을 어떻게 할지 부분 고민
+	 */
+	public static String convertStringToDateFormat(String textDate, String type) {
+		String dateString = null;
+		String type_dateFormat = null;
+		try {
+			if (type.equals("1")) {
+				type_dateFormat = "yyyyMMddhhmmss";
+			} else if (type.equals("2")) {
+				type_dateFormat = "yyyyMMdd";
+			} else if (type.equals("3")) {
+				type_dateFormat = "yyyy년MM월dd일 HH시mm분ss초";
+			} else if (type.equals("4")) {
+				type_dateFormat = "yyyy-MM-dd hh:mm:ss";
+			} else if (type.equals("5")) {
+				type_dateFormat = "yyyyMMddhhmmss";
+			} else {
+				type_dateFormat = "yyyy-MM-dd";
+			}
+
+			SimpleDateFormat format1 = new SimpleDateFormat(type_dateFormat);
+			Date date = format1.parse(textDate);
+			dateString = format1.format(date);
+
+			// 현재 날짜 구하기
+			// 자바의 String 형을 날짜로 변환하여 오늘의 날짜와의 차이를 구하려고 합니다.
+			/*
+			 * String todate= formatter.format(new Date());
+			 * 
+			 * 
+			 * log.info("현재시간 년월일 = " + todate01); log.info("현재시간 년월일 = " +
+			 * todate02); log.info("현재시간 년월일 = " + todate03);
+			 * 
+			 * String testDate = "20160421"; Date todate_date =
+			 * formatter03.parse(todate03); Date test_date =
+			 * formatter03.parse(testDate);
+			 * 
+			 * log.info(todate_date + "====== " + test_date); long diff =
+			 * todate_date.getTime() - test_date.getTime(); // 시간차이를 시간,분,초를 곱한
+			 * 값으로 나누면 하루 단위가 나옴 long diffDays = diff / (24 * 60 * 60 * 1000);
+			 * 
+			 * log.info("날짜계산차이 : " + diff); log.info("일차이 : " + diffDays);
+			 * log.info("년차이 : " + diffDays / 365);
+			 */
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		return dateString;
+	}
+
+	/**
+	 * 자바 string 치환하기
+	 * 
+	 * @param String
+	 *            textData 대상 문자열
+	 * @return result 치환된 문자열
+	 * 
+	 */
+	public static List<String> convertStringToMark(List<String> selectIdFinder) {
+
+		for (int i = 0; i < selectIdFinder.size(); i++) {
+
+			int txt_length = selectIdFinder.get(i).length();
+			int start_point = ((txt_length / 2) - 1);
+			int end_point = ((txt_length / 2) + 1);
+
+			String imsi_textData = selectIdFinder.get(i);
+			String extract_textData = null;
+			String result = null;
+
+			if (txt_length >= 7) {
+				// 7자리 이상이면 3개이상 변환
+
+				extract_textData = imsi_textData.substring(start_point - 1,
+						end_point);
+				result = selectIdFinder.get(i)
+						.replace(extract_textData, "****");
+
+			} else {
+				// 7자리 이하이면 2개변환
+				extract_textData = imsi_textData.substring(start_point,
+						end_point);
+				result = selectIdFinder.get(i).replace(extract_textData, "***");
+
+			}
+			System.out.println("dd" + result);
+			selectIdFinder.set(i, result);
+		}
+		return selectIdFinder;
+	}
+
+	// get request headers
+	public Map<String, Object> getHeadersInfo(HttpServletRequest request) {
+
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		Enumeration headerNames = request.getHeaderNames();
+		while (headerNames.hasMoreElements()) {
+			String key = (String) headerNames.nextElement();
+			String value = (String) request.getHeader(key);
+			map.put(key, value);
+		}
+
+		return map;
+	}
+
 }

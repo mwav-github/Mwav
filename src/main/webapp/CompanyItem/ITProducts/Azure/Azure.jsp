@@ -63,9 +63,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 			<!-- 끝 -->
 
 			<!-- Content Column -->
-			<div class="mgtl3 col-md-8 ">
-
-
+			<div class="col-md-9">
 				<!-- 1_Azure -->
 				<div class="row">
 					<!-- <div class="col-md-8 col-md-offset-2" style="background-color: #990085; color: white;">
@@ -73,7 +71,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					</div>
 					<br> -->
 					<%-- block 요소 끼리 중앙정렬 중요. vertical_parent / vertical_child--%>
-					<div class="row vertical_parent col-xs-12 col-sm-12 col-md-12"
+					<div class="vertical_parent col-xs-12 col-sm-12 col-md-12"
 						style="color: #fff; background: url(../Images/what-is-azure.jpg) no-repeat; background-size: 100% auto;">
 						<div class="vertical_child">
 							<h3 class="align_center">앱 프레임워크 플랫폼 반갑습니다.</h3>
@@ -272,7 +270,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 				<hr class="hr_b">
 				<!-- 9_Azure -->
 				<div class="row">
-					<div class="col-md-8">
+					<div class="col-xs-12 col-sm-8 col-sm-push-4 col-md-8 col-md-push-4">
 						<h3 class="text-left mgb3" style="color: #78828D;">
 							<strong>신뢰할 수 있는 클라우드 사용 </strong>
 						</h3>

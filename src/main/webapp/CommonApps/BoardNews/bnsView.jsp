@@ -7,7 +7,8 @@
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"
 	rel="stylesheet">
-
+<link href="/resources/JsFramework/Bootstrap/bootstrap-social.css"
+	rel="stylesheet">
 
 <!-- 소제목 -->
 <!-- ----- 
@@ -24,7 +25,7 @@
 <!-- Content Column -->
 <div class="row">
 	<form role="form">
-		<table class="table-responsive table table-striped">
+		<%-- <table class="table-responsive table table-striped">
 			<thead>
 
 				<tr class="active">
@@ -59,7 +60,7 @@
 				<td>${selectOneBnsView.bnTitle}</td>
 			</tr>
 
-			<%--subtitle은 우리쪽 내용이 들어가는 부분이므로 null이면 노출하지 않는다. admin 페이지는 전체 노출!!  --%>
+			subtitle은 우리쪽 내용이 들어가는 부분이므로 null이면 노출하지 않는다. admin 페이지는 전체 노출!! 
 
 			<c:if
 				test="${selectOneBnsView.bnSubTitle != '' or selectOneBnsView.bnSubTitle eq null}">
@@ -89,16 +90,77 @@
 				<td>${selectOneBnsView.bnContent}</td>
 			</tr>
 
-		</table>
+		</table> --%>
 	</form>
 
-	<br style="clear: both">
-	<p class="pull-right">
-		<button type="button" class="btn btn-success"
-			onClick="javascript:window.location.href='/board/bnsList.do'">All
-			List</button>
-		<button type="button" class="btn btn-warning"
-			onClick="javascript:history.go(-1)">BACK</button>
-	</p>
+	<div class="col-md-12">
 
+
+		<h2>
+			<a>${selectOneBnsView.bnTitle}</a>
+		</h2>
+		<p class="lead">
+			<c:if
+				test="${selectOneBnsView.bnSubTitle != '' or selectOneBnsView.bnSubTitle eq null}">
+				${selectOneBnsView.bnSubTitle} 
+			</c:if>
+		</p>
+		<hr>
+		<p>
+			<i class="fa fa-clock-o"></i> Posted on
+			${selectOneBnsView.fmbnInsertDt} | Topic: ${selectOneBnsView.bnGroup}
+		</p>
+		<hr>
+		<div class="text-right">
+			<a class="btn btn-social-icon btn-facebook"
+				onClick="sendSns('facebook', '${selectOneBnsView.bnRelatedLink}', '${selectOneBnsView.bnTitle}', 'news')"><span
+				class="fa fa-facebook"></span></a> <a
+				class="btn btn-social-icon btn-google"
+				onClick="sendSns('googleplus', '${selectOneBnsView.bnRelatedLink}', '${selectOneBnsView.bnTitle}', 'news')"><span
+				class="fa fa-google"></span></a> <a
+				class="btn btn-social-icon btn-linkedin"
+				onClick="sendSns('linkedin', '${selectOneBnsView.bnRelatedLink}', '${selectOneBnsView.bnTitle}', 'news')"><span
+				class="fa fa-linkedin"></span></a> <a
+				class="btn btn-social-icon btn-twitter"
+				onClick="sendSns('twitter', '${selectOneBnsView.bnRelatedLink}', '${selectOneBnsView.bnTitle}', 'news')"><span
+				class="fa fa-twitter"></span></a>
+		</div>
+		<div class="enter"></div>
+		<hr>
+		<p>${selectOneBnsView.bnContent}</p>
+		<a class="btn btn-primary" href='${selectOneBnsView.bnRelatedLink}'>Read
+			More <i class="fa fa-angle-right"></i>
+		</a>
+
+
+		<hr>
+
+
+
+
+		<br style="clear: both">
+		<div class="row">
+			<p>
+				<button type="button" class="btn btn-default"
+					onClick="javascript:window.location.href='/board/bnsList.do'">All
+					List</button>
+				<button type="button" class="btn btn-default"
+					onClick="javascript:history.go(-1)">BACK</button>
+			</p>
+		</div>
+
+		<!-- Pager -->
+		<%--이전 이후있는 경우만 가능하도록 if 문 처리 필요. --%>
+		<div class="row">
+			<ul class="pager">
+				<li class="previous"><a
+					href="/board/bnsView.do?bNews_id=${selectOneBnsView.bNews_id-1}">←
+						Older</a></li>
+				<li class="next"><a
+					href="/board/bnsView.do?bNews_id=${selectOneBnsView.bNews_id+1}">Newer
+						→</a></li>
+			</ul>
+		</div>
+
+	</div>
 </div>

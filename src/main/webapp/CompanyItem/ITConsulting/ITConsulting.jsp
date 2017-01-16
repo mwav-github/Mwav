@@ -82,7 +82,6 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 			<!-- Content Column -->
 			<div class="col-md-9">
 
-				<div class="row">
 
 					<div id="Consulting Services" class="col-lg-12">
 						<h2 class="page-header">Consulting Services</h2>
@@ -241,7 +240,6 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 
 
  -->
-				</div>
 			</div>
 		</div>
 		<!-- /.row -->

@@ -7,7 +7,9 @@
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"
 	rel="stylesheet">
-
+<%-- 소셜버튼 추가에 따라 --%>
+<link href="/resources/JsFramework/Bootstrap/bootstrap-social.css"
+	rel="stylesheet">
 
 <!-- 소제목 -->
 <!-- ----- 
@@ -23,68 +25,76 @@
 
 <!-- Content Column -->
 <div class="row">
-	<form role="form">
-		<table class="table-responsive table table-striped">
-			<thead>
-				
-				<tr class="active">
-					<th>NO.</th>
-					<th>Group</th>
-					<th>ViewCount</th>
-					<th>InsertDt</th>
-					<th>staff_id</th>
-					<th>Order</th>
-				</tr>
-			</thead>
+	<div class="col-md-12">
 
 
-			<tbody>
-					<tr>
-						<td>${selectOneBuView.bUsers_id}</td>
-						<td>${selectOneBuView.buGroup}</td>
-						<td><!-- <span class="badge text-center"> -->${selectOneBuView.buViewCount}</td>
-						<td>${selectOneBuView.buInsertDt}</td>
-						<td>${selectOneBuView.staff_id}</td>
-						<td>${selectOneBuView.buOrder}</td>
-					</tr>
-			</tbody>
-		</table>
+		<h2>
+			<a>${selectOneBuView.buTitle}</a>
+		</h2>
+		<p class="lead">
+			<c:if
+				test="${selectOneBuView.buSubTitle != '' or selectOneBuView.buSubTitle eq null}">
+				${selectOneBuView.buSubTitle} 
+			</c:if>
+		</p>
+		<hr>
+		<p>
+			<i class="fa fa-clock-o"></i> Posted on
+			${selectOneBuView.fmbuInsertDt} | Topic: ${selectOneBuView.buGroup}
+		</p>
+		<hr>
+		<div class="text-right">
+			<a class="btn btn-social-icon btn-facebook"
+				onClick="sendSns('facebook', '${selectOneBuView.buRelatedLink}', '${selectOneBuView.buTitle}', 'notice')"><span
+				class="fa fa-facebook"></span></a> <a
+				class="btn btn-social-icon btn-google"
+				onClick="sendSns('googleplus', '${selectOneBuView.buRelatedLink}', '${selectOneBuView.buTitle}', 'news')"><span
+				class="fa fa-google"></span></a> <a
+				class="btn btn-social-icon btn-linkedin"
+				onClick="sendSns('linkedin', '${selectOneBuView.buRelatedLink}', '${selectOneBuView.buTitle}', 'news')"><span
+				class="fa fa-linkedin"></span></a> <a
+				class="btn btn-social-icon btn-twitter"
+				onClick="sendSns('twitter', '${selectOneBuView.buRelatedLink}', '${selectOneBuView.buTitle}', 'news')"><span
+				class="fa fa-twitter"></span></a>
+		</div>
+		<div class="enter"></div>
+		<hr>
+		<p>${selectOneBnsView.bnContent}</p>
+		<a class="btn btn-primary" href='${selectOneBuView.buRelatedLink}'>Read
+			More <i class="fa fa-angle-right"></i>
+		</a>
 
-		<table class="table table-striped">
 
-			<tr>
-				<th class="active">Title</th>
-			</tr>
-			<tr> <td>${selectOneBuView.buTitle}</td></tr>
-			
+		<hr>
 
-<%--subtitle은 우리쪽 내용이 들어가는 부분이므로 null이면 노출하지 않는다. admin 페이지는 전체 노출!!  --%>
-            <c:if test ="${selectOneBuView.buSubTitle != '' or selectOneBuView.buSubTitle eq null}">
-			<tr>
-				<th class="active">SubTitle</th>
-			</tr>
-			<tr><td>${selectOneBuView.buSubTitle}</td></tr>
-            </c:if>
-         
-			<tr>
-				<th class="active">Reference</th>
-				
-			</tr>
-			<tr><td>${selectOneBuView.buRelatedLink}</td></tr>
-            
-			<tr>
-				<th class="active">Content</th>
-				
-			</tr>
-			<tr><td>${selectOneBuView.buContent}</td></tr>
 
-		</table>
-	</form>
 
-	<br style="clear: both">
-	<p class="pull-right">
-		<button type="button" class="btn btn-success" onClick="javascript:window.location.href='/board/buList.do'">All List</button>
-		<button type="button" class="btn btn-warning" onClick="javascript:history.go(-1)">BACK</button>
-	</p>
+
+		<br style="clear: both">
+		<div class="row">
+			<p>
+				<button type="button" class="btn btn-default"
+					onClick="javascript:window.location.href='/CustomerService/Announcement/Announcement.jsp'">All
+					List</button>
+				<button type="button" class="btn btn-default"
+					onClick="javascript:history.go(-1)">BACK</button>
+			</p>
+		</div>
+
+		<!-- Pager -->
+		<%--이전 이후있는 경우만 가능하도록 if 문 처리 필요. --%>
+		<div class="row">
+			<ul class="pager">
+				<li class="previous"><a
+					href="/board/buView.do?bUsers_id=${selectOneBuView.bUsers_id-1}">←
+						Older</a></li>
+				<li class="next"><a
+					href="/board/buView.do?bUsers_id=${selectOneBuView.bUsers_id+1}">Newer
+						→</a></li>
+			</ul>
+		</div>
+
+	</div>
+	
 
 </div>

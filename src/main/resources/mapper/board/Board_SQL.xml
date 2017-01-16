@@ -15,7 +15,7 @@
 
    <select id="selectOneBnsView" parameterType="hashmap" resultType="hashmap">
 	<![CDATA[
-	    select * from BoardNews_tbl where bNews_id = #{bNews_id}
+	    select *, date_format(bnInsertDt,'%Y-%m-%d') as fmbnInsertDt from BoardNews_tbl where bNews_id = #{bNews_id}
 	]]>
 	</select>
 	
@@ -59,7 +59,7 @@
 	
 	<select id="selectListBnsList" parameterType="hashmap" resultType="hashmap">
 	<![CDATA[
-	select c.* from (select @ROWNUM := @ROWNUM + 1 AS ROWNUM, a.* from (select * from BoardNews_tbl where bnDeleteDt IS NULL order by bnInsertDt desc) a,  (SELECT @ROWNUM := 0) R ) c where c.ROWNUM >= #{startRow} and c.ROWNUM <= #{endRow} 
+	select c.*, date_format(bnInsertDt,'%Y-%m-%d') as fmbnInsertDt from (select @ROWNUM := @ROWNUM + 1 AS ROWNUM, a.* from (select * from BoardNews_tbl where bnDeleteDt IS NULL order by bnInsertDt desc) a,  (SELECT @ROWNUM := 0) R ) c where c.ROWNUM >= #{startRow} and c.ROWNUM <= #{endRow} 
 	]]>
 	</select>
 	
@@ -88,7 +88,7 @@
 
    <select id="selectOneBuView" parameterType="hashmap" resultType="hashmap">
 	<![CDATA[
-	    select * from BoardUser_tbl where bUsers_id = #{bUsers_id}
+	    select *, date_format(buInsertDt,'%Y-%m-%d') as fmbuInsertDt from BoardUser_tbl where bUsers_id = #{bUsers_id}
 	]]>
 	</select>
 	
@@ -125,7 +125,7 @@
     
     <select id="selectListBuList" parameterType="hashmap" resultType="hashmap">
 	<![CDATA[
-	select c.* from (select @ROWNUM := @ROWNUM + 1 AS ROWNUM, a.* from (select * from BoardUser_tbl where buDeleteDt IS NULL order by buInsertDt desc) a,  (SELECT @ROWNUM := 0) R ) c where c.ROWNUM >= #{startRow} and c.ROWNUM <= #{endRow} 
+	select c.*, date_format(buInsertDt,'%Y-%m-%d') as fmbuInsertDt from (select @ROWNUM := @ROWNUM + 1 AS ROWNUM, a.* from (select * from BoardUser_tbl where buDeleteDt IS NULL order by buInsertDt desc) a,  (SELECT @ROWNUM := 0) R ) c where c.ROWNUM >= #{startRow} and c.ROWNUM <= #{endRow} 
 	]]>
 	</select>
 	

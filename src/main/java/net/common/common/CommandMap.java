@@ -16,6 +16,8 @@ import org.springframework.stereotype.Component;
  * 
  *  내부적으로 Map을 하나 생성하고, 그 맵에 모든 데이터를 담는 역할을 한다. 
       여기서 중요한점은 절대로 Map을 상속받으면 안된다.
+      
+    HTTP HEADER는 없다.
  * 
  */
 @Component

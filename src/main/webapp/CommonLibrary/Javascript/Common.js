@@ -12,9 +12,9 @@ function start_timer() {
 function decrementTime() {
 
 	var x1 = document.getElementById("time1");
-	//var x2 = document.getElementById("time2");
+	// var x2 = document.getElementById("time2");
 	x1.innerHTML = toHourMinSec(time);
-	//x2.innerHTML = toHourMinSec(time);
+	// x2.innerHTML = toHourMinSec(time);
 
 	if (time > 0)
 		time--;
@@ -22,12 +22,12 @@ function decrementTime() {
 		// 시간이 0이 되었으므로 타이머를 중지함
 		clearInterval(timerID);
 		alert('5분의 시간이 지났습니다. 다시 시도해주세요.');
-		//$("#PwFinder").empty();
-		//$("#myTabContent").modal('hide');
+		// $("#PwFinder").empty();
+		// $("#myTabContent").modal('hide');
 		document.location.href = '/MasterPage.jsp?mode=SMbrLogin';
 
 		// 시간이 만료되고 나서 할 작업을 여기에 작성
-		//document.form.submit(); // 예: 강제로 form 실행
+		// document.form.submit(); // 예: 강제로 form 실행
 	}
 }
 
@@ -86,7 +86,7 @@ function setTitle(url) {
 
 	var set_Title = "";
 
-	//이걸 캐치프레이즈라고 한다.
+	// 이걸 캐치프레이즈라고 한다.
 	var main_Title = "Unleash your infinite possibilities with IT Optimization!!";
 
 	var aervision_Title = "Biometric authentication & computer vision & machine learning";
@@ -111,10 +111,13 @@ function setTitle(url) {
 			} else if (url_3depth == "Aervision") {
 				set_Title = "[Mwav.net] >> [" + url_3depth + "> "
 						+ aervision_Title + "] - " + main_Title;
-			} else if (url_3depth == "Microsoft") {
+			} else if (url_3depth == "MSOffice") {
 				set_Title = "[Mwav.net] >> [" + url_3depth + "] - "
 						+ main_Title;
 			} else if (url_3depth == "InsWave") {
+				set_Title = "[Mwav.net] >> [" + url_3depth + "] - "
+						+ main_Title;
+			} else {
 				set_Title = "[Mwav.net] >> [" + url_3depth + "] - "
 						+ main_Title;
 			}
@@ -130,20 +133,24 @@ function setTitle(url) {
 		} else if (url_1depth == "/" && last_depth == "/") {
 			set_Title = "[Mwav.net] >> " + main_Title;
 		} else {
-			//.do 등등 일단은 고객친화적이게 임시 변환
+			// .do 등등 일단은 고객친화적이게 임시 변환
 			set_Title = "[Mwav.net] - " + main_Title;
 		}
 	}
 
 	// alert(set_Title);
 	// not fine이나 없으면안됨 그래서 else로 일괄 처리
-	//$('meta[property="og:title"]').attr("content", "All contents are copyright by Mwav.net");
-	//$('meta[property="og:image"]').attr("content", "http://mwav.net/Images/CompanyLogos/CompanyLogo.gif");
-	//$('meta[property="og:description"]').attr("content", set_Title);
+	// $('meta[property="og:title"]').attr("content", "All contents are
+	// copyright by Mwav.net");
+	// $('meta[property="og:image"]').attr("content",
+	// "http://mwav.net/Images/CompanyLogos/CompanyLogo.gif");
+	// $('meta[property="og:description"]').attr("content", set_Title);
 
-	//$('meta[property="og:title"]').attr('content', 'All contents are copyright by Mwav.net');
-	//$('meta[property="og:image"]').attr('content', 'http://mwav.net/Images/CompanyLogos/CompanyLogo.gif');
-	//$('meta[property="og:description"]').attr('content', set_Title);
+	// $('meta[property="og:title"]').attr('content', 'All contents are
+	// copyright by Mwav.net');
+	// $('meta[property="og:image"]').attr('content',
+	// 'http://mwav.net/Images/CompanyLogos/CompanyLogo.gif');
+	// $('meta[property="og:description"]').attr('content', set_Title);
 
 	document.title = set_Title;
 }
@@ -462,8 +469,6 @@ function chkLoginPolicy(mbrLoginId) {
 	}
 }
 
-
-
 /* 확인 취소 Alert */
 
 function Alert_DeleteConfirm() {
@@ -482,7 +487,7 @@ function Alert_UpdateConfirm() {
 	}
 }
 
-//문자열내의 공백 제거
+// 문자열내의 공백 제거
 function trim(varSTR) {
 	var result = "";
 	for (var i = 0; i < varSTR.length; i++) {
@@ -510,12 +515,12 @@ function getElementsCount(formname, elementname, isvalue) {
 	return cntelement
 }
 
-//영문 소문자를 영문대문자로 변환하는 함수
+// 영문 소문자를 영문대문자로 변환하는 함수
 function nameUpper(arg) {
 	arg.value = arg.value.toUpperCase();
 }
 
-//쿠키 읽어오기 
+// 쿠키 읽어오기
 function getCookie(Name) {
 	var search = Name + "="
 	var cookie_value = unescape(document.cookie)
@@ -534,7 +539,7 @@ function getCookie(Name) {
 	return ""
 }
 
-//팝업창 띄우기
+// 팝업창 띄우기
 function openWindow(url, wt, ht, urlName, tbar, mbar, st, sbar, rsize) {
 
 	wt = '1070';
@@ -569,7 +574,7 @@ function openWindow(url, wt, ht, urlName, tbar, mbar, st, sbar, rsize) {
 
 }
 
-//중앙팝업창 띄우기
+// 중앙팝업창 띄우기
 function CenterWindow(height, width) {
 
 	var outx = screen.height;
@@ -628,7 +633,7 @@ function ComSubmit(opt_formId) {
 	};
 }
 
-//콤마 삽입
+// 콤마 삽입
 function comma(str) {
 	str = String(str);
 	return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
@@ -640,10 +645,10 @@ function uncomma(str) {
 	return str.replace(/[^\d]+/g, '');
 }
 
-//특수문자, 특정문자열(sql예약어의 앞뒤공백포함) 제거
+// 특수문자, 특정문자열(sql예약어의 앞뒤공백포함) 제거
 function checkSearchedWord(obj) {
 	if (obj.value.length > 0) {
-		//특수문자 제거
+		// 특수문자 제거
 		var expText = /[%=><]/;
 		if (expText.test(obj.value) == true) {
 			alert("특수문자를 입력 할수 없습니다.");
@@ -651,23 +656,23 @@ function checkSearchedWord(obj) {
 			return false;
 		}
 
-		//특정문자열(sql예약어의 앞뒤공백포함) 제거
+		// 특정문자열(sql예약어의 앞뒤공백포함) 제거
 		var sqlArray = new Array(
-		//sql 예약어
+		// sql 예약어
 		"OR", "SELECT", "INSERT", "DELETE", "UPDATE", "CREATE", "DROP", "EXEC",
 				"UNION", "FETCH", "DECLARE", "TRUNCATE");
 
 		var regex;
 		var regex_plus;
 		for (var i = 0; i < sqlArray.length; i++) {
-			//공백문자 포함 체크
+			// 공백문자 포함 체크
 			regex = new RegExp("\\s" + sqlArray[i] + "\\s", "gi");
 			if (regex.test(obj.value)) {
 				alert("\"" + sqlArray[i] + "\"와(과) 같은 특정문자로 검색할 수 없습니다.");
 				obj.value = obj.value.replace(regex, "");
 				return false;
 			}
-			//공백문자 미포함 체크         
+			// 공백문자 미포함 체크
 			regex_plus = new RegExp("\\+" + sqlArray[i] + "\\+", "gi");
 			if (regex_plus.test(obj.value)) {
 				alert("\"" + sqlArray[i] + "\"와(과) 같은 특정문자로 검색할 수 없습니다.");
@@ -685,8 +690,9 @@ function caps_lockchk() {
 				var $caps_lockchk = $(this), tooltipVisible = $('.tooltip').is(
 						':visible'), s = String.fromCharCode(e.which);
 
-				//Check if capslock is on. No easy way to test for this
-				//Tests if letter is upper case and the shift key is NOT pressed.
+				// Check if capslock is on. No easy way to test for this
+				// Tests if letter is upper case and the shift key is NOT
+				// pressed.
 				if (s.toUpperCase() === s && s.toLowerCase() !== s
 						&& !e.shiftKey) {
 					if (!tooltipVisible)
@@ -699,9 +705,131 @@ function caps_lockchk() {
 						$caps_lockchk.tooltip('hide');
 				}
 
-				//Hide the tooltip when moving away from the password field
+				// Hide the tooltip when moving away from the password field
 				$caps_lockchk.blur(function(e) {
 					$caps_lockchk.tooltip('hide');
 				});
 			});
+}
+
+//소셜 공유하기
+function sendSns(sns, url, txt ,type)
+{
+	alert(sns);
+	alert(url);
+	alert(txt);
+	
+	//통계기 추가 필요
+	
+	
+    var o;
+    
+    //보안이슈 인코딩 처리.
+    var _url = encodeURIComponent(url);
+    var _txt = encodeURIComponent(txt);
+    var _br  = encodeURIComponent('\r\n');
+    
+    var googleAnalytics_var = '&utm_source=' + sns +'&utm_campaign='+ txt + '&utm_medium=' + type;
+    	
+    alert(googleAnalytics_var);
+    switch(sns)
+    {
+        case 'facebook':
+            o = {
+                method:'popup',
+                url:'http://www.facebook.com/sharer/sharer.php?u=' + _url + googleAnalytics_var
+            };
+            break;
+ 
+        case 'twitter':
+            o = {
+                method:'popup',
+                url:'http://twitter.com/intent/tweet?text=' + _txt + '&url=' + _url
+            };
+            break;
+ 
+        case 'me2day':
+            o = {
+                method:'popup',
+                url:'http://me2day.net/posts/new?new_post[body]=' + _txt + _br + _url + '&new_post[tags]=epiloum'
+            };
+            break;
+ 
+        case 'googleplus':
+            o = {
+                method:'popup',
+                url:'https://plus.google.com/share?&t' + _txt + '&url=' + _url
+            };
+            break;
+        
+        case 'linkedin':
+            o = {
+                method:'popup',
+                url:'https://www.linkedin.com/shareArticle?mini=true&url=' + _url
+            };
+            break;    
+     
+            
+        case 'kakaotalk':
+            o = {
+                method:'web2app',
+                param:'sendurl?msg=' + _txt + '&url=' + _url + '&type=link&apiver=2.0.1&appver=2.0&appid=dev.epiloum.net&appname=' + encodeURIComponent('Epiloum 개발노트'),
+                a_store:'itms-apps://itunes.apple.com/app/id362057947?mt=8',
+                g_store:'market://details?id=com.kakao.talk',
+                a_proto:'kakaolink://',
+                g_proto:'scheme=kakaolink;package=com.kakao.talk'
+            };
+            break;
+ 
+        case 'kakaostory':
+            o = {
+                method:'web2app',
+                param:'posting?post=' + _txt + _br + _url + '&apiver=1.0&appver=2.0&appid=dev.epiloum.net&appname=' + encodeURIComponent('Epiloum 개발노트'),
+                a_store:'itms-apps://itunes.apple.com/app/id486244601?mt=8',
+                g_store:'market://details?id=com.kakao.story',
+                a_proto:'storylink://',
+                g_proto:'scheme=kakaolink;package=com.kakao.story'
+            };
+            break;
+ 
+        case 'band':
+            o = {
+                method:'web2app',
+                param:'create/post?text=' + _txt + _br + _url,
+                a_store:'itms-apps://itunes.apple.com/app/id542613198?mt=8',
+                g_store:'market://details?id=com.nhn.android.band',
+                a_proto:'bandapp://',
+                g_proto:'scheme=bandapp;package=com.nhn.android.band'
+            };
+            break;
+ 
+        default:
+            alert('지원하지 않는 SNS입니다.');
+            return false;
+    }
+ 
+    switch(o.method)
+    {
+        case 'popup':
+            window.open(o.url);
+            break;
+ 
+        case 'web2app':
+            if(navigator.userAgent.match(/android/i))
+            {
+                // Android
+                setTimeout(function(){ location.href = 'intent://' + o.param + '#Intent;' + o.g_proto + ';end'}, 100);
+            }
+            else if(navigator.userAgent.match(/(iphone)|(ipod)|(ipad)/i))
+            {
+                // Apple
+                setTimeout(function(){ location.href = o.a_store; }, 200);          
+                setTimeout(function(){ location.href = o.a_proto + o.param }, 100);
+            }
+            else
+            {
+                alert('이 기능은 모바일에서만 사용할 수 있습니다.');
+            }
+            break;
+    }
 }

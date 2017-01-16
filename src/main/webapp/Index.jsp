@@ -229,6 +229,17 @@
 					<%--<p>Contents :</p> --%>
 				</div>
 			</div>
+			<div class="col-lg-12">
+				<%--2행 --%>
+				<div class="col-xs-12 col-sm-6 col-md-4">
+					<!-- md >= 992 / sm >=768  2행에서 1-->
+					<a href="/hightsofts/hightsofts.do?items=Highcharts"> <img
+						class="img-responsive img-portfolio img-hover"
+						src="/CompanyItem/ITProducts/Images/highcharts(250).png" alt="">
+					</a>
+					<%--<p>Contents :</p> --%>
+				</div>
+			</div>
 			<%-- 3행
 			<div class="col-md-4 col-sm-6">
 				<!-- 2행에서 2 -->

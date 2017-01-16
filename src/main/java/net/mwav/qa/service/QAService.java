@@ -42,6 +42,13 @@ public interface QAService {
 	 * ========================================삭제================================
 	 * ========
 	 */
+	List<Map<String, Object>> selectListQAList(Map<String, Object> map);
+
+	int selectOneGetTotalCount();
+
+	List<Map<String, Object>> selectListQAFrontList(Map<String, Object> map);
+
+	Map<String, Object> selectOneQAView(Map<String, Object> map);
 
 
 

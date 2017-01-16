@@ -79,15 +79,15 @@
 			<div class="enter"></div>
 			<!-- Marketing Icons Section -->
 			<div class="row mg9xauto">
-			<%--장바구니 테스트 --%>
-			<!-- <span class="pull-right"><a href="#orderCart"
+				<%--장바구니 테스트 --%>
+				<!-- <span class="pull-right"><a href="#orderCart"
 				data-toggle="modal" data-target=".orderCart" role="button"
 				data-toggle="modal"><i class="fa fa-cart-arrow-down fa-2x"></i></a></span> -->
 
-			<%-- <jsp:include page="/Admins/OrderMgr/OrderList.jsp" flush="false" /> --%>
-			
-			
-			
+				<%-- <jsp:include page="/Admins/OrderMgr/OrderList.jsp" flush="false" /> --%>
+
+
+
 				<div class="col-lg-3 col-md-6">
 					<div class="panel panel-primary">
 						<div class="panel-heading">
@@ -186,6 +186,21 @@
 			<%--이미지 괄호 높이가 같아야 한다 아래는 500 x 250 으로 통일 즉 비율이 맞아야 함
 		--%>
 			<!-- Portfolio Section -->
+			<div class="row" id="IT_Products">
+				<div class="col-md-12 col-sm-12">
+					<div class="panel panel-red">
+						<div class="panel-heading"
+							style="background-color: #d9534f; color: #fff;">Q&A</div>
+						<div class="panel-body">
+							<jsp:include page="/qa/qaFrontList.do" flush="false" />
+
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+
 			<div class="row" id="IT_Products">
 				<div class="col-md-6 col-sm-6">
 					<div class="panel panel-primary">

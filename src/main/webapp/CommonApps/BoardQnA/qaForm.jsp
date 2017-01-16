@@ -96,7 +96,7 @@
 
 						<!-- Form Name -->
 						<legend>
-							Contack Us
+							Contact Us
 							<button type="button" class="close" data-dismiss="modal">
 								<span aria-hidden="true">×</span><span class="sr-only">Close</span>
 							</button>
@@ -106,9 +106,9 @@
 							you shortly.</p>
 						<!-- Text input-->
 						<div class="form-group">
-							<label class="col-md-4 control-label" for="textinput">Name
+							<label class="col-md-3 control-label" for="textinput">Name
 								*</label>
-							<div class="col-md-6">
+							<div class="col-md-8">
 								<input id="textinput" name="uqUserName"
 									placeholder="Enter Your Full Name"
 									class="form-control input-md" required="" type="text">
@@ -118,8 +118,8 @@
 
 						<!-- Text input-->
 						<div class="form-group">
-							<label class="col-md-4 control-label" for="title">Title</label>
-							<div class="col-md-6">
+							<label class="col-md-3 control-label" for="title">Title</label>
+							<div class="col-md-8">
 								<input id="uqTitle" name="uqTitle" placeholder="Title"
 									class="form-control input-md" type="text">
 
@@ -139,9 +139,9 @@
 
 						<!-- Prepended text-->
 						<div class="form-group">
-							<label class="col-md-4 control-label" for="Phone">Mobile
+							<label class="col-md-3 control-label" for="Phone">Mobile
 								Number *</label>
-							<div class="col-md-6">
+							<div class="col-md-8">
 								<div class="input-group">
 									<span class="input-group-addon">+82</span> <input
 										id="uqUserPhone" name="uqUserPhone" class="form-control"
@@ -153,8 +153,8 @@
 
 						<!-- Text input-->
 						<div class="form-group">
-							<label class="col-md-4 control-label" for="website">Website</label>
-							<div class="col-md-6">
+							<label class="col-md-3 control-label" for="website">Website</label>
+							<div class="col-md-8">
 								<input id="uqRelatedLink" name="uqRelatedLink"
 									placeholder="Enter Your Website" class="form-control input-md"
 									type="text"> <span class="help-block">Ex:
@@ -164,9 +164,9 @@
 
 						<!-- Text input-->
 						<div class="form-group">
-							<label class="col-md-4 control-label" for="email">E-Mail
+							<label class="col-md-3 control-label" for="email">E-Mail
 								*</label>
-							<div class="col-md-6">
+							<div class="col-md-8">
 								<input id="uqUserEmail" name="uqUserEmail"
 									placeholder="Enter Your E mail" class="form-control input-md"
 									required="" type="text">
@@ -176,9 +176,9 @@
 
 						<!-- Textarea -->
 						<div class="form-group">
-							<label class="col-md-4 control-label" for="Message">Message
+							<label class="col-md-3 control-label" for="Message">Message
 								*</label>
-							<div class="col-md-6">
+							<div class="col-md-8">
 								<textarea class="form-control" rows="6" id="Message"
 									name="uqContent">Enter Your Message *</textarea>
 							</div>
@@ -202,10 +202,7 @@
 			<div class="modal-footer">
 				<div class="btn-group btn-group-justified" role="group"
 					aria-label="group button">
-					<div class="btn-group" role="group">
-						<button type="button" class="btn btn-danger" data-dismiss="modal"
-							role="button">Close</button>
-					</div>
+					
 					<!-- <div class="btn-group btn-delete hidden" role="group">
 						<button type="button" id="delImage"
 							class="btn btn-default btn-hover-red" data-dismiss="modal"
@@ -215,6 +212,10 @@
 						<button type="button" id="saveImage"
 							class="btn btn-primary btn-hover-green" data-action="save"
 							role="button" onClick="insertQAForm();">Send</button>
+					</div>
+					<div class="btn-group" role="group">
+						<button type="button" class="btn btn-danger" data-dismiss="modal"
+							role="button">Close</button>
 					</div>
 				</div>
 			</div>
