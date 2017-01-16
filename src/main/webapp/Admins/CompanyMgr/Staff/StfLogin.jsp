@@ -128,9 +128,9 @@
 	<script type="text/javascript">
 		alert('관리자 화면으로 이동합니다.');
 		/*        document.stf_login_form.submit(); */
-		window.location.href = '/HomePage/DefaultFrame.do';
+		window.location.href = '/HomePage/DefaultFrame.mwav';
 	<%--중요 위에서 부터 1,2,3 이라 쳤을 때 가운데 껏만 이동한다. 질문하기--%>
-		/*  document.location.href('/HomePage/DefaultFrame.do'); */
+		/*  document.location.href('/HomePage/DefaultFrame.mwav'); */
 		/* url 값이 변동을 안한다 */
 	</script>
 </c:if>
@@ -166,7 +166,7 @@
 			<label for="inputEmail" class="sr-only">StaffLoginId</label
 			--%>
 				<form name="stf_login_form" class="form-signin" method="post"
-					action="/admins/staff/stfLogin.do">
+					action="/admins/staff/stfLogin.mwav">
 					<h2 class="form-signin-heading">Mwav StaffMember sign in</h2>
 
 					<div class='form-group'>

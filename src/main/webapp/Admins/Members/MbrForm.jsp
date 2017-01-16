@@ -20,7 +20,7 @@
 2.값 입력
 3.등록버튼 누를경우
   (mbrForm.jsp => InputCheck(Script.js) 조건만족시 폼 submit
-   =>MbrFormProcess.do => A_MbrFormProcessAction() 등록 후 
+   =>MbrFormProcess.mwav => A_MbrFormProcessAction() 등록 후 
     DefaultFrame.jsp (메인화면)
 
 ========일자 별 설명=========
@@ -120,7 +120,7 @@ $(function() {
 			<td width="10">&nbsp;</td>
 			<td valign="top">&nbsp; <%-- 세번째--%>
 				<form name="frmMbr" method="post"
-					action="/HomePage/MbrFormProcess.do">
+					action="/HomePage/MbrFormProcess.mwav">
 					<table cellspacing="0" cellpadding="0" width="815" border="0">
 						<tr>
 							<td bgcolor="#ffffff" align="left">
@@ -594,7 +594,7 @@ $(function() {
 											</button>
 											<button type="button" name="iblUpdate"
 												style="border: solid 0px #FFFFFF;"
-												onclick="javascript:window.location.href='/HomePage/mbrList.do'">
+												onclick="javascript:window.location.href='/HomePage/mbrList.mwav'">
 												<img src="/HomePage/Admins/zImages/btn_admin_modify.gif"
 													border="0">
 											</button>

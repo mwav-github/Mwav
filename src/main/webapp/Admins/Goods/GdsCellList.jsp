@@ -69,7 +69,7 @@ ${member} => request.getAttribute("member");
 						<c:set value="${param.mm}" var="mm" />
 					</c:otherwise>
 				</c:choose>
-				<jsp:include page="/admins/LeftMenu.do" flush="false">
+				<jsp:include page="/admins/LeftMenu.mwav" flush="false">
 					<jsp:param name="mm" value="${mm}" />
 				</jsp:include>
 			</div>
@@ -133,9 +133,9 @@ ${member} => request.getAttribute("member");
 														<td class="hidden-xs">${VselectListGdsList.gInsertDt}</td>
 														<td>
 															<button type="button" class="btn btn-info"
-																onclick="javascript:window.location.href='/admins/goods/gdsView.do?goods_id=${VselectListGdsList.goods_id}'">보기</button>&nbsp;
+																onclick="javascript:window.location.href='/admins/goods/gdsView.mwav?goods_id=${VselectListGdsList.goods_id}'">보기</button>&nbsp;
 															<button type="button" class="btn btn-warning"
-																onclick="javascript:window.location.href='/admin/goods/gdsUpdate.do?goods_id=${VselectListGdsList.goods_id}'">수정</button>
+																onclick="javascript:window.location.href='/admin/goods/gdsUpdate.mwav?goods_id=${VselectListGdsList.goods_id}'">수정</button>
 														</td>
 													</tr>
 												</c:forEach>
@@ -158,15 +158,15 @@ ${member} => request.getAttribute("member");
 
 											<c:if test="${pagingVO.startPage > pagingVO.pageBlock}">
 												<li><a
-													href="/admins/goods/gdsList.do?pageNum=${pagingVO.startPage - pagingVO.pageBlock}"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
+													href="/admins/goods/gdsList.mwav?pageNum=${pagingVO.startPage - pagingVO.pageBlock}"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
 											</c:if>
 											<c:forEach var="i" begin="${pagingVO.startPage}"
 												end="${pagingVO.endPage}">
-												<li><a href="/admins/goods/gdsList.do?pageNum=${i}">${i}</a></li>
+												<li><a href="/admins/goods/gdsList.mwav?pageNum=${i}">${i}</a></li>
 											</c:forEach>
 											<c:if test="${pagingVO.endPage < pagingVO.pageCount}">
 												<li><a
-													href="/admins/goods/gdsList.do?pageNum=${pagingVO.startPage + pagingVO.pageBlock}"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+													href="/admins/goods/gdsList.mwav?pageNum=${pagingVO.startPage + pagingVO.pageBlock}"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
 											</c:if>
 											<!-- <li><a href="">&laquo;</a></li>
 			<li class="active"><a href="#">1</a></li>

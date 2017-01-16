@@ -10,7 +10,7 @@
 		<h5>회원정보 수정을 희망하시는 경우 비밀번호를 입력해주시기 바랍니다.</h5>
 
 		<form class='form-horizontal mgt4' name="change_record" method="post"
-			action="/member/mbrDelete.do">
+			action="/member/mbrDelete.mwav">
 			<div class="col-md-8">
 				<input type="password" name="mbrLoginPw" class="form-control"
 					placeholder="암호" value="" required>

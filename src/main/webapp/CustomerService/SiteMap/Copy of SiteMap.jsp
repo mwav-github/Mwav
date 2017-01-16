@@ -85,7 +85,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 								class="list-group-item">BusinessField</a> <a
 								href="/Company/ActualResults/ActualResults.jsp"
 								class="list-group-item">ActualResults</a> <a
-								href="/board/bnsList.do" class="list-group-item">ThePress</a> <a
+								href="/board/bnsList.mwav" class="list-group-item">ThePress</a> <a
 								href="/Company/HR-Affairs/HR-Affairs.jsp"
 								class="list-group-item">HR-Affairs</a> <a
 								href="/Company/LocationMap/LocationMap.jsp"

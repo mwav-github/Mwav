@@ -102,7 +102,7 @@
 													<td>${goods.getGoods_id()}</td>
 													<td><img src=""></td>
 													<!-- //상세페이지를 요청할때 해당 상품의 goods_id를 요청 파라미터로 넘김. -->
-													<td><a href="GdsCellView.do?id=${goods.getGoods_id()}">${goods.getgName()}</a></td>
+													<td><a href="GdsCellView.mwav?id=${goods.getGoods_id()}">${goods.getgName()}</a></td>
 													<td>${goods.getgConsumerPrice()}원</td>
 													<td>${goods.getgMemberPrice()}원</td>
 													<td>${goods.getgManufacturer()}</td>
@@ -122,13 +122,13 @@
 											<c:set var="endPage" value="${ pageCount}" />
 										</c:if>
 										<c:if test="${ startPage > pageBlock }">
-											<a href="GdsCellList.do?pageNum=${startPage - pageBlock}">[이전]</a>
+											<a href="GdsCellList.mwav?pageNum=${startPage - pageBlock}">[이전]</a>
 										</c:if>
 										<c:forEach var="i" begin="${ startPage}" end="${ endPage}">
-											<a href="GdsCellList.do?pageNum=${i}">[${i}]</a>
+											<a href="GdsCellList.mwav?pageNum=${i}">[${i}]</a>
 										</c:forEach>
 										<c:if test="${ endPage < pageCount }">
-											<a href="GdsCellList.do?pageNum=${startPage + pageBlock}">[다음]</a>
+											<a href="GdsCellList.mwav?pageNum=${startPage + pageBlock}">[다음]</a>
 										</c:if>
 										<tr>
 											<td colspan="12" align="left">선택한 게시물을 <select
@@ -139,7 +139,7 @@
 										</tr>
 									</c:if> <!-- //페이징 구현 끝 -->
 							<tr>
-								<td align="right"><a href="GdsCellForm.do">상품등록</a></td>
+								<td align="right"><a href="GdsCellForm.mwav">상품등록</a></td>
 							</tr>
 						</table>
 					</form>

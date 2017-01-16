@@ -152,7 +152,7 @@
 			<div class="modal-content">
 				<form id="insertFileForm" method="post"
 					enctype="multipart/form-data" role="form"
-					action="/common/fileUpLoader.do">
+					action="/common/fileUpLoader.mwav">
 
 
 					<input type="hidden" id="images_position" name="images_position"

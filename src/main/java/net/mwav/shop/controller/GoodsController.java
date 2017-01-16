@@ -53,7 +53,7 @@ public class GoodsController {
 	 * ========================================보기================================
 	 * ========
 	 */
-	@RequestMapping(value = "/shop/goods/gdsView.do")
+	@RequestMapping(value = "/shop/goods/gdsView.mwav")
 	public ModelAndView selectListGdsView(CommandMap commandMap,
 			HttpServletRequest request, HttpServletResponse reponse,
 			HttpSession session) throws Exception {
@@ -87,7 +87,7 @@ public class GoodsController {
 	 * 순)========================================
 	 */
 
-	@RequestMapping(value = "/shop/goods/gdsList.do")
+	@RequestMapping(value = "/shop/goods/gdsList.mwav")
 	public ModelAndView selectListGdsList(CommandMap commandMap,
 			HttpServletRequest request, HttpServletResponse reponse,
 			HttpSession session) throws Exception {

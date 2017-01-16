@@ -50,7 +50,7 @@ function check() {
   <a href="#">회원탈퇴</a></td>
   
   <td align="center" width="100">
-  <a href="/HomePage/logout.do">로그아웃</a></td>
+  <a href="/HomePage/logout.mwav">로그아웃</a></td>
   
   </tr>
 </table>
@@ -70,7 +70,7 @@ function check() {
       <p align=center><br>
         <br>
         
-        <form name="login_form" method="post" action=/HomePage/loginProcess.do>
+        <form name="login_form" method="post" action=/HomePage/loginProcess.mwav>
         <b>회원 로그인</b> 
       <p> 
       <div align="center">  
@@ -113,7 +113,7 @@ function check() {
       </div>
       <p align="center"> 
         <input type="submit"  value="로그인" onclick="check()"/>
-        <input type="button"  value="회원가입" onclick="javascript:window.location.href='/HomePage/MbrForm.do'"/> 
+        <input type="button"  value="회원가입" onclick="javascript:window.location.href='/HomePage/MbrForm.mwav'"/> 
         </form>
 
 </body>

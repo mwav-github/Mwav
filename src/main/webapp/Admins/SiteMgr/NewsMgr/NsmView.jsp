@@ -57,7 +57,7 @@
 						<c:set value="${param.mm}" var="mm" />
 					</c:otherwise>
 				</c:choose>
-				<jsp:include page="/admins/LeftMenu.do" flush="false">
+				<jsp:include page="/admins/LeftMenu.mwav" flush="false">
 					<jsp:param name="mm" value="${mm}" />
 				</jsp:include>
 			</div>
@@ -80,7 +80,7 @@
 	function check2(obj) {
 		if (confirm("정말 삭제하시겠습니까??") == true){    //확인
 			var bbb = obj;
-			location.href= "/admin/boardNews/nsmDelete.do?bNews_id="+bbb;
+			location.href= "/admin/boardNews/nsmDelete.mwav?bNews_id="+bbb;
 		}else{   //취소
 		    return;
 		}
@@ -169,7 +169,7 @@
 							<br style="clear: both">
 							<p class="pull-right">
 								<button type="button" class="btn btn-success"
-									onClick="javascript:window.location.href='/admin/boardNews/nsmList.do?pageNum=${pageNum}'">All
+									onClick="javascript:window.location.href='/admin/boardNews/nsmList.mwav?pageNum=${pageNum}'">All
 									List</button>
 								<button type="button" class="btn btn-warning"
 									onClick="javascript:history.go(-1)">BACK</button>

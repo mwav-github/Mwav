@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="Refresh" content="3;url=/HomePage/U_List.do">
+<meta http-equiv="Refresh" content="3;url=/HomePage/U_List.mwav">
 <title>The Notice Management</title>
 </head>
 <body>

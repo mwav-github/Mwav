@@ -100,7 +100,7 @@ http://bootsnipp.com/snippets/3x4PV
 									</h3>
 									<div class="pi-price">$${VselectListGdsList.gConsumerPrice}</div>
 									<button type="button" class="btn add2cart"
-													onclick="javascript:window.location.href='/shop/goods/gdsView.do?goods_id=${VselectListGdsList.goods_id}'">Add
+													onclick="javascript:window.location.href='/shop/goods/gdsView.mwav?goods_id=${VselectListGdsList.goods_id}'">Add
 										to cart</button>
 									
 									<div class="sticker sticker-new"></div>

@@ -12,7 +12,7 @@ var _editor_url = "../";
 document.write('<scr'+'ipt src="' +_editor_url+ 'editor.js" language="Javascript1.2"></scr'+'ipt>');
 
 var parent_objname = location.search.substring(1,location.search.length);  // parent editor objname
-var parent_config  = opener.document.all[parent_objname].config;
+var parent_config  = opener.mwavcument.all[parent_objname].config;
 
 var config         = cloneObject( parent_config );
 var objname        = 'editor'; // name of this editor

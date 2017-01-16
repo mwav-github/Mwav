@@ -107,7 +107,7 @@ http://bootsnipp.com/snippets/3x4PV
 											<div class="col-md-6">
 
 												<button type="button" class="btn btn-primary"
-													onclick="javascript:window.location.href='/shop/goods/gdsView.do?goods_id=${VselectListGdsList.goods_id}'">More
+													onclick="javascript:window.location.href='/shop/goods/gdsView.mwav?goods_id=${VselectListGdsList.goods_id}'">More
 													Info</button>
 											</div>
 

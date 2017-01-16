@@ -899,9 +899,9 @@ font-weight:bold;
 <td><img src="/image/shop/public/bottorm_bg.gif" height="50" width="1"></td>
 <td><a href="http://www.koreacb.com/" target="_blank"><img src="/image/shop/public/bottorm_b01.gif" border="0"></a></td>
 <td><img src="/image/shop/public/bottorm_bg.gif" height="50" width="1"></td>
-<td><a href="http://www.kcp.co.kr/alpa.escrow.info.do" target="_blank"><img src="/image/shop/public/bottorm_c01.gif" border="0"></a></td>
+<td><a href="http://www.kcp.co.kr/alpa.escrow.info.mwav" target="_blank"><img src="/image/shop/public/bottorm_c01.gif" border="0"></a></td>
 <td><img src="/image/shop/public/bottorm_bg.gif" height="50" width="1"></td>
-<td><a href="http://www.kcp.co.kr/payment.service.info.do" target="_blank"><img src="/image/shop/public/bottorm_d01.gif" border="0"></a></td>
+<td><a href="http://www.kcp.co.kr/payment.service.info.mwav" target="_blank"><img src="/image/shop/public/bottorm_d01.gif" border="0"></a></td>
 <td><img src="/image/shop/public/bottorm_bg.gif" height="50" width="1"></td>
 <td><a href="http://www.taxsave.go.kr/" target="_blank"><img src="/image/shop/public/bottorm_e01.gif" border="0"></a></td>
 <td><img src="/image/shop/public/bottorm_bg.gif" height="50" width="1"></td>

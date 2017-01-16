@@ -6,7 +6,7 @@
 <div class="row">
 	<%--================================================시작========================================================== --%>
 	<form name="qaList" method="post"
-		action="/qa/qaList.do">
+		action="/qa/qaList.mwav">
 
 		<div class="input-group custom-search-form">
 			<input type="text" class="form-control" placeholder="Search...">
@@ -40,13 +40,13 @@
 									<td class="hidden-xs">${RselectListQAList.QnA_id}</td>
 									<td class="hidden-xs">${RselectListQAList.uqGroup}</td>
 									<td><a
-										href="javascript:window.location.href='/qa/qaView.do?QnA_id=${RselectListQAList.QnA_id}'">${RselectListQAList.uqTitle}</a></td>
+										href="javascript:window.location.href='/qa/qaView.mwav?QnA_id=${RselectListQAList.QnA_id}'">${RselectListQAList.uqTitle}</a></td>
 									<td class="hidden-xs">${RselectListQAList.uqInsertDt}</td>
 									<td>
 										<button type="button" class="btn btn-info"
-											onclick="javascript:window.location.href='/qa/qaView.do?QnA_id=${RselectListQAList.QnA_id}'">보기</button>&nbsp;
+											onclick="javascript:window.location.href='/qa/qaView.mwav?QnA_id=${RselectListQAList.QnA_id}'">보기</button>&nbsp;
 										<button type="button" class="btn btn-warning"
-											onclick="javascript:window.location.href='/qa/qaView.do?QnA_id=${RselectListQAList.QnA_id}'">수정</button>
+											onclick="javascript:window.location.href='/qa/qaView.mwav?QnA_id=${RselectListQAList.QnA_id}'">수정</button>
 									</td>
 								</tr>
 
@@ -69,16 +69,16 @@
 
 						<c:if test="${pagingVO.startPage > pagingVO.pageBlock}">
 							<li><a
-								href="/qa/qaList.do?pageNum=${pagingVO.startPage - pagingVO.pageBlock}"><span
+								href="/qa/qaList.mwav?pageNum=${pagingVO.startPage - pagingVO.pageBlock}"><span
 									class="glyphicon glyphicon-chevron-left"></span></a></li>
 						</c:if>
 						<c:forEach var="i" begin="${pagingVO.startPage}"
 							end="${pagingVO.endPage}">
-							<li><a href="/qa/qaList.do?pageNum=${i}">${i}</a></li>
+							<li><a href="/qa/qaList.mwav?pageNum=${i}">${i}</a></li>
 						</c:forEach>
 						<c:if test="${pagingVO.endPage < pagingVO.pageCount}">
 							<li><a
-								href="/qa/qaList.do?pageNum=${pagingVO.startPage + pagingVO.pageBlock}"><span
+								href="/qa/qaList.mwav?pageNum=${pagingVO.startPage + pagingVO.pageBlock}"><span
 									class="glyphicon glyphicon-chevron-right"></span></a></li>
 						</c:if>
 					</ul>

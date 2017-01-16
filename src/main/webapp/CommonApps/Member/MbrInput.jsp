@@ -47,7 +47,7 @@ http://planbong.tistory.com/531
 			// 2. 이벤트 핸들러 등록
 			xhr.onreadystatechange = callback; // callback 함수를 등록
 			// 3. open()를 통해 요청관련 설정을 설정
-			xhr.open("POST", "/member/mbrLoginIdCheck.do", true);
+			xhr.open("POST", "/member/mbrLoginIdCheck.mwav", true);
 			// 4. Header에 contentType 지정 - post
 			xhr.setRequestHeader("Content-Type",
 					"application/x-www-form-urlencoded");
@@ -173,8 +173,8 @@ http://planbong.tistory.com/531
 		</div>
 		<div class='panel-body'>
 			<form role="form" class='form-horizontal' name="change_record"
-				method="post" action="/member/mbrForm.do" onsubmit="msubmit();">
-				<%--action="/member/memberForm.do" --%>
+				method="post" action="/member/mbrForm.mwav" onsubmit="msubmit();">
+				<%--action="/member/memberForm.mwav" --%>
 				<div class='form-group'>
 					<label class='control-label col-md-2 col-md-offset-2'
 						for='id_accomodation'>Login Id </label> 

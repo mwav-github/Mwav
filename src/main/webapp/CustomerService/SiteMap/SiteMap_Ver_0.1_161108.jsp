@@ -85,7 +85,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 									Field</a></li>
 							<li><a href="/Company/ActualResults/ActualResults.jsp">Actual
 									Results</a></li>
-							<li><a href="/board/bnsList.do">The Press</a></li>
+							<li><a href="/board/bnsList.mwav">The Press</a></li>
 							<li><a href="/Company/HR-Affairs/HR-Affairs.jsp">HR-Affairs</a></li>
 							<li><a href="/Company/LocationMap/LocationMap.jsp">Location
 									Map</a></li>

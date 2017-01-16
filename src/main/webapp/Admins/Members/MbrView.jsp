@@ -427,7 +427,7 @@
 										<td align="center" height="50">
 											<button type="button" name="hiList"
 												style="border: solid 0px #FFFFFF;"
-												onclick="javascript:window.location.href='/HomePage/mbrList.do'">
+												onclick="javascript:window.location.href='/HomePage/mbrList.mwav'">
 												<img src="/HomePage/Admins/zImages/btn_view_list.gif"
 													border="0">
 											</button>&nbsp;
@@ -437,7 +437,7 @@
 													border="0" >
 											</button>&nbsp;
 											<button type="button" name="ibDelete"
-												style="border: solid 0px #FFFFFF;" onclick="javascript:window.location.href='/HomePage/mbrDelete.do?m_Id=${m_Id}'">
+												style="border: solid 0px #FFFFFF;" onclick="javascript:window.location.href='/HomePage/mbrDelete.mwav?m_Id=${m_Id}'">
 												<img src="/HomePage/Admins/zImages/btn_admin_delete.gif"
 													border="0">
 											</button>

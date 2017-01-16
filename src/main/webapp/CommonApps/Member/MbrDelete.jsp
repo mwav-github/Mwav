@@ -18,7 +18,7 @@
 		<br />
 
 		<form class='form-horizontal mgt4' name="change_record" method="post"
-			action="/member/mbrDelete.do">
+			action="/member/mbrDelete.mwav">
 			<div class="col-md-8">
 				<input type="password" name="mbrLoginPw" class="form-control"
 					placeholder="비밀번호" value="" required>

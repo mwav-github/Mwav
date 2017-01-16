@@ -46,7 +46,7 @@ public class  PostController {
    @Resource(name = "beanValidator")
    protected  DefaultBeanValidator beanValidator;*/
 
-   @RequestMapping(value="/sample/getAddrApi.do")
+   @RequestMapping(value="/sample/getAddrApi.mwav")
    public void getAddrApi(
                           HttpServletRequest req, ModelMap model, HttpServletResponse response) throws Exception {
 
@@ -66,7 +66,7 @@ public class  PostController {
    	
    	String confmKey = req.getParameter("confmKey");
 	String keyword = req.getParameter("keyword");
-	String apiUrl = "http://www.juso.go.kr/addrlink/addrLinkApi.do?currentPage="+currentPage
+	String apiUrl = "http://www.juso.go.kr/addrlink/addrLinkApi.mwav?currentPage="+currentPage
 									+"&countPerPage="+countPerPage+"&keyword="+URLEncoder.encode(keyword,"UTF-8")
 									+"&confmKey="+"U01TX0FVVEgyMDE2MTEyNTE3MjUyODE2ODQ1";
    	URL url = new URL(apiUrl);

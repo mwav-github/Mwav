@@ -8,20 +8,20 @@
 		
 		var pgurl = window.location.href.substr(window.location.href
 		 .lastIndexOf("/") + 1); 
-		 실행url -  http://localhost:8088/login/login.do?key=value
+		 실행url -  http://localhost:8088/login/login.mwav?key=value
 		
 		 -javascript-
-		 location.href  -> http://localhost:8088/login/login.do?key=value
+		 location.href  -> http://localhost:8088/login/login.mwav?key=value
 		 location.protocol ->  http:
 		 location.host -> localhost:8088 
-		 location.pathname -> /login/login.do
+		 location.pathname -> /login/login.mwav
 		 location.search -> ?key=value
 		 ﻿
 		 -jquery-
-		 ﻿jQuery(location).attr('href') -> http://localhost:8088/login/login.do?key=value
+		 ﻿jQuery(location).attr('href') -> http://localhost:8088/login/login.mwav?key=value
 		 jQuery(location).attr('protocol') -> http:
 		 jQuery(location).attr('host') -> localhost:8088 
-		 jQuery(location).attr('pathname') -> /login/login.do
+		 jQuery(location).attr('pathname') -> /login/login.mwav
 		 jQuery(location).attr('search')-> ?key=value
 		 [출처] javascript & jquery location object 정보 - 현재 실행중이 URL정보|작성자 미친꼬북		
 		 */
@@ -100,13 +100,13 @@
 			data-target="#list_menu_highsofts" alt="/CompanyItem/ITProducts/HighSofts/HighSofts.jsp" style="text-align:left !important">HighSofts</a>
 						
 		<div id="list_menu_highsofts" class="collapse child_left_menu">
-			<a href="/hightsofts/hightsofts.do?items=Highcharts" class="list-group-item " data-toggle="tooltip"
+			<a href="/hightsofts/hightsofts.mwav?items=Highcharts" class="list-group-item " data-toggle="tooltip"
 				data-placement="top" data-original-title="Highcharts"><span
 				class="glyphicon glyphicon-chevron-right"></span> Highcharts</a> <a
-				href="/hightsofts/hightsofts.do?items=Highstock" class="list-group-item " data-toggle="tooltip"
+				href="/hightsofts/hightsofts.mwav?items=Highstock" class="list-group-item " data-toggle="tooltip"
 				data-placement="top" data-original-title="Highstock"><span
 				class="glyphicon glyphicon-chevron-right"></span> Highstock</a> <a
-				href="/hightsofts/hightsofts.do?items=Highmaps" class="list-group-item " data-toggle="tooltip"
+				href="/hightsofts/hightsofts.mwav?items=Highmaps" class="list-group-item " data-toggle="tooltip"
 				data-placement="top" data-original-title="Highmaps"><span
 				class="glyphicon glyphicon-chevron-right"></span> Highmaps</a> 
 		</div>

@@ -68,8 +68,8 @@ public class OrderController {
 	 * ========
 	 */
 	// 1번 bnsForm : Form 입력만 가능 (뒤로가기, list)
-	@RequestMapping(value = "/shop/order/orderForm.do", params = "type=frontCart")
-	// @RequestMapping(value = "/shop/order/orderForm.do")
+	@RequestMapping(value = "/shop/order/orderForm.mwav", params = "type=frontCart")
+	// @RequestMapping(value = "/shop/order/orderForm.mwav")
 	// http://egloos.zum.com/nadostar/v/210497
 	// vo 사용 http://annotations.tistory.com/61
 	public @ResponseBody Map<String, Object> insertOrderForm(CommandMap commandMap,
@@ -153,7 +153,7 @@ public class OrderController {
 	 */
 
 	
-	@RequestMapping(value = "/shop/order/orderPayView.do")
+	@RequestMapping(value = "/shop/order/orderPayView.mwav")
 	public ModelAndView selectOrderPayView(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
 
@@ -214,7 +214,7 @@ public class OrderController {
 	 * ========================================수정================================
 	 * ========
 	 */
-	@RequestMapping(value = "/shop/order/orderCartUpdate.do")
+	@RequestMapping(value = "/shop/order/orderCartUpdate.mwav")
 	public @ResponseBody Map<String, Object> updateOrderCartUpdate(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
 
@@ -266,7 +266,7 @@ public class OrderController {
 	 * 순)========================================
 	 */
 
-	@RequestMapping(value = "/shop/order/orderList.do")
+	@RequestMapping(value = "/shop/order/orderList.mwav")
 	public ModelAndView selectListBnsList(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/Shop/OrderProcess/OrderForm");
@@ -331,7 +331,7 @@ public class OrderController {
 	 * ========================================삭제================================
 	 * ========
 	 */
-	@RequestMapping(value = "/shop/order/OrderCartDelete.do")
+	@RequestMapping(value = "/shop/order/OrderCartDelete.mwav")
 	public @ResponseBody Map<String, Object> deleteOrderCartDelete(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
 

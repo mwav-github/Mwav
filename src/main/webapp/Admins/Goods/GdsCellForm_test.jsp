@@ -29,7 +29,7 @@
 
 			<td width="10">&nbsp;</td>
 			<td valign="top" >&nbsp; <%-- 세번째--%>
-				<form method="post" name="GdsCellForm_test" action="GdsCellProc.do">
+				<form method="post" name="GdsCellForm_test" action="GdsCellProc.mwav">
 					<table width="1000" border="0" cellpadding="0" cellspacing="0">
 						<tr>
 							<td>&nbsp;</td>

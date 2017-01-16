@@ -54,7 +54,7 @@ public class QAController {
 	 */
 
 	// 1번 bnsForm : Form 입력만 가능 (뒤로가기, list)
-	@RequestMapping(value = "/qa/qaForm.do")
+	@RequestMapping(value = "/qa/qaForm.mwav")
 	public @ResponseBody boolean insertQAForm(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
 
@@ -75,7 +75,7 @@ public class QAController {
 	 * ========================================보기================================
 	 * ========
 	 */
-	@RequestMapping(value = "/qa/qaView.do")
+	@RequestMapping(value = "/qa/qaView.mwav")
 	public ModelAndView selectOneNsmView(CommandMap commandMap,
 			HttpServletRequest request, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView("/CommonApps/BoardQnA/qaView");
@@ -115,7 +115,7 @@ public class QAController {
 	 * 순)========================================
 	 */
 	//조인해서 가져와야 할듯. 
-	@RequestMapping(value = "/qa/qaFrontList.do")
+	@RequestMapping(value = "/qa/qaFrontList.mwav")
 	public ModelAndView selectListBnsFrontList(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView(
@@ -142,7 +142,7 @@ public class QAController {
 	
 	
 	// 2번 bnsList : 리스트
-		@RequestMapping(value = "/qa/qaList.do")
+		@RequestMapping(value = "/qa/qaList.mwav")
 		public ModelAndView selectListQAList(CommandMap commandMap,
 				HttpServletRequest request) throws Exception {
 			ModelAndView mv = new ModelAndView("/Company/CompanyMasterPage_1");

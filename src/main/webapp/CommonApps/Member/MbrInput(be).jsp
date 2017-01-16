@@ -11,7 +11,7 @@ http://planbong.tistory.com/531
 
 
 <div class="row">
-	<form role="form" method="post" action="/member/memberForm.do">
+	<form role="form" method="post" action="/member/memberForm.mwav">
 		<div class="col-lg-6">
 			<div class="well well-sm">
 				<strong><span class="glyphicon glyphicon-asterisk"></span>Required

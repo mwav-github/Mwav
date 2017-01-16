@@ -53,13 +53,13 @@ public class MemberController {
 	 * 5. bnsUpdate : mode = SbnsUpdate /CommonApps/BoardNews/bnsForm.jsp
 	 */
 
-	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/login.mwav", method = RequestMethod.GET)
 	public String login(Model model) {
 
 		return "redirect:/MasterPage.jsp?mode=SMbrLogin";
 	}
 
-	@RequestMapping(value = "/memberDefault.do")
+	@RequestMapping(value = "/memberDefault.mwav")
 	public ModelAndView defaultMember(CommandMap commandMap,
 			HttpServletRequest request, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView("/MasterPage_1");
@@ -104,7 +104,7 @@ public class MemberController {
 	 *             - Exception 발생시 무엇에 대한 에러인지 처리 미흡, 에러 페이지로 redirect??
 	 * @see 컨트롤러 부분과 서비스로직 분리
 	 */
-	@RequestMapping(value = "/member/mbrForm.do")
+	@RequestMapping(value = "/member/mbrForm.mwav")
 	public String insertMbrForm(CommandMap commandMap, Model model)
 			throws Exception {
 
@@ -124,7 +124,7 @@ public class MemberController {
 	 */
 
 	// 2번 MbrView : 수정/삭제가능 (view만사용.)
-	@RequestMapping(value = "/member/mbrView.do")
+	@RequestMapping(value = "/member/mbrView.mwav")
 	public ModelAndView selectMbrView(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
 		HttpSession session = request.getSession();
@@ -154,7 +154,7 @@ public class MemberController {
 	 * update> updatePro 가 필요없다 그러나 아래와 같이 하려면, 별도 controller을 해줘야하며 어짜피 쿼리는
 	 * 동일하므로 view 이용하면된다. ~! 즉 controller에서만 작업 후 이후 꺼는 view 이용
 	 */
-	@RequestMapping(value = "/member/mbrUpdate.do")
+	@RequestMapping(value = "/member/mbrUpdate.mwav")
 	public ModelAndView updateMbrform(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/CustomerService/CS-MasterPage");
@@ -179,7 +179,7 @@ public class MemberController {
 		return mv;
 	}
 
-	@RequestMapping(value = "/member/mbrUpdatePro.do")
+	@RequestMapping(value = "/member/mbrUpdatePro.mwav")
 	public ModelAndView updateProMbrform(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/CustomerService/CS-MasterPage");
@@ -223,7 +223,7 @@ public class MemberController {
 
 	// 4번 추후 패스워드 찾기 순서 mbrTempLoginPwUpdate -> mbrTempLoginPwSeek ->
 	// mbrLoginPwUpdate
-	@RequestMapping(value = "/member/mbrLoginPwUpdate.do")
+	@RequestMapping(value = "/member/mbrLoginPwUpdate.mwav")
 	public @ResponseBody boolean updateMbrLoginPw(CommandMap commandMap,
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
 		//ModelAndView mv = new ModelAndView("/MasterPage");
@@ -251,7 +251,7 @@ public class MemberController {
 	 * 변경 내역 16.02.17 updateMbrTempLoginPw 시 기 mbrLoginPw는 null 로 변경해야 할 필요성 느끼고
 	 * 변경 처리 만약 중간에 창을 닫고 로그인 시도하면 안되므로~!
 	 */
-	@RequestMapping(value = "/member/mbrTempLoginPwUpdate.do")
+	@RequestMapping(value = "/member/mbrTempLoginPwUpdate.mwav")
 	public @ResponseBody String updateMbrTempLoginPw(CommandMap commandMap,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
@@ -302,7 +302,7 @@ public class MemberController {
 	 * 순)========================================
 	 */
 	// 1번 추후
-	@RequestMapping(value = "/member/mbrLoginIdCheck.do")
+	@RequestMapping(value = "/member/mbrLoginIdCheck.mwav")
 	public void selectOneMbrLoginIdCheck(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 
@@ -333,7 +333,7 @@ public class MemberController {
 	}
 
 	// 2번 추후
-	@RequestMapping(value = "/member/mbrLoginIdSeek.do")
+	@RequestMapping(value = "/member/mbrLoginIdSeek.mwav")
 	public void selectOneMbrLoginIdSeek(CommandMap commandMap,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
@@ -397,7 +397,7 @@ public class MemberController {
 	}
 
 	// 7번 추후
-	@RequestMapping(value = "/member/mbrTempLoginPwSeek.do")
+	@RequestMapping(value = "/member/mbrTempLoginPwSeek.mwav")
 	public @ResponseBody boolean selectOneMbrTempLoginPwSeek(
 			CommandMap commandMap, HttpServletRequest request) throws Exception {
 
@@ -414,7 +414,7 @@ public class MemberController {
 	 */
 
 	// 4번 추후
-	@RequestMapping(value = "/member/mbrDelete.do")
+	@RequestMapping(value = "/member/mbrDelete.mwav")
 	public ModelAndView deleteMbrDelete(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/Index");
@@ -437,7 +437,7 @@ public class MemberController {
 	}
 
 	// 8번 추후
-	@RequestMapping(value = "/PostSeek/zcGunGuSeek.do")
+	@RequestMapping(value = "/PostSeek/zcGunGuSeek.mwav")
 	public @ResponseBody List<String> selectListZcGunGuSeek(
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
@@ -453,7 +453,7 @@ public class MemberController {
 
 	// consumes를 통해 POST방식으로 넘어온 요청에서 json 형태로 postData를 넘겨줌을 정의
 	// 9번 추후
-	@RequestMapping(value = "/PostSeek/zcAll.do")
+	@RequestMapping(value = "/PostSeek/zcAll.mwav")
 	public @ResponseBody List<Map<String, Object>> selectListZcAll(
 			CommandMap commandMap, HttpServletResponse response)
 			throws Exception {
@@ -519,7 +519,7 @@ public class MemberController {
 	}
 
 	// 3번 추후 return 필요없을ㄷ스 고민
-	@RequestMapping(value = "/member/LogOut.do")
+	@RequestMapping(value = "/member/LogOut.mwav")
 	public ModelAndView logout(CommandMap commandMap, HttpServletRequest request)
 			throws Exception {
 
@@ -540,7 +540,7 @@ public class MemberController {
 	 * 않음 logincheck = 5 : DB 조회시 NULL (임시패스워드 발급 단계에서 중간하였을때 포함) logincheck = 6
 	 * : 탈퇴하지 않음 logincheck = 7 : 탈퇴
 	 */
-	@RequestMapping(value = "/member/Login.do")
+	@RequestMapping(value = "/member/Login.mwav")
 	public ModelAndView selectLogin(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/Index");
@@ -610,7 +610,7 @@ public class MemberController {
 	/*
 	 * // 7번 추후
 	 * 
-	 * @RequestMapping(value = "/member/PWFinder.do") public ModelAndView
+	 * @RequestMapping(value = "/member/PWFinder.mwav") public ModelAndView
 	 * updatePW(CommandMap commandMap, HttpServletRequest request) throws
 	 * Exception {
 	 * 
@@ -630,7 +630,7 @@ public class MemberController {
 	 */
 
 	// 스프링 JSON 예제
-	@RequestMapping(value = "/Post/GunguFinder1.do")
+	@RequestMapping(value = "/Post/GunguFinder1.mwav")
 	public @ResponseBody Map<String, Object> getJsonByMap() {
 		Map<String, Object> jsonObject = new HashMap<String, Object>();
 		Map<String, Object> jsonSubObject = null;
@@ -656,7 +656,7 @@ public class MemberController {
 		return jsonObject;
 	}
 
-	@RequestMapping(value = "/member/snsForm.do")
+	@RequestMapping(value = "/member/snsForm.mwav")
 	public ModelAndView insertSnsForm(CommandMap commandMap,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {

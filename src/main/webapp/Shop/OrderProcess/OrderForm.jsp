@@ -41,7 +41,7 @@ wish 는 https://www.wish.com/#cid=563db50683b75d5a54fedcfc 와 같이 id 값은
 				$('.ajax_btnDelete').click(
 						function() {
 
-							var url = '/shop/order/OrderCartDelete.do';
+							var url = '/shop/order/OrderCartDelete.mwav';
 							console.log(url);
 							
 							var now_position = $(this).closest("tr");
@@ -83,7 +83,7 @@ wish 는 https://www.wish.com/#cid=563db50683b75d5a54fedcfc 와 같이 id 값은
 							//console.log(JSON.stringify(data));
 							
 							//http://opendive.tistory.com/585  - context 의미
-							var url = '/shop/order/orderCartUpdate.do';
+							var url = '/shop/order/orderCartUpdate.mwav';
 							console.log(url);
 
 							alert($(this).val()+'개를 선택하셧습니다.');
@@ -363,7 +363,7 @@ function orderCheck(count_sId) {
 				alert("장바구니에 담긴 물품이 없습니다.");
 				return;
 			} else {
-				theForm.action = "orderPayView.do";
+				theForm.action = "orderPayView.mwav";
 				theForm.submit();
 			}
 				
@@ -390,7 +390,7 @@ function orderCheck(count_sId) {
 			<!-- Modal -->
 			<div class="orderCart" id="orderCart">
 				<form class="form-horizontal" name="orderCart_frm" id="cart_list"
-					method="post" action="/shop/order/orderPayView.do">
+					method="post" action="/shop/order/orderPayView.mwav">
 
 					<div class="container-fluid">
 						<div class="row">

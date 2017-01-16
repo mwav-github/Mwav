@@ -18,7 +18,7 @@ import sun.misc.BASE64Encoder;
         //http://changki.net/ (한글)
 
 //http://jo.centis1504.net/?p=137
-//http://m.blog.daum.net/_blog/_m/articleView.do?blogid=0Z2do&articleno=2
+//http://m.blog.daum.net/_blog/_m/articleView.mwav?blogid=0Z2do&articleno=2
 //http://www.enjoydev.com/memo/405
 //http://m.blog.daum.net/pikisvill/8929174
 //http://www.imcore.net/encrypt-decrypt-aes256-c-objective-ios-iphone-ipad-php-java-android-perl-javascript-python/ :  언어별 암호화 자바스크립트 쪽 참고

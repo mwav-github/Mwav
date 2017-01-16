@@ -8,20 +8,20 @@
 		
 		var pgurl = window.location.href.substr(window.location.href
 		 .lastIndexOf("/") + 1); 
-		 실행url -  http://localhost:8088/login/login.do?key=value
+		 실행url -  http://localhost:8088/login/login.mwav?key=value
 		
 		 -javascript-
-		 location.href  -> http://localhost:8088/login/login.do?key=value
+		 location.href  -> http://localhost:8088/login/login.mwav?key=value
 		 location.protocol ->  http:
 		 location.host -> localhost:8088 
-		 location.pathname -> /login/login.do
+		 location.pathname -> /login/login.mwav
 		 location.search -> ?key=value
 		 ﻿
 		 -jquery-
-		 ﻿jQuery(location).attr('href') -> http://localhost:8088/login/login.do?key=value
+		 ﻿jQuery(location).attr('href') -> http://localhost:8088/login/login.mwav?key=value
 		 jQuery(location).attr('protocol') -> http:
 		 jQuery(location).attr('host') -> localhost:8088 
-		 jQuery(location).attr('pathname') -> /login/login.do
+		 jQuery(location).attr('pathname') -> /login/login.mwav
 		 jQuery(location).attr('search')-> ?key=value
 		 [출처] javascript & jquery location object 정보 - 현재 실행중이 URL정보|작성자 미친꼬북		
 		 */

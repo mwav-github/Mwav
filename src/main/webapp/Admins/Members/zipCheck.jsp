@@ -48,9 +48,9 @@
 <%-- dongCheck() 아래와 함수를 추가 --%>
 <script>
 	function dongCheck() {
-		if (document.zipForm.dong.value == "") {
+		if (document.zipForm.mwavng.value == "") {
 			alert("동이름을 입력하세요");
-			document.zipForm.dong.focus();
+			document.zipForm.mwavng.focus();
 			return;
 		}
 		document.zipForm.submit();
@@ -59,16 +59,16 @@
 	
 	function sendAddress(zipcode, sido, gugun, dong, ri, bunji) {
 		var address = sido + " " + gugun + " " + dong + " " + ri + " " + bunji;
-		opener.document.frmMbr.mbrZipcode.value = zipcode;
-		opener.document.frmMbr.mbrAddress.value = address;
-		opener.document.frmMbr.mbrAddress.focus();
+		opener.mwavcument.frmMbr.mbrZipcode.value = zipcode;
+		opener.mwavcument.frmMbr.mbrAddress.value = address;
+		opener.mwavcument.frmMbr.mbrAddress.focus();
 		self.close();
 	}
 </script>
 </head>
 <body >
 	<div id="wrapper" align="center">
-		<form method="post" name="zipForm" id="zipForm" action="/HomePage/zipCheck.do">
+		<form method="post" name="zipForm" id="zipForm" action="/HomePage/zipCheck.mwav">
 			<h1>
 				<span>우편 번호 찾기</span>
 			</h1>
@@ -107,8 +107,8 @@
 				
 				<c:forEach var="zipcodeVO" items="${zipcodeList }">
 					<a
-						href="javascript:sendAddress('${zipcodeVO.zipcode}','${zipcodeVO.sido}','${zipcodeVO.gugun}','${zipcodeVO.dong}','${zipcodeVO.ri}','${zipcodeVO.bunji}')">
-						${zipcodeVO.zipcode}&nbsp;${zipcodeVO.sido}&nbsp;${zipcodeVO.gugun}&nbsp;${zipcodeVO.dong}&nbsp;${zipcodeVO.ri}&nbsp;${zipcodeVO.bunji}&nbsp;
+						href="javascript:sendAddress('${zipcodeVO.zipcode}','${zipcodeVO.sido}','${zipcodeVO.gugun}','${zipcodeVO.mwavng}','${zipcodeVO.ri}','${zipcodeVO.bunji}')">
+						${zipcodeVO.zipcode}&nbsp;${zipcodeVO.sido}&nbsp;${zipcodeVO.gugun}&nbsp;${zipcodeVO.mwavng}&nbsp;${zipcodeVO.ri}&nbsp;${zipcodeVO.bunji}&nbsp;
 					</a>
 					<br />
 				</c:forEach>

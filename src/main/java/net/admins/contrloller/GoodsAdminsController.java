@@ -62,7 +62,7 @@ public class GoodsAdminsController {
 	 * ========
 	 */
 	// 1번 StfForm : Form 입력만 가능 (뒤로가기, list)
-	@RequestMapping(value = "/admins/goods/gdsForm.do")
+	@RequestMapping(value = "/admins/goods/gdsForm.mwav")
 	public ModelAndView insertGdsForm(CommandMap commandMap,
 			HttpServletRequest request, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/Goods/GdsCellList");
@@ -92,7 +92,7 @@ public class GoodsAdminsController {
 	 */
 
 	// 1번 bnsView : 수정/삭제가능
-	@RequestMapping(value = "/admins/goods/gdsView.do")
+	@RequestMapping(value = "/admins/goods/gdsView.mwav")
 	public ModelAndView selectOneGdsView(CommandMap commandMap,
 			HttpServletRequest request, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/Goods/GdsCellView");
@@ -124,7 +124,7 @@ public class GoodsAdminsController {
 	 */
 
 	// 1번 bnsUpdate : 리스트 업데이트
-	@RequestMapping(value = "/admin/goods/gdsUpdate.do")
+	@RequestMapping(value = "/admin/goods/gdsUpdate.mwav")
 	public ModelAndView updateGdsForm(CommandMap commandMap,
 			HttpServletRequest request, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/Goods/GdsCellForm");
@@ -210,7 +210,7 @@ public class GoodsAdminsController {
 	}
 
 	// 1번 bnsUpdate : 리스트 업데이트
-	@RequestMapping(value = "/admin/goods/gdsUpdatePro.do")
+	@RequestMapping(value = "/admin/goods/gdsUpdatePro.mwav")
 	public ModelAndView updateProGdsForm(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/Goods/GdsCellList");
@@ -225,7 +225,7 @@ public class GoodsAdminsController {
 		return mv;
 	}
 
-	@RequestMapping(value = "/admins/goods/gdsList.do")
+	@RequestMapping(value = "/admins/goods/gdsList.mwav")
 	public ModelAndView selectListGdsList(CommandMap commandMap,
 			HttpServletRequest request, HttpServletResponse reponse,
 			HttpSession session) throws Exception {
@@ -272,7 +272,7 @@ public class GoodsAdminsController {
 		return mv;
 	}
 	
-	@RequestMapping(value = "/admins/goods/gdsDelete.do")
+	@RequestMapping(value = "/admins/goods/gdsDelete.mwav")
 	public ModelAndView deleteGdsDelete(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/Goods/GdsCellForm");

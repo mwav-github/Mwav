@@ -27,7 +27,7 @@
 		alert('탈퇴한 회원입니다.');
 		msg = '재 가입하시겠습니까.?'
 		if (confirm(msg) != 0) {
-			location.replace("/MasterPage_1.jsp?mode=Default"); // 이전 url 기록안하는 경우 , location.href 의 경우 이전기록이 남아 login.do로 포워딩
+			location.replace("/MasterPage_1.jsp?mode=Default"); // 이전 url 기록안하는 경우 , location.href 의 경우 이전기록이 남아 login.mwav로 포워딩
 		} else {
 			history.go(-1)
 		}
@@ -192,7 +192,7 @@
 						<div class="panel-heading"
 							style="background-color: #d9534f; color: #fff;">Q&A</div>
 						<div class="panel-body">
-							<jsp:include page="/qa/qaFrontList.do" flush="false" />
+							<jsp:include page="/qa/qaFrontList.mwav" flush="false" />
 
 						</div>
 					</div>
@@ -206,7 +206,7 @@
 					<div class="panel panel-primary">
 						<div class="panel-heading">Notices</div>
 						<div class="panel-body">
-							<jsp:include page="/admin/boardNotice/ntmFrontList.do"
+							<jsp:include page="/admin/boardNotice/ntmFrontList.mwav"
 								flush="false" />
 
 						</div>
@@ -217,7 +217,7 @@
 					<div class="panel panel-primary">
 						<div class="panel-heading">News</div>
 						<div class="panel-body">
-							<jsp:include page="/admin/boardNews/nsmFrontList.do"
+							<jsp:include page="/admin/boardNews/nsmFrontList.mwav"
 								flush="false" />
 						</div>
 					</div>

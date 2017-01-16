@@ -142,7 +142,7 @@
 		<div class="row">
 			<p>
 				<button type="button" class="btn btn-default"
-					onClick="javascript:window.location.href='/board/bnsList.do'">All
+					onClick="javascript:window.location.href='/board/bnsList.mwav'">All
 					List</button>
 				<button type="button" class="btn btn-default"
 					onClick="javascript:history.go(-1)">BACK</button>
@@ -154,10 +154,10 @@
 		<div class="row">
 			<ul class="pager">
 				<li class="previous"><a
-					href="/board/bnsView.do?bNews_id=${selectOneBnsView.bNews_id-1}">←
+					href="/board/bnsView.mwav?bNews_id=${selectOneBnsView.bNews_id-1}">←
 						Older</a></li>
 				<li class="next"><a
-					href="/board/bnsView.do?bNews_id=${selectOneBnsView.bNews_id+1}">Newer
+					href="/board/bnsView.mwav?bNews_id=${selectOneBnsView.bNews_id+1}">Newer
 						→</a></li>
 			</ul>
 		</div>

@@ -96,7 +96,7 @@
 		FB.api('/me?fields=id,first_name,last_name,email,gender,link,picture,verified,friends.fields(id)', function(response) {	
 			console.log(response);
 			var $form = $('<form></form>');
-            $form.attr('action', '/member/snsForm.do');
+            $form.attr('action', '/member/snsForm.mwav');
             $form.attr('method', 'post');
             $form.appendTo('body');
              
@@ -134,7 +134,7 @@
 	     FB.api('/me?fields=id,first_name,last_name,email,gender,link,picture,verified,friends.fields(id)', function(response) {
 	    	 	console.log(response);
 	    	 	var $form = $('<form></form>');
-	            $form.attr('action', '/member/snsForm.do');
+	            $form.attr('action', '/member/snsForm.mwav');
 	            $form.attr('method', 'post');
 	            $form.appendTo('body');
 	             
@@ -168,7 +168,7 @@
 
         
         /* var $form = $('<form></form>');
-        $form.attr('action', '/member/snsForm.do');
+        $form.attr('action', '/member/snsForm.mwav');
         $form.attr('method', 'post');
         $form.appendTo('body');
          
@@ -206,7 +206,7 @@ function re_check(form){
 	style="padding: 5%; box-shadow: 0 0 20px 3px #04A3ED; background: #f7f7f7;">
 
 
-	<form name="login_form" action="/member/Login.do" role="form"
+	<form name="login_form" action="/member/Login.mwav" role="form"
 		class='form-horizontal' method="post" onsubmit="return re_check(document.login_form);">
 		<div class="enter"></div>
 		<div class="form-group">
@@ -247,7 +247,7 @@ function re_check(form){
 
 		<!-- GOOGLE SIGNIN -->
 		<form id="go_signin" name="go_signin"
-			action="<c:url value="/signin/google.do"/>" method="POST">
+			action="<c:url value="/signin/google.mwav"/>" method="POST">
 			<div class="col-xs-12 col-sm-12 col-md-12 mgt1_8">
 				<%-- <button type="submit" class="btn btn-danger btn-block"><i class="fa fa-google-plus"></i></button>--%>
 				<button type="submit" class="btn btn-block btn-social btn-google">
@@ -263,7 +263,7 @@ function re_check(form){
 
 		<!-- facebook SIGNIN -->
 		<form id="go_signin" name="go_signin"
-			action="<c:url value="/signin/facebook.do"/>" method="POST">
+			action="<c:url value="/signin/facebook.mwav"/>" method="POST">
 			<div class="col-xs-12 col-sm-12 col-md-12 mgt1_8">
 				<%-- <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-facebook"></i></button>--%>
 
@@ -280,7 +280,7 @@ function re_check(form){
 
 		<!-- LINKEDIN SIGNIN -->
 		<form id="go_signin" name="go_signin"
-			action="<c:url value="/signin/linkedin.do"/>" method="POST">
+			action="<c:url value="/signin/linkedin.mwav"/>" method="POST">
 			<div class="col-xs-12 col-sm-12 col-md-12 mgt1_8">
 				<%-- 이전버전 
 					<button type="submit" class="btn btn-danger btn-block"><i class="fa fa-linkedin"></i></button>
@@ -296,7 +296,7 @@ function re_check(form){
 
 		<!-- TWITTER SIGNIN -->
 		<form id="go_signin" name="go_signin"
-			action="<c:url value="/signin/twitter.do"/>" method="POST">
+			action="<c:url value="/signin/twitter.mwav"/>" method="POST">
 			<div class="col-xs-12 col-sm-12 col-md-12 mgt1_8 mgb3">
 				<%--<button type="submit" class="btn btn-info btn-block"><i class="fa fa-twitter"></i></button> --%>
 

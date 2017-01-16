@@ -36,10 +36,10 @@ public class SampleController {
 	 *뒤에 method는 이 요청이 POST 인지, GET 방식인지를 말해주는데 우리는 앞으로 거의 대부분을 POST로 보낼것이기 때문에, 이 부분은 지울 계획이다.
 	 *
 	 *@RequestMapping(value = "/", method = RequestMethod.GET)
-	 *  //어노테이션 설정 /sample/openBoardList.do으로 url요청이 들어오면 이 주소는 @RequestMapping 어노테이션과 매핑되어, 해당 메서드가 실행된다. 
+	 *  //어노테이션 설정 /sample/openBoardList.mwav으로 url요청이 들어오면 이 주소는 @RequestMapping 어노테이션과 매핑되어, 해당 메서드가 실행된다. 
 	 *  ModelAndView 객체를 생성하게 된다. 페이지와 매핑된다 실제 디렉토리 구조 + .jsp.
 */	
-	@RequestMapping(value="/sample/openBoardList.do")
+	@RequestMapping(value="/sample/openBoardList.mwav")
     public ModelAndView openBoardList(CommandMap commandMap) throws Exception{
 		/* 우리가 화면에 보여줄 jsp파일을 의미한다. */
     	ModelAndView mv = new ModelAndView("/sample/boardList"); 
@@ -55,23 +55,23 @@ public class SampleController {
     	return mv;
     }
 	
-	@RequestMapping(value="/sample/openBoardWrite.do")
+	@RequestMapping(value="/sample/openBoardWrite.mwav")
 	public ModelAndView openBoardWrite(CommandMap commandMap) throws Exception{
 		ModelAndView mv = new ModelAndView("/sample/boardWrite");
 		
 		return mv;
 	}
 	
-	@RequestMapping(value="/sample/insertBoard.do")
+	@RequestMapping(value="/sample/insertBoard.mwav")
 	public ModelAndView insertBoard(CommandMap commandMap) throws Exception{
-		ModelAndView mv = new ModelAndView("redirect:/sample/openBoardList.do");
+		ModelAndView mv = new ModelAndView("redirect:/sample/openBoardList.mwav");
 		
 		sampleService.insertBoard(commandMap.getMap());
 		
 		return mv;
 	}
 	
-	@RequestMapping(value="/sample/openBoardDetail.do")
+	@RequestMapping(value="/sample/openBoardDetail.mwav")
 	public ModelAndView openBoardDetail(CommandMap commandMap) throws Exception{
 		ModelAndView mv = new ModelAndView("/sample/boardDetail");
 		
@@ -81,7 +81,7 @@ public class SampleController {
 		return mv;
 	}
 	
-	@RequestMapping(value="/sample/openBoardUpdate.do")
+	@RequestMapping(value="/sample/openBoardUpdate.mwav")
 	public ModelAndView openBoardUpdate(CommandMap commandMap) throws Exception{
 		ModelAndView mv = new ModelAndView("/sample/boardUpdate");
 		
@@ -91,9 +91,9 @@ public class SampleController {
 		return mv;
 	}
 	
-	@RequestMapping(value="/sample/updateBoard.do")
+	@RequestMapping(value="/sample/updateBoard.mwav")
 	public ModelAndView updateBoard(CommandMap commandMap) throws Exception{
-		ModelAndView mv = new ModelAndView("redirect:/sample/openBoardDetail.do");
+		ModelAndView mv = new ModelAndView("redirect:/sample/openBoardDetail.mwav");
 		
 		sampleService.updateBoard(commandMap.getMap());
 		
@@ -101,9 +101,9 @@ public class SampleController {
 		return mv;
 	}
 	
-	@RequestMapping(value="/sample/deleteBoard.do")
+	@RequestMapping(value="/sample/deleteBoard.mwav")
 	public ModelAndView deleteBoard(CommandMap commandMap) throws Exception{
-		ModelAndView mv = new ModelAndView("redirect:/sample/openBoardList.do");
+		ModelAndView mv = new ModelAndView("redirect:/sample/openBoardList.mwav");
 		
 		sampleService.deleteBoard(commandMap.getMap());
 		

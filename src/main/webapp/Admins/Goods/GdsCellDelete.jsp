@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="Refresh" content="3;url=GdsCellList.do?">
+<meta http-equiv="Refresh" content="3;url=GdsCellList.mwav?">
 <title>상품삭제확인</title>
 </head>
 			<center>

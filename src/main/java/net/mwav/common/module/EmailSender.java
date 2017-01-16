@@ -40,7 +40,7 @@ public class EmailSender {
 
 	private static Logger log = Logger.getLogger("sendMail");
 
-	//@RequestMapping("/main/sendpw.do")
+	//@RequestMapping("/main/sendpw.mwav")
 	public void sendEmailAction(CommandMap commandMap) throws Exception {
 
 		// ModelAndView mv = new ModelAndView("/Index");
@@ -63,8 +63,8 @@ public class EmailSender {
 		 * if (pw != null) { email.setContent("비밀번호는 " + pw + " 입니다.");
 		 * email.setReceiver(e_mail); email.setSubject(id + "님 비밀번호 찾기 메일입니다.");
 		 * emailSender.SendEmail(email); mav = new
-		 * ModelAndView("redirect:/login.do"); return mav; } else { mav = new
-		 * ModelAndView("redirect:/logout.do"); return mav; }
+		 * ModelAndView("redirect:/login.mwav"); return mav; } else { mav = new
+		 * ModelAndView("redirect:/logout.mwav"); return mav; }
 		 */
 		// return mv;
 	}

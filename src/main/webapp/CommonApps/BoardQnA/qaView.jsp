@@ -14,7 +14,7 @@
 	function check2(obj) {
 		if (confirm("정말 삭제하시겠습니까??") == true){    //확인
 			var bbb = obj;
-			location.href= "/admin/boardNews/nsmDelete.do?bNews_id="+bbb;
+			location.href= "/admin/boardNews/nsmDelete.mwav?bNews_id="+bbb;
 		}else{   //취소
 		    return;
 		}
@@ -135,7 +135,7 @@
 						<br style="clear: both">
 						<p class="pull-right">
 							<button type="button" class="btn btn-success"
-								onClick="javascript:window.location.href='/qa/qaList.do?pageNum=${pageNum}'">All
+								onClick="javascript:window.location.href='/qa/qaList.mwav?pageNum=${pageNum}'">All
 								List</button>
 							<button type="button" class="btn btn-warning"
 								onClick="javascript:history.go(-1)">BACK</button>

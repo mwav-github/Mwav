@@ -22,9 +22,9 @@
 		$("#Zipcode").attr('value', zcZipCode);
 		//$("#mbrZipcode").val(zcZipCode);
 		//아래는 팝업창일때 특히 dialog는 jquery ui가 있어야 한다.
-		//opener.document.change_record.mbrZipcode.value = zipcode;
-		//opener.document.change_record.mbrAddress.value = address;
-		//opener.document.frmMbr.mbrAddress.focus();
+		//opener.mwavcument.change_record.mbrZipcode.value = zipcode;
+		//opener.mwavcument.change_record.mbrAddress.value = address;
+		//opener.mwavcument.frmMbr.mbrAddress.focus();
 		//$("#myModal").dialog('close');
 		$("#myModal").modal('hide');
 
@@ -64,7 +64,7 @@
 
 		$.ajax({
 			type : 'POST', // Http Request Method로 POST로 지정
-			url : '/PostSeek/zcGunGuSeek.do', // 서버 요청 주소
+			url : '/PostSeek/zcGunGuSeek.mwav', // 서버 요청 주소
 			data : zcSiDoName, // JavaScript 객체를 JSON 객체로 변환하여 서버 요청시 전송
 			success : function(data) {
 				var name, select, option;
@@ -263,7 +263,7 @@
 		$
 				.ajax({
 					type : 'POST', // Http Request Method로 POST로 지정
-					url : '/PostSeek/zcAll.do', // 서버 요청 주소
+					url : '/PostSeek/zcAll.mwav', // 서버 요청 주소
 					//dataType: "json",
 					data : url, //formData JavaScript 객체를 JSON 객체로 변환하여 서버 요청시 전송
 					success : function(data) {

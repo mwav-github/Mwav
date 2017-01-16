@@ -14,7 +14,7 @@
 <script>
 	function insertQAForm() {
 		$.ajax({
-			url : "/qa/qaForm.do",
+			url : "/qa/qaForm.mwav",
 			type : "post",
 			data : $("#QAForm").serialize(),
 			contentType : "application/x-www-form-urlencoded; charset=utf-8",

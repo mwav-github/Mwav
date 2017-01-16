@@ -48,7 +48,7 @@ function mailsome1(){
 	}
 
 }
-//참고) 관리자에게 http://blog.daum.net/_blog/BlogTypeView.do?blogid=0AynA&articleno=3439565&categoryId=209037&regdt=20060602114817
+//참고) 관리자에게 http://blog.daum.net/_blog/BlogTypeView.mwav?blogid=0AynA&articleno=3439565&categoryId=209037&regdt=20060602114817
 	//	메일 보내기
 
 </script>
@@ -76,7 +76,7 @@ function mailsome1(){
 
 			<td width="10">&nbsp;</td>
 			<td valign="top">&nbsp; <%-- 세번째--%>
-				<form name="frmMbr" method="post" action="/HomePage/mbrOptList.do">
+				<form name="frmMbr" method="post" action="/HomePage/mbrOptList.mwav">
 					<table cellspacing="0" cellpadding="0" width="815" border="0">
 						<tr>
 							<td colspan="2">
@@ -247,7 +247,7 @@ function mailsome1(){
 																			<td width="110" align="center">
 																				<button type="button" name="hlAllView"
 																			style="border: solid 0px #FFFFFF;"
-																			onclick="javascript:window.location.href='/HomePage/mbrView.do?m_Id=${List.m_Id}&search=true'">
+																			onclick="javascript:window.location.href='/HomePage/mbrView.mwav?m_Id=${List.m_Id}&search=true'">
 																			<%--이 경우 searchflag 는 null --%>
 																			<img
 																				src="/HomePage/Admins/zImages/btn_admin_view.gif"
@@ -255,7 +255,7 @@ function mailsome1(){
 																		</button>
 																		<button type="button" name="hlAllModify"
 																			style="border: solid 0px #FFFFFF;"
-																			onclick="javascript:window.location.href='/HomePage/mbrView.do?m_Id=${List.m_Id}&search=false'">
+																			onclick="javascript:window.location.href='/HomePage/mbrView.mwav?m_Id=${List.m_Id}&search=false'">
 																			<%--이 경우 searchflag 는 null --%>
 																			<img
 																				src="/HomePage/Admins/zImages/btn_admin_modify.gif"
@@ -284,7 +284,7 @@ function mailsome1(){
 													<td align="center">
 														<button type="button" name="hlAllList"
 															style="border: solid 0px #FFFFFF;"
-															onclick="javascript:window.location.href='/HomePage/mbrOptList.do'">
+															onclick="javascript:window.location.href='/HomePage/mbrOptList.mwav'">
 															<%--이 경우 searchflag 는 null --%>
 															<img src="/HomePage/Admins/zImages/btn_view_list.gif"
 																border="0">
@@ -292,7 +292,7 @@ function mailsome1(){
 														<button type="button" name="hlInsert"
 															style="border: solid 0px #FFFFFF;">
 															<img src="/HomePage/Admins/zImages/btn_member_write.gif"
-																border="0" onclick="javascript:window.location.href='/HomePage/MbrForm.do'">
+																border="0" onclick="javascript:window.location.href='/HomePage/MbrForm.mwav'">
 														</button>
 														<button type="button" name="ibSendMail"
 															style="border: solid 0px #FFFFFF;" onclick="mailsome1()">
@@ -316,16 +316,16 @@ function mailsome1(){
 													</c:if>
 													<c:if test="${startPage > pageBlock}">
 														<a
-															href="/HomePage/mbrOptList.do?pageNum=${startPage - pageBlock}">[이전]</a>
+															href="/HomePage/mbrOptList.mwav?pageNum=${startPage - pageBlock}">[이전]</a>
 														<input type="hidden" name="pageNum"
 															value="${startPage - pageBlock}" />
 													</c:if>
 													<c:forEach var="i" begin="${startPage}" end="${endPage}">
-														<a href="/HomePage/mbrOptList.do?pageNum=${i}">[${i}]</a>
+														<a href="/HomePage/mbrOptList.mwav?pageNum=${i}">[${i}]</a>
 													</c:forEach>
 													<c:if test="${endPage < pageCount}">
 														<a
-															href="/HomePage/mbrOptList.do?pageNum=${startPage + pageBlock}">[다음]</a>
+															href="/HomePage/mbrOptList.mwav?pageNum=${startPage + pageBlock}">[다음]</a>
 													</c:if>
 												</c:if>
 											</table>

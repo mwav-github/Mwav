@@ -49,10 +49,10 @@
 							data-toggle="tooltip" data-placement="bottom"
 							data-original-title="${mbrLoginId}님
 								반갑습니다."> MyPage</a></li>
-						<li><a href="/member/LogOut.do">LogOut</a></li>
+						<li><a href="/member/LogOut.mwav">LogOut</a></li>
 					</c:if>
 					<c:if test="${sessionScope.mbrLoginId eq null }">
-						<li><a href="/login.do"><i
+						<li><a href="/login.mwav"><i
 								class="fa fa-user fa-lg"></i></a></li>
 						<li><a href="/MasterPage_1.jsp?mode=Default"><i
 								class="fa fa-user-plus fa-lg"></i></a></li>

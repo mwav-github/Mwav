@@ -62,7 +62,7 @@ public class CategoryAdminsController {
 	
 	
 	// 1번 insertCategoryForm : Form 입력만 가능 (뒤로가기, list)
-	@RequestMapping(value = "/admins/goods/categoryForm.do")
+	@RequestMapping(value = "/admins/goods/categoryForm.mwav")
 	public ModelAndView insertCategoryForm(CommandMap commandMap,
 			HttpServletRequest request, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/Goods/GdsCaInsert");
@@ -93,7 +93,7 @@ public class CategoryAdminsController {
 	}
 	
 	
-	@RequestMapping(value = "/admins/goods/categoryRelationForm.do")
+	@RequestMapping(value = "/admins/goods/categoryRelationForm.mwav")
 	public ModelAndView insertCategoryRelationForm(CommandMap commandMap,
 			HttpServletRequest request, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/Goods/GdsCaInsert");
@@ -117,7 +117,7 @@ public class CategoryAdminsController {
 	 * ========
 	 */	
 	
-	@RequestMapping(value = "/admins/goods/categoryList.do")
+	@RequestMapping(value = "/admins/goods/categoryList.mwav")
 	public ModelAndView selectListCategory(CommandMap commandMap,
 			HttpServletRequest request, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/Goods/GdsCaRelation");

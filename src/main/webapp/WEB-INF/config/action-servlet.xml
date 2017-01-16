@@ -12,6 +12,14 @@
 		선언하지 않고도 필요한 것을 어노테이션(Annotation)을 자동으로 인식하게 하는 역할 -->
 	<context:component-scan base-package="net"></context:component-scan>
 
+    <!-- 이걸 안쓰면 jsp, js, css 등은 dispatcher servlet를 타지않는다.!!! 
+    
+    > http://changpd.blogspot.kr/2013/02/spring.html
+>http://toby.epril.com/?p=1107
+    
+    -->
+    <mvc:default-servlet-handler/>
+
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<!-- CustomMapArgumentResolver는 root context 영역에 등록이 되어야 한다. -->
 	<!-- 어노테이션을 사용하겠다고 선언 -->

@@ -61,7 +61,7 @@ public class BoardNewsAdminsController {
 	
 	 */
 	// 1번 bnsForm : Form 입력만 가능 (뒤로가기, list)
-	@RequestMapping(value = "/admin/boardNews/nsmForm.do")
+	@RequestMapping(value = "/admin/boardNews/nsmForm.mwav")
 	//http://egloos.zum.com/nadostar/v/210497
 	public ModelAndView insertNsmForm(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
@@ -87,7 +87,7 @@ public class BoardNewsAdminsController {
 
 
 	// 1번 bnsView : 수정/삭제가능
-	@RequestMapping(value = "/admin/boardNews/nsmView.do")
+	@RequestMapping(value = "/admin/boardNews/nsmView.mwav")
 	public ModelAndView selectOneNsmView(CommandMap commandMap,
 			HttpServletRequest request, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/SiteMgr/NewsMgr/NsmView");
@@ -125,7 +125,7 @@ public class BoardNewsAdminsController {
 	 */
 	
 	// 1번 bnsUpdate : 리스트 업데이트
-	@RequestMapping(value = "/admin/boardNews/nsmUpdate.do")
+	@RequestMapping(value = "/admin/boardNews/nsmUpdate.mwav")
 	public ModelAndView updateNsmForm(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/SiteMgr/NewsMgr/NsmForm");
@@ -147,7 +147,7 @@ public class BoardNewsAdminsController {
 		return mv;	}
 	
 	// 1번 bnsUpdate : 리스트 업데이트
-	@RequestMapping(value = "/admin/boardNews/nsmUpdatePro.do")
+	@RequestMapping(value = "/admin/boardNews/nsmUpdatePro.mwav")
 	public ModelAndView updateProNsmForm(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/SiteMgr/NewsMgr/NsmList");
@@ -178,7 +178,7 @@ public class BoardNewsAdminsController {
 	 * 순)========================================
 	 */
 	// 1번 FrontNewsList : 메인페이지 앞단 5개씩 출력, 작성일 기준
-	@RequestMapping(value = "/admin/boardNews/nsmFrontList.do")
+	@RequestMapping(value = "/admin/boardNews/nsmFrontList.mwav")
 	public ModelAndView selectListNsmFrontList(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView(
@@ -208,7 +208,7 @@ public class BoardNewsAdminsController {
 	}
 
 	// 2번 bnsList : 리스트
-	@RequestMapping(value = "/admin/boardNews/nsmList.do")
+	@RequestMapping(value = "/admin/boardNews/nsmList.mwav")
 	public ModelAndView selectListNsmList(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/SiteMgr/NewsMgr/NsmList");
@@ -258,7 +258,7 @@ public class BoardNewsAdminsController {
 	 * ========
 	 */
 	// 1번 bnsDelete
-	@RequestMapping(value = "/admin/boardNews/nsmDelete.do")
+	@RequestMapping(value = "/admin/boardNews/nsmDelete.mwav")
 	public ModelAndView deleteNsmDelete(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/SiteMgr/NewsMgr/NsmList");

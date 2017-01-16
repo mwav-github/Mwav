@@ -24,7 +24,7 @@ http://stg.etribe.co.kr/2014/07/29/view-technology/
 -->
 <decorators defaultdir="/Templates/">
 	<excludes>
-        <pattern>/*.do</pattern>
+        <pattern>/*.mwav</pattern>
     </excludes>
     <!-- 
         이것은 sitemesh를 사용하지 않을 패턴을 지정한다

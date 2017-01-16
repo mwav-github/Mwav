@@ -14,7 +14,7 @@ alert('sdfsdf');
 
 $.ajax({
 	  type : 'POST', // Http Request Method로 POST로 지정
-	  url : '/member/IdFinder.do', // 서버 요청 주소
+	  url : '/member/IdFinder.mwav', // 서버 요청 주소
 	  contentType : 'application/json;charset=UTF-8', // 서버 요청시 전송할 데이터가 UTF-8 형식의 JSON 객체임을 명시
 	  data : JSON.stringify(request), // JavaScript 객체를 JSON 객체로 변환하여 서버 요청시 전송
 	  dataType : 'json', // 서버로부터 응답받을 데이터가 JSON 객체임을 명시하여 수작업 없이 응답 데이터를 JavaScript 객체로 획득
@@ -59,7 +59,7 @@ $.ajax({
 				// 2. 이벤트 핸들러 등록
 				xhr.onreadystatechange = callback; // callback 함수를 등록
 				// 3. open()를 통해 요청관련 설정을 설정
-				xhr.open("POST", "/member/mbrLoginIdSeek.do", true);
+				xhr.open("POST", "/member/mbrLoginIdSeek.mwav", true);
 				// 4. Header에 contentType 지정 - post
 				xhr.setRequestHeader("Content-Type",
 						"application/x-www-form-urlencoded");
@@ -100,7 +100,7 @@ $.ajax({
 
 			$.ajax({
 				type : 'POST', // Http Request Method로 POST로 지정
-				url : '/member/mbrTempLoginPwUpdate.do', // 서버 요청 주소
+				url : '/member/mbrTempLoginPwUpdate.mwav', // 서버 요청 주소
 				data : URL, // JavaScript 객체를 JSON 객체로 변환하여 서버 요청시 전송
 				success : function(data) {
 					//alert(data);
@@ -162,7 +162,7 @@ $.ajax({
 
 		$.ajax({
 			type : 'POST', // Http Request Method로 POST로 지정
-			url : '/member/mbrTempLoginPwSeek.do', // 서버 요청 주소
+			url : '/member/mbrTempLoginPwSeek.mwav', // 서버 요청 주소
 			data : URL, // JavaScript 객체를 JSON 객체로 변환하여 서버 요청시 전송
 			success : function(data) {
 
@@ -238,7 +238,7 @@ $.ajax({
 
 		$.ajax({
 			type : 'POST', // Http Request Method로 POST로 지정
-			url : '/member/mbrLoginPwUpdate.do', // 서버 요청 주소
+			url : '/member/mbrLoginPwUpdate.mwav', // 서버 요청 주소
 			data : URL, // JavaScript 객체를 JSON 객체로 변환하여 서버 요청시 전송
 			success : function(data) {
 

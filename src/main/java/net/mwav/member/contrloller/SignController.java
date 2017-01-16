@@ -63,7 +63,7 @@ public class SignController {
 		throw new ExpiredAuthorizationException("google");
 	}
 
-	@RequestMapping(value = "/signup.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/signup.mwav", method = RequestMethod.GET)
 	public String signupForm2(WebRequest req, Model model,
 			HttpServletRequest request, HttpServletResponse response) {
 		Connection<?> connection = providerSignInUtils

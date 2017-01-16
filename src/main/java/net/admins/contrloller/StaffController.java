@@ -56,7 +56,7 @@ public class StaffController {
 	 * ========
 	 */
 	// 1번 StfForm : Form 입력만 가능 (뒤로가기, list)
-	@RequestMapping(value = "/admins/staff/stfForm.do")
+	@RequestMapping(value = "/admins/staff/stfForm.mwav")
 	public ModelAndView insertStfForm(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/CompanyMgr/Staff/StfLogin");
@@ -94,7 +94,7 @@ public class StaffController {
 		return mv;
 	}
 
-	@RequestMapping(value = "/admins/staff/stfList.do")
+	@RequestMapping(value = "/admins/staff/stfList.mwav")
 	public ModelAndView selectListStfList(CommandMap commandMap,
 			HttpServletRequest request, HttpServletResponse reponse)
 			throws Exception {
@@ -141,7 +141,7 @@ public class StaffController {
 	}
 
 	// 2번 StfView : 수정, 삭제버튼
-	@RequestMapping(value = "/admins/staff/stfView.do")
+	@RequestMapping(value = "/admins/staff/stfView.mwav")
 	public ModelAndView selectStfView(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
 		HttpSession session = request.getSession();
@@ -173,7 +173,7 @@ public class StaffController {
 	 * 동일하므로 view 이용하면된다. ~! 즉 controller에서만 작업 후 이후 꺼는 view 이용
 	 */
 
-	@RequestMapping(value = "/admins/staff/stfUpdate.do")
+	@RequestMapping(value = "/admins/staff/stfUpdate.mwav")
 	public ModelAndView updateStfform(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/CompanyMgr/Staff/StfForm");
@@ -204,7 +204,7 @@ public class StaffController {
 		return mv;
 	}
 
-	@RequestMapping(value = "/admins/staff/stfUpdatePro.do")
+	@RequestMapping(value = "/admins/staff/stfUpdatePro.mwav")
 	public ModelAndView updateProStfform(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/CompanyMgr/Staff/StfForm");
@@ -220,7 +220,7 @@ public class StaffController {
 	 * 않음 logincheck = 5 : DB 조회시 NULL (임시패스워드 발급 단계에서 중간하였을때 포함) logincheck = 6
 	 * : 탈퇴하지 않음 logincheck = 7 : 탈퇴
 	 */
-	@RequestMapping(value = "/admins/staff/stfLogin.do")
+	@RequestMapping(value = "/admins/staff/stfLogin.mwav")
 	public ModelAndView selectLogin(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/AdminsIndex");

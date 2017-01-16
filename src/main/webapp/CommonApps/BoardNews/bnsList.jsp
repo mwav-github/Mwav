@@ -41,10 +41,10 @@ container 안에 포함시키면된다.
 							<td class="hidden-xs">${VselectListBnsList.bNews_id}</td>
 							<td class="hidden-xs">${VselectListBnsList.bnGroup}</td>
 							<td><a
-								href="javascript:window.location.href='/board/bnsView.do?bNews_id=${VselectListBnsList.bNews_id}'">${VselectListBnsList.bnTitle}</a></td>
+								href="javascript:window.location.href='/board/bnsView.mwav?bNews_id=${VselectListBnsList.bNews_id}'">${VselectListBnsList.bnTitle}</a></td>
 							<td class="hidden-xs">${VselectListBnsList.fmbnInsertDt}</td>
-							<td> <button type="button" class="btn btn-info" onclick="javascript:window.location.href='/board/bnsView.do?bNews_id=${FrontboardList.bNews_id}'">보기</button>&nbsp;
-<button type="button" class="btn btn-warning" onclick="javascript:window.location.href='/board/bnsModify.do?bNews_id=${FrontboardList.bNews_id}'">수정</button>
+							<td> <button type="button" class="btn btn-info" onclick="javascript:window.location.href='/board/bnsView.mwav?bNews_id=${FrontboardList.bNews_id}'">보기</button>&nbsp;
+<button type="button" class="btn btn-warning" onclick="javascript:window.location.href='/board/bnsModify.mwav?bNews_id=${FrontboardList.bNews_id}'">수정</button>
 </td>
 						</tr>
 					
@@ -71,7 +71,7 @@ container 안에 포함시키면된다.
 					
 					<h4 style="color: #23527c !important;">
 						<strong><a
-							href="javascript:window.location.href='/board/bnsView.do?bNews_id=${VselectListBnsList.bNews_id}'">${VselectListBnsList.bnTitle}</a></strong>
+							href="javascript:window.location.href='/board/bnsView.mwav?bNews_id=${VselectListBnsList.bNews_id}'">${VselectListBnsList.bnTitle}</a></strong>
 					</h4>
 
 					<p style="color: #78828D;">${VselectListBnsList.bnSubTitle}</p>
@@ -97,16 +97,16 @@ container 안에 포함시키면된다.
 
 				<c:if test="${pagingVO.startPage > pagingVO.pageBlock}">
 					<li><a
-						href="/board/bnsList.do?pageNum=${pagingVO.startPage - pagingVO.pageBlock}"><span
+						href="/board/bnsList.mwav?pageNum=${pagingVO.startPage - pagingVO.pageBlock}"><span
 							class="glyphicon glyphicon-chevron-left"></span></a></li>
 				</c:if>
 				<c:forEach var="i" begin="${pagingVO.startPage}"
 					end="${pagingVO.endPage}">
-					<li><a href="/board/bnsList.do?pageNum=${i}">${i}</a></li>
+					<li><a href="/board/bnsList.mwav?pageNum=${i}">${i}</a></li>
 				</c:forEach>
 				<c:if test="${pagingVO.endPage < pagingVO.pageCount}">
 					<li><a
-						href="/board/bnsList.do?pageNum=${pagingVO.startPage + pagingVO.pageBlock}"><span
+						href="/board/bnsList.mwav?pageNum=${pagingVO.startPage + pagingVO.pageBlock}"><span
 							class="glyphicon glyphicon-chevron-right"></span></a></li>
 				</c:if>
 				<!-- <li><a href="">&laquo;</a></li>
@@ -141,13 +141,13 @@ container 안에 포함시키면된다.
 
 	function fn_insertbnsForm() {
 		var comSubmit = new ComSubmit();
-		comSubmit.setUrl("<c:url value='/board/bnsForm.do' />");
+		comSubmit.setUrl("<c:url value='/board/bnsForm.mwav' />");
 		comSubmit.submit();
 	}
 
 	function fn_selectbnsView() {
 		var comSubmit = new ComSubmit();
-		comSubmit.setUrl("<c:url value='/board/bnsView.do'/>");
+		comSubmit.setUrl("<c:url value='/board/bnsView.mwav'/>");
 		alert('sdf');
 		comSubmit.addParam("bNews_id", $("#bNews_id").val());
 		comSubmit.submit();
@@ -155,7 +155,7 @@ container 안에 포함시키면된다.
 
 	function fn_deleteBoard() {
 		var comSubmit = new ComSubmit();
-		comSubmit.setUrl("<c:url value='/board/bnsDelete.do' />");
+		comSubmit.setUrl("<c:url value='/board/bnsDelete.mwav' />");
 		comSubmit.addParam("bNews_id", $("#bNews_id").val());
 		comSubmit.submit();
 

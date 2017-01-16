@@ -51,7 +51,7 @@
 										<td width="26"><img height="27"
 											src="/HomePage/Admins/zImages/admin_top009.gif" width="26" /></td>
 										<td bgcolor="#f4f4f4">현제위치 : 주문history목록 <a
-											href="OrderList.do">현제주문목록</a>
+											href="OrderList.mwav">현제주문목록</a>
 										</td>
 										<td width="10"><img height="27"
 											src="Admins/zImages/admin_top010.gif" width="10" /></td>
@@ -172,7 +172,7 @@
 													<td align="center">&nbsp;</td>
 													<td align="center"></td>
 													<td align="center"><img id="hlAllList"
-														onclick="location.href('GdsCellList.do')"
+														onclick="location.href('GdsCellList.mwav')"
 														src="/HomePage/Admins/zImages/btn_view_list.gif"></td>
 												</tr>
 											</table>

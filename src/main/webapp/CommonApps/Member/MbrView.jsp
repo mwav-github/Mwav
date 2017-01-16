@@ -10,7 +10,7 @@
 <div class="row">
 	<!-- <div class="col-md-12">
 		<A href="/CWS/CommonApps/Member/MbrShipForm.jsp">Edit Profile</A> <A
-			href="/member/Logout.do">Logout</A> <br>
+			href="/member/Logout.mwav">Logout</A> <br>
 		<p class=" text-info">May 05,2014,03:00 pm</p>
 	</div> -->
 	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -83,7 +83,7 @@
 					class="glyphicon glyphicon-envelope"></i></a> 
 					
 					<span class="pull-right">
-					<a href="/member/mbrUpdate.do" data-original-title="Edit this user"
+					<a href="/member/mbrUpdate.mwav" data-original-title="Edit this user"
 					data-toggle="tooltip" type="button" class="btn btn-md btn-warning"><i
 						class="glyphicon glyphicon-edit"></i></a> <a
 					href="/CustomerService/CS-MasterPage.jsp?mode=SDMbrDelete"

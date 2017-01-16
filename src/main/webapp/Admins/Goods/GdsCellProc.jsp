@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- //3초후 요청 url로 넘아간다. -->
-<meta http-equiv="Refresh" content="3;url=GdsCellList.do?">
+<meta http-equiv="Refresh" content="3;url=GdsCellList.mwav?">
 <title>상품등록확인</title>
 </head>
 		

@@ -248,7 +248,7 @@ client_secret : client_id를 위한 secret 값이다. 이 값으로 Client를 �
 	        connectionFactoryLocator,
 	        usersConnectionRepository,
 	        new SimpleSignInAdapter(new HttpSessionRequestCache()));
-	        controller.setSignUpUrl("/signup.do");
+	        controller.setSignUpUrl("/signup.mwav");
 	    return controller;
 	}
 

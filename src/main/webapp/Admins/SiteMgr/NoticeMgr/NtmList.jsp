@@ -57,7 +57,7 @@
 						<c:set value="${param.mm}" var="mm" />
 					</c:otherwise>
 				</c:choose>
-				<jsp:include page="/admins/LeftMenu.do" flush="false">
+				<jsp:include page="/admins/LeftMenu.mwav" flush="false">
 					<jsp:param name="mm" value="${mm}" />
 				</jsp:include>
 			</div>
@@ -76,7 +76,7 @@
 					<div class="row">
 						<%--================================================시작========================================================== --%>
 						<form name="ntmList" method="post"
-							action="/admin/boardNotice/ntmList.do">
+							action="/admin/boardNotice/ntmList.mwav">
 
 							<div class="input-group custom-search-form">
 								<input type="text" class="form-control" placeholder="Search...">
@@ -111,13 +111,13 @@
 														<td class="hidden-xs">${RselectListNtmList.bUsers_id}</td>
 														<td class="hidden-xs">${RselectListNtmList.buGroup}</td>
 														<td><a
-															href="javascript:window.location.href='/admin/boardNotice/ntmView.do?bUsers_id=${RselectListNtmList.bUsers_id}'">${RselectListNtmList.buTitle}</a></td>
+															href="javascript:window.location.href='/admin/boardNotice/ntmView.mwav?bUsers_id=${RselectListNtmList.bUsers_id}'">${RselectListNtmList.buTitle}</a></td>
 														<td class="hidden-xs">${RselectListNtmList.buInsertDt}</td>
 														<td>
 															<button type="button" class="btn btn-info"
-																onclick="javascript:window.location.href='/admin/boardNotice/ntmView.do?bUsers_id=${RselectListNtmList.bUsers_id}'">보기</button>&nbsp;
+																onclick="javascript:window.location.href='/admin/boardNotice/ntmView.mwav?bUsers_id=${RselectListNtmList.bUsers_id}'">보기</button>&nbsp;
 															<button type="button" class="btn btn-warning"
-																onclick="javascript:window.location.href='/admin/boardNotice/ntmUpdate.do?bUsers_id=${RselectListNtmList.bUsers_id}'">수정</button>
+																onclick="javascript:window.location.href='/admin/boardNotice/ntmUpdate.mwav?bUsers_id=${RselectListNtmList.bUsers_id}'">수정</button>
 														</td>
 													</tr>
 												
@@ -140,15 +140,15 @@
 
 											<c:if test="${pagingVO.startPage > pagingVO.pageBlock}">
 												<li><a
-													href="/admin/boardNews/nsmList.do?pageNum=${pagingVO.startPage - pagingVO.pageBlock}"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
+													href="/admin/boardNews/nsmList.mwav?pageNum=${pagingVO.startPage - pagingVO.pageBlock}"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
 											</c:if>
 											<c:forEach var="i" begin="${pagingVO.startPage}"
 												end="${pagingVO.endPage}">
-												<li><a href="/admin/boardNews/nsmList.do?pageNum=${i}">${i}</a></li>
+												<li><a href="/admin/boardNews/nsmList.mwav?pageNum=${i}">${i}</a></li>
 											</c:forEach>
 											<c:if test="${pagingVO.endPage < pagingVO.pageCount}">
 												<li><a
-													href="/admin/boardNews/nsmList.do?pageNum=${pagingVO.startPage + pagingVO.pageBlock}"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+													href="/admin/boardNews/nsmList.mwav?pageNum=${pagingVO.startPage + pagingVO.pageBlock}"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
 											</c:if>
 										</ul>
 									</div>

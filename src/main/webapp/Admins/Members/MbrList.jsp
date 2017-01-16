@@ -28,7 +28,7 @@
    
 ========과정에 대한 설명=========
 1.해당 창 Load 단 body(onload)할 때 삭제성공, 실패 , 그 외 인지에 따라 alert창
-2.처음 load시 /HomePage/mbrList.do 으로 
+2.처음 load시 /HomePage/mbrList.mwav 으로 
    =>A_MbrListAction 으로 (단 searchflag=null)
 3.search 할 경우에는 searchflag 는 false 이고
   A_MbrListAction 에서 searchflag true로 변경 후 포워딩 시킨다.
@@ -99,7 +99,7 @@ function mailsome1(){
 	}
 
 }
-//참고) 관리자에게 http://blog.daum.net/_blog/BlogTypeView.do?blogid=0AynA&articleno=3439565&categoryId=209037&regdt=20060602114817
+//참고) 관리자에게 http://blog.daum.net/_blog/BlogTypeView.mwav?blogid=0AynA&articleno=3439565&categoryId=209037&regdt=20060602114817
 	//	메일 보내기
 /*
 function my_search()
@@ -116,7 +116,7 @@ function my_search()
    
    
    document.frmMbr.submit();
-   var url = "/HomePage/mbrList.do?searchflag="+searchflag+"&ddlSearch="+ddlSearch+"&tbSearchString="+tbSearchString;
+   var url = "/HomePage/mbrList.mwav?searchflag="+searchflag+"&ddlSearch="+ddlSearch+"&tbSearchString="+tbSearchString;
    //var encodeurl = encodeURIComponent(url);
    alert(url);
    
@@ -130,7 +130,7 @@ function my_searchLevel()
    var ddlSelMenu = form.options[form.selectedIndex].value;
    var searchflag = document.frmMbr.searchflag.value; 
    if(url !=""){
-   var url = "/HomePage/mbrList.do?ddlSelMenu="+ddlSelMenu+"&searchflag="+searchflag;
+   var url = "/HomePage/mbrList.mwav?ddlSelMenu="+ddlSelMenu+"&searchflag="+searchflag;
    }
    //var encodeurl = encodeURIComponent(url);
    alert(url);
@@ -165,7 +165,7 @@ function my_searchLevel()
 
 			<td width="10">&nbsp;</td>
 			<td valign="top">&nbsp;<%-- 세번째--%>
-				<form name="frmMbr" method="post" action="/HomePage/mbrList.do">
+				<form name="frmMbr" method="post" action="/HomePage/mbrList.mwav">
 					<table cellspacing="0" cellpadding="0" width="815" border="0">
 						<tr>
 							<td colspan="2">
@@ -326,7 +326,7 @@ function my_searchLevel()
 																	<td width="116" align="center">
 																		<button type="button" name="hlAllView"
 																			style="border: solid 0px #FFFFFF;"
-																			onclick="javascript:window.location.href='/HomePage/mbrView.do?m_Id=${mbrList.m_Id}&search=true'">
+																			onclick="javascript:window.location.href='/HomePage/mbrView.mwav?m_Id=${mbrList.m_Id}&search=true'">
 																			<%--이 경우 searchflag 는 null --%>
 																			<img
 																				src="/HomePage/Admins/zImages/btn_admin_view.gif"
@@ -334,7 +334,7 @@ function my_searchLevel()
 																		</button>
 																		<button type="button" name="hlAllModify"
 																			style="border: solid 0px #FFFFFF;"
-																			onclick="javascript:window.location.href='/HomePage/mbrView.do?m_Id=${mbrList.m_Id}&search=false'">
+																			onclick="javascript:window.location.href='/HomePage/mbrView.mwav?m_Id=${mbrList.m_Id}&search=false'">
 																			<%--이 경우 searchflag 는 null --%>
 																			<img
 																				src="/HomePage/Admins/zImages/btn_admin_modify.gif"
@@ -361,13 +361,13 @@ function my_searchLevel()
 													<td align="center">
 														<button type="button" name="hlAllList"
 															style="border: solid 0px #FFFFFF;"
-															onclick="javascript:window.location.href='/HomePage/mbrList.do'">
+															onclick="javascript:window.location.href='/HomePage/mbrList.mwav'">
 															<%--이 경우 searchflag 는 null --%>
 															<img src="/HomePage/Admins/zImages/btn_view_list.gif"
 																border="0">
 														</button>
 														<button type="button" name="hlInsert"
-															style="border: solid 0px #FFFFFF;" onclick="javascript:window.location.href='/HomePage/MbrForm.do'">
+															style="border: solid 0px #FFFFFF;" onclick="javascript:window.location.href='/HomePage/MbrForm.mwav'">
 															<img src="/HomePage/Admins/zImages/btn_member_write.gif"
 																border="0">
 														</button>
@@ -398,16 +398,16 @@ function my_searchLevel()
 
 									<c:if test="${startPage > pageBlock}">
 										<a
-											href="/HomePage/mbrList.do?pageNum=${startPage - pageBlock}">[이전]</a>
+											href="/HomePage/mbrList.mwav?pageNum=${startPage - pageBlock}">[이전]</a>
 										<input type="hidden" name="pageNum"
 											value="${startPage - pageBlock}" />
 									</c:if>
 									<c:forEach var="i" begin="${startPage}" end="${endPage}">
-										<a href="/HomePage/mbrList.do?pageNum=${i}">[${i}]</a>
+										<a href="/HomePage/mbrList.mwav?pageNum=${i}">[${i}]</a>
 									</c:forEach>
 									<c:if test="${endPage < pageCount}">
 										<a
-											href="/HomePage/mbrList.do?pageNum=${startPage + pageBlock}">[다음]</a>
+											href="/HomePage/mbrList.mwav?pageNum=${startPage + pageBlock}">[다음]</a>
 									</c:if>
 								</c:if>
 						<tr>

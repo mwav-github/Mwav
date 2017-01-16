@@ -16,7 +16,7 @@
 <script language="javascript">
 	function getAddrLoc() {
 		$.ajax({
-			url : "/sample/getAddrApi.do",
+			url : "/sample/getAddrApi.mwav",
 			type : "post",
 			data : $("#post_form").serialize(),
 			dataType : "xml",

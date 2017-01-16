@@ -57,7 +57,7 @@
 						<c:set value="${param.mm}" var="mm" />
 					</c:otherwise>
 				</c:choose>
-				<jsp:include page="/admins/LeftMenu.do" flush="false">
+				<jsp:include page="/admins/LeftMenu.mwav" flush="false">
 					<jsp:param name="mm" value="${mm}" />
 				</jsp:include>
 			</div>

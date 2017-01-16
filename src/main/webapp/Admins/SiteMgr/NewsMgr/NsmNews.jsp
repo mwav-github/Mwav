@@ -41,7 +41,7 @@ function page_move(s_value){
 
 			<td width="10">&nbsp;</td>
 			<td valign="top" >&nbsp; <%-- 세번째--%>
-				<form name="NsmNews" action="/HomePage/N_View.do" method="post">
+				<form name="NsmNews" action="/HomePage/N_View.mwav" method="post">
 					<input type="hidden" name="news_id" /> <input type="hidden"
 						name="pageNum" value="${pageNum }" />
 

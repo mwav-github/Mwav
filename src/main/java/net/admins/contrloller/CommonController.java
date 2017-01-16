@@ -59,7 +59,7 @@ public class CommonController {
 	 * ========
 	 */
 	// 1번 StfForm : Form 입력만 가능 (뒤로가기, list)
-	@RequestMapping(value = "/admins/Default.do")
+	@RequestMapping(value = "/admins/Default.mwav")
 	public ModelAndView adminDefault(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/AdminsIndex");
@@ -73,7 +73,7 @@ public class CommonController {
 		return mv;
 	}
 
-	@RequestMapping(value = "/admins/LeftMenu.do")
+	@RequestMapping(value = "/admins/LeftMenu.mwav")
 	public ModelAndView getLeftMenu(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/AdminsLeftMenu");
@@ -86,8 +86,8 @@ public class CommonController {
 		 * 
 		 * StaffList 인 경우 > StaffController > mm 지정 > staffList에서 left 메뉴 호출
 		 * 
-		 * - 그러나 여기 한 페이지에서 /admins/stfList.do 와 /admins/LeftMenu.do 를 호출 - 즉
-		 * 저장된 mm값이 /admins/LeftMenu.do 로 넘어가지 않는다. - jstl 에서 param 이용 하여 전달한다.
+		 * - 그러나 여기 한 페이지에서 /admins/stfList.mwav 와 /admins/LeftMenu.mwav 를 호출 - 즉
+		 * 저장된 mm값이 /admins/LeftMenu.mwav 로 넘어가지 않는다. - jstl 에서 param 이용 하여 전달한다.
 		 * - 비즈니스 로직에서 페이지 보여주는 경우 get문으로 mm값을 전달하지 않기 위하여 - 추후 권한 과도 연계
 		 */
 
@@ -123,7 +123,7 @@ public class CommonController {
 		return mv;
 	}
 
-	@RequestMapping(value = "/common/fileUpLoader.do")
+	@RequestMapping(value = "/common/fileUpLoader.mwav")
 	@ResponseBody
 	public Map<String, Object> insertGdsUpLoader(CommandMap commandMap,
 			HttpServletRequest request, HttpSession session) throws Exception {

@@ -11,9 +11,9 @@ opener = window.dialogArguments;
 
 var _editor_url = opener._editor_url;
 var objname     = location.search.substring(1,location.search.length);
-var config      = opener.document.all[objname].config;
-var editor_obj  = opener.document.all["_" +objname+  "_editor"];
-var editdoc     = editor_obj.contentWindow.document;
+var config      = opener.mwavcument.all[objname].config;
+var editor_obj  = opener.mwavcument.all["_" +objname+  "_editor"];
+var editdoc     = editor_obj.contentWindow.mwavcument;
 
 function _CloseOnEsc() {
   if (event.keyCode == 27) { window.close(); return; }

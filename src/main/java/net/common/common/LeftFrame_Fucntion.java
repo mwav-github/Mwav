@@ -14,10 +14,10 @@ public class LeftFrame_Fucntion {
 
 				String[] streName = { "mbb", "mbo", "mbv", "mbj" };
 				String[] strhName = { "회원리스트", "회원부가정보", "회원평가치", "회원가입" };
-				String[] strurl = { "/HomePage/mbrList.do?mm=mbrs",
-						"/HomePage/mbrOptList.do?mm=mbrs",
-						"/HomePage/mbrValList.do?mm=mbrs",
-						"/HomePage/MbrForm.do?mm=mbrs" };
+				String[] strurl = { "/HomePage/mbrList.mwav?mm=mbrs",
+						"/HomePage/mbrOptList.mwav?mm=mbrs",
+						"/HomePage/mbrValList.mwav?mm=mbrs",
+						"/HomePage/MbrForm.mwav?mm=mbrs" };
 				String[] strmAuthority = { "1", "1", "1", "1" };
 				String[] strdAuthority = { "*", "*", "*", "*" };
 
@@ -44,8 +44,8 @@ public class LeftFrame_Fucntion {
 				String[] streName = { "ntl", "nsl", "qal", "pl", "mmail" };
 				String[] strhName = { "공지관리", "뉴스관리", "Q&A관리", "폴관리", "회원메일발송" };
 				String[] strhEName = { "공지관리", "뉴스관리", "Q&A관리", "폴관리", "회원메일발송" };
-				String[] strurl = { "/admin/boardNotice/ntmList.do",
-						"/admin/boardNews/nsmList.do", "#", "#", "#" };
+				String[] strurl = { "/admin/boardNotice/ntmList.mwav",
+						"/admin/boardNews/nsmList.mwav", "#", "#", "#" };
 				String[] strmAuthority = { "1", "1", "1", "1", "1" };
 				String[] strdAuthority = { "*", "*", "*", "*", "*" };
 
@@ -70,7 +70,7 @@ public class LeftFrame_Fucntion {
 						"계좌관리" };
 				String[] strhEName = { "문서자료", "StaffList", "자산리스트", "FTP자료실",
 						"계좌관리" };
-				String[] strurl = { "#", "/admins/staff/stfList.do", "#", "#",
+				String[] strurl = { "#", "/admins/staff/stfList.mwav", "#", "#",
 						"#" };
 				String[] strmAuthority = { "1", "1", "1", "1", "1" };
 				String[] strdAuthority = { "*", "*", "*", "*", "*" };
@@ -96,7 +96,7 @@ public class LeftFrame_Fucntion {
 				String[] streName = { "gcl", "gci" };
 				String[] strhKName = { "상품리스트", "상품등록" };
 				String[] strhEName = { "상품리스트", "상품등록" };
-				String[] strurl = { "/admins/goods/gdsList.do",
+				String[] strurl = { "/admins/goods/gdsList.mwav",
 						"/Admins/Goods/GdsCellForm.jsp?mm=cGds", };
 				String[] strmAuthority = { "1", "1" };
 				String[] strdAuthority = { "*", "*" };
@@ -120,7 +120,7 @@ public class LeftFrame_Fucntion {
 				String[] strhName = { "카테고리등록", "릴레이션등록" };
 				String[] strhEName = { "카테고리등록", "릴레이션등록" };
 				String[] strurl = { "/Admins/Goods/GdsCaInsert.jsp?mm=category",
-						"/admins/goods/categoryList.do",
+						"/admins/goods/categoryList.mwav",
 
 				};
 				String[] strmAuthority = { "1", "1" };

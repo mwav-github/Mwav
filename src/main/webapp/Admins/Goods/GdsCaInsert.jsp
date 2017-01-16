@@ -57,7 +57,7 @@
 						<c:set value="${param.mm}" var="mm" />
 					</c:otherwise>
 				</c:choose>
-				<jsp:include page="/admins/LeftMenu.do" flush="false">
+				<jsp:include page="/admins/LeftMenu.mwav" flush="false">
 					<jsp:param name="mm" value="${mm}" />
 				</jsp:include>
 			</div>
@@ -84,7 +84,7 @@
 
 
 							<form role="form" method="post" name="categoryForm"
-								action="/admins/goods/categoryForm.do">
+								action="/admins/goods/categoryForm.mwav">
 
 								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 

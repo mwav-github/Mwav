@@ -86,10 +86,10 @@
 		<div class="row">
 			<ul class="pager">
 				<li class="previous"><a
-					href="/board/buView.do?bUsers_id=${selectOneBuView.bUsers_id-1}">←
+					href="/board/buView.mwav?bUsers_id=${selectOneBuView.bUsers_id-1}">←
 						Older</a></li>
 				<li class="next"><a
-					href="/board/buView.do?bUsers_id=${selectOneBuView.bUsers_id+1}">Newer
+					href="/board/buView.mwav?bUsers_id=${selectOneBuView.bUsers_id+1}">Newer
 						→</a></li>
 			</ul>
 		</div>

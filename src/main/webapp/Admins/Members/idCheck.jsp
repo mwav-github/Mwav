@@ -46,18 +46,18 @@
 			return;
 		}
 		var checkId = document.idCheckForm.id.value;
-		window.location='/HomePage/idCheck.do?mbrLoginId='+checkId;
+		window.location='/HomePage/idCheck.mwav?mbrLoginId='+checkId;
 	};
 	function selectId(chackId){
 		var id = document.idCheckForm.id.value;
-		opener.document.frmMbr.mbrLoginId.value = id;	
+		opener.mwavcument.frmMbr.mbrLoginId.value = id;	
 		self.close();
 	};
 	</script>
 </head>
 	<body>
 	<div id="wrapper">
-		<form action="/HomePage/MbrForm.do" name="idCheckForm" id="idCheckForm">
+		<form action="/HomePage/MbrForm.mwav" name="idCheckForm" id="idCheckForm">
 		<h1><span>아이디 중복확인</span></h1>
 		<p>
 			<label for="id">아이디</label>

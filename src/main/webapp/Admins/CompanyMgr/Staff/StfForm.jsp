@@ -57,7 +57,7 @@
 						<c:set value="${param.mm}" var="mm" />
 					</c:otherwise>
 				</c:choose>
-				<jsp:include page="/admins/LeftMenu.do" flush="false">
+				<jsp:include page="/admins/LeftMenu.mwav" flush="false">
 					<jsp:param name="mm" value="${mm}" />
 				</jsp:include>
 			</div>
@@ -81,7 +81,7 @@
 								<%-- 1. 회원정보 수정 --%>
 
 								<form class='form-horizontal' method="post"
-									action="/admins/staff/stfUpdate.do">
+									action="/admins/staff/stfUpdate.mwav">
 									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
 										<div class="panel panel-primary">
@@ -382,7 +382,7 @@
 												<div class="panel-footer">
 
 													<button type="button" class="btn btn-sm btn-primary"
-														onclick="javascript:window.location.href='/admins/staff/stfList.do'">
+														onclick="javascript:window.location.href='/admins/staff/stfList.mwav'">
 														리스트</button>
 
 													<button type="button" class="btn btn-sm btn-primary"
@@ -404,7 +404,7 @@
 							<c:otherwise>
 								<%-- 1. 회원정보 입력 --%>
 								<form class='form-horizontal' method="post"
-									action="/admins/staff/stfForm.do">
+									action="/admins/staff/stfForm.mwav">
 									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
 										<div class="panel panel-primary">
@@ -706,7 +706,7 @@
 												<div class="panel-footer">
 
 													<button type="button" class="btn btn-sm btn-primary"
-														onclick="javascript:window.location.href='/admins/staff/stfList.do'">
+														onclick="javascript:window.location.href='/admins/staff/stfList.mwav'">
 														리스트</button>
 
 													<button type="button" class="btn btn-sm btn-primary"

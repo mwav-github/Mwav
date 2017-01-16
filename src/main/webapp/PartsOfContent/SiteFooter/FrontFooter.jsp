@@ -16,7 +16,7 @@
 			'ga');
 
 	var perfData = window.performance.timing;
-	var pageLoadTime = perfData.domComplete - perfData.navigationStart;
+	var pageLoadTime = perfData.mwavmComplete - perfData.navigationStart;
 	var loadTime = "";
 	 
 	//https://www.simoahava.com/analytics/page-load-time-universal-analytics/

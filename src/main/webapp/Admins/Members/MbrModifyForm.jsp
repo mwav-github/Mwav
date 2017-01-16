@@ -36,7 +36,7 @@
 
 			<td width="10">&nbsp;</td>
 			<td valign="top">&nbsp; <%-- 세번째--%>
-				<form name="frmMember" method="post" action="/HomePage/mbrModify.do">
+				<form name="frmMember" method="post" action="/HomePage/mbrModify.mwav">
 					<table id="Table5" cellspacing="0" cellpadding="0" width="810"
 						border="0">
 						<tr>
@@ -466,7 +466,7 @@
 										<td align="center" height="50">
 											<button type="button" name="hiList"
 												style="border: solid 0px #FFFFFF;"
-												onclick="javascript:window.location.href='/HomePage/mbrList.do'">
+												onclick="javascript:window.location.href='/HomePage/mbrList.mwav'">
 												<img src="/HomePage/Admins/zImages/btn_view_list.gif"
 													border="0">
 											</button>&nbsp;

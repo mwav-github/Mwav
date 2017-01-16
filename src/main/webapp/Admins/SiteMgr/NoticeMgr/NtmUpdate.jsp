@@ -34,7 +34,7 @@
 
 			<td width="10">&nbsp;</td>
 			<td valign="top">&nbsp; <%-- 세번째--%>
-				<form name="NtmForm" method="post" action="/HomePage/U_UpdatePro.do">
+				<form name="NtmForm" method="post" action="/HomePage/U_UpdatePro.mwav">
 					<input type="hidden" name="bUser_id" value="${bUser_id}"> <input
 						type="hidden" name="pageNum" />
 					<table cellspacing="0" cellpadding="0" width="810" border="0">
@@ -153,7 +153,7 @@
 										<td colspan="4" align="center">
 											<button type="button" name="hiList"
 												style="border: solid 0px #FFFFFF;"
-												onclick="javascript:window.location.href='/HomePage/U_List.do'">
+												onclick="javascript:window.location.href='/HomePage/U_List.mwav'">
 												<img src="/HomePage/Admins/zImages/btn_view_list.gif"
 													border="0">
 											</button>
@@ -164,7 +164,7 @@
 											</button>
 											<button type="submit" name="iblInsert"
 												style="border: solid 0px #FFFFFF;"
-												onclick="javascript:window.location.href='/HomePage/U_List.do'">
+												onclick="javascript:window.location.href='/HomePage/U_List.mwav'">
 												<img src="/HomePage/Admins/zImages/admin_btn_enter.gif"
 													border="0">
 											</button>

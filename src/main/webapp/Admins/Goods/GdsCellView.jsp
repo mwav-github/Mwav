@@ -142,7 +142,7 @@
 						<c:set value="${param.mm}" var="mm" />
 					</c:otherwise>
 				</c:choose>
-				<jsp:include page="/admins/LeftMenu.do" flush="false">
+				<jsp:include page="/admins/LeftMenu.mwav" flush="false">
 					<jsp:param name="mm" value="${mm}" />
 				</jsp:include>
 			</div>
@@ -161,7 +161,7 @@
 					<div class="row">
 						<%-- 1. 회원정보 입력 --%>
 						<form class='form-horizontal' method="post"
-							action="/admins/goods/gdsDelete.do"
+							action="/admins/goods/gdsDelete.mwav"
 							onsubmit="return myconfirm('delete')">
 							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
@@ -413,7 +413,7 @@
 										<div class="panel-footer">
 
 											<button type="button" class="btn btn-sm btn-primary"
-												onclick="javascript:window.location.href='/admins/goods/gdsList.do'">
+												onclick="javascript:window.location.href='/admins/goods/gdsList.mwav'">
 												리스트</button>
 
 											<button type="button" class="btn btn-sm btn-primary"

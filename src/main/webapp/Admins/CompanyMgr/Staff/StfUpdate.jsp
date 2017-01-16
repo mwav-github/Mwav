@@ -77,12 +77,12 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					<div class="row">
 						<!-- <div class="col-md-12">
 		<A href="/CWS/CommonApps/Member/MbrShipForm.jsp">Edit Profile</A> <A
-			href="/member/Logout.do">Logout</A> <br>
+			href="/member/Logout.mwav">Logout</A> <br>
 		<p class=" text-info">May 05,2014,03:00 pm</p>
 	</div> -->
 
 						<form class='form-horizontal' name="change_record" method="post"
-							action="/admins/staff/stfForm.do">
+							action="/admins/staff/stfForm.mwav">
 							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
 								<div class="panel panel-primary">
@@ -358,7 +358,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 										<div class="panel-footer">
 
 											<button type="button" class="btn btn-sm btn-primary"
-												onclick="javascript:window.location.href='/HomePage/S_List.do'">
+												onclick="javascript:window.location.href='/HomePage/S_List.mwav'">
 												리스트</button>
 
 											<button type="button" class="btn btn-sm btn-primary"

@@ -27,7 +27,7 @@
 		</thead> -->
 		<tbody>
 		<%--xml mapper에서 사용한 id는 사용불가능하다. --%>
-			<form name="NsmNews" action="/board/bnsView.do" method="post">
+			<form name="NsmNews" action="/board/bnsView.mwav" method="post">
 				<c:choose>
 					<c:when test="${fn:length(selectListBnsFrontList) > 0}">
 						<c:forEach var="VselectListBnsFrontList" items="${selectListBnsFrontList}">
@@ -36,7 +36,7 @@
 							<tr>
 								<!-- a태그로 처리요망 -->
 								<td class="col-md-8"><a
-									href="/board/bnsView.do?bNews_id=${VselectListBnsFrontList.bNews_id}">${VselectListBnsFrontList.bnTitle}</a></td>
+									href="/board/bnsView.mwav?bNews_id=${VselectListBnsFrontList.bNews_id}">${VselectListBnsFrontList.bnTitle}</a></td>
 								<%--view를 구현하는 방법에 따라 달라진다. get 문 형태 유망 --%>
 								<td class="col-md-4">${VselectListBnsFrontList.bnInsertDt}</td>
 							</tr>

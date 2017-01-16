@@ -34,7 +34,7 @@
 				<!-- Content Column -->
 				<div class="col-lg-12">
 
-					<jsp:include page="/board/bnsList.do" flush="false" />
+					<jsp:include page="/board/bnsList.mwav" flush="false" />
 
 				</div>
 

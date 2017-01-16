@@ -65,7 +65,7 @@
 						<c:set value="${param.mm}" var="mm" />
 					</c:otherwise>
 				</c:choose>
-				<jsp:include page="/admins/LeftMenu.do" flush="false">
+				<jsp:include page="/admins/LeftMenu.mwav" flush="false">
 					<jsp:param name="mm" value="${mm}" />
 				</jsp:include>
 			</div>
@@ -120,7 +120,7 @@
 							<c:choose>
 								<c:when test="${fn:length(updateNtmForm) > 0}">
 									<form role="form" method="post" name="buForm"
-										action="/admin/boardNotice/ntmUpdatePro.do">
+										action="/admin/boardNotice/ntmUpdatePro.mwav">
 										<table class="table table-striped">
 
 											<thead>
@@ -222,7 +222,7 @@
 										<br style="clear: both">
 										<p class="pull-right">
 											<button type="button" class="btn btn-success"
-												onClick="javascript:window.location.href='/admin/boardNotice/ntmList.do'">All
+												onClick="javascript:window.location.href='/admin/boardNotice/ntmList.mwav'">All
 												List</button>
 											<button type="button" class="btn btn-warning"
 												onClick="javascript:history.go(-1)">BACK</button>
@@ -236,7 +236,7 @@
 								</c:when>
 								<c:otherwise>
 									<form role="form" method="post" name="buForm"
-										action="/admin/boardNotice/ntmForm.do">
+										action="/admin/boardNotice/ntmForm.mwav">
 										<table class="table table-striped">
 
 											<thead>
@@ -323,7 +323,7 @@
 										<br style="clear: both">
 										<p class="pull-right">
 											<button type="button" class="btn btn-success"
-												onClick="javascript:window.location.href='/boardNotice/buList.do?pageNum=${i}'">All
+												onClick="javascript:window.location.href='/boardNotice/buList.mwav?pageNum=${i}'">All
 												List</button>
 											<button type="button" class="btn btn-warning"
 												onClick="javascript:history.go(-1)">BACK</button>

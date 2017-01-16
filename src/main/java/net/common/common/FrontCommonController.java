@@ -31,7 +31,7 @@ public class FrontCommonController {
 	 * ========
 	 */
 	// 1번 bnsForm : Form 입력만 가능 (뒤로가기, list)
-	@RequestMapping(value = "/hightsofts/hightsofts.do")
+	@RequestMapping(value = "/hightsofts/hightsofts.mwav")
 	// http://egloos.zum.com/nadostar/v/210497
 	public ModelAndView highsots(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {

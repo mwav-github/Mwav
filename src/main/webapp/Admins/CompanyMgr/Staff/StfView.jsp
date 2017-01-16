@@ -70,7 +70,7 @@
 						<c:set value="${param.mm}" var="mm" />
 					</c:otherwise>
 				</c:choose>
-				<jsp:include page="/admins/LeftMenu.do" flush="false">
+				<jsp:include page="/admins/LeftMenu.mwav" flush="false">
 					<jsp:param name="mm" value="${mm}" />
 				</jsp:include>
 			</div>
@@ -89,12 +89,12 @@
 					<div class="row">
 						<!-- <div class="col-md-12">
 		<A href="/CWS/CommonApps/Member/MbrShipForm.jsp">Edit Profile</A> <A
-			href="/member/Logout.do">Logout</A> <br>
+			href="/member/Logout.mwav">Logout</A> <br>
 		<p class=" text-info">May 05,2014,03:00 pm</p>
 	</div> -->
 
 						<form class='form-horizontal' name="change_record" method="post"
-							action="/admins/staff/stf.do">
+							action="/admins/staff/stf.mwav">
 							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
 								<div class="panel panel-primary">
@@ -256,11 +256,11 @@
 										<div class="panel-footer">
 
 											<button type="button" class="btn btn-sm btn-primary"
-												onclick="javascript:window.location.href='/admins/staff/stfList.do'">
+												onclick="javascript:window.location.href='/admins/staff/stfList.mwav'">
 												리스트</button>
 
 											<button type="button" class="btn btn-sm btn-primary"
-												onClick="/admins/staff/stfUpdate.do?staff_id=${selectStfView.staff_id}">수정하기</button>
+												onClick="/admins/staff/stfUpdate.mwav?staff_id=${selectStfView.staff_id}">수정하기</button>
 
 											<button type="submit" class="btn btn-sm btn-primary">탈퇴하기
 											</button>

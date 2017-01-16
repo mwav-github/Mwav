@@ -56,7 +56,7 @@ public class BoardController {
 	
 	 */
 	// 1번 bnsForm : Form 입력만 가능 (뒤로가기, list)
-	@RequestMapping(value = "/board/bnsForm.do")
+	@RequestMapping(value = "/board/bnsForm.mwav")
 	//http://egloos.zum.com/nadostar/v/210497
 	public ModelAndView insertBnsForm(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
@@ -91,7 +91,7 @@ public class BoardController {
 	 * ========
 	 */
 	// 1번 bnsView : 수정/삭제가능
-	@RequestMapping(value = "/board/bnsView.do")
+	@RequestMapping(value = "/board/bnsView.mwav")
 	public ModelAndView selectOneBnsView(CommandMap commandMap,
 			HttpServletRequest request, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView("/Company/CompanyMasterPage_1");
@@ -135,7 +135,7 @@ public class BoardController {
 	 * ========
 	 */
 	// 1번 bnsUpdate : 리스트 업데이트
-	@RequestMapping(value = "/board/bnsUpdate.do")
+	@RequestMapping(value = "/board/bnsUpdate.mwav")
 	public ModelAndView updateBnsform(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/Company/CompanyMasterPage_1");
@@ -156,7 +156,7 @@ public class BoardController {
 	/*
 	 * // 7번 bnsUpdatePro : 리스트 업데이트
 	 * 
-	 * @RequestMapping(value = "/board/bnsUpdatePro.do") public ModelAndView
+	 * @RequestMapping(value = "/board/bnsUpdatePro.mwav") public ModelAndView
 	 * updatebnsform(CommandMap commandMap) throws Exception { ModelAndView mv =
 	 * new ModelAndView("/Company/CompanyMasterPage_1");
 	 * 
@@ -168,7 +168,7 @@ public class BoardController {
 	 * 순)========================================
 	 */
 	// 1번 FrontNewsList : 메인페이지 앞단 5개씩 출력, 작성일 기준
-	@RequestMapping(value = "/board/bnsFrontList.do")
+	@RequestMapping(value = "/board/bnsFrontList.mwav")
 	public ModelAndView selectListBnsFrontList(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView(
@@ -201,7 +201,7 @@ public class BoardController {
 	}
 
 	// 2번 bnsList : 리스트
-	@RequestMapping(value = "/board/bnsList.do")
+	@RequestMapping(value = "/board/bnsList.mwav")
 	public ModelAndView selectListBnsList(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/Company/CompanyMasterPage_1");
@@ -251,7 +251,7 @@ public class BoardController {
 	 * ========
 	 */
 	// 1번 bnsDelete
-	@RequestMapping(value = "/board/bnsDelete.do")
+	@RequestMapping(value = "/board/bnsDelete.mwav")
 	public ModelAndView deleteBnsDelete(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/Company/CompanyMasterPage_1");
@@ -271,7 +271,7 @@ public class BoardController {
 	 * ========
 	 */
 	// 1번 BuForm : Form 입력만 가능 (뒤로가기, list)
-	@RequestMapping(value = "/board/buForm.do")
+	@RequestMapping(value = "/board/buForm.mwav")
 	public ModelAndView insertBuForm(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/CustomerService/CS-MasterPage_1");
@@ -299,7 +299,7 @@ public class BoardController {
 	 * ========
 	 */
 	// 2번 BuView : 수정/삭제가능
-	@RequestMapping(value = "/board/buView.do")
+	@RequestMapping(value = "/board/buView.mwav")
 	public ModelAndView selectOneBuView(CommandMap commandMap,
 			HttpServletRequest request, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView("/CustomerService/CS-MasterPage");
@@ -343,7 +343,7 @@ public class BoardController {
 	 * ========
 	 */
 	// 3번 BuUpdate : 리스트 업데이트
-	@RequestMapping(value = "/board/buUpdate.do")
+	@RequestMapping(value = "/board/buUpdate.mwav")
 	public ModelAndView updateBuform(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/CustomerService/CS-MasterPage_1");
@@ -364,7 +364,7 @@ public class BoardController {
 	/*
 	 * // 7번 BuUpdatePro : 리스트 업데이트
 	 * 
-	 * @RequestMapping(value = "/board/BuUpdatePro.do") public ModelAndView
+	 * @RequestMapping(value = "/board/BuUpdatePro.mwav") public ModelAndView
 	 * updateBuform(CommandMap commandMap) throws Exception { ModelAndView mv =
 	 * new ModelAndView("/Company/CompanyMasterPage_1");
 	 * 
@@ -376,7 +376,7 @@ public class BoardController {
 	 * 순)========================================
 	 */
 	// 4번 FrontNewsList : 메인페이지 앞단 5개씩 출력, 작성일 기준
-	@RequestMapping(value = "/board/buFrontList.do")
+	@RequestMapping(value = "/board/buFrontList.mwav")
 	public ModelAndView selectListBuFrontList(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView(
@@ -410,7 +410,7 @@ public class BoardController {
 	}
 
 	// 5번 BuList : 리스트
-	@RequestMapping(value = "/board/buList.do")
+	@RequestMapping(value = "/board/buList.mwav")
 	public ModelAndView selectListBuList(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
 		//ModelAndView mv = new ModelAndView("/CustomerService/CS-MasterPage");
@@ -460,7 +460,7 @@ public class BoardController {
 	 * ========
 	 */
 	// 6번 BuDelete
-	@RequestMapping(value = "/board/buDelete.do")
+	@RequestMapping(value = "/board/buDelete.mwav")
 	public ModelAndView deleteBuDelete(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/CustomerService/CS-MasterPage");

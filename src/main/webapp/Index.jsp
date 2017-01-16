@@ -25,7 +25,7 @@
 		alert('탈퇴한 회원입니다.');
 		msg = '재 가입하시겠습니까.?'
 		if (confirm(msg) != 0) {
-			location.replace("/MasterPage_1.jsp?mode=Default"); // 이전 url 기록안하는 경우 , location.href 의 경우 이전기록이 남아 login.do로 포워딩
+			location.replace("/MasterPage_1.jsp?mode=Default"); // 이전 url 기록안하는 경우 , location.href 의 경우 이전기록이 남아 login.mwav로 포워딩
 		} else {
 			history.go(-1)
 		}
@@ -148,13 +148,13 @@
 							<strong>Notices</strong>
 						</h4>
 
-						<jsp:include page="/board/buFrontList.do" flush="false" />
+						<jsp:include page="/board/buFrontList.mwav" flush="false" />
 
 						<div class="enter"></div>
 						<h4>
 							<strong>News</strong>
 						</h4>
-						<jsp:include page="/board/bnsFrontList.do" flush="false" />
+						<jsp:include page="/board/bnsFrontList.mwav" flush="false" />
 
 						<%--notice/news 순으로 5개씩 삽입 예정
 						    만약에 공간 및 제약시 추후 tab 형태 고려 
@@ -233,7 +233,7 @@
 				<%--2행 --%>
 				<div class="col-xs-12 col-sm-6 col-md-4">
 					<!-- md >= 992 / sm >=768  2행에서 1-->
-					<a href="/hightsofts/hightsofts.do?items=Highcharts"> <img
+					<a href="/hightsofts/hightsofts.mwav?items=Highcharts"> <img
 						class="img-responsive img-portfolio img-hover"
 						src="/CompanyItem/ITProducts/Images/highcharts(250).png" alt="">
 					</a>
@@ -268,7 +268,7 @@
 		<div class="enter"></div>
 		<!-- Features Section -->
 
-		<%--http://nayap122582.dothome.co.kr/bootstrap/scaffolding.html 
+		<%--http://nayap122582.mwavthome.co.kr/bootstrap/scaffolding.html 
 		html 순서와 보여지는 순서의 차등 부여
 		 --%>
 		<div class="row" id="WebSite Building">

@@ -69,7 +69,7 @@
 					
 					<c:if test="${sessionScope.mbrLoginId ne null }">
 						<li><a href="/CustomerService/CS-MasterPage.jsp?mode=SDMyPage"><font color="#9d9d9d">${mbrLoginId}님 반갑습니다.</font></a></li>
-						<li><a href="/member/Logout.do"><font color="#9d9d9d">로그아웃</font></a></li>
+						<li><a href="/member/Logout.mwav"><font color="#9d9d9d">로그아웃</font></a></li>
 					</c:if>
 					<c:if test="${sessionScope.mbrLoginId eq null }">
 						<li><a href="/MasterPage.jsp?mode=SMbrLogin"><i

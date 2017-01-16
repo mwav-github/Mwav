@@ -46,7 +46,7 @@
 	function check2(obj) {
 		if (confirm("정말 삭제하시겠습니까??") == true){    //확인
 			var bbb = obj;
-			location.href= "/board/bnsDelete.do?bNews_id="+bbb;
+			location.href= "/board/bnsDelete.mwav?bNews_id="+bbb;
 		}else{   //취소
 		    return;
 		}
@@ -77,7 +77,7 @@
 	<c:choose>
 		<c:when test="${fn:length(selectboardUpdate) > 0}">
 			<form role="form" method="post" name="bnsForm"
-				action="/board/bnsUpdatePro.do">
+				action="/board/bnsUpdatePro.mwav">
 				<table class="table table-striped">
 
 					<thead>
@@ -176,7 +176,7 @@
 				<br style="clear: both">
 				<p class="pull-right">
 					<button type="button" class="btn btn-success"
-						onClick="javascript:window.location.href='/board/bnsList.do'">All
+						onClick="javascript:window.location.href='/board/bnsList.mwav'">All
 						List</button>
 					<button type="button" class="btn btn-warning"
 						onClick="javascript:history.go(-1)">BACK</button>
@@ -190,7 +190,7 @@
 		</c:when>
 		<c:otherwise>
 			<form role="form" method="post" name="bnsForm"
-				action="/board/bnsForm.do">
+				action="/board/bnsForm.mwav">
 				<table class="table table-striped">
 
 					<thead>
@@ -277,7 +277,7 @@
 				<br style="clear: both">
 				<p class="pull-right">
 					<button type="button" class="btn btn-success"
-						onClick="javascript:window.location.href='/board/bnsList.do'">All
+						onClick="javascript:window.location.href='/board/bnsList.mwav'">All
 						List</button>
 					<button type="button" class="btn btn-warning"
 						onClick="javascript:history.go(-1)">BACK</button>

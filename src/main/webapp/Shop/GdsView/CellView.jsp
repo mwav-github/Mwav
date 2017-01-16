@@ -20,7 +20,7 @@ function cartSubmit(ocAmount) {
 	
     var formdata = $("#gdsView").serialize(); // serialize() : 입력된 모든Element(을)를 문자열의 데이터에 serialize 한다.
     jQuery.ajax({
-        url: '/shop/order/orderForm.do',
+        url: '/shop/order/orderForm.mwav',
         type: 'POST',
         data: formdata,
         contentType: 'application/x-www-form-urlencoded; charset=UTF-8', 
@@ -38,8 +38,8 @@ function cartSubmit(ocAmount) {
             		//신규등록
             		
             		
-            		//document.getElementById("cart_onclick").setAttribute("onClick","javascript:window.location.href='/shop/order/orderList.do?orderCart_id="+result.orderCart_id+"';");
-            		$('#cart_onclick').attr("onClick","javascript:window.location.href='/shop/order/orderList.do?orderCart_id="+result.orderCart_id+"';")
+            		//document.getElementById("cart_onclick").setAttribute("onClick","javascript:window.location.href='/shop/order/orderList.mwav?orderCart_id="+result.orderCart_id+"';");
+            		$('#cart_onclick').attr("onClick","javascript:window.location.href='/shop/order/orderList.mwav?orderCart_id="+result.orderCart_id+"';")
             	}
             	//$('#cart_onclick').attr("onClick","sdfsdf");
             	$("#cart_menu").show();
@@ -282,10 +282,10 @@ function cartSubmit(ocAmount) {
 																<%--href="#" 넣으면 클릭시 최상단으로 이동한다. --%>
 																<li><a onclick="target_hide('cart_menu');">쇼핑계속하기</a></li>
 																
-																<%-- 최초 세션아이디 없이 접근하는 경우  /shop/order/orderList.do?orderCart_id=
+																<%-- 최초 세션아이디 없이 접근하는 경우  /shop/order/orderList.mwav?orderCart_id=
 																     와 같이 비어서 노출된다. 이부분 어떻게 할지 생각 하기  --%>
 																<li><a id="cart_onclick"
-																	onClick="javascript:window.location.href='/shop/order/orderList.do?orderCart_id=${sessionScope.orderCart_id}'">카트보기</a></li>
+																	onClick="javascript:window.location.href='/shop/order/orderList.mwav?orderCart_id=${sessionScope.orderCart_id}'">카트보기</a></li>
 															</ul>
 														</div>
 													</td>

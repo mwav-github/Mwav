@@ -26,7 +26,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class ErrorController {
 	Logger log = Logger.getLogger(this.getClass());
 	
-	@RequestMapping(value = "/throwable.do")
+	@RequestMapping(value = "/throwable.mwav")
 	public String throwable(Model model,
 			HttpServletRequest request) throws Exception {
 		
@@ -37,7 +37,7 @@ public class ErrorController {
 		return "/MessageView/error";
 	}
 	
-	@RequestMapping(value = "/exception.do")
+	@RequestMapping(value = "/exception.mwav")
 	public String exception(Model model,
 			HttpServletRequest request) throws Exception {
 		
@@ -48,7 +48,7 @@ public class ErrorController {
 		return "/MessageView/error";
 	}
 	
-	@RequestMapping(value = "/400.do")
+	@RequestMapping(value = "/400.mwav")
 	public String pageError400(Model model,
 			HttpServletRequest request) throws Exception {
 		
@@ -59,7 +59,7 @@ public class ErrorController {
 		return "/MessageView/error";
 	}
 	
-	@RequestMapping(value = "/403.do")
+	@RequestMapping(value = "/403.mwav")
 	public String pageError403(Model model,
 			HttpServletRequest request) throws Exception {
 		
@@ -71,7 +71,7 @@ public class ErrorController {
 	}
 
 	
-	@RequestMapping(value = "/404.do")
+	@RequestMapping(value = "/404.mwav")
 	public String pageError404(Model model,
 			HttpServletRequest request) throws Exception {
 		System.out.println("고고");
@@ -82,7 +82,7 @@ public class ErrorController {
 		return "/MessageView/error";
 	}
 
-	@RequestMapping(value = "/405.do")
+	@RequestMapping(value = "/405.mwav")
 	public String pageError405(Model model,
 			HttpServletRequest request) throws Exception {
 		
@@ -93,7 +93,7 @@ public class ErrorController {
 		return "/MessageView/error";
 	}
 	
-	@RequestMapping(value = "/500.do")
+	@RequestMapping(value = "/500.mwav")
 	public String pageError500(Model model,
 			HttpServletRequest request) throws Exception {
 		
@@ -104,7 +104,7 @@ public class ErrorController {
 		return "/MessageView/error";
 	}
 	
-	@RequestMapping(value = "/503.do")
+	@RequestMapping(value = "/503.mwav")
 	public String pageError503(Model model,
 			HttpServletRequest request) throws Exception {
 		

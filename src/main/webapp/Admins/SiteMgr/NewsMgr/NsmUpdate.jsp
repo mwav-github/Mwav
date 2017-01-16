@@ -30,7 +30,7 @@
 
 			<td width="10">&nbsp;</td>
 			<td valign="top">&nbsp; <%-- 세번째--%>
-				<form name="NsmForm" method="post" action="/HomePage/N_UpdatePro.do">
+				<form name="NsmForm" method="post" action="/HomePage/N_UpdatePro.mwav">
 					<input type="hidden" name="news_id" value="${news_id}"> <input
 						type="hidden" name="pageNum" />
 					<table cellspacing="0" cellpadding="0" width="810" border="0">
@@ -149,7 +149,7 @@
 										<td colspan="4" align="center">
 											<button type="button" name="hiList"
 												style="border: solid 0px #FFFFFF;"
-												onclick="javascript:window.location.href='/HomePage/N_List.do'">
+												onclick="javascript:window.location.href='/HomePage/N_List.mwav'">
 												<img src="/HomePage/Admins/zImages/btn_view_list.gif"
 													border="0">
 											</button>
@@ -160,7 +160,7 @@
 											</button>
 											<button type="submit" name="iblInsert"
 												style="border: solid 0px #FFFFFF;"
-												onclick="javascript:window.location.href='/HomePage/N_List.do'">
+												onclick="javascript:window.location.href='/HomePage/N_List.mwav'">
 												<img src="/HomePage/Admins/zImages/admin_btn_enter.gif"
 													border="0">
 											</button>

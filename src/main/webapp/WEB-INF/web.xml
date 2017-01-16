@@ -19,7 +19,8 @@
   </filter>
   <filter-mapping> <!-- 루트하위 모든 요청에 대한 인코딩 처리를 하겠다는 의미 -->
     <filter-name>encodingFilter</filter-name>
-    <url-pattern>*.do</url-pattern>
+    <url-pattern>/</url-pattern>
+    <url-pattern>*.mwav</url-pattern>
   </filter-mapping>
 
    
@@ -56,7 +57,8 @@
 	 -->
 	<servlet-mapping> 
 		<servlet-name>mwav</servlet-name>
-		<url-pattern>*.do</url-pattern>
+		<url-pattern>/</url-pattern>
+		<url-pattern>*.mwav</url-pattern>
 	</servlet-mapping>
 
 	
@@ -104,34 +106,34 @@
  	<!-- error 페이지 (추후 변동예정) -->
  	<error-page>
     	<exception-type>java.lang.Throwable</exception-type>
-    	<location>/MessageView/throwable.do</location>
+    	<location>/MessageView/throwable.mwav</location>
     </error-page>
  	<error-page>
     	<exception-type>java.lang.Exception</exception-type>
-    	<location>/MessageView/exception.do</location>
+    	<location>/MessageView/exception.mwav</location>
     </error-page>
     <error-page>
     	<error-code>400</error-code>
-    	<location>/MessageView/400.do</location>
+    	<location>/MessageView/400.mwav</location>
     </error-page>
     <error-page>
     	<error-code>401</error-code>
-    	<location>/MessageView/401.do</location>
+    	<location>/MessageView/401.mwav</location>
     </error-page>
     <error-page>
     	<error-code>403</error-code>
-    	<location>/MessageView/403.do</location>
+    	<location>/MessageView/403.mwav</location>
     </error-page>
     <error-page>
     	<error-code>404</error-code>
-    	<location>/MessageView/404.do</location>
+    	<location>/MessageView/404.mwav</location>
     </error-page>
     <error-page>
     	<error-code>500</error-code>
-    	<location>/MessageView/500.do</location>
+    	<location>/MessageView/500.mwav</location>
     </error-page>
      <error-page>
     	<error-code>503</error-code>
-    	<location>/MessageView/503.do</location>
+    	<location>/MessageView/503.mwav</location>
     </error-page>
 </web-app>

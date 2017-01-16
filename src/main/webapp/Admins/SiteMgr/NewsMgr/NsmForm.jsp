@@ -65,7 +65,7 @@
 						<c:set value="${param.mm}" var="mm" />
 					</c:otherwise>
 				</c:choose>
-				<jsp:include page="/admins/LeftMenu.do" flush="false">
+				<jsp:include page="/admins/LeftMenu.mwav" flush="false">
 					<jsp:param name="mm" value="${mm}" />
 				</jsp:include>
 			</div>
@@ -120,7 +120,7 @@
 							<c:choose>
 								<c:when test="${fn:length(updateNsmForm) > 0}">
 									<form role="form" method="post" name="bnsForm"
-										action="/admin/boardNews/nsmUpdatePro.do">
+										action="/admin/boardNews/nsmUpdatePro.mwav">
 										<table class="table table-striped">
 
 											<thead>
@@ -220,7 +220,7 @@
 										<br style="clear: both">
 										<p class="pull-right">
 											<button type="button" class="btn btn-success"
-												onClick="javascript:window.location.href='/admin/boardNews/nsmList.do?pageNum=${pageNum}'">All
+												onClick="javascript:window.location.href='/admin/boardNews/nsmList.mwav?pageNum=${pageNum}'">All
 												List</button>
 											<button type="button" class="btn btn-warning"
 												onClick="javascript:history.go(-1)">BACK</button>
@@ -232,7 +232,7 @@
 								</c:when>
 								<c:otherwise>
 									<form role="form" method="post" name="bnsForm"
-										action="/admin/boardNews/nsmForm.do">
+										action="/admin/boardNews/nsmForm.mwav">
 										<table class="table table-striped">
 
 											<thead>
@@ -321,7 +321,7 @@
 										<br style="clear: both">
 										<p class="pull-right">
 											<button type="button" class="btn btn-success"
-												onClick="javascript:window.location.href='/admin/boardNews/nsmList.do'">All
+												onClick="javascript:window.location.href='/admin/boardNews/nsmList.mwav'">All
 												List</button>
 											<button type="button" class="btn btn-warning"
 												onClick="javascript:history.go(-1)">BACK</button>

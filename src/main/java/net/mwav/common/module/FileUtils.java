@@ -355,7 +355,7 @@ public class FileUtils {
 				String gFileName = (String) dirListMap.get(i).get("gFileName");
 
 				// 가장 최근건에 대한 체크 필요.
-				// http://blog.daum.net/_blog/BlogTypeView.do?blogid=0HOSO&articleno=5387841&_bloghome_menu=recenttext
+				// http://blog.daum.net/_blog/BlogTypeView.mwav?blogid=0HOSO&articleno=5387841&_bloghome_menu=recenttext
 				// > db 딴에서 일부 잘라서 orderby 해도될듯
 
 				// 임시파일에서 이기 때문에 난수_+now (20자)

@@ -9,12 +9,12 @@
 <div class="row">
 	<!-- <div class="col-md-12">
 		<A href="/CWS/CommonApps/Member/MbrShipForm.jsp">Edit Profile</A> <A
-			href="/member/Logout.do">Logout</A> <br>
+			href="/member/Logout.mwav">Logout</A> <br>
 		<p class=" text-info">May 05,2014,03:00 pm</p>
 	</div> -->
 
 	<form class='form-horizontal' name="change_record" method="post"
-		action="/member/mbrUpdatePro.do">
+		action="/member/mbrUpdatePro.mwav">
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
 			<div class="panel panel-info">

@@ -30,7 +30,7 @@ container 안에 포함시키면된다.
 					
 					<h4 style="color: #23527c !important;">
 						<strong><a
-							href="javascript:window.location.href='/board/buView.do?bUsers_id=${VselectListBnsList.bUsers_id}'">${VselectListBnsList.buTitle}</a></strong>
+							href="javascript:window.location.href='/board/buView.mwav?bUsers_id=${VselectListBnsList.bUsers_id}'">${VselectListBnsList.buTitle}</a></strong>
 					</h4>
 
 					<p style="color: #78828D;">${VselectListBnsList.buSubTitle}</p>
@@ -57,15 +57,15 @@ container 안에 포함시키면된다.
 
 				<c:if test="${pagingVO.startPage > pagingVO.pageBlock}">
 					<li><a
-						href="/board/buList.do?pageNum=${pagingVO.startPage - pagingVO.pageBlock}"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
+						href="/board/buList.mwav?pageNum=${pagingVO.startPage - pagingVO.pageBlock}"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
 				</c:if>
 				<c:forEach var="i" begin="${pagingVO.startPage}"
 					end="${pagingVO.endPage}">
-					<li><a href="/board/buList.do?pageNum=${i}">${i}</a></li>
+					<li><a href="/board/buList.mwav?pageNum=${i}">${i}</a></li>
 				</c:forEach>
 				<c:if test="${pagingVO.endPage < pagingVO.pageCount}">
 					<li><a
-						href="/board/buList.do?pageNum=${pagingVO.startPage + pagingVO.pageBlock}"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+						href="/board/buList.mwav?pageNum=${pagingVO.startPage + pagingVO.pageBlock}"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
 				</c:if>
 				<!-- <li><a href="">&laquo;</a></li>
 			<li class="active"><a href="#">1</a></li>
@@ -99,13 +99,13 @@ container 안에 포함시키면된다.
 
 	function fn_insertbuForm() {
 		var comSubmit = new ComSubmit();
-		comSubmit.setUrl("<c:url value='/boardNotice/buForm.do' />");
+		comSubmit.setUrl("<c:url value='/boardNotice/buForm.mwav' />");
 		comSubmit.submit();
 	}
 
 	function fn_selectbuView() {
 		var comSubmit = new ComSubmit();
-		comSubmit.setUrl("<c:url value='/boardNotice/buView.do'/>");
+		comSubmit.setUrl("<c:url value='/boardNotice/buView.mwav'/>");
 		alert('sdf');
 		comSubmit.addParam("bUsers_id", $("#bUsers_id").val());
 		comSubmit.submit();
@@ -113,7 +113,7 @@ container 안에 포함시키면된다.
 
 	function fn_deleteBoard() {
 		var comSubmit = new ComSubmit();
-		comSubmit.setUrl("<c:url value='/boardNotice/buDelete.do' />");
+		comSubmit.setUrl("<c:url value='/boardNotice/buDelete.mwav' />");
 		comSubmit.addParam("bUsers_id", $("#bUsers_id").val());
 		comSubmit.submit();
 
