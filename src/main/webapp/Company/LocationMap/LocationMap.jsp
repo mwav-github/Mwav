@@ -48,15 +48,13 @@
 				<i class="fa fa-phone"></i> <abbr title="Phone">P</abbr>:
 				+82-2-6214-7039
 			</p>
-			<p>
-				<i class="fa fa-envelope-o"></i> <abbr title="Email">E</abbr>: <a
-					href="mailto:ebizpromwav@gmail.com">ebizpromwav@gmail.com</a>
-			</p>
+
 			<p>
 				<i class="fa fa-clock-o"></i> <abbr title="Hours">H</abbr>: Monday -
 				Friday: <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				9:00 AM to 6:00 PM
 			</p>
+			
 			<ul class="list-unstyled list-inline list-social-icons">
 				<li><a class="btn btn-social-icon btn-twitter"> <span
 						class="fa fa-twitter"></span>
@@ -71,6 +69,12 @@
 						class="fa fa-linkedin"></span>
 				</a></li>
 			</ul>
+			<p></p>
+			<p >
+				<a href="#" class="btn btn-block btn-default "
+					data-toggle="modal" data-target="#Contact"><span
+					class="glyphicon glyphicon-envelope"></span> Contact</a>
+			</p>
 		</div>
 
 		<!-- /.row -->

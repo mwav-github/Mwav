@@ -65,13 +65,11 @@
 		</a>
 
 
-		<hr>
-
-
+<hr class="hr_b">
 
 
 		<br style="clear: both">
-		<div class="row">
+		<div class="row text-right">
 			<p>
 				<button type="button" class="btn btn-default"
 					onClick="javascript:window.location.href='/CustomerService/Announcement/Announcement.jsp'">All

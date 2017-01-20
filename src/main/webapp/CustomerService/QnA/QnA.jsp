@@ -8,6 +8,37 @@
 <!-- /////////// -->
 <jsp:include page="/PartsOfContent/Head_Import.jsp" flush="false" />
 <!-- /////////// -->
+
+<script>
+	$(document)
+			.ready(
+					function() {
+						$('.collapse')
+								.on(
+										'show.bs.collapse',
+										function() {
+											var id = $(this).attr('id');
+											$('a[href="#' + id + '"]').closest(
+													'.panel-heading').addClass(
+													'active-faq');
+											$('a[href="#' + id + '"]  span')
+													.html(
+															'<i class="glyphicon glyphicon-minus"></i>');
+										});
+						$('.collapse')
+								.on(
+										'hide.bs.collapse',
+										function() {
+											var id = $(this).attr('id');
+											$('a[href="#' + id + '"]').closest(
+													'.panel-heading')
+													.removeClass('active-faq');
+											$('a[href="#' + id + '"]  span')
+													.html(
+															'<i class="glyphicon glyphicon-plus"></i>');
+										});
+					});
+</script>
 </head>
 
 <body>
@@ -26,7 +57,8 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 -->
 		<div class="row">
 			<div class="col-lg-12">
-				<img src="/CustomerService/zImage/CustomerService_IN(height_280).jpg"
+				<img
+					src="/CustomerService/zImage/CustomerService_IN(height_280).jpg"
 					class="img-responsive res_width" alt="Responsive image">
 			</div>
 		</div>
@@ -64,21 +96,26 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 			<!-- 끝 -->
 
 			<div class="col-md-9">
-				<span class="label label-primary">QnA</span>
+				<!-- Content Column -->
+				<div class="col-lg-12">
 
+					<jsp:include page="/qa/qaList.mwav" flush="false" />
+
+				</div>
 			</div>
 		</div>
 		<!-- /.row -->
 	</div>
 	<!-- /.container -->
 
-		<!-- Footer -->
-		<footer>
-			<!--/////////////////////////////////////////////////// -->
-			<jsp:include page="/PartsOfContent/SiteFooter/FrontFooter.jsp"
-				flush="false" />
-			<!--/////////////////////////////////////////////////// -->
-		</footer>
+
+	<!-- Footer -->
+	<footer>
+		<!--/////////////////////////////////////////////////// -->
+		<jsp:include page="/PartsOfContent/SiteFooter/FrontFooter.jsp"
+			flush="false" />
+		<!--/////////////////////////////////////////////////// -->
+	</footer>
 
 
 </body>

@@ -123,7 +123,7 @@
 							data-target=".modal_terms">개인정보취급방침</a></li>
 						<li><a href="#terms1" data-toggle="modal"
 							data-target=".modal_terms">이메일주소수집거부</a></li>
-						<li><a href="/CustomerService/Summary/Summary.jsp">Summary</a></li>
+						<li><a href="#">Summary</a></li>
 					</ul>
 				</div>
 			</div>

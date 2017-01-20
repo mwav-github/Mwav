@@ -36,26 +36,58 @@
 		<div class="mgt2 collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
 			<ul class="mgl3 nav navbar-nav lead">
-				<li><a href="/CompanyItem/ITProducts/OpenSRS/OpenSRS.jsp"><h4>IT
-							Solutions</h4></a></li>
-					<li><a href="/CompanyItem/ITProducts/Aervision/Aervision.jsp"><h4>IT
-							Products</h4></a></li>
-					<li><a href="/CompanyItem/WebSiteBuilding/WebSiteBuilding.jsp"><h4>WebSite
-							Building</h4></a></li>
-					<li><a
-						href="/CompanyItem/DigitalMarketing/DigitalMarketing.jsp"><h4>Digital
-							Marketing</h4></a></li>
-					<li><a href="/CompanyItem/ITConsulting/ITConsulting.jsp"><h4>IT
-							Consulting</h4></a></li>
+				<li>
+						<a href="/CompanyItem/ITProducts/OpenSRS/OpenSRS.jsp"><h4>IT
+							Solutions</h4></a>
+					</li>
+				<li>
+						<a href="/CompanyItem/ITProducts/Aervision/Aervision.jsp"><h4>IT
+							Products</h4></a>
+					</li>
+				<li>
+						<a href="/CompanyItem/WebSiteBuilding/WebSiteBuilding.jsp"><h4>WebSite
+							Building</h4></a>
+					</li>
+				<li>
+						<a href="/CompanyItem/DigitalMarketing/DigitalMarketing.jsp"><h4>Digital
+							Marketing</h4></a>
+					</li>
+				<li>
+						<a href="/CompanyItem/ITConsulting/ITConsulting.jsp"><h4>IT
+							Consulting</h4></a>
+					</li>
 			</ul>
-			<ul class="nav navbar-nav navbar-right">
+			<ul class="mgl3 nav navbar-nav navbar-right">
 				<!-- 일반로그인 부분 -->
 				<c:if test="${sessionScope.mbrLoginId ne null }">
-					<li><a href="/CustomerService/CS-MasterPage.jsp?mode=SDMyPage"
-						data-toggle="tooltip" data-placement="bottom"
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" data-toggle="tooltip"
+						data-placement="bottom"
 						data-original-title="${mbrLoginId}님
-								반갑습니다."><h5>MyPage</h5></a></li>
-					<li><a href="/member/LogOut.mwav"><h5>LogOut</h5></a></li>
+								반갑습니다."><i
+							class="fa fa-user fa-lg"></i>   My Mwav</a>
+
+						<ul class="dropdown-menu dropdown-menu_change">
+							<li><a href="/CustomerService/CS-MasterPage.jsp?mode=SDMyPage" style="color:#428bca;"><h5>My Account <span
+									class="glyphicon glyphicon-cog pull-right"></span></h5></a></li>
+							<li class=""></li>
+							<!-- <li><a href="#">User stats <span
+									class="glyphicon glyphicon-stats pull-right"></span></a></li> -->
+							<li class=""></li>
+							<%--QA 답변 달린 것에 대한 확인. --%>
+							<li><a href="/CustomerService/QnA/QnA.jsp"  style="color:#428bca;"><h5>Messages <span class="badge pull-right">
+										42 </span></h5></a></li>
+							
+							<!-- <li><a href="#">Favourites Snippets <span
+									class="glyphicon glyphicon-heart pull-right"></span></a></li> -->
+							<li class="divider"></li>
+							<li><a href="/member/LogOut.mwav"  style="color:#428bca;"><h5>Sign Out <span
+									class="glyphicon glyphicon-log-out pull-right"></span></h5></a></li>
+						</ul></li>	
+					
+					<!-- <li><h5>
+							<a href="/member/LogOut.mwav">LogOut</a>
+						</h5></li> -->
 				</c:if>
 				<c:if test="${sessionScope.mbrLoginId eq null }">
 					<li><a href="/login.mwav"><i class="fa fa-user fa-lg"></i></a></li>
@@ -81,8 +113,8 @@
      중간으로 보내기 위해서 container 추가 (left 메뉴 안의 페이지와 크기 동일) // => 다시 빼고 영역 조절
 --%>
 <header id="myCarousel" class="mgt5.5 carousel slide"
-	style="height: 72% !important; margin-top:5.5% !important;">
-	
+	style="height: 72% !important; margin-top: 5.5% !important;">
+
 	<!-- Indicators -->
 	<ol class="carousel-indicators">
 		<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -127,8 +159,8 @@
 				<div class="row pull-right hidden-xs col-sm-6 col-md-6">
 					<h2 class="page-header" style="color: #317eac">News</h2>
 					<div class="bs-component" style="background-color: white;">
-					
-				
+
+
 						<jsp:include page="/board/bnsFrontList.mwav" flush="false" />
 					</div>
 				</div>

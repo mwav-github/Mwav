@@ -12,11 +12,11 @@
 	rel="stylesheet">
 <script>
 	function check2(obj) {
-		if (confirm("정말 삭제하시겠습니까??") == true){    //확인
+		if (confirm("정말 삭제하시겠습니까??") == true) { //확인
 			var bbb = obj;
-			location.href= "/admin/boardNews/nsmDelete.mwav?bNews_id="+bbb;
-		}else{   //취소
-		    return;
+			location.href = "/admin/boardNews/nsmDelete.mwav?bNews_id=" + bbb;
+		} else { //취소
+			return;
 		}
 
 	}
@@ -28,127 +28,133 @@
 	<!-- /.row -->
 
 	<!-- Content Row -->
-	<div class="row">
 
 
-		<div class="col-md-9">
-			<!-- 소제목 -->
+	<!-- Content Column -->
+	<div class="col-lg-12">
 
-
+		<div class="row">
+			<%--================================================시작========================================================== --%>
 			<!-- Content Column -->
-			<div class="col-lg-12">
 
-				<div class="row">
-					<%--================================================시작========================================================== --%>
-					<!-- Content Column -->
-					<div class="table-responsive">
-						<form role="form">
-							<table class="table table-striped">
-								<thead>
-									<tr>
+			<form role="form">
+				<table class="table table-striped">
+					<thead>
+						<tr>
 
-										<c:set var="bnStatus" value="${selectOneQAView.uqStatus }" />
-										<c:if test="${fn:contains(uqStatus, '0')}">
-											<span class="pull-right bg-danger"><strong>삭제
-											</strong></span>
-										</c:if>
-										<c:if test="${fn:contains(uqStatus, '1')}">
-											<span class="pull-right bg-primary"><strong>문의접수
-											</strong></span>
-										</c:if>
-										<c:if test="${fn:contains(uqStatus, '10')}">
-											<span class="pull-right bg-info"><strong>답변처리
-											</strong></span>
-										</c:if>
-										<c:if test="${fn:contains(uqStatus, '20')}">
-											<span class="pull-right bg-warning"><strong>재답변처리
-											</strong></span>
-										</c:if>
+							<c:set var="bnStatus" value="${selectOneQAView.uqStatus }" />
+							<c:if test="${fn:contains(uqStatus, '0')}">
+								<span class="pull-right bg-danger"><strong>삭제 </strong></span>
+							</c:if>
+							<c:if test="${fn:contains(uqStatus, '1')}">
+								<span class="pull-right bg-primary"><strong>문의접수
+								</strong></span>
+							</c:if>
+							<c:if test="${fn:contains(uqStatus, '10')}">
+								<span class="pull-right bg-info"><strong>답변처리 </strong></span>
+							</c:if>
+							<c:if test="${fn:contains(uqStatus, '20')}">
+								<span class="pull-right bg-warning"><strong>재답변처리
+								</strong></span>
+							</c:if>
 
-										<c:if test="${fn:contains(uqStatus, '100')}">
-											<span class="pull-right bg-success"><strong>처리완료
-											</strong></span>
-										</c:if>
-
-										<div class="enter"></div>
-									</tr>
-									<tr class="active">
-										<th>NO.</th>
-										<th>Group</th>
-										<th>ViewCount</th>
-										<th>InsertDt</th>
-										<th>staff_id</th>
-										<th>Order</th>
-									</tr>
-								</thead>
+							<c:if test="${fn:contains(uqStatus, '100')}">
+								<span class="pull-right bg-success"><strong>처리완료
+								</strong></span>
+							</c:if>
+						</tr>
+						<tr class="active">
+							<th>Group</th>
+							<th>InsertDate</th>
+							<th>Answer</th>
+							<th>Status</th>
+						</tr>
+					</thead>
 
 
-								<tbody>
-									<tr>
-										<td>${selectOneQAView.QnA_id}</td>
-										<td>${selectOneQAView.uqGroup}</td>
-										<td>${selectOneQAView.uqViewCount}</td>
-										<td>${selectOneQAView.uqInsertDt}</td>
-										<td>${selectOneQAView.member_id}</td>
-										<td>${selectOneQAView.uqGroup}</td>
-									</tr>
-								</tbody>
-							</table>
+					<tbody>
+						<tr>
+							<td>${selectOneQAView.uqGroup}</td>
+							<td>${selectOneQAView.uqViewCount}</td>
+							<td>${selectOneQAView.uqInsertDt}</td>
+							<td>${selectOneQAView.member_id}</td>
 
-							<table class="table table-striped">
+						</tr>
+					</tbody>
+				</table>
 
-								<tr>
-									<th class="active">Title</th>
-								</tr>
-								<tr>
-									<td>${selectOneQAView.uqTitle}</td>
-								</tr>
+				<table class="table table-bordered ">
+					<colgroup>
+						<col class="col-md-4">
+						<col class="col-md-8">
+					</colgroup>
 
+					<tr>
+						<th class="active">Title</th>
+						<td>${selectOneQAView.uqTitle}</td>
+					</tr>
+					<tr>
+						<th class="active">SubTitle</th>
+						<td>${selectOneQAView.uqSubTitle}</td>
+					</tr>
+					<tr>
+						<th class="active">Reference</th>
+						<td>${selectOneQAView.uqRelatedLink}</td>
+					</tr>
+				</table>
+				<div class="enter"></div>
+				<p>${selectOneQAView.uqContent}</p>
+			</form>
 
+			<div class="enter"></div>
 
+			<div class="span12">
+				<div class="well">
+					<h6 class="text-danger text-right">
+						<strong>처리자 : 김성욱 | 처리일자 : 2016-08-27 16:01:44 </strong>
+					</h6>
+					<h3 class="text-info">Economy</h3>
 
-								<tr>
-									<th class="active">SubTitle</th>
-								</tr>
-								<tr>
-									<td>${selectOneQAView.uqSubTitle}</td>
-								</tr>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+						nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis
+						ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta.</p>
 
-								<tr>
-									<th class="active">Reference</th>
-								</tr>
-								<tr>
-									<td>${selectOneQAView.uqRelatedLink}</td>
-								</tr>
-
-								<tr>
-									<th class="active">Content</th>
-
-								</tr>
-								<tr>
-									<td>${selectOneQAView.uqContent}</td>
-								</tr>
-
-							</table>
-						</form>
-
-						<br style="clear: both">
-						<p class="pull-right">
-							<button type="button" class="btn btn-success"
-								onClick="javascript:window.location.href='/qa/qaList.mwav?pageNum=${pageNum}'">All
-								List</button>
-							<button type="button" class="btn btn-warning"
-								onClick="javascript:history.go(-1)">BACK</button>
-							<button type="button" class="btn btn-danger"
-								onclick="check2(${selectOneQAView.QnA_id})">Delete</button>
-						</p>
-
-					</div>
-
-					<%--================================================끝========================================================== --%>
 				</div>
-
 			</div>
+
+
+
+			<br style="clear: both">
+
+			<hr class="hr_b">
+			<div class="row text-right">
+				<p>
+
+					<button type="button" class="btn btn-default" data-toggle="modal"
+						data-target="#Contact">
+						<span class="glyphicon glyphicon-envelope"></span> Contact
+					</button>
+					<button type="button" class="btn btn-default"
+						onclick="javascript:window.location.href='/qa/qaList.mwav'">All
+						List</button>
+					<button type="button" class="btn btn-default"
+						onclick="javascript:history.go(-1)">BACK</button>
+				</p>
+			</div>
+			<div class="row">
+				<ul class="pager">
+					<li class="previous"><a
+						href="/qa/qaView.mwav?QnA_id=${selectOneQAView.QnA_id-1}">←
+							Older</a></li>
+					<li class="next"><a
+						href="/qa/qaView.mwav?QnA_id=${selectOneQAView.QnA_id+1}">Newer
+							→</a></li>
+				</ul>
+			</div>
+
+
+			<%--================================================끝========================================================== --%>
 		</div>
+
 	</div>
 </div>

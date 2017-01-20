@@ -44,7 +44,7 @@
 	
 	<select id="selectListQAList" parameterType="hashmap" resultType="hashmap">
 	<![CDATA[
-	select c.*, date_format(uqDeleteDt,'%Y-%m-%d') as fmuqDeleteDt from (select @ROWNUM := @ROWNUM + 1 AS ROWNUM, a.* from (select * from UserQuestion_tbl where uqDeleteDt IS NULL order by uqInsertDt desc) a,  (SELECT @ROWNUM := 0) R ) c where c.ROWNUM >= #{startRow} and c.ROWNUM <= #{endRow} 
+	select c.*, date_format(uqInsertDt,'%Y-%m-%d') as fmuqInsertDt from (select @ROWNUM := @ROWNUM + 1 AS ROWNUM, a.* from (select * from UserQuestion_tbl where uqDeleteDt IS NULL order by uqInsertDt desc) a,  (SELECT @ROWNUM := 0) R ) c where c.ROWNUM >= #{startRow} and c.ROWNUM <= #{endRow} 
 	]]>
 	</select>
 	

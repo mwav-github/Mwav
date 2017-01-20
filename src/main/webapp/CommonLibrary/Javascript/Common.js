@@ -448,26 +448,6 @@ function res_Text() {
 	$(".small2").css("font-size", newFontSize + 'em');
 }
 
-function chkLoginPolicy(mbrLoginId) {
-
-	// 로그인 아이디 계정정책 확인
-	var re1 = "/^[a-zA-Z]{4,20}/g"; // 첫글자는 영문자 및 4~20글자 = true
-	var re2 = "/s$/"; // 공백인 경우 true
-	var re3 = "/[`~!@#$%^&*|\\\'\";,:\/?=<>+-]/gi"; // []들어가있다면 false ^가 반대를 의미
-
-	if (re1.test(mbrLoginId) == false) {
-		alert("첫글자는 영문자 및 4~20글자로 구성되어야 합니다.");
-		return false;
-	}
-	if (re2.test(mbrLoginId) == true) {
-		alert("공백은 허용하지 않습니다.");
-		return false;
-	}
-	if (re3.test(mbrLoginId) == true) {
-		alert("특수문자는 허용하지 않습니다.");
-		return false;
-	}
-}
 
 /* 확인 취소 Alert */
 

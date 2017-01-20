@@ -34,9 +34,13 @@ http://planbong.tistory.com/531
 	function idcheck() {
 		var id = document.getElementsByName("mbrLoginId")[0].value;
 		//alert(id);
-
+		//var html_object = document.getElementsByName("mbrLoginId");
+		//위에로 하면 HTMLCollection로 나오며 이는  리턴 결과가 복수인 경우에 사용하게 되는 객체다
+		// 아래는 HTML INPUTELEMENT? 하나 !
+		var input_object = document.getElementById("chkLoginId");
 		//유효성 체크  후 ajax
-		chkLoginPolicy();
+		
+		chkLoginPolicy(id,input_object);
 
 		var queryString = "mbrLoginId=" + id;
 		if (id.length < 6) {

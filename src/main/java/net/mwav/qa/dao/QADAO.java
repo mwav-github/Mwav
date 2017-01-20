@@ -38,7 +38,8 @@ public class QADAO extends AbstractDAO {
 
 	public List<Map<String, Object>> selectListQAList(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return null;
+		return (List<Map<String, Object>>) selectList(
+				"qa.selectListQAList", map);
 	}
 
 	public int selectOneGetTotalCount() {

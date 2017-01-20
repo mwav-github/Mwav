@@ -79,15 +79,16 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 		<!-- Page Heading/Breadcrumbs  SPA방식으로 추후변경
 		     네비게이션 바 ~!!! HOME만 링크있고 HOME/COMPANY COMPANY 은 없다 .
 		 -->
+
 		<div class="row">
 			<div class="col-lg-12">
 				<h1 class="page-header">
-					CustomerService <small> Announcement</small>
+					CustomerService <small> ${breadcrumb}</small>
 				</h1>
 				<ol class="breadcrumb">
 					<li><a href="index.html">Home</a></li>
 					<li>CustomerService</li>
-					<li class="active">Announcement</li>
+					<li class="active">${breadcrumb}</li>
 				</ol>
 			</div>
 		</div>
@@ -138,10 +139,14 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 						flush="false" />
 				</c:if>
 				<c:if test="${mode == 'm_buList'}">
-					
-						<jsp:include page="/CommonApps/BoardNotice/buList.jsp"
-							flush="false" />
-					</c:if>
+
+					<jsp:include page="/CommonApps/BoardNotice/buList.jsp"
+						flush="false" />
+				</c:if>
+				<c:if test="${mode == 'qaView'}">
+
+					<jsp:include page="/CommonApps/BoardQnA/qaView.jsp" flush="false" />
+				</c:if>
 
 
 			</div>

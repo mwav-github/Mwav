@@ -119,11 +119,15 @@
 		
 		 -->
 	<!-- 제외하고 싶을떄 http://krespo.net/192 -->
-
+    <!-- 여러개 쓸때 http://kdsr2z0.github.io/spring_interceptor/ (순서대로실행) -->
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**" />
 			<bean id="loggerInterceptor" class="net.common.logger.LoggerInterceptor"></bean>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/member/**" />
+			<bean id="loginInterceptor" class="net.common.logger.LoginInterceptor"></bean>
 		</mvc:interceptor>
 	</mvc:interceptors>
 

@@ -23,8 +23,116 @@ function return_check(flag){
 	return true;
 }
 
+function Trim(strSrc) { var strLTrim = strSrc.replace(/^\s+/,''); return
+ strLTrim.replace(/\s+$/,''); 
+}
 
-function chkLoginPolicy() {
+function chkLoginPolicy(validate_string, input_object) {
+var check_login = trim(validate_string);
+chkLoginId_1 = document.getElementById("chkLoginId");
+	/*chkLoginId_1 = document.getElementById("chkLoginId");
+	var chkLoginId = chkLoginId_1.value;
+	// var mbrLoginId = mbrLoginId;
+*/
+	// 로그인 아이디 계정정책 확인
+	var re1 = /^[a-zA-Z]/g; // 첫글자는 영문만 가능
+	var re2 = /\s/; // 공백인 경우 true
+	var re3 = /[`~!@#$%^&*|\\\'\";,:\/?=<>+-]/gi;
+	// []들어가있다면 false ^가 반대를 의미
+	/*alert(chkLoginId);
+	alert(typeof(chkLoginId));
+	alert(validate_string);
+	alert(typeof(validate_string));
+	//alert(Trim(validate_string));
+	
+	alert(re1.test(chkLoginId));
+	alert(re1.test(trim(validate_string)));*/
+	/*
+	 * alert(re1.test(mbrLoginId)); alert(re1.test(mbrLoginId) == false)
+	 
+	 */
+	
+	if ((re1.test(validate_string)) == false) {
+		alert("첫글자는 영문자만 가능합니다.");
+		
+		//중요 		input_object = "";로 되어있으면 아래 focus이벤트 안먹는다. 
+		input_object.value = ""; // value 초기화를 위해서는 input 태그에 value="" 가
+									// 되어있어야 한다.
+		input_object.focus(); // focus의 경우 edge에서 동작하지 않는듯.
+		
+		event.preventDefault();
+		return false;
+
+	}
+	// alert(re2.test(mbrLoginId));
+	if ((re2.test(validate_string)) == true) {
+		alert("공백은 허용하지 않습니다.");
+		// form.mbrLoginId.value="";
+		input_object.value = "";
+		input_object.focus();
+		return false;
+
+	}
+	// alert(re3.test(mbrLoginId));
+	if (re3.test(validate_string) == true) {
+		alert("특수문자는 허용하지 않습니다.");
+
+		input_object.value = "";
+		input_object.focus();
+		return false;
+	}
+	if ((validate_string.length < 4) || (validate_string.length > 20)) {
+		alert("아이디는 4~20글자 까지 가능합니다..");
+		input_object.value = "";
+		input_object.focus();
+		return false;
+	}
+}/*
+function chkLoginPolicy(validate_string) {
+ //chkLoginId_1 = document.getElementById("chkLoginId");
+ //var chkLoginId = chkLoginId_1.value;
+	alert(validate_string);
+	alert(typeof(validate_string));
+	
+	alert(chkLoginId);
+	alert(typeof(chkLoginId));
+	
+	
+	// 로그인 아이디 계정정책 확인
+	var re1 = "/^[a-zA-Z]{4,20}/g"; // 첫글자는 영문자 및 4~20글자 = true
+	var re2 = "/s$/"; // 공백인 경우 true
+	var re3 = "/[`~!@#$%^&*|\\\'\";,:\/?=<>+-]/gi"; // []들어가있다면 false ^가 반대를 의미
+
+	//alert(re1.test("sdfd"));
+	if (re1.test(validate_string) == false) {
+		alert("첫글자는 영문자 및 4~20글자로 구성되어야 합니다.");
+		validate_string.value = ""; // value 초기화를 위해서는 input 태그에 value="" 가
+		// 되어있어야 한다.
+		validate_string.focus();
+		return false;
+	}
+	if (re2.test(validate_string) == true) {
+		alert("공백은 허용하지 않습니다.");
+		validate_string.value = ""; // value 초기화를 위해서는 input 태그에 value="" 가
+		// 되어있어야 한다.
+		validate_string.focus();
+		return false;
+	}
+	if (re3.test(validate_string) == true) {
+		alert("특수문자는 허용하지 않습니다.");
+		validate_string.value = ""; // value 초기화를 위해서는 input 태그에 value="" 가
+		// 되어있어야 한다.
+		validate_string.focus();
+		return false;
+	}
+	if ((validate_string.length < 4) || (validate_string.length > 20)) {
+		alert("아이디는 4~20글자 까지 가능합니다..");
+		validate_string = "";
+		validate_string.focus();
+		return false;
+	}
+}*/
+/*function chkLoginPolicy() {
 
 	chkLoginId_1 = document.getElementById("chkLoginId");
 	var chkLoginId = chkLoginId_1.value;
@@ -36,9 +144,9 @@ function chkLoginPolicy() {
 	var re3 = /[`~!@#$%^&*|\\\'\";,:\/?=<>+-]/gi;
 	// []들어가있다면 false ^가 반대를 의미
 
-	/*
+	
 	 * alert(re1.test(mbrLoginId)); alert(re1.test(mbrLoginId) == false)
-	 */if ((re1.test(chkLoginId)) == false) {
+	 if ((re1.test(chkLoginId)) == false) {
 		alert("첫글자는 영문자만 가능합니다.");
 		chkLoginId_1.value = ""; // value 초기화를 위해서는 input 태그에 value="" 가
 									// 되어있어야 한다.
@@ -69,7 +177,7 @@ function chkLoginPolicy() {
 		chkLoginId_1.focus();
 		return false;
 	}
-}
+}*/
 function chkPWPolicy() {
 
 	/*

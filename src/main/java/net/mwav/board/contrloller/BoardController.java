@@ -329,7 +329,7 @@ public class BoardController {
 			mv.addObject("mode", "m_buView");
 			
 			mv.addObject("breadcrumb", "IT Trends");
-			//mv.addObject("page_header", "IT Trends");
+			mv.addObject("page_header", "IT Trends");
 
 
 			mv.addObject("selectOneBuView", selectOneBuView);
@@ -444,6 +444,7 @@ public class BoardController {
 		
 		mv.addObject("breadcrumb", "IT Trends");
 		mv.addObject("page_header", "IT Trends");
+		
 
 
 		System.out.println("!!!!!!!!!!selectListBuList = " + selectListBuList);

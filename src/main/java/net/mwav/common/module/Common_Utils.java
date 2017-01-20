@@ -1,5 +1,6 @@
 package net.mwav.common.module;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Enumeration;
@@ -19,6 +20,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.log4j.Category;
 import org.apache.log4j.Logger;
+
 
 public class Common_Utils {
 
@@ -345,4 +347,35 @@ public class Common_Utils {
 		return map;
 	}
 
+	//인코딩 종류 확인
+	public String encoding(String parameter) throws IOException {
+		String search_parameter = parameter.toString();
+		String result = null;
+		if (search_parameter != null
+				&& search_parameter != "") {
+			String charset[] = { "KSC5601", "8859_1", "ascii", "UTF-8",
+					"EUC-KR", "MS949" };
+
+			System.out.println("Not convert charset : " + search_parameter + "<br>");
+			for (int i = 0; i < charset.length; i++) {
+				for (int j = 0; j < charset.length; j++) {
+					if (i == j) {
+						continue;
+					} else {
+						result = new String(search_parameter.getBytes(charset[i]),
+								charset[j]);
+						System.out
+								.println(charset[i]
+										+ " : "
+										+ charset[j]
+										+ " :"
+										+ result + "<br>");
+					}
+				}
+			}
+		}
+
+		System.out.println("========여기까지 인코딩의 종류이다.=========");
+		return result;
+	}
 }

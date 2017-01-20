@@ -78,7 +78,7 @@ public class QAController {
 	@RequestMapping(value = "/qa/qaView.mwav")
 	public ModelAndView selectOneNsmView(CommandMap commandMap,
 			HttpServletRequest request, HttpSession session) throws Exception {
-		ModelAndView mv = new ModelAndView("/CommonApps/BoardQnA/qaView");
+		ModelAndView mv = new ModelAndView("/CustomerService/CS-MasterPage");
 
 		
 
@@ -93,8 +93,10 @@ public class QAController {
 			
 			String mm = "site";
 			mv.addObject("mm", mm);
-			mv.addObject("mode", "m_nsmView");
-						
+			mv.addObject("mode", "qaView");
+			mv.addObject("breadcrumb", "Q&A");
+			mv.addObject("page_header", "Q&A");
+		
 
 			mv.addObject("pageNum", paging.getPageNum( (String) commandMap.get("pageNum")));
 			
@@ -145,7 +147,7 @@ public class QAController {
 		@RequestMapping(value = "/qa/qaList.mwav")
 		public ModelAndView selectListQAList(CommandMap commandMap,
 				HttpServletRequest request) throws Exception {
-			ModelAndView mv = new ModelAndView("/Company/CompanyMasterPage_1");
+			ModelAndView mv = new ModelAndView("/CommonApps/BoardQnA/qaList");
 
 			String pageNum = (String) commandMap.get("pageNum");
 			Paging paging = new Paging();

@@ -140,6 +140,9 @@ public class MemberController {
 			System.out.println("view 줄랭");
 			mv.addObject("mode", "SDMyPage");
 			mv.addObject("selectMbrView", selectMbrView);
+			mv.addObject("breadcrumb", "MemberShip");
+			//mv.addObject("page_header", "IT Trends");
+			mv.addObject("page_header", null);
 		}
 		return mv;
 	}
@@ -430,7 +433,9 @@ public class MemberController {
 				.getMap());
 
 		mv.addObject("deleteMbrDelete", deleteMbrDelete);
-
+		mv.addObject("breadcrumb", "MemberShip");
+		//mv.addObject("page_header", "IT Trends");
+		mv.addObject("page_header", null);
 		session.invalidate();
 
 		return mv;
