@@ -1,6 +1,7 @@
 package net.common.logger;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -40,6 +41,22 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 			System.out.println(request.getRequestURI());
 			System.out.println("LoginInterceptor에 들어왔다.");
 		}
+		
+	
+		/*String id = "";
+		String returnUrl = "";
+		try{
+			HttpSession session = request.getSession();
+		id = (String)session.getAttribute("id");            // request에서 id 파라미터를 가져온다
+		returnUrl = request.getRequestURI(); // 현재 URL 
+		if(id==null||id.equals("")){                            // id가 Null 이거나 없을 경우
+		response.sendRedirect("/CommonApps/Member/MbrLogin.jsp?returnUrl"+returnUrl);    // 로그인 페이지로 리다이렉트 한다.
+
+		}
+		}catch(Exception e){
+			
+		}
+	*/
 		
 
 		return super.preHandle(request, response, handler);

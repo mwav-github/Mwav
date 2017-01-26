@@ -557,6 +557,8 @@ public class MemberController {
 		Map<String, Object> memberLogin = null;
 		memberLogin = memberService.selectLogin(commandMap.getMap());
 
+		String returnUrl = (String) request.getAttribute("returnUrl");
+		System.out.println("returnUrl"+returnUrl);
 		int loginCheck = 0; // 초기값
 
 		// 암호화 복호화 할 필요는없지.

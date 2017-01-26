@@ -96,4 +96,20 @@ public class FrontCommonController {
 		return mv;
 	}
 
+	@RequestMapping(value = "/CompanyItem/**")
+	public ModelAndView redirectController(HttpServletRequest request) throws Exception {
+		
+		System.out.println("열로들어오나");
+		String url = request.getRequestURI();
+		int pos = url.lastIndexOf(".");
+		String ext = url.substring(pos + 1);
+		String ext_url = url.substring(0, pos);
+		System.out.println("확장자 제외" + ext);
+		System.out.println("return URL"+ext_url);
+		ModelAndView mv = new ModelAndView(
+				ext_url);
+
+		return mv;
+	}
+
 }

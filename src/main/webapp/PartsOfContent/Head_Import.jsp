@@ -11,7 +11,8 @@
 <meta name="Author" content="Zeus, Peter J." />
 <meta name="copyright" content="All contents are copyright by Mwav.net" />
 <meta name="distribution" content="global" />
-<link rel="icon" href="/Images/CompanyLogos/CompanyLogo.ico" />
+<%--resource는 호출하지않도록 처리. 추후 필요 !!!*** --%>
+<link rel="icon" href="/Images/CompanyLogos/CompanyLogo.ico" /> 
 <title></title>
 
 <%--인코딩 설정 --%>

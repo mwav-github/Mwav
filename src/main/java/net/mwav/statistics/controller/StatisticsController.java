@@ -66,4 +66,11 @@ public class StatisticsController {
 		return null;
 
 	}
+	public ModelAndView redirectController(HttpServletRequest request, String url) throws Exception {
+		ModelAndView mv = new ModelAndView(
+				"/CompanyItem/ITProducts/HighSofts/HighSofts");
+
+		return mv;
+	}
+
 }

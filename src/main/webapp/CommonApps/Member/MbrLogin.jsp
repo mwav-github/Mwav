@@ -208,6 +208,8 @@ function re_check(form){
 
 	<form name="login_form" action="/member/Login.mwav" role="form"
 		class='form-horizontal' method="post" onsubmit="return re_check(document.login_form);">
+		 <input type="hidden" name="returnUrl"
+					value="${returnUrl }" />
 		<div class="enter"></div>
 		<div class="form-group">
 			<input type="text" name="mbrLoginId"

@@ -1,5 +1,7 @@
 package net.common.logger;
 
+import java.util.List;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,14 +18,23 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
 //
+
 public class LoggerInterceptor extends HandlerInterceptorAdapter {
 	// private final Logger log = LoggerFactory.getLogger(this.getClass());
-	//Logger log = Logger.getLogger(this.getClass());
-	 protected Log log = LogFactory.getLog(LoggerInterceptor.class);
-	 
-	 @Autowired
-		private StatisticsController statisticsController;
+	// Logger log = Logger.getLogger(this.getClass());
+
+	List<String> urls;
+
+	public void setUrls(List urls) {
+		this.urls = urls;
+	}
+
+	protected Log log = LogFactory.getLog(LoggerInterceptor.class);
+
+	@Autowired
+	private StatisticsController statisticsController;
 
 	// Log4js 설정
 	// http://dev.anyframejava.org/docs/anyframe/plugin/essential/core/1.6.0/reference/html/ch21.html
@@ -61,12 +72,11 @@ public class LoggerInterceptor extends HandlerInterceptorAdapter {
 	/*
 	 * 최초 actionservlet 에서 mapping 가능하다 ~!! 즉 분류별로 나눠서 관리 가능
 	 */
-	
+
 	/*
-	 * redirect 와 response 차이 
+	 * redirect 와 response 차이
 	 */
-	 
-	 
+
 	@Override
 	public boolean preHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler) throws Exception {
@@ -75,59 +85,86 @@ public class LoggerInterceptor extends HandlerInterceptorAdapter {
 		System.out.println("LoggerInterceptor에 들어왔다.");
 		HttpSession session = request.getSession();
 		String uploadRootPath = session.getServletContext().getRealPath("\\");
-		//서버에서 띄우면 (호스팅서버) 루트에러 .
-		
-		System.out.println("루트 경로"+uploadRootPath);
-		//DomReadXMLFile.xmlParser("/xConfig/general.xml.config");
-		DomReadXMLFile.xmlParser(uploadRootPath+"/xConfig/general.xml.config");
+		// 서버에서 띄우면 (호스팅서버) 루트에러 .
+		String url = request.getRequestURI();
+
+		System.out.println("루트 경로" + uploadRootPath);
+		// DomReadXMLFile.xmlParser("/xConfig/general.xml.config");
+		DomReadXMLFile
+				.xmlParser(uploadRootPath + "/xConfig/general.xml.config");
 		statisticsController.insertStatics(request);
-		
-		//디버그 레벨일때 true
-		//http://planmaster.tistory.com/66
+
+		// 디버그 레벨일때 true
+		// http://planmaster.tistory.com/66
 		if (log.isDebugEnabled()) {
 			log.info("======================================          START         ======================================");
 			log.info(" Request URI \t:  " + request.getRequestURI());
 			System.out.println(request.getRequestURI());
 			System.out.println("LoggerInterceptor에 들어왔다.");
 		}
-		
-		
+		System.out.println("urls.size()" + urls.size());
 
-	
+	/*	int pos = url.lastIndexOf(".");
+		String ext = url.substring(pos + 1);
+		System.out.println("확장자 제외" + ext);
 		
-		request.setAttribute("msm", "출력되나");
-		/*
-		 * 1. 전체 url 중 /admins /Admins 만 substring 등을 이용해서 조건 부여 2. 그러나 여기서 계속
-		 * redirect 먹히지 않음 3. url.substring // url.equals 에서 계속안먹음 원인 파악 불가 4.
-		 * actionservlet에서 그냥 매핑설정하여 /admins , /Admins일때 들어오도록 설정
-		 */
-
-		/*try {
-			if (request.getSession().getAttribute("staff_id") == null) {
-				System.out.println("콜");
-				response.sendRedirect("/Admins/CompanyMgr/Staff/StfLogin.jsp");
-				return false;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
+		if(ext.equals("jsp")){
+			System.out.println("jsp 파일이다.");
+			statisticsController.redirectController(request, ext);
 		}*/
-		/*
-		 * System.out.println("LoggerInterceptor에 들어왔다."); if
-		 * (log.isDebugEnabled()) { log.debug(
-		 * "======================================          START         ======================================"
-		 * ); log.debug(" Request URI \t:  " + request.getRequestURI());
-		 * System.out.println(request.getRequestURI());
-		 * System.out.println("LoggerInterceptor에 들어왔다."); }
-		 */
-		// String contextPath = request.getContextPath();
 
-		// System.out.println("contextPath="+command);
+		for (int i = 0; i < urls.size(); i++) {
+			System.out.println("== URL : " + urls.get(i)
+					+ " ============================");
+			if (url.matches(urls.get(i))) {
+				{
+					/*
+					 * request.getRequestURI(); //프로젝트경로부터 파일까지의 경로값을 얻어옴
+					 * (/test/index.jsp) request.getContextPath(); //프로젝트의 경로값만
+					 * 가져옴(/test) request.getRequestURL(); //전체 경로를 가져옴
+					 * (http://localhost:8080/test/index.jsp)
+					 * request.getServletPath(); //파일명 (/index.jsp)
+					 */
+					System.out
+							.println("== 인증 체크가 필요 있는 URL ============================");
+					System.out.println("== URL : " + urls.get(i)
+							+ " ============================");
+					String id = "";
+					String returnUrl = "";
+					try {
 
-		/*
-		 * else 에는 세션있으므로 메인페이지로 포워딩 진행
-		 * 
-		 * staff 말고 admin 쪽도 동일하게
-		 */
+						id = (String) session.getAttribute("member_id"); // request에서
+																			// id
+																			// 파라미터를
+																			// 가져온다
+						System.out.println("세션아이디" + id);
+
+						returnUrl = request.getRequestURI(); // 현재 URL
+						if (id == null || id.equals("")) { // id가 Null 이거나 없을 경우
+							System.out.println("이쪽으로 리다이렉트");
+							// response.sendRedirect("/CommonApps/Member/MbrLogin.jsp");
+							// // 로그인 페이지로 리다이렉트 한다.
+							System.out.println("리턴url" + uploadRootPath
+									+ "MasterPage.jsp?mode=SMbrLogin");
+							response.sendRedirect("/hightsofts/hightsofts.mwav");
+							// response.sendRedirect("/hightsofts/hightsofts.mwav);
+							// return false;
+							/*
+							 * RequestDispatcher rd =
+							 * request.getRequestDispatcher
+							 * ("/Admins/CompanyMgr/Staff/StfLogin.jsp" );
+							 * rd.forward(request, response);
+							 */
+							return false;
+							// statisticsController.redirectController(request);
+							// return false;
+						}
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		}
 
 		/*
 		 * String URL = request.getRequestURL().toString(); String URI =
@@ -158,53 +195,7 @@ public class LoggerInterceptor extends HandlerInterceptorAdapter {
 		 * }
 		 */
 
-		/*
-		 * if (URI.length() >= 7) {
-		 * 
-		 * String command_1 = URI.substring(0, 6); String command_2 =
-		 * URI.substring(0, 7); System.out.println("command_1=" + command_1);
-		 * System.out.println("command_2=" + command_2);
-		 * 
-		 * 
-		 * // String command = URI.IndexOf("/admin");
-		 * System.out.println("String URL=" + URL);
-		 * System.out.println("String URI=" + URI); if
-		 * (command_2.equals("/Admins")) { System.out.println("권한부여 필요.");
-		 * 
-		 * if (request.getSession().getAttribute("staff_id") == null) {
-		 * System.out.println("콜");
-		 * response.sendRedirect("/Admins/CompanyMgr/Staff/StfLogin.jsp");
-		 * return false; // System.out.println(response.getBufferSize()); //
-		 * response.sendRedirect("/admins/LeftMenu.do");
-		 * 
-		 * 
-		 * // RequestDispatcher rd = //
-		 * request.getRequestDispatcher("/Admins/CompanyMgr/Staff/StfLogin.jsp"
-		 * ); // rd.forward(request, response);
-		 * 
-		 * 
-		 * // response.sendRedirect(URL); //
-		 * http://antiqueh.tistory.com/entry/%EC%
-		 * 9E%90%EB%B0%94-Servlet-responsesendRedirect-%EC%82%AC%EC%9A%A9%EC%8B%9C-%EC%9C%A0%EC%9D%98%EC%A0%90
-		 * // https://blog.outsider.ne.kr/188 // sendRedirect 사용 주의점 //
-		 * http://kdsr2z0.github.io/response_sendRedirect/ // return false; } }
-		 * }
-		 */
-
-		// if(request.getRequestURL() == "/admin")
-		/*
-		 * try{ if(request.getSession().getAttribute("mbrLoginId") == null){
-		 * //로그인페이지로 리다이렉트 response.sendRedirect("/"); return false; }
-		 * }catch(Exception e){ e.printStackTrace(); }
-		 */
-		/*
-		 * try { //admin이라는 세션key를 가진 정보가 널일경우 로그인페이지로 이동
-		 * if(request.getSession().getAttribute("admin") == null ){
-		 * response.sendRedirect("/"); return false; } } catch (Exception e) {
-		 * e.printStackTrace(); } //admin 세션key 존재시 main 페이지 이동 return true;
-		 */
-
-		return super.preHandle(request, response, handler);
+		return true;
 	}
 
 	@Override
@@ -212,11 +203,9 @@ public class LoggerInterceptor extends HandlerInterceptorAdapter {
 			HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
 		System.out.println("모든 것을 수행한 후 LoggerInterceptor에 나갔다.11");
-		
+
 		log.info("======================================           END          ======================================\n");
 
-		
-		
 	}
-	
+
 }

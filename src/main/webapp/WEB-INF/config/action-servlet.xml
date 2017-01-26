@@ -123,11 +123,22 @@
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**" />
-			<bean id="loggerInterceptor" class="net.common.logger.LoggerInterceptor"></bean>
+			<bean id="loggerInterceptor" class="net.common.logger.LoggerInterceptor">
+			<property name="urls">
+   <list>
+    <value>/CustomerService/MemberShip/MemberShip.jsp</value>
+    <value>/CompanyItem/WebSiteBuilding/WebSiteBuilding.jsp</value>
+    <value>/logout/logout.do</value>
+    <value>/logout/logout.do</value>
+    <value>/login.do</value>
+   </list>
+  </property>
+			</bean>
 		</mvc:interceptor>
 		<mvc:interceptor>
 			<mvc:mapping path="/member/**" />
-			<bean id="loginInterceptor" class="net.common.logger.LoginInterceptor"></bean>
+			<bean id="loginInterceptor" class="net.common.logger.LoginInterceptor">	
+			</bean>
 		</mvc:interceptor>
 	</mvc:interceptors>
 
@@ -141,9 +152,11 @@ SimpleUrlAnnotationHandlerMapping은 @Controller 사용시에 url 단위로 Inte
  -->
 	<bean
 		class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
+		
 
 	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver"
 		p:order="1" />
+		
 	<bean id="jsonView"
 		class="org.springframework.web.servlet.view.json.MappingJacksonJsonView" />
 

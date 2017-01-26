@@ -19,7 +19,6 @@
   </filter>
   <filter-mapping> <!-- 루트하위 모든 요청에 대한 인코딩 처리를 하겠다는 의미 -->
     <filter-name>encodingFilter</filter-name>
-    <url-pattern>/</url-pattern>
     <url-pattern>*.mwav</url-pattern>
   </filter-mapping>
 
@@ -54,13 +53,32 @@
 	
 	<!-- mwav에 대한 url-pattern을 정의 앞으로 서블릿에 어떠한 요청을 할 때, .do를 통해서만 요청을 전달
 	     WEB-INF 밑에 위치하지는 않았기 때문에, 절대경로로 호출가능.
+	     
+	     JSP는 JSPServlet를 우선순위로 탄다. // 이미지의 경우 defaultservlet 
+	     즉 전체를 태울 수는 없다! 가능하다고 하더라도 너무 복잡해준다.
+	     차라리 .mwav 화 시켜라 
+	     
+	     /* 전체를 태울 수 있다. 근데 이경우 모든 jsp에 대한 return 설정 이슈가 생긴다.
+	     / 는 image 는 태울수있다. ico 파일이 걸린다.
+	     
+	     그냥 .mwav 만 태우고 .mwav 화시켜라 또한 jsp 페이지 내 .mwav 가 있다면 당연히 servlet를 타게된다. 
+	     
+	     http://xens.tistory.com/m/entry/Spring-Framework-RESTful-Web-Service%EC%99%80-JSPURL-Mapping-%EB%AC%B8%EC%A0%9C%ED%95%B4%EA%B2%B0
+	     http://m.egloos.zum.com/hanghee/v/5171628
+	     http://kwonnam.pe.kr/wiki/springframework/mvc
+	     https://groups.google.com/forum/#!topic/ksug/bISe6QIROQc
 	 -->
 	<servlet-mapping> 
 		<servlet-name>mwav</servlet-name>
 		<url-pattern>/</url-pattern>
 		<url-pattern>*.mwav</url-pattern>
 	</servlet-mapping>
-
+	
+	<!-- 아래 설정을 통하여 .ico 파일을 태우지 않을 수 있다.-->
+<servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.ico</url-pattern>
+</servlet-mapping>
 	
 	
 	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->

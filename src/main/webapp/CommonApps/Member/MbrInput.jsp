@@ -204,7 +204,7 @@ http://planbong.tistory.com/531
 
 								<input type="text" class="form-control caps_lockchk" name="mbrLoginId"
 									id="chkLoginId" placeholder="예) Member ID" onchange="idcheck()"
-									maxlength="20" required>
+									maxlength="20" value="" required>
 							</div>
 							
 

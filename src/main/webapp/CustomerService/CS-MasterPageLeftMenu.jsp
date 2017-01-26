@@ -57,7 +57,7 @@
 		class="list-group-item" data-toggle="tooltip" data-placement="top"
 		data-original-title="공지사항">Announcement</a>
 
-	<c:if test="${sessionScope.mbrLoginId eq null }">
+	<%-- <c:if test="${sessionScope.mbrLoginId eq null }">
 		<a href="javascript:window.alert('권한이 없습니다. \n 로그인 후 이용해주시기 바랍니다.');"
 			class="list-group-item" data-toggle="tooltip" data-placement="top"
 			data-original-title="회원정보(수정)">Member Ship</a>
@@ -67,7 +67,10 @@
 		<a href="/CustomerService/MemberShip/MemberShip.jsp"
 			class="list-group-item" data-toggle="tooltip" data-placement="top"
 			data-original-title="회원정보(수정)">Member Ship</a>
-	</c:if>
+	</c:if> --%>
+	<a href="/CustomerService/MemberShip/MemberShip.jsp"
+			class="list-group-item" data-toggle="tooltip" data-placement="top"
+			data-original-title="회원정보(수정)">Member Ship</a>
 
 	<a href="/CustomerService/Agreement/Agreement.jsp"
 		class="list-group-item" data-toggle="tooltip" data-placement="top"
