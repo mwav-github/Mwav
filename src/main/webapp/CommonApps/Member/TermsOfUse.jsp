@@ -12,7 +12,7 @@
 		if (agree_1_1_d.checked && agree_2_1_d.checked) {
 			alert("이용약관에 동의하셨습니다.");
 
-			location.href = "/MasterPage_1.jsp?mode=SMbrInput"
+			location.href = "/MasterPage_1.mwav?mode=SMbrInput"
 		} else {
 			alert("이용약관에 동의하지 않으셨습니다. 동의 후 이용 가능하십니다.")
 			$('#agree_1_d').focus();

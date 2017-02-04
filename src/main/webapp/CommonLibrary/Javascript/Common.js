@@ -695,9 +695,9 @@ function caps_lockchk() {
 //소셜 공유하기
 function sendSns(sns, url, txt ,type)
 {
-	alert(sns);
-	alert(url);
-	alert(txt);
+	//alert(sns);
+	//alert(url);
+	//alert(txt);
 	
 	//통계기 추가 필요
 	

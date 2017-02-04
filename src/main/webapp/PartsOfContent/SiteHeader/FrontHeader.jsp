@@ -5,6 +5,15 @@
 <!-- 메인 페이지에서만 타겟팅 나머지는 URL 물고가기
 이놈이 슬라이드쇼 없는 놈 그러나 아직 반영 x 각 페이지별로 따로 있다.
  -->
+<%-- <c:if test="${sessionScope.statistics_id eq null }">
+		<script type="text/javascript">
+		$(document).ready(function() {
+			alert(screen.width);
+			$('#screenSize').val(screen.width);
+	    });
+		</script>
+		<input type="hidden" name="screenSize" id="screenSize" value=""/>
+</c:if> --%>
 
 <nav id="BackToTop" class="menu navbar navbar-fixed-top"
 	role="navigation">
@@ -37,23 +46,23 @@
 			id="bs-example-navbar-collapse-1">
 			<ul class="mgl3 nav navbar-nav lead">
 				<li>
-						<a href="/CompanyItem/ITProducts/OpenSRS/OpenSRS.jsp"><h4>IT
+						<a href="/CompanyItem/ITProducts/OpenSRS/OpenSRS.mwav"><h4>IT
 							Solutions</h4></a>
 					</li>
 				<li>
-						<a href="/CompanyItem/ITProducts/Aervision/Aervision.jsp"><h4>IT
+						<a href="/CompanyItem/ITProducts/Aervision/Aervision.mwav"><h4>IT
 							Products</h4></a>
 					</li>
 				<li>
-						<a href="/CompanyItem/WebSiteBuilding/WebSiteBuilding.jsp"><h4>WebSite
+						<a href="/CompanyItem/WebSiteBuilding/WebSiteBuilding.mwav"><h4>WebSite
 							Building</h4></a>
 					</li>
 				<li>
-						<a href="/CompanyItem/DigitalMarketing/DigitalMarketing.jsp"><h4>Digital
+						<a href="/CompanyItem/DigitalMarketing/DigitalMarketing.mwav"><h4>Digital
 							Marketing</h4></a>
 					</li>
 				<li>
-						<a href="/CompanyItem/ITConsulting/ITConsulting.jsp"><h4>IT
+						<a href="/CompanyItem/ITConsulting/ITConsulting.mwav"><h4>IT
 							Consulting</h4></a>
 					</li>
 			</ul>
@@ -68,14 +77,14 @@
 							class="fa fa-user fa-lg"></i>   My Mwav</a>
 
 						<ul class="dropdown-menu dropdown-menu_change">
-							<li><a href="/CustomerService/CS-MasterPage.jsp?mode=SDMyPage" style="color:#428bca;"><h5>My Account <span
+							<li><a href="/CustomerService/CS-MasterPage.mwav?mode=SDMyPage" style="color:#428bca;"><h5>My Account <span
 									class="glyphicon glyphicon-cog pull-right"></span></h5></a></li>
 							<li class=""></li>
 							<!-- <li><a href="#">User stats <span
 									class="glyphicon glyphicon-stats pull-right"></span></a></li> -->
 							<li class=""></li>
 							<%--QA 답변 달린 것에 대한 확인. --%>
-							<li><a href="/CustomerService/QnA/QnA.jsp"  style="color:#428bca;"><h5>Messages <span class="badge pull-right">
+							<li><a href="/qa/qaList.mwav"  style="color:#428bca;"><h5>Messages <span class="badge pull-right">
 										42 </span></h5></a></li>
 							
 							<!-- <li><a href="#">Favourites Snippets <span
@@ -91,7 +100,7 @@
 				</c:if>
 				<c:if test="${sessionScope.mbrLoginId eq null }">
 					<li><a href="/login.mwav"><i class="fa fa-user fa-lg"></i></a></li>
-					<li><a href="/MasterPage_1.jsp?mode=Default"><i
+					<li><a href="/MasterPage_1.mwav?mode=Default"><i
 							class="fa fa-user-plus fa-lg"></i></a></li>
 				</c:if>
 

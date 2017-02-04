@@ -128,11 +128,15 @@
 		<div class="enter"></div>
 		<hr>
 		<p>${selectOneBnsView.bnContent}</p>
-		<a class="btn btn-primary" href='${selectOneBnsView.bnRelatedLink}'>Read
-			More <i class="fa fa-angle-right"></i>
-		</a>
 
-<hr class="hr_b">
+		<c:if test="${selectOneBnsView.bnRelatedLink eq null }">
+			<a class="btn btn-primary" href='${selectOneBnsView.bnRelatedLink}'>Read
+				More <i class="fa fa-angle-right"></i>
+			</a>
+		</c:if>
+
+
+		<hr class="hr_b">
 
 
 

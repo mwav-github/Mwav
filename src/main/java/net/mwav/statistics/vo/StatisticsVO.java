@@ -1,132 +1,158 @@
 package net.mwav.statistics.vo;
 
+import java.sql.Timestamp;
+
 public class StatisticsVO {
-	private long order_id;  
-	private int odrSeqNbr;
-	private int goods_id;
-	private String gModelNbr;
-	private String gName;
-	private int gPrice;
-	private int odrAmount;
-	private int odrRsvFund;
-	private int odrPoint;
-	private String priodrGoodsClass;
-	private String odrOption;
-	private int odrAddPrice;
-	private String odrNote;
-	private int cb_id;
-	private int logistics_id;
-	private String opWhoDeliveryCost;
-	private int opDeliveryCost;
-	private int odrPayOnDelivery;
+	private long statistics_id;  
+	private String stPageName;
+	private String stUrlScheme;
+	private String stUrlHost;
+	private int stUrlPort;
+	private String stUrlLocalPath;
+	private String stQueryString;
+	private String stUrlPathAndQuery;
+	private String stPrePageName;
+	private String stUrlReferrerHost;
+	private String stUrlReferrer;
+	private char stPromoterType;
+	private int stPromoterId;
+	private int stWhatsAbout;
+	private int stMember_id;
+	private String stSessionId;
+	private String stUserHostAddress;
+	private String stUserAgent;
+	private String stClientScreen;
+	private String stHTTP_UA_CPU;
+	private Timestamp stStatisticsDt;
 	
-	public long getOrder_id() {
-		return order_id;
+
+
+	
+	public long getStatistics_id() {
+		return statistics_id;
 	}
-	public void setOrder_id(long order_id) {
-		this.order_id = order_id;
+	public void setStatistics_id(long statistics_id) {
+		this.statistics_id = statistics_id;
 	}
-	public int getOdrSeqNbr() {
-		return odrSeqNbr;
+	public String getStPageName() {
+		return stPageName;
 	}
-	public void setOdrSeqNbr(int odrSeqNbr) {
-		this.odrSeqNbr = odrSeqNbr;
+	public void setStPageName(String stPageName) {
+		this.stPageName = stPageName;
 	}
-	public int getGoods_id() {
-		return goods_id;
+	public String getStUrlScheme() {
+		return stUrlScheme;
 	}
-	public void setGoods_id(int goods_id) {
-		this.goods_id = goods_id;
+	public void setStUrlScheme(String stUrlScheme) {
+		this.stUrlScheme = stUrlScheme;
 	}
-	public String getgModelNbr() {
-		return gModelNbr;
+	public String getStUrlHost() {
+		return stUrlHost;
 	}
-	public void setgModelNbr(String gModelNbr) {
-		this.gModelNbr = gModelNbr;
+	public void setStUrlHost(String stUrlHost) {
+		this.stUrlHost = stUrlHost;
 	}
-	public String getgName() {
-		return gName;
+	public int getStUrlPort() {
+		return stUrlPort;
 	}
-	public void setgName(String gName) {
-		this.gName = gName;
+	public void setStUrlPort(int stUrlPort) {
+		this.stUrlPort = stUrlPort;
 	}
-	public int getgPrice() {
-		return gPrice;
+	public String getStUrlLocalPath() {
+		return stUrlLocalPath;
 	}
-	public void setgPrice(int gPrice) {
-		this.gPrice = gPrice;
+	public void setStUrlLocalPath(String stUrlLocalPath) {
+		this.stUrlLocalPath = stUrlLocalPath;
 	}
-	public int getOdrAmount() {
-		return odrAmount;
+	public String getStQueryString() {
+		return stQueryString;
 	}
-	public void setOdrAmount(int odrAmount) {
-		this.odrAmount = odrAmount;
+	public void setStQueryString(String stQueryString) {
+		this.stQueryString = stQueryString;
 	}
-	public int getOdrRsvFund() {
-		return odrRsvFund;
+	public String getStUrlPathAndQuery() {
+		return stUrlPathAndQuery;
 	}
-	public void setOdrRsvFund(int odrRsvFund) {
-		this.odrRsvFund = odrRsvFund;
+	public void setStUrlPathAndQuery(String stUrlPathAndQuery) {
+		this.stUrlPathAndQuery = stUrlPathAndQuery;
 	}
-	public int getOdrPoint() {
-		return odrPoint;
+	public String getStPrePageName() {
+		return stPrePageName;
 	}
-	public void setOdrPoint(int odrPoint) {
-		this.odrPoint = odrPoint;
+	public void setStPrePageName(String stPrePageName) {
+		this.stPrePageName = stPrePageName;
 	}
-	public String getPriodrGoodsClass() {
-		return priodrGoodsClass;
+	public String getStUrlReferrerHost() {
+		return stUrlReferrerHost;
 	}
-	public void setPriodrGoodsClass(String priodrGoodsClass) {
-		this.priodrGoodsClass = priodrGoodsClass;
+	public void setStUrlReferrerHost(String stUrlReferrerHost) {
+		this.stUrlReferrerHost = stUrlReferrerHost;
 	}
-	public String getOdrOption() {
-		return odrOption;
+	public String getStUrlReferrer() {
+		return stUrlReferrer;
 	}
-	public void setOdrOption(String odrOption) {
-		this.odrOption = odrOption;
+	public void setStUrlReferrer(String stUrlReferrer) {
+		this.stUrlReferrer = stUrlReferrer;
 	}
-	public int getOdrAddPrice() {
-		return odrAddPrice;
+	public char getStPromoterType() {
+		return stPromoterType;
 	}
-	public void setOdrAddPrice(int odrAddPrice) {
-		this.odrAddPrice = odrAddPrice;
+	public void setStPromoterType(char stPromoterType) {
+		this.stPromoterType = stPromoterType;
 	}
-	public String getOdrNote() {
-		return odrNote;
+	public int getStPromoterId() {
+		return stPromoterId;
 	}
-	public void setOdrNote(String odrNote) {
-		this.odrNote = odrNote;
+	public void setStPromoterId(int stPromoterId) {
+		this.stPromoterId = stPromoterId;
 	}
-	public int getCb_id() {
-		return cb_id;
+	public int getStWhatsAbout() {
+		return stWhatsAbout;
 	}
-	public void setCb_id(int cb_id) {
-		this.cb_id = cb_id;
+	public int setStWhatsAbout(int stWhatsAbout) {
+		return this.stWhatsAbout = stWhatsAbout;
 	}
-	public int getLogistics_id() {
-		return logistics_id;
+	public int getStMember_id() {
+		return stMember_id;
 	}
-	public void setLogistics_id(int logistics_id) {
-		this.logistics_id = logistics_id;
+	public void setStMember_id(int stMember_id) {
+		this.stMember_id = stMember_id;
 	}
-	public String getOpWhoDeliveryCost() {
-		return opWhoDeliveryCost;
+	public String getStSessionId() {
+		return stSessionId;
 	}
-	public void setOpWhoDeliveryCost(String opWhoDeliveryCost) {
-		this.opWhoDeliveryCost = opWhoDeliveryCost;
+	public void setStSessionId(String stSessionId) {
+		this.stSessionId = stSessionId;
 	}
-	public int getOpDeliveryCost() {
-		return opDeliveryCost;
+	public String getStUserHostAddress() {
+		return stUserHostAddress;
 	}
-	public void setOpDeliveryCost(int opDeliveryCost) {
-		this.opDeliveryCost = opDeliveryCost;
+	public void setStUserHostAddress(String stUserHostAddress) {
+		this.stUserHostAddress = stUserHostAddress;
 	}
-	public int getOdrPayOnDelivery() {
-		return odrPayOnDelivery;
+	public String getStUserAgent() {
+		return stUserAgent;
 	}
-	public void setOdrPayOnDelivery(int odrPayOnDelivery) {
-		this.odrPayOnDelivery = odrPayOnDelivery;
+	public void setStUserAgent(String stUserAgent) {
+		this.stUserAgent = stUserAgent;
+	}
+	public String getStClientScreen() {
+		return stClientScreen;
+	}
+	public void setStClientScreen(String stClientScreen) {
+		this.stClientScreen = stClientScreen;
+	}
+	public String getStHTTP_UA_CPU() {
+		return stHTTP_UA_CPU;
+	}
+	public void setStHTTP_UA_CPU(String stHTTP_UA_CPU) {
+		this.stHTTP_UA_CPU = stHTTP_UA_CPU;
+	}
+	public Timestamp getStStatisticsDt() {
+		return stStatisticsDt;
+	}
+	public void setStStatisticsDt(Timestamp stStatisticsDt) {
+		this.stStatisticsDt = stStatisticsDt;
 	}
 	
 	

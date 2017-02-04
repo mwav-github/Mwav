@@ -91,7 +91,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 				<div class="row">
 					<div class="col-md-8">
 						<a href="/Templates/FrontTemplate.html"> <img class="img-responsive well"
-							src="/CompanyItem/WebSiteBuilding/Images/CompanyTemplate.PNG"
+							src="/CompanyItem/WebSiteBuilding/Images/CompanyTemplate.gif"
 							alt=""></a>
 					</div>
 					<div class="col-md-4">

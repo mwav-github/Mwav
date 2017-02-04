@@ -11,39 +11,6 @@
                        http://startbootstrap.com/
                        https://wrapbootstrap.com/
 --%>
-
-
-
-<c:if test="${requestScope.loginCheck eq 2 }">
-	<script type="text/javascript">
-		alert('비밀번호가 틀렸습니다.');
-		history.go(-1)
-	</script>
-</c:if>
-<c:if test="${requestScope.loginCheck eq 7 }">
-	<script type="text/javascript">
-		alert('탈퇴한 회원입니다.');
-		msg = '재 가입하시겠습니까.?'
-		if (confirm(msg) != 0) {
-			location.replace("/MasterPage_1.jsp?mode=Default"); // 이전 url 기록안하는 경우 , location.href 의 경우 이전기록이 남아 login.mwav로 포워딩
-		} else {
-			history.go(-1)
-		}
-	</script>
-</c:if>
-
-<c:if test="${requestScope.loginCheck eq 3 }">
-	<script type="text/javascript">
-		alert('아이디가 존재하지 않습니다.');
-		history.go(-1);
-	</script>
-</c:if>
-<c:if test="${requestScope.loginCheck eq 5 }">
-	<script type="text/javascript">
-		alert('임시패스워드입니다. 비밀번호 변경 후 로그인해주세요.');
-		history.go(-1);
-	</script>
-</c:if>
 <c:if test="${requestScope.updateMemberDelete eq 1 }">
 	<script type="text/javascript">
 		alert('회원탈퇴가 완료되었습니다. 감사합니다.');
@@ -103,7 +70,7 @@
 								States (particularly in the phrase "pull oneself over a fence by
 								one's bootstraps"), to mean an absurdly impossible action, an
 								adynaton.</p>
-							<a href="/CompanyItem/WebSiteBuilding/WebSiteBuilding.jsp"
+							<a href="/CompanyItem/WebSiteBuilding/WebSiteBuilding.mwav"
 								class="btn btn-info btn-sm btn-block">Learn More</a>
 						</div>
 					</div>
@@ -122,7 +89,7 @@
 								the 10,000 most visited websites, jQuery is the most popular
 								JavaScript library in use today. jQuery is free, open-source
 								software licensed under the MIT License.</p>
-							<a href="/CompanyItem/ITProducts/OpenSRS/OpenSRS.jsp"
+							<a href="/CompanyItem/ITProducts/OpenSRS/OpenSRS.mwav"
 								class="btn btn-info btn-sm btn-block">Learn More</a>
 						</div>
 					</div>
@@ -182,21 +149,21 @@
 				<%--1행 --%>
 				<div class="col-xs-12 col-sm-6 col-md-4">
 					<!-- md >= 992 / sm >=768  2행에서 1-->
-					<a href="/CompanyItem/ITProducts/OpenSRS/OpenSRS.jsp"> <img
+					<a href="/CompanyItem/ITProducts/OpenSRS/OpenSRS.mwav"> <img
 						class="img-responsive img-portfolio img-hover"
 						src="/CompanyItem/ITProducts/Images/RapidSSL_logo.png" alt="">
 					</a>
 					<%--<p>Contents :</p> --%>
 				</div>
 				<div class="col-xs-12 col-sm-6 col-md-4">
-					<a href="/CompanyItem/ITProducts/Windows/Windows.jsp"> <img
+					<a href="/CompanyItem/ITProducts/Windows/Windows.mwav"> <img
 						class="img-responsive img-portfolio img-hover"
 						src="/CompanyItem/ITProducts/Images/windows10(h250).jpg" alt="">
 					</a>
 					<%--<p>Contents :</p> --%>
 				</div>
 				<div class="col-xs-12 col-sm-6 col-md-4">
-					<a href="/CompanyItem/ITProducts/Azure/Azure.jsp"> <img
+					<a href="/CompanyItem/ITProducts/Azure/Azure.mwav"> <img
 						class="img-responsive img-portfolio img-hover"
 						src="/CompanyItem/ITProducts/Images/ms_azure(h250).png" alt="">
 					</a>
@@ -208,21 +175,21 @@
 				<%--2행 --%>
 				<div class="col-xs-12 col-sm-6 col-md-4">
 					<!-- md >= 992 / sm >=768  2행에서 1-->
-					<a href="/CompanyItem/ITProducts/Aervision/Aervision.jsp"> <img
+					<a href="/CompanyItem/ITProducts/Aervision/Aervision.mwav"> <img
 						class="img-responsive img-portfolio img-hover"
 						src="/CompanyItem/ITProducts/Images/AerVison(h250).png" alt="">
 					</a>
 					<%--<p>Contents :</p> --%>
 				</div>
 				<div class="col-xs-12 col-sm-6 col-md-4">
-					<a href="/CompanyItem/ITProducts/InsWave/InsWave.jsp"> <img
+					<a href="/CompanyItem/ITProducts/InsWave/InsWave.mwav"> <img
 						class="img-responsive img-portfolio img-hover"
 						src="/CompanyItem/ITProducts/Images/CMS_01.png" alt="">
 					</a>
 					<%--<p>Contents :</p> --%>
 				</div>
 				<div class="col-xs-12 col-sm-6 col-md-4">
-					<a href="/CompanyItem/ITProducts/MSOffice/MSOffice.jsp"> <img
+					<a href="/CompanyItem/ITProducts/MSOffice/MSOffice.mwav"> <img
 						class="img-responsive img-portfolio img-hover"
 						src="/CompanyItem/ITProducts/Images/MsOffice(h250).jpg" alt="">
 					</a>
@@ -304,7 +271,7 @@
 				<p>Mwav의 사이트 구축 솔루션으로 회사용 인트라넷이나 팀에서 사용할 프로젝트 사이트, 고객용 포털을 시작할 수
 					있습니다. 단 한 줄의 코드도 작성할 필요가 없습니다.</p>
 				<br> <a class="btn btn-lg btn-primary btn-block"
-					href="/CompanyItem/WebSiteBuilding/WebSiteBuilding.jsp">WebSite
+					href="/CompanyItem/WebSiteBuilding/WebSiteBuilding.mwav">WebSite
 					Building</a>
 			</div>
 		</div>
@@ -333,7 +300,7 @@
 					따른 효과적 업무 수행을 지원하여 드립니다..</p>
 				<%-- 15.10.18 내용수정	<p></p>--%>
 				<a class="btn btn-lg btn-primary btn-block"
-					href="/CompanyItem/ITConsulting/ITConsulting.jsp">IT Consulting</a>
+					href="/CompanyItem/ITConsulting/ITConsulting.mwav">IT Consulting</a>
 			</div>
 
 		</div>
@@ -363,7 +330,7 @@
 				<%--  15.10.18 내용수정p>Digital Ad Agency: Boost online promotions for maximum
 						profits by leveraging digital marketing effectively.</p>--%>
 				<a class="btn btn-lg btn-primary btn-block"
-					href="/CompanyItem/DigitalMarketing/DigitalMarketing.jsp">Digital
+					href="/CompanyItem/DigitalMarketing/DigitalMarketing.mwav">Digital
 					Marketing</a>
 			</div>
 		</div>

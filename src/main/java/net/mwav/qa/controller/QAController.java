@@ -57,14 +57,16 @@ public class QAController {
 	@RequestMapping(value = "/qa/qaForm.mwav")
 	public @ResponseBody boolean insertQAForm(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
-
+		HttpSession session = request.getSession();
+		String m_id = (String) session.getAttribute("member_id");
+		commandMap.put("member_id", m_id);
 		System.out.println("순서");
 		log.debug("인터셉터 테스트");
 		qaService.insertQAForm(commandMap.getMap(), request);
 
 		boolean flag = qaService.insertQAForm(commandMap.getMap(), request);
 
-		System.out.println("df"+flag);
+		System.out.println("df" + flag);
 		// mv.addObject("insertBnsForm", insertBnsForm);
 		// mv.addObject("IDX", commandMap.get("IDX"));
 
@@ -80,26 +82,20 @@ public class QAController {
 			HttpServletRequest request, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView("/CustomerService/CS-MasterPage");
 
-		
-
 		log.debug("인터셉터 테스트");
-		System.out.println("테스트");
 		Map<String, Object> selectOneQAView = qaService
 				.selectOneQAView(commandMap.getMap());
+		//System.out.println("값" + selectOneQAView.get("QnA_id_2"));
+		
+		System.out.println("sdf"+selectOneQAView.get("uqStatus"));
 
 		if (selectOneQAView != null && !selectOneQAView.isEmpty()) {
-			System.out.println("view 줄랭");
-
 			
 			String mm = "site";
 			mv.addObject("mm", mm);
 			mv.addObject("mode", "qaView");
 			mv.addObject("breadcrumb", "Q&A");
 			mv.addObject("page_header", "Q&A");
-		
-
-			mv.addObject("pageNum", paging.getPageNum( (String) commandMap.get("pageNum")));
-			
 
 			mv.addObject("selectOneQAView", selectOneQAView);
 		}
@@ -116,13 +112,12 @@ public class QAController {
 	 * ========================================리스트(SelectOne, SelectList
 	 * 순)========================================
 	 */
-	//조인해서 가져와야 할듯. 
+	// 조인해서 가져와야 할듯.
 	@RequestMapping(value = "/qa/qaFrontList.mwav")
 	public ModelAndView selectListBnsFrontList(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView(
-				"/CommonApps/BoardQnA/FrontQAList");
-	
+		ModelAndView mv = new ModelAndView("/CommonApps/BoardQnA/FrontQAList");
+
 		cou.selectCommandMapList(commandMap); // 키 출력
 
 		List<Map<String, Object>> selectListQAFrontList = qaService
@@ -135,86 +130,111 @@ public class QAController {
 			mv.addObject("breadcrumb", "IT Trends");
 			mv.addObject("page_header", "IT Trends");
 
-
 			mv.addObject("selectListQAFrontList", selectListQAFrontList);
 		}
 
 		return mv;
 	}
-	
-	
+
 	// 2번 bnsList : 리스트
-		@RequestMapping(value = "/qa/qaList.mwav")
-		public ModelAndView selectListQAList(CommandMap commandMap,
-				HttpServletRequest request) throws Exception {
-			ModelAndView mv = new ModelAndView("/CommonApps/BoardQnA/qaList");
+	@RequestMapping(value = "/qa/qaList.mwav")
+	public ModelAndView selectListQAList(CommandMap commandMap,
+			HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("/CustomerService/CS-MasterPage");
 
-			String pageNum = (String) commandMap.get("pageNum");
-			Paging paging = new Paging();
-			if (pageNum == null) {
-				pageNum = "1";
-			}
-			int totalRow = qaService.selectOneGetTotalCount();
-			System.out.println("totalRow=" + totalRow);
-
-			// Paging pv = new Paging(pageNum, 10 , 10, totalCount);
-			List<Map<String, Object>> selectListQAList;
-			PagingVO pagingVO = paging.setPagingInfo(totalRow, 5, pageNum); // 총 숫자,
-																			// 한페이지에
-																			// 노출 수
-			commandMap.put("startRow", paging.getStartRow(pageNum)); // 시작 열
-			commandMap.put("endRow", paging.getEndRow(pageNum)); // 끝 열
-			if (totalRow > 0) {
-				selectListQAList = qaService.selectListQAList(commandMap
-						.getMap());
-				// selectboardList =
-				// boardService.selectbnsList(commandMap.getMap());
-
-			} else {
-				selectListQAList = Collections.emptyList();
-			}
-			System.out.println("찍히낭");
-			String mm = "site";
-			mv.addObject("mm", mm);
-			mv.addObject("mode", "m_bnsList");
-
-			mv.addObject("breadcrumb", "IT Trends");
-			//mv.addObject("page_header", "IT Trends");
-			mv.addObject("page_header", null);
-			
-			mv.addObject("selectListQAList", selectListQAList);
-			mv.addObject("pagingVO", pagingVO);
-			mv.addObject("totalRow", totalRow);
-			// mv.addObject("paging", pv.print());
-			return mv;
+		HttpSession session = request.getSession();
+		String m_id = (String) session.getAttribute("member_id");
+		String m_email = (String) commandMap.get("uqUserEmail");
+		commandMap.put("member_id", m_id);
+		String pageNum = (String) commandMap.get("pageNum");
+		Paging paging = new Paging();
+		if (pageNum == null) {
+			pageNum = "1";
 		}
-	/*
-	 * ========================================삭제================================
-	 * ========
-	 */
+		int totalRow = qaService.selectOneGetTotalCount(m_id, m_email);
+		System.out.println("totalRow=" + totalRow);
 
-	// ///////////////////////////////////BoardNotices/////////////////////////////////////
+		// Paging pv = new Paging(pageNum, 10 , 10, totalCount);
+		List<Map<String, Object>> selectListQAList;
+		PagingVO pagingVO = paging.setPagingInfo(totalRow, 5, pageNum); // 총 숫자,
+																		// 한페이지에
+																		// 노출 수
+		commandMap.put("startRow", paging.getStartRow(pageNum)); // 시작 열
+		commandMap.put("endRow", paging.getEndRow(pageNum)); // 끝 열
+		if (totalRow > 0) {
+			selectListQAList = qaService.selectListQAList(commandMap.getMap());
+			// selectboardList =
+			// boardService.selectbnsList(commandMap.getMap());
 
-	/*
-	 * ========================================등록================================
-	 * ========
-	 */
+		} else {
+			selectListQAList = Collections.emptyList();
+		}
+		System.out.println("찍히낭");
+		String mm = "site";
+		mv.addObject("mm", mm);
+		mv.addObject("mode", "qaList");
+		mv.addObject("NO", "qaList");
 
-	/*
-	 * ========================================보기================================
-	 * ========
-	 */
+		mv.addObject("breadcrumb", "IT Trends");
+		// mv.addObject("page_header", "IT Trends");
+		mv.addObject("page_header", null);
 
-	/*
-	 * ========================================수정================================
-	 * ========
-	 */
+		mv.addObject("selectListQAList", selectListQAList);
+		mv.addObject("pagingVO", pagingVO);
+		mv.addObject("totalRow", totalRow);
+		// mv.addObject("paging", pv.print());
+		return mv;
+	}
 
-	/*
-	 * ========================================리스트(SelectOne, SelectList
-	 * 순)========================================
-	 */
+	@RequestMapping(value = "/qa/qaLogin.mwav")
+	public ModelAndView selectListQALogin(CommandMap commandMap,
+			HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("/CustomerService/QnA/QnA");
 
+		int loginCheck = 0; // 초기값
+		Map<String, Object> qaLogin = null;
+		String a_uqUserEmail = null;
+		qaLogin = qaService.selectOneQALogin(commandMap.getMap());
+		// String uqUserPw = null;
+		if (qaLogin != null) {
+			System.out.println("loginCheck =" + loginCheck);
+
+			// 페이지에서 온 값
+			String b_uqUserPw = null;
+			b_uqUserPw = (String) commandMap.get("uqUserPw");
+			System.out.println("페이지에서 온값 " + b_uqUserPw);
+
+			// 디비 다녀와서 온 값
+			String a_uqUserPw = (String) qaLogin.get("uqUserPw");
+			System.out.println("디비다녀온값" + a_uqUserPw);
+
+			// 페이지에서 온 값
+			String b_uqUserEmail = (String) commandMap.get("uqUserEmail");
+			// int member_id = (int) memberLogin.get("member_id");
+
+			
+					a_uqUserEmail=	(String) qaLogin.get("uqUserEmail");
+			// System.out.println("디비다녀온값" + a_uqUserEmail);
+
+			if (b_uqUserPw.equals(a_uqUserPw)) {
+				loginCheck = 1;
+
+			} else if (a_uqUserEmail != null
+					&& !(b_uqUserPw.equals(a_uqUserPw))) {
+				// check 0 비밀번호가 틀렸을 때
+				loginCheck = 2;
+				System.out.println("비밀번호틀림");
+			}
+		} else {
+			loginCheck = 3;
+			System.out.println("아이디 존재하지 않음.");
+		}
+		mv.addObject("qaLogin", qaLogin);
+		request.setAttribute("loginCheck", loginCheck);
+		request.setAttribute("uqUserEmail", a_uqUserEmail);
+		
+		return mv;
+	}
 	/*
 	 * ========================================삭제================================
 	 * ========

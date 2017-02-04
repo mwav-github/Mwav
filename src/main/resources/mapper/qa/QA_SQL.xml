@@ -16,9 +16,15 @@
 	    select *, date_format(uqInsertDt,'%Y-%m-%d') as fmuqInsertDt from UserQuestion_tbl where QnA_id = #{QnA_id}
 	]]>
 	</select>
+	
+	  <select id="selectOneMAXQAView" parameterType="hashmap" resultType="Integer">
+	<![CDATA[
+	    select MAX(QnA_id) as maxQnA_id from UserQuestion_tbl
+	]]>
+	</select>
  
 	<!--/*======================+==================수정========================================*/  -->
-	<update id="updateNewsHitCnt" parameterType="hashmap">
+	<update id="updateQAHitCnt" parameterType="hashmap">
     <![CDATA[
        update UserQuestion_tbl set uqViewCount = iFnull(uqViewCount, 0) +1 where QnA_id = #{QnA_id} 
     ]]>
@@ -27,9 +33,15 @@
  
 	
 	<!--/*========================================리스트(SelctOne, SelectList 순)========================================*/  -->
-	<select id="selectOneGetTotalCount" resultType="int">
+	<select id="selectOneMemberGetTotalCount" resultType="int" parameterType="String">
 	<![CDATA[
-	   select count(*) from UserQuestion_tbl WHERE uqDeleteDt IS NULL 
+	   select count(*) from UserQuestion_tbl WHERE member_id = #{member_id} and uqDeleteDt IS NULL 
+	]]>
+	</select>
+	
+	<select id="selectOneNonMemberGetTotalCount" resultType="int" parameterType="String">
+	<![CDATA[
+	   select count(*) from UserQuestion_tbl WHERE uqUserEmail = #{uqUserEmail} and uqDeleteDt IS NULL 
 	]]>
 	</select>
 	
@@ -42,10 +54,24 @@
 	</select>
 	
 	
-	<select id="selectListQAList" parameterType="hashmap" resultType="hashmap">
+	<select id="selectListNonMemberQAList" parameterType="hashmap" resultType="hashmap">
 	<![CDATA[
-	select c.*, date_format(uqInsertDt,'%Y-%m-%d') as fmuqInsertDt from (select @ROWNUM := @ROWNUM + 1 AS ROWNUM, a.* from (select * from UserQuestion_tbl where uqDeleteDt IS NULL order by uqInsertDt desc) a,  (SELECT @ROWNUM := 0) R ) c where c.ROWNUM >= #{startRow} and c.ROWNUM <= #{endRow} 
+	select c.*, date_format(uqInsertDt,'%Y-%m-%d') as fmuqInsertDt, (QnA_id - 1000000) as fmQnA_id from (select @ROWNUM := @ROWNUM + 1 AS ROWNUM, a.* from (select * from UserQuestion_tbl where uqUserEmail = #{uqUserEmail} and uqDeleteDt IS NULL order by QnA_id desc) a,  (SELECT @ROWNUM := 0) R ) c where c.ROWNUM >= #{startRow} and c.ROWNUM <= #{endRow} 
 	]]>
+	</select>
+	
+	<select id="selectListMemberQAList" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+	select c.*, date_format(uqInsertDt,'%Y-%m-%d') as fmuqInsertDt, (QnA_id - 1000000) as fmQnA_id from (select @ROWNUM := @ROWNUM + 1 AS ROWNUM, a.* from (select * from UserQuestion_tbl where member_id = #{member_id} and uqDeleteDt IS NULL order by QnA_id desc) a,  (SELECT @ROWNUM := 0) R ) c where c.ROWNUM >= #{startRow} and c.ROWNUM <= #{endRow} 
+	]]>
+	</select>
+	
+	<select id="selectOneQALogin" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+		SELECT uqUserEmail, uqUserPw
+		FROM UserQuestion_tbl
+	    WHERE uqUserEmail = #{uqUserEmail} 		
+		]]>
 	</select>
 	
 	

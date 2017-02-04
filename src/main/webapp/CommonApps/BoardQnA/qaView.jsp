@@ -42,26 +42,7 @@
 					<thead>
 						<tr>
 
-							<c:set var="bnStatus" value="${selectOneQAView.uqStatus }" />
-							<c:if test="${fn:contains(uqStatus, '0')}">
-								<span class="pull-right bg-danger"><strong>삭제 </strong></span>
-							</c:if>
-							<c:if test="${fn:contains(uqStatus, '1')}">
-								<span class="pull-right bg-primary"><strong>문의접수
-								</strong></span>
-							</c:if>
-							<c:if test="${fn:contains(uqStatus, '10')}">
-								<span class="pull-right bg-info"><strong>답변처리 </strong></span>
-							</c:if>
-							<c:if test="${fn:contains(uqStatus, '20')}">
-								<span class="pull-right bg-warning"><strong>재답변처리
-								</strong></span>
-							</c:if>
 
-							<c:if test="${fn:contains(uqStatus, '100')}">
-								<span class="pull-right bg-success"><strong>처리완료
-								</strong></span>
-							</c:if>
 						</tr>
 						<tr class="active">
 							<th>Group</th>
@@ -75,9 +56,26 @@
 					<tbody>
 						<tr>
 							<td>${selectOneQAView.uqGroup}</td>
-							<td>${selectOneQAView.uqViewCount}</td>
-							<td>${selectOneQAView.uqInsertDt}</td>
-							<td>${selectOneQAView.member_id}</td>
+							<td>${selectOneQAView.fmuqInsertDt}</td>
+							<td></td>
+
+							<c:if test="${selectOneQAView.uqStatus eq '0'}">
+								<td><span class="label label-danger">삭제 </span></td>
+							</c:if>
+							<c:if test="${selectOneQAView.uqStatus eq '1'}">
+								<td><span class="label label-primary">문의접수 </span></td>
+							</c:if>
+							<c:if test="${selectOneQAView.uqStatus eq '10'}">
+								<td><span class="label label-success">답변처리 </span></td>
+							</c:if>
+							<c:if test="${selectOneQAView.uqStatus eq '20'}">
+								<td><span class="label label-warning">재답변처리</span></td>
+							</c:if>
+
+							<c:if test="${selectOneQAView.uqStatus eq '100'}">
+								<td><span class="label label-default">답변완료</span></td>
+							</c:if>
+
 
 						</tr>
 					</tbody>
@@ -107,20 +105,22 @@
 			</form>
 
 			<div class="enter"></div>
+			<c:if test="${selectOneQAView.uqStatus ne '1'}">
+				<div class="span12">
+					<div class="well">
+						<h6 class="text-danger text-right">
+							<strong>처리자 : 김성욱 | 처리일자 : 2016-08-27 16:01:44 </strong>
+						</h6>
+						<h3 class="text-info">Economy</h3>
 
-			<div class="span12">
-				<div class="well">
-					<h6 class="text-danger text-right">
-						<strong>처리자 : 김성욱 | 처리일자 : 2016-08-27 16:01:44 </strong>
-					</h6>
-					<h3 class="text-info">Economy</h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+							Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis
+							sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue
+							semper porta.</p>
 
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-						nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis
-						ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta.</p>
-
+					</div>
 				</div>
-			</div>
+			</c:if>
 
 
 
@@ -134,21 +134,36 @@
 						data-target="#Contact">
 						<span class="glyphicon glyphicon-envelope"></span> Contact
 					</button>
-					<button type="button" class="btn btn-default"
-						onclick="javascript:window.location.href='/qa/qaList.mwav'">All
-						List</button>
+					
+					<%--회원 --%>
+					<c:if test="${sessionScope.member_id ne null }">
+						<button type="button" class="btn btn-default"
+							onclick="javascript:window.location.href='/qa/qaList.mwav?member_id=${sessionScope.member_id}'">All
+							List</button>
+					</c:if>
+					<%--비회원 --%>
+					<c:if test="${sessionScope.member_id eq null }">
+						<button type="button" class="btn btn-default"
+							onclick="javascript:window.location.href='/qa/qaList.mwav?uqUserEmail=${selectOneQAView.uqUserEmail}'">All
+							List</button>
+					</c:if>
 					<button type="button" class="btn btn-default"
 						onclick="javascript:history.go(-1)">BACK</button>
 				</p>
 			</div>
 			<div class="row">
 				<ul class="pager">
-					<li class="previous"><a
-						href="/qa/qaView.mwav?QnA_id=${selectOneQAView.QnA_id-1}">←
-							Older</a></li>
-					<li class="next"><a
-						href="/qa/qaView.mwav?QnA_id=${selectOneQAView.QnA_id+1}">Newer
-							→</a></li>
+					<c:if test="${(selectOneQAView.QnA_id-1) ne '1000000'}">
+						<li class="previous"><a
+							href="/qa/qaView.mwav?QnA_id=${selectOneQAView.QnA_id-1}">←
+								Older</a></li>
+					</c:if>
+
+					<c:if test="${selectOneQAView.QnA_id_2 ne null}">
+						<li class="next"><a
+							href="/qa/qaView.mwav?QnA_id=${selectOneQAView.QnA_id_2}">Newer
+								→</a></li>
+					</c:if>
 				</ul>
 			</div>
 

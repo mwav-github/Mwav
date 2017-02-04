@@ -30,10 +30,20 @@
 					if (xmlStr === true) {
 						//alert('정상등록');
 						$("#alert_success").show();
+						//
+						
+						setTimeout(function(){
+							$("#Contact").modal('hide');
+						}, 3000);
+
 					} else if (xmlStr === false) {
 
 						$("#alert_failure").show();
 						//alert('등록실패');
+						
+						setTimeout(function(){
+							$("#Contact").modal('hide');
+						}, 3000);
 					}
 
 				}
@@ -81,15 +91,15 @@
 		<a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
 		<strong>Failure!</strong> Please try again.
 	</div>
-	<div class="modal-dialog">
-		<div class="modal-content">
+	<div class="modal-dialog" id="qamodal">
+		<div class="modal-content" >
 			<!-- <div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">
 					<span aria-hidden="true">×</span><span class="sr-only">Close</span>
 				</button>
 				<h3 class="modal-title" id="lineModalLabel">My Modal</h3>
 			</div> -->
-			<div class="modal-body">
+			<div class="modal-body" >
 
 				<form class="form-horizontal" id="QAForm">
 					<fieldset>
@@ -111,7 +121,7 @@
 							<div class="col-md-8">
 								<input id="textinput" name="uqUserName"
 									placeholder="Enter Your Full Name"
-									class="form-control input-md" required="" type="text">
+									class="form-control input-md" required type="text">
 
 							</div>
 						</div>
@@ -145,7 +155,7 @@
 								<div class="input-group">
 									<span class="input-group-addon">+82</span> <input
 										id="uqUserPhone" name="uqUserPhone" class="form-control"
-										placeholder="Mobile" required="" type="text">
+										placeholder="Mobile" required type="text">
 								</div>
 
 							</div>
@@ -169,10 +179,26 @@
 							<div class="col-md-8">
 								<input id="uqUserEmail" name="uqUserEmail"
 									placeholder="Enter Your E mail" class="form-control input-md"
-									required="" type="text">
+									required type="text" value="" onchange="chkEmailPolicy(this.value, this)" >
 
 							</div>
 						</div>
+
+
+						<c:if test="${sessionScope.member_id eq null }">
+
+							<%--비회원인 경우 --%>
+							<div class="form-group">
+								<label class="col-md-3 control-label" for="password">Password
+									*</label>
+								<div class="col-md-8">
+									<input id="uqUserPw" name="uqUserPw"
+										placeholder="Enter Your E mail" class="form-control input-md"
+										required type="password" onchange="chkPWPolicy(this.value, this)" value="">
+
+								</div>
+							</div>
+						</c:if>
 
 						<!-- Textarea -->
 						<div class="form-group">
@@ -180,7 +206,7 @@
 								*</label>
 							<div class="col-md-8">
 								<textarea class="form-control" rows="6" id="Message"
-									name="uqContent">Enter Your Message *</textarea>
+									name="uqContent" placeholder="Enter Your Message *"></textarea>
 							</div>
 						</div>
 
@@ -202,7 +228,7 @@
 			<div class="modal-footer">
 				<div class="btn-group btn-group-justified" role="group"
 					aria-label="group button">
-					
+
 					<!-- <div class="btn-group btn-delete hidden" role="group">
 						<button type="button" id="delImage"
 							class="btn btn-default btn-hover-red" data-dismiss="modal"

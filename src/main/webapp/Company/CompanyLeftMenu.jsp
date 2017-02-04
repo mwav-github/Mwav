@@ -48,15 +48,15 @@
 	});
 </script>
 <div id="left_menu" class="list-group">
-	<a href="/Company/Introduction/Introduction.jsp"
+	<a href="/Company/Introduction/Introduction.mwav"
 		class="list-group-item " data-toggle="tooltip" data-placement="top"
 		data-original-title="회사소개">Introduction</a> <a
-		href="/Company/Greetings/Greetings.jsp" class="list-group-item"
+		href="/Company/Greetings/Greetings.mwav" class="list-group-item"
 		data-toggle="tooltip" data-placement="top" data-original-title="대표인사말">Greetings</a>
 	<a class="list-group-item"
 		data-toggle="tooltip" data-placement="top"
 		data-original-title="페이지 준비 중입니다.">History</a> <a
-		href="/Company/BusinessField/BusinessFields.jsp"
+		href="/Company/BusinessField/BusinessFields.mwav"
 		class="list-group-item" data-toggle="tooltip" data-placement="top"
 		data-original-title="사업분야">Business Field</a> <a
 		
@@ -67,7 +67,7 @@
 		data-original-title="IT 트렌드">IT Trends</a> <a
 		 class="list-group-item"
 		data-toggle="tooltip" data-placement="top" data-original-title="페이지 준비 중입니다.">HR-Affairs</a>
-	<a href="/Company/LocationMap/LocationMap.jsp" class="list-group-item"
+	<a href="/Company/LocationMap/LocationMap.mwav" class="list-group-item"
 		data-toggle="tooltip" data-placement="top"
 		data-original-title="회사약도">Location Map</a> <a
 		

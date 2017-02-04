@@ -38,9 +38,8 @@
 							<tr>
 								<input type="hidden" id="QnA_id" name="QnA_id"
 									value="${RselectListQAList.QnA_id }">
-								<input type="hidden" id="no" name="NO"
-									value="${status.count}">	
-								<td class="">${status.count}</td>
+								<input type="hidden" id="no" name="NO" value="${status.count}">
+								<td class="">${RselectListQAList.fmQnA_id}</td>
 								<td class="">${RselectListQAList.uqGroup}</td>
 								<td><a
 									href="javascript:window.location.href='/qa/qaView.mwav?QnA_id=${RselectListQAList.QnA_id}'">${RselectListQAList.uqTitle}</a></td>
@@ -51,9 +50,50 @@
 										<button type="button" class="btn btn-warning"
 											onclick="javascript:window.location.href='/qa/qaView.mwav?QnA_id=${RselectListQAList.QnA_id}'">수정</button>
 									</td> --%>
-								<td class="hidden-xs">${RselectListQAList.fmuqInsertDt}</span>	
-								<td><span class="label label-success">Active</span>
+								<td class="hidden-xs">${RselectListQAList.fmuqInsertDt}</td>
+								<%--상태 값 --%>
+								<%-- <c:set var="bnStatus" value="${RselectListQAList.uqStatus }" /> --%>
+								<c:choose>
+									<c:when test="${RselectListQAList.uqStatus ne null}">
+										<%-- <c:if test="${fn:contains(bnStatus, '0')}">
+											<td><span class="label label-danger">삭제 </span></td>
+										</c:if>
+										<c:if test="${fn:contains(bnStatus, '1')}">
+											<td><span class="label label-primary">문의접수 </span></td>
+										</c:if>
+										<c:if test="${fn:contains(bnStatus, '10')}">
+											<td><span class="label label-success">답변처리 </span></td>
+										</c:if>
+										<c:if test="${fn:contains(bnStatus, '20')}">
+											<td><span class="label label-warning">재답변처리</span></td>
+										</c:if>
+
+										<c:if test="${fn:contains(bnStatus, '100')}">
+											<td><span class="label label-default">답변완료</span></td>
+										</c:if> --%>
+										<c:if test="${RselectListQAList.uqStatus eq '0'}">
+											<td><span class="label label-danger">삭제 </span></td>
+										</c:if>
+										<c:if test="${RselectListQAList.uqStatus eq '1'}">
+											<td><span class="label label-primary">문의접수 </span></td>
+										</c:if>
+										<c:if test="${RselectListQAList.uqStatus eq '10'}">
+											<td><span class="label label-success">답변처리 </span></td>
+										</c:if>
+										<c:if test="${RselectListQAList.uqStatus eq '20'}">
+											<td><span class="label label-warning">재답변처리</span></td>
+										</c:if>
+
+										<c:if test="${RselectListQAList.uqStatus eq '100'}">
+											<td><span class="label label-default">답변완료</span></td>
+										</c:if>
+									</c:when>
+									<c:otherwise>
+										<td class="hidden-xs"></td>
+									</c:otherwise>
+								</c:choose>
 							</tr>
+
 
 						</c:forEach>
 					</c:when>

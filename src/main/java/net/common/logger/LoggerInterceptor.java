@@ -84,86 +84,125 @@ public class LoggerInterceptor extends HandlerInterceptorAdapter {
 		log.info(" Request URI \t:  " + request.getRequestURI());
 		System.out.println("LoggerInterceptor에 들어왔다.");
 		HttpSession session = request.getSession();
-		String uploadRootPath = session.getServletContext().getRealPath("\\");
-		// 서버에서 띄우면 (호스팅서버) 루트에러 .
-		String url = request.getRequestURI();
+		// 세션값 모두 삭제 (테스트용도)
+		// session.invalidate();
+		String member_id = null;
+		String statistics_id = null;
+		try {
 
-		System.out.println("루트 경로" + uploadRootPath);
-		// DomReadXMLFile.xmlParser("/xConfig/general.xml.config");
-		DomReadXMLFile
-				.xmlParser(uploadRootPath + "/xConfig/general.xml.config");
-		statisticsController.insertStatics(request);
+			member_id = String.valueOf(session.getAttribute("member_id"));
+			statistics_id = (String) session.getAttribute("statistics_id");
+			// String.valueof 하면 null이 string 값의 null이다.
 
-		// 디버그 레벨일때 true
-		// http://planmaster.tistory.com/66
-		if (log.isDebugEnabled()) {
-			log.info("======================================          START         ======================================");
-			log.info(" Request URI \t:  " + request.getRequestURI());
-			System.out.println(request.getRequestURI());
-			System.out.println("LoggerInterceptor에 들어왔다.");
-		}
-		System.out.println("urls.size()" + urls.size());
+			System.out.println("statistics_id" + statistics_id);
+			// http://stackoverflow.com/questions/38797066/request-getsession-getid-vs-request-getrequestedsessionid
+			// request.getSession (). getId () vs request.getRequestedSessionId
+			// ()
+			String session_id = request.getSession().getId();
 
-	/*	int pos = url.lastIndexOf(".");
-		String ext = url.substring(pos + 1);
-		System.out.println("확장자 제외" + ext);
-		
-		if(ext.equals("jsp")){
-			System.out.println("jsp 파일이다.");
-			statisticsController.redirectController(request, ext);
-		}*/
+			String uploadRootPath = session.getServletContext().getRealPath(
+					"\\");
+			// 서버에서 띄우면 (호스팅서버) 루트에러 .
+			String url = request.getRequestURI();
 
-		for (int i = 0; i < urls.size(); i++) {
-			System.out.println("== URL : " + urls.get(i)
-					+ " ============================");
-			if (url.matches(urls.get(i))) {
-				{
-					/*
-					 * request.getRequestURI(); //프로젝트경로부터 파일까지의 경로값을 얻어옴
-					 * (/test/index.jsp) request.getContextPath(); //프로젝트의 경로값만
-					 * 가져옴(/test) request.getRequestURL(); //전체 경로를 가져옴
-					 * (http://localhost:8080/test/index.jsp)
-					 * request.getServletPath(); //파일명 (/index.jsp)
-					 */
-					System.out
-							.println("== 인증 체크가 필요 있는 URL ============================");
-					System.out.println("== URL : " + urls.get(i)
-							+ " ============================");
-					String id = "";
-					String returnUrl = "";
-					try {
+			System.out.println("루트 경로" + uploadRootPath);
+			// DomReadXMLFile.xmlParser("/xConfig/general.xml.config");
+			DomReadXMLFile.xmlParser(uploadRootPath
+					+ "/xConfig/general.xml.config");
 
-						id = (String) session.getAttribute("member_id"); // request에서
-																			// id
-																			// 파라미터를
-																			// 가져온다
-						System.out.println("세션아이디" + id);
+			// statistics_id.equals("") ||statistics_id == null 순서 반대로 하면,
+			// nullpointerException 발생 생성전에 비교하니
+			if (statistics_id == null || statistics_id.equals("")) {
+				System.out.println("열로들어온다. 세션없는경우");
 
-						returnUrl = request.getRequestURI(); // 현재 URL
-						if (id == null || id.equals("")) { // id가 Null 이거나 없을 경우
-							System.out.println("이쪽으로 리다이렉트");
-							// response.sendRedirect("/CommonApps/Member/MbrLogin.jsp");
-							// // 로그인 페이지로 리다이렉트 한다.
-							System.out.println("리턴url" + uploadRootPath
-									+ "MasterPage.jsp?mode=SMbrLogin");
-							response.sendRedirect("/hightsofts/hightsofts.mwav");
-							// response.sendRedirect("/hightsofts/hightsofts.mwav);
-							// return false;
-							/*
-							 * RequestDispatcher rd =
-							 * request.getRequestDispatcher
-							 * ("/Admins/CompanyMgr/Staff/StfLogin.jsp" );
-							 * rd.forward(request, response);
-							 */
-							return false;
-							// statisticsController.redirectController(request);
-							// return false;
+				statisticsController.insertFirstStatics(request, member_id,
+						statistics_id, session_id);
+			} else {
+				System.out.println("열로들어온다. 세션있는경우");
+				statisticsController.insertStatics(request, statistics_id);
+			}
+			// 디버그 레벨일때 true
+			// http://planmaster.tistory.com/66
+			if (log.isDebugEnabled()) {
+				log.info("======================================          START         ======================================");
+				log.info(" Request URI \t:  " + request.getRequestURI());
+				System.out.println(request.getRequestURI());
+				System.out.println("LoggerInterceptor에 들어왔다.");
+			}
+			System.out.println("urls.size()" + urls.size());
+
+			/*
+			 * int pos = url.lastIndexOf("."); String ext = url.substring(pos +
+			 * 1); System.out.println("확장자 제외" + ext);
+			 * 
+			 * if(ext.equals("jsp")){ System.out.println("jsp 파일이다.");
+			 * statisticsController.redirectController(request, ext); }
+			 */
+
+			for (int i = 0; i < urls.size(); i++) {
+				System.out.println("== URL : " + urls.get(i)
+						+ " ============================");
+				if (url.matches(urls.get(i))) {
+					{
+						/*
+						 * request.getRequestURI(); //프로젝트경로부터 파일까지의 경로값을 얻어옴
+						 * (/test/index.jsp) request.getContextPath(); //프로젝트의
+						 * 경로값만 가져옴(/test) request.getRequestURL(); //전체 경로를 가져옴
+						 * (http://localhost:8080/test/index.jsp)
+						 * request.getServletPath(); //파일명 (/index.jsp)
+						 */
+						System.out
+								.println("== 인증 체크가 필요 있는 URL ============================");
+						System.out.println("== URL : " + urls.get(i)
+								+ " ============================");
+						String id = "";
+						String returnUrl = "";
+						try {
+
+							id = member_id; // request에서
+											// id
+											// 파라미터를
+											// 가져온다
+							System.out.println("세션아이디" + id);
+
+							returnUrl = request.getRequestURI(); // 현재 URL
+							if (id == null || id.equals("")) { // id가 Null 이거나
+																// 없을 경우
+								System.out.println("이쪽으로 리다이렉트");
+								// response.sendRedirect("/CommonApps/Member/MbrLogin.jsp");
+								// // 로그인 페이지로 리다이렉트 한다.
+								/*
+								 * 중요
+								 * 
+								 * .jsp -> jsp는 서블릿을 안탄다 즉 서블릿을 안타는 대상은 포워딩이 불가
+								 * !! 밑에 redirect는 되나
+								 */
+								System.out
+										.println("리턴url"
+												+ uploadRootPath
+												+ "MasterPage.jsp?mode=SMbrLogin&returnUrl=");
+								response.sendRedirect("/MasterPage.jsp?mode=SMbrLogin&returnUrl="
+										+ returnUrl);
+								// response.sendRedirect("/hightsofts/hightsofts.mwav);
+								// return false;
+								/*
+								 * RequestDispatcher rd =
+								 * request.getRequestDispatcher
+								 * ("/Admins/CompanyMgr/Staff/StfLogin.jsp" );
+								 * rd.forward(request, response);
+								 */
+								return false;
+								// statisticsController.redirectController(request);
+								// return false;
+							}
+						} catch (Exception e) {
+							e.printStackTrace();
 						}
-					} catch (Exception e) {
-						e.printStackTrace();
 					}
 				}
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 
 		/*

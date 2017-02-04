@@ -126,9 +126,8 @@
 			<bean id="loggerInterceptor" class="net.common.logger.LoggerInterceptor">
 			<property name="urls">
    <list>
-    <value>/CustomerService/MemberShip/MemberShip.jsp</value>
-    <value>/CompanyItem/WebSiteBuilding/WebSiteBuilding.jsp</value>
-    <value>/logout/logout.do</value>
+    <value>/CustomerService/MemberShip/MemberShip.mwav</value>
+    <value>/qa/qaList.mwav</value>
     <value>/logout/logout.do</value>
     <value>/login.do</value>
    </list>
@@ -195,7 +194,6 @@ SimpleUrlAnnotationHandlerMapping은 @Controller 사용시에 url 단위로 Inte
 	<bean class="org.springframework.web.servlet.view.UrlBasedViewResolver"
 		p:order="1" p:viewClass="org.springframework.web.servlet.view.JstlView"
 		p:prefix="/" p:suffix=".jsp">  <!-- prefix는 페이지의 기본 루트 // 페이지의 기본 확장자 -->
-
 	</bean>
 
 

@@ -7,6 +7,71 @@
 	rel="stylesheet">
 <link href="/resources/JsFramework/Bootstrap/bootstrap-social.css"
 	rel="stylesheet">
+
+
+<head>
+<c:if test="${requestScope.loginCheck eq 2 }">
+	<script type="text/javascript">
+		alert('비밀번호가 틀렸습니다.');
+		history.go(-1)
+	</script>
+</c:if>
+<c:if test="${requestScope.loginCheck eq 7 }">
+	<script type="text/javascript">
+		alert('탈퇴한 회원입니다.');
+		msg = '재 가입하시겠습니까.?'
+		if (confirm(msg) != 0) {
+			// 이전 url 기록안하는 경우 , location.href 의 경우 이전기록이 남아 login.mwav로 포워딩 , 프로세스 정리 필요.
+			location.replace("/MasterPage_1.jsp?mode=Default"); 
+		} else {
+			history.go(-1)
+		}
+	</script>
+</c:if>
+
+<c:if test="${requestScope.loginCheck eq 3 }">
+	<script type="text/javascript">
+		alert('아이디가 존재하지 않습니다.');
+		history.go(-1);
+	</script>
+</c:if>
+<c:if test="${requestScope.loginCheck eq 5 }">
+	<script type="text/javascript">
+		alert('임시패스워드입니다. 비밀번호 변경 후 로그인해주세요.');
+		history.go(-1);
+	</script>
+</c:if>
+<c:if test="${requestScope.loginCheck eq 1 }">
+
+	<c:choose>
+		<c:when test="${requestScope.returnUrl eq null }">
+			<script type="text/javascript">
+				//alert('11');
+				//location.href("/");
+				//e.preventDefault();
+				//http://blog.naver.com/PostView.nhn?blogId=haanul98&logNo=80204508627&categoryNo=0&parentCategoryNo=0&viewDate=&currentPage=1&postListTopCurrentPage=1
+				location.href = "/";
+			</script>
+		</c:when>
+		<c:when test="${requestScope.returnUrl ne null }">
+	 <c:set var="returnUrl" value='${requestScope.returnUrl}' scope="request" /> 
+			<script type="text/javascript">
+				//alert('112');
+				//e.preventDefault();
+				var returnUrl = '<c:out value="${returnUrl}"/>'; 
+				//alert(returnUrl);
+				location.href = returnUrl;
+		
+			</script>
+			<%-- <c:url var="url" value="${requestScope.returnUrl}">
+			</c:url> 
+
+			<c:redirect url="${requestScope.returnUrl}" />
+--%>
+		</c:when>
+	</c:choose>
+</c:if>
+</head>
 <!-- 구글 API관련 
     <meta name="google-signin-scope" content="profile email">
     <meta name="google-signin-client_id" content="881218558153-ndr868i68rlofoo4l2gb488ksabi5q23.apps.googleusercontent.com">
@@ -188,17 +253,16 @@
 
 
 <script>
-function re_check(form){
-	//alert('11');
-	//alert(form.mbrLoginId.value);
-	if(emptyCheck(form.mbrLoginId.value, "아이디를 입력해주세요.") == true && emptyCheck(form.mbrLoginPw.value, "비밀번호를 입력해주세요.") == true)
-	{
-		return true;
-	} else {
-		return false;
+	function re_check(form) {
+		//alert('11');
+		//alert(form.mbrLoginId.value);
+		if (emptyCheck(form.mbrLoginId.value, "아이디를 입력해주세요.") == true
+				&& emptyCheck(form.mbrLoginPw.value, "비밀번호를 입력해주세요.") == true) {
+			return true;
+		} else {
+			return false;
+		}
 	}
-}
-
 </script>
 <%--padding 으로 안쪽 추후 딴건 변경가능 #04A3ED --%>
 <div class="enter"></div>
@@ -207,9 +271,10 @@ function re_check(form){
 
 
 	<form name="login_form" action="/member/Login.mwav" role="form"
-		class='form-horizontal' method="post" onsubmit="return re_check(document.login_form);">
-		 <input type="hidden" name="returnUrl"
-					value="${returnUrl }" />
+		class='form-horizontal' method="post"
+		onsubmit="return re_check(document.login_form);">
+		<%--get문으로 넘어온 것은 param으로 받는다. --%>
+		<input type="hidden" name="returnUrl" value="${param.returnUrl }" />${param.returnUrl }
 		<div class="enter"></div>
 		<div class="form-group">
 			<input type="text" name="mbrLoginId"
@@ -224,7 +289,7 @@ function re_check(form){
 			<input type="password" class="form-control input-lg"
 				placeholder="Confirm Password" name="mbrLoginPw_check">
 		</div> -->
-		
+
 		<div class="form-group">
 			<button type="submit" class="btn btn-primary btn-lg btn-block">Sign
 				In</button>

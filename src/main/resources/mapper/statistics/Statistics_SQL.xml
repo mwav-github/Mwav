@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- #은 ' ' string // $ 은 숫자 ' ' 없음 -->
+<mapper namespace="statistics">
+	
+	<!-- /*========================================등록========================================*/ -->
+	
+	<select id="insertFirstStatics" parameterType="net.mwav.statistics.vo.StatisticsVO">
+		<![CDATA[
+			INSERT INTO Statistics_tbl 
+			Values(#{statistics_id}, #{stPageName}, #{stUrlScheme}, #{stUrlHost}, #{stUrlPort}, #{stUrlLocalPath}, #{stQueryString}, #{stUrlPathAndQuery}, #{stPrePageName}, #{stUrlReferrerHost}, #{stUrlReferrer}, #{stPromoterType}, #{stPromoterId}, #{stWhatsAbout}, #{stMember_id}, #{stSessionId}, #{stUserHostAddress}, #{stUserAgent}, #{stClientScreen}, #{stHTTP_UA_CPU}, #{stStatisticsDt} )
+		]]>
+	</select>
+	
+	<select id="insertStatistics" parameterType="net.mwav.statistics.vo.StatisticsVO">
+		<![CDATA[
+			INSERT INTO StatisticsLog_tbl  
+			Values(#{statistics_id}, #{slStatLogDt}, #{slPageName}, #{slUrlHost}, #{slUrlLocalPath}, #{slQueryString})
+		]]>
+	</select>
+	<!-- /*========================================보기========================================*/ -->
+
+	
+	<!-- /*========================================수정========================================*/ -->
+
+	
+	<!--/*========================================리스트(SelectOne, SelectList 순)========================================*/-->
+	
+	
+	
+	<!--/*========================================삭제========================================*/-->
+	
+    <select id="selectNextPk" resultType="String">
+		<![CDATA[
+	       select IFNULL(max(statistics_id+1) , 1000000000) AS statistics_id from Statistics_tbl 
+		]]>
+	</select>
+	
+   
+		
+</mapper>
+

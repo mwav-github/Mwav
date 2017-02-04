@@ -160,10 +160,10 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 							<li>수술실과 같은 위생환경 내에 접근통제</li>
 						</ul>
 						<br />
-						<p class="text-right">
+						<!-- <p class="text-right">
 							해당 제품에 대한 보다 자세한 정보가 필요하시면 아래 이메일로 문의 주시기 바랍니다 <A
 								href="mailto:sales@aervision.com" style="color: #990085;">sales@aervision.com</a>
-						</p>
+						</p> -->
 						<p class="text-right" style="color: #990085;">
 							<a href="/CompanyItem/ITProducts/Aervision/aerpass_spec.pdf"
 								target="blank"><span class="glyphicon glyphicon-save"

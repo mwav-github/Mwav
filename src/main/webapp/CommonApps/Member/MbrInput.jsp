@@ -245,7 +245,7 @@ http://planbong.tistory.com/531
 							<div class='col-md-12 col-sm-12 col-xs-12'>
 								<input type="password" class="form-control caps_lockchk" name="mbrLoginPw"
 									id="chkLoginPW" placeholder="예) 8자리이상" value=""
-									onchange="chkPWPolicy()" required>
+									onchange="chkPWPolicy(this.value, this)" required>
 
 							</div>
 							<%-- <div class="col-md-1 col-sm-1 col-xs-1 pull-left">
@@ -344,7 +344,7 @@ http://planbong.tistory.com/531
 						<div class='form-group'>
 							<div class='col-md-11'>
 								<input class='form-control caps_lockchk' name="mbrEmail" id='chkEmail'
-									placeholder='E-mail' type='text' onchange="chkEmailPolicy()"
+									placeholder='E-mail' type='text' onchange="chkEmailPolicy(this.value, this)"
 									required>
 							</div>
 						</div>

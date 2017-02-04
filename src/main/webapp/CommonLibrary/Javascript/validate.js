@@ -29,7 +29,7 @@ function Trim(strSrc) { var strLTrim = strSrc.replace(/^\s+/,''); return
 
 function chkLoginPolicy(validate_string, input_object) {
 var check_login = trim(validate_string);
-chkLoginId_1 = document.getElementById("chkLoginId");
+//chkLoginId_1 = document.getElementById("chkLoginId");
 	/*chkLoginId_1 = document.getElementById("chkLoginId");
 	var chkLoginId = chkLoginId_1.value;
 	// var mbrLoginId = mbrLoginId;
@@ -178,15 +178,17 @@ function chkLoginPolicy(validate_string) {
 		return false;
 	}
 }*/
-function chkPWPolicy() {
-
+function chkPWPolicy(validate_string, input_object) {
+	var check_pw = trim(validate_string);
+//alert(validate_string);
+//alert(input_object);
 	/*
 	 * alert('1'); var mbrLoginPw = form.mbrLoginPw.value;
 	 */
 	// 로그인 아이디 계정정책 확인
 	// var mbrLoginPw = form.mbrLoginPw.value;
-	chkLoginPW_1 = document.getElementById("chkLoginPW");
-	var chkLoginPW = chkLoginPW_1.value;
+	//chkLoginPW_1 = document.getElementById("chkLoginPW");
+	//var chkLoginPW = chkLoginPW_1.value;
 	// alert(chk_LoginPW);
 
 	// alert('chk_LoginPW'+chk_LoginPW)
@@ -204,36 +206,36 @@ function chkPWPolicy() {
 
 	/*
 	 * alert(re1.test(mbrLoginPw)); alert(re1.test(mbrLoginPw) == false)
-	 */if ((re1.test(chkLoginPW)) == false) {
+	 */if ((re1.test(check_pw)) == false) {
 		alert("비밀번호는 영문+숫자+특수문자를 혼용하여, 8~255자로 사용해주셔야합니다.");
-		chkLoginPW_1.value = "";
-		chkLoginPW_1.focus();
+		input_object.value = "";
+		input_object.focus();
 		return false;
 	}
 	/*
 	 * alert(re2.test(mbrLoginPw));
-	 */if ((re2.test(chkLoginPW)) == true) {
+	 */if ((re2.test(check_pw)) == true) {
 		alert("공백은 허용하지 않습니다.");
-		chkLoginPW_1.value = "";
-		chkLoginPW_1.focus();
+		input_object.value = "";
+		input_object.focus();
 		return false;
 	}
 }
-function chkEmailPolicy() {
-
+function chkEmailPolicy(validate_string, input_object) {
+	var check_email = trim(validate_string);
 	// var mbrEmail = form.mbrEmail.value;
 
-	chkEmail_1 = document.getElementById("chkEmail");
-	var chkEmail = chkEmail_1.value;
+	//chkEmail_1 = document.getElementById("chkEmail");
+	//var chkEmail = chkEmail_1.value;
 
 	// 로그인 아이디 계정정책 확인
 	var re1 = /[a-z0-9]{2,}@[a-z0-9-]{2,}.[a-z0-9]{2,}/i;
 
 	// alert(re1.test(mbrEmail));
-	if ((re1.test(chkEmail)) == false) {
+	if ((re1.test(check_email)) == false) {
 		alert("이메일형식이 올바르지 않습니다.");
-		chkEmail_1 = "";
-		chkEmail_1.focus();
+		input_object = "";
+		input_object.focus();
 		return false;
 	}
 }

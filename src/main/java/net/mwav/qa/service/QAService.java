@@ -44,11 +44,13 @@ public interface QAService {
 	 */
 	List<Map<String, Object>> selectListQAList(Map<String, Object> map);
 
-	int selectOneGetTotalCount();
+	int selectOneGetTotalCount(String member_id, String uqUserEmail);
 
 	List<Map<String, Object>> selectListQAFrontList(Map<String, Object> map);
 
 	Map<String, Object> selectOneQAView(Map<String, Object> map);
+
+	Map<String, Object> selectOneQALogin(Map<String, Object> map);
 
 
 

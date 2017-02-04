@@ -53,7 +53,7 @@
 	</c:if>
 
 
-	<a href="/CustomerService/Announcement/Announcement.jsp"
+	<a href="/CustomerService/Announcement/Announcement.mwav"
 		class="list-group-item" data-toggle="tooltip" data-placement="top"
 		data-original-title="공지사항">Announcement</a>
 
@@ -68,23 +68,23 @@
 			class="list-group-item" data-toggle="tooltip" data-placement="top"
 			data-original-title="회원정보(수정)">Member Ship</a>
 	</c:if> --%>
-	<a href="/CustomerService/MemberShip/MemberShip.jsp"
+	<a href="/CustomerService/MemberShip/MemberShip.mwav"
 			class="list-group-item" data-toggle="tooltip" data-placement="top"
 			data-original-title="회원정보(수정)">Member Ship</a>
 
-	<a href="/CustomerService/Agreement/Agreement.jsp"
+	<a href="/CustomerService/Agreement/Agreement.mwav"
 		class="list-group-item" data-toggle="tooltip" data-placement="top"
 		data-original-title="이용약관">Agreement</a> <a
 		class="list-group-item" data-toggle="tooltip" data-placement="top"
-		data-original-title="페이지 준비 중입니다.">Site Guide</a> <a href="/CustomerService/FAQ/FAQ.jsp"
+		data-original-title="페이지 준비 중입니다.">Site Guide</a> <a href="/CustomerService/FAQ/FAQ.mwav"
 		 class="list-group-item"
 		data-toggle="tooltip" data-placement="top"
-		data-original-title="자주 묻는 질문">FAQ</a> <a
+		data-original-title="자주 묻는 질문">FAQ</a> <a href="/CustomerService/QnA/QnA.mwav"
 		 class="list-group-item"
 		data-toggle="tooltip" data-placement="top"
 		data-original-title="페이지 준비 중입니다.">Q&A</a> <a
 		 class="list-group-item"
 		data-toggle="tooltip" data-placement="top" data-original-title="페이지 준비 중입니다.">Contact</a>
-	<a href="/CustomerService/SiteMap/SiteMap.jsp" class="list-group-item"
+	<a href="/CustomerService/SiteMap/SiteMap.mwav" class="list-group-item"
 		data-toggle="tooltip" data-placement="top" data-original-title="사이트맵">SiteMap</a>
 </div>

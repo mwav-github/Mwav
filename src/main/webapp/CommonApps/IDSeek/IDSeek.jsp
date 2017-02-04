@@ -336,7 +336,7 @@ $.ajax({
 									<div class="col-md-4 mgt4">이메일</div>
 									<div class="col-md-8 mgt4">
 										<input type="text" id="mbrEmail" class="form-control caps_lockchk"
-											placeholder="이메일" required>
+											placeholder="이메일" onchange="chkEmailPolicy(this.value, this)" required>
 									</div>
 								</div>
 
@@ -369,7 +369,7 @@ $.ajax({
 											<div class="col-md-4 mgt4">이메일</div>
 											<div class="col-md-8 mgt4">
 												<input type="text" id="pwemail" class="form-control caps_lockchk"
-													placeholder="이메일" required>
+													placeholder="이메일" onchange="chkEmailPolicy(this.value, this)" required>
 											</div>
 											<div class="enter"></div>
 
@@ -429,14 +429,14 @@ $.ajax({
 										<div class="col-md-4 mgt4">변경 할 PW</div>
 										<div class="col-md-8 mgt4">
 											<input type="password" name="mbrLoginPw" id="mbrLoginPw_chk" class="form-control caps_lockchk"
-												onchange="chkPWPolicy()" placeholder="Password">
+												onchange="chkPWPolicy(this.value, this)" placeholder="Password">
 										</div>
 										<input type="hidden" name="imsi_mbrLoginPw"
 											id="imsi_mbrLoginPw" value="">
 										<div class="col-md-4 mgt4">PW 재확인</div>
 										<div class="col-md-8 mgt4">
 											<input type="password" class="form-control caps_lockchk"
-												onchange="chkPWPolicy()" placeholder="Confirm Password" name="mbrLoginPw_check">
+												onchange="chkPWPolicy(this.value, this)" placeholder="Confirm Password" name="mbrLoginPw_check">
 										</div>
 									</div>
 

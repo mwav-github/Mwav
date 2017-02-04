@@ -112,10 +112,10 @@ public class MemberController {
 		String result = memberService.insertMbrForm(commandMap.getMap());
 
 		if (!"insertForm Success".equals(result)) {
-			return "redirect:/MasterPage_1.jsp?mode=SMbrInput";
+			return "redirect:/MasterPage_1.mwav?mode=SMbrInput";
 		}
 
-		return "redirect:/MasterPage_1.jsp?mode=SDMbrInput";
+		return "redirect:/MasterPage_1.mwav?mode=SDMbrInput";
 	}
 
 	/*
@@ -548,7 +548,7 @@ public class MemberController {
 	@RequestMapping(value = "/member/Login.mwav")
 	public ModelAndView selectLogin(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("/Index");
+		
 
 		HttpSession session = request.getSession();
 		// * action-servlet.xml에서 위에 .jsp 설정해줘서 위의 CommonApps 부터 되는거
@@ -557,8 +557,18 @@ public class MemberController {
 		Map<String, Object> memberLogin = null;
 		memberLogin = memberService.selectLogin(commandMap.getMap());
 
-		String returnUrl = (String) request.getAttribute("returnUrl");
+		String returnUrl = null; 
+		String returnUrl_imsi = null;
+		returnUrl_imsi = (String) commandMap.get("returnUrl");
+		System.out.println("returnUrl_imsi"+returnUrl_imsi);
+		if (returnUrl_imsi == null || returnUrl_imsi == ""){
+			returnUrl = null;
+		}else{
+			returnUrl = returnUrl_imsi ;
+		}
+		
 		System.out.println("returnUrl"+returnUrl);
+		
 		int loginCheck = 0; // 초기값
 
 		// 암호화 복호화 할 필요는없지.
@@ -607,8 +617,10 @@ public class MemberController {
 		 */
 
 		// http://linuxism.tistory.com/1089
-
+		ModelAndView mv = new ModelAndView("/MasterPage");
 		mv.addObject("memberLogin", memberLogin);
+		mv.addObject("mode", "SMbrLogin");
+		request.setAttribute("returnUrl", returnUrl);
 		request.setAttribute("loginCheck", loginCheck);
 		return mv;
 

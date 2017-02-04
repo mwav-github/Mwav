@@ -74,11 +74,21 @@
 		<url-pattern>*.mwav</url-pattern>
 	</servlet-mapping>
 	
-	<!-- 아래 설정을 통하여 .ico 파일을 태우지 않을 수 있다.-->
+	<!-- 아래 설정을 통하여 .ico 파일을 태우지 않을 수 있다.
+	http://yangyag.tistory.com/171
+	-->
 <servlet-mapping>
     <servlet-name>default</servlet-name>
     <url-pattern>*.ico</url-pattern>
+    <url-pattern>*.js</url-pattern>
+    <url-pattern>*.css</url-pattern>
+    <url-pattern>*.jpg</url-pattern>
+    <url-pattern>*.gif</url-pattern>
+    <url-pattern>*.png</url-pattern>
+    <url-pattern>*.swf</url-pattern>
+    <url-pattern>*.svg</url-pattern>
 </servlet-mapping>
+
 	
 	
 	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->

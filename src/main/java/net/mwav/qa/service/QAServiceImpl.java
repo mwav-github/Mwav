@@ -53,9 +53,9 @@ public class QAServiceImpl implements QAService {
 	 */
 
 	@Override
-	public int selectOneGetTotalCount() {
+	public int selectOneGetTotalCount(String member_id, String uqUserEmail) {
 		// TODO Auto-generated method stub
-		return qaDAO.selectOneGetTotalCount();
+		return qaDAO.selectOneGetTotalCount(member_id, uqUserEmail);
 	}
 
 	@Override
@@ -76,16 +76,18 @@ public class QAServiceImpl implements QAService {
 					e.printStackTrace();
 				}
 				
-				//map 출력
-				cou.selectMap(map);
+				/*//map 출력
+				cou.selectMap(map);*/
 
 				Map<String, Object> resultMap = qaDAO.selectOneQAView(map);
-				int test = (int) resultMap.get("uqStatus");
-				String result = cou.TypeIntToString("uqStatus", test);
-				
-				resultMap.put("uqStatus", result);
 				
 				return resultMap;
+	}
+
+	@Override
+	public Map<String, Object> selectOneQALogin(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return qaDAO.selectOneQALogin(map);
 	}
 
 	/*

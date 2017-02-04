@@ -78,19 +78,26 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 						<h5>All information and story about Mwav.</h5>
 						<br>
 						<ul class="font_color_faq_basic  ">
-							<li><strong><a href="/Company/Introduction/Introduction.jsp">Introduction</a></strong></li>
-							<li><strong><a href="/Company/Greetings/Greetings.jsp">Greetings</a></strong></li>
-							<li><strong><a href="/Company/History/History.jsp">History</a></strong></li>
-							<li><strong><a href="/Company/BusinessField/BusinessFields.jsp">Business
-									Field</a></strong></li>
-							<li><strong><a href="/Company/ActualResults/ActualResults.jsp">Actual
-									Results</a></strong></li>
-							<li><strong><a href="/board/bnsList.mwav">The Press</a></strong></li>
-							<li><strong><a href="/Company/HR-Affairs/HR-Affairs.jsp">HR-Affairs</a></strong></li>
-							<li><strong><a href="/Company/LocationMap/LocationMap.jsp">Location
-									Map</a></strong></li>
-							<li><strong><a href="/Company/Profitsharing/Profitsharing.jsp">Profit
-									Sharing</a></strong></li>
+							<li><strong><a
+									href="/Company/Introduction/Introduction.mwav">Introduction</a></strong></li>
+							<li><strong><a
+									href="/Company/Greetings/Greetings.mwav">Greetings</a></strong></li>
+							<li><strong><a href="/Company/History/History.mwav">History</a></strong></li>
+							<li><strong><a
+									href="/Company/BusinessField/BusinessFields.mwav">Business
+										Field</a></strong></li>
+							<li><strong><a
+									href="/Company/ActualResults/ActualResults.mwav">Actual
+										Results</a></strong></li>
+							<li><strong><a href="/board/bnsList.mwav">The
+										Press</a></strong></li>
+							<li><strong><a
+									href="/Company/HR-Affairs/HR-Affairs.mwav">HR-Affairs</a></strong></li>
+							<li><strong><a
+									href="/Company/LocationMap/LocationMap.mwav">Location Map</a></strong></li>
+							<li><strong><a
+									href="#">Profit
+										Sharing</a></strong></li>
 						</ul>
 					</div>
 
@@ -101,18 +108,18 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 						<h5>All CompanyItem about Mwav.</h5>
 						<br>
 						<ul class="font_color_faq_basic  ">
-							<li><a href="/CompanyItem/IT Products/OpenSRS/OpenSRS.jsp">IT
+							<li><a href="/CompanyItem/IT Products/OpenSRS/OpenSRS.mwav">IT
 									Solutions</a></li>
 							<li><a
-								href="/CompanyItem/IT Products/Aervision/Aervision.jsp">IT
+								href="/CompanyItem/IT Products/Aervision/Aervision.mwav">IT
 									Products</a></li>
 							<li><a
-								href="/CompanyItem/WebSite Building/WebSite Building.jsp">Wesite
+								href="/CompanyItem/WebSite Building/WebSite Building.mwav">Wesite
 									Building</a></li>
 							<li><a
-								href="/CompanyItem/Digital Marketing/Digital Marketing.jsp">Digital
+								href="/CompanyItem/Digital Marketing/Digital Marketing.mwav">Digital
 									Marketing</a></li>
-							<li><a href="/CompanyItem/IT Consulting/IT Consulting.jsp">IT
+							<li><a href="/CompanyItem/IT Consulting/IT Consulting.mwav">IT
 									Consulting</a></li>
 						</ul>
 					</div>
@@ -126,29 +133,30 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 						<ul class="font_color_faq_basic  ">
 							<c:if test="${sessionScope.mbrLoginId eq null }">
 								<li><a
-									href="javascript:window.alert('권한이 없습니다. \n 로그인 후 이용해주시기 바랍니다.');">My Page</a></li>
+									href="javascript:window.alert('권한이 없습니다. \n 로그인 후 이용해주시기 바랍니다.');">My
+										Page</a></li>
 							</c:if>
 
 							<c:if test="${sessionScope.mbrLoginId ne null }">
-								<li><a href="/CustomerService/MyPage/MyPage.jsp">My Page</a></li>
+								<li><a href="/CustomerService/MyPage/MyPage.mwav">My
+										Page</a></li>
 							</c:if>
 
-							<li><a href="/CustomerService/Announcement/Announcement.jsp">Announcement</a></li>
+							<li><a href="/CustomerService/Announcement/Announcement.mwav">Announcement</a></li>
 
-							<c:if test="${sessionScope.mbrLoginId eq null }">
+							<%-- <c:if test="${sessionScope.mbrLoginId eq null }">
 								<li><a
 									href="javascript:window.alert('권한이 없습니다. \n 로그인 후 이용해주시기 바랍니다.');">MemberShip</a></li>
 							</c:if>
-							<c:if test="${sessionScope.mbrLoginId ne null }">
-								<a href="/CustomerService/MemberShip/MemberShip.jsp">MemberShip</a>
-							</c:if>
+							<c:if test="${sessionScope.mbrLoginId ne null }"> </c:if>--%>
+							<li><a href="/CustomerService/MemberShip/MemberShip.mwav">MemberShip</a>
+							</li>
+							<li><a href="#">History</a></li>
 
-							<li><a href="/Company/History/History.jsp">History</a></li>
-
-							<li><a href="/CustomerService/FAQ/FAQ.jsp">FAQ</a></li>
-							<li><a href="/CustomerService/QnA/QnA.jsp">Q&A</a></li>
-							<li><a href="/CustomerService/Contact/Contact.jsp">Contact</a></li>
-							<li><a href="/CustomerService/SiteMap/SiteMap.jsp">Site
+							<li><a href="/CustomerService/FAQ/FAQ.mwav">FAQ</a></li>
+							<li><a href="/CustomerService/QnA/QnA.mwav">Q&A</a></li>
+							<li><a href="/CustomerService/Contact/Contact.mwav">Contact</a></li>
+							<li><a href="/CustomerService/SiteMap/SiteMap.mwav">Site
 									Map</a></li>
 						</ul>
 					</div>

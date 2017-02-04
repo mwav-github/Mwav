@@ -15,7 +15,7 @@
 	<!--  //////////////////////////////////// -->
 	<div class="container">
 		<!--  //////////////////////////////////// -->
-		<jsp:include page="/PartsOfContent/SiteHeader/FrontHeader_Master.jsp"
+		<jsp:include page="/PartsOfContent/SiteHeader/FrontHeader.jsp"
 			flush="false" />
 		<!--  //////////////////////////////////// -->
 		<!-- Image Container 
