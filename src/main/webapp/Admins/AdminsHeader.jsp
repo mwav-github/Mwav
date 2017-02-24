@@ -25,9 +25,9 @@
 
 		<div class="row" style="font-size: 9px">
 			<div class="col-md-1" align="center">
-				<img alt="User Pic"
+				<!-- <img alt="User Pic"
 					src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=100"
-					class="img-circle">
+					class="img-circle"> -->
 			</div>
 			<div class="col-md-4">
 				<table class="table table-striped table-condensed">

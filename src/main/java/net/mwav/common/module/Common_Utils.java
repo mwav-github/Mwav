@@ -353,6 +353,7 @@ public class Common_Utils {
 		String browser = "";
 
 		log.info("User Agent for the request is===>" + browserDetails);
+		System.out.println("User Agent for the request is===>" + browserDetails);
 		// =================OS=======================
 		if (userAgent.toLowerCase().indexOf("windows") >= 0) {
 			os = "Windows";

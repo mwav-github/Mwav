@@ -14,28 +14,37 @@
 <jsp:include page="/PartsOfContent/Head_Import.jsp" flush="false" />
 <!-- /////////// -->
 
-<c:if test="${requestScope.loginCheck eq 2 }">
+<c:if test="${requestScope.loginCheck eq 0 }">
 	<script type="text/javascript">
-		alert('비밀번호가 틀렸습니다.');
+		alert('아이디 또는 비밀번호가 틀렸습니다.');
 		history.go(-1)
 	</script>
 </c:if>
-<c:if test="${requestScope.loginCheck eq 3 }">
+
+<c:if test="${requestScope.loginCheck eq 1}">
+	<c:set var="uqUserEmail" value='${requestScope.uqUserEmail}'
+		scope="request" />
+
 	<script type="text/javascript">
-		alert('아이디가 존재하지 않습니다.');
-		history.go(-1);
+	
+		//http://blog.naver.com/PostView.nhn?blogId=haanul98&logNo=80204508627&categoryNo=0&parentCategoryNo=0&viewDate=&currentPage=1&postListTopCurrentPage=1
+		var uqUserEmail = '<c:out value="${uqUserEmail}"/>';
+		location.href = "/qa/qaList.mwav?uqUserEmail=" + uqUserEmail;
 	</script>
 </c:if>
 
-<c:if test="${requestScope.loginCheck eq 1 }">	
-<c:set var="uqUserEmail" value='${requestScope.uqUserEmail}' scope="request" /> 
-			
-			<script type="text/javascript">
-				//http://blog.naver.com/PostView.nhn?blogId=haanul98&logNo=80204508627&categoryNo=0&parentCategoryNo=0&viewDate=&currentPage=1&postListTopCurrentPage=1
-				var uqUserEmail = '<c:out value="${uqUserEmail}"/>';
-						location.href = "/qa/qaList.mwav?uqUserEmail="+uqUserEmail;
-			</script>
-</c:if>
+<script>
+	function re_check(form) {
+		//alert('11');
+		//alert(form.mbrLoginId.value);
+		if (emptyCheck(form.uqUserPw, "이메일을 입력해주세요.") == true
+				&& emptyCheck(form.uqUserPw, "비밀번호를 입력해주세요.") == true) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+</script>
 </head>
 
 <body>
@@ -95,37 +104,66 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 			<div class="col-md-9">
 				<!-- Content Column -->
 				<div class="col-lg-12">
-					<%--비회원 --%>
+					<%--비회원 또는 로그인 안한 경우 --%>
 					<c:if test="${sessionScope.member_id eq null }">
-					<div class="enter"></div>
-						<div class="container">
-							<div class="row">
-							<form name="qaLogin" action="/qa/qaLogin.mwav" method="post">
-								<div class="col-md-offset-3 col-md-5">
-									<div class="form-login">
-										<h4>Non-member Login</h4>
-										<input type="text" id="e-mail" name="uqUserEmail"
-											class="form-control input-sm chat-input"
-											placeholder="E-mail" onchange="chkEmailPolicy(this.value, this)"/> </br>
-											
-											 <input type="password" name="uqUserPw"
-											id="userPassword" class="form-control input-sm chat-input"
-											placeholder="Password" onchange="chkPWPolicy(this.value, this)"/> </br>
-										<div class="text-center">
-											<span class="group-btn"> <a 
-												class="btn btn-primary btn-md" onClick="javascript:qaLogin.submit();">login <i
-													class="fa fa-sign-in" ></i></a>
-											</span>
-											<span class="group-btn"> <a href="/MasterPage_1.mwav?mode=Default"
-												class="btn btn-primary btn-md">Sign Up Now</a>
-											</span>
+
+
+						<div class="row">
+							<div class="col-xs-6"
+								style="border-right: 1px solid #ccc; height: 100%">
+								<h3>
+									<strong>Member</strong>
+								</h3>
+								<div class="enter"></div>
+								<div class="container">
+									<jsp:include page="/CommonApps/Member/MbrLogin.jsp"
+										flush="false">
+										<jsp:param name="type" value="simple" />
+										<jsp:param name="returnUrl" value="/qa/qaList.mwav" />
+									</jsp:include>
+								</div>
+							</div>
+							<div class="col-xs-6">
+								<h3>
+									<strong>Non-Member</strong>
+								</h3>
+								<div class="enter"></div>
+								<div class="container">
+									<div class="jumbotron">
+
+										<div class="row">
+											<div class="col-md-12">
+												<form name="qaLogin" action="/qa/qaLogin.mwav" method="post"
+													onsubmit="return re_check(document.qaLogin);">
+													<div class="form-group">
+														<label for="email">Email address*</label> <input
+															type="text" id="e-mail" name="uqUserEmail"
+															class="form-control " placeholder="E-mail" />
+													</div>
+													<div class="form-group">
+														<label for="password">Password*</label><input
+															type="password" name="uqUserPw" id="userPassword"
+															class="form-control caps_lockchk" placeholder="Password" />
+													</div>
+													<button type="button"
+														onClick="javascript:qaLogin.submit();"
+														class="btn btn-primary btn-block">Sign to your
+														account</button>
+												</form>
+											</div>
 										</div>
 									</div>
-
 								</div>
-								</form>
+
 							</div>
 						</div>
+
+
+
+						<!-- <div class="row">
+							
+							</div> -->
+
 					</c:if>
 
 					<%--회원 --%>

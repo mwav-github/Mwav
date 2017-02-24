@@ -50,7 +50,7 @@ public interface QAService {
 
 	Map<String, Object> selectOneQAView(Map<String, Object> map);
 
-	Map<String, Object> selectOneQALogin(Map<String, Object> map);
+	String selectOneQALogin(Map<String, Object> map);
 
 
 

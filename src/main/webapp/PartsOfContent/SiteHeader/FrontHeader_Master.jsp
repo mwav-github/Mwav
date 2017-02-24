@@ -36,16 +36,22 @@
 			<div class="mgt2 collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="mgl3 nav navbar-nav">
-					<li><a href="/CompanyItem/ITProducts/OpenSRS/OpenSRS.mwav"><h4>IT
+					<li><a href="/CompanyItem/ITProducts/OpenSRS/OpenSRS.mwav"
+						onclick="ga('send', 'event', 'GNB', 'click', 'ITSolutions');"><h4>IT
 								Solutions</h4></a></li>
-					<li><a href="/CompanyItem/ITProducts/Aervision/Aervision.mwav"><h4>IT
+					<li><a href="/CompanyItem/ITProducts/Aervision/Aervision.mwav"
+						onclick="ga('send', 'event', 'GNB', 'click', 'ITProducts');"><h4>IT
 								Products</h4></a></li>
-					<li><a href="/CompanyItem/WebSiteBuilding/WebSiteBuilding.mwav"><h4>WebSite
+					<li><a
+						href="/CompanyItem/WebSiteBuilding/WebSiteBuilding.mwav"
+						onclick="ga('send', 'event', 'GNB', 'click', 'WebsiteBuilding');"><h4>WebSite
 								Building</h4></a></li>
 					<li><a
-						href="/CompanyItem/DigitalMarketing/DigitalMarketing.mwav"><h4>Digital
+						href="/CompanyItem/DigitalMarketing/DigitalMarketing.mwav"
+						onclick="ga('send', 'event', 'GNB', 'click', 'DigitalMarketing');"><h4>Digital
 								Marketing</h4></a></li>
-					<li><a href="/CompanyItem/ITConsulting/ITConsulting.mwav"><h4>IT
+					<li><a href="/CompanyItem/ITConsulting/ITConsulting.mwav"
+						onclick="ga('send', 'event', 'GNB', 'click', 'ITConsulting');"><h4>IT
 								Consulting</h4></a></li>
 				</ul>
 				<ul class="mgl3 nav navbar-nav navbar-right">
@@ -69,9 +75,8 @@
 									class="glyphicon glyphicon-stats pull-right"></span></a></li> -->
 								<li class=""></li>
 								<%--QA 답변 달린 것에 대한 확인. --%>
-								<li><a href="/qa/qaList.mwav"
-									style="color: #428bca;"><h5>
-											Messages <span class="badge pull-right"> 42 </span>
+								<li><a href="/qa/qaList.mwav" style="color: #428bca;"><h5>
+											Messages <span class="badge pull-right"></span>
 										</h5></a></li>
 
 								<!-- <li><a href="#">Favourites Snippets <span

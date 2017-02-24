@@ -54,23 +54,60 @@ public class QAController {
 	 */
 
 	// 1번 bnsForm : Form 입력만 가능 (뒤로가기, list)
-	@RequestMapping(value = "/qa/qaForm.mwav")
-	public @ResponseBody boolean insertQAForm(CommandMap commandMap,
+	@RequestMapping(value = "/qa/qaFormAjax.mwav")
+	public @ResponseBody boolean insertQAFormaAjax(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
+		//System.out.println("sdfdfs");
+		boolean flag = false;
+		try{
+		HttpSession session = request.getSession();
+		int m_id = 0;
+		if (session.getAttribute("member_id") != null){
+			m_id = (int) session.getAttribute("member_id");
+		}
+		
+		
+		commandMap.put("member_id", m_id);
+		
+		
+		log.debug("인터셉터 테스트");
+		//qaService.insertQAForm(commandMap.getMap(), request);
+
+		flag = qaService.insertQAForm(commandMap.getMap(), request);
+
+		System.out.println("df" + flag);
+		// mv.addObject("insertBnsForm", insertBnsForm);
+		// mv.addObject("IDX", commandMap.get("IDX"));
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		return flag;
+	}
+	
+	@RequestMapping(value = "/qa/qaForm.mwav")
+	public ModelAndView insertQAForm(CommandMap commandMap,
+			HttpServletRequest request) throws Exception {
+		
+		ModelAndView mv = new ModelAndView("/CustomerService/CS-MasterPage");
+		
 		HttpSession session = request.getSession();
 		String m_id = (String) session.getAttribute("member_id");
 		commandMap.put("member_id", m_id);
 		System.out.println("순서");
 		log.debug("인터셉터 테스트");
-		qaService.insertQAForm(commandMap.getMap(), request);
 
+
+		//아직 까지는 한벌로 
 		boolean flag = qaService.insertQAForm(commandMap.getMap(), request);
 
 		System.out.println("df" + flag);
-		// mv.addObject("insertBnsForm", insertBnsForm);
+		
+		request.setAttribute("check", flag);
+		//mv.addObject("check", flag);
 		// mv.addObject("IDX", commandMap.get("IDX"));
 
-		return flag;
+		return mv;
 	}
 
 	/*
@@ -143,7 +180,7 @@ public class QAController {
 		ModelAndView mv = new ModelAndView("/CustomerService/CS-MasterPage");
 
 		HttpSession session = request.getSession();
-		String m_id = (String) session.getAttribute("member_id");
+		String m_id = String.valueOf(session.getAttribute("member_id"));
 		String m_email = (String) commandMap.get("uqUserEmail");
 		commandMap.put("member_id", m_id);
 		String pageNum = (String) commandMap.get("pageNum");
@@ -151,6 +188,7 @@ public class QAController {
 		if (pageNum == null) {
 			pageNum = "1";
 		}
+		//totalcount 도 조정이 필요하다. (회원 비회원에 따라)
 		int totalRow = qaService.selectOneGetTotalCount(m_id, m_email);
 		System.out.println("totalRow=" + totalRow);
 
@@ -192,46 +230,22 @@ public class QAController {
 		ModelAndView mv = new ModelAndView("/CustomerService/QnA/QnA");
 
 		int loginCheck = 0; // 초기값
-		Map<String, Object> qaLogin = null;
-		String a_uqUserEmail = null;
-		qaLogin = qaService.selectOneQALogin(commandMap.getMap());
+		
+		String uqUserEmail = null;
+		uqUserEmail = qaService.selectOneQALogin(commandMap.getMap());
 		// String uqUserPw = null;
-		if (qaLogin != null) {
+		if (uqUserEmail == null) {
+			//0은 아이디 또는 pw가 틀린 것
 			System.out.println("loginCheck =" + loginCheck);
-
-			// 페이지에서 온 값
-			String b_uqUserPw = null;
-			b_uqUserPw = (String) commandMap.get("uqUserPw");
-			System.out.println("페이지에서 온값 " + b_uqUserPw);
-
-			// 디비 다녀와서 온 값
-			String a_uqUserPw = (String) qaLogin.get("uqUserPw");
-			System.out.println("디비다녀온값" + a_uqUserPw);
-
-			// 페이지에서 온 값
-			String b_uqUserEmail = (String) commandMap.get("uqUserEmail");
-			// int member_id = (int) memberLogin.get("member_id");
-
-			
-					a_uqUserEmail=	(String) qaLogin.get("uqUserEmail");
-			// System.out.println("디비다녀온값" + a_uqUserEmail);
-
-			if (b_uqUserPw.equals(a_uqUserPw)) {
-				loginCheck = 1;
-
-			} else if (a_uqUserEmail != null
-					&& !(b_uqUserPw.equals(a_uqUserPw))) {
-				// check 0 비밀번호가 틀렸을 때
-				loginCheck = 2;
-				System.out.println("비밀번호틀림");
-			}
-		} else {
-			loginCheck = 3;
-			System.out.println("아이디 존재하지 않음.");
+			loginCheck = 0;
+		}else {
+			loginCheck = 1; 
 		}
-		mv.addObject("qaLogin", qaLogin);
+			// 페이지에서 온 값
+
+		
 		request.setAttribute("loginCheck", loginCheck);
-		request.setAttribute("uqUserEmail", a_uqUserEmail);
+		request.setAttribute("uqUserEmail", uqUserEmail);
 		
 		return mv;
 	}

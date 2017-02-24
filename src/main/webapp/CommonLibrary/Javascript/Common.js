@@ -693,38 +693,43 @@ function caps_lockchk() {
 }
 
 //소셜 공유하기
-function sendSns(sns, url, txt ,type)
+//http://dev.epiloum.net/916
+//http://www.sharelinkgenerator.com/
+function sendSns(url, utm_source, utm_campaign ,utm_medium, utm_content, subTitle)
 {
 	//alert(sns);
 	//alert(url);
 	//alert(txt);
 	
 	//통계기 추가 필요
-	
+	console.log(utm_campaign);
+	console.log(trim(utm_campaign));
 	
     var o;
     
     //보안이슈 인코딩 처리.
-    var _url = encodeURIComponent(url);
-    var _txt = encodeURIComponent(txt);
+    //var _txt = encodeURIComponent(txt);
     var _br  = encodeURIComponent('\r\n');
     
-    var googleAnalytics_var = '&utm_source=' + sns +'&utm_campaign='+ txt + '&utm_medium=' + type;
+    var googleAnalytics_var = '&utm_source='+ utm_source +'&utm_campaign='+ trim(utm_campaign)+'&utm_medium='+utm_medium+'&utm_content='+utm_content;
+    var _url = encodeURIComponent(url+googleAnalytics_var);
     	
-    alert(googleAnalytics_var);
-    switch(sns)
+    //alert(url + googleAnalytics_var);
+    console.log(_url);
+    //alert(googleAnalytics_var);
+    switch(utm_source)
     {
         case 'facebook':
             o = {
                 method:'popup',
-                url:'http://www.facebook.com/sharer/sharer.php?u=' + _url + googleAnalytics_var
+                url:'http://www.facebook.com/sharer/sharer.php?u=' + _url
             };
             break;
  
         case 'twitter':
             o = {
                 method:'popup',
-                url:'http://twitter.com/intent/tweet?text=' + _txt + '&url=' + _url
+                url:'http://twitter.com/intent/tweet?text=' + utm_campaign + '&url=' + _url 
             };
             break;
  
@@ -738,14 +743,14 @@ function sendSns(sns, url, txt ,type)
         case 'googleplus':
             o = {
                 method:'popup',
-                url:'https://plus.google.com/share?&t' + _txt + '&url=' + _url
+                url:'https://plus.google.com/share?&url='+ _url
             };
             break;
         
         case 'linkedin':
             o = {
                 method:'popup',
-                url:'https://www.linkedin.com/shareArticle?mini=true&url=' + _url
+                url:'https://www.linkedin.com/shareArticle?mini=true&url=' + _url +'&title=' + utm_campaign + '&summary=' + subTitle
             };
             break;    
      

@@ -34,8 +34,8 @@ $.ajax({
 	}
 
 	function selectOneMbrLoginIdSeek() { //idFindercheck()
-		var phone = document.getElementById("mbrCellPhone").value;
-		var email = document.getElementById("mbrEmail").value;
+		var phone = document.getElementById("mbrCellPhone");
+		var email = document.getElementById("mbrEmail");
 
 		//html element에 대하여 null 또는 비어있는지 체크 및 alert 문구 노출
 		var flag; // return false 여부 체크 이함수도 false 시켜야하므로 
@@ -82,8 +82,11 @@ $.ajax({
 </script>
 <script>
 	function mbrTempLoginPwUpdate() { //PWFinder()
-		var aa = $('#pwid').val();
-		var bb = $('#pwemail').val()
+		var aa = document.getElementById("pwid");
+	//$('#pwid'); undefined 출력
+		//document.getElementById("mbrCellPhone");
+		var bb = document.getElementById("pwemail");
+		//document.getElementById("mbrCellPhone");
 
 		//html element에 대하여 null 또는 비어있는지 체크 및 alert 문구 노출
 		var flag; // return false 여부 체크 이함수도 false 시켜야하므로 

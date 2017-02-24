@@ -1,12 +1,28 @@
 
 //아래 참고해보면 다수일때 flag 하나로 쓰면 최종값이 결국은 결과값이 되기때문에 이부분 생각하기
-function emptyCheck(checkVar_, alert_txt_) {
-		    var checkVar = checkVar_;
+//http://sanghaklee.tistory.com/3
+//onchange는 안먹힐때가 있고 / onkeyup은 다 먹히고 onblur 로 하되 키제어 필요. 
+// 또는 jquery 이용 
+
+function emptyCheck(checkObject, alert_txt_) {
+		    var checkVar = checkObject.value;
+		    console.log("checkVar"+checkVar);
 		    var alert_txt = alert_txt_;
-			//alert(checkVar);
-			//alert(alert_txt);
-		    if (checkVar == null || checkVar == "") {
+			// alert(checkVar);
+			// alert(checkObject);
+		   // if (checkVar == null || checkVar == "") {
+		    // var keyCode = event.keyCode ? event.keyCode : event.which;
+		    		    
+		    if(checkVar == "" || checkVar == null || checkVar == undefined || ( checkVar != null && typeof checkVar == "object" && !Object.keys(checkVar).length ) ){ 
+		    	/*
+				 * if(((event.which || event.keyCode) == 9 || (event.which ||
+				 * event.keyCode) == 1 || (event.which || event.keyCode) == 27)) { //
+				 * tab key was pressed, do stuff //tab = 9 왼쪽마우스 =1 esc = 27 클릭시
+				 * alert('dd') return true; }
+				 */
 		        alert(alert_txt);
+		        checkObject.value = "";
+		        checkObject.focus();
 		        return false;
 		    }
 		    else{
@@ -17,7 +33,7 @@ function emptyCheck(checkVar_, alert_txt_) {
 function return_check(flag){
 	var flag_ = flag;
 	if(flag == false || flag == undefined){
-		//alert('11');
+		// alert('11');
 		return false;
 	}
 	return true;
@@ -29,33 +45,31 @@ function Trim(strSrc) { var strLTrim = strSrc.replace(/^\s+/,''); return
 
 function chkLoginPolicy(validate_string, input_object) {
 var check_login = trim(validate_string);
-//chkLoginId_1 = document.getElementById("chkLoginId");
-	/*chkLoginId_1 = document.getElementById("chkLoginId");
-	var chkLoginId = chkLoginId_1.value;
-	// var mbrLoginId = mbrLoginId;
-*/
+// chkLoginId_1 = document.getElementById("chkLoginId");
+	/*
+	 * chkLoginId_1 = document.getElementById("chkLoginId"); var chkLoginId =
+	 * chkLoginId_1.value; // var mbrLoginId = mbrLoginId;
+	 */
 	// 로그인 아이디 계정정책 확인
 	var re1 = /^[a-zA-Z]/g; // 첫글자는 영문만 가능
 	var re2 = /\s/; // 공백인 경우 true
 	var re3 = /[`~!@#$%^&*|\\\'\";,:\/?=<>+-]/gi;
 	// []들어가있다면 false ^가 반대를 의미
-	/*alert(chkLoginId);
-	alert(typeof(chkLoginId));
-	alert(validate_string);
-	alert(typeof(validate_string));
-	//alert(Trim(validate_string));
-	
-	alert(re1.test(chkLoginId));
-	alert(re1.test(trim(validate_string)));*/
+	/*
+	 * alert(chkLoginId); alert(typeof(chkLoginId)); alert(validate_string);
+	 * alert(typeof(validate_string)); //alert(Trim(validate_string));
+	 * 
+	 * alert(re1.test(chkLoginId)); alert(re1.test(trim(validate_string)));
+	 */
 	/*
 	 * alert(re1.test(mbrLoginId)); alert(re1.test(mbrLoginId) == false)
-	 
+	 * 
 	 */
 	
 	if ((re1.test(validate_string)) == false) {
 		alert("첫글자는 영문자만 가능합니다.");
 		
-		//중요 		input_object = "";로 되어있으면 아래 focus이벤트 안먹는다. 
+		// 중요 input_object = "";로 되어있으면 아래 focus이벤트 안먹는다.
 		input_object.value = ""; // value 초기화를 위해서는 input 태그에 value="" 가
 									// 되어있어야 한다.
 		input_object.focus(); // focus의 경우 edge에서 동작하지 않는듯.
@@ -65,7 +79,7 @@ var check_login = trim(validate_string);
 
 	}
 	// alert(re2.test(mbrLoginId));
-	if ((re2.test(validate_string)) == true) {
+	else if ((re2.test(validate_string)) == true) {
 		alert("공백은 허용하지 않습니다.");
 		// form.mbrLoginId.value="";
 		input_object.value = "";
@@ -74,121 +88,78 @@ var check_login = trim(validate_string);
 
 	}
 	// alert(re3.test(mbrLoginId));
-	if (re3.test(validate_string) == true) {
+	else if (re3.test(validate_string) == true) {
 		alert("특수문자는 허용하지 않습니다.");
 
 		input_object.value = "";
 		input_object.focus();
 		return false;
 	}
-	if ((validate_string.length < 4) || (validate_string.length > 20)) {
+	else if ((validate_string.length < 4) || (validate_string.length > 20)) {
 		alert("아이디는 4~20글자 까지 가능합니다..");
 		input_object.value = "";
 		input_object.focus();
 		return false;
+	}else{
+		return true;
 	}
 }/*
-function chkLoginPolicy(validate_string) {
- //chkLoginId_1 = document.getElementById("chkLoginId");
- //var chkLoginId = chkLoginId_1.value;
-	alert(validate_string);
-	alert(typeof(validate_string));
-	
-	alert(chkLoginId);
-	alert(typeof(chkLoginId));
-	
-	
-	// 로그인 아이디 계정정책 확인
-	var re1 = "/^[a-zA-Z]{4,20}/g"; // 첫글자는 영문자 및 4~20글자 = true
-	var re2 = "/s$/"; // 공백인 경우 true
-	var re3 = "/[`~!@#$%^&*|\\\'\";,:\/?=<>+-]/gi"; // []들어가있다면 false ^가 반대를 의미
-
-	//alert(re1.test("sdfd"));
-	if (re1.test(validate_string) == false) {
-		alert("첫글자는 영문자 및 4~20글자로 구성되어야 합니다.");
-		validate_string.value = ""; // value 초기화를 위해서는 input 태그에 value="" 가
-		// 되어있어야 한다.
-		validate_string.focus();
-		return false;
-	}
-	if (re2.test(validate_string) == true) {
-		alert("공백은 허용하지 않습니다.");
-		validate_string.value = ""; // value 초기화를 위해서는 input 태그에 value="" 가
-		// 되어있어야 한다.
-		validate_string.focus();
-		return false;
-	}
-	if (re3.test(validate_string) == true) {
-		alert("특수문자는 허용하지 않습니다.");
-		validate_string.value = ""; // value 초기화를 위해서는 input 태그에 value="" 가
-		// 되어있어야 한다.
-		validate_string.focus();
-		return false;
-	}
-	if ((validate_string.length < 4) || (validate_string.length > 20)) {
-		alert("아이디는 4~20글자 까지 가능합니다..");
-		validate_string = "";
-		validate_string.focus();
-		return false;
-	}
-}*/
-/*function chkLoginPolicy() {
-
-	chkLoginId_1 = document.getElementById("chkLoginId");
-	var chkLoginId = chkLoginId_1.value;
-	// var mbrLoginId = mbrLoginId;
-
-	// 로그인 아이디 계정정책 확인
-	var re1 = /^[a-zA-Z]/g; // 첫글자는 영문만 가능
-	var re2 = /\s/; // 공백인 경우 true
-	var re3 = /[`~!@#$%^&*|\\\'\";,:\/?=<>+-]/gi;
-	// []들어가있다면 false ^가 반대를 의미
-
-	
-	 * alert(re1.test(mbrLoginId)); alert(re1.test(mbrLoginId) == false)
-	 if ((re1.test(chkLoginId)) == false) {
-		alert("첫글자는 영문자만 가능합니다.");
-		chkLoginId_1.value = ""; // value 초기화를 위해서는 input 태그에 value="" 가
-									// 되어있어야 한다.
-		chkLoginId_1.focus();
-		return false;
-
-	}
-	// alert(re2.test(mbrLoginId));
-	if ((re2.test(chkLoginId)) == true) {
-		alert("공백은 허용하지 않습니다.");
-		// form.mbrLoginId.value="";
-		chkLoginId_1 = "";
-		chkLoginId_1.focus();
-		return false;
-
-	}
-	// alert(re3.test(mbrLoginId));
-	if (re3.test(chkLoginId) == true) {
-		alert("특수문자는 허용하지 않습니다.");
-
-		chkLoginId_1 = "";
-		chkLoginId_1.focus();
-		return false;
-	}
-	if ((chkLoginId.length < 4) || (chkLoginId.length > 20)) {
-		alert("아이디는 4~20글자 까지 가능합니다..");
-		chkLoginId_1 = "";
-		chkLoginId_1.focus();
-		return false;
-	}
-}*/
+	 * function chkLoginPolicy(validate_string) { //chkLoginId_1 =
+	 * document.getElementById("chkLoginId"); //var chkLoginId =
+	 * chkLoginId_1.value; alert(validate_string);
+	 * alert(typeof(validate_string));
+	 * 
+	 * alert(chkLoginId); alert(typeof(chkLoginId)); // 로그인 아이디 계정정책 확인 var re1 =
+	 * "/^[a-zA-Z]{4,20}/g"; // 첫글자는 영문자 및 4~20글자 = true var re2 = "/s$/"; //
+	 * 공백인 경우 true var re3 = "/[`~!@#$%^&*|\\\'\";,:\/?=<>+-]/gi"; // []들어가있다면
+	 * false ^가 반대를 의미
+	 * 
+	 * //alert(re1.test("sdfd")); if (re1.test(validate_string) == false) {
+	 * alert("첫글자는 영문자 및 4~20글자로 구성되어야 합니다."); validate_string.value = ""; //
+	 * value 초기화를 위해서는 input 태그에 value="" 가 // 되어있어야 한다.
+	 * validate_string.focus(); return false; } if (re2.test(validate_string) ==
+	 * true) { alert("공백은 허용하지 않습니다."); validate_string.value = ""; // value
+	 * 초기화를 위해서는 input 태그에 value="" 가 // 되어있어야 한다. validate_string.focus();
+	 * return false; } if (re3.test(validate_string) == true) { alert("특수문자는
+	 * 허용하지 않습니다."); validate_string.value = ""; // value 초기화를 위해서는 input 태그에
+	 * value="" 가 // 되어있어야 한다. validate_string.focus(); return false; } if
+	 * ((validate_string.length < 4) || (validate_string.length > 20)) {
+	 * alert("아이디는 4~20글자 까지 가능합니다.."); validate_string = "";
+	 * validate_string.focus(); return false; } }
+	 */
+/*
+ * function chkLoginPolicy() {
+ * 
+ * chkLoginId_1 = document.getElementById("chkLoginId"); var chkLoginId =
+ * chkLoginId_1.value; // var mbrLoginId = mbrLoginId; // 로그인 아이디 계정정책 확인 var
+ * re1 = /^[a-zA-Z]/g; // 첫글자는 영문만 가능 var re2 = /\s/; // 공백인 경우 true var re3 =
+ * /[`~!@#$%^&*|\\\'\";,:\/?=<>+-]/gi; // []들어가있다면 false ^가 반대를 의미
+ * 
+ * 
+ * alert(re1.test(mbrLoginId)); alert(re1.test(mbrLoginId) == false) if
+ * ((re1.test(chkLoginId)) == false) { alert("첫글자는 영문자만 가능합니다.");
+ * chkLoginId_1.value = ""; // value 초기화를 위해서는 input 태그에 value="" 가 // 되어있어야 한다.
+ * chkLoginId_1.focus(); return false; } // alert(re2.test(mbrLoginId)); if
+ * ((re2.test(chkLoginId)) == true) { alert("공백은 허용하지 않습니다."); //
+ * form.mbrLoginId.value=""; chkLoginId_1 = ""; chkLoginId_1.focus(); return
+ * false; } // alert(re3.test(mbrLoginId)); if (re3.test(chkLoginId) == true) {
+ * alert("특수문자는 허용하지 않습니다.");
+ * 
+ * chkLoginId_1 = ""; chkLoginId_1.focus(); return false; } if
+ * ((chkLoginId.length < 4) || (chkLoginId.length > 20)) { alert("아이디는 4~20글자 까지
+ * 가능합니다.."); chkLoginId_1 = ""; chkLoginId_1.focus(); return false; } }
+ */
 function chkPWPolicy(validate_string, input_object) {
 	var check_pw = trim(validate_string);
-//alert(validate_string);
-//alert(input_object);
+// alert(validate_string);
+// alert(input_object);
 	/*
 	 * alert('1'); var mbrLoginPw = form.mbrLoginPw.value;
 	 */
 	// 로그인 아이디 계정정책 확인
 	// var mbrLoginPw = form.mbrLoginPw.value;
-	//chkLoginPW_1 = document.getElementById("chkLoginPW");
-	//var chkLoginPW = chkLoginPW_1.value;
+	// chkLoginPW_1 = document.getElementById("chkLoginPW");
+	// var chkLoginPW = chkLoginPW_1.value;
 	// alert(chk_LoginPW);
 
 	// alert('chk_LoginPW'+chk_LoginPW)
@@ -214,19 +185,22 @@ function chkPWPolicy(validate_string, input_object) {
 	}
 	/*
 	 * alert(re2.test(mbrLoginPw));
-	 */if ((re2.test(check_pw)) == true) {
+	 */
+	 else if ((re2.test(check_pw)) == true) {
 		alert("공백은 허용하지 않습니다.");
 		input_object.value = "";
 		input_object.focus();
 		return false;
+	}else{
+		return true;
 	}
 }
 function chkEmailPolicy(validate_string, input_object) {
 	var check_email = trim(validate_string);
 	// var mbrEmail = form.mbrEmail.value;
 
-	//chkEmail_1 = document.getElementById("chkEmail");
-	//var chkEmail = chkEmail_1.value;
+	// chkEmail_1 = document.getElementById("chkEmail");
+	// var chkEmail = chkEmail_1.value;
 
 	// 로그인 아이디 계정정책 확인
 	var re1 = /[a-z0-9]{2,}@[a-z0-9-]{2,}.[a-z0-9]{2,}/i;
@@ -234,25 +208,20 @@ function chkEmailPolicy(validate_string, input_object) {
 	// alert(re1.test(mbrEmail));
 	if ((re1.test(check_email)) == false) {
 		alert("이메일형식이 올바르지 않습니다.");
-		input_object = "";
+		input_object.value = "";
 		input_object.focus();
 		return false;
+	}else{
+		return true;
 	}
 }
 
 /*
  * //태그제거 var re = "<[^<|>]*>"; var re = /[<][^>]*[>]/gi; str =
- * str.replace(RegExpTag,"");
- * 
- *  // 스크립트 제거 var RegExpJS = "<script[^>]*>(.*?)</script>"; str =
- * str.replace(RegExpJS,"");
- * 
- *  // 스타일 제거 var RegExpCSS = "<style[^>]*>(.*?)"; str =
- * str.replace(RegExpCSS,"");
- * 
- *  // 한글 제거 var RegExpHG = "[ㄱ-ㅎ가-힣]"; str = str.replace(RegExpHG,"");
- * 
- *  // 주석 제거 var RegExpDS = /<!--[^>](.*?)-->/g; str6 =
+ * str.replace(RegExpTag,""); // 스크립트 제거 var RegExpJS = "<script[^>]*>(.*?)</script>";
+ * str = str.replace(RegExpJS,""); // 스타일 제거 var RegExpCSS = "<style[^>]*>(.*?)";
+ * str = str.replace(RegExpCSS,""); // 한글 제거 var RegExpHG = "[ㄱ-ㅎ가-힣]"; str =
+ * str.replace(RegExpHG,""); // 주석 제거 var RegExpDS = /<!--[^>](.*?)-->/g; str6 =
  * str.replace(RegExpDS,"");
  * 
  *//***************************************************************************
@@ -350,62 +319,58 @@ function chkEmailPolicy(validate_string, input_object) {
  * 
  * //첫글자는 반드시 알파벳 이면 true Validate.prototype.isOnlyFirstAlpabetic =
  * function(str) { var invalidCharactersRegExp = /^[a-zA-Z]/g; var isValid =
- * !(invalidCharactersRegExp.test(str)); return isValid; }
- *  // 모든 글자가 알파벳/space 이면 true Validate.prototype.isOnlyAlpabetic =
- * function(str) { var invalidCharactersRegExp = /[^a-z- ]/i; var isValid =
- * !(invalidCharactersRegExp.test(str)); return isValid; }
- *  // 모든 글자가 알파벳/space 이면 true Validate.prototype.isOnlyAlpabetic =
- * function(str) { var invalidCharactersRegExp = /[^a-z- ]/i; var isValid =
- * !(invalidCharactersRegExp.test(str)); return isValid; }
- *  // 모든 글자가 알파벳numeric 이면 true Validate.prototype.isAlpaNumeric =
- * function(str) { var invalidCharactersRegExp = /[^a-z0-9.,;%$#@& ]/i; var
- * isValid = !(invalidCharactersRegExp.test(str)); return isValid; }
- *  // 모든 글자가 space인 경우 true Validate.prototype.isAllSpace = function(str) { var
+ * !(invalidCharactersRegExp.test(str)); return isValid; } // 모든 글자가 알파벳/space
+ * 이면 true Validate.prototype.isOnlyAlpabetic = function(str) { var
+ * invalidCharactersRegExp = /[^a-z- ]/i; var isValid =
+ * !(invalidCharactersRegExp.test(str)); return isValid; } // 모든 글자가 알파벳/space
+ * 이면 true Validate.prototype.isOnlyAlpabetic = function(str) { var
+ * invalidCharactersRegExp = /[^a-z- ]/i; var isValid =
+ * !(invalidCharactersRegExp.test(str)); return isValid; } // 모든 글자가 알파벳numeric
+ * 이면 true Validate.prototype.isAlpaNumeric = function(str) { var
+ * invalidCharactersRegExp = /[^a-z0-9.,;%$#@& ]/i; var isValid =
+ * !(invalidCharactersRegExp.test(str)); return isValid; } // 모든 글자가 space인 경우
+ * true Validate.prototype.isAllSpace = function(str) { var
  * invalidCharactersRegExp = /[^ ]/; var isValid =
- * !(invalidCharactersRegExp.test(str)); return isValid; }
- *  // 한글은 1자이상, 영문은 2자이상인 경우 true Validate.prototype.isCheckSearchCode =
- * function(str) { var isValid = false; if (!this.isAllSpace(str)) { if
- * (str.length >= 1) { if (this.isOnlyAlpabetic(str)) { if (str.length >= 2) {
- * isValid = true; } } else { isValid = true; } } } return isValid; }
- *  // 숫자만 true Validate.prototype.isOnlyNumeric = function(str) { var
+ * !(invalidCharactersRegExp.test(str)); return isValid; } // 한글은 1자이상, 영문은
+ * 2자이상인 경우 true Validate.prototype.isCheckSearchCode = function(str) { var
+ * isValid = false; if (!this.isAllSpace(str)) { if (str.length >= 1) { if
+ * (this.isOnlyAlpabetic(str)) { if (str.length >= 2) { isValid = true; } } else {
+ * isValid = true; } } } return isValid; } // 숫자만 true
+ * Validate.prototype.isOnlyNumeric = function(str) { var
  * invalidCharactersRegExp = /[^\d]/; var isValid =
- * !(invalidCharactersRegExp.test(str)); return isValid; }
- *  // 숫자 + '-' true Validate.prototype.isNumeric = function(str) { var
- * invalidCharactersRegExp = /[^\d\-]/; var isValid =
- * !(invalidCharactersRegExp.test(str)); return isValid; }
- *  // 임시 사업자번호체크 Validate.prototype.isCheckImsiBusRegNo = function(str) { var
- * invalidCharactersRegExp = /D[0-9]{9}/; var isValid =
- * (invalidCharactersRegExp.test(str)); return isValid; }
- *  // 날짜만 true Validate.prototype.isOnlyDate = function(yyyy, mm, dd) { var
- * isValid = true; var enteredDate = new Date(dd + " " +
- * Validate.prototype.MMtoMon(mm) + " " + yyyy); if (enteredDate.getDate() !=
- * dd) { isValid = false; } return isValid; }
+ * !(invalidCharactersRegExp.test(str)); return isValid; } // 숫자 + '-' true
+ * Validate.prototype.isNumeric = function(str) { var invalidCharactersRegExp =
+ * /[^\d\-]/; var isValid = !(invalidCharactersRegExp.test(str)); return
+ * isValid; } // 임시 사업자번호체크 Validate.prototype.isCheckImsiBusRegNo =
+ * function(str) { var invalidCharactersRegExp = /D[0-9]{9}/; var isValid =
+ * (invalidCharactersRegExp.test(str)); return isValid; } // 날짜만 true
+ * Validate.prototype.isOnlyDate = function(yyyy, mm, dd) { var isValid = true;
+ * var enteredDate = new Date(dd + " " + Validate.prototype.MMtoMon(mm) + " " +
+ * yyyy); if (enteredDate.getDate() != dd) { isValid = false; } return isValid; }
  * 
  * Validate.prototype.isOnlyDate2 = function(yyyymmdd) { var isValid = true; var
  * enteredDate = new Date(yyyymmdd.substring(6, 8) + " " +
  * Validate.prototype.MMtoMon(yyyymmdd.substring(4, 6)) + " " +
  * yyyymmdd.substring(0, 4)); if (enteredDate.getDate() != yyyymmdd.substring(6,
- * 8)) { isValid = false; } return isValid; }
- *  // IS DATE ( yyyymmdd ) 닷컴 _script/util/validate.js 와 동일
- * Validate.prototype.isOnlyDateYMD = function(ymd) { var yyyy, mm, dd if
- * (ymd.length != 8) { return false; } // length : year(4), month(2), day(2) if
- * (!this.isOnlyNumeric(ymd)) { return false; } // check number if
- * (ymd.substring(0, 2) != "19" && ymd.substring(0, 2) != "20") { return false; } //
- * 1899 < year < 2100 yyyy = parseInt(ymd.substring(0, 4)); // year string ->
- * integer if (ymd.charAt(4) == "0") mm = parseInt(ymd.charAt(5)); else if
- * (ymd.charAt(4) == "1") mm = parseInt(ymd.substring(4, 6)) else return false; //
- * month string -> integer if (ymd.charAt(6) == "0") dd =
- * parseInt(ymd.charAt(7)) else if (ymd.charAt(6) == "1" || ymd.charAt(6) == "2" ||
- * ymd.charAt(6) == "3") dd = parseInt(ymd.substring(6, 8)) else return false; //
- * day string -> integer if (mm == 0 || dd == 0 || mm > 12 || dd > 31 || (mm ==
- * 2 && dd > 29) || (mm == 2 && yyyy % 4 != 0 && dd > 28)) return false; else if
- * ((mm == 4 || mm == 6 || mm == 9 || mm == 11) && dd > 30) return false; return
- * true; }
- *  // IS DATE ( yyyymmdd ) isOnlyDateYMD + now 이전체크
- * Validate.prototype.isOnlyDateBirth = function(ymd) { var birth = new
- * Date(ymd.substring(0, 4), ymd.substring(4, 6) - 1, ymd .substring(6, 8)); var
- * now = new Date(); if (!this.isOnlyDateYMD(ymd)) { return false; } if (birth >
- * now) { return false; } return true; } // 메일 true /*
+ * 8)) { isValid = false; } return isValid; } // IS DATE ( yyyymmdd ) 닷컴
+ * _script/util/validate.js 와 동일 Validate.prototype.isOnlyDateYMD =
+ * function(ymd) { var yyyy, mm, dd if (ymd.length != 8) { return false; } //
+ * length : year(4), month(2), day(2) if (!this.isOnlyNumeric(ymd)) { return
+ * false; } // check number if (ymd.substring(0, 2) != "19" && ymd.substring(0,
+ * 2) != "20") { return false; } // 1899 < year < 2100 yyyy =
+ * parseInt(ymd.substring(0, 4)); // year string -> integer if (ymd.charAt(4) ==
+ * "0") mm = parseInt(ymd.charAt(5)); else if (ymd.charAt(4) == "1") mm =
+ * parseInt(ymd.substring(4, 6)) else return false; // month string -> integer
+ * if (ymd.charAt(6) == "0") dd = parseInt(ymd.charAt(7)) else if (ymd.charAt(6) ==
+ * "1" || ymd.charAt(6) == "2" || ymd.charAt(6) == "3") dd =
+ * parseInt(ymd.substring(6, 8)) else return false; // day string -> integer if
+ * (mm == 0 || dd == 0 || mm > 12 || dd > 31 || (mm == 2 && dd > 29) || (mm == 2 &&
+ * yyyy % 4 != 0 && dd > 28)) return false; else if ((mm == 4 || mm == 6 || mm ==
+ * 9 || mm == 11) && dd > 30) return false; return true; } // IS DATE ( yyyymmdd )
+ * isOnlyDateYMD + now 이전체크 Validate.prototype.isOnlyDateBirth = function(ymd) {
+ * var birth = new Date(ymd.substring(0, 4), ymd.substring(4, 6) - 1, ymd
+ * .substring(6, 8)); var now = new Date(); if (!this.isOnlyDateYMD(ymd)) {
+ * return false; } if (birth > now) { return false; } return true; } // 메일 true /*
  * Validate.prototype.isValidEmail = function(email) { ///var
  * invalidCharactersRegExp =
  * /^\w(-)([a-zA-Z_0-9\-\.])*@\w(\.?[-\w])*\.([a-z]{3}(\.[a-z]{2})?|[a-z]{2}(\.[a-z]{2})?)$/i;
@@ -422,62 +387,57 @@ function chkEmailPolicy(validate_string, input_object) {
  * Validate.prototype.isValidEmail = function(email) { var
  * invalidCharactersRegExp =
  * /^\w(\.?[-\w])*@\w(\.?[-\w])*\.([a-z]{3}(\.[a-z]{2})?|[a-z]{2}(\.[a-z]{2})?)$/i;
- * var isValid = invalidCharactersRegExp.test(email); return isValid; }
- *  // 안심번호(050) 및 15**, 16**, 18** 로 시작하는 번호 유효성 체크
- * Validate.prototype.isValidPhone = function(phone_number) { if
- * (!this.isOnlyNumeric(phone_number)) return false; var regExp_phoneNum =
+ * var isValid = invalidCharactersRegExp.test(email); return isValid; } //
+ * 안심번호(050) 및 15**, 16**, 18** 로 시작하는 번호 유효성 체크 Validate.prototype.isValidPhone =
+ * function(phone_number) { if (!this.isOnlyNumeric(phone_number)) return false;
+ * var regExp_phoneNum =
  * /^(15.{2}|16.{2}|18.{2}|050.{1}|070|02|031|032|033|041|042|043|044|051|052|053|054|055|061|062|063|064|010|011|016|017|018|019)\d{4,8}$/; //
  * var regExp_phoneNum = //
  * /^(070|050|02|031|032|033|041|042|043|051|052|053|054|055|061|062|063|064|010|011|016|017|018|019)-?\d{3,4}-?\d{4}$/;
- * var isValid = regExp_phoneNum.test(phone_number); return isValid; }
- *  // 휴대폰 및 지역번호만 true Validate.prototype.isValidCellPhone =
- * function(cellphone) { if (!this.isOnlyNumeric(cellphone)) return false; var
- * regExp_cpNum =
+ * var isValid = regExp_phoneNum.test(phone_number); return isValid; } // 휴대폰 및
+ * 지역번호만 true Validate.prototype.isValidCellPhone = function(cellphone) { if
+ * (!this.isOnlyNumeric(cellphone)) return false; var regExp_cpNum =
  * /^(070|02|031|032|033|041|042|043|044|051|052|053|054|055|061|062|063|064|010|011|016|017|018|019)\d{7,8}$/;
- * var isValid = regExp_cpNum.test(cellphone); return isValid; }
- *  // 월이 맞으면 true Validate.prototype.isValidMonStr = function(mStr) { var
+ * var isValid = regExp_cpNum.test(cellphone); return isValid; } // 월이 맞으면 true
+ * Validate.prototype.isValidMonStr = function(mStr) { var
  * invalidCharactersRegExp = /jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec/;
  * var isValid = invalidCharactersRegExp.test(mStr.toLowerCase()); return
- * isValid; }
- *  // 년이 맞으면 true Validate.prototype.isValidYYYY = function(yyyy) { var isValid =
- * true; var enteredDate = new Date("01 Jan " + yyyy); if (enteredDate.getDate() !=
- * '01') { isValid = false; } return isValid; }
- *  // 월이 맞으면 true Validate.prototype.isValidMM = function(mm) { var
+ * isValid; } // 년이 맞으면 true Validate.prototype.isValidYYYY = function(yyyy) {
+ * var isValid = true; var enteredDate = new Date("01 Jan " + yyyy); if
+ * (enteredDate.getDate() != '01') { isValid = false; } return isValid; } // 월이
+ * 맞으면 true Validate.prototype.isValidMM = function(mm) { var
  * invalidCharactersRegExp = /01|02|03|04|05|06|07|08|09|10|11|12/; var isValid =
- * invalidCharactersRegExp.test(mm); return isValid; }
- *  // jan -> 01 Validate.prototype.MonStrtoMM = function(mStr) { switch
- * (mStr.toLowerCase()) { case "jan": return "01"; break; case "feb": return
- * "02"; break; case "mar": return "03"; break; case "apr": return "04"; break;
- * case "may": return "05"; break; case "jun": return "06"; break; case "jul":
- * return "07"; break; case "aug": return "08"; break; case "sep": return "09";
- * break; case "oct": return "10"; break; case "nov": return "11"; break; case
- * "dec": return "12"; break; default: return ""; break; } }
- *  // 01 -> Jan Validate.prototype.MMtoMon = function(mm) { switch
- * (mm.toLowerCase()) { case "01": return "Jan"; break; case "02": return "Feb";
- * break; case "03": return "Mar"; break; case "04": return "Apr"; break; case
- * "05": return "May"; break; case "06": return "Jun"; break; case "07": return
- * "Jul"; break; case "08": return "Aug"; break; case "09": return "Sep"; break;
- * case "10": return "Oct"; break; case "11": return "Nov"; break; case "12":
- * return "Dec"; break; default: return ""; break; } } // 길이가 최대값을 넘으면 false,
- * 아니면 true Validate.prototype.chkMaxLength = function(obj, minlen, maxlen) {
- * return (obj.value.length < min && obj.value.length > maxlen) ? false : true; }
- *  // 크기(byte)가 최대값을 넘으면 false, 아니면 true Validate.prototype.chkMaxSize =
- * function(obj, maxlen) { var len, k, chklen, chr; len = obj.value.length;
- * chklen = 0;
+ * invalidCharactersRegExp.test(mm); return isValid; } // jan -> 01
+ * Validate.prototype.MonStrtoMM = function(mStr) { switch (mStr.toLowerCase()) {
+ * case "jan": return "01"; break; case "feb": return "02"; break; case "mar":
+ * return "03"; break; case "apr": return "04"; break; case "may": return "05";
+ * break; case "jun": return "06"; break; case "jul": return "07"; break; case
+ * "aug": return "08"; break; case "sep": return "09"; break; case "oct": return
+ * "10"; break; case "nov": return "11"; break; case "dec": return "12"; break;
+ * default: return ""; break; } } // 01 -> Jan Validate.prototype.MMtoMon =
+ * function(mm) { switch (mm.toLowerCase()) { case "01": return "Jan"; break;
+ * case "02": return "Feb"; break; case "03": return "Mar"; break; case "04":
+ * return "Apr"; break; case "05": return "May"; break; case "06": return "Jun";
+ * break; case "07": return "Jul"; break; case "08": return "Aug"; break; case
+ * "09": return "Sep"; break; case "10": return "Oct"; break; case "11": return
+ * "Nov"; break; case "12": return "Dec"; break; default: return ""; break; } } //
+ * 길이가 최대값을 넘으면 false, 아니면 true Validate.prototype.chkMaxLength = function(obj,
+ * minlen, maxlen) { return (obj.value.length < min && obj.value.length >
+ * maxlen) ? false : true; } // 크기(byte)가 최대값을 넘으면 false, 아니면 true
+ * Validate.prototype.chkMaxSize = function(obj, maxlen) { var len, k, chklen,
+ * chr; len = obj.value.length; chklen = 0;
  * 
  * for (k = 0; k < len; k++) { if (chklen > maxlen) return false; chr =
  * obj.value.charAt(k); if (escape(chr).length > 4) chklen += 2; else chklen++; }
- * return true;
- *  }
- *  // 2008-11-21 안병호 추가 // 숫자체크 0~9 ←→↑↓ del, backSpace 등 기본키 허용 //
+ * return true; } // 2008-11-21 안병호 추가 // 숫자체크 0~9 ←→↑↓ del, backSpace 등 기본키 허용 //
  * Validate.prototype.fc_onfocus 에서 호출 Validate.prototype.fc_onlyNum_check =
  * function() { var key = event.keyCode; if (!(key == 8 || key == 9 || key == 13 ||
  * key == 46 || key == 144 || (key >= 96 && key <= 105) || (key >= 48 && key <=
  * 57) || key == 110 || key == 190 || (key >= 37 && key <= 40))) { // alert('숫자만
- * 입력 가능합니다'); event.returnValue = false; } }
- *  // imeMode 변경 & 숫자체크 호출 // onActivate 이벤트로 발생시키야 imeMode 가 작동
- * Validate.prototype.fc_onlyNum = function(xobj) { xobj.style.imeMode =
- * "disabled"; xobj.onkeydown = Validate.prototype.fc_onlyNum_check; } // 콤마 찍기
+ * 입력 가능합니다'); event.returnValue = false; } } // imeMode 변경 & 숫자체크 호출 //
+ * onActivate 이벤트로 발생시키야 imeMode 가 작동 Validate.prototype.fc_onlyNum =
+ * function(xobj) { xobj.style.imeMode = "disabled"; xobj.onkeydown =
+ * Validate.prototype.fc_onlyNum_check; } // 콤마 찍기
  * Validate.prototype.fc_formatNumber = function(price, num) { var str = new
  * Array(); price = String(price); for (var i = 1; i <= price.length; i++) { if
  * (i % num) str[price.length - i] = price.charAt(price.length - i); else
@@ -512,8 +472,8 @@ function chkEmailPolicy(validate_string, input_object) {
 	 * * String 에서 오른쪽 빈공백문자 제거 script
 	 **************************************************************************/
 /*
- * function RTrim(strSrc) { return strSrc.replace(/\s+$/, ''); }
- *  // ////////////////////////////////////// // http://babo9006.tistory.com/47 //
+ * function RTrim(strSrc) { return strSrc.replace(/\s+$/, ''); } //
+ * ////////////////////////////////////// // http://babo9006.tistory.com/47 //
  * http://androphil.tistory.com/entry/JavaScript-%EC%98%88%EC%A0%9C-%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EC%A0%95%EA%B7%9C%EC%8B%9D-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%9C%A0%ED%9A%A8%EC%84%B1-%EA%B2%80%EC%82%AC //
  * http://warmz.tistory.com/734
  * 

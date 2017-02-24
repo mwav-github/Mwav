@@ -11,53 +11,136 @@
 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"
 	rel="stylesheet">
 
+
+<c:if test="${requestScope.check eq true }">
+	<script type="text/javascript">
+		alert('Success! Thank you! In the near future, our managers will contact you.');
+		location.href = "/CustomerService/QnA/QnA.mwav";
+	</script>
+</c:if>
+<c:if test="${requestScope.check eq false }">
+	<script type="text/javascript">
+		alert('Failure! Please check it again');
+		history.go(-1);
+	</script>
+</c:if>
 <script>
+function reCheckForm(formname){
+	//var formname;
+	//alert(formname);
+	var uqUserName = formname.uqUserName;
+	//alert(uqUserName);
+	//var uqUserName = document.getElementById("uqUserName");
+	var uqUserPhone = formname.uqUserPhone;
+	//var uqUserEmail = $('#uqUserEmail');
+	//var uqUserPw = $('#uqUserPw');
+	var uqContent = formname.uqContent;
+	var uqUserEmail = formname.uqUserEmail;
+	var uqUserPw = formname.uqUserPw;
+	
+	var uqTitle = formname.uqTitle;
+	var uqGroup = formname.uqGroup;
+	//$('#uqContent') 은 undefined
+
+	var check_1 = emptyCheck(uqUserName, "이름을 입력해주세요.");
+	var check_2 = emptyCheck(uqUserPhone, "핸드폰 번호을 입력해주세요.");
+	var check_3 = emptyCheck(uqContent, "내용을 입력해주세요.");
+	var check_4 = chkEmailPolicy(uqUserEmail.value, uqUserEmail);
+	if (uqUserPw != null){
+	var check_5 = chkPWPolicy(uqUserPw.value, uqUserPw);
+	}
+	var check_6 = emptyCheck(uqTitle, "제목을 입력해주세요.");
+	var check_7 = emptyCheck(uqGroup, "분류기준을 선택해주세요.");
+	
+	var check = false;
+	// && check_5 == true 패스워드는 회원인경우 없으니까 
+	if(check_1 == true && check_2 == true && check_3 == true
+			&& check_4 == true && check_6 == true && check_7 == true){
+		check = true;
+		return true;
+		
+	}else{
+		check = false;
+		return false;
+	}
+	
+}
+
 	function insertQAForm() {
-		$.ajax({
-			url : "/qa/qaForm.mwav",
-			type : "post",
-			data : $("#QAForm").serialize(),
-			contentType : "application/x-www-form-urlencoded; charset=utf-8",
-			dataType : "json", // 데이터타입을 JSON형식으로 지정
-			success : function(xmlStr) {
 
-				//alert(xmlStr);
-				//alert(typeof(xmlStr));
-				//alert(trim(xmlStr));
-				if (xmlStr != null) {
-					//http://devbox.tistory.com/entry/%EB%B9%84%EA%B5%90-%EC%99%80-%EC%9D%98-%EC%B0%A8%EC%9D%B4-1
-					//alert($("#resultpostseek").height());
-					if (xmlStr === true) {
-						//alert('정상등록');
-						$("#alert_success").show();
-						//
-						
-						setTimeout(function(){
-							$("#Contact").modal('hide');
-						}, 3000);
+		//빈값 및 유효성 체크 ==================
+		var for1mname = document.getElementById("QAForm");
+		//alert(for1mname);
+		//var zone1 = new Array(check_1, check_2, check_3, check_4, check_5)
+		//**하나의 check로 하면  맨마지막만 true 전부 ok이다.
+		//==================
 
-					} else if (xmlStr === false) {
+		var check = reCheckForm(for1mname);
+			
+		if (check == true) {
+			//alert('11');
 
-						$("#alert_failure").show();
-						//alert('등록실패');
-						
-						setTimeout(function(){
-							$("#Contact").modal('hide');
-						}, 3000);
-					}
+			$
+					.ajax({
+						url : "/qa/qaFormAjax.mwav",
+						type : "post",
+						data : $("#QAForm").serialize(),
+						contentType : "application/x-www-form-urlencoded; charset=utf-8",
+						dataType : "json", // 데이터타입을 JSON형식으로 지정
+						success : function(xmlStr) {
 
-				}
-			},
-			error : function(xhr, status, error) {
-				var errorMsg = 'status(code): ' + jqXHR.status + '\n';
-				errorMsg += 'statusText: ' + jqXHR.statusText + '\n';
-				errorMsg += 'responseText: ' + jqXHR.responseText + '\n';
-				errorMsg += 'textStatus: ' + textStatus + '\n';
-				errorMsg += 'errorThrown: ' + errorThrown;
-				alert(errorMsg);
-				$("#alert_failure").show();
-			}
-		});
+							//alert(xmlStr);
+							//alert(typeof(xmlStr));
+							//alert(trim(xmlStr));
+							if (xmlStr != null) {
+								//http://devbox.tistory.com/entry/%EB%B9%84%EA%B5%90-%EC%99%80-%EC%9D%98-%EC%B0%A8%EC%9D%B4-1
+								//alert($("#resultpostseek").height());
+								if (xmlStr === true) {
+									//alert('정상등록');
+									$("#alert_success").show();
+									//$("#QAForm").reset();						
+									//document.getElementById("insertQA").disabled = true;
+
+									//전체 폼 리셋
+									$('#QAForm').each(function() {
+										this.reset();
+									});
+									//
+
+									setTimeout(function() {
+										$("#Contact").modal('hide');
+										$("#alert_success").hide();
+									}, 2000);
+
+								} else if (xmlStr === false) {
+
+									$("#alert_failure").show();
+									//alert('등록실패');
+									//안내 어떻게 해줄지 추후 구현 필요
+									setTimeout(function() {
+										$("#Contact").modal('hide');
+										$("#alert_success").hide();
+									}, 2000);
+								}
+
+							}
+						},
+						error : function(xhr, status, error) {
+							var errorMsg = 'status(code): ' + jqXHR.status
+									+ '\n';
+							errorMsg += 'statusText: ' + jqXHR.statusText
+									+ '\n';
+							errorMsg += 'responseText: ' + jqXHR.responseText
+									+ '\n';
+							errorMsg += 'textStatus: ' + textStatus + '\n';
+							errorMsg += 'errorThrown: ' + errorThrown;
+							alert(errorMsg);
+							$("#alert_failure").show();
+						}
+					});
+		} else {
+			return false;
+		}
 	}
 </script>
 <!-- 소제목 -->
@@ -89,19 +172,22 @@
 	<div id="alert_failure" class="alert alert-danger alert-dismissable"
 		style="z-index: 1500 !important; position: fixed; opacity: 1; right: 15px; display: none;">
 		<a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-		<strong>Failure!</strong> Please try again.
+		<strong>Failure!</strong> Please check it again
+		<!-- Please try again. -->
 	</div>
 	<div class="modal-dialog" id="qamodal">
-		<div class="modal-content" >
+		<div class="modal-content">
 			<!-- <div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">
 					<span aria-hidden="true">×</span><span class="sr-only">Close</span>
 				</button>
 				<h3 class="modal-title" id="lineModalLabel">My Modal</h3>
 			</div> -->
-			<div class="modal-body" >
+			<div class="modal-body">
 
 				<form class="form-horizontal" id="QAForm">
+					<input TYPE="hidden" name="uqStatus" value="">
+					<input TYPE="hidden" name="before_Q_id" value="${before_Q_id }">
 					<fieldset>
 
 						<!-- Form Name -->
@@ -119,22 +205,14 @@
 							<label class="col-md-3 control-label" for="textinput">Name
 								*</label>
 							<div class="col-md-8">
-								<input id="textinput" name="uqUserName"
+								<input id="uqUserName" name="uqUserName"
 									placeholder="Enter Your Full Name"
 									class="form-control input-md" required type="text">
 
 							</div>
 						</div>
 
-						<!-- Text input-->
-						<div class="form-group">
-							<label class="col-md-3 control-label" for="title">Title</label>
-							<div class="col-md-8">
-								<input id="uqTitle" name="uqTitle" placeholder="Title"
-									class="form-control input-md" type="text">
 
-							</div>
-						</div>
 
 						<!-- Text input
 						<div class="form-group">
@@ -167,8 +245,8 @@
 							<div class="col-md-8">
 								<input id="uqRelatedLink" name="uqRelatedLink"
 									placeholder="Enter Your Website" class="form-control input-md"
-									type="text"> <span class="help-block">Ex:
-									Mwav.net</span>
+									type="text"> <!-- <span class="help-block">Ex:
+									Mwav.net</span> -->
 							</div>
 						</div>
 
@@ -179,7 +257,7 @@
 							<div class="col-md-8">
 								<input id="uqUserEmail" name="uqUserEmail"
 									placeholder="Enter Your E mail" class="form-control input-md"
-									required type="text" value="" onchange="chkEmailPolicy(this.value, this)" >
+									type="text" value="">
 
 							</div>
 						</div>
@@ -193,19 +271,46 @@
 									*</label>
 								<div class="col-md-8">
 									<input id="uqUserPw" name="uqUserPw"
-										placeholder="Enter Your E mail" class="form-control input-md"
-										required type="password" onchange="chkPWPolicy(this.value, this)" value="">
+										placeholder="Enter Your E mail" class="form-control input-md caps_lockchk"
+										type="password" value="" required>
 
 								</div>
 							</div>
 						</c:if>
+
+						<div class="form-group">
+							<label class="col-md-3 control-label" for="title">Select
+								an issue*</label>
+							<div class="col-md-8">
+								<select class="form-control input-sm" id="uqGroup" name="uqGroup">
+									<option value="">-- Please make a selection --</option>
+								<option value="apply">서비스신청접수</option>
+								<option value="gds">일반제품문의</option>
+								<option value="tech">기술지원문의</option>
+								<option value="biz">사업제휴문의</option>
+								<option value="quota">온라인견적문의</option>
+								<option value="error">사이트불편신고</option>
+								<option value="etc">기타제안 및 문의</option>
+								</select>
+							</div>
+						</div>
+
+						<!-- Text input-->
+						<div class="form-group">
+							<label class="col-md-3 control-label" for="title">Title*</label>
+							<div class="col-md-8">
+								<input id="uqTitle" name="uqTitle" placeholder="Title"
+									class="form-control input-md" type="text">
+
+							</div>
+						</div>
 
 						<!-- Textarea -->
 						<div class="form-group">
 							<label class="col-md-3 control-label" for="Message">Message
 								*</label>
 							<div class="col-md-8">
-								<textarea class="form-control" rows="6" id="Message"
+								<textarea class="form-control" rows="5" id="uqContent"
 									name="uqContent" placeholder="Enter Your Message *"></textarea>
 							</div>
 						</div>
@@ -221,9 +326,6 @@
 
 					</fieldset>
 				</form>
-
-
-
 			</div>
 			<div class="modal-footer">
 				<div class="btn-group btn-group-justified" role="group"
@@ -235,9 +337,9 @@
 							role="button">Delete</button>
 					</div> -->
 					<div class="btn-group" role="group">
-						<button type="button" id="saveImage"
+						<button type="button" id="insertQA"
 							class="btn btn-primary btn-hover-green" data-action="save"
-							role="button" onClick="insertQAForm();">Send</button>
+							role="button" onClick="insertQAForm(this.form);">Send</button>
 					</div>
 					<div class="btn-group" role="group">
 						<button type="button" class="btn btn-danger" data-dismiss="modal"
@@ -249,69 +351,102 @@
 	</div>
 </div>
 
-<%-- <!-- Content Column -->
-<div class="table-responsive">
+<c:if test="${param.type eq 'page'}">
+	<div class="panel panel-primary" style="margin: 20px;">
+		<div class="panel-heading">
+			<h3 class="panel-title">Contact Us</h3>
+		</div>
+		<div class="panel-body">
+			<form class="form-horizontal" id="QAFormPage" method="post"
+				action="/qa/qaForm.mwav" onsubmit="return reCheckForm(this);">
+				<input TYPE="hidden" name="uqStatus" value=""> <input
+					TYPE="hidden" name="QnA_id" value="${before_Q_id }">
+				<div class="col-md-12 col-sm-12 form-group">
+					<%--form-group 이 margin -bottom 이나 저걸 써주면 input들이 붙는다
 
-			<form role="form" method="post" name="frmQA" action="">
-
-				hidden name 값 지정.
-				<INPUT TYPE="hidden" NAME="qaMode" VALUE=""> <INPUT
-					TYPE="hidden" NAME="qaStatusBit" VALUE=""> <INPUT
-					TYPE="hidden" NAME="MbrID" VALUE=""> <INPUT TYPE="hidden"
-					NAME="QAidx" VALUE=""> <INPUT TYPE="hidden" NAME="qService"
-					VALUE=""> <INPUT TYPE="hidden" NAME="pageName" VALUE="">
-
-
-				
-				<table class="table">
-
-					<tr>
-						<th class="active">Title</th>
-						<td><input type="text" class="form-control"
-							placeholder="Text input" name="uqTitle"></td>
-						<th class="active">Group</th>
-						<td><select class="form-control" name="uqGroup" value="">
-								<option value="일반">일반문의</option>
-						</select></td>
-					</tr>
-					<tr>
-						<th class="active">Name</th>
-						<td><input type="text" class="form-control"
-							placeholder="Text input" name="uqUserName"></td>
-						<th class="active">Password</th>
-						<td><input type="password" class="form-control"
-							placeholder="Text input" name="uqUserEmail"></td>
-					</tr>
-
-					<tr>
-						<th class="active">Phone</th>
-						<td><input type="text" class="form-control"
-							placeholder="Text input" name="uqUserPhone"></td>
-						<th class="active">Email</th>
-						<td><input type="text" class="form-control"
-							placeholder="Text input" name="uqUserEmail"></td>
-					</tr>
-
-					<tr>
-						<th class="active">Content</th>
-						<td colspan="3"><textarea name="uqContent"
-								class="form-control input-sm ckeditor" id="message"
-								placeholder="Message" maxlength="140" rows="7"
-								style="width: 100%; height: 200px;"></textarea> <span
-							class="help-block"></span></td>
-					</tr>
-
-				</table>
-				<br style="clear: both">
-				<p class="pull-right">
-					<button type="button" class="btn btn-success"
-						onClick="javascript:window.location.href=''">All
-						List</button>
-					<button type="button" class="btn btn-warning"
-						onClick="javascript:history.go(-1)">BACK</button>
-					<button type="button" class="btn btn-primary" onclick="check()">Insert</button>
-				</p>
-			</form>
-
-</div>
+즉 form-group이 아닌 각각 col-md 형태로 써주고 
+row 형태로 한줄 씩 한 후 ! enter 해준다. 
  --%>
+					<div class="row">
+						<div class="col-md-4 col-sm-4">
+							<label for="state">Name*</label> <input id="uqUserName"
+								name="uqUserName" placeholder="Enter Your Full Name"
+								class="form-control " type="text">
+						</div>
+						<div class="col-md-4 col-sm-4">
+							<label for="email">Email*</label> <input id="uqUserEmail"
+								name="uqUserEmail" placeholder="Enter Your E mail"
+								class="form-control" type="text" value="${param.uqUserEmail }">
+						</div>
+						<div class="col-md-4 col-sm-4">
+							<label for="mobile number">Mobile Number*</label> <input
+								id="uqUserPhone" name="uqUserPhone" class="form-control"
+								placeholder="Mobile" required type="text">
+
+						</div>
+
+					</div>
+					<div class="enter"></div>
+
+					<c:if test="${sessionScope.member_id eq null }">
+						<div class="row">
+							<div class="col-md-12 col-sm-12">
+								<label for="password">Password*</label> <input id="uqUserPw"
+									name="uqUserPw" placeholder="Enter Your password"
+									class="form-control input-md caps_lockchk" type="password" value="" required>
+							</div>
+						</div>
+						<div class="enter"></div>
+					</c:if>
+
+					<div class="row">
+						<div class="col-md-6 col-sm-6">
+							<label for=uqGroup>Select an issue*</label> <select class="form-control input-sm" id="uqGroup" name="uqGroup">
+									<option value="">-- Please make a selection --</option>
+								<option value="apply">서비스신청접수</option>
+								<option value="gds">일반제품문의</option>
+								<option value="tech">기술지원문의</option>
+								<option value="biz">사업제휴문의</option>
+								<option value="quota">온라인견적문의</option>
+								<option value="error">사이트불편신고</option>
+								<option value="etc">기타제안 및 문의</option>
+								</select>
+						</div>
+
+
+						<div class="col-md-6 col-sm-6">
+							<label for="Website">Website</label> <input id="uqRelatedLink"
+								name="uqRelatedLink" placeholder="Enter Your Website"
+								class="form-control input-md" type="text">
+						</div>
+					</div>
+					<div class="enter"></div>
+
+					<div class="row">
+						<div class="col-md-12 col-sm-12">
+							<label for="title">Title</label> <input id="uqTitle"
+								name="uqTitle" placeholder="Title" class="form-control input-md"
+								type="text">
+						</div>
+					</div>
+					<div class="enter"></div>
+
+					<div class="row">
+						<div class="col-md-12 col-sm-12">
+							<label for="Message">Message*</label>
+							<textarea class="form-control" rows="10" id="uqContent"
+								name="uqContent" placeholder="Enter Your Message *"></textarea>
+
+						</div>
+					</div>
+					<div class="enter"></div>
+					<div class="col-md-12 col-sm-12">
+						<div class="pull-right">
+							<input type="submit" class="btn btn-primary" value="Send" />
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</c:if>

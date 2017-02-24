@@ -90,7 +90,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 				<!-- Intro Content -->
 				<div class="row">
 					<div class="col-md-8">
-						<a href="/Templates/FrontTemplate.html"> <img class="img-responsive well"
+						<a href="/Templates/FrontTemplate.html" target="_blank"> <img class="img-responsive well"
 							src="/CompanyItem/WebSiteBuilding/Images/CompanyTemplate.gif"
 							alt=""></a>
 					</div>
@@ -124,7 +124,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 						<img class="img-responsive "
 							src="/Images/CompanyLogos/CompanyLogo.gif" alt="">
 					</div>
-					<div class="col-md-2 col-sm-4 col-xs-6">
+					<!-- <div class="col-md-2 col-sm-4 col-xs-6">
 						<img class="img-responsive " src="http://placehold.it/500x300"
 							alt="">
 					</div>
@@ -143,7 +143,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					<div class="col-md-2 col-sm-4 col-xs-6">
 						<img class="img-responsive " src="http://placehold.it/500x300"
 							alt="">
-					</div>
+					</div> -->
 				</div>
 				<%--아래 만약 넣더라도 이슈체크 모바일 버전에서 좌우 스크롤생김 row 부분 및 영역이슈 일듯  --%>
 				<!-- Contact Us  -->

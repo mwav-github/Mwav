@@ -84,7 +84,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 
 
 					<div id="Consulting Services" class="col-lg-12">
-						<h2 class="page-header">Consulting Services</h2>
+						<h2 class="page-header">IT Consulting Services</h2>
 					</div>
 					<div class="col-md-12 col-lg-12 col-sm-12 well">
 						<p>Mwav provides our customers with focused offerings and

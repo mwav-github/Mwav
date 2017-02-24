@@ -49,7 +49,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					Company <small> ${breadcrumb}</small>
 				</h1>
 				<ol class="breadcrumb">
-					<li><a href="index.html">Home</a></li>
+					<li><a href="/">Home</a></li>
 					<li>Company</li>
 					<li class="active">${breadcrumb}</li>
 				</ol>

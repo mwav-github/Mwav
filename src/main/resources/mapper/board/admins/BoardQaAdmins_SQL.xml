@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="boardQaAdminsDAO">
+	
+	<!--/*========================================등록========================================*/  -->
+	<insert id="insertQnAForm" parameterType="hashmap">
+		<![CDATA[
+				INSERT INTO UserQuestion_tbl
+				SELECT IFNULL(max(QnA_id)+1,1000000), #{uqGroup}, #{uqGroupItem}, #{member_id}, #{uqUserName}, #{uqUserEmail}, #{uqUserPw}, #{uqUserPhone}, #{uqRelatedLink}, #{uqTitle}, #{uqContent}, #{uqStatus}, #{uqAttachFile}, NOW(), #{uqUpdateDt}, #{uqDeleteDt}, #{uqIpAddress}, "0", #{uqOption1}, #{uqOption2}, #{uqOption3}, #{uqInvoker}, #{uqInvoker_id}, #{statistics_id}, #{uqAdminNotice} FROM UserQuestion_tbl
+		]]>
+	</insert>
+
+    <!--/*========================================보기========================================*/  -->
+
+   <select id="selectOneQnAView" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+	    select *, date_format(uqInsertDt,'%Y-%m-%d') as fmuqInsertDt from UserQuestion_tbl where QnA_id = #{QnA_id}
+	]]>
+	</select>
+	
+	
+   <select id="selectOneQnAUaView" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+	    select * from UserAnswer_tbl where QnA_id = #{QnA_id}
+	]]>
+	</select>
+	
+	<!--/*======================+==================수정========================================*/  -->
+	
+	<update id="updateQnAHitCnt" parameterType="hashmap">
+    <![CDATA[
+       update UserQuestion_tbl set uqViewCount = iFnull(uqViewCount, 0) +1 where QnA_id = #{QnA_id} 
+    ]]>
+    </update>
+    
+ 	
+	<update id="updateQnAUaForm" parameterType="hashmap">
+    <![CDATA[
+       update UserQuestion_tbl set uqStatus ='10' where QnA_id = #{QnA_id} 
+    ]]>
+    </update>
+
+	<!--/*========================================리스트(SelctOne, SelectList 순)========================================*/  -->
+	
+	<select id="selectOneGetQnATotalCount" resultType="int">
+	<![CDATA[
+	  select count(*) from UserQuestion_tbl WHERE uqDeleteDt IS NULL
+	]]>
+	</select>
+	
+	
+	<select id="selectListQnAList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+	select c.*, date_format(uqInsertDt,'%Y-%m-%d') as fmuqInsertDt from (select FORMAT(@ROWNUM := @ROWNUM +1, 0) AS ROWNUM, a.* from (select * from UserQuestion_tbl where uqDeleteDt IS NULL order by QnA_id desc) a,  (SELECT @ROWNUM := 0) R ) c where c.ROWNUM >= #{startRow} and c.ROWNUM <= #{endRow} 
+	]]>
+
+	</select>
+	
+	<select id="selectListQnAFrontList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT QnA_id, uqViewCount, member_id, uqGroup,  uqTitle, date_format(uqInsertDt,'%Y-%m-%d') as uqInsertDt
+		    FROM UserQuestion_tbl
+		    WHERE uqDeleteDt IS NULL ORDER BY uqDeleteDt DESC Limit 5
+		]]>
+	</select>
+	
+	
+	<!--/*========================================삭제========================================*/  -->
+	
+	
+	<update id="deleteQnADelete" parameterType="hashmap">
+    <![CDATA[
+        update UserQuestion_tbl set uqDeleteDt = NOW() where QnA_id = #{QnA_id}
+    ]]>
+    </update>
+    
+    
+    	<!--/*========================================등록========================================*/  -->
+	<insert id="insertQnAUaForm" parameterType="hashmap">
+		<![CDATA[
+			INSERT INTO UserAnswer_tbl
+				Values (#{QnA_id}, #{uaTitle}, #{uaContent}, #{uaProfit}, #{uaAttachFile}, #{uaResponser}, #{uaResponser_id}, #{uaIpAddress}, NOW(), #{uaUpdateDt}, #{uaSatisfaction}, #{uaBeReadOn}, #{uaBeReadDt}, #{uaBeReadIp})
+		]]>
+	</insert>
+
+</mapper>

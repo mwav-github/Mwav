@@ -145,12 +145,18 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 				</c:if>
 				<c:if test="${mode == 'qaList'}">
 
-					<jsp:include page="/CommonApps/BoardQnA/qaList.jsp"
-						flush="false" />
-				</c:if>				
+					<jsp:include page="/CommonApps/BoardQnA/qaList.jsp" flush="false" />
+				</c:if>
 				<c:if test="${mode == 'qaView'}">
 
 					<jsp:include page="/CommonApps/BoardQnA/qaView.jsp" flush="false" />
+				</c:if>
+
+				<c:if test="${param.mode == 'qaForm'}">
+					<%--중요 !! 여기에서 type를 지정해줘야 한다 안그러면, 밑에 footer에도 include 하는데 이때 또 중복되서 나온다. !!  --%>
+					<jsp:include page="/CommonApps/BoardQnA/qaForm.jsp" flush="false">
+						<jsp:param name="type" value="page" />
+					</jsp:include>
 				</c:if>
 
 

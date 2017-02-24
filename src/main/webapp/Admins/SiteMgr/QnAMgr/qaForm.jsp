@@ -41,7 +41,7 @@
 					<li><a href="index.html">Home</a></li>
 					<li>Admins</li>
 					<li>SiteMgr</li>
-					<li class="active">NtmForm</li>
+					<li class="active">Q&AForm</li>
 				</ol>
 			</div>
 		</div>
@@ -74,7 +74,7 @@
 			<div class="col-md-9">
 				<!-- 소제목 -->
 				<div class="col-lg-12">
-					<h2 class="page-header">NsmForm</h2>
+					<h2 class="page-header">Q&AForm</h2>
 				</div>
 				<!-- ----- -->
 
@@ -118,7 +118,7 @@
 						<div class="table-responsive">
 
 							<c:choose>
-								<c:when test="${fn:length(updateNtmForm) > 0}">
+								<c:when test="${fn:length(updateQnAForm) > 0}">
 									<form role="form" method="post" name="buForm"
 										action="/admin/boardNotice/ntmUpdatePro.mwav">
 										<table class="table table-striped">

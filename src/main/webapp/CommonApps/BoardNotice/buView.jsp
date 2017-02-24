@@ -45,27 +45,27 @@
 		<hr>
 		<div class="text-right">
 			<a class="btn btn-social-icon btn-facebook"
-				onClick="sendSns('facebook', '${selectOneBuView.buRelatedLink}', '${selectOneBuView.buTitle}', 'notice')"><span
+				onClick="sendSns('http://www.mwav.net/board/buView.mwav?bUsers_id=${selectOneBuView.bUsers_id}', 'facebook', '${selectOneBuView.buTitle}', 'social', 'notices')"><span
 				class="fa fa-facebook"></span></a> <a
 				class="btn btn-social-icon btn-google"
-				onClick="sendSns('googleplus', '${selectOneBuView.buRelatedLink}', '${selectOneBuView.buTitle}', 'news')"><span
+				onClick="sendSns('http://www.mwav.net/board/buView.mwav?bUsers_id=${selectOneBuView.bUsers_id}','googleplus', '${selectOneBuView.buTitle}', 'social', 'notices')"><span
 				class="fa fa-google"></span></a> <a
 				class="btn btn-social-icon btn-linkedin"
-				onClick="sendSns('linkedin', '${selectOneBuView.buRelatedLink}', '${selectOneBuView.buTitle}', 'news')"><span
+				onClick="sendSns('http://www.mwav.net/board/buView.mwav?bUsers_id=${selectOneBuView.bUsers_id}','linkedin', '${selectOneBuView.buTitle}', 'social', 'notices')"><span
 				class="fa fa-linkedin"></span></a> <a
 				class="btn btn-social-icon btn-twitter"
-				onClick="sendSns('twitter', '${selectOneBuView.buRelatedLink}', '${selectOneBuView.buTitle}', 'news')"><span
+				onClick="sendSns('http://www.mwav.net/board/buView.mwav?bUsers_id=${selectOneBuView.bUsers_id}','twitter', '${selectOneBuView.buTitle}', 'social', 'notices')"><span
 				class="fa fa-twitter"></span></a>
 		</div>
 		<div class="enter"></div>
-		<hr>
-		<p>${selectOneBnsView.bnContent}</p>
-		<a class="btn btn-primary" href='${selectOneBuView.buRelatedLink}'>Read
+		<p>${selectOneBuView.buContent}</p>
+		<%-- <a class="btn btn-primary" href='${selectOneBuView.buRelatedLink}'>Read
 			More <i class="fa fa-angle-right"></i>
-		</a>
+		</a> --%>
 
+		<div class="enter"></div>
 
-<hr class="hr_b">
+		<hr class="hr_b">
 
 
 		<br style="clear: both">
@@ -93,6 +93,6 @@
 		</div>
 
 	</div>
-	
+
 
 </div>

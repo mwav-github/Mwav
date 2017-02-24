@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-	
+
 <script>
 	(function(i, s, o, g, r, a, m) {
 		i['GoogleAnalyticsObject'] = r;
@@ -18,21 +18,22 @@
 	var perfData = window.performance.timing;
 	var pageLoadTime = perfData.mwavmComplete - perfData.navigationStart;
 	var loadTime = "";
-	 
+
 	//https://www.simoahava.com/analytics/page-load-time-universal-analytics/
-	
-	 
-	
+
 	//ga('create', 'UA-63623427-1', 'auto');
-	ga('create', 'UA-63623427-1', {'cookieDomain' : 'http://www.mwav.net', 'siteSpeedSampleRate' : 100}); // 사이트 속도 측정 100은 전체 체크 (2017_01_10)
+	//cookieDomain none 으로 하면 localhost 까지 잡아낸다.
+	//http://www.statstory.com/google-universal-analytics-on-localhost-not-working/
+	ga('create', 'UA-63623427-1', {
+		'cookieDomain' : 'www.mwav.net',
+		'siteSpeedSampleRate' : 100
+	}); // 사이트 속도 측정 100은 전체 체크 (2017_01_10)
 	ga('send', 'pageview');
 	ga('require', 'displayfeatures'); //인구통계부분 추가 (2017_01_10)
-    ga('require', 'linkid', 'linkid.js'); //향상된 링크 추적코드  (2017_01_10)
-    
-    
-  //https://www.simoahava.com/analytics/page-load-time-universal-analytics/
-    //ga.push({'event': 'GAEvent', 'eventCategory' : 'PageLoadTime', 'eventAction' : loadTime, 'nonInteratction':1});  //  사이트 속도 이벤트 작성중
+	ga('require', 'linkid', 'linkid.js'); //향상된 링크 추적코드  (2017_01_10)
 
+	//https://www.simoahava.com/analytics/page-load-time-universal-analytics/
+	//ga.push({'event': 'GAEvent', 'eventCategory' : 'PageLoadTime', 'eventAction' : loadTime, 'nonInteratction':1});  //  사이트 속도 이벤트 작성중
 </script>
 <br />
 <!--TOP아이콘 -->
@@ -46,10 +47,10 @@
 
 
 	<%--QA이슈 z-index로 처리 --%>
-		<!--/////////////////////////////////////////////////// -->
-		<jsp:include page="/CommonApps/BoardQnA/qaForm.jsp" flush="false" />
-		<!--/////////////////////////////////////////////////// -->
-	<%--LayerPopup Alert 아이콘 시작 // footer 간격조정을 위해 mgt5추가--%>	
+	<!--/////////////////////////////////////////////////// -->
+	<jsp:include page="/CommonApps/BoardQnA/qaForm.jsp" flush="false" />
+	<!--/////////////////////////////////////////////////// -->
+	<%--LayerPopup Alert 아이콘 시작 // footer 간격조정을 위해 mgt5추가--%>
 	<!-- <div class="col-md-12 col-xs-12 col-sm-12  alert alert-info"
 		style="z-index: 5;">
 		<div class="container">
@@ -63,7 +64,7 @@
 		</div>
 	</div> -->
 	<%--footer --%>
-	
+
 	<div class="footer" id="footer">
 		<%--row로 하면 전체잡힌다. --%>
 		<div class="container">
@@ -83,7 +84,7 @@
 						GV4F</li>
 					<li>TEL : +82-2-6214-7039</li>
 					<li>FAX: +82-2-6214-1122</li>
-					<li>CEO : Zeus | Sales Manager: ${param.pgl}</li>
+					<li>CEO : Kim | Sales Manager: ${param.pgl}</li>
 					<li>Site Manager : James | Business Consultant : Peter</li>
 				</ul>
 				<%--
@@ -110,8 +111,7 @@
 								Field</a></li>
 						<li><a href="/Company/LocationMap/LocationMap.mwav">Location
 								Map</a></li>
-						<li><a href="#">Profit
-								Sharing</a></li>
+						<li><a href="#">Profit Sharing</a></li>
 					</ul>
 				</div>
 				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -135,22 +135,47 @@
 					<!-- <a href="mailto:ebizpromwav@gmail.com" title="Contact me!"><i
 						class="fa fa-envelope"></i> Contact</a> -->
 					<%--줄 없애기 + 그다음에 메일로 바로연결이아닌 qa쪽 고민 --%>
-					
-					<a href="#" class="btn btn-block btn-primary" data-toggle="modal" data-target="#Contact"><span class="glyphicon glyphicon-envelope"></span> Contact</a>
+
+					<a href="#" class="btn btn-block btn-primary" data-toggle="modal"
+						data-target="#Contact"
+						onclick="ga('send', 'event', 'Q&A', 'click', 'Footer');" style="color:white;"><span
+						class="glyphicon glyphicon-envelope"></span> Contact</a>
 				</p>
 				<p>&nbsp;</p>
-				<ul class="social">
+
+				<ul class="list-unstyled list-inline list-social-icons">
+					<li><a href="https://twitter.com/mwavnet" class="btn btn-social-icon btn-twitter" style="color:white;" target="_blank" onclick="ga('send', 'event', 'twitter', 'click', 'Footer');"> <span
+							class="fa fa-twitter"></span>
+					</a></li>
+					<li><a class="btn btn-social-icon btn-facebook" style="color:white;" target="_blank"> <span
+							class="fa fa-facebook"></span>
+					</a></li>
+					<li><a href="https://plus.google.com/113341818785719365682?hl=ko" class="btn btn-social-icon btn-google" style="color:white;" target="_blank" onclick="ga('send', 'event', 'googleplus', 'click', 'Footer');"> <span
+							class="fa fa-google"></span>
+					</a></li>
+					<li><a href="https://www.linkedin.com/in/mwav-net-255543133/" class="btn btn-social-icon btn-linkedin" style="color:white;" target="_blank" onclick="ga('send', 'event', 'linkedin', 'click', 'Footer');"> <span
+							class="fa fa-linkedin"></span>
+					</a></li>
+					<li><a href="https://www.instagram.com/mwavnet/" class="btn btn-social-icon btn-instagram" style="color:white;" target="_blank" onclick="ga('send', 'event', 'instagram', 'click', 'Footer');"> <span
+							class="fa fa-instagram"></span>
+					</a></li>
+				</ul>
+
+				<!-- <ul class="social">
 					<li><a href="#"> <i class=" fa fa-facebook">   </i>
 					</a></li>
 					<li><a href="#"> <i class="fa fa-twitter">   </i>
 					</a></li>
 					<li><a href="#"> <i class="fa fa-google-plus">   </i>
 					</a></li>
-					<li><a href="#"> <i class="fa fa-pinterest">   </i>
+					<li><a href="#"> <i class="fa fa-linkedin">   </i>
 					</a></li>
 					<li><a href="#"> <i class="fa fa-youtube">   </i>
 					</a></li>
-				</ul>
+					<li><a class="btn btn-block btn-social btn-twitter">
+    <span class="fa fa-twitter"></span> 
+  </a></li>
+				</ul> -->
 			</div>
 		</div>
 		<!--/.row-->

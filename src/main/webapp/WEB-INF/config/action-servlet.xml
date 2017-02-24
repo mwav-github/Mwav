@@ -127,7 +127,6 @@
 			<property name="urls">
    <list>
     <value>/CustomerService/MemberShip/MemberShip.mwav</value>
-    <value>/qa/qaList.mwav</value>
     <value>/logout/logout.do</value>
     <value>/login.do</value>
    </list>

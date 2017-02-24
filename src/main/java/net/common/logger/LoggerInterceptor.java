@@ -1,5 +1,6 @@
 package net.common.logger;
 
+import java.net.InetAddress;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -91,6 +92,7 @@ public class LoggerInterceptor extends HandlerInterceptorAdapter {
 		try {
 
 			member_id = String.valueOf(session.getAttribute("member_id"));
+			// valueof 면 string 은 null 이더라도 text 이다.
 			statistics_id = (String) session.getAttribute("statistics_id");
 			// String.valueof 하면 null이 string 값의 null이다.
 
@@ -107,20 +109,32 @@ public class LoggerInterceptor extends HandlerInterceptorAdapter {
 
 			System.out.println("루트 경로" + uploadRootPath);
 			// DomReadXMLFile.xmlParser("/xConfig/general.xml.config");
-			DomReadXMLFile.xmlParser(uploadRootPath
-					+ "/xConfig/general.xml.config");
+			/*
+			 * DomReadXMLFile.xmlParser(uploadRootPath +
+			 * "/xConfig/general.xml.config");
+			 */
+
+			// http://hyunssssss.tistory.com/243
+
+			InetAddress localMachine = InetAddress.getLocalHost();
+			String localMachineName = localMachine.getHostName();
+			System.out.println("Hostname of local machine: "
+					+ localMachine.getHostName());
 
 			// statistics_id.equals("") ||statistics_id == null 순서 반대로 하면,
 			// nullpointerException 발생 생성전에 비교하니
-			if (statistics_id == null || statistics_id.equals("")) {
-				System.out.println("열로들어온다. 세션없는경우");
+		/*	if (!(localMachineName.equals("DESKTOP-T79AHJS"))) {*/
+				if (statistics_id == null || statistics_id.equals("")) {
+					System.out.println("열로들어온다. 세션없는경우");
 
-				statisticsController.insertFirstStatics(request, member_id,
-						statistics_id, session_id);
-			} else {
-				System.out.println("열로들어온다. 세션있는경우");
-				statisticsController.insertStatics(request, statistics_id);
-			}
+					statisticsController.insertFirstStatics(request, member_id,
+							statistics_id, session_id);
+				} else {
+					System.out.println("열로들어온다. 세션있는경우");
+					statisticsController.insertStatics(request, statistics_id);
+				}
+	/*		}*/
+
 			// 디버그 레벨일때 true
 			// http://planmaster.tistory.com/66
 			if (log.isDebugEnabled()) {
@@ -166,8 +180,9 @@ public class LoggerInterceptor extends HandlerInterceptorAdapter {
 							System.out.println("세션아이디" + id);
 
 							returnUrl = request.getRequestURI(); // 현재 URL
-							if (id == null || id.equals("")) { // id가 Null 이거나
-																// 없을 경우
+							if (id == null || id.equals("")
+									|| id.equals("null")) { // id가 Null 이거나
+								// 없을 경우
 								System.out.println("이쪽으로 리다이렉트");
 								// response.sendRedirect("/CommonApps/Member/MbrLogin.jsp");
 								// // 로그인 페이지로 리다이렉트 한다.
@@ -200,6 +215,7 @@ public class LoggerInterceptor extends HandlerInterceptorAdapter {
 						}
 					}
 				}
+
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

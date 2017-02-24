@@ -20,7 +20,20 @@
 		}
 
 	}
+	
+	
+	//triggered when modal is about to be shown
+	$('#reContact').on('click', function(e) {
+
+		alert('123');
+	    //get data-id attribute of the clicked element
+	    var bookId = $(e.relatedTarget).data('book-id');
+
+	    //populate the textbox
+	    $(e.currentTarget).find('input[name="bookId"]').val(bookId);
+	});
 </script>
+
 <div class="container">
 
 	<!-- Page Heading/Breadcrumbs -->
@@ -105,7 +118,7 @@
 			</form>
 
 			<div class="enter"></div>
-			<c:if test="${selectOneQAView.uqStatus ne '1'}">
+			<c:if test="${selectOneQAView.uqStatus eq '10' || selectOneQAView.uqStatus eq '20' || selectOneQAView.uqStatus eq '100'}">
 				<div class="span12">
 					<div class="well">
 						<h6 class="text-danger text-right">
@@ -130,9 +143,13 @@
 			<div class="row text-right">
 				<p>
 
-					<button type="button" class="btn btn-default" data-toggle="modal"
-						data-target="#Contact">
+					<!-- <button type="button" class="btn btn-default" data-toggle="modal"
+						data-target="#Contact" id="reContact">
 						<span class="glyphicon glyphicon-envelope"></span> Contact
+					</button> -->
+					
+					<button type="button" class="btn btn-default"
+							onclick="javascript:window.location.href='/CustomerService/CS-MasterPage.mwav?mode=qaForm&uqUserEmail=${selectOneQAView.uqUserEmail}&before_Q_id=${selectOneQAView.QnA_id}'">Contact
 					</button>
 					
 					<%--회원 --%>
@@ -153,7 +170,7 @@
 			</div>
 			<div class="row">
 				<ul class="pager">
-					<c:if test="${(selectOneQAView.QnA_id-1) ne '1000000'}">
+					<c:if test="${(selectOneQAView.QnA_id) ne '1000000'}">
 						<li class="previous"><a
 							href="/qa/qaView.mwav?QnA_id=${selectOneQAView.QnA_id-1}">←
 								Older</a></li>

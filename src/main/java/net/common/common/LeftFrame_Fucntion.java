@@ -45,7 +45,7 @@ public class LeftFrame_Fucntion {
 				String[] strhName = { "공지관리", "뉴스관리", "Q&A관리", "폴관리", "회원메일발송" };
 				String[] strhEName = { "공지관리", "뉴스관리", "Q&A관리", "폴관리", "회원메일발송" };
 				String[] strurl = { "/admin/boardNotice/ntmList.mwav",
-						"/admin/boardNews/nsmList.mwav", "#", "#", "#" };
+						"/admin/boardNews/nsmList.mwav", "/admin/boardQnA/qnaList.mwav", "#", "#" };
 				String[] strmAuthority = { "1", "1", "1", "1", "1" };
 				String[] strdAuthority = { "*", "*", "*", "*", "*" };
 

@@ -71,7 +71,8 @@
 	<servlet-mapping> 
 		<servlet-name>mwav</servlet-name>
 		<url-pattern>/</url-pattern>
-		<url-pattern>*.mwav</url-pattern>
+		<url-pattern>*.do</url-pattern>
+		<url-pattern>*.mwav</url-pattern>	
 	</servlet-mapping>
 	
 	<!-- 아래 설정을 통하여 .ico 파일을 태우지 않을 수 있다.

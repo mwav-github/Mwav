@@ -1,5 +1,9 @@
 <%@ page contentType="text/html;charset=utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+
+
+<jsp:include page="SNS_Head_Import.jsp" flush="false" />
 <meta name="robots" content="index, follow" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -12,8 +16,9 @@
 <meta name="copyright" content="All contents are copyright by Mwav.net" />
 <meta name="distribution" content="global" />
 <%--resource는 호출하지않도록 처리. 추후 필요 !!!*** --%>
-<link rel="icon" href="/Images/CompanyLogos/CompanyLogo.ico" /> 
+<link rel="icon" href="/Images/CompanyLogos/CompanyLogo.ico" />
 <title></title>
+
 
 
 <%--인코딩 설정 --%>
@@ -34,6 +39,9 @@
  -->
 <link
 	href=" //maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"
+	rel="stylesheet">
+
+<link href="/resources/JsFramework/Bootstrap/bootstrap-social.css"
 	rel="stylesheet">
 
 <!-- Custom CSS -->

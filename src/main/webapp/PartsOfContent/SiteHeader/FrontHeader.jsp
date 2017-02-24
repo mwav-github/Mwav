@@ -45,26 +45,22 @@
 		<div class="mgt2 collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
 			<ul class="mgl3 nav navbar-nav lead">
-				<li>
-						<a href="/CompanyItem/ITProducts/OpenSRS/OpenSRS.mwav"><h4>IT
-							Solutions</h4></a>
-					</li>
-				<li>
-						<a href="/CompanyItem/ITProducts/Aervision/Aervision.mwav"><h4>IT
-							Products</h4></a>
-					</li>
-				<li>
-						<a href="/CompanyItem/WebSiteBuilding/WebSiteBuilding.mwav"><h4>WebSite
-							Building</h4></a>
-					</li>
-				<li>
-						<a href="/CompanyItem/DigitalMarketing/DigitalMarketing.mwav"><h4>Digital
-							Marketing</h4></a>
-					</li>
-				<li>
-						<a href="/CompanyItem/ITConsulting/ITConsulting.mwav"><h4>IT
-							Consulting</h4></a>
-					</li>
+				<li><a href="/CompanyItem/ITProducts/OpenSRS/OpenSRS.mwav"
+					onclick="ga('send', 'event', 'GNB', 'click', 'ITSolutions');"><h4>IT
+							Solutions</h4></a></li>
+				<li><a href="/CompanyItem/ITProducts/Aervision/Aervision.mwav"
+					onclick="ga('send', 'event', 'GNB', 'click', 'ITProducts');"><h4>IT
+							Products</h4></a></li>
+				<li><a href="/CompanyItem/WebSiteBuilding/WebSiteBuilding.mwav"
+					onclick="ga('send', 'event', 'GNB', 'click', 'WebsiteBuilding');"><h4>WebSite
+							Building</h4></a></li>
+				<li><a
+					href="/CompanyItem/DigitalMarketing/DigitalMarketing.mwav"
+					onclick="ga('send', 'event', 'GNB', 'click', 'DigitalMarketing');"><h4>Digital
+							Marketing</h4></a></li>
+				<li><a href="/CompanyItem/ITConsulting/ITConsulting.mwav"
+					onclick="ga('send', 'event', 'GNB', 'click', 'ITConsulting');"><h4>IT
+							Consulting</h4></a></li>
 			</ul>
 			<ul class="mgl3 nav navbar-nav navbar-right">
 				<!-- 일반로그인 부분 -->
@@ -74,26 +70,31 @@
 						data-placement="bottom"
 						data-original-title="${mbrLoginId}님
 								반갑습니다."><i
-							class="fa fa-user fa-lg"></i>   My Mwav</a>
+							class="fa fa-user fa-lg"></i> My Mwav</a>
 
 						<ul class="dropdown-menu dropdown-menu_change">
-							<li><a href="/CustomerService/CS-MasterPage.mwav?mode=SDMyPage" style="color:#428bca;"><h5>My Account <span
-									class="glyphicon glyphicon-cog pull-right"></span></h5></a></li>
+							<li><a
+								href="/CustomerService/CS-MasterPage.mwav?mode=SDMyPage"
+								style="color: #428bca;"><h5>
+										My Account <span class="glyphicon glyphicon-cog pull-right"></span>
+									</h5></a></li>
 							<li class=""></li>
 							<!-- <li><a href="#">User stats <span
 									class="glyphicon glyphicon-stats pull-right"></span></a></li> -->
 							<li class=""></li>
 							<%--QA 답변 달린 것에 대한 확인. --%>
-							<li><a href="/qa/qaList.mwav"  style="color:#428bca;"><h5>Messages <span class="badge pull-right">
-										42 </span></h5></a></li>
-							
+							<li><a href="/qa/qaList.mwav" style="color: #428bca;"><h5>
+										Messages <span class="badge pull-right"> </span>
+									</h5></a></li>
+
 							<!-- <li><a href="#">Favourites Snippets <span
 									class="glyphicon glyphicon-heart pull-right"></span></a></li> -->
 							<li class="divider"></li>
-							<li><a href="/member/LogOut.mwav"  style="color:#428bca;"><h5>Sign Out <span
-									class="glyphicon glyphicon-log-out pull-right"></span></h5></a></li>
-						</ul></li>	
-					
+							<li><a href="/member/LogOut.mwav" style="color: #428bca;"><h5>
+										Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span>
+									</h5></a></li>
+						</ul></li>
+
 					<!-- <li><h5>
 							<a href="/member/LogOut.mwav">LogOut</a>
 						</h5></li> -->

@@ -10,6 +10,77 @@
 <!-- /////////// -->
 <jsp:include page="/PartsOfContent/Head_Import.jsp" flush="false" />
 <!-- /////////// -->
+
+<script>
+function reCheckuaForm(formname){
+	
+	var uaTitle = formname.uaTitle;	
+	var uaContent = formname.uaContent;
+	
+
+	var check_1 = emptyCheck(uaTitle, "답변 제목을 입력해주세요.");
+	var check_2 = emptyCheck(uaContent, "답변 내용을 입력해주세요.");
+	
+	
+	var check = false;
+	// && check_5 == true 패스워드는 회원인경우 없으니까 
+	if(check_1 == true && check_2 == true){
+		check = true;
+		return true;
+		
+	}else{
+		check = false;
+		return false;
+	}
+	
+}
+
+	function insertQnAUaForm() {
+		var uaForm = document.getElementById("uaForm");
+		var check = reCheckuaForm(uaForm);
+			
+		if (check == true) {
+			$
+					.ajax({
+						url : "/admin/boardQnA/uaFormAjax.mwav",
+						type : "post",
+						data : $("#uaForm").serialize(),
+						contentType : "application/x-www-form-urlencoded; charset=utf-8",
+						dataType : "json", // 데이터타입을 JSON형식으로 지정
+						success : function(xmlStr) {
+							if (xmlStr != null) {
+								//http://devbox.tistory.com/entry/%EB%B9%84%EA%B5%90-%EC%99%80-%EC%9D%98-%EC%B0%A8%EC%9D%B4-1
+								//alert($("#resultpostseek").height());
+								if (xmlStr === true) {
+								alert('정상적으로 답변이 등록되었습니다.')
+								$('#uadivForm').hide();
+							return true;
+
+								} else if (xmlStr === false) {
+
+							    alert('답변이 등록되지 않았습니다.');
+							    return false;
+								}
+
+							}
+						},
+						error : function(xhr, status, error) {
+							var errorMsg = 'status(code): ' + jqXHR.status
+									+ '\n';
+							errorMsg += 'statusText: ' + jqXHR.statusText
+									+ '\n';
+							errorMsg += 'responseText: ' + jqXHR.responseText
+									+ '\n';
+							errorMsg += 'textStatus: ' + textStatus + '\n';
+							errorMsg += 'errorThrown: ' + errorThrown;
+							alert(errorMsg);
+						}
+					});
+		} else {
+			return false;
+		}
+	}
+</script>
 </head>
 
 <body>
@@ -27,13 +98,13 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<h1 class="page-header">
-					Admins <small> NoticeView</small>
+					Admins <small> Q&AView</small>
 				</h1>
 				<ol class="breadcrumb">
 					<li><a href="index.html">Home</a></li>
 					<li>Admins</li>
 					<li>SiteMgr</li>
-					<li class="active">NtmView</li>
+					<li class="active">Q&AView</li>
 				</ol>
 			</div>
 		</div>
@@ -66,7 +137,7 @@
 			<div class="col-md-9">
 				<!-- 소제목 -->
 				<div class="col-lg-12">
-					<h2 class="page-header">NtmView</h2>
+					<h2 class="page-header">Q&AView</h2>
 				</div>
 				<!-- ----- -->
 
@@ -79,7 +150,7 @@
 	function check2(obj) {
 		if (confirm("정말 삭제하시겠습니까??") == true){    //확인
 			var bbb = obj;
-			location.href= "/admin/boardNotice/ntmDelete.mwav?bUsers_id="+bbb;
+			location.href= "/admin/boardQnA/qnaDelete.mwav?QnA_id="+bbb;
 		}else{   //취소
 		    return;
 		}
@@ -89,89 +160,124 @@
 						<!-- Content Column -->
 						<div class="table-responsive">
 							<form role="form">
+
+
 								<table class="table table-striped">
 									<thead>
 										<tr>
-										    <c:set var ="buStatus" value="${selectOneNtmView.buStatus }"}/>
-											<c:if test="${fn:contains(buStatus, '임시저장상태')}">
-												<span class="pull-right bg-danger"><strong>
-												</strong></span>
-											</c:if>
-											<c:if test="${selectOneNtmView.buStatus eq '현재공지상태'}">
-												<span class="pull-right bg-primary"><strong>
-												</strong></span>
-											</c:if>
-											<div class="enter"></div>
+
+
 										</tr>
 										<tr class="active">
-											<th>NO.</th>
 											<th>Group</th>
-											<th>ViewCount</th>
-											<th>InsertDt</th>
-											<th>staff_id</th>
-											<th>Order</th>
+											<th>InsertDate</th>
+											<th>Answer</th>
+											<th>Status</th>
 										</tr>
 									</thead>
 
 
 									<tbody>
 										<tr>
-											<td>${selectOneNtmView.bUsers_id}</td>
-											<td>${selectOneNtmView.buGroup}</td>
-											<td>${selectOneNtmView.buViewCount}</td>
-											<td>${selectOneNtmView.buInsertDt}</td>
-											<td>${selectOneNtmView.staff_id}</td>
-											<td>${selectOneNtmView.buOrder}</td>
+											<td>${selectOneQnAView.uqGroup}</td>
+											<td>${selectOneQnAView.fmuqInsertDt}</td>
+											<td>${selectOneQnAView.uaResponser_id}</td>
+
+											<c:if test="${selectOneQnAView.uqStatus eq '0'}">
+												<td><span class="label label-danger">삭제 </span></td>
+											</c:if>
+											<c:if test="${selectOneQnAView.uqStatus eq '1'}">
+												<td><span class="label label-primary">문의접수 </span></td>
+											</c:if>
+											<c:if test="${selectOneQnAView.uqStatus eq '10'}">
+												<td><span class="label label-success">답변처리 </span></td>
+											</c:if>
+											<c:if test="${selectOneQnAView.uqStatus eq '20'}">
+												<td><span class="label label-warning">재답변처리</span></td>
+											</c:if>
+
+											<c:if test="${selectOneQnAView.uqStatus eq '100'}">
+												<td><span class="label label-default">답변완료</span></td>
+											</c:if>
+
+
 										</tr>
 									</tbody>
 								</table>
 
-								<table class="table table-striped">
+								<table class="table table-bordered ">
+									<colgroup>
+										<col class="col-md-4">
+										<col class="col-md-8">
+									</colgroup>
 
 									<tr>
 										<th class="active">Title</th>
+										<td>${selectOneQnAView.uqTitle}</td>
 									</tr>
-									<tr>
-										<td>${selectOneNtmView.buTitle}</td>
-									</tr>
-
-
-
-
-									<tr>
-										<th class="active">SubTitle</th>
-									</tr>
-									<tr>
-										<td>${selectOneNtmView.buSubTitle}</td>
-									</tr>
-									
 									<tr>
 										<th class="active">Reference</th>
+										<td>${selectOneQnAView.uqRelatedLink}</td>
 									</tr>
-									<tr>
-										<td>${selectOneNtmView.buRelatedLink}</td>
-									</tr>
-
-									<tr>
-										<th class="active">Content</th>
-
-									</tr>
-									<tr>
-										<td>${selectOneNtmView.buContent}</td>
-									</tr>
-
 								</table>
+								<div class="enter"></div>
+								<p>${selectOneQnAView.uqContent}</p>
+
+								<hr class="hr_b">
+								<div class="enter"></div>
+
+								<%--
+							답변완료 건 
+							 <c:if
+								test="${selectOneQnAView.uqStatus eq '10' || selectOneQnAView.uqStatus eq '20' || selectOneQAView.uqStatus eq '100'}"> --%>
+
+
+								<c:if test="${selectOneQnAView.uqStatus ne '1' && selectOneQnAView.uaResponser_id ne null }">
+									<div class="span12">
+										<div class="well">
+											<h6 class="text-danger text-right">
+												<strong>처리자 : ${sessionScope.selectStfLogin.stfName }
+													| 처리일자 : ${selectOneQnAView.uaInsertDt} </strong>
+											</h6>
+											<h3 class="text-info">${selectOneQnAView.uaTitle}</h3>
+
+											<p>${selectOneQnAView.uaContent}</p>
+
+										</div>
+									</div>
+								</c:if>
 							</form>
 
+
+
+							<%-- 답변 작성 --%>
+							<c:if test="${selectOneQnAView.uqStatus eq '1' && selectOneQnAView.uaResponser_id eq null }">
+									<div class="span12" id="uadivForm">
+								<form method="post" name="uaForm" id="uaForm">
+									<input type="hidden" name="uaProfit" value="1" /> <input
+										type="hidden" name="QnA_id" value="${selectOneQnAView.QnA_id}" />
+
+										<div class="well">
+											<label for="title">Title</label> <input id="uaTitle"
+												name="uaTitle" placeholder="Title"
+												class="form-control input-md" type="text"> <label
+												for="Message">Message*</label>
+											<textarea class="form-control" rows="10" id="uaContent"
+												name="uaContent" placeholder="Enter Your Message *"></textarea>
+											<div class="enter"></div>
+											<button type="button" class="btn btn-success btn-block"
+												onClick="insertQnAUaForm(this.form);">답변달기</button>
+										</div>
+								</form>
+									</div>
+							</c:if>
 							<br style="clear: both">
 							<p class="pull-right">
-								<button type="button" class="btn btn-success"
-									onClick="javascript:window.location.href='/admin/boardNotice/ntmList.mwav'">All
-									List</button>
+
 								<button type="button" class="btn btn-warning"
 									onClick="javascript:history.go(-1)">BACK</button>
 								<button type="button" class="btn btn-danger"
-									onclick="check2(${selectOneNtmView.bUsers_id})">Delete</button>
+									onclick="check2(${selectOneQnAView.QnA_id})">Delete</button>
 							</p>
 
 						</div>

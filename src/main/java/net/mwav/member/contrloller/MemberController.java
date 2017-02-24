@@ -56,7 +56,7 @@ public class MemberController {
 	@RequestMapping(value = "/login.mwav", method = RequestMethod.GET)
 	public String login(Model model) {
 
-		return "redirect:/MasterPage.jsp?mode=SMbrLogin";
+		return "redirect:/MasterPage.mwav?mode=SMbrLogin";
 	}
 
 	@RequestMapping(value = "/memberDefault.mwav")

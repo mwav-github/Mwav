@@ -7,7 +7,7 @@
 	<insert id="insertQAForm" parameterType="hashmap">
 		<![CDATA[
 			INSERT INTO UserQuestion_tbl
-				SELECT IFNULL(max(QnA_id)+1,1000000), "Company", #{uqGroupItem}, #{member_id}, #{uqUserName}, #{uqUserEmail}, #{uqUserPw}, #{uqUserPhone}, #{uqRelatedLink}, #{uqTitle}, #{uqContent}, "0", #{uqAttachFile}, NOW(), #{uqUpdateDt}, #{uqDeleteDt}, #{uqIpAddress}, "0", #{uqOption1}, #{uqOption2}, #{uqOption3}, #{uqInvoker}, #{uqInvoker_id}, #{statistics_id}, #{uqAdminNotice} FROM UserQuestion_tbl
+				SELECT IFNULL(max(QnA_id)+1,1000000), #{uqGroup}, #{uqGroupItem}, #{member_id}, #{uqUserName}, #{uqUserEmail}, #{uqUserPw}, #{uqUserPhone}, #{uqRelatedLink}, #{uqTitle}, #{uqContent}, #{uqStatus}, #{uqAttachFile}, NOW(), #{uqUpdateDt}, #{uqDeleteDt}, #{uqIpAddress}, "0", #{uqOption1}, #{uqOption2}, #{uqOption3}, #{uqInvoker}, #{uqInvoker_id}, #{statistics_id}, #{uqAdminNotice} FROM UserQuestion_tbl
 		]]>
 	</insert>
     <!--/*========================================보기========================================*/  -->
@@ -56,25 +56,28 @@
 	
 	<select id="selectListNonMemberQAList" parameterType="hashmap" resultType="hashmap">
 	<![CDATA[
-	select c.*, date_format(uqInsertDt,'%Y-%m-%d') as fmuqInsertDt, (QnA_id - 1000000) as fmQnA_id from (select @ROWNUM := @ROWNUM + 1 AS ROWNUM, a.* from (select * from UserQuestion_tbl where uqUserEmail = #{uqUserEmail} and uqDeleteDt IS NULL order by QnA_id desc) a,  (SELECT @ROWNUM := 0) R ) c where c.ROWNUM >= #{startRow} and c.ROWNUM <= #{endRow} 
+	select c.*, date_format(uqInsertDt,'%Y-%m-%d') as fmuqInsertDt from (select FORMAT(@ROWNUM := @ROWNUM +1, 0) AS ROWNUM, a.* from (select * from UserQuestion_tbl where uqUserEmail = #{uqUserEmail} and uqDeleteDt IS NULL order by QnA_id desc) a,  (SELECT @ROWNUM := 0) R ) c where c.ROWNUM >= #{startRow} and c.ROWNUM <= #{endRow} 
 	]]>
 	</select>
 	
 	<select id="selectListMemberQAList" parameterType="hashmap" resultType="hashmap">
 	<![CDATA[
-	select c.*, date_format(uqInsertDt,'%Y-%m-%d') as fmuqInsertDt, (QnA_id - 1000000) as fmQnA_id from (select @ROWNUM := @ROWNUM + 1 AS ROWNUM, a.* from (select * from UserQuestion_tbl where member_id = #{member_id} and uqDeleteDt IS NULL order by QnA_id desc) a,  (SELECT @ROWNUM := 0) R ) c where c.ROWNUM >= #{startRow} and c.ROWNUM <= #{endRow} 
+	select c.*, date_format(uqInsertDt,'%Y-%m-%d') as fmuqInsertDt from (select FORMAT(@ROWNUM := @ROWNUM +1, 0) AS ROWNUM, a.* from (select * from UserQuestion_tbl where member_id = #{member_id} and uqDeleteDt IS NULL order by QnA_id desc) a,  (SELECT @ROWNUM := 0) R ) c where c.ROWNUM >= #{startRow} and c.ROWNUM <= #{endRow} 
 	]]>
 	</select>
 	
-	<select id="selectOneQALogin" parameterType="hashmap" resultType="hashmap">
+	<select id="selectOneQALogin" parameterType="hashmap" resultType="Integer">
 		<![CDATA[
-		SELECT uqUserEmail, uqUserPw
+		SELECT count(*)
 		FROM UserQuestion_tbl
-	    WHERE uqUserEmail = #{uqUserEmail} 		
+	    WHERE uqUserEmail = #{uqUserEmail} and 	uqUserPw = #{uqUserPw}
 		]]>
 	</select>
 	
 	
 	<!--/*========================================삭제========================================*/  -->
+
+	<!--/*========================================답변========================================*/  -->
+
 
 </mapper>

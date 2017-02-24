@@ -27,13 +27,13 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<h1 class="page-header">
-					Admins <small> NoticeForm</small>
+					Admins <small> Q&AList</small>
 				</h1>
 				<ol class="breadcrumb">
 					<li><a href="index.html">Home</a></li>
 					<li>Admins</li>
 					<li>SiteMgr</li>
-					<li class="active">NtmForm</li>
+					<li class="active">Q&AList</li>
 				</ol>
 			</div>
 		</div>
@@ -95,32 +95,49 @@
 											<th class="hidden-xs">Group</th>
 											<th class="hidden-xs">Title</th>
 											<th class="hidden-xs">WriteDate</th>
+											<th class="hidden-xs">Status</th>
 											<%-- <th>관리메뉴</th> 삭제예정 --%>
 
 										</tr>
 									</thead>
 									<tbody>
 										<c:choose>
-											<c:when test="${fn:length(selectListNtmList) > 0}">
-												<c:forEach var="RselectListNtmList"
-													items="${selectListNtmList}">
-												
+											<c:when test="${fn:length(selectListQnAList) > 0}">
+												<c:forEach var="RselectListQnAList"
+													items="${selectListQnAList}">
+
 													<tr>
-														<input type="hidden" id="bUsers_id" name="bUsers_id"
-															value="${RselectListNtmList.bUsers_id }">
-														<td class="hidden-xs">${RselectListNtmList.bUsers_id}</td>
-														<td class="hidden-xs">${RselectListNtmList.buGroup}</td>
+														<input type="hidden" id="QnA_id" name="QnA_id"
+															value="${RselectListQnAList.QnA_id }">
+														<td class="hidden-xs">${RselectListQnAList.QnA_id}</td>
+														<td class="hidden-xs">${RselectListQnAList.uqGroup}</td>
 														<td><a
-															href="javascript:window.location.href='/admin/boardNotice/ntmView.mwav?bUsers_id=${RselectListNtmList.bUsers_id}'">${RselectListNtmList.buTitle}</a></td>
-														<td class="hidden-xs">${RselectListNtmList.buInsertDt}</td>
+															href="javascript:window.location.href='/admin/boardQnA/qaView.mwav?QnA_id=${RselectListQnAList.QnA_id}'">${RselectListQnAList.uqTitle}</a></td>
+														<td class="hidden-xs">${RselectListQnAList.uqInsertDt}</td>
+														<c:if test="${RselectListQnAList.uqStatus eq '0'}">
+															<td><span class="label label-danger">삭제 </span></td>
+														</c:if>
+														<c:if test="${RselectListQnAList.uqStatus eq '1'}">
+															<td><span class="label label-primary">문의접수 </span></td>
+														</c:if>
+														<c:if test="${RselectListQnAList.uqStatus eq '10'}">
+															<td><span class="label label-success">답변처리 </span></td>
+														</c:if>
+														<c:if test="${RselectListQnAList.uqStatus eq '20'}">
+															<td><span class="label label-warning">재답변처리</span></td>
+														</c:if>
+
+														<c:if test="${RselectListQnAList.uqStatus eq '100'}">
+															<td><span class="label label-default">답변완료</span></td>
+														</c:if>
 														<td>
 															<button type="button" class="btn btn-info"
-																onclick="javascript:window.location.href='/admin/boardNotice/ntmView.mwav?bUsers_id=${RselectListNtmList.bUsers_id}'">보기</button>&nbsp;
+																onclick="javascript:window.location.href='/admin/boardQnA/qaView.mwav?QnA_id=${RselectListQnAList.QnA_id}'">보기</button>&nbsp;
 															<button type="button" class="btn btn-warning"
 																onclick="javascript:window.location.href='/admin/boardNotice/ntmUpdate.mwav?bUsers_id=${RselectListNtmList.bUsers_id}'">수정</button>
 														</td>
 													</tr>
-												
+
 												</c:forEach>
 											</c:when>
 											<c:otherwise>
@@ -140,15 +157,18 @@
 
 											<c:if test="${pagingVO.startPage > pagingVO.pageBlock}">
 												<li><a
-													href="/admin/boardNews/nsmList.mwav?pageNum=${pagingVO.startPage - pagingVO.pageBlock}"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
+													href="/admin/boardQnA/qnaList.mwav?pageNum=${pagingVO.startPage - pagingVO.pageBlock}"><span
+														class="glyphicon glyphicon-chevron-left"></span></a></li>
 											</c:if>
 											<c:forEach var="i" begin="${pagingVO.startPage}"
 												end="${pagingVO.endPage}">
-												<li><a href="/admin/boardNews/nsmList.mwav?pageNum=${i}">${i}</a></li>
+												<li><a
+													href="/admin/boardQnA/qnaList.mwav?pageNum=${i}">${i}</a></li>
 											</c:forEach>
 											<c:if test="${pagingVO.endPage < pagingVO.pageCount}">
 												<li><a
-													href="/admin/boardNews/nsmList.mwav?pageNum=${pagingVO.startPage + pagingVO.pageBlock}"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+													href="/admin/boardQnA/qnaList.mwav?pageNum=${pagingVO.startPage + pagingVO.pageBlock}"><span
+														class="glyphicon glyphicon-chevron-right"></span></a></li>
 											</c:if>
 										</ul>
 									</div>

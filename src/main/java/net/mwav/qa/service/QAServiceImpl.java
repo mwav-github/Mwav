@@ -38,6 +38,11 @@ public class QAServiceImpl implements QAService {
 		uqIpAddress = cou.getClientIP(request);
 		map.put("uqIpAddress", uqIpAddress);
 		
+		//신규등록 문의접수 1 
+		map.put("uqStatus", "1");
+		
+		//재문의 인 경우 
+		
 		boolean flag = qaDAO.insertQAForm(map, request);
 		return flag;
 	}
@@ -85,7 +90,7 @@ public class QAServiceImpl implements QAService {
 	}
 
 	@Override
-	public Map<String, Object> selectOneQALogin(Map<String, Object> map) {
+	public String selectOneQALogin(Map<String, Object> map) {
 		// TODO Auto-generated method stub
 		return qaDAO.selectOneQALogin(map);
 	}

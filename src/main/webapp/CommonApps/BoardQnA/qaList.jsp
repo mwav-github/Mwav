@@ -6,15 +6,17 @@
 <div class="row">
 	<%--================================================시작========================================================== --%>
 	<form name="qaList" method="post" action="/qa/qaList.mwav">
-
+		<%--비회원인 경우 HIDDEN으로 메일 유지해줘야 한다. 그래야 페이지가 이동하더라도 이상없다.--%>
+		<input type="hidden" name="uqUserEmail" value="${param.uqUserEmail}">
 		<div class="input-group custom-search-form">
 			<input type="text" class="form-control" placeholder="Search...">
 			<span class="input-group-btn">
-				<button class="btn btn-default" type="submit">
+				<button class="btn btn-default" type="button">
 					<i class="fa fa-search"></i>
 				</button>
 			</span>
 		</div>
+		<div class="enter"></div>
 		<input type="hidden" name="pageNum" />
 
 		<table class="table table-striped">
@@ -38,8 +40,10 @@
 							<tr>
 								<input type="hidden" id="QnA_id" name="QnA_id"
 									value="${RselectListQAList.QnA_id }">
+
 								<input type="hidden" id="no" name="NO" value="${status.count}">
-								<td class="">${RselectListQAList.fmQnA_id}</td>
+							
+								<td class="">${RselectListQAList.ROWNUM}</td>
 								<td class="">${RselectListQAList.uqGroup}</td>
 								<td><a
 									href="javascript:window.location.href='/qa/qaView.mwav?QnA_id=${RselectListQAList.QnA_id}'">${RselectListQAList.uqTitle}</a></td>
@@ -99,12 +103,13 @@
 					</c:when>
 					<c:otherwise>
 						<tr>
-							<td colspan="4">조회된 결과가 없습니다.</td>
+							<td colspan="6">조회된 결과가 없습니다.</td>
 						</tr>
 					</c:otherwise>
 				</c:choose>
 			</tbody>
 		</table>
+
 
 		<!-- Pagination -->
 		<c:if test="${totalRow > 0}">
@@ -114,16 +119,19 @@
 
 						<c:if test="${pagingVO.startPage > pagingVO.pageBlock}">
 							<li><a
-								href="/qa/qaList.mwav?pageNum=${pagingVO.startPage - pagingVO.pageBlock}"><span
+								href="/qa/qaList.mwav?pageNum=${pagingVO.startPage - pagingVO.pageBlock}&uqUserEmail=${param.uqUserEmail}"><span
 									class="glyphicon glyphicon-chevron-left"></span></a></li>
 						</c:if>
 						<c:forEach var="i" begin="${pagingVO.startPage}"
 							end="${pagingVO.endPage}">
-							<li><a href="/qa/qaList.mwav?pageNum=${i}">${i}</a></li>
+							<li><a href="/qa/qaList.mwav?pageNum=${i}&uqUserEmail=${param.uqUserEmail}">${i}</a>
+							<%--회원 비회원 처리해줘야 한다 --%>
+							
+							</li>
 						</c:forEach>
 						<c:if test="${pagingVO.endPage < pagingVO.pageCount}">
 							<li><a
-								href="/qa/qaList.mwav?pageNum=${pagingVO.startPage + pagingVO.pageBlock}"><span
+								href="/qa/qaList.mwav?pageNum=${pagingVO.startPage + pagingVO.pageBlock}&uqUserEmail=${param.uqUserEmail}"><span
 									class="glyphicon glyphicon-chevron-right"></span></a></li>
 						</c:if>
 					</ul>
