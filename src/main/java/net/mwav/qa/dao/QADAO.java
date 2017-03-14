@@ -2,11 +2,14 @@ package net.mwav.qa.dao;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import net.common.common.CommandMap;
 import net.common.dao.AbstractDAO;
 import net.mwav.common.module.AesEncryption;
 
@@ -131,22 +134,51 @@ public class QADAO extends AbstractDAO {
 
 	public Map<String, Object> selectOneQAView(Map<String, Object> map) {
 		// TODO Auto-generated method stub
+		 
+		//##이전 게시글 처리 
 		int QnA_id = Integer.parseInt((String) map.get("QnA_id"));
-		int maxQnA_id = (int) selectOne("qa.selectOneMAXQAView");
-		System.out.println("QnA_id" + QnA_id);
-		System.out.println("maxQnA_id" + maxQnA_id);
+		Map<String, Object> map1 = new HashMap<String, Object>();
 
-		// 이게 밑으로가면 아래 map 값넣는거는 안먹힌다.
-		map = (Map<String, Object>) selectOne("qa.selectOneQAView", map);
-		// System.out.println("음뭐지"+map.get("uqStatus"));
+		Map<String, Object> map2 = new HashMap<String, Object>();
+
+		// Add everything in map1 not in map2 to map2
+
+		map1 = (Map<String, Object>) selectOne(
+				"qa.selectOneQAView", map);
+
+		// 대답은 null 일 수 있다 문제는 만약 위에있음 QnA_id가 null 이 될수도잇으니까
+		// 아예 따로하거나 밑에 배치
+		map2 = (Map<String, Object>) selectOne(
+				"qa.selectOneQAUaView", map);
+		if (map2 != null) {
+			map1.putAll(map2);
+		}
+		
+	    Date uaBeReadDt = (Date) map1.get("uaBeReadDt");
+	    System.out.println("uaBeReadDt"+uaBeReadDt);
+		
+		//답변달린 후 최초 조회.
+	    if(uaBeReadDt == null){
+	    	update("qa.updateUABeReadDt", QnA_id);
+	    }
+	    //기 이력이있는 경우 
+	   
+		int maxQnA_id = (int) selectOne("qa.selectOneMAXQAView");
+		
+		// 이전 / 다음글에 대한 처리를 위하여,
+		//현재 Q&A 아이디가 max Q&A 아이디가 작을 때
+		//즉 제일 마지막 이전게시글 까지는
+
 		if (QnA_id < maxQnA_id) {
 
-			map.put("QnA_id_2", (QnA_id + 1));
-		} else if ((QnA_id + 1) == maxQnA_id || QnA_id == maxQnA_id) {
+			map1.put("QnA_id_2", (QnA_id + 1));
+			
+		// 마지막 게시글인 경우
+		} else if (QnA_id == maxQnA_id) {
 
-			map.put("QnA_id_2", null);
+			map1.put("QnA_id_2", null);
 		}
-		return map;
+		return map1;
 	}
 
 	public String selectOneQALogin(Map<String, Object> map) {
@@ -187,6 +219,28 @@ public class QADAO extends AbstractDAO {
 		}
 
 		return uqUserEmail;
+	}
+
+	public boolean uaSatisfactionUpdateAjax(Map<String, Object> map) {
+		boolean flag = false;
+
+		try {
+
+
+			String check = String.valueOf(update("qa.uaSatisfactionUpdateAjax", map));
+
+			System.out.println("check" + check);
+			if (check.equals("1")) {
+			
+				flag = true;
+			} else if (check.equals("0")){
+				flag = false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return flag;
+		
 	}
 
 	/*

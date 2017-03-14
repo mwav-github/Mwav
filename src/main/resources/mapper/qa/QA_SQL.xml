@@ -7,13 +7,21 @@
 	<insert id="insertQAForm" parameterType="hashmap">
 		<![CDATA[
 			INSERT INTO UserQuestion_tbl
-				SELECT IFNULL(max(QnA_id)+1,1000000), #{uqGroup}, #{uqGroupItem}, #{member_id}, #{uqUserName}, #{uqUserEmail}, #{uqUserPw}, #{uqUserPhone}, #{uqRelatedLink}, #{uqTitle}, #{uqContent}, #{uqStatus}, #{uqAttachFile}, NOW(), #{uqUpdateDt}, #{uqDeleteDt}, #{uqIpAddress}, "0", #{uqOption1}, #{uqOption2}, #{uqOption3}, #{uqInvoker}, #{uqInvoker_id}, #{statistics_id}, #{uqAdminNotice} FROM UserQuestion_tbl
+				SELECT IFNULL(max(QnA_id)+1,1000000), #{uqGroup}, #{uqGroupItem}, #{member_id}, #{uqUserName}, #{uqUserEmail}, #{uqUserPw}, #{uqUserPhone}, #{uqRelatedLink}, #{uqTitle}, #{uqContent}, #{uqStatus}, #{uqAttachFile}, NOW(), #{uqUpdateDt}, #{uqDeleteDt}, #{uqIpAddress}, "1", #{uqOption1}, #{uqOption2}, #{uqOption3}, #{uqInvoker}, #{uqInvoker_id}, #{statistics_id}, #{uqAdminNotice} FROM UserQuestion_tbl
 		]]>
 	</insert>
     <!--/*========================================보기========================================*/  -->
-  <select id="selectOneQAView" parameterType="hashmap" resultType="hashmap">
+
+	 <select id="selectOneQAView" parameterType="hashmap" resultType="hashmap">
 	<![CDATA[
 	    select *, date_format(uqInsertDt,'%Y-%m-%d') as fmuqInsertDt from UserQuestion_tbl where QnA_id = #{QnA_id}
+	]]>
+	</select>
+	
+	
+   <select id="selectOneQAUaView" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+	    select * from UserAnswer_tbl where QnA_id = #{QnA_id}
 	]]>
 	</select>
 	
@@ -30,6 +38,18 @@
     ]]>
     </update>
 	
+	
+	<update id="updateUABeReadDt" parameterType="hashmap">
+    <![CDATA[
+       update UserAnswer_tbl set uaBeReadDt = NOW() where QnA_id = #{QnA_id} 
+    ]]>
+    </update>
+	
+	<update id="uaSatisfactionUpdateAjax" parameterType="hashmap">
+    <![CDATA[
+       update UserAnswer_tbl set uaSatisfaction = #{uaSatisfaction} where QnA_id = #{QnA_id} 
+    ]]>
+    </update>
  
 	
 	<!--/*========================================리스트(SelctOne, SelectList 순)========================================*/  -->

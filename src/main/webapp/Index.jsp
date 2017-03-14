@@ -50,34 +50,86 @@
 						Solutions</h2>
 				</div>
 
-				<div class="col-xs-12 col-sm-6  col-md-6">
-					<!--md >= 992 4/12 -->
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h4>
-								<i class="fa fa-fw fa-check"></i> WebSite Building
-							</h4>
+				<!-- <div class="col-xs-12 col-sm-6 col-md-6">
+
+					<div class="product-item">
+						<div class="pi-img-wrapper">
+							<img class="img-responsive"
+								src="/CompanyItem/zImage/main_security.jpg">
 						</div>
-						<div class="panel-body">
-							<p>In general parlance, bootstrapping usually refers to the
-								starting of a self-sustaining process that is supposed to
-								proceed without external input. In computer technology the term
-								(usually shortened to booting) usually refers to the process of
-								loading the basic software into the memory of a computer after
-								power-on or general reset, especially the operating system which
-								will then take care of loading other software as needed. The
-								term appears to have originated in the early 19th century United
-								States (particularly in the phrase "pull oneself over a fence by
-								one's bootstraps"), to mean an absurdly impossible action, an
-								adynaton.</p>
-							<a href="/CompanyItem/WebSiteBuilding/WebSiteBuilding.mwav"
-								class="btn btn-info btn-sm btn-block">Learn More</a>
+						<h3>1234</h3>
+						<button class="btn learnmore"
+							onclick="javascript:window.location.href='/CompanyItem/ITProducts/Aervision/Aervision.mwav#AerPass'"
+							type="button">Learn More</button>
+
+						<div class="sticker sticker-new"></div>
+					</div>
+
+
+				</div> -->
+				<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="news">
+						<div class="img-figure">
+							<div class="cat">Security</div>
+							<img src="/CompanyItem/zImage/main_security.jpg"
+								class="img-responsive">
 						</div>
+
+						<div class="title">
+							<h1>Biometric Authentication </h1>
+						</div>
+						<p class="description">AerVision Technologies provides state
+							of the art customized solutions for automated monitoring of video
+							networks...</p>
+
+						<p class="more">
+							<a href="/CompanyItem/ITProducts/Aervision/Aervision.mwav">read
+								more</a><i class="fa fa-angle-right" aria-hidden="true"></i>
+						</p>
 					</div>
 				</div>
+
 				<div class="col-xs-12 col-sm-6 col-md-6">
-					<!-- 8/12 -->
-					<div class="panel panel-default">
+					<div class="news">
+						<div class="img-figure">
+							<div class="cat">Chart</div>
+							<img src="/CompanyItem/zImage/Main_chart.jpg"
+								class="img-responsive">
+						</div>
+
+						<div class="title">
+							<h1>Make your data come alive</h1>
+						</div>
+						<p class="description">Highcharts makes it easy for developers
+							to set up interactive charts in their web pages...</p>
+
+						<p class="more">
+							<a href="/hightsofts/hightsofts.mwav?items=Highcharts">read
+								more</a><i class="fa fa-angle-right" aria-hidden="true"></i>
+						</p>
+					</div>
+				</div>
+				<!-- <div class="col-xs-12 col-sm-6 col-md-6">
+
+					<div class="product-item">
+						<div class="pi-img-wrapper">
+							<img src="/CompanyItem/zImage/Main_chart.jpg"
+								class="img-responsive">
+							<div>
+								<a href="#" class="btn">Zoom</a> <a href="#" class="btn">View</a>
+							</div>
+						</div>
+						<h3>1234</h3>
+
+						<button type="button" class="btn learnmore"
+							onclick="javascript:window.location.href='/hightsofts/hightsofts.mwav?items=Highcharts'">Learn
+							More</button>
+
+						<div class="sticker sticker-new"></div>
+					</div> -->
+
+				<!-- 8/12 -->
+				<!-- <div class="panel panel-default">
 						<div class="panel-heading">
 							<h4>
 								<i class="fa fa-fw fa-gift"></i> OpenSRS
@@ -92,15 +144,15 @@
 							<a href="/CompanyItem/ITProducts/OpenSRS/OpenSRS.mwav"
 								class="btn btn-info btn-sm btn-block">Learn More</a>
 						</div>
-					</div>
-				</div>
+					</div> -->
+
 			</div>
 			<%-- 추가시 테블릿에서 공지, 뉴스 반반씩으로 변경 예정 --%>
 			<div class="col-xs-12 col-sm-12 col-md-4">
 				<div class="col-lg-12">
 
 					<h2 class="col-md-12 page-header" style="color: #317eac">Notices
-						& News</h2>
+					</h2>
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-12">
 					<div class="bs-component">
@@ -111,17 +163,17 @@
 				     
 				     localhost:8080/CWS 이부분은 server.xml 에서 지정한다.
 				-->
-						<h4>
+						<!-- <h4>
 							<strong>Notices</strong>
-						</h4>
+						</h4> -->
 
 						<jsp:include page="/board/buFrontList.mwav" flush="false" />
 
-						<div class="enter"></div>
+						<%-- <div class="enter"></div>
 						<h4>
 							<strong>News</strong>
 						</h4>
-						<jsp:include page="/board/bnsFrontList.mwav" flush="false" />
+						<jsp:include page="/board/bnsFrontList.mwav" flush="false" /> --%>
 
 						<%--notice/news 순으로 5개씩 삽입 예정
 						    만약에 공간 및 제약시 추후 tab 형태 고려 
@@ -147,7 +199,7 @@
 
 			<div class="col-lg-12">
 				<%--1행 --%>
-				<div class="col-xs-12 col-sm-6 col-md-4">
+				<div class="col-xs-12 col-sm-6 col-md-3">
 					<!-- md >= 992 / sm >=768  2행에서 1-->
 					<a href="/CompanyItem/ITProducts/OpenSRS/OpenSRS.mwav"> <img
 						class="img-responsive img-portfolio img-hover"
@@ -155,25 +207,21 @@
 					</a>
 					<%--<p>Contents :</p> --%>
 				</div>
-				<div class="col-xs-12 col-sm-6 col-md-4">
+				<div class="col-xs-12 col-sm-6 col-md-3">
 					<a href="/CompanyItem/ITProducts/Windows/Windows.mwav"> <img
 						class="img-responsive img-portfolio img-hover"
 						src="/CompanyItem/ITProducts/Images/windows10(h250).jpg" alt="">
 					</a>
 					<%--<p>Contents :</p> --%>
 				</div>
-				<div class="col-xs-12 col-sm-6 col-md-4">
+				<div class="col-xs-12 col-sm-6 col-md-3">
 					<a href="/CompanyItem/ITProducts/Azure/Azure.mwav"> <img
 						class="img-responsive img-portfolio img-hover"
 						src="/CompanyItem/ITProducts/Images/ms_azure(h250).png" alt="">
 					</a>
 					<%--<p>Contents :</p> --%>
 				</div>
-			</div>
-
-			<div class="col-lg-12">
-				<%--2행 --%>
-				<div class="col-xs-12 col-sm-6 col-md-4">
+				<div class="col-xs-12 col-sm-6 col-md-3">
 					<!-- md >= 992 / sm >=768  2행에서 1-->
 					<a href="/CompanyItem/ITProducts/Aervision/Aervision.mwav"> <img
 						class="img-responsive img-portfolio img-hover"
@@ -181,24 +229,25 @@
 					</a>
 					<%--<p>Contents :</p> --%>
 				</div>
-				<div class="col-xs-12 col-sm-6 col-md-4">
+			</div>
+
+			<div class="col-lg-12">
+				<%--2행 --%>
+				<div class="col-xs-12 col-sm-6 col-md-3">
 					<a href="/CompanyItem/ITProducts/InsWave/InsWave.mwav"> <img
 						class="img-responsive img-portfolio img-hover"
 						src="/CompanyItem/ITProducts/Images/CMS_01.png" alt="">
 					</a>
 					<%--<p>Contents :</p> --%>
 				</div>
-				<div class="col-xs-12 col-sm-6 col-md-4">
+				<div class="col-xs-12 col-sm-6 col-md-3">
 					<a href="/CompanyItem/ITProducts/MSOffice/MSOffice.mwav"> <img
 						class="img-responsive img-portfolio img-hover"
 						src="/CompanyItem/ITProducts/Images/MsOffice(h250).jpg" alt="">
 					</a>
 					<%--<p>Contents :</p> --%>
 				</div>
-			</div>
-			<div class="col-lg-12">
-				<%--2행 --%>
-				<div class="col-xs-12 col-sm-6 col-md-4">
+				<div class="col-xs-12 col-sm-6 col-md-3">
 					<!-- md >= 992 / sm >=768  2행에서 1-->
 					<a href="/hightsofts/hightsofts.mwav?items=Highcharts"> <img
 						class="img-responsive img-portfolio img-hover"
@@ -207,6 +256,7 @@
 					<%--<p>Contents :</p> --%>
 				</div>
 			</div>
+
 			<%-- 3행
 			<div class="col-md-4 col-sm-6">
 				<!-- 2행에서 2 -->
@@ -300,7 +350,8 @@
 					따른 효과적 업무 수행을 지원하여 드립니다..</p>
 				<%-- 15.10.18 내용수정	<p></p>--%>
 				<a class="btn btn-lg btn-primary btn-block"
-					href="/CompanyItem/ITConsulting/ITConsulting.mwav">IT Consulting</a>
+					href="/CompanyItem/ITConsulting/ITConsulting.mwav">IT
+					Consulting</a>
 			</div>
 
 		</div>
@@ -340,7 +391,7 @@
 		<!-- /.container -->
 	</div>
 
-	
+
 
 
 
@@ -356,13 +407,7 @@
 
 
 
-	<!-- Script to Activate the Carousel -->
-	<script>
-		$('.carousel').carousel({
-			interval : 5000
-		//changes the speed
-		});
-	</script>
+
 
 </body>
 

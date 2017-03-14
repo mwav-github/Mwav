@@ -27,7 +27,7 @@
 			<div class="col-md-9">
 				<!-- 소제목 -->
 				<div class="col-lg-12">
-					<h2 class="page-header">IT Trends</h2>
+					<h2 class="page-header mwav_leftText">IT Trends</h2>
 				</div>
 				<!-- ----- -->
 

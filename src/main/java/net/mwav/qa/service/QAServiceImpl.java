@@ -95,6 +95,27 @@ public class QAServiceImpl implements QAService {
 		return qaDAO.selectOneQALogin(map);
 	}
 
+	
+
+	@Override
+	public boolean uaSatisfactionUpdateAjax(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		/*	if (uaSatisfaction == 0){
+		uaSatisfaction = 0;
+	}else if(uaSatisfaction == 1){
+		uaSatisfaction = 20;
+	}else if(uaSatisfaction == 2){
+		uaSatisfaction = 40;
+	}else if(uaSatisfaction == 3){
+		uaSatisfaction = 60;
+	}else if(uaSatisfaction == 4){
+		uaSatisfaction = 80;
+	}else if(uaSatisfaction == 5){
+		uaSatisfaction = 100;
+	}*/
+		return qaDAO.uaSatisfactionUpdateAjax(map);
+	}
+
 	/*
 	 * ========================================수정================================
 	 * ========

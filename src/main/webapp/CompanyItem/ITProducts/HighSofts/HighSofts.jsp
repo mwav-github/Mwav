@@ -58,14 +58,14 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 		<!-- Content Row -->
 		<div class="row">
 			<!-- Sidebar Column left메뉴 추후 변경 예정<시작>-->
-			<div class="col-md-3" style="color:#54697E;">
+			<div class="col-md-3" style="color: #54697E;">
 				<jsp:include page="/CompanyItem/ITProducts/ITProductsLeftMenu.jsp"
 					flush="false" />
 			</div>
 			<!-- 끝 -->
 
 			<!-- Content Column -->
-			<div class="col-md-9" style="color:#54697E;">
+			<div class="col-md-9" style="color: #54697E;">
 
 
 				<!-- 	<div class="col-md-12">
@@ -95,99 +95,99 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 
 				<div class="enter"></div>
 
-				
 
-					<%-- <h3 class="text-left mgb3">
+
+				<%-- <h3 class="text-left mgb3">
 						<strong>${item}</strong>
 					</h3> --%>
-					<!-- 	<hr style="border-top: 3px solid #78828D !important;"> -->
-					<div class="row">
-						<!-- Basic line -->
-						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-							<object
-								data="/CompanyItem/ITProducts/Images/[1]_${item}_${demo_1}.svg"
-								type="image/svg+xml">
-								<img
-									src="/CompanyItem/ITProducts/Images/[1]_${item}_${demo_1}.svg" />
-							</object>
-							<div class="enter hidden-xs"></div>
+				<!-- 	<hr style="border-top: 3px solid #78828D !important;"> -->
+				<div class="row">
+					<!-- Basic line -->
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+						<object
+							data="/CompanyItem/ITProducts/Images/[1]_${item}_${demo_1}.svg"
+							type="image/svg+xml">
+							<img
+								src="/CompanyItem/ITProducts/Images/[1]_${item}_${demo_1}.svg" />
+						</object>
+						<div class="enter hidden-xs"></div>
 
-							<div class="text-center" onMouseOver="this.style.color='#58bb45'"
-								onMouseOut="this.style.color='#6B6FCE'" style="color: #6B6FCE">
-								<h4>
-									<strong>${demo_1_text}</strong>
-								</h4>
-							</div>
-							<div class="clearfix"></div>
+						<div class="text-center" onMouseOver="this.style.color='#58bb45'"
+							onMouseOut="this.style.color='#6B6FCE'" style="color: #6B6FCE">
+							<h4>
+								<strong>${demo_1_text}</strong>
+							</h4>
 						</div>
+						<div class="clearfix"></div>
+					</div>
 
-						<!-- Ajax loaded data, clickable points -->
-						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-							<object
-								data="/CompanyItem/ITProducts/Images/[2]_${item}_${demo_2}.svg"
-								type="image/svg+xml">
-								<img
-									src="/CompanyItem/ITProducts/Images/[2]_${item}_${demo_2}.svg" />
-							</object>
+					<!-- Ajax loaded data, clickable points -->
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+						<object
+							data="/CompanyItem/ITProducts/Images/[2]_${item}_${demo_2}.svg"
+							type="image/svg+xml">
+							<img
+								src="/CompanyItem/ITProducts/Images/[2]_${item}_${demo_2}.svg" />
+						</object>
 
-							<div class="enter hidden-xs"></div>
-							<div class="text-center" onMouseOver="this.style.color='#58bb45'"
-								onMouseOut="this.style.color='#6B6FCE'" style="color: #6B6FCE">
-								<h4>
-									<strong>${demo_2_text}</strong>
-								</h4>
-							</div>
-							<div class="clearfix"></div>
-
-							<div class="enter hidden-xs"></div>
+						<div class="enter hidden-xs"></div>
+						<div class="text-center" onMouseOver="this.style.color='#58bb45'"
+							onMouseOut="this.style.color='#6B6FCE'" style="color: #6B6FCE">
+							<h4>
+								<strong>${demo_2_text}</strong>
+							</h4>
 						</div>
+						<div class="clearfix"></div>
+
+						<div class="enter hidden-xs"></div>
+					</div>
 
 
 
-						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-							<object
-								data="/CompanyItem/ITProducts/Images/[3]_${item}_${demo_3}.svg"
-								type="image/svg+xml">
-								<img
-									src="/CompanyItem/ITProducts/Images/[3]_${item}_${demo_3}.svg" />
-							</object>
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+						<object
+							data="/CompanyItem/ITProducts/Images/[3]_${item}_${demo_3}.svg"
+							type="image/svg+xml">
+							<img
+								src="/CompanyItem/ITProducts/Images/[3]_${item}_${demo_3}.svg" />
+						</object>
 
-							<%-- <img class="image-container img-thumbnail"
+						<%-- <img class="image-container img-thumbnail"
 								data-original="/CompanyItem/ITProducts/Images/[3]_${item}_${demo_3}.svg"
 								alt="Basic line"
 								src="/CompanyItem/ITProducts/Images/[3]_${item}_${demo_3}.svg"> --%>
-							<div class="enter hidden-xs"></div>
-							<div class="text-center" onMouseOver="this.style.color='#58bb45'"
-								onMouseOut="this.style.color='#6B6FCE'" style="color: #6B6FCE">
-								<h4>
-									<strong>${demo_3_text}</strong>
-								</h4>
-							</div>
-							<div class="clearfix"></div>
+						<div class="enter hidden-xs"></div>
+						<div class="text-center" onMouseOver="this.style.color='#58bb45'"
+							onMouseOut="this.style.color='#6B6FCE'" style="color: #6B6FCE">
+							<h4>
+								<strong>${demo_3_text}</strong>
+							</h4>
 						</div>
+						<div class="clearfix"></div>
+					</div>
 
-						<!-- Ajax loaded data, clickable points -->
-						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+					<!-- Ajax loaded data, clickable points -->
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 
-							<object
-								data="/CompanyItem/ITProducts/Images/[4]_${item}_${demo_4}.svg"
-								type="image/svg+xml">
-								<img
-									src="/CompanyItem/ITProducts/Images/[4]_${item}_${demo_4}.svg" />
-							</object>
-							<%-- <img class="image-container img-thumbnail"
+						<object
+							data="/CompanyItem/ITProducts/Images/[4]_${item}_${demo_4}.svg"
+							type="image/svg+xml">
+							<img
+								src="/CompanyItem/ITProducts/Images/[4]_${item}_${demo_4}.svg" />
+						</object>
+						<%-- <img class="image-container img-thumbnail"
 								data-original="/CompanyItem/ITProducts/Images/[4]_${item}_${demo_4}.svg"
 								alt="Basic line"
 								src="/CompanyItem/ITProducts/Images/[4]_${item}_${demo_4}.svg"> --%>
-							<div class="enter hidden-xs"></div>
-							<div class="text-center" onMouseOver="this.style.color='#58bb45'"
-								onMouseOut="this.style.color='#6B6FCE'" style="color: #6B6FCE">
-								<h4>
-									<strong>${demo_4_text}</strong>
-								</h4>
-							</div>
-							<div class="clearfix"></div>
+						<div class="enter hidden-xs"></div>
+						<div class="text-center" onMouseOver="this.style.color='#58bb45'"
+							onMouseOut="this.style.color='#6B6FCE'" style="color: #6B6FCE">
+							<h4>
+								<strong>${demo_4_text}</strong>
+							</h4>
 						</div>
+						<div class="clearfix"></div>
+					</div>
 
 					<div class="enter"></div>
 
@@ -280,7 +280,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 						<h4 class="text-left mgb3">
 							<strong>PURE JAVASCRIPT</strong>
 						</h4>
-						<p>${item} is solely based on native browser technologies and
+						<p>${item}issolely based on native browser technologies and
 							doesn't require client side plugins like Flash or Java.
 							Furthermore you don't need to install anything on your server. No
 							PHP or ASP.NET. ${item} needs only one JavaScript file to run</p>
@@ -300,10 +300,10 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 						<h4 class="text-left mgb3">
 							<strong>NUMEROUS CHART TYPES</strong>
 						</h4>
-						<p>${item}supportsline,spline,area,areaspline,column,bar,pie,
-							scatter, angular gauges, arearange, areasplinerange, columnrange
-							and polar chart types. Many of these can be combined in one
-							chart.</p>
+						<p>${item}supportsline, spline, area, areaspline, column, bar,
+							pie, scatter, angular gauges, arearange, areasplinerange,
+							columnrange and polar chart types. Many of these can be combined
+							in one chart.</p>
 					</div>
 					<div
 						class="col-xs-6 col-xs-offset-3 col-sm-3 col-sm-offset-0 col-md-3 col-md-offset-0">
@@ -469,11 +469,11 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 						<h4 class="text-left mgb3">
 							<strong>EXTERNAL DATA LOADING</strong>
 						</h4>
-						<p>${item}takesthedatainaJavaScriptarray,whichcanbedefinedin
-							the local configuration object, in a separate file or even on a
-							different site. Furthermore, the data can be handled over to
-							${item} in any form, and a callback function used to parse the
-							data into an array.</p>
+						<p>${item} takes the data in a JavaScript array,which can be
+							defined in the local configuration object, in a separate file or
+							even on a different site. Furthermore, the data can be handled
+							over to ${item} in any form, and a callback function used to
+							parse the data into an array.</p>
 					</div>
 					<div
 						class="col-xs-6 col-xs-offset-3 col-sm-3 col-sm-offset-0 col-md-3 col-md-offset-0">
@@ -993,66 +993,66 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 						<p>Premium Support is optional, and valid for two years or
 							until launch of new major version.</p>
 						<!-- <div class="table-responsive"> -->
-							<table class="table table-condensed">
-								<thead>
-									<tr>
-										<th>Support Features</th>
-										<th>Basic Support</th>
-										<th>Premium Support</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>Term</td>
-										<td class="success text-center">2 years</td>
-										<td class="success text-center">2 years</td>
-									</tr>
-									<tr>
-										<td>Access to the Highcharts Forum and Stack Overflow</td>
-										<td class="success text-center"><i class="fa fa-check"></i></td>
-										<td class="success text-center"><i class="fa fa-check"></i></td>
-									</tr>
-									<tr>
-										<td>Support time per developer</td>
-										<td class="warning text-center">1 hour</td>
-										<td class="success text-center">10 hours</td>
-									</tr>
-									<tr>
-										<td>Access to 1<sup>st</sup> line support
-										</td>
-										<td class="success text-center"><i class="fa fa-check"></i></td>
-										<td class="success text-center"><i class="fa fa-check"></i></td>
-									</tr>
-									<tr>
-										<td>Guaranteed initial response time of 36 hours, working
-											days</td>
-										<td class="danger text-center"><i class="fa fa-minus"></i></td>
-										<td class="success text-center"><i class="fa fa-check"></i></td>
-									</tr>
-									<tr>
-										<td>Access to 2nd line support by core developers</td>
-										<td class="danger text-center"><i class="fa fa-minus"></i></td>
-										<td class="success text-center"><i class="fa fa-check"></i></td>
-									</tr>
-									<tr>
-										<td>Emergency hot fixes</td>
-										<td class="danger text-center"><i class="fa fa-minus"></i></td>
-										<td class="success text-center"><i class="fa fa-check"></i></td>
-									</tr>
-									<tr>
-										<td>Text chat with our 1st line support engineers,
-											working days 10-18 CET(CEST)</td>
-										<td class="danger text-center"><i class="fa fa-minus"></i></td>
-										<td class="success text-center"><i class="fa fa-check"></i></td>
-									</tr>
-									<tr>
-										<td>Guiding and advice on implementing Highcharts (with
-											third party systems and platforms)</td>
-										<td class="danger text-center"><i class="fa fa-minus"></i></td>
-										<td class="success text-center"><i class="fa fa-check"></i></td>
-									</tr>
-								</tbody>
-							</table>
+						<table class="table table-condensed">
+							<thead>
+								<tr>
+									<th>Support Features</th>
+									<th>Basic Support</th>
+									<th>Premium Support</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Term</td>
+									<td class="success text-center">2 years</td>
+									<td class="success text-center">2 years</td>
+								</tr>
+								<tr>
+									<td>Access to the Highcharts Forum and Stack Overflow</td>
+									<td class="success text-center"><i class="fa fa-check"></i></td>
+									<td class="success text-center"><i class="fa fa-check"></i></td>
+								</tr>
+								<tr>
+									<td>Support time per developer</td>
+									<td class="warning text-center">1 hour</td>
+									<td class="success text-center">10 hours</td>
+								</tr>
+								<tr>
+									<td>Access to 1<sup>st</sup> line support
+									</td>
+									<td class="success text-center"><i class="fa fa-check"></i></td>
+									<td class="success text-center"><i class="fa fa-check"></i></td>
+								</tr>
+								<tr>
+									<td>Guaranteed initial response time of 36 hours, working
+										days</td>
+									<td class="danger text-center"><i class="fa fa-minus"></i></td>
+									<td class="success text-center"><i class="fa fa-check"></i></td>
+								</tr>
+								<tr>
+									<td>Access to 2nd line support by core developers</td>
+									<td class="danger text-center"><i class="fa fa-minus"></i></td>
+									<td class="success text-center"><i class="fa fa-check"></i></td>
+								</tr>
+								<tr>
+									<td>Emergency hot fixes</td>
+									<td class="danger text-center"><i class="fa fa-minus"></i></td>
+									<td class="success text-center"><i class="fa fa-check"></i></td>
+								</tr>
+								<tr>
+									<td>Text chat with our 1st line support engineers, working
+										days 10-18 CET(CEST)</td>
+									<td class="danger text-center"><i class="fa fa-minus"></i></td>
+									<td class="success text-center"><i class="fa fa-check"></i></td>
+								</tr>
+								<tr>
+									<td>Guiding and advice on implementing Highcharts (with
+										third party systems and platforms)</td>
+									<td class="danger text-center"><i class="fa fa-minus"></i></td>
+									<td class="success text-center"><i class="fa fa-check"></i></td>
+								</tr>
+							</tbody>
+						</table>
 						<!-- </div> -->
 					</div>
 				</div>

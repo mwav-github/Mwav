@@ -43,7 +43,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 		<div class="row">
 			<div class="col-lg-12">
 				<h1 class="page-header">
-					IT Solutions <small>WebSite Building</small>
+					Company Item <small>WebSite Building</small>
 				</h1>
 				<ol class="breadcrumb">
 					<li><a href="index.html">Home</a></li>
@@ -59,27 +59,12 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 			<!-- Sidebar Column left메뉴 추후 변경 예정<시작>-->
 			<div class="col-md-3">
 				<div class="list-group">
-				 <%--
-					<a href="/CompanyItem/IT Solutions/IT Solutions.jsp"
-						class="list-group-item" data-toggle="tooltip" data-placement="top"
-						data-original-title="IT솔루션">IT Solutions</a> <a
-						href="/CompanyItem/IT Products/IT Products.jsp"
-						class="list-group-item " data-toggle="tooltip"
-						data-placement="top" data-original-title="IT제품">IT Products</a> 
-						 --%>
-						
-						<a
-						href="/CompanyItem/WebSiteBuilding/WebSiteBuilding.jsp"
+
+					<a href="/CompanyItem/WebSiteBuilding/WebSiteBuilding.mwav"
 						class="list-group-item active" data-toggle="tooltip"
 						data-placement="top" data-original-title="웹사이트 제작" target="_blank">WebSite
-						Building</a> <%--<a
-						href="/CompanyItem/Digital Marketing/Digital Marketing.jsp"
-						class="list-group-item " data-toggle="tooltip"
-						data-placement="top" data-original-title="디지털 마케팅">Digital
-						Marketing</a> <a href="/CompanyItem/IT Consulting/IT Consulting.jsp"
-						class="list-group-item " data-toggle="tooltip"
-						data-placement="top" data-original-title="IT 컨설팅">IT
-						Consulting</a> --%>
+						Building</a>
+
 				</div>
 			</div>
 			<!-- 끝 -->
@@ -87,10 +72,71 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 			<!-- Content Column -->
 			<div class="col-md-9">
 
+				<div class="col-lg-12">
+					<h2 class="page-header mwav_leftText">WebSiteBuilding</h2>
+				</div>
 				<!-- Intro Content -->
 				<div class="row">
+					<!-- /.col-md-4 -->
+					<div class="col-md-4">
+						<div class="enter"></div>
+						<p>
+							주식회사 Mwav는 다양한 고객들의 웹 사이트를 제작해드리고 있습니다. <br> 각 분야의 전문가들로
+							구성되어, 모바일 최적화 기능, 최신 기술 적용, 비지니스 최적화, 맞춤형 도메인 등록, 안정적인 호스팅, SEO
+							향상 등 완성도 높고 안정적인 웹 사이트를 제공해 드립니다.!
+						</p>
+
+						<a class="btn btn-primary btn-md">LIVE PREVIEW</a>
+					</div>
 					<div class="col-md-8">
-						<a href="/Templates/FrontTemplate.html" target="_blank"> <img class="img-responsive well"
+						<img class="img-responsive img-rounded"
+							src="/CompanyItem/WebSiteBuilding/Images/Website_building_3.jpg"
+							alt="">
+					</div>
+
+					<div class="col-lg-12">
+						<div class="well text-center">Mwav의 한발 앞선 홈페이지 제작 기술은 하루아침에
+							이뤄지지 않았습니다!</div>
+					</div>
+				</div>
+
+				<!-- Our Customers -->
+				<div class="row">
+					<div class="col-lg-12">
+						<h2 class="page-header">Technologies</h2>
+					</div>
+					<div class="col-md-2 col-sm-4 col-xs-4">
+						<img class="img-responsive "
+							src="/Images/CompanyLogos/logo_html5.png" alt="">
+					</div>
+					<div class="col-md-2 col-sm-4 col-xs-4">
+						<img class="img-responsive "
+							src="/Images/CompanyLogos/logo_javascript.png" alt="">
+					</div>
+					<div class="col-md-2 col-sm-4 col-xs-4">
+						<img class="img-responsive "
+							src="/Images/CompanyLogos/logo_css3.png" alt="">
+					</div>
+					<div class="col-md-2 col-sm-4 col-xs-4">
+						<img class="img-responsive "
+							src="/Images/CompanyLogos/logo_bootstrap.png" alt="">
+					</div>
+					<div class="col-md-2 col-sm-4 col-xs-4">
+						<img class="img-responsive "
+							src="/Images/CompanyLogos/logo_googleanaytics.png" alt="">
+					</div>
+					<div class="col-md-2 col-sm-4 col-xs-4">
+						<img class="img-responsive "
+							src="/Images/CompanyLogos/logo_jquery.png" alt="">
+					</div>
+				</div>
+
+
+
+				<!-- <div class="row">
+					<div class="col-md-8">
+						<a href="/Templates/FrontTemplate.html" target="_blank"> <img
+							class="img-responsive well"
 							src="/CompanyItem/WebSiteBuilding/Images/CompanyTemplate.gif"
 							alt=""></a>
 					</div>
@@ -113,89 +159,9 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 						</ul>
 						<br>
 					</div>
-				</div>
-
-				<!-- Our Customers -->
-				<div class="row">
-					<div class="col-lg-12">
-						<h2 class="page-header">Our Customers</h2>
-					</div>
-					<div class="col-md-2 col-sm-4 col-xs-6">
-						<img class="img-responsive "
-							src="/Images/CompanyLogos/CompanyLogo.gif" alt="">
-					</div>
-					<!-- <div class="col-md-2 col-sm-4 col-xs-6">
-						<img class="img-responsive " src="http://placehold.it/500x300"
-							alt="">
-					</div>
-					<div class="col-md-2 col-sm-4 col-xs-6">
-						<img class="img-responsive " src="http://placehold.it/500x300"
-							alt="">
-					</div>
-					<div class="col-md-2 col-sm-4 col-xs-6">
-						<img class="img-responsive " src="http://placehold.it/500x300"
-							alt="">
-					</div>
-					<div class="col-md-2 col-sm-4 col-xs-6">
-						<img class="img-responsive " src="http://placehold.it/500x300"
-							alt="">
-					</div>
-					<div class="col-md-2 col-sm-4 col-xs-6">
-						<img class="img-responsive " src="http://placehold.it/500x300"
-							alt="">
-					</div> -->
-				</div>
-				<%--아래 만약 넣더라도 이슈체크 모바일 버전에서 좌우 스크롤생김 row 부분 및 영역이슈 일듯  --%>
-				<!-- Contact Us  -->
-				<!-- <div class="row">
-					<div class="col-lg-12">
-						<h2 class="page-header">Contact Us</h2>
-					</div>
-					<div class="row mgt12">
-						<div class="well well-sm">
-							<form>
-								<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											<label for="name"> Name</label> <input type="text"
-												class="form-control" id="name" placeholder="Enter name"
-												required="required" />
-										</div>
-										<div class="form-group">
-											<label for="email"> Email Address</label>
-											<div class="input-group">
-												<span class="input-group-addon"><span
-													class="glyphicon glyphicon-envelope"></span> </span> <input
-													type="email" class="form-control" id="email"
-													placeholder="Enter email" required="required" />
-											</div>
-										</div>
-										<div class="form-group">
-											<label for="subject"> Subject</label> <select id="subject"
-												name="subject" class="form-control" required="required">
-												<option value="na" selected="">Choose One:</option>
-												<option value="service">General Customer Service</option>
-												<option value="suggestions">Suggestions</option>
-												<option value="product">Product Support</option>
-											</select>
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label for="name"> Message</label>
-											<textarea name="message" id="message" class="form-control"
-												rows="9" cols="25" required="required" placeholder="Message"></textarea>
-										</div>
-									</div>
-									<div class="col-md-12">
-										<button type="submit" class="btn btn-primary pull-right"
-											id="btnContactUs">Send Message</button>
-									</div>
-								</div>
-							</form>
-						</div>
-					</div>
 				</div> -->
+
+
 			</div>
 		</div>
 		<!-- /.row -->

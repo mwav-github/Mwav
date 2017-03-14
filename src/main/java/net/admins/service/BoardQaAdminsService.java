@@ -21,6 +21,8 @@ public interface BoardQaAdminsService {
 
 	boolean insertQnAUaForm(Map<String, Object> map);
 
+	boolean updateQnAUaForm(Map<String, Object> map);
+
 /////////////////////////////////////BoardNews/////////////////////////////////////
 
 

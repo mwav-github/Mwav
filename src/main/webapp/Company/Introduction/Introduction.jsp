@@ -45,7 +45,7 @@
 		<!-- (2) Vision -->
 		<div class="row">
 			<div class="col-lg-12">
-				<h2 class="page-header">Introduction</h2>
+				<h2 class="page-header mwav_leftText">Introduction</h2>
 			</div>
 
 			<div class="col-lg-12">
@@ -255,7 +255,7 @@
 		<!-- (3) Organization Chart -->
 		<div class="row">
 			<div class="col-lg-12">
-				<h2 class="page-header">Organization Chart</h2>
+				<h2 class="page-header mwav_leftText">Organization Chart</h2>
 			</div>
 			<div class="col-lg-12">
 				<div class="well">

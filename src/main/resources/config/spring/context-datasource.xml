@@ -4,7 +4,10 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 						http://www.springframework.org/schema/jdbc  http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd">
     
-    
+    	<!-- http://m.blog.naver.com/mky1416/220647254648 
+	중요 해당 객체는 스프링에서 제공되는 테스트ㅌ
+		용이라서 실제운영환경에서는 심각한 문제 발생소지가 있다. 
+		http://cafe.naver.com/jjdev/2180-->
     <bean id="dataSourceSpied" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="org.gjt.mm.mysql.Driver"/>  <!-- 읽어온 정보를 매핑시켜 가지고 있는 빈 -->
 		<property name="url" value="jdbc:mysql://localhost:3306/mwav"/>

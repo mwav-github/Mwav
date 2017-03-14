@@ -25,46 +25,82 @@
 	</script>
 </c:if>
 <script>
-function reCheckForm(formname){
-	//var formname;
-	//alert(formname);
-	var uqUserName = formname.uqUserName;
-	//alert(uqUserName);
-	//var uqUserName = document.getElementById("uqUserName");
-	var uqUserPhone = formname.uqUserPhone;
-	//var uqUserEmail = $('#uqUserEmail');
-	//var uqUserPw = $('#uqUserPw');
-	var uqContent = formname.uqContent;
-	var uqUserEmail = formname.uqUserEmail;
-	var uqUserPw = formname.uqUserPw;
-	
-	var uqTitle = formname.uqTitle;
-	var uqGroup = formname.uqGroup;
-	//$('#uqContent') 은 undefined
+	function reCheckForm(formname) {
+		//var formname;
+		//alert(formname);
+		var uqUserName = formname.uqUserName;
+		//alert(uqUserName);
+		//var uqUserName = document.getElementById("uqUserName");
+		var uqUserPhone = formname.uqUserPhone;
+		//var uqUserEmail = $('#uqUserEmail');
+		//var uqUserPw = $('#uqUserPw');
+		var uqContent = formname.uqContent;
+		var uqUserEmail = formname.uqUserEmail;
+		var uqUserPw = formname.uqUserPw;
 
-	var check_1 = emptyCheck(uqUserName, "이름을 입력해주세요.");
-	var check_2 = emptyCheck(uqUserPhone, "핸드폰 번호을 입력해주세요.");
-	var check_3 = emptyCheck(uqContent, "내용을 입력해주세요.");
-	var check_4 = chkEmailPolicy(uqUserEmail.value, uqUserEmail);
-	if (uqUserPw != null){
-	var check_5 = chkPWPolicy(uqUserPw.value, uqUserPw);
-	}
-	var check_6 = emptyCheck(uqTitle, "제목을 입력해주세요.");
-	var check_7 = emptyCheck(uqGroup, "분류기준을 선택해주세요.");
-	
-	var check = false;
-	// && check_5 == true 패스워드는 회원인경우 없으니까 
-	if(check_1 == true && check_2 == true && check_3 == true
-			&& check_4 == true && check_6 == true && check_7 == true){
-		check = true;
-		return true;
+		var uqTitle = formname.uqTitle;
+		var uqGroup = formname.uqGroup;
+		//$('#uqContent') 은 undefined
+
+		var check_1 = emptyCheck(uqUserName, "이름을 입력해주세요.");
+		if (check_1 == false) {
+			uqUserName.focus();
+			return false;
+		}
+		var check_2 = emptyCheck(uqUserPhone, "핸드폰 번호을 입력해주세요.");
+		if (check_2 == false) {
+			uqUserPhone.focus();
+			return false;
+		}
 		
-	}else{
-		check = false;
-		return false;
+		var check_3 = emptyCheck(uqUserEmail, "이메일을 입력해주세요.");
+		check_3 = chkEmailPolicy(uqUserEmail.value, uqUserEmail);
+		if (check_3 == false) {
+			uqUserEmail.focus();
+			return false;
+		}
+
+		//회원인경우 해당되지 않음.
+		if (uqUserPw != null) {
+			var check_4 = chkPWPolicy(uqUserPw.value, uqUserPw);
+			if (check_4 == false) {
+				uqUserPw.focus();
+				return false;
+			}
+
+		}
+		var check_5 = emptyCheck(uqGroup, "분류기준을 선택해주세요.");
+		if (check_5 == false) {
+			uqGroup.focus();
+			return false;
+		}
+		
+		var check_6 = emptyCheck(uqTitle, "제목을 입력해주세요.");
+		if (check_6 == false) {
+			uqTitle.focus();
+			return false;
+		}
+		
+		var check_7 = emptyCheck(uqContent, "내용을 입력해주세요.");
+		if (check_7 == false) {
+			uqContent.focus();
+			return false;
+		}
+		
+
+		var check = false;
+		// && check_4 == true 패스워드는 회원인경우 없으니까 
+		if (check_1 == true && check_2 == true && check_3 == true
+				&& check_5 == true && check_6 == true && check_7 == true) {
+			check = true;
+			return true;
+
+		} else {
+			check = false;
+			return false;
+		}
+
 	}
-	
-}
 
 	function insertQAForm() {
 
@@ -76,7 +112,7 @@ function reCheckForm(formname){
 		//==================
 
 		var check = reCheckForm(for1mname);
-			
+
 		if (check == true) {
 			//alert('11');
 
@@ -110,7 +146,7 @@ function reCheckForm(formname){
 									setTimeout(function() {
 										$("#Contact").modal('hide');
 										$("#alert_success").hide();
-									}, 2000);
+									}, 1500);
 
 								} else if (xmlStr === false) {
 
@@ -119,8 +155,8 @@ function reCheckForm(formname){
 									//안내 어떻게 해줄지 추후 구현 필요
 									setTimeout(function() {
 										$("#Contact").modal('hide');
-										$("#alert_success").hide();
-									}, 2000);
+										$("#alert_failure").hide();
+									}, 1500);
 								}
 
 							}
@@ -186,8 +222,8 @@ function reCheckForm(formname){
 			<div class="modal-body">
 
 				<form class="form-horizontal" id="QAForm">
-					<input TYPE="hidden" name="uqStatus" value="">
-					<input TYPE="hidden" name="before_Q_id" value="${before_Q_id }">
+					<input TYPE="hidden" name="uqStatus" value=""> <input
+						TYPE="hidden" name="before_Q_id" value="${before_Q_id }">
 					<fieldset>
 
 						<!-- Form Name -->
@@ -245,7 +281,8 @@ function reCheckForm(formname){
 							<div class="col-md-8">
 								<input id="uqRelatedLink" name="uqRelatedLink"
 									placeholder="Enter Your Website" class="form-control input-md"
-									type="text"> <!-- <span class="help-block">Ex:
+									type="text">
+								<!-- <span class="help-block">Ex:
 									Mwav.net</span> -->
 							</div>
 						</div>
@@ -271,8 +308,9 @@ function reCheckForm(formname){
 									*</label>
 								<div class="col-md-8">
 									<input id="uqUserPw" name="uqUserPw"
-										placeholder="Enter Your E mail" class="form-control input-md caps_lockchk"
-										type="password" value="" required>
+										placeholder="Enter Your E mail"
+										class="form-control input-md caps_lockchk" type="password"
+										value="" required>
 
 								</div>
 							</div>
@@ -282,15 +320,16 @@ function reCheckForm(formname){
 							<label class="col-md-3 control-label" for="title">Select
 								an issue*</label>
 							<div class="col-md-8">
-								<select class="form-control input-sm" id="uqGroup" name="uqGroup">
+								<select class="form-control input-sm" id="uqGroup"
+									name="uqGroup">
 									<option value="">-- Please make a selection --</option>
-								<option value="apply">서비스신청접수</option>
-								<option value="gds">일반제품문의</option>
-								<option value="tech">기술지원문의</option>
-								<option value="biz">사업제휴문의</option>
-								<option value="quota">온라인견적문의</option>
-								<option value="error">사이트불편신고</option>
-								<option value="etc">기타제안 및 문의</option>
+									<option value="apply">서비스신청접수</option>
+									<option value="gds">일반제품문의</option>
+									<option value="tech">기술지원문의</option>
+									<option value="biz">사업제휴문의</option>
+									<option value="quota">온라인견적문의</option>
+									<option value="error">사이트불편신고</option>
+									<option value="etc">기타제안 및 문의</option>
 								</select>
 							</div>
 						</div>
@@ -336,14 +375,15 @@ function reCheckForm(formname){
 							class="btn btn-default btn-hover-red" data-dismiss="modal"
 							role="button">Delete</button>
 					</div> -->
+
+					<div class="btn-group" role="group">
+						<button type="button" class="btn btn-danger" data-dismiss="modal"
+							role="button">Close</button>
+					</div>
 					<div class="btn-group" role="group">
 						<button type="button" id="insertQA"
 							class="btn btn-primary btn-hover-green" data-action="save"
 							role="button" onClick="insertQAForm(this.form);">Send</button>
-					</div>
-					<div class="btn-group" role="group">
-						<button type="button" class="btn btn-danger" data-dismiss="modal"
-							role="button">Close</button>
 					</div>
 				</div>
 			</div>
@@ -393,7 +433,8 @@ row 형태로 한줄 씩 한 후 ! enter 해준다.
 							<div class="col-md-12 col-sm-12">
 								<label for="password">Password*</label> <input id="uqUserPw"
 									name="uqUserPw" placeholder="Enter Your password"
-									class="form-control input-md caps_lockchk" type="password" value="" required>
+									class="form-control input-md caps_lockchk" type="password"
+									value="" required>
 							</div>
 						</div>
 						<div class="enter"></div>
@@ -401,8 +442,9 @@ row 형태로 한줄 씩 한 후 ! enter 해준다.
 
 					<div class="row">
 						<div class="col-md-6 col-sm-6">
-							<label for=uqGroup>Select an issue*</label> <select class="form-control input-sm" id="uqGroup" name="uqGroup">
-									<option value="">-- Please make a selection --</option>
+							<label for=uqGroup>Select an issue*</label> <select
+								class="form-control input-sm" id="uqGroup" name="uqGroup">
+								<option value="">-- Please make a selection --</option>
 								<option value="apply">서비스신청접수</option>
 								<option value="gds">일반제품문의</option>
 								<option value="tech">기술지원문의</option>
@@ -410,7 +452,7 @@ row 형태로 한줄 씩 한 후 ! enter 해준다.
 								<option value="quota">온라인견적문의</option>
 								<option value="error">사이트불편신고</option>
 								<option value="etc">기타제안 및 문의</option>
-								</select>
+							</select>
 						</div>
 
 

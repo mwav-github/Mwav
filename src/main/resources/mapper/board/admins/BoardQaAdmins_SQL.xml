@@ -35,9 +35,15 @@
     </update>
     
  	
-	<update id="updateQnAUaForm" parameterType="hashmap">
+	<update id="updateQnAUaFormStatus" parameterType="hashmap">
     <![CDATA[
        update UserQuestion_tbl set uqStatus ='10' where QnA_id = #{QnA_id} 
+    ]]>
+    </update>
+    
+    <update id="updateQnAUaForm" parameterType="hashmap">
+    <![CDATA[
+        update UserAnswer_tbl set uaTitle = #{uaTitle}, uaContent = #{uaContent}, uaUpdateDt = NOW() where QnA_id = #{QnA_id} 
     ]]>
     </update>
 

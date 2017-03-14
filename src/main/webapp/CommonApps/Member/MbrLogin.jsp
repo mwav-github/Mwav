@@ -425,12 +425,12 @@
 		</div>
 
 
-		<div class="checkbox">
+		<!-- <div class="checkbox">
 			<label> <input type="checkbox" name="remember" id="remember">
 				Remember login
 			</label>
 			<p class="help-block">(if this is a private computer)</p>
-		</div>
+		</div> -->
 		<div class="form-group">
 			<button type="submit" class="btn btn-success btn-block">Login</button>
 		</div>

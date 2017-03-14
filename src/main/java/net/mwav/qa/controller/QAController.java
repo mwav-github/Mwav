@@ -57,54 +57,51 @@ public class QAController {
 	@RequestMapping(value = "/qa/qaFormAjax.mwav")
 	public @ResponseBody boolean insertQAFormaAjax(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
-		//System.out.println("sdfdfs");
+		// System.out.println("sdfdfs");
 		boolean flag = false;
-		try{
-		HttpSession session = request.getSession();
-		int m_id = 0;
-		if (session.getAttribute("member_id") != null){
-			m_id = (int) session.getAttribute("member_id");
-		}
-		
-		
-		commandMap.put("member_id", m_id);
-		
-		
-		log.debug("인터셉터 테스트");
-		//qaService.insertQAForm(commandMap.getMap(), request);
+		try {
+			HttpSession session = request.getSession();
+			int m_id = 0;
+			if (session.getAttribute("member_id") != null) {
+				m_id = (int) session.getAttribute("member_id");
+			}
 
-		flag = qaService.insertQAForm(commandMap.getMap(), request);
+			commandMap.put("member_id", m_id);
 
-		System.out.println("df" + flag);
-		// mv.addObject("insertBnsForm", insertBnsForm);
-		// mv.addObject("IDX", commandMap.get("IDX"));
-		}catch(Exception e){
+			log.debug("인터셉터 테스트");
+			// qaService.insertQAForm(commandMap.getMap(), request);
+
+			flag = qaService.insertQAForm(commandMap.getMap(), request);
+
+			System.out.println("df" + flag);
+			// mv.addObject("insertBnsForm", insertBnsForm);
+			// mv.addObject("IDX", commandMap.get("IDX"));
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return flag;
 	}
-	
+
 	@RequestMapping(value = "/qa/qaForm.mwav")
 	public ModelAndView insertQAForm(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
-		
+
 		ModelAndView mv = new ModelAndView("/CustomerService/CS-MasterPage");
-		
+
 		HttpSession session = request.getSession();
 		String m_id = (String) session.getAttribute("member_id");
 		commandMap.put("member_id", m_id);
 		System.out.println("순서");
 		log.debug("인터셉터 테스트");
 
-
-		//아직 까지는 한벌로 
+		// 아직 까지는 한벌로
 		boolean flag = qaService.insertQAForm(commandMap.getMap(), request);
 
 		System.out.println("df" + flag);
-		
+
 		request.setAttribute("check", flag);
-		//mv.addObject("check", flag);
+		// mv.addObject("check", flag);
 		// mv.addObject("IDX", commandMap.get("IDX"));
 
 		return mv;
@@ -122,12 +119,12 @@ public class QAController {
 		log.debug("인터셉터 테스트");
 		Map<String, Object> selectOneQAView = qaService
 				.selectOneQAView(commandMap.getMap());
-		//System.out.println("값" + selectOneQAView.get("QnA_id_2"));
-		
-		System.out.println("sdf"+selectOneQAView.get("uqStatus"));
+		// System.out.println("값" + selectOneQAView.get("QnA_id_2"));
+
+		System.out.println("sdf" + selectOneQAView.get("uqStatus"));
 
 		if (selectOneQAView != null && !selectOneQAView.isEmpty()) {
-			
+
 			String mm = "site";
 			mv.addObject("mm", mm);
 			mv.addObject("mode", "qaView");
@@ -138,6 +135,32 @@ public class QAController {
 		}
 
 		return mv;
+	}
+
+	@RequestMapping(value = "/qa/uaSatisfactionUpdateAjax.mwav")
+	public @ResponseBody boolean updateQnAUaForm(CommandMap commandMap,
+			HttpServletRequest request) throws Exception {
+
+		// HttpSession session = request.getSession();
+
+		/*
+		 * int uaSatisfaction = 0; uaSatisfaction = (int)
+		 * request.getAttribute("uaSatisfaction");
+		 */
+		/*
+		 * System.out.println("uaSatisfaction = "+uaSatisfaction);
+		 * 
+		 * uaSatisfaction = qaService .uaSatisfactionUpdateAjax(uaSatisfaction);
+		 */
+		
+		
+		boolean flag = qaService.uaSatisfactionUpdateAjax(commandMap.getMap());
+
+		// mv.addObject("insertBnsForm", insertBnsForm);
+		// mv.addObject("IDX", commandMap.get("IDX"));
+
+		return flag;
+
 	}
 
 	/*
@@ -188,7 +211,7 @@ public class QAController {
 		if (pageNum == null) {
 			pageNum = "1";
 		}
-		//totalcount 도 조정이 필요하다. (회원 비회원에 따라)
+		// totalcount 도 조정이 필요하다. (회원 비회원에 따라)
 		int totalRow = qaService.selectOneGetTotalCount(m_id, m_email);
 		System.out.println("totalRow=" + totalRow);
 
@@ -230,23 +253,22 @@ public class QAController {
 		ModelAndView mv = new ModelAndView("/CustomerService/QnA/QnA");
 
 		int loginCheck = 0; // 초기값
-		
+
 		String uqUserEmail = null;
 		uqUserEmail = qaService.selectOneQALogin(commandMap.getMap());
 		// String uqUserPw = null;
 		if (uqUserEmail == null) {
-			//0은 아이디 또는 pw가 틀린 것
+			// 0은 아이디 또는 pw가 틀린 것
 			System.out.println("loginCheck =" + loginCheck);
 			loginCheck = 0;
-		}else {
-			loginCheck = 1; 
+		} else {
+			loginCheck = 1;
 		}
-			// 페이지에서 온 값
+		// 페이지에서 온 값
 
-		
 		request.setAttribute("loginCheck", loginCheck);
 		request.setAttribute("uqUserEmail", uqUserEmail);
-		
+
 		return mv;
 	}
 	/*

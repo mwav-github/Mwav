@@ -59,6 +59,7 @@ public class BoardServiceImpl implements BoardService {
 		}
 
 		Map<String, Object> resultMap = boardDAO.selectOneBnsView(map);
+		resultMap.get("");
 		return resultMap;
 	}
 

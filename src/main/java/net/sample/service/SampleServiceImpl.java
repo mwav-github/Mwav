@@ -11,6 +11,9 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 /*ServiceImpl 클래스는 Service 인터페이스를 통해 정의된 메서드를 실제로 구현하는 클래스
  @Servcie 어노테이션을 이용하여 Service 객체임을 선언하였고, 이 객체의 이름은 "sampleService"라고 선언하였다. 
+ 
+ 만약 Autowired 나 Inject 이라면
+ @Service 만 쓴다. 
 */
 @Service("sampleService")
 public class SampleServiceImpl implements SampleService{

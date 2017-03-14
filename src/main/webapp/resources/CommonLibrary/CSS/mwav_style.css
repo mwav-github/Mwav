@@ -2,9 +2,279 @@
 
 
 
+/* mwav card section */
+@media screen and (max-width 420px)
+ {
+	.mwav_important_10{
+		font-size : 11px !important;
+	}
+}
+	 
+	 
+/* mwav card section */
+
+.news {
+    background: #fff;
+	position: relative;
+	overflow: hidden;
+	z-index:1;
+ 	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-ms-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;	
+
+	border: 1px solid #eaeaea;
+}
+
+.news .img-figure {
+	position: relative;
+}
+
+.news .img-figure img {
+	position: relative;	
+	overflow: hidden;
+	-webkit-transition: all 1s ease;
+	-moz-transition: all 1s ease;
+	-ms-transition: all 1s ease;
+	-o-transition: all 1s ease;
+	transition: all 1s ease;
+}
+
+.news:hover .img-figure img {
+	-webkit-transform: scale(1.10);
+	-moz-transform: scale(1.10);
+	-ms-transform: scale(1.10);
+	-o-transform: scale(1.10);
+	transform: scale(1.10);
+}
+
+.news .title {
+	/*padding: 29px 30px;*/
+	padding: 45px 30px;
+	position: absolute;
+	left: 0;
+	background: #fff;
+	width: 100%;
+	height: 100%;
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-ms-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;	
+}
+
+.news .title h1 {
+	margin: 0;
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 19px;
+/*	color: #3D6AA2;*/
+	text-align: center;
+}
+
+.news:hover .title  {
+	margin-top: -90px;
+	background: #fff;
+}
+
+.news  p.description {
+	position: relative;
+	font-weight: normal;
+	line-height: 22px;
+	opacity: 0;
+
+	text-align: center;
+
+	padding: 15px 30px 0px 30px;
+
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-ms-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;	
+}
+
+.news:hover p.description  {
+	opacity: 1;
+}
+
+p.more {
+	text-align: center;
+}
+
+.more a {
+    position: relative;
+    font-size: 13px;
+    margin-top: 30px;
+    display: block;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    display: inline-block;
+    color: #28998b;
+}
+
+.more a:after {
+    content: '';
+    width: 18px;
+    height: 1px;
+
+    position: absolute;
+    left: 55px;
+    top: 9px;
+
+    background: #28998b;
+
+    vertical-align: middle;
+    margin-left: 10px;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+
+.news:hover a:after {
+    width: 30px;
+}
+
+.cat {
+	background: #a0bc9f;
+	color: #fff;
+	text-transform: uppercase;
+	position: absolute;
+	left: 0;
+	top: 20px;
+	z-index: 1;
+	padding: 3px 15px;
+}
 
 
 
+/*mwav text */
+.mwav_leftText {
+	border-left : 10px solid #4d90c5;
+	padding : 0 0 0 15px
+}
+
+/* mwav button */
+/*주로 별 쪽에 쓰인다. (q&a 평가부분 체크) */
+.btn-grey{
+    background-color:#D8D8D8;
+	color:#FFF;
+}
+
+	 .product-item     .learnmore         {
+        float:         right;
+        color:         #a8aeb3;
+        border:         1px         #bdbbbb         solid
+        padding:         3px         6px;
+        text-transform:         uppercase;	
+	}
+
+	 .product-item     .learnmore:hover         {
+         color:         #ffffff;
+         background:         #00547E;
+         border-color:         #e84d1c;	
+	}
+
+
+/* ==============슬라이더================*/
+#myCarousel .box{
+    border: solid 1px #FFF;
+	outline: solid 1px #e0e0e0;
+}
+
+#myCarousel .carousel{
+	margin-top: 30px;
+	position: relative;
+	padding-bottom: 50px;
+	background-color: #D8D8D8;
+}
+
+#myCarousel .item h2{
+	width: 80%;
+	color: #FFF;
+	/*padding: 15px;*/
+	font-size: 38px;
+	margin-bottom: 2.5em;
+	text-align: center;
+	text-shadow: 1px 2px 3px #444;
+}
+
+#myCarousel .item .block{
+	width: 100%;
+	float: left;
+	color: #FFF;
+	/*min-height: 200px;*/
+	text-align: center;
+	padding: 7px;
+	margin-top: 2.5em;
+	box-shadow: 1px 2px 3px #444;
+}
+
+
+#myCarousel .item h4{
+	width: 100%;
+	/*padding: 10px;*/
+	font-size: 30px;
+	font-weight: 900;
+	text-align: center;
+	text-shadow: 2px 2px 2px #555;
+}
+
+
+#myCarousel .item p{
+	text-align: center;
+	font-size: 18px;
+}
+
+#myCarousel .item .input-group{
+	margin-bottom: 10px;
+}
+
+#myCarousel .block-1{
+	background-color: #94C83C
+}
+
+#myCarousel .block-2{
+	background-color: #F36E20
+}
+
+#myCarousel .block-3{
+	background-color: #3498DB
+}
+
+#myCarousel .block-4{	
+	background-color: #F7C767
+}
+
+#myCarousel .carousel-indicators {
+    bottom: 0px;
+}
+
+
+#myCarousel .slide1 h3, #myCarousel .slide2 h3, #myCarousel .slide3 h3, #myCarousel .slide4 h3{
+    color: #fff;
+    font-size: 30px;
+      text-transform: uppercase;
+      font-weight:700;
+}
+
+#myCarousel .slide1 h4,#myCarousel .slide2 h4,#myCarousel .slide3 h4,#myCarousel .slide4 h4{
+    color: #fff;
+    font-size: 30px;
+      text-transform: uppercase;
+      font-weight:700;
+}
+#myCarousel .slide1 .text-left ,#myCarousel .slide3 .text-left{
+    padding-left: 40px;
+}
+/* ==============슬라이더================*/
 
 
 /* CSS Document */    
@@ -4485,8 +4755,14 @@ Reference: http://avexdesigns.com/responsive-youtube-embed/
 		
 		}
 
-		
+		  .hr_gray       {
 
+
+	
+
+        
+		border-top: 3px solid #78828D !important;
+}
 		
 
 	

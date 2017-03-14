@@ -404,48 +404,49 @@ function resizeImageSize() {
  */
 
 function res_Text() {
-
 	// 선호 해상도 (이미지가 정상적으로 보이는 기준점 해상도-자동화 예정)
 	var preferredSize = 1280 * 720;
 
-	var secW = $(".sec").width();
-	var secH = $(".sec").height();
+	var secW = $(window).width();
+	var secH = $(window).height();
 
 	// 현재 해상도
 	var currentSize = secW * secH;
 
 	// 해상도에 따른 이미지 비율
 	var scalePercentage = Math.sqrt(currentSize) / Math.sqrt(preferredSize);
-
+    //alert(scalePercentage);
+	
 	// 지정 폰트
 	var newFontSize = 0;
 
 	// 선호 폰트 사이즈 (자동화 예정)
-	var preferredFontSize = [ 650, 460, 185, 153, 139, 108 ]; // 선호폰트 사이즈 %
-	// (/100 하면 em)
-
-	newFontSize = (preferredFontSize[0] * scalePercentage) / 100;
-	$(".large1").css("font-size", newFontSize + 'em');
-
+	var preferredFontSize = [ 612, 302, 204, 183, 142, 102 ]; // 선호폰트 사이즈 %
+	// (/102 하면 em)
+	
 	// 큰 폰트 (기존 60px)
-	newFontSize = (preferredFontSize[1] * scalePercentage) / 100;
-	$(".large2").css("font-size", newFontSize + 'em');
+	newFontSize = (preferredFontSize[0] * scalePercentage) / 100;
+	$(".fontsize_60").css("font-size", newFontSize + 'em');
 
-	// 중간 폰트 (기존 24px)
-	newFontSize = (preferredFontSize[2] * scalePercentage) / 100;
-	$(".medium1").css("font-size", newFontSize + 'em');
+	// 큰 폰트 (기존 30px)
+	newFontSize = (preferredFontSize[1] * scalePercentage) / 100;
+	$(".fontsize_30").css("font-size", newFontSize + 'em');
 
 	// 중간 폰트 (기존 20px)
-	newFontSize = (preferredFontSize[3] * scalePercentage) / 100;
-	$(".medium2").css("font-size", newFontSize + 'em');
+	newFontSize = (preferredFontSize[2] * scalePercentage) / 100;
+	$(".fontsize_20").css("font-size", newFontSize + 'em');
 
-	// 작은 폰트 (기존 18px)
-	newFontSize = (preferredFontSize[4] * scalePercentage) / 100;
-	$(".small1").css("font-size", newFontSize + 'em');
+	// 중간 폰트 (기존 18px)
+	newFontSize = (preferredFontSize[3] * scalePercentage) / 100;
+	$(".fontsize_18").css("font-size", newFontSize + 'em');
 
 	// 작은 폰트 (기존 14px)
+	newFontSize = (preferredFontSize[4] * scalePercentage) / 100;
+	$(".fontsize_14").css("font-size", newFontSize + 'em');
+
+	// 작은 폰트 (기존 10px)
 	newFontSize = (preferredFontSize[5] * scalePercentage) / 100;
-	$(".small2").css("font-size", newFontSize + 'em');
+	$(".fontsize_10").css("font-size", newFontSize + 'em');
 }
 
 
@@ -818,3 +819,159 @@ function sendSns(url, utm_source, utm_campaign ,utm_medium, utm_content, subTitl
             break;
     }
 }
+
+function reloadPage(paramName, paramValue){
+	var parameterName = paramName;
+	var parameterValue = paramValue;
+
+	if(parameterName != null || parameterValue != null){
+		$('input[name="reloadparam"]').val(paramValue);
+	window.location = location.href + "&"+ parameterName + "="+ parameterValue;
+	}
+	else{
+		window.location = location.href;
+	}
+}
+
+//자바스크립트 parater 자르기 
+function getParams() {
+    // 파라미터가 담길 배열
+    var param = new Array();
+ 
+    // 현재 페이지의 url
+    var url = decodeURIComponent(location.href);
+    // url이 encodeURIComponent 로 인코딩 되었을때는 다시 디코딩 해준다.
+    url = decodeURIComponent(url);
+ 
+    var params;
+    // url에서 '?' 문자 이후의 파라미터 문자열까지 자르기
+    params = url.substring( url.indexOf('?')+1, url.length );
+    // 파라미터 구분자("&") 로 분리
+    params = params.split("&");
+ 
+    // params 배열을 다시 "=" 구분자로 분리하여 param 배열에 key = value 로 담는다.
+    var size = params.length;
+    var key, value;
+    for(var i=0 ; i < size ; i++) {
+        key = params[i].split("=")[0];
+        value = params[i].split("=")[1];
+ 
+        param[key] = value;
+    }
+ 
+    return param;
+}
+
+//별표 스크립트
+//Starrr plugin (https://github.com/dobtco/starrr)
+//Starrr plugin (https://github.com/dobtco/starrr)
+var __slice = [].slice;
+
+(function($, window) {
+  var Starrr;
+
+  Starrr = (function() {
+    Starrr.prototype.defaults = {
+      rating: void 0,
+      numStars: 5,
+      change: function(e, value) {}
+    };
+
+    function Starrr($el, options) {
+      var i, _, _ref,
+        _this = this;
+
+      this.options = $.extend({}, this.defaults, options);
+      this.$el = $el;
+      _ref = this.defaults;
+      for (i in _ref) {
+        _ = _ref[i];
+        if (this.$el.data(i) != null) {
+          this.options[i] = this.$el.data(i);
+        }
+      }
+      this.createStars();
+      this.syncRating();
+      this.$el.on('mouseover.starrr', 'span', function(e) {
+        return _this.syncRating(_this.$el.find('span').index(e.currentTarget) + 1);
+      });
+      this.$el.on('mouseout.starrr', function() {
+        return _this.syncRating();
+      });
+      this.$el.on('click.starrr', 'span', function(e) {
+        return _this.setRating(_this.$el.find('span').index(e.currentTarget) + 1);
+      });
+      
+      this.$el.on('dblclick.starrr', 'span', function(e) {
+    	  console.log('dblclick.starrr');
+        return _this.setRating(_this.$el.find('span').index(e.currentTarget) + 1);
+      });
+      this.$el.on('starrr:change', this.options.change);
+    }
+
+    Starrr.prototype.createStars = function() {
+      var _i, _ref, _results;
+
+      _results = [];
+      for (_i = 1, _ref = this.options.numStars; 1 <= _ref ? _i <= _ref : _i >= _ref; 1 <= _ref ? _i++ : _i--) {
+        _results.push(this.$el.append("<span class='glyphicon .glyphicon-star-empty'></span>"));
+      }
+      return _results;
+    };
+
+    Starrr.prototype.setRating = function(rating) {
+      if (this.options.rating === rating) {
+        rating = void 0;
+      }
+      this.options.rating = rating;
+      this.syncRating();
+      return this.$el.trigger('starrr:change', rating);
+    };
+
+    Starrr.prototype.syncRating = function(rating) {
+      var i, _i, _j, _ref;
+
+      rating || (rating = this.options.rating);
+      if (rating) {
+        for (i = _i = 0, _ref = rating - 1; 0 <= _ref ? _i <= _ref : _i >= _ref; i = 0 <= _ref ? ++_i : --_i) {
+          this.$el.find('span').eq(i).removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+        }
+      }
+      if (rating && rating < 5) {
+        for (i = _j = rating; rating <= 4 ? _j <= 4 : _j >= 4; i = rating <= 4 ? ++_j : --_j) {
+          this.$el.find('span').eq(i).removeClass('glyphicon-star').addClass('glyphicon-star-empty');
+        }
+      }
+      if (!rating) {
+        return this.$el.find('span').removeClass('glyphicon-star').addClass('glyphicon-star-empty');
+      }
+    };
+
+    return Starrr;
+
+  })();
+  return $.fn.extend({
+    starrr: function() {
+      var args, option;
+
+      option = arguments[0], args = 2 <= arguments.length ? __slice.call(arguments, 1) : [];
+      return this.each(function() {
+        var data;
+
+        data = $(this).data('star-rating');
+        if (!data) {
+          $(this).data('star-rating', (data = new Starrr($(this), option)));
+        }
+        if (typeof option === 'string') {
+          return data[option].apply(data, args);
+        }
+      });
+    }
+  });
+})(window.jQuery, window);
+
+$(function() {
+  return $(".starrr").starrr();
+});
+
+//별표 끝

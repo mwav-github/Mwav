@@ -75,6 +75,11 @@ public class BoardQaAdminsServiceImpl implements BoardQaAdminsService {
 		// TODO Auto-generated method stub
 		return boardQaAdminsDAO.insertQnAUaForm(map);
 	}
+	@Override
+	public boolean updateQnAUaForm(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return boardQaAdminsDAO.updateQnAUaForm(map);
+	}
 	
 	
 

@@ -126,7 +126,7 @@
 				class="fa fa-twitter"></span></a>
 		</div>
 		<div class="enter"></div>
-		<hr>
+
 		<p>${selectOneBnsView.bnContent}</p>
 
 		<c:if test="${selectOneBnsView.bnRelatedLink eq null }">

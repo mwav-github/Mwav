@@ -33,7 +33,7 @@
 		<div class="row">
 
 			<div class="col-lg-12">
-				<h2 class="page-header">Business Field</h2>
+				<h2 class="page-header mwav_leftText">Business Field</h2>
 			</div>
 			<%--추후 버튼 변경 예정 또한 추가적으로 ~!! 모달 예정--%>
 			<!-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">

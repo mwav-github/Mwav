@@ -78,18 +78,54 @@
 	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 
 <script>
+	$(window).resize(function() {
+		res_Text();
+		
+		 var height = (($('.navbar-fixed-top').height()) + 4);
+		//alert(height);
+		/*$('#myCarousel').animate({
+			marginTop : height
+		}, 1000); */
+		 $('#myCarousel').css({
+				'margin-top' : height
+			});
+		 $('.res_width').css({
+				'margin-top' : height
+			}); 
+/* 		$('.res_width').animate({
+			marginTop : height
+		}, 1000);
+ */
+	});
 	/*TOP버튼*/
 	$(document).ready(function() {
-		
-		
+		var height = (($('.navbar-fixed-top').height()) + 4);
+		res_Text();
+		/* $('#myCarousel').css({
+			'margin-top' : (($('.navbar-fixed-top').height()) + 4) + 'px'
+		}); */
+		/* $('#myCarousel').animate({
+			marginTop : height
+		}, 1000);
+
+		$('.res_width').animate({
+			marginTop : height
+		}, 1000); */
+
+		 $('#myCarousel').css({
+				'margin-top' : height
+			});
+		 $('.res_width').css({
+				'margin-top' : height
+			});
 		//url 에 따라 타이틀 지정 
 		setTitle(location.pathname);
-		
+
 		//caps_lockchk();
 		//alert(set_Title);
 		//capslock 
 		caps_lockchk();
-		
+
 		$('#back-to-top').fadeOut();
 		$(window).scroll(function() {
 			if ($(this).scrollTop() > 550) {
@@ -107,7 +143,6 @@
 			}, 800);
 			return false;
 		});
-		
 
 	});
 </script>

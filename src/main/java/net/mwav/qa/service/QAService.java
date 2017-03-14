@@ -52,6 +52,8 @@ public interface QAService {
 
 	String selectOneQALogin(Map<String, Object> map);
 
+	boolean uaSatisfactionUpdateAjax(Map<String, Object> map);
+
 
 
 	

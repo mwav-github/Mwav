@@ -5,6 +5,13 @@
 <!-- 메인 페이지에서만 타겟팅 나머지는 URL 물고가기
 이놈이 슬라이드쇼 없는 놈 그러나 아직 반영 x 각 페이지별로 따로 있다.
  -->
+<!-- Script to Activate the Carousel -->
+<script>
+	$('.carousel').carousel({
+		interval : 10000
+	//changes the speed
+	});
+</script>
 <%-- <c:if test="${sessionScope.statistics_id eq null }">
 		<script type="text/javascript">
 		$(document).ready(function() {
@@ -123,7 +130,7 @@
      중간으로 보내기 위해서 container 추가 (left 메뉴 안의 페이지와 크기 동일) // => 다시 빼고 영역 조절
 --%>
 <header id="myCarousel" class="mgt5.5 carousel slide"
-	style="height: 72% !important; margin-top: 5.5% !important;">
+	style="height: 72% !important;">
 
 	<!-- Indicators -->
 	<ol class="carousel-indicators">
@@ -134,53 +141,78 @@
 
 	<!-- Wrapper for slides 슬라이드쇼 내용 -->
 	<div class="carousel-inner">
-		<div class="item active">
+		<div class="item active slide1">
 			<div class="fill img-responsive company_slideImg_600"
-				style="background-image: url('/Company/zImage/keyboard-428326_1920.jpg');"></div>
-			<div class="carousel-caption" style="color: #BCE8F1;">
-
-				<!-- <div class="col-md-5 pull-right">
-					<iframe width="100%" src="http://player.vimeo.com/video/117455204" ></iframe>
-
-				</div> -->
-				<!-- <div class="row pull-right">
-					<div class="col-sm-12 col-md-offset-1 ">
-						<a href="#" class="btn btn-danger btn-lg" role="button"><span
-							class="glyphicon glyphicon-list-alt"></span> <br />Apps</a> <a
-							href="#" class="btn btn-warning btn-lg" role="button"><span
-							class="glyphicon glyphicon-bookmark"></span> <br />Bookmarks</a> <a
-							href="#" class="btn btn-success btn-lg" role="button"><span
-							class="glyphicon glyphicon-user"></span> <br />Users</a> <a href="#"
-							class="btn btn-info btn-lg" role="button"><span
-							class="glyphicon glyphicon-file"></span> <br />Notes</a>
+				style="background-image: url('/Company/zImage/keyboard-428326_1920.jpg'); background-repeat: no-repeat;">
+				<div class="carousel-caption">
+					<div class="container">
+						<!-- <div class="col-md-7 text-left">
+						<h3>We are creative</h3>
+						<h4>Get start your next awesome project</h4>
 					</div>
-				</div> -->
-			</div>
-		</div>
-		<div class="item">
-			<div class="fill img-responsive companyItem_slideImg_600"
-				style="background-image: url('/CompanyItem/zImage/computer-1149148_1920.jpg');"></div>
-			<div class="carousel-caption" style="color: #000;">
-
-
-				<!-- <h2>Company Item</h2> -->
-				<!-- <a href="/CompanyItem/IT%20Solutions/Aervision/Aervision.jsp"
-					class="btn btn-info btn-lg">Learn More</a> -->
-				<div class="row pull-right hidden-xs col-sm-6 col-md-6">
-					<h2 class="page-header" style="color: #317eac">News</h2>
-					<div class="bs-component" style="background-color: white;">
-
-
+ -->
+						<div class="col-md-9 col-md-push-3 text-right block block-3">
+							<!-- <div class="row pull-right block block-4 col-sm-6 col-md-6"> -->
+							<h4 class="fontsize_20">IT Trends</h4>
+							<div class="bs-component fontsize_10" style="background-color: white;">
+								<jsp:include page="/board/bnsFrontList.mwav" flush="false" />
+							</div>
+							<%-- <div class="bs-component" style="background-color: white;">
 						<jsp:include page="/board/bnsFrontList.mwav" flush="false" />
+					</div> --%>
+							<!-- </div> -->
+						</div>
 					</div>
 				</div>
-
 			</div>
 		</div>
-		<div class="item">
+		<div class="item slide2">
+			<div class="fill img-responsive companyItem_slideImg_600"
+				style="background-image: url('/CompanyItem/zImage/computer-1149148_1920.jpg'); background-repeat: no-repeat;">
+				<div class="carousel-caption "
+					style="color: rgba(138, 109, 59, 0.14)">
+
+					<h4 class="fontsize_30">We are creative Get start your next awesome project</h4>
+
+					<!-- <h2>Company Item</h2> -->
+					<!-- <a href="/CompanyItem/IT%20Solutions/Aervision/Aervision.jsp"
+					class="btn btn-info btn-lg">Learn More</a> -->
+
+					<div class="col-xs-6 col-sm-4 col-md-4">
+						<div class="block block-1">
+							<h4 class="fontsize_20">WebSite Building</h4>
+							<a href="/CompanyItem/WebSiteBuilding/WebSiteBuilding.mwav"><button
+									class="btn btn-default btn-lg fontsize_14">Learn More</button></a>
+						</div>
+					</div>
+					<div class="col-xs-6 col-sm-4 col-md-4">
+						<div class="block block-2">
+							<h4 class="fontsize_20">Digital Marketing</h4>
+							<a href="/CompanyItem/DigitalMarketing/DigitalMarketing.mwav"><button
+									class="btn btn-default btn-lg fontsize_14">Learn More</button></a>
+						</div>
+					</div>
+					<div class="col-xs-6 col-sm-4 col-md-4">
+						<div class="block block-3">
+							<h4 class="fontsize_20">IT Consulting</h4>
+							<a href="/CompanyItem/ITConsulting/ITConsulting.mwav"><button
+									class="btn btn-default btn-lg fontsize_14">Learn More</button></a>
+						</div>
+					</div>
+					<!-- <div class="col-xs-12 col-sm-6 col-md-3">
+						<div class="block block-4">
+							<h4>Easy to Maintain</h4>
+							<button class="btn btn-default btn-lg">Learn More</button>
+						</div>
+					</div> -->
+				</div>
+			</div>
+		</div>
+		<div class="item slide3">
 			<div class="fill img-responsive customer_slideImg_600"
-				style="background-image: url('/CustomerService/zImage/education-1651259_1920.jpg');"></div>
-			<div class="carousel-caption" style="color: rgba(138, 109, 59, 0.14)">
+				style="background-image: url('/CustomerService/zImage/education-1651259_1920.jpg'); background-repeat: no-repeat;">
+
+
 				<!-- 전체크기는 일괄되게 -->
 				<!-- <div class="hidden-xs hidden-sm col-md-8 row pull-right">
 					<h1 style="color: white;">Contact Address</h1>
@@ -241,16 +273,60 @@
 				</div> -->
 			</div>
 		</div>
+		<a class="left carousel-control" href="#myCarousel" data-slide="prev">
+			<span class="glyphicon glyphicon-chevron-left"></span>
+		</a> <a class="right carousel-control" href="#myCarousel"
+			data-slide="next"> <span
+			class="glyphicon glyphicon-chevron-right"></span>
+		</a>
 	</div>
 
-	<%-- Controls (왼, 오른쪽 화살표 버튼)--%>
-
-	<a class="left carousel-control" href="#myCarousel" data-slide="prev">
-		<span class="glyphicon glyphicon-chevron-left"></span>
-	</a> <a class="right carousel-control" href="#myCarousel" data-slide="next">
-		<span class="glyphicon glyphicon-chevron-right"></span>
-	</a>
 </header>
+
+<%-- Controls (왼, 오른쪽 화살표 버튼)--%>
+<!-- End Wrapper for slides-->
+<!--  <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+            <i class="fa fa-angle-left"></i><span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+            <i class="fa fa-angle-right"></i><span class="sr-only">Next</span>
+        </a>
+        /* ==============슬라이더================*/
+.carousel-control {
+    opacity: 1;
+    filter: alpha(opacity=100);
+}
+.carousel-control .fa-angle-right, .carousel-control .fa-angle-left {
+    position: absolute;
+    top: 50%;
+    z-index: 5;
+    display: inline-block;
+}
+.carousel-control .fa-angle-left{
+    left: 50%;
+    width: 38px;
+    height: 38px;
+    margin-top: -15px;
+    font-size: 30px;
+    color: #fff;
+    border: 3px solid #ffffff;
+    -webkit-border-radius: 23px;
+    -moz-border-radius: 23px;
+    border-radius: 53px;
+}
+.carousel-control .fa-angle-right{
+    right: 50%;
+    width: 38px;
+    height: 38px;
+    margin-top: -15px;
+    font-size: 30px;
+    color: #fff;
+    border: 3px solid #ffffff;
+    -webkit-border-radius: 23px;
+    -moz-border-radius: 23px;
+    border-radius: 53px;
+}
+         -->
 
 <%--  
 이미지 태그 사용시 

@@ -186,6 +186,7 @@ public class BoardQaAdminsController {
 		HttpSession session = request.getSession();
 		Map<String, Object> selectStfLogin = (Map<String, Object>) session.getAttribute("selectStfLogin");
 		
+		System.out.println("qna_id__"+commandMap.get("QnA_id"));
 		
 		if(selectStfLogin != null){
 		commandMap.put("uaResponser", 'S');
@@ -199,6 +200,28 @@ public class BoardQaAdminsController {
 		
 		boolean flag = BoardQaAdminsService
 				.insertQnAUaForm(commandMap.getMap());
+
+		//System.out.println("df" + flag);
+		// mv.addObject("insertBnsForm", insertBnsForm);
+		// mv.addObject("IDX", commandMap.get("IDX"));
+
+		return flag;
+
+	}
+	
+	
+	/*
+	 * 답변달기
+	 */
+	@RequestMapping(value = "/admin/boardQnA/uaFormUpdateAjax.mwav")
+	public @ResponseBody boolean updateQnAUaForm(CommandMap commandMap,
+			HttpServletRequest request) throws Exception {
+
+		//HttpSession session = request.getSession();
+		
+		
+		boolean flag = BoardQaAdminsService
+				.updateQnAUaForm(commandMap.getMap());
 
 		System.out.println("df" + flag);
 		// mv.addObject("insertBnsForm", insertBnsForm);

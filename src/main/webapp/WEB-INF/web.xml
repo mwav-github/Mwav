@@ -12,6 +12,7 @@
     <filter-class>
             org.springframework.web.filter.CharacterEncodingFilter
         </filter-class>
+    <!-- 인코딩 필터 등록 스프링 제공 -->
     <init-param>
       <param-name>encoding</param-name>
       <param-value>utf-8</param-value>

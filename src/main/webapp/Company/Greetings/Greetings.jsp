@@ -33,7 +33,7 @@
 		<!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
 		<div class="row">
 			<div class="col-lg-12">
-				<h2 class="page-header">CEO Greeting</h2>
+				<h2 class="page-header mwav_leftText">CEO Greeting</h2>
 			</div>
 			<div class="col-md-9 col-lg-9 col-sm-7">
 				<br>

@@ -17,7 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
  * - Controller > Service > ServiceImpl > DAO > SQL(XML) > JSP
 
  * 
-  컨트롤러(Controller)는 웹 클라이언트에서 들어온 요청을 해당 비지니스 로직을 호출하고, 수행결과와 함께 응답을 해주는 Dispatcher 역할을 한다. 
+  컨트롤러(Controller)는 웹 클라이언트에서 들어온 요청을 해당 비즈니스 로직을 호출하고, 수행결과와 함께 응답을 해주는 Dispatcher 역할을 한다. 
   클래스의 선언부에 @Controller 어노테이션(Annotation)을 이용하여, Controller 객체임을 선언한다. 
  */
 
@@ -28,6 +28,9 @@ public class SampleController {
 	/*Service 영역의 접근을 위한 선언 
 	  @Resource어노테이션을 통해서 필요한 빈(bean)을 수동으로 등록하는것이다. 
 	   그리고 수동으로 등록할 빈의 이름이 "sampleService"이고, 이는 @Service("sampleService")라고 선언했을 때의 그 이름인것을 확인한다.
+	 
+	 만약 Inject/ Autowired 이면 타입으로 연결(BoardService)
+
 	 * */
 	@Resource(name="sampleService")
 	private SampleService sampleService;

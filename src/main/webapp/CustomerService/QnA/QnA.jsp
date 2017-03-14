@@ -109,9 +109,9 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 
 
 						<div class="row">
-							<div class="col-xs-6"
+							<div class="col-xs-12 col-sm-12 col-md-6"
 								style="border-right: 1px solid #ccc; height: 100%">
-								<h3>
+								<h3 class="mwav_leftText">
 									<strong>Member</strong>
 								</h3>
 								<div class="enter"></div>
@@ -123,8 +123,8 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 									</jsp:include>
 								</div>
 							</div>
-							<div class="col-xs-6">
-								<h3>
+							<div class="col-xs-12 col-sm-12 col-md-6">
+								<h3 class="mwav_leftText">
 									<strong>Non-Member</strong>
 								</h3>
 								<div class="enter"></div>

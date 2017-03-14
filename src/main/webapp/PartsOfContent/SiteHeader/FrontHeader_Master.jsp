@@ -9,7 +9,7 @@
  narbar-static-top으로 해야잡히며, 이때는 fullwidth가 되지않아 수정 필요.
  
  자동으로 영역잡아주는 부분에 대한 고민 필요 --%>
-<div class="row mgb5">
+<div class="row">
 	<nav id="BackToTop" class="menu navbar navbar-full navbar-fixed-top"
 		role="navigation">
 		<div class="container">

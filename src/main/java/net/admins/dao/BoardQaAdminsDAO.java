@@ -88,10 +88,33 @@ public class BoardQaAdminsDAO extends AbstractDAO {
 				//insert 성공시에 status 값 업데이트 해줘야 한다. 
 				
 
-				update("boardQaAdminsDAO.updateQnAUaForm", map);
+				update("boardQaAdminsDAO.updateQnAUaFormStatus", map);
 				
 				flag = true;
 			} else {
+				flag = false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return flag;
+	}
+	
+	
+	public boolean updateQnAUaForm(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		boolean flag = false;
+
+		try {
+			
+
+			String check = String.valueOf(update("boardQaAdminsDAO.updateQnAUaForm", map));
+
+			System.out.println("check" + check);
+			if (check.equals("1")) {
+			
+				flag = true;
+			} else if (check.equals("0")){
 				flag = false;
 			}
 		} catch (Exception e) {

@@ -13,7 +13,7 @@
 
 <script>
 function reCheckuaForm(formname){
-	
+	//alert(formname.uaTitle);
 	var uaTitle = formname.uaTitle;	
 	var uaContent = formname.uaContent;
 	
@@ -35,16 +35,34 @@ function reCheckuaForm(formname){
 	
 }
 
-	function insertQnAUaForm() {
-		var uaForm = document.getElementById("uaForm");
-		var check = reCheckuaForm(uaForm);
+	function insertQnAUaForm(flg) {
+		var uaForm =null;
+		var uaFormSerialize = null;
+		//alert(uaForm);
+		var flag = flg;
+		var url = null;
+		var check = false;
+		if( flag == '1'){
+			uaForm = document.getElementById("uaModifyForm");
+			uaFormSerialize = $('#uaModifyForm');
+//			check = reCheckuaForm(uaModifyForm);
+			url = '/admin/boardQnA/uaFormUpdateAjax.mwav';
+		}else if (flag == '2') {
+			uaForm = document.getElementById("uaForm");
+			uaFormSerialize = $('#uaForm');
+//			uaForm = $('form[name="uaModifyForm"]');
+			url = '/admin/boardQnA/uaFormAjax.mwav';
+		}
+		check = reCheckuaForm(uaForm);
+		//alert(uaForm);
+		//alert(url);
 			
 		if (check == true) {
 			$
 					.ajax({
-						url : "/admin/boardQnA/uaFormAjax.mwav",
+						url : url,
 						type : "post",
-						data : $("#uaForm").serialize(),
+						data : uaFormSerialize.serialize(),
 						contentType : "application/x-www-form-urlencoded; charset=utf-8",
 						dataType : "json", // 데이터타입을 JSON형식으로 지정
 						success : function(xmlStr) {
@@ -53,7 +71,23 @@ function reCheckuaForm(formname){
 								//alert($("#resultpostseek").height());
 								if (xmlStr === true) {
 								alert('정상적으로 답변이 등록되었습니다.')
-								$('#uadivForm').hide();
+								//$('#uadivForm').hide();
+								var url = location.href;
+								var position = url.indexOf("&");
+								var suburl = url.substring(0,position);
+								
+								//&이 없는 경우 - 댓글 최초 등록
+								if(position == '-1'){
+								location.replace(url);
+								}
+								//&이 있는 경우 - 댓글 수정시
+								else {
+								location.replace(suburl);
+									
+								}
+								// 이럴경우 댓글 수정하기 후 리로드하면 또 수정하기 페이지 
+								//http://localhost:8080/admin/boardQnA/qaView.mwav?QnA_id=1000063&qaComment=modify
+								//location.reload();
 							return true;
 
 								} else if (xmlStr === false) {
@@ -80,6 +114,8 @@ function reCheckuaForm(formname){
 			return false;
 		}
 	}
+	
+	
 </script>
 </head>
 
@@ -223,17 +259,29 @@ function reCheckuaForm(formname){
 								<div class="enter"></div>
 								<p>${selectOneQnAView.uqContent}</p>
 
-								<hr class="hr_b">
 								<div class="enter"></div>
 
-								<%--
-							답변완료 건 
-							 <c:if
-								test="${selectOneQnAView.uqStatus eq '10' || selectOneQnAView.uqStatus eq '20' || selectOneQAView.uqStatus eq '100'}"> --%>
-
-
-								<c:if test="${selectOneQnAView.uqStatus ne '1' && selectOneQnAView.uaResponser_id ne null }">
+								<%-- 답변완료 건
+조건:
+1. 관리자 화면에서는 문의접수 외에는 다보여준다. !!
+2. 답변한 답변자가 있어야 한다.
+3. 사용자는 아직 안릭
+ --%>
+								<c:set var="stf_id"
+									value="${sessionScope.selectStfLogin.staff_id}" scope="session"></c:set>
+								<c:if
+									test="${param.qaComment eq null &&  selectOneQnAView.uqStatus ne '1' && selectOneQnAView.uaResponser_id ne null }">
 									<div class="span12">
+
+
+										<c:if
+											test="${selectOneQnAView.uqStatus eq '1' || selectOneQnAView.uqStatus eq '10' && selectOneQnAView.uaBeReadDt eq null && selectOneQnAView.uaResponser_id eq stf_id}">
+											<button type="button"
+												class="btn btn-primary btn-md pull-right"
+												onClick="reloadPage('qaComment', 'modify');">
+												수정<br>
+											</button>
+										</c:if>
 										<div class="well">
 											<h6 class="text-danger text-right">
 												<strong>처리자 : ${sessionScope.selectStfLogin.stfName }
@@ -249,39 +297,86 @@ function reCheckuaForm(formname){
 							</form>
 
 
+							<%-- 답변완료 후 (손님이 읽기전 수정 가능) 
+문의접수 
+조건:
+1. 문의접수 상태값이면서 고객이 안읽었을 때 해당
+2. 또한 수정할 수 있는 사람은 해당 STAFF 여야 한다. 현재 SESSION 과 비교한다.
+ --%>
 
-							<%-- 답변 작성 --%>
-							<c:if test="${selectOneQnAView.uqStatus eq '1' && selectOneQnAView.uaResponser_id eq null }">
-									<div class="span12" id="uadivForm">
-								<form method="post" name="uaForm" id="uaForm">
-									<input type="hidden" name="uaProfit" value="1" /> <input
-										type="hidden" name="QnA_id" value="${selectOneQnAView.QnA_id}" />
+							<c:if test="${param.qaComment == 'modify'}">
+								<div class="span12" id="uadivForm">
+									<form method="post" name="uaModifyForm" id="uaModifyForm">
+										<input type="hidden" name="QnA_id"
+											value="${selectOneQnAView.QnA_id}" />
 
 										<div class="well">
-											<label for="title">Title</label> <input id="uaTitle"
-												name="uaTitle" placeholder="Title"
-												class="form-control input-md" type="text"> <label
+											<h6 class="text-danger text-right">
+												<strong>처리자 : ${sessionScope.selectStfLogin.stfName }
+													| 처리일자 : ${selectOneQnAView.uaInsertDt} </strong>
+											</h6>
+
+											<label for="title">Title</label> <input name="uaTitle"
+												placeholder="Title" class="form-control input-md"
+												type="text" value="${selectOneQnAView.uaTitle}"> <label
 												for="Message">Message*</label>
-											<textarea class="form-control" rows="10" id="uaContent"
-												name="uaContent" placeholder="Enter Your Message *"></textarea>
+											<textarea class="form-control" rows="10" name="uaContent"
+												placeholder="Enter Your Message *">${selectOneQnAView.uaContent}</textarea>
 											<div class="enter"></div>
 											<button type="button" class="btn btn-success btn-block"
-												onClick="insertQnAUaForm(this.form);">답변달기</button>
+												onClick="insertQnAUaForm('1');">답변달기</button>
 										</div>
-								</form>
-									</div>
+									</form>
+								</div>
 							</c:if>
+
+							<%-- 답변작성 건 (손님읽은 후) 
+문의접수 
+조건:
+1. 문의접수 상태값이면서 고객이 읽었을 때 해당
+2. 답변이 된 상태 이어야 한다. 
+ --%>
+							<c:if
+								test="${selectOneQnAView.uqStatus eq '1' && selectOneQnAView.uaResponser_id eq null }">
+								<div class="span12" id="uadivForm">
+									<form method="post" name="uaForm" id="uaForm">
+										<input type="hidden" name="uaProfit" value="1" /> <input
+											type="hidden" name="QnA_id"
+											value="${selectOneQnAView.QnA_id}" />
+
+										<div class="well">
+											<label for="title">Title</label> <input name="uaTitle"
+												placeholder="Title" class="form-control input-md"
+												type="text"> <label for="Message">Message*</label>
+											<textarea class="form-control" rows="10" name="uaContent"
+												placeholder="Enter Your Message *"></textarea>
+											<div class="enter"></div>
+											<button type="button" class="btn btn-success btn-block"
+												onClick="insertQnAUaForm('2');">답변달기</button>
+										</div>
+									</form>
+								</div>
+							</c:if>
+
+							<hr class="hr_b">
+
 							<br style="clear: both">
 							<p class="pull-right">
-
+								<button type="button" class="btn btn-success"
+									onClick="javascript:window.location.href='/admin/boardQnA/qnaList.mwav?pageNum=${pageNum}'">All
+									List</button>
 								<button type="button" class="btn btn-warning"
 									onClick="javascript:history.go(-1)">BACK</button>
-								<button type="button" class="btn btn-danger"
-									onclick="check2(${selectOneQnAView.QnA_id})">Delete</button>
+
+								<c:if
+									test="${selectOneQnAView.uqStatus eq '1' || selectOneQnAView.uqStatus eq '10' && selectOneQnAView.uaBeReadDt eq null && selectOneQnAView.uaResponser_id eq stf_id}">
+
+									<button type="button" class="btn btn-danger"
+										onclick="check2(${selectOneQnAView.QnA_id})">Delete</button>
+								</c:if>
 							</p>
 
 						</div>
-
 
 						<%--================================================끝========================================================== --%>
 					</div>

@@ -2,14 +2,12 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script src="//cdn.ckeditor.com/4.4.6/basic/ckeditor.js"></script>
 <!-- jQuery Version 1.11.0 -->
-<script src="/CommonLibrary/Javascript/Common.js"></script>
 
 <!-- imsi -->
-<link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"
-	rel="stylesheet">
+
 <script>
 	function check2(obj) {
 		if (confirm("정말 삭제하시겠습니까??") == true) { //확인
@@ -20,18 +18,64 @@
 		}
 
 	}
-	
-	
-	//triggered when modal is about to be shown
-	$('#reContact').on('click', function(e) {
 
-		alert('123');
-	    //get data-id attribute of the clicked element
-	    var bookId = $(e.relatedTarget).data('book-id');
-
-	    //populate the textbox
-	    $(e.currentTarget).find('input[name="bookId"]').val(bookId);
+	$(function() {
+		return $(".starrr").starrr();
 	});
+	//별표 끝
+	$(document).ready(function() {
+
+		$('#hearts').on('starrr:change', function(e, value) {
+			$('#count').html(value);
+			$('#uaSatisfaction').val(value);
+		});
+
+		/*   $('#hearts-existing').on('starrr:change', function(e, value){
+		    $('#count-existing').html(value);
+		  }); */
+	});
+
+	function uaSatisfactionAjax() {
+		var uaSatisfaction = $('#uaSatisfaction').val();
+		if (uaSatisfaction == 0 || uaSatisfaction == null) {
+			alert('평가를 해주세요.');
+			return false;
+		} else {
+			$
+					.ajax({
+						url : "/qa/uaSatisfactionUpdateAjax.mwav",
+						type : "post",
+						data : $('#uaSatisfactionForm').serialize(),
+						contentType : "application/x-www-form-urlencoded; charset=utf-8",
+						dataType : "json", // 데이터타입을 JSON형식으로 지정
+						success : function(xmlStr) {
+							if (xmlStr != null) {
+								//http://devbox.tistory.com/entry/%EB%B9%84%EA%B5%90-%EC%99%80-%EC%9D%98-%EC%B0%A8%EC%9D%B4-1
+								//alert($("#resultpostseek").height());
+								if (xmlStr === true) {
+									location.reload();
+
+								} else {
+									return false;
+
+								}
+
+							}
+						},
+						error : function(xhr, status, error) {
+							var errorMsg = 'status(code): ' + jqXHR.status
+									+ '\n';
+							errorMsg += 'statusText: ' + jqXHR.statusText
+									+ '\n';
+							errorMsg += 'responseText: ' + jqXHR.responseText
+									+ '\n';
+							errorMsg += 'textStatus: ' + textStatus + '\n';
+							errorMsg += 'errorThrown: ' + errorThrown;
+							alert(errorMsg);
+						}
+					});
+		}
+	}
 </script>
 
 <div class="container">
@@ -118,27 +162,79 @@
 			</form>
 
 			<div class="enter"></div>
-			<c:if test="${selectOneQAView.uqStatus eq '10' || selectOneQAView.uqStatus eq '20' || selectOneQAView.uqStatus eq '100'}">
+			<c:if
+				test="${selectOneQAView.uqStatus eq '10' || selectOneQAView.uqStatus eq '20' || selectOneQAView.uqStatus eq '100'}">
 				<div class="span12">
 					<div class="well">
 						<h6 class="text-danger text-right">
-							<strong>처리자 : 김성욱 | 처리일자 : 2016-08-27 16:01:44 </strong>
+							<strong>처리자 : ${selectOneQAView.stfName} | 처리일자 :
+								${selectOneQAView.uaInsertDt} </strong>
 						</h6>
-						<h3 class="text-info">Economy</h3>
+						<h3 class="text-info">${selectOneQAView.uaTitle}</h3>
 
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-							Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis
-							sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue
-							semper porta.</p>
+						<p>${selectOneQAView.uaContent}</p>
+						<br>
+						<hr class="hr_gray">
+
+						<c:choose>
+							<c:when test="${selectOneQAView.uaSatisfaction eq null}">
+								<form name="uaSatisfactionForm" id="uaSatisfactionForm" method="post">
+									<div class="row">
+										<h5 class="text-right">
+											<i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>
+											답변에 대한 만족도를 평가해주세요. 소중한 자료로 사용하겠습니다. <small>-Hover
+												and click on a star-</small>
+										</h5>
+									</div>
+									<div class="row lead">
+
+										<div id="hearts" class="starrr col-md-12 text-right"
+											style="color: #ee8b2d;"></div>
+										<input type="hidden" name="uaSatisfaction" id="uaSatisfaction"
+											value="" /> <input type="hidden" name="QnA_id"
+											value="${selectOneQAView.QnA_id}" />
+
+										<div class="col-md-12 text-right">
+											<h4>
+												You gave a rating of <strong><span id="count">0</span></strong>
+												star(s) --
+												<button type="button" class="btn btn-default"
+													onclick="uaSatisfactionAjax();">평가</button>
+											</h4>
+
+										</div>
+									</div>
+								</form>
+							</c:when>
+							<c:otherwise>
+								<div class="text-right">
+									<h3>
+										${selectOneQAView.uaSatisfaction} <small>/ 5</small>
+									</h3>
+
+									<c:forEach begin="1" end="${selectOneQAView.uaSatisfaction}">
+										<button type="button" class="btn btn-warning btn-sm"
+											aria-label="Left Align">
+											<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+										</button>
+									</c:forEach>
+									<c:set value="${5 - selectOneQAView.uaSatisfaction}" var="endValue" />
+										
+									<c:forEach begin="1" end="${endValue }">
+										<button type="button" class="btn btn-defalut btn-sm btn-grey"
+											aria-label="Left Align">
+											<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+										</button>
+									</c:forEach>
+								</div>
+							</c:otherwise>
+						</c:choose>
 
 					</div>
 				</div>
 			</c:if>
 
-
-
-			<br style="clear: both">
-
+			<div class="enter"></div>
 			<hr class="hr_b">
 			<div class="row text-right">
 				<p>
@@ -147,11 +243,11 @@
 						data-target="#Contact" id="reContact">
 						<span class="glyphicon glyphicon-envelope"></span> Contact
 					</button> -->
-					
+
 					<button type="button" class="btn btn-default"
-							onclick="javascript:window.location.href='/CustomerService/CS-MasterPage.mwav?mode=qaForm&uqUserEmail=${selectOneQAView.uqUserEmail}&before_Q_id=${selectOneQAView.QnA_id}'">Contact
+						onclick="javascript:window.location.href='/CustomerService/CS-MasterPage.mwav?mode=qaForm&uqUserEmail=${selectOneQAView.uqUserEmail}&before_Q_id=${selectOneQAView.QnA_id}'">Contact
 					</button>
-					
+
 					<%--회원 --%>
 					<c:if test="${sessionScope.member_id ne null }">
 						<button type="button" class="btn btn-default"

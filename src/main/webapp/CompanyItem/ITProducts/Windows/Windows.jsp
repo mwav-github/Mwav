@@ -104,8 +104,11 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 						<h1 class="text-center">What Is AerPass™?</h1>
 					</div>
 					<br> -->
-					<%-- block 요소 끼리 중앙정렬 중요. vertical_parent / vertical_child--%>
-					<div class="row vertical_parent"
+					<%-- block 요소 끼리 중앙정렬 중요. vertical_parent / vertical_child
+										<div class="vertical_parent"
+						style="background: url(../Images/lifestyle_guy_computer_1x_flipped.jpg) no-repeat; background-size: 100% auto;">
+					--%>
+					<div class="vertical_parent"
 						style="background: url(../Images/lifestyle_guy_computer_1x_flipped.jpg) no-repeat; background-size: 100% auto;">
 						<div
 							class="col-md-offset-6 col-sm-offset-6 col-xs-offset-0 col-md-6 col-sm-6 col-xs-12">
@@ -273,8 +276,8 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					</div>
 					<br> -->
 					<%-- block 요소 끼리 중앙정렬 중요. vertical_parent / vertical_child--%>
-					<div class="row vertical_parent"
-						style="background: url(../Images/lifestyle_girl_tablet_1x.jpg) no-repeat; background-size: 100% auto;">
+					<div class="vertical_parent"
+						style="background: url(../Images/lifestyle_girl_tablet_1x.jpg) no-repeat;">
 						<div class="col-md-6">
 							<div style="text-align: Left">
 								<h3 style="color: #04A3ED;">원하는 디바이스와 상호 작용</h3>

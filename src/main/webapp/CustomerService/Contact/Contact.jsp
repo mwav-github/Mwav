@@ -72,7 +72,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 
 				<div class="row">
 					<div class="col-lg-12">
-						<h2 class="page-header">Contact</h2>
+						<h2 class="page-header mwav_leftText">Contact</h2>
 					</div>
 					<div class="row">
 						<div class="col-xs-12 col-sm-6 col-md-6">
