@@ -7,6 +7,7 @@
 	rel="stylesheet">
 <link href="/resources/JsFramework/Bootstrap/bootstrap-social.css"
 	rel="stylesheet">
+<script src='https://www.google.com/recaptcha/api.js'></script>
 
 
 <head>
@@ -21,7 +22,7 @@
 		alert('탈퇴한 회원입니다.');
 		msg = '재 가입하시겠습니까.?'
 		if (confirm(msg) != 0) {
-			// 이전 url 기록안하는 경우 , location.href 의 경우 이전기록이 남아 login.mwav로 포워딩 , 프로세스 정리 필요.
+			<%-- 이전 url 기록안하는 경우 , location.href 의 경우 이전기록이 남아 login.mwav로 포워딩 , 프로세스 정리 필요. --%>
 			location.replace("/MasterPage_1.jsp?mode=Default");
 		} else {
 			history.go(-1)
@@ -46,10 +47,7 @@
 	<c:choose>
 		<c:when test="${requestScope.returnUrl eq null }">
 			<script type="text/javascript">
-				//alert('11');
-				//location.href("/");
-				//e.preventDefault();
-				//http://blog.naver.com/PostView.nhn?blogId=haanul98&logNo=80204508627&categoryNo=0&parentCategoryNo=0&viewDate=&currentPage=1&postListTopCurrentPage=1
+				<%--http://blog.naver.com/PostView.nhn?blogId=haanul98&logNo=80204508627&categoryNo=0&parentCategoryNo=0&viewDate=&currentPage=1&postListTopCurrentPage=1 --%>
 				location.href = "/";
 			</script>
 		</c:when>
@@ -57,10 +55,8 @@
 			<c:set var="returnUrl" value='${requestScope.returnUrl}'
 				scope="request" />
 			<script type="text/javascript">
-				//alert('112');
-				//e.preventDefault();
+				
 				var returnUrl = '<c:out value="${returnUrl}"/>';
-				//alert(returnUrl);
 				location.href = returnUrl;
 			</script>
 			<%-- <c:url var="url" value="${requestScope.returnUrl}">
@@ -72,14 +68,13 @@
 	</c:choose>
 </c:if>
 </head>
-<!-- 구글 API관련 
+<%-- 구글 API관련 
     <meta name="google-signin-scope" content="profile email">
     <meta name="google-signin-client_id" content="881218558153-ndr868i68rlofoo4l2gb488ksabi5q23.apps.googleusercontent.com">
-    <script src="https://apis.google.com/js/platform.js" async defer></script>-->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>--%>
 
 
-<!-- 페북 로그인 관련 -->
-<!-- <script>
+<%-- 페북 로그인 관련  <script>
 	var FBtoken = "";
 	
 	// This is called with the results from from FB.getLoginStatus().
@@ -249,21 +244,41 @@
         var id_token = googleUser.getAuthResponse().id_token;
         console.log("ID Token: " + id_token);
         }
-</script> -->
+</script> --%>
 
 
 <script>
 	function re_check(form) {
-		//alert('11');
-		//alert(form.mbrLoginId.value);
-		if (emptyCheck(form.mbrLoginId, "아이디를 입력해주세요.") == true
-				&& emptyCheck(form.mbrLoginPw, "비밀번호를 입력해주세요.") == true) {
-			return true;
-		} else {
+		
+		var robot_flag = robot_check();
+		if (robot_flag == true){
+			if (emptyCheck(form.mbrLoginId, "아이디를 입력해주세요.") == true
+					&& emptyCheck(form.mbrLoginPw, "비밀번호를 입력해주세요.") == true) {
+				return true;
+			} else {
+				return false;
+			}
+		}else{
 			return false;
+		}	
+		return false;
+	}
+	
+	function robot_check(){
+		var recaptcha = grecaptcha.getResponse();
+		if(recaptcha.length == 0 ){
+			alert('로봇이 아닌지 체크해주세요.');
+			return false;
+		}
+		else {
+			return true
 		}
 	}
 </script>
+
+<%--이것때문에 tooltip등이 오류가난다 --%>
+<jsp:include page="/CommonApps/IDSeek/IDSeek.jsp" flush="false" />
+
 <%--padding 으로 안쪽 추후 딴건 변경가능 #04A3ED --%>
 <c:if test="${param.type eq null}">
 	<div class="enter"></div>
@@ -286,36 +301,34 @@
 				<input type="password" class="form-control input-lg caps_lockchk"
 					placeholder="Password" name="mbrLoginPw">
 			</div>
-			<!-- <div class="form-group">
-			<input type="password" class="form-control input-lg"
-				placeholder="Confirm Password" name="mbrLoginPw_check">
-		</div> -->
+			
 
 			<div class="form-group">
 				<button type="submit" class="btn btn-primary btn-lg btn-block">Sign
 					In</button>
 			</div>
 		</form>
+		<%--recapCha --%>
+		<div class="form-group pull-left">
+
+			<%--invisible --%>
+			<%-- 	<button class="g-recaptcha"
+				data-sitekey="6LcHRBoUAAAAAH5dmdNp-Iv1d7MAphM6B71ov9ZD"
+				data-callback="onSubmit">Submit</button>
+		 <div id='recaptcha' class="g-recaptcha"
+          data-sitekey="6LcHRBoUAAAAAH5dmdNp-Iv1d7MAphM6B71ov9ZD"
+          data-callback="onSubmit"
+          data-size="invisible"></div> --%>
+			<%--visible --%>
+			<div class="g-recaptcha"
+				data-sitekey="6LcdRxoUAAAAAA4OI0FIN2bv2W0ersTRjqHJdLG-" style="transform:scale(0.88);-webkit-transform:scale(0.88);transform-origin:0 0;-webkit-transform-origin:0 0;"></div>
+		</div>
 
 		<%--소셜 로그인 연동부분 --%>
 		<div class="form-group">
-			<!-- <div class="col-xs-6 col-sm-6 col-md-2">
-				<button type="button" class="btn btn-primary btn-block " onclick="checkLoginState();">
-					<i class="fa fa-facebook"></i>
-				</button>
-
-			</div>
-			<div class="col-xs-6 col-sm-6 col-md-2">
-				<button type="button" class="btn btn-info btn-block">
-					<i class="fa fa-twitter"></i>
-				</button>
-
-			</div> -->
-
-
 			<!-- GOOGLE SIGNIN -->
 			<form id="go_signin" name="go_signin"
-				action="<c:url value="/signin/google.mwav"/>" method="POST">
+				action="<c:url value="/signin/google.mwav"/>" method="POST" onSubmit="return robot_check();">
 				<div class="col-xs-12 col-sm-12 col-md-12 mgt1_8">
 					<%-- <button type="submit" class="btn btn-danger btn-block"><i class="fa fa-google-plus"></i></button>--%>
 					<button type="submit" class="btn btn-block btn-social btn-google">
@@ -331,7 +344,7 @@
 
 			<!-- facebook SIGNIN -->
 			<form id="go_signin" name="go_signin"
-				action="<c:url value="/signin/facebook.mwav"/>" method="POST">
+				action="<c:url value="/signin/facebook.mwav"/>" method="POST" onSubmit="return robot_check();">
 				<div class="col-xs-12 col-sm-12 col-md-12 mgt1_8">
 					<%-- <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-facebook"></i></button>--%>
 
@@ -348,7 +361,7 @@
 
 			<!-- LINKEDIN SIGNIN -->
 			<form id="go_signin" name="go_signin"
-				action="<c:url value="/signin/linkedin.mwav"/>" method="POST">
+				action="<c:url value="/signin/linkedin.mwav"/>" method="POST" onSubmit="return robot_check();">
 				<div class="col-xs-12 col-sm-12 col-md-12 mgt1_8">
 					<%-- 이전버전 
 					<button type="submit" class="btn btn-danger btn-block"><i class="fa fa-linkedin"></i></button>
@@ -364,7 +377,7 @@
 
 			<!-- TWITTER SIGNIN -->
 			<form id="go_signin" name="go_signin"
-				action="<c:url value="/signin/twitter.mwav"/>" method="POST">
+				action="<c:url value="/signin/twitter.mwav"/>" method="POST" onSubmit="return robot_check();">
 				<div class="col-xs-12 col-sm-12 col-md-12 mgt1_8 mgb3">
 					<%--<button type="submit" class="btn btn-info btn-block"><i class="fa fa-twitter"></i></button> --%>
 
@@ -382,35 +395,40 @@
 
 		<div class="form-group ">
 
-			<span class="pull-left"><a href="#IDPWSeek"
-				data-toggle="modal" data-target=".IDPWSeek" role="button"
-				data-toggle="modal"><strong>Forgot your ID or Password?</strong></a></span>
 
-			<%--이것때문에 tooltip등이 오류가난다 --%>
-			<jsp:include page="/CommonApps/IDSeek/IDSeek.jsp" flush="false" />
-			<span class="pull-left"><a
-				href="/MasterPage_1.jsp?mode=Default"><strong>Sign up
-						now</strong></a></span>
+			<div class="col-md-4">
+				<a href="/MasterPage_1.jsp?mode=Default"><strong>Sign
+						up now</strong></a>
+			</div>
+
+
+			<div class="col-md-8">
+				<a href="#IDPWSeek" data-toggle="modal" data-target=".IDPWSeek"
+					role="button" data-toggle="modal"><strong>Forgot your
+						ID or Password?</strong></a>
+			</div>
+			
+
 		</div>
-		<!-- <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" ></div> -->
-
-		<!-- 페북 로그인 연동 -->
+	
+		<%-- 페북 로그인 연동 -->
 
 		<!-- <fb:login-button scope="public_profile,email"
 			onlogin="checkLoginState();">
 		</fb:login-button> -->
 
 		<!-- <div class="fb-login-button" data-max-rows="12" data-size="large" scope="public_profile,email"
-				data-show-faces="true" data-auto-logout-link="true"></div> -->
+				data-show-faces="true" data-auto-logout-link="true"></div> --%>
 
 	</div>
 </c:if>
 <!-- Login - END -->
 <c:if test="${param.type == 'simple'}">
 
-	<form name="login_form" action="/member/Login.mwav" role="form"
+	<form name="login_form_simple" action="/member/Login.mwav" role="form"
 		class='form-horizontal' method="post"
-		onsubmit="return re_check(document.login_form);">
+		onsubmit="return re_check(document.login_form_simple);">
+
 		<input type="hidden" name="returnUrl" value="${param.returnUrl }" />
 
 
@@ -425,12 +443,27 @@
 		</div>
 
 
-		<!-- <div class="checkbox">
+		<%-- <div class="checkbox">
 			<label> <input type="checkbox" name="remember" id="remember">
 				Remember login
 			</label>
 			<p class="help-block">(if this is a private computer)</p>
-		</div> -->
+		</div> --%>
+		
+		<div class="form-group col-md-12 pull-right">
+
+			<%--invisible --%>
+			<%-- 	<button class="g-recaptcha"
+				data-sitekey="6LcHRBoUAAAAAH5dmdNp-Iv1d7MAphM6B71ov9ZD"
+				data-callback="onSubmit">Submit</button> -->
+			<!-- <div id='recaptcha' class="g-recaptcha"
+          data-sitekey="6LcHRBoUAAAAAH5dmdNp-Iv1d7MAphM6B71ov9ZD"
+          data-callback="onSubmit"
+          data-size="invisible"></div> --%>
+			<%--visible --%>
+			<div class="g-recaptcha"
+				data-sitekey="6LcdRxoUAAAAAA4OI0FIN2bv2W0ersTRjqHJdLG-"></div>
+		</div>
 		<div class="form-group">
 			<button type="submit" class="btn btn-success btn-block">Login</button>
 		</div>
@@ -443,20 +476,20 @@
 
 			이것때문에 tooltip등이 오류가난다
 			<jsp:include page="/CommonApps/IDSeek/IDSeek.jsp" flush="false" /> --%>
-			<!-- <span class="pull-left"><a
+			<%-- <span class="pull-left"><a
 				href="/MasterPage_1.jsp?mode=Default"><strong>Sign up
-						now</strong></a></span> -->
+						now</strong></a></span> --%>
 			<div class="col-md-4">
-				<a href="/MasterPage_1.jsp?mode=Default"
-					><strong>Sign up now</strong></a>
+				<a href="/MasterPage_1.jsp?mode=Default"><strong>Sign
+						up now</strong></a>
 			</div>
+
 
 			<div class="col-md-8">
 				<a href="#IDPWSeek" data-toggle="modal" data-target=".IDPWSeek"
-					role="button" data-toggle="modal"><strong>Forgot
-					your ID or Password?</strong></a>
+					role="button" data-toggle="modal"><strong>Forgot your
+						ID or Password?</strong></a>
 			</div>
-			<jsp:include page="/CommonApps/IDSeek/IDSeek.jsp" flush="false" />
 		</div>
 	</form>
 </c:if>

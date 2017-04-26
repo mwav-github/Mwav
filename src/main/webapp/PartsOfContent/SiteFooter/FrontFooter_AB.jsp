@@ -80,8 +80,8 @@
 				<ul>
 					<li>CompanyName : Mwav Inc.</li>
 					<li>Business Registration Number : 206-09-41373</li>
-					<li>Address: 607-20, Jayang-dong, Gwangjin-gu, Seoul, Korea
-						GV4F</li>
+					<li>Address: GV-4F, 5-5, Ttukseom-ro 46-gil, Gwangjin-gu, Seoul , Korea 
+            [143-865]</li>
 					<li>TEL : +82-2-6214-7039</li>
 					<li>FAX: +82-2-6214-1122</li>
 					<li>CEO : Kim | Sales Manager: ${param.pgl}</li>

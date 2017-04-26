@@ -2,9 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<!-- 메인 페이지에서만 타겟팅 나머지는 URL 물고가기
+<%-- 메인 페이지에서만 타겟팅 나머지는 URL 물고가기
 이놈이 슬라이드쇼 없는 놈 그러나 아직 반영 x 각 페이지별로 따로 있다.
- -->
+ --%>
 <!-- Script to Activate the Carousel -->
 <script>
 	$('.carousel').carousel({
@@ -71,7 +71,7 @@
 			</ul>
 			<ul class="mgl3 nav navbar-nav navbar-right">
 				<!-- 일반로그인 부분 -->
-				<c:if test="${sessionScope.mbrLoginId ne null }">
+				<c:if test="${sessionScope.Member ne null }">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" data-toggle="tooltip"
 						data-placement="bottom"
@@ -101,12 +101,8 @@
 										Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span>
 									</h5></a></li>
 						</ul></li>
-
-					<!-- <li><h5>
-							<a href="/member/LogOut.mwav">LogOut</a>
-						</h5></li> -->
 				</c:if>
-				<c:if test="${sessionScope.mbrLoginId eq null }">
+				<c:if test="${sessionScope.Member eq null }">
 					<li><a href="/login.mwav"><i class="fa fa-user fa-lg"></i></a></li>
 					<li><a href="/MasterPage_1.mwav?mode=Default"><i
 							class="fa fa-user-plus fa-lg"></i></a></li>
@@ -139,20 +135,19 @@
 		<li data-target="#myCarousel" data-slide-to="2"></li>
 	</ol>
 
-	<!-- Wrapper for slides 슬라이드쇼 내용 -->
+	<%-- Wrapper for slides 슬라이드쇼 내용 --%>
 	<div class="carousel-inner">
 		<div class="item active slide1">
 			<div class="fill img-responsive company_slideImg_600"
 				style="background-image: url('/Company/zImage/keyboard-428326_1920.jpg'); background-repeat: no-repeat;">
 				<div class="carousel-caption">
 					<div class="container">
-						<!-- <div class="col-md-7 text-left">
+						<%-- <div class="col-md-7 text-left">
 						<h3>We are creative</h3>
 						<h4>Get start your next awesome project</h4>
 					</div>
- -->
-						<div class="col-md-9 col-md-push-3 text-right block block-3">
-							<!-- <div class="row pull-right block block-4 col-sm-6 col-md-6"> -->
+ --%>
+						<div class="col-md-9 col-md-push-3 text-right block block-3" style="opacity:0.8;">
 							<h4 class="fontsize_20">IT Trends</h4>
 							<div class="bs-component fontsize_10" style="background-color: white;">
 								<jsp:include page="/board/bnsFrontList.mwav" flush="false" />
@@ -160,7 +155,6 @@
 							<%-- <div class="bs-component" style="background-color: white;">
 						<jsp:include page="/board/bnsFrontList.mwav" flush="false" />
 					</div> --%>
-							<!-- </div> -->
 						</div>
 					</div>
 				</div>
@@ -173,11 +167,6 @@
 					style="color: rgba(138, 109, 59, 0.14)">
 
 					<h4 class="fontsize_30">We are creative Get start your next awesome project</h4>
-
-					<!-- <h2>Company Item</h2> -->
-					<!-- <a href="/CompanyItem/IT%20Solutions/Aervision/Aervision.jsp"
-					class="btn btn-info btn-lg">Learn More</a> -->
-
 					<div class="col-xs-6 col-sm-4 col-md-4">
 						<div class="block block-1">
 							<h4 class="fontsize_20">WebSite Building</h4>
@@ -194,17 +183,11 @@
 					</div>
 					<div class="col-xs-6 col-sm-4 col-md-4">
 						<div class="block block-3">
-							<h4 class="fontsize_20">IT Consulting</h4>
+							<h4 class="fontsize_20">IT <br>Consulting</h4>
 							<a href="/CompanyItem/ITConsulting/ITConsulting.mwav"><button
 									class="btn btn-default btn-lg fontsize_14">Learn More</button></a>
 						</div>
 					</div>
-					<!-- <div class="col-xs-12 col-sm-6 col-md-3">
-						<div class="block block-4">
-							<h4>Easy to Maintain</h4>
-							<button class="btn btn-default btn-lg">Learn More</button>
-						</div>
-					</div> -->
 				</div>
 			</div>
 		</div>
@@ -213,8 +196,8 @@
 				style="background-image: url('/CustomerService/zImage/education-1651259_1920.jpg'); background-repeat: no-repeat;">
 
 
-				<!-- 전체크기는 일괄되게 -->
-				<!-- <div class="hidden-xs hidden-sm col-md-8 row pull-right">
+				<%-- 전체크기는 일괄되게 --%>
+				<%-- <div class="hidden-xs hidden-sm col-md-8 row pull-right">
 					<h1 style="color: white;">Contact Address</h1>
 					<br />
 					<div class="row text-center">
@@ -260,17 +243,7 @@
 							<br />
 						</div>
 					</div>
-				</div> -->
-				<!-- <div class="col-xs-3 pull-right">
-					<div class="text">
-						<div class="content-text">
-							<h3 class="lead">Project label</h3>
-							<p>
-								And a little description. <br/> and so one
-							</p>
-						</div>
-					</div>
-				</div> -->
+				</div> --%>
 			</div>
 		</div>
 		<a class="left carousel-control" href="#myCarousel" data-slide="prev">
@@ -285,7 +258,7 @@
 
 <%-- Controls (왼, 오른쪽 화살표 버튼)--%>
 <!-- End Wrapper for slides-->
-<!--  <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+<%--  <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
             <i class="fa fa-angle-left"></i><span class="sr-only">Previous</span>
         </a>
         <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
@@ -326,7 +299,7 @@
     -moz-border-radius: 23px;
     border-radius: 53px;
 }
-         -->
+         --%>
 
 <%--  
 이미지 태그 사용시 

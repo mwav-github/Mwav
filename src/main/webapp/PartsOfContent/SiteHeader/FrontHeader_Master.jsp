@@ -2,8 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<!-- 메인 페이지 제외 페이지
- -->
+<%-- 메인 페이지 제외 페이지
+ --%>
 
 <%--navbar-fixed-top 은 위에 떠있는것으로서 영역이분리되어 잡히지 않는다.
  narbar-static-top으로 해야잡히며, 이때는 fullwidth가 되지않아 수정 필요.
@@ -56,7 +56,7 @@
 				</ul>
 				<ul class="mgl3 nav navbar-nav navbar-right">
 					<!-- 일반로그인 부분 -->
-					<c:if test="${sessionScope.mbrLoginId ne null }">
+					<c:if test="${sessionScope.Member ne null }">
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
 							data-toggle="dropdown" data-toggle="tooltip"
 							data-placement="bottom"
@@ -91,7 +91,7 @@
 							<a href="/member/LogOut.mwav">LogOut</a>
 						</h5></li> -->
 					</c:if>
-					<c:if test="${sessionScope.mbrLoginId eq null }">
+					<c:if test="${sessionScope.Member eq null }">
 						<li><a href="/login.mwav"><i class="fa fa-user fa-lg"></i></a></li>
 						<li><a href="/MasterPage_1.mwav?mode=Default"><i
 								class="fa fa-user-plus fa-lg"></i></a></li>

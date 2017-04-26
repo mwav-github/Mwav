@@ -317,7 +317,7 @@ $.ajax({
 					<ul id="myTab" class="nav nav-tabs">
 						<li class="active"><a href="#IdFinder" data-toggle="tab">IDSeek</a></li>
 						<li class=""><a href="#PwFinder" data-toggle="tab">PWSeek</a></li>
-						<!-- <li class=""><a href="#why" data-toggle="tab">Why?</a></li> -->
+						<li class="pull-right" style="right:15px;"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-times" aria-hidden="true"></i></button></li>
 					</ul>
 
 				</div>

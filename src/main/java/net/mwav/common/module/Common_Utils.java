@@ -1,6 +1,7 @@
 package net.mwav.common.module;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Enumeration;
@@ -343,8 +344,7 @@ public class Common_Utils {
 			map.put(key, value);
 		}
 
-		
-		//User-agent 분석
+		// User-agent 분석
 		String browserDetails = request.getHeader("User-Agent");
 		String userAgent = browserDetails;
 		String user = userAgent.toLowerCase();
@@ -353,7 +353,8 @@ public class Common_Utils {
 		String browser = "";
 
 		log.info("User Agent for the request is===>" + browserDetails);
-		System.out.println("User Agent for the request is===>" + browserDetails);
+		System.out
+				.println("User Agent for the request is===>" + browserDetails);
 		// =================OS=======================
 		if (userAgent.toLowerCase().indexOf("windows") >= 0) {
 			os = "Windows";
@@ -414,14 +415,12 @@ public class Common_Utils {
 		}
 		log.info("Operating System======>" + os);
 		log.info("Browser Name==========>" + browser);
-		System.out.println("os"+os);
-		System.out.println("browser"+browser);
+		System.out.println("os" + os);
+		System.out.println("browser" + browser);
 		map.put("os", os);
 		map.put("browser", browser);
 		return map;
 	}
-
-	
 
 	// 인코딩 종류 확인
 	public String encoding(String parameter) throws IOException {
@@ -451,4 +450,143 @@ public class Common_Utils {
 		System.out.println("========여기까지 인코딩의 종류이다.=========");
 		return result;
 	}
+
+	/*
+	 * http://erictus.tistory.com/entry/Map-to-Object-%EC%99%80-Object-to-Map
+	 * 
+	 * Object를 Map으로 변경해주는 ObjectUtil!! 1. getDeclaredFields()를 통해 선언되어있는 필드를
+	 * 가져온후 Loop돌며 2. Field.setAccessible(true)를 통해 private 필드접근을 가능하도록 한다. 3.
+	 * 그담엔? 필드명을 Key로하고 값을 저장하여 Map을 뱉어내면 끝~!!
+	 */
+	public static Map ConverObjectToMap(Object obj) {
+		try {
+			// Field[] fields = obj.getClass().getFields(); //private field는 나오지
+			// 않음.
+			Field[] fields = obj.getClass().getDeclaredFields();
+			Map resultMap = new HashMap();
+			for (int i = 0; i <= fields.length - 1; i++) {
+				fields[i].setAccessible(true);
+				resultMap.put(fields[i].getName(), fields[i].get(obj));
+			}
+			return resultMap;
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public static String setTitle(String url) {
+
+		System.out.println("url은" + url);
+
+		int first_slash = url.indexOf("/");
+		System.out.println("first_slash" + first_slash);
+		int second_slash = url.indexOf("/", first_slash + 1);
+		System.out.println("second_slash" + second_slash);
+
+		int third_slash = url.indexOf("/", second_slash + 1);
+		int fourth_slash = url.indexOf("/", third_slash + 1);
+
+		int last_slash = url.lastIndexOf("/");
+		int lastDot = url.lastIndexOf('.');
+		String url_1depth = null;
+		String url_2depth = null;
+		String url_3depth = null;
+		String last_depth = null;
+		System.out.println("lastDot" + lastDot);
+
+		if (second_slash != -1) {
+			url_1depth = url.substring(first_slash + 1, second_slash);
+			// System.out.println("url_1depth"+url_1depth);
+		}
+		if (third_slash != -1) {
+			url_2depth = url.substring(second_slash + 1, third_slash);
+			// System.out.println("url_2depth"+url_2depth);
+		}
+		if (fourth_slash != -1) {
+			url_3depth = url.substring(third_slash + 1, fourth_slash);
+			// System.out.println("url_3depth"+url_3depth);
+		}
+		if (lastDot != -1) {
+			last_depth = url.substring(last_slash + 1, lastDot);
+			// System.out.println("last_depth"+last_depth);
+		}
+
+		// 두개 모두 지정해줘야 nullpointerexception 안남.
+		if (url_1depth == null) {
+			url_1depth = "/";
+		}
+
+		if (last_depth == null) {
+			last_depth = "/";
+		}
+		System.out.println("url_1depth" + url_1depth);
+		System.out.println("last_depth" + last_depth);
+
+		System.out.println("123" + (!"/".equals(last_depth)));
+
+		String set_Title = null;
+
+		// 이걸 캐치프레이즈라고 한다.
+		String main_Title = "Unleash your infinite possibilities with IT Optimization!!";
+		String aervision_Title = "Biometric authentication & computer vision & machine learning";
+
+		// 대분류 안에 소분류로 !
+		if (url_1depth.equals("Company")) {
+			set_Title = "[Mwav.net] >> [" + url_1depth + " > " + last_depth
+					+ "] - " + main_Title;
+
+		} else if (url_1depth.equals("CustomerService")) {
+			url_1depth = "CS";
+			set_Title = "[Mwav.net] >> [" + url_1depth + " > " + last_depth
+					+ "] - " + main_Title;
+
+		} else if (url_1depth.equals("CompanyItem")) {
+			// 여기는 디지털마케팅 등 포함 2depth로
+
+			if (url_2depth.equals("ITProducts")
+					|| url_2depth.equals("ITSolutions")) {
+				if (url_3depth.equals("OpenSRS")) {
+					set_Title = "[Mwav.net] >> [" + url_3depth + "] - "
+							+ main_Title;
+				} else if (url_3depth.equals("Aervision")) {
+					set_Title = "[Mwav.net] >> [" + url_3depth + "> "
+							+ aervision_Title + "] - " + main_Title;
+				} else if (url_3depth.equals("MSOffice")) {
+					set_Title = "[Mwav.net] >> [" + url_3depth + "] - "
+							+ main_Title;
+				} else if (url_3depth.equals("InsWave")) {
+					set_Title = "[Mwav.net] >> [" + url_3depth + "] - "
+							+ main_Title;
+				} else {
+					set_Title = "[Mwav.net] >> [" + url_3depth + "] - "
+							+ main_Title;
+				}
+			}
+			// 디지털 마케팅 등
+			else {
+				set_Title = "[Mwav.net] >> [" + url_2depth + " > " + last_depth
+						+ "] - " + main_Title;
+			}
+		} else {
+			if (url_1depth.equals("/") && (!"/".equals(last_depth))) {
+				set_Title = "[Mwav.net] >> [" + last_depth + "] - "
+						+ main_Title;
+				//System.out.println("열로1");
+			} else if (url_1depth.equals("/") && last_depth.equals("/")) {
+				set_Title = "[Mwav.net] >> " + main_Title;
+				//System.out.println("set_Title"+set_Title);
+				//System.out.println("열로2");
+			} else {
+				// .do 등등 일단은 고객친화적이게 임시 변환
+				set_Title = "[Mwav.net] - " + main_Title;
+				//System.out.println("열로3");
+			}
+		}
+
+		return set_Title;
+	}
+
 }

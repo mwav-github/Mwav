@@ -1,8 +1,5 @@
 <%@ page contentType="text/html;charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-
-
 <jsp:include page="SNS_Head_Import.jsp" flush="false" />
 <meta name="robots" content="index, follow" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,9 +14,7 @@
 <meta name="distribution" content="global" />
 <%--resource는 호출하지않도록 처리. 추후 필요 !!!*** --%>
 <link rel="icon" href="/Images/CompanyLogos/CompanyLogo.ico" />
-<title></title>
-
-
+<title><c:choose><c:when test="${requestScope.setTitle eq null }">[Mwav.net] >> Unleash your infinite possibilities with IT Optimization!!</c:when><c:otherwise>${setTitle }</c:otherwise></c:choose></title>
 
 <%--인코딩 설정 --%>
 
@@ -31,7 +26,7 @@
 <!-- <link href="/resources/JsFramework/Bootstrap/font-awesome.min.css"
 	rel="stylesheet"> -->
 <link rel="stylesheet"
-	href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+	href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <%--ì¤ì ë¶í¸ì¤í¸ë©ë³´ë¤ ìì ìì¹í´ì¼ íë¤. --%>
 
 <!-- Bootstrap Core CSS -->
@@ -60,12 +55,12 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-<!-- jQuery 달력에 사용. -->
+<%-- jQuery 달력에 사용. --%>
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 
 
-<!-- jQuery Version 1.11.0 -->
+<%-- jQuery Version 1.11.0 --%>
 <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 
@@ -82,26 +77,23 @@
 		res_Text();
 		
 		 var height = (($('.navbar-fixed-top').height()) + 4);
-		//alert(height);
-		/*$('#myCarousel').animate({
-			marginTop : height
-		}, 1000); */
+		
 		 $('#myCarousel').css({
 				'margin-top' : height
 			});
 		 $('.res_width').css({
 				'margin-top' : height
 			}); 
-/* 		$('.res_width').animate({
+<%-- 		$('.res_width').animate({
 			marginTop : height
 		}, 1000);
- */
+ --%>
 	});
 	/*TOP버튼*/
 	$(document).ready(function() {
 		var height = (($('.navbar-fixed-top').height()) + 4);
 		res_Text();
-		/* $('#myCarousel').css({
+		<%--/* $('#myCarousel').css({
 			'margin-top' : (($('.navbar-fixed-top').height()) + 4) + 'px'
 		}); */
 		/* $('#myCarousel').animate({
@@ -110,7 +102,7 @@
 
 		$('.res_width').animate({
 			marginTop : height
-		}, 1000); */
+		}, 1000); */--%>
 
 		 $('#myCarousel').css({
 				'margin-top' : height
@@ -118,12 +110,10 @@
 		 $('.res_width').css({
 				'margin-top' : height
 			});
-		//url 에 따라 타이틀 지정 
-		setTitle(location.pathname);
+		<%--url 에 따라 타이틀 지정 (170418 부로 서버사이드로 이동)
+		setTitle(location.pathname);--%>
 
-		//caps_lockchk();
-		//alert(set_Title);
-		//capslock 
+		
 		caps_lockchk();
 
 		$('#back-to-top').fadeOut();

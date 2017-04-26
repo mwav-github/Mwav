@@ -23,13 +23,13 @@
 		<!-- Image Container 
 container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다. 
 -->
-		<div class="row">
+		<!-- <div class="row">
 			<div class="col-lg-12">
 				<img src="/CompanyItem/zImage/CompanyItem_IN(height_280).jpg"
 					class="img-responsive res_width fix_height_300"
 					alt="Responsive image">
 			</div>
-		</div>
+		</div> -->
 	</div>
 	<!--  //////////////////////////////////// 
 	Header 끝
@@ -40,13 +40,13 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 	<div class="container">
 
 		<!-- Page Heading/Breadcrumbs -->
-		<div class="row">
+		<div class="row res_width">
 			<div class="col-lg-12">
 				<h1 class="page-header">
 					Company Item <small>WebSite Building</small>
 				</h1>
 				<ol class="breadcrumb">
-					<li><a href="index.html">Home</a></li>
+					<li><a href="/">Home</a></li>
 					<li>Company Item</li>
 					<li class="active">WebSite Building</li>
 				</ol>
@@ -57,7 +57,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 		<!-- Content Row -->
 		<div class="row">
 			<!-- Sidebar Column left메뉴 추후 변경 예정<시작>-->
-			<div class="col-md-3">
+			<!-- <div class="col-md-3">
 				<div class="list-group">
 
 					<a href="/CompanyItem/WebSiteBuilding/WebSiteBuilding.mwav"
@@ -66,11 +66,11 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 						Building</a>
 
 				</div>
-			</div>
+			</div> -->
 			<!-- 끝 -->
 
 			<!-- Content Column -->
-			<div class="col-md-9">
+			<div class="col-md-12">
 
 				<div class="col-lg-12">
 					<h2 class="page-header mwav_leftText">WebSiteBuilding</h2>
@@ -86,7 +86,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 							향상 등 완성도 높고 안정적인 웹 사이트를 제공해 드립니다.!
 						</p>
 
-						<a class="btn btn-primary btn-md">LIVE PREVIEW</a>
+						<a class="btn btn-primary btn-md btn-block">LIVE PREVIEW</a>
 					</div>
 					<div class="col-md-8">
 						<img class="img-responsive img-rounded"
@@ -103,7 +103,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 				<!-- Our Customers -->
 				<div class="row">
 					<div class="col-lg-12">
-						<h2 class="page-header">Technologies</h2>
+						<h2 class="page-header">Technology</h2>
 					</div>
 					<div class="col-md-2 col-sm-4 col-xs-4">
 						<img class="img-responsive "

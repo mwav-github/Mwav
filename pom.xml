@@ -158,6 +158,19 @@ http://www.egovframe.go.kr/wiki/doku.php?id=egovframework:dev:dep:build:maven
     <version>3.0.5</version>
 </dependency>
 
+
+<!-- velocity 170325 추가 (이메일) -->
+<dependency>
+	<groupId>org.apache.velocity</groupId>
+	<artifactId>velocity</artifactId>
+	<version>1.7</version>
+</dependency>
+<dependency>
+	<groupId>org.apache.velocity</groupId>
+	<artifactId>velocity-tools</artifactId>
+	<version>2.0</version>
+</dependency>
+
           
          <!-- MyBatis -->
         <dependency>

@@ -27,11 +27,11 @@ public class QADAO extends AbstractDAO {
 	 * ========
 	 */
 
-	public boolean insertQAForm(Map<String, Object> map,
+	public String insertQAForm(Map<String, Object> map,
 			HttpServletRequest request) {
 		// TODO Auto-generated method stub
 		String b_uqUserPw = null;
-		boolean flag = false;
+		String flag = null;
 
 		try{
 		b_uqUserPw = (String) map.get("uqUserPw");
@@ -55,14 +55,20 @@ public class QADAO extends AbstractDAO {
 
 			map.put("uqUserPw", sBase);
 		}
+		Map<String, Object> imsimap = (Map<String, Object>) selectOne(
+				"qa.selectNextPk", map);
+		// map을 위에서 써버리면 그 다음 쿼리시 null 값 나온다. !! (가져오는값이라?)
+		String q_pk = String.valueOf(imsimap.get("QnA_id"));
+		map.put("QnA_id", q_pk);
+		
 		
 		String check = String.valueOf(insert("qa.insertQAForm", map));
-
+		String QnA_id = q_pk;
 		System.out.println("check" + check);
 		if (check.equals("1")) {
-			flag = true;
+			flag = QnA_id;
 		} else {
-			flag = false;
+			flag = null;
 		}
 		}
 		catch(Exception e){

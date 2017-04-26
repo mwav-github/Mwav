@@ -195,7 +195,7 @@
 
 <!-- line modal -->
 <div class="modal fade" id="Contact" tabindex="-1" role="dialog"
-	aria-labelledby="modalLabel" aria-hidden="true">
+	aria-labelledby="modalLabel" aria-hidden="true" style="overflow:hidden">
 
 	<%--성공/실패 레이어 팝업 --%>
 	<div id="alert_success" class="alert alert-success alert-dismissable"
@@ -219,7 +219,7 @@
 				</button>
 				<h3 class="modal-title" id="lineModalLabel">My Modal</h3>
 			</div> -->
-			<div class="modal-body">
+			<div class="modal-body" style="overflow: auto; max-height: 500px;">
 
 				<form class="form-horizontal" id="QAForm">
 					<input TYPE="hidden" name="uqStatus" value=""> <input
@@ -300,7 +300,7 @@
 						</div>
 
 
-						<c:if test="${sessionScope.member_id eq null }">
+						<c:if test="${sessionScope.Member eq null }">
 
 							<%--비회원인 경우 --%>
 							<div class="form-group">
@@ -428,7 +428,7 @@ row 형태로 한줄 씩 한 후 ! enter 해준다.
 					</div>
 					<div class="enter"></div>
 
-					<c:if test="${sessionScope.member_id eq null }">
+					<c:if test="${sessionScope.Member eq null }">
 						<div class="row">
 							<div class="col-md-12 col-sm-12">
 								<label for="password">Password*</label> <input id="uqUserPw"

@@ -70,11 +70,11 @@ $(document).ready(function() {
 </head>
 
 <body>
-	<div id="lightbox" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	<div id="lightbox" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="overflow:hidden">
     <div class="modal-dialog">
         <button type="button" class="close hidden" data-dismiss="modal" aria-hidden="true">×</button>
         <div class="modal-content">
-            <div class="modal-body">
+            <div class="modal-body" style="overflow-y:scroll">
                 <img src="" alt="" />
             </div>
         </div>

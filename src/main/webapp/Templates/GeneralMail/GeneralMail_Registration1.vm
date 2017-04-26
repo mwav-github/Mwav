@@ -1,0 +1,10 @@
+<html>
+    <body>
+        <h3>Dear  thank you for placing order.</h3>
+
+        <div>
+            Your order id is : 
+        </div>
+        <span>Sent using Velocity Template</span>
+    </body>
+</html>

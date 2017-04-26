@@ -49,7 +49,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					Customer Service <small> Contact</small>
 				</h1>
 				<ol class="breadcrumb">
-					<li><a href="index.html">Home</a></li>
+					<li><a href="/">Home</a></li>
 					<li>Customer Service</li>
 					<li class="active">Contact</li>
 				</ol>
@@ -75,80 +75,106 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 						<h2 class="page-header mwav_leftText">Contact</h2>
 					</div>
 					<div class="row">
-						<div class="col-xs-12 col-sm-6 col-md-6">
+						<div class="col-xs-12 col-sm-4 col-md-4">
 							<div class="well well-sm">
 								<div class="row">
-									<div class="col-xs-12 col-sm-6 col-md-4">
-										<img src="http://placehold.it/380x500" alt=""
-											class="img-rounded img-responsive" />
-									</div>
-									<div class="col-xs-12 col-sm-6 col-md-8">
-										<h4>Bhaumik Patel</h4>
-										<small><cite title="Seoul, KOREA">Seoul, KOREA <i class="glyphicon glyphicon-map-marker">
-											</i>
+									<div class="col-xs-2 col-sm-2 col-md-2"></div>
+									<div class="col-xs-10 col-sm-10 col-md-10">
+										<h4>
+											CEO (Lewis Kim) 
+										</h4>
+										<small><cite title="Seoul, KOREA">Seoul, KOREA
+												<i class="glyphicon glyphicon-map-marker"> </i>
 										</cite></small>
 										<p>
 											<i class="glyphicon glyphicon-envelope"></i>
-											email@example.com <br /> <i
-												class="glyphicon glyphicon-globe"></i><a
-												href="http://www.jquery2dotnet.com">
-												http://www.mwav.net</a> <br /> <i
-												class="glyphicon glyphicon-gift"></i> June 02, 1988
+											Lewis.Kim@mwav.net <br /> <i
+												class="glyphicon glyphicon-gift"></i> June 02, 1975
 										</p>
-										<!-- Split button -->
-										<div class="text-center">
-											<a class="btn btn-social-icon btn-twitter"> <span
-												class="fa fa-twitter"></span>
-											</a> <a class="btn btn-social-icon btn-facebook"> <span
-												class="fa fa-facebook"></span>
-											</a> <a class="btn btn-social-icon btn-google"> <span
-												class="fa fa-google"></span>
-											</a> <a class="btn btn-social-icon btn-linkedin"> <span
-												class="fa fa-linkedin"></span>
-											</a>
-										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-						<div class="col-xs-12 col-sm-6 col-md-6">
+						<div class="col-xs-12 col-sm-4 col-md-4">
 							<div class="well well-sm">
 								<div class="row">
-									<div class="col-sm-6 col-md-4">
-										<img src="http://placehold.it/380x500" alt=""
-											class="img-rounded img-responsive" />
+									<div class="col-xs-2 col-sm-2 col-md-2"></div>
+									<div class="col-xs-10 col-sm-10 col-md-10">
+										<h4>
+											CTO (James Lee) 
+										</h4>
+										<small><cite title="Seoul, KOREA">Seoul, KOREA
+												<i class="glyphicon glyphicon-map-marker"> </i>
+										</cite></small>
+										<p>
+											<i class="glyphicon glyphicon-envelope"></i>James.Lee@mwav.net
+											<br /> <i class="glyphicon glyphicon-gift"></i> May 02, 1970
+										</p>
 									</div>
-									<div class="col-sm-6 col-md-8">
-										<h4>Bhaumik Patel</h4>
-										<small><cite title="Seoul, KOREA ">Seoul, KOREA <i class="glyphicon glyphicon-map-marker">
-											</i>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-4 col-md-4">
+							<div class="well well-sm">
+								<div class="row">
+									<div class="col-xs-2 col-sm-2 col-md-2"></div>
+									<div class="col-xs-10 col-sm-10 col-md-10">
+										<h4>
+											CMO (Alex Chae) 
+										</h4>
+										<small><cite title="Seoul, KOREA">Seoul, KOREA
+												<i class="glyphicon glyphicon-map-marker"> </i>
 										</cite></small>
 										<p>
 											<i class="glyphicon glyphicon-envelope"></i>
-											email@example.com <br /> <i
-												class="glyphicon glyphicon-globe"></i><a
-												href="http://www.jquery2dotnet.com">
-												http://www.mwav.net</a> <br /> <i
-												class="glyphicon glyphicon-gift"></i> June 02, 1988
+											Alex.Chae@mwav.net <br /> <i
+												class="glyphicon glyphicon-gift"></i> June 02, 1975
 										</p>
-										<div class="text-center">
-											<a class="btn btn-social-icon btn-twitter"> <span
-												class="fa fa-twitter"></span>
-											</a> <a class="btn btn-social-icon btn-facebook"> <span
-												class="fa fa-facebook"></span>
-											</a> <a class="btn btn-social-icon btn-google"> <span
-												class="fa fa-google"></span>
-											</a> <a class="btn btn-social-icon btn-linkedin"> <span
-												class="fa fa-linkedin"></span>
-											</a>
-										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-4 col-md-4">
+							<div class="well well-sm">
+								<div class="row">
+									<div class="col-xs-2 col-sm-2 col-md-2"></div>
+									<div class="col-xs-10 col-sm-10 col-md-10">
+										<h4>
+											CTO (Evan Martin) 
+										</h4>
+										<small><cite title="Seoul, KOREA">Seoul, KOREA
+												<i class="glyphicon glyphicon-map-marker"> </i>
+										</cite></small>
+										<p>
+											<i class="glyphicon glyphicon-envelope"></i>
+											Evan.Martin@mwav.net <br /> <i
+												class="glyphicon glyphicon-gift"></i> June 01, 1970
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-4 col-md-4">
+							<div class="well well-sm">
+								<div class="row">
+									<div class="col-xs-2 col-sm-2 col-md-2"></div>
+									<div class="col-xs-10 col-sm-10 col-md-10">
+										<h4>
+											CIO (Peter J) 
+										</h4>
+										<small><cite title="Seoul, KOREA">Seoul, KOREA
+												<i class="glyphicon glyphicon-map-marker"> </i>
+										</cite></small>
+										<p>
+											<i class="glyphicon glyphicon-envelope"></i>
+											PeterJ.Cho@mwav.net <br /> <i
+												class="glyphicon glyphicon-gift"></i> January 07, 1971
+										</p>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-
-
 				</div>
 			</div>
 		</div>

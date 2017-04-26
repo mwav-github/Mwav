@@ -74,8 +74,8 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					<div class="vertical_parent col-xs-12 col-sm-12 col-md-12"
 						style="color: #fff; background: url(../Images/what-is-azure.jpg) no-repeat; background-size: 100% auto;">
 						<div class="vertical_child">
-							<h3 class="align_center">앱 프레임워크 플랫폼 반갑습니다.</h3>
-							<h4 class="mgt5">Microsoft Azure는 분석, 컴퓨팅, 데이터베이스, 모바일,
+							<h3 class="align_center fontsize_18">앱 프레임워크 플랫폼 반갑습니다.</h3>
+							<h4 class="mgt5 fontsize_14">Microsoft Azure는 분석, 컴퓨팅, 데이터베이스, 모바일,
 								네트워킹, 저장소 및 웹이 통합된 클라우드 서비스의 모음입니다. 이를 통해 작동이 더 빨라지고 더 많은 성과를 거둘
 								수 있으며 비용을 절감할 수 있습니다. Azure에서 수행할 수 있는 작업은 다음과 같습니다.</h4>
 						</div>

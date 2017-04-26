@@ -23,13 +23,14 @@
 		<!-- Image Container 
 container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다. 
 -->
-		<div class="row">
+		<!-- <div class="row">
 			<div class="col-lg-12">
-				<img src="/CompanyItem/ITConsulting/Image/CompanyItem_IN(height_280).jpg"
+				<img
+					src="/CompanyItem/ITConsulting/Image/CompanyItem_IN(height_280).jpg"
 					class="img-responsive res_width fix_height_300"
 					alt="Responsive image">
 			</div>
-		</div>
+		</div> -->
 	</div>
 	<!--  //////////////////////////////////// 
 	Header 끝
@@ -40,13 +41,13 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 	<div class="container">
 
 		<!-- Page Heading/Breadcrumbs -->
-		<div class="row">
+		<div class="row res_width">
 			<div class="col-lg-12">
 				<h1 class="page-header">
 					Company Item <small>IT Consulting</small>
 				</h1>
 				<ol class="breadcrumb">
-					<li><a href="index.html">Home</a></li>
+					<li><a href="/">Home</a></li>
 					<li>Company Item</li>
 					<li class="active">IT Consulting</li>
 				</ol>
@@ -57,18 +58,18 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 		<!-- Content Row -->
 		<div class="row">
 			<!-- Sidebar Column left메뉴 추후 변경 예정<시작>-->
-			<div class="col-md-3">
+			<!-- <div class="col-md-3">
 				<div class="list-group">
 					<a href="/CompanyItem/ITConsulting/ITConsulting.mwav"
 						class="list-group-item active" data-toggle="tooltip"
 						data-placement="top" data-original-title="IT 컨설팅">IT
 						Consulting</a>
 				</div>
-			</div>
+			</div> -->
 			<!-- 끝 -->
 
 			<!-- Content Column -->
-			<div class="col-md-9">
+			<div class="col-md-12">
 
 
 				<div id="Consulting Services" class="col-lg-12">
@@ -173,6 +174,25 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 
 						<div class="enter"></div>
 					</div>
+
+					<!-- <div class="col-xs-6 col-sm-3 col-md-3">
+						<div class="thumbnail">
+							<img class="img-responsive"
+								src="/CompanyItem/ITConsulting/Images/analysis.jpg" alt="">
+							<div class="cat">Analytics</div>
+							<div class="caption">
+								<h3>Analytics</h3>
+								<p>We gives you the digital analytics tools you need to
+									analyze data from all touchpoints in one place, for a deeper
+									understanding of the customer experience. You can then share
+									the insights that matter with your whole organization.</p>
+							</div>
+							<a href="/CompanyItem/WebSiteBuilding/WebSiteBuilding.mwav"
+								class="btn btn-primary btn-sm btn-block">Learn More</a>
+						</div>
+
+						<div class="enter"></div>
+					</div> -->
 				</div>
 
 			</div>

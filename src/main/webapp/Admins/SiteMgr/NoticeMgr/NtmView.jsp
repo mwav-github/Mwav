@@ -92,12 +92,12 @@
 								<table class="table table-striped">
 									<thead>
 										<tr>
-										    <c:set var ="buStatus" value="${selectOneNtmView.buStatus }"}/>
+										    <c:set var ="buStatus" value="${selectOneNtmView.buStatus }"/>
 											<c:if test="${fn:contains(buStatus, '임시저장상태')}">
 												<span class="pull-right bg-danger"><strong>
 												</strong></span>
 											</c:if>
-											<c:if test="${selectOneNtmView.buStatus eq '현재공지상태'}">
+											<c:if test="${fn:contains(buStatus, '현재공지상태')}">
 												<span class="pull-right bg-primary"><strong>
 												</strong></span>
 											</c:if>

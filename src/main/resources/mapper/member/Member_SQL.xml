@@ -137,7 +137,7 @@ select * from postcodebuildinfo_tbl where 시도명 = '서울특별시' and 시�
     
 	<select id="selectLogin" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-		SELECT a.mbrLoginPw, a.mbrLoginId, a.member_id, b.mbrLeaveDt
+		SELECT a.*, b.mbrLeaveDt
 		FROM Member_tbl a, MemberValue_tbl b
 	    WHERE a.member_id = b.member_id and mbrLoginId = #{mbrLoginId} 		
 		]]>

@@ -58,7 +58,7 @@
 		data-original-title="페이지 준비 중입니다.">History</a> <a
 		href="/Company/BusinessField/BusinessFields.mwav"
 		class="list-group-item" data-toggle="tooltip" data-placement="top"
-		data-original-title="사업분야">Business Field</a> <a
+		data-original-title="사업분야">Business Fields</a> <a
 		
 		class="list-group-item" data-toggle="tooltip" data-placement="top"
 		data-original-title="페이지 준비 중입니다.">Actual Results</a> <a

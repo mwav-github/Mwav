@@ -13,7 +13,7 @@ http://planbong.tistory.com/531
 	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/additional-methods.min.js"></script>
 
 <script>
-	//http://www.nextree.co.kr/p11205/
+	<%--//http://www.nextree.co.kr/p11205/
 	//http://godpage.tistory.com/entry/Ajax%EC%A0%95%EB%A6%AC-2-XMLHttpRequest%EC%9D%98-%EB%A9%94%EC%84%9C%EB%93%9C%EC%99%80-%ED%94%84%EB%A1%9C%ED%8D%BC%ED%8B%B0	
 	//http://invincure.tistory.com/100
 	//http://www.ppomppu.co.kr/zboard/view.php?id=developer&no=8206
@@ -21,7 +21,7 @@ http://planbong.tistory.com/531
 	//http://java.ihoney.pe.kr/283
 	//http://techknowdger.blogspot.kr/2014/02/sping-db-json-ajax.html
 
-	//https://developer.mozilla.org/ko/docs/AJAX/Getting_Started
+	//https://developer.mozilla.org/ko/docs/AJAX/Getting_Started --%>
 	var xhr;
 	function createXhr() {
 		if (window.ActiveXObject) { // IE 이전버전
@@ -32,32 +32,34 @@ http://planbong.tistory.com/531
 	}
 
 	function idcheck() {
-		//var id = document.getElementsByName("mbrLoginId")[0].value;
-		var id = document.getElementsByName("mbrLoginId")[0];
+		var id = document.getElementsByName("mbrLoginId")[0].value;
+		<%--var id = document.getElementsByName("mbrLoginId")[0].value;
 		//alert(id);
 		//var html_object = document.getElementsByName("mbrLoginId");
 		//위에로 하면 HTMLCollection로 나오며 이는  리턴 결과가 복수인 경우에 사용하게 되는 객체다
 		// 아래는 HTML INPUTELEMENT? 하나 !
+		//유효성 체크  후 ajax --%>
 		var input_object = document.getElementById("chkLoginId");
-		//유효성 체크  후 ajax
 		
-		chkLoginPolicy(id,input_object);
+		var flagPolicy = chkLoginPolicy(id,input_object);
 
 		var queryString = "mbrLoginId=" + id;
 		if (id.length < 6) {
 			document.getElementById("idcheckLayer").innerHTML = "<font color=red>6자리 이상 입력하세요.</font>";
-		} else {
-			// 1. XMLHttpReqeust 객체 생성
+		} 
+		else if (flagPolicy == true){
+			<%-- 1. XMLHttpReqeust 객체 생성 --%>
 			createXhr();
-			// 2. 이벤트 핸들러 등록
-			xhr.onreadystatechange = callback; // callback 함수를 등록
-			// 3. open()를 통해 요청관련 설정을 설정
+			<%-- 2. 이벤트 핸들러 등록 --%>
+			xhr.onreadystatechange = callback; 
+			<%-- callback 함수를 등록
+			// 3. open()를 통해 요청관련 설정을 설정 --%>
 			xhr.open("POST", "/member/mbrLoginIdCheck.mwav", true);
-			// 4. Header에 contentType 지정 - post
+			<%-- 4. Header에 contentType 지정 - post --%>
 			xhr.setRequestHeader("Content-Type",
 					"application/x-www-form-urlencoded");
-			// 5. send()를 통해 요청
-			xhr.send(queryString); // 요청 쿼리를 보내준다.
+			<%-- 5. send()를 통해 요청 // 요청 쿼리를 보내준다. --%>
+			xhr.send(queryString); 
 		}
 
 	}
@@ -74,10 +76,6 @@ http://planbong.tistory.com/531
 					//아이디 중복되지 않음
 					//alert('1');
 					document.getElementById("idcheckLayer").innerHTML = resTxt;
-					//document.getElementsByName("mbrLoginId")[0].value = "";
-				
-					//document.getElementsByName("mbrLoginId")[0].focus();
-					//document.getElementsByName("mbrLoginId")[0].focus();
 					
 				} else {
 					//아이디 중복

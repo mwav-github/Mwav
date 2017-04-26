@@ -26,9 +26,9 @@
 </head>
 <body>
 
-	<!-- Navigation (=메인 메뉴 및 슬라이드 쇼 포함)
+	<%-- Navigation (=메인 메뉴 및 슬라이드 쇼 포함)
 	     Index의 마스터 페이지
-	 -->
+	 --%>
 	<!--  //////////////////////////////////// -->
 	<jsp:include page="PartsOfContent/SiteHeader/FrontHeader.jsp"
 		flush="false" />
@@ -50,23 +50,6 @@
 						Solutions</h2>
 				</div>
 
-				<!-- <div class="col-xs-12 col-sm-6 col-md-6">
-
-					<div class="product-item">
-						<div class="pi-img-wrapper">
-							<img class="img-responsive"
-								src="/CompanyItem/zImage/main_security.jpg">
-						</div>
-						<h3>1234</h3>
-						<button class="btn learnmore"
-							onclick="javascript:window.location.href='/CompanyItem/ITProducts/Aervision/Aervision.mwav#AerPass'"
-							type="button">Learn More</button>
-
-						<div class="sticker sticker-new"></div>
-					</div>
-
-
-				</div> -->
 				<div class="col-xs-12 col-sm-6 col-md-6">
 					<div class="news">
 						<div class="img-figure">
@@ -76,7 +59,7 @@
 						</div>
 
 						<div class="title">
-							<h1>Biometric Authentication </h1>
+							<h1>Biometric Authentication</h1>
 						</div>
 						<p class="description">AerVision Technologies provides state
 							of the art customized solutions for automated monitoring of video
@@ -109,43 +92,6 @@
 						</p>
 					</div>
 				</div>
-				<!-- <div class="col-xs-12 col-sm-6 col-md-6">
-
-					<div class="product-item">
-						<div class="pi-img-wrapper">
-							<img src="/CompanyItem/zImage/Main_chart.jpg"
-								class="img-responsive">
-							<div>
-								<a href="#" class="btn">Zoom</a> <a href="#" class="btn">View</a>
-							</div>
-						</div>
-						<h3>1234</h3>
-
-						<button type="button" class="btn learnmore"
-							onclick="javascript:window.location.href='/hightsofts/hightsofts.mwav?items=Highcharts'">Learn
-							More</button>
-
-						<div class="sticker sticker-new"></div>
-					</div> -->
-
-				<!-- 8/12 -->
-				<!-- <div class="panel panel-default">
-						<div class="panel-heading">
-							<h4>
-								<i class="fa fa-fw fa-gift"></i> OpenSRS
-							</h4>
-						</div>
-						<div class="panel-body">
-							<p>jQuery is a cross-platform JavaScript library designed to
-								simplify the client-side scripting of HTML. Used by over 60% of
-								the 10,000 most visited websites, jQuery is the most popular
-								JavaScript library in use today. jQuery is free, open-source
-								software licensed under the MIT License.</p>
-							<a href="/CompanyItem/ITProducts/OpenSRS/OpenSRS.mwav"
-								class="btn btn-info btn-sm btn-block">Learn More</a>
-						</div>
-					</div> -->
-
 			</div>
 			<%-- 추가시 테블릿에서 공지, 뉴스 반반씩으로 변경 예정 --%>
 			<div class="col-xs-12 col-sm-12 col-md-4">
@@ -156,16 +102,13 @@
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-12">
 					<div class="bs-component">
-						<!-- 이클립스 해제 희망시 
+						<%-- 이클립스 해제 희망시 
 				     1. http://ifone420.tistory.com/107
 				     
 				     추가적으로 
 				     
 				     localhost:8080/CWS 이부분은 server.xml 에서 지정한다.
-				-->
-						<!-- <h4>
-							<strong>Notices</strong>
-						</h4> -->
+				--%>
 
 						<jsp:include page="/board/buFrontList.mwav" flush="false" />
 
@@ -234,10 +177,14 @@
 			<div class="col-lg-12">
 				<%--2행 --%>
 				<div class="col-xs-12 col-sm-6 col-md-3">
-					<a href="/CompanyItem/ITProducts/InsWave/InsWave.mwav"> <img
-						class="img-responsive img-portfolio img-hover"
+					<a href="/CompanyItem/ITProducts/InsWave/InsWave.mwav">
+						<div class="portfolio-hover">
+							<div class="portfolio-hover-content">
+								<i class="fa fa-plus fa-3x"></i>
+							</div>
+						</div>
+					</a> <img class="img-responsive"
 						src="/CompanyItem/ITProducts/Images/CMS_01.png" alt="">
-					</a>
 					<%--<p>Contents :</p> --%>
 				</div>
 				<div class="col-xs-12 col-sm-6 col-md-3">
@@ -403,12 +350,6 @@
 			flush="false" />
 		<!--/////////////////////////////////////////////////// -->
 	</footer>
-
-
-
-
-
-
 </body>
 
 </html>

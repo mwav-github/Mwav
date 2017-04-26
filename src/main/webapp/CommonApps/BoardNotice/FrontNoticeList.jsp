@@ -13,26 +13,27 @@
 		f.bUsers_id.value = s_value; //POST방식으로 넘기고 싶은 값 (이건 실제 내부 내용)
 		f.submit();
 	}
-	
-	
 </script>
 <div class="bs-component">
 	<!-- NEW  -->
 	<table class="table table-striped">
-	<!-- 	<thead>
+		<!-- 	<thead>
 			<tr>
 				<th>Title</th>
 				<th>UpdateDate</th>
 			</tr>
 		</thead> -->
 		<tbody>
-		<%--xml mapper에서 사용한 id는 사용불가능하다. --%>
+			<%--xml mapper에서 사용한 id는 사용불가능하다. --%>
 			<form name="NsmNews" action="/board/buView.mwav" method="post">
 				<c:choose>
 					<c:when test="${fn:length(selectListBuFrontList) > 0}">
-						<c:forEach var="VselectListBuFrontList" items="${selectListBuFrontList}">
-							<input type="hidden" name="bUsers_id" value="${VselectListBuFrontList.bUsers_id}" />
-							<input type="hidden" name="buViewCount" value="${VselectListBuFrontList.buViewCount}" />
+						<c:forEach var="VselectListBuFrontList"
+							items="${selectListBuFrontList}">
+							<input type="hidden" name="bUsers_id"
+								value="${VselectListBuFrontList.bUsers_id}" />
+							<input type="hidden" name="buViewCount"
+								value="${VselectListBuFrontList.buViewCount}" />
 							<tr>
 								<!-- a태그로 처리요망 -->
 								<td class="col-md-8 col-xs-8 col-sm-8"><a

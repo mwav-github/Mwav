@@ -6,10 +6,13 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import net.mwav.common.module.EmailSender;
 import net.mwav.member.dao.MemberDAO;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service("memberService")
 public class MemberServiceImpl implements MemberService {
@@ -19,6 +22,9 @@ public class MemberServiceImpl implements MemberService {
 
 	@Resource(name = "memberDAO")
 	private MemberDAO memberDAO;
+
+	@Autowired
+	EmailSender emailSender;
 
 	/*
 	 * ========================================등록================================
@@ -30,24 +36,30 @@ public class MemberServiceImpl implements MemberService {
 	 * @author Kim YJ
 	 * @see 서비스단 로직 활용
 	 */
+	@Transactional
 	@Override
 	public String insertMbrForm(Map<String, Object> map) {
 
 		String result = null;
 
 		String b_mbrLoginPw = String.valueOf(map.get("mbrLoginPw"));
-		if (b_mbrLoginPw.isEmpty()) { //비번처리 로직
-			return "pwEmpty"; //null exception 처리
+		if (b_mbrLoginPw.isEmpty()) { // 비번처리 로직
+			return "pwEmpty"; // null exception 처리
 		} else if (b_mbrLoginPw.length() < 8 || b_mbrLoginPw.length() > 15) {
-			return "pwLengthWrong"; //pw 자리수 return
+			return "pwLengthWrong"; // pw 자리수 return
 		} else if (b_mbrLoginPw.trim().length() == 0) {
-			return "pwWrongType"; //공백일 경우 처리
+			return "pwWrongType"; // 공백일 경우 처리
 		}
 
 		String mbrCellPhone = String.valueOf(map.get("mbrCellPhone_1"))
 				+ String.valueOf(map.get("mbrCellPhone_2"))
 				+ String.valueOf(map.get("mbrCellPhone_3"));
 		map.put("mbrCellPhone", mbrCellPhone);
+		
+		String mbrName = String.valueOf(map.get("mbrFirstName"))
+				+ String.valueOf(map.get("mbrMiddleName"))
+				+ String.valueOf(map.get("mbrLastName"));
+		map.put("mbrName", mbrName);
 
 		String mbrAddress_1 = String.valueOf(map.get("mbrAddress_1"));
 		String mbrAddress_2 = String.valueOf(map.get("mbrAddress_2"));
@@ -58,6 +70,17 @@ public class MemberServiceImpl implements MemberService {
 		}
 
 		result = memberDAO.insertMbrForm(map);
+		String snsLogin = (String) map.get("sns_imsi");
+		System.out.println("이메일간다?" + result);
+//&& snsLogin != null
+		if ("insertForm Success".equals(result) ) {
+			try {
+				System.out.println("이메일");
+				emailSender.sendRegistrationEmail(map);
+			} catch (Exception e) { // TODO Auto-generated catch block
+				e.printStackTrace();
+			} // 메일발송
+		}
 
 		return result;
 	}
@@ -127,7 +150,7 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		return memberDAO.selectOneMbrLoginIdSeek(map);
 	}
-	
+
 	@Override
 	public String selectOneMbrLoginPWSeek(Map<String, Object> map) {
 		// TODO Auto-generated method stub
@@ -185,7 +208,7 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		return memberDAO.selectOneSnsMbrLoginIdCheck(smMember_id);
 	}
-	
+
 	@Override
 	public String selectOneMemberPkCheck() {
 		// TODO Auto-generated method stub

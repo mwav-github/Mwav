@@ -134,6 +134,8 @@ public class LoggerInterceptor extends HandlerInterceptorAdapter {
 					statisticsController.insertStatics(request, statistics_id);
 				}
 	/*		}*/
+				
+			
 
 			// 디버그 레벨일때 true
 			// http://planmaster.tistory.com/66
@@ -258,7 +260,15 @@ public class LoggerInterceptor extends HandlerInterceptorAdapter {
 			HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
 		System.out.println("모든 것을 수행한 후 LoggerInterceptor에 나갔다.11");
-
+		//title 지정
+		try{
+	     String setTitle = null;
+	     setTitle = Common_Utils.setTitle(request.getRequestURI());
+			
+	    request.setAttribute("setTitle", setTitle.trim());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 		log.info("======================================           END          ======================================\n");
 
 	}

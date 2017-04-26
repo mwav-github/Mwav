@@ -53,6 +53,7 @@
 								//http://devbox.tistory.com/entry/%EB%B9%84%EA%B5%90-%EC%99%80-%EC%9D%98-%EC%B0%A8%EC%9D%B4-1
 								//alert($("#resultpostseek").height());
 								if (xmlStr === true) {
+									alert("고객님의 소중한 평가에 감사드립니다.")
 									location.reload();
 
 								} else {
@@ -174,7 +175,7 @@
 
 						<p>${selectOneQAView.uaContent}</p>
 						<br>
-						<hr class="hr_gray">
+						<hr class="hr_g">
 
 						<c:choose>
 							<c:when test="${selectOneQAView.uaSatisfaction eq null}">

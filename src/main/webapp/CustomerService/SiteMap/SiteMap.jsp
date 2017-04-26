@@ -82,17 +82,17 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 									href="/Company/Introduction/Introduction.mwav">Introduction</a></strong></li>
 							<li><strong><a
 									href="/Company/Greetings/Greetings.mwav">Greetings</a></strong></li>
-							<li><strong><a href="/Company/History/History.mwav">History</a></strong></li>
+							<li><strong><a href="#">History</a></strong></li>
 							<li><strong><a
 									href="/Company/BusinessField/BusinessFields.mwav">Business
 										Field</a></strong></li>
 							<li><strong><a
-									href="/Company/ActualResults/ActualResults.mwav">Actual
+									href="#">Actual
 										Results</a></strong></li>
 							<li><strong><a href="/board/bnsList.mwav">The
 										Press</a></strong></li>
 							<li><strong><a
-									href="/Company/HR-Affairs/HR-Affairs.mwav">HR-Affairs</a></strong></li>
+									href="#">HR-Affairs</a></strong></li>
 							<li><strong><a
 									href="/Company/LocationMap/LocationMap.mwav">Location Map</a></strong></li>
 							<li><strong><a

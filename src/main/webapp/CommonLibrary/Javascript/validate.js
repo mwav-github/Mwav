@@ -45,6 +45,8 @@ function Trim(strSrc) { var strLTrim = strSrc.replace(/^\s+/,''); return
 
 function chkLoginPolicy(validate_string, input_object) {
 var check_login = trim(validate_string);
+//alert(validate_string);
+//alert(check_login);
 // chkLoginId_1 = document.getElementById("chkLoginId");
 	/*
 	 * chkLoginId_1 = document.getElementById("chkLoginId"); var chkLoginId =
