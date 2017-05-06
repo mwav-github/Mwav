@@ -56,11 +56,11 @@
 
 	//ga('create', 'UA-63623427-1', 'auto');
 	//cookieDomain none 으로 하면 localhost 까지 잡아낸다.
-	//http://www.statstory.com/google-universal-analytics-on-localhost-not-working/
+	//http://www.statstory.com/google-universal-analytics-on-localhost-not-working/--%>
 	ga('create', 'UA-63623427-1', {
 		'cookieDomain' : 'www.mwav.net',
 		'siteSpeedSampleRate' : 100
-	}); // 사이트 속도 측정 100은 전체 체크 (2017_01_10)--%>
+	}); // 사이트 속도 측정 100은 전체 체크 (2017_01_10)
 	ga('send', 'pageview');
 	ga('require', 'displayfeatures');
 <%-- 인구통계부분 추가 (2017_01_10) --%>
@@ -125,8 +125,8 @@
 					<li>FAX: +82-2-6214-1122</li>
 					<li>CEO : Lewis Kim</li>
 					<li>WebSite Manager : James Lee</li>
-       			    <li>Marketing Manager : Alex Chae</li>
-					<li>Chief IT-Business Advisor : Peter J.</li>       			    
+					<li>Marketing Manager : Alex Chae</li>
+					<li>Chief IT-Business Advisor : Peter J.</li>
 					<%-- <li>Sales Manager: ${param.pgl}</li> --%>
 				</ul>
 				<%--
@@ -158,7 +158,7 @@
 				</div>
 				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 					<ul>
-						<li><a href="/CustomerService/Contact/Contact.mwav">Contact</a></li>
+						<li><a href="/CustomerService/Contact/Contact.mwav">Contacts</a></li>
 						<li><a href="/CustomerService/SiteMap/SiteMap.mwav">Site
 								Map</a></li>
 						<li><a href="#terms3" data-toggle="modal"
@@ -229,8 +229,7 @@
 						641046
 					</p>
 					<p>
-						<i class="fa fa-phone"></i> 044- 42 875
-							952 
+						<i class="fa fa-phone"></i> 044- 42 875 952
 					</p>
 
 					<p>

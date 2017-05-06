@@ -22,8 +22,8 @@
 		alert('탈퇴한 회원입니다.');
 		msg = '재 가입하시겠습니까.?'
 		if (confirm(msg) != 0) {
-			<%-- 이전 url 기록안하는 경우 , location.href 의 경우 이전기록이 남아 login.mwav로 포워딩 , 프로세스 정리 필요. --%>
-			location.replace("/MasterPage_1.jsp?mode=Default");
+	<%-- 이전 url 기록안하는 경우 , location.href 의 경우 이전기록이 남아 login.mwav로 포워딩 , 프로세스 정리 필요. --%>
+		location.replace("/MasterPage_1.jsp?mode=Default");
 		} else {
 			history.go(-1)
 		}
@@ -47,7 +47,8 @@
 	<c:choose>
 		<c:when test="${requestScope.returnUrl eq null }">
 			<script type="text/javascript">
-				<%--http://blog.naver.com/PostView.nhn?blogId=haanul98&logNo=80204508627&categoryNo=0&parentCategoryNo=0&viewDate=&currentPage=1&postListTopCurrentPage=1 --%>
+				
+			<%--http://blog.naver.com/PostView.nhn?blogId=haanul98&logNo=80204508627&categoryNo=0&parentCategoryNo=0&viewDate=&currentPage=1&postListTopCurrentPage=1 --%>
 				location.href = "/";
 			</script>
 		</c:when>
@@ -55,7 +56,6 @@
 			<c:set var="returnUrl" value='${requestScope.returnUrl}'
 				scope="request" />
 			<script type="text/javascript">
-				
 				var returnUrl = '<c:out value="${returnUrl}"/>';
 				location.href = returnUrl;
 			</script>
@@ -249,28 +249,27 @@
 
 <script>
 	function re_check(form) {
-		
+
 		var robot_flag = robot_check();
-		if (robot_flag == true){
+		if (robot_flag == true) {
 			if (emptyCheck(form.mbrLoginId, "아이디를 입력해주세요.") == true
 					&& emptyCheck(form.mbrLoginPw, "비밀번호를 입력해주세요.") == true) {
 				return true;
 			} else {
 				return false;
 			}
-		}else{
-			return false;
-		}	
-		return false;
-	}
-	
-	function robot_check(){
-		var recaptcha = grecaptcha.getResponse();
-		if(recaptcha.length == 0 ){
-			alert('로봇이 아닌지 체크해주세요.');
+		} else {
 			return false;
 		}
-		else {
+		return false;
+	}
+
+	function robot_check() {
+		var recaptcha = grecaptcha.getResponse();
+		if (recaptcha.length == 0) {
+			alert('로봇이 아닌지 체크해주세요.');
+			return false;
+		} else {
 			return true
 		}
 	}
@@ -301,7 +300,7 @@
 				<input type="password" class="form-control input-lg caps_lockchk"
 					placeholder="Password" name="mbrLoginPw">
 			</div>
-			
+
 
 			<div class="form-group">
 				<button type="submit" class="btn btn-primary btn-lg btn-block">Sign
@@ -321,16 +320,20 @@
           data-size="invisible"></div> --%>
 			<%--visible --%>
 			<div class="g-recaptcha"
-				data-sitekey="6LcdRxoUAAAAAA4OI0FIN2bv2W0ersTRjqHJdLG-" style="transform:scale(0.88);-webkit-transform:scale(0.88);transform-origin:0 0;-webkit-transform-origin:0 0;"></div>
+				data-sitekey="6LcdRxoUAAAAAA4OI0FIN2bv2W0ersTRjqHJdLG-"
+				style="transform: scale(0.88); -webkit-transform: scale(0.88); transform-origin: 0 0; -webkit-transform-origin: 0 0;"></div>
 		</div>
 
 		<%--소셜 로그인 연동부분 --%>
 		<div class="form-group">
 			<!-- GOOGLE SIGNIN -->
 			<form id="go_signin" name="go_signin"
-				action="<c:url value="/signin/google.mwav"/>" method="POST" onSubmit="return robot_check();">
+				action="<c:url value="/signin/google.mwav"/>" method="POST"
+				onSubmit="return robot_check();">
 				<div class="col-xs-12 col-sm-12 col-md-12 mgt1_8">
-					<%-- <button type="submit" class="btn btn-danger btn-block"><i class="fa fa-google-plus"></i></button>--%>
+					<!-- <button type="submit" class="btn btn-danger btn-block">
+						<i class="fa fa-google-plus"></i>
+					</button> -->
 					<button type="submit" class="btn btn-block btn-social btn-google">
 						<span class="fa fa-google-plus"></span> <span class="">Sign
 							in with Google</span>
@@ -344,9 +347,12 @@
 
 			<!-- facebook SIGNIN -->
 			<form id="go_signin" name="go_signin"
-				action="<c:url value="/signin/facebook.mwav"/>" method="POST" onSubmit="return robot_check();">
+				action="<c:url value="/signin/facebook.mwav"/>" method="POST"
+				onSubmit="return robot_check();">
 				<div class="col-xs-12 col-sm-12 col-md-12 mgt1_8">
-					<%-- <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-facebook"></i></button>--%>
+					<!-- <button type="submit" class="btn btn-primary btn-block">
+						<i class="fa fa-facebook"></i>
+					</button> -->
 
 					<button type="submit" class="btn btn-block btn-social btn-facebook">
 						<span class="fa fa-facebook"></span> <span class=""> Sign
@@ -361,11 +367,13 @@
 
 			<!-- LINKEDIN SIGNIN -->
 			<form id="go_signin" name="go_signin"
-				action="<c:url value="/signin/linkedin.mwav"/>" method="POST" onSubmit="return robot_check();">
+				action="<c:url value="/signin/linkedin.mwav"/>" method="POST"
+				onSubmit="return robot_check();">
 				<div class="col-xs-12 col-sm-12 col-md-12 mgt1_8">
-					<%-- 이전버전 
-					<button type="submit" class="btn btn-danger btn-block"><i class="fa fa-linkedin"></i></button>
-				--%>
+					<!-- <button type="submit" class="btn btn-danger btn-block">
+						<i class="fa fa-linkedin"></i>
+					</button> -->
+
 					<button type="submit" class="btn btn-block btn-social btn-linkedin">
 						<span class="fa fa-linkedin"></span> <span class="">Sign in
 							with LinkedIn</span>
@@ -377,9 +385,12 @@
 
 			<!-- TWITTER SIGNIN -->
 			<form id="go_signin" name="go_signin"
-				action="<c:url value="/signin/twitter.mwav"/>" method="POST" onSubmit="return robot_check();">
+				action="<c:url value="/signin/twitter.mwav"/>" method="POST"
+				onSubmit="return robot_check();">
 				<div class="col-xs-12 col-sm-12 col-md-12 mgt1_8 mgb3">
-					<%--<button type="submit" class="btn btn-info btn-block"><i class="fa fa-twitter"></i></button> --%>
+					<!-- <button type="submit" class="btn btn-info btn-block">
+						<i class="fa fa-twitter"></i>
+					</button> -->
 
 					<button type="submit" class="btn btn-block btn-social btn-twitter">
 						<span class="fa fa-twitter"></span> <span class="">Sign in
@@ -407,10 +418,10 @@
 					role="button" data-toggle="modal"><strong>Forgot your
 						ID or Password?</strong></a>
 			</div>
-			
+
 
 		</div>
-	
+
 		<%-- 페북 로그인 연동 -->
 
 		<!-- <fb:login-button scope="public_profile,email"
@@ -449,7 +460,7 @@
 			</label>
 			<p class="help-block">(if this is a private computer)</p>
 		</div> --%>
-		
+
 		<div class="form-group col-md-12 pull-right">
 
 			<%--invisible --%>

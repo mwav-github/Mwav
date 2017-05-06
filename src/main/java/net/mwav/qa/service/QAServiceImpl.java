@@ -13,8 +13,6 @@ import net.common.common.CommandMap;
 import net.mwav.common.module.Common_Utils;
 import net.mwav.common.module.EmailSender;
 import net.mwav.qa.dao.QADAO;
-import net.mwav.shop.dao.GoodsDAO;
-
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -57,7 +55,9 @@ public class QAServiceImpl implements QAService {
 			flag = true;
 			try {
 				map.put("QnA_id", imsi_flag);
-				emailSender.sendQuestionEmail(map);
+				
+				//QA문의 발송
+				/*emailSender.sendQuestionEmail(map);*/
 			} catch (Exception e) { // TODO Auto-generated catch block
 				e.printStackTrace();
 			} // 메일발송

@@ -62,7 +62,7 @@ public class SignController {
 				connectionFactoryLocator, connectionRepository);
 	}
 
-	@RequestMapping(value = "/signin", method = RequestMethod.GET)
+	@RequestMapping(value = "/signin", method = {RequestMethod.GET, RequestMethod.POST})
 	public void signin() {
 		System.out.println("출력3");
 	}
@@ -72,7 +72,7 @@ public class SignController {
 		throw new ExpiredAuthorizationException("google");
 	}
 
-	@RequestMapping(value = "/signup.mwav", method = RequestMethod.GET)
+	@RequestMapping(value = "/signup.mwav", method = {RequestMethod.GET, RequestMethod.POST})
 	public String signupForm2(WebRequest req, Model model,
 			HttpServletRequest request, HttpServletResponse response) {
 		Connection<?> connection = providerSignInUtils

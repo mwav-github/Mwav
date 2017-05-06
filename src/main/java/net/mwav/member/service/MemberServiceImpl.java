@@ -73,14 +73,16 @@ public class MemberServiceImpl implements MemberService {
 		String snsLogin = (String) map.get("sns_imsi");
 		System.out.println("이메일간다?" + result);
 //&& snsLogin != null
-		if ("insertForm Success".equals(result) ) {
+		
+		//회원가입 메일 발송
+		/*if ("insertForm Success".equals(result) ) {
 			try {
 				System.out.println("이메일");
 				emailSender.sendRegistrationEmail(map);
 			} catch (Exception e) { // TODO Auto-generated catch block
 				e.printStackTrace();
-			} // 메일발송
-		}
+			} 
+		}*/
 
 		return result;
 	}

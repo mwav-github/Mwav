@@ -239,6 +239,7 @@ client_secret : client_id를 위한 secret 값이다. 이 값으로 Client를 �
 		return connection != null ? connection.getApi() : null;
 	}
 	
+	//http://docs.spring.io/spring-social/docs/current/apidocs/org/springframework/social/connect/web/ProviderSignInController.html
 	@Bean
 	public ProviderSignInController providerSignInController(
 	            ConnectionFactoryLocator connectionFactoryLocator,
@@ -249,6 +250,7 @@ client_secret : client_id를 위한 secret 값이다. 이 값으로 Client를 �
 	        usersConnectionRepository,
 	        new SimpleSignInAdapter(new HttpSessionRequestCache()));
 	        controller.setSignUpUrl("/signup.mwav");
+	        controller.setSignInUrl("/MasterPage.mwav?mode=SMbrLogin");
 	    return controller;
 	}
 

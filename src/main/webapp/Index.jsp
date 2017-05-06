@@ -177,14 +177,19 @@
 			<div class="col-lg-12">
 				<%--2행 --%>
 				<div class="col-xs-12 col-sm-6 col-md-3">
-					<a href="/CompanyItem/ITProducts/InsWave/InsWave.mwav">
+				
+				<a href="/CompanyItem/ITProducts/InsWave/InsWave.mwav"> <img
+						class="img-responsive img-portfolio img-hover"
+						src="/CompanyItem/ITProducts/Images/CMS_01.png" alt="">
+					</a>
+					<!-- <a href="/CompanyItem/ITProducts/InsWave/InsWave.mwav">
 						<div class="portfolio-hover">
 							<div class="portfolio-hover-content">
 								<i class="fa fa-plus fa-3x"></i>
 							</div>
 						</div>
 					</a> <img class="img-responsive"
-						src="/CompanyItem/ITProducts/Images/CMS_01.png" alt="">
+						src="/CompanyItem/ITProducts/Images/CMS_01.png" alt=""> -->
 					<%--<p>Contents :</p> --%>
 				</div>
 				<div class="col-xs-12 col-sm-6 col-md-3">

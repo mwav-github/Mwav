@@ -1,10 +1,9 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib  prefix="decorator" 
-            uri="http://www.opensymphony.com/sitemesh/decorator" %>
-<%@ taglib  prefix="page"
-            uri="http://www.opensymphony.com/sitemesh/page" %>
+<%@ taglib prefix="decorator"
+	uri="http://www.opensymphony.com/sitemesh/decorator"%>
+<%@ taglib prefix="page" uri="http://www.opensymphony.com/sitemesh/page"%>
 
 <!DOCTYPE html>
 <html>
@@ -37,7 +36,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 	-->
 
 	<!-- Page Content -->
-	<section class="bg-primary res_width" id="about">
+	 <section class="bg-primary res_width" id="about">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8 col-lg-offset-2 text-center">
@@ -48,7 +47,13 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 				</div>
 			</div>
 		</div>
-	</section>
+	</section> 
+	<%--<div class="row">
+		<div class="col-lg-12">
+			<img src="/Company/zImage/Company_IN(height_280).jpg"
+				class="img-responsive res_width" alt="Responsive image">
+		</div>
+	</div>--%>
 	<!--  //////////////////////////////////// 
 	Header 끝
 	-->
@@ -57,7 +62,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 	<!-- Page Content LEFTMenu and Body-->
 	<div class="container">
 
-				<decorator:body></decorator:body>
+		<decorator:body></decorator:body>
 	</div>
 	<!-- /.container -->
 

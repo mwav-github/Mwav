@@ -155,7 +155,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 
 							<li><a href="/CustomerService/FAQ/FAQ.mwav">FAQ</a></li>
 							<li><a href="/CustomerService/QnA/QnA.mwav">Q&A</a></li>
-							<li><a href="/CustomerService/Contact/Contact.mwav">Contact</a></li>
+							<li><a href="/CustomerService/Contact/Contact.mwav">Contacts</a></li>
 							<li><a href="/CustomerService/SiteMap/SiteMap.mwav">Site
 									Map</a></li>
 						</ul>
