@@ -1,0 +1,11 @@
+diff a/src/main/webapp/CommonApps/Member/MbrLogin.jsp b/src/main/webapp/CommonApps/Member/MbrLogin.jsp	(rejected hunks)
+@@ -383,7 +383,8 @@
+ 				</div>
+ 			</form>
+ 
+-			<!-- TWITTER SIGNIN -->
++			<!-- TWITTER SIGNIN
++			 -->
+ 			<form id="go_signin" name="go_signin"
+ 				action="<c:url value="/signin/twitter.mwav"/>" method="POST"
+ 				onSubmit="return robot_check();">

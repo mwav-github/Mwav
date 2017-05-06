@@ -383,9 +383,14 @@
 				</div>
 			</form>
 
+<<<<<<< HEAD
 			<!-- TWITTER SIGNIN 
 			
 			-->
+=======
+			<!-- TWITTER SIGNIN
+			 -->
+>>>>>>> feature/mobile_first_renewal
 			<form id="go_signin" name="go_signin"
 				action="<c:url value="/signin/twitter.mwav"/>" method="POST"
 				onSubmit="return robot_check();">
