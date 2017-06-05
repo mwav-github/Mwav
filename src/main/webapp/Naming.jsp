@@ -73,22 +73,24 @@
 							<tbody>
 								<tr>
 									<th scope="row"><code>파스칼 표기법 </code></th>
-									<td>이 명명 규칙에는 단어의 시작 문자는 대문자로하며 기타 문자가 소문자입니다.</td>
-									<td>예 : SupplierCode</td>
+									<td>첫 단어는 대문자로 시작하며, 두 단어의 모든 앞글자를 대문자로 사용하는 표기방법, 카멜 표기법이 단봉낙타라면 파스칼은 쌍봉낙타라고 할 수 있다.</td>
+									<td>예 : PascalCase, SupplierCode</td>
 									<td><a href="#Class & Interface">2.2 Class & Interface</a></td>
 								</tr>
 								<tr>
 									<th scope="row"><code>카멜 표기법</code></th>
-									<td>모든 단어의 명명 규칙 첫 문자에서 첫 단어를 제외하고는 대문자이고 다른 문자는 소문자입니다.</td>
-									<td>예 : supplierCode</td>
+									<td>각 단어의 첫문자를 대문자로 표기하고 붙여쓰되, 맨처음 문자는 소문자로 표기함 <br> 띄어쓰기 대신 대문자로 단어를 구분하는 표기 방식</td>
+									<td>예 : camelCase, backgroundColor, typeName, iPhone</td>
 									<td><a href="#Method">2.3 Method</a>, <a
 										href="#Field Names">2.4 Field Names</a></td>
 								</tr>
 								<tr>
 									<th scope="row"><code>헝가리어 표기법</code></th>
-									<td>이 명명 규칙에서 변수 이름은 데이터 형식을 나타내는 작은 편지의 그룹으로 시작합니다.</td>
+									<td>이 명명 규칙은 접두어에 자료형을 붙이는 것.</td>
 									<td>예 : bLoop (B는 boolean 타입을 나타냅니다), iSum은 (i는 정수 데이터 형식을
-										표시).</td>
+										표시).
+										<a href="https://namu.wiki/w/%ED%97%9D%EA%B0%80%EB%A6%AC%EC%95%88%20%ED%91%9C%EA%B8%B0%EB%B2%95"> 상세보기</a>
+										</td>
 									<td></td>
 								</tr>
 								<tr>
@@ -124,7 +126,7 @@
 							<hr>
 							<p>1. 모든 이름은 명확한 의미를 전달할 수 있도록 짓는다.</p>
 							<p>2. 모든 이름은 영문 알파벳, 숫자, 밑줄(_) 만을 사용하여 짓는다.</p>
-							<p>3. 모든 이름의 길이는 두 자 이상이어야 한다. 단, 반복문의 카운트 변수 제외.
+							<p>3. 모든 이름의 길이는 두 자 이상이어야 한다. (단, 반복문의 카운트 변수 제외.)
 							<p>4. ‘temp’, ‘tmp’와 같이 정확한 용도를 파악하기 힘든 이름은 사용하지 않는다.</p>
 							<p>
 								<strong>5. 모든 의미있는 변수는 DB필드명과 동일하게 작성하며, 단 pk는 제외한다.</strong>
@@ -140,7 +142,7 @@
 								따라 표기한다.
 							</p>
 							<p>2. DAO(DataAccessObject), VO(ValueObject), Service,
-								ServiceImpl 모두 1번가 동일한 형태로 명명해준다.</p>
+								ServiceImpl 모두 1번과 동일한 형태로 명명해준다.</p>
 							<br>
 
 							<div class="text-left well">
@@ -170,7 +172,7 @@
 					<div class="row JAVA">
 						<a id="JAVA"></a>
 						<div class="text-center">
-							<h1 style="color: #00abec;">2. JAVA</h1>
+							<h1 style="color: #00abec;">2. ServerSide Rules</h1>
 							<hr>
 						</div>
 
