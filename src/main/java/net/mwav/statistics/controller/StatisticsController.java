@@ -141,6 +141,7 @@ public class StatisticsController {
 
 	}
 
+	
 	public StatisticsVO insertStatics(HttpServletRequest request,
 			String statistics_id) throws Exception {
 
