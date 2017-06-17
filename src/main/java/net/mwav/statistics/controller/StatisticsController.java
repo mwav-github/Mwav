@@ -64,6 +64,7 @@ public class StatisticsController {
 
 			st_id = statistics_id;
 		}
+		
 		try {
 			StatisticsVO vo = new StatisticsVO();
 
