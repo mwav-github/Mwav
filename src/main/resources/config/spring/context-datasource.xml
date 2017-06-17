@@ -7,22 +7,18 @@
     	<!-- http://m.blog.naver.com/mky1416/220647254648 
 	중요 해당 객체는 스프링에서 제공되는 테스트ㅌ
 		용이라서 실제운영환경에서는 심각한 문제 발생소지가 있다. 
-		http://cafe.naver.com/jjdev/2180-->
-    <bean id="dataSourceSpied" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-        <property name="driverClassName" value="org.gjt.mm.mysql.Driver"/>  <!-- 읽어온 정보를 매핑시켜 가지고 있는 빈 -->
+		http://cafe.naver.com/jjdeXv/2180-->
+<bean id="dataSourceSpied" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>  <!-- 읽어온 정보를 매핑시켜 가지고 있는 빈 -->
 		<!--
 		[Mwav_Localhost]
 		 <property name="url" value="jdbc:mysql://localhost:3306/mwav"/>
 		<property name="username" value="mwav"/> 
 		<property name="password" value="12485154"/>
 		
-		[Mwav_DEV]
-		<property name="url" value="jdbc:mysql://sql12.freemysqlhosting.net:3306/sql12173028"/>
-		<property name="username" value="sql12173028"/> 
-		<property name="password" value="FvBsHIKJ35"/>
 			
 		-->
-		<property name="url" value="jdbc:mysql://localhost:3306/mwav"/>
+		<property name="url" value="jdbc:mysql://127.0.0.1:3306/mwav"/>
 		<property name="username" value="mwav"/> 
 		<property name="password" value="12485154"/>
 		<property name="maxActive" value="100"/>

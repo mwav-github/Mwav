@@ -20,4 +20,4 @@
 <meta property="og:site_name" content="Mwav.net" /> <%--웹 사이트의 제목 --%>
 <%-- <meta property="og:url" content="http://chongmoa.com" /> 표시하고싶은URL --%>
 <meta property="og:description" content="All contents are copyright by Mwav.net"/> <%--  페이지 설명 --%>
-<meta property="fb:app_id" content="Mwav.net" />      <%-- 앱아이디 --%>
+<meta property="fb:app_id" content="956230164513468" />      <%-- 앱아이디 --%>

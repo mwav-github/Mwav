@@ -118,19 +118,19 @@ public class LoggerInterceptor extends HandlerInterceptorAdapter {
 
 			InetAddress localMachine = InetAddress.getLocalHost();
 			String localMachineName = localMachine.getHostName();
-			System.out.println("Hostname of local machine: "
-					+ localMachine.getHostName());
+			/*System.out.println("Hostname of local machine: "
+					+ localMachine.getHostName());*/
 
 			// statistics_id.equals("") ||statistics_id == null 순서 반대로 하면,
 			// nullpointerException 발생 생성전에 비교하니
 		/*	if (!(localMachineName.equals("DESKTOP-T79AHJS"))) {*/
 				if (statistics_id == null || statistics_id.equals("")) {
-					System.out.println("열로들어온다. 세션없는경우");
+					//System.out.println("열로들어온다. 세션없는경우");
 
 					statisticsController.insertFirstStatics(request, member_id,
 							statistics_id, session_id);
 				} else {
-					System.out.println("열로들어온다. 세션있는경우");
+					//System.out.println("열로들어온다. 세션있는경우");
 					statisticsController.insertStatics(request, statistics_id);
 				}
 	/*		}*/
@@ -142,10 +142,10 @@ public class LoggerInterceptor extends HandlerInterceptorAdapter {
 			if (log.isDebugEnabled()) {
 				log.info("======================================          START         ======================================");
 				log.info(" Request URI \t:  " + request.getRequestURI());
-				System.out.println(request.getRequestURI());
-				System.out.println("LoggerInterceptor에 들어왔다.");
+				//System.out.println(request.getRequestURI());
+				//System.out.println("LoggerInterceptor에 들어왔다.");
 			}
-			System.out.println("urls.size()" + urls.size());
+			log.info("urls.size()" + urls.size());
 
 			/*
 			 * int pos = url.lastIndexOf("."); String ext = url.substring(pos +
@@ -156,8 +156,7 @@ public class LoggerInterceptor extends HandlerInterceptorAdapter {
 			 */
 
 			for (int i = 0; i < urls.size(); i++) {
-				System.out.println("== URL : " + urls.get(i)
-						+ " ============================");
+				//System.out.println("== URL : " + urls.get(i)+ " ============================");
 				if (url.matches(urls.get(i))) {
 					{
 						/*
@@ -167,10 +166,8 @@ public class LoggerInterceptor extends HandlerInterceptorAdapter {
 						 * (http://localhost:8080/test/index.jsp)
 						 * request.getServletPath(); //파일명 (/index.jsp)
 						 */
-						System.out
-								.println("== 인증 체크가 필요 있는 URL ============================");
-						System.out.println("== URL : " + urls.get(i)
-								+ " ============================");
+						//System.out.println("== 인증 체크가 필요 있는 URL ============================");
+						//System.out.println("== URL : " + urls.get(i)+ " ============================");
 						String id = "";
 						String returnUrl = "";
 						try {
@@ -179,13 +176,13 @@ public class LoggerInterceptor extends HandlerInterceptorAdapter {
 											// id
 											// 파라미터를
 											// 가져온다
-							System.out.println("세션아이디" + id);
+							//System.out.println("세션아이디" + id);
 
 							returnUrl = request.getRequestURI(); // 현재 URL
 							if (id == null || id.equals("")
 									|| id.equals("null")) { // id가 Null 이거나
 								// 없을 경우
-								System.out.println("이쪽으로 리다이렉트");
+								//System.out.println("이쪽으로 리다이렉트");
 								// response.sendRedirect("/CommonApps/Member/MbrLogin.jsp");
 								// // 로그인 페이지로 리다이렉트 한다.
 								/*
@@ -194,10 +191,10 @@ public class LoggerInterceptor extends HandlerInterceptorAdapter {
 								 * .jsp -> jsp는 서블릿을 안탄다 즉 서블릿을 안타는 대상은 포워딩이 불가
 								 * !! 밑에 redirect는 되나
 								 */
-								System.out
+								/*System.out
 										.println("리턴url"
 												+ uploadRootPath
-												+ "MasterPage.jsp?mode=SMbrLogin&returnUrl=");
+												+ "MasterPage.jsp?mode=SMbrLogin&returnUrl=");*/
 								response.sendRedirect("/MasterPage.jsp?mode=SMbrLogin&returnUrl="
 										+ returnUrl);
 								// response.sendRedirect("/hightsofts/hightsofts.mwav);
@@ -259,7 +256,7 @@ public class LoggerInterceptor extends HandlerInterceptorAdapter {
 	public void postHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
-		System.out.println("모든 것을 수행한 후 LoggerInterceptor에 나갔다.11");
+		//System.out.println("모든 것을 수행한 후 LoggerInterceptor에 나갔다.11");
 		//title 지정
 		try{
 	     String setTitle = null;
