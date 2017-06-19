@@ -76,7 +76,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					<h2 class="page-header mwav_leftText">WebSiteBuilding</h2>
 				</div>
 				<!-- Intro Content -->
-				<div class="row">
+				<div class="container">
 					<!-- /.col-md-4 -->
 					<div class="col-md-4">
 						<div class="enter"></div>
@@ -100,10 +100,95 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					</div>
 				</div>
 
-				<!-- Our Customers -->
-				<div class="row">
+				<!--Technologies -->
+				<div class="container">
 					<div class="col-lg-12">
-						<h2 class="page-header">Technology</h2>
+						<h2 class="page-header mwav_leftText">Portfolioes</h2>
+					</div>
+					<div class="row form-group">
+						<div class="col-xs-12 col-md-4">
+							<figure class="snip1174 blue">
+								<img
+									src="/CompanyItem/WebSiteBuilding/Images/WebSiteBuilding_portfolios_1.png"
+									alt="Prime Visualss" />
+								<figcaption>
+									<!-- <h2>Prime Visualss</h2> 
+								<p></p>-->
+									<a href="/main/page/production">Read More</a>
+								</figcaption>
+							</figure>
+						</div>
+						<div class="col-xs-12 col-md-4">
+							<figure class="snip1174 blue ">
+								<img
+									src="/CompanyItem/WebSiteBuilding/Images/WebSiteBuilding_portfolios_2.png"
+									alt="sq-sample33" />
+								<figcaption>
+									<!-- <h2>Shanttech</h2> -->
+									<a href="/main/page/auction">ReadMore</a>
+								</figcaption>
+							</figure>
+						</div>
+						<div class="col-xs-12 col-md-4">
+							<figure class="snip1174 blue ">
+								<img
+									src="/CompanyItem/WebSiteBuilding/Images/WebSiteBuilding_portfolios_3.png"
+									alt="Filcosys" />
+								<figcaption>
+									<a href="/main/page/auction">ReadMore</a>
+								</figcaption>
+							</figure>
+						</div>
+						<div class="col-md-4">
+							<figure class="snip1174 blue ">
+								<img
+									src="/CompanyItem/WebSiteBuilding/Images/WebSiteBuilding_portfolios_4.png"
+									alt="Elite Clothing" />
+								<figcaption>
+									<a href="/main/page/auction">ReadMore</a>
+								</figcaption>
+							</figure>
+						</div>
+						<div class="col-xs-12 col-md-4">
+							<figure class="snip1174 blue ">
+								<img
+									src="/CompanyItem/WebSiteBuilding/Images/WebSiteBuilding_portfolios_5.png"
+									alt="Hexagon Nutrition
+" />
+								<figcaption>
+									<a href="/main/page/auction">ReadMore</a>
+								</figcaption>
+							</figure>
+						</div>
+						<div class="col-xs-12 col-md-4">
+							<figure class="snip1174 blue ">
+								<img
+									src="/CompanyItem/WebSiteBuilding/Images/WebSiteBuilding_portfolios_6.png"
+									alt="sq-sample33" />
+								<figcaption>
+									<a href="/main/page/auction">ReadMore</a>
+								</figcaption>
+							</figure>
+						</div>
+
+						<div class="col-xs-12 col-md-4">
+							<figure class="snip1174 blue ">
+								<img
+									src="/CompanyItem/WebSiteBuilding/Images/WebSiteBuilding_portfolios_7.png"
+									alt="Snappy Joy" />
+								<figcaption>
+									<a href="/main/page/auction">ReadMore</a>
+								</figcaption>
+							</figure>
+						</div>
+					</div>
+
+				</div>
+
+				<!--Technologies -->
+				<div class="container">
+					<div class="col-lg-12">
+						<h2 class="page-header mwav_leftText">Technologies</h2>
 					</div>
 					<div class="col-md-2 col-sm-4 col-xs-4">
 						<img class="img-responsive "
