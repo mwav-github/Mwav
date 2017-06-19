@@ -8,6 +8,9 @@
 <!-- /////////// -->
 <jsp:include page="/PartsOfContent/Head_Import.jsp" flush="false" />
 <!-- /////////// -->
+<%--이미지 클릭시 크게 ~!  --%>
+<jsp:include page="/Shop/LargeImageView/LargeImageView.jsp"
+	flush="false"></jsp:include>
 </head>
 
 <body>
@@ -100,22 +103,34 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 
 			<!-- Content Column -->
 			<div class="col-md-12">
-				<jsp:include page="/Shop/LargeImageView/LargeImageView.jsp"
-					flush="false"></jsp:include>
+
 				<div class="enter"></div>
 				<div class="row">
 					<div class="continer">
 						<div class="row">
 							<div class="col-md-3 col-sm-3 col-xs-6">
 								<div class="panel panel-default">
-									<div class="">
+									<div class="panel-thumbnail">
+										<figure class="snip1174 blue ">
+											<img
+												src="/CompanyItem/DigitalMarketing/Images/keyword_search_Main.jpg"
+												class="img-responsive img-rounded">
+											<figcaption>
+												<a href="#" class="" data-toggle="modal"
+													data-target="#lightbox"><img
+													data-image="/CompanyItem/DigitalMarketing/Images/1_1.png" />
+													Read More</a>
+											</figcaption>
+										</figure>
+									</div>
+									<%-- <div class="panel-thumbnail">
 										<a href="#" class="thumbnail" data-toggle="modal"
 											data-target="#lightbox"> <img
-											src="/CompanyItem/DigitalMarketing/Images/keyword_search_Main.jpg"
+											src="/CompanyItem/DigitalMarketing/Images/Social_Marketing_1.jpg"
 											class="img-responsive img-rounded"
-											data-image="/CompanyItem/DigitalMarketing/Images/1_1.png">
+											data-image="/CompanyItem/DigitalMarketing/Images/2_3.png">
 										</a>
-									</div>
+									</div> --%>
 									<div class="panel-body">
 										<p class="lead">
 											<strong>키워드 검색 광고</strong>
@@ -129,13 +144,18 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 							<!--/col-->
 							<div class="col-md-3 col-sm-3 col-xs-6">
 								<div class="panel panel-default">
-									<div class="">
-										<a href="#" class="thumbnail" data-toggle="modal"
-											data-target="#lightbox"> <img
-											src="/CompanyItem/DigitalMarketing/Images/Mobile_marketing_2.jpg"
-											class="img-responsive img-rounded"
-											data-image="/CompanyItem/DigitalMarketing/Images/2_2.png">
-										</a>
+									<div class="panel-thumbnail">
+										<figure class="snip1174 blue ">
+											<img
+												src="/CompanyItem/DigitalMarketing/Images/Mobile_marketing_2.jpg"
+												class="img-responsive img-rounded">
+											<figcaption>
+												<a href="#" class="" data-toggle="modal"
+													data-target="#lightbox"><img
+													data-image="/CompanyItem/DigitalMarketing/Images/2_2.png" />
+													Read More</a>
+											</figcaption>
+										</figure>
 									</div>
 									<div class="panel-body">
 										<p class="lead">
@@ -151,13 +171,17 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 							<div class="col-md-3 col-sm-3 col-xs-6">
 								<div class="panel panel-default">
 									<div class="panel-thumbnail">
-
-										<a href="#" class="thumbnail" data-toggle="modal"
-											data-target="#lightbox"> <img
-											src="/CompanyItem/DigitalMarketing/Images/Mobile_Maketing_1.png"
-											class="img-responsive img-rounded"
-											data-image="/CompanyItem/DigitalMarketing/Images/2_4.png">
-										</a>
+										<figure class="snip1174 blue ">
+											<img
+												src="/CompanyItem/DigitalMarketing/Images/Mobile_Maketing_1.png"
+												class="img-responsive img-rounded">
+											<figcaption>
+												<a href="#" class="" data-toggle="modal"
+													data-target="#lightbox"><img
+													data-image="/CompanyItem/DigitalMarketing/Images/2_4.png" />
+													Read More</a>
+											</figcaption>
+										</figure>
 									</div>
 									<div class="panel-body">
 										<p class="lead">
@@ -173,13 +197,19 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 							<div class="col-md-3 col-sm-3 col-xs-6">
 								<div class="panel panel-default">
 									<div class="panel-thumbnail">
-										<a href="#" class="thumbnail" data-toggle="modal"
-											data-target="#lightbox"> <img
-											src="/CompanyItem/DigitalMarketing/Images/Social_Marketing_1.jpg"
-											class="img-responsive img-rounded"
-											data-image="/CompanyItem/DigitalMarketing/Images/2_3.png">
-										</a>
+										<figure class="snip1174 blue ">
+											<img
+												src="/CompanyItem/DigitalMarketing/Images/Social_Marketing_1.jpg"
+												class="img-responsive img-rounded">
+											<figcaption>
+												<a href="#" class="" data-toggle="modal"
+													data-target="#lightbox"><img
+													data-image="/CompanyItem/DigitalMarketing/Images/2_3.png" />
+													Read More</a>
+											</figcaption>
+										</figure>
 									</div>
+
 									<div class="panel-body">
 										<p class="lead">
 											<strong>SNS 마케팅</strong>
@@ -202,13 +232,17 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 						<div class="row">
 							<div class="col-md-3 col-sm-3 col-xs-6">
 								<div class="panel panel-default">
-									<div class="">
-										<a href="#" class="thumbnail" data-toggle="modal"
-											data-target=""> <img
-											src="/CompanyItem/DigitalMarketing/Images/Analytics.jpg"
-											class="img-responsive img-rounded"
-											data-image="/CompanyItem/DigitalMarketing/Images/Analytics.jpg">
-										</a>
+									<div class="panel-thumbnail">
+										<figure class="snip1174 blue ">
+											<img src="/CompanyItem/DigitalMarketing/Images/Analytics.jpg"
+												class="img-responsive img-rounded">
+											<figcaption>
+												<a href="#" class="" data-toggle="modal"
+													data-target="#"><img
+													data-image="" />
+													Read More</a>
+											</figcaption>
+										</figure>
 									</div>
 									<div class="panel-body">
 										<p class="lead">
@@ -223,12 +257,18 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 							<!--/col-->
 							<div class="col-md-3 col-sm-3 col-xs-6">
 								<div class="panel panel-default">
-									<div class="">
-										<a href="#" class="thumbnail" data-toggle="modal"
-											data-target=""> <img
-											src="/CompanyItem/DigitalMarketing/Images/A-B_testing_simple_example.png"
-											class="img-responsive img-rounded" data-image="">
-										</a>
+									<div class="panel-thumbnail">
+										<figure class="snip1174 blue ">
+											<img
+												src="/CompanyItem/DigitalMarketing/Images/A-B_testing_simple_example.png"
+												class="img-responsive img-rounded">
+											<figcaption>
+												<a href="#" class="" data-toggle="modal"
+													data-target="#"><img
+													data-image="" />
+													Read More</a>
+											</figcaption>
+										</figure>
 									</div>
 									<div class="panel-body">
 										<p class="lead">
@@ -244,12 +284,17 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 							<div class="col-md-3 col-sm-3 col-xs-6">
 								<div class="panel panel-default">
 									<div class="panel-thumbnail">
-
-										<a href="#" class="thumbnail" data-toggle="modal"
-											data-target=""> <img
-											src="/CompanyItem/DigitalMarketing/Images/conversion rate.jpg"
-											class="img-responsive img-rounded" data-image="">
-										</a>
+										<figure class="snip1174 blue ">
+											<img
+												src="/CompanyItem/DigitalMarketing/Images/conversion rate.jpg"
+												class="img-responsive img-rounded">
+											<figcaption>
+												<a href="#" class="" data-toggle="modal"
+													data-target="#"><img
+													data-image="" />
+													Read More</a>
+											</figcaption>
+										</figure>
 									</div>
 									<div class="panel-body">
 										<p class="lead">
@@ -267,12 +312,17 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 							<div class="col-md-3 col-sm-3 col-xs-6">
 								<div class="panel panel-default">
 									<div class="panel-thumbnail">
-
-										<a href="#" class="thumbnail" data-toggle="modal"
-											data-target=""> <img
-											src="/CompanyItem/DigitalMarketing/Images/seo.png"
-											class="img-responsive img-rounded">
-										</a>
+										<figure class="snip1174 blue ">
+											<img
+												src="/CompanyItem/DigitalMarketing/Images/seo.png"
+												class="img-responsive img-rounded">
+											<figcaption>
+												<a href="#" class="" data-toggle="modal"
+													data-target="#"><img
+													data-image="" />
+													Read More</a>
+											</figcaption>
+										</figure>
 									</div>
 									<div class="panel-body">
 										<p class="lead">

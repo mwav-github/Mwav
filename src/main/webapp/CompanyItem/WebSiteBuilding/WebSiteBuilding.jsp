@@ -114,7 +114,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 								<figcaption>
 									<!-- <h2>Prime Visualss</h2> 
 								<p></p>-->
-									<a href="/main/page/production">Read More</a>
+									<a href="http://www.primevisualss.com/">Read More</a>
 								</figcaption>
 							</figure>
 						</div>
@@ -125,7 +125,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 									alt="sq-sample33" />
 								<figcaption>
 									<!-- <h2>Shanttech</h2> -->
-									<a href="/main/page/auction">ReadMore</a>
+									<a href="https://www.shanttech.com/">ReadMore</a>
 								</figcaption>
 							</figure>
 						</div>
@@ -135,7 +135,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 									src="/CompanyItem/WebSiteBuilding/Images/WebSiteBuilding_portfolios_3.png"
 									alt="Filcosys" />
 								<figcaption>
-									<a href="/main/page/auction">ReadMore</a>
+									<a href="http://www.filcosys.com/">ReadMore</a>
 								</figcaption>
 							</figure>
 						</div>
@@ -145,7 +145,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 									src="/CompanyItem/WebSiteBuilding/Images/WebSiteBuilding_portfolios_4.png"
 									alt="Elite Clothing" />
 								<figcaption>
-									<a href="/main/page/auction">ReadMore</a>
+									<a href="http://eliteclothing.in/">ReadMore</a>
 								</figcaption>
 							</figure>
 						</div>
@@ -156,7 +156,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 									alt="Hexagon Nutrition
 " />
 								<figcaption>
-									<a href="/main/page/auction">ReadMore</a>
+									<a href="http://hexagonnutrition.com/">ReadMore</a>
 								</figcaption>
 							</figure>
 						</div>
@@ -164,9 +164,9 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 							<figure class="snip1174 blue ">
 								<img
 									src="/CompanyItem/WebSiteBuilding/Images/WebSiteBuilding_portfolios_6.png"
-									alt="sq-sample33" />
+									alt="AAPT" />
 								<figcaption>
-									<a href="/main/page/auction">ReadMore</a>
+									<a href="http://www.aaptinc.com/">ReadMore</a>
 								</figcaption>
 							</figure>
 						</div>
@@ -177,7 +177,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 									src="/CompanyItem/WebSiteBuilding/Images/WebSiteBuilding_portfolios_7.png"
 									alt="Snappy Joy" />
 								<figcaption>
-									<a href="/main/page/auction">ReadMore</a>
+									<a href="http://www.snappyjoy.com/">ReadMore</a>
 								</figcaption>
 							</figure>
 						</div>
