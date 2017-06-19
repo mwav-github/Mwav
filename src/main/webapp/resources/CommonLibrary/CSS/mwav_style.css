@@ -2,309 +2,812 @@
 
 
 
-/* mwav card section */
-@media screen and (max-width 420px)
- {
-	.mwav_important_10{
-		font-size : 11px !important;
-	}
+
+/* mwav card section_3  */ 
+figure.snip1174   {
+
+   color:   #fff;
+
+   position:   relative;
+
+   float:   left;
+
+   overflow:   hidden;
+
+   background-color:   #1a1a1a;
+
+   color:   #ffffff;
+
+   text-align:   left;
+
+   margin:   10px;
+
+   width:   100%;
+
+   border-radius:   0px;
+
+
 }
+
+
+figure.snip1174   *   {
+
+   -webkit-box-sizing:   border-box;
+
+   box-sizing:   border-box;
+
+   -webkit-transition:   all   0.35s   ease;
+
+   transition:   all   0.35s   ease;
+
+
+}
+
+
+figure.snip1174   img   {
+
+   max-width:   100%;
+
+   -webkit-transform:   scale (1.1 );
+
+   transform:   scale (1.1 );
+
+   vertical-align:   top;
+
+   /*opacity:  0.9;*/
+
+
+}
+
+
+figure.snip1174   figcaption   {
+
+   position:   absolute;
+
+   padding:   40px   25px;
+
+   top:  0;
+
+   left:  0;
+
+
+}
+
+
+figure.snip1174   h2 , 
+figure.snip1174   p   {
+
+   margin:  0;
+
+   padding:  0;
+
+
+}
+
+
+figure.snip1174   h2   {
+
+   margin-bottom:   10px;
+
+   display:   inline-block;
+
+   font-weight:  100;
+
+   font-size:   1.8em;
+
+
+}
+
+
+figure.snip1174   p   {
+
+   font-weight:  300;
+
+   margin-bottom:   20px;
+
+   line-height:   1.4em;
+
+
+}
+
+
+figure.snip1174   a   {
+
+   display:   inline-block;
+
+   padding:   10px   20px;
+
+   border:   1px   solid   #ffffff;
+
+   text-decoration:   none;
+
+   color:   #ffffff;
+
+   letter-spacing:   2px;
+
+   text-transform:   uppercase;
+
+   font-size:   0.8em;
+
+   -webkit-transform:   translateY ( 50% );
+
+   transform:   translateY ( 50% );
+
+   opacity:  0;
+
+
+}
+
+
+figure.snip1174   a:hover   {
+
+   background-color:   rgba (0 , 0 , 0 , 0.2 );
+
+
+}
+
+
+figure.snip1174.blue   {
+
+   background-color:   #20638f;
+
+
+}
+
+
+figure.snip1174.yellow   {
+
+   background-color:   #c87f0a;
+
+
+}
+
+
+figure.snip1174.green   {
+
+   background-color:   #1e8449;
+
+
+}
+
+
+figure.snip1174.navy   {
+
+   background-color:   #222f3d;
+
+
+}
+
+
+figure.snip1174.red   {
+
+   background-color:   #962d22;
+
+
+}
+
+
+figure.snip1174:hover   img , 
+figure.snip1174.hover   img   {
+
+   opacity:  0;
+
+   -webkit-transform:   scale (1 );
+
+   transform:   scale (1 );
+
+
+}
+
+
+figure.snip1174:hover   a , 
+figure.snip1174.hover   a   {
+
+   -webkit-transform:   translateY (0 );
+
+   transform:   translateY (0 );
+
+   opacity:  1;
+
+
+}
+
+
+
+
+
+
+
+
+
+/* mwav card section */ 
+@media   screen   and   (max-width  420px ) 
+  { 
+	.mwav_important_10 {
+
+		 font-size  :   11px   !important;
+
+	
+}
+
+
+} 
 	 
 	 
-/* mwav card section */
+/* mwav card section */ 
 
-.news {
-    background: #fff;
-	position: relative;
-	overflow: hidden;
-	z-index:1;
- 	-webkit-transition: all 0.5s ease;
-	-moz-transition: all 0.5s ease;
-	-ms-transition: all 0.5s ease;
-	-o-transition: all 0.5s ease;
-	transition: all 0.5s ease;	
+.news   {
 
-	border: 1px solid #eaeaea;
+     background:   #fff;
+
+	 position:   relative;
+
+	 overflow:   hidden;
+
+	 z-index: 1;
+
+ 	 -webkit-transition:   all   0.5s   ease;
+
+	 -moz-transition:   all   0.5s   ease;
+
+	 -ms-transition:   all   0.5s   ease;
+
+	 -o-transition:   all   0.5s   ease;
+
+	 transition:   all   0.5s   ease;
+	
+
+	 border:   1px   solid   #eaeaea;
+
+
 }
 
-.news .img-figure {
-	position: relative;
+
+
+.news  .img-figure   {
+
+	 position:   relative;
+
+
 }
 
-.news .img-figure img {
-	position: relative;	
-	overflow: hidden;
-	-webkit-transition: all 1s ease;
-	-moz-transition: all 1s ease;
-	-ms-transition: all 1s ease;
-	-o-transition: all 1s ease;
-	transition: all 1s ease;
+
+
+.news  .img-figure   img   {
+
+	 position:   relative;
+	
+	 overflow:   hidden;
+
+	 -webkit-transition:   all   1s   ease;
+
+	 -moz-transition:   all   1s   ease;
+
+	 -ms-transition:   all   1s   ease;
+
+	 -o-transition:   all   1s   ease;
+
+	 transition:   all   1s   ease;
+
+
 }
 
-.news:hover .img-figure img {
-	-webkit-transform: scale(1.10);
-	-moz-transform: scale(1.10);
-	-ms-transform: scale(1.10);
-	-o-transform: scale(1.10);
-	transform: scale(1.10);
+
+
+.news:hover  .img-figure   img   {
+
+	 -webkit-transform:   scale (1.10 );
+
+	 -moz-transform:   scale (1.10 );
+
+	 -ms-transform:   scale (1.10 );
+
+	 -o-transform:   scale (1.10 );
+
+	 transform:   scale (1.10 );
+
+
 }
 
-.news .title {
-	/*padding: 29px 30px;*/
-	/*padding: 45px 30px;*/
-	position: absolute;
-	margin-top : 20px;
-	left: 0;
-	background: #fff;
-	width: 100%;
-	height: 100%;
-	-webkit-transition: all 0.5s ease;
-	-moz-transition: all 0.5s ease;
-	-ms-transition: all 0.5s ease;
-	-o-transition: all 0.5s ease;
-	transition: all 0.5s ease;	
+
+
+.news  .title   {
+
+	 /*padding: 29px 30px;*/ 
+	 /*padding: 45px 30px;*/ 
+	 position:   absolute;
+
+	 margin-top  :   20px;
+
+	 left:  0;
+
+	 background:   #fff;
+
+	 width:   100%;
+
+	 height:   100%;
+
+	 -webkit-transition:   all   0.5s   ease;
+
+	 -moz-transition:   all   0.5s   ease;
+
+	 -ms-transition:   all   0.5s   ease;
+
+	 -o-transition:   all   0.5s   ease;
+
+	 transition:   all   0.5s   ease;
+	
+
 }
 
-.news .title h1 {
-	margin: 0;
-	text-transform: uppercase;
-	font-weight: bold;
-	font-size: 19px;
-/*	color: #3D6AA2;*/
-	text-align: center;
+
+
+.news  .title   h1   {
+
+	 margin:  0;
+
+	 text-transform:   uppercase;
+
+	 font-weight:   bold;
+
+	 font-size:   19px;
+
+	/*	color: #3D6AA2;*/ 
+	 text-align:   center;
+
+
 }
+
+
 
 /* 
 .news:hover .title  {
 	margin-top: -90px;
 	background: #fff;
 }
-*/
+*/ 
 
-.news  p.description {
-	position: relative;
-	font-weight: normal;
-	line-height: 22px;
-	/*opacity: 0;*/
-	text-align: center;
-    /*padding: 15px 30px 0px 30px; */
-	padding: 70px 30px 0px 30px;
+.news    p.description   {
 
-	-webkit-transition: all 0.5s ease;
-	-moz-transition: all 0.5s ease;
-	-ms-transition: all 0.5s ease;
-	-o-transition: all 0.5s ease;
-	transition: all 0.5s ease;	
+	 position:   relative;
+
+	 font-weight:   normal;
+
+	 line-height:   22px;
+
+	 /*opacity: 0;*/ 
+	 text-align:   center;
+
+     /*padding: 15px 30px 0px 30px; */ 
+	 padding:   70px   30px   0px   30px;
+
+
+	 -webkit-transition:   all   0.5s   ease;
+
+	 -moz-transition:   all   0.5s   ease;
+
+	 -ms-transition:   all   0.5s   ease;
+
+	 -o-transition:   all   0.5s   ease;
+
+	 transition:   all   0.5s   ease;
+	
+
 }
+
+
 
 /* 
 .news:hover p.description  {
 	opacity: 1;
 }
-*/
+*/ 
 
-p.more {
-	text-align: center;
-}
+p.more   {
 
-.more a {
-    position: relative;
-    font-size: 13px;
-    margin-top: 30px;
-    display: block;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -ms-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
-    display: inline-block;
-    color: #28998b;
-}
+	 text-align:   center;
 
-.more a:after {
-    content: '';
-    width: 18px;
-    height: 1px;
 
-    position: absolute;
-    left: 55px;
-    top: 9px;
-
-    background: #28998b;
-
-    vertical-align: middle;
-    margin-left: 10px;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -ms-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
 }
 
 
-.news:hover a:after {
-    width: 30px;
+
+.more   a   {
+
+     position:   relative;
+
+     font-size:   13px;
+
+     margin-top:   30px;
+
+     display:   block;
+
+     -webkit-transition:   all   0.5s   ease;
+
+     -moz-transition:   all   0.5s   ease;
+
+     -ms-transition:   all   0.5s   ease;
+
+     -o-transition:   all   0.5s   ease;
+
+     transition:   all   0.5s   ease;
+
+     display:   inline-block;
+
+     color:   #28998b;
+
+
 }
 
-.cat {
-	background: #a0bc9f;
-	color: #fff;
-	text-transform: uppercase;
+
+
+.more   a:after   {
+
+     content:   '';
+
+     width:   18px;
+
+     height:   1px;
+
+
+     position:   absolute;
+
+     left:   55px;
+
+     top:   9px;
+
+
+     background:   #28998b;
+
+
+     vertical-align:   middle;
+
+     margin-left:   10px;
+
+     -webkit-transition:   all   0.5s   ease;
+
+     -moz-transition:   all   0.5s   ease;
+
+     -ms-transition:   all   0.5s   ease;
+
+     -o-transition:   all   0.5s   ease;
+
+     transition:   all   0.5s   ease;
+
+
+}
+
+
+
+
+.news:hover   a:after   {
+
+     width:   30px;
+
+
+}
+
+
+
+.cat   {
+
+	 background:   #a0bc9f;
+
+	 color:   #fff;
+
+	 text-transform:   uppercase;
+
+	 position:   absolute;
+
+	 left:  0;
+
+	 top:   20px;
+
+	 z-index:  1;
+
+	 padding:   3px   15px;
+
+
+}
+
+
+
+/* mwav hover */ 
+.portfolio-hover {
+	background: rgba (98 ,175 ,208 ,.8 );
 	position: absolute;
-	left: 0;
-	top: 20px;
-	z-index: 1;
-	padding: 3px 15px;
-}
-
-/* mwav hover */
-.portfolio-hover{background:rgba(98,175,208,.8);position:absolute;width:100%;height:100%;opacity:0;transition:all ease .5s;-webkit-transition:all ease .5s;-moz-transition:all ease .5s}
-
-.portfolio-hover .portfolio-hover-content{position:absolute;width:100%;height:20px;font-size:20px;text-align:center;top:50%;margin-top:-12px;color:#fff}
-
-.portfolio-hover:hover{opacity:1 color:white;}
-
-
-
-/*mwav text */
-.mwav_leftText {
-	border-left : 10px solid #4d90c5;
-	padding : 0 0 0 15px
-}
-
-/* mwav button */
-/*주로 별 쪽에 쓰인다. (q&a 평가부분 체크) */
-.btn-grey{
-    background-color:#D8D8D8;
-	color:#FFF;
-}
-
-	 .product-item     .learnmore         {
-        float:         right;
-        color:         #a8aeb3;
-        border:         1px         #bdbbbb         solid
-        padding:         3px         6px;
-        text-transform:         uppercase;	
-	}
-
-	 .product-item     .learnmore:hover         {
-         color:         #ffffff;
-         background:         #00547E;
-         border-color:         #e84d1c;	
-	}
-
-
-/* ==============슬라이더================*/
-#myCarousel .box{
-    border: solid 1px #FFF;
-	outline: solid 1px #e0e0e0;
-}
-
-#myCarousel .carousel{
-	margin-top: 30px;
-	position: relative;
-	padding-bottom: 50px;
-	background-color: #D8D8D8;
-}
-
-#myCarousel .item h2{
-	width: 80%;
-	color: #FFF;
-	/*padding: 15px;*/
-	font-size: 38px;
-	margin-bottom: 2.5em;
-	text-align: center;
-	text-shadow: 1px 2px 3px #444;
-}
-
-.item .block{
 	width: 100%;
-	float: left;
-	color: #FFF;
-	/*min-height: 200px;*/
-	text-align: center;
-	padding: 7px;
-	margin-top: 2.5em;
-	box-shadow: 1px 2px 3px #444;
-}
-
-
-.item h4{
-	width: 100%;
-	/*padding: 10px;*/
-	font-size: 30px;
-	font-weight: 900;
-	text-align: center;
-	text-shadow: 2px 2px 2px #555;
-}
-
-
-.item p{
-	text-align: center;
-	font-size: 18px;
-}
-
-.item .input-group{
-	margin-bottom: 10px;
-}
-
-.block-1{
-	background-color: #94C83C
-}
-
-.block-2{
-	background-color: #F36E20
-}
-
-.block-3{
-	background-color: #3498DB
-}
-
-.block-4{	
-	background-color: #F7C767
-}
-
-#myCarousel .carousel-indicators {
-    bottom: 0px;
-}
-
-
-#myCarousel .slide1 h3, #myCarousel .slide2 h3, #myCarousel .slide3 h3, #myCarousel .slide4 h3{
-    color: #fff;
-    font-size: 30px;
-      text-transform: uppercase;
-      font-weight:700;
-}
-
-#myCarousel .slide1 h4,#myCarousel .slide2 h4,#myCarousel .slide3 h4,#myCarousel .slide4 h4{
-    color: #fff;
-    font-size: 30px;
-      text-transform: uppercase;
-      font-weight:700;
-}
-#myCarousel .slide1 .text-left ,#myCarousel .slide3 .text-left{
-    padding-left: 40px;
-}
-/* ==============슬라이더================*/
-
-
-/* CSS Document */    
-
-
-
-
-
-/* color */  
-.light_gray_color   {
-
-
-	 color:     #78828D;
+	height: 100%;
+	opacity: 0;
+	transition: all   ease   .5s;
+	-webkit-transition: all   ease   .5s;
+	-moz-transition: all   ease   .5s}
 
 	
-	 /*http://www.0to255.com/eee */  
+
+.portfolio-hover  .portfolio-hover-content {
+	position: absolute;
+	width: 100%;
+	height: 20px;
+	font-size: 20px;
+	text-align: center;
+	top: 50%;
+	margin-top: -12px;
+	color: #fff}
+
+	
+
+.portfolio-hover:hover {
+	opacity: 1   color : white;
+}
+
+
+
+
+
+/*mwav text */ 
+.mwav_leftText   {
+
+	 border-left  :   10px   solid   #4d90c5;
+
+	 padding  :  0  0  0   15px 
+}
+
+
+
+/* mwav button */ 
+/*주로 별 쪽에 쓰인다. (q&a 평가부분 체크) */ 
+.btn-grey {
+
+     background-color: #D8D8D8;
+
+	 color: #FFF;
 
 
 }
+
+
+
+	  .product-item      .learnmore           {
+
+         float:           right;
+
+         color:           #a8aeb3;
+
+         border:           1px           #bdbbbb           solid 
+         padding :           3 px           6 px ; 
+         text-transform:           uppercase;
+	
+	
+}
+
+
+
+	  .product-item      .learnmore:hover           {
+
+          color:           #ffffff;
+
+          background:           #00547E;
+
+          border-color:           #e84d1c;
+	
+	
+}
+
+
+
+
+/* ==============슬라이더================*/ 
+#myCarousel  .box {
+
+     border:   solid   1px   #FFF;
+
+	 outline:   solid   1px   #e0e0e0;
+
+
+}
+
+
+
+#myCarousel  .carousel {
+
+	 margin-top:   30px;
+
+	 position:   relative;
+
+	 padding-bottom:   50px;
+
+	 background-color:   #D8D8D8;
+
+
+}
+
+
+
+#myCarousel  .item   h2 {
+
+	 width:   80%;
+
+	 color:   #FFF;
+
+	 /*padding: 15px;*/ 
+	 font-size:   38px;
+
+	 margin-bottom:   2.5em;
+
+	 text-align:   center;
+
+	 text-shadow:   1px   2px   3px   #444;
+
+
+}
+
+
+
+.item  .block {
+
+	 width:   100%;
+
+	 float:   left;
+
+	 color:   #FFF;
+
+	 /*min-height: 200px;*/ 
+	 text-align:   center;
+
+	 padding:   7px;
+
+	 margin-top:   2.5em;
+
+	 box-shadow:   1px   2px   3px   #444;
+
+
+}
+
+
+
+
+.item   h4 {
+
+	 width:   100%;
+
+	 /*padding: 10px;*/ 
+	 font-size:   30px;
+
+	 font-weight:  900;
+
+	 text-align:   center;
+
+	 text-shadow:   2px   2px   2px   #555;
+
+
+}
+
+
+
+
+.item   p {
+
+	 text-align:   center;
+
+	 font-size:   18px;
+
+
+}
+
+
+
+.item  .input-group {
+
+	 margin-bottom:   10px;
+
+
+}
+
+
+
+.block-1 {
+
+	 background-color:   #94C83C 
+}
+
+
+
+.block-2 {
+
+	 background-color:   #F36E20 
+}
+
+
+
+.block-3 {
+
+	 background-color:   #3498DB 
+}
+
+
+
+.block-4 {
+	
+	 background-color:   #F7C767 
+}
+
+
+
+#myCarousel  .carousel-indicators   {
+
+     bottom:   0px;
+
+
+}
+
+
+
+
+#myCarousel  .slide1   h3 ,  #myCarousel  .slide2   h3 ,  #myCarousel  .slide3  
+h3 ,  #myCarousel  .slide4   h3 {
+
+     color:   #fff;
+
+     font-size:   30px;
+
+       text-transform:   uppercase;
+
+       font-weight: 700;
+
+
+}
+
+
+
+#myCarousel  .slide1   h4 ,#myCarousel  .slide2   h4 ,#myCarousel  .slide3   h4
+,#myCarousel  .slide4   h4 {
+
+     color:   #fff;
+
+     font-size:   30px;
+
+       text-transform:   uppercase;
+
+       font-weight: 700;
+
+
+}
+
+
+#myCarousel  .slide1  .text-left   ,#myCarousel  .slide3  .text-left {
+
+     padding-left:   40px;
+
+
+}
+
+
+/* ==============슬라이더================*/ 
+
+
+/* CSS Document */     
+
+
+
+
+
+/* color */   
+.light_gray_color     {
+
+
+
+	  color:       #78828D;
+
+
+	
+	  /*http://www.0to255.com/eee */   
+
+
+
+}
+
+
 
 
 
@@ -312,53 +815,29 @@ p.more {
 
 
 /* ====status bar======
- */   
+ */    
 
 
 
 
 
-/*=====카드결제 및 입력====== */   
-/* Everything but the jumbotron gets side spacing for mobile first views */   
-.header     ,   
-.marketing     ,   
-.footer       {
-
-
-
-     padding-right:       15px;
-
-
-
-     padding-left:       15px;
+/*=====카드결제 및 입력====== */    
+/* Everything but the jumbotron gets side spacing for mobile first views */    
+.header       ,    
+.marketing       ,    
+.footer         {
 
 
 
 
-
-
-}
-
+      padding-right:         15px;
 
 
 
 
+      padding-left:         15px;
 
 
-/* Make the masthead heading the same height as the navigation */   
-.header       h3       {
-
-
-
-     margin-top:    0;
-
-
-
-     margin-bottom:    0;
-
-
-
-     line-height:       40px;
 
 
 
@@ -374,40 +853,56 @@ p.more {
 
 
 
-.show-on-hover:hover       >       ul.dropdown-menu       {
+
+/* Make the masthead heading the same height as the navigation */    
+.header         h3         {
 
 
 
-       display:       block;
+
+      margin-top:     0;
+
+
+
+
+      margin-bottom:     0;
+
+
+
+
+      line-height:         40px;
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+.show-on-hover:hover         >         ul.dropdown-menu         {
+
+
+
+
+        display:         block;
+
 
 
     
 
 
 
-}
-
-
-
-
-
-
-
-
-.container-narrow       >       hr       {
-
-
-
-     margin:       30px    0;
-
-
-
-         background:     #ffffff;
-
-
-
-
-
 
 }
 
@@ -418,30 +913,21 @@ p.more {
 
 
 
-/* Supporting marketing content */   
-.marketing       {
 
 
-
-     margin:       20px    0;
-
+.container-narrow         >         hr         {
 
 
 
 
-
-}
-
+      margin:         30px     0;
 
 
 
 
-
-.marketing       p       +       h4       {
-
+          background:       #ffffff;
 
 
-     margin-top:       28px;
 
 
 
@@ -456,26 +942,82 @@ p.more {
 
 
 
-/* Responsive: Portrait tablets and up */   
-@media       screen       and       (min-width:       768px     )       {   
-     /* Remove the padding we set earlier */   
-     .header     ,   
-  .marketing     ,   
-  .footer       {
 
 
 
-       padding-right:    0;
+/* Supporting marketing content */    
+.marketing         {
 
 
 
-       padding-left:    0;
+
+      margin:         20px     0;
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+.marketing         p         +         h4         {
+
+
+
+
+      margin-top:         28px;
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* Responsive: Portrait tablets and up */    
+@media         screen         and         (min-width:         768px       )
+        {    
+      /* Remove the padding we set earlier */    
+      .header       ,    
+  .marketing       ,    
+  .footer         {
+
+
+
+
+        padding-right:     0;
+
+
+
+
+        padding-left:     0;
+
 
 
 
   
 
 
+
 }
 
 
@@ -483,18 +1025,23 @@ p.more {
 
 
 
-     /* Space out the masthead */   
-   .header       {
+
+
+      /* Space out the masthead */    
+   .header         {
 
 
 
-       margin-bottom:       30px;
+
+        margin-bottom:         30px;
+
 
 
 
   
 
 
+
 }
 
 
@@ -502,38 +1049,22 @@ p.more {
 
 
 
-     /* Remove the bottom border on the jumbotron for visual effect */   
-  .jumbotron       {
+
+
+      /* Remove the bottom border on the jumbotron for visual effect */    
+  .jumbotron         {
 
 
 
-       border-bottom:    0;
+
+        border-bottom:     0;
+
 
 
 
   
 
 
-}
-
-
-
-
-
-
-}   
-
-
-.panel-title       {
-
-
-	  display:       inline;
-
-
-	  font-weight:       bold;
-
-
-
 
 }
 
@@ -542,15 +1073,47 @@ p.more {
 
 
 
-.checkbox.pull-right       {
 
 
-	    margin:    0;
+}    
+
+
+.panel-title         {
+
+
+
+	   display:         inline;
+
+
+
+	   font-weight:         bold;
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+.checkbox.pull-right         {
+
+
+
+	     margin:     0;
+
 
 
 	 
 
 
+
 }
 
 
@@ -558,60 +1121,19 @@ p.more {
 
 
 
-.pl-ziro       {
 
 
-	    padding-left:       0px;
+.pl-ziro         {
+
+
+
+	     padding-left:         0px;
+
 
 
 	 
 
 
-}
-
-
-
-
-
-
-
-.panel       {
-
-
-
-       border:       0px       solid       transparent;
-
-
-
-       background:       #f1f1f1;
-
-
-
-
-
-
-}
-
-
-
-
-
-
-
-.panel-default     >.panel-heading    .badge       {
-
-
-
-       color:       #ffffff;
-
-
-
-       background-color:       transparent;
-
-
-
-
-
 
 }
 
@@ -622,61 +1144,20 @@ p.more {
 
 
 
-.panel-heading       {
 
-
-
-       border-bottom:       0px       solid       #555555       !important;
-
+.panel         {
 
 
 
 
-
-}
-
+        border:         0px         solid         transparent;
 
 
 
 
+        background:         #f1f1f1;
 
 
-.panel-default     >.panel-heading       {
-
-
-
-       color:       #ffffff;
-
-
-
-       background-color:       #333333;
-
-
-
-
-
-
-}
-
-
-
-
-
-
-
-.panel-default     >.panel-heading       {
-
-
-
-       color:       #ffffff;
-
-
-
-       background-color:       #333333;
-
-
-
-           padding-bottom:       15px;
 
 
 
@@ -693,253 +1174,8 @@ p.more {
 
 
 
+.panel-default       >.panel-heading     .badge         {
 
-/* ================장바구니============== */    
-/***
-User Profile Sidebar by @keenthemes
-A component of Metronic Theme - #1 Selling Bootstrap 3 Admin Theme in Themeforest: http://j.mp/metronictheme
-Licensed under MIT
-***/    
-
-.product-item         {
-
-
-
-        padding:         15px;
-
-
-
-        background:         #ffffff;
-
-
-
-        margin-top:         20px;
-
-
-
-        position:         relative;
-
-
-
-
-
-
-}
-
-
-
-
-
-
-
-.product-item:hover         {
-
-
-
-        box-shadow:         5px       5px       rgba     (    
-	'234 , 234 , 234 , 0.9'     ) 
-	 ;  
-
-
-	 }  
-
-
-
-	 .product-item:after         {
-
-	
-
-        content:         ".";
-
-
-
-        display:         block;
-
-
-
-        height:     0;
-
-
-
-        clear:         both;
-
-
-
-        visibility:         hidden;
-
-
-
-        font-size:     0;
-
-
-
-        line-height:    0;
-
-
-
-
-
-	
-	}
-
-	
-
-	
-
-
-
-	 .sticker         {
-
-	
-
-        position:         absolute;
-
-
-
-        top:     0;
-
-
-
-        left:     0;
-
-
-
-        width:         63px;
-
-
-
-        height:         63px;
-
-
-
-
-
-	
-	}
-
-	
-
-	
-
-
-
-	 .sticker-new         {
-
-	
-
-        background:         url(    
-		'http://keenthemes.com/assets/bootsnipp/new.png' 
-		   )     
-	  no-repeat;
-
-
-		
-        left:         auto;
-
-
-
-        right:     0;
-
-
-
-
-
-	
-	}
-
-	
-
-	
-
-
-
-	 .pi-img-wrapper         {
-
-	
-
-       position:         relative;
-
-
-
-
-
-	
-	}
-
-	
-
-	
-
-
-
-	 .pi-img-wrapper         div         {
-
-	
-
-        background:         rgba       (     '0 ,0 ,0 ,0.3'     )     ;   
-        position:        absolute;
-
-
-
-        left:     0;
-
-
-
-        top:     0;
-
-
-
-        display:         none;
-
-
-
-        width:         100%;
-
-
-
-        height:         100%;
-
-
-
-        text-align:         center;
-
-
-
-
-
-	
-	}
-
-	
-
-	
-
-
-
-	 .product-item:hover       >    .pi-img-wrapper       >       div         {
-
-	
-
-        display:         block;
-
-
-
-
-
-	
-	}
-
-	
-
-	
-
-
-
-.pi-img-wrapper         div     .btn         {
-	
-	
-
-        padding:         3px         10px;
 
 
 
@@ -947,40 +1183,221 @@ Licensed under MIT
 
 
 
-        border:         1px         #ffffff         solid;
 
-
-
-        margin:     -13px         5px         0;
-
-
-
-        background:         transparent;
-
-
-
-       text-transform:         uppercase;
-
-
-
-        position:         relative;
-
-
-
-        top:         50%;
-
-
-
-        line-height:     1.4;
-
-
-
-        font-size:         12px;
+        background-color:         transparent;
 
 
 
 
 
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+.panel-heading         {
+
+
+
+
+        border-bottom:         0px         solid         #555555        
+	!important;
+	
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+.panel-default       >.panel-heading         {
+
+
+
+
+        color:         #ffffff;
+
+
+
+
+        background-color:         #333333;
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+.panel-default       >.panel-heading         {
+
+
+
+
+        color:         #ffffff;
+
+
+
+
+        background-color:         #333333;
+
+
+
+
+            padding-bottom:         15px;
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* ================장바구니============== */     
+/***
+User Profile Sidebar by @keenthemes
+A component of Metronic Theme - #1 Selling Bootstrap 3 Admin Theme in Themeforest: http://j.mp/metronictheme
+Licensed under MIT
+***/     
+
+.product-item           {
+
+
+
+
+         padding:           15px;
+
+
+
+
+         background:           #ffffff;
+
+
+
+
+         margin-top:           20px;
+
+
+
+
+         position:           relative;
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+.product-item:hover           {
+
+
+
+
+         box-shadow:           5px         5px         rgba       (     
+	 '234 , 234 , 234 , 0.9'       )  
+	  ;   
+
+
+	  }   
+
+
+
+	  .product-item:after           {
+
+
+	
+
+         content:           ".";
+
+
+
+
+         display:           block;
+
+
+
+
+         height:      0;
+
+
+
+
+         clear:           both;
+
+
+
+
+         visibility:           hidden;
+
+
+
+
+         font-size:      0;
+
+
+
+
+         line-height:     0;
+
+
+
+
+
+
+	
 	
 	}
 
@@ -988,54 +1405,43 @@ Licensed under MIT
 
 	
 
-
-
-
-	 .product-item     .btn:hover         {
-
-	
-
-        background:         #e84d1c;
-
-
-
-        border-color:         #c8c8c8;
-
-
-
-
-
-	
-	}
-
-	
-
 	
 
 
 
-	 .product-item         h3         {
+	  .sticker           {
+
 
 	
 
-        font-size:         14px;
-
-
-
-        font-weight:     300;
-
-
-
-        padding-bottom:         4px;
-
-
-
-        text-transform:         uppercase;
+         position:           absolute;
 
 
 
 
+         top:      0;
 
+
+
+
+         left:      0;
+
+
+
+
+         width:           63px;
+
+
+
+
+         height:           63px;
+
+
+
+
+
+
+	
 	
 	}
 
@@ -1043,68 +1449,36 @@ Licensed under MIT
 
 	
 
-
-
-	 .product-item         h3         a         {
-
-	
-
-        color:         #3e4d5c;
-
-
-
-
-
-	
-	}
-
-	
-
 	
 
 
 
-	 .product-item         h3         a:hover         {
+	  .sticker-new           {
+
 
 	
 
-        color:         #E02222;
+         background:           url(     
+		 'http://keenthemes.com/assets/bootsnipp/new.png'  
+		    )      
+	   no-repeat;
+
+
+
+		
+         left:           auto;
+
+
+
+
+         right:      0;
+
 
 
 
 
 
 	
-	}
-
-	
-
-	
-
-
-
-	 .pi-price         {
-
-	
-
-        color:         #e84d1c;
-
-
-
-        font-size:         18px;
-
-
-
-        float:         left;
-
-
-
-        padding-top:         1px;
-
-
-
-
-
 	
 	}
 
@@ -1112,35 +1486,23 @@ Licensed under MIT
 
 	
 
+	
 
 
 
-	 .product-item     .add2cart         {
+	  .pi-img-wrapper           {
+
 
 	
 
-        float:         right;
-
-
-
-        color:         #a8aeb3;
-
-
-
-        border:         1px         #ededed         solid;
-
-
-
-        padding:         3px         6px;
-
-
-
-        text-transform:         uppercase;
+        position:           relative;
 
 
 
 
 
+
+	
 	
 	}
 
@@ -1148,51 +1510,385 @@ Licensed under MIT
 
 	
 
+	
 
 
-	 .product-item     .add2cart:hover         {
+
+	  .pi-img-wrapper           div           {
+
+
+	
+
+         background:           rgba         (       '0 ,0 ,0 ,0.3'       )      
+		;    
+         position:          absolute;
+
+
+
+
+         left:      0;
+
+
+
+
+         top:      0;
+
+
+
+
+         display:           none;
+
+
+
+
+         width:           100%;
+
+
+
+
+         height:           100%;
+
+
+
+
+         text-align:           center;
+
+
+
+
+
+
+	
+	
+	}
+
+	
+
+	
 
 	
 
 
-         color:         #ffffff;
+
+	  .product-item:hover         >     .pi-img-wrapper         >         div
+	          {
+	
+
+	
+
+         display:           block;
 
 
 
-         background:         #e84d1c;
 
 
 
-         border-color:         #e84d1c;
+	
+	
+	}
+
+	
+
+	
+
+	
+
+
+
+.pi-img-wrapper           div      .btn           {
+	
+	
+	
+
+         padding:           3px           10px;
+
+
+
+
+         color:           #ffffff;
+
+
+
+
+         border:           1px           #ffffff           solid;
+
+
+
+
+         margin:      -13px           5px           0;
+
+
+
+
+         background:           transparent;
+
+
+
+
+        text-transform:           uppercase;
+
+
+
+
+         position:           relative;
+
+
+
+
+         top:           50%;
+
+
+
+
+         line-height:      1.4;
+
+
+
+
+         font-size:           12px;
+
+
+
+
+
+
+	
+	
+	}
+
+	
+
+	
+
+	
+
+
+
+
+	  .product-item      .btn:hover           {
+
+
+	
+
+         background:           #e84d1c;
+
+
+
+
+         border-color:           #c8c8c8;
+
+
+
+
+
+
+	
+	
+	}
+
+	
+
+	
+
+	
+
+
+
+	  .product-item           h3           {
+
+
+	
+
+         font-size:           14px;
+
+
+
+
+         font-weight:      300;
+
+
+
+
+         padding-bottom:           4px;
+
+
+
+
+         text-transform:           uppercase;
+
+
+
+
+
+
+	
+	
+	}
+
+	
+
+	
+
+	
+
+
+
+	  .product-item           h3           a           {
+
+
+	
+
+         color:           #3e4d5c;
+
+
+
+
+
+
+	
+	
+	}
+
+	
+
+	
+
+	
+
+
+
+	  .product-item           h3           a:hover           {
+
+
+	
+
+         color:           #E02222;
+
+
+
+
+
+
+	
+	
+	}
+
+	
+
+	
+
+	
+
+
+
+	  .pi-price           {
+
+
+	
+
+         color:           #e84d1c;
+
+
+
+
+         font-size:           18px;
+
+
+
+
+         float:           left;
+
+
+
+
+         padding-top:           1px;
+
+
+
+
+
+
+	
+	
+	}
+
+	
+
+	
+
+	
+
+
+
+
+	  .product-item      .add2cart           {
+
+
+	
+
+         float:           right;
+
+
+
+
+         color:           #a8aeb3;
+
+
+
+
+         border:           1px           #ededed           solid;
+
+
+
+
+         padding:           3px           6px;
+
+
+
+
+         text-transform:           uppercase;
+
+
+
+
+
+
+	
+	
+	}
+
+	
+
+	
+
+	
+
+
+
+	  .product-item      .add2cart:hover           {
+
+
+	
+
+
+          color:           #ffffff;
+
+
+
+
+          background:           #e84d1c;
+
+
+
+
+          border-color:           #e84d1c;
+
 
 
      
 
 
 	
-	}
-
-	
-
-	
-
-
-
-
-	 /* =====================left menu =====================*/    
-	 .child_left_menu       {
-
-	
-
-
-	    border:         3px         solid         #337ab7;
-
-
-
-
-
-
-
 	
 	}
 
@@ -1200,22 +1896,54 @@ Licensed under MIT
 
 	
 
+	
 
 
 
 
-	 /* =====================상품 상세 페이지   시작 =====================*/    
+	  /* =====================left menu =====================*/     
+	  .child_left_menu         {
 
-	 /*********************************************
+
+	
+
+
+	     border:           3px           solid           #337ab7;
+
+
+
+
+
+
+
+
+	
+	
+	}
+
+	
+
+	
+
+	
+
+
+
+
+
+	  /* =====================상품 상세 페이지   시작 =====================*/     
+
+	  /*********************************************
         		Theme Elements
-*********************************************/    
+*********************************************/     
 
-	 .gold       {
+	  .gold         {
+
 
 	
 
 
-	    color:         #FFBF00;
+	     color:           #FFBF00;
 
 
 
@@ -1223,6 +1951,8 @@ Licensed under MIT
 
 
 
+
+	
 	
 	}
 
@@ -1230,49 +1960,30 @@ Licensed under MIT
 
 	
 
+	
 
 
 
 
-	 /*********************************************
+
+	  /*********************************************
 					PRODUCTS
-*********************************************/    
+*********************************************/     
 
-	 .product       {
-
-	
-
-
-	    border:         1px         solid         #dddddd;
-
-
-
-
-	    height:         321px;
-
-
-
-
-
+	  .product         {
 
 
 	
-	}
 
-	
 
-	
+	     border:           1px           solid           #dddddd;
 
 
 
 
 
-	 .product       >       img       {
+	     height:           321px;
 
-	
-
-
-	    max-width:         230px;
 
 
 
@@ -1280,6 +1991,7 @@ Licensed under MIT
 
 
 
+	
 	
 	}
 
@@ -1287,45 +1999,19 @@ Licensed under MIT
 
 	
 
-
-
-
-
-	 .product-rating       {
-
-	
-
-
-	    font-size:         20px;
-
-
-
-
-	    margin-bottom:         25px;
-
-
-
-
-
-
-
-	
-	}
-
-	
-
 	
 
 
 
 
 
-	 .product-title       {
+	  .product         >         img         {
+
 
 	
 
 
-	    font-size:         20px;
+	     max-width:           230px;
 
 
 
@@ -1333,6 +2019,8 @@ Licensed under MIT
 
 
 
+
+	
 	
 	}
 
@@ -1340,40 +2028,25 @@ Licensed under MIT
 
 	
 
-
-
-
-
-	 .product-desc       {
-
-	
-
-
-	    font-size:         14px;
-
-
-
-
-
-
-
-	
-	}
-
-	
-
 	
 
 
 
 
 
-	 .product-price       {
+	  .product-rating         {
+
 
 	
 
 
-	    font-size:         22px;
+	     font-size:           20px;
+
+
+
+
+
+	     margin-bottom:           25px;
 
 
 
@@ -1381,6 +2054,8 @@ Licensed under MIT
 
 
 
+
+	
 	
 	}
 
@@ -1388,26 +2063,19 @@ Licensed under MIT
 
 	
 
+	
 
 
 
 
-	 .product-stock       {
+
+	  .product-title         {
+
 
 	
 
 
-	    color:         #74DF00;
-
-
-
-
-	    font-size:         20px;
-
-
-
-
-	    margin-top:         10px;
+	     font-size:           20px;
 
 
 
@@ -1415,6 +2083,8 @@ Licensed under MIT
 
 
 
+
+	
 	
 	}
 
@@ -1422,16 +2092,19 @@ Licensed under MIT
 
 	
 
+	
 
 
 
 
-	 .product-info       {
+
+	  .product-desc         {
+
 
 	
 
 
-		    margin-top:         50px;
+	     font-size:           14px;
 
 
 
@@ -1439,6 +2112,8 @@ Licensed under MIT
 
 
 
+
+	
 	
 	}
 
@@ -1446,86 +2121,167 @@ Licensed under MIT
 
 	
 
+	
 
 
 
 
-	 /*********************************************
+
+	  .product-price         {
+
+
+	
+
+
+	     font-size:           22px;
+
+
+
+
+
+
+
+
+	
+	
+	}
+
+	
+
+	
+
+	
+
+
+
+
+
+	  .product-stock         {
+
+
+	
+
+
+	     color:           #74DF00;
+
+
+
+
+
+	     font-size:           20px;
+
+
+
+
+
+	     margin-top:           10px;
+
+
+
+
+
+
+
+
+	
+	
+	}
+
+	
+
+	
+
+	
+
+
+
+
+
+	  .product-info         {
+
+
+	
+
+
+		     margin-top:           50px;
+
+
+
+
+
+
+
+
+	
+	
+	}
+
+	
+
+	
+
+	
+
+
+
+
+
+	  /*********************************************
 					VIEW
-*********************************************/    
+*********************************************/     
 
-	 .content-wrapper         {
-
-	
-
-
-	    max-width:         1140px;
-
-
-
-
-	    background:         #fff;
-
-
-
-
-	    margin:     0         auto;
-
-
-
-
-	    margin-top:         25px;
-
-
-
-
-	    margin-bottom:         10px;
-
-
-
-
-	    border:         0px;
-
-
-
-
-	    border-radius:         0px;
-
-
-
-
-
+	  .content-wrapper           {
 
 
 	
-	}
+
+
+	     max-width:           1140px;
+
+
+
+
+
+	     background:           #fff;
+
+
+
+
+
+	     margin:      0           auto;
+
+
+
+
+
+	     margin-top:           25px;
+
+
+
+
+
+	     margin-bottom:           10px;
+
+
+
+
+
+	     border:           0px;
+
+
+
+
+
+	     border-radius:           0px;
+
+
+
+
+
+
+
 
 	
-
-	
-
-
-
-
-
-	 .container-fluid       {
-
-	
-
-
-	    max-width:         1140px;
-
-
-
-
-	    margin:     0         auto;
-
-
-
-
-
-
-
 	
 	}
 
@@ -1533,60 +2289,26 @@ Licensed under MIT
 
 	
 
-
-
-
-
-	 .view-wrapper         {
-
-	
-
-
-	    float:         right;
-
-
-
-
-	    max-width:         70%;
-
-
-
-
-	    margin-top:         25px;
-
-
-
-
-
-
-
-	
-	}
-
-	
-
 	
 
 
 
 
 
-	 .container         {
+	  .container-fluid         {
+
 
 	
 
 
-	    padding-left:         0px;
+	     max-width:           1140px;
 
 
 
 
-	    padding-right:         0px;
 
+	     margin:      0           auto;
 
-
-
-	    max-width:         100%;
 
 
 
@@ -1594,6 +2316,7 @@ Licensed under MIT
 
 
 
+	
 	
 	}
 
@@ -1601,114 +2324,142 @@ Licensed under MIT
 
 	
 
+	
 
 
 
 
-	 /*********************************************
+
+	  .view-wrapper           {
+
+
+	
+
+
+	     float:           right;
+
+
+
+
+
+	     max-width:           70%;
+
+
+
+
+
+	     margin-top:           25px;
+
+
+
+
+
+
+
+
+	
+	
+	}
+
+	
+
+	
+
+	
+
+
+
+
+
+	  .container           {
+
+
+	
+
+
+	     padding-left:           0px;
+
+
+
+
+
+	     padding-right:           0px;
+
+
+
+
+
+	     max-width:           100%;
+
+
+
+
+
+
+
+
+	
+	
+	}
+
+	
+
+	
+
+	
+
+
+
+
+
+	  /*********************************************
 				ITEM 
-*********************************************/    
+*********************************************/     
 
-	 .service1-items         {
-
-	
-
-
-	    padding:         0px     0         0px     0;
-
-
-
-
-	    float:         left;
-
-
-
-
-	    position:         relative;
-
-
-
-
-	    overflow:         hidden;
-
-
-
-
-	    max-width:         100%;
-
-
-
-
-	    height:         321px;
-
-
-
-
-	    width:         130px;
-
-
-
-
-
+	  .service1-items           {
 
 
 	
-	}
 
-	
 
-	
+	     padding:           0px      0           0px      0;
 
 
 
 
 
-	 .service1-item         {
-
-	
-
-
-	    height:         107px;
+	     float:           left;
 
 
 
 
-	    width:         120px;
+
+	     position:           relative;
 
 
 
 
-	    display:         block;
+
+	     overflow:           hidden;
 
 
 
 
-	    float:         left;
+
+	     max-width:           100%;
 
 
 
 
-	    position:         relative;
+
+	     height:           321px;
 
 
 
 
-	    padding-right:         20px;
 
+	     width:           130px;
 
-
-
-	    border-right:         1px         solid         #DDD;
-
-
-
-
-	    border-top:         1px         solid         #DDD;
-
-
-
-
-	    border-bottom:         1px         solid         #DDD;
 
 
 
@@ -1716,6 +2467,7 @@ Licensed under MIT
 
 
 
+	
 	
 	}
 
@@ -1723,82 +2475,76 @@ Licensed under MIT
 
 	
 
-
-
-
-
-	 .service1-item         >         img         {
-
-	
-
-
-	    max-height:         110px;
-
-
-
-
-	    max-width:         110px;
-
-
-
-
-	    opacity:     0.6;
-
-
-
-
-	    transition:         all         .2s         ease-in;
-
-
-
-
-	    -o-transition:         all         .2s         ease-in;
-
-
-
-
-	    -moz-transition:         all         .2s         ease-in;
-
-
-
-
-	    -webkit-transition:         all         .2s         ease-in;
-
-
-
-
-
-
-
-	
-	}
-
-	
-
 	
 
 
 
 
 
-	 .service1-item         >         img:hover         {
+	  .service1-item           {
+
 
 	
 
 
-	    cursor:         pointer;
-
-
-
-
-	    opacity:     1;
+	     height:           107px;
 
 
 
 
 
+	     width:           120px;
 
 
+
+
+
+	     display:           block;
+
+
+
+
+
+	     float:           left;
+
+
+
+
+
+	     position:           relative;
+
+
+
+
+
+	     padding-right:           20px;
+
+
+
+
+
+	     border-right:           1px           solid           #DDD;
+
+
+
+
+
+	     border-top:           1px           solid           #DDD;
+
+
+
+
+
+	     border-bottom:           1px           solid           #DDD;
+
+
+
+
+
+
+
+
+	
 	
 	}
 
@@ -1806,74 +2552,64 @@ Licensed under MIT
 
 	
 
-
-
-
-
-	 .service-image-left         {
-
-	
-
-
-	    padding-right:         50px;
-
-
-
-
-
-
-
-	
-	}
-
-	
-
 	
 
 
 
 
 
-	 .service-image-right         {
-
-	
-
-
-	    padding-left:         50px;
-
-
-
-
-
+	  .service1-item           >           img           {
 
 
 	
-	}
+
+
+	     max-height:           110px;
+
+
+
+
+
+	     max-width:           110px;
+
+
+
+
+
+	     opacity:      0.6;
+
+
+
+
+
+	     transition:           all           .2s           ease-in;
+
+
+
+
+
+	     -o-transition:           all           .2s           ease-in;
+
+
+
+
+
+	     -moz-transition:           all           .2s           ease-in;
+
+
+
+
+
+	     -webkit-transition:           all           .2s           ease-in;
+
+
+
+
+
+
+
 
 	
-
-	
-
-
-
-
-
-	 .service-image-left         >         center         >         img     
-	 ,.service-image-right         >  
-      center     
-	 >         img       {
-
-	
-
-
-	    max-height:         155px;
-
-
-
-
-
-
-
 	
 	}
 
@@ -1881,25 +2617,153 @@ Licensed under MIT
 
 	
 
+	
 
 
 
 
-	 /* =====================상품 상세 페이지   끝 =====================*/    
 
-	 /*
+	  .service1-item           >           img:hover           {
+
+
+	
+
+
+	     cursor:           pointer;
+
+
+
+
+
+	     opacity:      1;
+
+
+
+
+
+
+
+
+	
+	
+	}
+
+	
+
+	
+
+	
+
+
+
+
+
+	  .service-image-left           {
+
+
+	
+
+
+	     padding-right:           50px;
+
+
+
+
+
+
+
+
+	
+	
+	}
+
+	
+
+	
+
+	
+
+
+
+
+
+	  .service-image-right           {
+
+
+	
+
+
+	     padding-left:           50px;
+
+
+
+
+
+
+
+
+	
+	
+	}
+
+	
+
+	
+
+	
+
+
+
+
+
+	  .service-image-left           >           center           >           img      
+	  ,.service-image-right           >   
+       center      
+	  >           img         {
+
+
+	
+
+
+	     max-height:           155px;
+
+
+
+
+
+
+
+
+	
+	
+	}
+
+	
+
+	
+
+	
+
+
+
+
+
+	  /* =====================상품 상세 페이지   끝 =====================*/     
+
+	  /*
  * 
 megamenu
  * 
- */    
+ */     
 
 	
-	 .mega-dropdown         {
+	  .mega-dropdown           {
+
 
 	
 
 
-      position:         static         !important;
+       position:           static           !important;
 
 
 
@@ -1907,6 +2771,8 @@ megamenu
 
 
 
+
+	
 	
 	}
 
@@ -1914,37 +2780,45 @@ megamenu
 
 	
 
+	
 
 
 
-	 .mega-dropdown-menu         {
+
+	  .mega-dropdown-menu           {
+
 
 	
 
 
-        padding:         20px         0px;
-
-
-
-
-        width:         100%;
-
-
-
-
-        box-shadow:         none;
-
-
-
-
-        -webkit-box-shadow:         none;
+         padding:           20px           0px;
 
 
 
 
 
+         width:           100%;
 
 
+
+
+
+         box-shadow:           none;
+
+
+
+
+
+         -webkit-box-shadow:           none;
+
+
+
+
+
+
+
+
+	
 	
 	}
 
@@ -1952,27 +2826,34 @@ megamenu
 
 	
 
+	
 
 
 
-	 .mega-dropdown-menu         >         li         >         ul         {
+
+	  .mega-dropdown-menu           >           li           >           ul
+	          {
+	
 
 	
 
 
-      padding:     0;
-
-
-
-
-      margin:     0;
+       padding:      0;
 
 
 
 
 
+       margin:      0;
 
 
+
+
+
+
+
+
+	
 	
 	}
 
@@ -1980,16 +2861,20 @@ megamenu
 
 	
 
+	
 
 
 
-	 .mega-dropdown-menu         >         li         >         ul         >
-	        li         {
+
+	  .mega-dropdown-menu           >           li           >           ul
+	          > 
+	         li           {
+
 	
 	
 
 
-      list-style:         none;
+       list-style:           none;
 
 
 
@@ -1997,6 +2882,8 @@ megamenu
 
 
 
+
+	
 	
 	}
 
@@ -2004,55 +2891,33 @@ megamenu
 
 	
 
-
-
-
-	 .mega-dropdown-menu         >         li         >         ul         >
-	        li         > 
-	       a         {
-
-	
-
-
-      display:         block;
-
-
-
-
-      color:         #222;
-
-
-
-
-      padding:         3px         5px;
-
-
-
-
-
-
-
-	
-	}
-
-	
-
 	
 
 
 
 
-	 .mega-dropdown-menu         >         li         ul         >         li
-	        >       
-	 a:hover       ,    
-.mega-dropdown-menu         >         li         ul         >         li        
-	>       
-	 a:focus         {
+	  .mega-dropdown-menu           >           li           >           ul
+	          > 
+	         li           >  
+	        a           {
+
 
 	
 
 
-      text-decoration:         none;
+       display:           block;
+
+
+
+
+
+       color:           #222;
+
+
+
+
+
+       padding:           3px           5px;
 
 
 
@@ -2060,6 +2925,8 @@ megamenu
 
 
 
+
+	
 	
 	}
 
@@ -2067,30 +2934,25 @@ megamenu
 
 	
 
+	
 
 
 
-	 .mega-dropdown-menu     .dropdown-header         {
+
+	  .mega-dropdown-menu           >           li           ul           >
+	          li 
+	         >        
+	  a:hover         ,     
+.mega-dropdown-menu           >           li           ul           >          
+	li         
+	 >        
+	  a:focus           {
+
 
 	
 
 
-      font-size:         18px;
-
-
-
-
-      color:         #ff3546;
-
-
-
-
-      padding:         5px         60px         5px         5px;
-
-
-
-
-      line-height:         30px;
+       text-decoration:           none;
 
 
 
@@ -2098,6 +2960,8 @@ megamenu
 
 
 
+
+	
 	
 	}
 
@@ -2105,28 +2969,45 @@ megamenu
 
 	
 
+	
 
 
 
 
-	 .left    .carousel-control         {
+	  .mega-dropdown-menu      .dropdown-header           {
+
 
 	
 
 
-      right:         30px;
-
-
-
-
-      left:         inherit;
+       font-size:           18px;
 
 
 
 
 
+       color:           #ff3546;
 
 
+
+
+
+       padding:           5px           60px           5px           5px;
+
+
+
+
+
+       line-height:           30px;
+
+
+
+
+
+
+
+
+	
 	
 	}
 
@@ -2134,20 +3015,57 @@ megamenu
 
 	
 
+	
 
 
 
 
 
-	 /*
+	  .left     .carousel-control           {
+
+
+	
+
+
+       right:           30px;
+
+
+
+
+
+       left:           inherit;
+
+
+
+
+
+
+
+
+	
+	
+	}
+
+	
+
+	
+
+	
+
+
+
+
+
+
+	  /*
  * center-block
  * 
  콘텐츠 블록 중앙정렬
 display: block 와 margin 로 요소를 설정하세요. 믹스인과 클래스로 사용가능합니다
  * 
  * 
- */    
-	 /*
+ */     
+	  /*
  * Modal Height
  * 
  * 모달 전체 바디 조정
@@ -2156,30 +3074,35 @@ display: block 와 margin 로 요소를 설정하세요. 믹스인과 클래스�
     max-height: calc(100vh - 210px) !important;
     overflow-y: auto !important;
 }
- */    
+ */     
 
-	 /*
+	  /*
  * slideshow images
  * 
- */    
+ */     
 
 
-	 @media         screen         and         (max-width:       600px       )
-	        {    
-	   #myCarousel     {
+	  @media           screen           and           (max-width:         600px
+	        ) 
+	         {     
+	    #myCarousel       {
 
 
 
-		   margin-top    :       13%       !important;
+
+		    margin-top     :         13%         !important;
+
 
 
 		
-		   height    :       60%       !important;
+		    height     :         60%         !important;
+
 
 
 
 	
 
+	
 	
 	}
 
@@ -2187,16 +3110,20 @@ display: block 와 margin 로 요소를 설정하세요. 믹스인과 클래스�
 
 	
 
-
-	    .company_slideImg_600         {
-
+	
 
 
+	     .company_slideImg_600           {
 
-	    background-image:         url(      
-		"/Company/zImage/keyboard-428326_1920.jpg" 
-		     )     
-	   !important;
+
+
+
+
+	     background-image:           url(       
+		 "/Company/zImage/keyboard-428326_1920.jpg"  
+		      )      
+	    !important;
+
 
 
 
@@ -2205,30 +3132,6 @@ display: block 와 margin 로 요소를 설정하세요. 믹스인과 클래스�
 
 
 	
-	}
-
-	
-
-	
-
-
-
-    .companyItem_slideImg_600         {
-
-
-
-
-	    background-image:         url(     
-		 "/CompanyItem/zImage/computer-1149148_1920.jpg"  
-	    )     
-	   !important;
-
-
-
-	
-	
-
-
 	
 	}
 
@@ -2236,15 +3139,21 @@ display: block 와 margin 로 요소를 설정하세요. 믹스인과 클래스�
 
 	
 
-
-	    .customer_slideImg_600         {
-
+	
 
 
 
-	    background-image:         url(    
-	  "/CustomerService/zImage/education-1651259_1920.jpg"       )     
-	   !important;
+     .companyItem_slideImg_600           {
+
+
+
+
+
+	     background-image:           url(      
+		  "/CompanyItem/zImage/computer-1149148_1920.jpg"   
+	     )      
+	    !important;
+
 
 
 
@@ -2252,6 +3161,7 @@ display: block 와 margin 로 요소를 설정하세요. 믹스인과 클래스�
 	
 
 
+	
 	
 	}
 
@@ -2259,31 +3169,64 @@ display: block 와 margin 로 요소를 설정하세요. 믹스인과 클래스�
 
 	
 
+	
+
+
+	     .customer_slideImg_600           {
+
+
+
+
+
+	     background-image:           url(     
+	   "/CustomerService/zImage/education-1651259_1920.jpg"         )      
+	    !important;
+
+
+
+
+	
+	
+
+
+	
+	
+	}
+
+	
+
+	
+
+	
+
 
 
 
 	
 
 
-	 }    
+	  }     
 
 
 
 
-	 /* Font Responsive */    
+	  /* Font Responsive */     
 
-	 /* responsive text queries */    
-      .res_font_1         {
-
-
-
-
-        font-size:         100%         !important;
+	  /* responsive text queries */     
+       .res_font_1           {
 
 
 
 
-        line-height:       100%         !important;
+
+         font-size:           100%           !important;
+
+
+
+
+
+         line-height:         100%           !important;
+
 
 
 
@@ -2292,20 +3235,23 @@ display: block 와 margin 로 요소를 설정하세요. 믹스인과 클래스�
 
 
 	
+	
 	}
 
 	
 
 	
 
+	
 
 
 
 
 
 
-	 /* ---------------------------------------------------------Start--------------------------------------------------------- */    
-	 /* 폰트 적용 최상단
+
+	  /* ---------------------------------------------------------Start--------------------------------------------------------- */     
+	  /* 폰트 적용 최상단
  * 
  * bootstrap 
  * 
@@ -2315,26 +3261,30 @@ display: block 와 margin 로 요소를 설정하세요. 믹스인과 클래스�
     color: #333;
     background-color: #fff;
  * 
- */    
+ */     
 
-	 body         {
-
-	
-
-       /*background : #F5F5F5 !important;  shop에만 적용되도록 수정 필요.*/   
-	   font-family:       '맑은 고딕'       ,     'Malgun Gothic'       ,     '굴림'
-		      ,   
-		 Gulim       ,  
-	  'NanumGothic'     
-	   !important;
-
+	  body           {
 
 
 	
-	   /* body 선언은 테이블 적용 안된다. -> 별도 적용 필요.*/    
+
+        /*background : #F5F5F5 !important;  shop에만 적용되도록 수정 필요.*/    
+	    font-family:         '맑은 고딕'         ,      'Malgun Gothic'         ,     
+		'굴림' 
+		       ,   
+		  Gulim         ,  
+	   'NanumGothic'      
+	    !important;
 
 
 
+
+	
+	    /* body 선언은 테이블 적용 안된다. -> 별도 적용 필요.*/     
+
+
+
+	
 	
 	}
 
@@ -2342,11 +3292,13 @@ display: block 와 margin 로 요소를 설정하세요. 믹스인과 클래스�
 
 	
 
+	
 
 
 
 
-	 /*
+
+	  /*
  * 나눔 고딕 전체 브라우저
  * @font-face {
 
@@ -2359,16 +3311,19 @@ display: block 와 margin 로 요소를 설정하세요. 믹스인과 클래스�
     font-style: normal;
 }
  * 
- */    
-	 .font_color_faq_basic         li       {
+ */     
+	  .font_color_faq_basic           li         {
+
 
 	
 
 
-	    margin     :         15px     0         !important;
+	     margin      :           15px      0           !important;
 
 
-   font-weight:       bold         !important;
+
+    font-weight:         bold           !important;
+
 
 
      
@@ -2376,20 +3331,25 @@ display: block 와 margin 로 요소를 설정하세요. 믹스인과 클래스�
 
 
 	
+	
 	}
 
 	
 
 	
 
+	
 
 
-	 .font_color_faq         li       {
+
+	  .font_color_faq           li         {
+
 
 	
 
 
-	    margin     :         15px     0         !important;
+	     margin      :           15px      0           !important;
+
 
 
 
@@ -2399,7 +3359,10 @@ display: block 와 margin 로 요소를 설정하세요. 믹스인과 클래스�
 
 
 	
+	
 	}
+
+	
 
 	
 
@@ -2410,29 +3373,34 @@ display: block 와 margin 로 요소를 설정하세요. 믹스인과 클래스�
 
  
  
-	 .font_color_faq         li         a       {
+	  .font_color_faq           li           a         {
+
 
 	
 
 
-	    color:         #005262         !important;
-
-
-
-
-        text-decoration:         none         !important;
-
-
-
-
-        font-weight:       bold         !important;
+	     color:           #005262           !important;
 
 
 
 
 
+         text-decoration:           none           !important;
 
 
+
+
+
+         font-weight:         bold           !important;
+
+
+
+
+
+
+
+
+	
 	
 	}
 
@@ -2440,21 +3408,26 @@ display: block 와 margin 로 요소를 설정하세요. 믹스인과 클래스�
 
 	
 
+	
 
 
 
 
-	 .font_color_faq         li         a:hover         {
+
+	  .font_color_faq           li           a:hover           {
+
 
 	
 
 
-        color:         #04A3ED         !important;
+         color:           #04A3ED           !important;
 
 
 
 
-        text-decoration:         underline         !important;
+
+         text-decoration:           underline           !important;
+
 
 
 
@@ -2464,41 +3437,6 @@ display: block 와 margin 로 요소를 설정하세요. 믹스인과 클래스�
 
 
 	
-	}
-
-	
-
-	
-
-
-
-
-
-	 /* ---------------------------------------------------------END--------------------------------------------------------- */    
-
-
-	 /* ---------------------------------------------------------Start--------------------------------------------------------- */    
-
-	 /* 타임라인 연혁 */    
-
-	 #timeline         {
-
-	
-
-
-      list-style:         none;
-
-
-
-
-      position:         relative;
-
-
-
-
-
-
-
 	
 	}
 
@@ -2506,50 +3444,32 @@ display: block 와 margin 로 요소를 설정하세요. 믹스인과 클래스�
 
 	
 
+	
 
 
 
-	 #timeline:before         {
+
+
+	  /* ---------------------------------------------------------END--------------------------------------------------------- */     
+
+
+	  /* ---------------------------------------------------------Start--------------------------------------------------------- */     
+
+	  /* 타임라인 연혁 */     
+
+	  #timeline           {
+
 
 	
 
 
-      top:     0;
+       list-style:           none;
 
 
 
 
-      bottom:     0;
 
-
-
-
-      position:         absolute;
-
-
-
-
-      content:         " ";
-
-
-
-
-      width:         2px;
-
-
-
-
-      background-color:         #4997cd;
-
-
-
-
-      left:         50%;
-
-
-
-
-      margin-left:     -1.5px;
+       position:           relative;
 
 
 
@@ -2557,6 +3477,8 @@ display: block 와 margin 로 요소를 설정하세요. 믹스인과 클래스�
 
 
 
+
+	
 	
 	}
 
@@ -2564,27 +3486,69 @@ display: block 와 margin 로 요소를 설정하세요. 믹스인과 클래스�
 
 	
 
+	
 
 
 
-	 #timeline     .clearFix         {
+
+	  #timeline:before           {
+
 
 	
 
 
-      clear:         both;
-
-
-
-
-      height:     0;
+       top:      0;
 
 
 
 
 
+       bottom:      0;
 
 
+
+
+
+       position:           absolute;
+
+
+
+
+
+       content:           " ";
+
+
+
+
+
+       width:           2px;
+
+
+
+
+
+       background-color:           #4997cd;
+
+
+
+
+
+       left:           50%;
+
+
+
+
+
+       margin-left:      -1.5px;
+
+
+
+
+
+
+
+
+	
 	
 	}
 
@@ -2592,85 +3556,24 @@ display: block 와 margin 로 요소를 설정하세요. 믹스인과 클래스�
 
 	
 
+	
 
 
 
-	 #timeline     .timeline-badge         {
+
+	  #timeline      .clearFix           {
+
 
 	
 
 
-      color:         #fff;
+       clear:           both;
 
 
 
 
-      width:         50px;
 
-
-
-
-      height:         50px;
-
-
-
-
-      font-size:         1.2em;
-
-
-
-
-      text-align:         center;
-
-
-
-
-      position:         absolute;
-
-
-
-
-      top:         20px;
-
-
-
-
-      left:         50%;
-
-
-
-
-      margin-left:     -25px;
-
-
-
-
-      background-color:         #4997cd;
-
-
-
-
-      z-index:     100;
-
-
-
-
-      border-top-right-radius:         50%;
-
-
-
-
-      border-top-left-radius:         50%;
-
-
-
-
-      border-bottom-right-radius:         50%;
-
-
-
-
-      border-bottom-left-radius:         50%;
+       height:      0;
 
 
 
@@ -2678,6 +3581,8 @@ display: block 와 margin 로 요소를 설정하세요. 믹스인과 클래스�
 
 
 
+
+	
 	
 	}
 
@@ -2685,15 +3590,102 @@ display: block 와 margin 로 요소를 설정하세요. 믹스인과 클래스�
 
 	
 
+	
 
 
 
-	 #timeline     .timeline-badge         span.timeline-balloon-date-day         {
+
+	  #timeline      .timeline-badge           {
+
 
 	
 
 
-      font-size:         1.4em;
+       color:           #fff;
+
+
+
+
+
+       width:           50px;
+
+
+
+
+
+       height:           50px;
+
+
+
+
+
+       font-size:           1.2em;
+
+
+
+
+
+       text-align:           center;
+
+
+
+
+
+       position:           absolute;
+
+
+
+
+
+       top:           20px;
+
+
+
+
+
+       left:           50%;
+
+
+
+
+
+       margin-left:      -25px;
+
+
+
+
+
+       background-color:           #4997cd;
+
+
+
+
+
+       z-index:      100;
+
+
+
+
+
+       border-top-right-radius:           50%;
+
+
+
+
+
+       border-top-left-radius:           50%;
+
+
+
+
+
+       border-bottom-right-radius:           50%;
+
+
+
+
+
+       border-bottom-left-radius:           50%;
 
 
 
@@ -2701,6 +3693,8 @@ display: block 와 margin 로 요소를 설정하세요. 믹스인과 클래스�
 
 
 
+
+	
 	
 	}
 
@@ -2708,32 +3702,28 @@ display: block 와 margin 로 요소를 설정하세요. 믹스인과 클래스�
 
 	
 
-
-
-
-#timeline     .timeline-badge         span.timeline-balloon-date-month         {
-	
 	
 
 
-      font-size:         .7em;
+
+
+	  #timeline      .timeline-badge           span.timeline-balloon-date-day
+	          {
+	
+
+	
+
+
+       font-size:           1.4em;
 
 
 
 
-      position:         relative;
 
 
 
 
-      top:     -10px;
-
-
-
-
-
-
-
+	
 	
 	}
 
@@ -2741,40 +3731,32 @@ display: block 와 margin 로 요소를 설정하세요. 믹스인과 클래스�
 
 	
 
-
-
-
-	 #timeline     .timeline-badge.timeline-filter-movement         {
-
 	
 
 
-      background-color:         #ffffff;
+
+
+#timeline      .timeline-badge           span.timeline-balloon-date-month
+	          {
+	
+	
+	
+
+
+       font-size:           .7em;
 
 
 
 
-      font-size:         1.7em;
+
+       position:           relative;
 
 
 
 
-      height:         35px;
 
+       top:      -10px;
 
-
-
-      margin-left:     -18px;
-
-
-
-
-      width:         35px;
-
-
-
-
-      top:         40px;
 
 
 
@@ -2782,6 +3764,7 @@ display: block 와 margin 로 요소를 설정하세요. 믹스인과 클래스�
 
 
 
+	
 	
 	}
 
@@ -2789,26 +3772,386 @@ display: block 와 margin 로 요소를 설정하세요. 믹스인과 클래스�
 
 	
 
+	
 
 
 
-	 #timeline     .timeline-badge.timeline-filter-movement         a         span       
+
+	  #timeline      .timeline-badge.timeline-filter-movement           {
+
+
+	
+
+
+       background-color:           #ffffff;
+
+
+
+
+
+       font-size:           1.7em;
+
+
+
+
+
+       height:           35px;
+
+
+
+
+
+       margin-left:      -18px;
+
+
+
+
+
+       width:           35px;
+
+
+
+
+
+       top:           40px;
+
+
+
+
+
+
+
+
+	
+	
+	}
+
+	
+
+	
+
+	
+
+
+
+
+	  #timeline      .timeline-badge.timeline-filter-movement           a          
+	span        
+	  {
+
+
+	
+
+
+       color:           #4997cd;
+
+
+
+
+
+       font-size:           1.3em;
+
+
+
+
+
+       top:      -1px;
+
+
+
+
+
+
+
+
+	
+	
+	}
+
+	
+
+	
+
+	
+
+
+
+
+	  #timeline      .timeline-badge.timeline-future-movement           {
+
+
+	
+
+
+       background-color:           #ffffff;
+
+
+
+
+
+       height:           35px;
+
+
+
+
+
+       width:           35px;
+
+
+
+
+
+       font-size:           1.7em;
+
+
+
+
+
+       top:      -16px;
+
+
+
+
+
+       margin-left:      -18px;
+
+
+
+
+
+
+
+
+	
+	
+	}
+
+	
+
+	
+
+	
+
+
+
+
+	  #timeline      .timeline-badge.timeline-future-movement           a          
+	span        
+	  {
+
+
+	
+
+
+       color:           #4997cd;
+
+
+
+
+
+       font-size:           .9em;
+
+
+
+
+
+       top:           2px;
+
+
+
+
+
+       left:           1px;
+
+
+
+
+
+
+
+
+	
+	
+	}
+
+	
+
+	
+
+	
+
+
+
+
+	  #timeline      .timeline-movement           {
+
+
+	
+
+
+       border-bottom:           dashed           1px           #4997cd;
+
+
+
+
+
+       position:           relative;
+
+
+
+
+
+
+
+
+	
+	
+	}
+
+	
+
+	
+
+	
+
+
+
+
+	  #timeline      .timeline-movement.timeline-movement-top           {
+
+
+	
+
+
+       height:           60px;
+
+
+
+
+
+
+
+
+	
+	
+	}
+
+	
+
+	
+
+	
+
+
+
+
+	  #timeline      .timeline-movement      .timeline-item           {
+
+
+	
+
+
+       padding:           20px      0;
+
+
+
+
+
+
+
+
+	
+	
+	}
+
+	
+
+	
+
+	
+
+
+
+
+#timeline      .timeline-movement      .timeline-item      .timeline-panel         
 	 {
 
 	
+	
 
 
-      color:         #4997cd;
-
-
-
-
-      font-size:         1.3em;
+       border:           1px           solid           #d4d4d4;
 
 
 
 
-      top:     -1px;
+
+       border-radius:           3px;
+
+
+
+
+
+       background-color:           #FFFFFF;
+
+
+
+
+
+       color:           #666;
+
+
+
+
+
+       padding:           10px;
+
+
+
+
+
+       position:           relative;
+
+
+
+
+
+       -webkit-box-shadow:      0           1px           6px           rgba
+		        (     
+		 0         ,      
+		  0         ,         0         ,     
+	   0.175         )       ;    
+
+       box-shadow:      0           1px           6px           rgba         (
+		      0       
+		 ,         0         ,  
+		      0         ,         0.175     
+	   )       ;    
+
+
+	   }    
+
+
+	   #timeline      .timeline-movement      .timeline-item      .timeline-panel    
+ .timeline-panel-ul           {
+
+
+
+
+
+       list-style:           none;
+
+
+
+
+
+       padding:      0;
+
+
+
+
+
+       margin:      0;
 
 
 
@@ -2817,250 +4160,7 @@ display: block 와 margin 로 요소를 설정하세요. 믹스인과 클래스�
 
 
 	
-	}
-
-	
-
-	
-
-
-
-
-	 #timeline     .timeline-badge.timeline-future-movement         {
-
-	
-
-
-      background-color:         #ffffff;
-
-
-
-
-      height:         35px;
-
-
-
-
-      width:         35px;
-
-
-
-
-      font-size:         1.7em;
-
-
-
-
-      top:     -16px;
-
-
-
-
-      margin-left:     -18px;
-
-
-
-
-
-
-
-	
-	}
-
-	
-
-	
-
-
-
-
-	 #timeline     .timeline-badge.timeline-future-movement         a         span       
-	 {
-
-	
-
-
-      color:         #4997cd;
-
-
-
-
-      font-size:         .9em;
-
-
-
-
-      top:         2px;
-
-
-
-
-      left:         1px;
-
-
-
-
-
-
-
-	
-	}
-
-	
-
-	
-
-
-
-
-	 #timeline     .timeline-movement         {
-
-	
-
-
-      border-bottom:         dashed         1px         #4997cd;
-
-
-
-
-      position:         relative;
-
-
-
-
-
-
-
-	
-	}
-
-	
-
-	
-
-
-
-
-	 #timeline     .timeline-movement.timeline-movement-top         {
-
-	
-
-
-      height:         60px;
-
-
-
-
-
-
-
-	
-	}
-
-	
-
-	
-
-
-
-
-	 #timeline     .timeline-movement     .timeline-item         {
-
-	
-
-
-      padding:         20px     0;
-
-
-
-
-
-
-
-	
-	}
-
-	
-
-	
-
-
-
-
-#timeline     .timeline-movement     .timeline-item     .timeline-panel        
-	{
-	
-	
-
-
-      border:         1px         solid         #d4d4d4;
-
-
-
-
-      border-radius:         3px;
-
-
-
-
-      background-color:         #FFFFFF;
-
-
-
-
-      color:         #666;
-
-
-
-
-      padding:         10px;
-
-
-
-
-      position:         relative;
-
-
-
-
-      -webkit-box-shadow:     0         1px         6px         rgba       (    
-		0       ,     
-		 0       ,       0       ,    
-	  0.175       )     ;   
-
-      box-shadow:     0         1px         6px         rgba       (     0      
-		,       0       , 
-		     0       ,       0.175    
-	  )     ;   
-
-
-	  }   
-
-
-	  #timeline     .timeline-movement     .timeline-item     .timeline-panel   
- .timeline-panel-ul         {
-
-
-
-
-      list-style:         none;
-
-
-
-
-      padding:     0;
-
-
-
-
-      margin:     0;
-
-
-
-
-
-
-	
+		
 		
 		}
 
@@ -3068,23 +4168,29 @@ display: block 와 margin 로 요소를 설정하세요. 믹스인과 클래스�
 
 		
 
-	
-
-
-#timeline     .timeline-movement     .timeline-item     .timeline-panel.credits   
- .timeline-panel-ul         {
-
-
-
-
-      text-align:         right;
-
-
-
-
-
+		
 
 	
+
+
+#timeline      .timeline-movement      .timeline-item
+		     .timeline-panel.credits    
+ .timeline-panel-ul           {
+
+
+
+
+
+       text-align:           right;
+
+
+
+
+
+
+
+	
+		
 		
 		}
 
@@ -3092,23 +4198,29 @@ display: block 와 margin 로 요소를 설정하세요. 믹스인과 클래스�
 
 		
 
-	
-
-
-#timeline     .timeline-movement     .timeline-item     .timeline-panel.credits   
- .timeline-panel-ul         li         {
-
-
-
-
-      color:         #666;
-
-
-
-
-
+		
 
 	
+
+
+#timeline      .timeline-movement      .timeline-item
+		     .timeline-panel.credits    
+ .timeline-panel-ul           li           {
+
+
+
+
+
+       color:           #666;
+
+
+
+
+
+
+
+	
+		
 		
 		}
 
@@ -3116,28 +4228,35 @@ display: block 와 margin 로 요소를 설정하세요. 믹스인과 클래스�
 
 		
 
-	
-
-
-#timeline     .timeline-movement     .timeline-item     .timeline-panel.credits   
- .timeline-panel-ul         li         span.importo         {
-
-
-
-
-      color:         #468c1f;
-
-
-
-
-      font-size:         1.3em;
-
-
-
-
-
+		
 
 	
+
+
+#timeline      .timeline-movement      .timeline-item
+		     .timeline-panel.credits    
+ .timeline-panel-ul           li           span.importo           {
+
+
+
+
+
+       color:           #468c1f;
+
+
+
+
+
+       font-size:           1.3em;
+
+
+
+
+
+
+
+	
+		
 		
 		}
 
@@ -3145,24 +4264,29 @@ display: block 와 margin 로 요소를 설정하세요. 믹스인과 클래스�
 
 		
 
-	
-
-
-	  #timeline     .timeline-movement     .timeline-item
-		    .timeline-panel.debits   
- .timeline-panel-ul         {
-
-
-
-
-      text-align:         left;
-
-
-
-
-
+		
 
 	
+
+
+	   #timeline      .timeline-movement      .timeline-item 
+		    .timeline-panel.debits    
+ .timeline-panel-ul           {
+
+
+
+
+
+       text-align:           left;
+
+
+
+
+
+
+
+	
+		
 		
 		}
 
@@ -3170,28 +4294,35 @@ display: block 와 margin 로 요소를 설정하세요. 믹스인과 클래스�
 
 		
 
-	
-
-
-#timeline     .timeline-movement     .timeline-item     .timeline-panel.debits   
- .timeline-panel-ul         span.importo         {
-
-
-
-
-      color:         #e2001a;
-
-
-
-
-      font-size:         1.3em;
-
-
-
-
-
+		
 
 	
+
+
+#timeline      .timeline-movement      .timeline-item
+		     .timeline-panel.debits    
+ .timeline-panel-ul           span.importo           {
+
+
+
+
+
+       color:           #e2001a;
+
+
+
+
+
+       font-size:           1.3em;
+
+
+
+
+
+
+
+	
+		
 		
 		}
 
@@ -3199,51 +4330,62 @@ display: block 와 margin 로 요소를 설정하세요. 믹스인과 클래스�
 
 		
 
+		
+
 	
 
 
 
-	  /* ---------------------------------------------------------END--------------------------------------------------------- */    
+	   /* ---------------------------------------------------------END--------------------------------------------------------- */     
 
-	  /* ---------------------------------------------------------Start--------------------------------------------------------- */    
+	   /* ---------------------------------------------------------Start--------------------------------------------------------- */     
 
-	  /*메모장 느낌의 텍스트 */    
-.text         {
+	   /*메모장 느낌의 텍스트 */     
+.text           {
 		
 		
+		
 	
 
-        max-height:       300px;
+         max-height:         300px;
 
 
 
 
-        height:       auto;
+
+         height:         auto;
 
 
 
 
-        border:       1px         solid         #ddd;
+
+         border:         1px           solid           #ddd;
 
 
 
-	     box-shadow:     0         10px         20px         rgba       (     0
-			      ,       0     
-			 ,       0       ,       0.2    
-		  )     ;   
-	     margin:         15px     0;
+
+	      box-shadow:      0           10px           20px           rgba         (
+			      0 
+			       ,         0      
+			  ,         0         ,         0.2     
+		   )       ;    
+	      margin:           15px      0;
 
 
 
-	     overflow:       hidden;
+
+	      overflow:         hidden;
+
 
 
 
 	
-        border-color:         rgb       (     252       ,       227       ,
-			      176       )     ;   
+         border-color:           rgb         (       252         ,         227
+			        , 
+			       176         )       ;    
  
-        background-color:         #ffffcc;
+         background-color:           #ffffcc;
+
 
 
 
@@ -3253,34 +4395,6 @@ display: block 와 margin 로 요소를 설정하세요. 믹스인과 클래스�
 
 	
 		
-		}
-
-		
-
-		
-
-	
-
-
-
-	  .content-text         {
-
-
-	
-
-        padding:       0px         20px         10px;
-
-
-
-
-        margin:     -5px;
-
-
-
-
-
-
-	
 		
 		}
 
@@ -3288,32 +4402,73 @@ display: block 와 margin 로 요소를 설정하세요. 믹스인과 클래스�
 
 		
 
+		
+
 	
 
 
 
-	  /* ---------------------------------------------------------END--------------------------------------------------------- */    
+	   .content-text           {
 
 
-	  /* ---------------------------------------------------------Start--------------------------------------------------------- */    
+
+	
+
+         padding:         0px           20px           10px;
 
 
-	  /* 로고 수정 위치에 따른 수정 !!
+
+
+
+         margin:      -5px;
+
+
+
+
+
+
+
+	
+		
+		
+		}
+
+		
+
+		
+
+		
+
+	
+
+
+
+	   /* ---------------------------------------------------------END--------------------------------------------------------- */     
+
+
+	   /* ---------------------------------------------------------Start--------------------------------------------------------- */     
+
+
+	   /* 로고 수정 위치에 따른 수정 !!
  * 추후 정확히 변경 필요
- * */    
-	  @media         screen         and         (max-width:       800px       )
-		        {    
-	    .logo_800_m         {
+ * */     
+	   @media           screen           and           (max-width:         800px
+		        ) 
+		         {     
+	     .logo_800_m           {
 
 
 
 
-		    margin-left:     -10px         !important;
+
+		     margin-left:      -10px           !important;
+
 
 
 
 	
-		    margin-top:     -8px         !important;
+		     margin-top:      -8px           !important;
+
 
 
 
@@ -3322,29 +4477,6 @@ display: block 와 margin 로 요소를 설정하세요. 믹스인과 클래스�
 
 	
 		
-		}
-
-		
-
-		
-
-	
-
-
-		
-	    .logo_800_h       {
-
-
-
-
-		    height:       40px         !important;
-
-
-
-
-	
-
-	
 		
 		}
 
@@ -3352,57 +4484,96 @@ display: block 와 margin 로 요소를 설정하세요. 믹스인과 클래스�
 
 		
 
+		
+
+	
+
+
+		
+	     .logo_800_h         {
+
+
+
+
+
+		     height:         40px           !important;
+
+
+
+
+
 	
 
 	
-	  }    
+		
+		
+		}
 
-	  /* ---------------------------------------------------------END--------------------------------------------------------- */    
+		
+
+		
+
+		
+
+	
+
+	
+	   }     
+
+	   /* ---------------------------------------------------------END--------------------------------------------------------- */     
 
 
-	  /* ---------------------------------------------------------Start--------------------------------------------------------- */    
+	   /* ---------------------------------------------------------Start--------------------------------------------------------- */     
 
-	  /* 
+	   /* 
  * 최상단으로 올리기 
- * */    
-	  .back-to-top         {
+ * */     
+	   .back-to-top           {
+
 
 
 	
 
-	    cursor:         pointer;
+	     cursor:           pointer;
 
 
 
 
-	    position:         fixed;
+
+	     position:           fixed;
 
 
 
 
-	    bottom:         20px;
+
+	     bottom:           20px;
 
 
 
 
-	    right:         20px;
+
+	     right:           20px;
 
 
 
 
-	    display:         none;
+
+	     display:           none;
 
 
 
 
-	    z-index:    1;
+
+	     z-index:     1;
 
 
 
-	     /* 가장 최상단 */    
+
+	      /* 가장 최상단 */     
 
 
 	
+		
 		
 		}
 
@@ -3410,32 +4581,37 @@ display: block 와 margin 로 요소를 설정하세요. 믹스인과 클래스�
 
 		
 
+		
+
 	
 
 
 
-	  /* ---------------------------------------------------------END--------------------------------------------------------- */    
+	   /* ---------------------------------------------------------END--------------------------------------------------------- */     
 
 
-	  /* ---------------------------------------------------------Start--------------------------------------------------------- */    
+	   /* ---------------------------------------------------------Start--------------------------------------------------------- */     
 
-	  /*
+	   /*
  * Footer 1번
  * http://bootsnipp.com/snippets/featured/e-commerce-footer-responsive
- */    
-	  .full         {
-
-
-	
-
-        width:         100%;
+ */     
+	   .full           {
 
 
 
 	
 
+         width:           100%;
+
+
+
 
 	
+
+
+	
+		
 		
 		}
 
@@ -3443,37 +4619,45 @@ display: block 와 margin 로 요소를 설정하세요. 믹스인과 클래스�
 
 		
 
-	
-
-
-	  .gap         {
-
+		
 
 	
 
-	    height:         30px;
 
-
-
-
-	    width:         100%;
-
-
-
-
-	    clear:         both;
-
-
-
-
-	    display:         block;
-
-
-
+	   .gap           {
 
 
 
 	
+
+	     height:           30px;
+
+
+
+
+
+	     width:           100%;
+
+
+
+
+
+	     clear:           both;
+
+
+
+
+
+	     display:           block;
+
+
+
+
+
+
+
+	
+		
 		
 		}
 
@@ -3481,48 +4665,58 @@ display: block 와 margin 로 요소를 설정하세요. 믹스인과 클래스�
 
 		
 
-	
-
-
-	  .footer         {
-
+		
 
 	
 
-	    background:         #272727;
 
-
-
-	     /* #EDEFF1*/    
-	    height:         auto;
-
-
-
-
-	    padding-bottom:         30px;
-
-
-
-
-	    position:         relative;
-
-
-
-
-	    width:         100%;
-
-
-
-
-	    /*border-bottom: 1px solid #CCCCCC;*/    
-	    border-top:         1px         solid         #DDDDDD;
-
-
-
+	   .footer           {
 
 
 
 	
+
+	     background:           #272727;
+
+
+
+
+	      /* #EDEFF1*/     
+	     height:           auto;
+
+
+
+
+
+	     padding-bottom:           30px;
+
+
+
+
+
+	     position:           relative;
+
+
+
+
+
+	     width:           100%;
+
+
+
+
+
+	     /*border-bottom: 1px solid #CCCCCC;*/     
+	     border-top:           1px           solid           #DDDDDD;
+
+
+
+
+
+
+
+	
+		
 		
 		}
 
@@ -3530,27 +4724,33 @@ display: block 와 margin 로 요소를 설정하세요. 믹스인과 클래스�
 
 		
 
-	
-
-
-	  .footer         p         {
-
+		
 
 	
 
-	    margin:     0;
 
+	   .footer           p           {
 
-
-
-	    color:         #78828D;
-
-
-
-	     /*#7F8C8D */    
 
 
 	
+
+	     margin:      0;
+
+
+
+
+
+	     color:           #78828D;
+
+
+
+
+	      /*#7F8C8D */     
+
+
+	
+		
 		
 		}
 
@@ -3558,22 +4758,27 @@ display: block 와 margin 로 요소를 설정하세요. 믹스인과 클래스�
 
 		
 
-	
-
-
-	  .footer         img         {
-
+		
 
 	
 
-	    max-width:         100%;
 
-
-
+	   .footer           img           {
 
 
 
 	
+
+	     max-width:           100%;
+
+
+
+
+
+
+
+	
+		
 		
 		}
 
@@ -3581,52 +4786,63 @@ display: block 와 margin 로 요소를 설정하세요. 믹스인과 클래스�
 
 		
 
-	
-
-
-	  .footer         h3         {
-
+		
 
 	
 
-	    border-bottom:         1px         solid         #BAC1C8;
 
-
-
-
-	    color:         #54697E;
-
-
-
-
-	    font-size:         18px;
-
-
-
-
-	    font-weight:     600;
-
-
-
-
-	    line-height:         27px;
-
-
-
-
-	    padding:         40px     0         10px;
-
-
-
-
-	    text-transform:         uppercase;
-
-
-
+	   .footer           h3           {
 
 
 
 	
+
+	     border-bottom:           1px           solid           #BAC1C8;
+
+
+
+
+
+	     color:           #54697E;
+
+
+
+
+
+	     font-size:           18px;
+
+
+
+
+
+	     font-weight:      600;
+
+
+
+
+
+	     line-height:           27px;
+
+
+
+
+
+	     padding:           40px      0           10px;
+
+
+
+
+
+	     text-transform:           uppercase;
+
+
+
+
+
+
+
+	
+		
 		
 		}
 
@@ -3634,48 +4850,58 @@ display: block 와 margin 로 요소를 설정하세요. 믹스인과 클래스�
 
 		
 
-	
-
-
-	  .footer         ul         {
-
+		
 
 	
 
-	    font-size:         16px;
+
+	   .footer           ul           {
+
+
+
+	
+
+	     font-size:           16px;
 
 
 
 
-	    list-style-type:         none;
+
+	     list-style-type:           none;
 
 
 
 
-	    margin-left:     0;
+
+	     margin-left:      0;
 
 
 
 
-	    padding-left:     0;
+
+	     padding-left:      0;
 
 
 
 
-	    margin-top:         15px;
+
+	     margin-top:           15px;
 
 
 
 
-	    color:         #78828D;
+
+	     color:           #78828D;
 
 
 
-	     /*#7F8C8D */    
+
+	      /*#7F8C8D */     
 	
 
 
 	
+		
 		
 		}
 
@@ -3683,27 +4909,33 @@ display: block 와 margin 로 요소를 설정하세요. 믹스인과 클래스�
 
 		
 
-	
-
-
-	  .footer         ul         li         a         {
-
+		
 
 	
 
-	    padding:     0     0         5px     0;
 
-
-
-
-	    display:         block;
-
-
-
+	   .footer           ul           li           a           {
 
 
 
 	
+
+	     padding:      0      0           5px      0;
+
+
+
+
+
+	     display:           block;
+
+
+
+
+
+
+
+	
+		
 		
 		}
 
@@ -3711,15 +4943,19 @@ display: block 와 margin 로 요소를 설정하세요. 믹스인과 클래스�
 
 		
 
-	
-
-
-	  .footer       li      a         {
-
+		
 
 	
 
-	    color:         #78828D;
+
+	   .footer         li        a           {
+
+
+
+	
+
+	     color:           #78828D;
+
 
 
 
@@ -3728,32 +4964,6 @@ display: block 와 margin 로 요소를 설정하세요. 믹스인과 클래스�
 
 	
 		
-		}
-
-		
-
-		
-	
-	
-
-	  .footer         ul         li         a:hover         {
-
-
-	
-
-	    color:         #00abec;
-
-
-
-	     /*53b847;*/    
-	    font-weight:         bold;
-
-
-
-
-
-
-	
 		
 		}
 
@@ -3761,108 +4971,24 @@ display: block 와 margin 로 요소를 설정하세요. 믹스인과 클래스�
 
 		
 
+		
+	
 	
 
+	   .footer           ul           li           a:hover           {
 
-
-
-	  .social         li         {
 
 
 	
 
-	    background:         none         repeat         scroll     0     0        
-			#B5B5B5;
-			
+	     color:           #00abec;
 
 
 
-	    border:         2px         solid         #B5B5B5;
 
+	      /*53b847;*/     
+	     font-weight:           bold;
 
-
-
-	    -webkit-border-radius:         50%;
-
-
-
-
-	    -moz-border-radius:         50%;
-
-
-
-
-	    -o-border-radius:         50%;
-
-
-
-
-	    -ms-border-radius:         50%;
-
-
-
-
-	    border-radius:         50%;
-
-
-
-
-	    float:         left;
-
-
-
-
-	    height:         36px;
-
-
-
-
-	    line-height:         36px;
-
-
-
-
-	    margin:     0         8px     0     0;
-
-
-
-
-	    padding:     0;
-
-
-
-
-	    text-align:         center;
-
-
-
-
-	    width:         36px;
-
-
-
-
-	    transition:         all         0.5s         ease         0s;
-
-
-
-
-	    -moz-transition:         all         0.5s         ease         0s;
-
-
-
-
-	    -webkit-transition:         all         0.5s         ease         0s;
-
-
-
-
-	    -ms-transition:         all         0.5s         ease         0s;
-
-
-
-
-	    -o-transition:         all         0.5s         ease         0s;
 
 
 
@@ -3870,6 +4996,7 @@ display: block 와 margin 로 요소를 설정하세요. 믹스인과 클래스�
 
 
 	
+		
 		
 		}
 
@@ -3877,52 +5004,139 @@ display: block 와 margin 로 요소를 설정하세요. 믹스인과 클래스�
 
 		
 
-	
-
-
-	  .social         li:hover         {
-
+		
 
 	
 
-	    transform:         scale       (     1.15       )         rotate       (
-			      360     deg 
-			     );
-
-			
 
 
-	    -webkit-transform:         scale       (     1.1       )         rotate
-			      (       360 
-			   deg       );
 
-			
+	   .social           li           {
 
 
-	    -moz-transform:         scale       (     1.1       )         rotate      
-			(       360   
-			 deg       );
 
-			
+	
 
-
-	    -ms-transform:         scale       (     1.1       )         rotate       (
-			      360   
-			 deg       );
-
-			
-
-
-	    -o-transform:         scale       (     1.1       )         rotate       (
-			      360     deg 
-			     );
+	     background:           none           repeat           scroll      0      0         
+			 #B5B5B5;
 
 			
 
 
 
+	     border:           2px           solid           #B5B5B5;
+
+
+
+
+
+	     -webkit-border-radius:           50%;
+
+
+
+
+
+	     -moz-border-radius:           50%;
+
+
+
+
+
+	     -o-border-radius:           50%;
+
+
+
+
+
+	     -ms-border-radius:           50%;
+
+
+
+
+
+	     border-radius:           50%;
+
+
+
+
+
+	     float:           left;
+
+
+
+
+
+	     height:           36px;
+
+
+
+
+
+	     line-height:           36px;
+
+
+
+
+
+	     margin:      0           8px      0      0;
+
+
+
+
+
+	     padding:      0;
+
+
+
+
+
+	     text-align:           center;
+
+
+
+
+
+	     width:           36px;
+
+
+
+
+
+	     transition:           all           0.5s           ease           0s;
+
+
+
+
+
+	     -moz-transition:           all           0.5s           ease           0s;
+
+
+
+
+
+	     -webkit-transition:           all           0.5s           ease          
+			0s;
+			
+
+
+
+
+	     -ms-transition:           all           0.5s           ease           0s;
+
+
+
+
+
+	     -o-transition:           all           0.5s           ease           0s;
+
+
+
+
+
+
 
 	
+		
 		
 		}
 
@@ -3930,22 +5144,66 @@ display: block 와 margin 로 요소를 설정하세요. 믹스인과 클래스�
 
 		
 
-	
-
-
-	  .social         li         a         {
-
+		
 
 	
 
-	    color:         #EDEFF1;
 
-
-
+	   .social           li:hover           {
 
 
 
 	
+
+	     transform:           scale         (       1.15         )           rotate
+			        ( 
+			       360       deg  
+			      );
+
+
+			
+
+
+	     -webkit-transform:           scale         (       1.1         )          
+			rotate 
+			       (         360  
+			    deg         );
+
+
+			
+
+
+	     -moz-transform:           scale         (       1.1         )          
+			rotate       
+			 (         360    
+			  deg         );
+
+
+			
+
+
+	     -ms-transform:           scale         (       1.1         )          
+			rotate         ( 
+			       360    
+			  deg         );
+
+
+			
+
+
+	     -o-transform:           scale         (       1.1         )          
+			rotate         ( 
+			       360       deg  
+			      );
+
+
+			
+
+
+
+
+	
+		
 		
 		}
 
@@ -3953,27 +5211,27 @@ display: block 와 margin 로 요소를 설정하세요. 믹스인과 클래스�
 
 		
 
-	
-
-
-	  .social         li:hover         {
-
+		
 
 	
 
-	    border:         2px         solid         #2c3e50;
 
-
-
-
-	    background:         #2c3e50;
-
-
-
+	   .social           li           a           {
 
 
 
 	
+
+	     color:           #EDEFF1;
+
+
+
+
+
+
+
+	
+		
 		
 		}
 
@@ -3981,32 +5239,33 @@ display: block 와 margin 로 요소를 설정하세요. 믹스인과 클래스�
 
 		
 
-	
-
-
-	  .social         li         a         i         {
-
+		
 
 	
 
-	    font-size:         16px;
 
-
-
-
-	    margin:     0     0     0         5px;
-
-
-
-
-	    color:         #EDEFF1         !important;
-
-
-
+	   .social           li:hover           {
 
 
 
 	
+
+	     border:           2px           solid           #2c3e50;
+
+
+
+
+
+	     background:           #2c3e50;
+
+
+
+
+
+
+
+	
+		
 		
 		}
 
@@ -4014,33 +5273,39 @@ display: block 와 margin 로 요소를 설정하세요. 믹스인과 클래스�
 
 		
 
-	
-
-
-	  .footer-bottom         {
-
+		
 
 	
 
-	    background:         #222;
 
-
-
-	     /*#E3E3E3 */    
-	    /*border-top: 1px solid #DDDDDD;*/    
-	    padding-top:         10px;
-
-
-
-
-	    padding-bottom:         10px;
-
-
-
+	   .social           li           a           i           {
 
 
 
 	
+
+	     font-size:           16px;
+
+
+
+
+
+	     margin:      0      0      0           5px;
+
+
+
+
+
+	     color:           #EDEFF1           !important;
+
+
+
+
+
+
+
+	
+		
 		
 		}
 
@@ -4048,27 +5313,40 @@ display: block 와 margin 로 요소를 설정하세요. 믹스인과 클래스�
 
 		
 
-	
-
-
-	  .footer-bottom         p.pull-left         {
-
+		
 
 	
 
-	    padding-top:         6px;
 
-
-
-
-	    color:         white;
-
-
-
+	   .footer-bottom           {
 
 
 
 	
+
+	     background:           #222;
+
+
+
+
+	      /*#E3E3E3 */     
+	     /*border-top: 1px solid #DDDDDD;*/     
+	     padding-top:           10px;
+
+
+
+
+
+	     padding-bottom:           10px;
+
+
+
+
+
+
+
+	
+		
 		
 		}
 
@@ -4076,20 +5354,25 @@ display: block 와 margin 로 요소를 설정하세요. 믹스인과 클래스�
 
 		
 
-	
-
-
-	  .payments         {
-
+		
 
 	
 
-	    font-size:         1.5em;
+
+	   .footer-bottom           p.pull-left           {
 
 
 
 	
-	    color:         #777;
+
+	     padding-top:           6px;
+
+
+
+
+
+	     color:           white;
+
 
 
 
@@ -4097,6 +5380,7 @@ display: block 와 margin 로 요소를 설정하세요. 믹스인과 클래스�
 
 
 	
+		
 		
 		}
 
@@ -4104,16 +5388,52 @@ display: block 와 margin 로 요소를 설정하세요. 믹스인과 클래스�
 
 		
 
+		
+
+	
+
+
+	   .payments           {
+
+
+
+	
+
+	     font-size:           1.5em;
+
+
+
+
+	
+	     color:           #777;
+
+
+
+
+
+
+
+	
+		
+		
+		}
+
+		
+
+		
+
+		
+
 	
 
 
 
-	  /* ---------------------------------------------------------END--------------------------------------------------------- */    
+	   /* ---------------------------------------------------------END--------------------------------------------------------- */     
 
 
-	  /* ---------------------------------------------------------Start--------------------------------------------------------- */    
+	   /* ---------------------------------------------------------Start--------------------------------------------------------- */     
 
-	  /*
+	   /*
  * GNB 2번안
  * http://bootsnipp.com/snippets/featured/rainbow-nav
 
@@ -4162,71 +5482,83 @@ border: none;
 .nav li:hover:nth-child(8n+8), .nav li.active:nth-child(8n+8){
   border-bottom: #62C2E4 3px solid;
 }
- */    
+ */     
  
-     /* ---------------------------------------------------------END--------------------------------------------------------- */    
+      /* ---------------------------------------------------------END--------------------------------------------------------- */     
  
 
-	  /* ---------------------------------------------------------Start--------------------------------------------------------- */    
+	   /* ---------------------------------------------------------Start--------------------------------------------------------- */     
 
-	  /*nav 메뉴 파란색 // class에 menu만 추가 
+	   /*nav 메뉴 파란색 // class에 menu만 추가 
  * http://bootsnipp.com/snippets/z1GdK
  * 
- */    
-	  .menu    
-	  {
-
-
-	
-
-	   background-color:         #00547E;
-
-
-
-	
-	   border-bottom:         4px         solid         #04A3ED         !important;
-
-
-
-	      /* navbar 와 충돌  */    
-	   width:       100%;
-
-
-
-	
-	   height:         auto;
-
-
-
-	
-	   padding:     0         10px;
-
-
-
-	
-	   position:         fixed;
-
-
-
-	
-	   margin:         0px;
-
-
-
-	
-	   z-index:     1;
-
-
-
-	
-	   opacity:     0.9;
+ */     
+	   .menu     
+	   {
 
 
 
 	
 
+	    background-color:           #00547E;
+
+
+
 
 	
+	    border-bottom:           4px           solid           #04A3ED          
+			!important;
+			
+
+
+
+	       /* navbar 와 충돌  */     
+	    width:         100%;
+
+
+
+
+	
+	    height:           auto;
+
+
+
+
+	
+	    padding:      0           10px;
+
+
+
+
+	
+	    position:           fixed;
+
+
+
+
+	
+	    margin:           0px;
+
+
+
+
+	
+	    z-index:      1;
+
+
+
+
+	
+	    opacity:      0.9;
+
+
+
+
+	
+
+
+	
+		
 		
 		}
 
@@ -4234,59 +5566,71 @@ border: none;
 
 		
 
-	
-
-
-
-	  .menu_shop    
-	  {
-
+		
 
 	
 
-	   background-color:         #00acff;
 
 
-
-	
-	   /*border-bottom:   4px   solid   #e49171   !important; */   
-	      /* navbar 와 충돌  */    
-	   width:       100%;
-
-
-
-	   height:       16%;
-
-
-		     /*height 100% */   
-	   padding:     0         10px;
-
-
-
-
-	   position:         fixed;
-
-
-
-	
-	   margin:         0px;
-
-
-
-	
-	   z-index:     1;
-
-
-
-	
-	   opacity:     0.9;
+	   .menu_shop     
+	   {
 
 
 
 	
 
+	    background-color:           #00acff;
+
+
+
 
 	
+	    /*border-bottom:   4px   solid   #e49171   !important; */    
+	       /* navbar 와 충돌  */     
+	    width:         100%;
+
+
+
+
+	    height:         16%;
+
+
+
+		      /*height 100% */    
+	    padding:      0           10px;
+
+
+
+
+
+	    position:           fixed;
+
+
+
+
+	
+	    margin:           0px;
+
+
+
+
+	
+	    z-index:      1;
+
+
+
+
+	
+	    opacity:      0.9;
+
+
+
+
+	
+
+
+	
+		
 		
 		}
 
@@ -4294,26 +5638,30 @@ border: none;
 
 		
 
-	
-
-
-
-	  .menu      .navbar-nav         >      li         > a:active                 
-	  {
-
+		
 
 	
 
-	   background-color     :         #04A3ED;
 
 
-			/*
+	   .menu       .navbar-nav           >        li           >   a:active                  
+	   {
+
+
+
+	
+
+	    background-color      :           #04A3ED;
+
+
+
+			 /*
 	
 	  color:       white;
 
 
 	
-	  font-weight:       bold; */ 
+	  font-weight:       bold; */  
 
 
 	
@@ -4321,29 +5669,35 @@ border: none;
 
 	
 		
+		
 		}
-		.menu      .navbar-nav         >      li         > a:focus                 
-	  {
+
+		
+		 .menu       .navbar-nav           >        li           >   a:focus                  
+	   {
+
 
 
 	
 
-	   background-color     :         #04A3ED;
+	    background-color      :           #04A3ED;
 
 
-			/*
+
+			 /*
 	
 	  color:       white;
 
 
 	
-	  font-weight:       bold; */ 
+	  font-weight:       bold; */  
 
 
 	
 
 
 	
+		
 		
 		}
 
@@ -4351,15 +5705,20 @@ border: none;
 
 		
 
-	
-
-.menu      .navbar-nav         >          li         >          a:hover    
-	  {
-
+		
 
 	
 
-	   background-color:         #04A3ED;
+		.menu       .navbar-nav           >            li           >           
+		a:hover     
+	   {
+
+
+
+	
+
+	    background-color:           #04A3ED;
+
 
 
 
@@ -4367,83 +5726,6 @@ border: none;
 
 	
 		
-		}
-
-		
-
-		
-	
-
-
-
-
-	  .menu      .navbar-nav         >          li         >          a    
-	  {
-
-
-	
-
-	   /*font-size: 13px;
-padding: 10px 35px; */    
-	   color:         white;
-
-
-
-	
-
-
-	
-		
-		}
-
-		
-		 @media   screen   and   (max-width: 768px   )   { 
-	
-	
-		.dropdown-menu_change  > li >  a   {
-		
-
-	 color: white !important;
-
-
-
-		}
-
-.dropdown-menu_change   > li >  a:hover    {
-		
-
-	  background-color:         #04a3ed !important;
-
-		}
-.dropdown-menu_change   > li >  a:active    {
-		
-
-	  background-color:         #04a3ed !important;
-
-		}
-		
-	 } 	
-
-	
-
-
-
-	  .menu_shop      .navbar-nav         >          li         >          a    
-	  {
-
-
-	
-
-	   /*font-size: 13px;
-padding: 10px 35px; */    
-	   color:         white;
-
-
-
-	
-
-
-	
 		
 		}
 
@@ -4451,20 +5733,131 @@ padding: 10px 35px; */
 
 		
 
+		
 	
 
 
-	  .menu_shop      .navbar-nav         >          li         >          a:hover    
-	  {
+
+
+	   .menu       .navbar-nav           >            li           >            a     
+	   {
+
 
 
 	
 
-	   background-color:         #31708f;
+	    /*font-size: 13px;
+padding: 10px 35px; */     
+	    color:           white;
 
 
 
-	   border-bottom:        5px       solid       #e49171       !important;
+
+	
+
+
+	
+		
+		
+		}
+
+		
+
+		
+		  @media     screen     and     (max-width:   768px     )     {  
+	
+	
+		 .dropdown-menu_change    >   li   >    a     {
+
+		
+
+	  color:   white   !important;
+
+
+
+
+		
+		}
+
+		
+
+		.dropdown-menu_change     >   li   >    a:hover      {
+		
+		
+
+	   background-color:           #04a3ed   !important;
+
+
+		
+		}
+
+		
+		.dropdown-menu_change     >   li   >    a:active      {
+		
+		
+
+	   background-color:           #04a3ed   !important;
+
+
+		
+		}
+
+		
+		
+	  }  	
+
+	
+
+
+
+	   .menu_shop       .navbar-nav           >            li           >
+		           a     
+	   {
+
+
+
+	
+
+	    /*font-size: 13px;
+padding: 10px 35px; */     
+	    color:           white;
+
+
+
+
+	
+
+
+	
+		
+		
+		}
+
+		
+
+		
+
+		
+
+	
+
+
+	   .menu_shop       .navbar-nav           >            li           >
+		           a:hover     
+	   {
+
+
+
+	
+
+	    background-color:           #31708f;
+
+
+
+
+	    border-bottom:          5px         solid         #e49171        
+			!important;
+			
 
 
  
@@ -4472,46 +5865,54 @@ padding: 10px 35px; */
 
 	
 		
+		
 		}
 
 		
 
 		
 
-	
-
-
-
-	  .navbar-header         >         a    
-	  {
-
+		
 
 	
 
-	   color:         white;
+
+
+	   .navbar-header           >           a     
+	   {
 
 
 
 	
-	   font-size:         25px;
 
+	    color:           white;
 
-
-	
-	   margin-left     :         55px;
 
 
 
 	
-	   /*font-family: 'Ubuntu Condensed', sans-serif;
+	    font-size:           25px;
+
+
+
+
+	
+	    margin-left      :           55px;
+
+
+
+
+	
+	    /*font-family: 'Ubuntu Condensed', sans-serif;
 padding: 0px;
 margin: 0px;
 text-decoration: none;
-padding: 5px 30px; */    
+padding: 5px 30px; */     
 
 
 
 	
+		
 		
 		}
 
@@ -4519,28 +5920,34 @@ padding: 5px 30px; */
 
 		
 
-	
-
-
-	  .navbar-header         >         a:hover    
-	  {
-
+		
 
 	
 
-	   text-decoration:         none;
 
-
-
-	
-	   color:         #04A3ED;
+	   .navbar-header           >           a:hover     
+	   {
 
 
 
 	
 
+	    text-decoration:           none;
+
+
+
 
 	
+	    color:           #04A3ED;
+
+
+
+
+	
+
+
+	
+		
 		
 		}
 
@@ -4548,44 +5955,52 @@ padding: 5px 30px; */
 
 		
 
+		
+
 	
 
 
 
-	  /* ---------------------------------------------------------END--------------------------------------------------------- */    
+	   /* ---------------------------------------------------------END--------------------------------------------------------- */     
 
 
-	  /* ---------------------------------------------------------Start--------------------------------------------------------- */    
+	   /* ---------------------------------------------------------Start--------------------------------------------------------- */     
 
-	  /* Youtube 배치 css */    
-	  /*
+	   /* Youtube 배치 css */     
+	   /*
 Reference: http://avexdesigns.com/responsive-youtube-embed/
-*/    
+*/     
 
-	  .vid         {
+	   .vid           {
+
 
 
 	
 
-        position:         relative;
+         position:           relative;
 
 
 
 
-        padding-bottom:         56.25%;
+
+         padding-bottom:           56.25%;
 
 
 
 
-        padding-top:         30px;
+
+         padding-top:           30px;
 
 
 
-	     height:     0;
+
+	      height:      0;
 
 
 
-	     overflow:         hidden;
+
+	      overflow:           hidden;
+
 
 
 
@@ -4594,7 +6009,10 @@ Reference: http://avexdesigns.com/responsive-youtube-embed/
 
 	
 		
+		
 		}
+
+		
 
 		
 
@@ -4604,34 +6022,40 @@ Reference: http://avexdesigns.com/responsive-youtube-embed/
 
 
  
-	  .vid         iframe       ,    
-.vid         object       ,    
-.vid         embed         {
+	   .vid           iframe         ,     
+.vid           object         ,     
+.vid           embed           {
+		
 		
 		
 	
 
-        position:         absolute;
+         position:           absolute;
 
 
 
 
-        top:     0;
+
+         top:      0;
 
 
 
 
-        left:     0;
+
+         left:      0;
 
 
 
 
-        width:         100%;
+
+         width:           100%;
 
 
 
 
-        height:         100%;
+
+         height:           100%;
+
 
 
 
@@ -4639,6 +6063,7 @@ Reference: http://avexdesigns.com/responsive-youtube-embed/
 
 
 	
+		
 		
 		}
 
@@ -4646,28 +6071,33 @@ Reference: http://avexdesigns.com/responsive-youtube-embed/
 
 		
 
-	
-
-
-
-	  /* ---------------------------------------------------------END--------------------------------------------------------- */    
-
-
-	  .res_width       {
-
+		
 
 	
 
-	    width:       100%;
 
 
+	   /* ---------------------------------------------------------END--------------------------------------------------------- */     
 
 
-	   /* 	max-width:100%; 
-	max-width:1500px; */    
+	   .res_width         {
+
 
 
 	
+
+	     width:         100%;
+
+
+
+
+
+	    /* 	max-width:100%; 
+	max-width:1500px; */     
+
+
+	
+		
 		
 		}
 
@@ -4675,43 +6105,50 @@ Reference: http://avexdesigns.com/responsive-youtube-embed/
 
 		
 
+		
+
 	
 
 
 
-	  /* .fix_height_300{
+	   /* .fix_height_300{
 	height:300px;
 } 
 이미지에 이렇게 부여해버리면 줄어들때도 300이라 부자연스럽다.
-*/    
-	  /*========아래는 텍스트 중앙 정렬 블록요소에만 적용 (p h3 등)태그만 http://webdir.tistory.com/31 */    
-	  .back_resimage         {
+*/     
+	   /*========아래는 텍스트 중앙 정렬 블록요소에만 적용 (p h3 등)태그만 http://webdir.tistory.com/31 */     
+	   .back_resimage           {
+
 
 
 	
-	     text-align:         left;
+	      text-align:           left;
+
 
 
 
 	 
-	   background:         url(       /    Images       /    what-is-azure      
-			.jpg       ) 
-			        no-repeat  
-		     center     
-	   center         fixed;
+	    background:           url(         /     Images         /     what-is-azure       
+			 .jpg         )  
+			         no-repeat   
+		      center      
+	    center           fixed;
+
 
 
 
 	
-     background-size:       100%;
+      background-size:         100%;
 
 
 
-	     /* 가로 세로 순  보통 100% auto */    
+
+	      /* 가로 세로 순  보통 100% auto */     
 
  
 
 	
+		
 		
 		}
 
@@ -4719,18 +6156,22 @@ Reference: http://avexdesigns.com/responsive-youtube-embed/
 
 		
 
+		
+
 	
 
 
  
-     /* bootstrap 기본 hr 변형 */    
-	  .hr_b       {
+      /* bootstrap 기본 hr 변형 */     
+	   .hr_b         {
+
 
 
 	
 
-        border-top:         3px         solid         #337ab7        
-			!important;
+         border-top:           3px           solid           #337ab7         
+			 !important;
+
 			
 
 
@@ -4739,23 +6180,28 @@ Reference: http://avexdesigns.com/responsive-youtube-embed/
 
 	
 		
+		
 		}
 
 		
 
 		
 
-	
-
-
-
-	  .hr_g       {
-
+		
 
 	
 
-        border-top:         2px         solid         #a1d490        
-			!important;
+
+
+	   .hr_g         {
+
+
+
+	
+
+         border-top:           2px           solid           #a1d490         
+			 !important;
+
 			
 
 
@@ -4764,28 +6210,38 @@ Reference: http://avexdesigns.com/responsive-youtube-embed/
 
 	
 		
+		
 		}
 
-		  .hr_gray       {
+		
+
+		   .hr_gray         {
+
 
 
 	
 
         
-		border-top: 3px solid #78828D !important;
-}
+		 border-top:   3px   solid   #78828D   !important;
+
+
+		}
+
+		
 		
 
 	
 
 
 
-	  /*========아래는 텍스트 중앙 정렬 블록요소에만 적용 (p h3 등)태그만 http://webdir.tistory.com/31 */    
-	  .align_left         {
+	   /*========아래는 텍스트 중앙 정렬 블록요소에만 적용 (p h3 등)태그만 http://webdir.tistory.com/31 */     
+	   .align_left           {
+
 
 
 	
-	     text-align:         left;
+	      text-align:           left;
+
 
 
 
@@ -4793,20 +6249,25 @@ Reference: http://avexdesigns.com/responsive-youtube-embed/
 
 	
 		
+		
 		}
 
 		
 
 		
 
-	
-
-
-	  .align_center         {
-
+		
 
 	
-	     text-align:         center;
+
+
+	   .align_center           {
+
+
+
+	
+	      text-align:           center;
+
 
 
 
@@ -4814,20 +6275,25 @@ Reference: http://avexdesigns.com/responsive-youtube-embed/
 
 	
 		
+		
 		}
 
 		
 
 		
 
-	
-
-     /* bootstrap에 text-align 이랑 동일 */    
-	  .align_right         {
-
+		
 
 	
-	     text-align:         right;
+
+      /* bootstrap에 text-align 이랑 동일 */     
+	   .align_right           {
+
+
+
+	
+	      text-align:           right;
+
 
 
 
@@ -4835,20 +6301,25 @@ Reference: http://avexdesigns.com/responsive-youtube-embed/
 
 	
 		
+		
 		}
 
 		
 
 		
 
-	
-
-
-	  .align_justify         {
-
+		
 
 	
-	     text-align:         justify;
+
+
+	   .align_justify           {
+
+
+
+	
+	      text-align:           justify;
+
 
 
 
@@ -4856,7 +6327,10 @@ Reference: http://avexdesigns.com/responsive-youtube-embed/
 
 	
 		
+		
 		}
+
+		
 
 		
 
@@ -4865,21 +6339,23 @@ Reference: http://avexdesigns.com/responsive-youtube-embed/
 	
 
 
-	  /*
+	   /*
  <p class="text-left">좌측정렬된 텍스트.</p>
 <p class="text-center">중앙정렬된 텍스트.</p>
 <p class="text-right">우측정렬된 텍스트.</p>
 <p class="text-justify">양쪽정렬된 텍스트.</p>
 <p class="text-nowrap">그냥 텍스트.</p>
 * 부트스트랩에 존재 
- */    
+ */     
 
-	  /*========아래는 텍스트 세로 중앙 정렬 인라인요소에만 적용 (p h3 등)태그만 http://webdir.tistory.com/31 */    
-	  .vertical_align         {
+	   /*========아래는 텍스트 세로 중앙 정렬 인라인요소에만 적용 (p h3 등)태그만 http://webdir.tistory.com/31 */     
+	   .vertical_align           {
+
 
 
 	
-	     vertical-align:       middle;
+	      vertical-align:         middle;
+
 
 
 
@@ -4887,30 +6363,6 @@ Reference: http://avexdesigns.com/responsive-youtube-embed/
 
 	
 		
-		}
-
-		
-
-		
-
-	
-
-
-
-	  /* */    
-	  .vertical_parent         {
-
-
-	
-
-       display:       table;
-
-
-
-
-
-
-	
 		
 		}
 
@@ -4918,26 +6370,21 @@ Reference: http://avexdesigns.com/responsive-youtube-embed/
 
 		
 
-	
-
-
-
-	  .vertical_child         {
-
+		
 
 	
 
-       display:       table-cell;
+
+
+	   /* */     
+	   .vertical_parent           {
 
 
 
+	
 
-       vertical-align:       middle;
+        display:         table;
 
-
-
-
-       text-align:       center;
 
 
 
@@ -4945,6 +6392,7 @@ Reference: http://avexdesigns.com/responsive-youtube-embed/
 
 
 	
+		
 		
 		}
 
@@ -4952,24 +6400,40 @@ Reference: http://avexdesigns.com/responsive-youtube-embed/
 
 		
 
-	
-
-
-
-	  /*float left, right */    
-	  .float_left       {
-
+		
 
 	
 
-	    float:       left;
 
 
-
+	   .vertical_child           {
 
 
 
 	
+
+        display:         table-cell;
+
+
+
+
+
+        vertical-align:         middle;
+
+
+
+
+
+        text-align:         center;
+
+
+
+
+
+
+
+	
+		
 		
 		}
 
@@ -4977,23 +6441,29 @@ Reference: http://avexdesigns.com/responsive-youtube-embed/
 
 		
 
-	
-
-
-
-	  .float_right       {
-
+		
 
 	
 
-	    float:       right;
 
 
-
+	   /*float left, right */     
+	   .float_left         {
 
 
 
 	
+
+	     float:         left;
+
+
+
+
+
+
+
+	
+		
 		
 		}
 
@@ -5001,22 +6471,20 @@ Reference: http://avexdesigns.com/responsive-youtube-embed/
 
 		
 
+		
+
 	
 
 
 
-	  /*========아래는 margin 및 padding 관련 내용 */    
+	   .float_right         {
 
-	  /*다른 css 에서는 padding/margin을 주지 말고 html에서 class로 준다. 
-   꼭 필요한 경우에는 html에서 id 나 style 태그로 준다.*/    
-
-	  /*엔터 블록 요소 끼리 적용*/    
-	  .enter       {
 
 
 	
 
-	    padding:         20px     0;
+	     float:         right;
+
 
 
 
@@ -5024,6 +6492,7 @@ Reference: http://avexdesigns.com/responsive-youtube-embed/
 
 
 	
+		
 		
 		}
 
@@ -5031,16 +6500,26 @@ Reference: http://avexdesigns.com/responsive-youtube-embed/
 
 		
 
-	
-
-
-
-	  .mgt-1_9         {
-
+		
 
 	
 
-	    margin-top     :     -1.9%         !important;
+
+
+	   /*========아래는 margin 및 padding 관련 내용 */     
+
+	   /*다른 css 에서는 padding/margin을 주지 말고 html에서 class로 준다. 
+   꼭 필요한 경우에는 html에서 id 나 style 태그로 준다.*/     
+
+	   /*엔터 블록 요소 끼리 적용*/     
+	   .enter         {
+
+
+
+	
+
+	     padding:           20px      0;
+
 
 
 
@@ -5048,6 +6527,7 @@ Reference: http://avexdesigns.com/responsive-youtube-embed/
 
 
 	
+		
 		
 		}
 
@@ -5055,24 +6535,28 @@ Reference: http://avexdesigns.com/responsive-youtube-embed/
 
 		
 
-	
-
-
-
-	  /*margin left 5%*/    
-	  .mgl5         {
-
+		
 
 	
 
-	    margin-left:         5%         !important;
 
 
-
+	   .mgt-1_9           {
 
 
 
 	
+
+	     margin-top      :      -1.9%           !important;
+
+
+
+
+
+
+
+	
+		
 		
 		}
 
@@ -5080,23 +6564,29 @@ Reference: http://avexdesigns.com/responsive-youtube-embed/
 
 		
 
-	
-
-
-
-	  .mgl3         {
-
+		
 
 	
 
-        margin-left:         3%         !important;
 
 
-
+	   /*margin left 5%*/     
+	   .mgl5           {
 
 
 
 	
+
+	     margin-left:           5%           !important;
+
+
+
+
+
+
+
+	
+		
 		
 		}
 
@@ -5104,23 +6594,28 @@ Reference: http://avexdesigns.com/responsive-youtube-embed/
 
 		
 
-	
-
-
-
-	  .mgr3         {
-
+		
 
 	
 
-        margin-right:         3%         !important;
 
 
-
+	   .mgl3           {
 
 
 
 	
+
+         margin-left:           3%           !important;
+
+
+
+
+
+
+
+	
+		
 		
 		}
 
@@ -5128,23 +6623,28 @@ Reference: http://avexdesigns.com/responsive-youtube-embed/
 
 		
 
-	
-
-
-
-	  .mgt1_8       {
-
+		
 
 	
 
-	    margin-top     :         1.8%         !important;
 
 
-
+	   .mgr3           {
 
 
 
 	
+
+         margin-right:           3%           !important;
+
+
+
+
+
+
+
+	
+		
 		
 		}
 
@@ -5152,22 +6652,28 @@ Reference: http://avexdesigns.com/responsive-youtube-embed/
 
 		
 
-	
-
-
-	  .mgt2       {
-
+		
 
 	
 
-	    margin-top     :         2%         !important;
 
 
-
+	   .mgt1_8         {
 
 
 
 	
+
+	     margin-top      :           1.8%           !important;
+
+
+
+
+
+
+
+	
+		
 		
 		}
 
@@ -5175,23 +6681,27 @@ Reference: http://avexdesigns.com/responsive-youtube-embed/
 
 		
 
-	
-
-
-	  /*margin top 5%*/    
-	  .mgt5         {
-
+		
 
 	
 
-	    margin-top:         5%         !important;
 
-
-
+	   .mgt2         {
 
 
 
 	
+
+	     margin-top      :           2%           !important;
+
+
+
+
+
+
+
+	
+		
 		
 		}
 
@@ -5199,23 +6709,28 @@ Reference: http://avexdesigns.com/responsive-youtube-embed/
 
 		
 
-	
-
-
-	  /*margin bottom 5%*/    
-	  .mgb8         {
-
+		
 
 	
 
-	    margin-bottom:         8%         !important;
 
-
-
+	   /*margin top 5%*/     
+	   .mgt5           {
 
 
 
 	
+
+	     margin-top:           5%           !important;
+
+
+
+
+
+
+
+	
+		
 		
 		}
 
@@ -5223,21 +6738,28 @@ Reference: http://avexdesigns.com/responsive-youtube-embed/
 
 		
 
-	
-
-	  .mgb5         {
-
+		
 
 	
 
-	    margin-bottom:         5%         !important;
 
-
-
+	   /*margin bottom 5%*/     
+	   .mgb8           {
 
 
 
 	
+
+	     margin-bottom:           8%           !important;
+
+
+
+
+
+
+
+	
+		
 		
 		}
 
@@ -5245,22 +6767,26 @@ Reference: http://avexdesigns.com/responsive-youtube-embed/
 
 		
 
-	
-
-
-	  .mgb3         {
-
+		
 
 	
 
-	    margin-bottom:         3%         !important;
-
-
-
+	   .mgb5           {
 
 
 
 	
+
+	     margin-bottom:           5%           !important;
+
+
+
+
+
+
+
+	
+		
 		
 		}
 
@@ -5268,24 +6794,27 @@ Reference: http://avexdesigns.com/responsive-youtube-embed/
 
 		
 
-	
-
-
-
-	  /*margin top 4% */    
-	  .mgt4         {
-
+		
 
 	
 
-	    margin-top:         4%         !important;
 
-
-
+	   .mgb3           {
 
 
 
 	
+
+	     margin-bottom:           3%           !important;
+
+
+
+
+
+
+
+	
+		
 		
 		}
 
@@ -5293,23 +6822,29 @@ Reference: http://avexdesigns.com/responsive-youtube-embed/
 
 		
 
-	
-
-
-	  /*margin top 12% */    
-	  .mgt12         {
-
+		
 
 	
 
-	    margin-top:         12%         !important;
 
 
-
+	   /*margin top 4% */     
+	   .mgt4           {
 
 
 
 	
+
+	     margin-top:           4%           !important;
+
+
+
+
+
+
+
+	
+		
 		
 		}
 
@@ -5317,23 +6852,28 @@ Reference: http://avexdesigns.com/responsive-youtube-embed/
 
 		
 
-	
-
-
-	  /*margin: 9% auto; */    
-	  .mg9xauto         {
-
+		
 
 	
 
-	    margin:         9%         auto         !important;
 
-
-
+	   /*margin top 12% */     
+	   .mgt12           {
 
 
 
 	
+
+	     margin-top:           12%           !important;
+
+
+
+
+
+
+
+	
+		
 		
 		}
 
@@ -5341,22 +6881,28 @@ Reference: http://avexdesigns.com/responsive-youtube-embed/
 
 		
 
-	
-
-
-	  .mg5xauto         {
-
+		
 
 	
 
-	    margin:         5%         auto         !important;
 
-
-
+	   /*margin: 9% auto; */     
+	   .mg9xauto           {
 
 
 
 	
+
+	     margin:           9%           auto           !important;
+
+
+
+
+
+
+
+	
+		
 		
 		}
 
@@ -5364,24 +6910,27 @@ Reference: http://avexdesigns.com/responsive-youtube-embed/
 
 		
 
-	
-
-
-
-	  /*padding top 4%*/    
-	  .pdt4         {
-
+		
 
 	
 
-	    padding-top:         4%         !important;
 
-
-
+	   .mg5xauto           {
 
 
 
 	
+
+	     margin:           5%           auto           !important;
+
+
+
+
+
+
+
+	
+		
 		
 		}
 
@@ -5389,23 +6938,29 @@ Reference: http://avexdesigns.com/responsive-youtube-embed/
 
 		
 
-	
-
-
-	  /*padding top 1.5% */    
-	  .pdt1_5         {
-
+		
 
 	
 
-	    padding-top:         1.5%         !important;
 
 
-
+	   /*padding top 4%*/     
+	   .pdt4           {
 
 
 
 	
+
+	     padding-top:           4%           !important;
+
+
+
+
+
+
+
+	
+		
 		
 		}
 
@@ -5413,23 +6968,28 @@ Reference: http://avexdesigns.com/responsive-youtube-embed/
 
 		
 
-	
-
-
-	  /*padding: 0 2%*/    
-	  .pd0x2         {
-
+		
 
 	
 
-	    padding:     0         2%         !important;
 
-
-
+	   /*padding top 1.5% */     
+	   .pdt1_5           {
 
 
 
 	
+
+	     padding-top:           1.5%           !important;
+
+
+
+
+
+
+
+	
+		
 		
 		}
 
@@ -5437,23 +6997,28 @@ Reference: http://avexdesigns.com/responsive-youtube-embed/
 
 		
 
-	
-
-
-	  /*padding: 1.5% 0 */    
-	  .pd1_5x0         {
-
+		
 
 	
 
-	    padding:         1.5%     0         !important;
 
-
-
+	   /*padding: 0 2%*/     
+	   .pd0x2           {
 
 
 
 	
+
+	     padding:      0           2%           !important;
+
+
+
+
+
+
+
+	
+		
 		
 		}
 
@@ -5461,23 +7026,28 @@ Reference: http://avexdesigns.com/responsive-youtube-embed/
 
 		
 
-	
-
-
-	  /*padding:1.5% 0 3% 0; */    
-	  .pdt1_5b3         {
-
+		
 
 	
 
-	    padding:         1.5%     0         3%     0         !important;
 
-
-
+	   /*padding: 1.5% 0 */     
+	   .pd1_5x0           {
 
 
 
 	
+
+	     padding:           1.5%      0           !important;
+
+
+
+
+
+
+
+	
+		
 		
 		}
 
@@ -5485,15 +7055,46 @@ Reference: http://avexdesigns.com/responsive-youtube-embed/
 
 		
 
+		
+
+	
+
+
+	   /*padding:1.5% 0 3% 0; */     
+	   .pdt1_5b3           {
+
+
+
+	
+
+	     padding:           1.5%      0           3%      0           !important;
+
+
+
+
+
+
+
+	
+		
+		
+		}
+
+		
+
+		
+
+		
+
 	
 
 
 
-	  /* 크기에 따른 조정 */    
+	   /* 크기에 따른 조정 */     
 
-	  /* 테이블 사이 간격 조정 */    
+	   /* 테이블 사이 간격 조정 */     
 
-	  /* 980  ~ 1300 : 5%    높이 500이상
+	   /* 980  ~ 1300 : 5%    높이 500이상
    1301 ~ 1600 : 8%    높이 600이상
    1601 ~ 2000 : 12%   높이 700이상
    최소 값 기준
@@ -5517,4 +7118,4 @@ Reference: http://avexdesigns.com/responsive-youtube-embed/
 		margin-top: 15%;
 	}
 }
-* */    
+* */     
