@@ -1,4 +1,4 @@
-package net.common.logger;
+package net.common.Interceptor;
 
 import java.net.InetAddress;
 import java.util.List;
@@ -22,7 +22,7 @@ import org.apache.commons.logging.LogFactory;
 
 //
 
-public class LoggerInterceptor extends HandlerInterceptorAdapter {
+public class SampleInterceptor extends HandlerInterceptorAdapter {
 	// private final Logger log = LoggerFactory.getLogger(this.getClass());
 	// Logger log = Logger.getLogger(this.getClass());
 
@@ -32,7 +32,7 @@ public class LoggerInterceptor extends HandlerInterceptorAdapter {
 		this.urls = urls;
 	}
 
-	protected Log log = LogFactory.getLog(LoggerInterceptor.class);
+	protected Log log = LogFactory.getLog(SampleInterceptor.class);
 
 	@Autowired
 	private StatisticsController statisticsController;

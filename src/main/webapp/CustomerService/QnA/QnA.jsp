@@ -105,7 +105,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 				<!-- Content Column -->
 				<div class="col-lg-12">
 					<%--비회원 또는 로그인 안한 경우 --%>
-					<c:if test="${sessionScope.member_id eq null }">
+					<c:if test="${sessionScope.member eq null }">
 
 
 						<div class="row">
@@ -167,7 +167,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					</c:if>
 
 					<%--회원 --%>
-					<c:if test="${sessionScope.member_id ne null }">
+					<c:if test="${sessionScope.member ne null }">
 						<c:redirect url="/qa/qaList.mwav" />
 						<%-- 			<jsp:include page="/qa/qaList.mwav" flush="false" /> --%>
 					</c:if>

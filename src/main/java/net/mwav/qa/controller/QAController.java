@@ -12,12 +12,15 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import net.common.common.CommandMap;
+import net.mwav.member.vo.Member_tbl_VO;
 import net.mwav.qa.service.QAService;
 import net.mwav.shop.service.GoodsService;
 import net.mwav.common.module.Common_Utils;
@@ -34,6 +37,7 @@ public class QAController {
 	Common_Utils cou = new Common_Utils();
 	Paging paging = new Paging();
 	String mode;
+	HttpSession session;
 
 	// - Controller > Service > ServiceImpl > DAO > SQL(XML) > Controller > JSP
 
@@ -48,25 +52,41 @@ public class QAController {
 	@Resource(name = "qaService")
 	private QAService qaService;
 
+	@Autowired
+	Member_tbl_VO member_tbl_VO;
+
 	/*
 	 * ========================================등록================================
 	 * ========
 	 */
 
 	// 1번 bnsForm : Form 입력만 가능 (뒤로가기, list)
+
 	@RequestMapping(value = "/qa/qaFormAjax.mwav")
 	public @ResponseBody boolean insertQAFormaAjax(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
 		// System.out.println("sdfdfs");
+
 		boolean flag = false;
+		int member_id = 0;
+		int statistics_id = 0;
 		try {
 			HttpSession session = request.getSession();
-			int m_id = 0;
-			if (session.getAttribute("member_id") != null) {
-				m_id = (int) session.getAttribute("member_id");
+
+			// 회원여부에 따른 member_id insert 여부
+			if (session.getAttribute("member") != null) {
+				member_tbl_VO = (Member_tbl_VO) session.getAttribute("member");
+				member_id = member_tbl_VO.getMember_id();
 			}
 
-			commandMap.put("member_id", m_id);
+			// 통계키 넣기.
+			if (session.getAttribute("statistics_id") != null) {
+				statistics_id = Integer.parseInt((String) session.getAttribute("statistics_id"));
+			}
+
+			commandMap.put("member_id", member_id);
+			commandMap.put("statistics_id", statistics_id);
+			System.out.println("sdf"+statistics_id);
 
 			log.debug("인터셉터 테스트");
 			// qaService.insertQAForm(commandMap.getMap(), request);
@@ -152,8 +172,7 @@ public class QAController {
 		 * 
 		 * uaSatisfaction = qaService .uaSatisfactionUpdateAjax(uaSatisfaction);
 		 */
-		
-		
+
 		boolean flag = qaService.uaSatisfactionUpdateAjax(commandMap.getMap());
 
 		// mv.addObject("insertBnsForm", insertBnsForm);

@@ -62,6 +62,15 @@ public class MemberController {
 
 		return "redirect:/MasterPage.mwav?mode=SMbrLogin";
 	}
+	
+	/**
+	 * @date 2016.04.27
+	 * @author Kim YJ
+	 * @param commandMap
+	 * @param request
+	 * @param session
+	 *            - 해당 컨트롤러 사용여부, 파라미터 사용여부 체크 확인 필요
+	 */
 
 	@RequestMapping(value = "/memberDefault.mwav")
 	public ModelAndView defaultMember(CommandMap commandMap,
@@ -70,14 +79,7 @@ public class MemberController {
 
 		// String mode = (String) request.getAttribute("mode");
 
-		/**
-		 * @date 2016.04.27
-		 * @author Kim YJ
-		 * @param commandMap
-		 * @param request
-		 * @param session
-		 *            - 해당 컨트롤러 사용여부, 파라미터 사용여부 체크 확인 필요
-		 */
+
 
 		/*
 		 * String spath = request.getServletPath(); String url =
@@ -134,7 +136,7 @@ public class MemberController {
 			HttpServletRequest request) throws Exception {
 		HttpSession session = request.getSession();
 		
-		Member_tbl_VO Member =  (Member_tbl_VO) session.getAttribute("Member");
+		Member_tbl_VO Member =  (Member_tbl_VO) session.getAttribute("member");
 		commandMap.put("member_id", Member.getMember_id());
 		ModelAndView mv = new ModelAndView("/CommonApps/Member/MbrView");
 		Map<String, Object> selectMbrView = memberService
@@ -169,7 +171,7 @@ public class MemberController {
 		mode = "SmbrUpdate";
 
 		HttpSession session = request.getSession();
-		Member_tbl_VO Member =  (Member_tbl_VO) session.getAttribute("Member");
+		Member_tbl_VO Member =  (Member_tbl_VO) session.getAttribute("member");
 		commandMap.put("member_id", Member.getMember_id());
 		// 위의 view랑 동일하게 사용
 
@@ -196,7 +198,7 @@ public class MemberController {
 
 		// 위의 view랑 동일하게 사용
 		HttpSession session = request.getSession();
-		Member_tbl_VO Member =  (Member_tbl_VO) session.getAttribute("Member");
+		Member_tbl_VO Member =  (Member_tbl_VO) session.getAttribute("member");
 		commandMap.put("member_id", Member.getMember_id());
 
 		String mbrAddress = null;
@@ -426,7 +428,7 @@ public class MemberController {
 
 		HttpSession session = request.getSession();
 		
-		Member_tbl_VO Member =  (Member_tbl_VO) session.getAttribute("Member");
+		Member_tbl_VO Member =  (Member_tbl_VO) session.getAttribute("member");
 		commandMap.put("member_id", Member.getMember_id());
 		commandMap.put("mbrLoginId", Member.getMbrLoginId());
 		//String mbrLoginId = (String) session.getAttribute("mbrLoginId");
@@ -599,7 +601,7 @@ public class MemberController {
 			System.out.println("디비다녀온값" + a_mbrLoginPw);
 
 			String mbrLoginId = (String) memberLogin.get("mbrLoginId");
-			int member_id = (int) memberLogin.get("member_id");
+			//int member_id = (int) memberLogin.get("member_id");
 
 			if (loginCheck == 7) {
 				loginCheck = 7;
@@ -610,7 +612,7 @@ public class MemberController {
 
 				// 세션 지정.
 				
-				session.setAttribute("Member", member_tbl_VO);
+				session.setAttribute("member", member_tbl_VO);
 				//session.setAttribute("mbrLoginId", mbrLoginId);
 				//session.setAttribute("member_id", member_id);
 				System.out.println("로그인성공");
@@ -758,7 +760,7 @@ public class MemberController {
 		
 		//System.out.println("타입검사"+member_tbl_VO);
 		
-		session.setAttribute("Member", member_tbl_VO);
+		session.setAttribute("member", member_tbl_VO);
 		request.setAttribute("loginCheck", loginCheck);
 
 		return mv;

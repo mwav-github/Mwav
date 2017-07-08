@@ -31,7 +31,7 @@ public class StatisticsController {
 	@Resource(name = "statisticsService")
 	private StatisticsService statisticsService;
 
-	public StatisticsVO insertFirstStatics(HttpServletRequest request,
+	public String insertFirstStatics(HttpServletRequest request,
 			String member_id, String statistics_id, String session_id)
 			throws Exception {
 
@@ -138,7 +138,7 @@ public class StatisticsController {
 		 * System.out.println("Request-URI"+staticMap.get("Request-URI"));
 		 */
 
-		return null;
+		return st_id;
 
 	}
 

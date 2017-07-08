@@ -231,6 +231,17 @@ public class StaffController {
 		System.out.println("여기는?");
 		Map<String, Object> selectStfLogin = null;
 		selectStfLogin = staffService.selectStfLogin(commandMap.getMap());
+		String returnUrl = null;
+		String returnUrl_imsi = null;
+		returnUrl_imsi = (String) commandMap.get("returnUrl");
+		System.out.println("returnUrl_imsi" + returnUrl_imsi);
+		if (returnUrl_imsi == null || returnUrl_imsi == "") {
+			returnUrl = null;
+		} else {
+			returnUrl = returnUrl_imsi;
+		}
+
+		System.out.println("returnUrl" + returnUrl);
 
 		int loginCheck = 0; // 초기값
 
@@ -280,8 +291,8 @@ public class StaffController {
 
 		// http://linuxism.tistory.com/1089
 
-		session.setAttribute("selectStfLogin", selectStfLogin);
-		
+		session.setAttribute("staff", selectStfLogin);
+		request.setAttribute("returnUrl", returnUrl);
 		mv.addObject("selectStfLogin", selectStfLogin);
 		request.setAttribute("loginCheck", loginCheck);
 		return mv;

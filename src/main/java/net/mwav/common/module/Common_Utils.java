@@ -14,8 +14,8 @@ import java.util.Map.Entry;
 
 import javax.servlet.http.HttpServletRequest;
 
+import net.common.Interceptor.StatisticsInterceptor;
 import net.common.common.CommandMap;
-import net.common.logger.LoggerInterceptor;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -24,7 +24,7 @@ import org.apache.log4j.Logger;
 
 public class Common_Utils {
 
-	protected static Log log = LogFactory.getLog(LoggerInterceptor.class);
+	protected static Log log = LogFactory.getLog(StatisticsInterceptor.class);
 	private static String pattern = "[a-zA-Z0-9]+$";
 	private static StringBuffer returnString = null;
 
