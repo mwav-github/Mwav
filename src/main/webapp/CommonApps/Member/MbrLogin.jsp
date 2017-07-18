@@ -36,6 +36,12 @@
 		history.go(-1);
 	</script>
 </c:if>
+<c:if test="${requestScope.loginCheck eq 6 }">
+	<script type="text/javascript">
+		alert('reCAPTCHA 오류입니다. 다시 시도해주세요.');
+		history.go(-1);
+	</script>
+</c:if>
 <c:if test="${requestScope.loginCheck eq 5 }">
 	<script type="text/javascript">
 		alert('임시패스워드입니다. 비밀번호 변경 후 로그인해주세요.');

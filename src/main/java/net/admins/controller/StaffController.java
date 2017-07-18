@@ -145,7 +145,7 @@ public class StaffController {
 	public ModelAndView selectStfView(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
 		HttpSession session = request.getSession();
-		int staff_id = (int) session.getAttribute("staff_id");
+		int staff_id = (int) session.getAttribute("staff");
 		System.out.println("staff_id=" + staff_id);
 		commandMap.put("staff_id", staff_id);
 		ModelAndView mv = new ModelAndView("/Admins/CompanyMgr/Staff/StfView");
@@ -233,6 +233,7 @@ public class StaffController {
 		selectStfLogin = staffService.selectStfLogin(commandMap.getMap());
 		String returnUrl = null;
 		String returnUrl_imsi = null;
+		String staff_id = null;
 		returnUrl_imsi = (String) commandMap.get("returnUrl");
 		System.out.println("returnUrl_imsi" + returnUrl_imsi);
 		if (returnUrl_imsi == null || returnUrl_imsi == "") {
@@ -258,7 +259,7 @@ public class StaffController {
 			System.out.println("디비다녀온값" + a_stfLoginPw);
 
 			String stfLoginId = (String) selectStfLogin.get("stfLoginId");
-			int staff_id = (int) selectStfLogin.get("staff_id");
+			staff_id = String.valueOf(selectStfLogin.get("staff_id"));
 
 			if (loginCheck == 7) {
 				loginCheck = 7;
@@ -267,7 +268,7 @@ public class StaffController {
 				// login 성공
 				loginCheck = 1;
 				session.setAttribute("stfLoginId", stfLoginId);
-				session.setAttribute("staff_id", staff_id);
+				session.setAttribute("staff", staff_id);
 				System.out.println("로그인성공");
 			} else if (stfLoginId != null
 					&& !(b_stfLoginPw.equals(a_stfLoginPw))) {
@@ -291,7 +292,8 @@ public class StaffController {
 
 		// http://linuxism.tistory.com/1089
 
-		session.setAttribute("staff", selectStfLogin);
+		//추후 vo 객체로 변경.
+		session.setAttribute("staff", staff_id);
 		request.setAttribute("returnUrl", returnUrl);
 		mv.addObject("selectStfLogin", selectStfLogin);
 		request.setAttribute("loginCheck", loginCheck);

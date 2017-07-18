@@ -72,6 +72,14 @@
 	
 </script>
 
+var stClientScreen = '<c:out value="${requestScope.stClientScreen}" />';
+						//null 인경우 실행.
+						
+						console.log('stClientScreen' +stClientScreen);
+						if (stClientScreen == 'firstTime' && stClientScreen != null) {
+							alert('들어왔다.')
+							stClientScreenUpdateAjax();
+						}
 
 
 <br />

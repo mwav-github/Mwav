@@ -12,9 +12,13 @@
 <meta name="Author" content="Zeus, Peter J." />
 <meta name="copyright" content="All contents are copyright by Mwav.net" />
 <meta name="distribution" content="global" />
+
 <%--resource는 호출하지않도록 처리. 추후 필요 !!!*** --%>
 <link rel="icon" href="/Images/CompanyLogos/CompanyLogo.ico" />
-<title><c:choose><c:when test="${requestScope.setTitle eq null }">[Mwav.net] >> Unleash your infinite possibilities with IT Optimization!!</c:when><c:otherwise>${setTitle }</c:otherwise></c:choose></title>
+<title><c:choose>
+		<c:when test="${requestScope.setTitle eq null }">[Mwav.net] >> Unleash your infinite possibilities with IT Optimization!!</c:when>
+		<c:otherwise>${setTitle }</c:otherwise>
+	</c:choose></title>
 
 <%--인코딩 설정 --%>
 
@@ -65,28 +69,34 @@
 <script
 	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 
+
 <script>
 	$(window).resize(function() {
 		res_Text();
-		
-		 var height = (($('.navbar-fixed-top').height()) + 4);
-		
-		 $('#myCarousel').css({
-				'margin-top' : height
-			});
-		 $('.res_width').css({
-				'margin-top' : height
-			}); 
+
+		var height = (($('.navbar-fixed-top').height()) + 4);
+
+		$('#myCarousel').css({
+			'margin-top' : height
+		});
+		$('.res_width').css({
+			'margin-top' : height
+		});
 <%-- 		$('.res_width').animate({
 			marginTop : height
 		}, 1000);
  --%>
 	});
 	/*TOP버튼*/
-	$(document).ready(function() {
-		var height = (($('.navbar-fixed-top').height()) + 4);
-		res_Text();
-		<%--/* $('#myCarousel').css({
+/* 	외부 리소스 및 이미지와는 상관없이 DOM데이터만 로드가 완료되면 바로 실행이 되는 함수입니다. 
+따라서 window.onload보다 더 빠르게 실행이 된다는 얘기죠..
+ */
+	$(document)
+			.ready(
+					function() {
+						var height = (($('.navbar-fixed-top').height()) + 4);
+						res_Text();
+<%--/* $('#myCarousel').css({
 			'margin-top' : (($('.navbar-fixed-top').height()) + 4) + 'px'
 		}); */
 		/* $('#myCarousel').animate({
@@ -96,36 +106,63 @@
 		$('.res_width').animate({
 			marginTop : height
 		}, 1000); */--%>
-
-		 $('#myCarousel').css({
-				'margin-top' : height
-			});
-		 $('.res_width').css({
-				'margin-top' : height
-			});
-		<%--url 에 따라 타이틀 지정 (170418 부로 서버사이드로 이동)
+	$('#myCarousel').css({
+							'margin-top' : height
+						});
+						$('.res_width').css({
+							'margin-top' : height
+						});
+<%--url 에 따라 타이틀 지정 (170418 부로 서버사이드로 이동)
 		setTitle(location.pathname);--%>
+	caps_lockchk();
 
-		
-		caps_lockchk();
+						$('#back-to-top').fadeOut();
+						$(window).scroll(function() {
+							if ($(this).scrollTop() > 550) {
+								$('#back-to-top').fadeIn();
+								$('#back-to-top').tooltip();
+							} else {
+								$('#back-to-top').fadeOut();
+							}
+						});
+						// scroll body to 0px on click
+						$('#back-to-top').click(function() {
+							$('#back-to-top').tooltip('hide');
+							$('body,html').animate({
+								scrollTop : 0
+							}, 800);
+							return false;
+						});
 
-		$('#back-to-top').fadeOut();
-		$(window).scroll(function() {
-			if ($(this).scrollTop() > 550) {
-				$('#back-to-top').fadeIn();
-				$('#back-to-top').tooltip();
-			} else {
-				$('#back-to-top').fadeOut();
+					});
+
+	window.onload = function() {
+		// 페이지 완전 로딩후 실행
+		var stClientScreen = '<c:out value="${requestScope.stClientScreen}" />';
+		//null 인경우 실행.
+
+		console.log('stClientScreen' + stClientScreen);
+		if (stClientScreen == 'firstTime' && stClientScreen != null) {
+			alert('들어왔다.')
+			stClientScreenUpdateAjax();
+		}
+	}
+	function stClientScreenUpdateAjax() {
+		var stClientScreenWidth = screen.width;
+		var stClientScreenHeight = screen.height;
+
+		//console.log("사용자 pc 해상도" + stClientScreen);
+		var URL = "stClientScreen=" + stClientScreenWidth + 'x'
+				+ stClientScreenHeight;
+		$.ajax({
+			url : "/statistics/stClientScreenUpdateAjax.mwav",
+			data : URL,
+			success : function(xmlStr) {
+				//alert('성공');
+			},
+			error : function(xhr, status, error) {
+				alert("에러발생");
 			}
 		});
-		// scroll body to 0px on click
-		$('#back-to-top').click(function() {
-			$('#back-to-top').tooltip('hide');
-			$('body,html').animate({
-				scrollTop : 0
-			}, 800);
-			return false;
-		});
-
-	});
+	}
 </script>

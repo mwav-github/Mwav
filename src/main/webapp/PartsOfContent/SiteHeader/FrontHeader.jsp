@@ -12,15 +12,7 @@
 	//changes the speed
 	});
 </script>
-<%-- <c:if test="${sessionScope.statistics_id eq null }">
-		<script type="text/javascript">
-		$(document).ready(function() {
-			alert(screen.width);
-			$('#screenSize').val(screen.width);
-	    });
-		</script>
-		<input type="hidden" name="screenSize" id="screenSize" value=""/>
-</c:if> --%>
+
 
 <nav id="BackToTop" class="menu navbar navbar-fixed-top"
 	role="navigation">

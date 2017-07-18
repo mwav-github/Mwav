@@ -173,15 +173,8 @@
 		<value>/CustomerService/MemberShip/MemberShip.mwav</value>
 		<value>/logout/logout.do</value>
 		<value>/login.do</value>
-		<value>/Admins/</value>
 		</list>
 		</property>
-		</bean>
-	</mvc:interceptor>
-	<mvc:interceptor>
-		<mvc:mapping path="/member/**" />
-		<bean id="loginInterceptor"
-			class="net.common.Interceptor.LoginInterceptor">
 		</bean>
 	</mvc:interceptor>
 </mvc:interceptors>

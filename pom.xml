@@ -299,6 +299,14 @@ http://www.egovframe.go.kr/wiki/doku.php?id=egovframework:dev:dep:build:maven
             <artifactId>jackson-core-asl</artifactId>
             <version>1.9.13</version>
         </dependency>
+        
+        <!-- JSON Library (recapcah serverside)-->
+       <!-- http://mvnrepository.com/artifact/org.glassfish/javax.json -->
+       <dependency>
+           <groupId>org.glassfish</groupId>
+           <artifactId>javax.json</artifactId>
+           <version>1.0.4</version>
+       </dependency>
          
         <!-- MultipartHttpServletRequset -->
         <dependency>

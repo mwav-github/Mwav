@@ -99,13 +99,13 @@ public class FrontCommonController {
 	@RequestMapping(value = "/CompanyItem/**")
 	public ModelAndView redirectCompanyItemController(HttpServletRequest request) throws Exception {
 		
-		System.out.println("열로들어오나");
+		//System.out.println("열로들어오나");
 		String url = request.getRequestURI();
 		int pos = url.lastIndexOf(".");
-		String ext = url.substring(pos + 1);
+		//String ext = url.substring(pos + 1);
 		String ext_url = url.substring(0, pos);
-		System.out.println("확장자 제외" + ext);
-		System.out.println("return URL"+ext_url);
+		//System.out.println("확장자 제외" + ext);
+		//System.out.println("return URL"+ext_url);
 		ModelAndView mv = new ModelAndView(
 				ext_url);
 
@@ -115,13 +115,13 @@ public class FrontCommonController {
 	@RequestMapping(value = "/CustomerService/**")
 	public ModelAndView redirectCustomerServiceItemController(HttpServletRequest request) throws Exception {
 		
-		System.out.println("열로들어오나");
+		//System.out.println("열로들어오나");
 		String url = request.getRequestURI();
 		int pos = url.lastIndexOf(".");
-		String ext = url.substring(pos + 1);
+		//String ext = url.substring(pos + 1);
 		String ext_url = url.substring(0, pos);
-		System.out.println("확장자 제외" + ext);
-		System.out.println("return URL"+ext_url);
+		//System.out.println("확장자 제외" + ext);
+		//System.out.println("return URL"+ext_url);
 		ModelAndView mv = new ModelAndView(
 				ext_url);
 
@@ -131,13 +131,13 @@ public class FrontCommonController {
 	@RequestMapping(value = "/Company/**")
 	public ModelAndView redirectCompanyController(HttpServletRequest request) throws Exception {
 		
-		System.out.println("열로들어오나");
+		//System.out.println("열로들어오나");
 		String url = request.getRequestURI();
 		int pos = url.lastIndexOf(".");
-		String ext = url.substring(pos + 1);
+		//String ext = url.substring(pos + 1);
 		String ext_url = url.substring(0, pos);
-		System.out.println("확장자 제외" + ext);
-		System.out.println("return URL"+ext_url);
+		//System.out.println("확장자 제외" + ext);
+		//System.out.println("return URL"+ext_url);
 		ModelAndView mv = new ModelAndView(
 				ext_url);
 
@@ -147,13 +147,13 @@ public class FrontCommonController {
 	@RequestMapping(value = "/Admins/**")
 	public ModelAndView redirectAdminsController(HttpServletRequest request) throws Exception {
 		
-		System.out.println("열로들어오나");
+		//System.out.println("열로들어오나");
 		String url = request.getRequestURI();
 		int pos = url.lastIndexOf(".");
-		String ext = url.substring(pos + 1);
+		//String ext = url.substring(pos + 1);
 		String ext_url = url.substring(0, pos);
-		System.out.println("확장자 제외" + ext);
-		System.out.println("return URL"+ext_url);
+		//System.out.println("확장자 제외" + ext);
+		//System.out.println("return URL"+ext_url);
 		ModelAndView mv = new ModelAndView(
 				ext_url);
 
@@ -163,16 +163,25 @@ public class FrontCommonController {
 	@RequestMapping(value = {"/MasterPage", "/MasterPage_1" })
 	public ModelAndView redirectMasterPageController(HttpServletRequest request) throws Exception {
 		
-		System.out.println("열로들어오나");
+		//System.out.println("열로들어오나");
 		String url = request.getRequestURI();
 		int pos = url.lastIndexOf(".");
-		String ext = url.substring(pos + 1);
+		//String ext = url.substring(pos + 1);
 		String ext_url = url.substring(0, pos);
-		System.out.println("확장자 제외" + ext);
-		System.out.println("return URL"+ext_url);
+		//System.out.println("확장자 제외" + ext);
+		//System.out.println("return URL"+ext_url);
 		ModelAndView mv = new ModelAndView(
 				ext_url);
 
 		return mv;
 	}
+	
+	//미적용 + 파라미터 붙여서 넘길수있게 ㅎㅎ 
+	public ModelAndView redirectController(HttpServletRequest request,
+				String url) throws Exception {
+			ModelAndView mv = new ModelAndView(
+					"/CompanyItem/ITProducts/HighSofts/HighSofts");
+
+			return mv;
+		}
 }

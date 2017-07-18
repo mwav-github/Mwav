@@ -26,7 +26,6 @@
 		scope="request" />
 
 	<script type="text/javascript">
-	
 		//http://blog.naver.com/PostView.nhn?blogId=haanul98&logNo=80204508627&categoryNo=0&parentCategoryNo=0&viewDate=&currentPage=1&postListTopCurrentPage=1
 		var uqUserEmail = '<c:out value="${uqUserEmail}"/>';
 		location.href = "/qa/qaList.mwav?uqUserEmail=" + uqUserEmail;

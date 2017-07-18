@@ -1,22 +1,13 @@
 package net.common.Interceptor;
 
-import java.net.InetAddress;
 import java.util.List;
-
-import javax.annotation.Resource;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import net.mwav.common.module.Common_Utils;
-import net.mwav.common.module.DomReadXMLFile;
 import net.mwav.member.vo.Member_tbl_VO;
-import net.mwav.statistics.controller.StatisticsController;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import org.apache.commons.logging.Log;
@@ -77,22 +68,43 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 			 */
 
 			// Admin(관리자) 회원 관리
-			String auth_url = request.getRequestURI().substring(0, 7); // 현재 URL
-			System.out.println("auth_url" + auth_url);
+			// System.out.println("auth_url" + auth_url);
 			// staff 권한 체크.
-			key_id = staff;
 
-			System.out.println("staff" + staff);
+			// System.out.println("staff" + staff);
 			// System.out.println("returnUrl" + returnUrl);
-			if (auth_url.equals("/Admins")) {
+			String auth_url = null;
+			// 안하면, / 등의 경로에서는 에러 발생
+			// 에러명 : java.lang.StringIndexOutOfBoundsException: String index out
+			// of range: 7
+			if (request.getRequestURI().length() >= 7) {
+				auth_url = request.getRequestURI().substring(0, 7); // 현재 URL
+				key_id = staff;
+			}
+			if (auth_url !=null && auth_url.equals("/Admins")) {
 				if (key_id == null || key_id.equals("")
 						|| key_id.equals("null")) {
-					// Admins/CompanyMgr/Staff/StfLogin.jsp 이경우에도 들어온다.
-					String Referer = request.getHeader("referer");
-					returnUrl = Referer;
-					System.out.println("returnUrl" + returnUrl);
-					response.sendRedirect("/Admins/CompanyMgr/Staff/StfLogin.mwav?returnUrl="
-							+ returnUrl);
+				
+					/*[중요]
+					 http://enosent.tistory.com/34
+					 http://blog.danggun.net/4063
+					 이 웹페이지에 리디렉션 순환 오류가 있습니다.' 또는 'ERR_TOO_MANY_REDIRECTS'
+					 위의 오류가 나타나는 이유는 무한대로 리다이랙션이 되면서 나타나는 오류이다. 
+					 즉 권한부여 페이지/ 로그인 페이지 모두 stfLogin 페이지로 리다이렉트하니까.
+					 
+					 이때 해당 페이지 URL 과 동일하면 그만 멈추도록 해야한다. 
+					 
+					 리다이렉션은 그 뒤의 문장까지 다실행한다.
+					 */
+					
+					//현재들어온 url 과 동일한 경우 true 제출함으로써 무한 리다이렉션을 막는다.
+					if ("/Admins/CompanyMgr/Staff/StfLogin.mwav".equals(request
+							.getRequestURI())){
+						//들어왔나?
+						System.out.println("제발");
+						return true;
+					}
+					response.sendRedirect("/Admins/CompanyMgr/Staff/StfLogin.mwav");
 
 					return false;
 				}
@@ -119,11 +131,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 							try {
 
 								key_id = member_id; // request에서
-								// id
-								// 파라미터를
-								// 가져온다
-								// System.out.println("세션아이디" + id);
-
+							
 								returnUrl = request.getRequestURI(); // 현재 URL
 								if (key_id == null || key_id.equals("")
 										|| key_id.equals("null")) { // id가 Null
@@ -176,16 +184,6 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 	public void postHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
-		try {
-			String setTitle = null;
-			// meta 태그 내 title 지정
-			setTitle = Common_Utils.setTitle(request.getRequestURI());
-
-			request.setAttribute("setTitle", setTitle.trim());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		log.info("======================================           END          ======================================\n");
 
 	}
 

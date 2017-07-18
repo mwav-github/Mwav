@@ -23,7 +23,11 @@
 
 	
 	<!-- /*========================================수정========================================*/ -->
-
+	<update id="updateStClientScreen" parameterType="hashmap" >
+		<![CDATA[
+	       update Statistics_tbl set stClientScreen=#{stClientScreen} where statistics_id = #{statistics_id}
+		]]>
+	</update>
 	
 	<!--/*========================================리스트(SelectOne, SelectList 순)========================================*/-->
 	

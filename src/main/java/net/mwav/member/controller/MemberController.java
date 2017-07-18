@@ -17,6 +17,7 @@ import javax.servlet.http.HttpSession;
 import net.common.common.CommandMap;
 import net.mwav.common.module.Common_Utils;
 import net.mwav.common.module.EmailSender;
+import net.mwav.common.module.VerifyRecaptcha;
 import net.mwav.member.service.MemberService;
 import net.mwav.member.vo.Member_tbl_VO;
 
@@ -62,7 +63,7 @@ public class MemberController {
 
 		return "redirect:/MasterPage.mwav?mode=SMbrLogin";
 	}
-	
+
 	/**
 	 * @date 2016.04.27
 	 * @author Kim YJ
@@ -78,8 +79,6 @@ public class MemberController {
 		ModelAndView mv = new ModelAndView("/MasterPage_1");
 
 		// String mode = (String) request.getAttribute("mode");
-
-
 
 		/*
 		 * String spath = request.getServletPath(); String url =
@@ -135,8 +134,8 @@ public class MemberController {
 	public ModelAndView selectMbrView(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
 		HttpSession session = request.getSession();
-		
-		Member_tbl_VO Member =  (Member_tbl_VO) session.getAttribute("member");
+
+		Member_tbl_VO Member = (Member_tbl_VO) session.getAttribute("member");
 		commandMap.put("member_id", Member.getMember_id());
 		ModelAndView mv = new ModelAndView("/CommonApps/Member/MbrView");
 		Map<String, Object> selectMbrView = memberService
@@ -171,7 +170,7 @@ public class MemberController {
 		mode = "SmbrUpdate";
 
 		HttpSession session = request.getSession();
-		Member_tbl_VO Member =  (Member_tbl_VO) session.getAttribute("member");
+		Member_tbl_VO Member = (Member_tbl_VO) session.getAttribute("member");
 		commandMap.put("member_id", Member.getMember_id());
 		// 위의 view랑 동일하게 사용
 
@@ -198,7 +197,7 @@ public class MemberController {
 
 		// 위의 view랑 동일하게 사용
 		HttpSession session = request.getSession();
-		Member_tbl_VO Member =  (Member_tbl_VO) session.getAttribute("member");
+		Member_tbl_VO Member = (Member_tbl_VO) session.getAttribute("member");
 		commandMap.put("member_id", Member.getMember_id());
 
 		String mbrAddress = null;
@@ -427,15 +426,15 @@ public class MemberController {
 		ModelAndView mv = new ModelAndView("/Index");
 
 		HttpSession session = request.getSession();
-		
-		Member_tbl_VO Member =  (Member_tbl_VO) session.getAttribute("member");
+
+		Member_tbl_VO Member = (Member_tbl_VO) session.getAttribute("member");
 		commandMap.put("member_id", Member.getMember_id());
 		commandMap.put("mbrLoginId", Member.getMbrLoginId());
-		//String mbrLoginId = (String) session.getAttribute("mbrLoginId");
-		//System.out.println("member_id=" + member_id);
-		//System.out.println("mbrLoginId=" + mbrLoginId);
-		//commandMap.put("member_id", member_id);
-		//commandMap.put("mbrLoginId", mbrLoginId);
+		// String mbrLoginId = (String) session.getAttribute("mbrLoginId");
+		// System.out.println("member_id=" + member_id);
+		// System.out.println("mbrLoginId=" + mbrLoginId);
+		// commandMap.put("member_id", member_id);
+		// commandMap.put("mbrLoginId", mbrLoginId);
 		boolean deleteMbrDelete = memberService.deleteMbrDelete(commandMap
 				.getMap());
 
@@ -563,15 +562,18 @@ public class MemberController {
 		Map<String, Object> memberLogin = null;
 		memberLogin = memberService.selectLogin(commandMap.getMap());
 
-		member_tbl_VO = new Member_tbl_VO((int)memberLogin.get("member_id"),
-				(String)memberLogin.get("mbrLoginId"), (String)memberLogin.get("mbrLoginPw"),
-				(String)memberLogin.get("mbrTempLoginPw"),
-				(String)memberLogin.get("mbrFirstName"),
-				(String)memberLogin.get("mbrMiddleName"),
-				(String)memberLogin.get("mbrLastName"), (String)memberLogin.get("mbrEmail"),
-				(String)memberLogin.get("mbrCellPhone"),
-				(Boolean)memberLogin.get("mbrAddrFlag"), (String)memberLogin.get("mbrZipcode"),
-				(String)memberLogin.get("mbrAddress"));
+		member_tbl_VO = new Member_tbl_VO((int) memberLogin.get("member_id"),
+				(String) memberLogin.get("mbrLoginId"),
+				(String) memberLogin.get("mbrLoginPw"),
+				(String) memberLogin.get("mbrTempLoginPw"),
+				(String) memberLogin.get("mbrFirstName"),
+				(String) memberLogin.get("mbrMiddleName"),
+				(String) memberLogin.get("mbrLastName"),
+				(String) memberLogin.get("mbrEmail"),
+				(String) memberLogin.get("mbrCellPhone"),
+				(Boolean) memberLogin.get("mbrAddrFlag"),
+				(String) memberLogin.get("mbrZipcode"),
+				(String) memberLogin.get("mbrAddress"));
 
 		String returnUrl = null;
 		String returnUrl_imsi = null;
@@ -583,9 +585,21 @@ public class MemberController {
 			returnUrl = returnUrl_imsi;
 		}
 
-		System.out.println("returnUrl" + returnUrl);
-
 		int loginCheck = 0; // 초기값
+
+		//g-recaptcha-response POST parameter when the user submits the form on your site
+		//recaptcha-token 과는 별개이다. 
+		String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
+		System.out.println("gRecaptchaResponse"+gRecaptchaResponse);
+		boolean valid;
+		// Verify CAPTCHA.
+		valid = VerifyRecaptcha.verify(gRecaptchaResponse);
+		if (!valid) {
+			// RECAPTCHA 오류 (false)
+			loginCheck = 6;
+		}
+
+		System.out.println("returnUrl" + returnUrl);
 
 		// 암호화 복호화 할 필요는없지.
 		if (memberLogin != null && loginCheck != 5) {
@@ -601,7 +615,7 @@ public class MemberController {
 			System.out.println("디비다녀온값" + a_mbrLoginPw);
 
 			String mbrLoginId = (String) memberLogin.get("mbrLoginId");
-			//int member_id = (int) memberLogin.get("member_id");
+			// int member_id = (int) memberLogin.get("member_id");
 
 			if (loginCheck == 7) {
 				loginCheck = 7;
@@ -611,10 +625,10 @@ public class MemberController {
 				loginCheck = 1;
 
 				// 세션 지정.
-				
+
 				session.setAttribute("member", member_tbl_VO);
-				//session.setAttribute("mbrLoginId", mbrLoginId);
-				//session.setAttribute("member_id", member_id);
+				// session.setAttribute("mbrLoginId", mbrLoginId);
+				// session.setAttribute("member_id", member_id);
 				System.out.println("로그인성공");
 			} else if (mbrLoginId != null
 					&& !(b_mbrLoginPw.equals(a_mbrLoginPw))) {
@@ -729,8 +743,6 @@ public class MemberController {
 		System.out.println("Gender = " + Gender);
 		System.out.println("Link = " + Link);
 		System.out.println("Picture = " + Picture);
-		
-		
 
 		/* ID가 없으면 (Insert), 있으면 (로그인) */
 		boolean check;
@@ -747,19 +759,19 @@ public class MemberController {
 
 			memberService.insertSnsForm(commandMap.getMap());
 			System.out.println("insertSnsForm 성공!!!!!!");
-			
+
 		} else {
 			// 기존 있는 경우
 		}
 
-		//추후 변경 예정
+		// 추후 변경 예정
 		String mbrLoginId = Last_Name + " " + First_Name;
 		loginCheck = 1;
 		member_tbl_VO.setMbrLoginId(mbrLoginId);
 		member_tbl_VO.setMember_id((int) commandMap.get("member_id"));
-		
-		//System.out.println("타입검사"+member_tbl_VO);
-		
+
+		// System.out.println("타입검사"+member_tbl_VO);
+
 		session.setAttribute("member", member_tbl_VO);
 		request.setAttribute("loginCheck", loginCheck);
 
