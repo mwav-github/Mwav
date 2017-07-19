@@ -133,6 +133,24 @@
     <url-pattern>/Company/*</url-pattern> 
   </filter-mapping> 
   
+  <security-constraint>
+  <display-name>JSP Protection</display-name>
+  <web-resource-collection>
+    <web-resource-name>SecureJSPPages</web-resource-name>
+      <url-pattern>*.jsp</url-pattern>
+  </web-resource-collection>
+  <auth-constraint>
+    <role-name>nobody</role-name>
+  </auth-constraint>
+  </security-constraint>
+ 
+  <security-role>
+   <description>
+     Nobody should be in this role so JSP files are protected from direct access.
+   </description>
+   <role-name>nobody</role-name>
+   </security-role>
+  
  	<!-- error 페이지 (추후 변동예정) -->
  	<error-page>
     	<exception-type>java.lang.Throwable</exception-type>
