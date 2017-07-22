@@ -1,4 +1,4 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -73,10 +73,10 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 			<div class="col-md-12">
 
 				<div class="col-lg-12">
-					<h2 class="page-header mwav_leftText">WebSite Building</h2>
+					<h2 class="page-header mwav_leftText">WebSiteBuilding</h2>
 				</div>
 				<!-- Intro Content -->
-				<div class="container">
+				<div class="row">
 					<!-- /.col-md-4 -->
 					<div class="col-md-4">
 						<div class="enter"></div>
@@ -100,110 +100,10 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					</div>
 				</div>
 
-				<!--Technologies -->
-				<div class="container">
+				<!-- Our Customers -->
+				<div class="row">
 					<div class="col-lg-12">
-						<h2 class="page-header mwav_leftText">Portfolios</h2>
-					</div>
-
-					<div class="row form-group">
-
-						<div class="col-md-4">
-							<figure class="snip1174 blue ">
-								<img
-									src="/CompanyItem/WebSiteBuilding/Images/WebSiteBuilding_portfolios_4.png"
-									alt="Elite Clothing" />
-								<figcaption>
-									<h2>Elite Clothing</h2>
-									<p>Garment Exporters</p>
-									<a href="http://eliteclothing.in/">ReadMore</a>
-								</figcaption>
-							</figure>
-						</div>
-
-						<div class="col-xs-12 col-md-4">
-							<figure class="snip1174 blue ">
-								<img
-									src="/CompanyItem/WebSiteBuilding/Images/WebSiteBuilding_portfolios_2.png"
-									alt="sq-sample33" />
-								<figcaption>
-									<h2>Shanttech</h2>
-									<p>BPO Services</p>
-									<a href="https://www.shanttech.com/">ReadMore</a>
-								</figcaption>
-							</figure>
-						</div>
-						<div class="col-xs-12 col-md-4">
-							<figure class="snip1174 blue ">
-								<img
-									src="/CompanyItem/WebSiteBuilding/Images/WebSiteBuilding_portfolios_3.png"
-									alt="Filcosys" />
-								<figcaption>
-									<h2>Filcosys</h2>
-									<p>Software Developments</p>
-									<a href="http://www.filcosys.com/">ReadMore</a>
-								</figcaption>
-							</figure>
-						</div>
-
-						<div class="col-xs-12 col-md-4">
-							<figure class="snip1174 blue ">
-								<img
-									src="/CompanyItem/WebSiteBuilding/Images/WebSiteBuilding_portfolios_5.png"
-									alt="Hexagon Nutrition
-" />
-								<figcaption>
-									<h2>Hexagon Nutrition</h2>
-									<p>Disease Management</p>
-									<a href="http://hexagonnutrition.com/">ReadMore</a>
-								</figcaption>
-							</figure>
-						</div>
-						<div class="col-xs-12 col-md-4">
-							<figure class="snip1174 blue">
-								<img
-									src="/CompanyItem/WebSiteBuilding/Images/WebSiteBuilding_portfolios_1.png"
-									alt="Prime Visualss" />
-								<figcaption>
-									<h2>Prime Visualss</h2>
-									<p>Visual Advertishments</p>
-									<a href="http://www.primevisualss.com/">Read More</a>
-								</figcaption>
-							</figure>
-						</div>
-						<div class="col-xs-12 col-md-4">
-							<figure class="snip1174 blue ">
-								<img
-									src="/CompanyItem/WebSiteBuilding/Images/WebSiteBuilding_portfolios_6.png"
-									alt="AAPT" />
-								<figcaption>
-									<h2>AAPT</h2>
-									<p>Product Development</p>
-									<a href="http://www.aaptinc.com/">ReadMore</a>
-								</figcaption>
-							</figure>
-						</div>
-
-						<div class="col-xs-12 col-md-4">
-							<figure class="snip1174 blue ">
-								<img
-									src="/CompanyItem/WebSiteBuilding/Images/WebSiteBuilding_portfolios_7.png"
-									alt="Snappy Joy" />
-								<figcaption>
-									<h2>Snappy Joy</h2>
-									<p>New Product Trophy</p>
-									<a href="http://www.snappyjoy.com/">ReadMore</a>
-								</figcaption>
-							</figure>
-						</div>
-					</div>
-
-				</div>
-
-				<!--Technologies -->
-				<div class="container">
-					<div class="col-lg-12">
-						<h2 class="page-header mwav_leftText">Technologies</h2>
+						<h2 class="page-header">Technology</h2>
 					</div>
 					<div class="col-md-2 col-sm-4 col-xs-4">
 						<img class="img-responsive "

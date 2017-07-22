@@ -197,7 +197,7 @@ public class SignController {
 			// sns가입 (*당연히 회원가입이되어야 이게 가능 순서가 당연하지 이게 저기를 외래키로 가리키는데)
 			memberService.insertSnsForm(map);
 			member_tbl_VO.setMember_id(member_id);
-			session.setAttribute("Member", member_tbl_VO);
+			session.setAttribute("member", member_tbl_VO);
 
 			logger.info("insertSnsForm success!!!!!!");
 		} else {
@@ -213,11 +213,11 @@ public class SignController {
 			}
 
 			member_tbl_VO.setMember_id(member_id);
-			session.setAttribute("Member", member_tbl_VO);
+			session.setAttribute("member", member_tbl_VO);
 		}
 
 		String mbrLoginId = connection.getDisplayName();
-		System.out.println("mbrLoginId___" + mbrLoginId);
+		//System.out.println("mbrLoginId___" + mbrLoginId);
 
 		loginCheck = 1;
 		// session.setAttribute("member_id", member_id);

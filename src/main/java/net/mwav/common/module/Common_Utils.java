@@ -14,8 +14,8 @@ import java.util.Map.Entry;
 
 import javax.servlet.http.HttpServletRequest;
 
+import net.common.Interceptor.StatisticsInterceptor;
 import net.common.common.CommandMap;
-import net.common.logger.LoggerInterceptor;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -24,7 +24,7 @@ import org.apache.log4j.Logger;
 
 public class Common_Utils {
 
-	protected static Log log = LogFactory.getLog(LoggerInterceptor.class);
+	protected static Log log = LogFactory.getLog(StatisticsInterceptor.class);
 	private static String pattern = "[a-zA-Z0-9]+$";
 	private static StringBuffer returnString = null;
 
@@ -415,8 +415,6 @@ public class Common_Utils {
 		}
 		log.info("Operating System======>" + os);
 		log.info("Browser Name==========>" + browser);
-		System.out.println("os" + os);
-		System.out.println("browser" + browser);
 		map.put("os", os);
 		map.put("browser", browser);
 		return map;
@@ -479,12 +477,12 @@ public class Common_Utils {
 
 	public static String setTitle(String url) {
 
-		System.out.println("url은" + url);
+		//System.out.println("url은" + url);
 
 		int first_slash = url.indexOf("/");
-		System.out.println("first_slash" + first_slash);
+		//System.out.println("first_slash" + first_slash);
 		int second_slash = url.indexOf("/", first_slash + 1);
-		System.out.println("second_slash" + second_slash);
+		//System.out.println("second_slash" + second_slash);
 
 		int third_slash = url.indexOf("/", second_slash + 1);
 		int fourth_slash = url.indexOf("/", third_slash + 1);
@@ -495,7 +493,7 @@ public class Common_Utils {
 		String url_2depth = null;
 		String url_3depth = null;
 		String last_depth = null;
-		System.out.println("lastDot" + lastDot);
+		//System.out.println("lastDot" + lastDot);
 
 		if (second_slash != -1) {
 			url_1depth = url.substring(first_slash + 1, second_slash);
@@ -522,10 +520,10 @@ public class Common_Utils {
 		if (last_depth == null) {
 			last_depth = "/";
 		}
-		System.out.println("url_1depth" + url_1depth);
-		System.out.println("last_depth" + last_depth);
+		//System.out.println("url_1depth" + url_1depth);
+		//System.out.println("last_depth" + last_depth);
 
-		System.out.println("123" + (!"/".equals(last_depth)));
+		//sSystem.out.println("123" + (!"/".equals(last_depth)));
 
 		String set_Title = null;
 

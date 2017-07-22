@@ -109,13 +109,11 @@ public class BoardController {
 		 */
 
 		log.debug("인터셉터 테스트");
-		System.out.println("테스트");
 		Map<String, Object> selectOneBnsView = boardService
 				.selectOneBnsView(commandMap.getMap());
 
 		if (selectOneBnsView != null && !selectOneBnsView.isEmpty()) {
-			System.out.println("view 줄랭");
-
+			
 			String mm = "site";
 			mv.addObject("mm", mm);
 			mv.addObject("mode", "m_bnsView");
@@ -123,7 +121,8 @@ public class BoardController {
 			//mv.addObject("page_header", "IT Trends");
 			mv.addObject("page_header", null);
 
-
+            //meta태그 이미지 
+			mv.addObject("meta_image", selectOneBnsView);
 			mv.addObject("selectOneBnsView", selectOneBnsView);
 		}
 
@@ -230,7 +229,6 @@ public class BoardController {
 		} else {
 			selectListBnsList = Collections.emptyList();
 		}
-		System.out.println("찍히낭");
 		String mm = "site";
 		mv.addObject("mm", mm);
 		mv.addObject("mode", "m_bnsList");
@@ -330,8 +328,10 @@ public class BoardController {
 			
 			mv.addObject("breadcrumb", "IT Trends");
 			mv.addObject("page_header", "IT Trends");
-
-
+			
+			
+            //meta태그 이미지 
+			mv.addObject("meta_image", selectOneBuView);
 			mv.addObject("selectOneBuView", selectOneBuView);
 		}
 		System.out.println("view찍히낭 = " + mv);

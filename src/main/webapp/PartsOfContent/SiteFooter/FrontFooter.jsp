@@ -73,7 +73,6 @@
 </script>
 
 
-
 <br />
 <!--TOP아이콘 -->
 <a id="back-to-top" href="#"
@@ -117,12 +116,12 @@
 				</p>
 
 				<ul>
-					<li>CompanyName : Mwav Inc.</li>
-					<li>Business Registration Number : 206-09-41373</li>
-					<li>Address: GV-4F, 5-5, Ttukseom-ro 46-gil, Gwangjin-gu,
+					<li><i class="fa fa-building-o" aria-hidden="true"></i> Mwav Inc.</li>
+					<li><i class="fa fa-registered" aria-hidden="true"></i> 206-09-41373</li>
+					<li><i class="fa fa-map-marker" aria-hidden="true"></i> GV-4F, 5-5, Ttukseom-ro 46-gil, Gwangjin-gu,
 						Seoul , Korea [143-865]</li>
-					<li>TEL : +82-2-6214-7039</li>
-					<li>FAX: +82-2-6214-1122</li>
+					<li><i class="fa fa-phone" aria-hidden="true"></i> +82-2-6214-7039</li>
+					<li><i class="fa fa-fax" aria-hidden="true"></i> +82-2-6214-1122</li>
 					<li>CEO : Lewis Kim</li>
 					<li>WebSite Manager : James Lee</li>
 					<li>Marketing Manager : Alex Chae</li>

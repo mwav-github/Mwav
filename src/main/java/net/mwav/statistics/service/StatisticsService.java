@@ -15,6 +15,9 @@ public interface StatisticsService {
 
 	void insertStatistics(StatisticsLogVO log_vo);
 
+	
+	void updateStClientScreen(Map<String, Object> map);
+
 /////////////////////////////////////Goods/////////////////////////////////////
 
 

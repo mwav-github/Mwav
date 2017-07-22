@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:p="http://www.springframework.org/schema/p" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="http://www.springframework.org/schema/beans" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
@@ -10,7 +12,7 @@
 
 
 
-	<!-- net 하위 모든 패키지에 있는 파일의 어노테이션을 스캔해서 빈으로 등록하겠다는 말 즉 사용하는 bean을 일일이 xml에 
+<!-- net 하위 모든 패키지에 있는 파일의 어노테이션을 스캔해서 빈으로 등록하겠다는 말 즉 사용하는 bean을 일일이 xml에 
 		선언하지 않고도 필요한 것을 어노테이션(Annotation)을 자동으로 인식하게 하는 역할 
 		
 		<context:component 이것과 <mvc:annotation-driven> 이두개의 설정이
@@ -22,123 +24,130 @@
 		         만약 두개이상이 있다면 @Qualify 라는 걸로 어떤게 맞는지 체크해줘야 한다. 
 		http://mainichibenkyo.tistory.com/242
 		-->
-	<context:component-scan base-package="net"></context:component-scan>
-	
-	
+<context:component-scan base-package="net"></context:component-scan>
 
-    <!-- 이걸 안쓰면 jsp, js, css 등은 dispatcher servlet를 타지않는다.!!! 
+
+
+<!-- 이걸 안쓰면 jsp, js, css 등은 dispatcher servlet를 타지않는다.!!! 
     
     > http://changpd.blogspot.kr/2013/02/spring.html
 >http://toby.epril.com/?p=1107
     
     -->
-    <mvc:default-servlet-handler/>
+<mvc:default-servlet-handler />
 
-	<!-- Enables the Spring MVC @Controller programming model -->
-	<!-- CustomMapArgumentResolver는 root context 영역에 등록이 되어야 한다. -->
-	<!-- 어노테이션을 사용하겠다고 선언 -->
-	<!-- <mvc:argument-resolvers> 태그를 이용하여 우리가 만든 CustomMapArgumentResolver의 
+<!-- Enables the Spring MVC @Controller programming model -->
+<!-- CustomMapArgumentResolver는 root context 영역에 등록이 되어야 한다. -->
+<!-- 어노테이션을 사용하겠다고 선언 -->
+<!-- <mvc:argument-resolvers> 태그를 이용하여 우리가 만든 CustomMapArgumentResolver의 
 		빈(bean)을 수동으로 등록했다. -->
-	<mvc:annotation-driven>
-		<mvc:argument-resolvers>
-			<bean class="net.common.resolver.CustomMapArgumentResolver"></bean>
-		</mvc:argument-resolvers>
-	</mvc:annotation-driven>
+<mvc:annotation-driven>
+	<mvc:argument-resolvers>
+		<bean class="net.common.resolver.CustomMapArgumentResolver"></bean>
+	</mvc:argument-resolvers>
+</mvc:annotation-driven>
 
-	<!-- 구글 프로퍼티 파일 연결 -->
-	<bean
-		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="ignoreResourceNotFound" value="true" />
-		<property name="locations">
-			<list>
-				<!-- <value>classpath:googleProperties/googleApi.properties</value> -->
-				<value>classpath:googleProperties/version.properties</value>
-				<value>classpath:googleProperties/datasource.properties</value>
-			</list>
-		</property>
-	</bean>
+<!-- 구글 프로퍼티 파일 연결 -->
+<bean
+	class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+<property name="ignoreResourceNotFound" value="true" />
+<property name="locations">
+<list>
+<!-- <value>classpath:googleProperties/googleApi.properties</value> -->
+<value>classpath:googleProperties/version.properties</value>
+<value>classpath:googleProperties/datasource.properties</value>
+</list>
+</property>
+</bean>
 
-	<!-- restTemplate 사용위한 bean 생성 -->
-	<bean id="jsonConverter"
-		class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
-		<property name="supportedMediaTypes" value="application/json" />
-	</bean>
+<!-- restTemplate 사용위한 bean 생성 -->
+<bean id="jsonConverter"
+	class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+<property name="supportedMediaTypes" value="application/json" />
+</bean>
 
-	<bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
-		<property name="messageConverters">
-			<list>
-				<ref bean="jsonConverter" />
-			</list>
-		</property>
-	</bean>
+<bean id="restTemplate"
+	class="org.springframework.web.client.RestTemplate">
+<property name="messageConverters">
+<list>
+<ref bean="jsonConverter" />
+</list>
+</property>
+</bean>
 
 
-	<!-- 파일 업로드 MultipartResolver 설정 CommonsMultipartResolver 등록 / CommonsMultipartResolver은 
+<!-- 파일 업로드 MultipartResolver 설정 CommonsMultipartResolver 등록 / CommonsMultipartResolver은 
 		스프링 파일업로드 기능 구현 10MB로 설정 제대로 설정안하면, java.lang.classcastexception multiparthttpservletrequest 
 		오류발생 -->
-	<bean id="multipartResolver"
-		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<property name="maxUploadSize" value="100000000" />
-		<property name="maxInMemorySize" value="100000000" />
-		<property name="defaultEncoding" value="UTF-8" />
-	</bean>
+<bean id="multipartResolver"
+	class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+<property name="maxUploadSize" value="100000000" />
+<property name="maxInMemorySize" value="100000000" />
+<property name="defaultEncoding" value="UTF-8" />
+</bean>
 
 
-	<!--servlet-context는 서블릿 영영의 설정하는 XML 파일 -->
+<!--servlet-context는 서블릿 영영의 설정하는 XML 파일 -->
 
-	<!-- 스프링 메일 설정 -->
-	<!-- gmail -->
-	<!-- 이메일 보내기 JavaMailSender  -->
-	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-		<property name="host" value="smtp.gmail.com" /> <!-- 서버주소 -->
-		<property name="port" value="587" /> <!-- 포트번호 기본 25 구글 587 -->
-		<property name="defaultEncoding" value="utf-8" /> <!-- 기본인코딩 -->
-		<property name="username" value="jusung.kim@mwav.net" /> <!-- 메일주소 -->
-		<property name="password" value="QkQh1248!!" /> <!-- 메일비밀번호 -->
-		<property name="javaMailProperties">
-			<props>
-				<prop key="mail.transport.protocol">smtp</prop>
-				<prop key="mail.smtp.auth">true</prop>
-				<prop key="mail.smtp.starttls.enable">true</prop>
-				<prop key="mail.debug">true</prop>
-				 <prop key="mail.mime.charset">utf-8</prop>
-			</props>
-		</property>
-	</bean>
-	
-    <bean id="emailVO" class="net.mwav.common.module.EmailVO">
-	</bean>
-	
-	<bean id="emailTemplates" class="net.mwav.common.module.EmailTemplates">
-    </bean>
+<!-- 스프링 메일 설정 -->
+<!-- gmail -->
+<!-- 이메일 보내기 JavaMailSender  -->
+<bean id="mailSender"
+	class="org.springframework.mail.javamail.JavaMailSenderImpl">
+<property name="host" value="smtp.gmail.com" />
+<!-- 서버주소 -->
+<property name="port" value="587" />
+<!-- 포트번호 기본 25 구글 587 -->
+<property name="defaultEncoding" value="utf-8" />
+<!-- 기본인코딩 -->
+<property name="username" value="jusung.kim@mwav.net" />
+<!-- 메일주소 -->
+<property name="password" value="QkQh1248!!" />
+<!-- 메일비밀번호 -->
+<property name="javaMailProperties">
+<props>
+<prop key="mail.transport.protocol">smtp</prop>
+<prop key="mail.smtp.auth">true</prop>
+<prop key="mail.smtp.starttls.enable">true</prop>
+<prop key="mail.debug">true</prop>
+<prop key="mail.mime.charset">utf-8</prop>
+</props>
+</property>
+</bean>
 
-	<bean id="emailSender" class="net.mwav.common.module.EmailSender">
-	</bean>
-	
-      <bean id="velocityConfig"
-          class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
-    <property name="resourceLoaderPath" value="Templates/"/>
-    <property name="velocityProperties">
-        <props>
-            <prop key="input.encoding">UTF-8</prop>
-            <prop key="output.encoding">UTF-8</prop>
-        </props>
-    </property>
+<bean id="emailVO" class="net.mwav.common.module.EmailVO">
+</bean>
+
+<bean id="emailTemplates" class="net.mwav.common.module.EmailTemplates">
+</bean>
+
+<bean id="emailSender" class="net.mwav.common.module.EmailSender">
+</bean>
+
+<bean id="velocityConfig"
+	class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+<property name="resourceLoaderPath" value="Templates/" />
+<property name="velocityProperties">
+<props>
+<prop key="input.encoding">UTF-8</prop>
+<prop key="output.encoding">UTF-8</prop>
+</props>
+</property>
 </bean>
 
 
 
 
-   	<bean id="jacksonMessageConverter"
-		class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" />
+<bean id="jacksonMessageConverter"
+	class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" />
 
 
 
-	<!-- Interceptor는 Controller가 요청되기 전에 수행된다. 즉, Interceptor는 DispatcherServlet과 
+<!-- Interceptor는 Controller가 요청되기 전에 수행된다. 즉, Interceptor는 DispatcherServlet과 
 		같은 위치에 등록이 되어있어야지 정상적으로 수행이 된다. -->
-	<!-- Log4js 설정 http://dev.anyframejava.org/docs/anyframe/plugin/essential/core/1.6.0/reference/html/ch21.html 
+<!-- Log4js 설정 http://dev.anyframejava.org/docs/anyframe/plugin/essential/core/1.6.0/reference/html/ch21.html 
 		http://logging.apache.org/log4j/1.2/apidocs/index.html -->
-	<!-- 20160223 admin 권한부여를 위하여 변경 <mvc:interceptors> <mvc:interceptor> <mvc:mapping 
+<!-- 20160223 admin 권한부여를 위하여 변경 <mvc:interceptors> <mvc:interceptor> <mvc:mapping 
 		path="/**" /> 지금 작성하는 로거는 모든 요청에서 동작을 하기때문에 전체 패스를 의미하는 "/**" 로 설정하였다. <bean 
 		id="loggerInterceptor" class="net.common.logger.LoggerInterceptor"></bean> 
 		</mvc:interceptor> </mvc:interceptors>
@@ -146,27 +155,29 @@
 					<mvc:mapping path="/admins/**" />
 		
 		 -->
-	<!-- 제외하고 싶을떄 http://krespo.net/192 -->
-    <!-- 여러개 쓸때 http://kdsr2z0.github.io/spring_interceptor/ (순서대로실행) -->
-	<mvc:interceptors>
-		<mvc:interceptor>
-			<mvc:mapping path="/**" />
-			<bean id="loggerInterceptor" class="net.common.logger.LoggerInterceptor">
-			<property name="urls">
-   <list>
-    <value>/CustomerService/MemberShip/MemberShip.mwav</value>
-    <value>/logout/logout.do</value>
-    <value>/login.do</value>
-   </list>
-  </property>
-			</bean>
-		</mvc:interceptor>
-		<mvc:interceptor>
-			<mvc:mapping path="/member/**" />
-			<bean id="loginInterceptor" class="net.common.logger.LoginInterceptor">	
-			</bean>
-		</mvc:interceptor>
-	</mvc:interceptors>
+<!-- 제외하고 싶을떄 http://krespo.net/192 -->
+<!-- 여러개 쓸때 http://kdsr2z0.github.io/spring_interceptor/ (순서대로실행) -->
+<mvc:interceptors>
+	<mvc:interceptor>
+		<mvc:mapping path="/**" />
+		<bean id="loggerInterceptor"
+			class="net.common.Interceptor.StatisticsInterceptor">
+		</bean>
+	</mvc:interceptor>
+	<mvc:interceptor>
+		<mvc:mapping path="/**" />
+		<bean id="authInterceptor"
+			class="net.common.Interceptor.AuthInterceptor">
+		<property name="urls">
+		<list>
+		<value>/CustomerService/MemberShip/MemberShip.mwav</value>
+		<value>/logout/logout.do</value>
+		<value>/login.do</value>
+		</list>
+		</property>
+		</bean>
+	</mvc:interceptor>
+</mvc:interceptors>
 
 <!-- @RequestMapping 어노테이션을 이용하여 컨트롤러와 매핑한다.
 DefaultAnnotationHandlerMapping은 URL 단위로 interceptor를 적용할 수 없는 듯 체크 필요! 
@@ -176,23 +187,23 @@ DefaultAnnotationHandlerMapping은 URL 단위로 interceptor를 적용할 수 �
 SimpleUrlAnnotationHandlerMapping은 @Controller 사용시에 url 단위로 Interceptor를 적용하기 위해 개발됬다.
 비슷한 고민과 비슷한 해결 방법을 제시한 분이 있다. Scott Murphy의 블로그를 참고하라.
  -->
-	<bean
-		class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
-		
-
-	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver"
-		p:order="1" />
-		
-	<bean id="jsonView"
-		class="org.springframework.web.servlet.view.json.MappingJacksonJsonView" />
+<bean
+	class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
 
 
-	<!-- tiles 
+<bean class="org.springframework.web.servlet.view.BeanNameViewResolver"
+	p:order="1" />
+
+<bean id="jsonView"
+	class="org.springframework.web.servlet.view.json.MappingJacksonJsonView" />
+
+
+<!-- tiles 
 	org.springframework.web.servlet.view.BeanNameViewResolver
 	org.springframework.web.servlet.view.tiles3.TilesViewResolver
 	org.springframework.web.servlet.view.UrlBasedViewResolver
 	-->
-	<!-- <bean id="tilesViewResolver"
+<!-- <bean id="tilesViewResolver"
 		class="org.springframework.web.servlet.view.tiles3.TilesViewResolver">
 		<property name="order" value="0"></property>
 	</bean>
@@ -209,27 +220,28 @@ SimpleUrlAnnotationHandlerMapping은 @Controller 사용시에 url 단위로 Inte
 
 
 
-	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
+<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
 		in the /WEB-INF/views directory -->
-	<!-- ViewResolver구요~ jsp와 name을 매핑시켜주는 녀석 Controller을 설명할 때, 서블릿 설정이 자동으로 
+<!-- ViewResolver구요~ jsp와 name을 매핑시켜주는 녀석 Controller을 설명할 때, 서블릿 설정이 자동으로 
 		prefix와 suffix를 붙인다고 해줬는데, 그 역할을 담당한다. 즉, 우리가 일일이 전체경로와 .jsp를 붙이지 않아도 되도록 
 		도와준다. -->
-	<!-- 위에 prefix로 컨트롤러로 넘겨주는 url 결정 만약 /WEB-INF/views 로 되어있다면 앞에 자동으로 붇는다. -->
-	<!-- tiles(161130)추가에 따라 order 1>2로 변경. order 이란 순서를 의미하는데타일즈를 위한 UrlBasedViewResolver가 
+<!-- 위에 prefix로 컨트롤러로 넘겨주는 url 결정 만약 /WEB-INF/views 로 되어있다면 앞에 자동으로 붇는다. -->
+<!-- tiles(161130)추가에 따라 order 1>2로 변경. order 이란 순서를 의미하는데타일즈를 위한 UrlBasedViewResolver가 
 		InternalResourceViewResolver보다 우선순위가 높아야 제대로 적용이된다. 이건 InternalResourceViewResolver는 
 		아니지만 어쨌든 -->
-	<bean class="org.springframework.web.servlet.view.UrlBasedViewResolver"
-		p:order="1" p:viewClass="org.springframework.web.servlet.view.JstlView"
-		p:prefix="/" p:suffix=".jsp">  <!-- prefix는 페이지의 기본 루트 // 페이지의 기본 확장자 -->
-	</bean>
+<bean class="org.springframework.web.servlet.view.UrlBasedViewResolver"
+	p:order="1" p:viewClass="org.springframework.web.servlet.view.JstlView"
+	p:prefix="/" p:suffix=".jsp">
+<!-- prefix는 페이지의 기본 루트 // 페이지의 기본 확장자 -->
+</bean>
 
 
-	<context:property-placeholder
-		location="classpath:googleProperties/datasource.properties" />
-	<context:property-placeholder
-		location="classpath:googleProperties/application.properties" />
+<context:property-placeholder
+	location="classpath:googleProperties/datasource.properties" />
+<context:property-placeholder
+	location="classpath:googleProperties/application.properties" />
 
-	<!-- http://m.blog.naver.com/mky1416/220647254648 
+<!-- http://m.blog.naver.com/mky1416/220647254648 
 	중요 해당 객체는 스프링에서 제공되는 테스트ㅌ
 		용이라서 실제운영환경에서는 심각한 문제 발생소지가 있다. 
 		http://cafe.naver.com/jjdev/2180
@@ -241,25 +253,26 @@ SimpleUrlAnnotationHandlerMapping은 @Controller 사용시에 url 단위로 Inte
 		value="select 1"/> </bean> -->
 
 
-	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
-		<constructor-arg index="0" ref="sqlSession" />
-	</bean>
-	
-	<bean id="member_tbl_VO" class="net.mwav.member.vo.Member_tbl_VO">
-	</bean>
+<bean id="sqlSessionTemplate"
+	class="org.mybatis.spring.SqlSessionTemplate">
+<constructor-arg index="0" ref="sqlSession" />
+</bean>
+
+<bean id="member_tbl_VO" class="net.mwav.member.vo.Member_tbl_VO">
+</bean>
 
 
-	<!-- 이쪽에서 하위 등록한 xml 등록해줘야한다. -->
-	<import resource="mvc.xml" />
+<!-- 이쪽에서 하위 등록한 xml 등록해줘야한다. -->
+<import resource="mvc.xml" />
 
-	<import resource="data.xml" />
+<import resource="data.xml" />
 
-	<import resource="spring-security.xml" />
+<import resource="spring-security.xml" />
 
 
-	<!-- <import resource="social.xml" /> -->
+<!-- <import resource="social.xml" /> -->
 
-	<!-- <import resource="social-security.xml" /> -->
+<!-- <import resource="social-security.xml" /> -->
 
 
 </beans>

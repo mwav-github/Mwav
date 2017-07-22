@@ -56,7 +56,7 @@
 				</ul>
 				<ul class="mgl3 nav navbar-nav navbar-right">
 					<!-- 일반로그인 부분 -->
-					<c:if test="${sessionScope.Member ne null }">
+					<c:if test="${sessionScope.member ne null }">
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
 							data-toggle="dropdown" data-toggle="tooltip"
 							data-placement="bottom"
@@ -91,7 +91,7 @@
 							<a href="/member/LogOut.mwav">LogOut</a>
 						</h5></li> -->
 					</c:if>
-					<c:if test="${sessionScope.Member eq null }">
+					<c:if test="${sessionScope.member eq null }">
 						<li><a href="/login.mwav"><i class="fa fa-user fa-lg"></i></a></li>
 						<li><a href="/MasterPage_1.mwav?mode=Default"><i
 								class="fa fa-user-plus fa-lg"></i></a></li>

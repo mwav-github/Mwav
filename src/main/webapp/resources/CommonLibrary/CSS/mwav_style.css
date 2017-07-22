@@ -21,8 +21,9 @@ figure.snip1174   {
    text-align:   left;
 
    margin:   10px;
+   margin-bottom : 40px;
 
-   width:   100%;
+   /*width:   100%;*/
 
    border-radius:   0px;
 
@@ -70,7 +71,6 @@ figure.snip1174   figcaption   {
 
    left:  0;
 
-
 }
 
 
@@ -95,7 +95,7 @@ figure.snip1174   h2   {
 
    font-size:   1.8em;
 
-
+   opacity:  0;
 }
 
 
@@ -106,7 +106,7 @@ figure.snip1174   p   {
    margin-bottom:   20px;
 
    line-height:   1.4em;
-
+   opacity:  0;
 
 }
 
@@ -210,6 +210,10 @@ figure.snip1174.hover   a   {
    opacity:  1;
 
 
+}
+
+figure.snip1174:hover p,  figure.snip1174:hover h2{
+   opacity:  1;
 }
 
 

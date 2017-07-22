@@ -93,6 +93,7 @@ public class CookieBox {
 		cookie.setMaxAge(maxAge);
 		return cookie;
 	}
+	
 
 	/**
 	 * 쿠키를 가져온다
@@ -123,8 +124,9 @@ public class CookieBox {
 	 * 
 	 * @param cookieKey
 	 * @return
+	 * @throws IOException 
 	 */
-	public Cookie deleteCookie(String cookieKey) {
+	public Cookie deleteCookie(String cookieKey) throws IOException {
 		Cookie cookie = null;
 		if (isExist(cookieKey)) {
 			cookie = getCookie(cookieKey);
@@ -150,7 +152,7 @@ public class CookieBox {
 	 * @param name
 	 * @return 존재 : true, 미존재 : false
 	 */
-	public boolean isExist(String name) {
+	public boolean isExist(String name) throws IOException  {
 		return cookieMap.get(name) != null;
 	}
 
