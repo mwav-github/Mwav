@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="highCharts">
+	
+	
+
+	<!--/*========================================수정========================================*/  -->
+	
+	
+	
+	<select id="selectListWeeklyUsers" resultType="net.common.charts.vo.SeriesVO">
+	<![CDATA[
+	      SELECT DATE_FORMAT(stStatisticsDt, '%W') AS `name`,
+          count(`statistics_id`) AS 'data'
+          FROM Statistics_tbl
+          WHERE TO_DAYS(NOW()) - TO_DAYS(stStatisticsDt) <= 7
+          GROUP BY `name`;
+ 
+	]]>
+	</select>	
+	<!--/*========================================삭제========================================*/  -->
+
+</mapper>

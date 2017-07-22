@@ -135,34 +135,35 @@
 						});
 
 					});
+</script>
+<script>
+window.onload = function() {
+	// 페이지 완전 로딩후 실행
+	var stClientScreen = '<c:out value="${requestScope.stClientScreen}" />';
+	//null 인경우 실행.
 
-	window.onload = function() {
-		// 페이지 완전 로딩후 실행
-		var stClientScreen = '<c:out value="${requestScope.stClientScreen}" />';
-		//null 인경우 실행.
+	console.log('stClientScreen' + stClientScreen);
+	if (stClientScreen == 'firstTime' && stClientScreen != null) {
+		//alert('들어왔다.')
+		stClientScreenUpdateAjax();
+	}
+}
+function stClientScreenUpdateAjax() {
+	var stClientScreenWidth = screen.width;
+	var stClientScreenHeight = screen.height;
 
-		console.log('stClientScreen' + stClientScreen);
-		if (stClientScreen == 'firstTime' && stClientScreen != null) {
-			alert('들어왔다.')
-			stClientScreenUpdateAjax();
+	//console.log("사용자 pc 해상도" + stClientScreen);
+	var URL = "stClientScreen=" + stClientScreenWidth + 'x'
+			+ stClientScreenHeight;
+	$.ajax({
+		url : "/statistics/stClientScreenUpdateAjax.mwav",
+		data : URL,
+		success : function(xmlStr) {
+			//alert('성공');
+		},
+		error : function(xhr, status, error) {
+			alert("에러발생");
 		}
-	}
-	function stClientScreenUpdateAjax() {
-		var stClientScreenWidth = screen.width;
-		var stClientScreenHeight = screen.height;
-
-		//console.log("사용자 pc 해상도" + stClientScreen);
-		var URL = "stClientScreen=" + stClientScreenWidth + 'x'
-				+ stClientScreenHeight;
-		$.ajax({
-			url : "/statistics/stClientScreenUpdateAjax.mwav",
-			data : URL,
-			success : function(xmlStr) {
-				//alert('성공');
-			},
-			error : function(xhr, status, error) {
-				alert("에러발생");
-			}
-		});
-	}
+	});
+}
 </script>

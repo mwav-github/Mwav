@@ -5,6 +5,7 @@
 <script src="//cdn.ckeditor.com/4.4.6/basic/ckeditor.js"></script>
 <!-- jQuery Version 1.11.0 -->
 <script src="/CommonLibrary/Javascript/Common.js"></script>
+<script src='https://www.google.com/recaptcha/api.js'></script>
 
 <!-- imsi -->
 <link
@@ -52,7 +53,7 @@
 			uqUserPhone.focus();
 			return false;
 		}
-		
+
 		var check_3 = emptyCheck(uqUserEmail, "이메일을 입력해주세요.");
 		check_3 = chkEmailPolicy(uqUserEmail.value, uqUserEmail);
 		if (check_3 == false) {
@@ -74,19 +75,18 @@
 			uqGroup.focus();
 			return false;
 		}
-		
+
 		var check_6 = emptyCheck(uqTitle, "제목을 입력해주세요.");
 		if (check_6 == false) {
 			uqTitle.focus();
 			return false;
 		}
-		
+
 		var check_7 = emptyCheck(uqContent, "내용을 입력해주세요.");
 		if (check_7 == false) {
 			uqContent.focus();
 			return false;
 		}
-		
 
 		var check = false;
 		// && check_4 == true 패스워드는 회원인경우 없으니까 
@@ -112,8 +112,9 @@
 		//==================
 
 		var check = reCheckForm(for1mname);
+		var robot_check = robot_check();
 
-		if (check == true) {
+		if (check == true && robot_check == true) {
 			//alert('11');
 
 			$
@@ -195,7 +196,8 @@
 
 <!-- line modal -->
 <div class="modal fade" id="Contact" tabindex="-1" role="dialog"
-	aria-labelledby="modalLabel" aria-hidden="true" style="overflow:hidden">
+	aria-labelledby="modalLabel" aria-hidden="true"
+	style="overflow: hidden">
 
 	<%--성공/실패 레이어 팝업 --%>
 	<div id="alert_success" class="alert alert-success alert-dismissable"
@@ -221,7 +223,8 @@
 			</div> -->
 			<div class="modal-body" style="overflow: auto; max-height: 500px;">
 
-				<form class="form-horizontal" id="QAForm">
+				<form class="form-horizontal" id="QAForm"
+					onSubmit="return robot_check();">
 					<input TYPE="hidden" name="uqStatus" value=""> <input
 						TYPE="hidden" name="before_Q_id" value="${before_Q_id }">
 					<fieldset>
@@ -354,6 +357,14 @@
 							</div>
 						</div>
 
+						<div class="form-group">
+							<div class="col-md-12">
+
+								<div class="g-recaptcha"
+									data-sitekey="6LcdRxoUAAAAAA4OI0FIN2bv2W0ersTRjqHJdLG-"></div>
+							</div>
+						</div>
+
 						<!-- Button 
 						<div class="form-group">
 							<label class="col-md-4 control-label" for="singlebutton"></label>
@@ -479,6 +490,13 @@ row 형태로 한줄 씩 한 후 ! enter 해준다.
 							<textarea class="form-control" rows="10" id="uqContent"
 								name="uqContent" placeholder="Enter Your Message *"></textarea>
 
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-md-12">
+
+							<div class="g-recaptcha"
+								data-sitekey="6LcdRxoUAAAAAA4OI0FIN2bv2W0ersTRjqHJdLG-"></div>
 						</div>
 					</div>
 					<div class="enter"></div>

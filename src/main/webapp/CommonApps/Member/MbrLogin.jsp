@@ -270,15 +270,7 @@
 		return false;
 	}
 
-	function robot_check() {
-		var recaptcha = grecaptcha.getResponse();
-		if (recaptcha.length == 0) {
-			alert('로봇이 아닌지 체크해주세요.');
-			return false;
-		} else {
-			return true
-		}
-	}
+	
 </script>
 
 <%--이것때문에 tooltip등이 오류가난다 --%>

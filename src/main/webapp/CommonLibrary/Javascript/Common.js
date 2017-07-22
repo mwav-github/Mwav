@@ -975,3 +975,13 @@ $(function() {
 });
 
 //별표 끝
+
+function robot_check() {
+	var recaptcha = grecaptcha.getResponse();
+	if (recaptcha.length == 0) {
+		alert('로봇이 아닌지 체크해주세요.');
+		return false;
+	} else {
+		return true
+	}
+}

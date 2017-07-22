@@ -1,15 +1,8 @@
 package net.common.common;
 
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -29,7 +22,30 @@ public class FrontCommonController {
 	/*
 	 * ========================================등록================================
 	 * ========
+	 * 
 	 */
+	String ext_url = null;
+	
+	@RequestMapping(value = "/Index.mwav")
+	public ModelAndView redirectIndexController(HttpServletRequest request) throws Exception {
+		ModelAndView mv = null;
+		try{
+		String url = request.getRequestURI();
+		int pos = url.lastIndexOf(".");
+		System.out.println("pos"+pos);
+		if(pos != -1){
+		ext_url = url.substring(0, pos);
+		}
+           mv = new ModelAndView(
+				ext_url);
+		}
+		
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		return mv;
+	}
+	
 	// 1번 bnsForm : Form 입력만 가능 (뒤로가기, list)
 	@RequestMapping(value = "/hightsofts/hightsofts.mwav")
 	// http://egloos.zum.com/nadostar/v/210497
@@ -103,7 +119,7 @@ public class FrontCommonController {
 		String url = request.getRequestURI();
 		int pos = url.lastIndexOf(".");
 		//String ext = url.substring(pos + 1);
-		String ext_url = url.substring(0, pos);
+		ext_url = url.substring(0, pos);
 		//System.out.println("확장자 제외" + ext);
 		//System.out.println("return URL"+ext_url);
 		ModelAndView mv = new ModelAndView(
@@ -119,8 +135,8 @@ public class FrontCommonController {
 		String url = request.getRequestURI();
 		int pos = url.lastIndexOf(".");
 		//String ext = url.substring(pos + 1);
-		String ext_url = url.substring(0, pos);
-		//System.out.println("확장자 제외" + ext);
+		ext_url = url.substring(0, pos);
+		//System.out.println("pos" + pos);
 		//System.out.println("return URL"+ext_url);
 		ModelAndView mv = new ModelAndView(
 				ext_url);
@@ -135,7 +151,7 @@ public class FrontCommonController {
 		String url = request.getRequestURI();
 		int pos = url.lastIndexOf(".");
 		//String ext = url.substring(pos + 1);
-		String ext_url = url.substring(0, pos);
+		ext_url = url.substring(0, pos);
 		//System.out.println("확장자 제외" + ext);
 		//System.out.println("return URL"+ext_url);
 		ModelAndView mv = new ModelAndView(
@@ -151,7 +167,7 @@ public class FrontCommonController {
 		String url = request.getRequestURI();
 		int pos = url.lastIndexOf(".");
 		//String ext = url.substring(pos + 1);
-		String ext_url = url.substring(0, pos);
+		ext_url = url.substring(0, pos);
 		//System.out.println("확장자 제외" + ext);
 		//System.out.println("return URL"+ext_url);
 		ModelAndView mv = new ModelAndView(
@@ -167,7 +183,7 @@ public class FrontCommonController {
 		String url = request.getRequestURI();
 		int pos = url.lastIndexOf(".");
 		//String ext = url.substring(pos + 1);
-		String ext_url = url.substring(0, pos);
+		ext_url = url.substring(0, pos);
 		//System.out.println("확장자 제외" + ext);
 		//System.out.println("return URL"+ext_url);
 		ModelAndView mv = new ModelAndView(

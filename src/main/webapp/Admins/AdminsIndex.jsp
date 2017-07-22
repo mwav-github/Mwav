@@ -7,7 +7,16 @@
 <html>
 <head>
 <jsp:include page="/PartsOfContent/Head_Import.jsp" flush="false" />
-
+<script src="https://code.highcharts.com/highcharts.src.js"></script>
+<script src="/CommonLibrary/Javascript/custom-chart.js"></script>
+<script type="text/javascript">
+        var contextPath = '<c:out value="${pageContext.request.contextPath}"/>';
+        $(document).ready(function() {
+            getRemoteDataDrawChart(contextPath + '/linechart1', createNewLineChart('chart1-container', getBaseChart()));
+            getRemoteDataDrawChart(contextPath + '/linechart2', createNewLineChart('chart2-container', getBaseChart()));
+            getRemoteDataDrawChart(contextPath + '/linechart3', createNewLineChart('chart3-container', getBaseColumnChart()));
+        });
+    </script>
 <%-- 
 1. 템플릿 : 참고하여 꼭 변경 http://wrapbootstrap.com/preview/WB0025522
                        http://startbootstrap.com/
@@ -185,6 +194,38 @@
 			<!-- /.row -->
 			<%--이미지 괄호 높이가 같아야 한다 아래는 500 x 250 으로 통일 즉 비율이 맞아야 함
 		--%>
+
+			<!-- Portfolio Section -->
+			<div class="row" id="IT_Products">
+				<div class="col-md-4">
+					<div class="panel panel-danger">
+						<div class="panel-heading">
+							<h3 class="panel-title">Highchart Chart 1</h3>
+						</div>
+						<div id="chart1-container"
+							style="min-width: 300px; max-width: 500px; height: 300px; margin: 0 auto"></div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							<h3 class="panel-title">Highchart Chart 2</h3>
+						</div>
+						<div id="chart2-container"
+							style="min-width: 300px; max-width: 500px; height: 300px; margin: 0 auto"></div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="panel panel-warning">
+						<div class="panel-heading">
+							<h3 class="panel-title">Highchart Chart 3</h3>
+						</div>
+						<div id="chart3-container"
+							style="min-width: 300px; max-width: 500px; height: 300px; margin: 0 auto"></div>
+					</div>
+				</div>
+			</div>
+
 			<!-- Portfolio Section -->
 			<div class="row" id="IT_Products">
 				<div class="col-md-12 col-sm-12">

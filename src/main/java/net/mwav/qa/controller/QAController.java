@@ -86,6 +86,7 @@ public class QAController {
 
 			commandMap.put("member_id", member_id);
 			commandMap.put("statistics_id", statistics_id);
+			System.out.println("member_id_QA"+member_id);
 			System.out.println("sdf"+statistics_id);
 
 			log.debug("인터셉터 테스트");
