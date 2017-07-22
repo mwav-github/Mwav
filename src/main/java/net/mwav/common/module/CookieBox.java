@@ -85,6 +85,7 @@ public class CookieBox {
 	 * @return cookie
 	 * @throws IOException
 	 */
+	
 	public static Cookie createCookie(String name, String value, String domain,
 			String path, int maxAge) throws IOException {
 		Cookie cookie = new Cookie(name, URLEncoder.encode(value, "utf-8"));
