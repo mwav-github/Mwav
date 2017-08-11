@@ -167,6 +167,7 @@ function stClientScreenUpdateAjax() {
 	});
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 </script>
 
@@ -272,6 +273,8 @@ https://stackoverflow.com/questions/1241947/how-do-i-show-multiple-recaptchas-on
         jQuery(this).attr('data-widget-id', widgetId);
     });
   };
+=======
+>>>>>>> parent of 7d85de2... 170811 통계쪽.
 =======
 >>>>>>> parent of 7d85de2... 170811 통계쪽.
 </script>
