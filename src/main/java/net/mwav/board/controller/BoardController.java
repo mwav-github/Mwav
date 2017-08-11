@@ -122,7 +122,7 @@ public class BoardController {
 			mv.addObject("page_header", null);
 
             //meta태그 이미지 
-			mv.addObject("meta_image", selectOneBnsView);
+			mv.addObject("meta_image", selectOneBnsView.get("bnRelatedLink"));
 			mv.addObject("selectOneBnsView", selectOneBnsView);
 		}
 
@@ -331,7 +331,7 @@ public class BoardController {
 			
 			
             //meta태그 이미지 
-			mv.addObject("meta_image", selectOneBuView);
+			mv.addObject("meta_image", selectOneBuView.get("buRelatedLink"));
 			mv.addObject("selectOneBuView", selectOneBuView);
 		}
 		System.out.println("view찍히낭 = " + mv);

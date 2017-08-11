@@ -117,7 +117,7 @@ public class StatisticsInterceptor extends HandlerInterceptorAdapter {
 						request, member_id, statistics_id, session_id);
 
 				log.info("statistics_id" + statistics_id);
-				System.out.println("처음이다.");
+				//System.out.println("처음이다.");
 				// 세션 및 쿠키 생성.
 				session.setAttribute("statistics_id", statistics_id);
 				request.setAttribute("stClientScreen", "firstTime");

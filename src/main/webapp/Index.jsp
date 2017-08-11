@@ -207,6 +207,14 @@
 					</a>
 					<%--<p>Contents :</p> --%>
 				</div>
+				<div class="col-xs-12 col-sm-6 col-md-3">
+					<!-- md >= 992 / sm >=768  2행에서 1-->
+					<a href="/CompanyItem/ITSolutions/OrgChart/OrgChart.mwav"> <img
+						class="img-responsive img-portfolio img-hover"
+						src="/CompanyItem/ITSolutions/Images/OrgChart(h250).png" alt="">
+					</a>
+					<%--<p>Contents :</p> --%>
+				</div>
 			</div>
 
 			<%-- 3행

@@ -21,17 +21,16 @@
 --%>
 
 <c:choose>
-	<c:when test="${requestScope.setTitle eq null }">
+	<c:when test="${requestScope.meta_image ne null }">
+		<meta property="og:image" content="${requestScope.meta_image }" />
+		<meta name="twitter:image" content="${requestScope.meta_image }" />
+		<%-- 트위터 카드에 보여줄 대표 이미지 URL--%>
+	</c:when>
+	<c:otherwise>
 		<meta property="og:image"
 			content="http://www.mwav.net/Images/CompanyLogos/CompanyLogo.jpg" />
 		<meta name="twitter:image"
 			content="http://www.mwav.net/Images/CompanyLogos/CompanyLogo.jpg" />
-		<%-- 트위터 카드에 보여줄 대표 이미지 URL--%>
-	</c:when>
-	<c:otherwise>
-		<meta property="og:image" content="${setTitle }" />
-		<meta name="twitter:image"
-			content="${setTitle }" />
 	</c:otherwise>
 </c:choose>
 

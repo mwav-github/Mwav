@@ -81,9 +81,12 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 				auth_url = request.getRequestURI().substring(0, 7); // 현재 URL
 				key_id = staff;
 			}
-			if (auth_url !=null && auth_url.equals("/Admins")) {
-				if (key_id == null || key_id.equals("")
-						|| key_id.equals("null")) {
+			if (auth_url != null && (auth_url.equals("/Admins") || auth_url.equals("/admins"))) {
+				System.out.println("staff"+key_id);
+				System.out.println("staff"+request.getRequestURI().equals("/admins/staff/stfLogin.mwav"));
+				
+				if (!(request.getRequestURI().equals("/admins/staff/stfLogin.mwav")) && (key_id == null || key_id.equals("")
+						|| key_id.equals("null"))) {
 				
 					/*[중요]
 					 http://enosent.tistory.com/34
@@ -107,6 +110,11 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 					response.sendRedirect("/Admins/CompanyMgr/Staff/StfLogin.mwav");
 
 					return false;
+				}else{
+					//staff 로그인한 상태 또는 로그인을 시도 (/admins/staff/stfLogin.mwav)
+					//위에서 !(auth_url.equals("/admins/staff/stfLogin.mwav") 체크 안하면 로그인 시도해도 그냥 로그인페이지로 리다이렉트
+					System.out.println("로그인상태 (staff)");
+					return true;
 				}
 			} else {
 				// 일반회원 관리
