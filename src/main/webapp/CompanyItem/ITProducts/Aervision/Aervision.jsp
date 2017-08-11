@@ -7,14 +7,14 @@
 <!-- Head_Import -->
 <!-- /////////// -->
 <jsp:include page="/PartsOfContent/Head_Import.jsp" flush="false" />
-<!-- /////////// 
+<!-- /////////// -->
 <meta property="fb:app_id" content="300013767010843" />
 <meta property="og:type" content="website" />
 <meta property="og:title" content="[Mwav.net] >> [Aervision]" />
 <meta property="og:url" content="http:/www.mwav.net/CompanyItem/ITProducts/Aervision/Aervision.jsp" />
 <meta property="og:description" content="[Mwav.net] >> [Aervision> Biometric authentication & computer vision & machine learning] - Unleash your infinite possibilities with IT Optimization!!" />
 <meta property="og:image" content="http:/www.mwav.net/CompanyItem/ITProducts/Images/AerVison(h250).png" />
--->
+
 <script>
 	$(document).ready(function() {
 		/* affix the navbar after scroll below header */

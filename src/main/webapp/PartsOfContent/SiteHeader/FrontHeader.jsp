@@ -44,7 +44,7 @@
 		<div class="mgt2 collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
 			<ul class="mgl3 nav navbar-nav lead">
-				<li><a href="/CompanyItem/ITSolutions/OrgChart/OrgChart.mwav"
+				<li><a href="/CompanyItem/ITProducts/OpenSRS/OpenSRS.mwav"
 					onclick="ga('send', 'event', 'GNB', 'click', 'ITSolutions');"><h4>IT
 							Solutions</h4></a></li>
 				<li><a href="/CompanyItem/ITProducts/Aervision/Aervision.mwav"
@@ -139,9 +139,9 @@
 						<h4>Get start your next awesome project</h4>
 					</div>
  --%>
-						<div class="col-md-9 col-md-push-3 col-xs-12 text-right block block-3" style="opacity:0.8;">
-							<h4 class="">IT Trends</h4>
-							<div class="bs-component" style="background-color: white;">
+						<div class="col-md-9 col-md-push-3 text-right block block-3" style="opacity:0.8;">
+							<h4 class="fontsize_20">IT Trends</h4>
+							<div class="bs-component fontsize_10" style="background-color: white;">
 								<jsp:include page="/board/bnsFrontList.mwav" flush="false" />
 							</div>
 							<%-- <div class="bs-component" style="background-color: white;">

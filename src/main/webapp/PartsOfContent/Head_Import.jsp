@@ -25,10 +25,6 @@
 <!-- Mwav CSS-->
 <link href="/resources/CommonLibrary/CSS/mwav_style.css"
 	rel="stylesheet">
-	
-<!-- Mwav Customize CSS -->
-<link href="/resources/CommonLibrary/CSS/mwav_customize.css" rel="stylesheet">
-	
 
 <link rel="stylesheet"
 	href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -45,6 +41,8 @@
 	rel="stylesheet">
 
 
+<!-- Customize CSS -->
+<link href="/resources/CommonLibrary/CSS/myStyle.css" rel="stylesheet">
 
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -168,6 +166,7 @@ function stClientScreenUpdateAjax() {
 		}
 	});
 }
+<<<<<<< HEAD
 
 </script>
 
@@ -273,4 +272,6 @@ https://stackoverflow.com/questions/1241947/how-do-i-show-multiple-recaptchas-on
         jQuery(this).attr('data-widget-id', widgetId);
     });
   };
+=======
+>>>>>>> parent of 7d85de2... 170811 통계쪽.
 </script>

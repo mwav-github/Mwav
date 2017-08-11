@@ -2,6 +2,16 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<script src="//cdn.ckeditor.com/4.4.6/basic/ckeditor.js"></script>
+<!-- jQuery Version 1.11.0 -->
+<script src="/CommonLibrary/Javascript/Common.js"></script>
+<script src='https://www.google.com/recaptcha/api.js'></script>
+
+<!-- imsi -->
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"
+	rel="stylesheet">
+
 
 <c:if test="${requestScope.check eq true }">
 	<script type="text/javascript">
@@ -77,17 +87,11 @@
 			uqContent.focus();
 			return false;
 		}
-		//alert('d'+formname.recaptcha.attr('data-widget-id'));
-		//jQuery('#your_recaptcha_box_id').attr('data-widget-id')
-		var robotCheck = robot_check($(formname).find("[name=recaptcha]").attr('data-widget-id'));
-		if (robotCheck == false) {
-			return false;
-		}
 
 		var check = false;
 		// && check_4 == true 패스워드는 회원인경우 없으니까 
 		if (check_1 == true && check_2 == true && check_3 == true
-				&& check_5 == true && check_6 == true && check_7 == true && robotCheck == true) {
+				&& check_5 == true && check_6 == true && check_7 == true) {
 			check = true;
 			return true;
 
@@ -108,8 +112,9 @@
 		//==================
 
 		var check = reCheckForm(for1mname);
+		var robot_check = robot_check();
 
-		if (check == true) {
+		if (check == true && robot_check == true) {
 			//alert('11');
 
 			$
@@ -218,7 +223,8 @@
 			</div> -->
 			<div class="modal-body" style="overflow: auto; max-height: 500px;">
 
-				<form class="form-horizontal" id="QAForm">
+				<form class="form-horizontal" id="QAForm"
+					onSubmit="return robot_check();">
 					<input TYPE="hidden" name="uqStatus" value=""> <input
 						TYPE="hidden" name="before_Q_id" value="${before_Q_id }">
 					<fieldset>
@@ -291,13 +297,13 @@
 							<div class="col-md-8">
 								<input id="uqUserEmail" name="uqUserEmail"
 									placeholder="Enter Your E mail" class="form-control input-md"
-									type="text" value="${sessionScope.member.mbrEmail}">
+									type="text" value="">
 
 							</div>
 						</div>
 
 
-						<c:if test="${sessionScope.member eq null }">
+						<c:if test="${sessionScope.Member eq null }">
 
 							<%--비회원인 경우 --%>
 							<div class="form-group">
@@ -305,7 +311,7 @@
 									*</label>
 								<div class="col-md-8">
 									<input id="uqUserPw" name="uqUserPw"
-										placeholder="Enter Your Password"
+										placeholder="Enter Your E mail"
 										class="form-control input-md caps_lockchk" type="password"
 										value="" required>
 
@@ -352,11 +358,10 @@
 						</div>
 
 						<div class="form-group">
-							<div class="col-md-3"></div>
-							<div class="col-md-8">
+							<div class="col-md-12">
 
-								<div class="g-recaptcha" name="recaptcha" 
-									></div>
+								<div class="g-recaptcha"
+									data-sitekey="6LcdRxoUAAAAAA4OI0FIN2bv2W0ersTRjqHJdLG-"></div>
 							</div>
 						</div>
 
@@ -417,17 +422,17 @@ row 형태로 한줄 씩 한 후 ! enter 해준다.
 						<div class="col-md-4 col-sm-4">
 							<label for="state">Name*</label> <input id="uqUserName"
 								name="uqUserName" placeholder="Enter Your Full Name"
-								class="form-control " type="text" value="">
+								class="form-control " type="text">
 						</div>
 						<div class="col-md-4 col-sm-4">
 							<label for="email">Email*</label> <input id="uqUserEmail"
 								name="uqUserEmail" placeholder="Enter Your E mail"
-								class="form-control" type="text" value="${param.uqUserEmail } ${sessionScope.member.mbrEmail}">
+								class="form-control" type="text" value="${param.uqUserEmail }">
 						</div>
 						<div class="col-md-4 col-sm-4">
 							<label for="mobile number">Mobile Number*</label> <input
 								id="uqUserPhone" name="uqUserPhone" class="form-control"
-								placeholder="Mobile" required type="text" value="${sessionScope.member.mbrCellPhone}">
+								placeholder="Mobile" required type="text">
 
 						</div>
 
@@ -486,16 +491,18 @@ row 형태로 한줄 씩 한 후 ! enter 해준다.
 								name="uqContent" placeholder="Enter Your Message *"></textarea>
 
 						</div>
-					<div class="form-group mgt1_8">
-						<div class="col-xs-12 col-md-6 col-md-push-6">
-								<div class="g-recaptcha" name="recaptcha" ></div>
+					</div>
+					<div class="form-group">
+						<div class="col-md-12">
+
+							<div class="g-recaptcha"
+								data-sitekey="6LcdRxoUAAAAAA4OI0FIN2bv2W0ersTRjqHJdLG-"></div>
 						</div>
 					</div>
-					</div>
-					
+					<div class="enter"></div>
 					<div class="col-md-12 col-sm-12">
 						<div class="pull-right">
-							<input type="submit" class="btn btn-primary" value="Submit" />
+							<input type="submit" class="btn btn-primary" value="Send" />
 						</div>
 					</div>
 				</div>
