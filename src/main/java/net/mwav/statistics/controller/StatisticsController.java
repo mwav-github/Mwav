@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import net.common.common.CommandMap;
+import net.mwav.member.vo.Member_tbl_VO;
 import net.mwav.statistics.service.StatisticsService;
 import net.mwav.statistics.vo.StatisticsLogVO;
 import net.mwav.statistics.vo.StatisticsVO;
@@ -35,14 +36,26 @@ public class StatisticsController {
 	@Resource(name = "statisticsService")
 	private StatisticsService statisticsService;
 
-	public String insertFirstStatics(HttpServletRequest request,
-			String member_id, String statistics_id, String session_id)
+	@RequestMapping(value = "/statistics/stInsert.mwav")
+	public @ResponseBody void insertFirstStatics(HttpServletRequest request, CommandMap commandMap)
 			throws Exception {
 
+
+		HttpSession session = request.getSession();
 		Map<String, Object> staticMap = cou.getHeadersInfo(request);
+		try {
 		// 실 IP
 		String realIp = cou.getClientIP(request);
 		// staticMap.put("IP", realIp);
+		String member_id = null;
+		String stClientScreen = (String) commandMap.get("stClientScreen");
+		
+		String session_id = request.getSession().getId();
+		
+		Member_tbl_VO member_tbl_VO = (Member_tbl_VO) session.getAttribute("member");
+		if (member_tbl_VO != null) {
+			member_id = String.valueOf(member_tbl_VO.getMember_id());
+		}
 
 		cou.selectMap(staticMap);
 
@@ -59,7 +72,7 @@ public class StatisticsController {
 		String st_id = null;
 		if (statistics_id == null || statistics_id == "") {
 			st_id = statisticsService.selectNextPk();
-
+			session.setAttribute("statistics_id", st_id);
 			// 세션생성
 
 		} else {
@@ -67,7 +80,6 @@ public class StatisticsController {
 			st_id = statistics_id;
 		}
 
-		try {
 			StatisticsVO vo = new StatisticsVO();
 
 			// http://helols.tistory.com/15
@@ -135,7 +147,7 @@ public class StatisticsController {
 			// String stClientScreen = (String)
 			// request.getAttribute("screenSize");
 			// (String) staticMap.get("browser") 사용자 브라우저
-			vo.setStClientScreen(null);
+			vo.setStClientScreen(stClientScreen);
 			// 유져CPU (브라우저 와 운영체제 정보포함 분리 희망시 - getUserAgentDetail()) 사용
 			vo.setStHTTP_UA_CPU((String) staticMap.get("os"));
 			//
@@ -151,23 +163,22 @@ public class StatisticsController {
 		 * System.out.println("Request-URI"+staticMap.get("Request-URI"));
 		 * System.out.println("Request-URI"+staticMap.get("Request-URI"));
 		 */
+		
+	
 
-		return st_id;
 
 	}
+	@RequestMapping(value = "/statistics/slInsert.mwav")
+	public @ResponseBody  void insertStatics(HttpServletRequest request,
+			CommandMap commandMap) throws Exception {
 
-	public StatisticsVO insertStatics(HttpServletRequest request,
-			String statistics_id) throws Exception {
-
-		String st_id = null;
-		st_id = statistics_id;
-		String getURI = request.getRequestURI();
-
-		System.out.println("st_id" + st_id);
+		String statistics_id = null;
+		statistics_id = (String) commandMap.get("statistics_id");
+		
 		try {
 			StatisticsLogVO log_vo = new StatisticsLogVO();
 
-			log_vo.setStatistics_id(Long.parseLong(st_id));
+			log_vo.setStatistics_id(Long.parseLong(statistics_id));
 			Timestamp stamp = new Timestamp(System.currentTimeMillis());
 			log_vo.setSlStatLogDt(stamp);
 
@@ -200,9 +211,6 @@ public class StatisticsController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-		return null;
-
 	}
 
 	@RequestMapping(value = "/statistics/stClientScreenUpdateAjax.mwav")

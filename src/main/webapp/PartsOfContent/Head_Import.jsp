@@ -25,10 +25,6 @@
 <!-- Mwav CSS-->
 <link href="/resources/CommonLibrary/CSS/mwav_style.css"
 	rel="stylesheet">
-	
-<!-- Mwav Customize CSS -->
-<link href="/resources/CommonLibrary/CSS/mwav_customize.css" rel="stylesheet">
-	
 
 <link rel="stylesheet"
 	href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -45,6 +41,8 @@
 	rel="stylesheet">
 
 
+<!-- Customize CSS -->
+<link href="/resources/CommonLibrary/CSS/myStyle.css" rel="stylesheet">
 
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -171,6 +169,92 @@ function stClientScreenUpdateAjax() {
 
 </script>
 
+<c:set value="${sessionScope.statistics_id}" var="statistics_id"/>
+<c:set value="${sessionScope.member}" var="member"/>
+
+<script>
+window.onload = function() {
+	// 페이지 완전 로딩후 실행
+	var statistics_id	 = '<c:out value="${statistics_id}" />';
+	var member = '<c:out value="${member}" />';
+	//null 인경우 실행.
+
+	alert('d'+gfn_isNull(statistics_id.trim()))
+	if (gfn_isNull(statistics_id.trim())) {
+		alert('들어왔다.')
+		stInsert();
+	}else{
+		alert('1들어왔다.')
+		
+		slInsert();
+	}
+}
+
+function stInsert() {
+	var stClientScreenWidth = screen.width;
+	var stClientScreenHeight = screen.height;
+	//var statistics_id	 = '<c:out value="${statistics_id}" />';
+	var member = '<c:out value="${member}" />';
+
+	var stClientScreen = stClientScreenWidth + 'x' + stClientScreenHeight;
+	
+	var data = "stClientScreen=" + stClientScreen + '&' + "member=" + member ;
+	alert('data'+data);
+	$.ajax({
+		url : "/statistics/stInsert.mwav",
+		data : data,
+		contentType: "application/json",
+		dataType : "json",
+		success : function(xmlStr) {
+			//alert('성공');
+		},
+		error : function(xhr, status, error) {
+			//alert("에러발생");
+		}
+	});
+}
+
+function slInsert() {
+	var statistics_id	 = '<c:out value="${statistics_id}" />';
+	alert('statistics_id'+statistics_id);
+	var data = "statistics_id=" + statistics_id;
+	
+	$.ajax({
+		url : "/statistics/slInsert.mwav",
+		data : data,
+		contentType: "application/json",
+		dataType : "json",
+		success : function(xmlStr) {
+			//alert('성공');
+		},
+		error : function(xhr, status, error) {
+			//alert("에러발생");
+		}
+	});
+}
+
+function stClientScreenUpdateAjax() {
+	var stClientScreenWidth = screen.width;
+	var stClientScreenHeight = screen.height;
+
+	//console.log("사용자 pc 해상도" + stClientScreen);
+	var URL = "stClientScreen=" + stClientScreenWidth + 'x'
+			+ stClientScreenHeight;
+	$.ajax({
+		url : "/statistics/stClientScreenUpdateAjax.mwav",
+		data : URL,
+		success : function(xmlStr) {
+			//alert('성공');
+		},
+		error : function(xhr, status, error) {
+			alert("에러발생");
+		}
+	});
+}
+
+</script>
+
+
 <%-- recapcha의 경우 한 페이지 하나만 사용 가능한 한계를 아래 스크립트로 극복.
 https://stackoverflow.com/questions/1241947/how-do-i-show-multiple-recaptchas-on-a-single-page
  --%>
@@ -187,4 +271,5 @@ https://stackoverflow.com/questions/1241947/how-do-i-show-multiple-recaptchas-on
         jQuery(this).attr('data-widget-id', widgetId);
     });
   };
+
 </script>

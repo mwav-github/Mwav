@@ -36,7 +36,7 @@
 			<div class="mgt2 collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="mgl3 nav navbar-nav">
-					<li><a href="/CompanyItem/ITSolutions/OrgChart/OrgChart.mwav"
+					<li><a href="/CompanyItem/ITProducts/OpenSRS/OpenSRS.mwav"
 						onclick="ga('send', 'event', 'GNB', 'click', 'ITSolutions');"><h4>IT
 								Solutions</h4></a></li>
 					<li><a href="/CompanyItem/ITProducts/Aervision/Aervision.mwav"

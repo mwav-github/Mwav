@@ -1620,13 +1620,13 @@ Reference: http://avexdesigns.com/responsive-youtube-embed/
 }
 
 /*margin top 5% margin bottom 5% */
-.mgtb5 {
+.mgtb3 {
 	margin-top: 5% !important;
 	margin-bottom: 5% !important;
 }
 
 /*margin top 7% margin bottom 7% */
-.mgtb7 {
+.mgtb3 {
 	margin-top: 7% !important;
 	margin-bottom: 7% !important;
 }
@@ -1714,17 +1714,3 @@ Reference: http://avexdesigns.com/responsive-youtube-embed/
 	}
 }
 * */
-
-
-/* mwav_multiple menu 에서 우측 아이콘  
- * https://codepen.io/anon/pen/jLbeXX
- * 
- * 위의 내용 응용 봐서 삭제 . 적용 위치 : ITProductsLeftMenu.jsp 파일내 적용
- * */
-.multiple_leftMenu a[aria-expanded="true"]:after {
-  content: "\e113";
-}
-
-.multiple_leftMenu a[aria-expanded="false"]:after {
-  content: "\e114";
-}

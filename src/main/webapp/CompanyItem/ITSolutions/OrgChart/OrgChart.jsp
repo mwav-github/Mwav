@@ -105,7 +105,9 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 
 				<!-- 2_OrgChart -->
 				<div class="row pgtb7">
-					<div class="col-xs-12 col-sm-7 col-sm-push-5 col-md-7 col-md-push-5"
+
+					<div
+						class="col-xs-12 col-sm-7 col-sm-push-5 col-md-7 col-md-push-5"
 						style="color: #78828D;">
 						<p class="col-md-12">
 							<img class="img-responsive col-md-8 "
