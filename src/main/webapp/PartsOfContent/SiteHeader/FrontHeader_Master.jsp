@@ -92,7 +92,7 @@
 						</h5></li> -->
 					</c:if>
 					<c:if test="${sessionScope.member eq null }">
-						<li><a href="/login.mwav"><i class="fa fa-user fa-lg"></i></a></li>
+						<li><a href="/login/post"><i class="fa fa-user fa-lg"></i></a></li>
 						<li><a href="/MasterPage_1.mwav?mode=Default"><i
 								class="fa fa-user-plus fa-lg"></i></a></li>
 					</c:if>

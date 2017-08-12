@@ -286,9 +286,14 @@
 		<form name="login_form" action="/member/Login.mwav" role="form"
 			class='form-horizontal' method="post"
 			onsubmit="return re_check(document.login_form);">
-			<%--get문으로 넘어온 것은 param으로 받는다. --%>
-			<input type="hidden" name="returnUrl" value="${param.returnUrl }" />
+			<%--get문으로 넘어온 것은 param으로 받는다. "${param.returnUrl}" --%>
+			<input type="hidden" name="returnUrl" value="${param.returnUrl}" />
 			<div class="enter"></div>
+			<div class="form-group">
+				<label> <input type="checkbox" name="autoLogin" id="remember">
+					Remember login <c:out value="${param.returnUrl}"/>
+				</label>
+			</div>
 			<div class="form-group">
 				<input type="text" name="mbrLoginId"
 					class="form-control input-lg caps_lockchk"

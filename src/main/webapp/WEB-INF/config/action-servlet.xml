@@ -177,6 +177,13 @@
 		</property>
 		</bean>
 	</mvc:interceptor>
+	<mvc:interceptor>
+			  <mvc:mapping path="/CompanyItem/**"/>	
+			  <mvc:mapping path="/login/post"/>
+			  <!--<mvc:mapping path="/member/**" /> -->
+			<bean id="loginInterceptor" class="net.common.Interceptor.LoginInterceptor">	
+			</bean>
+		</mvc:interceptor> 
 </mvc:interceptors>
 
 <!-- @RequestMapping 어노테이션을 이용하여 컨트롤러와 매핑한다.

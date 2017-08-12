@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -29,6 +30,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.util.WebUtils;
 
 /**
  * 프로세스 1) 비밀번호 찾기 : mbrTempLoginPwUpdate -> mbrTempLoginPwSeek -> //
@@ -531,14 +533,18 @@ public class MemberController {
 
 	// 3번 추후 return 필요없을ㄷ스 고민
 	@RequestMapping(value = "/member/LogOut.mwav")
-	public ModelAndView logout(CommandMap commandMap, HttpServletRequest request)
+	public ModelAndView logout(HttpServletRequest request, HttpSession session,HttpServletResponse response)
 			throws Exception {
-
 		ModelAndView mv = new ModelAndView("/Index");
-		// * action-servlet.xml에서 위에 .jsp 설정해줘서 위의 CommonApps 부터 되는거
-		HttpSession session = request.getSession();
-		session.invalidate();
-		log.info("로그아웃");
+		Object obj = session.getAttribute("member");
+		 if (obj != null) {
+			  memberService.updateAutoLoginDel(request,session,response);
+			  session.removeAttribute("member");
+		      session.invalidate();
+		      log.info("세선제거 성공");			      
+		 }else{
+				log.info("세션에 로그인 정보다 없어 로그아웃 하지 못하였습니다.");
+		 }
 
 		mode = "SDMbrLogout";
 		request.setAttribute("mode", mode);
@@ -546,14 +552,21 @@ public class MemberController {
 		return mv;
 	}
 
+	//로그인 폼 보여주고 리스트로 돌아감
+	@RequestMapping(value="/login/post")
+	public String loginForm(HttpServletRequest request){
+
+		return "forward:"+request.getContextPath()+"/Index.mwav";
+	}
 	/*
 	 * logincheck = 1 : 정상로그인 logincheck = 2 : 비밀번호 틀림 logincheck = 3 : 아이디 존재하지
 	 * 않음 logincheck = 5 : DB 조회시 NULL (임시패스워드 발급 단계에서 중간하였을때 포함) logincheck = 6
 	 * : 탈퇴하지 않음 logincheck = 7 : 탈퇴
 	 */
+	
 	@RequestMapping(value = "/member/Login.mwav")
 	public ModelAndView selectLogin(CommandMap commandMap,
-			HttpServletRequest request) throws Exception {
+			HttpServletRequest request,HttpServletResponse response) throws Exception {
 
 		HttpSession session = request.getSession();
 		// * action-servlet.xml에서 위에 .jsp 설정해줘서 위의 CommonApps 부터 되는거
@@ -561,20 +574,18 @@ public class MemberController {
 		System.out.println("여기는?");
 		Map<String, Object> memberLogin = null;
 		memberLogin = memberService.selectLogin(commandMap.getMap());
-
-		member_tbl_VO = new Member_tbl_VO((int) memberLogin.get("member_id"),
-				(String) memberLogin.get("mbrLoginId"),
-				(String) memberLogin.get("mbrLoginPw"),
-				(String) memberLogin.get("mbrTempLoginPw"),
-				(String) memberLogin.get("mbrFirstName"),
-				(String) memberLogin.get("mbrMiddleName"),
-				(String) memberLogin.get("mbrLastName"),
-				(String) memberLogin.get("mbrEmail"),
-				(String) memberLogin.get("mbrCellPhone"),
-				(Boolean) memberLogin.get("mbrAddrFlag"),
-				(String) memberLogin.get("mbrZipcode"),
-				(String) memberLogin.get("mbrAddress"));
-
+		System.out.println("여기는  멤버로그인 찍기전");
+		if(memberLogin!=null)
+		member_tbl_VO = new Member_tbl_VO((int)memberLogin.get("member_id"),
+				(String)memberLogin.get("mbrLoginId"), (String)memberLogin.get("mbrLoginPw"),
+				(String)memberLogin.get("mbrTempLoginPw"),
+				(String)memberLogin.get("mbrFirstName"),
+				(String)memberLogin.get("mbrMiddleName"),
+				(String)memberLogin.get("mbrLastName"), (String)memberLogin.get("mbrEmail"),
+				(String)memberLogin.get("mbrCellPhone"),
+				(Boolean)memberLogin.get("mbrAddrFlag"), (String)memberLogin.get("mbrZipcode"),
+				(String)memberLogin.get("mbrAddress"));
+		System.out.println("여기는  return URL 찍기전");
 		String returnUrl = null;
 		String returnUrl_imsi = null;
 		returnUrl_imsi = (String) commandMap.get("returnUrl");
@@ -627,6 +638,20 @@ public class MemberController {
 				// 세션 지정.
 
 				session.setAttribute("member", member_tbl_VO);
+				 if (commandMap.get("autoLogin")!=null&&(boolean)commandMap.get("autoLogin").equals("on")) {         
+			    	  System.out.println("autologin실행됨");
+			          int amount = 60 * 60 * 24 * 14; //일주일 기간설정
+			          HashMap<String,Object> map = new HashMap<String,Object>();
+			          map.put("member_id", (int) memberLogin.get("member_id"));
+			          map.put("mbrAutoLoginDt", new Date(System.currentTimeMillis() + (1000 * amount)));
+			          memberService.updateAutoLogin(map);
+			          //쿠키박스
+			          Cookie loginCookie = new Cookie("autoLogin", memberLogin.get("member_id").toString());
+			          loginCookie.setPath("/");
+			          loginCookie.setMaxAge(60 * 60 * 24 * 14);
+			          response.addCookie(loginCookie);
+				 }
+				
 				// session.setAttribute("mbrLoginId", mbrLoginId);
 				// session.setAttribute("member_id", member_id);
 				System.out.println("로그인성공");
@@ -659,6 +684,7 @@ public class MemberController {
 		return mv;
 
 	}
+
 
 	/*
 	 * // 7번 추후
