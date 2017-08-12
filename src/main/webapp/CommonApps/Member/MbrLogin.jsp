@@ -36,12 +36,6 @@
 		history.go(-1);
 	</script>
 </c:if>
-<c:if test="${requestScope.loginCheck eq 6 }">
-	<script type="text/javascript">
-		alert('reCAPTCHA 오류입니다. 다시 시도해주세요.');
-		history.go(-1);
-	</script>
-</c:if>
 <c:if test="${requestScope.loginCheck eq 5 }">
 	<script type="text/javascript">
 		alert('임시패스워드입니다. 비밀번호 변경 후 로그인해주세요.');
@@ -270,7 +264,15 @@
 		return false;
 	}
 
-	
+	function robot_check() {
+		var recaptcha = grecaptcha.getResponse();
+		if (recaptcha.length == 0) {
+			alert('로봇이 아닌지 체크해주세요.');
+			return false;
+		} else {
+			return true
+		}
+	}
 </script>
 
 <%--이것때문에 tooltip등이 오류가난다 --%>
@@ -324,22 +326,22 @@
 		</form>
 
 
-		<%--소셜 로그인 연동부분 
-		중요사항 : col-md-12 외 나머지 것들 col-sm-12 등을 넣으면 버튼 동작이 하지 않음.
-		--%>
+		<%--소셜 로그인 연동부분 --%>
 		<!-- GOOGLE SIGNIN -->
+
+
 		<div class="col-md-12 ">
 			<form action="<c:url value="/signin/google.mwav"/>" method="POST"
 				onSubmit="return robot_check();">
 				<!-- <button type="submit" class="btn btn-danger btn-block">
 						<i class="fa fa-google-plus"></i>
 					</button> -->
-				<div class="form-group">
+					<div class="form-group">
 					<button type="submit" class="btn btn-block btn-social btn-google">
 						<span class="fa fa-google-plus"></span> <span class="">Sign
 							in with Google</span>
 					</button>
-				</div>
+					</div>
 				<input type="hidden" name="${_csrf.parameterName}"
 					value="${_csrf.token}" /> <input type="hidden" name="scope"
 					value="email profile" />
@@ -353,11 +355,11 @@
 				<!-- <button type="submit" class="btn btn-primary btn-block">
 						<i class="fa fa-facebook"></i>
 					</button> -->
-				<div class="form-group">
-					<button type="submit" class="btn btn-block btn-social btn-facebook">
-						<span class="fa fa-facebook"></span> <span class=""> Sign
-							in with Facebook</span>
-					</button>
+<div class="form-group">
+				<button type="submit" class="btn btn-block btn-social btn-facebook">
+					<span class="fa fa-facebook"></span> <span class=""> Sign in
+						with Facebook</span>
+				</button>
 				</div>
 				<input type="hidden" name="${_csrf.parameterName}"
 					value="${_csrf.token}" />
@@ -372,18 +374,18 @@
 				<!-- <button type="submit" class="btn btn-danger btn-block">
 						<i class="fa fa-linkedin"></i>
 					</button> -->
-				<div class="form-group">
-					<button type="submit" class="btn btn-block btn-social btn-linkedin">
-						<span class="fa fa-linkedin"></span> <span class="">Sign in
-							with LinkedIn</span>
-					</button>
+<div class="form-group">
+				<button type="submit" class="btn btn-block btn-social btn-linkedin">
+					<span class="fa fa-linkedin"></span> <span class="">Sign in
+						with LinkedIn</span>
+				</button>
 				</div>
 				<input type="hidden" name="${_csrf.parameterName}"
 					value="${_csrf.token}" />
 			</form>
 		</div>
-
-
+		
+	
 		<div class="col-md-12 mgb3">
 			<form action="<c:url value="/signin/twitter.mwav"/>" method="POST"
 				onSubmit="return robot_check();">
