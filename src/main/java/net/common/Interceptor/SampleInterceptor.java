@@ -1,4 +1,4 @@
-package net.common.Interceptor;
+/*package net.common.Interceptor;
 
 import java.net.InetAddress;
 import java.util.List;
@@ -47,7 +47,7 @@ public class SampleInterceptor extends HandlerInterceptorAdapter {
 	// http://hellogk.tistory.com/m/post/90
 	// http://viralpatel.net/blogs/spring-mvc-interceptor-example/
 
-	/*
+	
 	 * preHandle() : Controller가 수행되기 전 호출 (이후 Controller를 수행할지 여부를 boolean으로
 	 * return 함)
 	 * 
@@ -68,15 +68,15 @@ public class SampleInterceptor extends HandlerInterceptorAdapter {
 	 * 
 	 * afterCompletion void 1. 컨트롤러 로직 실행 된 후 호출 됨 2. 컨트롤러 실행 도중이나 view 페이지 실행
 	 * 도중 error 발생 해도 실행됨 3. 공통 Exception 처리 로직 작성시 많이 쓰임
-	 */
+	 
 
-	/*
+	
 	 * 최초 actionservlet 에서 mapping 가능하다 ~!! 즉 분류별로 나눠서 관리 가능
-	 */
+	 
 
-	/*
+	
 	 * redirect 와 response 차이
-	 */
+	 
 
 	@Override
 	public boolean preHandle(HttpServletRequest request,
@@ -109,21 +109,21 @@ public class SampleInterceptor extends HandlerInterceptorAdapter {
 
 			System.out.println("루트 경로" + uploadRootPath);
 			// DomReadXMLFile.xmlParser("/xConfig/general.xml.config");
-			/*
+			
 			 * DomReadXMLFile.xmlParser(uploadRootPath +
 			 * "/xConfig/general.xml.config");
-			 */
+			 
 
 			// http://hyunssssss.tistory.com/243
 
 			InetAddress localMachine = InetAddress.getLocalHost();
 			String localMachineName = localMachine.getHostName();
-			/*System.out.println("Hostname of local machine: "
-					+ localMachine.getHostName());*/
+			System.out.println("Hostname of local machine: "
+					+ localMachine.getHostName());
 
 			// statistics_id.equals("") ||statistics_id == null 순서 반대로 하면,
 			// nullpointerException 발생 생성전에 비교하니
-		/*	if (!(localMachineName.equals("DESKTOP-T79AHJS"))) {*/
+			if (!(localMachineName.equals("DESKTOP-T79AHJS"))) {
 				if (statistics_id == null || statistics_id.equals("")) {
 					//System.out.println("열로들어온다. 세션없는경우");
 
@@ -133,7 +133,7 @@ public class SampleInterceptor extends HandlerInterceptorAdapter {
 					//System.out.println("열로들어온다. 세션있는경우");
 					statisticsController.insertStatics(request, statistics_id);
 				}
-	/*		}*/
+			}
 				
 			
 
@@ -147,25 +147,25 @@ public class SampleInterceptor extends HandlerInterceptorAdapter {
 			}
 			log.info("urls.size()" + urls.size());
 
-			/*
+			
 			 * int pos = url.lastIndexOf("."); String ext = url.substring(pos +
 			 * 1); System.out.println("확장자 제외" + ext);
 			 * 
 			 * if(ext.equals("jsp")){ System.out.println("jsp 파일이다.");
 			 * statisticsController.redirectController(request, ext); }
-			 */
+			 
 
 			for (int i = 0; i < urls.size(); i++) {
 				//System.out.println("== URL : " + urls.get(i)+ " ============================");
 				if (url.matches(urls.get(i))) {
 					{
-						/*
+						
 						 * request.getRequestURI(); //프로젝트경로부터 파일까지의 경로값을 얻어옴
 						 * (/test/index.jsp) request.getContextPath(); //프로젝트의
 						 * 경로값만 가져옴(/test) request.getRequestURL(); //전체 경로를 가져옴
 						 * (http://localhost:8080/test/index.jsp)
 						 * request.getServletPath(); //파일명 (/index.jsp)
-						 */
+						 
 						//System.out.println("== 인증 체크가 필요 있는 URL ============================");
 						//System.out.println("== URL : " + urls.get(i)+ " ============================");
 						String id = "";
@@ -185,26 +185,26 @@ public class SampleInterceptor extends HandlerInterceptorAdapter {
 								//System.out.println("이쪽으로 리다이렉트");
 								// response.sendRedirect("/CommonApps/Member/MbrLogin.jsp");
 								// // 로그인 페이지로 리다이렉트 한다.
-								/*
+								
 								 * 중요
 								 * 
 								 * .jsp -> jsp는 서블릿을 안탄다 즉 서블릿을 안타는 대상은 포워딩이 불가
 								 * !! 밑에 redirect는 되나
-								 */
-								/*System.out
+								 
+								System.out
 										.println("리턴url"
 												+ uploadRootPath
-												+ "MasterPage.jsp?mode=SMbrLogin&returnUrl=");*/
+												+ "MasterPage.jsp?mode=SMbrLogin&returnUrl=");
 								response.sendRedirect("/MasterPage.jsp?mode=SMbrLogin&returnUrl="
 										+ returnUrl);
 								// response.sendRedirect("/hightsofts/hightsofts.mwav);
 								// return false;
-								/*
+								
 								 * RequestDispatcher rd =
 								 * request.getRequestDispatcher
 								 * ("/Admins/CompanyMgr/Staff/StfLogin.jsp" );
 								 * rd.forward(request, response);
-								 */
+								 
 								return false;
 								// statisticsController.redirectController(request);
 								// return false;
@@ -220,7 +220,7 @@ public class SampleInterceptor extends HandlerInterceptorAdapter {
 			e.printStackTrace();
 		}
 
-		/*
+		
 		 * String URL = request.getRequestURL().toString(); String URI =
 		 * request.getRequestURI().toString(); String command_1 =
 		 * URI.substring(0, 6); String command_2 = URI.substring(0, 7);
@@ -247,7 +247,7 @@ public class SampleInterceptor extends HandlerInterceptorAdapter {
 		 * http://kdsr2z0.github.io/response_sendRedirect/ // return false; //}
 		 * 
 		 * }
-		 */
+		 
 
 		return true;
 	}
@@ -270,4 +270,4 @@ public class SampleInterceptor extends HandlerInterceptorAdapter {
 
 	}
 
-}
+}*/

@@ -169,6 +169,7 @@ public class StatisticsController {
 
 			log_vo.setStatistics_id(Long.parseLong(st_id));
 			Timestamp stamp = new Timestamp(System.currentTimeMillis());
+			System.out.println("stamp"+stamp);
 			log_vo.setSlStatLogDt(stamp);
 
 			String prePageName = null;
