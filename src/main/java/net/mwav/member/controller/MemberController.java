@@ -640,7 +640,7 @@ public class MemberController {
 				session.setAttribute("member", member_tbl_VO);
 				 if (commandMap.get("autoLogin")!=null&&(boolean)commandMap.get("autoLogin").equals("on")) {         
 			    	  System.out.println("autologin실행됨");
-			          int amount = 60 * 60 * 24 * 7; //일주일 기간설정
+			          int amount = 60 * 60 * 24 * 14; //일주일 기간설정
 			          HashMap<String,Object> map = new HashMap<String,Object>();
 			          map.put("member_id", (int) memberLogin.get("member_id"));
 			          map.put("mbrAutoLoginDt", new Date(System.currentTimeMillis() + (1000 * amount)));
@@ -648,7 +648,7 @@ public class MemberController {
 			          //쿠키박스
 			          Cookie loginCookie = new Cookie("autoLogin", memberLogin.get("member_id").toString());
 			          loginCookie.setPath("/");
-			          loginCookie.setMaxAge(60 * 60 * 24 * 7);
+			          loginCookie.setMaxAge(60 * 60 * 24 * 14);
 			          response.addCookie(loginCookie);
 				 }
 				
