@@ -256,7 +256,8 @@
 <script>
 	function re_check(form) {
 
-		var robot_flag = robot_check();
+		var robot_flag = robot_check($(form).find("[name=recaptcha]").attr('data-widget-id'));
+ 	
 		if (robot_flag == true) {
 			if (emptyCheck(form.mbrLoginId, "아이디를 입력해주세요.") == true
 					&& emptyCheck(form.mbrLoginPw, "비밀번호를 입력해주세요.") == true) {
@@ -269,6 +270,17 @@
 		}
 		return false;
 	}
+	
+		function re_snsCheck() {
+		
+				var robot_flag = robot_check($("form[name='login_form']").find("[name=recaptcha]").attr('data-widget-id'));
+				if (robot_flag == true) {
+					return true;
+				} else {
+					return false;
+				}
+				return false;
+			}
 
 	
 </script>
@@ -323,7 +335,7 @@
           data-size="invisible"></div> --%>
 				<%--visible --%>
 				<div class="g-recaptcha"
-					data-sitekey="6LcdRxoUAAAAAA4OI0FIN2bv2W0ersTRjqHJdLG-"
+					name="recaptcha"
 					style="transform: scale(0.88); -webkit-transform: scale(0.88); transform-origin: 0 0; -webkit-transform-origin: 0 0;"></div>
 			</div>
 		</form>
@@ -335,7 +347,7 @@
 		<!-- GOOGLE SIGNIN -->
 		<div class="col-md-12 ">
 			<form action="<c:url value="/signin/google.mwav"/>" method="POST"
-				onSubmit="return robot_check();">
+				onSubmit="return re_snsCheck();">
 				<!-- <button type="submit" class="btn btn-danger btn-block">
 						<i class="fa fa-google-plus"></i>
 					</button> -->
@@ -354,7 +366,7 @@
 		<!-- facebook SIGNIN -->
 		<div class="col-md-12">
 			<form action="<c:url value="/signin/facebook.mwav"/>" method="POST"
-				onSubmit="return robot_check();">
+				onSubmit="return re_snsCheck();">
 				<!-- <button type="submit" class="btn btn-primary btn-block">
 						<i class="fa fa-facebook"></i>
 					</button> -->
@@ -373,7 +385,7 @@
 		<!-- LINKEDIN SIGNIN -->
 		<div class=" col-md-12">
 			<form action="<c:url value="/signin/linkedin.mwav"/>" method="POST"
-				onSubmit="return robot_check();">
+				onSubmit="return re_snsCheck();">
 				<!-- <button type="submit" class="btn btn-danger btn-block">
 						<i class="fa fa-linkedin"></i>
 					</button> -->
@@ -391,7 +403,7 @@
 
 		<div class="col-md-12 mgb3">
 			<form action="<c:url value="/signin/twitter.mwav"/>" method="POST"
-				onSubmit="return robot_check();">
+				onSubmit="return re_snsCheck();">
 				<!-- <button type="submit" class="btn btn-info btn-block">
 						<i class="fa fa-twitter"></i>
 					</button> -->
@@ -474,7 +486,7 @@
           data-size="invisible"></div> --%>
 				<%--visible --%>
 				<div class="g-recaptcha"
-					data-sitekey="6LcdRxoUAAAAAA4OI0FIN2bv2W0ersTRjqHJdLG-"></div>
+					name="recaptcha"></div>
 			</div>
 		</div>
 		<div class="form-group">
@@ -505,5 +517,4 @@
 			</div>
 		</div>
 	</form>
->>>>>>> 70cd8c358581c043a4a1ea730d45f5864daed872
 </c:if>

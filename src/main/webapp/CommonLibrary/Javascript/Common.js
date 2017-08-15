@@ -405,7 +405,7 @@ function resizeImageSize() {
 
 function res_Text() {
 	// 선호 해상도 (이미지가 정상적으로 보이는 기준점 해상도-자동화 예정)
-	var preferredSize = 1280 * 720;
+	var preferredSize = 1366 * 768;
 
 	var secW = $(window).width();
 	var secH = $(window).height();
@@ -421,7 +421,7 @@ function res_Text() {
 	var newFontSize = 0;
 
 	// 선호 폰트 사이즈 (자동화 예정)
-	var preferredFontSize = [ 612, 302, 204, 183, 142, 102 ]; // 선호폰트 사이즈 %
+	var preferredFontSize = [ 612, 302, 204, 183, 142, 115 ,102 ]; // 선호폰트 사이즈 %
 	// (/102 하면 em)
 	
 	// 큰 폰트 (기존 60px)
@@ -444,8 +444,13 @@ function res_Text() {
 	newFontSize = (preferredFontSize[4] * scalePercentage) / 100;
 	$(".fontsize_14").css("font-size", newFontSize + 'em');
 
-	// 작은 폰트 (기존 10px)
+	// 작은 폰트 (기존 12px)
 	newFontSize = (preferredFontSize[5] * scalePercentage) / 100;
+	$(".fontsize_12").css("font-size", newFontSize + 'em');
+
+	
+	// 작은 폰트 (기존 10px)
+	newFontSize = (preferredFontSize[6] * scalePercentage) / 100;
 	$(".fontsize_10").css("font-size", newFontSize + 'em');
 }
 

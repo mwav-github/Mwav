@@ -167,3 +167,21 @@ function stClientScreenUpdateAjax() {
 	});
 }
 </script>
+
+<%-- recapcha의 경우 한 페이지 하나만 사용 가능한 한계를 아래 스크립트로 극복.
+https://stackoverflow.com/questions/1241947/how-do-i-show-multiple-recaptchas-on-a-single-page
+ 
+ Recapcha 
+     두번들어가는 경우 오류발생.
+     https://stackoverflow.com/questions/37297348/uncaught-error-recaptcha-placeholder-element-must-be-empty--%>
+ 
+<script src='https://www.google.com/recaptcha/api.js?onload=CaptchaCallback&render=explicit' async defer></script>
+
+<script type="text/javascript">
+ var CaptchaCallback = function() {
+   $('.g-recaptcha').each(function(index, el) {
+   	var widgetId = grecaptcha.render(el, {'sitekey' : '6LcdRxoUAAAAAA4OI0FIN2bv2W0ersTRjqHJdLG-'});
+       jQuery(this).attr('data-widget-id', widgetId);
+   });
+ };
+ </script>
