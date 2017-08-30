@@ -2,15 +2,26 @@ package net.common.charts.service;
 
 import net.common.charts.vo.DataVO;
 import net.common.charts.vo.SeriesVO;
+import net.common.charts.vo.SeriesVO_Arrary;
 import net.common.charts.dao.HighChartsDAO;
+import net.mwav.framework.DateLib;
+
 import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
+
 import javax.annotation.Resource;
+import javax.inject.Inject;
 
 @Service
 public class HighChartsService {
+	
+	@Inject
+	DateLib dateLib; 
+	
 	
 	@Resource(name = "highChartsDAO")
 	private HighChartsDAO HighChartsDAO;
@@ -22,6 +33,8 @@ public class HighChartsService {
         list.add(new SeriesVO("New York", new double[] {0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5}));
         list.add(new SeriesVO("London", new double[] {3.9, 4.2, 5.7, 8.5, 12.9, 15.2, 15.0, 16.6, 14.2, 10.3, 6.6, 4.8}));
 
+        //System.out.println("d2"+dateLib.convertWeek("SUN"));
+        
         String[] categories = new String[] {"9 Jan '13", "8 Feb '13","5 Mar '13","12 Apr '13","14 May '13","21 Jun '13","30 Jul '13","8 Aug '13","5 Sep '13","17 Oct '13","23 Nov '13","5 Dec '13"};
         return new DataVO("chart1-container", "LineChart Title", "통계", "Run Dates", Arrays.asList(categories), list);
     }
@@ -38,11 +51,26 @@ public class HighChartsService {
 
     public DataVO selectListWeeklyUsers() {
      
-    	List<SeriesVO> list = HighChartsDAO.selectListWeeklyUsers();
-       
+    	List<SeriesVO_Arrary> list = HighChartsDAO.selectListWeeklyUsers();
+
+    	double[] nums = new double[list.size()];
+    	String[] day = new String[list.size()];
+    	for(int i = 0; i < list.size(); i++){
+    		nums[i] = list.get(i).getData();
+    		day[i] = list.get(i).getName();
+    		System.out.println("1x"+ list.get(i).getName());
+    		System.out.println("2x"+ list.get(i).getData());
+    		//System.out.println("x"+ x);
+    	}
+    	//double x[] = list.toArray();
+    	List<SeriesVO> list_2 = new ArrayList<SeriesVO>();
+
+        list_2.add(new SeriesVO("Munich", nums));
         
-        String[] categories = new String[] {"4 Jan '13", "14 Feb '13","15 Mar '13","11 Apr '13","19 May '13","23 Jun '13","3 Jul '13","8 Aug '13","5 Sep '13","17 Oct '13","23 Nov '13","5 Dec '13"};
-        return new DataVO("chart3-container", "LineChart Title", "통계", "Run Dates", Arrays.asList(categories), list);
+    	
+        
+        //String[] categories = new String[] {"Mont", "14 Feb '13","15 Mar '13","11 Apr '13","19 May '13","23 Jun '13","3 Jul '13","8 Aug '13","5 Sep '13","17 Oct '13","23 Nov '13","5 Dec '13"};
+        return new DataVO("chart3-container", "LineChart Title", "통계", "Run Dates", Arrays.asList(day), list_2);
     }
 
 }

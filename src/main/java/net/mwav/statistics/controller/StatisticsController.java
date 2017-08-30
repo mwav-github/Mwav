@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -21,6 +22,8 @@ import net.mwav.statistics.vo.StatisticsLogVO;
 import net.mwav.statistics.vo.StatisticsVO;
 import net.mwav.common.module.Common_Utils;
 
+import net.mwav.framework.MathLib;
+
 @Controller
 public class StatisticsController {
 	Logger log = Logger.getLogger(this.getClass());
@@ -28,6 +31,9 @@ public class StatisticsController {
 	@Autowired
 	private HttpServletRequest request;
 
+	@Inject
+	MathLib mathLib;
+	
 	static Common_Utils cou = new Common_Utils();
 	String mode;
 	String statistics_id;
@@ -46,15 +52,7 @@ public class StatisticsController {
 
 		cou.selectMap(staticMap);
 
-		int m_id = 0;
-
-		System.out.println("member_id" + member_id);
-		// string.valueof 로 member_id == "null"
-		if (member_id == null || member_id == "" || member_id == "null") {
-			m_id = 0;
-		} else {
-			m_id = Integer.valueOf(member_id);
-		}
+		
 
 		String st_id = null;
 		if (statistics_id == null || statistics_id == "") {
@@ -69,18 +67,28 @@ public class StatisticsController {
 
 		try {
 			StatisticsVO vo = new StatisticsVO();
-
+		
 			// http://helols.tistory.com/15
 			// http://jhleed.tistory.com/43
 			vo.setStatistics_id(Long.parseLong(st_id));
 			// 유져Screen
 
-			vo.setStMember_id(m_id);
+			int m_id = 0;
+
+			// string.valueof 로 member_id == "null"
+			if (member_id == null || member_id == "" || member_id == "null") {
+				// null 인경우 아무것도 넣지 않는다. m_id = 0;
+			} else {
+				m_id = Integer.valueOf(member_id);
+				vo.setStMember_id(m_id);
+			}
+			
 
 			// 우리 서버내의 페이지이름
-			vo.setStPageName(request.getServletPath());
+			String stPageName = (String) request.getAttribute("stPageName");
+			vo.setStPageName(stPageName);
+			
 			// 이전페이지; ex) 유니텔검색엔진
-
 			String prePageName = null;
 			String referer = null;
 			referer = request.getHeader("Referer");
@@ -92,10 +100,10 @@ public class StatisticsController {
 			// urlReferrer.PathAndQuery = 211.238.38.238 어느 페이지에서 왔노?
 			vo.setStUrlReferrer(referer);
 
-			// 프로모터 PK_id
-			vo.setStPromoterId(Integer.parseInt("123"));
+			// 프로모터 PK_id  (위의 member_id 처럼 비교 필요)
+			//vo.setStPromoterId();
 			// 무슨내용인가?
-			vo.setStPromoterType('A');
+			//vo.setStPromoterType('');
 			// 세션아이디
 			vo.setStSessionId(session_id);
 
@@ -116,7 +124,6 @@ public class StatisticsController {
 			// urlReferrer.Host = 211.238.38.238 어느 서버에서 왔노?
 			vo.setStUrlReferrerHost(request.getServerName());
 
-			vo.setStUrlReferrerHost(request.getServerName());
 			// 둘중 몰로할지 고민 request.getServerName() : http://mwav.net or localhost
 			// request.getLocalAddr() : 127.0.0.1
 			// http, shttp, ftp...
@@ -130,6 +137,7 @@ public class StatisticsController {
 
 			// 통계적용일
 			Timestamp stamp = new Timestamp(System.currentTimeMillis());
+			System.out.println("테스트"+mathLib.getRandomNum(0, 20));
 			vo.setStStatisticsDt(stamp);
 
 			// String stClientScreen = (String)
@@ -179,7 +187,8 @@ public class StatisticsController {
 				prePageName = request.getHeader("Referer").substring(
 						request.getHeader("Referer").lastIndexOf("/"));
 			}
-			log_vo.setSlPageName(prePageName);
+			String slPageName = (String) request.getAttribute("slPageName");
+			log_vo.setSlPageName(slPageName);
 
 			// url.Host; 어느서버 URL이 인기가 있는가?
 			log_vo.setSlUrlHost(request.getRemoteHost());

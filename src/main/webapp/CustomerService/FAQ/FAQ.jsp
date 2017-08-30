@@ -177,7 +177,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 
 												<small> 회원가입 시 [이미 가입되어 있는 정보입니다.] 라고 나오는 경우 이전에
 													회원가입 하신 사실을 잊으셨거나 제휴사이트를 통해 가입하신 경우가 많습니다. <br />이 경우 <a
-													href="/MasterPage.jsp?mode=SMbrLogin#IDPWSeek">아이디 찾기
+													href="/MasterPage.mwav?mode=SMbrLogin#IDPWSeek">아이디 찾기
 														또는 비밀번호 찾기</a> 메뉴를 통하여 고객님의 정보를 확인하실 수 있습니다. 만약 확인이 되지 않으시는
 													경우, 문의게시판으로 자세한 정보 입력 후 질의부탁드립니다.
 												</small>

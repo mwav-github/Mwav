@@ -27,16 +27,17 @@ container 안에 포함시키면된다.
 				value="${VselectListBuList.bUsers_id }">
 			<div class="row">
 				<div class="col-md-12">
-					
+
 					<h4 style="color: #23527c !important;">
 						<strong><a
-							href="javascript:window.location.href='/board/buView.mwav?bUsers_id=${VselectListBnsList.bUsers_id}'">${VselectListBnsList.buTitle}</a></strong>
+							href="javascript:window.location.href='/board/buView.mwav?bUsers_id=${VselectListBuList.bUsers_id}'">${VselectListBuList.buTitle}</a></strong>
 					</h4>
+					<p style="color: #78828D;">${VselectListBuList.buSubTitle}
+						Last modified -- ${VselectListBuList.fmbuInsertDt}</p>
+					<%-- <h6 class="pull-right">
+						<span class="glyphicon glyphicon-calendar" aria-hidden="true"> ${VselectListBnsList.fmbnInsertDt}</span>
+					</h6> --%>
 
-					<p style="color: #78828D;">${VselectListBnsList.buSubTitle}</p>
-					<h6 class="pull-right">
-						<span class="glyphicon glyphicon-calendar" aria-hidden="true"> ${VselectListBnsList.fmbuInsertDt}</span>
-					</h6>
 				</div>
 			</div>
 			<div class="enter"></div>
@@ -57,7 +58,8 @@ container 안에 포함시키면된다.
 
 				<c:if test="${pagingVO.startPage > pagingVO.pageBlock}">
 					<li><a
-						href="/board/buList.mwav?pageNum=${pagingVO.startPage - pagingVO.pageBlock}"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
+						href="/board/buList.mwav?pageNum=${pagingVO.startPage - pagingVO.pageBlock}"><span
+							class="glyphicon glyphicon-chevron-left"></span></a></li>
 				</c:if>
 				<c:forEach var="i" begin="${pagingVO.startPage}"
 					end="${pagingVO.endPage}">
@@ -65,7 +67,8 @@ container 안에 포함시키면된다.
 				</c:forEach>
 				<c:if test="${pagingVO.endPage < pagingVO.pageCount}">
 					<li><a
-						href="/board/buList.mwav?pageNum=${pagingVO.startPage + pagingVO.pageBlock}"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+						href="/board/buList.mwav?pageNum=${pagingVO.startPage + pagingVO.pageBlock}"><span
+							class="glyphicon glyphicon-chevron-right"></span></a></li>
 				</c:if>
 				<!-- <li><a href="">&laquo;</a></li>
 			<li class="active"><a href="#">1</a></li>

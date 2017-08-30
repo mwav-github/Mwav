@@ -12,9 +12,9 @@
 <script type="text/javascript">
         var contextPath = '<c:out value="${pageContext.request.contextPath}"/>';
         $(document).ready(function() {
-            getRemoteDataDrawChart(contextPath + '/linechart1', createNewLineChart('chart1-container', getBaseChart()));
-            getRemoteDataDrawChart(contextPath + '/linechart2', createNewLineChart('chart2-container', getBaseChart()));
-            getRemoteDataDrawChart(contextPath + '/linechart3', createNewLineChart('chart3-container', getBaseColumnChart()));
+            getRemoteDataDrawChart(contextPath + '/linechart1.chart', createNewLineChart('chart1-container', getBaseChart()));
+            getRemoteDataDrawChart(contextPath + '/linechart2.chart', createNewLineChart('chart2-container', getBaseChart()));
+            getRemoteDataDrawChart(contextPath + '/linechart3.chart', createNewLineChart('chart3-container', getBaseLineChart()));
         });
     </script>
 <%-- 
@@ -77,7 +77,7 @@
 	<jsp:include page="/Admins/AdminsHeader.jsp" flush="false" />
 
 	<%-- Page Content (슬라이드 쇼 제외 실제 본문 내용)--%>
-	<div class="row" style="background: url(/zImages/bg.png) #eee;">
+	<div class="row" style="background: url(/Admins/zImages/bg.png) #eee;">
 		<div class="container">
 			<%-- Fluid container : .container 로 콘텐츠를 감싸는 것으로 페이지의 콘텐츠를 쉽게 중앙으로 가져오세요. 
 		                       .container 는 우리의 그리드 시스템에 맞는 다양한 미디어 쿼리 분기점에서 max-width 가 설정되어 있습니다. 

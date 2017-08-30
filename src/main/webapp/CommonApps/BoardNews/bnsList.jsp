@@ -74,10 +74,10 @@ container 안에 포함시키면된다.
 							href="javascript:window.location.href='/board/bnsView.mwav?bNews_id=${VselectListBnsList.bNews_id}'">${VselectListBnsList.bnTitle}</a></strong>
 					</h4>
 
-					<p style="color: #78828D;">${VselectListBnsList.bnSubTitle}</p>
-					<h6 class="pull-right">
+					<p style="color: #78828D;">${VselectListBnsList.bnSubTitle} Last modified -- ${VselectListBnsList.fmbnInsertDt}</p>
+					<%-- <h6 class="pull-right">
 						<span class="glyphicon glyphicon-calendar" aria-hidden="true"> ${VselectListBnsList.fmbnInsertDt}</span>
-					</h6>
+					</h6> --%>
 				</div>
 			</div>
 			<div class="enter"></div>

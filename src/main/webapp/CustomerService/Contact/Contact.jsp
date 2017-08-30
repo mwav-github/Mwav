@@ -8,8 +8,7 @@
 <!-- /////////// -->
 <jsp:include page="/PartsOfContent/Head_Import.jsp" flush="false" />
 <!-- /////////// -->
-<link href="/resources/JsFramework/Bootstrap/bootstrap-social.css"
-	rel="stylesheet">
+
 </head>
 <%--http://bootsnipp.com/snippets/featured/responsive-team-profiles-with-social-links-free --%>
 <body>
@@ -74,106 +73,139 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					<div class="col-lg-12">
 						<h2 class="page-header mwav_leftText">Contacts</h2>
 					</div>
-					
-						<div class="col-xs-12 col-sm-4 col-md-4">
-							<div class="well well-sm">
-								<div class="row">
-									<div class="col-xs-2 col-sm-2 col-md-2"></div>
-									<div class="col-xs-10 col-sm-10 col-md-10">
-										<h4>
-											CEO (Lewis Kim) 
-										</h4>
-										<small><cite title="Seoul, KOREA">Seoul, KOREA
-												<i class="glyphicon glyphicon-map-marker"> </i>
-										</cite></small>
-										<p>
-											<i class="glyphicon glyphicon-envelope"></i>
-											Lewis.Kim@mwav.net <br /> <i
-												class="glyphicon glyphicon-gift"></i> June 02, 1975
-										</p>
-									</div>
-								</div>
+
+					<div class="col-xs-12 col-sm-4 col-md-4">
+						<div class="news">
+							<div class="title">
+								<%-- <i class="fa fa-user-o" aria-hidden="true"
+									style="text-align:center; font-size: 3rem; color: #D8D8D8; -webkit-transition: all .3s ease-in-out; transition: all .3s ease-in-out;"></i> --%>
+								<br>
+								<h1>Lewis Kim</h1>
+								<br>
 							</div>
+							<p class="description">
+								<strong>Chief Executive Officer</strong> <br><br> <small><cite
+									title="Source Title">Seoul, KOREA <i
+										class="glyphicon glyphicon-map-marker"> </i>
+								</cite></small><br /> <%-- <small><i class="fa fa-envelope-o"
+									aria-hidden="true"></i></small> Lewis.Kim@mwav.net <br />  --%><small><i
+									class="fa fa-calendar-o" aria-hidden="true"></i> </small> June 02, 1975
+
+							</p>
+							<p class="more">
+								<a href="#" data-type="S" data-id="101" class="qaModal_Contact"
+									data-toggle="modal" data-target="#Contact"> Contact </a> <i
+									class="fa fa-angle-right" aria-hidden="true"></i>
+							</p>
 						</div>
-						<div class="col-xs-12 col-sm-4 col-md-4">
-							<div class="well well-sm">
-								<div class="row">
-									<div class="col-xs-2 col-sm-2 col-md-2"></div>
-									<div class="col-xs-10 col-sm-10 col-md-10">
-										<h4>
-											CTO (James Lee) 
-										</h4>
-										<small><cite title="Seoul, KOREA">Seoul, KOREA
-												<i class="glyphicon glyphicon-map-marker"> </i>
-										</cite></small>
-										<p>
-											<i class="glyphicon glyphicon-envelope"></i>James.Lee@mwav.net
-											<br /> <i class="glyphicon glyphicon-gift"></i> May 02, 1970
-										</p>
-									</div>
-								</div>
+						<div class="enter"></div>
+					</div>
+
+					<div class="col-xs-12 col-sm-4 col-md-4">
+						<div class="news">
+							<div class="title">
+								<%-- <i class="fa fa-user-o" aria-hidden="true"
+									style="text-align:center; font-size: 3rem; color: #D8D8D8; -webkit-transition: all .3s ease-in-out; transition: all .3s ease-in-out;"></i> --%>
+								<br>
+								<h1>James Lee</h1>
+								<br>
 							</div>
+							<p class="description">
+								<strong>Chief Technical Officer</strong> <br/><br/> <small><cite
+									title="Source Title">Seoul, KOREA <i
+										class="glyphicon glyphicon-map-marker"> </i>
+								</cite></small><br /> <small><i
+									class="fa fa-calendar-o" aria-hidden="true"></i> </small> May 02, 1970
+
+							</p>
+							<p class="more">
+								<a href="#" data-type="S" data-id="102" class="qaModal_Contact"
+									data-toggle="modal" data-target="#Contact"> Contact </a> <i
+									class="fa fa-angle-right" aria-hidden="true"></i>
+							</p>
 						</div>
-						<div class="col-xs-12 col-sm-4 col-md-4">
-							<div class="well well-sm">
-								<div class="row">
-									<div class="col-xs-2 col-sm-2 col-md-2"></div>
-									<div class="col-xs-10 col-sm-10 col-md-10">
-										<h4>
-											CMO (Alex Chae) 
-										</h4>
-										<small><cite title="Seoul, KOREA">Seoul, KOREA
-												<i class="glyphicon glyphicon-map-marker"> </i>
-										</cite></small>
-										<p>
-											<i class="glyphicon glyphicon-envelope"></i>
-											Alex.Chae@mwav.net <br /> <i
-												class="glyphicon glyphicon-gift"></i> June 02, 1975
-										</p>
-									</div>
-								</div>
+						<div class="enter"></div>
+					</div>
+
+					<div class="col-xs-12 col-sm-4 col-md-4">
+						<div class="news">
+							<div class="title">
+								<%-- <i class="fa fa-user-o" aria-hidden="true"
+									style="text-align:center; font-size: 3rem; color: #D8D8D8; -webkit-transition: all .3s ease-in-out; transition: all .3s ease-in-out;"></i> --%>
+								<br>
+								<h1>Alex Chae</h1>
+								<br>
 							</div>
+							<p class="description">
+								<strong>Chief Marketing Officer</strong> <br/><br/> <small><cite
+									title="Source Title">Seoul, KOREA <i
+										class="glyphicon glyphicon-map-marker"> </i>
+								</cite></small><br /> <%-- <small><i class="fa fa-envelope-o"
+									aria-hidden="true"></i></small> Alex.Chae@mwav.net <br /> --%> <small><i
+									class="fa fa-calendar-o" aria-hidden="true"></i> </small> June 02, 1975
+
+							</p>
+							<p class="more">
+								<a href="#" data-type="S" data-id="103" class="qaModal_Contact"
+									data-toggle="modal" data-target="#Contact"> Contact </a> <i
+									class="fa fa-angle-right" aria-hidden="true"></i>
+							</p>
 						</div>
-						<div class="col-xs-12 col-sm-4 col-md-4">
-							<div class="well well-sm">
-								<div class="row">
-									<div class="col-xs-2 col-sm-2 col-md-2"></div>
-									<div class="col-xs-10 col-sm-10 col-md-10">
-										<h4>
-											CTO (Evan Martin) 
-										</h4>
-										<small><cite title="Seoul, KOREA">Seoul, KOREA
-												<i class="glyphicon glyphicon-map-marker"> </i>
-										</cite></small>
-										<p>
-											<i class="glyphicon glyphicon-envelope"></i>
-											Evan.Martin@mwav.net <br /> <i
-												class="glyphicon glyphicon-gift"></i> June 01, 1970
-										</p>
-									</div>
-								</div>
+						<div class="enter"></div>
+					</div>
+
+					<div class="col-xs-12 col-sm-4 col-md-4">
+						<div class="news">
+							<div class="title">
+								<%-- <i class="fa fa-user-o" aria-hidden="true"
+									style="text-align:center; font-size: 3rem; color: #D8D8D8; -webkit-transition: all .3s ease-in-out; transition: all .3s ease-in-out;"></i> --%>
+								<br>
+								<h1>Evan Martin</h1>
+								<br>
 							</div>
+							<p class="description">
+								<strong>Chief Operation Officer</strong> <br/><br/> <small><cite
+									title="Source Title">Seoul, KOREA <i
+										class="glyphicon glyphicon-map-marker"> </i>
+								</cite></small><br /> <small><i
+									class="fa fa-calendar-o" aria-hidden="true"></i> </small> June 01, 1970
+
+							</p>
+							<p class="more">
+								<a href="#" data-type="S" data-id="104" class="qaModal_Contact"
+									data-toggle="modal" data-target="#Contact"> Contact </a> <i
+									class="fa fa-angle-right" aria-hidden="true"></i>
+							</p>
 						</div>
-						<div class="col-xs-12 col-sm-4 col-md-4">
-							<div class="well well-sm">
-								<div class="row">
-									<div class="col-xs-2 col-sm-2 col-md-2"></div>
-									<div class="col-xs-10 col-sm-10 col-md-10">
-										<h4>
-											CIO (Peter J) 
-										</h4>
-										<small><cite title="Seoul, KOREA">Seoul, KOREA
-												<i class="glyphicon glyphicon-map-marker"> </i>
-										</cite></small>
-										<p>
-											<i class="glyphicon glyphicon-envelope"></i>
-											PeterJ.Cho@mwav.net <br /> <i
-												class="glyphicon glyphicon-gift"></i> January 07, 1971
-										</p>
-									</div>
-								</div>
+						<div class="enter"></div>
+					</div>
+
+					<div class="col-xs-12 col-sm-4 col-md-4">
+						<div class="news">
+							<div class="title">
+								<%-- <i class="fa fa-user-o" aria-hidden="true"
+									style="text-align:center; font-size: 3rem; color: #D8D8D8; -webkit-transition: all .3s ease-in-out; transition: all .3s ease-in-out;"></i> --%>
+								<br>
+								<h1>Peter J</h1>
+								<br>
 							</div>
+							<p class="description">
+								<strong>Chief Information Officer</strong> <br/><br/> <small><cite
+									title="Source Title">Seoul, KOREA <i
+										class="glyphicon glyphicon-map-marker"> </i>
+								</cite></small><br/> <small><i
+									class="fa fa-calendar-o" aria-hidden="true"></i> </small> January 07,
+								1971
+
+							</p>
+							<p class="more">
+								<a href="#" data-type="S" data-id="105" class="qaModal_Contact"
+									data-toggle="modal" data-target="#Contact"> Contact </a> <i
+									class="fa fa-angle-right" aria-hidden="true"></i>
+							</p>
 						</div>
+						<div class="enter"></div>
+					</div>
 				</div>
 			</div>
 		</div>

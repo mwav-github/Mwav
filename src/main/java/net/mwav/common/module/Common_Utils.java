@@ -14,7 +14,7 @@ import java.util.Map.Entry;
 
 import javax.servlet.http.HttpServletRequest;
 
-
+import net.common.Interceptor.StatisticsInterceptor;
 import net.common.common.CommandMap;
 
 import org.apache.commons.logging.Log;
@@ -23,8 +23,8 @@ import org.apache.log4j.Category;
 import org.apache.log4j.Logger;
 
 public class Common_Utils {
+	protected static Log log = LogFactory.getLog(Common_Utils.class);
 
-	Logger log = Logger.getLogger(this.getClass());
 	private static String pattern = "[a-zA-Z0-9]+$";
 	private static StringBuffer returnString = null;
 
@@ -475,14 +475,147 @@ public class Common_Utils {
 		return null;
 	}
 
+	public static String setPageName(String url) {
+
+		String slPageName = null;
+		String url_1depth = null;
+		String url_2depth = null;
+		int first_slash = url.indexOf("/");
+		int second_slash = url.indexOf("/", first_slash + 1);
+		int third_slash = url.indexOf("/", second_slash + 1);
+		int fourth_slash = url.indexOf("/", third_slash + 1);
+		int last_slash = url.lastIndexOf("/");
+		int lastDot = url.lastIndexOf('.');
+
+		try {
+
+
+			if (second_slash != -1) {
+				url_1depth = url.substring(first_slash + 1, second_slash);
+				log.info("url_1depth" + url_1depth);
+			}
+			if (third_slash != -1) {
+				url_2depth = url.substring(second_slash + 1, third_slash);
+				log.info("url_2depth" + url_2depth);
+			}
+
+			if (url_1depth.equals("Index")) {
+				slPageName = "메인페이지";
+			} else if (url_1depth.equals("Company")) {
+				// 회사 색션.
+				if (url.contains("ActualResults")) {
+					slPageName = "회사실적";
+				} else if (url.contains("BusinessField")) {
+					slPageName = "사업분야";
+				} else if (url.contains("Certificates")) {
+					slPageName = "회사인증서";
+				} else if (url.contains("Cooperation")) {
+					slPageName = "제휴업체";
+				} else if (url.contains("Greetings")) {
+					slPageName = "대표인사말";
+				} else if (url.contains("History")) {
+					slPageName = "회사연혁";
+				} else if (url.contains("HR-Affairs")) {
+					slPageName = "인사채용정보";
+				} else if (url.contains("Introduction")) {
+					slPageName = "회사소개";
+				} else if (url.contains("LocationMap")) {
+					slPageName = "회사약도";
+				} else if (url.contains("MgrPhilosophy")) {
+					slPageName = "경영이념";
+				} else if (url.contains("Organization")) {
+					slPageName = "회사조직도";
+				} else if (url.contains("Profitsharing")) {
+					slPageName = "수익분배 프로그램";
+				} else if (url.contains("언론보도")) {
+					slPageName = "언론보도";
+				} else if (url.contains("경영기념(비전)")) {
+					slPageName = "Vision";
+				} else {
+					slPageName = "Company_미정_" + url;
+				}
+			} else if (url_1depth.equals("CompanyItem")) {
+				if (url_2depth.equals("ITSolutions")) {
+					if (url.contains("OrgChart")) {
+						slPageName = "OrgChart";
+					} else {
+					}
+				} else if (url_2depth.equals("ITProducts")) {
+					if (url.contains("Aervision")) {
+						slPageName = "Aervision";
+					} else if (url.contains("Azure")) {
+						slPageName = "Azure";
+					} else if (url.contains("HighSofts")) {
+						slPageName = "HighSofts";
+					} else if (url.contains("InsWave")) {
+						slPageName = "InsWave";
+					} else if (url.contains("MSOffice")) {
+						slPageName = "MSOffice";
+					} else if (url.contains("OpenSRS")) {
+						slPageName = "OpenSRS";
+					} else if (url.contains("Windows")) {
+						slPageName = "Windows";
+					} else {
+
+					}
+				} else if (url_2depth.equals("WebSiteBuilding")) {
+					slPageName = "웹사이트제작";
+				} else if (url_2depth.equals("DigitalMarketing")) {
+					slPageName = "디지털마케팅";
+				} else if (url_2depth.equals("ITConsulting")) {
+					slPageName = "IT컨설팅";
+				} else {
+					slPageName = "CompanyItem_미정_" + url;
+				}
+
+			} else if (url_1depth.equals("CustomerService")) {
+				if (url.contains("Agreement")) {
+					slPageName = "이용약관";
+				} else if (url.contains("Announcement")) {
+					slPageName = "안내발표(공지사항)";
+				} else if (url.contains("ClientFTP")) {
+					slPageName = "고객FTP";
+				} else if (url.contains("ClientPDS")) {
+					slPageName = "고객자료실";
+				} else if (url.contains("Contact")) {
+					slPageName = "담당부서안내";
+				} else if (url.contains("FAQ")) {
+					slPageName = "자주하는 질문";
+				} else if (url.contains("MemberShip")) {
+					slPageName = "회원정보";
+				} else if (url.contains("MyPage")) {
+					slPageName = "마이페이지";
+				} else if (url.contains("Policy")) {
+					slPageName = "회사정책";
+				} else if (url.contains("RejectMail")) {
+					slPageName = "메일수신거부";
+				} else if (url.contains("SiteGuide")) {
+					slPageName = "이용방법";
+				} else if (url.contains("SiteMap")) {
+					slPageName = "사이트맵";
+				} else if (url.contains("Summary")) {
+					slPageName = "CS요약";
+				} else {
+					slPageName = "CustomerService_미정_" + url;
+				}
+
+				
+				// 서블릿 거치는 부분, Admin
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return slPageName;
+	}
+
 	public static String setTitle(String url) {
 
-		//System.out.println("url은" + url);
+		// System.out.println("url은" + url);
 
 		int first_slash = url.indexOf("/");
-		//System.out.println("first_slash" + first_slash);
+		// System.out.println("first_slash" + first_slash);
 		int second_slash = url.indexOf("/", first_slash + 1);
-		//System.out.println("second_slash" + second_slash);
+		// System.out.println("second_slash" + second_slash);
 
 		int third_slash = url.indexOf("/", second_slash + 1);
 		int fourth_slash = url.indexOf("/", third_slash + 1);
@@ -493,7 +626,7 @@ public class Common_Utils {
 		String url_2depth = null;
 		String url_3depth = null;
 		String last_depth = null;
-		//System.out.println("lastDot" + lastDot);
+		// System.out.println("lastDot" + lastDot);
 
 		if (second_slash != -1) {
 			url_1depth = url.substring(first_slash + 1, second_slash);
@@ -520,10 +653,10 @@ public class Common_Utils {
 		if (last_depth == null) {
 			last_depth = "/";
 		}
-		//System.out.println("url_1depth" + url_1depth);
-		//System.out.println("last_depth" + last_depth);
+		// System.out.println("url_1depth" + url_1depth);
+		// System.out.println("last_depth" + last_depth);
 
-		//sSystem.out.println("123" + (!"/".equals(last_depth)));
+		// sSystem.out.println("123" + (!"/".equals(last_depth)));
 
 		String set_Title = null;
 
@@ -572,15 +705,15 @@ public class Common_Utils {
 			if (url_1depth.equals("/") && (!"/".equals(last_depth))) {
 				set_Title = "[Mwav.net] >> [" + last_depth + "] - "
 						+ main_Title;
-				//System.out.println("열로1");
+				// System.out.println("열로1");
 			} else if (url_1depth.equals("/") && last_depth.equals("/")) {
 				set_Title = "[Mwav.net] >> " + main_Title;
-				//System.out.println("set_Title"+set_Title);
-				//System.out.println("열로2");
+				// System.out.println("set_Title"+set_Title);
+				// System.out.println("열로2");
 			} else {
 				// .do 등등 일단은 고객친화적이게 임시 변환
 				set_Title = "[Mwav.net] - " + main_Title;
-				//System.out.println("열로3");
+				// System.out.println("열로3");
 			}
 		}
 

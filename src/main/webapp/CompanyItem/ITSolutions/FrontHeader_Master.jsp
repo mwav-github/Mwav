@@ -33,7 +33,7 @@
 					alt="Responsive image"> <!-- <font color="#E5E5E5">Mwav</font> --></a>
 			</div>
 			<!-- Collect the nav links, forms, and other content for toggling -->
-			<div class="mgt3_5 collapse navbar-collapse"
+			<div class="mgt2 collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="mgl3 nav navbar-nav">
 					<li><a href="/CompanyItem/ITSolutions/OrgChart/OrgChart.mwav"
@@ -92,7 +92,7 @@
 						</h5></li> -->
 					</c:if>
 					<c:if test="${sessionScope.member eq null }">
-						<li><a href="/login/post"><i class="fa fa-user fa-lg"></i></a></li>
+						<li><a href="/login.mwav"><i class="fa fa-user fa-lg"></i></a></li>
 						<li><a href="/MasterPage_1.mwav?mode=Default"><i
 								class="fa fa-user-plus fa-lg"></i></a></li>
 					</c:if>
@@ -120,4 +120,3 @@
 	</nav>
 
 </div>
-

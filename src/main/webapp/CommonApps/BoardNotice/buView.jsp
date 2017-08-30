@@ -40,7 +40,7 @@
 		</p>
 		<hr>
 		<p>
-			<i class="fa fa-clock-o"></i> Posted on
+			<i class="fa fa-clock-o"></i> Last Modified:
 			${selectOneBuView.fmbuInsertDt} | Topic: ${selectOneBuView.buGroup}
 		</p>
 		<hr>

@@ -34,7 +34,9 @@ function getBaseLineChart() {
                 }
             },
             yAxis: {
-            	text: null      
+                title: {
+                    text: "Scores"
+                }
             },
             plotOptions: {
                 line: {
@@ -177,7 +179,7 @@ function getRemoteDataDrawChart(url, linechart) {
             var title = data.title;
             var yTitle = data.yAxisTitle;
             var xTitle = data.xAxisTitle;
-            alert(xTitle);
+            //alert(xTitle);
             var divId =  data.divId;
 
             //populate the lineChart options (highchart)
@@ -199,6 +201,58 @@ function getRemoteDataDrawChart(url, linechart) {
                     console.log("Data (" + j +"): "+seriesItemData) ;
                     series.data.push(parseFloat(seriesItemData));
                 });
+
+                linechart.highchart.series[i] = series;
+            });
+
+            //draw the chart
+            linechart.create();
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            alert(xhr.status);
+            alert(thrownError);
+        },
+        cache: false
+    });
+} //function end
+
+
+
+function getRemoteDataDrawChart_2(url, linechart) {
+
+    $.ajax({
+        url: url,
+        dataType: 'json',
+        success: function(data) {
+
+            var categories = data.categories;
+            var title = data.title;
+            var yTitle = data.yAxisTitle;
+            var xTitle = data.xAxisTitle;
+            //alert(xTitle);
+            var divId =  data.divId;
+
+            //populate the lineChart options (highchart)
+            linechart.highchart.xAxis.categories = categories;
+            linechart.highchart.title.text = title;
+            linechart.highchart.yAxis.title.text = yTitle;
+            linechart.highchart.xAxis.title.text = xTitle;
+            linechart.highchart.chart.renderTo = divId;
+
+            $.each(data.series, function(i, seriesItem) {
+                console.log(seriesItem) ;
+                var series = {
+                    data: []
+                };
+                series.name = seriesItem.name;
+                series.color = seriesItem.color;
+                console.log("Data (" + i +"): "+seriesItem.data) ;
+                series.data.push(parseFloat(seriesItem.data));
+
+                /*$.each(seriesItem.data, function(j, seriesItemData) {
+                    console.log("Data (" + j +"): "+seriesItemData) ;
+                    series.data.push(parseFloat(seriesItemData));
+                });*/
 
                 linechart.highchart.series[i] = series;
             });

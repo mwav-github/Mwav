@@ -35,10 +35,10 @@
 							<input type="hidden" name="bnViewCount" value="${VselectListBnsFrontList.bnViewCount}" />
 							<tr>
 								<!-- a태그로 처리요망 -->
-								<td class="col-md-8 text-left "><a
+								<td class="col-md-12 text-left "><a
 									href="/board/bnsView.mwav?bNews_id=${VselectListBnsFrontList.bNews_id}" >${VselectListBnsFrontList.bnTitle}</a></td>
 								<%--view를 구현하는 방법에 따라 달라진다. get 문 형태 유망 --%>
-								<td class="col-md-4 hidden-xs text-center" style="color:rgba(0,0,0,.5);">${VselectListBnsFrontList.bnInsertDt}</td>
+								<%-- <td class="col-md-4 hidden-xs text-center" style="color:rgba(0,0,0,.5);">${VselectListBnsFrontList.bnInsertDt}</td> --%>
 							</tr>
 						</c:forEach>
 					</c:when>
@@ -77,7 +77,7 @@
 	</table>
 </div>
 
-<!-- 
+<%-- 
 
 1. 페이징 기법을 변경한다.
  
@@ -101,4 +101,4 @@ DB 에 변화가 있을 때만 asp 로 돌려서 나온 결과를 .htm 으로 �
 그럼 성공하시길..
  
 () ()
- -->
+ --%>

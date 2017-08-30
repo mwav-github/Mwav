@@ -121,8 +121,9 @@ public class BoardController {
 			//mv.addObject("page_header", "IT Trends");
 			mv.addObject("page_header", null);
 
+			String meta_image = (String) selectOneBnsView.get("bnRelatedLink");
             //meta태그 이미지 
-			mv.addObject("meta_image", selectOneBnsView);
+			mv.addObject("meta_image", meta_image);
 			mv.addObject("selectOneBnsView", selectOneBnsView);
 		}
 
@@ -329,9 +330,9 @@ public class BoardController {
 			mv.addObject("breadcrumb", "IT Trends");
 			mv.addObject("page_header", "IT Trends");
 			
-			
+			String meta_image = (String) selectOneBuView.get("buRelatedLink");
             //meta태그 이미지 
-			mv.addObject("meta_image", selectOneBuView);
+			mv.addObject("meta_image", meta_image);
 			mv.addObject("selectOneBuView", selectOneBuView);
 		}
 		System.out.println("view찍히낭 = " + mv);

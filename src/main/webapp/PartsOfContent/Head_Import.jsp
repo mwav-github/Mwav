@@ -88,9 +88,9 @@
  --%>
 	});
 	/*TOP버튼*/
-/* 	외부 리소스 및 이미지와는 상관없이 DOM데이터만 로드가 완료되면 바로 실행이 되는 함수입니다. 
-따라서 window.onload보다 더 빠르게 실행이 된다는 얘기죠..
- */
+	/* 	외부 리소스 및 이미지와는 상관없이 DOM데이터만 로드가 완료되면 바로 실행이 되는 함수입니다. 
+	 따라서 window.onload보다 더 빠르게 실행이 된다는 얘기죠..
+	 */
 	$(document)
 			.ready(
 					function() {
@@ -106,7 +106,7 @@
 		$('.res_width').animate({
 			marginTop : height
 		}, 1000); */--%>
-	$('#myCarousel').css({
+	                    $('#myCarousel').css({
 							'margin-top' : height
 						});
 						$('.res_width').css({
@@ -114,7 +114,7 @@
 						});
 <%--url 에 따라 타이틀 지정 (170418 부로 서버사이드로 이동)
 		setTitle(location.pathname);--%>
-	caps_lockchk();
+	                    caps_lockchk();
 
 						$('#back-to-top').fadeOut();
 						$(window).scroll(function() {
@@ -137,35 +137,35 @@
 					});
 </script>
 <script>
-window.onload = function() {
-	// 페이지 완전 로딩후 실행
-	var stClientScreen = '<c:out value="${requestScope.stClientScreen}" />';
-	//null 인경우 실행.
+	window.onload = function() {
+		// 페이지 완전 로딩후 실행
+		var stClientScreen = '<c:out value="${requestScope.stClientScreen}" />';
+		//null 인경우 실행.
 
-	console.log('stClientScreen' + stClientScreen);
-	if (stClientScreen == 'firstTime' && stClientScreen != null) {
-		//alert('들어왔다.')
-		stClientScreenUpdateAjax();
-	}
-}
-function stClientScreenUpdateAjax() {
-	var stClientScreenWidth = screen.width;
-	var stClientScreenHeight = screen.height;
-
-	//console.log("사용자 pc 해상도" + stClientScreen);
-	var URL = "stClientScreen=" + stClientScreenWidth + 'x'
-			+ stClientScreenHeight;
-	$.ajax({
-		url : "/statistics/stClientScreenUpdateAjax.mwav",
-		data : URL,
-		success : function(xmlStr) {
-			//alert('성공');
-		},
-		error : function(xhr, status, error) {
-			alert("에러발생");
+		console.log('stClientScreen' + stClientScreen);
+		if (stClientScreen == 'firstTime' && stClientScreen != null) {
+			//alert('들어왔다.')
+			stClientScreenUpdateAjax();
 		}
-	});
-}
+	}
+	function stClientScreenUpdateAjax() {
+		var stClientScreenWidth = screen.width;
+		var stClientScreenHeight = screen.height;
+
+		//console.log("사용자 pc 해상도" + stClientScreen);
+		var URL = "stClientScreen=" + stClientScreenWidth + 'x'
+				+ stClientScreenHeight;
+		$.ajax({
+			url : "/statistics/stClientScreenUpdateAjax.mwav",
+			data : URL,
+			success : function(xmlStr) {
+				//alert('성공');
+			},
+			error : function(xhr, status, error) {
+				alert("에러발생");
+			}
+		});
+	}
 </script>
 
 <%-- recapcha의 경우 한 페이지 하나만 사용 가능한 한계를 아래 스크립트로 극복.
@@ -174,14 +174,18 @@ https://stackoverflow.com/questions/1241947/how-do-i-show-multiple-recaptchas-on
  Recapcha 
      두번들어가는 경우 오류발생.
      https://stackoverflow.com/questions/37297348/uncaught-error-recaptcha-placeholder-element-must-be-empty--%>
- 
-<script src='https://www.google.com/recaptcha/api.js?onload=CaptchaCallback&render=explicit' async defer></script>
+
+<script
+	src='https://www.google.com/recaptcha/api.js?onload=CaptchaCallback&render=explicit'
+	async defer></script>
 
 <script type="text/javascript">
- var CaptchaCallback = function() {
-   $('.g-recaptcha').each(function(index, el) {
-   	var widgetId = grecaptcha.render(el, {'sitekey' : '6LcdRxoUAAAAAA4OI0FIN2bv2W0ersTRjqHJdLG-'});
-       jQuery(this).attr('data-widget-id', widgetId);
-   });
- };
- </script>
+	var CaptchaCallback = function() {
+		$('.g-recaptcha').each(function(index, el) {
+			var widgetId = grecaptcha.render(el, {
+				'sitekey' : '6LcdRxoUAAAAAA4OI0FIN2bv2W0ersTRjqHJdLG-'
+			});
+			jQuery(this).attr('data-widget-id', widgetId);
+		});
+	};
+</script>

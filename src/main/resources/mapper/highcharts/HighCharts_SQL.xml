@@ -5,11 +5,12 @@
 	
 	
 
-	<!--/*========================================수정========================================*/  -->
+	<!--/*========================================수정========================================*/ 
+	 -->
 	
 	
 	
-	<select id="selectListWeeklyUsers" resultType="net.common.charts.vo.SeriesVO">
+	<select id="selectListWeeklyUsers" resultType="net.common.charts.vo.SeriesVO_Arrary">
 	<![CDATA[
 	      SELECT DATE_FORMAT(stStatisticsDt, '%W') AS `name`,
           count(`statistics_id`) AS 'data'

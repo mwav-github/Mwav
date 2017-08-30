@@ -41,7 +41,7 @@
 				alt="Responsive image"> <!-- <font color="#E5E5E5">Mwav</font> --></a>
 		</div>
 		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="mgt3_5 collapse navbar-collapse"
+		<div class="mgt2 collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
 			<ul class="mgl3 nav navbar-nav lead">
 				<li><a href="/CompanyItem/ITSolutions/OrgChart/OrgChart.mwav"
@@ -95,7 +95,7 @@
 						</ul></li>
 				</c:if>
 				<c:if test="${sessionScope.member eq null }">
-					<li><a href="/login/post"><i class="fa fa-user fa-lg"></i></a></li>
+					<li><a href="/login.mwav"><i class="fa fa-user fa-lg"></i></a></li>
 					<li><a href="/MasterPage_1.mwav?mode=Default"><i
 							class="fa fa-user-plus fa-lg"></i></a></li>
 				</c:if>
@@ -117,7 +117,7 @@
      
      중간으로 보내기 위해서 container 추가 (left 메뉴 안의 페이지와 크기 동일) // => 다시 빼고 영역 조절
 --%>
-<header id="myCarousel" class="carousel slide"
+<header id="myCarousel" class="mgt5.5 carousel slide"
 	style="height: 72% !important;">
 
 	<!-- Indicators -->

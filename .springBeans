@@ -8,6 +8,7 @@
 	<enableImports><![CDATA[true]]></enableImports>
 	<configs>
 		<config>src/main/webapp/WEB-INF/config/spring-security.xml</config>
+		<config>src/main/webapp/WEB-INF/config/mwav-framework.xml</config>
 	</configs>
 	<autoconfigs>
 		<config>src/main/resources/config/spring/context-mapper.xml</config>

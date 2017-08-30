@@ -107,8 +107,8 @@
 		</p>
 		<hr>
 		<p>
-			<i class="fa fa-clock-o"></i> Posted on
-			${selectOneBnsView.fmbnInsertDt} | Topic: ${selectOneBnsView.bnGroup}
+			<i class="fa fa-clock-o"></i> Last Modified:
+			${selectOneBnsView.fmBnsUpdateDt} | Topic: ${selectOneBnsView.bnGroup}
 		</p>
 		<hr>
 		<div class="text-right">

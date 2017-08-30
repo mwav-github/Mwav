@@ -7,7 +7,7 @@
 	rel="stylesheet">
 <link href="/resources/JsFramework/Bootstrap/bootstrap-social.css"
 	rel="stylesheet">
-<script src='https://www.google.com/recaptcha/api.js'></script>
+
 
 
 <head>

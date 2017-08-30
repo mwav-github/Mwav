@@ -113,14 +113,11 @@ public class QAController {
 		HttpSession session = request.getSession();
 		String m_id = (String) session.getAttribute("member_id");
 		commandMap.put("member_id", m_id);
-		System.out.println("순서");
-		log.debug("인터셉터 테스트");
+		
+		log.info("인터셉터 테스트");
 
 		// 아직 까지는 한벌로
 		boolean flag = qaService.insertQAForm(commandMap.getMap(), request);
-
-		System.out.println("df" + flag);
-
 		request.setAttribute("check", flag);
 		// mv.addObject("check", flag);
 		// mv.addObject("IDX", commandMap.get("IDX"));

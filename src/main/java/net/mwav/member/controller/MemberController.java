@@ -32,6 +32,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.WebUtils;
 
+
 /**
  * 프로세스 1) 비밀번호 찾기 : mbrTempLoginPwUpdate -> mbrTempLoginPwSeek -> //
  */
@@ -43,10 +44,10 @@ public class MemberController {
 
 	@Autowired
 	Member_tbl_VO member_tbl_VO;
-
+	
 	@Autowired
 	EmailSender emailSender;
-
+	
 	@Resource(name = "memberService")
 	private MemberService memberService;
 
@@ -62,7 +63,7 @@ public class MemberController {
 
 	@RequestMapping(value = "/login.mwav", method = RequestMethod.GET)
 	public String login(Model model) {
-
+		
 		return "redirect:/MasterPage.mwav?mode=SMbrLogin";
 	}
 
@@ -376,7 +377,7 @@ public class MemberController {
 
 		List<String> convertTxt = cu.convertStringToMark(selectIdFinder);
 		System.out.println("convertTxt.size()" + convertTxt.size());
-		if (selectIdFinder == null) {
+		if (selectIdFinder == null || convertTxt.size() == 0 ) {
 			// 응답 메세지 1 : 이미 등록된 ID 입니다.
 			// result =
 			// "<font color=red><strong>존재하지 않는 ID 입니다.</strong>	</font>";
@@ -444,8 +445,9 @@ public class MemberController {
 		mv.addObject("breadcrumb", "MemberShip");
 		// mv.addObject("page_header", "IT Trends");
 		mv.addObject("page_header", null);
-		session.invalidate();
-
+		
+		  session.removeAttribute("member");
+	      log.info("member 세선제거 성공");	
 		return mv;
 	}
 
@@ -540,8 +542,7 @@ public class MemberController {
 		 if (obj != null) {
 			  memberService.updateAutoLoginDel(request,session,response);
 			  session.removeAttribute("member");
-		      session.invalidate();
-		      log.info("세선제거 성공");			      
+		      log.info("member 세선제거 성공");			      
 		 }else{
 				log.info("세션에 로그인 정보다 없어 로그아웃 하지 못하였습니다.");
 		 }

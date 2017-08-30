@@ -23,7 +23,7 @@ public class FrontCommonController {
 	 */
 	String ext_url = null;
 
-	@RequestMapping(value = {"/", "/Index.mwav"})
+	@RequestMapping(value = {"/", "/Index"})
 	public ModelAndView redirectIndexController(HttpServletRequest request)
 			throws Exception {
 		ModelAndView mv = null;

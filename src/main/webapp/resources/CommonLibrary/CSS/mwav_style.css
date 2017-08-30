@@ -333,7 +333,18 @@ p.more {
 }
 
 .item   .block {
-	width: 100%;
+	width: 100%; 
+	float: left;
+	color: #FFF;
+	/*min-height: 200px;*/
+	text-align: center;
+	padding: 7px;
+	margin-top: 2.5em;
+	box-shadow: 1px 2px 3px #444;
+}
+
+.item   .block_no {
+	/*width: 100%; 적용하는 경우 col-md-9 등 (앞에 5개 뉴스 크기 먹지않아서 수정)*/
 	float: left;
 	color: #FFF;
 	/*min-height: 200px;*/
@@ -1583,6 +1594,14 @@ Reference: http://avexdesigns.com/responsive-youtube-embed/
 
 .mgt2 {
 	margin-top: 2% !important;
+}
+
+.mgt3 {
+	margin-top: 3% !important;
+}
+
+.mgt3_5 {
+	margin-top: 3.5% !important;
 }
 
 /*margin top 5%*/
