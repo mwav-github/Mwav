@@ -638,7 +638,8 @@ public class MemberController {
 				// 세션 지정.
 
 				session.setAttribute("member", member_tbl_VO);
-				 if (commandMap.get("autoLogin")!=null&&(boolean)commandMap.get("autoLogin").equals("on")) {         
+				memberService.updateAutoLogin((String)commandMap.get("autoLogin"), response, member_tbl_VO.getMember_id());
+				/*if (commandMap.get("autoLogin")!=null&&(boolean)commandMap.get("autoLogin").equals("on")) {         
 			    	  System.out.println("autologin실행됨");
 			          int amount = 60 * 60 * 24 * 14; //일주일 기간설정
 			          HashMap<String,Object> map = new HashMap<String,Object>();
@@ -650,7 +651,7 @@ public class MemberController {
 			          loginCookie.setPath("/");
 			          loginCookie.setMaxAge(60 * 60 * 24 * 14);
 			          response.addCookie(loginCookie);
-				 }
+				 }*/
 				
 				// session.setAttribute("mbrLoginId", mbrLoginId);
 				// session.setAttribute("member_id", member_id);

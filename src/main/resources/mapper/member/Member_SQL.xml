@@ -15,7 +15,7 @@
 	<insert id="insertMemberValue_tbl" parameterType="hashmap">
 		<![CDATA[
 	INSERT INTO MemberValue_tbl 
-	    Values(#{member_id},'0','0','0','0','0','0','0','0','0',null,now(),null,null,null,null,null,null,null,null)
+	    Values(#{member_id},'0','0','0','0','0','0','0','0','0',null,now(),null,null,null,null,null,null,null,null,null)
 		]]>
 	</insert>
 	

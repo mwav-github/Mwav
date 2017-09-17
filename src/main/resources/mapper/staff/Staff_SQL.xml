@@ -4,11 +4,65 @@
 <!-- #은 ' ' string // $ 은 숫자 ' ' 없음 -->
 <mapper namespace="staff">
 	
+	<!-- 
+<resultMap type="net.admins.dao.StaffVO" id="StaffVO">
+	  <id property="staff_id" column="staff_id" />
+	  <result column="stfLoginId" property="stfLoginId" />
+	 <result column="stfLoginPw" property="stfLoginPw" />
+	 <result column="stfNumber" property="stfNumber" />
+	 <result column="stfName" property="stf"Name />
+	 <result column="stfNickname" property="stfNickname" />
+	 <result column="stfBranch" property="stfBranch" />
+	 <result column="stfDeptName" property="stfDeptName" />
+	 <result column="stfClass" property="stfClass" />
+	 <result column="stfSubJobs" property="stfSubJobs" />
+	 <result column="stfPhone" property="stfPhone" />
+	 <result column="stfCellularP" property="stfCellularP" />
+	 <result column="stfExtNbr" property="stfExtNbr" />
+	 <result column="stfEmail" property="stfEmail" />
+	 <result column="stfSsn1" property="stfSsn1" />
+	 <result column="stfSsn2" property="stfSsn2" />
+	 <result column="stfZipCode" property="stfZipCode" />
+	 <result column="stfAddress" property="stfAddress" />
+	 <result column="stfMessengerName" property="stfMessengerName" />
+	 <result column="stfMessengerId" property="stfMessengerId" />
+	 <result column="stfHomepage" property="stfHomepage" />
+	 <result column="stfMark" property="stfMark" />
+	 <result column="stfMark" property="stfMark" />
+	 <result column="stfLevel" property="stfLevel" />
+	 <result column="stfBusinessPic" property="stf" />
+	 <result column="stf" property="stf" />
+	 <result column="stf" property="stf" />
+	 <result column="stf" property="stf" />
+	 <result column="stf" property="stf" />
+ </resultMap> -->
+
+	
+
+	<select id="selectNextStfPk" resultType="int">
+		<![CDATA[
+	       select IFNULL(max(staff_id+1) , 100000) AS staff_id from Staff_tbl
+		]]>
+	</select>
+	
+	<select id="selectOneStfLoginIdCheck" parameterType="string" resultType="string">
+		<![CDATA[
+	      select stfLoginId from staff_tbl where stfLoginId = #{stfLoginId};
+		]]>
+	</select>
+	
 	<!-- /*========================================등록========================================*/ -->
 	<insert id="insertStfForm" parameterType="hashmap">
 		<![CDATA[
 		INSERT INTO Staff_tbl 
 		SELECT IFNULL(max(staff_id)+1,101), #{stfLoginId}, #{stfLoginPw}, #{stfNumber}, #{stfName}, #{stfNickname}, #{stfBranch}, #{stfDeptName}, #{stfClass}, #{stfSubJobs}, #{stfPhone}, #{stfCellularP}, #{stfExtNbr},#{stfEmail},#{stfSsn1},#{stfSsn2},#{stfZipcode},#{stfAddress},#{stfMessengerName},#{stfMessengerId},#{stfHomepage},#{stfMark},#{stfLevel},#{stfBusinessPic},#{stfAvataImage},#{stfData},#{stfPoint},#{stfPointAc},#{stfJoinDt},#{stfDeleteDt},NOW(),#{stfUpdateDt},#{stfRecentLoginDt},#{stfIpAddress} FROM Staff_tbl
+		]]>
+	</insert>
+	
+	<insert id="insertPrmForm" parameterType="hashmap">
+		<![CDATA[
+			INSERT INTO Promoter_tbl
+			SELECT IFNULL(max(promoter_id)+1,101), #{stfLoginId}, #{stfLoginPw}, #{stfName}, #{stfEmail}, #{stfCellularP},#{stfPhone},0, #{stfZipcod}, #{stfAddress}, #{stfSubJobs}, 0, null, null,null,0,null FROM promoter_tbl
 		]]>
 	</insert>
 	
@@ -46,19 +100,30 @@
 		]]>
 	</update>
 	
-	<select id="selectNextStfPk" parameterType="hashmap" resultType="hashmap">
+	
+	
+	<!-- <select id="selectStfLogin" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-	       select IFNULL(max(staff_id+1) , 100) AS staff_id from Staff_tbl 
+		SELECT *
+		FROM Staff_tbl
+	    WHERE stfLoginId = #{stfLoginId}
 		]]>
-	</select>
+	</select> -->
 	
-	
-	<select id="selectStfLogin" parameterType="hashmap" resultType="hashmap">
+	<select id="selectStfLogin" parameterType="hashmap" resultType="net.admins.vo.Staff_VO">
 		<![CDATA[
 		SELECT *
 		FROM Staff_tbl
 	    WHERE stfLoginId = #{stfLoginId}
 		]]>
 	</select>
+	<!-- <insert id="insertStfRegist" parameterType="hashmap" >
+		insert into staff_tbl value(#{staff_id},#{stfLoginId},#{stfLoginPw},#{stfNumber},#{stfName},
+		#{stfNickname},#{stfBranch},#{stfDeptName},#{stfClass},#{stfSubJobs},#{stfPhone},#{stfCellularP}
+		,#{stfExtNbr},#{sftExtNbr},#{stfEmail},#{sftSsn1},#{sftSsn2},#{sftZipcode},#{sftAddress},#{sftMessengerName}
+		,#{sftMessengerId},#{sftHomepage},#{sftMark},#{sftLevel},#{sftBusinessPic},#{sftAvataImage},#{sftData},#{sftPointAc}
+		,#{sftJoinDt},#{sftDeleteDt},#{sftInserDt},#{sftUpdateDt},#{sftRecentLoginDt},#{sftIpAddress}
+		)		
+	</insert> -->
 </mapper>
 

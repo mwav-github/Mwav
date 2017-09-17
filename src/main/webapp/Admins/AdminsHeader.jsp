@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+ 
 <nav class="navbar navbar-default" role="navigation">
 
 	<div class="navbar-header col-sm-2 col-md-2 col-lg-2 mgt2 text-center">
@@ -156,7 +156,7 @@
 						<li><a href="#"><span class="glyphicon glyphicon-user"></span>Profile</a></li>
 						<li><a href="#"><span class="glyphicon glyphicon-cog"></span>Settings</a></li>
 						<li class="divider"></li>
-						<li><a href="#"><span class="glyphicon glyphicon-off"></span>Logout</a></li>
+						<li><a href="/admins/staff/stfLogout.mwav"><span class="glyphicon glyphicon-off"></span>Logout</a></li>
 					</ul></li>
 			</ul>
 		</div>

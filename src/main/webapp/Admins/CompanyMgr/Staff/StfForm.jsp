@@ -6,10 +6,166 @@
 <html>
 
 <head>
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"
+	rel="stylesheet">
+<script
+	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
+<script
+	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/additional-methods.min.js"></script>
+
 
 <!-- /////////// -->
 <jsp:include page="/PartsOfContent/Head_Import.jsp" flush="false" />
 <!-- /////////// -->
+<script>
+var xhr;
+	function createXhr() {
+		if (window.ActiveXObject) { // IE 이전버전
+			xhr = new ActiveXObject("Microsoft.XMLHTTP");
+		} else {
+			xhr = new XMLHttpRequest();
+		}
+	}
+
+	function idcheck() {
+		var id = document.getElementsByName("stfLoginId")[0].value;
+		<%--var id = document.getElementsByName("mbrLoginId")[0].value;
+		//alert(id);
+		//var html_object = document.getElementsByName("mbrLoginId");
+		//위에로 하면 HTMLCollection로 나오며 이는  리턴 결과가 복수인 경우에 사용하게 되는 객체다
+		// 아래는 HTML INPUTELEMENT? 하나 !
+		//유효성 체크  후 ajax --%>
+		var input_object = document.getElementById("chkLoginId");
+		
+		var flagPolicy = chkLoginPolicy(id,input_object);
+		
+		var queryString = "stfLoginId=" + id;
+		if (id.length < 6) {
+			document.getElementById("idcheckLayer").innerHTML = "<font color=red>6자리 이상 입력하세요.</font>";
+		} 
+		else if (flagPolicy == true){
+			<%-- 1. XMLHttpReqeust 객체 생성 --%>
+			createXhr();
+			<%-- 2. 이벤트 핸들러 등록 --%>
+			xhr.onreadystatechange = callback; 
+			<%-- callback 함수를 등록
+			// 3. open()를 통해 요청관련 설정을 설정 --%>
+			xhr.open("POST", "/admins/staff/stfLoginIdCheck.mwav", true);
+			<%-- 4. Header에 contentType 지정 - post --%>
+			xhr.setRequestHeader("Content-Type",
+					"application/x-www-form-urlencoded");
+			<%-- 5. send()를 통해 요청 // 요청 쿼리를 보내준다. --%>
+			xhr.send(queryString); 
+		}
+
+
+	}
+	function callback() {
+		if (xhr.readyState == 4) { // 응답을 다 받은 경우
+			if (xhr.status == 200) { // 응답코드가 200인 경우 - 정상인 경우
+				var resTxt1 = xhr.responseText; // 서버가 보낸 응답 text
+				//console.log(resTxt);
+				var resTxt = resTxt1.trim(); // 공백제거 안하면 같은게 안됨 
+				var imsiresTxt = "<div class='alert alert-success text-left'><strong>사용할 수 있는 ID 입니다.</strong></div>";
+				//alert(resTxt);
+				//alert(imsiresTxt);
+				if (resTxt == imsiresTxt) {
+					//아이디 중복되지 않음
+					//alert('1');
+					document.getElementById("idcheckLayer").innerHTML = resTxt;
+					
+				} else {
+					//아이디 중복
+					//alert('11');
+					document.getElementById("idcheckLayer").innerHTML = resTxt;
+
+					$('input[name="mbrLoginId"]').val('');
+					$('input[name="mbrLoginId"]').focus();
+					return false;
+				}
+			} else {
+				alert("요청 처리가 정상적으로 되지 않았습니다.\n" + xhr.status);
+			}
+		}
+	}
+
+	function msubmit() {
+
+		var Zipcode = $('#Zipcode').val()
+		var Address = $('#Address').val()
+		var rest_address = $('#rest_Address').val()
+
+		//html element에 대하여 null 또는 비어있는지 체크 및 alert 문구 노출
+		var flag; // return false 여부 체크 이함수도 false 시켜야하므로 
+
+		//flag 마지막 값만 인식하므로 수정이 필요하긴 함.
+		//필수값은 아니다. 
+		flag = emptyCheck(rest_address, "나머지 주소를 입력해주세요.");
+		flag = emptyCheck(Zipcode, "우편번호를 입력해주세요.");
+		flag = emptyCheck(Address, "주소를 입력해주세요.");
+
+		 if (flag == false || flag == undefined) {
+			//alert('11');
+			return false;
+		} else {
+		 document.change_record.submit();
+		}
+		alert(flag);
+		 $("change_record").validate({
+		    //validation이 끝난 이후의 submit 직전 추가 작업할 부분
+		    //http://hellogk.tistory.com/48
+		    submitHandler: function() {
+		        var f = confirm("회원가입을 완료하겠습니까?");
+		        if(f){
+		            return true;
+		        } else {
+		            return false;
+		        }
+		    },
+		    //규칙
+		    rules: {
+		    	stfLoginId: {
+		            required : true,
+		            minlength : 5,    
+		        },
+		        stfLoginPw: {
+		            required : true,
+		            minlength : 10
+		        },
+		        stfEmail: {
+		            required : true,
+		            minlength : 2,
+		            email : true
+		        }
+		    },
+		    //규칙체크 실패시 출력될 메시지
+		    messages : {
+		    	mbrLoginId: {
+		            required : "필수로입력하세요",
+		            minlength : "최소 {0}글자이상이어야 합니다",
+		            remote : "존재하는 아이디입니다"
+		        },
+		        mbrLoginPw: {
+		            required : "필수로입력하세요",
+		            minlength : "최소 {0}글자이상이어야 합니다"
+		        },
+		        mbrEmail: {
+		            required : "필수로입력하세요",
+		            minlength : "최소 {0}글자이상이어야 합니다",
+		            email : "메일규칙에 어긋납니다"
+		        }
+		    }
+		});	 
+
+	}
+</script>
+<script>
+	$(document).ready(function() {
+		$('[data-toggle="popover"]').popover();
+	});
+</script>
+
 </head>
 
 <body>
@@ -17,6 +173,7 @@
 	<!--  //////////////////////////////////// -->
 	<jsp:include page="/Admins/AdminsHeader.jsp" flush="false" />
 	<!--  //////////////////////////////////// -->
+
 
 
 
@@ -101,17 +258,41 @@
 														<table class="table table-user-information">
 															<tbody>
 																<tr>
-																	<td>아이디:</td>
+																	<td>아이디:
+																																			<a data-toggle="popover"
+						data-placement="bottom" data-html="true" title="MemberId Rules"
+						data-content="
+	1. 4 ~ 20 자 사이의 문자길이  <br/>	
+	2. 첫 문자는 영어로 시작  <br/>
+	3. 특수문자 사용금지 (제외문자: . _ -) <br/>
+	4. 공백문자 사용금지  <br/>
+	5. 대소문자는 식별이 가능하나 구분 및 구별을 하지 않음">
+
+						<span class="glyphicon glyphicon-question-sign fa-lg text-muted">
+					</span>
+					</a>
+																	
+																	
+																	
+																	</td>
+
+																	
 																	<td><div class='form-group'>
 																			<div class='col-md-8'>
 
 																				<input class='form-control' name="stfLoginId"
 																					id="chkLoginId" type='text' maxlength="20"
 																					value="${updateStfForm.stfLoginId }"
-																					readonly="readonly" onchange="chkLoginPolicy()"
+																					readonly="readonly" onchange="idcheck()"
 																					required>
 																			</div>
 																		</div></td>
+																	<td>
+																		
+																	<p class="col-md-5 col-md-offset-4">
+																<span id="idcheckLayer"></span>
+																		</p>
+																	</td>
 																</tr>
 																<tr>
 																	<td>비밀번호:</td>
@@ -228,7 +409,7 @@
 																			<div class='col-md-5'>
 																				<input class="form-control" name="stfExtNbr"
 																					type="text" maxlength="5"
-																					value="${updateStfForm.stfExtNbr}" />
+																					value="${updateStfForm.stfExtNbr}"  onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
 																			</div>
 																		</div></td>
 																</tr>
@@ -237,7 +418,7 @@
 																	<td><div class='form-group'>
 																			<div class='col-md-8'>
 																				<input class="form-control" name="stfPhone"
-																					type="text" value="${updateStfForm.stfPhone}"
+																					type="text" value="${updateStfForm.stfPhone}" onkeypress='return event.charCode >= 48 && event.charCode <= 57'
 																					required />
 																			</div>
 																		</div></td>
@@ -248,7 +429,7 @@
 																			<div class='col-md-8'>
 																				<input class="form-control" name="stfCellularP"
 																					type="text" value="${updateStfForm.stfCellularP}"
-																					required />
+																					onkeypress='return event.charCode >= 48 && event.charCode <= 57' required />
 																			</div>
 																		</div></td>
 																</tr>
@@ -424,16 +605,34 @@
 														<table class="table table-user-information">
 															<tbody>
 																<tr>
-																	<td>아이디:</td>
+																	<td>아이디:																	</td>
 																	<td><div class='form-group'>
 																			<div class='col-md-8'>
 
 																				<input class='form-control' name="stfLoginId"
 																					id="chkLoginId" type='text' maxlength="15"
-																					onchange="chkLoginPolicy()" required>
+																					onchange="idcheck()" required>
+																	<br>
+																	
+																<span class="col-md-12" id="idcheckLayer"></span>
+																					
 																			</div>
-																		</div></td>
+																								<a data-toggle="popover"
+																					data-placement="bottom" data-html="true" title="MemberId Rules"
+																									data-content="
+																				1. 4 ~ 20 자 사이의 문자길이  <br/>	
+																				2. 첫 문자는 영어로 시작  <br/>
+																				3. 특수문자 사용금지 (제외문자: . _ -) <br/>
+																				4. 공백문자 사용금지  <br/>
+																				5. 대소문자는 식별이 가능하나 구분 및 구별을 하지 않음">
+																			
+																					<span class="glyphicon glyphicon-question-sign fa-lg text-muted">
+																				</span>
+																				</a>	
+																		</div>
+																	</td>
 																</tr>
+															
 																<tr>
 																	<td>비밀번호:</td>
 																	<td><div class='form-group'>
@@ -441,9 +640,20 @@
 
 																				<input class='form-control' name="stfLoginPw"
 																					id="chkLoginPW" type='password'
-																					onchange="chkPWPolicy()" required>
+																					onchange="chkPWPolicy(this.value, this)" required>
 																			</div>
-																		</div></td>
+															<a data-toggle="popover" data-placement="bottom" data-html="true" title="Password Rules"
+																						data-content="
+														1. 8~255자 사이의 문자길이  <br/>	
+														2. 영문, 숫자, 특수문자로 구성 <br/>
+														3. 특수문자 한 개 이상 꼭 포함 <br/>
+														4. 공백문자 사용금지  <br/>
+														5. 영문 대문자와 소문자의 구분 ">
+													
+																						<span class="glyphicon glyphicon-question-sign fa-lg text-muted"></span>
+																					</a>	
+																		</div>
+																	</td>
 																</tr>
 																<tr>
 																	<td>사번:</td>
@@ -545,7 +755,7 @@
 																	<td><div class='form-group'>
 																			<div class='col-md-5'>
 																				<input class="form-control" name="stfExtNbr"
-																					type="text" maxlength="5" />
+																					type="text" maxlength="5" onkeypress='return event.charCode >= 48 && event.charCode <= 57' />
 																			</div>
 																		</div></td>
 																</tr>
@@ -554,11 +764,11 @@
 																	<td><div class='form-group'>
 																			<div class='col-md-8'>
 																				<input class="form-control" name="stfPhone_1"
-																					type="text" maxlength="4" required /> - <input
+																					type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="4" required /> - <input
 																					class="form-control" name="stfPhone_2" type="text"
-																					maxlength="4" required /> - <input
+																					maxlength="4" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required /> - <input
 																					class="form-control" name="stfPhone_3" type="text"
-																					maxlength="4" required />
+																					maxlength="4" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required />
 																			</div>
 																		</div></td>
 																</tr>
@@ -567,17 +777,17 @@
 																	<td><div class='form-group'>
 																			<div class='col-md-3'>
 																				<input class="form-control" name="stfCellularP_1"
-																					type="text" maxlength="4" required />
+																					type="text" maxlength="4" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required />
 																			</div>
 
 																			<div class="col-md-3">
 																				<input class="form-control" name="stfCellularP_2"
-																					type="text" maxlength="4" required />
+																					type="text" maxlength="4" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required />
 																			</div>
 
 																			<div class='col-md-3'>
 																				<input class="form-control" name="stfCellularP_3"
-																					type="text" maxlength="4" required />
+																					type="text" maxlength="4" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required />
 																			</div>
 																		</div></td>
 																</tr>
@@ -587,7 +797,7 @@
 																			<div class='col-md-8'>
 																				<input class="form-control" name="stfEmail"
 																					id="chkEmail" type="text"
-																					onchange="chkEmailPolicy()" required />
+																					onchange="chkEmailPolicy(this.value, this)" required />
 																			</div>
 																		</div></td>
 																</tr>
@@ -665,7 +875,7 @@
 																			</div>
 																			<div class='col-md-8'>
 																				<input class="form-control" name="stfAddress_2"
-																					type="text" placeholder='나머지 주소' required />
+																					id='rest_Address'type="text" placeholder='나머지 주소' required />
 																			</div>
 																		</div>
 																	</td>
@@ -712,7 +922,7 @@
 													<button type="button" class="btn btn-sm btn-primary"
 														onClick="javascript:history.go(-1)">뒤로가기</button>
 
-													<button type="submit" class="btn btn-sm btn-primary">가입하기
+													<button onclick="msubmit()" type="submit" class="btn btn-sm btn-primary">가입하기
 													</button>
 
 												</div>

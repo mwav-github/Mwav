@@ -77,7 +77,7 @@ public class SignController {
 			HttpServletRequest request, HttpServletResponse response) {
 		Connection<?> connection = providerSignInUtils
 				.getConnectionFromSession(req);
-
+		
 		int loginCheck = 0;
 		Map<String, Object> map = new HashMap<String, Object>();
 		HttpSession session = request.getSession();
@@ -151,7 +151,7 @@ public class SignController {
 		int member_id = 0;
 		String m_id = null;
 		check = memberService.selectOneSnsMbrLoginIdCheck(smMember_id);
-
+		
 		logger.info("check = " + check);
 		if (check == false) { // 기존에 등록 아이디가 존재하지 않는 경우
 
@@ -170,7 +170,7 @@ public class SignController {
 			if (Email == null) {
 				Email = "sns_imsi";
 			}
-
+			map.put("member_id", member_id);
 			map.put("mbrLoginId", social + "_imsi");
 			map.put("mbrLoginPw", "sns_imsi");
 			map.put("mbrTempLoginPw", null);
@@ -185,7 +185,7 @@ public class SignController {
 
 			// 회원가입.
 			memberService.insertMbrForm(map);
-
+			
 			map.put("smMember_id", smMember_id);
 			map.put("First_Name", First_Name);
 			map.put("Last_Name", Last_Name);
@@ -198,7 +198,8 @@ public class SignController {
 			memberService.insertSnsForm(map);
 			member_tbl_VO.setMember_id(member_id);
 			session.setAttribute("member", member_tbl_VO);
-
+			System.out.println("세션에 있는 값 "+(String)request.getSession().getAttribute("loginCheck"));
+			memberService.updateAutoLogin((String)request.getSession().getAttribute("loginCheck"), response, member_tbl_VO.getMember_id());
 			logger.info("insertSnsForm success!!!!!!");
 		} else {
 			// 업데이트 해야하는 요소가 있다면 사실해줘야 한다.
@@ -211,9 +212,13 @@ public class SignController {
 			} catch (NullPointerException e) {
 				e.printStackTrace();
 			}
+			System.out.println("세션에 있는 값 "+ (String)request.getSession().getAttribute("loginCheck"));
 
 			member_tbl_VO.setMember_id(member_id);
 			session.setAttribute("member", member_tbl_VO);
+			memberService.updateAutoLogin((String)request.getSession().getAttribute("loginCheck"), response, member_tbl_VO.getMember_id());
+			
+		
 		}
 
 		String mbrLoginId = connection.getDisplayName();
@@ -222,7 +227,7 @@ public class SignController {
 		loginCheck = 1;
 		// session.setAttribute("member_id", member_id);
 		request.setAttribute("loginCheck", loginCheck);
-
+		request.getSession().setAttribute("loginCheck", null);
 		return "/Index";
 	}
 

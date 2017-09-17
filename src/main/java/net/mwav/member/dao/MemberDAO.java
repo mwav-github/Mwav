@@ -11,6 +11,7 @@ import net.mwav.common.module.Common_Utils;
 import net.mwav.member.vo.Member_tbl_VO;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository("memberDAO")
 public class MemberDAO extends AbstractDAO {
@@ -26,7 +27,7 @@ public class MemberDAO extends AbstractDAO {
 	 * ========================================등록================================
 	 * ========
 	 */
-
+	@Transactional
 	public String insertMbrForm(Map<String, Object> map) {
 
 		try {
@@ -422,7 +423,6 @@ public class MemberDAO extends AbstractDAO {
 
 		try {
 			insert("member.insertSnsForm", map);
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -487,4 +487,6 @@ public class MemberDAO extends AbstractDAO {
 			return false;
 		}
 	}
+	
+	
 }

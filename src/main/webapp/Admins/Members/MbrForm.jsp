@@ -58,6 +58,8 @@
 <link rel="stylesheet"
 	href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
 
+
+
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
@@ -104,15 +106,17 @@ $(function() {
 	<table width="1000" border="0" align="center" cellpadding="0"
 		cellspacing="0">
 		<tr>
-			<td colspan="3">&nbsp; <%@ include file="/Admins/TopFrame.jsp"%>
-				<%-- 첫번째--%></td>
+			<td colspan="3">&nbsp;<%--  <%@ include file="/Admins/TopFrame.jsp"%> --%>
+				<%-- 첫번째--%>
+				</td>
 		</tr>
 		<tr>
 			<td width="200" valign="top"><table width="190" border="0"
 					cellspacing="0" cellpadding="0">
 					<tr>
-						<td width="10"><%@ include file="/Admins/LeftFrame.jsp"%>
-							<%-- 두번째--%></td>
+						<td width="10"> <%-- <%@ include file="/Admins/LeftFrame.jsp">--%>
+							<%-- 두번째--%>
+							</td>
 					</tr>
 				</table></td>
 
@@ -610,8 +614,9 @@ $(function() {
 			</td>
 		</tr>
 		<tr>
-			<td colspan="3">&nbsp; <%@ include
-					file="/Admins/BottomFrame.jsp"%> <%-- 네번째--%>
+			<td colspan="3">&nbsp; <%--<%@ include
+					file="/Admins/BottomFrame.jsp"%>  --%> <%-- 네번째--%>
+	
 			</td>
 		</tr>
 	</table>

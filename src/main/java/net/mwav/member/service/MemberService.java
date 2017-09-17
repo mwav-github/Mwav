@@ -59,8 +59,9 @@ public interface MemberService {
 
 	String selectOneSmMemberPkCheck(String smMember_id);
 
-	boolean updateAutoLogin(Map<String, Object> map);
-
+	boolean updateAutoLogin(String onOff, HttpServletResponse response,
+			int member_id);
+	
 	boolean updateAutoLoginDel(HttpServletRequest request,HttpSession session, HttpServletResponse response);
 	
 	Member_tbl_VO selectAutoLogin(int member_id);

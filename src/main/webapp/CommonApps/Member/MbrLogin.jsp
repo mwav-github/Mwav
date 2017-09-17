@@ -2,14 +2,16 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- imsi -->
-<link
+<!--  <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"
-	rel="stylesheet">
+	rel="stylesheet">  -->
 <link href="/resources/JsFramework/Bootstrap/bootstrap-social.css"
 	rel="stylesheet">
 <script src='https://www.google.com/recaptcha/api.js'></script>
-
-
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"> 
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"> 
+<link rel="stylesheet" href="/resources/JsFramework/Bootstrap/build.css"/>
+ 
 <head>
 <c:if test="${requestScope.loginCheck eq 2 }">
 	<script type="text/javascript">
@@ -41,7 +43,7 @@
 		alert('reCAPTCHA 오류입니다. 다시 시도해주세요.');
 		history.go(-1);
 	</script>
-</c:if>
+</c:if>	
 <c:if test="${requestScope.loginCheck eq 5 }">
 	<script type="text/javascript">
 		alert('임시패스워드입니다. 비밀번호 변경 후 로그인해주세요.');
@@ -73,6 +75,24 @@
 		</c:when>
 	</c:choose>
 </c:if>
+<script>
+ $(function(){
+$("#checkbox4").bind("click",function(){
+	
+	var autoUse=$("#checkbox4").is(":checked");
+	if(autoUse==false){
+		$(".test1").val("off");
+		//<c:set var="loginCheck" value="off" scope="session" />;
+		<c:remove var="loginCheck" scope="session" />;
+	}else if(autoUse==true){
+		$(".test1").val("on");
+		<c:set var="loginCheck" value="on" scope="session" />;
+	}
+	alert(autoUse);
+	});
+});
+ 
+</script>
 </head>
 <%-- 구글 API관련 
     <meta name="google-signin-scope" content="profile email">
@@ -256,8 +276,7 @@
 <script>
 	function re_check(form) {
 
-		var robot_flag = robot_check($(form).find("[name=recaptcha]").attr('data-widget-id'));
- 	
+		var robot_flag = robot_check();
 		if (robot_flag == true) {
 			if (emptyCheck(form.mbrLoginId, "아이디를 입력해주세요.") == true
 					&& emptyCheck(form.mbrLoginPw, "비밀번호를 입력해주세요.") == true) {
@@ -270,42 +289,26 @@
 		}
 		return false;
 	}
-	
-		function re_snsCheck() {
-		
-				var robot_flag = robot_check($("form[name='login_form']").find("[name=recaptcha]").attr('data-widget-id'));
-				if (robot_flag == true) {
-					return true;
-				} else {
-					return false;
-				}
-				return false;
-			}
 
 	
 </script>
 
 <%--이것때문에 tooltip등이 오류가난다 --%>
-<jsp:include page="/CommonApps/IDSeek/IDSeek.jsp" flush="false" />
+<jsp:include page="/CommonApps/IDSeek/IDSeek.jsp" flush="false" />		
 
 <%--padding 으로 안쪽 추후 딴건 변경가능 #04A3ED --%>
 <c:if test="${param.type eq null}">
 	<div class="enter"></div>
 	<div class="col-md-12"
 		style="padding: 5%; box-shadow: 0 0 20px 3px #04A3ED; background: #f7f7f7;">
-
-
-		<form name="login_form" action="/member/Login.mwav" role="form"
+		
+            <form name="login_form" action="/member/Login.mwav" role="form"
 			class='form-horizontal' method="post"
 			onsubmit="return re_check(document.login_form);">
 			<%--get문으로 넘어온 것은 param으로 받는다. "${param.returnUrl}" --%>
 			<input type="hidden" name="returnUrl" value="${param.returnUrl}" />
 			<div class="enter"></div>
-			<div class="form-group">
-				<label> <input type="checkbox" name="autoLogin" id="remember">
-					Remember login <c:out value="${param.returnUrl}"/>
-				</label>
-			</div>
+
 			<div class="form-group">
 				<input type="text" name="mbrLoginId"
 					class="form-control input-lg caps_lockchk"
@@ -321,6 +324,14 @@
 				<button type="submit" class="btn btn-primary btn-lg btn-block">Sign
 					In</button>
 			</div>
+ 			<div class="col-md-12">		
+                    <div class="checkbox checkbox-info" >
+                        <input id="checkbox4"  name="autoLogin" class="styled" type="checkbox">
+                        <label for="checkbox4">RememberMe</label>
+                    </div>
+			</div>
+
+			
 
 			<%--recapCha --%>
 			<div class="col-md-12">
@@ -335,7 +346,7 @@
           data-size="invisible"></div> --%>
 				<%--visible --%>
 				<div class="g-recaptcha"
-					name="recaptcha"
+					data-sitekey="6LcdRxoUAAAAAA4OI0FIN2bv2W0ersTRjqHJdLG-"
 					style="transform: scale(0.88); -webkit-transform: scale(0.88); transform-origin: 0 0; -webkit-transform-origin: 0 0;"></div>
 			</div>
 		</form>
@@ -347,7 +358,7 @@
 		<!-- GOOGLE SIGNIN -->
 		<div class="col-md-12 ">
 			<form action="<c:url value="/signin/google.mwav"/>" method="POST"
-				onSubmit="return re_snsCheck();">
+				onSubmit="return robot_check();">
 				<!-- <button type="submit" class="btn btn-danger btn-block">
 						<i class="fa fa-google-plus"></i>
 					</button> -->
@@ -360,13 +371,14 @@
 				<input type="hidden" name="${_csrf.parameterName}"
 					value="${_csrf.token}" /> <input type="hidden" name="scope"
 					value="email profile" />
+				<input type="hidden" name="loginCheck" class="test1" value="off"/>	
 			</form>
 		</div>
 
 		<!-- facebook SIGNIN -->
 		<div class="col-md-12">
 			<form action="<c:url value="/signin/facebook.mwav"/>" method="POST"
-				onSubmit="return re_snsCheck();">
+				onSubmit="return robot_check();">
 				<!-- <button type="submit" class="btn btn-primary btn-block">
 						<i class="fa fa-facebook"></i>
 					</button> -->
@@ -378,6 +390,7 @@
 				</div>
 				<input type="hidden" name="${_csrf.parameterName}"
 					value="${_csrf.token}" />
+				<input type="hidden" name="loginCheck" class="test1" value="off"/>
 			</form>
 		</div>
 
@@ -385,7 +398,7 @@
 		<!-- LINKEDIN SIGNIN -->
 		<div class=" col-md-12">
 			<form action="<c:url value="/signin/linkedin.mwav"/>" method="POST"
-				onSubmit="return re_snsCheck();">
+				onSubmit="return robot_check();">
 				<!-- <button type="submit" class="btn btn-danger btn-block">
 						<i class="fa fa-linkedin"></i>
 					</button> -->
@@ -397,13 +410,14 @@
 				</div>
 				<input type="hidden" name="${_csrf.parameterName}"
 					value="${_csrf.token}" />
+				<input type="hidden" name="loginCheck" class="test1" value="off"/>
 			</form>
 		</div>
 
 
 		<div class="col-md-12 mgb3">
 			<form action="<c:url value="/signin/twitter.mwav"/>" method="POST"
-				onSubmit="return re_snsCheck();">
+				onSubmit="return robot_check();">
 				<!-- <button type="submit" class="btn btn-info btn-block">
 						<i class="fa fa-twitter"></i>
 					</button> -->
@@ -414,6 +428,7 @@
 				</button>
 				<input type="hidden" name="${_csrf.parameterName}"
 					value="${_csrf.token}" />
+				<input type="hidden" name="loginCheck" class="test1" value="off"/>
 			</form>
 		</div>
 
@@ -486,7 +501,7 @@
           data-size="invisible"></div> --%>
 				<%--visible --%>
 				<div class="g-recaptcha"
-					name="recaptcha"></div>
+					data-sitekey="6LcdRxoUAAAAAA4OI0FIN2bv2W0ersTRjqHJdLG-"></div>
 			</div>
 		</div>
 		<div class="form-group">

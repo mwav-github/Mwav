@@ -142,7 +142,7 @@
 						<div class="col-md-9 col-md-push-3 col-xs-12 text-right block block-3" style="opacity:0.8;">
 							<h4 class="">IT Trends</h4>
 							<div class="bs-component" style="background-color: white;">
-								<jsp:include page="/board/bnsFrontList.mwav" flush="false" />
+								 <jsp:include page="/board/bnsFrontList.mwav" flush="false" /> 
 							</div>
 							<%-- <div class="bs-component" style="background-color: white;">
 						<jsp:include page="/board/bnsFrontList.mwav" flush="false" />

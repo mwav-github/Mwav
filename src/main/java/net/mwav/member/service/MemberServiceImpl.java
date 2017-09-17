@@ -1,6 +1,8 @@
 package net.mwav.member.service;
 
 import java.io.IOException;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -230,8 +232,27 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override //오토로그인 날짜데이터 추가
-	public boolean updateAutoLogin(Map<String, Object> map) {
-		return memberDAO.updateAutoLogin(map);
+	public boolean updateAutoLogin(String onOff, HttpServletResponse response,	int member_id) {
+		System.out.println("autologin안에 들어옴");
+		System.out.println("autologin 값"+onOff);
+		if (onOff!=null&&onOff.equals("on")) {         
+			  System.out.println("autologin실행됨");
+		      int amount = 60 * 60 * 24 * 14; //일주일 기간설정
+		      HashMap<String,Object> map = new HashMap<String,Object>();
+		      map.put("member_id", member_id);
+		      map.put("mbrAutoLoginDt", new Date(System.currentTimeMillis() + (1000 * amount)));
+		      memberDAO.updateAutoLogin(map);
+		      //쿠키박스
+		      Cookie loginCookie = new Cookie("autoLogin", Integer.toString(member_id));
+		      loginCookie.setPath("/");
+		      loginCookie.setMaxAge(60 * 60 * 24 * 14);
+		      response.addCookie(loginCookie);
+		      return true;
+		}else{
+			return false;
+		}
+		
+
 	}
 
 	@Override //오토로그인 날짜데이터 삭제
