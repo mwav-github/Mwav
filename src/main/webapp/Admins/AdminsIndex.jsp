@@ -12,10 +12,13 @@
 <script type="text/javascript">
         var contextPath = '<c:out value="${pageContext.request.contextPath}"/>';
         $(document).ready(function() {
-            getRemoteDataDrawChart(contextPath + '/linechart1.chart', createNewLineChart('chart1-container', getBaseChart()));
-            getRemoteDataDrawChart(contextPath + '/linechart2.chart', createNewLineChart('chart2-container', getBaseChart()));
+            //getRemoteDataDrawChart(contextPath + '/linechart1.chart', createNewLineChart('chart1-container', getBaseChart()));
+            //getRemoteDataDrawChart(contextPath + '/linechart2.chart', createNewLineChart('chart2-container', getBaseChart()));
+            getRemoteDataDrawColumnChart(contextPath + '/Top10PageList.chart', createNewColumnChart('chart4-container', getBaseColumnChart()));
             getRemoteDataDrawChart(contextPath + '/linechart3.chart', createNewLineChart('chart3-container', getBaseLineChart()));
-        });
+            getRemoteDataDrawPieChart(contextPath + '/ClientScreenSize.chart', createNewLineChart('chart5-container', getBasePieChart()));
+                  });
+     
     </script>
 <%-- 
 1. 템플릿 : 참고하여 꼭 변경 http://wrapbootstrap.com/preview/WB0025522
@@ -196,33 +199,39 @@
 		--%>
 
 			<!-- Portfolio Section -->
-			<div class="row" id="IT_Products">
+			<div class="row">
 				<div class="col-md-4">
-					<div class="panel panel-danger">
+					<div id="chart1-container"></div>
+					<!-- <div class="panel panel-danger">
 						<div class="panel-heading">
 							<h3 class="panel-title">Highchart Chart 1</h3>
 						</div>
 						<div id="chart1-container"
 							style="min-width: 300px; max-width: 500px; height: 300px; margin: 0 auto"></div>
-					</div>
+					</div> -->
 				</div>
 				<div class="col-md-4">
 					<div class="panel panel-primary">
-						<div class="panel-heading">
-							<h3 class="panel-title">Highchart Chart 2</h3>
-						</div>
-						<div id="chart2-container"
-							style="min-width: 300px; max-width: 500px; height: 300px; margin: 0 auto"></div>
+
+						<div id="chart2-container"></div>
 					</div>
 				</div>
 				<div class="col-md-4">
-					<div class="panel panel-warning">
-						<div class="panel-heading">
-							<h3 class="panel-title">Highchart Chart 3</h3>
-						</div>
-						<div id="chart3-container"
-							style="min-width: 300px; max-width: 500px; height: 300px; margin: 0 auto"></div>
-					</div>
+
+					<div id="chart3-container"></div>
+
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4">
+
+					<div id="chart4-container"></div>
+
+				</div>
+				<div class="col-md-4">
+
+					<div id="chart5-container"></div>
+
 				</div>
 			</div>
 

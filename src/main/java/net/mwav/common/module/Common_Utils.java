@@ -227,7 +227,7 @@ public class Common_Utils {
 	}
 
 	// null 체크
-	public boolean isEmpty(Object obj) {
+	public static boolean isEmpty(Object obj) {
 		if (obj == null || obj.toString().equals(""))
 			return true;
 		return false;
@@ -475,8 +475,10 @@ public class Common_Utils {
 		return null;
 	}
 
-	public static String setPageName(String url) {
+	public static String setPageName(String urlPath) {
 
+		String url = null;
+		url = urlPath;
 		String slPageName = null;
 		String url_1depth = null;
 		String url_2depth = null;
@@ -499,7 +501,8 @@ public class Common_Utils {
 				log.info("url_2depth" + url_2depth);
 			}
 
-			if (url_1depth.equals("Index")) {
+			//url 은 전체  url_1depth은 /제외
+			if (url.equals("/") || url_1depth.equals("Index")) {
 				slPageName = "메인페이지";
 			} else if (url_1depth.equals("Company")) {
 				// 회사 색션.
@@ -601,6 +604,9 @@ public class Common_Utils {
 
 				
 				// 서블릿 거치는 부분, Admin
+			} else{
+				//statistics_tbl 의 PageName 은  null 이 허용안된다.
+				slPageName = url;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

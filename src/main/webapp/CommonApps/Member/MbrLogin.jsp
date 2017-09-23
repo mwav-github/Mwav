@@ -344,6 +344,7 @@
 		<%--소셜 로그인 연동부분 
 		중요사항 : col-md-12 외 나머지 것들 col-sm-12 등을 넣으면 버튼 동작이 하지 않음.
 		--%>
+		<input type="hidden" name="test" value="123" />
 		<!-- GOOGLE SIGNIN -->
 		<div class="col-md-12 ">
 			<form action="<c:url value="/signin/google.mwav"/>" method="POST"
@@ -357,6 +358,9 @@
 							in with Google</span>
 					</button>
 				</div>
+				
+				<input type="hidden" name="test"
+					value="123" />
 				<input type="hidden" name="${_csrf.parameterName}"
 					value="${_csrf.token}" /> <input type="hidden" name="scope"
 					value="email profile" />
@@ -376,6 +380,8 @@
 							in with Facebook</span>
 					</button>
 				</div>
+				<input type="hidden" name="test"
+					value="123" />
 				<input type="hidden" name="${_csrf.parameterName}"
 					value="${_csrf.token}" />
 			</form>

@@ -53,24 +53,21 @@
 		data-original-title="회사소개">Introduction</a> <a
 		href="/Company/Greetings/Greetings.mwav" class="list-group-item"
 		data-toggle="tooltip" data-placement="top" data-original-title="대표인사말">Greetings</a>
-	<a class="list-group-item"
-		data-toggle="tooltip" data-placement="top"
+	<a class="list-group-item" data-toggle="tooltip" data-placement="top"
 		data-original-title="페이지 준비 중입니다.">History</a> <a
 		href="/Company/BusinessField/BusinessFields.mwav"
 		class="list-group-item" data-toggle="tooltip" data-placement="top"
 		data-original-title="사업분야">Business Fields</a> <a
-		
 		class="list-group-item" data-toggle="tooltip" data-placement="top"
 		data-original-title="페이지 준비 중입니다.">Actual Results</a> <a
 		href="/board/bnsList.mwav" class="list-group-item"
 		data-toggle="tooltip" data-placement="top"
-		data-original-title="IT 트렌드">IT Trends</a> <a
-		 class="list-group-item"
-		data-toggle="tooltip" data-placement="top" data-original-title="페이지 준비 중입니다.">HR-Affairs</a>
-	<a href="/Company/LocationMap/LocationMap.mwav" class="list-group-item"
+		data-original-title="IT 트렌드">IT Trends</a> <a class="list-group-item"
 		data-toggle="tooltip" data-placement="top"
-		data-original-title="회사약도">Location Map</a> <a
-		
-		class="list-group-item" data-toggle="tooltip" data-placement="top"
-		data-original-title="페이지 준비 중입니다.">Profit sharing</a>
+		data-original-title="페이지 준비 중입니다.">HR-Affairs</a> <a
+		href="/Company/LocationMap/LocationMap.mwav" class="list-group-item"
+		data-toggle="tooltip" data-placement="top" data-original-title="회사약도">Location
+		Map</a> <a class="list-group-item" data-toggle="tooltip"
+		data-placement="top" data-original-title="페이지 준비 중입니다.">Profit
+		sharing</a>
 </div>

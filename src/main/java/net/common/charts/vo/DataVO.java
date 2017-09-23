@@ -11,21 +11,35 @@ public class DataVO {
     private String title;
     private String yAxisTitle;
     private String xAxisTitle;
+    private String chartType;
     private List<String> categories;
     private List<SeriesVO> series;
-
-
-    public DataVO(String divId, String title, String yAxisTitle, String xAxisTitle, List<String> categories, List<SeriesVO> series) {
+ 
+    public DataVO(String divId, String title, String yAxisTitle, String xAxisTitle, String chartType, List<String> categories, List<SeriesVO> series) {
         this.setDivId(divId);
         this.setTitle(title);
         this.setyAxisTitle(yAxisTitle);
         this.setxAxisTitle(xAxisTitle);
+        this.setChartType(chartType);
         this.setCategories(categories);
         this.setSeries(series);
     }
+    
+  
+
+    public String getChartType() {
+		return chartType;
+	}
 
 
-    public String getTitle() {
+
+	public void setChartType(String chartType) {
+		this.chartType = chartType;
+	}
+
+
+
+	public String getTitle() {
         return title;
     }
 

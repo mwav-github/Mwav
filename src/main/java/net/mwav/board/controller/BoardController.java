@@ -108,9 +108,16 @@ public class BoardController {
 		 * entry.getValue()); } }
 		 */
 
+	/*	log.info("call filter.do");
+		String param = (String) request.getParameter("bNews_id");
+		log.info("call filter.value"+param);
+		*/
+		
 		log.debug("인터셉터 테스트");
 		Map<String, Object> selectOneBnsView = boardService
 				.selectOneBnsView(commandMap.getMap());
+		
+		
 
 		if (selectOneBnsView != null && !selectOneBnsView.isEmpty()) {
 			

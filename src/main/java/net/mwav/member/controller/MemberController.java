@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import javax.annotation.Resource;
+import javax.inject.Inject;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,6 +20,8 @@ import net.common.common.CommandMap;
 import net.mwav.common.module.Common_Utils;
 import net.mwav.common.module.EmailSender;
 import net.mwav.common.module.VerifyRecaptcha;
+import net.mwav.framework.DateLib;
+import net.mwav.framework.SecurityLib;
 import net.mwav.member.service.MemberService;
 import net.mwav.member.vo.Member_tbl_VO;
 
@@ -42,6 +45,10 @@ public class MemberController {
 	String mode;
 	HttpServletRequest request;
 
+	@Inject
+	SecurityLib securityLib; 
+	 
+	
 	@Autowired
 	Member_tbl_VO member_tbl_VO;
 	
@@ -605,7 +612,7 @@ public class MemberController {
 		System.out.println("gRecaptchaResponse"+gRecaptchaResponse);
 		boolean valid;
 		// Verify CAPTCHA.
-		valid = VerifyRecaptcha.verify(gRecaptchaResponse);
+		valid = securityLib.recapchaVerify(gRecaptchaResponse);
 		if (!valid) {
 			// RECAPTCHA 오류 (false)
 			loginCheck = 6;

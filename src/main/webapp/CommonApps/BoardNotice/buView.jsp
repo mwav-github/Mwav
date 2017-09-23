@@ -26,7 +26,7 @@
 
 <!-- Content Column -->
 <div class="row">
-	<div class="col-md-12">
+	<div class="col-md-12" id="notice_top">
 
 
 		<h2>

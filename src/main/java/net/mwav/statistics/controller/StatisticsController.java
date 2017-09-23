@@ -45,12 +45,13 @@ public class StatisticsController {
 			String member_id, String statistics_id, String session_id)
 			throws Exception {
 
-		Map<String, Object> staticMap = cou.getHeadersInfo(request);
 		// 실 IP
 		String realIp = cou.getClientIP(request);
 		// staticMap.put("IP", realIp);
 
-		cou.selectMap(staticMap);
+		Map<String, Object> staticMap = cou.getHeadersInfo(request);
+		// 출력 
+		//cou.selectMap(staticMap);
 
 		
 
@@ -137,7 +138,7 @@ public class StatisticsController {
 
 			// 통계적용일
 			Timestamp stamp = new Timestamp(System.currentTimeMillis());
-			System.out.println("테스트"+mathLib.getRandomNum(0, 20));
+			//System.out.println("테스트"+mathLib.getRandomNum(0, 20));
 			vo.setStStatisticsDt(stamp);
 
 			// String stClientScreen = (String)

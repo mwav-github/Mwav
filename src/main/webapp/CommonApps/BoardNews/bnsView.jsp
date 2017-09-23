@@ -23,7 +23,7 @@
 -->
 
 <!-- Content Column -->
-<div class="row">
+<div class="row" id="news_top">
 	<form role="form">
 		<%-- <table class="table-responsive table table-striped">
 			<thead>

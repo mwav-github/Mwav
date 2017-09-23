@@ -114,6 +114,16 @@ public class QAController {
 		String m_id = (String) session.getAttribute("member_id");
 		commandMap.put("member_id", m_id);
 		
+		// 정리 필요.
+		int uqInvoker_id;
+		String uqInvoker_id_string = (String) commandMap.get("uqInvoker_id");
+		if (Common_Utils.isEmpty(uqInvoker_id_string) == true){
+			//null인경우
+			uqInvoker_id = 0;
+			commandMap.put("uqInvoker_id", uqInvoker_id);
+		}
+		
+		
 		log.info("인터셉터 테스트");
 
 		// 아직 까지는 한벌로

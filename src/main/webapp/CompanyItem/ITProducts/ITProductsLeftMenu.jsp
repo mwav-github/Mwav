@@ -87,7 +87,7 @@
 				href="/CompanyItem/ITProducts/Aervision/Aervision.mwav#AerID"
 				class="list-group-item " data-toggle="tooltip" data-placement="top"
 				data-original-title="AerID"><span
-				class="glyphicon glyphico	n-chevron-right"></span> AerID</a> <a
+				class="glyphicon glyphicon-chevron-right"></span> AerID</a> <a
 				href="/CompanyItem/ITProducts/Aervision/Aervision.mwav#AerGate"
 				class="list-group-item " data-toggle="tooltip" data-placement="top"
 				data-original-title="AerGate"><span

@@ -113,7 +113,7 @@
 				<p style="padding: 40px 0px 10px; border-bottom: 1px solid #BAC1C8;">
 					<img src="/Company/zImage/CompanyLogo_gray.gif"
 						class="img-thumbnail img-responsive logo_800_h"
-						alt="Responsive image">
+						alt="CompanyLogo_gray">
 				</p>
 
 				<ul>
@@ -188,35 +188,34 @@
 					<p>&nbsp;</p>
 
 					<ul class="list-unstyled list-inline list-social-icons">
-						<li><a href="https://twitter.com/mwavnet"
+						<li><a href=""
 							class="btn btn-social-icon btn-twitter" style="color: white;"
 							target="_blank"
-							onclick="ga('send', 'event', 'twitter', 'click', 'Footer');">
+							onclick="ga('send', 'event', 'twitter', 'click', 'Footer'); redirectUrl('https://twitter.com/mwavnet', '_blank'); ">
 								<span class="fa fa-twitter"></span>
 						</a></li>
-						<li><a href="https://www.facebook.com/mwavsns"
+						<li><a href=""
 							class="btn btn-social-icon btn-facebook" style="color: white;"
 							target="_blank"
-							onclick="ga('send', 'event', 'facebook', 'click', 'Footer');">
+							onclick="ga('send', 'event', 'facebook', 'click', 'Footer'); redirectUrl('https://www.facebook.com/mwavsns', '_blank'); ">
 								<span class="fa fa-facebook"></span>
 						</a></li>
 						<li><a
-							href="https://plus.google.com/113341818785719365682?hl=ko"
+							href=""
 							class="btn btn-social-icon btn-google" style="color: white;"
 							target="_blank"
-							onclick="ga('send', 'event', 'googleplus', 'click', 'Footer');">
+							onclick="ga('send', 'event', 'googleplus', 'click', 'Footer'); redirectUrl('https://plus.google.com/113341818785719365682?hl=ko', '_blank'); ">
 								<span class="fa fa-google"></span>
 						</a></li>
-						<li><a href="https://www.linkedin.com/in/mwav-net-255543133/"
+						<li><a href=""
 							class="btn btn-social-icon btn-linkedin" style="color: white;"
-							target="_blank"
-							onclick="ga('send', 'event', 'linkedin', 'click', 'Footer');">
+							onclick="ga('send', 'event', 'linkedin', 'click', 'Footer'); redirectUrl('https://www.linkedin.com/in/mwav-net-255543133/', '_blank');" target="_blank">
 								<span class="fa fa-linkedin"></span>
 						</a></li>
-						<li><a href="https://www.instagram.com/mwavnet/"
+						<li><a href=""
 							class="btn btn-social-icon btn-instagram" style="color: white;"
 							target="_blank"
-							onclick="ga('send', 'event', 'instagram', 'click', 'Footer');">
+							onclick="ga('send', 'event', 'instagram', 'click', 'Footer'); redirectUrl('https://www.instagram.com/mwavnet/', '_blank'); ">
 								<span class="fa fa-instagram"></span>
 						</a></li>
 					</ul>

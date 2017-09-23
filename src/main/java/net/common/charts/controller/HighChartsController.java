@@ -18,7 +18,6 @@ public class HighChartsController {
 	@Inject
 	DateLib dateLib; 
 	 
-	
 	    
     @Autowired
     HighChartsService chartService;
@@ -47,6 +46,18 @@ public class HighChartsController {
     @ResponseBody
     public DataVO selectListWeeklyUsers() {
         return chartService.selectListWeeklyUsers();
+    }
+    
+    @RequestMapping({"/Top10PageList.chart"})
+    @ResponseBody
+    public DataVO selectListTop10Page() {
+        return chartService.selectListTop10Page();
+    }
+    
+    @RequestMapping({"/ClientScreenSize.chart"})
+    @ResponseBody
+    public DataVO selectListClientScreenSize() {
+        return chartService.selectListClientScreenSize();
     }
 
 

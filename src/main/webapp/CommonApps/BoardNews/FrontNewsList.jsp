@@ -36,7 +36,7 @@
 							<tr>
 								<!-- a태그로 처리요망 -->
 								<td class="col-md-12 text-left "><a
-									href="/board/bnsView.mwav?bNews_id=${VselectListBnsFrontList.bNews_id}" >${VselectListBnsFrontList.bnTitle}</a></td>
+									href="/board/bnsView.mwav?bNews_id=${VselectListBnsFrontList.bNews_id}#news_top" >${VselectListBnsFrontList.bnTitle}</a></td>
 								<%--view를 구현하는 방법에 따라 달라진다. get 문 형태 유망 --%>
 								<%-- <td class="col-md-4 hidden-xs text-center" style="color:rgba(0,0,0,.5);">${VselectListBnsFrontList.bnInsertDt}</td> --%>
 							</tr>

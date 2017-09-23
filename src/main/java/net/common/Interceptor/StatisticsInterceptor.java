@@ -112,14 +112,18 @@ public class StatisticsInterceptor extends HandlerInterceptorAdapter {
 			/* (사용자 기기체크) if (!(localMachineName.equals("DESKTOP-T79AHJS"))) { */
 
 			String auth_url = request.getRequestURI();
+			String userAgent = request.getHeader("User-Agent");		
+			
 			
 			log.info("auth_url 추적." + auth_url);
+			log.info("userAgent" + userAgent);
 			// .jsp는 include 되는 부분에 대한 방지. .chart는 차트 include 방지 
-			if (auth_url != null && !(auth_url.contains(".jsp")) && !(auth_url.contains(".chart"))) {
+			if (auth_url != null && !(userAgent.contains("Java")) && !(auth_url.contains(".jsp")) && !(auth_url.contains(".chart"))) {
 				
 				String PageName = Common_Utils.setPageName(auth_url);
 				if (statistics_id == null || statistics_id.equals("")) {
-					
+					//Java/1.8.0_25
+					log.info("user-agent 이슈찾기." + request.getHeader("User-Agent"));
 					request.setAttribute("stPageName", PageName);
 					statistics_id = statisticsController.insertFirstStatics(
 							request, member_id, statistics_id, session_id);
@@ -135,7 +139,11 @@ public class StatisticsInterceptor extends HandlerInterceptorAdapter {
 					 * statistics_id, "/", 60 * 60 * 24 * 7); // 쿠키의 경우 클라이언트에게
 					 * 생성된 쿠키를 전송해야한다. (삭제도 마찬가지) response.addCookie(cookie);
 					 */
-				} else {
+					
+					
+				} 
+				///statistics/stClientScreenUpdateAjax.mwav 해당 업데이트를 막을지는 고민
+				else {
 					log.info("statistics_id insertStatics." + statistics_id);
 					
 					request.setAttribute("slPageName", PageName);

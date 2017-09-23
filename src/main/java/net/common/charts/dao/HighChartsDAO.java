@@ -24,4 +24,15 @@ public class HighChartsDAO extends AbstractDAO {
 
 	}
 
+	public List<SeriesVO_Arrary> selectListTop10Page() {
+		// TODO Auto-generated method stub
+		return (List<SeriesVO_Arrary>) selectList("highCharts.selectListTop10Page");
+
+	}
+
+	public List<SeriesVO_Arrary> selectListClientScreenSize() {
+		// TODO Auto-generated method stub
+		return (List<SeriesVO_Arrary>) selectList("highCharts.selectListClientScreenSize");
+	}
+
 }
