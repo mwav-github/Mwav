@@ -175,8 +175,8 @@
 					<p>Have a question or feedback?</p>
 					<br>
 					<p>
-						<!-- <a href="mailto:ebizpromwav@gmail.com" title="Contact me!"><i
-						class="fa fa-envelope"></i> Contact</a> -->
+						<%-- <a href="mailto:ebizpromwav@gmail.com" title="Contact me!"><i
+						class="fa fa-envelope"></i> Contact</a> 
 						<%--줄 없애기 + 그다음에 메일로 바로연결이아닌 qa쪽 고민 --%>
 
 						<a href="#" class="btn btn-block btn-primary" data-toggle="modal"

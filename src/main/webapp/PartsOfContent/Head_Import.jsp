@@ -106,7 +106,7 @@
 		$('.res_width').animate({
 			marginTop : height
 		}, 1000); */--%>
-	                    $('#myCarousel').css({
+	$('#myCarousel').css({
 							'margin-top' : height
 						});
 						$('.res_width').css({
@@ -114,7 +114,7 @@
 						});
 <%--url 에 따라 타이틀 지정 (170418 부로 서버사이드로 이동)
 		setTitle(location.pathname);--%>
-	                    caps_lockchk();
+	caps_lockchk();
 
 						$('#back-to-top').fadeOut();
 						$(window).scroll(function() {
@@ -139,6 +139,14 @@
 <script>
 	window.onload = function() {
 		// 페이지 완전 로딩후 실행
+		//bootstrap url base 호출, CommonLibrary로 변경.
+		//https://stackoverflow.com/questions/28079380/show-bootstrap-modal-only-if-url-has-certain-parameters
+
+		var url = window.location.href;
+		if (url.indexOf('?modal=Q&A') != -1) {
+			$("#Contact").modal('show');
+		}
+
 		var stClientScreen = '<c:out value="${requestScope.stClientScreen}" />';
 		//null 인경우 실행.
 
