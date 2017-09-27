@@ -20,6 +20,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -38,10 +39,10 @@ import org.springframework.social.connect.web.ProviderSignInUtils;
 import org.springframework.social.facebook.api.Facebook;
 import org.springframework.social.facebook.api.User;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.util.WebUtils;
 
 @Controller
 public class SignController {
@@ -198,8 +199,10 @@ public class SignController {
 			memberService.insertSnsForm(map);
 			member_tbl_VO.setMember_id(member_id);
 			session.setAttribute("member", member_tbl_VO);
-			System.out.println("세션에 있는 값 "+(String)request.getSession().getAttribute("loginCheck"));
-			memberService.updateAutoLogin((String)request.getSession().getAttribute("loginCheck"), response, member_tbl_VO.getMember_id());
+			if(request.getSession().getAttribute("autoLoginSub")!=null){
+				memberService.updateAutoLogin((String)request.getSession().getAttribute("autoLoginSub"), response, member_tbl_VO.getMember_id());
+				request.getSession().removeAttribute("autoLoginSub");
+			}
 			logger.info("insertSnsForm success!!!!!!");
 		} else {
 			// 업데이트 해야하는 요소가 있다면 사실해줘야 한다.
@@ -212,13 +215,13 @@ public class SignController {
 			} catch (NullPointerException e) {
 				e.printStackTrace();
 			}
-			System.out.println("세션에 있는 값 "+ (String)request.getSession().getAttribute("loginCheck"));
 
 			member_tbl_VO.setMember_id(member_id);
 			session.setAttribute("member", member_tbl_VO);
-			memberService.updateAutoLogin((String)request.getSession().getAttribute("loginCheck"), response, member_tbl_VO.getMember_id());
-			
-		
+			if(request.getSession().getAttribute("autoLoginSub")!=null){
+				memberService.updateAutoLogin((String)request.getSession().getAttribute("autoLoginSub"), response, member_tbl_VO.getMember_id());
+				request.getSession().removeAttribute("autoLoginSub");
+			}
 		}
 
 		String mbrLoginId = connection.getDisplayName();

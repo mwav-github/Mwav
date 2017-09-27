@@ -65,13 +65,13 @@ public class StaffController {
 	@RequestMapping(value = "/test2.mwav")
 	public ModelAndView test2(CommandMap commandMap,
 			HttpServletRequest request) throws Exception{
-		ModelAndView mv = new ModelAndView("/Admins/CompanyMgr/Staff/StfList");
+		ModelAndView mv = new ModelAndView("/Admins/Goods/GdsCellForm");
 		return mv;
 	}
 	@RequestMapping(value = "/test3.mwav")
 	public ModelAndView test3(CommandMap commandMap,
 			HttpServletRequest request) throws Exception{
-		ModelAndView mv = new ModelAndView("/Admins/CompanyMgr/Staff/StfView");
+		ModelAndView mv = new ModelAndView("/Admins/Goods/GdsUpLoader");
 		return mv;
 	}
 	

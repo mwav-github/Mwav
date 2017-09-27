@@ -82,11 +82,8 @@ $("#checkbox4").bind("click",function(){
 	var autoUse=$("#checkbox4").is(":checked");
 	if(autoUse==false){
 		$(".test1").val("off");
-		//<c:set var="loginCheck" value="off" scope="session" />;
-		<c:remove var="loginCheck" scope="session" />;
 	}else if(autoUse==true){
 		$(".test1").val("on");
-		<c:set var="loginCheck" value="on" scope="session" />;
 	}
 	alert(autoUse);
 	});
@@ -371,7 +368,7 @@ $("#checkbox4").bind("click",function(){
 				<input type="hidden" name="${_csrf.parameterName}"
 					value="${_csrf.token}" /> <input type="hidden" name="scope"
 					value="email profile" />
-				<input type="hidden" name="loginCheck" class="test1" value="off"/>	
+				<input type="hidden" name="autoLoginSub" class="test1" value="off"/>	
 			</form>
 		</div>
 
@@ -390,7 +387,7 @@ $("#checkbox4").bind("click",function(){
 				</div>
 				<input type="hidden" name="${_csrf.parameterName}"
 					value="${_csrf.token}" />
-				<input type="hidden" name="loginCheck" class="test1" value="off"/>
+				<input type="hidden" name="autoLoginSub" class="test1" value="off"/>
 			</form>
 		</div>
 
@@ -410,7 +407,7 @@ $("#checkbox4").bind("click",function(){
 				</div>
 				<input type="hidden" name="${_csrf.parameterName}"
 					value="${_csrf.token}" />
-				<input type="hidden" name="loginCheck" class="test1" value="off"/>
+				<input type="hidden" name="autoLoginSub" class="test1" value="off"/>
 			</form>
 		</div>
 
@@ -428,7 +425,7 @@ $("#checkbox4").bind("click",function(){
 				</button>
 				<input type="hidden" name="${_csrf.parameterName}"
 					value="${_csrf.token}" />
-				<input type="hidden" name="loginCheck" class="test1" value="off"/>
+				<input type="hidden" name="autoLoginSub" class="test1" value="off"/>
 			</form>
 		</div>
 

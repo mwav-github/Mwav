@@ -9,15 +9,16 @@ import javax.servlet.http.HttpSession;
 
 import net.mwav.common.module.Common_Utils;
 import net.mwav.common.module.CookieBox;
-import net.mwav.common.module.DomReadXMLFile;
+import net.mwav.member.service.MemberService;
 import net.mwav.member.vo.Member_tbl_VO;
 import net.mwav.statistics.controller.StatisticsController;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.springframework.web.util.WebUtils;
 
 //
 
@@ -26,6 +27,9 @@ public class StatisticsInterceptor extends HandlerInterceptorAdapter {
 	@Autowired
 	Member_tbl_VO member_tbl_VO;
 
+	@Autowired
+	MemberService memberService;
+	
 	protected Log log = LogFactory.getLog(StatisticsInterceptor.class);
 
 	@Autowired
@@ -36,6 +40,12 @@ public class StatisticsInterceptor extends HandlerInterceptorAdapter {
 			HttpServletResponse response, Object handler) throws Exception {
 		log.info("======================================          START         ======================================");
 		log.info(" Request URI \t:  " + request.getRequestURI());
+		
+		if(request.getSession().getAttribute("member") == null){
+			getAutoLogin(request, request.getSession());
+		}
+		
+		
 		CookieBox cookieBox = new CookieBox(request);
 		Cookie cookie;
 		HttpSession session = request.getSession();
@@ -159,5 +169,24 @@ public class StatisticsInterceptor extends HandlerInterceptorAdapter {
 		log.info("======================================           END          ======================================\n");
 
 	}
+	
+	
+	private Boolean getAutoLogin(HttpServletRequest request, HttpSession session) {
+		Cookie loginCookie = WebUtils.getCookie(request, "autoLogin");
+		if (loginCookie != null&&loginCookie.getValue()!=null&&!loginCookie.getValue().equals("")) {
+			log.info("자동로그인 실행 중");			
+			
+			Member_tbl_VO member = memberService.selectAutoLogin(Integer.parseInt(loginCookie.getValue()));
+			log.info("member의 값은"+ member.toString());
+			if (member != null) {
+				log.info("자동로그인 VO 가져옴");
+				session.setAttribute("member", member);
+				return true;
+			
+			}
+		}
+		return false;
+	}
+	
 
 }

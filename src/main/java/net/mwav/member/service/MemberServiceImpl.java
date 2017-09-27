@@ -263,8 +263,9 @@ public class MemberServiceImpl implements MemberService {
 			System.out.println("세션의 멤버가 눌이 아님");	
 		    	if (loginCookie != null) {
 			        loginCookie.setPath("/");
+			        loginCookie.setValue(null);
 			        loginCookie.setMaxAge(0);
-			        response.addCookie(loginCookie);
+			        response.addCookie(loginCookie);;
 			        System.out.println("오토로그인 삭제 성공");
 			        return memberDAO.updateAutoLoginDel(member.getMember_id());
 			        

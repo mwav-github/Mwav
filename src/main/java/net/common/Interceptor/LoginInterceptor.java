@@ -45,8 +45,8 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		HttpSession session = request.getSession();
 		String returnUrl = request.getRequestURI(); // 현재 URL 
 		if(session.getAttribute("member") == null){                            // id가 Null 이거나 없을 경우
-			if(getAutoLogin(request, session)==true) return true; //원래페이지로 감 
-			else response.sendRedirect("/MasterPage.mwav?mode=SMbrLogin&returnUrl="+returnUrl);    // 로그인 페이지로 리다이렉트 한다.	
+			//if(getAutoLogin(request, session)==true) return true; //원래페이지로 감 
+			 response.sendRedirect("/MasterPage.mwav?mode=SMbrLogin&returnUrl="+returnUrl);    // 로그인 페이지로 리다이렉트 한다.	
 		}else{
 			return true; 
 		}
@@ -61,24 +61,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		System.out.println("모든 것을 수행한 후 LoginInterceptor에 나갔다.11");
 		
 		log.info("======================================           END(LoginInterceptor)          ======================================\n");
-
-		
-		
 	}
 	
-	private Boolean getAutoLogin(HttpServletRequest request, HttpSession session) {
-		Cookie loginCookie = WebUtils.getCookie(request, "autoLogin");
-		if (loginCookie != null) {
-			log.info("자동로그인 실행 중");			
-			Member_tbl_VO member = memberService.selectAutoLogin(Integer.parseInt(loginCookie.getValue()));
-			log.info("member의 값은"+ member.toString());
-			if (member != null) {
-				log.info("자동로그인 VO 가져옴");
-				session.setAttribute("member", member);
-				return true;
-			}
-		}
-		return false;
-	}
 	
 }

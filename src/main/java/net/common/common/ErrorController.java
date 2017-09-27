@@ -37,6 +37,8 @@ public class ErrorController {
 		return "/MessageView/error";
 	}
 	
+	
+	
 	@RequestMapping(value = "/exception.mwav")
 	public String exception(Model model,
 			HttpServletRequest request) throws Exception {
