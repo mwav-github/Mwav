@@ -188,33 +188,28 @@
 					<p>&nbsp;</p>
 
 					<ul class="list-unstyled list-inline list-social-icons">
-						<li><a href=""
-							class="btn btn-social-icon btn-twitter" style="color: white;"
-							target="_blank"
+						<li><a href="" class="btn btn-social-icon btn-twitter"
+							style="color: white;" target="_blank"
 							onclick="ga('send', 'event', 'twitter', 'click', 'Footer'); redirectUrl('https://twitter.com/mwavnet', '_blank'); ">
 								<span class="fa fa-twitter"></span>
 						</a></li>
-						<li><a href=""
-							class="btn btn-social-icon btn-facebook" style="color: white;"
-							target="_blank"
+						<li><a href="" class="btn btn-social-icon btn-facebook"
+							style="color: white;" target="_blank"
 							onclick="ga('send', 'event', 'facebook', 'click', 'Footer'); redirectUrl('https://www.facebook.com/mwavsns', '_blank'); ">
 								<span class="fa fa-facebook"></span>
 						</a></li>
-						<li><a
-							href=""
-							class="btn btn-social-icon btn-google" style="color: white;"
-							target="_blank"
+						<li><a href="" class="btn btn-social-icon btn-google"
+							style="color: white;" target="_blank"
 							onclick="ga('send', 'event', 'googleplus', 'click', 'Footer'); redirectUrl('https://plus.google.com/113341818785719365682?hl=ko', '_blank'); ">
 								<span class="fa fa-google"></span>
 						</a></li>
-						<li><a href=""
-							class="btn btn-social-icon btn-linkedin" style="color: white;"
-							onclick="ga('send', 'event', 'linkedin', 'click', 'Footer'); redirectUrl('https://www.linkedin.com/in/mwav-net-255543133/', '_blank');" target="_blank">
-								<span class="fa fa-linkedin"></span>
+						<li><a href="" class="btn btn-social-icon btn-linkedin"
+							style="color: white;"
+							onclick="ga('send', 'event', 'linkedin', 'click', 'Footer'); redirectUrl('https://www.linkedin.com/in/mwav-net-255543133/', '_blank');"
+							target="_blank"> <span class="fa fa-linkedin"></span>
 						</a></li>
-						<li><a href=""
-							class="btn btn-social-icon btn-instagram" style="color: white;"
-							target="_blank"
+						<li><a href="" class="btn btn-social-icon btn-instagram"
+							style="color: white;" target="_blank"
 							onclick="ga('send', 'event', 'instagram', 'click', 'Footer'); redirectUrl('https://www.instagram.com/mwavnet/', '_blank'); ">
 								<span class="fa fa-instagram"></span>
 						</a></li>
@@ -247,12 +242,12 @@
 
 <div class="footer-bottom">
 	<div class="container">
-		<p class="pull-left">
+		<p class="pull-left col-md-7">
 			Copyright ⓒ Since 2004 Mwav.net All rights reserved | <a>Privacy
 				Policy</a> | <a>Terms of Use</a>
 		</p>
-		<div class="pull-right">
-			<ul class="nav nav-pills payments">
+		<div class="pull-right col-md-5">
+			<%-- <ul class="nav nav-pills payments">
 				<li class="tooltips" data-toggle="tooltip" data-placement="top"
 					title="" data-original-title="visa"
 					aria-describedby="tooltip235096"><i class="fa fa-cc-visa"></i></li>
@@ -266,6 +261,52 @@
 				<li class="tooltips" data-toggle="tooltip" data-placement="top"
 					title="" data-original-title="paypal"
 					aria-describedby="tooltip235096"><i class="fa fa-cc-paypal"></i></li>
+			</ul> -->
+			<!-- 	<ul class="nav nav-pills">
+
+				<li class="tooltips" data-toggle="tooltip" data-placement="top"
+					title="" data-original-title="internet-explorer"><i
+					class="fa fa-internet-explorer fa-2x" aria-hidden="true"></i></li>
+				<li class="tooltips" data-toggle="tooltip" data-placement="top"
+					title="" data-original-title="chrome"><i
+					class="fa fa-chrome fa-2x" aria-hidden="true"></i>
+				<li class="tooltips" data-toggle="tooltip" data-placement="top"
+					title="" data-original-title="firefox"><i
+					class="fa fa-firefox fa-2x" aria-hidden="true"></i>
+				<li class="tool
+				tips" data-toggle="tooltip"
+					data-placement="top" title="" data-original-title="safari"><i
+					class="fa fa-safari fa-2x" aria-hidden="true"></i></li>
+				<li class="tool
+				tips" data-toggle="tooltip"
+					data-placement="top" title="" data-original-title="opera"><i
+					class="fa fa-opera fa-2x" aria-hidden="true"></i></li>
+			</ul> --%>
+
+			<ul class="nav nav-pills">
+				<p class="pull-left mgr3">All Browsers Compatibility</p>
+				<li class="tooltips" data-toggle="tooltip" data-placement="top"
+					title="" data-original-title="internet-explorer"><img
+					src="/PartsOfContent/SiteFooter/Images/Edge.png"
+					class="img-thumbnail img-responsive" alt="internet-explorer"></li>
+				<li class="tooltips" data-toggle="tooltip" data-placement="top"
+					title="" data-original-title="chrome"><img
+					src="/PartsOfContent/SiteFooter/Images/Chrome.png"
+					class="img-thumbnail img-responsive" alt="internet-explorer">
+				<li class="tooltips" data-toggle="tooltip" data-placement="top"
+					title="" data-original-title="firefox"><img
+					src="/PartsOfContent/SiteFooter/Images/Firefox.png"
+					class="img-thumbnail img-responsive" alt="firefox">
+				<li class="tool
+				tips" data-toggle="tooltip"
+					data-placement="top" title="" data-original-title="safari"><img
+					src="/PartsOfContent/SiteFooter/Images/Safari.png"
+					class="img-thumbnail img-responsive" alt="safari"></li>
+				<li class="tool
+				tips" data-toggle="tooltip"
+					data-placement="top" title="" data-original-title="opera"><img
+					src="/PartsOfContent/SiteFooter/Images/Opera.png"
+					class="img-thumbnail img-responsive" alt="opera">
 			</ul>
 		</div>
 	</div>

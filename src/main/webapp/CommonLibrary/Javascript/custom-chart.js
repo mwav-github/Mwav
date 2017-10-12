@@ -21,10 +21,24 @@ function createNewColumnChart(divId, getChartColumnFunction) {
 			}
 		}
 	};
-	
+
 	columnchart = jQuery.extend(true, {}, getChartColumnFunction, columnchart);
 	columnchart.init(columnchart.options);
 	return columnchart;
+}
+
+function createNewPieChart(divId, getChartPieFunction) {
+	var piechart = {
+		options : {
+			chart : {
+				renderTo : divId
+			}
+		}
+	};
+
+	piechart = jQuery.extend(true, {}, getChartPieFunction, piechart);
+	piechart.init(piechart.options);
+	return piechart;
 }
 
 function getBaseLineChart() {
@@ -74,7 +88,7 @@ function getBaseLineChart() {
 
 	};
 	return baseLineChart;
-}//function end
+}// function end
 
 function getBaseChart() {
 
@@ -135,7 +149,7 @@ function getBaseChart() {
 
 	};
 	return baseChart;
-}//function end
+}// function end
 
 function getBaseColumnChart() {
 
@@ -144,7 +158,7 @@ function getBaseColumnChart() {
 		defaults : {
 
 			chart : {
-				type: 'column'
+				type : 'column'
 			},
 			title : {
 				text : null
@@ -164,7 +178,8 @@ function getBaseColumnChart() {
 			tooltip : {
 				headerFormat : '<span style="font-size:10px">{point.key}</span><table>',
 				pointFormat : '<tr><td style="color:{series.color};padding:0">{series.name}: </td>'
-						+ '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+						+ '<td style="padding:0"><b>{point.y:.0f} </b></td></tr>',
+				// .0f 소수점 제거하여 출력 / .1f 소수점 한자리 포함 출력
 				footerFormat : '</table>',
 				shared : true,
 				useHTML : true
@@ -186,7 +201,7 @@ function getBaseColumnChart() {
 
 	};
 	return baseColumnChart;
-}//function end
+}// function end
 
 function getBasePieChart() {
 
@@ -195,9 +210,9 @@ function getBasePieChart() {
 		defaults : {
 
 			chart : {
-				plotBackgroundColor: null,
-		        plotBorderWidth: null,
-		        plotShadow: false,
+				plotBackgroundColor : null,
+				plotBorderWidth : null,
+				plotShadow : false,
 				type : 'pie'
 			},
 
@@ -211,25 +226,10 @@ function getBasePieChart() {
 					fontFamily : 'Trebuchet MS, Verdana, sans-serif'
 				}
 			},
-			tooltip: {
-		        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-		    },
-		    plotOptions: {
-		        pie: {
-		            allowPointSelect: true,
-		            cursor: 'pointer',
-		            dataLabels: {
-		                enabled: true,
-		                format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-		                style: {
-		                    color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-		                }
-		            }
-		        }
-		    },
-			
-			series : []
 
+			series : [ {
+				data : [ {} ]
+			} ]
 		},
 
 		// here you'll merge the defaults with the object options
@@ -243,7 +243,7 @@ function getBasePieChart() {
 
 	};
 	return basePieChart;
-}//function end
+}// function end
 
 function getRemoteDataDrawChart(url, chartType) {
 
@@ -256,10 +256,10 @@ function getRemoteDataDrawChart(url, chartType) {
 			var title = data.title;
 			var yTitle = data.yAxisTitle;
 			var xTitle = data.xAxisTitle;
-			//alert(xTitle);
+			// alert(xTitle);
 			var divId = data.divId;
 
-			//populate the lineChart options (highchart)
+			// populate the lineChart options (highchart)
 			chartType.highchart.xAxis.categories = categories;
 			chartType.highchart.title.text = title;
 			chartType.highchart.yAxis.title.text = yTitle;
@@ -275,14 +275,14 @@ function getRemoteDataDrawChart(url, chartType) {
 				series.color = seriesItem.color;
 
 				$.each(seriesItem.data, function(j, seriesItemData) {
-					console.log("Data (" + j + "): " + seriesItemData);
+					//console.log("Data (" + j + "): " + seriesItemData);
 					series.data.push(parseFloat(seriesItemData));
 				});
 
 				chartType.highchart.series[i] = series;
 			});
 
-			//draw the chart
+			// draw the chart
 			chartType.create();
 		},
 		error : function(xhr, ajaxOptions, thrownError) {
@@ -291,7 +291,7 @@ function getRemoteDataDrawChart(url, chartType) {
 		},
 		cache : false
 	});
-} //function end
+} // function end
 
 function getRemoteDataDrawColumnChart(url, chartType) {
 
@@ -299,41 +299,41 @@ function getRemoteDataDrawColumnChart(url, chartType) {
 		url : url,
 		dataType : 'json',
 		success : function(data) {
-            var categories = data.categories;
+			var categories = data.categories;
 			var title = data.title;
-			//alert(xTitle);
+			// alert(xTitle);
 			var divId = data.divId;
 			var type = data.chartType;
-			
-			//populate the lineChart options (highchart)
+
+			// populate the lineChart options (highchart)
 			chartType.highchart.xAxis.categories = categories;
 			chartType.highchart.title.text = title;
 			chartType.highchart.chart.renderTo = divId;
 
-			//chartType.highchart.chart.type = chartType;
+			// chartType.highchart.chart.type = chartType;
 			chartType.highchart.chart.type = type;
 
-		    
-			
-			
 			$.each(data.series, function(i, seriesItem) {
-				//console.log("series"+series);
 				console.log(seriesItem);
 				var series = {
 					data : []
 				};
 				series.name = seriesItem.name;
-				series.data = seriesItem.data;
-				
+				//console.log("Data1 (" + i + "): " + seriesItem.name);
+				/*
+				 * console.log("Data (" + i + "): " + seriesItem.data);
+				 * series.data.push(parseFloat(seriesItem.data));
+				 */
 				$.each(seriesItem.data, function(j, seriesItemData) {
-				    console.log("Data (" + j +"): "+seriesItemData) ;
-				    series.data.push(parseFloat(seriesItemData));
+					//console.log("Data (" + j + "): " + seriesItemData);
+					// parseFloat에서 바꿔줌으로서 소수점 안나오도록
+					series.data.push(parseInt(seriesItemData));
 				});
 
 				chartType.highchart.series[i] = series;
 			});
 
-			//draw the chart
+			// draw the chart
 			chartType.create();
 		},
 		error : function(xhr, ajaxOptions, thrownError) {
@@ -342,7 +342,7 @@ function getRemoteDataDrawColumnChart(url, chartType) {
 		},
 		cache : false
 	});
-} //function end
+} // function end
 
 function getRemoteDataDrawPieChart(url, chartType) {
 
@@ -350,40 +350,69 @@ function getRemoteDataDrawPieChart(url, chartType) {
 		url : url,
 		dataType : 'json',
 		success : function(data) {
-            var title = data.title;
-			//alert(xTitle);
+
+			var title = data.title;
+			// alert(xTitle);
 			var divId = data.divId;
 			var type = data.chartType;
-			
-			//populate the lineChart options (highchart)
+
+			// populate the lineChart options (highchart)
 			chartType.highchart.title.text = title;
 			chartType.highchart.chart.renderTo = divId;
 
-			//chartType.highchart.chart.type = chartType;
+			// chartType.highchart.chart.type = chartType;
 			chartType.highchart.chart.type = type;
 
-		    
-			
-			
-			$.each(data.series, function(i, seriesItem) {
-				//console.log("series"+series);
+			$.each(data.seriesArrary, function(i, seriesItem) {
+				// console.log("series"+series);
 				console.log(seriesItem);
 				var series = {
-					data : [{
-					}]
-				};
-				series.data.y = seriesItem.name;
-				series.data.name = seriesItem.data;
-				
-				$.each(seriesItem.data, function(j, seriesItemData) {
-				    console.log("Data (" + j +"): "+seriesItemData) ;
-				    series.data.y.push(parseFloat(seriesItemData));
-				    series.data.name.push(parseFloat(seriesItemData));
+	                    data: []
+	                };
+				//console.log("seriesItem.name" + seriesItem.name);
+				//console.log("seriesItem.data" + seriesItem.data);
+
+				//series.name = 'screensize';
+				//console.log("Data1 (" + i + "): " + seriesItem.name);
+				//console.log("Data2 (" + i + "): " + seriesItem.data);
+				//series.data.name = seriesItem.name;
+				//series.data.y = parseInt(seriesItem.data);
+				//Unable to set property 'name' of undefined or null reference  y도 동일.
+				//series.data.name = seriesItem.name;
+				series.data.name = '11';
+				//series.data.y = parseInt(seriesItem.data);
+				//chartType.highchart.series[i] = series;
+
+				//series.data.name = seriesItem.name;
+
+				$.each(seriesItem.data, function(e, seriesItemData) {							    
+					console.log("Data (" + e +"): "+seriesItemData) ;
+				    //console.log("seriesItem.name"+seriesItem.name);
+				    //console.log("seriesItem.data"+seriesItem.data);
+					//series.data.y.push(parseInt(seriesItemData.name));
+					//series.data.y = seriesItemData.name;
+					//series.data.push(seriesItem.name
+					series.data.y = parseInt(seriesItemData);
+					series.data.name = '11';
 				});
+				console.log('1');
+
+				//seriesItemName=JSON.parse(seriesItemName);
+				/*$.each(seriesItem.name, function(a, seriesItemName) {	
+					console.log("Data (" + a +"): "+seriesItemName) ;
+				    //console.log("seriesItem.name"+seriesItem.name);
+				    //console.log("seriesItem.data"+seriesItem.data);
+					//series.data.y.push(parseInt(seriesItemData.name));
+					//series.data.y = seriesItemData.name;
+					//series.data.push(seriesItem.name
+					
+				});*/
+				//series.data.name = seriesItem.name;
+
 				chartType.highchart.series[i] = series;
 			});
 
-			//draw the chart
+			// draw the chart
 			chartType.create();
 		},
 		error : function(xhr, ajaxOptions, thrownError) {
@@ -392,7 +421,7 @@ function getRemoteDataDrawPieChart(url, chartType) {
 		},
 		cache : false
 	});
-} //function end
+} // function end
 
 function getRemoteDataDrawChart_2(url, chartType) {
 
@@ -405,10 +434,10 @@ function getRemoteDataDrawChart_2(url, chartType) {
 			var title = data.title;
 			var yTitle = data.yAxisTitle;
 			var xTitle = data.xAxisTitle;
-			//alert(xTitle);
+			// alert(xTitle);
 			var divId = data.divId;
 
-			//populate the lineChart options (highchart)
+			// populate the lineChart options (highchart)
 			chartType.highchart.xAxis.categories = categories;
 			chartType.highchart.title.text = title;
 			chartType.highchart.yAxis.title.text = yTitle;
@@ -425,15 +454,16 @@ function getRemoteDataDrawChart_2(url, chartType) {
 				console.log("Data (" + i + "): " + seriesItem.data);
 				series.data.push(parseFloat(seriesItem.data));
 
-				/*$.each(seriesItem.data, function(j, seriesItemData) {
-				    console.log("Data (" + j +"): "+seriesItemData) ;
-				    series.data.push(parseFloat(seriesItemData));
-				});*/
+				/*
+				 * $.each(seriesItem.data, function(j, seriesItemData) {
+				 * console.log("Data (" + j +"): "+seriesItemData) ;
+				 * series.data.push(parseFloat(seriesItemData)); });
+				 */
 
 				chartType.highchart.series[i] = series;
 			});
 
-			//draw the chart
+			// draw the chart
 			chartType.create();
 		},
 		error : function(xhr, ajaxOptions, thrownError) {
@@ -442,4 +472,4 @@ function getRemoteDataDrawChart_2(url, chartType) {
 		},
 		cache : false
 	});
-} //function end
+} // function end

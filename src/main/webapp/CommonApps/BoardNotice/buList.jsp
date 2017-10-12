@@ -20,9 +20,11 @@ container 안에 포함시키면된다.
 <input type="hidden" name="pageNum" />
 
 
+<div class="text-enter"></div>
+
 <c:choose>
 	<c:when test="${fn:length(selectListBuList) > 0}">
-		<c:forEach var="VselectListBnsList" items="${selectListBuList}">
+		<c:forEach var="VselectListBuList" items="${selectListBuList}">
 			<input type="hidden" id="bNews_id" name="bNews_id"
 				value="${VselectListBuList.bUsers_id }">
 			<div class="row">
@@ -32,8 +34,12 @@ container 안에 포함시키면된다.
 						<strong><a
 							href="javascript:window.location.href='/board/buView.mwav?bUsers_id=${VselectListBuList.bUsers_id}'">${VselectListBuList.buTitle}</a></strong>
 					</h4>
-					<p style="color: #78828D;">${VselectListBuList.buSubTitle}
-						Last modified -- ${VselectListBuList.fmbuInsertDt}</p>
+					<p style="color: #78828D;">${VselectListBuList.buSubTitle}</p>
+
+					<p style="color: #78828D;" class="text-right">
+						<c:if test="${VselectListBuList.fmbuInsertDt ne null}"> 
+						Date - ${VselectListBuList.fmbuInsertDt}</c:if>
+					</p>
 					<%-- <h6 class="pull-right">
 						<span class="glyphicon glyphicon-calendar" aria-hidden="true"> ${VselectListBnsList.fmbnInsertDt}</span>
 					</h6> --%>

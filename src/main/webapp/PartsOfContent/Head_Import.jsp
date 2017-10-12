@@ -3,11 +3,13 @@
 <jsp:include page="SNS_Head_Import.jsp" flush="false" />
 <meta name="robots" content="index, follow" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<%--아래 keyword 및 description은 변경 예정. --%>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta id="metaKeywords" name="keywords"
-	content="text/html; charset=utf-8" />
+	content="Digital Marketing, E-Consulting, IT Consulting, WebSite Building, Cloud, AI, MR, VR, ARIoT Platform, Deep Learning, Agile, DevOps, Domain, Web Hosting, Server Hosting, Hosting, HomePage, IT Solution, IT Product, DataBase, Maintenance, EC, Shopping Mall, Web Mail, News Solution, 디지털마케팅, E-컨설팅, IT컨설팅, 웹사이트 제작, 클라우드, 인공지능, 증강현실, 혼합현실, 가상현실, IOT 플랫폼, 딥 러닝, 에자일, 데브옵스, 도메인, 웹호스팅, 서버호스팅, 호스팅, 홈페이지, 웹사이트, 솔루션개발, 데이터베이스, 유지보수, 전자상거래, 쇼핑몰, 웹메일, 뉴스솔루션" />
 <meta id="metaDescription" name="description"
-	content="text/html; charset=utf-8" />
+	content="This is the website for Mwav.net. We are an IT development company possessing total E-Commerce platform based on the fancy technologies. You can contact at http://www.mwav.net/CustomerService/Contact/Contact.mwav?modal=Q&A if you have a question or an inquiry on the site." />
 <meta name="Owner" content="Mwav.net" />
 <meta name="Author" content="Zeus, Peter J." />
 <meta name="copyright" content="All contents are copyright by Mwav.net" />

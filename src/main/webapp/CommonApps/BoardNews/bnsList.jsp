@@ -61,6 +61,8 @@ container 안에 포함시키면된다.
 	</table>
 </div> --%>
 
+<div class="text-enter"></div>
+
 <c:choose>
 	<c:when test="${fn:length(selectListBnsList) > 0}">
 		<c:forEach var="VselectListBnsList" items="${selectListBnsList}">
@@ -68,13 +70,16 @@ container 안에 포함시키면된다.
 				value="${VselectListBnsList.bNews_id }">
 			<div class="row">
 				<div class="col-md-12">
-					
+
 					<h4 style="color: #23527c !important;">
 						<strong><a
 							href="javascript:window.location.href='/board/bnsView.mwav?bNews_id=${VselectListBnsList.bNews_id}'">${VselectListBnsList.bnTitle}</a></strong>
 					</h4>
 
-					<p style="color: #78828D;">${VselectListBnsList.bnSubTitle} Last modified -- ${VselectListBnsList.fmbnInsertDt}</p>
+					<p style="color: #78828D;">${VselectListBnsList.bnSubTitle}</p>
+					<p style="color: #78828D;" class="text-right">
+						<c:if test="${VselectListBnsList.fmbnUpdateDt ne null}"> Last modified - ${VselectListBnsList.fmbnUpdateDt}</c:if>
+					</p>
 					<%-- <h6 class="pull-right">
 						<span class="glyphicon glyphicon-calendar" aria-hidden="true"> ${VselectListBnsList.fmbnInsertDt}</span>
 					</h6> --%>

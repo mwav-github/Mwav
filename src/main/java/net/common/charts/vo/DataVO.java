@@ -14,7 +14,10 @@ public class DataVO {
     private String chartType;
     private List<String> categories;
     private List<SeriesVO> series;
+	private List<SeriesVO_Arrary> seriesArrary;
  
+	public DataVO(){}
+	
     public DataVO(String divId, String title, String yAxisTitle, String xAxisTitle, String chartType, List<String> categories, List<SeriesVO> series) {
         this.setDivId(divId);
         this.setTitle(title);
@@ -23,6 +26,14 @@ public class DataVO {
         this.setChartType(chartType);
         this.setCategories(categories);
         this.setSeries(series);
+    }
+    
+    //생성자 오버로딩
+    public DataVO(String divId, String title,  String chartType, List<SeriesVO_Arrary> seriesArrary) {
+        this.setDivId(divId);
+        this.setTitle(title);
+        this.setChartType(chartType);
+        this.setSeriesArrary(seriesArrary);
     }
     
   
@@ -69,6 +80,13 @@ public class DataVO {
 
     public void setSeries(List<SeriesVO> series) {
         this.series = series;
+    }
+    public List<SeriesVO_Arrary> getSeriesArrary() {
+        return seriesArrary;
+    }
+
+    public void setSeriesArrary(List<SeriesVO_Arrary> seriesArrary) {
+        this.seriesArrary = seriesArrary;
     }
 
     public String getDivId() {

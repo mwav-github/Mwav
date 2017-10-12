@@ -60,7 +60,7 @@
 		data-original-title="사업분야">Business Fields</a> <a
 		class="list-group-item" data-toggle="tooltip" data-placement="top"
 		data-original-title="페이지 준비 중입니다.">Actual Results</a> <a
-		href="/board/bnsList.mwav" class="list-group-item"
+		href="/Company/ITTrends/ITTrends.mwav" class="list-group-item"
 		data-toggle="tooltip" data-placement="top"
 		data-original-title="IT 트렌드">IT Trends</a> <a class="list-group-item"
 		data-toggle="tooltip" data-placement="top"

@@ -23,17 +23,18 @@
 		<!-- Image Container 
 container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다. 
 -->
-		<div class="row">
-			<div class="col-lg-12">
-				<img src="/CompanyItem/zImage/CompanyItem_IN(height_280).jpg"
-					class="img-responsive res_width fix_height_300"
-					alt="Responsive image">
-			</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-12">
+			<img src="/CompanyItem/zImage/CompanyItem_IN(height_280).jpg"
+				class="img-responsive res_width fix_height_300"
+				alt="Responsive image">
 		</div>
 	</div>
 	<!--  //////////////////////////////////// 
 	Header 끝
 	-->
+
 
 
 	<!-- Page Content -->
@@ -58,7 +59,8 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 		<div class="row">
 			<!-- Sidebar Column left메뉴 추후 변경 예정<시작>-->
 			<div class="col-md-3">
-				<jsp:include page="/CompanyItem/ITProducts/ITProductsLeftMenu.jsp" flush="false" />
+				<jsp:include page="/CompanyItem/ITProducts/ITProductsLeftMenu.jsp"
+					flush="false" />
 			</div>
 			<!-- 끝 -->
 
@@ -75,9 +77,10 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 						style="color: #fff; background: url(../Images/what-is-azure.jpg) no-repeat; background-size: 100% auto;">
 						<div class="vertical_child">
 							<h3 class="align_center fontsize_18">앱 프레임워크 플랫폼 반갑습니다.</h3>
-							<h4 class="mgt5 fontsize_14">Microsoft Azure는 분석, 컴퓨팅, 데이터베이스, 모바일,
-								네트워킹, 저장소 및 웹이 통합된 클라우드 서비스의 모음입니다. 이를 통해 작동이 더 빨라지고 더 많은 성과를 거둘
-								수 있으며 비용을 절감할 수 있습니다. Azure에서 수행할 수 있는 작업은 다음과 같습니다.</h4>
+							<h4 class="mgt5 fontsize_14">Microsoft Azure는 분석, 컴퓨팅,
+								데이터베이스, 모바일, 네트워킹, 저장소 및 웹이 통합된 클라우드 서비스의 모음입니다. 이를 통해 작동이 더
+								빨라지고 더 많은 성과를 거둘 수 있으며 비용을 절감할 수 있습니다. Azure에서 수행할 수 있는 작업은 다음과
+								같습니다.</h4>
 						</div>
 					</div>
 				</div>
@@ -270,7 +273,8 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 				<hr class="hr_b">
 				<!-- 9_Azure -->
 				<div class="row">
-					<div class="col-xs-12 col-sm-8 col-sm-push-4 col-md-8 col-md-push-4">
+					<div
+						class="col-xs-12 col-sm-8 col-sm-push-4 col-md-8 col-md-push-4">
 						<h3 class="text-left mgb3" style="color: #78828D;">
 							<strong>신뢰할 수 있는 클라우드 사용 </strong>
 						</h3>

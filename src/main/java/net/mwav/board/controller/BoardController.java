@@ -70,7 +70,7 @@ public class BoardController {
 		}
 		ModelAndView mv = new ModelAndView(forward_url);*/
 
-		System.out.println("순서");
+		//System.out.println("순서");
 		log.debug("인터셉터 테스트");
 		boardService.insertBnsForm(commandMap.getMap());
 
@@ -211,7 +211,8 @@ public class BoardController {
 	@RequestMapping(value = "/board/bnsList.mwav")
 	public ModelAndView selectListBnsList(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("/Company/CompanyMasterPage_1");
+		//ModelAndView mv = new ModelAndView("/Company/CompanyMasterPage_1");
+		ModelAndView mv = new ModelAndView("/CommonApps/BoardNews/bnsList");
 
 		String pageNum = (String) commandMap.get("pageNum");
 		Paging paging = new Paging();
@@ -323,7 +324,7 @@ public class BoardController {
 		 */
 
 		log.debug("인터셉터 테스트");
-		System.out.println("테스트");
+		//System.out.println("테스트");
 		Map<String, Object> selectOneBuView = boardService
 				.selectOneBuView(commandMap.getMap());
 
@@ -460,7 +461,7 @@ public class BoardController {
 		mv.addObject("pagingVO", pagingVO);
 		mv.addObject("totalRow", totalRow);
 		// mv.addObject("paging", pv.print());
-		System.out.println("mv = " + mv);
+		//System.out.println("mv = " + mv);
 		return mv;
 	}
 

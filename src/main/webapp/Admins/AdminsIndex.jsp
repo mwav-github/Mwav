@@ -10,16 +10,22 @@
 <script src="https://code.highcharts.com/highcharts.src.js"></script>
 <script src="/CommonLibrary/Javascript/custom-chart.js"></script>
 <script type="text/javascript">
-        var contextPath = '<c:out value="${pageContext.request.contextPath}"/>';
-        $(document).ready(function() {
-            //getRemoteDataDrawChart(contextPath + '/linechart1.chart', createNewLineChart('chart1-container', getBaseChart()));
-            //getRemoteDataDrawChart(contextPath + '/linechart2.chart', createNewLineChart('chart2-container', getBaseChart()));
-            getRemoteDataDrawColumnChart(contextPath + '/Top10PageList.chart', createNewColumnChart('chart4-container', getBaseColumnChart()));
-            getRemoteDataDrawChart(contextPath + '/linechart3.chart', createNewLineChart('chart3-container', getBaseLineChart()));
-            getRemoteDataDrawPieChart(contextPath + '/ClientScreenSize.chart', createNewLineChart('chart5-container', getBasePieChart()));
-                  });
-     
-    </script>
+	var contextPath = '<c:out value="${pageContext.request.contextPath}"/>';
+	$(document).ready(
+			function() {
+				//getRemoteDataDrawChart(contextPath + '/linechart1.chart', createNewLineChart('chart1-container', getBaseChart()));
+				//getRemoteDataDrawChart(contextPath + '/linechart2.chart', createNewLineChart('chart2-container', getBaseChart()));
+				getRemoteDataDrawColumnChart(contextPath
+						+ '/Top10PageList.chart', createNewColumnChart(
+						'chart1-container', getBaseColumnChart()));
+				getRemoteDataDrawChart(contextPath + '/linechart3.chart',
+						createNewLineChart('chart3-container',
+								getBaseLineChart()));
+				getRemoteDataDrawPieChart(contextPath
+						+ '/ClientScreenSize.chart', createNewPieChart(
+						'chart2-container', getBasePieChart()));
+			});
+</script>
 <%-- 
 1. 템플릿 : 참고하여 꼭 변경 http://wrapbootstrap.com/preview/WB0025522
                        http://startbootstrap.com/
@@ -90,7 +96,7 @@
 
 			<div class="enter"></div>
 			<!-- Marketing Icons Section -->
-			<div class="row mg9xauto">
+			<div class="row mg5xauto">
 				<%--장바구니 테스트 --%>
 				<!-- <span class="pull-right"><a href="#orderCart"
 				data-toggle="modal" data-target=".orderCart" role="button"
@@ -200,8 +206,8 @@
 
 			<!-- Portfolio Section -->
 			<div class="row">
-				<div class="col-md-4">
-					<div id="chart1-container"></div>
+				<div class="col-md-12">
+
 					<!-- <div class="panel panel-danger">
 						<div class="panel-heading">
 							<h3 class="panel-title">Highchart Chart 1</h3>
@@ -209,28 +215,48 @@
 						<div id="chart1-container"
 							style="min-width: 300px; max-width: 500px; height: 300px; margin: 0 auto"></div>
 					</div> -->
-				</div>
-				<div class="col-md-4">
-					<div class="panel panel-primary">
-
-						<div id="chart2-container"></div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">
+								<i class="fa fa-bar-chart"></i> BarChart
+							</h3>
+						</div>
+						<div class="panel-body">
+							<div id="chart1-container"></div>
+						</div>
+						<div class="panel-footer">Updated yesterday at 11:59 PM</div>
 					</div>
-				</div>
-				<div class="col-md-4">
-
-					<div id="chart3-container"></div>
 
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-4">
+				<div class="col-md-6">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">
+								<i class="fa fa-pie-chart" aria-hidden="true"></i> PieChart
+							</h3>
+						</div>
+						<div class="panel-body">
+							<div id="chart2-container"></div>
+						</div>
+						<div class="panel-footer">Updated yesterday at 11:59 PM</div>
+					</div>
 
-					<div id="chart4-container"></div>
 
 				</div>
-				<div class="col-md-4">
-
-					<div id="chart5-container"></div>
+				<div class="col-md-6">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">
+								<i class="fa fa-line-chart" aria-hidden="true"></i> LineChart
+							</h3>
+						</div>
+						<div class="panel-body">
+							<div id="chart3-container"></div>
+						</div>
+						<div class="panel-footer">Updated yesterday at 11:59 PM</div>
+					</div>
 
 				</div>
 			</div>

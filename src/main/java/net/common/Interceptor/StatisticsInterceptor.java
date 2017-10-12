@@ -115,22 +115,31 @@ public class StatisticsInterceptor extends HandlerInterceptorAdapter {
 			log.info("auth_url 추적." + auth_url);
 
 			/*
-			 * //Java/1.8.0_25 부분 서버로그 남기지 않을 때. 
-			 * String userAgent = request.getHeader("User-Agent");		
-			log.info("userAgent" + userAgent);
-			// .jsp는 include 되는 부분에 대한 방지. .chart는 차트 include 방지 
-			if (auth_url != null && !(userAgent.contains("Java")) && !(auth_url.contains(".jsp")) && !(auth_url.contains(".chart"))) {
-			*/	
-			if (auth_url != null && !(auth_url.contains(".jsp")) && !(auth_url.contains(".chart"))) {
-				
+			 * //Java/1.8.0_25 부분 서버로그 남기지 않을 때. String userAgent =
+			 * request.getHeader("User-Agent"); log.info("userAgent" +
+			 * userAgent); // .jsp는 include 되는 부분에 대한 방지. .chart는 차트 include 방지
+			 * if (auth_url != null && !(userAgent.contains("Java")) &&
+			 * !(auth_url.contains(".jsp")) && !(auth_url.contains(".chart"))) {
+			 */
+			// Java/1.8.0_25 부분 서버로그 남기지 않을 때.
+			String userAgent = request.getHeader("User-Agent");
+
+			if (auth_url != null && !(auth_url.contains(".jsp"))
+					&& !(auth_url.contains(".chart"))) {
+
 				String PageName = Common_Utils.setPageName(auth_url);
 				if (statistics_id == null || statistics_id.equals("")) {
-					//Java/1.8.0_25
-					request.setAttribute("stPageName", PageName);
+					// Java/1.8.0_25
+					if (userAgent.contains("Java")) {
+						request.setAttribute("stPageName", "서버재시작");
+					} else {
+						request.setAttribute("stPageName", PageName);
+					}
 					statistics_id = statisticsController.insertFirstStatics(
 							request, member_id, statistics_id, session_id);
-					
-					log.info("statistics_id insertFirstStatics." + statistics_id);
+
+					log.info("statistics_id insertFirstStatics."
+							+ statistics_id);
 					// 세션 및 쿠키 생성.
 					session.setAttribute("statistics_id", statistics_id);
 					request.setAttribute("stClientScreen", "firstTime");
@@ -141,13 +150,12 @@ public class StatisticsInterceptor extends HandlerInterceptorAdapter {
 					 * statistics_id, "/", 60 * 60 * 24 * 7); // 쿠키의 경우 클라이언트에게
 					 * 생성된 쿠키를 전송해야한다. (삭제도 마찬가지) response.addCookie(cookie);
 					 */
-					
-					
-				} 
-				///statistics/stClientScreenUpdateAjax.mwav 해당 업데이트를 막을지는 고민
+
+				}
+				// /statistics/stClientScreenUpdateAjax.mwav 해당 업데이트를 막을지는 고민
 				else {
 					log.info("statistics_id insertStatics." + statistics_id);
-					
+
 					request.setAttribute("slPageName", PageName);
 					statisticsController.insertStatics(request, statistics_id);
 				}

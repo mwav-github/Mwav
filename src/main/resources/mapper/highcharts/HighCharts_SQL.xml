@@ -13,25 +13,34 @@
 	<select id="selectListWeeklyUsers" resultType="net.common.charts.vo.SeriesVO_Arrary">
 	<![CDATA[
 	      SELECT DATE_FORMAT(stStatisticsDt, '%W') AS `name`,
-          count(`statistics_id`) AS 'data'
+          COUNT(`statistics_id`) AS 'data'
           FROM Statistics_tbl
           WHERE TO_DAYS(NOW()) - TO_DAYS(stStatisticsDt) <= 7
-          GROUP BY `name`;
- 
+          GROUP BY `name`
+          ORDER BY data DESC;
 	]]>
 	</select>	
 	
 	<select id="selectListTop10Page" resultType="net.common.charts.vo.SeriesVO_Arrary">
 	<![CDATA[
-	      SELECT slPageName AS 'name' , COUNT(*) AS 'data' FROM StatisticsLog_tbl Group by name ORDER BY 
-data DESC limit 0,10;
+	      SELECT slPageName AS 'name', 
+	      FLOOR(COUNT(*)) AS 'data' 
+	      FROM StatisticsLog_tbl 
+	      GROUP BY `name`
+	      ORDER BY data DESC 
+	      limit 0,10;
 	]]>
 	</select>
 	
 	
 	<select id="selectListClientScreenSize" resultType="net.common.charts.vo.SeriesVO_Arrary">
 	<![CDATA[
-	      	select stClientScreen AS 'name' , COUNT(*) AS 'data'  from Statistics_tbl where stClientScreen IS NOT NULL AND TO_DAYS(NOW()) - TO_DAYS(stStatisticsDt) <= 30  GROUP BY `name`;	
+	      SELECT stClientScreen AS `name` , 
+	      COUNT(*) AS `data`  
+	      FROM Statistics_tbl 
+	      WHERE stClientScreen IS NOT NULL AND TO_DAYS(NOW()) - TO_DAYS(stStatisticsDt) <= 30 
+	      GROUP BY `name`
+	      ORDER BY data DESC 
 	]]>
 	</select>
 	

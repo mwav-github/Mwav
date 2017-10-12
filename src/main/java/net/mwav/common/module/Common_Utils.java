@@ -488,9 +488,9 @@ public class Common_Utils {
 		int fourth_slash = url.indexOf("/", third_slash + 1);
 		int last_slash = url.lastIndexOf("/");
 		int lastDot = url.lastIndexOf('.');
+		
 
 		try {
-
 
 			if (second_slash != -1) {
 				url_1depth = url.substring(first_slash + 1, second_slash);
@@ -501,7 +501,7 @@ public class Common_Utils {
 				log.info("url_2depth" + url_2depth);
 			}
 
-			//url 은 전체  url_1depth은 /제외
+			// url 은 전체 url_1depth은 /제외
 			if (url.equals("/") || url_1depth.equals("Index")) {
 				slPageName = "메인페이지";
 			} else if (url_1depth.equals("Company")) {
@@ -601,11 +601,77 @@ public class Common_Utils {
 				} else {
 					slPageName = "CustomerService_미정_" + url;
 				}
+			} else if (url_1depth.equals("MasterPage")
+					|| url_1depth.equals("MasterPage_1")) {
+				if (url.contains("mode=SMbrLogin")) {
+					slPageName = "로그인";
+				} else if (url.contains("mode=Default")) {
+					slPageName = "약관동의";
+				} else if (url.contains("mode=SMbrInput")) {
+					slPageName = "회원정보입력";
+				} else if (url.contains("mode=SDMbrInput")) {
+					slPageName = "가입완료";
+				} else {
+					slPageName = "MasterPage_미정_" + url;
+				}
+			} else if (url_1depth.equals("member")) {
+				if (url_2depth.equals("mbrTempLoginPwUpdate")) {
+					slPageName = "패스워드찾기(비밀번호 초기화)";
+				} else if (url_2depth.equals("mbrTempLoginPwSeek ")) {
+					slPageName = "패스워드찾기(비밀번호 조회)";
+				} else if (url_2depth.equals("mbrLoginPwUpdate")) {
+					slPageName = "패스워드찾기(비밀번호 업데이트)";
+				} else if (url_2depth.equals("mbrLoginIdSeek")) {
+					slPageName = "아이디찾기(아이디조회)";
+				} else {
+					slPageName = "member_미정_" + url;
+				}
+			} else if (url_1depth.equals("qa")) {
 
+				slPageName = "qa_미정_" + url;
+
+			}
+
+			else if (url_1depth.equals("admins")) {
 				
-				// 서블릿 거치는 부분, Admin
-			} else{
-				//statistics_tbl 의 PageName 은  null 이 허용안된다.
+				slPageName = "관리자" + url;
+				
+			} else if (url_1depth.equals("board")) {
+				if (url_2depth.equals("bnsList")) {
+					slPageName = "뉴스목록";
+				} else if (url_2depth.equals("buView")) {
+					slPageName = "뉴스조회";
+				} else if (url_2depth.equals("buList")) {
+					slPageName = "공지목록";
+				} else if (url_2depth.equals("buView")) {
+					slPageName = "공지사항조회";
+				}
+			}
+			// 예외 발생 부분.
+			else if (url_1depth.equals("MessageView")) {
+				if (url_2depth.equals("throwable")) {
+					slPageName = "에러(최상위)";
+				} else if (url_2depth.equals("exception")) {
+					slPageName = "예외";
+				} else if (url_2depth.equals("400")) {
+					slPageName = "에러(400)";
+				} else if (url_2depth.equals("401")) {
+					slPageName = "에러(401)";
+				} else if (url_2depth.equals("403")) {
+					slPageName = "에러(403)";
+				} else if (url_2depth.equals("404")) {
+					slPageName = "에러(404)";
+				} else if (url_2depth.equals("500")) {
+					slPageName = "에러(500)";
+				} else if (url_2depth.equals("503")) {
+					slPageName = "에러(503)";
+				} else {
+					slPageName = "에러_미정_" + url;
+				}
+			}
+			// 서블릿 거치는 부분, Admin
+			else {
+				// statistics_tbl 의 PageName 은 null 이 허용안된다.
 				slPageName = url;
 			}
 		} catch (Exception e) {

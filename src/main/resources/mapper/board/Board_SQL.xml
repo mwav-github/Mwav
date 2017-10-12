@@ -57,6 +57,7 @@
     oracle : select * from (select rownum rnum, news_id, bnGroup, bnHighLight, bnTitle, bnSubTitle, bnRelatedLink, bnContent, bnViewCount, bnOrder, bnStatus, staff_id, bnWriteDt, bnModifyDt, bnDeleteDt from (select * from BoardNews_tbl order by bnWriteDt desc)) where rnum >= ? and rnum <= ?	
 	-->
 	
+	<!-- bnsList 호출시 bnContent 등 필요없는 내용 제외 해당 부분 내용이 너무 길다. -->
 	<select id="selectListBnsList" parameterType="hashmap" resultType="hashmap">
 	<![CDATA[
 	select c.*, date_format(bnUpdateDt,'%Y-%m-%d') as fmbnUpdateDt from (select @ROWNUM := @ROWNUM + 1 AS ROWNUM, a.* from (select * from BoardNews_tbl where bnDeleteDt IS NULL order by bnUpdateDt desc) a,  (SELECT @ROWNUM := 0) R ) c where c.ROWNUM >= #{startRow} and c.ROWNUM <= #{endRow} 
@@ -125,7 +126,7 @@
     
     <select id="selectListBuList" parameterType="hashmap" resultType="hashmap">
 	<![CDATA[
-	select c.*, date_format(buInsertDt,'%Y-%m-%d') as fmbuInsertDt from (select @ROWNUM := @ROWNUM + 1 AS ROWNUM, a.* from (select * from BoardUser_tbl where buInsertDt IS NULL order by buInsertDt desc) a,  (SELECT @ROWNUM := 0) R ) c where c.ROWNUM >= #{startRow} and c.ROWNUM <= #{endRow} 
+	select c.*, date_format(buInsertDt,'%Y-%m-%d') as fmbuInsertDt from (select @ROWNUM := @ROWNUM + 1 AS ROWNUM, a.* from (select * from BoardUser_tbl where buDeleteDt IS NULL order by buInsertDt desc) a,  (SELECT @ROWNUM := 0) R ) c where c.ROWNUM >= #{startRow} and c.ROWNUM <= #{endRow} 
 	]]>
 	</select>
 	
