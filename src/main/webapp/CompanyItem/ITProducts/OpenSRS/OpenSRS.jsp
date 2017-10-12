@@ -23,12 +23,12 @@
 		<!-- Image Container 
 container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다. 
 -->
-		<div class="row">
-			<div class="col-lg-12">
-				<img src="/CompanyItem/zImage/CompanyItem_IN(height_280).jpg"
-					class="img-responsive res_width fix_height_300"
-					alt="Responsive image">
-			</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-12">
+			<img src="/CompanyItem/zImage/CompanyItem_IN(height_280).jpg"
+				class="img-responsive res_width fix_height_300"
+				alt="Responsive image">
 		</div>
 	</div>
 	<!--  //////////////////////////////////// 
@@ -58,7 +58,8 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 		<div class="row">
 			<!-- Sidebar Column left메뉴 추후 변경 예정<시작>-->
 			<div class="col-md-3">
-				<jsp:include page="/CompanyItem/ITProducts/ITProductsLeftMenu.jsp" flush="false" />
+				<jsp:include page="/CompanyItem/ITProducts/ITProductsLeftMenu.jsp"
+					flush="false" />
 			</div>
 			<!-- 끝 -->
 
@@ -197,26 +198,26 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 						</div>
 						<div class="enter"></div>
 					</div>
-			
+
 					<div class="col-md-6 col-sm-6 col-xs-12">
 						<ul>
-							<li>Wildcard <a  class="btn btn-info btn-xs"
+							<li>Wildcard <a class="btn btn-info btn-xs"
 								data-toggle="tooltip" data-placement="right"
 								data-original-title="A wildcard certificate allows for unlimited subdomains to be protected with a single certificate."><span
 									class="glyphicon glyphicon glyphicon-search"></span></a> <span
 								class="float_right">Yes $85/year</span>
 							</li>
-							<li>SAN support <a  class="btn btn-info btn-xs"
+							<li>SAN support <a class="btn btn-info btn-xs"
 								data-toggle="tooltip" data-placement="right"
 								data-original-title="A SAN certificate allows for multiple domain names to be protected with a single certificate."><span
 									class="glyphicon glyphicon glyphicon-search"></span></a> <a
 								class="btn btn-danger btn-xs float_right"><span
 									class="glyphicon glyphicon-remove float_right"></span></a></li>
 							<li>Price <span class="float_right">$10/year</span></li>
-							<li>Business validated <a 
+							<li>Business validated <a
 								class="btn btn-danger btn-xs float_right"><span
 									class="glyphicon glyphicon-remove float_right"></span></a></li>
-							<li>Green address bar <a 
+							<li>Green address bar <a
 								class="btn btn-danger btn-xs float_right"><span
 									class="glyphicon glyphicon-remove float_right"></span></a></li>
 							<li>Security and encryption <span class="float_right">256-bit
@@ -228,15 +229,15 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 
 					<div class="col-md-6 col-sm-6 col-xs-12 text-left">
 						<ul>
-							<li>Vulnerability assessment <a 
+							<li>Vulnerability assessment <a
 								class="btn btn-danger btn-xs float_right"><span
 									class="glyphicon glyphicon-remove float_right"></span></a></li>
 							<li>Site seal <span class="float_right">Static</span></li>
 							<li>Server licensing <span class="float_right">Unlimited</span></li>
-							<li>Malware scan <a 
+							<li>Malware scan <a
 								class="btn btn-danger btn-xs float_right"><span
 									class="glyphicon glyphicon-remove float_right"></span></a></li>
-							<li>Mobile friendly <a 
+							<li>Mobile friendly <a
 								class="btn btn-success btn-xs float_right"><span
 									class="glyphicon glyphicon-ok float_right"></span></a></li>
 							<li>Browser compatibility <span class="float_right">99%</span></li>

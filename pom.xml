@@ -45,6 +45,11 @@ http://www.egovframe.go.kr/wiki/doku.php?id=egovframework:dev:dep:build:maven
             </snapshots>
         </repository>
  
+        <repository>
+         <id>mwavframework</id>
+         <name>custom jars</name>
+         <url>file://${project.basedir}/lib</url>
+        </repository>
         
         <repository>
 			<id>google-api-services</id>
@@ -486,7 +491,13 @@ http://www.egovframe.go.kr/wiki/doku.php?id=egovframework:dev:dep:build:maven
 			<artifactId>javax.inject</artifactId>
 			<version>1</version>
 		</dependency>
-    
+		
+		<!-- @MwavFramework -->
+		<dependency>
+        <groupId>mwav</groupId>
+        <artifactId>mwavframework</artifactId>
+       	 <version>1.0.0</version>
+        </dependency>  
     </dependencies>
      
      

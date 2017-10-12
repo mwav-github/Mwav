@@ -38,10 +38,10 @@
 			<a class="navbar-brand active logo_800_m" href="/"> <img
 				src="/Images/CompanyLogos/CompanyLogo.gif"
 				class="img-thumbnail img-responsive logo_800_h"
-				alt="Responsive image"> <!-- <font color="#E5E5E5">Mwav</font> --></a>
+				alt="CompanyLogo"> <!-- <font color="#E5E5E5">Mwav</font> --></a>
 		</div>
 		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="mgt2 collapse navbar-collapse"
+		<div class="mgt3_5 collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
 			<ul class="mgl3 nav navbar-nav lead">
 				<li><a href="/CompanyItem/ITSolutions/OrgChart/OrgChart.mwav"
@@ -67,7 +67,7 @@
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" data-toggle="tooltip"
 						data-placement="bottom"
-						data-original-title="${mbrLoginId}님
+						data-original-title="${member.mbrLoginId}님
 								반갑습니다."><i
 							class="fa fa-user fa-lg"></i> My Mwav</a>
 
@@ -117,7 +117,7 @@
      
      중간으로 보내기 위해서 container 추가 (left 메뉴 안의 페이지와 크기 동일) // => 다시 빼고 영역 조절
 --%>
-<header id="myCarousel" class="mgt5.5 carousel slide"
+<header id="myCarousel" class="carousel slide"
 	style="height: 72% !important;">
 
 	<!-- Indicators -->
@@ -139,7 +139,7 @@
 						<h4>Get start your next awesome project</h4>
 					</div>
  --%>
-						<div class="col-md-9 col-md-push-3 col-xs-12 text-right block block-3" style="opacity:0.8;">
+						<div class="col-md-8 col-md-push-5 col-xs-12 text-right block_no block-3" style="opacity:0.8;">
 							<h4 class="">IT Trends</h4>
 							<div class="bs-component" style="background-color: white;">
 								 <jsp:include page="/board/bnsFrontList.mwav" flush="false" /> 

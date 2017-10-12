@@ -50,7 +50,6 @@ public class QAServiceImpl implements QAService {
 		String imsi_flag = qaDAO.insertQAForm(map, request);
 		boolean flag = false;
 
-		System.out.println("DFS"+imsi_flag);
 		if (imsi_flag != null) {
 			flag = true;
 			try {

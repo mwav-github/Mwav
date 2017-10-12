@@ -167,6 +167,7 @@
 															<option value="영어">영어</option>
 															<option value="유통">유통</option>
 															<option value="SI개발">SI개발</option>
+															<option value="UX/UI Design">UX/UI Design</option>
 													</select></td>
 													<td>${updateNsmForm.bnViewCount}</td>
 													<td>${updateNsmForm.bnInsertDt}</td>

@@ -86,7 +86,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 							향상 등 완성도 높고 안정적인 웹 사이트를 제공해 드립니다.!
 						</p>
 
-						<a class="btn btn-primary btn-md btn-block">LIVE PREVIEW</a>
+						<a href="/Templates/FrontTemplate.html" class="btn btn-primary btn-md btn-block">LIVE PREVIEW</a>
 					</div>
 					<div class="col-md-8">
 						<img class="img-responsive img-rounded"

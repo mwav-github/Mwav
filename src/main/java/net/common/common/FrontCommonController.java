@@ -3,8 +3,10 @@ package net.common.common;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
+import org.apache.maven.model.Model;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import net.common.common.CommandMap;
@@ -20,10 +22,18 @@ public class FrontCommonController {
 	/*
 	 * ========================================등록================================
 	 * ========
+	 * 
+	 * 실행시 아래는 오류가 아니다. Exception이 발생된 상황이 아니라 HandlerMapping에 의해 등록된
+	 * Controller의 메소드 정보를 표시한 것으로 정상입니다.
+	 * 
+	 * 예) ic org.springframework.web.servlet.ModelAndView
+	 * net.common.common.FrontCommonController
+	 * .redirectIndexController(javax.servlet.http.HttpServletRequest) throws
+	 * java.lang.Exception]
 	 */
 	String ext_url = null;
 
-	@RequestMapping(value = {"/", "/Index.mwav"})
+	@RequestMapping(value = { "/", "/Index" })
 	public ModelAndView redirectIndexController(HttpServletRequest request)
 			throws Exception {
 		ModelAndView mv = null;
@@ -132,15 +142,28 @@ public class FrontCommonController {
 	public ModelAndView redirectCustomerServiceItemController(
 			HttpServletRequest request) throws Exception {
 
+		// tiles 의 경우 해당 경로로 들어가게되면, 서블릿을 탄다.
+		// 그런데 main 에서
+
 		// System.out.println("열로들어오나");
 		String url = request.getRequestURI();
 		int pos = url.lastIndexOf(".");
-		// String ext = url.substring(pos + 1);
 		ext_url = url.substring(0, pos);
-		// System.out.println("pos" + pos);
-		// System.out.println("return URL"+ext_url);
+
 		ModelAndView mv = new ModelAndView(ext_url);
 
+		return mv;
+	}
+
+	@RequestMapping(value = "/filter.mwav", method = RequestMethod.GET)
+	public ModelAndView filter(HttpServletRequest request) {
+		log.info("call filter.do");
+		String param = (String) request.getParameter("param");
+		log.info("call filter.value"+param);
+		
+		
+		ModelAndView mv = new ModelAndView("/filter");
+		mv.addObject("param1", param);
 		return mv;
 	}
 
@@ -162,6 +185,22 @@ public class FrontCommonController {
 
 	@RequestMapping(value = "/Admins/**")
 	public ModelAndView redirectAdminsController(HttpServletRequest request)
+			throws Exception {
+
+		// System.out.println("열로들어오나");
+		String url = request.getRequestURI();
+		int pos = url.lastIndexOf(".");
+		// String ext = url.substring(pos + 1);
+		ext_url = url.substring(0, pos);
+		// System.out.println("확장자 제외" + ext);
+		// System.out.println("return URL"+ext_url);
+		ModelAndView mv = new ModelAndView(ext_url);
+
+		return mv;
+	}
+
+	@RequestMapping(value = "/Templates/**")
+	public ModelAndView redirectTemplatesController(HttpServletRequest request)
 			throws Exception {
 
 		// System.out.println("열로들어오나");

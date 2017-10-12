@@ -23,9 +23,26 @@ http://stg.etribe.co.kr/2014/07/29/view-technology/
     
 -->
 <decorators defaultdir="/Templates/">
-	<excludes>
+
+    <!-- CustomerService -->
+    <decorator name="customerServiceTemplate" title="CustomerService" page="CustomerServiceMasterPage.jsp">
+        <pattern>/CustomerService/*</pattern>
+    </decorator>
+ 	<!-- 일단 주석-->
+    <decorator name="companyTemplate" title="CompanyPage" page="CompanyMasterPage.jsp">
+        <pattern>/Company/*</pattern>
+    </decorator>
+
+    <decorator name="customerSeviceLeft" page="/CustomerService/CS-MasterPageLeftMenu.jsp" />
+    <decorator name="companyLeft" page="/Company/CompanyLeftMenu.jsp" />
+    <decorator name="headerImport" page="/PartsOfContent/Head_Import.jsp" />
+    <decorator name="headerMaster" page="/PartsOfContent/SiteHeader/FrontHeader_Master.jsp" />
+    <decorator name="header" page="/PartsOfContent/SiteHeader/FrontHeader.jsp" />
+    <decorator name="footer" page="/PartsOfContent/SiteFooter/FrontFooter.jsp" />
+
+	<!--<excludes>
         <pattern>/*.mwav</pattern>
-    </excludes>
+    </excludes>-->
     <!-- 
         이것은 sitemesh를 사용하지 않을 패턴을 지정한다
         sitemesh는 모든 URL을 대상으로 decorator를 조사하는데,
@@ -62,16 +79,5 @@ http://stg.etribe.co.kr/2014/07/29/view-technology/
         <pattern>/member/*</pattern>
         <pattern>/photo/*</pattern>
     -->
-    
-    <!-- 일단 주석-->
-    <decorator name="companyTemplate" title="CompanyPage" page="CompanyMasterPage.jsp">
-        <pattern>/Company/*</pattern>
-    </decorator>
-    <decorator name="companyLeft" page="/Company/CompanyLeftMenu.jsp" />
-    
-    <decorator name="headerImport" page="/PartsOfContent/Head_Import.jsp" />
-    <decorator name="headerMaster" page="/PartsOfContent/SiteHeader/FrontHeader_Master.jsp" />
-    <decorator name="header" page="/PartsOfContent/SiteHeader/FrontHeader.jsp" />
-    <decorator name="footer" page="/PartsOfContent/SiteFooter/FrontFooter.jsp" />
 
 </decorators>

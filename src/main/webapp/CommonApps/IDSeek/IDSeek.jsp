@@ -50,7 +50,7 @@ $.ajax({
 		} else {
 			//alert('22');
 
-			var queryString = "mbrCellPhone=" + phone + "&mbrEmail=" + email;
+			var queryString = "mbrCellPhone=" + phone.value + "&mbrEmail=" + email.value;
 			if (name == null || email == null) {
 				document.getElementById("idcheckLayer").innerHTML = "<font color=red>이름 또는 이메일을 입력하세요.</font>";
 			} else {
@@ -99,7 +99,7 @@ $.ajax({
 			return false;
 		} else {
 
-			var URL = "mbrLoginId=" + aa + "&mbrEmail=" + bb;
+			var URL = "mbrLoginId=" + aa.value + "&mbrEmail=" + bb.value;
 
 			$.ajax({
 				type : 'POST', // Http Request Method로 POST로 지정

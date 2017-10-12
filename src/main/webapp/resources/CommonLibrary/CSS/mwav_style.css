@@ -333,7 +333,18 @@ p.more {
 }
 
 .item   .block {
-	width: 100%;
+	width: 100%; 
+	float: left;
+	color: #FFF;
+	/*min-height: 200px;*/
+	text-align: center;
+	padding: 7px;
+	margin-top: 2.5em;
+	box-shadow: 1px 2px 3px #444;
+}
+
+.item   .block_no {
+	/*width: 100%; 적용하는 경우 col-md-9 등 (앞에 5개 뉴스 크기 먹지않아서 수정)*/
 	float: left;
 	color: #FFF;
 	/*min-height: 200px;*/
@@ -877,7 +888,7 @@ display: block 와 margin 로 요소를 설정하세요. 믹스인과 클래스�
  */
 body {
 	/*background : #F5F5F5 !important;  shop에만 적용되도록 수정 필요.*/
-	font-family: '맑은 고딕', 'Malgun Gothic', '굴림', Gulim,
+	font-family: '맑은 고딕', 'Malgun Gothic', '굴림', 'Gulim',
 		'NanumGothic' !important;
 
 	/* body 선언은 테이블 적용 안된다. -> 별도 적용 필요.*/
@@ -1585,6 +1596,14 @@ Reference: http://avexdesigns.com/responsive-youtube-embed/
 	margin-top: 2% !important;
 }
 
+.mgt3 {
+	margin-top: 3% !important;
+}
+
+.mgt3_5 {
+	margin-top: 3.5% !important;
+}
+
 /*margin top 5%*/
 .mgt5 {
 	margin-top: 5% !important;
@@ -1683,6 +1702,35 @@ Reference: http://avexdesigns.com/responsive-youtube-embed/
 /*padding:1.5% 0 3% 0; */
 .pdt1_5b3 {
 	padding: 1.5% 0 3% 0 !important;
+}
+
+/* 뉴스 가독성을 위한 별도 정책 및 CSS (170930)
+ * 
+ * 추후 rem 부분으로 확인.
+ *  https://webdesign.tutsplus.com/ko/tutorials/comprehensive-guide-when-to-use-em-vs-rem--cms-23984 
+ * */
+.news_fontfamilly {
+  font-family : 'Arial','sans-serif', '맑은 고딕', 'Malgun Gothic', '굴림', 'Gulim',
+		'NanumGothic' !important;
+}
+
+.news_title {
+ font-size: 2.5em !important;
+  line-height: 1.357em !important;
+}
+
+.news_subtitle {
+   font-size : 1.500em !important;
+  line-height: 1.5em !important;
+}
+.news_contents {
+    font-size: 1.286em !important;
+  line-height: 1.886em !important;
+}
+.news_emphasis {
+    font-size : 1.500rem !important;
+  line-height: 2.143rem !important;
+  font-weight: bold !important; 
 }
 
 /* 크기에 따른 조정 */

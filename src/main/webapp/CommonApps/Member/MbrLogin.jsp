@@ -7,11 +7,7 @@
 	rel="stylesheet">  -->
 <link href="/resources/JsFramework/Bootstrap/bootstrap-social.css"
 	rel="stylesheet">
-<script src='https://www.google.com/recaptcha/api.js'></script>
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"> 
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"> 
-<link rel="stylesheet" href="/resources/JsFramework/Bootstrap/build.css"/>
- 
+
 <head>
 <c:if test="${requestScope.loginCheck eq 2 }">
 	<script type="text/javascript">
@@ -352,6 +348,7 @@ $("#checkbox4").bind("click",function(){
 		<%--소셜 로그인 연동부분 
 		중요사항 : col-md-12 외 나머지 것들 col-sm-12 등을 넣으면 버튼 동작이 하지 않음.
 		--%>
+		<input type="hidden" name="test" value="123" />
 		<!-- GOOGLE SIGNIN -->
 		<div class="col-md-12 ">
 			<form action="<c:url value="/signin/google.mwav"/>" method="POST"
@@ -365,6 +362,9 @@ $("#checkbox4").bind("click",function(){
 							in with Google</span>
 					</button>
 				</div>
+				
+				<input type="hidden" name="test"
+					value="123" />
 				<input type="hidden" name="${_csrf.parameterName}"
 					value="${_csrf.token}" /> <input type="hidden" name="scope"
 					value="email profile" />
@@ -385,6 +385,8 @@ $("#checkbox4").bind("click",function(){
 							in with Facebook</span>
 					</button>
 				</div>
+				<input type="hidden" name="test"
+					value="123" />
 				<input type="hidden" name="${_csrf.parameterName}"
 					value="${_csrf.token}" />
 				<input type="hidden" name="autoLoginSub" class="test1" value="off"/>

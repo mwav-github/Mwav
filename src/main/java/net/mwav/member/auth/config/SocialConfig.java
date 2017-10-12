@@ -244,6 +244,7 @@ client_secret : client_id를 위한 secret 값이다. 이 값으로 Client를 �
 	public ProviderSignInController providerSignInController(
 	            ConnectionFactoryLocator connectionFactoryLocator,
 	            UsersConnectionRepository usersConnectionRepository) {
+		
 		logger.debug("여기까지왔다.");
 	    ProviderSignInController controller = new ProviderSignInController(
 	        connectionFactoryLocator,

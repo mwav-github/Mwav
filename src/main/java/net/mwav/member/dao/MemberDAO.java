@@ -101,7 +101,10 @@ public class MemberDAO extends AbstractDAO {
 	@SuppressWarnings("unchecked")
 	public boolean updateMbrLoginPw(Map<String, Object> map) throws IOException {
 		// TODO Auto-generated method stub
+		
 		boolean flag = true;
+		try{
+		
 		String b_mbrLoginPw = (String) map.get("mbrLoginPw");
 		System.out.println("* AES/CBC/IV");
 		System.out.println("b_mbrLoginPw=" + b_mbrLoginPw);
@@ -143,6 +146,10 @@ public class MemberDAO extends AbstractDAO {
 				flag = true;
 			}
 			
+		}
+		
+		}catch(Exception e){
+			e.printStackTrace();
 		}
 
 		return flag;

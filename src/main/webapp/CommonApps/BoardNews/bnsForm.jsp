@@ -12,6 +12,10 @@
 <!-- FullPackage -->
 <script src="//cdn.ckeditor.com/4.5.11/full/ckeditor.js"></script>
 
+<!-- CustomPackage 
+<script src="/resources/JsFramework/CKEditor/ckeditor.js"></script>
+-->
+
 <!-- jQuery Version 1.11.0 -->
 <script src="/CommonLibrary/Javascript/Common.js"></script>
 <script>

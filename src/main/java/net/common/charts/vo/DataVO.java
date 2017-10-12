@@ -11,21 +11,46 @@ public class DataVO {
     private String title;
     private String yAxisTitle;
     private String xAxisTitle;
+    private String chartType;
     private List<String> categories;
     private List<SeriesVO> series;
-
-
-    public DataVO(String divId, String title, String yAxisTitle, String xAxisTitle, List<String> categories, List<SeriesVO> series) {
+	private List<SeriesVO_Arrary> seriesArrary;
+ 
+	public DataVO(){}
+	
+    public DataVO(String divId, String title, String yAxisTitle, String xAxisTitle, String chartType, List<String> categories, List<SeriesVO> series) {
         this.setDivId(divId);
         this.setTitle(title);
         this.setyAxisTitle(yAxisTitle);
         this.setxAxisTitle(xAxisTitle);
+        this.setChartType(chartType);
         this.setCategories(categories);
         this.setSeries(series);
     }
+    
+    //생성자 오버로딩
+    public DataVO(String divId, String title,  String chartType, List<SeriesVO_Arrary> seriesArrary) {
+        this.setDivId(divId);
+        this.setTitle(title);
+        this.setChartType(chartType);
+        this.setSeriesArrary(seriesArrary);
+    }
+    
+  
+
+    public String getChartType() {
+		return chartType;
+	}
 
 
-    public String getTitle() {
+
+	public void setChartType(String chartType) {
+		this.chartType = chartType;
+	}
+
+
+
+	public String getTitle() {
         return title;
     }
 
@@ -55,6 +80,13 @@ public class DataVO {
 
     public void setSeries(List<SeriesVO> series) {
         this.series = series;
+    }
+    public List<SeriesVO_Arrary> getSeriesArrary() {
+        return seriesArrary;
+    }
+
+    public void setSeriesArrary(List<SeriesVO_Arrary> seriesArrary) {
+        this.seriesArrary = seriesArrary;
     }
 
     public String getDivId() {

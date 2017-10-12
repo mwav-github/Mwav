@@ -52,18 +52,18 @@
 			flush="false" />
 		<!-- Image Container 
 container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다. 
--->
-		<div class="row">
+-->	
+	</div>
+	<!--  //////////////////////////////////// 
+	Header 끝
+	-->
+	<div class="row">
 			<div class="col-lg-12">
 				<img src="/CompanyItem/zImage/CompanyItem_IN(height_280).jpg"
 					class="img-responsive res_width fix_height_300"
 					alt="Responsive image">
 			</div>
 		</div>
-	</div>
-	<!--  //////////////////////////////////// 
-	Header 끝
-	-->
 
 
 	<!-- Page Content -->

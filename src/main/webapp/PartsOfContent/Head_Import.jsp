@@ -3,11 +3,13 @@
 <jsp:include page="SNS_Head_Import.jsp" flush="false" />
 <meta name="robots" content="index, follow" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<%--아래 keyword 및 description은 변경 예정. --%>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta id="metaKeywords" name="keywords"
-	content="text/html; charset=utf-8" />
+	content="Digital Marketing, E-Consulting, IT Consulting, WebSite Building, Cloud, AI, MR, VR, ARIoT Platform, Deep Learning, Agile, DevOps, Domain, Web Hosting, Server Hosting, Hosting, HomePage, IT Solution, IT Product, DataBase, Maintenance, EC, Shopping Mall, Web Mail, News Solution, 디지털마케팅, E-컨설팅, IT컨설팅, 웹사이트 제작, 클라우드, 인공지능, 증강현실, 혼합현실, 가상현실, IOT 플랫폼, 딥 러닝, 에자일, 데브옵스, 도메인, 웹호스팅, 서버호스팅, 호스팅, 홈페이지, 웹사이트, 솔루션개발, 데이터베이스, 유지보수, 전자상거래, 쇼핑몰, 웹메일, 뉴스솔루션" />
 <meta id="metaDescription" name="description"
-	content="text/html; charset=utf-8" />
+	content="This is the website for Mwav.net. We are an IT development company possessing total E-Commerce platform based on the fancy technologies. You can contact at http://www.mwav.net/CustomerService/Contact/Contact.mwav?modal=Q&A if you have a question or an inquiry on the site." />
 <meta name="Owner" content="Mwav.net" />
 <meta name="Author" content="Zeus, Peter J." />
 <meta name="copyright" content="All contents are copyright by Mwav.net" />
@@ -88,9 +90,9 @@
  --%>
 	});
 	/*TOP버튼*/
-/* 	외부 리소스 및 이미지와는 상관없이 DOM데이터만 로드가 완료되면 바로 실행이 되는 함수입니다. 
-따라서 window.onload보다 더 빠르게 실행이 된다는 얘기죠..
- */
+	/* 	외부 리소스 및 이미지와는 상관없이 DOM데이터만 로드가 완료되면 바로 실행이 되는 함수입니다. 
+	 따라서 window.onload보다 더 빠르게 실행이 된다는 얘기죠..
+	 */
 	$(document)
 			.ready(
 					function() {
@@ -137,35 +139,43 @@
 					});
 </script>
 <script>
-window.onload = function() {
-	// 페이지 완전 로딩후 실행
-	var stClientScreen = '<c:out value="${requestScope.stClientScreen}" />';
-	//null 인경우 실행.
+	window.onload = function() {
+		// 페이지 완전 로딩후 실행
+		//bootstrap url base 호출, CommonLibrary로 변경.
+		//https://stackoverflow.com/questions/28079380/show-bootstrap-modal-only-if-url-has-certain-parameters
 
-	console.log('stClientScreen' + stClientScreen);
-	if (stClientScreen == 'firstTime' && stClientScreen != null) {
-		//alert('들어왔다.')
-		stClientScreenUpdateAjax();
-	}
-}
-function stClientScreenUpdateAjax() {
-	var stClientScreenWidth = screen.width;
-	var stClientScreenHeight = screen.height;
-
-	//console.log("사용자 pc 해상도" + stClientScreen);
-	var URL = "stClientScreen=" + stClientScreenWidth + 'x'
-			+ stClientScreenHeight;
-	$.ajax({
-		url : "/statistics/stClientScreenUpdateAjax.mwav",
-		data : URL,
-		success : function(xmlStr) {
-			//alert('성공');
-		},
-		error : function(xhr, status, error) {
-			alert("에러발생");
+		var url = window.location.href;
+		if (url.indexOf('?modal=Q&A') != -1) {
+			$("#Contact").modal('show');
 		}
-	});
-}
+
+		var stClientScreen = '<c:out value="${requestScope.stClientScreen}" />';
+		//null 인경우 실행.
+
+		console.log('stClientScreen' + stClientScreen);
+		if (stClientScreen == 'firstTime' && stClientScreen != null) {
+			//alert('들어왔다.')
+			stClientScreenUpdateAjax();
+		}
+	}
+	function stClientScreenUpdateAjax() {
+		var stClientScreenWidth = screen.width;
+		var stClientScreenHeight = screen.height;
+
+		//console.log("사용자 pc 해상도" + stClientScreen);
+		var URL = "stClientScreen=" + stClientScreenWidth + 'x'
+				+ stClientScreenHeight;
+		$.ajax({
+			url : "/statistics/stClientScreenUpdateAjax.mwav",
+			data : URL,
+			success : function(xmlStr) {
+				//alert('성공');
+			},
+			error : function(xhr, status, error) {
+				alert("에러발생");
+			}
+		});
+	}
 </script>
 
 <%-- recapcha의 경우 한 페이지 하나만 사용 가능한 한계를 아래 스크립트로 극복.
@@ -174,14 +184,18 @@ https://stackoverflow.com/questions/1241947/how-do-i-show-multiple-recaptchas-on
  Recapcha 
      두번들어가는 경우 오류발생.
      https://stackoverflow.com/questions/37297348/uncaught-error-recaptcha-placeholder-element-must-be-empty--%>
- 
-<script src='https://www.google.com/recaptcha/api.js?onload=CaptchaCallback&render=explicit' async defer></script>
+
+<script
+	src='https://www.google.com/recaptcha/api.js?onload=CaptchaCallback&render=explicit'
+	async defer></script>
 
 <script type="text/javascript">
- var CaptchaCallback = function() {
-   $('.g-recaptcha').each(function(index, el) {
-   	var widgetId = grecaptcha.render(el, {'sitekey' : '6LcdRxoUAAAAAA4OI0FIN2bv2W0ersTRjqHJdLG-'});
-       jQuery(this).attr('data-widget-id', widgetId);
-   });
- };
- </script>
+	var CaptchaCallback = function() {
+		$('.g-recaptcha').each(function(index, el) {
+			var widgetId = grecaptcha.render(el, {
+				'sitekey' : '6LcdRxoUAAAAAA4OI0FIN2bv2W0ersTRjqHJdLG-'
+			});
+			jQuery(this).attr('data-widget-id', widgetId);
+		});
+	};
+</script>

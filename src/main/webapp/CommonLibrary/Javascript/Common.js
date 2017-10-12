@@ -990,3 +990,26 @@ function robot_check() {
 		return true
 	}
 }
+
+//https://stackoverflow.com/questions/503093/how-to-redirect-to-another-webpage
+function redirectUrl (url, name) {
+    var ua        = navigator.userAgent.toLowerCase(),
+        isIE      = ua.indexOf('msie') !== -1,
+        version   = parseInt(ua.substr(4, 2), 10);
+
+    // Internet Explorer 8 and lower
+    if (isIE && version < 9) {
+    	alert('12');
+        var link = document.createElement('a');
+        link.href = url;
+        document.body.appendChild(link);
+        link.click();
+    }
+
+    // All other browsers can use the standard window.location.href (they don't lose HTTP_REFERER like Internet Explorer 8 & lower does)
+    else { 
+    	//https://www.w3schools.com/jsref/met_win_open.asp
+    	window.open(url, name);
+    	//window.location.href 로 하는 경우 새로 뜨는 창이 mwav가 된다.
+    }
+}

@@ -5,6 +5,7 @@
 	uri="http://www.opensymphony.com/sitemesh/decorator"%>
 <%@ taglib prefix="page" uri="http://www.opensymphony.com/sitemesh/page"%>
 
+<%--Sitemesh 사용 --%>
 <!DOCTYPE html>
 <html>
 
@@ -36,7 +37,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 	-->
 
 	<!-- Page Content -->
-	 <section class="bg-primary res_width" id="about">
+	<%--해당 페이지는 그 해당 양식 참조. <section class="bg-primary res_width" id="about">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8 col-lg-offset-2 text-center">
@@ -47,13 +48,13 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 				</div>
 			</div>
 		</div>
-	</section> 
-	<%--<div class="row">
+	</section>  --%>
+	<div class="row">
 		<div class="col-lg-12">
 			<img src="/Company/zImage/Company_IN(height_280).jpg"
-				class="img-responsive res_width" alt="Responsive image">
+				class="img-responsive res_width" alt="Company">
 		</div>
-	</div>--%>
+	</div>
 	<!--  //////////////////////////////////// 
 	Header 끝
 	-->

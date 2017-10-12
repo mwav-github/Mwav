@@ -2,6 +2,18 @@
 <!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "log4j.dtd">
 <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
 
+<!-- 
+실제적용 파일 위치는 resources 바로 밑에이다.
+파일로 떨구기 https://www.mkyong.com/logging/log4j-xml-example/
+http://devofhwb.tistory.com/20
+http://dev.anyframejava.org/docs/anyframe/plugin/essential/core/1.6.0/reference/html/ch21.html
+
+
+http://stackoverflow.com/questions/216781/log4j-configuring-a-web-app-to-use-a-relative-path
+
+http://androphil.tistory.com/420
+-->
+
 	<appender name="file" class="org.apache.log4j.RollingFileAppender">
 	    <param name="append" value="true" />
 	    <param name="maxFileSize" value="10MB" />
@@ -66,7 +78,7 @@
  
     <!-- root 로거 기본 설정 -->
     <root>
-		<priority value="INFO" />
+		<priority value="info" />
 		<appender-ref ref="console" />
 		<appender-ref ref="file" />
 	</root> 

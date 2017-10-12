@@ -113,14 +113,21 @@ public class QAController {
 		HttpSession session = request.getSession();
 		String m_id = (String) session.getAttribute("member_id");
 		commandMap.put("member_id", m_id);
-		System.out.println("순서");
-		log.debug("인터셉터 테스트");
+		
+		// 정리 필요.
+		int uqInvoker_id;
+		String uqInvoker_id_string = (String) commandMap.get("uqInvoker_id");
+		if (Common_Utils.isEmpty(uqInvoker_id_string) == true){
+			//null인경우
+			uqInvoker_id = 0;
+			commandMap.put("uqInvoker_id", uqInvoker_id);
+		}
+		
+		
+		log.info("인터셉터 테스트");
 
 		// 아직 까지는 한벌로
 		boolean flag = qaService.insertQAForm(commandMap.getMap(), request);
-
-		System.out.println("df" + flag);
-
 		request.setAttribute("check", flag);
 		// mv.addObject("check", flag);
 		// mv.addObject("IDX", commandMap.get("IDX"));

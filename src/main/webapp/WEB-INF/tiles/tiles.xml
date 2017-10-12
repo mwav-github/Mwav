@@ -14,26 +14,23 @@
         <put-attribute name="css" value="/WEB-INF/views/css/main.css" />
     </definition>-->
     
-    
-    <definition name="layout" template="/Templates/CompanyMasterPage_tiles.jsp">
-
-        <put-attribute name="headerImport" value="/PartsOfContent/Head_Import.jsp" />
-        <put-attribute name="headerMaster" value="/PartsOfContent/SiteHeader/FrontHeader_Master.jsp" />
-        <put-attribute name="header" value="/PartsOfContent/SiteHeader/FrontHeader.jsp" />
-        <put-attribute name="main" value="" />
-       
-        <put-attribute name="footer" value="/PartsOfContent/SiteFooter/FrontFooter.jsp" />
-       
-    </definition>
- 
+     
  <!-- sitemesh와 다르게 여기서 동적으로 url에 따라 main 설정 가능 뿐만아니라 left등등 다 바꿀수있겠지
  즉 위에서 tile 처럼 layout안에 정의만해놓고
  아래처럼 url 패턴등에 따라 적용가능하다. 
  
  아래는 main에대한 설정 
  -->
+    <definition name="layout" template="/Templates/CustomerServiceMasterPage.jsp">
 
-    <definition name="CustomerService/*/*" extends="layout">
-        <put-attribute name="main" value="/CustomerService/{1}/{2}.jsp" />
+        <put-attribute name="headerImport" value="/PartsOfContent/Head_Import.jsp" />
+        <put-attribute name="headerMaster" value="/PartsOfContent/SiteHeader/FrontHeader_Master.jsp" />
+        <put-attribute name="header" value="/PartsOfContent/SiteHeader/FrontHeader.jsp" />
+        <put-attribute name="footer" value="/PartsOfContent/SiteFooter/FrontFooter.jsp" />
     </definition>
+
+
+   <!--  <definition name="" extends="layout">
+        <put-attribute name="main" value="/CustomerService/{1}/{2}.jsp" />
+    </definition> -->
 </tiles-definitions>

@@ -63,7 +63,8 @@ public class SignController {
 				connectionFactoryLocator, connectionRepository);
 	}
 
-	@RequestMapping(value = "/signin", method = {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value = "/signin", method = { RequestMethod.GET,
+			RequestMethod.POST })
 	public void signin() {
 		System.out.println("출력3");
 	}
@@ -73,7 +74,8 @@ public class SignController {
 		throw new ExpiredAuthorizationException("google");
 	}
 
-	@RequestMapping(value = "/signup.mwav", method = {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value = "/signup.mwav", method = { RequestMethod.GET,
+			RequestMethod.POST })
 	public String signupForm2(WebRequest req, Model model,
 			HttpServletRequest request, HttpServletResponse response) {
 		Connection<?> connection = providerSignInUtils
@@ -225,7 +227,7 @@ public class SignController {
 		}
 
 		String mbrLoginId = connection.getDisplayName();
-		//System.out.println("mbrLoginId___" + mbrLoginId);
+		// System.out.println("mbrLoginId___" + mbrLoginId);
 
 		loginCheck = 1;
 		// session.setAttribute("member_id", member_id);

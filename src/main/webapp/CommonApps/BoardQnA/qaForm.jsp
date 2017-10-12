@@ -176,6 +176,14 @@
 			return false;
 		}
 	}
+	
+	//페이지 또는 타 페이지에서 QAFORM 클릭 해당 아이디 물고 오기.
+	$(document).on("click", ".qaModal_Contact", function () {
+	     var uqInvoker = $(this).data('type');
+		 var uqInvoker_id = $(this).data('id');
+		 $(".modal-dialog #uqInvoker").val( uqInvoker );
+	     $(".modal-dialog #uqInvoker_id").val( uqInvoker_id );
+	});
 </script>
 <!-- 소제목 -->
 <!-- ----- 
@@ -217,12 +225,15 @@
 				</button>
 				<h3 class="modal-title" id="lineModalLabel">My Modal</h3>
 			</div> -->
-			<div class="modal-body" style="overflow: auto; max-height: 500px;">
+			<div class="modal-body" style="overflow: auto; max-height: 400px;">
 
 				<form class="form-horizontal" id="QAForm"
 					>
 					<input TYPE="hidden" name="uqStatus" value=""> <input
 						TYPE="hidden" name="before_Q_id" value="${before_Q_id }">
+						
+						<input type="hidden" name="uqInvoker" id="uqInvoker" value=""/>
+						<input type="hidden" name="uqInvoker_id" id="uqInvoker_id" value=""/>
 					<fieldset>
 
 						<!-- Form Name -->

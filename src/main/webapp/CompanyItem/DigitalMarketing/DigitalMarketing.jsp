@@ -81,7 +81,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 			</div> -->
 			<!-- 끝 -->
 			<div class="col-lg-12">
-				<h2 class="page-header mwav_leftText">DigitalMarketing Services</h2>
+				<h2 class="page-header mwav_leftText">Digital Marketing Services</h2>
 			</div>
 			<%--QA이슈 z-index로 처리 
 			<!--///////////////////////////////////////////////////

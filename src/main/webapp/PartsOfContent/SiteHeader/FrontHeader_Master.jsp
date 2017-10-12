@@ -30,10 +30,10 @@
 				<a class="navbar-brand active logo_800_m" href="/"> <img
 					src="/Images/CompanyLogos/CompanyLogo.gif"
 					class="img-thumbnail img-responsive logo_800_h"
-					alt="Responsive image"> <!-- <font color="#E5E5E5">Mwav</font> --></a>
+					alt="CompanyLogo"> <!-- <font color="#E5E5E5">Mwav</font> --></a>
 			</div>
 			<!-- Collect the nav links, forms, and other content for toggling -->
-			<div class="mgt2 collapse navbar-collapse"
+			<div class="mgt3_5 collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="mgl3 nav navbar-nav">
 					<li><a href="/CompanyItem/ITSolutions/OrgChart/OrgChart.mwav"
@@ -60,7 +60,7 @@
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
 							data-toggle="dropdown" data-toggle="tooltip"
 							data-placement="bottom"
-							data-original-title="${mbrLoginId}님
+							data-original-title="${member.mbrLoginId}님
 								반갑습니다."><i
 								class="fa fa-user fa-lg"></i> My Mwav</a>
 

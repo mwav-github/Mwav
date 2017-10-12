@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import net.common.charts.vo.SeriesVO;
+import net.common.charts.vo.SeriesVO_Arrary;
 import net.common.dao.AbstractDAO;
 
 import org.springframework.stereotype.Repository;
@@ -17,10 +18,21 @@ public class HighChartsDAO extends AbstractDAO {
 	
 
 	@SuppressWarnings("unchecked")
-	public List<SeriesVO> selectListWeeklyUsers() {
+	public List<SeriesVO_Arrary> selectListWeeklyUsers() {
 		// TODO Auto-generated method stub
-		return (List<SeriesVO>) selectList("highCharts.selectListWeeklyUsers");
+		return (List<SeriesVO_Arrary>) selectList("highCharts.selectListWeeklyUsers");
 
+	}
+
+	public List<SeriesVO_Arrary> selectListTop10Page() {
+		// TODO Auto-generated method stub
+		return (List<SeriesVO_Arrary>) selectList("highCharts.selectListTop10Page");
+
+	}
+
+	public List<SeriesVO_Arrary> selectListClientScreenSize() {
+		// TODO Auto-generated method stub
+		return (List<SeriesVO_Arrary>) selectList("highCharts.selectListClientScreenSize");
 	}
 
 }

@@ -44,7 +44,7 @@
 		<property name="connectInterceptors">
 			<list>
 				<bean class="net.mwav.member.auth.google.PostToWallAfterConnectInterceptor" />
-				 <bean class="org.springframework.social.showcase.twitter.TweetAfterConnectInterceptor" /> 
+				 <bean class="net.mwav.member.auth.twitter.PostToWallAfterConnectInterceptor" /> 
 			     <bean class="net.mwav.member.auth.facebook.PostToWallAfterConnectInterceptor" /> 
 			     
 			</list>

@@ -5,7 +5,7 @@
 
 <!DOCTYPE html>
 <html>
-
+<%--tiles 사용 --%>
 <head>
 <!-- Head_Import -->
 <!-- /////////// -->
@@ -31,8 +31,9 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 -->
 		<div class="row">
 			<div class="col-lg-12">
-				<img src="/Company/zImage/Company_IN(height_280).jpg"
-					class="img-responsive res_width" alt="Responsive image">
+				<img
+					src="/CustomerService/zImage/CustomerService_IN(height_280).jpg"
+					class="img-responsive res_width" alt="CustomerService">
 			</div>
 		</div>
 	</div>
@@ -44,7 +45,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 	<!-- Page Content LEFTMenu and Body-->
 	<div class="container">
 
-		<tiles:insertAttribute name="main" />
+		<tiles:insertAttribute name="main" /> 
 	</div>
 	<!-- /.container -->
 
