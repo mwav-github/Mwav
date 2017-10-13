@@ -55,7 +55,7 @@
 						<div class="img-figure">
 							<div class="cat">Security</div>
 							<img src="/CompanyItem/zImage/main_security.jpg"
-								class="img-responsive">
+								class="img-responsive" alt="main_security">
 						</div>
 
 						<div class="title">
@@ -77,7 +77,7 @@
 						<div class="img-figure">
 							<div class="cat">Chart</div>
 							<img src="/CompanyItem/zImage/Main_chart.jpg"
-								class="img-responsive">
+								class="img-responsive" alt="Main_chart">
 						</div>
 
 						<div class="title">
@@ -146,21 +146,21 @@
 					<!-- md >= 992 / sm >=768  2행에서 1-->
 					<a href="/CompanyItem/ITProducts/OpenSRS/OpenSRS.mwav"> <img
 						class="img-responsive img-portfolio img-hover"
-						src="/CompanyItem/ITProducts/Images/RapidSSL_logo.png" alt="">
+						src="/CompanyItem/ITProducts/Images/RapidSSL_logo.png" alt="OpenSRS">
 					</a>
 					<%--<p>Contents :</p> --%>
 				</div>
 				<div class="col-xs-12 col-sm-6 col-md-3">
 					<a href="/CompanyItem/ITProducts/Windows/Windows.mwav"> <img
 						class="img-responsive img-portfolio img-hover"
-						src="/CompanyItem/ITProducts/Images/windows10(h250).jpg" alt="">
+						src="/CompanyItem/ITProducts/Images/windows10(h250).jpg" alt="Windows">
 					</a>
 					<%--<p>Contents :</p> --%>
 				</div>
 				<div class="col-xs-12 col-sm-6 col-md-3">
 					<a href="/CompanyItem/ITProducts/Azure/Azure.mwav"> <img
 						class="img-responsive img-portfolio img-hover"
-						src="/CompanyItem/ITProducts/Images/ms_azure(h250).png" alt="">
+						src="/CompanyItem/ITProducts/Images/ms_azure(h250).png" alt="Azure">
 					</a>
 					<%--<p>Contents :</p> --%>
 				</div>
@@ -168,7 +168,7 @@
 					<!-- md >= 992 / sm >=768  2행에서 1-->
 					<a href="/CompanyItem/ITProducts/Aervision/Aervision.mwav"> <img
 						class="img-responsive img-portfolio img-hover"
-						src="/CompanyItem/ITProducts/Images/AerVison(h250).png" alt="">
+						src="/CompanyItem/ITProducts/Images/AerVison(h250).png" alt="Aervision">
 					</a>
 					<%--<p>Contents :</p> --%>
 				</div>
@@ -180,7 +180,7 @@
 				
 				<a href="/CompanyItem/ITProducts/InsWave/InsWave.mwav"> <img
 						class="img-responsive img-portfolio img-hover"
-						src="/CompanyItem/ITProducts/Images/CMS_01.png" alt="">
+						src="/CompanyItem/ITProducts/Images/CMS_01.png" alt="InsWave">
 					</a>
 					<!-- <a href="/CompanyItem/ITProducts/InsWave/InsWave.mwav">
 						<div class="portfolio-hover">
@@ -195,7 +195,7 @@
 				<div class="col-xs-12 col-sm-6 col-md-3">
 					<a href="/CompanyItem/ITProducts/MSOffice/MSOffice.mwav"> <img
 						class="img-responsive img-portfolio img-hover"
-						src="/CompanyItem/ITProducts/Images/MsOffice(h250).jpg" alt="">
+						src="/CompanyItem/ITProducts/Images/MsOffice(h250).jpg" alt="MSOffice">
 					</a>
 					<%--<p>Contents :</p> --%>
 				</div>
@@ -203,7 +203,15 @@
 					<!-- md >= 992 / sm >=768  2행에서 1-->
 					<a href="/hightsofts/hightsofts.mwav?items=Highcharts"> <img
 						class="img-responsive img-portfolio img-hover"
-						src="/CompanyItem/ITProducts/Images/highcharts(250).png" alt="">
+						src="/CompanyItem/ITProducts/Images/highcharts(250).png" alt="Highcharts">
+					</a>
+					<%--<p>Contents :</p> --%>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-3">
+					<!-- md >= 992 / sm >=768  2행에서 1-->
+					<a href="/CompanyItem/ITSolutions/OrgChart/OrgChart.mwav"> <img
+						class="img-responsive img-portfolio img-hover"
+						src="/CompanyItem/ITSolutions/Images/OrgChart(h250).png" alt="OrgChart">
 					</a>
 					<%--<p>Contents :</p> --%>
 				</div>
@@ -250,7 +258,7 @@
 			<div class="col-xs-12 col-md-6 col-md-push-6">
 				<img class="img-responsive"
 					src="/CompanyItem/WebSiteBuilding/Images/WebSiteBuilding.jpg"
-					alt="">
+					alt="WebSiteBuilding">
 			</div>
 
 			<div class="col-xs-12 col-md-6 col-md-pull-6 mgt5">
@@ -293,13 +301,13 @@
 
 			<div class="col-md-8">
 				<img class="img-responsive"
-					src="/CompanyItem/ITConsulting/Images/ITConsulting.jpg" alt="">
+					src="/CompanyItem/ITConsulting/Images/ITConsulting.jpg" alt="ITConsulting">
 			</div>
 			<div class="col-md-4 mgt5">
 				<p>다양한 고객 비즈니스에 대한 이해와 컨설팅 수행 경험을 바탕으로 IT의 획기적 고도화 및 선진화를 위해 IT
 					계획 수립(IT Planning)에서 구축(Implementation), 운영(Operation),
 					유지보수(Maintenance)의 IT 라이프 사이클 활동을 효율적으로 수행할 수 있는 체계를 수립하고, 수립된 체계에
-					따른 효과적 업무 수행을 지원하여 드립니다..</p>
+					따른 효과적 업무 수행을 지원하여 드립니다.</p>
 				<%-- 15.10.18 내용수정	<p></p>--%>
 				<a class="btn btn-lg btn-primary btn-block"
 					href="/CompanyItem/ITConsulting/ITConsulting.mwav">IT
@@ -322,7 +330,7 @@
 			<div class="col-xs-12 col-md-6 col-md-push-6">
 				<img class="img-responsive"
 					src="/CompanyItem/DigitalMarketing/Images/DigitalMarketing.jpg"
-					alt="">
+					alt="DigitalMarketing">
 			</div>
 
 			<div class="col-xs-12 col-md-6 col-md-pull-6 mgt5">
@@ -342,10 +350,6 @@
 		<!-- </div> -->
 		<!-- /.container -->
 	</div>
-
-
-
-
 
 
 	<!-- Footer -->

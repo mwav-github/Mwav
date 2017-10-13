@@ -67,13 +67,12 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 
 			<div class="col-md-9">
 				<!-- 소제목 -->
-			
-			 <c:if
-				test="${page_header ne null}">
-				<div class="col-lg-12">
-					<h2 class="page-header">${page_header}</h2>
-				</div>
-			</c:if>
+
+				<c:if test="${page_header ne null}">
+					<div class="col-lg-12">
+						<h2 class="page-header">${page_header}</h2>
+					</div>
+				</c:if>
 				<!-- ----- -->
 
 				<!-- Content Column -->
@@ -84,12 +83,13 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 							flush="false" />
 					</c:if>
 
+					<%--리스트의 경우 /Company/ITTrends/ITTrends.mwav 페이지 내로 추가. 
 					<c:if test="${mode == 'm_bnsList'}">
 					<script></script>
 						<jsp:include page="/CommonApps/BoardNews/bnsList.jsp"
 							flush="false" />
 					</c:if>
-
+--%>
 					<c:if test="${mode == 'm_bnsView'}">
 						<jsp:include page="/CommonApps/BoardNews/bnsView.jsp"
 							flush="false" />
@@ -99,11 +99,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 						<jsp:include page="/CommonApps/BoardNews/bnsForm.jsp"
 							flush="false" />
 					</c:if>
-
-
 				</div>
-
-
 			</div>
 		</div>
 	</div>

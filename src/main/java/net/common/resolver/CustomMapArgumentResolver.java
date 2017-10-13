@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import net.common.common.CommandMap;
 
+import org.apache.log4j.Logger;
 import org.springframework.core.MethodParameter;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.support.WebDataBinderFactory;
@@ -41,6 +42,7 @@ public class CustomMapArgumentResolver implements HandlerMethodArgumentResolver 
 	 * supportsParameter 메서드는 Resolver가 적용 가능한지 검사하는 역할을 하고, supportsparameter
 	 * 메서드는 컨트롤러의 파라미터가 CommandMap 클래스인지 검사하도록 하였다.
 	 */
+	Logger log = Logger.getLogger(this.getClass());
 	@Override
 	public boolean supportsParameter(MethodParameter parameter) {
 		return CommandMap.class.isAssignableFrom(parameter.getParameterType());
@@ -61,12 +63,14 @@ public class CustomMapArgumentResolver implements HandlerMethodArgumentResolver 
 		HttpServletRequest request = (HttpServletRequest) webRequest
 				.getNativeRequest();
 		Enumeration<?> enumeration = request.getParameterNames();
-
+		log.info("필터 후에 노출." + enumeration);
 		String key = null;
 		String[] values = null;
 		while (enumeration.hasMoreElements()) {
 			key = (String) enumeration.nextElement();
 			values = request.getParameterValues(key);
+			log.info("필터 후에 노출 값" + key);
+			log.info("필터 후에 노출 값" + values);
 			if (values != null) {
 				commandMap.put(key, (values.length > 1) ? values : values[0]);
 			}

@@ -1,18 +1,26 @@
 package net.mwav.member.service;
 
 import java.io.IOException;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import net.mwav.common.module.EmailSender;
 import net.mwav.member.dao.MemberDAO;
+import net.mwav.member.vo.Member_tbl_VO;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.util.WebUtils;
 
 @Service("memberService")
 public class MemberServiceImpl implements MemberService {
@@ -223,4 +231,53 @@ public class MemberServiceImpl implements MemberService {
 		return memberDAO.selectOneSmMemberPkCheck(smMember_id);
 	}
 
+	@Override //오토로그인 날짜데이터 추가
+	public boolean updateAutoLogin(String onOff, HttpServletResponse response,	int member_id) {
+		System.out.println("autologin안에 들어옴");
+		System.out.println("autologin 값"+onOff);
+		if (onOff!=null&&onOff.equals("on")) {         
+			  System.out.println("autologin실행됨");
+		      int amount = 60 * 60 * 24 * 14; //일주일 기간설정
+		      HashMap<String,Object> map = new HashMap<String,Object>();
+		      map.put("member_id", member_id);
+		      map.put("mbrAutoLoginDt", new Date(System.currentTimeMillis() + (1000 * amount)));
+		      memberDAO.updateAutoLogin(map);
+		      //쿠키박스
+		      Cookie loginCookie = new Cookie("autoLogin", Integer.toString(member_id));
+		      loginCookie.setPath("/");
+		      loginCookie.setMaxAge(60 * 60 * 24 * 14);
+		      response.addCookie(loginCookie);
+		      return true;
+		}else{
+			return false;
+		}
+		
+
+	}
+
+	@Override //오토로그인 날짜데이터 삭제
+	public boolean updateAutoLoginDel(HttpServletRequest request,HttpSession session, HttpServletResponse response) {
+			Cookie loginCookie = WebUtils.getCookie(request, "autoLogin");
+			Member_tbl_VO member = (Member_tbl_VO)session.getAttribute("member");
+		    if(member!=null){
+			System.out.println("세션의 멤버가 눌이 아님");	
+		    	if (loginCookie != null) {
+			        loginCookie.setPath("/");
+			        loginCookie.setValue(null);
+			        loginCookie.setMaxAge(0);
+			        response.addCookie(loginCookie);;
+			        System.out.println("오토로그인 삭제 성공");
+			        return memberDAO.updateAutoLoginDel(member.getMember_id());
+			        
+		    	}
+		    }
+		    return false;
+	}	
+	
+	
+
+	@Override
+	public Member_tbl_VO selectAutoLogin(int member_id) {
+		return memberDAO.selectAutoLogin(member_id);
+	}
 }

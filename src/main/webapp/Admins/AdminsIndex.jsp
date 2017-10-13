@@ -7,7 +7,25 @@
 <html>
 <head>
 <jsp:include page="/PartsOfContent/Head_Import.jsp" flush="false" />
-
+<script src="https://code.highcharts.com/highcharts.src.js"></script>
+<script src="/CommonLibrary/Javascript/custom-chart.js"></script>
+<script type="text/javascript">
+	var contextPath = '<c:out value="${pageContext.request.contextPath}"/>';
+	$(document).ready(
+			function() {
+				//getRemoteDataDrawChart(contextPath + '/linechart1.chart', createNewLineChart('chart1-container', getBaseChart()));
+				//getRemoteDataDrawChart(contextPath + '/linechart2.chart', createNewLineChart('chart2-container', getBaseChart()));
+				getRemoteDataDrawColumnChart(contextPath
+						+ '/Top10PageList.chart', createNewColumnChart(
+						'chart1-container', getBaseColumnChart()));
+				getRemoteDataDrawChart(contextPath + '/linechart3.chart',
+						createNewLineChart('chart3-container',
+								getBaseLineChart()));
+				getRemoteDataDrawPieChart(contextPath
+						+ '/ClientScreenSize.chart', createNewPieChart(
+						'chart2-container', getBasePieChart()));
+			});
+</script>
 <%-- 
 1. 템플릿 : 참고하여 꼭 변경 http://wrapbootstrap.com/preview/WB0025522
                        http://startbootstrap.com/
@@ -68,7 +86,7 @@
 	<jsp:include page="/Admins/AdminsHeader.jsp" flush="false" />
 
 	<%-- Page Content (슬라이드 쇼 제외 실제 본문 내용)--%>
-	<div class="row" style="background: url(/zImages/bg.png) #eee;">
+	<div class="row" style="background: url(/Admins/zImages/bg.png) #eee;">
 		<div class="container">
 			<%-- Fluid container : .container 로 콘텐츠를 감싸는 것으로 페이지의 콘텐츠를 쉽게 중앙으로 가져오세요. 
 		                       .container 는 우리의 그리드 시스템에 맞는 다양한 미디어 쿼리 분기점에서 max-width 가 설정되어 있습니다. 
@@ -78,7 +96,7 @@
 
 			<div class="enter"></div>
 			<!-- Marketing Icons Section -->
-			<div class="row mg9xauto">
+			<div class="row mg5xauto">
 				<%--장바구니 테스트 --%>
 				<!-- <span class="pull-right"><a href="#orderCart"
 				data-toggle="modal" data-target=".orderCart" role="button"
@@ -185,6 +203,64 @@
 			<!-- /.row -->
 			<%--이미지 괄호 높이가 같아야 한다 아래는 500 x 250 으로 통일 즉 비율이 맞아야 함
 		--%>
+
+			<!-- Portfolio Section -->
+			<div class="row">
+				<div class="col-md-12">
+
+					<!-- <div class="panel panel-danger">
+						<div class="panel-heading">
+							<h3 class="panel-title">Highchart Chart 1</h3>
+						</div>
+						<div id="chart1-container"
+							style="min-width: 300px; max-width: 500px; height: 300px; margin: 0 auto"></div>
+					</div> -->
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">
+								<i class="fa fa-bar-chart"></i> BarChart
+							</h3>
+						</div>
+						<div class="panel-body">
+							<div id="chart1-container"></div>
+						</div>
+						<div class="panel-footer">Updated yesterday at 11:59 PM</div>
+					</div>
+
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">
+								<i class="fa fa-pie-chart" aria-hidden="true"></i> PieChart
+							</h3>
+						</div>
+						<div class="panel-body">
+							<div id="chart2-container"></div>
+						</div>
+						<div class="panel-footer">Updated yesterday at 11:59 PM</div>
+					</div>
+
+
+				</div>
+				<div class="col-md-6">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">
+								<i class="fa fa-line-chart" aria-hidden="true"></i> LineChart
+							</h3>
+						</div>
+						<div class="panel-body">
+							<div id="chart3-container"></div>
+						</div>
+						<div class="panel-footer">Updated yesterday at 11:59 PM</div>
+					</div>
+
+				</div>
+			</div>
+
 			<!-- Portfolio Section -->
 			<div class="row" id="IT_Products">
 				<div class="col-md-12 col-sm-12">

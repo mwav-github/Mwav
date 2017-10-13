@@ -28,4 +28,12 @@ public class StatisticsDAO extends AbstractDAO {
 	}
 
 
+
+	public void updateStClientScreen(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		update("statistics.updateStClientScreen", map);
+	}
+
+
+
 }

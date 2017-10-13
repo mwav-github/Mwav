@@ -4,15 +4,12 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 	
   <welcome-file-list>
-    <welcome-file>Index.jsp</welcome-file>
+    <welcome-file>Index.mwav</welcome-file>
   </welcome-file-list>
-   
+    <!-- 인코딩 필터 등록 스프링 제공 -->
   <filter>
     <filter-name>encodingFilter</filter-name>
-    <filter-class>
-            org.springframework.web.filter.CharacterEncodingFilter
-        </filter-class>
-    <!-- 인코딩 필터 등록 스프링 제공 -->
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
     <init-param>
       <param-name>encoding</param-name>
       <param-value>utf-8</param-value>
@@ -68,30 +65,48 @@
 	     http://m.egloos.zum.com/hanghee/v/5171628
 	     http://kwonnam.pe.kr/wiki/springframework/mvc
 	     https://groups.google.com/forum/#!topic/ksug/bISe6QIROQc
+		<url-pattern>/</url-pattern>  좌측의 경우 .jsp 등 걸릴때 하려고했으나 일단은 .mwav만 타는것으로 세팅 
+		<url-pattern>*.do</url-pattern>
+
 	 -->
 	<servlet-mapping> 
 		<servlet-name>mwav</servlet-name>
 		<url-pattern>/</url-pattern>
-		<url-pattern>*.do</url-pattern>
 		<url-pattern>*.mwav</url-pattern>	
+		<url-pattern>*.chart</url-pattern>	
 	</servlet-mapping>
 	
-	<!-- 아래 설정을 통하여 .ico 파일을 태우지 않을 수 있다.
+	<!-- 아래 설정을 통하여url-pattern을 / 등과같이 변경 시 이미지 파일등이 호출되지 않는 경우가 있다.
 	http://yangyag.tistory.com/171
 	-->
-<servlet-mapping>
-    <servlet-name>default</servlet-name>
-    <url-pattern>*.ico</url-pattern>
-    <url-pattern>*.js</url-pattern>
-    <url-pattern>*.css</url-pattern>
-    <url-pattern>*.jpg</url-pattern>
-    <url-pattern>*.gif</url-pattern>
-    <url-pattern>*.png</url-pattern>
-    <url-pattern>*.swf</url-pattern>
-    <url-pattern>*.svg</url-pattern>
-</servlet-mapping>
+	<servlet-mapping>
+	    <servlet-name>default</servlet-name>
+	    <url-pattern>*.ico</url-pattern>
+	    <url-pattern>*.js</url-pattern>
+	    <url-pattern>*.css</url-pattern>
+	    <url-pattern>*.jpg</url-pattern>
+	    <url-pattern>*.gif</url-pattern>
+	    <url-pattern>*.png</url-pattern>
+	    <url-pattern>*.swf</url-pattern>
+	    <url-pattern>*.svg</url-pattern>
+	</servlet-mapping>
 
-	
+	  <!-- 크로스 사이트(XSS), SQL Injection 스크립트 보안적인 이슈로 강화. 순서도 리스너 등록하고 해야하는듯?-->
+	  <!--
+    HTMLTagFilter의 경우는 파라미터에 대하여 XSS 오류 방지를 위한 변환을 처리합니다.
+   우선 HTMLTagFIlter의 경우는 JSP의 <c:out /> 등을 사용하지 못하는 특수한 상황에서 사용하시면 됩니다.
+   (<c:out />의 경우 뷰단에서 데이터 출력시 XSS 방지 처리가 됨)
+   부득히 HTMLTagFilter를 사용하셔야 하는 경우는 web.xml 상에
+   다음과 같이 CertProcessFilter(GPKI 인증 처리 오류 해결) 등록해 주시면 됩니다.
+    -->
+   <filter>
+    <filter-name>HTMLTagFilter</filter-name>
+    <filter-class>net.mwav.framework.filter.HTMLTagFilter</filter-class>
+  </filter>
+  <filter-mapping> <!-- 루트하위 모든 요청에 대한 인코딩 처리를 하겠다는 의미 -->
+    <filter-name>HTMLTagFilter</filter-name>
+    <url-pattern>*.mwav</url-pattern>
+  </filter-mapping>
 	
 	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
 	<!-- 이녀석은 루트 컨텍스트로 모든 서블릿과 필터들이 공유한다고 합니다. 바로 root-context.xml을 정의해 두었네요-->
@@ -116,12 +131,12 @@
               공통 빈을 설정하는 것이다. 
               이말이다.
                          -->
-    <context-param>
+        <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>classpath*:config/spring/context-*.xml</param-value>
+        <param-value>classpath*:config/spring/mwav-*.xml</param-value>
   	</context-param>
   
-  <!-- 16/09/24 sitemesh로 추가 -->
+  <!-- 16/09/24 sitemesh로 추가  filter단계에서 처리 -->
   <filter>
     <filter-name>sitemesh</filter-name>
     <filter-class>
@@ -130,8 +145,30 @@
   </filter>
   <filter-mapping>
     <filter-name>sitemesh</filter-name>
+    <url-pattern>/CustomerService/*</url-pattern>
     <url-pattern>/Company/*</url-pattern> 
   </filter-mapping> 
+  
+  <!-- .jsp 페이지 직접 접근 막기
+url : http://blog.naver.com/PostView.nhn?blogId=geerark&logNo=100006896323&parentCategoryNo=&categoryNo=5&viewDate=&isShowPopularPosts=true&from=search
+ -->
+  <security-constraint>
+  <display-name>JSP Protection</display-name>
+  <web-resource-collection>
+    <web-resource-name>SecureJSPPages</web-resource-name>
+      <url-pattern>*.jsp</url-pattern>
+  </web-resource-collection>
+  <auth-constraint>
+    <role-name>nobody</role-name>
+  </auth-constraint>
+  </security-constraint>
+ 
+  <security-role>
+   <description>
+     Nobody should be in this role so JSP files are protected from direct access.
+   </description>
+   <role-name>nobody</role-name>
+   </security-role>
   
  	<!-- error 페이지 (추후 변동예정) -->
  	<error-page>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="highCharts">
+	
+	
+
+	<!--/*========================================리스트========================================*/ 
+	 -->
+	
+	
+	
+	<select id="selectListWeeklyUsers" resultType="net.common.charts.vo.SeriesVO_Arrary">
+	<![CDATA[
+	      SELECT DATE_FORMAT(stStatisticsDt, '%W') AS `name`,
+          COUNT(`statistics_id`) AS 'data'
+          FROM Statistics_tbl
+          WHERE TO_DAYS(NOW()) - TO_DAYS(stStatisticsDt) <= 7
+          GROUP BY `name`
+          ORDER BY data DESC;
+	]]>
+	</select>	
+	
+	<select id="selectListTop10Page" resultType="net.common.charts.vo.SeriesVO_Arrary">
+	<![CDATA[
+	      SELECT slPageName AS 'name', 
+	      FLOOR(COUNT(*)) AS 'data' 
+	      FROM StatisticsLog_tbl 
+	      GROUP BY `name`
+	      ORDER BY data DESC 
+	      limit 0,10;
+	]]>
+	</select>
+	
+	
+	<select id="selectListClientScreenSize" resultType="net.common.charts.vo.SeriesVO_Arrary">
+	<![CDATA[
+	      SELECT stClientScreen AS `name` , 
+	      COUNT(*) AS `data`  
+	      FROM Statistics_tbl 
+	      WHERE stClientScreen IS NOT NULL AND TO_DAYS(NOW()) - TO_DAYS(stStatisticsDt) <= 30 
+	      GROUP BY `name`
+	      ORDER BY data DESC 
+	]]>
+	</select>
+	
+	<!--/*========================================삭제========================================*/  -->
+
+</mapper>

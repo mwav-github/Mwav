@@ -49,8 +49,8 @@ public class DomReadXMLFile {
 				node = nList.item(i);
 				if (node instanceof Element) {
 					System.out.println("이름"+node.getNodeName());
-					System.out.println("내용"+node.getTextContent());
-					map.put(node.getNodeName(), node.getTextContent());
+					//System.out.println("내용"+node.getTextContent());
+					//map.put(node.getNodeName(), node.getTextContent());
 					System.out.println("출력출력");
 					
 				}

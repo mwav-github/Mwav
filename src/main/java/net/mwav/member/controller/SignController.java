@@ -20,6 +20,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -38,10 +39,10 @@ import org.springframework.social.connect.web.ProviderSignInUtils;
 import org.springframework.social.facebook.api.Facebook;
 import org.springframework.social.facebook.api.User;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.util.WebUtils;
 
 @Controller
 public class SignController {
@@ -62,7 +63,8 @@ public class SignController {
 				connectionFactoryLocator, connectionRepository);
 	}
 
-	@RequestMapping(value = "/signin", method = {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value = "/signin", method = { RequestMethod.GET,
+			RequestMethod.POST })
 	public void signin() {
 		System.out.println("출력3");
 	}
@@ -72,12 +74,13 @@ public class SignController {
 		throw new ExpiredAuthorizationException("google");
 	}
 
-	@RequestMapping(value = "/signup.mwav", method = {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value = "/signup.mwav", method = { RequestMethod.GET,
+			RequestMethod.POST })
 	public String signupForm2(WebRequest req, Model model,
 			HttpServletRequest request, HttpServletResponse response) {
 		Connection<?> connection = providerSignInUtils
 				.getConnectionFromSession(req);
-
+		
 		int loginCheck = 0;
 		Map<String, Object> map = new HashMap<String, Object>();
 		HttpSession session = request.getSession();
@@ -151,7 +154,7 @@ public class SignController {
 		int member_id = 0;
 		String m_id = null;
 		check = memberService.selectOneSnsMbrLoginIdCheck(smMember_id);
-
+		
 		logger.info("check = " + check);
 		if (check == false) { // 기존에 등록 아이디가 존재하지 않는 경우
 
@@ -170,7 +173,7 @@ public class SignController {
 			if (Email == null) {
 				Email = "sns_imsi";
 			}
-
+			map.put("member_id", member_id);
 			map.put("mbrLoginId", social + "_imsi");
 			map.put("mbrLoginPw", "sns_imsi");
 			map.put("mbrTempLoginPw", null);
@@ -185,7 +188,7 @@ public class SignController {
 
 			// 회원가입.
 			memberService.insertMbrForm(map);
-
+			
 			map.put("smMember_id", smMember_id);
 			map.put("First_Name", First_Name);
 			map.put("Last_Name", Last_Name);
@@ -197,8 +200,11 @@ public class SignController {
 			// sns가입 (*당연히 회원가입이되어야 이게 가능 순서가 당연하지 이게 저기를 외래키로 가리키는데)
 			memberService.insertSnsForm(map);
 			member_tbl_VO.setMember_id(member_id);
-			session.setAttribute("Member", member_tbl_VO);
-
+			session.setAttribute("member", member_tbl_VO);
+			if(request.getSession().getAttribute("autoLoginSub")!=null){
+				memberService.updateAutoLogin((String)request.getSession().getAttribute("autoLoginSub"), response, member_tbl_VO.getMember_id());
+				request.getSession().removeAttribute("autoLoginSub");
+			}
 			logger.info("insertSnsForm success!!!!!!");
 		} else {
 			// 업데이트 해야하는 요소가 있다면 사실해줘야 한다.
@@ -213,16 +219,21 @@ public class SignController {
 			}
 
 			member_tbl_VO.setMember_id(member_id);
-			session.setAttribute("Member", member_tbl_VO);
+			session.setAttribute("member", member_tbl_VO);
+			System.out.println("자동로그인값"+request.getSession().getAttribute("autoLoginSub"));
+			if(request.getSession().getAttribute("autoLoginSub")!=null){
+				memberService.updateAutoLogin((String)request.getSession().getAttribute("autoLoginSub"), response, member_tbl_VO.getMember_id());
+				request.getSession().removeAttribute("autoLoginSub");
+			}
 		}
 
 		String mbrLoginId = connection.getDisplayName();
-		System.out.println("mbrLoginId___" + mbrLoginId);
+		// System.out.println("mbrLoginId___" + mbrLoginId);
 
 		loginCheck = 1;
 		// session.setAttribute("member_id", member_id);
 		request.setAttribute("loginCheck", loginCheck);
-
+		request.getSession().setAttribute("loginCheck", null);
 		return "/Index";
 	}
 

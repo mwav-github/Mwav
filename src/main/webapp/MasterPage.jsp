@@ -24,19 +24,7 @@
 <jsp:include page="/PartsOfContent/Head_Import.jsp" flush="false" />
 <!-- /////////// -->
 
-<c:if test="${requestScope.loginCheck eq 2 }">
-	<script type="text/javascript">
-		alert('비밀번호가 틀렸습니다.');
-		history.go(-1)
-	</script>
-</c:if>
 
-<c:if test="${requestScope.loginCheck eq 3 }">
-	<script type="text/javascript">
-		alert('아이디가 존재하지 않습니다.');
-		history.go(-1);
-	</script>
-</c:if>
 </head>
 
 <body>

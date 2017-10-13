@@ -23,7 +23,7 @@
 -->
 
 <!-- Content Column -->
-<div class="row">
+<div class="row news_fontfamilly" id="news_top">
 	<form role="form">
 		<%-- <table class="table-responsive table table-striped">
 			<thead>
@@ -96,10 +96,10 @@
 	<div class="col-md-12">
 
 
-		<h2>
+		<h2 class="news_title">
 			<a>${selectOneBnsView.bnTitle}</a>
 		</h2>
-		<p class="lead">
+		<p class="news_subtitle">
 			<c:if
 				test="${selectOneBnsView.bnSubTitle != '' or selectOneBnsView.bnSubTitle eq null}">
 				${selectOneBnsView.bnSubTitle} 
@@ -107,8 +107,8 @@
 		</p>
 		<hr>
 		<p>
-			<i class="fa fa-clock-o"></i> Posted on
-			${selectOneBnsView.fmbnInsertDt} | Topic: ${selectOneBnsView.bnGroup}
+			<i class="fa fa-clock-o"></i> Last Modified:
+			${selectOneBnsView.fmBnsUpdateDt} | Topic: ${selectOneBnsView.bnGroup}
 		</p>
 		<hr>
 		<div class="text-right">
@@ -127,7 +127,7 @@
 		</div>
 		<div class="enter"></div>
 
-		<p>${selectOneBnsView.bnContent}</p>
+		<div class="news_contents">${selectOneBnsView.bnContent}</div>
 
 		<c:if test="${selectOneBnsView.bnRelatedLink eq null }">
 			<a class="btn btn-primary" href='${selectOneBnsView.bnRelatedLink}'>Read

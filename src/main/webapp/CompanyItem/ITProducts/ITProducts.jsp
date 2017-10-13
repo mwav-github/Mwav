@@ -23,17 +23,18 @@
 		<!-- Image Container 
 container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다. 
 -->
-		<div class="row">
-			<div class="col-lg-12">
-				<img src="/CompanyItem/zImage/CompanyItem_IN(height_280).jpg"
-					class="img-responsive res_width fix_height_300"
-					alt="Responsive image">
-			</div>
-		</div>
+
 	</div>
 	<!--  //////////////////////////////////// 
 	Header 끝
 	-->
+	<div class="row">
+		<div class="col-lg-12">
+			<img src="/CompanyItem/zImage/CompanyItem_IN(height_280).jpg"
+				class="img-responsive res_width fix_height_300"
+				alt="Responsive image">
+		</div>
+	</div>
 
 
 	<!-- Page Content -->
@@ -126,6 +127,24 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 		</div>
 		<!-- /.container -->
 	</div>
+<div class="col-md-12">
+					<h3>Contact:</h3>
+					<p>Have a question or feedback?</p>
+					<br>
+					<p>
+						<!-- <a href="mailto:ebizpromwav@gmail.com" title="Contact me!"><i
+						class="fa fa-envelope"></i> Contact</a> -->
+						<%--줄 없애기 + 그다음에 메일로 바로연결이아닌 qa쪽 고민 --%>
+
+						<a href="#" class="btn btn-block btn-primary" data-toggle="modal"
+							data-target="#Contact"
+							onclick="ga('send', 'event', 'Q&A', 'click', 'Footer');"
+							style="color: white;"><span
+							class="glyphicon glyphicon-envelope"></span> Contact</a>
+					</p>
+					<p>&nbsp;</p>
+	
+
 
 	<!-- Footer -->
 	<footer>

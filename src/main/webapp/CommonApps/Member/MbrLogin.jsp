@@ -2,13 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- imsi -->
-<link
+<!--  <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"
-	rel="stylesheet">
+	rel="stylesheet">  -->
 <link href="/resources/JsFramework/Bootstrap/bootstrap-social.css"
 	rel="stylesheet">
-<script src='https://www.google.com/recaptcha/api.js'></script>
-
 
 <head>
 <c:if test="${requestScope.loginCheck eq 2 }">
@@ -33,6 +31,12 @@
 <c:if test="${requestScope.loginCheck eq 3 }">
 	<script type="text/javascript">
 		alert('아이디가 존재하지 않습니다.');
+		history.go(-1);
+	</script>
+</c:if>
+<c:if test="${requestScope.loginCheck eq 6 }">
+	<script type="text/javascript">
+		alert('reCAPTCHA 오류입니다. 다시 시도해주세요.');
 		history.go(-1);
 	</script>
 </c:if>
@@ -67,6 +71,21 @@
 		</c:when>
 	</c:choose>
 </c:if>
+<script>
+ $(function(){
+$("#checkbox4").bind("click",function(){
+	
+	var autoUse=$("#checkbox4").is(":checked");
+	if(autoUse==false){
+		$(".test1").val("off");
+	}else if(autoUse==true){
+		$(".test1").val("on");
+	}
+	//alert(autoUse);
+	});
+});
+ 
+</script>
 </head>
 <%-- 구글 API관련 
     <meta name="google-signin-scope" content="profile email">
@@ -264,15 +283,7 @@
 		return false;
 	}
 
-	function robot_check() {
-		var recaptcha = grecaptcha.getResponse();
-		if (recaptcha.length == 0) {
-			alert('로봇이 아닌지 체크해주세요.');
-			return false;
-		} else {
-			return true
-		}
-	}
+	
 </script>
 
 <%--이것때문에 tooltip등이 오류가난다 --%>
@@ -284,13 +295,13 @@
 	<div class="col-md-12"
 		style="padding: 5%; box-shadow: 0 0 20px 3px #04A3ED; background: #f7f7f7;">
 
-
 		<form name="login_form" action="/member/Login.mwav" role="form"
 			class='form-horizontal' method="post"
 			onsubmit="return re_check(document.login_form);">
-			<%--get문으로 넘어온 것은 param으로 받는다. --%>
-			<input type="hidden" name="returnUrl" value="${param.returnUrl }" />
+			<%--get문으로 넘어온 것은 param으로 받는다. "${param.returnUrl}" --%>
+			<input type="hidden" name="returnUrl" value="${param.returnUrl}" />
 			<div class="enter"></div>
+
 			<div class="form-group">
 				<input type="text" name="mbrLoginId"
 					class="form-control input-lg caps_lockchk"
@@ -300,118 +311,123 @@
 				<input type="password" class="form-control input-lg caps_lockchk"
 					placeholder="Password" name="mbrLoginPw">
 			</div>
-
+			<%--https://bootsnipp.com/snippets/featured/checkboxradio-css-only 추후 변경 --%>
+			<div class="form-group mgl3">
+				<div class="checkbox checkbox-info">
+					<input id="checkbox4" name="autoLogin" class="styled"
+						type="checkbox"> Keep me
+						signed in.
+				</div>
+			</div>
 
 			<div class="form-group">
 				<button type="submit" class="btn btn-primary btn-lg btn-block">Sign
 					In</button>
 			</div>
-		</form>
-		<%--recapCha --%>
-		<div class="form-group pull-left">
 
-			<%--invisible --%>
-			<%-- 	<button class="g-recaptcha"
+			<%--recapCha --%>
+			<div class="col-md-12">
+
+				<%--invisible --%>
+				<%-- 	<button class="g-recaptcha"
 				data-sitekey="6LcHRBoUAAAAAH5dmdNp-Iv1d7MAphM6B71ov9ZD"
 				data-callback="onSubmit">Submit</button>
 		 <div id='recaptcha' class="g-recaptcha"
           data-sitekey="6LcHRBoUAAAAAH5dmdNp-Iv1d7MAphM6B71ov9ZD"
           data-callback="onSubmit"
           data-size="invisible"></div> --%>
-			<%--visible --%>
-			<div class="g-recaptcha"
-				data-sitekey="6LcdRxoUAAAAAA4OI0FIN2bv2W0ersTRjqHJdLG-"
-				style="transform: scale(0.88); -webkit-transform: scale(0.88); transform-origin: 0 0; -webkit-transform-origin: 0 0;"></div>
-		</div>
+				<%--visible --%>
+				<div class="g-recaptcha"
+					data-sitekey="6LcdRxoUAAAAAA4OI0FIN2bv2W0ersTRjqHJdLG-"
+					style="transform: scale(0.88); -webkit-transform: scale(0.88); transform-origin: 0 0; -webkit-transform-origin: 0 0;"></div>
+			</div>
+		</form>
 
-		<%--소셜 로그인 연동부분 --%>
-		<div class="form-group">
-			<!-- GOOGLE SIGNIN -->
-			<form id="go_signin" name="go_signin"
-				action="<c:url value="/signin/google.mwav"/>" method="POST"
+
+		<%--소셜 로그인 연동부분 
+		중요사항 : col-md-12 외 나머지 것들 col-sm-12 등을 넣으면 버튼 동작이 하지 않음.
+		--%>
+		<input type="hidden" name="test" value="123" />
+		<!-- GOOGLE SIGNIN -->
+		<div class="col-md-12 ">
+			<form action="<c:url value="/signin/google.mwav"/>" method="POST"
 				onSubmit="return robot_check();">
-				<div class="col-xs-12 col-sm-12 col-md-12 mgt1_8">
-					<!-- <button type="submit" class="btn btn-danger btn-block">
+				<!-- <button type="submit" class="btn btn-danger btn-block">
 						<i class="fa fa-google-plus"></i>
 					</button> -->
+				<div class="form-group">
 					<button type="submit" class="btn btn-block btn-social btn-google">
 						<span class="fa fa-google-plus"></span> <span class="">Sign
 							in with Google</span>
 					</button>
-					<input type="hidden" name="${_csrf.parameterName}"
-						value="${_csrf.token}" /> <input type="hidden" name="scope"
-						value="email profile" />
 				</div>
 
+				<input type="hidden" name="test" value="123" /> <input
+					type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+				<input type="hidden" name="scope" value="email profile" /> <input
+					type="hidden" name="autoLoginSub" class="test1" value="off" />
 			</form>
+		</div>
 
-			<!-- facebook SIGNIN -->
-			<form id="go_signin" name="go_signin"
-				action="<c:url value="/signin/facebook.mwav"/>" method="POST"
+		<!-- facebook SIGNIN -->
+		<div class="col-md-12">
+			<form action="<c:url value="/signin/facebook.mwav"/>" method="POST"
 				onSubmit="return robot_check();">
-				<div class="col-xs-12 col-sm-12 col-md-12 mgt1_8">
-					<!-- <button type="submit" class="btn btn-primary btn-block">
+				<!-- <button type="submit" class="btn btn-primary btn-block">
 						<i class="fa fa-facebook"></i>
 					</button> -->
-
+				<div class="form-group">
 					<button type="submit" class="btn btn-block btn-social btn-facebook">
 						<span class="fa fa-facebook"></span> <span class=""> Sign
 							in with Facebook</span>
 					</button>
-					<input type="hidden" name="${_csrf.parameterName}"
-						value="${_csrf.token}" />
-
 				</div>
+				<input type="hidden" name="test" value="123" /> <input
+					type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+				<input type="hidden" name="autoLoginSub" class="test1" value="off" />
 			</form>
+		</div>
 
 
-			<!-- LINKEDIN SIGNIN -->
-			<form id="go_signin" name="go_signin"
-				action="<c:url value="/signin/linkedin.mwav"/>" method="POST"
+		<!-- LINKEDIN SIGNIN -->
+		<div class=" col-md-12">
+			<form action="<c:url value="/signin/linkedin.mwav"/>" method="POST"
 				onSubmit="return robot_check();">
-				<div class="col-xs-12 col-sm-12 col-md-12 mgt1_8">
-					<!-- <button type="submit" class="btn btn-danger btn-block">
+				<!-- <button type="submit" class="btn btn-danger btn-block">
 						<i class="fa fa-linkedin"></i>
 					</button> -->
-
+				<div class="form-group">
 					<button type="submit" class="btn btn-block btn-social btn-linkedin">
 						<span class="fa fa-linkedin"></span> <span class="">Sign in
 							with LinkedIn</span>
 					</button>
-					<input type="hidden" name="${_csrf.parameterName}"
-						value="${_csrf.token}" />
 				</div>
+				<input type="hidden" name="${_csrf.parameterName}"
+					value="${_csrf.token}" /> <input type="hidden" name="autoLoginSub"
+					class="test1" value="off" />
 			</form>
+		</div>
 
-<<<<<<< HEAD
-			<!-- TWITTER SIGNIN 
-			
-			-->
-=======
-			<!-- TWITTER SIGNIN
-			 -->
->>>>>>> feature/mobile_first_renewal
-			<form id="go_signin" name="go_signin"
-				action="<c:url value="/signin/twitter.mwav"/>" method="POST"
+
+		<div class="col-md-12 mgb3">
+			<form action="<c:url value="/signin/twitter.mwav"/>" method="POST"
 				onSubmit="return robot_check();">
-				<div class="col-xs-12 col-sm-12 col-md-12 mgt1_8 mgb3">
-					<!-- <button type="submit" class="btn btn-info btn-block">
+				<!-- <button type="submit" class="btn btn-info btn-block">
 						<i class="fa fa-twitter"></i>
 					</button> -->
 
-					<button type="submit" class="btn btn-block btn-social btn-twitter">
-						<span class="fa fa-twitter"></span> <span class="">Sign in
-							with Twitter</span>
-					</button>
-					<input type="hidden" name="${_csrf.parameterName}"
-						value="${_csrf.token}" />
-				</div>
+				<button type="submit" class="btn btn-block btn-social btn-twitter">
+					<span class="fa fa-twitter"></span> <span class="">Sign in
+						with Twitter</span>
+				</button>
+				<input type="hidden" name="${_csrf.parameterName}"
+					value="${_csrf.token}" /> <input type="hidden" name="autoLoginSub"
+					class="test1" value="off" />
 			</form>
 		</div>
 
 		<%--아이디 비밀번호 찾기 --%>
-
-		<div class="form-group ">
+		<div class="col-md-12">
 
 
 			<div class="col-md-4">
@@ -429,7 +445,8 @@
 
 		</div>
 
-		<%-- 페북 로그인 연동 -->
+	</div>
+	<%-- 페북 로그인 연동 -->
 
 		<!-- <fb:login-button scope="public_profile,email"
 			onlogin="checkLoginState();">
@@ -437,8 +454,6 @@
 
 		<!-- <div class="fb-login-button" data-max-rows="12" data-size="large" scope="public_profile,email"
 				data-show-faces="true" data-auto-logout-link="true"></div> --%>
-
-	</div>
 </c:if>
 <!-- Login - END -->
 <c:if test="${param.type == 'simple'}">
@@ -468,19 +483,20 @@
 			<p class="help-block">(if this is a private computer)</p>
 		</div> --%>
 
-		<div class="form-group col-md-12 pull-right">
-
-			<%--invisible --%>
-			<%-- 	<button class="g-recaptcha"
+		<div class="form-group">
+			<div class="col-md-12">
+				<%--invisible --%>
+				<%-- 	<button class="g-recaptcha"
 				data-sitekey="6LcHRBoUAAAAAH5dmdNp-Iv1d7MAphM6B71ov9ZD"
 				data-callback="onSubmit">Submit</button> -->
 			<!-- <div id='recaptcha' class="g-recaptcha"
           data-sitekey="6LcHRBoUAAAAAH5dmdNp-Iv1d7MAphM6B71ov9ZD"
           data-callback="onSubmit"
           data-size="invisible"></div> --%>
-			<%--visible --%>
-			<div class="g-recaptcha"
-				data-sitekey="6LcdRxoUAAAAAA4OI0FIN2bv2W0ersTRjqHJdLG-"></div>
+				<%--visible --%>
+				<div class="g-recaptcha"
+					data-sitekey="6LcdRxoUAAAAAA4OI0FIN2bv2W0ersTRjqHJdLG-"></div>
+			</div>
 		</div>
 		<div class="form-group">
 			<button type="submit" class="btn btn-success btn-block">Login</button>

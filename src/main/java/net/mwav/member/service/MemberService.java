@@ -4,6 +4,12 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import net.mwav.member.vo.Member_tbl_VO;
+
 public interface MemberService {
 
 	/*========================================등록========================================*/
@@ -53,9 +59,10 @@ public interface MemberService {
 
 	String selectOneSmMemberPkCheck(String smMember_id);
 
-
-
-
+	boolean updateAutoLogin(String onOff, HttpServletResponse response,
+			int member_id);
 	
-
+	boolean updateAutoLoginDel(HttpServletRequest request,HttpSession session, HttpServletResponse response);
+	
+	Member_tbl_VO selectAutoLogin(int member_id);
 }

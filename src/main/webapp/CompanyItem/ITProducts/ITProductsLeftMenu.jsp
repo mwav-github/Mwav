@@ -26,18 +26,22 @@
 		 [출처] javascript & jquery location object 정보 - 현재 실행중이 URL정보|작성자 미친꼬북		
 		 */
 		var pgurl = window.location.pathname;
-		 var pgurl_ = window.location.search;
+		var pgurl_ = window.location.search;
 		//alert(pgurl);
 
-		$("#left_menu a").each(function() {
-			//alert($(this).attr("href"));
-			//alert($(this).attr(''));
-			if ($(this).attr("href") == pgurl || $(this).attr("href") == '' || $(this).attr("alt") == pgurl)
-				{$(this).addClass("active");} /* else if($(this).attr("href") == pgurl){
-					
-				} */
-		})
-		
+		$("#left_menu a").each(
+				function() {
+					//alert($(this).attr("href"));
+					//alert($(this).attr(''));
+					if ($(this).attr("href") == pgurl
+							|| $(this).attr("href") == ''
+							|| $(this).attr("alt") == pgurl) {
+						$(this).addClass("active");
+					} /* else if($(this).attr("href") == pgurl){
+									
+								} */
+				})
+
 		/* $("#list_menu a").each(function() {
 			//alert($(this).attr("href"));
 			//alert($(this).attr(''));
@@ -53,66 +57,84 @@
 <div class="panel-group">
 	<div class="panel list-group" id="left_menu">
 
-         <%--사용자 시각에서 hover시 포인터가 떠야한다.
+		<%--사용자 시각에서 hover시 포인터가 떠야한다.
          
          1. href="#"을 하면 자꾸 상단으로 이동
          2. 없애면 hover시 포인터가 없다 
          3. btn 클래스 등록하면 포인터 등장
          4. inline-stye로 btn이 중앙정렬이라  --%>
-		<a  class="btn list-group-item" data-toggle="collapse"
-			data-target="#list_menu_Aervision" alt="/CompanyItem/ITProducts/Aervision/Aervision.mwav" style="text-align:left !important">Aervision</a>
-<%--
+		<a class="btn list-group-item multiple_leftMenu"
+			data-toggle="collapse" data-target="#list_menu_Aervision"
+			alt="/CompanyItem/ITProducts/Aervision/Aervision.mwav"
+			style="text-align: left !important">Aervision</a>
+		<%--
 /CompanyItem/ITProducts/Aervision/Aervision.jsp
 붙여줘야지 #만해주면 다른 페이지에서는 안먹는다.
  --%>
-		<div id="list_menu_Aervision" class="collapse child_left_menu">
-			<a href="/CompanyItem/ITProducts/Aervision/Aervision.mwav#AerPass" class="list-group-item " data-toggle="tooltip"
-				data-placement="top" data-original-title="AerPass"><span
+		<div id="list_menu_Aervision" class="collapse child_left_menu ">
+			<a href="/CompanyItem/ITProducts/Aervision/Aervision.mwav#AerPass"
+				class="list-group-item " data-toggle="tooltip" data-placement="top"
+				data-original-title="AerPass"><span
 				class="glyphicon glyphicon-chevron-right"></span> AerPass</a> <a
-				href="/CompanyItem/ITProducts/Aervision/Aervision.mwav#AerCrowd" class="list-group-item " data-toggle="tooltip"
-				data-placement="top" data-original-title="AerCrowd"><span
+				href="/CompanyItem/ITProducts/Aervision/Aervision.mwav#AerCrowd"
+				class="list-group-item " data-toggle="tooltip" data-placement="top"
+				data-original-title="AerCrowd"><span
 				class="glyphicon glyphicon-chevron-right"></span> AerCrowd</a> <a
-				href="/CompanyItem/ITProducts/Aervision/Aervision.mwav#AerPalm" class="list-group-item " data-toggle="tooltip"
-				data-placement="top" data-original-title="AerPalm"><span
+				href="/CompanyItem/ITProducts/Aervision/Aervision.mwav#AerPalm"
+				class="list-group-item " data-toggle="tooltip" data-placement="top"
+				data-original-title="AerPalm"><span
 				class="glyphicon glyphicon-chevron-right"></span> AerPalm</a> <a
-				href="/CompanyItem/ITProducts/Aervision/Aervision.mwav#AerID" class="list-group-item " data-toggle="tooltip"
-				data-placement="top" data-original-title="AerID"><span
+				href="/CompanyItem/ITProducts/Aervision/Aervision.mwav#AerID"
+				class="list-group-item " data-toggle="tooltip" data-placement="top"
+				data-original-title="AerID"><span
 				class="glyphicon glyphicon-chevron-right"></span> AerID</a> <a
-				href="/CompanyItem/ITProducts/Aervision/Aervision.mwav#AerGate" class="list-group-item " data-toggle="tooltip"
-				data-placement="top" data-original-title="AerGate"><span
+				href="/CompanyItem/ITProducts/Aervision/Aervision.mwav#AerGate"
+				class="list-group-item " data-toggle="tooltip" data-placement="top"
+				data-original-title="AerGate"><span
 				class="glyphicon glyphicon-chevron-right"></span> AerGate</a> <a
-				href="/CompanyItem/ITProducts/Aervision/Aervision.mwav#IDMatch" class="list-group-item " data-toggle="tooltip"
-				data-placement="top" data-original-title="IDMatch"><span
+				href="/CompanyItem/ITProducts/Aervision/Aervision.mwav#IDMatch"
+				class="list-group-item " data-toggle="tooltip" data-placement="top"
+				data-original-title="IDMatch"><span
 				class="glyphicon glyphicon-chevron-right"></span> IDMatch</a> <a
-				href="/CompanyItem/ITProducts/Aervision/Aervision.mwav#eyeLock" class="list-group-item " data-toggle="tooltip"
-				data-placement="top" data-original-title="eyeLock"><span
+				href="/CompanyItem/ITProducts/Aervision/Aervision.mwav#eyeLock"
+				class="list-group-item " data-toggle="tooltip" data-placement="top"
+				data-original-title="eyeLock"><span
 				class="glyphicon glyphicon-chevron-right"></span> eyeLock</a> <a
-				href="/CompanyItem/ITProducts/Aervision/Aervision.mwav#Services" class="list-group-item " data-toggle="tooltip"
-				data-placement="top" data-original-title="Services"><span
+				href="/CompanyItem/ITProducts/Aervision/Aervision.mwav#Services"
+				class="list-group-item " data-toggle="tooltip" data-placement="top"
+				data-original-title="Services"><span
 				class="glyphicon glyphicon-chevron-right"></span> Services</a> <a
-				href="/CompanyItem/ITProducts/Aervision/Aervision.mwav#AboutUs" class="list-group-item " data-toggle="tooltip"
-				data-placement="top" data-original-title="AboutUs"><span
+				href="/CompanyItem/ITProducts/Aervision/Aervision.mwav#AboutUs"
+				class="list-group-item " data-toggle="tooltip" data-placement="top"
+				data-original-title="AboutUs"><span
 				class="glyphicon glyphicon-chevron-right"></span> AboutUs</a>
 		</div>
-		
-		
+
+
 		<a class="btn list-group-item " data-toggle="collapse"
-			data-target="#list_menu_highsofts" alt="/CompanyItem/ITProducts/HighSofts/HighSofts.mwav" style="text-align:left !important">HighSofts</a>
-						
+			data-target="#list_menu_highsofts"
+			alt="/CompanyItem/ITProducts/HighSofts/HighSofts.mwav"
+			style="text-align: left !important">HighSofts</a>
+
 		<div id="list_menu_highsofts" class="collapse child_left_menu">
-			<a href="/hightsofts/hightsofts.mwav?items=Highcharts" class="list-group-item " data-toggle="tooltip"
-				data-placement="top" data-original-title="Highcharts"><span
+			<a href="/hightsofts/hightsofts.mwav?items=Highcharts"
+				class="list-group-item " data-toggle="tooltip" data-placement="top"
+				data-original-title="Highcharts"><span
 				class="glyphicon glyphicon-chevron-right"></span> Highcharts</a> <a
-				href="/hightsofts/hightsofts.mwav?items=Highstock" class="list-group-item " data-toggle="tooltip"
-				data-placement="top" data-original-title="Highstock"><span
+				href="/hightsofts/hightsofts.mwav?items=Highstock"
+				class="list-group-item " data-toggle="tooltip" data-placement="top"
+				data-original-title="Highstock"><span
 				class="glyphicon glyphicon-chevron-right"></span> Highstock</a> <a
-				href="/hightsofts/hightsofts.mwav?items=Highmaps" class="list-group-item " data-toggle="tooltip"
-				data-placement="top" data-original-title="Highmaps"><span
-				class="glyphicon glyphicon-chevron-right"></span> Highmaps</a> 
+				href="/hightsofts/hightsofts.mwav?items=Highmaps"
+				class="list-group-item " data-toggle="tooltip" data-placement="top"
+				data-original-title="Highmaps"><span
+				class="glyphicon glyphicon-chevron-right"></span> Highmaps</a>
 		</div>
 
-
-		<a href="/CompanyItem/ITProducts/OpenSRS/OpenSRS.mwav"
+		<a href="/CompanyItem/ITSolutions/OrgChart/OrgChart.mwav"
+			class="list-group-item " data-toggle="tooltip" data-placement="top"
+			data-original-title="OrgChart">OrgChart</a> <a
+			href="/CompanyItem/ITProducts/OpenSRS/OpenSRS.mwav"
 			class="list-group-item " data-toggle="tooltip" data-placement="top"
 			data-original-title="OpenSRS">OpenSRS</a> <a
 			href="/CompanyItem/ITProducts/Azure/Azure.mwav"

@@ -8,8 +8,10 @@ import java.util.Map;
 import net.common.dao.AbstractDAO;
 import net.mwav.common.module.AesEncryption;
 import net.mwav.common.module.Common_Utils;
+import net.mwav.member.vo.Member_tbl_VO;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository("memberDAO")
 public class MemberDAO extends AbstractDAO {
@@ -25,7 +27,7 @@ public class MemberDAO extends AbstractDAO {
 	 * ========================================등록================================
 	 * ========
 	 */
-
+	@Transactional
 	public String insertMbrForm(Map<String, Object> map) {
 
 		try {
@@ -99,7 +101,10 @@ public class MemberDAO extends AbstractDAO {
 	@SuppressWarnings("unchecked")
 	public boolean updateMbrLoginPw(Map<String, Object> map) throws IOException {
 		// TODO Auto-generated method stub
+		
 		boolean flag = true;
+		try{
+		
 		String b_mbrLoginPw = (String) map.get("mbrLoginPw");
 		System.out.println("* AES/CBC/IV");
 		System.out.println("b_mbrLoginPw=" + b_mbrLoginPw);
@@ -141,6 +146,10 @@ public class MemberDAO extends AbstractDAO {
 				flag = true;
 			}
 			
+		}
+		
+		}catch(Exception e){
+			e.printStackTrace();
 		}
 
 		return flag;
@@ -421,7 +430,6 @@ public class MemberDAO extends AbstractDAO {
 
 		try {
 			insert("member.insertSnsForm", map);
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -457,5 +465,35 @@ public class MemberDAO extends AbstractDAO {
 		// TODO Auto-generated method stub
 		return smMember_id = (String) selectOne("member.selectOneSmMemberPkCheck", smMember_id);
 	}
+	
+	//오토로그인 체크되었을 시  오토로그인 날짜 업데이트
+	public boolean updateAutoLogin(Map<String,Object> map){
+		if((int)update("member.updateAutoLogin",map)==1){
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
+	// 
+	public Member_tbl_VO selectAutoLogin(int member_id){
+		Member_tbl_VO member = (Member_tbl_VO)selectOne("member.selectAutoLogin",member_id);
+		if(member!=null){
+			return member;
+		}else {
+			System.out.println("가져온 멤버 값이 비어있습니다");
+			return member;
+		}
+	}
+	
+	//로그아웃 했을 시 오토로그인 날짜 데이터 삭제
+	public boolean updateAutoLoginDel(int member_id){
+		if((int)update("member.updateAutoLoginDel",member_id)==1){
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
 	
 }

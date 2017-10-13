@@ -42,9 +42,8 @@
 
 <mapper class="com.opensymphony.module.sitemesh.mapper.ConfigDecoratorMapper">
 <param name="config" value="/WEB-INF/decorate/decorators.xml"/>
+<excludes file="${decorators}" />
 </mapper>
-
 </decorator-mappers>
-
 </sitemesh>
 

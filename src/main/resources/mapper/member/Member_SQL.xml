@@ -15,7 +15,7 @@
 	<insert id="insertMemberValue_tbl" parameterType="hashmap">
 		<![CDATA[
 	INSERT INTO MemberValue_tbl 
-	    Values(#{member_id},'0','0','0','0','0','0','0','0','0',null,now(),null,null,null,null,null,null,null,null)
+	    Values(#{member_id},'0','0','0','0','0','0','0','0','0',null,now(),null,null,null,null,null,null,null,null,null)
 		]]>
 	</insert>
 	
@@ -165,6 +165,34 @@ select * from postcodebuildinfo_tbl where 시도명 = '서울특별시' and 시�
 		]]>
 	</select>
 	
+	<!-- 오토로그인 데이터 추가 오토로그인 유효날짜 삽입 -->
+	<update id="updateAutoLogin" parameterType="map" >
+		<![CDATA[
+			update MemberValue_tbl set mbrAutoLoginDt = #{mbrAutoLoginDt} where member_id= #{member_id}; 		
+		]]>	
+	</update>	
+	
+	<!-- 오토로그인 데이터 삭제 오토로그인 유효날짜 제거 -->
+	<update id="updateAutoLoginDel" parameterType="int" >
+		<![CDATA[
+			update MemberValue_tbl set mbrAutoLoginDt = null where member_id= #{member_id}; 		
+		]]>	
+	</update>	
+	
+	<!-- AutoLogin을 가져옴, 파라티 타입은 typeAlis를  이용, MapType을 쓰도록 바꿔야함 
+	
+	
+	
+	 -->
+	<select id="selectAutoLogin" parameterType="string" resultType="net.mwav.member.vo.Member_tbl_VO">
+		<![CDATA[
+		SELECT a.member_id member_id , a.mbrLoginId mbrLoginId,a.mbrLoginPw mbrLoginPw ,a.mbrTempLoginPw mbrTempLoginPw ,
+		       a.mbrFirstName mbrFirstName ,a.mbrMiddleName mbrMiddleName ,a.mbrLastName mbrLastName ,a.mbrEmail mbrEmail, 
+		        a.mbrCellPhone mbrCellPhone ,a.mbrAddrFlag mbrAddrFlag ,a.mbrZipCode mbrZipCode ,a.mbrAddress mbrAddress 	
+		FROM Member_tbl a, MemberValue_tbl b
+	    WHERE mbrAutoLoginDt > now() and a.member_id = b.member_id and a.member_id = #{member_id};
+		]]>
+	</select>
 		
 </mapper>
 

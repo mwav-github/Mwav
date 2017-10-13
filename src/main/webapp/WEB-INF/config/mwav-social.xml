@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:google="http://www.springframework.org/schema/social/google"
+	xmlns:facebook="http://www.springframework.org/schema/social/facebook"
+	xmlns:social="http://www.springframework.org/schema/social"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/social/facebook http://www.springframework.org/schema/social/spring-social-facebook.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/social/google http://www.springframework.org/schema/social/spring-social-google.xsd
+		http://www.springframework.org/schema/social http://www.springframework.org/schema/social/spring-social.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<context:property-placeholder location="classpath:googleProperties/application.properties" />
+	
+	<bean id="usersConnectionRepository" class="org.springframework.social.connect.jdbc.JdbcUsersConnectionRepository">
+		<constructor-arg ref="dataSource" />
+		<constructor-arg ref="connectionFactoryLocator" />
+		<constructor-arg ref="textEncryptor" />
+		<!-- <aop:scoped-proxy proxy-target-class="false" /> -->
+	</bean>
+	
+	<bean id="connectionRepository" factory-method="createConnectionRepository" factory-bean="usersConnectionRepository" scope="request">
+		<constructor-arg value="#{request.userPrincipal.name}" />
+		<!-- <aop:scoped-proxy proxy-target-class="false" /> -->
+	</bean>
+
+	
+
+	 <facebook:config app-id="${facebook.clientId}" app-secret="${facebook.clientSecret}" app-namespace="socialshowcase" />
+	<!-- <twitter:config app-id="${twitter.consumerKey}" app-secret="${twitter.consumerSecret}"/> -->
+	<google:config app-id="${google.appKey}" app-secret="${google.appSecret}"/>
+
+	<!-- <social:jdbc-connection-repository/> -->	
+	<bean id="userIdSource" class="org.springframework.social.security.AuthenticationNameUserIdSource" />
+
+<!-- 
+ it will only invoke the interceptor methods for those interceptors whose service operations type matches the service provider’s operations type.
+ 아래는 구글 쪽! 등등
+ -->
+
+ 	<bean id="connectController" class="org.springframework.social.connect.web.ConnectController" autowire="constructor">
+		<property name="connectInterceptors">
+			<list>
+				<bean class="net.mwav.member.auth.google.PostToWallAfterConnectInterceptor" />
+				 <bean class="net.mwav.member.auth.twitter.PostToWallAfterConnectInterceptor" /> 
+			     <bean class="net.mwav.member.auth.facebook.PostToWallAfterConnectInterceptor" /> 
+			     
+			</list>
+		</property>
+	</bean>
+	
+	
+	<bean id="psc" class="org.springframework.social.connect.web.ProviderSignInController" autowire="constructor" />		
+	<!-- <bean id="signInAdapter" class="net.mwav.member.auth.google.SimpleSignInAdapter" autowire="constructor" /> -->
+	
+	<!-- <bean id="disconnectController" class="org.springframework.social.facebook.web.DisconnectController" 
+		c:_0-ref="usersConnectionRepository" c:_1="${facebook.clientSecret}" /> -->
+		
+	<bean id="connectionFactoryLocator" 
+      class="org.springframework.social.connect.support.ConnectionFactoryRegistry">
+	    <property name="connectionFactories">
+	        <list>
+	            <bean class="org.springframework.social.google.connect.GoogleConnectionFactory">
+	                <constructor-arg value="${google.appKey}" />
+	                <constructor-arg value="${google.appSecret}" />				
+	            </bean>
+	           <bean class="org.springframework.social.facebook.connect.FacebookConnectionFactory">
+	                <constructor-arg value="${facebook.clientId}" />
+	                <constructor-arg value="${facebook.clientSecret}" />				
+	            </bean> 
+	        </list>
+	    </property>
+	</bean>
+
+</beans>

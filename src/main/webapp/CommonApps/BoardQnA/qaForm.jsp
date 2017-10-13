@@ -2,15 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<script src="//cdn.ckeditor.com/4.4.6/basic/ckeditor.js"></script>
-<!-- jQuery Version 1.11.0 -->
-<script src="/CommonLibrary/Javascript/Common.js"></script>
-
-<!-- imsi -->
-<link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"
-	rel="stylesheet">
-
 
 <c:if test="${requestScope.check eq true }">
 	<script type="text/javascript">
@@ -87,11 +78,18 @@
 			return false;
 		}
 		
+		//alert('d'+formname.recaptcha.attr('data-widget-id'));
+				//jQuery('#your_recaptcha_box_id').attr('data-widget-id')
+				var robotCheck = robot_check($(formname).find("[name=recaptcha]").attr('data-widget-id'));
+				if (robotCheck == false) {
+					return false;
+				}
+		
 
 		var check = false;
 		// && check_4 == true 패스워드는 회원인경우 없으니까 
 		if (check_1 == true && check_2 == true && check_3 == true
-				&& check_5 == true && check_6 == true && check_7 == true) {
+				&& check_5 == true && check_6 == true && check_7 == true && robotCheck == true) {
 			check = true;
 			return true;
 
@@ -112,8 +110,8 @@
 		//==================
 
 		var check = reCheckForm(for1mname);
-
-		if (check == true) {
+		
+		if (check == true ) {
 			//alert('11');
 
 			$
@@ -178,6 +176,14 @@
 			return false;
 		}
 	}
+	
+	//페이지 또는 타 페이지에서 QAFORM 클릭 해당 아이디 물고 오기.
+	$(document).on("click", ".qaModal_Contact", function () {
+	     var uqInvoker = $(this).data('type');
+		 var uqInvoker_id = $(this).data('id');
+		 $(".modal-dialog #uqInvoker").val( uqInvoker );
+	     $(".modal-dialog #uqInvoker_id").val( uqInvoker_id );
+	});
 </script>
 <!-- 소제목 -->
 <!-- ----- 
@@ -219,11 +225,15 @@
 				</button>
 				<h3 class="modal-title" id="lineModalLabel">My Modal</h3>
 			</div> -->
-			<div class="modal-body" style="overflow: auto; max-height: 500px;">
+			<div class="modal-body" style="overflow: auto; max-height: 400px;">
 
-				<form class="form-horizontal" id="QAForm">
+				<form class="form-horizontal" id="QAForm"
+					>
 					<input TYPE="hidden" name="uqStatus" value=""> <input
 						TYPE="hidden" name="before_Q_id" value="${before_Q_id }">
+						
+						<input type="hidden" name="uqInvoker" id="uqInvoker" value=""/>
+						<input type="hidden" name="uqInvoker_id" id="uqInvoker_id" value=""/>
 					<fieldset>
 
 						<!-- Form Name -->
@@ -294,13 +304,13 @@
 							<div class="col-md-8">
 								<input id="uqUserEmail" name="uqUserEmail"
 									placeholder="Enter Your E mail" class="form-control input-md"
-									type="text" value="">
+									type="text" value="${sessionScope.member.mbrEmail}">
 
 							</div>
 						</div>
 
 
-						<c:if test="${sessionScope.Member eq null }">
+						<c:if test="${sessionScope.member eq null }">
 
 							<%--비회원인 경우 --%>
 							<div class="form-group">
@@ -308,7 +318,7 @@
 									*</label>
 								<div class="col-md-8">
 									<input id="uqUserPw" name="uqUserPw"
-										placeholder="Enter Your E mail"
+										placeholder="Enter Your Password"
 										class="form-control input-md caps_lockchk" type="password"
 										value="" required>
 
@@ -353,6 +363,14 @@
 									name="uqContent" placeholder="Enter Your Message *"></textarea>
 							</div>
 						</div>
+<div class="form-group">
+							<div class="col-md-3"></div>
+							<div class="col-md-8">
+ 
+								<div class="g-recaptcha" name="recaptcha" 
+									></div>
+ 							</div>
+ 						</div>
 
 						<!-- Button 
 						<div class="form-group">
@@ -411,17 +429,17 @@ row 형태로 한줄 씩 한 후 ! enter 해준다.
 						<div class="col-md-4 col-sm-4">
 							<label for="state">Name*</label> <input id="uqUserName"
 								name="uqUserName" placeholder="Enter Your Full Name"
-								class="form-control " type="text">
+								class="form-control " type="text" value="">
 						</div>
 						<div class="col-md-4 col-sm-4">
 							<label for="email">Email*</label> <input id="uqUserEmail"
 								name="uqUserEmail" placeholder="Enter Your E mail"
-								class="form-control" type="text" value="${param.uqUserEmail }">
+								class="form-control" type="text" value="${param.uqUserEmail }${sessionScope.member.mbrEmail}">
 						</div>
 						<div class="col-md-4 col-sm-4">
 							<label for="mobile number">Mobile Number*</label> <input
 								id="uqUserPhone" name="uqUserPhone" class="form-control"
-								placeholder="Mobile" required type="text">
+								placeholder="Mobile" required type="text" value="${sessionScope.member.mbrCellPhone}">
 
 						</div>
 
@@ -481,10 +499,16 @@ row 형태로 한줄 씩 한 후 ! enter 해준다.
 
 						</div>
 					</div>
-					<div class="enter"></div>
+					
+					<div class="form-group mgt1_8">
+						<div class="col-xs-12 col-md-6 col-md-push-6">
+								<div class="g-recaptcha" name="recaptcha" ></div>
+ 						</div>
+ 					</div>
+					
 					<div class="col-md-12 col-sm-12">
 						<div class="pull-right">
-							<input type="submit" class="btn btn-primary" value="Send" />
+							<input type="submit" class="btn btn-primary" value="Submit" />
 						</div>
 					</div>
 				</div>

@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <script src="//cdn.ckeditor.com/4.4.6/basic/ckeditor.js"></script>
+ 
 <!-- imsi -->
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"
@@ -25,7 +26,7 @@
 
 <!-- Content Column -->
 <div class="row">
-	<div class="col-md-12">
+	<div class="col-md-12" id="notice_top">
 
 
 		<h2>
@@ -39,7 +40,7 @@
 		</p>
 		<hr>
 		<p>
-			<i class="fa fa-clock-o"></i> Posted on
+			<i class="fa fa-clock-o"></i> Last Modified:
 			${selectOneBuView.fmbuInsertDt} | Topic: ${selectOneBuView.buGroup}
 		</p>
 		<hr>

@@ -125,14 +125,29 @@
 	}
 </script>
 <c:if test="${requestScope.check eq 1 }">
-	<script type="text/javascript">
-		alert('관리자 화면으로 이동합니다.');
-		/*        document.stf_login_form.submit(); */
-		window.location.href = '/HomePage/DefaultFrame.mwav';
-	<%--중요 위에서 부터 1,2,3 이라 쳤을 때 가운데 껏만 이동한다. 질문하기--%>
-		/*  document.location.href('/HomePage/DefaultFrame.mwav'); */
-		/* url 값이 변동을 안한다 */
-	</script>
+	<c:choose>
+		<c:when test="${requestScope.returnUrl eq null }">
+			<script type="text/javascript">
+				alert('관리자 화면으로 이동합니다.');
+			<%--http://blog.naver.com/PostView.nhn?blogId=haanul98&logNo=80204508627&categoryNo=0&parentCategoryNo=0&viewDate=&currentPage=1&postListTopCurrentPage=1 --%>
+				location.href = "/HomePage/DefaultFrame.mwa";
+			</script>
+		</c:when>
+		<c:when test="${requestScope.returnUrl ne null }">
+			<c:set var="returnUrl" value='${requestScope.returnUrl}'
+				scope="request" />
+			<script type="text/javascript">
+				var returnUrl = '<c:out value="${returnUrl}"/>';
+				location.href = returnUrl;
+			</script>
+			<%-- <c:url var="url" value="${requestScope.returnUrl}">
+			</c:url> 
+
+			<c:redirect url="${requestScope.returnUrl}" />
+--%>
+		</c:when>
+	</c:choose>
+
 </c:if>
 
 <c:if test="${requestScope.check eq 0 }">
@@ -168,11 +183,10 @@
 				<form name="stf_login_form" class="form-signin" method="post"
 					action="/admins/staff/stfLogin.mwav">
 					<h2 class="form-signin-heading">Mwav StaffMember sign in</h2>
-
+					<input type="hidden" name="returnUrl" value="${param.returnUrl }" />
 					<div class='form-group'>
 						<input type="text" name="stfLoginId" id="inputEmail"
-							class="form-control" placeholder="Staff Id" required
-							autofocus>
+							class="form-control" placeholder="Staff Id" required autofocus>
 					</div>
 					<div class='form-group'>
 						<input type="password" name="stfLoginPw" id="inputPassword"

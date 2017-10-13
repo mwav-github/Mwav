@@ -40,17 +40,17 @@
 </script>
 <%-- 추후 choose로 변경하기 http://stackoverflow.com/questions/5935892/if-else-within-jsp-or-jstl --%>
 <div id="left_menu" class="list-group">
-	<c:if test="${sessionScope.Member eq null }">
+	<%-- <c:if test="${sessionScope.member eq null }">
 		<a href="javascript:window.alert('권한이 없습니다. \n 로그인 후 이용해주시기 바랍니다.');"
 			class="list-group-item " data-toggle="tooltip" data-placement="top"
 			data-original-title="페이지 준비 중입니다.">My Page</a>
 	</c:if>
 
-	<c:if test="${sessionScope.Member ne null }">
-		<a  class="list-group-item "
+	<c:if test="${sessionScope.member ne null }"> </c:if>--%>
+		<a href="/CustomerService/MyPage/MyPage.mwav" class="list-group-item "
 			data-toggle="tooltip" data-placement="top"
 			data-original-title="페이지 준비 중입니다.">My Page</a>
-	</c:if>
+	
 
 
 	<a href="/CustomerService/Announcement/Announcement.mwav"

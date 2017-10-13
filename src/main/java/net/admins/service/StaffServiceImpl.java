@@ -1,15 +1,12 @@
 package net.admins.service;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
 
 import javax.annotation.Resource;
 
 import net.admins.dao.StaffDAO;
-import net.common.common.CommandMap;
+import net.admins.vo.Staff_VO;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
@@ -25,6 +22,17 @@ public class StaffServiceImpl implements StaffService {
 	 * ========================================등록================================
 	 * ========
 	 */
+	
+	@Override
+	public int selectNextStfPk() throws Exception {
+		// TODO Auto-generated method stub
+		return staffDAO.selectNextStfPk();
+	}
+	
+	public boolean selectOneStfLoginIdCheck(String stfLoginId) throws Exception{
+		return staffDAO.selectOneStfLoginIdCheck(stfLoginId);
+	}
+	
 	@Override
 	public void insertStfForm(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
@@ -52,7 +60,7 @@ public class StaffServiceImpl implements StaffService {
 	}
 
 	@Override
-	public Map<String, Object> selectStfLogin(Map<String, Object> map) {
+	public Staff_VO selectStfLogin(Map<String, Object> map) {
 		// TODO Auto-generated method stub
 		return staffDAO.selectStfLogin(map);
 	}
@@ -69,5 +77,12 @@ public class StaffServiceImpl implements StaffService {
 		staffDAO.updateProStfForm(map);
 		
 	}
+
+	@Override
+	public int insertStfRegist(Map<String, Object> map) {
+		return staffDAO.insertStfRegist(map);
+	}
+
+	
 
 }
