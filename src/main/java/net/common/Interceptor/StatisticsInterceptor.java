@@ -1,6 +1,8 @@
 package net.common.Interceptor;
 
 import java.net.InetAddress;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -137,7 +139,8 @@ public class StatisticsInterceptor extends HandlerInterceptorAdapter {
 			if (auth_url != null && !(auth_url.contains(".jsp"))
 					&& !(auth_url.contains(".chart"))) {
 
-				String PageName = Common_Utils.setPageName(auth_url);
+				String PageName = null;
+				PageName = Common_Utils.setPageName(auth_url);
 				if (statistics_id == null || statistics_id.equals("")) {
 					// Java/1.8.0_25
 					if (userAgent.contains("Java")) {
@@ -181,11 +184,11 @@ public class StatisticsInterceptor extends HandlerInterceptorAdapter {
 			HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
 		try {
-			String setTitle = null;
+			Map<String, Object> map = new HashMap<String, Object>();
 			// meta 태그 내 title 지정
-			setTitle = Common_Utils.setTitle(request.getRequestURI());
+			map = Common_Utils.setMetaData(request.getRequestURI());
 
-			request.setAttribute("setTitle", setTitle.trim());
+			request.setAttribute("metaData", map);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

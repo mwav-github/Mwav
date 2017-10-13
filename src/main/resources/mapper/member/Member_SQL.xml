@@ -168,14 +168,14 @@ select * from postcodebuildinfo_tbl where 시도명 = '서울특별시' and 시�
 	<!-- 오토로그인 데이터 추가 오토로그인 유효날짜 삽입 -->
 	<update id="updateAutoLogin" parameterType="map" >
 		<![CDATA[
-			update membervalue_tbl set mbrAutoLoginDt = #{mbrAutoLoginDt} where member_id= #{member_id}; 		
+			update MemberValue_tbl set mbrAutoLoginDt = #{mbrAutoLoginDt} where member_id= #{member_id}; 		
 		]]>	
 	</update>	
 	
 	<!-- 오토로그인 데이터 삭제 오토로그인 유효날짜 제거 -->
 	<update id="updateAutoLoginDel" parameterType="int" >
 		<![CDATA[
-			update membervalue_tbl set mbrAutoLoginDt = null where member_id= #{member_id}; 		
+			update MemberValue_tbl set mbrAutoLoginDt = null where member_id= #{member_id}; 		
 		]]>	
 	</update>	
 	

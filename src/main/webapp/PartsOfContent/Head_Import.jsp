@@ -3,49 +3,44 @@
 <jsp:include page="SNS_Head_Import.jsp" flush="false" />
 <meta name="robots" content="index, follow" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
 <%--아래 keyword 및 description은 변경 예정. --%>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta id="metaKeywords" name="keywords"
-	content="Digital Marketing, E-Consulting, IT Consulting, WebSite Building, Cloud, AI, MR, VR, ARIoT Platform, Deep Learning, Agile, DevOps, Domain, Web Hosting, Server Hosting, Hosting, HomePage, IT Solution, IT Product, DataBase, Maintenance, EC, Shopping Mall, Web Mail, News Solution, 디지털마케팅, E-컨설팅, IT컨설팅, 웹사이트 제작, 클라우드, 인공지능, 증강현실, 혼합현실, 가상현실, IOT 플랫폼, 딥 러닝, 에자일, 데브옵스, 도메인, 웹호스팅, 서버호스팅, 호스팅, 홈페이지, 웹사이트, 솔루션개발, 데이터베이스, 유지보수, 전자상거래, 쇼핑몰, 웹메일, 뉴스솔루션" />
+<c:choose>
+	<c:when test="${metaData.keywords eq null }">
+		<meta id="metaKeywords" name="keywords"
+			content="Digital Marketing, E-Consulting, IT Consulting, WebSite Building, Cloud, AI, MR, VR, AR, IoT Platform, Deep Learning, Agile, DevOps, Domain, Web Hosting, Server Hosting, Hosting, HomePage, IT Solution, IT Product, DataBase, Maintenance, EC, Shopping Mall, Web Mail, News Solution, 디지털마케팅, E-컨설팅, IT컨설팅, 웹사이트 제작, 클라우드, 인공지능, 증강현실, 혼합현실, 가상현실, IOT 플랫폼, 딥 러닝, 에자일, 데브옵스, 도메인, 웹호스팅, 서버호스팅, 호스팅, 홈페이지, 웹사이트, 솔루션개발, 데이터베이스, 유지보수, 전자상거래, 쇼핑몰, 웹메일, 뉴스솔루션" />
+	</c:when>
+	<c:otherwise>
+		<meta id="metaKeywords" name="keywords"
+			content="${metaData.keywords }" />
+	</c:otherwise>
+</c:choose>
 <meta id="metaDescription" name="description"
 	content="This is the website for Mwav.net. We are an IT development company possessing total E-Commerce platform based on the fancy technologies. You can contact at http://www.mwav.net/CustomerService/Contact/Contact.mwav?modal=Q&A if you have a question or an inquiry on the site." />
 <meta name="Owner" content="Mwav.net" />
 <meta name="Author" content="Zeus, Peter J." />
 <meta name="copyright" content="All contents are copyright by Mwav.net" />
 <meta name="distribution" content="global" />
-
 <%--resource는 호출하지않도록 처리. 추후 필요 !!!*** --%>
 <link rel="icon" href="/Images/CompanyLogos/CompanyLogo.ico" />
 <title><c:choose>
-		<c:when test="${requestScope.setTitle eq null }">[Mwav.net] >> Unleash your infinite possibilities with IT Optimization!!</c:when>
-		<c:otherwise>${setTitle }</c:otherwise>
+		<c:when test="${metaData.title eq null }">[Mwav.net] >> Unleash your infinite possibilities with IT Optimization!!</c:when>
+		<c:otherwise>${metaData.title }</c:otherwise>
 	</c:choose></title>
-
-<%--인코딩 설정 --%>
-
-<!-- Mwav CSS-->
+<%-- Mwav CSS--%>
 <link href="/resources/CommonLibrary/CSS/mwav_style.css"
 	rel="stylesheet">
-
 <link rel="stylesheet"
 	href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
 <link
 	href=" //maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"
 	rel="stylesheet">
-
 <link href="/resources/JsFramework/Bootstrap/bootstrap-social.css"
 	rel="stylesheet">
-
-<!-- Custom CSS -->
 <link href="/resources/CommonLibrary/CSS/modern-business.css"
 	rel="stylesheet">
-
-
 <!-- Customize CSS -->
 <link href="/resources/CommonLibrary/CSS/myStyle.css" rel="stylesheet">
-
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -57,20 +52,15 @@
 <%-- jQuery 달력에 사용. --%>
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-
-
 <%-- jQuery Version 1.11.0 --%>
 <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-
 <script src="/CommonLibrary/Javascript/Common.js"></script>
 <script src="/CommonLibrary/Javascript/validate.js"></script>
-
 
 <!-- Bootstrap Core JavaScript -->
 <script
 	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-
 
 <script>
 	$(window).resize(function() {

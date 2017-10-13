@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!-- Page Heading/Breadcrumbs -->
 <div class="row">
@@ -32,6 +33,7 @@
 		</div>
 		<%--마이페이지란 말그대로 이것저것 다 담긴거. --%>
 		<jsp:include page="/member/mbrView.mwav" flush="false" />
+
 	</div>
 </div>
 <!-- /.row -->

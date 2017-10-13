@@ -118,20 +118,27 @@
 				<property name="urls">
 					<list>
 						<value>/CustomerService/MemberShip/MemberShip.mwav</value>
+						<value>/CustomerService/MyPage/MyPage.mwav</value>						
 						<value>/logout/logout.do</value>
 						<value>/login.do</value>
 					</list>
 				</property>
 			</bean>
 		</mvc:interceptor>
-		<mvc:interceptor>
+				<mvc:interceptor>
 			<mvc:mapping path="/login/post" />
 			<!--<mvc:mapping path="/member/**" /> -->
 			<bean id="loginInterceptor" class="net.common.Interceptor.LoginInterceptor">
 			</bean>
 		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/signin/linkedin.mwav" />
+			<mvc:mapping path="/signin/google.mwav" />
+			<mvc:mapping path="/signin/twitter.mwav" />
+			<mvc:mapping path="/signin/facebook.mwav" />
+			<!--<mvc:mapping path="/member/**" /> -->
+			<bean id="autoLoginInterceptor" class="net.common.Interceptor.AutoLoginInterceptor">
+			</bean>
+		</mvc:interceptor>
 	</mvc:interceptors>
-
-
-
 </beans>

@@ -32,15 +32,16 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 			HttpServletResponse response, Object handler) throws Exception {
 		log.info("======================================          START(LoginInterceptor)         ======================================");
 		log.info(" Request URI \t:  " + request.getRequestURI());
-		System.out.println("LoginInterceptor에 들어왔다.");
+		log.info("LoginInterceptor에 들어왔다.");
 		//디버그 레벨일때 true
 		//http://planmaster.tistory.com/66
 		if (log.isDebugEnabled()) {
 			log.info("======================================          START(LoginInterceptor)         ======================================");
 			log.info(" Request URI \t:  " + request.getRequestURI());
-			System.out.println(request.getRequestURI());
-			System.out.println("LoginInterceptor에 들어왔다.");
+			log.info(request.getRequestURI());
+			log.info("LoginInterceptor에 들어왔다.");
 		}
+		
 		
 		HttpSession session = request.getSession();
 		String returnUrl = request.getRequestURI(); // 현재 URL 

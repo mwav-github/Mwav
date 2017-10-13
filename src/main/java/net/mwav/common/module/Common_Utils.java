@@ -485,10 +485,9 @@ public class Common_Utils {
 		int first_slash = url.indexOf("/");
 		int second_slash = url.indexOf("/", first_slash + 1);
 		int third_slash = url.indexOf("/", second_slash + 1);
-		int fourth_slash = url.indexOf("/", third_slash + 1);
-		int last_slash = url.lastIndexOf("/");
-		int lastDot = url.lastIndexOf('.');
-		
+		// int fourth_slash = url.indexOf("/", third_slash + 1);
+		// int last_slash = url.lastIndexOf("/");
+		// int lastDot = url.lastIndexOf('.');
 
 		try {
 
@@ -502,9 +501,9 @@ public class Common_Utils {
 			}
 
 			// url 은 전체 url_1depth은 /제외
-			if (url.equals("/") || url_1depth.equals("Index")) {
+			if (url != null && url_1depth != null && (url.equals("/") || url_1depth.equals("Index"))) {
 				slPageName = "메인페이지";
-			} else if (url_1depth.equals("Company")) {
+			} else if (url_1depth != null && url_1depth.equals("Company")) {
 				// 회사 색션.
 				if (url.contains("ActualResults")) {
 					slPageName = "회사실적";
@@ -537,7 +536,7 @@ public class Common_Utils {
 				} else {
 					slPageName = "Company_미정_" + url;
 				}
-			} else if (url_1depth.equals("CompanyItem")) {
+			} else if (url_1depth != null && url_1depth.equals("CompanyItem")) {
 				if (url_2depth.equals("ITSolutions")) {
 					if (url.contains("OrgChart")) {
 						slPageName = "OrgChart";
@@ -571,7 +570,7 @@ public class Common_Utils {
 					slPageName = "CompanyItem_미정_" + url;
 				}
 
-			} else if (url_1depth.equals("CustomerService")) {
+			} else if (url_1depth != null && url_1depth.equals("CustomerService")) {
 				if (url.contains("Agreement")) {
 					slPageName = "이용약관";
 				} else if (url.contains("Announcement")) {
@@ -601,10 +600,10 @@ public class Common_Utils {
 				} else {
 					slPageName = "CustomerService_미정_" + url;
 				}
-			} else if (url_1depth.equals("MasterPage")
+			} else if (url_1depth != null && url_1depth.equals("MasterPage")
 					|| url_1depth.equals("MasterPage_1")) {
 				if (url.contains("mode=SMbrLogin")) {
-					slPageName = "로그인";
+					slPageName = "로그인페이지";
 				} else if (url.contains("mode=Default")) {
 					slPageName = "약관동의";
 				} else if (url.contains("mode=SMbrInput")) {
@@ -614,9 +613,11 @@ public class Common_Utils {
 				} else {
 					slPageName = "MasterPage_미정_" + url;
 				}
-			} else if (url_1depth.equals("member")) {
+			} else if (url_1depth != null && url_1depth.equals("member")) {
 				if (url_2depth.equals("mbrTempLoginPwUpdate")) {
 					slPageName = "패스워드찾기(비밀번호 초기화)";
+				} else if (url_2depth.equals("Login")) {
+					slPageName = "로그인시도";
 				} else if (url_2depth.equals("mbrTempLoginPwSeek ")) {
 					slPageName = "패스워드찾기(비밀번호 조회)";
 				} else if (url_2depth.equals("mbrLoginPwUpdate")) {
@@ -626,17 +627,19 @@ public class Common_Utils {
 				} else {
 					slPageName = "member_미정_" + url;
 				}
-			} else if (url_1depth.equals("qa")) {
+			} else if (url_1depth != null && url_1depth.equals("qa")) {
 
 				slPageName = "qa_미정_" + url;
 
-			}
+			} else if (url_1depth != null && url_1depth.equals("login") && url_2depth.equals("post")) {
 
-			else if (url_1depth.equals("admins")) {
-				
+				slPageName = "로그인 완료";
+
+			} else if (url_1depth != null && url_1depth.equals("admins")) {
+
 				slPageName = "관리자" + url;
-				
-			} else if (url_1depth.equals("board")) {
+
+			} else if (url_1depth != null && url_1depth.equals("board")) {
 				if (url_2depth.equals("bnsList")) {
 					slPageName = "뉴스목록";
 				} else if (url_2depth.equals("buView")) {
@@ -648,7 +651,7 @@ public class Common_Utils {
 				}
 			}
 			// 예외 발생 부분.
-			else if (url_1depth.equals("MessageView")) {
+			else if (url_1depth != null && url_1depth.equals("MessageView")) {
 				if (url_2depth.equals("throwable")) {
 					slPageName = "에러(최상위)";
 				} else if (url_2depth.equals("exception")) {
@@ -680,8 +683,9 @@ public class Common_Utils {
 		return slPageName;
 	}
 
-	public static String setTitle(String url) {
+	public static Map<String, Object> setMetaData(String url) {
 
+		Map<String, Object> map = new HashMap<String, Object>();
 		// System.out.println("url은" + url);
 
 		int first_slash = url.indexOf("/");
@@ -736,6 +740,11 @@ public class Common_Utils {
 		String main_Title = "Unleash your infinite possibilities with IT Optimization!!";
 		String aervision_Title = "Biometric authentication & computer vision & machine learning";
 
+		String keywords_default = "Digital Marketing, E-Consulting, IT Consulting, WebSite Building, Cloud, AI, MR, VR, ARIoT Platform, Deep Learning, Agile, DevOps, Domain, Web Hosting, Server Hosting, Hosting, HomePage, IT Solution, IT Product, DataBase, Maintenance, EC, Shopping Mall, Web Mail, News Solution, 디지털마케팅, E-컨설팅, IT컨설팅, 웹사이트 제작, 클라우드, 인공지능, 증강현실, 혼합현실, 가상현실, IOT 플랫폼, 딥 러닝, 에자일, 데브옵스, 도메인, 웹호스팅, 서버호스팅, 호스팅, 홈페이지, 웹사이트, 솔루션개발, 데이터베이스, 유지보수, 전자상거래, 쇼핑몰, 웹메일, 뉴스솔루션";
+		String keywords = null;
+	    
+		String description = "This is the website for Mwav.net. We are an IT development company possessing total E-Commerce platform based on the fancy technologies. You can contact at http://www.mwav.net/CustomerService/Contact/Contact.mwav?modal=Q&A if you have a question or an inquiry on the site.";
+		
 		// 대분류 안에 소분류로 !
 		if (url_1depth.equals("Company")) {
 			set_Title = "[Mwav.net] >> [" + url_1depth + " > " + last_depth
@@ -746,7 +755,14 @@ public class Common_Utils {
 			set_Title = "[Mwav.net] >> [" + url_1depth + " > " + last_depth
 					+ "] - " + main_Title;
 
-		} else if (url_1depth.equals("CompanyItem")) {
+		} else if (url_1depth.equals("hightsofts") && url_2depth.equals("hightsofts")) {
+			url_1depth = "CS";
+			set_Title = "[Mwav.net] >> [HightSofts] - "
+					+ main_Title;
+			keywords = "Highcharts, Highstock, Highmaps, " + keywords_default;
+			
+		}
+		else if (url_1depth.equals("CompanyItem")) {
 			// 여기는 디지털마케팅 등 포함 2depth로
 
 			if (url_2depth.equals("ITProducts")
@@ -754,16 +770,41 @@ public class Common_Utils {
 				if (url_3depth.equals("OpenSRS")) {
 					set_Title = "[Mwav.net] >> [" + url_3depth + "] - "
 							+ main_Title;
+					keywords = "SSL, Domains, RapisSSL, " + keywords_default;
 				} else if (url_3depth.equals("Aervision")) {
 					set_Title = "[Mwav.net] >> [" + url_3depth + "> "
 							+ aervision_Title + "] - " + main_Title;
-				} else if (url_3depth.equals("MSOffice")) {
+
+					keywords = "AerPass, AerCrowd, AerPalm, AerID, AerGate, IDMatch, eyeLock, " + keywords_default;
+				
+				} else if (url_3depth.equals("OrgChart")) {
 					set_Title = "[Mwav.net] >> [" + url_3depth + "] - "
 							+ main_Title;
+					
+					keywords = "OrgChart Platinum, OrgChart Now, OrgChart Enterprise, OrgChart Pro, " + keywords_default;
+				}
+				else if (url_3depth.equals("Azure")) {
+					set_Title = "[Mwav.net] >> [" + url_3depth + "] - "
+							+ main_Title;
+					
+					keywords = "Azure, " + keywords_default;
+				}
+				else if (url_3depth.equals("MSOffice")) {
+					set_Title = "[Mwav.net] >> [" + url_3depth + "] - "
+							+ main_Title;
+					keywords = "Word, PowerPoint, Excel, Outlook, " + keywords_default;
+					
 				} else if (url_3depth.equals("InsWave")) {
 					set_Title = "[Mwav.net] >> [" + url_3depth + "] - "
 							+ main_Title;
-				} else {
+					keywords = "NewsLetter Solutions, " + keywords_default;
+					
+				} else if (url_3depth.equals("Windows")) {
+					set_Title = "[Mwav.net] >> [" + url_3depth + "] - "
+							+ main_Title;
+					
+					keywords = "Windows10, " + keywords_default;
+				}else {
 					set_Title = "[Mwav.net] >> [" + url_3depth + "] - "
 							+ main_Title;
 				}
@@ -789,7 +830,11 @@ public class Common_Utils {
 			}
 		}
 
-		return set_Title;
+		map.put("title", set_Title);
+		map.put("keywords", keywords);
+		map.put("description", description);
+		
+		return map;
 	}
 
 }

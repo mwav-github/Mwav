@@ -35,8 +35,8 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 		log.info("======================================          START         ======================================");
 		log.info(" Request URI \t:  " + request.getRequestURI());
 
-		String member_id = null;
-		// member_id 및 비교할 값.
+		Member_tbl_VO member = null;
+		// member 및 비교할 값.
 		String key_id = "";
 		String returnUrl = "";
 		String url = request.getRequestURI();
@@ -45,10 +45,11 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 		try {
 
 			HttpSession session = request.getSession();
-			if (member_tbl_VO != null) {
-				member_id = String.valueOf(member_tbl_VO.getMember_id());
-			}
+			/*if (member_tbl_VO != null) {
+				member = String.valueOf(member_tbl_VO.getmember());
+			}*/
 			staff = (String) session.getAttribute("staff");
+			member = (Member_tbl_VO) session.getAttribute("member");
 			// 디버그 레벨일때 true
 			// http://planmaster.tistory.com/66
 			if (log.isDebugEnabled()) {
@@ -138,7 +139,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 
 							try {
 
-								key_id = member_id; // request에서
+								key_id = Integer.toString(member.getMember_id()); // request에서
 							
 								returnUrl = request.getRequestURI(); // 현재 URL
 								if (key_id == null || key_id.equals("")

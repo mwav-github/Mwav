@@ -39,7 +39,7 @@
 		alert('reCAPTCHA 오류입니다. 다시 시도해주세요.');
 		history.go(-1);
 	</script>
-</c:if>	
+</c:if>
 <c:if test="${requestScope.loginCheck eq 5 }">
 	<script type="text/javascript">
 		alert('임시패스워드입니다. 비밀번호 변경 후 로그인해주세요.');
@@ -81,7 +81,7 @@ $("#checkbox4").bind("click",function(){
 	}else if(autoUse==true){
 		$(".test1").val("on");
 	}
-	alert(autoUse);
+	//alert(autoUse);
 	});
 });
  
@@ -287,15 +287,15 @@ $("#checkbox4").bind("click",function(){
 </script>
 
 <%--이것때문에 tooltip등이 오류가난다 --%>
-<jsp:include page="/CommonApps/IDSeek/IDSeek.jsp" flush="false" />		
+<jsp:include page="/CommonApps/IDSeek/IDSeek.jsp" flush="false" />
 
 <%--padding 으로 안쪽 추후 딴건 변경가능 #04A3ED --%>
 <c:if test="${param.type eq null}">
 	<div class="enter"></div>
 	<div class="col-md-12"
 		style="padding: 5%; box-shadow: 0 0 20px 3px #04A3ED; background: #f7f7f7;">
-		
-            <form name="login_form" action="/member/Login.mwav" role="form"
+
+		<form name="login_form" action="/member/Login.mwav" role="form"
 			class='form-horizontal' method="post"
 			onsubmit="return re_check(document.login_form);">
 			<%--get문으로 넘어온 것은 param으로 받는다. "${param.returnUrl}" --%>
@@ -311,20 +311,19 @@ $("#checkbox4").bind("click",function(){
 				<input type="password" class="form-control input-lg caps_lockchk"
 					placeholder="Password" name="mbrLoginPw">
 			</div>
-
+			<%--https://bootsnipp.com/snippets/featured/checkboxradio-css-only 추후 변경 --%>
+			<div class="form-group mgl3">
+				<div class="checkbox checkbox-info">
+					<input id="checkbox4" name="autoLogin" class="styled"
+						type="checkbox"> Keep me
+						signed in.
+				</div>
+			</div>
 
 			<div class="form-group">
 				<button type="submit" class="btn btn-primary btn-lg btn-block">Sign
 					In</button>
 			</div>
- 			<div class="col-md-12">		
-                    <div class="checkbox checkbox-info" >
-                        <input id="checkbox4"  name="autoLogin" class="styled" type="checkbox">
-                        <label for="checkbox4">RememberMe</label>
-                    </div>
-			</div>
-
-			
 
 			<%--recapCha --%>
 			<div class="col-md-12">
@@ -362,13 +361,11 @@ $("#checkbox4").bind("click",function(){
 							in with Google</span>
 					</button>
 				</div>
-				
-				<input type="hidden" name="test"
-					value="123" />
-				<input type="hidden" name="${_csrf.parameterName}"
-					value="${_csrf.token}" /> <input type="hidden" name="scope"
-					value="email profile" />
-				<input type="hidden" name="autoLoginSub" class="test1" value="off"/>	
+
+				<input type="hidden" name="test" value="123" /> <input
+					type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+				<input type="hidden" name="scope" value="email profile" /> <input
+					type="hidden" name="autoLoginSub" class="test1" value="off" />
 			</form>
 		</div>
 
@@ -385,11 +382,9 @@ $("#checkbox4").bind("click",function(){
 							in with Facebook</span>
 					</button>
 				</div>
-				<input type="hidden" name="test"
-					value="123" />
-				<input type="hidden" name="${_csrf.parameterName}"
-					value="${_csrf.token}" />
-				<input type="hidden" name="autoLoginSub" class="test1" value="off"/>
+				<input type="hidden" name="test" value="123" /> <input
+					type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+				<input type="hidden" name="autoLoginSub" class="test1" value="off" />
 			</form>
 		</div>
 
@@ -408,8 +403,8 @@ $("#checkbox4").bind("click",function(){
 					</button>
 				</div>
 				<input type="hidden" name="${_csrf.parameterName}"
-					value="${_csrf.token}" />
-				<input type="hidden" name="autoLoginSub" class="test1" value="off"/>
+					value="${_csrf.token}" /> <input type="hidden" name="autoLoginSub"
+					class="test1" value="off" />
 			</form>
 		</div>
 
@@ -426,8 +421,8 @@ $("#checkbox4").bind("click",function(){
 						with Twitter</span>
 				</button>
 				<input type="hidden" name="${_csrf.parameterName}"
-					value="${_csrf.token}" />
-				<input type="hidden" name="autoLoginSub" class="test1" value="off"/>
+					value="${_csrf.token}" /> <input type="hidden" name="autoLoginSub"
+					class="test1" value="off" />
 			</form>
 		</div>
 

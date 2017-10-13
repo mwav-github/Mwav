@@ -23,7 +23,7 @@ public class AutoLoginInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler) throws Exception {
-		System.out.println("오토로그인 인셉터 들어옴 " + request.getParameter("autoLoginSub"));
+		log.info("오토로그인 인셉터 들어옴 " + request.getParameter("autoLoginSub"));
 		if(request.getParameter("autoLoginSub")!=null){
 			request.getSession().setAttribute("autoLoginSub", request.getParameter("autoLoginSub"));
 		}

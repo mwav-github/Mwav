@@ -23,9 +23,13 @@ http://stg.etribe.co.kr/2014/07/29/view-technology/
     
 -->
 <decorators defaultdir="/Templates/">
-
+	<excludes>
+        <pattern>/CustomerService/CS-MasterPage.mwav</pattern>
+    </excludes>
+        
     <!-- CustomerService -->
     <decorator name="customerServiceTemplate" title="CustomerService" page="CustomerServiceMasterPage.jsp">
+                
         <pattern>/CustomerService/*</pattern>
     </decorator>
  	<!-- 일단 주석-->
