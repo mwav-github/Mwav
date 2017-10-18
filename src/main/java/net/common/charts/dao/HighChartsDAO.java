@@ -5,6 +5,7 @@ import java.util.Map;
 
 import net.common.charts.vo.SeriesVO;
 import net.common.charts.vo.SeriesVO_Arrary;
+import net.common.charts.vo.SeriesVO_Arrary2;
 import net.common.dao.AbstractDAO;
 
 import org.springframework.stereotype.Repository;
@@ -30,9 +31,9 @@ public class HighChartsDAO extends AbstractDAO {
 
 	}
 
-	public List<SeriesVO_Arrary> selectListClientScreenSize() {
+	public List<SeriesVO_Arrary2> selectListClientScreenSize() {
 		// TODO Auto-generated method stub
-		return (List<SeriesVO_Arrary>) selectList("highCharts.selectListClientScreenSize");
+		return (List<SeriesVO_Arrary2>) selectList("highCharts.selectListClientScreenSize");
 	}
 
 }

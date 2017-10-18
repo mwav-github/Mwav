@@ -482,13 +482,15 @@ public class Common_Utils {
 		String slPageName = null;
 		String url_1depth = null;
 		String url_2depth = null;
+		String last_depth = null;
 		int first_slash = url.indexOf("/");
 		int second_slash = url.indexOf("/", first_slash + 1);
 		int third_slash = url.indexOf("/", second_slash + 1);
 		// int fourth_slash = url.indexOf("/", third_slash + 1);
 		// int last_slash = url.lastIndexOf("/");
-		// int lastDot = url.lastIndexOf('.');
-
+		int last_slash = url.lastIndexOf("/");
+		int lastDot = url.lastIndexOf('.');
+		
 		try {
 
 			if (second_slash != -1) {
@@ -499,12 +501,18 @@ public class Common_Utils {
 				url_2depth = url.substring(second_slash + 1, third_slash);
 				log.info("url_2depth" + url_2depth);
 			}
+			if (lastDot != -1) {
+				last_depth = url.substring(last_slash + 1, lastDot);
+				// System.out.println("last_depth"+last_depth);
+			}
 
 			// url 은 전체 url_1depth은 /제외
 			if (url != null && url_1depth != null && (url.equals("/") || url_1depth.equals("Index"))) {
 				slPageName = "메인페이지";
 			} else if (url_1depth != null && url_1depth.equals("Company")) {
-				// 회사 색션.
+				// 회사 색션.'
+			   //url_2depth.equals -> contains으로 변경 언제가 마지막 / 일지 모른다.
+			   // 즉 /Company/ITTrends/ITTrends 등 마지막 단계가 어딘지. url_2depth.equals로 하게되면.
 				if (url.contains("ActualResults")) {
 					slPageName = "회사실적";
 				} else if (url.contains("BusinessField")) {
@@ -529,12 +537,18 @@ public class Common_Utils {
 					slPageName = "회사조직도";
 				} else if (url.contains("Profitsharing")) {
 					slPageName = "수익분배 프로그램";
-				} else if (url.contains("언론보도")) {
+				} else if (url.contains("ITTrends")) {
 					slPageName = "언론보도";
-				} else if (url.contains("경영기념(비전)")) {
-					slPageName = "Vision";
+				} else if (url.contains("Vision")) {
+					slPageName = "경영기념(비전)";
 				} else {
+					//문자열 자르는것은 추후 모듈화
+					//slPageName 의 경우 varchar(50)
+					if(url.length() > 35) {
+						url = url.substring(0, 34);
+					}
 					slPageName = "Company_미정_" + url;
+					
 				}
 			} else if (url_1depth != null && url_1depth.equals("CompanyItem")) {
 				if (url_2depth.equals("ITSolutions")) {
@@ -567,6 +581,11 @@ public class Common_Utils {
 				} else if (url_2depth.equals("ITConsulting")) {
 					slPageName = "IT컨설팅";
 				} else {
+					//문자열 자르는것은 추후 모듈화
+					//slPageName 의 경우 varchar(50)
+					if(url.length() > 30) {
+						url = url.substring(0, 29);
+					}
 					slPageName = "CompanyItem_미정_" + url;
 				}
 
@@ -598,10 +617,15 @@ public class Common_Utils {
 				} else if (url.contains("Summary")) {
 					slPageName = "CS요약";
 				} else {
+					//문자열 자르는것은 추후 모듈화
+					//slPageName 의 경우 varchar(50)
+					if(url.length() > 28) {
+						url = url.substring(0, 27);
+					}
 					slPageName = "CustomerService_미정_" + url;
 				}
-			} else if (url_1depth != null && url_1depth.equals("MasterPage")
-					|| url_1depth.equals("MasterPage_1")) {
+			} else if (url_1depth != null && (url_1depth.equals("MasterPage")
+					|| url_1depth.equals("MasterPage_1"))) {
 				if (url.contains("mode=SMbrLogin")) {
 					slPageName = "로그인페이지";
 				} else if (url.contains("mode=Default")) {
@@ -611,20 +635,30 @@ public class Common_Utils {
 				} else if (url.contains("mode=SDMbrInput")) {
 					slPageName = "가입완료";
 				} else {
+					//문자열 자르는것은 추후 모듈화
+					//slPageName 의 경우 varchar(50)
+					if(url.length() > 35) {
+						url = url.substring(0, 34);
+					}
 					slPageName = "MasterPage_미정_" + url;
 				}
 			} else if (url_1depth != null && url_1depth.equals("member")) {
-				if (url_2depth.equals("mbrTempLoginPwUpdate")) {
+				if (url.contains("mbrTempLoginPwUpdate")) {
 					slPageName = "패스워드찾기(비밀번호 초기화)";
-				} else if (url_2depth.equals("Login")) {
+				} else if (url.contains("Login")) {
 					slPageName = "로그인시도";
-				} else if (url_2depth.equals("mbrTempLoginPwSeek ")) {
+				} else if (url.contains("mbrTempLoginPwSeek ")) {
 					slPageName = "패스워드찾기(비밀번호 조회)";
-				} else if (url_2depth.equals("mbrLoginPwUpdate")) {
+				} else if (url.contains("mbrLoginPwUpdate")) {
 					slPageName = "패스워드찾기(비밀번호 업데이트)";
-				} else if (url_2depth.equals("mbrLoginIdSeek")) {
+				} else if (url.contains("mbrLoginIdSeek")) {
 					slPageName = "아이디찾기(아이디조회)";
 				} else {
+					//문자열 자르는것은 추후 모듈화
+					//slPageName 의 경우 varchar(50)
+					if(url.length() > 37) {
+						url = url.substring(0, 36);
+					}
 					slPageName = "member_미정_" + url;
 				}
 			} else if (url_1depth != null && url_1depth.equals("qa")) {
@@ -640,42 +674,52 @@ public class Common_Utils {
 				slPageName = "관리자" + url;
 
 			} else if (url_1depth != null && url_1depth.equals("board")) {
-				if (url_2depth.equals("bnsList")) {
+				if (url.contains("bnsList")) {
 					slPageName = "뉴스목록";
-				} else if (url_2depth.equals("buView")) {
+				} else if (url.contains("buView")) {
 					slPageName = "뉴스조회";
-				} else if (url_2depth.equals("buList")) {
+				} else if (url.contains("buList")) {
 					slPageName = "공지목록";
-				} else if (url_2depth.equals("buView")) {
+				} else if (url.contains("buView")) {
 					slPageName = "공지사항조회";
 				}
 			}
 			// 예외 발생 부분.
 			else if (url_1depth != null && url_1depth.equals("MessageView")) {
-				if (url_2depth.equals("throwable")) {
+				if (url.contains("throwable")) {
 					slPageName = "에러(최상위)";
-				} else if (url_2depth.equals("exception")) {
+				} else if (url.contains("exception")) {
 					slPageName = "예외";
-				} else if (url_2depth.equals("400")) {
+				} else if (url.contains("400")) {
 					slPageName = "에러(400)";
-				} else if (url_2depth.equals("401")) {
+				} else if (url.contains("401")) {
 					slPageName = "에러(401)";
-				} else if (url_2depth.equals("403")) {
+				} else if (url.contains("403")) {
 					slPageName = "에러(403)";
-				} else if (url_2depth.equals("404")) {
+				} else if (url.contains("404")) {
 					slPageName = "에러(404)";
-				} else if (url_2depth.equals("500")) {
+				} else if (url.contains("500")) {
 					slPageName = "에러(500)";
-				} else if (url_2depth.equals("503")) {
+				} else if (url.contains("503")) {
 					slPageName = "에러(503)";
 				} else {
+					//문자열 자르는것은 추후 모듈화
+					//slPageName 의 경우 varchar(50)
+					if(url.length() > 39) {
+						url = url.substring(0, 38);
+					}
 					slPageName = "에러_미정_" + url;
 				}
 			}
 			// 서블릿 거치는 부분, Admin
 			else {
 				// statistics_tbl 의 PageName 은 null 이 허용안된다.
-				slPageName = url;
+				//문자열 자르는것은 추후 모듈화
+				//slPageName 의 경우 varchar(50)
+				if(url.length() > 44) {
+					url = url.substring(0, 43);
+				}
+				slPageName = "기타_" + url;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

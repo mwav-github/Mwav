@@ -21,7 +21,7 @@
 		msg = '재 가입하시겠습니까.?'
 		if (confirm(msg) != 0) {
 	<%-- 이전 url 기록안하는 경우 , location.href 의 경우 이전기록이 남아 login.mwav로 포워딩 , 프로세스 정리 필요. --%>
-		location.replace("/MasterPage_1.jsp?mode=Default");
+		location.replace("/MasterPage_1.mwav?mode=Default");
 		} else {
 			history.go(-1)
 		}
@@ -431,7 +431,7 @@ $("#checkbox4").bind("click",function(){
 
 
 			<div class="col-md-4">
-				<a href="/MasterPage_1.jsp?mode=Default"><strong>Sign
+				<a href="/MasterPage_1.mwav?mode=Default"><strong>Sign
 						up now</strong></a>
 			</div>
 
@@ -514,7 +514,7 @@ $("#checkbox4").bind("click",function(){
 				href="/MasterPage_1.jsp?mode=Default"><strong>Sign up
 						now</strong></a></span> --%>
 			<div class="col-md-4">
-				<a href="/MasterPage_1.jsp?mode=Default"><strong>Sign
+				<a href="/MasterPage_1.mwav?mode=Default"><strong>Sign
 						up now</strong></a>
 			</div>
 

@@ -561,7 +561,7 @@ public class MemberController {
 	}
 
 	//로그인 폼 보여주고 리스트로 돌아감
-	@RequestMapping(value="/login/post")
+	@RequestMapping(value="/login/post.mwav")
 	public String loginForm(HttpServletRequest request){
 
 		return "forward:"+request.getContextPath()+"/Index.mwav";

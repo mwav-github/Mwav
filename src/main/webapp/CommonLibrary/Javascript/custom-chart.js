@@ -226,10 +226,7 @@ function getBasePieChart() {
 					fontFamily : 'Trebuchet MS, Verdana, sans-serif'
 				}
 			},
-
-			series : [ {
-				data : [ {} ]
-			} ]
+			series : [{data: []}]
 		},
 
 		// here you'll merge the defaults with the object options
@@ -363,29 +360,34 @@ function getRemoteDataDrawPieChart(url, chartType) {
 			// chartType.highchart.chart.type = chartType;
 			chartType.highchart.chart.type = type;
 
-			$.each(data.seriesArrary, function(i, seriesItem) {
+			$.each(data.seriesArrary2, function(i, seriesItem) {
+				var series = {
+						data : []
+					};
 				// console.log("series"+series);
 				console.log(seriesItem);
-				var series = {
-	                    data: []
-	                };
 				//console.log("seriesItem.name" + seriesItem.name);
 				//console.log("seriesItem.data" + seriesItem.data);
 
 				//series.name = 'screensize';
 				//console.log("Data1 (" + i + "): " + seriesItem.name);
 				//console.log("Data2 (" + i + "): " + seriesItem.data);
-				//series.data.name = seriesItem.name;
-				//series.data.y = parseInt(seriesItem.data);
+				/*data.name = seriesItem.name;
+				//series.data.y(parseInt(seriesItemData));
+				data.y = parseInt(seriesItem.y);
+				data.color = "#00FF00";*/
+				//data.y = parseInt(seriesItem.data);
 				//Unable to set property 'name' of undefined or null reference  y도 동일.
 				//series.data.name = seriesItem.name;
-				series.data.name = '11';
+				//series.data.name = '11';
 				//series.data.y = parseInt(seriesItem.data);
 				//chartType.highchart.series[i] = series;
-
+                //console.log("seriesy"+series.data.y);
+               // console.log("seriesname"+series.data.name);
 				//series.data.name = seriesItem.name;
-
-				$.each(seriesItem.data, function(e, seriesItemData) {							    
+					series.data.push(seriesItem);
+				
+/*				$.each(seriesItem.data, function(e, seriesItemData) {							    
 					console.log("Data (" + e +"): "+seriesItemData) ;
 				    //console.log("seriesItem.name"+seriesItem.name);
 				    //console.log("seriesItem.data"+seriesItem.data);
@@ -394,8 +396,7 @@ function getRemoteDataDrawPieChart(url, chartType) {
 					//series.data.push(seriesItem.name
 					series.data.y = parseInt(seriesItemData);
 					series.data.name = '11';
-				});
-				console.log('1');
+				});*/
 
 				//seriesItemName=JSON.parse(seriesItemName);
 				/*$.each(seriesItem.name, function(a, seriesItemName) {	

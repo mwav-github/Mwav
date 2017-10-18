@@ -107,7 +107,12 @@
 	</bean>
 
 
-
+<!-- 등록안하는 경우 하기 에러 발생
+Caused by: org.springframework.beans.factory.BeanCreationException: Could not autowire field:
+  -->
 	<bean id="member_tbl_VO" class="net.mwav.member.vo.Member_tbl_VO">
+	</bean>
+	
+	<bean id="staff" class="net.admins.vo.Staff_VO">
 	</bean>
 </beans>

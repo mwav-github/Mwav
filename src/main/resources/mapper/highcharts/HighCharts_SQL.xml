@@ -33,14 +33,13 @@
 	</select>
 	
 	
-	<select id="selectListClientScreenSize" resultType="net.common.charts.vo.SeriesVO_Arrary">
+	<select id="selectListClientScreenSize" resultType="net.common.charts.vo.SeriesVO_Arrary2">
 	<![CDATA[
-	      SELECT stClientScreen AS `name` , 
-	      COUNT(*) AS `data`  
+	      SELECT COUNT(*) AS `y`, stClientScreen AS `name` 
 	      FROM Statistics_tbl 
 	      WHERE stClientScreen IS NOT NULL AND TO_DAYS(NOW()) - TO_DAYS(stStatisticsDt) <= 30 
 	      GROUP BY `name`
-	      ORDER BY data DESC 
+	      ORDER BY `y` DESC 
 	]]>
 	</select>
 	

@@ -436,13 +436,13 @@ public class StaffController {
 	@RequestMapping(value = "/admins/staff/stfLogout.mwav")
 	public ModelAndView selectLogout(HttpSession  session,
 			HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("/Index");
+		ModelAndView mv = new ModelAndView("/Admins/CompanyMgr/Staff/StfLogin.mwav");
 		Object obj = session.getAttribute("staff");
 		 if (obj != null) {
 			  session.removeAttribute("staff");
 		      log.info("세선제거 성공");			      
 		 }else{
-				log.info("세션에 로그인 정보다 없어 로그아웃 하지 못하였습니다.");
+				log.info("세션에 로그인 정보가 존재하지 않아, 로그아웃 하지 못하였습니다.");
 		 }
 
 		mode = "SDMbrLogout";

@@ -125,7 +125,7 @@ public class StatisticsInterceptor extends HandlerInterceptorAdapter {
 
 			String auth_url = request.getRequestURI();
 			log.info("auth_url 추적." + auth_url);
-
+			log.info("statistics_id" + statistics_id);
 			/*
 			 * //Java/1.8.0_25 부분 서버로그 남기지 않을 때. String userAgent =
 			 * request.getHeader("User-Agent"); log.info("userAgent" +

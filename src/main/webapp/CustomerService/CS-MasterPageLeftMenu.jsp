@@ -47,13 +47,9 @@
 	</c:if>
 
 	<c:if test="${sessionScope.member ne null }"> </c:if>--%>
-		<a href="/CustomerService/MyPage/MyPage.mwav" class="list-group-item "
-			data-toggle="tooltip" data-placement="top"
-			data-original-title="페이지 준비 중입니다.">My Page</a>
-	
-
-
-	<a href="/CustomerService/Announcement/Announcement.mwav"
+	<a href="/CustomerService/MyPage/MyPage.mwav" class="list-group-item "
+		data-toggle="tooltip" data-placement="top" data-original-title="마이페이지">My
+		Page</a> <a href="/CustomerService/Announcement/Announcement.mwav"
 		class="list-group-item" data-toggle="tooltip" data-placement="top"
 		data-original-title="공지사항">Announcement</a>
 
@@ -69,22 +65,22 @@
 			data-original-title="회원정보(수정)">Member Ship</a>
 	</c:if> --%>
 	<a href="/CustomerService/MemberShip/MemberShip.mwav"
-			class="list-group-item" data-toggle="tooltip" data-placement="top"
-			data-original-title="회원정보(수정)">Member Ship</a>
-
-	<a href="/CustomerService/Agreement/Agreement.mwav"
 		class="list-group-item" data-toggle="tooltip" data-placement="top"
-		data-original-title="이용약관">Agreement</a> <a
+		data-original-title="회원정보(수정)">Member Ship</a> <a
+		href="/CustomerService/Agreement/Agreement.mwav"
 		class="list-group-item" data-toggle="tooltip" data-placement="top"
-		data-original-title="페이지 준비 중입니다.">Site Guide</a> <a href="/CustomerService/FAQ/FAQ.mwav"
-		 class="list-group-item"
+		data-original-title="이용약관">Agreement</a> <a class="list-group-item"
 		data-toggle="tooltip" data-placement="top"
-		data-original-title="자주 묻는 질문">FAQ</a> <a href="/CustomerService/QnA/QnA.mwav"
-		 class="list-group-item"
+		data-original-title="페이지 준비 중입니다.">Site Guide</a> <a
+		href="/CustomerService/FAQ/FAQ.mwav" class="list-group-item"
+		data-toggle="tooltip" data-placement="top"
+		data-original-title="자주 묻는 질문">FAQ</a> <a
+		href="/CustomerService/QnA/QnA.mwav" class="list-group-item"
 		data-toggle="tooltip" data-placement="top"
 		data-original-title="묻고 답하기">Q&A</a> <a
-		 href="/CustomerService/Contact/Contact.mwav" class="list-group-item"
-		data-toggle="tooltip" data-placement="top" data-original-title="담당부서안내">Contacts</a>
-	<a href="/CustomerService/SiteMap/SiteMap.mwav" class="list-group-item"
+		href="/CustomerService/Contact/Contact.mwav" class="list-group-item"
+		data-toggle="tooltip" data-placement="top"
+		data-original-title="담당부서안내">Contacts</a> <a
+		href="/CustomerService/SiteMap/SiteMap.mwav" class="list-group-item"
 		data-toggle="tooltip" data-placement="top" data-original-title="사이트맵">SiteMap</a>
 </div>

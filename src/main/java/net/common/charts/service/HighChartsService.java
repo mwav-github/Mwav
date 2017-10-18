@@ -3,6 +3,7 @@ package net.common.charts.service;
 import net.common.charts.vo.DataVO;
 import net.common.charts.vo.SeriesVO;
 import net.common.charts.vo.SeriesVO_Arrary;
+import net.common.charts.vo.SeriesVO_Arrary2;
 import net.common.charts.dao.HighChartsDAO;
 import net.mwav.framework.DateLib;
 
@@ -116,27 +117,24 @@ public class HighChartsService {
 
 	public DataVO selectListClientScreenSize() {
 		// TODO Auto-generated method stub
-		List<SeriesVO_Arrary> list = HighChartsDAO.selectListClientScreenSize();
+		List<SeriesVO_Arrary2> list = HighChartsDAO.selectListClientScreenSize();
 
-		/*double[] data = new double[list.size()];
+		double[] y = new double[list.size()];
 		String[] page = new String[list.size()];
+		String[] color = new String[list.size()];
 		for (int i = 0; i < list.size(); i++) {
-			data[i] = list.get(i).getData();
+			y[i] = list.get(i).getY();
 			page[i] = list.get(i).getName();
+
 			System.out.println("Size = " + list.size());
 			System.out.println("Name = " + list.get(i).getName());
-			System.out.println("Data = " + list.get(i).getData());
+			System.out.println("Y = " + list.get(i).getY());
 			// System.out.println("x"+ x);
 		}
-		// double x[] = list.toArray();
-		List<SeriesVO> list_2 = new ArrayList<SeriesVO>();
 
-		list_2.add(new SeriesVO("Count", data));
-		System.out.println("크기" + data.length);
-*/
 		// String[] categories = new String[] {"Mont",
 		// "14 Feb '13","15 Mar '13","11 Apr '13","19 May '13","23 Jun '13","3 Jul '13","8 Aug '13","5 Sep '13","17 Oct '13","23 Nov '13","5 Dec '13"};
-		return new DataVO("chart2-container", "ClientScreenSize", "pie", list);
+		return new DataVO("chart2-container", "abc", "pie", list);
 	}
 
 }

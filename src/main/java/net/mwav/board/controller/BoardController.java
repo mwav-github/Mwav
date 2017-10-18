@@ -335,8 +335,8 @@ public class BoardController {
 			mv.addObject("mm", mm);
 			mv.addObject("mode", "m_buView");
 			
-			mv.addObject("breadcrumb", "IT Trends");
-			mv.addObject("page_header", "IT Trends");
+			mv.addObject("breadcrumb", "Announcement");
+			mv.addObject("page_header", "Announcement");
 			
 			String meta_image = (String) selectOneBuView.get("buRelatedLink");
             //meta태그 이미지 

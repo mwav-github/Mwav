@@ -6,6 +6,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%--meta 태그 말고 추후 robot.txt로 제어 --%>
+<%--모든 검색엔진 로봇에게 자신의 사이트의 내용을 긁어가지 못하도록(인덱싱) 하려면 아래와 같이 합니다.  --%>
+<META NAME="ROBOTS" CONTENT="NOINDEX"> 
+<%--모든 검색엔진 로봇이 사이트 내의 링크들을 따라 돌아다니지 못하게 하려면 이렇게 합니다.  --%>
+<META NAME="ROBOTS" CONTENT="NOFOLLOW"> 
+
+
 <jsp:include page="/PartsOfContent/Head_Import.jsp" flush="false" />
 <script src="https://code.highcharts.com/highcharts.src.js"></script>
 <script src="/CommonLibrary/Javascript/custom-chart.js"></script>
