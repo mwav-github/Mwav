@@ -67,13 +67,12 @@
 		<div class="enter"></div>
 
 		<hr class="hr_b">
-
-
+		
 		<br style="clear: both">
 		<div class="row text-right">
 			<p>
 				<button type="button" class="btn btn-default"
-					onClick="javascript:window.location.href='/CustomerService/Announcement/Announcement.jsp'">All
+					onClick="javascript:window.location.href='/CustomerService/Announcement/Announcement.mwav'">All
 					List</button>
 				<button type="button" class="btn btn-default"
 					onClick="javascript:history.go(-1)">BACK</button>

@@ -144,7 +144,7 @@
 		<div class="row text-right">
 			<p>
 				<button type="button" class="btn btn-default"
-					onClick="javascript:window.location.href='/board/bnsList.mwav'">All
+					onClick="javascript:window.location.href='/Company/ITTrends/ITTrends.mwav'">All
 					List</button>
 				<button type="button" class="btn btn-default"
 					onClick="javascript:history.go(-1)">BACK</button>

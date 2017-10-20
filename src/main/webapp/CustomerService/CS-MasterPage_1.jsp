@@ -4,8 +4,21 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%--Sitemesh 사용 하는 것들--%>
-<div class="row">
 
+<div class="row">
+	<div class="col-lg-12">
+		<h1 class="page-header">
+			CustomerService <small> ${breadcrumb}</small>
+		</h1>
+		<ol class="breadcrumb">
+			<li><a href="/">Home</a></li>
+			<li>CustomerService</li>
+			<li class="active">${breadcrumb}</li>
+		</ol>
+	</div>
+</div>
+
+<div class="row">
 	<div class="col-md-3">
 		<div class="list-group">
 			<jsp:include page="/CustomerService/CS-MasterPageLeftMenu.jsp"

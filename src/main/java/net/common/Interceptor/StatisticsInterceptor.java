@@ -31,7 +31,7 @@ public class StatisticsInterceptor extends HandlerInterceptorAdapter {
 
 	@Autowired
 	MemberService memberService;
-	
+
 	protected Log log = LogFactory.getLog(StatisticsInterceptor.class);
 
 	@Autowired
@@ -42,12 +42,11 @@ public class StatisticsInterceptor extends HandlerInterceptorAdapter {
 			HttpServletResponse response, Object handler) throws Exception {
 		log.info("======================================          START         ======================================");
 		log.info(" Request URI \t:  " + request.getRequestURI());
-		
-		if(request.getSession().getAttribute("member") == null){
+
+		if (request.getSession().getAttribute("member") == null) {
 			getAutoLogin(request, request.getSession());
 		}
-		
-		
+
 		CookieBox cookieBox = new CookieBox(request);
 		Cookie cookie;
 		HttpSession session = request.getSession();
@@ -137,7 +136,7 @@ public class StatisticsInterceptor extends HandlerInterceptorAdapter {
 			String userAgent = request.getHeader("User-Agent");
 
 			if (auth_url != null && !(auth_url.contains(".jsp"))
-					&& !(auth_url.contains(".chart"))) {
+					&& !(auth_url.contains("/charts/highsofts"))) {
 
 				String PageName = null;
 				PageName = Common_Utils.setPageName(auth_url);
@@ -169,8 +168,11 @@ public class StatisticsInterceptor extends HandlerInterceptorAdapter {
 				else {
 					log.info("statistics_id insertStatics." + statistics_id);
 
-					request.setAttribute("slPageName", PageName);
-					statisticsController.insertStatics(request, statistics_id);
+					if (!(auth_url.contains("/charts/hightsofts"))) {
+						//System.out.println("차트는 제외");
+						request.setAttribute("slPageName", PageName);
+						statisticsController.insertStatics(request, statistics_id);
+					}
 				}
 			}
 		} catch (Exception e) {
@@ -195,24 +197,24 @@ public class StatisticsInterceptor extends HandlerInterceptorAdapter {
 		log.info("======================================           END          ======================================\n");
 
 	}
-	
-	
+
 	private Boolean getAutoLogin(HttpServletRequest request, HttpSession session) {
 		Cookie loginCookie = WebUtils.getCookie(request, "autoLogin");
-		if (loginCookie != null&&loginCookie.getValue()!=null&&!loginCookie.getValue().equals("")) {
-			log.info("자동로그인 실행 중");			
-			
-			Member_tbl_VO member = memberService.selectAutoLogin(Integer.parseInt(loginCookie.getValue()));
-			log.info("member의 값은"+ member.toString());
+		if (loginCookie != null && loginCookie.getValue() != null
+				&& !loginCookie.getValue().equals("")) {
+			log.info("자동로그인 실행 중");
+
+			Member_tbl_VO member = memberService.selectAutoLogin(Integer
+					.parseInt(loginCookie.getValue()));
+			log.info("member의 값은" + member.toString());
 			if (member != null) {
 				log.info("자동로그인 VO 가져옴");
 				session.setAttribute("member", member);
 				return true;
-			
+
 			}
 		}
 		return false;
 	}
-	
 
 }

@@ -29,32 +29,32 @@ public class HighChartsController {
         return "charts";
     }
 
-    @RequestMapping({"/linechart1.chart"})
+    @RequestMapping({"/charts/linechart1.mwav"})
     @ResponseBody
     public DataVO showLineChart1() {
         return chartService.getLineChartData1();
     }
 
-    @RequestMapping({"/linechart2.chart"})
+    @RequestMapping({"/charts/linechart2.mwav"})
     @ResponseBody
     public DataVO showLineChart2() {
         return chartService.getLineChartData2();
     }
    
 
-    @RequestMapping({"/linechart3.chart"})
+    @RequestMapping({"/charts/hightsofts/WeeklyUsers.mwav"})
     @ResponseBody
     public DataVO selectListWeeklyUsers() {
         return chartService.selectListWeeklyUsers();
     }
     
-    @RequestMapping({"/Top10PageList.chart"})
+    @RequestMapping({"/charts/hightsofts/Top10PageList.mwav"})
     @ResponseBody
     public DataVO selectListTop10Page() {
         return chartService.selectListTop10Page();
     }
     
-    @RequestMapping({"/ClientScreenSize.chart"})
+    @RequestMapping({"/charts/hightsofts/ClientScreenSize.mwav"})
     @ResponseBody
     public DataVO selectListClientScreenSize() {
         return chartService.selectListClientScreenSize();

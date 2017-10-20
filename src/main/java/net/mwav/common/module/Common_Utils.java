@@ -684,6 +684,7 @@ public class Common_Utils {
 					slPageName = "공지사항조회";
 				}
 			}
+			
 			// 예외 발생 부분.
 			else if (url_1depth != null && url_1depth.equals("MessageView")) {
 				if (url.contains("throwable")) {
