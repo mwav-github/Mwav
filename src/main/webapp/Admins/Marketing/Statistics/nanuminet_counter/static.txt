@@ -1,0 +1,14 @@
+<!-- METADATA TYPE="typelib" NAME="ADODB Type Library"
+     FILE ="C:\Program Files\Common Files\System\ado\msado15.dll"  --> 
+<%
+	title = "<title>"
+	static_table = "<static_table>"
+
+	'연결개체 생성
+	Set db = Server.CreateObject("ADODB.Connection")
+  	
+	db.provider = "SQLOLEDB.1" 'SQL서버를 쓴다면 보통 이렇게 쓴다.
+	db.Open("Persist Security Info=False;User ID=<db_user>;password=<db_pass>;Data Source=<db_server>")
+	db.defaultDatabase = "<db_name>"
+%>
+

@@ -115,9 +115,9 @@ public class LeftFrame_Fucntion {
 
 					menuList.add(vo);
 				}
-			} else if (mm.equals("category")) { // 카테고리 추가 부분!!!!!!!!!!!
+			} else if (mm.equals("rel")) { // 카테고리 추가 부분!!!!!!!!!!!
 
-				String[] streName = { "gcl", "gci" };
+				String[] streName = { "caset", "gci" };
 				String[] strhName = { "카테고리등록", "릴레이션등록" };
 				String[] strhEName = { "카테고리등록", "릴레이션등록" };
 				String[] strurl = {
@@ -143,11 +143,11 @@ public class LeftFrame_Fucntion {
 				}
 			} else if (mm.equals("crm")) { // 카테고리 추가 부분!!!!!!!!!!!
 
-				String[] streName = { "gcl", "gci" };
-				String[] strhName = { "카테고리등록", "릴레이션등록" };
-				String[] strhEName = { "카테고리등록", "릴레이션등록" };
+				String[] streName = { "stati", "gci" };
+				String[] strhName = { "StatisticsMgr", "릴레이션등록" };
+				String[] strhEName = { "통계관리", "릴레이션등록" };
 				String[] strurl = {
-						"/Admins/Goods/GdsCaInsert.jsp?mm=category",
+						"/admins/marketing/statistics/statsList.mwav",
 						"/admins/goods/categoryList.mwav",
 
 				};

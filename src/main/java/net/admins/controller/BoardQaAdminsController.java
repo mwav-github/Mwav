@@ -105,7 +105,7 @@ public class BoardQaAdminsController {
 		}
 		int totalRow = BoardQaAdminsService.selectOneGetQnATotalCount();
 		System.out.println("totalRow=" + totalRow);
-
+		System.out.println("pageNum=" + pageNum);
 		// Paging pv = new Paging(pageNum, 10 , 10, totalCount);
 		List<Map<String, Object>> selectListQnAList;
 		PagingVO pagingVO = paging.setPagingInfo(totalRow, 5, pageNum); // 총 숫자,

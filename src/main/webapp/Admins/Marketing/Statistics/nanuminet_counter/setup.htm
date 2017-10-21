@@ -1,0 +1,162 @@
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<style type="text/css">
+<!--
+.height {  font-family: "굴림"; font-size: 9pt; color: #5e5e5e; text-decoration: none; line-height: 18px}
+.lesson {  font-family: "굴림"; font-size: 9pt; color: #5E5E5E; text-decoration: none}
+.column {  font-family: "굴림"; font-size: 9pt; color: #5E5E5E; text-decoration: none}
+.board {  font-family: "굴림"; font-size: 9pt; color: #5E5E5E; text-decoration: none}
+a.column:hover {  font-family: "굴림"; font-size: 9pt; color: #2D756D; text-decoration: none}
+a.lesson:hover {  font-family: "굴림"; font-size: 9pt; color: #609F5C; text-decoration: none}
+a.board:hover {  font-family: "굴림"; font-size: 9pt; color: #2D4875; text-decoration: none}
+.border_daily {  border: 1px solid; background-color: #E7DBBD; font-family: "굴림체"; font-size: 12px; color: #333333; text-decoration: none; text-align: center; border-color: #999999 #9C9A9C #9C9A9C}
+.text07 {  font-family: "굴림체"; font-size: 9pt; color: #CC3300; text-decoration: none}
+a.text07:hover {  font-family: "굴림체"; font-size: 9pt; color: #FF6600; text-decoration: none}
+td { font-family: "굴림"; font-size: 9pt; color: ##414141; text-decoration: none} 
+.left { font-family: "굴림"; font-size: 9pt; color: #FFFFFF; text-decoration: none} 
+a.left:hover { font-family: "굴림"; font-size: 9pt; color: #6699FF; text-decoration: 
+none} a.left:active { font-family: "굴림"; font-size: 9pt; color: #000000; text-decoration: 
+none} .top { font-family: "굴림"; font-size: 9pt; color: #FFFFFF; text-decoration: 
+none} a.top:hover { font-family: "굴림"; font-size: 9pt; color: #FFFFFF; text-decoration: 
+none} .border { border: 1px #E7DBBD solid; font-size: 9pt; color: #CC0000; text-decoration: 
+none; font-family: "굴림"; background-color: #FFFFFF} .link { font-family: "굴림"; 
+font-size: 9pt; color: #000000; text-decoration: none} a.link:hover { font-family: 
+"굴림"; font-size: 9pt; color: #006633; text-decoration: none} 
+.link02 {  font-family: "돋움"; font-size: 12px; color: #666666; text-decoration: underline}
+a.link02:hover {  font-family: "돋움"; font-size: 12px; color: #666666; text-decoration: underline}
+-->
+</style>
+<script language="javascript">
+<!--
+function send_it()
+{
+	if(myform.title.value=="")
+	{
+		alert("사이트명을 입력하여 주십시요.");
+		myform.title.focus();
+		return false
+	}
+	if(myform.table_name.value=="")
+	{
+		alert("테이블명을 입력하여 주십시요.");
+		myform.table_name.focus();
+		return false
+	}
+	if(myform.db_server.value=="")
+	{
+		alert("해당DB서버명을 입력하여 주십시요.");
+		myform.db_server.focus();
+		return false
+	}
+	if(myform.db_user.value=="")
+	{
+		alert("해당DB서버의 사용자계정을 입력하여 주십시요.");
+		myform.db_user.focus();
+		return false
+	}
+	if(myform.db_pass.value=="")
+	{
+		alert("해당DB서버의 사용자계정의 비밀번호를 입력하여 주십시요.");
+		myform.db_pass.focus();
+		return false
+	}
+
+}
+
+
+//-->
+</script>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" Onload="myform.title.focus()">
+
+<br>
+<form name="myform" action="setup_ok.asp" method="post" onsubmit="return send_it()">
+  <div align="center">
+    <table width="690" border="0" cellspacing="1" cellpadding="4" bgcolor="#c5ba8d" align="center">
+      <tr bgcolor="#e0daba"> 
+        <td  align="middle" height="25" colspan="2"><b><font color="#990000">접속통계 
+          소스 자동 셋업(나누미넷)</font></b></td>
+      </tr>
+      <tr bgcolor="#ffffff"> 
+        <td height="66" colspan="2"><font color="#cc3300"><br>
+          <font color="#333333">※ 이 프로그램은 모두 자유롭게 이용 하실 수 있습니다.<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;해당 프로그램은 Microsoft SQL2000에서 사용가능하고 데이터 베이스연결은 
+          OLEDB방식을 사용하였습니다.<br>
+          <br>&nbsp;
+          </font><br>
+          <font color="#000000">※&nbsp;주의 <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;하부 디렉토리 <b>static</b> 폴더는 필히 
+          쓰기권한이 있어야 합니다.</font><br>
+          <b><font color="#333333">&nbsp;<br>
+          &nbsp;타이틀(</font></b><font color="#cc0000">적용될사이트이름</font><b><font color="#333333">)</font></b><font color="#333333">은 
+          사이트명을 입력하시면 됩니다.</font><b><font color="#333333"><br>
+          &nbsp;네임(</font></b><font color="#ce0000">Table이름</font><b><font color="#333333">)</font></b><font color="#333333">은 
+          생성되는 테이블명입니다.가급적 영문을 기입하십시요.<br>
+          </font><b><font color="#333333">&nbsp;DB서버이름(</font></b><font color="#333333"><font color="#ce0000">컴퓨터아이디나 
+          아이피주소</font></font><b><font color="#333333">)</font></b><font color="#333333">에는 
+          해당 DB의 서버의 IP주소 ,도메인이나 호스트명을 입력하십시요.</font><br>
+          &nbsp;<font color="#333333">  &nbsp;&nbsp;예&gt; db.자기도메인&nbsp; 
+          </font><br>
+          <b><font color="#333333">&nbsp;DB이름(</font></b><font color="#333333"><font color="#ce0000">해당 
+          DB</font></font><font color="#333333"><STRONG>)</STRONG>&nbsp;ftp_id입니다. </font> <br>
+          <b><font color="#333333">&nbsp;DB로그인유저(</font></b><font color="#ce0000">해당 
+          DB유저계정</font><b><font color="#333333">)</font></b><font color="#333333"> 
+                는 ftp_id입니다..<br>
+          <b><font color="#333333">&nbsp;DB로그인비밀번호(</font></b><font color="#ce0000">해당유저 
+          password)</font>   는 ftp_pwd입니다.<br>
+          </font></font></td>
+      </tr>
+      <tr bgcolor="#ffffff"> 
+        <td  align="right" width="232"><b><font color="#333333">타이틀(</font></b><font color="#cc0000">적용될사이트이름</font><b><font color="#333333">)</font></b></td>
+        <td width="439"> 
+          <input name="title" class="border" >
+          &nbsp;</td>
+      </tr>
+      <tr bgcolor="#ffffff"> 
+        <td  align="right" width="232"><b><font color="#333333">네임(</font></b><font color="#ce0000">Table이름</font><b><font color="#333333">)</font></b></td>
+        <td width="439"> 
+          <input name="table_name" class="border" >
+          &nbsp;</td>
+      </tr>
+      <tr bgcolor="#ffffff"> 
+        <td  align="right" width="232"><b><font color="#333333">DB서버이름(</font></b><font color="#333333"><font color="#ce0000"> 
+          db.자기도메인</font></font><b><font color="#333333">)</font></b></td>
+        <td width="439"> 
+          <input name="db_server" class="border" >
+          &nbsp;</td>
+      </tr>
+      <tr bgcolor="#ffffff"> 
+        <td  align="right" width="232"><b><font color="#333333">DB이름(</font></b><font color="#333333"><font color="#ce0000"> 
+          ftp_id</font></font><b><font color="#333333">)</font></b></td>
+        <td width="439"> 
+          <input name="db_name" class="border" >
+          &nbsp;</td>
+      </tr>
+      <tr bgcolor="#ffffff"> 
+        <td  align="right" width="232"><b><font color="#333333">DB로그인유저(</font></b><font color="#cc3300"><font color="#ce0000"> 
+          ftp_id</font></font><b><font color="#333333">)</font></b></td>
+        <td width="439"> 
+          <input name="db_user" class="border" >
+        </td>
+      </tr>
+      <tr bgcolor="#ffffff"> 
+        <td  align="right" width="232"><b><font color="#333333">DB로그인비밀번호(</font></b><font color="#ce0000"> 
+          ftp_pwd)</font></td>
+        <td width="439"> 
+          <input name="db_pass" class="border" >
+        </td>
+      </tr>
+      <tr bgcolor="#ffffff"> 
+        <td colspan="2" align="middle"> 
+          <input type="submit" name="Submit" value="확 인" class="border_daily">
+        </td>
+      </tr>
+    </table>
+    <br>
+  </div>
+</form>
+</body>
+</html>
