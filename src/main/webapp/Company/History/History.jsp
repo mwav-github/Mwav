@@ -56,7 +56,7 @@
 						</div>
 
 
-						<div class="col-sm-6  timeline-item">
+						<div class="col-sm-3  timeline-item">
 							<div class="row">
 								<div class="col-sm-11">
 									<div class="timeline-panel credits">
@@ -75,7 +75,7 @@
 							</div>
 						</div>
 
-						<div class="col-sm-6  timeline-item">
+						<div class="col-sm-3  timeline-item">
 							<div class="row">
 								<div class="col-sm-offset-1 col-sm-11">
 									<div class="timeline-panel debits">

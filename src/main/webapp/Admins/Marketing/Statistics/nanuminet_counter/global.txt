@@ -1,0 +1,102 @@
+<SCRIPT LANGUAGE=VBScript RUNAT=Server>
+Sub Application_OnStart
+	
+	 '어플리케이션 변수 설정시작
+	 '필요없으시면 빼도 됩니다.
+	 Application.Lock
+	 Application.contents("current_user") = 0
+	 Application.Unlock
+End Sub
+
+
+
+Sub Session_OnStart
+
+	static_table = "<static_table>"
+
+	'연결개체 생성
+	Set db = Server.CreateObject("ADODB.Connection")
+
+	db.provider = "SQLOLEDB.1" 'SQL서버를 쓴다면 보통 이렇게 쓴다.
+	db.Open("Persist Security Info=False;User ID=<db_user>;password=<db_pass>;Data Source=<db_server>")
+	db.defaultDatabase = "<db_name>"
+		
+
+	'회원통계테이블에서 오늘날짜에 현재시간에 저장되어있는 레코드가 있는지 알아보는 쿼리
+	SQL = "SELECT * FROM "&static_table
+	SQL = SQL&" WHERE s_year= year(getdate())"
+	SQL = SQL&"and s_month=month(getdate()) and s_day = day(getdate()) and s_time = datepart(hh,getdate())"
+
+
+	Set rs= Server.CreateObject("ADODB.Recordset")
+
+	'###레코드 셋 열기 
+	rs.Open SQL,db
+
+
+	If rs.eof or rs.bof Then '오늘날짜와 현재시간에 해당하는 레코드가 없다면 레코드 추가
+
+			SQL = "INSERT INTO "&static_table&" DEFAULT VALUES "
+
+	ELSE '아니면 해당레코드에 카운드 1증가 
+
+
+			s_idx = rs("s_idx")
+
+			SQL = "UPDATE "&static_table 
+			SQL = SQL & " SET s_count=s_count + 1 WHERE s_idx="&s_idx
+
+	End If
+
+	rs.close
+	Set rs = nothing
+
+	'#### 연결객체를 이용한 쿼리실행(빠른실행을 위해 레코드셋객체를 만들지 않음)
+	db.Execute SQL
+
+	db.close
+	Set db = nothing 
+
+	
+	'현재 접속자수 계산 루틴 
+	'필요없다면 다음 루틴 제거
+	If isnull(Application.contents("current_user")) Then 
+	   Application.Lock
+	   Application.contents("current_user") = 1
+	   Application.UnLock	
+	Else 
+	 
+	   Application.Lock	
+	   Application.contents("current_user") = Application.contents("current_user") + 1
+	   Application.Lock		 
+	End If
+End Sub
+
+
+Sub Session_OnEnd
+	    	 
+	'현재 접속자수 계산 루틴 
+	'필요없다면 다음 루틴 제거
+	
+	If isnull(Application.contents("current_user")) Then 
+
+	   Application.Lock
+	   Application.contents("current_user") = 0
+	   Application.Unlock
+    
+	Else 
+       Application.Lock
+	   Application.contents("current_user") = Application.contents("current_user") - 1
+	   Application.UnLock
+	   	
+   End If
+
+
+
+
+	
+End Sub
+Sub Application_OnEnd
+ 
+End Sub
+</SCRIPT>

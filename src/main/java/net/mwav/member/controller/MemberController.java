@@ -20,8 +20,6 @@ import net.common.common.CommandMap;
 import net.mwav.common.module.Common_Utils;
 import net.mwav.common.module.EmailSender;
 import net.mwav.common.module.VerifyRecaptcha;
-import net.mwav.framework.DateLib;
-import net.mwav.framework.SecurityLib;
 import net.mwav.member.service.MemberService;
 import net.mwav.member.vo.Member_tbl_VO;
 
@@ -45,10 +43,7 @@ public class MemberController {
 	String mode;
 	HttpServletRequest request;
 
-	@Inject
-	SecurityLib securityLib; 
-	 
-	
+
 	@Autowired
 	Member_tbl_VO member_tbl_VO;
 	
@@ -612,7 +607,7 @@ public class MemberController {
 		System.out.println("gRecaptchaResponse"+gRecaptchaResponse);
 		boolean valid;
 		// Verify CAPTCHA.
-		valid = securityLib.recapchaVerify(gRecaptchaResponse);
+		valid = VerifyRecaptcha.verify(gRecaptchaResponse);
 		if (!valid) {
 			// RECAPTCHA 오류 (false)
 			loginCheck = 6;

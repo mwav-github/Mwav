@@ -22,7 +22,6 @@ import net.mwav.statistics.vo.StatisticsLogVO;
 import net.mwav.statistics.vo.StatisticsVO;
 import net.mwav.common.module.Common_Utils;
 
-import net.mwav.framework.MathLib;
 
 @Controller
 public class StatisticsController {
@@ -31,8 +30,6 @@ public class StatisticsController {
 	@Autowired
 	private HttpServletRequest request;
 
-	@Inject
-	MathLib mathLib;
 	
 	static Common_Utils cou = new Common_Utils();
 	String mode;

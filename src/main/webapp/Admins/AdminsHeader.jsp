@@ -113,7 +113,7 @@
 				<li><a href="/admins/staff/stfList.mwav?mm=firms"
 					title="1.회원기본정보 2.회원부가정보 3.회원평가치 4.회원가입">회원관리</a></li>
 				<li class="active"><a
-					href="/HomePage/DefaultFrameset.mwav?mm=crm"
+					href="/admins/marketing/statistics/statsList.mwav?mm=crm"
 					title="1.통계관리 2.인적자원 3.상품통계 4.회원메일 5.임박기념일 6.이벤트목록 7.고객충성도">마케팅관리</a></li>
 				<li><a href="/admins/staff/stfList.mwav"
 					title="1.시스템상태요약 2.로그관리">시스템관리</a></li>

@@ -86,7 +86,7 @@ public class CategoryAdminsController {
 
 
 
-		String mm = "category";
+		String mm = "caset";
 		mv.addObject("mm", mm);
 				
 		return mv;
@@ -106,7 +106,7 @@ public class CategoryAdminsController {
 		
 		categoryAdminsService.insertCategoryRelationForm(commandMap.getMap());		
 
-		String mm = "category";
+		String mm = "caset";
 		mv.addObject("mm", mm);
 
 		return mv;
@@ -129,7 +129,7 @@ public class CategoryAdminsController {
 		
 		mv.addObject("selectListCategory", selectListCategory);
 		mv.addObject("selectCategoryGoodsList", selectCategoryGoodsList);
-		String mm = "category";
+		String mm = "caset";
 		mv.addObject("mm", mm);
 
 		return mv;
