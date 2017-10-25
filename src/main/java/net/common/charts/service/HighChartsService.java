@@ -5,23 +5,19 @@ import net.common.charts.vo.SeriesVO;
 import net.common.charts.vo.SeriesVO_Arrary;
 import net.common.charts.vo.SeriesVO_Arrary2;
 import net.common.charts.dao.HighChartsDAO;
-import net.mwav.framework.DateLib;
 
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.inject.Inject;
 
 @Service
 public class HighChartsService {
 
-	@Inject
-	DateLib dateLib;
+	
 
 	@Resource(name = "highChartsDAO")
 	private HighChartsDAO HighChartsDAO;
