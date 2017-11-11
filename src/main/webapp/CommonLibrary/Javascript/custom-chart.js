@@ -309,7 +309,7 @@ function getRemoteDataDrawColumnChart(url, chartType) {
 
 			// chartType.highchart.chart.type = chartType;
 			chartType.highchart.chart.type = type;
-
+			console.log('출력'+data.series);
 			$.each(data.series, function(i, seriesItem) {
 				console.log(seriesItem);
 				var series = {
@@ -347,12 +347,13 @@ function getRemoteDataDrawPieChart(url, chartType) {
 		url : url,
 		dataType : 'json',
 		success : function(data) {
-
 			var title = data.title;
 			// alert(xTitle);
 			var divId = data.divId;
 			var type = data.chartType;
+			var seriesArrary2 = data.list_2;
 
+			console.log('출력1'+seriesArrary2);
 			// populate the lineChart options (highchart)
 			chartType.highchart.title.text = title;
 			chartType.highchart.chart.renderTo = divId;
@@ -361,6 +362,25 @@ function getRemoteDataDrawPieChart(url, chartType) {
 			chartType.highchart.chart.type = type;
 
 			$.each(data.seriesArrary2, function(i, seriesItem) {
+				console.log(seriesItem);
+				var series = {
+					data : []
+				};
+				series.name = seriesItem.name;
+				//console.log("Data1 (" + i + "): " + seriesItem.name);
+				/*
+				 * console.log("Data (" + i + "): " + seriesItem.data);
+				 * series.data.push(parseFloat(seriesItem.data));
+				 */
+				$.each(seriesItem.data, function(j, seriesItemData) {
+					//console.log("Data (" + j + "): " + seriesItemData);
+					// parseFloat에서 바꿔줌으로서 소수점 안나오도록
+					series.data.push(parseInt(seriesItemData));
+				});
+
+				chartType.highchart.series[i] = series;
+			});
+			/*$.each(data.seriesArrary2, function(i, seriesItem) {
 				var series = {
 						data : []
 					};
@@ -372,10 +392,10 @@ function getRemoteDataDrawPieChart(url, chartType) {
 				//series.name = 'screensize';
 				//console.log("Data1 (" + i + "): " + seriesItem.name);
 				//console.log("Data2 (" + i + "): " + seriesItem.data);
-				/*data.name = seriesItem.name;
+				data.name = seriesItem.name;
 				//series.data.y(parseInt(seriesItemData));
 				data.y = parseInt(seriesItem.y);
-				data.color = "#00FF00";*/
+				data.color = "#00FF00";
 				//data.y = parseInt(seriesItem.data);
 				//Unable to set property 'name' of undefined or null reference  y도 동일.
 				//series.data.name = seriesItem.name;
@@ -385,9 +405,9 @@ function getRemoteDataDrawPieChart(url, chartType) {
                 //console.log("seriesy"+series.data.y);
                // console.log("seriesname"+series.data.name);
 				//series.data.name = seriesItem.name;
-					series.data.push(seriesItem);
+					//series.data.push(seriesItem);
 				
-/*				$.each(seriesItem.data, function(e, seriesItemData) {							    
+				$.each(seriesItem.data, function(e, seriesItemData) {							    
 					console.log("Data (" + e +"): "+seriesItemData) ;
 				    //console.log("seriesItem.name"+seriesItem.name);
 				    //console.log("seriesItem.data"+seriesItem.data);
@@ -396,10 +416,10 @@ function getRemoteDataDrawPieChart(url, chartType) {
 					//series.data.push(seriesItem.name
 					series.data.y = parseInt(seriesItemData);
 					series.data.name = '11';
-				});*/
+				});
 
 				//seriesItemName=JSON.parse(seriesItemName);
-				/*$.each(seriesItem.name, function(a, seriesItemName) {	
+				$.each(seriesItem.name, function(a, seriesItemName) {	
 					console.log("Data (" + a +"): "+seriesItemName) ;
 				    //console.log("seriesItem.name"+seriesItem.name);
 				    //console.log("seriesItem.data"+seriesItem.data);
@@ -407,11 +427,11 @@ function getRemoteDataDrawPieChart(url, chartType) {
 					//series.data.y = seriesItemData.name;
 					//series.data.push(seriesItem.name
 					
-				});*/
+				});
 				//series.data.name = seriesItem.name;
 
 				chartType.highchart.series[i] = series;
-			});
+			});*/
 
 			// draw the chart
 			chartType.create();

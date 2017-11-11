@@ -1,7 +1,36 @@
 <%@ page contentType="text/html;charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<%--추후 서버사이드에서 내용은 가져온다. --%>
+<meta property="fb:app_id" content="956230164513468" />
+<%-- 앱아이디 --%>
+
+
+<c:choose><c:when test="${requestScope.meta_image ne null }">
+<meta property="og:image" content="${requestScope.meta_image }" />
+<meta name="twitter:image" content="${requestScope.meta_image }" />
+<meta property="og:title" content="${requestScope.title }" />
+<meta property="og:description"
+	content="${requestScope.description }" />
+<%-- 트위터 카드에 보여줄 대표 이미지 URL--%>
+</c:when><c:otherwise>
+<meta name="twitter:image" content="http://www.mwav.net/Images/CompanyLogos/CompanyLogo.jpg" />
+<meta property="og:image" content="http://www.mwav.net/Images/CompanyLogos/CompanyLogo.jpg" />
+<meta property="og:title" content="Mwav" />
+<meta property="og:description"
+	content="All contents are copyright by Mwav.net" />
+</c:otherwise></c:choose>
+
+<%-- 웹 사이트의 제목 --%>
+<meta property="og:type" content="website" />
+<%-- 사이트 종류--%>
+<%-- <meta property="og:image" content="http://www.mwav.net/Images/CompanyLogos/CompanyLogo.jpg" /> 대표 이미지 URL (이미지를 여러 개 지정할 수 있음) --%>
+<%-- <meta property="og:image" content="http://chongmoa.com/대표이미지2.png" /> 대표 이미지 URL (이미지를 여러 개 지정할 수 있음) --%>
+<meta property="og:site_name" content="Mwav.net" />
+<%--웹 사이트의 제목 --%>
+<%-- <meta property="og:url" content="http://chongmoa.com" /> 표시하고싶은URL --%>
+
+<%--  페이지 설명 --%>
+
 <%--트위터 --%>
 <meta name="twitter:card"
 	content="All contents are copyright by Mwav.net" />
@@ -15,36 +44,5 @@
 <%-- 트위터 카드에 사이트 배포자 트위터아이디 --%>
 <meta name="twitter:creator" content="@Mwav.net" />
 <%-- 트위터 카드에 배포자 트위터아이디 --%>
+<%--페이스북 카카오톡 구글 플러스 추적(스크랩가능여부) : https://developers.facebook.com/tools/debug/  --%>
 
-<%--페이스북 카카오톡 구글 플러스
-추적(스크랩가능여부) : https://developers.facebook.com/tools/debug/   
---%>
-
-<c:choose>
-	<c:when test="${requestScope.meta_image ne null }">
-		<meta property="og:image" content="${requestScope.meta_image }" />
-		<meta name="twitter:image" content="${requestScope.meta_image }" />
-		<%-- 트위터 카드에 보여줄 대표 이미지 URL--%>
-	</c:when>
-	<c:otherwise>
-		<meta property="og:image"
-			content="http://www.mwav.net/Images/CompanyLogos/CompanyLogo.jpg" />
-		<meta name="twitter:image"
-			content="http://www.mwav.net/Images/CompanyLogos/CompanyLogo.jpg" />
-	</c:otherwise>
-</c:choose>
-
-<meta property="og:title" content="Mwav" />
-<%-- 웹 사이트의 제목 --%>
-<meta property="og:type" content="website" />
-<%-- 사이트 종류--%>
-<%-- <meta property="og:image" content="http://www.mwav.net/Images/CompanyLogos/CompanyLogo.jpg" /> 대표 이미지 URL (이미지를 여러 개 지정할 수 있음) --%>
-<%-- <meta property="og:image" content="http://chongmoa.com/대표이미지2.png" /> 대표 이미지 URL (이미지를 여러 개 지정할 수 있음) --%>
-<meta property="og:site_name" content="Mwav.net" />
-<%--웹 사이트의 제목 --%>
-<%-- <meta property="og:url" content="http://chongmoa.com" /> 표시하고싶은URL --%>
-<meta property="og:description"
-	content="All contents are copyright by Mwav.net" />
-<%--  페이지 설명 --%>
-<meta property="fb:app_id" content="956230164513468" />
-<%-- 앱아이디 --%>

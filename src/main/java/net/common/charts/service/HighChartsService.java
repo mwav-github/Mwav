@@ -4,6 +4,7 @@ import net.common.charts.vo.DataVO;
 import net.common.charts.vo.SeriesVO;
 import net.common.charts.vo.SeriesVO_Arrary;
 import net.common.charts.vo.SeriesVO_Arrary2;
+import net.common.charts.vo.SeriesVO_C;
 import net.common.charts.dao.HighChartsDAO;
 
 import org.springframework.stereotype.Service;
@@ -111,26 +112,46 @@ public class HighChartsService {
 				"Run Dates", "column", Arrays.asList(page), list_2);
 	}
 
+
 	public DataVO selectListClientScreenSize() {
 		// TODO Auto-generated method stub
 		List<SeriesVO_Arrary2> list = HighChartsDAO.selectListClientScreenSize();
 
+		//vo.setColor("#00FF00");
 		double[] y = new double[list.size()];
 		String[] page = new String[list.size()];
-		String[] color = new String[list.size()];
+		//String[] color = new String[list.size()];
 		for (int i = 0; i < list.size(); i++) {
+			SeriesVO_Arrary2 vo = new SeriesVO_Arrary2();
 			y[i] = list.get(i).getY();
 			page[i] = list.get(i).getName();
-
+			//list.set(i, vo.setColor("#00FF00"));
+			//color[i] = "#00FF00";
+			
+			//중간에 색만 넣을수없으니 vo 다시 세팅하고 list add해준다. 
+			vo.setColor("#00FF00");
+			vo.setName(list.get(i).getName());
+			vo.setY(list.get(i).getY());
+			//vo.setColor("#00FF00");
+			//list.add(i, vo);
+			//list.set(i, vo).setColor("1");
+			list.set(i, vo);
+			//list.set(i, vo).setColor("#00FF00");
+			System.out.println("리스트 출력" +list);
 			System.out.println("Size = " + list.size());
 			System.out.println("Name = " + list.get(i).getName());
+			System.out.println("Color = " + list.get(i).getColor());
 			System.out.println("Y = " + list.get(i).getY());
 			// System.out.println("x"+ x);
 		}
+		
+		List<SeriesVO_C> list_2 = new ArrayList<SeriesVO_C>();
 
+		list_2.add(new SeriesVO_C("Count", list));
+		System.out.println("list"+list);
 		// String[] categories = new String[] {"Mont",
 		// "14 Feb '13","15 Mar '13","11 Apr '13","19 May '13","23 Jun '13","3 Jul '13","8 Aug '13","5 Sep '13","17 Oct '13","23 Nov '13","5 Dec '13"};
-		return new DataVO("chart2-container", "abc", "pie", list);
+		return new DataVO("chart2-container", "abc", "pie", list_2);
 	}
 
 }

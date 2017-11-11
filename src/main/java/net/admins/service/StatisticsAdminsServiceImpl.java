@@ -41,6 +41,28 @@ public class StatisticsAdminsServiceImpl implements StatisticsAdminsService {
 	}
 
 
+	@Override
+	public Map<String, Object> selectOneStatView(int statistics_id) {
+		// TODO Auto-generated method stub
+		return  statisticsAdminsDAO.selectOneStatView(statistics_id);
+	}
+
+
+	@Override
+	public List<Map<String, Object>> selectListStatLogList(
+			int statistics_id) {
+		// TODO Auto-generated method stub
+		return  statisticsAdminsDAO.selectListStatLogList(statistics_id);
+	}
+
+
+	@Override
+	public List<Map<String, Object>> selectListStatLogDateList(int statistics_id) {
+		// TODO Auto-generated method stub
+		return  statisticsAdminsDAO.selectListStatLogDateList(statistics_id);
+	}
+
+
 	
 
 }

@@ -12,10 +12,7 @@
 container 안에 포함시키면된다.
 
 -->
-<!-- imsi -->
-<link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"
-	rel="stylesheet">
+
 
 <input type="hidden" name="pageNum" />
 <%-- <div id="table_reset" class="table-responsive">

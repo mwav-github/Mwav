@@ -150,7 +150,7 @@
 															name="statistics_id"
 															value="${RselectListStatistics.statistics_id }">
 														<td class="col-md-1 hidden-xs"><a
-															href="javascript:window.location.href='/admin/boardNotice/ntmView.mwav?bUsers_id=${RselectListStatistics.statistics_id}'">${RselectListStatistics.statistics_id}</a></td>
+															href="javascript:window.location.href='/admins/marketing/statistics/statsView.mwav?statistics_id=${RselectListStatistics.statistics_id}'">${RselectListStatistics.statistics_id}</a></td>
 														<td class="col-md-2 hidden-xs">${RselectListStatistics.stMember_id}
 															/ ${RselectListStatistics.stPromoterId}</td>
 														<td class="col-md-4 hidden-xs">

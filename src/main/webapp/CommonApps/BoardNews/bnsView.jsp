@@ -4,26 +4,9 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <script src="//cdn.ckeditor.com/4.4.6/basic/ckeditor.js"></script>
 <!-- imsi -->
-<link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"
-	rel="stylesheet">
-<link href="/resources/JsFramework/Bootstrap/bootstrap-social.css"
-	rel="stylesheet">
-
-<!-- 소제목 -->
-<!-- ----- 
-색 : http://the3.tistory.com/49
-
-<tr class="active">...</tr>
-<tr class="success">...</tr>
-<tr class="warning">...</tr>
-<tr class="danger">...</tr>
-<tr class="active">...</tr>
-
--->
 
 <!-- Content Column -->
-<div class="row news_fontfamilly" id="news_top">
+<div class="row news_fontfamilly" >
 	<form role="form">
 		<%-- <table class="table-responsive table table-striped">
 			<thead>
@@ -108,7 +91,7 @@
 		<hr>
 		<p>
 			<i class="fa fa-clock-o"></i> Last Modified:
-			${selectOneBnsView.fmBnsUpdateDt} | Topic: ${selectOneBnsView.bnGroup}
+			${selectOneBnsView.fmbnUpdateDt} | Topic: ${selectOneBnsView.bnGroup}
 		</p>
 		<hr>
 		<div class="text-right">

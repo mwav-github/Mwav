@@ -26,4 +26,25 @@ public class StatisticsAdminsDAO extends AbstractDAO {
 	}
 
 
+	public List<Map<String, Object>> selectListStatLogList(int statistics_id) {
+		// TODO Auto-generated method stub
+		return (List<Map<String, Object>>) selectList(
+				"statisticsAdminsDAO.selectListStatLogList", statistics_id);
+	}
+
+
+	public Map<String, Object> selectOneStatView(int statistics_id) {
+		// TODO Auto-generated method stub
+		return (Map<String, Object>) selectOne(
+				"statisticsAdminsDAO.selectOneStatView", statistics_id);
+	}
+
+
+	public List<Map<String, Object>> selectListStatLogDateList(int statistics_id) {
+		// TODO Auto-generated method stub
+		return (List<Map<String, Object>>) selectList(
+				"statisticsAdminsDAO.selectListStatLogDateList", statistics_id);
+	}
+
+
 }

@@ -34,7 +34,7 @@
 <div class="container">
 
 	<div class="row">
-		<div class="col-lg-12">
+		<div class="col-lg-12" id="notice_top">
 			<h1 class="page-header">
 				CustomerService <small> ${breadcrumb}</small>
 			</h1>

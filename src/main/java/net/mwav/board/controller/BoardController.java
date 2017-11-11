@@ -130,7 +130,12 @@ public class BoardController {
 
 			String meta_image = (String) selectOneBnsView.get("bnRelatedLink");
             //meta태그 이미지 
+			String title = (String) selectOneBnsView.get("bnTitle");
+			String description = (String) selectOneBnsView.get("bnSubTitle");
+            //meta태그 이미지 
 			mv.addObject("meta_image", meta_image);
+			mv.addObject("title", title);
+			mv.addObject("description", description);
 			mv.addObject("selectOneBnsView", selectOneBnsView);
 		}
 
@@ -339,8 +344,12 @@ public class BoardController {
 			mv.addObject("page_header", "Announcement");
 			
 			String meta_image = (String) selectOneBuView.get("buRelatedLink");
+			String title = (String) selectOneBuView.get("buTitle");
+			String description = (String) selectOneBuView.get("buSubTitle");
             //meta태그 이미지 
 			mv.addObject("meta_image", meta_image);
+			mv.addObject("title", title);
+			mv.addObject("description", description);
 			mv.addObject("selectOneBuView", selectOneBuView);
 		}
 		System.out.println("view찍히낭 = " + mv);

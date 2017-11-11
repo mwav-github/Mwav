@@ -8,13 +8,31 @@
 	
 
 	<!-- /*========================================보기========================================*/ -->
-
+	<select id="selectOneStatView" parameterType="int" resultType="hashmap">
+		<![CDATA[
+	        select * from Statistics_tbl where statistics_id = #{statistics_id}
+		]]>
+	</select>
 	
 	<!-- /*========================================수정========================================*/ -->
 
 	
 	<!--/*========================================리스트(SelectOne, SelectList 순)========================================*/-->
 
+<!--	  select *, date_format(slStatLogDt, '%Y%m%d') AS date from StatisticsLog_tbl where statistics_id = #{statistics_id} AND date_format(slStatLogDt, '%Y%m%d') = #{date} -->
+	<select id="selectListStatLogList" parameterType="int" resultType="hashmap">
+	<![CDATA[
+	  select *, date_format(slStatLogDt, '%Y%m%d') AS date from StatisticsLog_tbl where statistics_id = #{statistics_id} 
+	]]>
+	</select>
+	
+		<select id="selectListStatLogDateList" parameterType="int" resultType="hashmap">
+	<![CDATA[
+	   select distinct(date_format(slStatLogDt, '%Y%m%d')) AS ndate from StatisticsLog_tbl where statistics_id = #{statistics_id} group by slStatLogDt
+	]]>
+	</select>
+	
+	
 
 	<select id="selectOneGetStatisticsTotalCount" resultType="int">
 	<![CDATA[

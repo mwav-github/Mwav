@@ -533,6 +533,24 @@ http://www.egovframe.go.kr/wiki/doku.php?id=egovframework:dev:dep:build:maven
                     <showDeprecation>true</showDeprecation>
                 </configuration>
             </plugin>
+            
+            <!-- Manifest 테스트. -->
+           <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jar-plugin</artifactId>
+            <configuration>
+                <archive>
+                    <manifest>
+                        <addClasspath>true</addClasspath>
+                    </manifest>
+                    <manifestEntries>
+                        <Built-By>Me</Built-By>
+            <Class-Path>.</Class-Path> 
+                    </manifestEntries>
+                </archive>
+            </configuration>
+        </plugin>
+            
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>

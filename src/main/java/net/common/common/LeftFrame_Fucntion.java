@@ -121,7 +121,7 @@ public class LeftFrame_Fucntion {
 				String[] strhName = { "카테고리등록", "릴레이션등록" };
 				String[] strhEName = { "카테고리등록", "릴레이션등록" };
 				String[] strurl = {
-						"/Admins/Goods/GdsCaInsert.jsp?mm=category",
+						"/Admins/Goods/GdsCaInsert.mwav?mm=category",
 						"/admins/goods/categoryList.mwav",
 
 				};
@@ -147,7 +147,7 @@ public class LeftFrame_Fucntion {
 				String[] strhName = { "StatisticsMgr", "릴레이션등록" };
 				String[] strhEName = { "통계관리", "릴레이션등록" };
 				String[] strurl = {
-						"/admins/marketing/statistics/statsList.mwav",
+						"/admins/marketing/statistics/statsList.mwav?mm=crm",
 						"/admins/goods/categoryList.mwav",
 
 				};

@@ -17,7 +17,7 @@
           FROM Statistics_tbl
           WHERE TO_DAYS(NOW()) - TO_DAYS(stStatisticsDt) <= 7
           GROUP BY `name`
-          ORDER BY data DESC;
+          ORDER BY 'name'
 	]]>
 	</select>	
 	
@@ -26,6 +26,7 @@
 	      SELECT slPageName AS 'name', 
 	      FLOOR(COUNT(*)) AS 'data' 
 	      FROM StatisticsLog_tbl 
+	      WHERE slPageName IS NOT NULL
 	      GROUP BY `name`
 	      ORDER BY data DESC 
 	      limit 0,10;

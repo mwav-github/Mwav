@@ -52,6 +52,10 @@
 	var perfData = window.performance.timing;
 	var pageLoadTime = perfData.mwavmComplete - perfData.navigationStart;
 	var loadTime = "";
+	var userId = '<c:out value="${sessionScope.member.member_id}"/>'; 
+	var pgl = '<c:out value="${param.pgl}"/>';
+    console.log(userId);
+    console.log(pgl);
 <%--https://www.simoahava.com/analytics/page-load-time-universal-analytics/
 
 	//ga('create', 'UA-63623427-1', 'auto');
@@ -61,7 +65,18 @@
 		'cookieDomain' : 'www.mwav.net',
 		'siteSpeedSampleRate' : 100
 	}); // 사이트 속도 측정 100은 전체 체크 (2017_01_10)
-	ga('send', 'pageview');
+	
+	//171102 usderid세팅.
+	if(!(gfn_isNull(userId))){
+	ga('set', 'userId', userId);
+	}
+	//171104 맞춤 측정기준 설정(세션).
+	//https://support.google.com/analytics/answer/2709828?hl=ko
+    //ga('send', 'pageview'); 위에 존재해야한다.
+    if(!(gfn_isNull(pgl))){
+	ga('set', 'pgl', pgl);
+    }
+    ga('send', 'pageview');
 	ga('require', 'displayfeatures');
 <%-- 인구통계부분 추가 (2017_01_10) --%>
 	ga('require', 'linkid', 'linkid.js');
@@ -83,8 +98,6 @@
 
 
 <div class="mgt5">
-
-
 	<%--QA이슈 z-index로 처리 --%>
 	<!--/////////////////////////////////////////////////// -->
 	<jsp:include page="/CommonApps/BoardQnA/qaForm.jsp" flush="false" />
