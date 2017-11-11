@@ -156,7 +156,7 @@
 														<td class="col-md-4 hidden-xs">
 															${RselectListStatistics.stUrlReferrer}</td>
 														<td class="col-md-3 hidden-xs">${RselectListStatistics.stPageName}</td>
-														<td class="col-md-2 hidden-xs">${RselectListNtmList.stStatisticsDt }</td>
+														<td class="col-md-2 hidden-xs">${RselectListStatistics.stStatisticsDt }</td>
 													</tr>
 
 												</c:forEach>
