@@ -2,67 +2,15 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<!-- jQuery Version 1.11.0 -->
-<script src="/CommonLibrary/Javascript/Common.js"></script>
-<!-- 소제목 -->
-
-<!-- ----- -->
-
-<!-- Content Column 
-container 안에 포함시키면된다.
-
--->
-
 
 <input type="hidden" name="pageNum" />
-<%-- <div id="table_reset" class="table-responsive">
-	<table class="table table-striped">
-		<thead>
-			<tr>
-				<th>NO.</th>
-				<th class="hidden-xs">Group</th>
-				<th class="hidden-xs">Title</th>
-				<th class="hidden-xs">WriteDate</th>
-				<th>관리메뉴</th> 삭제예정
-
-			</tr>
-		</thead>
-		<tbody>
-			<c:choose>
-				<c:when test="${fn:length(selectListBnsList) > 0}">
-					<c:forEach var="VselectListBnsList" items="${selectListBnsList}">
-					
-						<tr>
-							<input type="hidden" id="bNews_id" name="bNews_id"
-								value="${VselectListBnsList.bNews_id }">
-							<td class="hidden-xs">${VselectListBnsList.bNews_id}</td>
-							<td class="hidden-xs">${VselectListBnsList.bnGroup}</td>
-							<td><a
-								href="javascript:window.location.href='/board/bnsView.mwav?bNews_id=${VselectListBnsList.bNews_id}'">${VselectListBnsList.bnTitle}</a></td>
-							<td class="hidden-xs">${VselectListBnsList.fmbnInsertDt}</td>
-							<td> <button type="button" class="btn btn-info" onclick="javascript:window.location.href='/board/bnsView.mwav?bNews_id=${FrontboardList.bNews_id}'">보기</button>&nbsp;
-<button type="button" class="btn btn-warning" onclick="javascript:window.location.href='/board/bnsModify.mwav?bNews_id=${FrontboardList.bNews_id}'">수정</button>
-</td>
-						</tr>
-					
-					</c:forEach>
-				</c:when>
-				<c:otherwise>
-					<tr>
-					HTML 요소로 강제 텍스트 입력시 
-						<td colspan="4">조회된 결과가 없습니다.</td>
-					</tr>
-				</c:otherwise>
-			</c:choose>
-		</tbody>
-	</table>
-</div> --%>
-
 <div class="text-enter"></div>
 
 <c:choose>
-	<c:when test="${fn:length(selectListBnsList) > 0}">
+	<c:when
+		test="${fn:length(selectListBnsList) > 0 and selectListBnsList.bnStatus == '2'}">
 		<c:forEach var="VselectListBnsList" items="${selectListBnsList}">
+			<c:if test="${VselectListBnsList.bnStatus eq 2}">
 			<input type="hidden" id="bNews_id" name="bNews_id"
 				value="${VselectListBnsList.bNews_id }">
 			<div class="row">
@@ -83,6 +31,7 @@ container 안에 포함시키면된다.
 				</div>
 			</div>
 			<div class="enter"></div>
+			</c:if>
 		</c:forEach>
 	</c:when>
 	<c:otherwise>

@@ -21,6 +21,7 @@ import net.mwav.statistics.service.StatisticsService;
 import net.mwav.statistics.vo.StatisticsLogVO;
 import net.mwav.statistics.vo.StatisticsVO;
 import net.mwav.common.module.Common_Utils;
+import net.mwav.common.module.HtmlLib;
 
 
 @Controller
@@ -30,6 +31,8 @@ public class StatisticsController {
 	@Autowired
 	private HttpServletRequest request;
 
+	//싱글톤 형태.
+	HtmlLib htmlLib = HtmlLib.getInstance();
 	
 	static Common_Utils cou = new Common_Utils();
 	String mode;
@@ -49,15 +52,10 @@ public class StatisticsController {
 		Map<String, Object> staticMap = cou.getHeadersInfo(request);
 		// 출력 
 		//cou.selectMap(staticMap);
-
-		
-
 		String st_id = null;
 		if (statistics_id == null || statistics_id == "") {
 			st_id = statisticsService.selectNextPk();
-
 			// 세션생성
-
 		} else {
 
 			st_id = statistics_id;
@@ -128,22 +126,26 @@ public class StatisticsController {
 			vo.setStUrlScheme(request.getScheme());
 			// userAgent(클라이언트 환경)
 			vo.setStUserAgent(request.getHeader("User-Agent"));
+			
+			String userAgent = request.getHeader("User-Agent");
+			
+			htmlLib.getParseUserAgent(userAgent, vo);
+			
 			// userHostAddress(클라이언트IP)
 			vo.setStUserHostAddress(realIp);
 			// 무슨내용인가?
-			vo.setStWhatsAbout(Integer.parseInt("123"));
+			//vo.setStWhatsAbout("null");
 
 			// 통계적용일
 			Timestamp stamp = new Timestamp(System.currentTimeMillis());
 			//System.out.println("테스트"+mathLib.getRandomNum(0, 20));
 			vo.setStStatisticsDt(stamp);
 
-			// String stClientScreen = (String)
-			// request.getAttribute("screenSize");
+			 String stClientScreen = (String)request.getAttribute("screenSize");
 			// (String) staticMap.get("browser") 사용자 브라우저
-			vo.setStClientScreen(null);
+			vo.setStClientScreen(stClientScreen);
 			// 유져CPU (브라우저 와 운영체제 정보포함 분리 희망시 - getUserAgentDetail()) 사용
-			vo.setStHTTP_UA_CPU((String) staticMap.get("os"));
+			//vo.setStHTTP_UA_CPU((String) staticMap.get("os"));
 			//
 			statisticsService.insertFirstStatics(vo);
 		} catch (Exception e) {

@@ -8,13 +8,6 @@
 <!-- /////////// -->
 <jsp:include page="/PartsOfContent/Head_Import.jsp" flush="false" />
 <!-- /////////// -->
-<meta property="fb:app_id" content="300013767010843" />
-<meta property="og:type" content="website" />
-<meta property="og:title" content="[Mwav.net] >> [Aervision]" />
-<meta property="og:url" content="http:/www.mwav.net/CompanyItem/ITProducts/Aervision/Aervision.jsp" />
-<meta property="og:description" content="[Mwav.net] >> [Aervision> Biometric authentication & computer vision & machine learning] - Unleash your infinite possibilities with IT Optimization!!" />
-<meta property="og:image" content="http:/www.mwav.net/CompanyItem/ITProducts/Images/AerVison(h250).png" />
-
 <script>
 	$(document).ready(function() {
 		/* affix the navbar after scroll below header */
@@ -73,12 +66,12 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 		<div class="row" id="affix_start">
 			<div class="col-lg-12">
 				<h1 class="page-header">
-					IT Products <small>Aervision</small>
+					IT Solutions <small>Aervision</small>
 				</h1>
 				<ol class="breadcrumb">
-					<li><a href="index.html">Home</a></li>
-					<li>Company Item</li>
-					<li class="active">IT Products</li>
+					<li><a href="/">Home</a></li>
+					<li>IT Solutions</li>
+					<li class="active">Aervision</li>
 				</ol>
 			</div>
 		</div>

@@ -9,7 +9,7 @@
 	<select id="insertFirstStatics" parameterType="net.mwav.statistics.vo.StatisticsVO">
 		<![CDATA[
 			INSERT INTO Statistics_tbl 
-			Values(#{statistics_id}, #{stPageName}, #{stUrlScheme}, #{stUrlHost}, #{stUrlPort}, #{stUrlLocalPath}, #{stQueryString}, #{stUrlPathAndQuery}, #{stPrePageName}, #{stUrlReferrerHost}, #{stUrlReferrer}, #{stPromoterType}, #{stPromoterId}, #{stWhatsAbout}, #{stMember_id}, #{stSessionId}, #{stUserHostAddress}, #{stUserAgent}, #{stClientScreen}, #{stHTTP_UA_CPU}, #{stStatisticsDt} )
+			Values(#{statistics_id}, #{stPageName}, #{stUrlScheme}, #{stUrlHost}, #{stUrlPort}, #{stUrlLocalPath}, #{stQueryString}, #{stUrlPathAndQuery}, #{stPrePageName}, #{stUrlReferrerHost}, #{stUrlReferrer}, #{stPromoterType}, #{stPromoterId}, #{stWhatsAbout}, #{stMember_id}, #{stSessionId}, #{stUserHostAddress}, #{stUserAgent}, #{stClientScreen}, #{stHTTP_UA_CPU}, #{stDeviceType}, #{stDeviceInfo}, #{stBrowserInfo}, #{stCountryInfo}, #{stStatisticsDt} )
 		]]>
 	</select>
 	

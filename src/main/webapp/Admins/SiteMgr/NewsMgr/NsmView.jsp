@@ -93,15 +93,17 @@
 								<table class="table table-striped">
 									<thead>
 										<tr>
-
-											<c:set var="bnStatus" value="${selectOneNsmView.bnStatus }" />
-											<c:if test="${fn:contains(bnStatus, '임시저장상태')}">
-												<span class="pull-right text-danger"><strong>${selectOneNsmView.bnStatus }
+											 <c:set var ="bnStatus" value="${selectOneNsmView.bnStatus }"/>
+											<c:if test="${fn:contains(bnStatus, '삭제완료.')}">
+												<span class="pull-right text-danger"><strong>${bnStatus }
 												</strong></span>
 											</c:if>
-											<c:if test="${fn:contains(bnStatus, '현재공지상태')}">
-												<span class="pull-right text-primary"><strong>${selectOneNsmView.bnStatus }
+											<c:if test="${fn:contains(bnStatus, '임시저장.')}">
+												<span class="pull-right text-primary"><strong>${bnStatus }
 												</strong></span>
+											</c:if>
+											<c:if test="${fn:contains(bnStatus, '공지완료.')}">
+												<span class="pull-right text-success"><strong>${bnStatus } </strong></span>
 											</c:if>
 
 											<div class="enter"></div>
@@ -124,7 +126,7 @@
 											<td>${selectOneNsmView.bnViewCount}</td>
 											<td>${selectOneNsmView.bnInsertDt}</td>
 											<td>${selectOneNsmView.staff_id}</td>
-											<td>${selectOneBnsView.bnOrder}</td>
+											<td>${selectOneNsmView.bnOrder}</td>
 										</tr>
 									</tbody>
 								</table>

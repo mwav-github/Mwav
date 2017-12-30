@@ -85,22 +85,22 @@
 				</div>
 			</div>
 
-			<div class="row col-md-12">
+			<div class="col-md-12">
 				<div class="enter"></div>
 
-				<h4 class="text-left ">
+				<h4 class="text-left" style="color: #78828D;">
 					<strong>- Web / Ad Agency is sort of simple IT- business
 						model suitable for startups.</strong>
 				</h4>
-				<h4 class="text-left ">
+				<h4 class="text-left" style="color: #78828D;">
 					<strong>- Obtains most of IT Solutions by global
 						partnership.</strong>
 				</h4>
-				<h4 class="text-left ">
+				<h4 class="text-left" style="color: #78828D;">
 					<strong>- E-Commerce platform is to be developed in house
 						and services to be operated by stakeholders</strong>
 				</h4>
-				<h4 class="text-left ">
+				<h4 class="text-left" style="color: #78828D;">
 					<strong>- Provides 4 business models including an
 						independent business (E-Commerce).</strong>
 				</h4>

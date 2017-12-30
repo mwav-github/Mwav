@@ -3,17 +3,15 @@
 <!-- container 안에 포함시키면 된다. 
 http://planbong.tistory.com/531
 -->
-<!-- imsi -->
-<link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"
-	rel="stylesheet">
+
 <script
 	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
 <script
 	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/additional-methods.min.js"></script>
 
 <script>
-	<%--//http://www.nextree.co.kr/p11205/
+	
+<%--//http://www.nextree.co.kr/p11205/
 	//http://godpage.tistory.com/entry/Ajax%EC%A0%95%EB%A6%AC-2-XMLHttpRequest%EC%9D%98-%EB%A9%94%EC%84%9C%EB%93%9C%EC%99%80-%ED%94%84%EB%A1%9C%ED%8D%BC%ED%8B%B0	
 	//http://invincure.tistory.com/100
 	//http://www.ppomppu.co.kr/zboard/view.php?id=developer&no=8206
@@ -33,33 +31,32 @@ http://planbong.tistory.com/531
 
 	function idcheck() {
 		var id = document.getElementsByName("mbrLoginId")[0].value;
-		<%--var id = document.getElementsByName("mbrLoginId")[0].value;
+<%--var id = document.getElementsByName("mbrLoginId")[0].value;
 		//alert(id);
 		//var html_object = document.getElementsByName("mbrLoginId");
 		//위에로 하면 HTMLCollection로 나오며 이는  리턴 결과가 복수인 경우에 사용하게 되는 객체다
 		// 아래는 HTML INPUTELEMENT? 하나 !
 		//유효성 체크  후 ajax --%>
-		var input_object = document.getElementById("chkLoginId");
-		
-		var flagPolicy = chkLoginPolicy(id,input_object);
+	var input_object = document.getElementById("chkLoginId");
+
+		var flagPolicy = chkLoginPolicy(id, input_object);
 
 		var queryString = "mbrLoginId=" + id;
 		if (id.length < 6) {
 			document.getElementById("idcheckLayer").innerHTML = "<font color=red>6자리 이상 입력하세요.</font>";
-		} 
-		else if (flagPolicy == true){
-			<%-- 1. XMLHttpReqeust 객체 생성 --%>
-			createXhr();
-			<%-- 2. 이벤트 핸들러 등록 --%>
-			xhr.onreadystatechange = callback; 
-			<%-- callback 함수를 등록
+		} else if (flagPolicy == true) {
+<%-- 1. XMLHttpReqeust 객체 생성 --%>
+	createXhr();
+<%-- 2. 이벤트 핸들러 등록 --%>
+	xhr.onreadystatechange = callback;
+<%-- callback 함수를 등록
 			// 3. open()를 통해 요청관련 설정을 설정 --%>
-			xhr.open("POST", "/member/mbrLoginIdCheck.mwav", true);
-			<%-- 4. Header에 contentType 지정 - post --%>
-			xhr.setRequestHeader("Content-Type",
+	xhr.open("POST", "/member/mbrLoginIdCheck.mwav", true);
+<%-- 4. Header에 contentType 지정 - post --%>
+	xhr.setRequestHeader("Content-Type",
 					"application/x-www-form-urlencoded");
-			<%-- 5. send()를 통해 요청 // 요청 쿼리를 보내준다. --%>
-			xhr.send(queryString); 
+<%-- 5. send()를 통해 요청 // 요청 쿼리를 보내준다. --%>
+	xhr.send(queryString);
 		}
 
 	}
@@ -76,7 +73,7 @@ http://planbong.tistory.com/531
 					//아이디 중복되지 않음
 					//alert('1');
 					document.getElementById("idcheckLayer").innerHTML = resTxt;
-					
+
 				} else {
 					//아이디 중복
 					//alert('11');
@@ -179,21 +176,39 @@ http://planbong.tistory.com/531
 				method="post" action="/member/mbrForm.mwav" onsubmit="msubmit();">
 				<%--action="/member/memberForm.mwav" --%>
 				<div class='form-group'>
-					<label class='control-label col-md-2 col-md-offset-2'
-						for='id_accomodation'>Login Id </label> 
-						
-						
-							<%--tooltip에 html을쓰려면 설정해줘야 한다. --%>
-						<a data-toggle="popover"
-						data-placement="bottom" data-html="true" title="MemberId Rules"
+					<label
+						class='text-color-gray control-label col-md-2 col-md-offset-2'
+						for='id_accomodation'>Login ID <span
+						class="text-color-red"><strong>*</strong></span></label>
+
+
+					<%--tooltip에 html을쓰려면 설정해줘야 한다. --%>
+					<%--모바일 및 테블릿에서는 popover --%>
+					<a class="btn-pointer hidden-lg hidden-md" data-toggle="popover"
+						data-placement="bottom" data-html="true" title="Login ID Rules"
 						data-content="
 	1. 4 ~ 20 자 사이의 문자길이  <br/>	
 	2. 첫 문자는 영어로 시작  <br/>
-	3. 특수문자 사용금지 (제외문자: . _ -) <br/>
+	3. 특수문자 사용금지 <br/> &nbsp;&nbsp;&nbsp;(제외문자: . _ -) <br/>
 	4. 공백문자 사용금지  <br/>
-	5. 대소문자는 식별이 가능하나 구분 및 구별을 하지 않음">
+	5. 대소문자는 식별이 가능하나   <br/> &nbsp;&nbsp;&nbsp;구분 하지 않음">
 
-						<span class="glyphicon glyphicon-question-sign fa-lg text-muted">
+						<span class="glyphicon glyphicon-question-sign fa-lg text-info">
+					</span>
+					</a>
+
+					<%--PC에서는 hover --%>
+					<a class="btn-pointer hidden-xs hidden-sm" data-toggle="popover"
+						data-trigger="hover" data-placement="bottom" data-html="true"
+						title="Login ID Rules"
+						data-content="
+	1. 4 ~ 20 자 사이의 문자길이  <br/>	
+	2. 첫 문자는 영어로 시작  <br/>
+	3. 특수문자 사용금지 <br/> &nbsp;&nbsp;&nbsp;(제외문자: . _ -) <br/>
+	4. 공백문자 사용금지  <br/>
+	5. 대소문자는 식별이 가능하나   <br/> &nbsp;&nbsp;&nbsp;구분 하지 않음">
+
+						<span class="glyphicon glyphicon-question-sign fa-lg text-info">
 					</span>
 					</a>
 
@@ -201,11 +216,11 @@ http://planbong.tistory.com/531
 						<div class='form-group'>
 							<div class='col-md-12 col-sm-12 col-xs-12'>
 
-								<input type="text" class="form-control caps_lockchk" name="mbrLoginId"
-									id="chkLoginId" placeholder="예) Member ID" onchange="idcheck()"
-									maxlength="20" value="" required>
+								<input type="text" class="form-control caps_lockchk"
+									name="mbrLoginId" id="chkLoginId" placeholder="Login ID"
+									onchange="idcheck()" maxlength="20" value="" required>
 							</div>
-							
+
 
 						</div>
 
@@ -224,27 +239,44 @@ http://planbong.tistory.com/531
 					</p>
 				</div>
 				<div class='form-group'>
-					<label class='control-label col-md-2 col-md-offset-2'
-						for='id_accomodation'>Password</label>
-						
-						<a data-toggle="popover" data-placement="bottom" data-html="true"
-									title="Password Rules"
-									data-content="
+					<label
+						class='text-color-gray control-label col-md-2 col-md-offset-2'
+						for='id_accomodation'>Password <span
+						class="text-color-red"><strong>*</strong></span></label>
+
+					<%--모바일 popover--%>
+					<a class="btn-pointer hidden-lg hidden-md" data-toggle="popover"
+						data-placement="bottom" data-html="true" title="Password Rules"
+						data-content="
 	1. 8~255자 사이의 문자길이  <br/>	
 	2. 영문, 숫자, 특수문자로 구성 <br/>
 	3. 특수문자 한 개 이상 꼭 포함 <br/>
 	4. 공백문자 사용금지  <br/>
 	5. 영문 대문자와 소문자의 구분 ">
 
-									<span class="glyphicon glyphicon-question-sign fa-lg text-muted"></span>
-								</a>
+						<span class="glyphicon glyphicon-question-sign fa-lg text-info"></span>
+					</a>
+
+					<%--pc hover--%>
+					<a class="btn-pointer hidden-xs hidden-sm" data-toggle="popover"
+						data-trigger="hover" data-placement="bottom" data-html="true"
+						title="Password Rules"
+						data-content="
+	1. 8~255자 사이의 문자길이  <br/>	
+	2. 영문, 숫자, 특수문자로 구성 <br/>
+	3. 특수문자 한 개 이상 꼭 포함 <br/>
+	4. 공백문자 사용금지  <br/>
+	5. 영문 대문자와 소문자의 구분 ">
+
+						<span class="glyphicon glyphicon-question-sign fa-lg text-info"></span>
+					</a>
 
 					<div class='col-md-6'>
 						<div class='form-group'>
 							<div class='col-md-12 col-sm-12 col-xs-12'>
-								<input type="password" class="form-control caps_lockchk" name="mbrLoginPw"
-									id="chkLoginPW" placeholder="예) 8자리이상" value=""
-									onchange="chkPWPolicy(this.value, this)" required>
+								<input type="password" class="form-control caps_lockchk"
+									name="mbrLoginPw" id="chkLoginPW" placeholder="Password"
+									value="" onchange="chkPWPolicy(this.value, this)" required>
 
 							</div>
 							<%-- <div class="col-md-1 col-sm-1 col-xs-1 pull-left">
@@ -255,7 +287,7 @@ http://planbong.tistory.com/531
 						</div>
 					</div>
 				</div>
-				
+
 				<%-- <div class='form-group'>
 					<label class='control-label col-md-2 col-md-offset-2'
 						for='id_accomodation'>Password</label>
@@ -276,11 +308,12 @@ http://planbong.tistory.com/531
 						</div>
 					</div>
 				</div> --%>
-				
+
 				<div class='form-group'>
-					<label class='control-label col-md-2 col-md-offset-2'
-						for='id_title'>Name</label>
-					<div class='col-md-8'>
+					<label
+						class='text-color-gray control-label col-md-2 col-md-offset-2'
+						for='id_title'>Name <span class="text-color-red"><strong>*</strong></span></label>
+					<div class='col-md-6'>
 						<!-- <div class='col-md-2'>
 							<div class='form-group internal'>
 								<select class='form-control' name="" id='id_title'>
@@ -292,73 +325,86 @@ http://planbong.tistory.com/531
 								</select>
 							</div>
 						</div> -->
-						<div class='col-md-3 indent-small'>
+						<div class='col-md-4 indent-small'>
 							<div class='form-group internal'>
 								<input class='form-control caps_lockchk' name="mbrFirstName"
 									id='mbrFirstName' placeholder='First Name' type='text' required>
 							</div>
 						</div>
-						<div class='col-md-3 indent-small'>
+						<div class='col-md-4 indent-small'>
 							<div class='form-group internal'>
 								<input class='form-control caps_lockchk' name="mbrMiddleName"
 									id='mbrMiddleName' placeholder='Middle Name' type='text'>
 							</div>
 						</div>
-						<div class='col-md-3 indent-small'>
+						<div class='col-md-4 indent-small'>
 							<div class='form-group internal'>
-								<input class='form-control caps_lockchk' name="mbrLastName" id='mbrLastName'
-									placeholder='Last Name' type='text' required>
+								<input class='form-control caps_lockchk' name="mbrLastName"
+									id='mbrLastName' placeholder='Last Name' type='text' required>
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class='form-group'>
-					<label class='control-label col-md-2 col-md-offset-2'
-						for='id_adults'>Phone</label>
-					<div class='col-md-8'>
-						<div class='col-md-2'>
+					<label
+						class='text-color-gray control-label col-md-2 col-md-offset-2'
+						for='id_adults'>Phone <span class="text-color-red"><strong>*</strong></span></label>
+					<div class='col-md-6'>
+						<div class='col-md-4'>
 							<div class='form-group internal'>
 								<input type='text' class='form-control col-md-8 caps_lockchk'
-									name="mbrCellPhone_1" placeholder='010' value="" required>
+									name="mbrCellPhone_1" placeholder='' value="" required>
 							</div>
 						</div>
-						<div class='col-md-3 indent-small'>
+						<div class='col-md-4 indent-small'>
 							<div class='form-group internal'>
-								<input type='text' class='form-control caps_lockchk' name="mbrCellPhone_2"
-									placeholder='XXXX' value="" required>
+								<input type='text' class='form-control caps_lockchk'
+									name="mbrCellPhone_2" placeholder='' value="" required>
 							</div>
 						</div>
-						<div class='col-md-3 indent-small'>
+						<div class='col-md-4 indent-small'>
 							<div class='form-group internal'>
-								<input type='text' class='form-control caps_lockchk' name="mbrCellPhone_3"
-									placeholder='XXXX' value="" required>
+								<input type='text' class='form-control caps_lockchk'
+									name="mbrCellPhone_3" placeholder='' value="" required>
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class='form-group'>
-					<label class='control-label col-md-2 col-md-offset-2'
-						for='id_email'>E-mail</label>
+					<label
+						class='text-color-gray control-label col-md-2 col-md-offset-2'
+						for='id_email'>E-mail <span class="text-color-red"><strong>*</strong></span></label>
 					<div class='col-md-6'>
 						<div class='form-group'>
-							<div class='col-md-11'>
-								<input class='form-control caps_lockchk' name="mbrEmail" id='chkEmail'
-									placeholder='E-mail' type='text' onchange="chkEmailPolicy(this.value, this)"
-									required>
+							<div class='col-md-12'>
+								<input class='form-control caps_lockchk' name="mbrEmail"
+									id='chkEmail' placeholder='E-mail' type='text'
+									onchange="chkEmailPolicy(this.value, this)" required>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class='form-group'>
-					<label class='control-label col-md-2 col-md-offset-2' for='id_pets'>Address</label>
-					<p class="col-md-2 col-md-offset-4">
-					<%--onclick 안하면 modal enter누르면 사라진다.  
-					 --%>
+				<div class="form-group">
+					<label
+						class="text-color-gray control-label col-md-2 col-md-offset-2"
+						for="id_pets">Address</label>
+
+					<p class="col-lg-2 col-md-2 col-lg-push-4 col-md-push-4">
+
 						<button class="btn btn-primary btn-block" type="button"
-							data-toggle="modal" data-target=".modal_post" data-dismiss="modal"
-							>주소찾기</button>
+							data-toggle="modal" data-target=".modal_post"
+							data-dismiss="modal">주소찾기</button>
 
 					</p>
+
+					<div class="enter hidden-md hidden-lg"></div>
+
+					<div class="col-lg-4 col-md-4 col-lg-pull-2 col-md-pull-2">
+						<input class="form-control" name="mbrZipcode" id="Zipcode"
+							type="text" placeholder="우편번호" value="" readonly="readonly">
+					</div>
+
+
 					<!-- <div class='col-md-8'>
 						<label><input type="radio" name="optradio" value="0">지번
 							주소</label> <label><input type="radio" name="optradio" value="1">도로명
@@ -368,33 +414,14 @@ http://planbong.tistory.com/531
 				<!-- disable는 제출되지 않는다 즉 값이 전달되지 않음. *중요 -->
 				<div class='form-group'>
 					<div class="col-md-offset-4 col-md-6">
-						<%--readonly에는 required 안먹힌다.  --%>
-						<div class='col-md-11'>
-							<input class='form-control' name="mbrZipcode" id='Zipcode'
-								type='text' placeholder='우편번호' value="" readonly="readonly">
-						</div>
-						<!-- <p class="col-md-1" style="text-align: center">
-						<strong>-</strong>
-					</p>
-					<div class='col-md-2'>
-						<input class='form-control' name="mbrZipcode_2" id='id_first_name'
-							type='text' disabled>
-					</div> -->
+						<input name="mbrAddress_1" class='form-control' id='Address'
+							placeholder='주소' type='text' value="" readonly="readonly">
 
-						<div class="enter hidden-xs hidden-sm"></div>
-						<div class='col-md-11'>
-							<input name="mbrAddress_1" class='form-control' id='Address'
-								placeholder='주소' type='text' value="" readonly="readonly">
-						</div>
-						<div class="enter hidden-xs hidden-sm"></div>
-
-						<div class="col-md-11">
-							<input name="mbrAddress_2" class="form-control"
-								placeholder='나머지 주소' type="text" id="rest_address" />
-						</div>
-
+						<input name="mbrAddress_2" class="form-control"
+							placeholder='나머지 주소' type="text" id="rest_address" />
 						<div class="enter"></div>
 					</div>
+
 				</div>
 
 				<div class='form-group pull-right'>

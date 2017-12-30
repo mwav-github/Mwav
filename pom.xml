@@ -45,6 +45,8 @@ http://www.egovframe.go.kr/wiki/doku.php?id=egovframework:dev:dep:build:maven
             </snapshots>
         </repository>
  
+        <!-- Maven Repository 가 없는 로컬 jar 파일 을 maven project 에 추가하는 방법
+        http://hasunjjang.blogspot.kr/2015/08/posted-by-httpitnp.html-->
         <repository>
          <id>mwavframework</id>
          <name>custom jars</name>
@@ -108,12 +110,12 @@ http://www.egovframe.go.kr/wiki/doku.php?id=egovframework:dev:dep:build:maven
             <version>${org.springframework-version}</version>
         </dependency>
          
-         <!--jdbc 는 스프링에서 테스트용이라서 나중에 삭제 하기 -->
+         <!--jdbc 는 스프링에서 테스트용이라서 나중에 삭제 하기 
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
             <version>${org.springframework-version}</version>
-        </dependency>
+        </dependency>-->
          
         <dependency>
             <groupId>org.springframework</groupId>
@@ -498,6 +500,27 @@ http://www.egovframe.go.kr/wiki/doku.php?id=egovframework:dev:dep:build:maven
         <artifactId>mwavframework</artifactId>
        	 <version>1.0.0</version>
         </dependency>  -->
+        
+        
+        <!-- @UserAgentDetector -->
+		<dependency>
+        <groupId>UserAgent</groupId>
+        <artifactId>UserAgentDetector</artifactId>
+       	 <version>1.0.0</version>
+        </dependency> 
+        
+        <!-- @UserAgentAnalyis 171117 
+        http://www.bitwalker.eu/software/user-agent-utils
+		https://mvnrepository.com/search?q=eu.bitwalker
+		https://javalibs.com/artifact/eu.bitwalker/UserAgentUtils
+		https://javalibs.com/artifact/nl.basjes.parse.useragent/yauaa
+        
+        <dependency>
+   		 <groupId>eu.bitwalker</groupId>
+    	<artifactId>UserAgentUtils</artifactId>
+   		 <version>1.19</version>
+		</dependency>
+        -->
     </dependencies>
      
      
@@ -545,7 +568,7 @@ http://www.egovframe.go.kr/wiki/doku.php?id=egovframework:dev:dep:build:maven
                     </manifest>
                     <manifestEntries>
                         <Built-By>Me</Built-By>
-            <Class-Path>.</Class-Path> 
+            			<Class-Path>.</Class-Path> 
                     </manifestEntries>
                 </archive>
             </configuration>

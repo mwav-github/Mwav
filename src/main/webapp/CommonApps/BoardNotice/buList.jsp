@@ -2,29 +2,14 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<!-- jQuery Version 1.11.0 -->
-<script src="/CommonLibrary/Javascript/Common.js"></script>
-<!-- 소제목 -->
-
-<!-- ----- -->
-
-<!-- Content Column 
-container 안에 포함시키면된다.
-
--->
-<!-- imsi -->
-<link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"
-	rel="stylesheet">
 
 <input type="hidden" name="pageNum" />
-
-
 <div class="text-enter"></div>
 
 <c:choose>
-	<c:when test="${fn:length(selectListBuList) > 0}">
+	<c:when test="${fn:length(selectListBuList) > 0 ">
 		<c:forEach var="VselectListBuList" items="${selectListBuList}">
+			<c:if test="${VselectListBuList.buStatus eq 2}">
 			<input type="hidden" id="bNews_id" name="bNews_id"
 				value="${VselectListBuList.bUsers_id }">
 			<div class="row">
@@ -47,6 +32,7 @@ container 안에 포함시키면된다.
 				</div>
 			</div>
 			<div class="enter"></div>
+			</c:if>
 		</c:forEach>
 	</c:when>
 	<c:otherwise>

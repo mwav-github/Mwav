@@ -41,27 +41,27 @@
 				alt="CompanyLogo"> <!-- <font color="#E5E5E5">Mwav</font> --></a>
 		</div>
 		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="mgt3_5 collapse navbar-collapse"
+		<div class="collapse navbar-collapse "
 			id="bs-example-navbar-collapse-1">
-			<ul class="mgl3 nav navbar-nav lead">
-				<li><a href="/CompanyItem/ITSolutions/OrgChart/OrgChart.mwav"
-					onclick="ga('send', 'event', 'GNB', 'click', 'ITSolutions');"><h4 style="font-size:20px; !important"><strong>IT
+			<ul class="mgt1 mgl3 nav navbar-nav lead ">
+				<li><a href="/CompanyItem/ITSolutions/Aervision/Aervision.mwav"
+					onclick="ga('send', 'event', 'GNB', 'click', 'ITSolutions');"><h4 class="nav_fontsize"><strong>IT
 							Solutions</strong></h4></a></li>
-				<li><a href="/CompanyItem/ITProducts/Aervision/Aervision.mwav"
-					onclick="ga('send', 'event', 'GNB', 'click', 'ITProducts');"><h4 style="font-size:20px; !important"><strong>IT
+				<li><a href="/CompanyItem/ITProducts/Seqrite/Seqrite.mwav"
+					onclick="ga('send', 'event', 'GNB', 'click', 'ITProducts');"><h4 class="nav_fontsize"><strong>IT
 							Products</strong></h4></a></li>
 				<li><a href="/CompanyItem/WebSiteBuilding/WebSiteBuilding.mwav"
-					onclick="ga('send', 'event', 'GNB', 'click', 'WebsiteBuilding');"><h4 style="font-size:20px; !important"><strong>WebSite
+					onclick="ga('send', 'event', 'GNB', 'click', 'WebsiteBuilding');"><h4 class="nav_fontsize"><strong>WebSite
 							Building</strong></h4></a></li>
 				<li><a
 					href="/CompanyItem/DigitalMarketing/DigitalMarketing.mwav"
-					onclick="ga('send', 'event', 'GNB', 'click', 'DigitalMarketing');"><h4 style="font-size:20px; !important"><strong>Digital
+					onclick="ga('send', 'event', 'GNB', 'click', 'DigitalMarketing');"><h4 class="nav_fontsize"><strong>Digital
 							Marketing</strong></h4></a></li>
 				<li><a href="/CompanyItem/ITConsulting/ITConsulting.mwav"
-					onclick="ga('send', 'event', 'GNB', 'click', 'ITConsulting');"><h4 style="font-size:20px; !important"><strong>IT
+					onclick="ga('send', 'event', 'GNB', 'click', 'ITConsulting');"><h4 class="nav_fontsize"><strong>IT
 							Consulting</strong></h4></a></li>
 			</ul>
-			<ul class="nav navbar-nav navbar-right">
+			<ul class="mgt2 nav navbar-nav navbar-right mgl3_1023">
 				<!-- 일반로그인 부분 -->
 				<c:if test="${sessionScope.member ne null }">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
@@ -118,7 +118,7 @@
      중간으로 보내기 위해서 container 추가 (left 메뉴 안의 페이지와 크기 동일) // => 다시 빼고 영역 조절
 --%>
 <header id="myCarousel" class="carousel slide"
-	style="height: 72% !important;">
+	style="height: 55% !important;">
 
 	<!-- Indicators -->
 	<ol class="carousel-indicators">

@@ -4,13 +4,6 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <script src="//cdn.ckeditor.com/4.4.6/basic/ckeditor.js"></script>
  
-<!-- imsi -->
-<link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"
-	rel="stylesheet">
-<%-- 소셜버튼 추가에 따라 --%>
-<link href="/resources/JsFramework/Bootstrap/bootstrap-social.css"
-	rel="stylesheet">
 
 <!-- 소제목 -->
 <!-- ----- 
@@ -46,16 +39,16 @@
 		<hr>
 		<div class="text-right">
 			<a class="btn btn-social-icon btn-facebook"
-				onClick="sendSns('http://www.mwav.net/board/buView.mwav?bUsers_id=${selectOneBuView.bUsers_id}', 'facebook', '${selectOneBuView.buTitle}', 'social', 'notices')"><span
+				onClick="sendSns('http://www.mwav.net/board/buView.mwav?bUsers_id=${selectOneBuView.bUsers_id}', 'facebook', '${selectOneBuView.buTitle}', 'social', 'notices', '${selectOneBuView.buSubTitle}', '${param.pgl}')"><span
 				class="fa fa-facebook"></span></a> <a
 				class="btn btn-social-icon btn-google"
-				onClick="sendSns('http://www.mwav.net/board/buView.mwav?bUsers_id=${selectOneBuView.bUsers_id}','googleplus', '${selectOneBuView.buTitle}', 'social', 'notices')"><span
+				onClick="sendSns('http://www.mwav.net/board/buView.mwav?bUsers_id=${selectOneBuView.bUsers_id}','googleplus', '${selectOneBuView.buTitle}', 'social', 'notices', '${selectOneBuView.buSubTitle}', '${param.pgl}')"><span
 				class="fa fa-google"></span></a> <a
 				class="btn btn-social-icon btn-linkedin"
-				onClick="sendSns('http://www.mwav.net/board/buView.mwav?bUsers_id=${selectOneBuView.bUsers_id}','linkedin', '${selectOneBuView.buTitle}', 'social', 'notices')"><span
+				onClick="sendSns('http://www.mwav.net/board/buView.mwav?bUsers_id=${selectOneBuView.bUsers_id}','linkedin', '${selectOneBuView.buTitle}', 'social', 'notices', '${selectOneBuView.buSubTitle}', '${param.pgl}')"><span
 				class="fa fa-linkedin"></span></a> <a
 				class="btn btn-social-icon btn-twitter"
-				onClick="sendSns('http://www.mwav.net/board/buView.mwav?bUsers_id=${selectOneBuView.bUsers_id}','twitter', '${selectOneBuView.buTitle}', 'social', 'notices')"><span
+				onClick="sendSns('http://www.mwav.net/board/buView.mwav?bUsers_id=${selectOneBuView.bUsers_id}','twitter', '${selectOneBuView.buTitle}', 'social', 'notices', '${selectOneBuView.buSubTitle}', '${param.pgl}')"><span
 				class="fa fa-twitter"></span></a>
 		</div>
 		<div class="enter"></div>

@@ -44,11 +44,10 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 		<div class="row res_width">
 			<div class="col-lg-12">
 				<h1 class="page-header">
-					Company Item <small>IT Consulting</small>
+					IT Consulting
 				</h1>
 				<ol class="breadcrumb">
 					<li><a href="/">Home</a></li>
-					<li>Company Item</li>
 					<li class="active">IT Consulting</li>
 				</ol>
 			</div>

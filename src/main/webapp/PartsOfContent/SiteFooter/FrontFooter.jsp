@@ -1,6 +1,14 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<%-- Customize CSS
+Mwav 관련 별도 css 이며, 추가로 해당 부분은 footer 내 위치해야 할 수도있다.
+css 중 가장 마지막에 호출되어야하며, include 되는 파일 중 css가 하단에 위치하는 경우가 존재하는 이슈가 존재.
+ --%>
+<link href="/resources/CommonLibrary/CSS/mwav_custom.css" rel="stylesheet">
+
+
 <!-- Google Analytics Content Experiment code -->
 <script>
 	function utmx_section() {
@@ -74,7 +82,7 @@
 	//https://support.google.com/analytics/answer/2709828?hl=ko
     //ga('send', 'pageview'); 위에 존재해야한다.
     if(!(gfn_isNull(pgl))){
-	ga('set', 'pgl', pgl);
+	ga('set', 'dimension1', pgl);
     }
     ga('send', 'pageview');
 	ga('require', 'displayfeatures');
@@ -377,6 +385,10 @@
 		</div>
 	</div>
 </div>
+
+
+
+
 
 
 

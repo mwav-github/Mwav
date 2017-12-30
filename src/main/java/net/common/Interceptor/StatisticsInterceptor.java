@@ -140,6 +140,7 @@ public class StatisticsInterceptor extends HandlerInterceptorAdapter {
 
 				String PageName = null;
 				PageName = Common_Utils.setPageName(auth_url);
+				log.info("임시"+PageName);
 				if (statistics_id == null || statistics_id.equals("")) {
 					// Java/1.8.0_25
 					if (userAgent.contains("Java")) {
@@ -164,7 +165,6 @@ public class StatisticsInterceptor extends HandlerInterceptorAdapter {
 					 */
 
 				}
-				// /statistics/stClientScreenUpdateAjax.mwav 해당 업데이트를 막을지는 고민
 				else {
 					log.info("statistics_id insertStatics." + statistics_id);
 
