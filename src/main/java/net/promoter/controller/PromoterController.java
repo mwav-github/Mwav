@@ -9,8 +9,6 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
-
 import net.common.common.CommandMap;
 import net.mwav.common.module.Common_Utils;
 import net.mwav.common.module.Paging;
@@ -136,7 +134,7 @@ public class PromoterController {
 
 	@RequestMapping(value = "/promoter/PmtForm.mwav",method = RequestMethod.POST )
 	public ModelAndView insertPmtForm(CommandMap commandMap,RedirectAttributes rttr,
-		@Valid Promoter_VO promoter,Errors errors) throws Exception {
+		Promoter_VO promoter,Errors errors) throws Exception {
 		ModelAndView mv = new ModelAndView("/Promoter/PmtForm2");
 
 		if(errors.hasFieldErrors("pmtPhone")){

@@ -1,141 +1,142 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
-
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+   
   <welcome-file-list>
     <welcome-file>Index.mwav</welcome-file>
   </welcome-file-list>
-
+    <!-- 인코딩 필터 등록 스프링 제공 -->
   <filter>
     <filter-name>encodingFilter</filter-name>
-    <filter-class>
-            org.springframework.web.filter.CharacterEncodingFilter
-        </filter-class>
-    <!-- 인코딩 필터 등록 스프링 제공 -->
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
     <init-param>
       <param-name>encoding</param-name>
       <param-value>utf-8</param-value>
     </init-param>
   </filter>
- <!--
-  <filter>
-  	<filter-name>findPglFilter</filter-name>
-  	<filter-class>
-  		net.common.Interceptor.FindPglFilter
-  	</filter-class>
-  </filter>   -->
-
   <filter-mapping> <!-- 루트하위 모든 요청에 대한 인코딩 처리를 하겠다는 의미 -->
     <filter-name>encodingFilter</filter-name>
     <url-pattern>*.mwav</url-pattern>
   </filter-mapping>
 
-  <!-- <filter-mapping>
-    <filter-name>findPglFilter  </filter-name>
-    <url-pattern>/*</url-pattern>
-  </filter-mapping>
- -->
-
-
+   
   <!-- Creates the Spring Container shared by all Servlets and Filters -->
   <!-- 이녀석은 말그대로 listener이구요 루트 컨텍스터에 정의되어 있는 것들을 모든 서블릿과 필터가 공유할 수 있게 해준다네요.-->
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
-
-
+   
+   
     <!-- Processes application requests -->
-    <!-- url요청이 발생하면 DispatcherServlet이 처리하도록 설정 -->
-	<servlet>
-		<servlet-name>mwav</servlet-name> <!--서블릿중 DispatcherServlet이구요. 이 서블릿이 공유할수 있는 것들은 servlet-context에 정의를-->
-		<servlet-class> <!-- 서블릿이 앞단에서 요청정보를 핸들링해주는 서블릿 -->
-			org.springframework.web.servlet.DispatcherServlet
-		</servlet-class>
-		<init-param>
-			<param-name>contextConfigLocation</param-name>
-			<param-value>
-				/WEB-INF/config/*-servlet.xml  <!-- 설정 파일이 있는 경로 -->
-			</param-value>
-
-		</init-param>
-		<init-param>
+    <!-- url요청이 발생하면 DispatcherServlet이 처리하도록 설정 --> 
+   <servlet>
+      <servlet-name>mwav</servlet-name> <!--서블릿중 DispatcherServlet이구요. 이 서블릿이 공유할수 있는 것들은 servlet-context에 정의를-->
+      <servlet-class> <!-- 서블릿이 앞단에서 요청정보를 핸들링해주는 서블릿 -->
+         org.springframework.web.servlet.DispatcherServlet
+      </servlet-class>
+      <init-param>
+         <param-name>contextConfigLocation</param-name>
+         <param-value>
+            /WEB-INF/config/*-servlet.xml  <!-- 설정 파일이 있는 경로 -->
+         </param-value>
+         
+      </init-param>
+      <init-param>
             <param-name>enablePooling</param-name>
             <param-value>false</param-value>
         </init-param>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
+      <load-on-startup>1</load-on-startup>
+   </servlet>
+   
+   <!-- mwav에 대한 url-pattern을 정의 앞으로 서블릿에 어떠한 요청을 할 때, .do를 통해서만 요청을 전달
+        WEB-INF 밑에 위치하지는 않았기 때문에, 절대경로로 호출가능.
+        
+        JSP는 JSPServlet를 우선순위로 탄다. // 이미지의 경우 defaultservlet 
+        즉 전체를 태울 수는 없다! 가능하다고 하더라도 너무 복잡해준다.
+        차라리 .mwav 화 시켜라 
+        
+        /* 전체를 태울 수 있다. 근데 이경우 모든 jsp에 대한 return 설정 이슈가 생긴다.
+        / 는 image 는 태울수있다. ico 파일이 걸린다.
+        
+        그냥 .mwav 만 태우고 .mwav 화시켜라 또한 jsp 페이지 내 .mwav 가 있다면 당연히 servlet를 타게된다. 
+        
+        http://xens.tistory.com/m/entry/Spring-Framework-RESTful-Web-Service%EC%99%80-JSPURL-Mapping-%EB%AC%B8%EC%A0%9C%ED%95%B4%EA%B2%B0
+        http://m.egloos.zum.com/hanghee/v/5171628
+        http://kwonnam.pe.kr/wiki/springframework/mvc
+        https://groups.google.com/forum/#!topic/ksug/bISe6QIROQc
+      <url-pattern>/</url-pattern>  좌측의 경우 .jsp 등 걸릴때 하려고했으나 일단은 .mwav만 타는것으로 세팅 
+      <url-pattern>*.do</url-pattern>
 
-	<!-- mwav에 대한 url-pattern을 정의 앞으로 서블릿에 어떠한 요청을 할 때, .do를 통해서만 요청을 전달
-	     WEB-INF 밑에 위치하지는 않았기 때문에, 절대경로로 호출가능.
+    -->
+   <servlet-mapping> 
+      <servlet-name>mwav</servlet-name>
+      <url-pattern>/</url-pattern>
+      <url-pattern>*.mwav</url-pattern>   
+      <url-pattern>*.chart</url-pattern>   
+   </servlet-mapping>
+   
+   <!-- 아래 설정을 통하여url-pattern을 / 등과같이 변경 시 이미지 파일등이 호출되지 않는 경우가 있다.
+   http://yangyag.tistory.com/171
+   -->
+   <servlet-mapping>
+       <servlet-name>default</servlet-name>
+       <url-pattern>*.ico</url-pattern>
+       <url-pattern>*.js</url-pattern>
+       <url-pattern>*.css</url-pattern>
+       <url-pattern>*.jpg</url-pattern>
+       <url-pattern>*.gif</url-pattern>
+       <url-pattern>*.png</url-pattern>
+       <url-pattern>*.swf</url-pattern>
+       <url-pattern>*.svg</url-pattern>
+   </servlet-mapping>
 
-	     JSP는 JSPServlet를 우선순위로 탄다. // 이미지의 경우 defaultservlet
-	     즉 전체를 태울 수는 없다! 가능하다고 하더라도 너무 복잡해준다.
-	     차라리 .mwav 화 시켜라
-
-	     /* 전체를 태울 수 있다. 근데 이경우 모든 jsp에 대한 return 설정 이슈가 생긴다.
-	     / 는 image 는 태울수있다. ico 파일이 걸린다.
-
-	     그냥 .mwav 만 태우고 .mwav 화시켜라 또한 jsp 페이지 내 .mwav 가 있다면 당연히 servlet를 타게된다.
-
-	     http://xens.tistory.com/m/entry/Spring-Framework-RESTful-Web-Service%EC%99%80-JSPURL-Mapping-%EB%AC%B8%EC%A0%9C%ED%95%B4%EA%B2%B0
-	     http://m.egloos.zum.com/hanghee/v/5171628
-	     http://kwonnam.pe.kr/wiki/springframework/mvc
-	     https://groups.google.com/forum/#!topic/ksug/bISe6QIROQc
-	 -->
-	<servlet-mapping>
-		<servlet-name>mwav</servlet-name>
-		<url-pattern>/</url-pattern>
-		<url-pattern>*.do</url-pattern>
-		<url-pattern>*.mwav</url-pattern>
-	</servlet-mapping>
-
-	<!-- 아래 설정을 통하여 .ico 파일을 태우지 않을 수 있다.
-	http://yangyag.tistory.com/171
-	-->
-<servlet-mapping>
-    <servlet-name>default</servlet-name>
-    <url-pattern>*.ico</url-pattern>
-    <url-pattern>*.js</url-pattern>
-    <url-pattern>*.css</url-pattern>
-    <url-pattern>*.jpg</url-pattern>
-    <url-pattern>*.gif</url-pattern>
-    <url-pattern>*.png</url-pattern>
-    <url-pattern>*.swf</url-pattern>
-    <url-pattern>*.svg</url-pattern>
-</servlet-mapping>
-
-
-
-	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
-	<!-- 이녀석은 루트 컨텍스트로 모든 서블릿과 필터들이 공유한다고 합니다. 바로 root-context.xml을 정의해 두었네요-->
-	<!-- ContextLoaderListener와 DispatcherServlet은 각각 WebApplicationContext 인스턴스를 생성하게 된다.
+     <!-- 크로스 사이트(XSS), SQL Injection 스크립트 보안적인 이슈로 강화. 순서도 리스너 등록하고 해야하는듯?-->
+     <!--
+    HTMLTagFilter의 경우는 파라미터에 대하여 XSS 오류 방지를 위한 변환을 처리합니다.
+   우선 HTMLTagFIlter의 경우는 JSP의 <c:out /> 등을 사용하지 못하는 특수한 상황에서 사용하시면 됩니다.
+   (<c:out />의 경우 뷰단에서 데이터 출력시 XSS 방지 처리가 됨)
+   부득히 HTMLTagFilter를 사용하셔야 하는 경우는 web.xml 상에
+   다음과 같이 CertProcessFilter(GPKI 인증 처리 오류 해결) 등록해 주시면 됩니다.
+    -->
+   <filter>
+    <filter-name>HTMLTagFilter</filter-name>
+    <filter-class>net.common.filter.HTMLTagFilter</filter-class>
+  </filter>
+  <filter-mapping> <!-- 루트하위 모든 요청에 대한 인코딩 처리를 하겠다는 의미 -->
+    <filter-name>HTMLTagFilter</filter-name>
+    <url-pattern>*.mwav</url-pattern>
+  </filter-mapping>
+   
+   <!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
+   <!-- 이녀석은 루트 컨텍스트로 모든 서블릿과 필터들이 공유한다고 합니다. 바로 root-context.xml을 정의해 두었네요-->
+   <!-- ContextLoaderListener와 DispatcherServlet은 각각 WebApplicationContext 인스턴스를 생성하게 된다.
          ContextLoaderListener가 생성한 Context가 root가 되고 DispatcherServlet 이 생성한 인스턴스가 root context를
               부모로 사용하는 자식 Context가 된다.
               이때 자식 Context들은 root Context가 제공하는 빈을 사용할 수 있기 때문에  ContextLoaderListener를 이용하여
-              공통 빈을 설정하는 것이다.
-
+              공통 빈을 설정하는 것이다. 
+              
               아래 classpath*:config/spring/context-*.xml 라고 정의했던것을 기억하자.
-              앞으로 우리는 다양한 SQL 파일을 만들것인데, 그것을 일일이 등록해서 사용할 수는 없다.
-          (원래는 xml 파일에 XML도 bean으로 설정해야한다.)
-              그렇지만 다양한 사람들이 작업하는 프로젝트의 특성상, 그것을 일일이 등록할 수 없고, 할 수 있더라도 귀찮은 일이다.
-              따라서 서버가 시작될 때 자동으로 SQL이 정의되어 있는 XML 파일도 읽어오도록 하는것이 필요하다.
-
-
-  	위의 내용과 다른 부분이건 class 파일 생성 후 해당 적용인듯
-  	위는 mwav에 대한 적용부분
-  	 ContextLoaderListener가 생성한 Context가 root가 되고 DispatcherServlet 이 생성한 인스턴스가 root context를
+              앞으로 우리는 다양한 SQL 파일을 만들것인데, 그것을 일일이 등록해서 사용할 수는 없다. 
+          (원래는 xml 파일에 XML도 bean으로 설정해야한다.) 
+              그렇지만 다양한 사람들이 작업하는 프로젝트의 특성상, 그것을 일일이 등록할 수 없고, 할 수 있더라도 귀찮은 일이다. 
+              따라서 서버가 시작될 때 자동으로 SQL이 정의되어 있는 XML 파일도 읽어오도록 하는것이 필요하다.  
+              
+                           
+     위의 내용과 다른 부분이건 class 파일 생성 후 해당 적용인듯 
+     위는 mwav에 대한 적용부분
+      ContextLoaderListener가 생성한 Context가 root가 되고 DispatcherServlet 이 생성한 인스턴스가 root context를
               부모로 사용하는 자식 Context가 된다.
               이때 자식 Context들은 root Context가 제공하는 빈을 사용할 수 있기 때문에  ContextLoaderListener를 이용하여
-              공통 빈을 설정하는 것이다.
+              공통 빈을 설정하는 것이다. 
               이말이다.
                          -->
-    <context-param>
+        <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>classpath*:config/spring/context-*.xml</param-value>
-  	</context-param>
-
-  <!-- 16/09/24 sitemesh로 추가 -->
+        <param-value>classpath*:config/spring/mwav-*.xml</param-value>
+     </context-param>
+  
+  <!-- 16/09/24 sitemesh로 추가  filter단계에서 처리 -->
   <filter>
     <filter-name>sitemesh</filter-name>
     <filter-class>
@@ -144,9 +145,13 @@
   </filter>
   <filter-mapping>
     <filter-name>sitemesh</filter-name>
-    <url-pattern>/Company/*</url-pattern>
-  </filter-mapping>
-
+    <url-pattern>/CustomerService/*</url-pattern>
+    <url-pattern>/Company/*</url-pattern> 
+  </filter-mapping> 
+  
+  <!-- .jsp 페이지 직접 접근 막기
+url : http://blog.naver.com/PostView.nhn?blogId=geerark&logNo=100006896323&parentCategoryNo=&categoryNo=5&viewDate=&isShowPopularPosts=true&from=search
+ -->
   <security-constraint>
   <display-name>JSP Protection</display-name>
   <web-resource-collection>
@@ -157,45 +162,45 @@
     <role-name>nobody</role-name>
   </auth-constraint>
   </security-constraint>
-
+ 
   <security-role>
    <description>
      Nobody should be in this role so JSP files are protected from direct access.
    </description>
    <role-name>nobody</role-name>
    </security-role>
-
- 	<!-- error 페이지 (추후 변동예정) -->
- 	<error-page>
-    	<exception-type>java.lang.Throwable</exception-type>
-    	<location>/MessageView/throwable.mwav</location>
-    </error-page>
- 	<error-page>
-    	<exception-type>java.lang.Exception</exception-type>
-    	<location>/MessageView/exception.mwav</location>
+  
+    <!-- error 페이지 (추후 변동예정) -->
+    <error-page>
+       <exception-type>java.lang.Throwable</exception-type>
+       <location>/MessageView/throwable.mwav</location>
     </error-page>
     <error-page>
-    	<error-code>400</error-code>
-    	<location>/MessageView/400.mwav</location>
+       <exception-type>java.lang.Exception</exception-type>
+       <location>/MessageView/exception.mwav</location>
     </error-page>
     <error-page>
-    	<error-code>401</error-code>
-    	<location>/MessageView/401.mwav</location>
+       <error-code>400</error-code>
+       <location>/MessageView/400.mwav</location>
     </error-page>
     <error-page>
-    	<error-code>403</error-code>
-    	<location>/MessageView/403.mwav</location>
+       <error-code>401</error-code>
+       <location>/MessageView/401.mwav</location>
     </error-page>
     <error-page>
-    	<error-code>404</error-code>
-    	<location>/MessageView/404.mwav</location>
+       <error-code>403</error-code>
+       <location>/MessageView/403.mwav</location>
     </error-page>
     <error-page>
-    	<error-code>500</error-code>
-    	<location>/MessageView/500.mwav</location>
+       <error-code>404</error-code>
+       <location>/MessageView/404.mwav</location>
+    </error-page>
+    <error-page>
+       <error-code>500</error-code>
+       <location>/MessageView/500.mwav</location>
     </error-page>
      <error-page>
-    	<error-code>503</error-code>
-    	<location>/MessageView/503.mwav</location>
+       <error-code>503</error-code>
+       <location>/MessageView/503.mwav</location>
     </error-page>
 </web-app>

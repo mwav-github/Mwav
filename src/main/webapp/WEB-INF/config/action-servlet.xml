@@ -12,7 +12,7 @@
 		<mvc:annotation-driven> 이두개의 설정이 즉 아래 모든 패키지에 스캔을하면서 어노테이션을 확인하면서 전체 다 주입해준다.!!! 
 		원래는 각각각 어디어디어디에 다 지정해서 주입해줘야 했다. 주의할점 : 프로젝트 내 주입할 객체 타입은 하나만 있어야 한다. 만약 
 		두개이상이 있다면 @Qualify 라는 걸로 어떤게 맞는지 체크해줘야 한다. http://mainichibenkyo.tistory.com/242 -->
-<context:component-scan base-package="net"></context:component-scan>
+	<context:component-scan base-package="net"></context:component-scan>
 
 
 	<!-- 이걸 안쓰면js, css 등은 dispatcher servlet를 타지않는다.!!! > http://changpd.blogspot.kr/2013/02/spring.html 
@@ -151,8 +151,10 @@
 			</bean>
 		</mvc:interceptor>
 		<mvc:interceptor>
-         <mvc:mapping path="/**"/>
-         <bean id="PglInterCeptor" class="net.common.Interceptor.PglInterceptor"  > </bean>
-      </mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<bean id="PglInterCeptor" class="net.common.Interceptor.PglInterceptor">
+			</bean>
+		</mvc:interceptor>
 	</mvc:interceptors>
+
 </beans>

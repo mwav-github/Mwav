@@ -7,10 +7,6 @@
 	rel="stylesheet">  -->
 <link href="/resources/JsFramework/Bootstrap/bootstrap-social.css"
 	rel="stylesheet">
-<script src='https://www.google.com/recaptcha/api.js'></script>
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="/resources/JsFramework/Bootstrap/build.css"/>
 
 <head>
 <c:if test="${requestScope.loginCheck eq 2 }">
@@ -55,7 +51,7 @@
 	<c:choose>
 		<c:when test="${requestScope.returnUrl eq null }">
 			<script type="text/javascript">
-
+				
 			<%--http://blog.naver.com/PostView.nhn?blogId=haanul98&logNo=80204508627&categoryNo=0&parentCategoryNo=0&viewDate=&currentPage=1&postListTopCurrentPage=1 --%>
 				location.href = "/";
 			</script>
@@ -68,7 +64,7 @@
 				location.href = returnUrl;
 			</script>
 			<%-- <c:url var="url" value="${requestScope.returnUrl}">
-			</c:url>
+			</c:url> 
 
 			<c:redirect url="${requestScope.returnUrl}" />
 --%>
@@ -77,21 +73,21 @@
 </c:if>
 <script>
  $(function(){
-$("#autoLoginBox").bind("click",function(){
-
-	var autoUse=$("#autoLoginBox").is(":checked");
+$("#checkbox4").bind("click",function(){
+	
+	var autoUse=$("#checkbox4").is(":checked");
 	if(autoUse==false){
-		$("autoLoginVal").val("off");
+		$(".test1").val("off");
 	}else if(autoUse==true){
-		$("autoLoginVal").val("on");
+		$(".test1").val("on");
 	}
-	alert(autoUse);
+	//alert(autoUse);
 	});
 });
-
+ 
 </script>
 </head>
-<%-- 구글 API관련
+<%-- 구글 API관련 
     <meta name="google-signin-scope" content="profile email">
     <meta name="google-signin-client_id" content="881218558153-ndr868i68rlofoo4l2gb488ksabi5q23.apps.googleusercontent.com">
     <script src="https://apis.google.com/js/platform.js" async defer></script>--%>
@@ -99,7 +95,7 @@ $("#autoLoginBox").bind("click",function(){
 
 <%-- 페북 로그인 관련  <script>
 	var FBtoken = "";
-
+	
 	// This is called with the results from from FB.getLoginStatus().
 	function statusChangeCallback(response) {
 		// The response object is returned with a status field that lets the
@@ -118,7 +114,7 @@ $("#autoLoginBox").bind("click",function(){
 		} else if (response.status === 'not_authorized') {
 			// The person is logged into Facebook, but not your app.
 			console.log('not authorized!!');
-
+			
 		} else {
 			// The person is not logged into Facebook, so we're not sure if
 			// they are logged into this app or not.
@@ -139,12 +135,12 @@ $("#autoLoginBox").bind("click",function(){
 	window.fbAsyncInit = function() {
 		FB.init({
 			appId : '{1746137728947385}',
-			cookie : true, // enable cookies to allow the server to access
+			cookie : true, // enable cookies to allow the server to access 
 			xfbml : true, // parse social plugins on this page
 			version : 'v2.5' // use version 2.2
 		});
 
-		// Now that we've initialized the JavaScript SDK, we call
+		// Now that we've initialized the JavaScript SDK, we call 
 		// FB.getLoginStatus().  This function gets the state of the
 		// person visiting this page and can return one of three states to
 		// the callback you provide.  They can be:
@@ -176,13 +172,13 @@ $("#autoLoginBox").bind("click",function(){
 	// Here we run a very simple test of the Graph API after login is
 	// successful.  See statusChangeCallback() for when this call is made.
 	/* function insertAPI() {
-		FB.api('/me?fields=id,first_name,last_name,email,gender,link,picture,verified,friends.fields(id)', function(response) {
+		FB.api('/me?fields=id,first_name,last_name,email,gender,link,picture,verified,friends.fields(id)', function(response) {	
 			console.log(response);
 			var $form = $('<form></form>');
             $form.attr('action', '/member/snsForm.mwav');
             $form.attr('method', 'post');
             $form.appendTo('body');
-
+             
             var fsmMember_id = $('<input type="hidden" value="'+response.id+'" name="fsmMember_id">');
             var fFirst_Name = $('<input type="hidden" value="'+response.first_name+'" name="fFirst_Name">');
             var fLast_Name = $('<input type="hidden" value="'+response.last_name+'" name="fLast_Name">');
@@ -190,13 +186,13 @@ $("#autoLoginBox").bind("click",function(){
             var fGender = $('<input type="hidden" value="'+response.gender+'" name="fGender">');
             var fLink = $('<input type="hidden" value="'+response.link+'" name="fLink">');
             var fPicture = $('<input type="hidden" value="'+response.picture+'" name="fPicture">');
-
+            
             $form.append(fsmMember_id).append(fFirst_Name).append(fLast_Name).append(fEmail).append(fGender).append(fLink).append(fPicture);
             $form.submit();
 						});
-
+		
 	} */
-
+	
 	function permissionAPI() { // permission 거부하였을때 쓰이는 기능
 		FB.api('/me/permissions', function(response) {
 			console.log('permission');
@@ -207,10 +203,10 @@ $("#autoLoginBox").bind("click",function(){
 			    if (response.data[i].status == 'declined') {
 			      declined.push(response.data[i].permission);
 			    }
-			  }
+			  }			
 						});
 	}
-
+	
 	function fbLogin() {
 	FB.login(function(response) {
 	    if (response.authResponse) {
@@ -220,7 +216,7 @@ $("#autoLoginBox").bind("click",function(){
 	            $form.attr('action', '/member/snsForm.mwav');
 	            $form.attr('method', 'post');
 	            $form.appendTo('body');
-
+	             
 	            var fsmMember_id = $('<input type="hidden" value="'+response.id+'" name="fsmMember_id">');
 	            var fFirst_Name = $('<input type="hidden" value="'+response.first_name+'" name="fFirst_Name">');
 	            var fLast_Name = $('<input type="hidden" value="'+response.last_name+'" name="fLast_Name">');
@@ -228,7 +224,7 @@ $("#autoLoginBox").bind("click",function(){
 	            var fGender = $('<input type="hidden" value="'+response.gender+'" name="fGender">');
 	            var fLink = $('<input type="hidden" value="'+response.link+'" name="fLink">');
 	            var fPicture = $('<input type="hidden" value="'+response.picture+'" name="fPicture">');
-
+	            
 	            $form.append(fsmMember_id).append(fFirst_Name).append(fLast_Name).append(fEmail).append(fGender).append(fLink).append(fPicture);
 	            $form.submit();
 	     });
@@ -237,7 +233,7 @@ $("#autoLoginBox").bind("click",function(){
 	    }
 	}, {scope: 'public_profile, email, user_friends'}); // permission 거부 아래 grant?인가를 써서 다시 재 건의 할 수 있음
 	}
-
+	
 	//구글 로그인 api(Spring Security적용 후 완료 예정)
 	function onSignIn(googleUser) {
         // Useful data for your client-side scripts:
@@ -245,21 +241,21 @@ $("#autoLoginBox").bind("click",function(){
         console.log("ID: " + profile.getId()); // Don't send this directly to your server!
         console.log("Name: " + profile.getName());
         console.log("Image URL: " + profile.getImageUrl());
-        console.log("Email: " + profile.getEmail());
+        console.log("Email: " + profile.getEmail()); 
         console.log(JSON.stringify(profile));
+        
 
-
-
+        
         /* var $form = $('<form></form>');
         $form.attr('action', '/member/snsForm.mwav');
         $form.attr('method', 'post');
         $form.appendTo('body');
-
+         
         var fsmMember_id = $('<input type="hidden" value="'+profile.getId()+'" name="fsmMember_id">');
         var fFirst_Name = $('<input type="hidden" value="'+profile.getName()+'" name="fFirst_Name">');
         var fEmail = $('<input type="hidden" value="'+profile.getEmail()+'" name="fEmail">');
         var fPicture = $('<input type="hidden" value="'+profile.getImageUrl()+'" name="fPicture">');
-
+        
         $form.append(fsmMember_id).append(fFirst_Name).append(fEmail).append(fPicture);
         $form.submit(); */
 
@@ -287,7 +283,7 @@ $("#autoLoginBox").bind("click",function(){
 		return false;
 	}
 
-
+	
 </script>
 
 <%--이것때문에 tooltip등이 오류가난다 --%>
@@ -299,7 +295,7 @@ $("#autoLoginBox").bind("click",function(){
 	<div class="col-md-12"
 		style="padding: 5%; box-shadow: 0 0 20px 3px #04A3ED; background: #f7f7f7;">
 
-            <form name="login_form" action="/member/Login.mwav" role="form"
+		<form name="login_form" action="/member/Login.mwav" role="form"
 			class='form-horizontal' method="post"
 			onsubmit="return re_check(document.login_form);">
 			<%--get문으로 넘어온 것은 param으로 받는다. "${param.returnUrl}" --%>
@@ -315,20 +311,19 @@ $("#autoLoginBox").bind("click",function(){
 				<input type="password" class="form-control input-lg caps_lockchk"
 					placeholder="Password" name="mbrLoginPw">
 			</div>
-
+			<%--https://bootsnipp.com/snippets/featured/checkboxradio-css-only 추후 변경 --%>
+			<div class="form-group mgl3">
+				<div class="checkbox checkbox-info">
+					<input id="checkbox4" name="autoLogin" class="styled"
+						type="checkbox"> Keep me
+						signed in.
+				</div>
+			</div>
 
 			<div class="form-group">
 				<button type="submit" class="btn btn-primary btn-lg btn-block">Sign
 					In</button>
 			</div>
- 			<div class="col-md-12">
-                    <div class="checkbox checkbox-info" >
-                        <input id="autoLoginBox"  name="autoLogin" class="styled" type="checkbox">
-                        <label for="autoLoginBox">RememberMe</label>
-                    </div>
-			</div>
-
-
 
 			<%--recapCha --%>
 			<div class="col-md-12">
@@ -349,9 +344,10 @@ $("#autoLoginBox").bind("click",function(){
 		</form>
 
 
-		<%--소셜 로그인 연동부분
+		<%--소셜 로그인 연동부분 
 		중요사항 : col-md-12 외 나머지 것들 col-sm-12 등을 넣으면 버튼 동작이 하지 않음.
 		--%>
+		<input type="hidden" name="test" value="123" />
 		<!-- GOOGLE SIGNIN -->
 		<div class="col-md-12 ">
 			<form action="<c:url value="/signin/google.mwav"/>" method="POST"
@@ -365,10 +361,11 @@ $("#autoLoginBox").bind("click",function(){
 							in with Google</span>
 					</button>
 				</div>
-				<input type="hidden" name="${_csrf.parameterName}"
-					value="${_csrf.token}" /> <input type="hidden" name="scope"
-					value="email profile" />
-				<input type="hidden" name="autoLoginSub" class="autoLoginVal" value="off"/>
+
+				<input type="hidden" name="test" value="123" /> <input
+					type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+				<input type="hidden" name="scope" value="email profile" /> <input
+					type="hidden" name="autoLoginSub" class="test1" value="off" />
 			</form>
 		</div>
 
@@ -385,9 +382,9 @@ $("#autoLoginBox").bind("click",function(){
 							in with Facebook</span>
 					</button>
 				</div>
-				<input type="hidden" name="${_csrf.parameterName}"
-					value="${_csrf.token}" />
-				<input type="hidden" name="autoLoginSub" class="autoLoginVal" value="off"/>
+				<input type="hidden" name="test" value="123" /> <input
+					type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+				<input type="hidden" name="autoLoginSub" class="test1" value="off" />
 			</form>
 		</div>
 
@@ -406,8 +403,8 @@ $("#autoLoginBox").bind("click",function(){
 					</button>
 				</div>
 				<input type="hidden" name="${_csrf.parameterName}"
-					value="${_csrf.token}" />
-				<input type="hidden" name="autoLoginSub" class="autoLoginVal" value="off"/>
+					value="${_csrf.token}" /> <input type="hidden" name="autoLoginSub"
+					class="test1" value="off" />
 			</form>
 		</div>
 
@@ -424,8 +421,8 @@ $("#autoLoginBox").bind("click",function(){
 						with Twitter</span>
 				</button>
 				<input type="hidden" name="${_csrf.parameterName}"
-					value="${_csrf.token}" />
-				<input type="hidden" name="autoLoginSub" class="autoLoginVal" value="off"/>
+					value="${_csrf.token}" /> <input type="hidden" name="autoLoginSub"
+					class="test1" value="off" />
 			</form>
 		</div>
 
@@ -434,12 +431,12 @@ $("#autoLoginBox").bind("click",function(){
 
 
 			<div class="col-md-4">
-				<a href="/MasterPage_1.jsp?mode=Default"><strong>Sign
+				<a href="/MasterPage_1.mwav?mode=Default"><strong>Sign
 						up now</strong></a>
 			</div>
 
 
-			<div class="col-md-8 text-right">
+			<div class="col-md-8">
 				<a href="#IDPWSeek" data-toggle="modal" data-target=".IDPWSeek"
 					role="button" data-toggle="modal"><strong>Forgot your
 						ID or Password?</strong></a>
@@ -517,7 +514,7 @@ $("#autoLoginBox").bind("click",function(){
 				href="/MasterPage_1.jsp?mode=Default"><strong>Sign up
 						now</strong></a></span> --%>
 			<div class="col-md-4">
-				<a href="/MasterPage_1.mwav?mode=SMbrInput"><strong>Sign
+				<a href="/MasterPage_1.mwav?mode=Default"><strong>Sign
 						up now</strong></a>
 			</div>
 
