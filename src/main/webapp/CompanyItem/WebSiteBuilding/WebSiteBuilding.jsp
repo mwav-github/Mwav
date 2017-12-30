@@ -42,12 +42,9 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 		<!-- Page Heading/Breadcrumbs -->
 		<div class="row res_width">
 			<div class="col-lg-12">
-				<h1 class="page-header">
-					Company Item <small>WebSite Building</small>
-				</h1>
+				<h1 class="page-header">WebSite Building</h1>
 				<ol class="breadcrumb">
 					<li><a href="/">Home</a></li>
-					<li>Company Item</li>
 					<li class="active">WebSite Building</li>
 				</ol>
 			</div>
@@ -86,7 +83,8 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 							향상 등 완성도 높고 안정적인 웹 사이트를 제공해 드립니다.!
 						</p>
 
-						<a href="/Templates/FrontTemplate.html" class="btn btn-primary btn-md btn-block">LIVE PREVIEW</a>
+						<a href="/Templates/FrontTemplate.html"
+							class="btn btn-primary btn-md btn-block">LIVE PREVIEW</a>
 					</div>
 					<div class="col-md-8">
 						<img class="img-responsive img-rounded"

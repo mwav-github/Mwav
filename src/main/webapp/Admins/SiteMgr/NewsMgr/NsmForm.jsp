@@ -138,12 +138,25 @@
 														<%--높을수록 TOP (추후 반영)_15.08.01 --%>
 														<input type="hidden" name="bnOrder" value="0" />
 														<%--직원담당자 staff_id 추후 반영예정 --%>
-														<input type="hidden" name="staff_id" value="0" /> <select
-															class="form-control btn-sm" name="bnStatus"
-															value="${updateNsmForm.bnStatus}">
-															<option value="0">임시저장상태</option>
-															<option value="1">현재공지상태</option>
-														</select>
+														<input type="hidden" name="staff_id" value="0" /> 
+														
+														
+														
+														<c:set var="bnStatus"
+															value="${updateNsmForm.bnStatus }" />
+														<c:if test="${fn:contains(bnStatus, '0')}">
+															<span class="pull-right text-danger"><strong>삭제
+															</strong></span>
+														</c:if>
+														<c:if test="${fn:contains(bnStatus, '1')}">
+															<span class="pull-right text-primary"><strong>임시저장
+															</strong></span>
+														</c:if>
+														<c:if test="${fn:contains(bnStatus, '2')}">
+															<span class="pull-right text-success"><strong>게시
+																	중 </strong></span>
+														</c:if>
+														
 														<div class="enter"></div>
 													</div>
 												</tr>
@@ -248,11 +261,14 @@
 														<%--높을수록 TOP (추후 반영)_15.08.01 --%>
 														<input type="hidden" name="bnOrder" value="0" />
 														<%--직원담당자 staff_id 추후 반영예정 --%>
-														<input type="hidden" name="staff_id" value="0" /> <select
-															class="form-control" name="bnStatus">
+														<input type="hidden" name="staff_id" value="0" /> <input
+															type="hidden" name="bnStatus" value="0" />
+														<%-- 		<select
+															class="form-control btn-sm" name="bnStatus"
+															value="${updateNsmForm.bnStatus}">
 															<option value="0">임시저장상태</option>
 															<option value="1">현재공지상태</option>
-														</select>
+														</select> --%>
 														<div class="enter"></div>
 													</div>
 												</tr>
@@ -299,14 +315,14 @@
 												<td><input type="text" class="form-control"
 													placeholder="Text input" name="bnSubTitle"></td>
 											</tr>
-											
-											
+
+
 											<tr>
 												<th class="active">Reference</th>
 												<td><input type="text" class="form-control"
 													placeholder="Text input" name="bnRelatedLink"></td>
 											</tr>
-											
+
 
 											<tr>
 												<th class="active">Content</th>

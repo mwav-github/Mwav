@@ -1,6 +1,8 @@
 @charset "utf-8";
 
-/* mwav card section_3  */
+/* mwav card section_3  
+ * 사용 URL : http://www.mwav.net/CompanyItem/WebSiteBuilding/WebSiteBuilding.mwav
+ * */
 figure.snip1174 {
 	color: #fff;
 	position: relative;
@@ -119,7 +121,9 @@ figure.snip1174:hover   p, figure.snip1174:hover   h2 {
 	}
 }
 
-/* mwav card section */
+/* mwav card section_1_1 
+ * 사용 : 메인페이지 
+ * */
 .news {
 	background: #fff;
 	position: relative;
@@ -137,7 +141,7 @@ figure.snip1174:hover   p, figure.snip1174:hover   h2 {
 	position: relative;
 }
 
-.news   .img-figure     img {
+.news   .img-figure  img {
 	position: relative;
 	overflow: hidden;
 	-webkit-transition: all 1s ease;
@@ -201,6 +205,22 @@ figure.snip1174:hover   p, figure.snip1174:hover   h2 {
 	transition: all 0.5s ease;
 }
 
+.news      p.description2 {
+	position: relative;
+	font-weight: normal;
+	line-height: 22px;
+	font-size: 12px;
+	/*opacity: 0;*/
+	text-align: left;
+	/*padding: 15px 30px 0px 30px; */
+	padding: 70px 30px 0px 30px;
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-ms-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+}
+
 /* 
 .news:hover p.description  {
 	opacity: 1;
@@ -209,6 +229,10 @@ figure.snip1174:hover   p, figure.snip1174:hover   h2 {
 p.more {
 	text-align: center;
 }
+p.more2 {
+	text-align: center;
+}
+
 
 .more     a {
 	position: relative;
@@ -222,6 +246,37 @@ p.more {
 	transition: all 0.5s ease;
 	display: inline-block;
 	color: #28998b;
+}
+
+.more2     a {
+	position: relative;
+	font-size: 13px;
+	margin-top: 10px;
+	display: block;
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-ms-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+	display: inline-block;
+	color: #28998b;
+}
+
+.more2     a:after {
+	content: '';
+	width: 18px;
+	height: 1px;
+	position: absolute;
+	left: 55px;
+	top: 9px;
+	background: #28998b;
+	vertical-align: middle;
+	margin-left: 10px;
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-ms-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
 }
 
 .more     a:after {
@@ -256,6 +311,17 @@ p.more {
 	padding: 3px 15px;
 }
 
+.cat2 {
+	background: #ff5900;
+	color: #fff;
+	text-transform: uppercase;
+	position: absolute;
+	left: 0;
+	top: 20px;
+	z-index: 1;
+	padding: 3px 15px;
+}
+
 /* mwav hover */
 .portfolio-hover {
 	background: rgba( 98, 175, 208, .8);
@@ -278,6 +344,8 @@ p.more {
 	margin-top: -12px;
 	color: #fff
 }
+
+
 
 .portfolio-hover:hover {
 	opacity: 1 color:   white;
@@ -475,6 +543,10 @@ p.more {
 	.jumbotron {
 		border-bottom: 0;
 	}
+	
+.mgt3 {
+	margin-top: 3% !important;
+}
 }
 
 .panel-title {
@@ -890,7 +962,7 @@ body {
 	/*background : #F5F5F5 !important;  shop에만 적용되도록 수정 필요.*/
 	font-family: '맑은 고딕', 'Malgun Gothic', '굴림', 'Gulim',
 		'NanumGothic' !important;
-
+    overflow-x : hidden !important;
 	/* body 선언은 테이블 적용 안된다. -> 별도 적용 필요.*/
 }
 
@@ -1113,13 +1185,16 @@ body {
 /* 로고 수정 위치에 따른 수정 !!
  * 추후 정확히 변경 필요
  * */
-@media screen and (max-width: 800px ) {
+@media screen and (max-width: 1023px) {
 	.logo_800_m {
 		margin-left: -10px !important;
 		margin-top: -8px !important;
 	}
 	.logo_800_h {
 		height: 40px !important;
+	}
+	.mgl3_1023 {
+		margin-left: 3% !important;
 	}
 }
 
@@ -1408,6 +1483,7 @@ padding: 10px 35px; */
 	color: white;
 }
 
+/* 테블릿 경계 */
 @media screen and (max-width: 768px ) {
 	.dropdown-menu_change>li>a {
 		color: white !important;
@@ -1418,6 +1494,11 @@ padding: 10px 35px; */
 	.dropdown-menu_change>li>a:active {
 		background-color: #04a3ed !important;
 	}
+	
+    .mgt3_768 {
+	margin-top: 3% !important;
+}
+	
 }
 
 .menu_shop        .navbar-nav>li>a {
@@ -1571,10 +1652,6 @@ Reference: http://avexdesigns.com/responsive-youtube-embed/
 	padding: 20px 0;
 }
 
-.mgt-1_9 {
-	margin-top: -1.9% !important;
-}
-
 /*margin left 5%*/
 .mgl5 {
 	margin-left: 5% !important;
@@ -1596,9 +1673,6 @@ Reference: http://avexdesigns.com/responsive-youtube-embed/
 	margin-top: 2% !important;
 }
 
-.mgt3 {
-	margin-top: 3% !important;
-}
 
 .mgt3_5 {
 	margin-top: 3.5% !important;
@@ -1607,6 +1681,11 @@ Reference: http://avexdesigns.com/responsive-youtube-embed/
 /*margin top 5%*/
 .mgt5 {
 	margin-top: 5% !important;
+}
+
+/*margin top 10%*/
+.mgt10 {
+	margin-top: 10% !important;
 }
 
 /*margin bottom 5%*/
@@ -1620,6 +1699,19 @@ Reference: http://avexdesigns.com/responsive-youtube-embed/
 
 .mgb3 {
 	margin-bottom: 3% !important;
+}
+
+/*margin top 1% 
+사용 : GNB 로그인 버튼. 
+*/
+
+.mgt1 {
+	margin-top: 1.0% !important;
+}
+
+/*margin top -1.9% */
+.mgt-1_9 {
+	margin-top: -1.9% !important;
 }
 
 /*margin top 4% */

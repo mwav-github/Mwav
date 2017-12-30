@@ -30,7 +30,8 @@ $(document).ready(function() {
         var $img = $lightbox.find('img');
         
         //$lightbox.find('.modal-dialog').css({'width': $img.width()});
-        $lightbox.find('.modal-body').css({'max-height': $(window).height()});
+        $lightbox.find('.modal-body').css({'max-height': ($(window).height() * 0.8)});
+        //$lightbox.find('.modal-body').css({'max-height': '70%'});
         $lightbox.find('.close').removeClass('hidden');
     });
 });

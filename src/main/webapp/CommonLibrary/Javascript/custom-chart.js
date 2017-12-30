@@ -351,7 +351,7 @@ function getRemoteDataDrawPieChart(url, chartType) {
 			// alert(xTitle);
 			var divId = data.divId;
 			var type = data.chartType;
-			var seriesArrary2 = data.list_2;
+			var seriesArrary2 = data.seriesArrary;
 
 			console.log('출력1'+seriesArrary2);
 			// populate the lineChart options (highchart)
@@ -361,8 +361,10 @@ function getRemoteDataDrawPieChart(url, chartType) {
 			// chartType.highchart.chart.type = chartType;
 			chartType.highchart.chart.type = type;
 
-			$.each(data.seriesArrary2, function(i, seriesItem) {
-				console.log(seriesItem);
+			$.each(data.seriesArrary, function(i, seriesItem) {
+				console.log(seriesItem.name);
+				console.log(seriesItem.data);
+				console.log(seriesItem.data.y);
 				var series = {
 					data : []
 				};
@@ -375,7 +377,7 @@ function getRemoteDataDrawPieChart(url, chartType) {
 				$.each(seriesItem.data, function(j, seriesItemData) {
 					//console.log("Data (" + j + "): " + seriesItemData);
 					// parseFloat에서 바꿔줌으로서 소수점 안나오도록
-					series.data.push(parseInt(seriesItemData));
+					series.data.push(seriesItemData);
 				});
 
 				chartType.highchart.series[i] = series;

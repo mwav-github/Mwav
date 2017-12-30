@@ -436,7 +436,7 @@ $("#checkbox4").bind("click",function(){
 			</div>
 
 
-			<div class="col-md-8">
+			<div class="col-md-8 text-right">
 				<a href="#IDPWSeek" data-toggle="modal" data-target=".IDPWSeek"
 					role="button" data-toggle="modal"><strong>Forgot your
 						ID or Password?</strong></a>

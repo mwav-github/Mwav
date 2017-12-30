@@ -143,12 +143,12 @@ public class LeftFrame_Fucntion {
 				}
 			} else if (mm.equals("crm")) { // 카테고리 추가 부분!!!!!!!!!!!
 
-				String[] streName = { "stati", "gci" };
-				String[] strhName = { "StatisticsMgr", "릴레이션등록" };
-				String[] strhEName = { "통계관리", "릴레이션등록" };
+				String[] streName = { "stati", "sche" };
+				String[] strhName = { "StatisticsMgr", "ScheduleMgr" };
+				String[] strhEName = { "통계관리", "일정관리" };
 				String[] strurl = {
 						"/admins/marketing/statistics/statsList.mwav?mm=crm",
-						"/admins/goods/categoryList.mwav",
+						"/Admins/Marketing/ScheduleMgr/ScheView.mwav?mm=crm",
 
 				};
 				String[] strmAuthority = { "1", "1" };

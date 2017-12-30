@@ -93,13 +93,16 @@
 									<thead>
 										<tr>
 										    <c:set var ="buStatus" value="${selectOneNtmView.buStatus }"/>
-											<c:if test="${fn:contains(buStatus, '임시저장상태')}">
-												<span class="pull-right bg-danger"><strong>
+											<c:if test="${fn:contains(buStatus, '삭제완료.')}">
+												<span class="pull-right text-danger"><strong>${selectOneNtmView.buStatus }
 												</strong></span>
 											</c:if>
-											<c:if test="${fn:contains(buStatus, '현재공지상태')}">
-												<span class="pull-right bg-primary"><strong>
+											<c:if test="${fn:contains(buStatus, '임시저장.')}">
+												<span class="pull-right text-primary"><strong>${selectOneNtmView.buStatus }
 												</strong></span>
+											</c:if>
+											<c:if test="${fn:contains(buStatus, '공지완료.')}">
+												<span class="pull-right text-success"><strong>${selectOneNtmView.buStatus } </strong></span>
 											</c:if>
 											<div class="enter"></div>
 										</tr>

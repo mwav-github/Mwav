@@ -35,7 +35,7 @@ public class BoardNewsAdminsServiceImpl implements BoardNewsAdminsService {
 	public void insertNsmForm(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		System.out.println("map=" + map);
-
+		map.put("bnStatus", 1);
 		boardNewsAdminsDAO.insertNsmForm(map);
 	}
 

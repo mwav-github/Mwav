@@ -29,32 +29,42 @@
 				<%-- 크기 줄었을 때 우측에 navbar 역할 --%>
 				<a class="navbar-brand active logo_800_m" href="/"> <img
 					src="/Images/CompanyLogos/CompanyLogo.gif"
-					class="img-thumbnail img-responsive logo_800_h"
-					alt="CompanyLogo"> <!-- <font color="#E5E5E5">Mwav</font> --></a>
+					class="img-thumbnail img-responsive logo_800_h" alt="CompanyLogo">
+					<!-- <font color="#E5E5E5">Mwav</font> --></a>
 			</div>
 			<!-- Collect the nav links, forms, and other content for toggling -->
-			<div class="mgt3_5 collapse navbar-collapse"
+			<div class="collapse navbar-collapse "
 				id="bs-example-navbar-collapse-1">
-				<ul class="mgl3 nav navbar-nav">
-					<li><a href="/CompanyItem/ITSolutions/OrgChart/OrgChart.mwav"
-						onclick="ga('send', 'event', 'GNB', 'click', 'ITSolutions');"><h4 style="font-size:20px; !important"><strong>IT
-								Solutions</strong></h4></a></li>
-					<li><a href="/CompanyItem/ITProducts/Aervision/Aervision.mwav"
-						onclick="ga('send', 'event', 'GNB', 'click', 'ITProducts');"><h4 style="font-size:20px; !important"><strong>IT
-								Products</strong></h4></a></li>
+				<ul class="mgt1 mgl3 nav navbar-nav lead ">
+					<li><a href="/CompanyItem/ITSolutions/Aervision/Aervision.mwav"
+						onclick="ga('send', 'event', 'GNB', 'click', 'ITSolutions');"><h4
+								class="nav_fontsize">
+								<strong>IT Solutions</strong>
+							</h4></a></li>
+					<li><a href="/CompanyItem/ITProducts/Seqrite/Seqrite.mwav"
+						onclick="ga('send', 'event', 'GNB', 'click', 'ITProducts');"><h4
+								class="nav_fontsize">
+								<strong>IT Products</strong>
+							</h4></a></li>
 					<li><a
 						href="/CompanyItem/WebSiteBuilding/WebSiteBuilding.mwav"
-						onclick="ga('send', 'event', 'GNB', 'click', 'WebsiteBuilding');"><h4 style="font-size:20px; !important"><strong>WebSite
-								Building</strong></h4></a></li>
+						onclick="ga('send', 'event', 'GNB', 'click', 'WebsiteBuilding');"><h4
+								class="nav_fontsize">
+								<strong>WebSite Building</strong>
+							</h4></a></li>
 					<li><a
 						href="/CompanyItem/DigitalMarketing/DigitalMarketing.mwav"
-						onclick="ga('send', 'event', 'GNB', 'click', 'DigitalMarketing');"><h4 style="font-size:20px; !important"><strong>Digital
-								Marketing</strong></h4></a></li>
+						onclick="ga('send', 'event', 'GNB', 'click', 'DigitalMarketing');"><h4
+								class="nav_fontsize">
+								<strong>Digital Marketing</strong>
+							</h4></a></li>
 					<li><a href="/CompanyItem/ITConsulting/ITConsulting.mwav"
-						onclick="ga('send', 'event', 'GNB', 'click', 'ITConsulting');"><h4 style="font-size:20px; !important"><strong>IT
-								Consulting</strong></h4></a></li>
+						onclick="ga('send', 'event', 'GNB', 'click', 'ITConsulting');"><h4
+								class="nav_fontsize">
+								<strong>IT Consulting</strong>
+							</h4></a></li>
 				</ul>
-				<ul class="nav navbar-nav navbar-right">
+				<ul class="mgt2 nav navbar-nav navbar-right mgl3_1023">
 					<!-- 일반로그인 부분 -->
 					<c:if test="${sessionScope.member ne null }">
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
@@ -65,8 +75,7 @@
 								class="fa fa-user fa-lg"></i> My Mwav</a>
 
 							<ul class="dropdown-menu dropdown-menu_change">
-								<li><a
-									href="/CustomerService/MemberShip/MemberShip.mwav"
+								<li><a href="/CustomerService/MemberShip/MemberShip.mwav"
 									style="color: #428bca;"><h5>
 											My Account <span class="glyphicon glyphicon-cog pull-right"></span>
 										</h5></a></li>
@@ -76,7 +85,7 @@
 								<li class=""></li>
 								<%--QA 답변 달린 것에 대한 확인. --%>
 								<li><a href="/qa/qaList.mwav" style="color: #428bca;"><h5>
-											Messages <span class="badge pull-right"></span>
+											Messages <span class="badge pull-right"> </span>
 										</h5></a></li>
 
 								<!-- <li><a href="#">Favourites Snippets <span
@@ -86,33 +95,16 @@
 											Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span>
 										</h5></a></li>
 							</ul></li>
-
-						<!-- <li><h5>
-							<a href="/member/LogOut.mwav">LogOut</a>
-						</h5></li> -->
 					</c:if>
 					<c:if test="${sessionScope.member eq null }">
-						<li><a href="/MasterPage.mwav?mode=SMbrLogin&returnUrl=/login/post.mwav"><i class="fa fa-user fa-lg"></i></a></li>
+						<li><a
+							href="/MasterPage.mwav?mode=SMbrLogin&returnUrl=/login/post.mwav"><i
+								class="fa fa-user fa-lg"></i></a></li>
 						<li><a href="/MasterPage_1.mwav?mode=Default"><i
 								class="fa fa-user-plus fa-lg"></i></a></li>
 					</c:if>
 
 				</ul>
-				<%-- <ul class="nav navbar-nav navbar-right">
-					<c:if test="${sessionScope.mbrLoginId ne null }">
-						<li><a
-							href="/CustomerService/CS-MasterPage.jsp?mode=SDMyPage"
-							data-toggle="tooltip" data-placement="bottom"
-							data-original-title="${mbrLoginId}님
-								반갑습니다."><h5> MyPage</h5></a></li>
-						<li><a href="/member/LogOut.mwav"><h5>LogOut</h5></a></li>
-					</c:if>
-					<c:if test="${sessionScope.mbrLoginId eq null }">
-						<li><a href="/login.mwav"><i class="fa fa-user fa-lg"></i></a></li>
-						<li><a href="/MasterPage_1.jsp?mode=Default"><i
-								class="fa fa-user-plus fa-lg"></i></a></li>
-					</c:if>
-				</ul> --%>
 			</div>
 			<!-- /.container -->
 		</div>

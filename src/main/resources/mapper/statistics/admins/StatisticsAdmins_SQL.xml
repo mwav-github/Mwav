@@ -22,13 +22,13 @@
 <!--	  select *, date_format(slStatLogDt, '%Y%m%d') AS date from StatisticsLog_tbl where statistics_id = #{statistics_id} AND date_format(slStatLogDt, '%Y%m%d') = #{date} -->
 	<select id="selectListStatLogList" parameterType="int" resultType="hashmap">
 	<![CDATA[
-	  select *, date_format(slStatLogDt, '%Y%m%d') AS date from StatisticsLog_tbl where statistics_id = #{statistics_id} 
+	  select *, date_format(slStatLogDt, '%Y-%m-%d') AS date from StatisticsLog_tbl where statistics_id = #{statistics_id} 
 	]]>
 	</select>
 	
 		<select id="selectListStatLogDateList" parameterType="int" resultType="hashmap">
 	<![CDATA[
-	   select distinct(date_format(slStatLogDt, '%Y%m%d')) AS ndate from StatisticsLog_tbl where statistics_id = #{statistics_id} group by slStatLogDt
+	   select distinct(date_format(slStatLogDt, '%Y-%m-%d')) AS ndate, DAYNAME(slStatLogDt) AS day from StatisticsLog_tbl where statistics_id = #{statistics_id} group by slStatLogDt
 	]]>
 	</select>
 	

@@ -1,10 +1,11 @@
 <%@ page contentType="text/html;charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<jsp:include page="SNS_Head_Import.jsp" flush="false" />
 <meta name="robots" content="index, follow" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<%--아래 keyword 및 description은 변경 예정. --%>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<jsp:include page="SNS_Head_Import.jsp" flush="false" />
+<%--아래 keyword 및 description은 변경 예정. --%>
 <c:choose>
 	<c:when test="${metaData.keywords eq null }">
 		<meta id="metaKeywords" name="keywords"
@@ -21,26 +22,29 @@
 <meta name="Author" content="Zeus, Peter J." />
 <meta name="copyright" content="All contents are copyright by Mwav.net" />
 <meta name="distribution" content="global" />
-<%--resource는 호출하지않도록 처리. 추후 필요 !!!*** --%>
 <link rel="icon" href="/Images/CompanyLogos/CompanyLogo.ico" />
 <title><c:choose>
 		<c:when test="${metaData.title eq null }">[Mwav.net] >> Unleash your infinite possibilities with IT Optimization!!</c:when>
 		<c:otherwise>${metaData.title }</c:otherwise>
 	</c:choose></title>
-<%-- Mwav CSS--%>
+
+<%-- Mwav CSS 
+유의사항 : bootstrap.mins 위에 위치해야 gnb등 따로 스타일 먹인 부분이 먼저 적용되어 정상적으로 출력된다.
+        만약 bootstrap보다 뒤에 필요한 경우 mwav_custom.css로 이동.
+--%>
 <link href="/resources/CommonLibrary/CSS/mwav_style.css"
 	rel="stylesheet">
+
 <link rel="stylesheet"
 	href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link
 	href=" //maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"
 	rel="stylesheet">
+
 <link href="/resources/JsFramework/Bootstrap/bootstrap-social.css"
 	rel="stylesheet">
 <link href="/resources/CommonLibrary/CSS/modern-business.css"
 	rel="stylesheet">
-<!-- Customize CSS -->
-<link href="/resources/CommonLibrary/CSS/myStyle.css" rel="stylesheet">
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

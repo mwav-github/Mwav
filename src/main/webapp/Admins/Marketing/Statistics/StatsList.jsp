@@ -85,9 +85,9 @@
 
 										<tr>
 											<th scope="row">기간</th>
-											<td colspan="3" class="form-inline"><input type="date" name="ORD_DATE_BEFORE" id="datePicker"
-												min="2010-01-01" max="2020-01-01" value="2017-01-01"
-												class="form-control">&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp;
+											<td colspan="3" class="form-inline"><input type="date"
+												name="ORD_DATE_BEFORE" id="datePicker" min="2010-01-01"
+												max="2020-01-01" value="2017-01-01" class="form-control">&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp;
 												<input type="date" name="ORD_DATE_AFTER" id="datePicker"
 												min="2010-01-01" max="2020-01-01" value="2017-12-31"
 												class="form-control"></td>
@@ -130,11 +130,11 @@
 								<table class="table table-striped table-bordered">
 									<thead>
 										<tr>
-											<th class="col-md-1 hidden-xs">통계아이디</th>
-											<th class="col-md-2 hidden-xs">회원/프로모터 아이디</th>
-											<th class="col-md-4 hidden-xs">유입경로</th>
-											<th class="col-md-3 hidden-xs">유입페이지</th>
-											<th class="col-md-2 hidden-xs">유입일자</th>
+											<th class="col-md-1 col-xs-1">통계아이디</th>
+											<th class="col-md-2 col-xs-2">회원 <br>/ 프로모터</th>
+											<th class="col-md-4 col-xs-4">유입경로</th>
+											<th class="col-md-3 col-xs-3">유입페이지</th>
+											<th class="col-md-2 col-xs-2">유입일자</th>
 											<%-- <th>관리메뉴</th> 삭제예정 --%>
 
 										</tr>
@@ -151,12 +151,18 @@
 															value="${RselectListStatistics.statistics_id }">
 														<td class="col-md-1 hidden-xs"><a
 															href="javascript:window.location.href='/admins/marketing/statistics/statsView.mwav?statistics_id=${RselectListStatistics.statistics_id}'">${RselectListStatistics.statistics_id}</a></td>
-														<td class="col-md-2 hidden-xs">${RselectListStatistics.stMember_id}
-															/ ${RselectListStatistics.stPromoterId}</td>
-														<td class="col-md-4 hidden-xs">
-															${RselectListStatistics.stUrlReferrer}</td>
+														<td class="col-md-2 hidden-xs">
+														
+														<%--int 형은 0이 null 이기 때문에 체크 필요. --%>
+														<c:if
+																test="${RselectListStatistics.stMember_id ne 0}">
+														${RselectListStatistics.stMember_id}
+														</c:if> <c:if test="${RselectListStatistics.stPromoterId ne 0}">
+														/ ${RselectListStatistics.stPromoterId}
+														</c:if></td>
+														<td class="col-md-4 hidden-xs">${fn:trim(RselectListStatistics.stUrlReferrer)}</td>
 														<td class="col-md-3 hidden-xs">${RselectListStatistics.stPageName}</td>
-														<td class="col-md-2 hidden-xs">${RselectListNtmList.stStatisticsDt }</td>
+														<td class="col-md-2 hidden-xs">${RselectListStatistics.stStatisticsDt }</td>
 													</tr>
 
 												</c:forEach>

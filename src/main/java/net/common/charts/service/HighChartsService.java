@@ -6,6 +6,7 @@ import net.common.charts.vo.SeriesVO_Arrary;
 import net.common.charts.vo.SeriesVO_Arrary2;
 import net.common.charts.vo.SeriesVO_C;
 import net.common.charts.dao.HighChartsDAO;
+import net.mwav.common.module.Common_Utils;
 
 import org.springframework.stereotype.Service;
 
@@ -129,7 +130,8 @@ public class HighChartsService {
 			//color[i] = "#00FF00";
 			
 			//중간에 색만 넣을수없으니 vo 다시 세팅하고 list add해준다. 
-			vo.setColor("#00FF00");
+			//색깔이 랜덤이여서 너무 애매한경우 대표적인 색깔 5개정도만 놓고 구분한다.
+			vo.setColor(Common_Utils.getRandomColor());
 			vo.setName(list.get(i).getName());
 			vo.setY(list.get(i).getY());
 			//vo.setColor("#00FF00");

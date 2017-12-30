@@ -16,7 +16,7 @@
 <!-- StandardPackage 
 <script src="//cdn.ckeditor.com/4.5.11/standard/ckeditor.js"></script>-->
 
-<!-- FullPackage --> 
+<!-- FullPackage -->
 <script src="//cdn.ckeditor.com/4.5.11/full/ckeditor.js"></script>
 </head>
 
@@ -113,7 +113,7 @@
 	
 	}
 </script>
-						
+
 						<!-- Content Column -->
 						<div class="table-responsive">
 
@@ -138,12 +138,23 @@
 														<%--높을수록 TOP (추후 반영)_15.08.01 --%>
 														<input type="hidden" name="buOrder" value="0" />
 														<%--직원담당자 staff_id 추후 반영예정 --%>
-														<input type="hidden" name="staff_id" value="0" /> <select
-															class="form-control" name="buStatus"
-															value="${updateNtmForm.buStatus}">
-															<option value="0">임시저장상태</option>
-															<option value="1">현재공지상태</option>
-														</select>
+														<input type="hidden" name="staff_id" value="0" />
+
+														<c:set var="buStatus"
+															value="${updateNtmForm.buStatus }" />
+														<c:if test="${fn:contains(buStatus, '0')}">
+															<span class="pull-right text-danger"><strong>삭제
+															</strong></span>
+														</c:if>
+														<c:if test="${fn:contains(buStatus, '1')}">
+															<span class="pull-right text-primary"><strong>임시저장
+															</strong></span>
+														</c:if>
+														<c:if test="${fn:contains(buStatus, '2')}">
+															<span class="pull-right text-success"><strong>게시
+																	중 </strong></span>
+														</c:if>
+
 													</div>
 												</tr>
 												<tr class="active">
@@ -192,22 +203,21 @@
 													placeholder="Text input" name="buSubTitle"
 													value="${updateNtmForm.buSubTitle}"></td>
 											</tr>
-											
-											
+
+
 											<tr>
 												<th class="active">Reference</th>
 												<td><input type="text" class="form-control"
 													placeholder="Text input" name="buRelatedLink"
 													value="${updateNtmForm.buRelatedLink}"></td>
 											</tr>
-											
+
 
 											<tr>
 												<th class="active">Content</th>
 												<td><textarea name="buContent"
 														class="form-control input-sm ckeditor" id="message"
-														placeholder="Message" 
-														style="width: 100%; height: 200px;">${updateNtmForm.buContent}</textarea>
+														placeholder="Message" style="width: 100%; height: 200px;">${updateNtmForm.buContent}</textarea>
 													<script type="text/javascript">
 															//<![CDATA[
 															CKEDITOR
@@ -251,11 +261,15 @@
 														<%--높을수록 TOP (추후 반영)_15.08.01 --%>
 														<input type="hidden" name="buOrder" value="0" />
 														<%--직원담당자 staff_id 추후 반영예정 --%>
-														<input type="hidden" name="staff_id" value="0" /> <select
-															class="form-control" name="buStatus">
+														<input type="hidden" name="staff_id" value="0" /> <input
+															type="hidden" name="buStatus" value="0" />
+														<%-- 		<select
+															class="form-control btn-sm" name="bnStatus"
+															value="${updateNsmForm.bnStatus}">
 															<option value="0">임시저장상태</option>
 															<option value="1">현재공지상태</option>
-														</select>
+														</select> --%>
+
 													</div>
 												</tr>
 												<tr class="active">
@@ -301,7 +315,7 @@
 												<td><input type="text" class="form-control"
 													placeholder="Text input" name="buSubTitle"></td>
 											</tr>
-											
+
 											<tr>
 												<th class="active">Reference</th>
 												<td><input type="text" class="form-control"
@@ -312,9 +326,8 @@
 												<th class="active">Content</th>
 												<td><textarea name="buContent"
 														class="form-control input-sm ckeditor" id="message"
-														placeholder="Message" 
-														style="width: 100%; height: 200px;"></textarea> <span
-													class="help-block"></span></td>
+														placeholder="Message" style="width: 100%; height: 200px;"></textarea>
+													<span class="help-block"></span></td>
 											</tr>
 
 										</table>
