@@ -63,7 +63,7 @@ public class MemberServiceImpl implements MemberService {
 				+ String.valueOf(map.get("mbrCellPhone_2"))
 				+ String.valueOf(map.get("mbrCellPhone_3"));
 		map.put("mbrCellPhone", mbrCellPhone);
-		
+
 		String mbrName = String.valueOf(map.get("mbrFirstName"))
 				+ String.valueOf(map.get("mbrMiddleName"))
 				+ String.valueOf(map.get("mbrLastName"));
@@ -81,7 +81,7 @@ public class MemberServiceImpl implements MemberService {
 		String snsLogin = (String) map.get("sns_imsi");
 		System.out.println("이메일간다?" + result);
 //&& snsLogin != null
-		
+
 		//회원가입 메일 발송
 		/*if ("insertForm Success".equals(result) ) {
 			try {
@@ -89,7 +89,7 @@ public class MemberServiceImpl implements MemberService {
 				emailSender.sendRegistrationEmail(map);
 			} catch (Exception e) { // TODO Auto-generated catch block
 				e.printStackTrace();
-			} 
+			}
 		}*/
 
 		return result;
@@ -235,7 +235,7 @@ public class MemberServiceImpl implements MemberService {
 	public boolean updateAutoLogin(String onOff, HttpServletResponse response,	int member_id) {
 		System.out.println("autologin안에 들어옴");
 		System.out.println("autologin 값"+onOff);
-		if (onOff!=null&&onOff.equals("on")) {         
+		if (onOff!=null&&onOff.equals("on")) {
 			  System.out.println("autologin실행됨");
 		      int amount = 60 * 60 * 24 * 14; //일주일 기간설정
 		      HashMap<String,Object> map = new HashMap<String,Object>();
@@ -251,7 +251,7 @@ public class MemberServiceImpl implements MemberService {
 		}else{
 			return false;
 		}
-		
+
 
 	}
 
@@ -260,7 +260,7 @@ public class MemberServiceImpl implements MemberService {
 			Cookie loginCookie = WebUtils.getCookie(request, "autoLogin");
 			Member_tbl_VO member = (Member_tbl_VO)session.getAttribute("member");
 		    if(member!=null){
-			System.out.println("세션의 멤버가 눌이 아님");	
+			System.out.println("세션의 멤버가 눌이 아님");
 		    	if (loginCookie != null) {
 			        loginCookie.setPath("/");
 			        loginCookie.setValue(null);
@@ -268,13 +268,13 @@ public class MemberServiceImpl implements MemberService {
 			        response.addCookie(loginCookie);;
 			        System.out.println("오토로그인 삭제 성공");
 			        return memberDAO.updateAutoLoginDel(member.getMember_id());
-			        
+
 		    	}
 		    }
 		    return false;
-	}	
-	
-	
+	}
+
+
 
 	@Override
 	public Member_tbl_VO selectAutoLogin(int member_id) {
