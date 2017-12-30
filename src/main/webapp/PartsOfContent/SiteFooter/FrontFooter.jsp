@@ -66,10 +66,10 @@
 <%-- 인구통계부분 추가 (2017_01_10) --%>
 	ga('require', 'linkid', 'linkid.js');
 <%--향상된 링크 추적코드  (2017_01_10)--%>
-	
+
 <%--https://www.simoahava.com/analytics/page-load-time-universal-analytics/
 	//ga.push({'event': 'GAEvent', 'eventCategory' : 'PageLoadTime', 'eventAction' : loadTime, 'nonInteratction':1});  //  사이트 속도 이벤트 작성중 --%>
-	
+
 </script>
 
 
@@ -125,12 +125,22 @@
 					<li>FAX: +82-2-6214-1122</li>
 					<li>CEO : Lewis Kim</li>
 					<li>WebSite Manager : James Lee</li>
-					<li>Marketing Manager : Alex Chae</li>
+					<li>Marketing Manager :
+						<c:choose>
+							<c:when  test="${sessionScope.pmtName ne null }">
+							${sessionScope.pmtName}님 반갑습니다.
+							</c:when>
+							<c:otherwise>
+								Alex Chae
+							</c:otherwise>
+						</c:choose>
+
+					</li>
 					<li>Chief IT-Business Advisor : Peter J.</li>
-					<%-- <li>Sales Manager: ${param.pgl}</li> --%>
+					<%-- <li>Sales Manager: ${param.pglName}</li> --%>
 				</ul>
 				<%--
-				
+
 				<ul>
 						<li>회사상호 : 엠웨이브넷(Mwav.net)</li>
 						<li>사업자번호: 206-09-41373</li>

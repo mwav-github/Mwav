@@ -87,11 +87,11 @@ public class MemberController {
 		 * request.getRequestURL().toString(); String strCurrentUrl =
 		 * request.getScheme() + "://" + request.getServerName() + ":" +
 		 * request.getServerPort() + request.getContextPath();
-		 * 
+		 *
 		 * String getContextPath = request.getContextPath().toString(); // 들어오는
 		 * url에 따라서 분기 실시 위의 url은 /* 형태로 // prehandle 인터셉터로 처리하면 될듯 ~! 확인 요망 if
 		 * (mode != null) { if (mode == "SMbrLogin") ; {
-		 * 
+		 *
 		 * } }
 		 */
 
@@ -273,7 +273,7 @@ public class MemberController {
 
 		/*
 		 * response.setContentType("text/html;charset=UTF-8");
-		 * 
+		 *
 		 * response.setHeader("Cache-Control", "no-cache"); PrintWriter out =
 		 * response.getWriter();
 		 */
@@ -541,7 +541,7 @@ public class MemberController {
 			  memberService.updateAutoLoginDel(request,session,response);
 			  session.removeAttribute("member");
 		      session.invalidate();
-		      log.info("세선제거 성공");			      
+		      log.info("세선제거 성공");
 		 }else{
 				log.info("세션에 로그인 정보다 없어 로그아웃 하지 못하였습니다.");
 		 }
@@ -563,7 +563,7 @@ public class MemberController {
 	 * 않음 logincheck = 5 : DB 조회시 NULL (임시패스워드 발급 단계에서 중간하였을때 포함) logincheck = 6
 	 * : 탈퇴하지 않음 logincheck = 7 : 탈퇴
 	 */
-	
+
 	@RequestMapping(value = "/member/Login.mwav")
 	public ModelAndView selectLogin(CommandMap commandMap,
 			HttpServletRequest request,HttpServletResponse response) throws Exception {
@@ -599,7 +599,7 @@ public class MemberController {
 		int loginCheck = 0; // 초기값
 
 		//g-recaptcha-response POST parameter when the user submits the form on your site
-		//recaptcha-token 과는 별개이다. 
+		//recaptcha-token 과는 별개이다.
 		String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
 		System.out.println("gRecaptchaResponse"+gRecaptchaResponse);
 		boolean valid;
@@ -638,8 +638,9 @@ public class MemberController {
 				// 세션 지정.
 
 				session.setAttribute("member", member_tbl_VO);
-				memberService.updateAutoLogin((String)commandMap.get("autoLogin"), response, member_tbl_VO.getMember_id());
-				/*if (commandMap.get("autoLogin")!=null&&(boolean)commandMap.get("autoLogin").equals("on")) {         
+				if((boolean)commandMap.get("autoLogin").equals("on"))
+				  memberService.updateAutoLogin((String)commandMap.get("autoLogin"), response, member_tbl_VO.getMember_id());
+				/*if (commandMap.get("autoLogin")!=null&&(boolean)commandMap.get("autoLogin").equals("on")) {
 			    	  System.out.println("autologin실행됨");
 			          int amount = 60 * 60 * 24 * 14; //일주일 기간설정
 			          HashMap<String,Object> map = new HashMap<String,Object>();
@@ -652,7 +653,7 @@ public class MemberController {
 			          loginCookie.setMaxAge(60 * 60 * 24 * 14);
 			          response.addCookie(loginCookie);
 				 }*/
-				
+
 				// session.setAttribute("mbrLoginId", mbrLoginId);
 				// session.setAttribute("member_id", member_id);
 				System.out.println("로그인성공");
@@ -689,23 +690,23 @@ public class MemberController {
 
 	/*
 	 * // 7번 추후
-	 * 
+	 *
 	 * @RequestMapping(value = "/member/PWFinder.mwav") public ModelAndView
 	 * updatePW(CommandMap commandMap, HttpServletRequest request) throws
 	 * Exception {
-	 * 
+	 *
 	 * ModelAndView mv = new ModelAndView("/CompanyItem/CompanyItemMasterPage");
-	 * 
+	 *
 	 * boolean selectPWFinder = memberService.selectPWFinder(commandMap
 	 * .getMap());
-	 * 
+	 *
 	 * mv.addObject("selectPWFinder", selectPWFinder);
-	 * 
+	 *
 	 * if (selectPWFinder == true) { // 찾았다.
 	 * femailSender.sendEmailAction(commandMap); // 메일발송 } else { // 없다.
-	 * 
+	 *
 	 * } return mv;
-	 * 
+	 *
 	 * }
 	 */
 

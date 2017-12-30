@@ -8,10 +8,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import net.mwav.common.module.Common_Utils;
-import net.mwav.common.module.CookieBox;
 import net.mwav.member.service.MemberService;
 import net.mwav.member.vo.Member_tbl_VO;
 import net.mwav.statistics.controller.StatisticsController;
+import net.promoter.service.PromoterService;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -20,8 +20,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import org.springframework.web.util.WebUtils;
 
-//
-
 public class StatisticsInterceptor extends HandlerInterceptorAdapter {
 
 	@Autowired
@@ -29,7 +27,10 @@ public class StatisticsInterceptor extends HandlerInterceptorAdapter {
 
 	@Autowired
 	MemberService memberService;
-	
+
+	@Autowired
+	PromoterService promoterService;
+
 	protected Log log = LogFactory.getLog(StatisticsInterceptor.class);
 
 	@Autowired
@@ -40,15 +41,20 @@ public class StatisticsInterceptor extends HandlerInterceptorAdapter {
 			HttpServletResponse response, Object handler) throws Exception {
 		log.info("======================================          START         ======================================");
 		log.info(" Request URI \t:  " + request.getRequestURI());
-		
-		if(request.getSession().getAttribute("member") == null){
-			getAutoLogin(request, request.getSession());
-		}
-		
-		
-		CookieBox cookieBox = new CookieBox(request);
-		Cookie cookie;
+
+
 		HttpSession session = request.getSession();
+		member_tbl_VO = (Member_tbl_VO) session.getAttribute("member");
+
+
+		if(member_tbl_VO == null){ // 로그인 멤버가 비어있을 때 쿠키검사를 함
+			Cookie loginCookie = WebUtils.getCookie(request, "autoLogin");
+			if(loginCookie!=null){// 쿠키가 비어있을  시 자동로그인
+				getAutoLogin(request.getSession(),loginCookie);
+			}
+		}
+
+
 		String member_id = null;
 		String statistics_id = null;
 		// String statistics_id_session = null;
@@ -63,7 +69,6 @@ public class StatisticsInterceptor extends HandlerInterceptorAdapter {
 			 * System.out.println("유저의스크린사이즈"+stClientScreen);
 			 */
 
-			member_tbl_VO = (Member_tbl_VO) session.getAttribute("member");
 			if (member_tbl_VO != null) {
 				member_id = String.valueOf(member_tbl_VO.getMember_id());
 			}
@@ -75,10 +80,10 @@ public class StatisticsInterceptor extends HandlerInterceptorAdapter {
 			// 지정한 이름의 쿠키가 존재하는지의 여부
 			/*
 			 * if (cookieBox.isExist("statistics_id")) {
-			 * 
+			 *
 			 * statistics_id_cookie = cookieBox.getValue("statistics_id");
 			 * System.out.println("쿠키에 저장된 statistics_id" + statistics_id);
-			 * 
+			 *
 			 * }
 			 */
 
@@ -95,7 +100,7 @@ public class StatisticsInterceptor extends HandlerInterceptorAdapter {
 			 * (statistics_id_session != null && statistics_id_cookie == null) {
 			 * statistics_id = statistics_id_session; } else { statistics_id =
 			 * statistics_id_cookie; }
-			 * 
+			 *
 			 * }
 			 */
 
@@ -108,7 +113,7 @@ public class StatisticsInterceptor extends HandlerInterceptorAdapter {
 			/*
 			 * 노드 파싱 DomReadXMLFile.xmlParser(uploadRootPath +
 			 * "/xConfig/general.xml.config");
-			 * 
+			 *
 			 * URL : DomReadXMLFile.xmlParser("/xConfig/general.xml.config");
 			 */
 
@@ -128,7 +133,7 @@ public class StatisticsInterceptor extends HandlerInterceptorAdapter {
 			System.out.println("auth_url"+auth_url);
 			if (auth_url != null && !(auth_url.equals("/CommonApps"))) {*/
 				if (statistics_id == null || statistics_id.equals("")) {
-					statistics_id = statisticsController.insertFirstStatics(
+		/*			statistics_id = statisticsController.insertFirstStatics(
 							request, member_id, statistics_id, session_id);
 
 					log.info("statistics_id" + statistics_id);
@@ -138,12 +143,12 @@ public class StatisticsInterceptor extends HandlerInterceptorAdapter {
 					request.setAttribute("stClientScreen", "firstTime");
 					// cookie = CookieBox.createCookie("statistics_id",
 					// statistics_id);
-					/*
+
 					 * cookie = CookieBox.createCookie("statistics_id",
 					 * statistics_id, "/", 60 * 60 * 24 * 7); // 쿠키의 경우 클라이언트에게
 					 * 생성된 쿠키를 전송해야한다. (삭제도 마찬가지) response.addCookie(cookie);
-					 */
-				} else {
+
+*/				} else {
 					statisticsController.insertStatics(request, statistics_id);
 				}
 			/*}*/
@@ -169,24 +174,22 @@ public class StatisticsInterceptor extends HandlerInterceptorAdapter {
 		log.info("======================================           END          ======================================\n");
 
 	}
-	
-	
-	private Boolean getAutoLogin(HttpServletRequest request, HttpSession session) {
-		Cookie loginCookie = WebUtils.getCookie(request, "autoLogin");
+
+
+	private Boolean getAutoLogin(HttpSession session,Cookie loginCookie) {
 		if (loginCookie != null&&loginCookie.getValue()!=null&&!loginCookie.getValue().equals("")) {
-			log.info("자동로그인 실행 중");			
-			
+			log.info("자동로그인 실행 중");
 			Member_tbl_VO member = memberService.selectAutoLogin(Integer.parseInt(loginCookie.getValue()));
 			log.info("member의 값은"+ member.toString());
 			if (member != null) {
 				log.info("자동로그인 VO 가져옴");
 				session.setAttribute("member", member);
 				return true;
-			
+
 			}
 		}
 		return false;
 	}
-	
+
 
 }

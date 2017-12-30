@@ -59,12 +59,7 @@
 		]]>
 	</insert>
 	
-	<insert id="insertPrmForm" parameterType="hashmap">
-		<![CDATA[
-			INSERT INTO Promoter_tbl
-			SELECT IFNULL(max(promoter_id)+1,101), #{stfLoginId}, #{stfLoginPw}, #{stfName}, #{stfEmail}, #{stfCellularP},#{stfPhone},0, #{stfZipcod}, #{stfAddress}, #{stfSubJobs}, 0, null, null,null,0,null FROM promoter_tbl
-		]]>
-	</insert>
+	
 	
 	<!--/*========================================리스트(SelctOne, SelectList 순)========================================*/  -->
 	

@@ -22,20 +22,21 @@
 		<div class="navbar-header">
 			<%--border 칼라 테두리는 style=border || 안의 icon-bar로 구성 --%>
 			<%--768px 이하부터 변형 --%>
-			<%--navbar-collapse 이게 부트스트랩꺼를 무조권 !important 인식 변경하려면 
+			<%--navbar-collapse 이게 부트스트랩꺼를 무조권 !important 인식 변경하려면
     cdn 말고 직접해서 아래 사이트와 같이 변경
     http://www.bootply.com/120951
  --%>
 			<button type="button" class="navbar-toggle collapsed"
 				data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
 				style="border: 2px solid white">
-				<span class="sr-only">Toggle navigation</span> <span
+			<!-- 	<span class="sr-only">Toggle navigation</span> <span
 					class="icon-bar" style="background-color: white;"></span> <span
 					class="icon-bar" style="background-color: white;"></span> <span
-					class="icon-bar" style="background-color: white;"></span>
+					class="icon-bar" style="background-color: white;"></span> -->
 			</button>
 			<%-- 크기 줄었을 때 우측에 navbar 역할 --%>
-			<a class="navbar-brand active logo_800_m" href="/"> <img
+			<a class="navbar-brand active logo_800_m" href="/">
+			<img
 				src="/Images/CompanyLogos/CompanyLogo.gif"
 				class="img-thumbnail img-responsive logo_800_h"
 				alt="Responsive image"> <!-- <font color="#E5E5E5">Mwav</font> --></a>
@@ -111,14 +112,14 @@
 
 <!--  //////////////////////////////////// -->
 
-<%-- 
-  Header Carousel (슬라이드 쇼 부분- 헤더 포함 가능성있음.) 
+<%--
+  Header Carousel (슬라이드 쇼 부분- 헤더 포함 가능성있음.)
      클래스명에 container 추가시 조정가능하나 더 이상한듯 ~!! 조정 요망
-     
+
      중간으로 보내기 위해서 container 추가 (left 메뉴 안의 페이지와 크기 동일) // => 다시 빼고 영역 조절
 --%>
 <header id="myCarousel" class="mgt5.5 carousel slide"
-	style="height: 72% !important;">
+	style="height: 55% !important;">
 
 	<!-- Indicators -->
 	<ol class="carousel-indicators">
@@ -142,7 +143,7 @@
 						<div class="col-md-9 col-md-push-3 col-xs-12 text-right block block-3" style="opacity:0.8;">
 							<h4 class="">IT Trends</h4>
 							<div class="bs-component" style="background-color: white;">
-								 <jsp:include page="/board/bnsFrontList.mwav" flush="false" /> 
+								 <jsp:include page="/board/bnsFrontList.mwav" flush="false" />
 							</div>
 							<%-- <div class="bs-component" style="background-color: white;">
 						<jsp:include page="/board/bnsFrontList.mwav" flush="false" />
@@ -183,8 +184,8 @@
 				</div>
 			</div>
 		</div>
-		<div class="item slide3">
-			<div class="fill img-responsive customer_slideImg_600"
+		<div class="item slide3" >
+			<div class="fill img-responsive customer_slideImg_200"
 				style="background-image: url('/CustomerService/zImage/education-1651259_1920.jpg'); background-repeat: no-repeat;">
 
 
@@ -293,9 +294,9 @@
 }
          --%>
 
-<%--  
-이미지 태그 사용시 
-단 background 와 다르게 height 에 대해서 그대로 잡아버린다. 
+<%--
+이미지 태그 사용시
+단 background 와 다르게 height 에 대해서 그대로 잡아버린다.
 <div class="container">
 
     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
