@@ -150,6 +150,10 @@
 			<bean id="autoLoginInterceptor" class="net.common.Interceptor.AutoLoginInterceptor">
 			</bean>
 		</mvc:interceptor>
+		<mvc:interceptor>
+         <mvc:mapping path="/**"/>
+         <bean id="PglInterCeptor" class="net.common.Interceptor.PglInterceptor"  > </bean>
+      </mvc:interceptor>
 	</mvc:interceptors>
 </beans>
 
