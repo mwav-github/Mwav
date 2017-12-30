@@ -180,7 +180,7 @@ figure.snip1174:hover   p, figure.snip1174:hover   h2 {
 	text-align: center;
 }
 
-/* 
+/*
 .news:hover .title  {
 	margin-top: -90px;
 	background: #fff;
@@ -201,7 +201,7 @@ figure.snip1174:hover   p, figure.snip1174:hover   h2 {
 	transition: all 0.5s ease;
 }
 
-/* 
+/*
 .news:hover p.description  {
 	opacity: 1;
 }
@@ -392,7 +392,7 @@ p.more {
 	bottom: 0px;
 }
 
-#myCarousel   .slide1     h3, #myCarousel   .slide2     h3, #myCarousel   .slide3   
+#myCarousel   .slide1     h3, #myCarousel   .slide2     h3, #myCarousel   .slide3
 			h3, #myCarousel   .slide4     h3 {
 	color: #fff;
 	font-size: 30px;
@@ -529,7 +529,7 @@ Licensed under MIT
 }
 
 .product-item:hover {
-	box-shadow: 5px 5px rgba(      
+	box-shadow: 5px 5px rgba(
 	  '234 , 234 , 234 , 0.9');
 }
 
@@ -553,8 +553,8 @@ Licensed under MIT
 
 .sticker-new {
 	background:
-		url(      
-		  'http://keenthemes.com/assets/bootsnipp/new.png'   
+		url(
+		  'http://keenthemes.com/assets/bootsnipp/new.png'
 		     ) no-repeat;
 	left: auto;
 	right: 0;
@@ -717,7 +717,7 @@ Licensed under MIT
 }
 
 /*********************************************
-				ITEM 
+				ITEM
 *********************************************/
 .service1-items {
 	padding: 0px 0 0px 0;
@@ -771,9 +771,9 @@ Licensed under MIT
 /* =====================상품 상세 페이지   끝 =====================*/
 
 /*
- * 
+ *
 megamenu
- * 
+ *
  */
 .mega-dropdown {
 	position: static !important;
@@ -820,15 +820,15 @@ megamenu
 
 /*
  * center-block
- * 
+ *
  콘텐츠 블록 중앙정렬
 display: block 와 margin 로 요소를 설정하세요. 믹스인과 클래스로 사용가능합니다
- * 
- * 
+ *
+ *
  */
 /*
  * Modal Height
- * 
+ *
  * 모달 전체 바디 조정
 /*
 .modal-body {
@@ -839,7 +839,7 @@ display: block 와 margin 로 요소를 설정하세요. 믹스인과 클래스�
 
 /*
  * slideshow images
- * 
+ *
  */
 @media screen and (max-width: 600px ) {
 	#myCarousel {
@@ -848,19 +848,20 @@ display: block 와 margin 로 요소를 설정하세요. 믹스인과 클래스�
 	}
 	.company_slideImg_600 {
 		background-image:
-			url(        
-		  "/Company/zImage/keyboard-428326_1920.jpg"   
+			url(
+		  "/Company/zImage/keyboard-428326_1920.jpg"
 		       ) !important;
 	}
 	.companyItem_slideImg_600 {
 		background-image:
-			url(       
-		   "/CompanyItem/zImage/computer-1149148_1920.jpg"    
+			url(
+		   "/CompanyItem/zImage/computer-1149148_1920.jpg"
 	      ) !important;
 	}
 	.customer_slideImg_600 {
+		height:200;
 		background-image:
-			url(      
+			url(
 	    "/CustomerService/zImage/education-1651259_1920.jpg"           )
 			!important;
 	}
@@ -876,15 +877,15 @@ display: block 와 margin 로 요소를 설정하세요. 믹스인과 클래스�
 
 /* ---------------------------------------------------------Start--------------------------------------------------------- */
 /* 폰트 적용 최상단
- * 
- * bootstrap 
- * 
+ *
+ * bootstrap
+ *
  * font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 14px;
     line-height: 1.42857143;
     color: #333;
     background-color: #fff;
- * 
+ *
  */
 body {
 	/*background : #F5F5F5 !important;  shop에만 적용되도록 수정 필요.*/
@@ -906,7 +907,7 @@ body {
     font-weight: normal;
     font-style: normal;
 }
- * 
+ *
  */
 .font_color_faq_basic             li {
 	margin: 15px 0 !important;
@@ -993,7 +994,7 @@ body {
 	top: 40px;
 }
 
-#timeline       .timeline-badge.timeline-filter-movement             a           
+#timeline       .timeline-badge.timeline-filter-movement             a
 	 span {
 	color: #4997cd;
 	font-size: 1.3em;
@@ -1009,7 +1010,7 @@ body {
 	margin-left: -18px;
 }
 
-#timeline       .timeline-badge.timeline-future-movement             a           
+#timeline       .timeline-badge.timeline-future-movement             a
 	 span {
 	color: #4997cd;
 	font-size: .9em;
@@ -1038,47 +1039,47 @@ body {
 	color: #666;
 	padding: 10px;
 	position: relative;
-	-webkit-box-shadow: 0 1px 6px rgba(      
+	-webkit-box-shadow: 0 1px 6px rgba(
 		  0, 0, 0, 0.175);
-	box-shadow: 0 1px 6px rgba( 
+	box-shadow: 0 1px 6px rgba(
 		       0, 0, 0, 0.175);
 }
 
 #timeline       .timeline-movement       .timeline-item
-					      .timeline-panel     
+					      .timeline-panel
  .timeline-panel-ul {
 	list-style: none;
 	padding: 0;
 	margin: 0;
 }
 
-#timeline       .timeline-movement       .timeline-item 
-		     .timeline-panel.credits     
+#timeline       .timeline-movement       .timeline-item
+		     .timeline-panel.credits
  .timeline-panel-ul {
 	text-align: right;
 }
 
-#timeline       .timeline-movement       .timeline-item 
-		     .timeline-panel.credits     
+#timeline       .timeline-movement       .timeline-item
+		     .timeline-panel.credits
  .timeline-panel-ul             li {
 	color: #666;
 }
 
-#timeline       .timeline-movement       .timeline-item 
-		     .timeline-panel.credits     
+#timeline       .timeline-movement       .timeline-item
+		     .timeline-panel.credits
  .timeline-panel-ul             li             span.importo {
 	color: #468c1f;
 	font-size: 1.3em;
 }
 
-#timeline       .timeline-movement       .timeline-item  
-		    .timeline-panel.debits     
+#timeline       .timeline-movement       .timeline-item
+		    .timeline-panel.debits
  .timeline-panel-ul {
 	text-align: left;
 }
 
-#timeline       .timeline-movement       .timeline-item 
-		     .timeline-panel.debits     
+#timeline       .timeline-movement       .timeline-item
+		     .timeline-panel.debits
  .timeline-panel-ul             span.importo {
 	color: #e2001a;
 	font-size: 1.3em;
@@ -1093,7 +1094,7 @@ body {
 	max-height: 300px;
 	height: auto;
 	border: 1px solid #ddd;
-	box-shadow: 0 10px 20px rgba( 
+	box-shadow: 0 10px 20px rgba(
 			       0, 0, 0, 0.2);
 	margin: 15px 0;
 	overflow: hidden;
@@ -1127,8 +1128,8 @@ body {
 
 /* ---------------------------------------------------------Start--------------------------------------------------------- */
 
-/* 
- * 최상단으로 올리기 
+/*
+ * 최상단으로 올리기
  * */
 .back-to-top {
 	cursor: pointer;
@@ -1241,13 +1242,13 @@ body {
 }
 
 .social             li:hover {
-	transform: scale(         1.15) rotate(  
+	transform: scale(         1.15) rotate(
 			        360 deg);
 	-webkit-transform: scale(         1.1) rotate(           360 deg);
 	-moz-transform: scale(         1.1) rotate(           360 deg);
-	-ms-transform: scale(         1.1) rotate(  
+	-ms-transform: scale(         1.1) rotate(
 			        360 deg);
-	-o-transform: scale(         1.1) rotate(  
+	-o-transform: scale(         1.1) rotate(
 			        360 deg);
 }
 
@@ -1343,9 +1344,9 @@ border: none;
 
 /* ---------------------------------------------------------Start--------------------------------------------------------- */
 
-/*nav 메뉴 파란색 // class에 menu만 추가 
+/*nav 메뉴 파란색 // class에 menu만 추가
  * http://bootsnipp.com/snippets/z1GdK
- * 
+ *
  */
 .menu {
 	background-color: #00547E;
@@ -1378,11 +1379,11 @@ border: none;
 	background-color: #04A3ED;
 
 	/*
-	
+
 	  color:       white;
 
 
-	
+
 	  font-weight:       bold; */
 }
 
@@ -1390,11 +1391,11 @@ border: none;
 	background-color: #04A3ED;
 
 	/*
-	
+
 	  color:       white;
 
 
-	
+
 	  font-weight:       bold; */
 }
 
@@ -1477,13 +1478,13 @@ Reference: http://avexdesigns.com/responsive-youtube-embed/
 .res_width {
 	width: 100%;
 
-	/* 	max-width:100%; 
+	/* 	max-width:100%;
 	max-width:1500px; */
 }
 
 /* .fix_height_300{
 	height:300px;
-} 
+}
 이미지에 이렇게 부여해버리면 줄어들때도 300이라 부자연스럽다.
 */
 /*========아래는 텍스트 중앙 정렬 블록요소에만 적용 (p h3 등)태그만 http://webdir.tistory.com/31 */
@@ -1533,7 +1534,7 @@ Reference: http://avexdesigns.com/responsive-youtube-embed/
 <p class="text-right">우측정렬된 텍스트.</p>
 <p class="text-justify">양쪽정렬된 텍스트.</p>
 <p class="text-nowrap">그냥 텍스트.</p>
-* 부트스트랩에 존재 
+* 부트스트랩에 존재
  */
 
 /*========아래는 텍스트 세로 중앙 정렬 인라인요소에만 적용 (p h3 등)태그만 http://webdir.tistory.com/31 */
@@ -1563,7 +1564,7 @@ Reference: http://avexdesigns.com/responsive-youtube-embed/
 
 /*========아래는 margin 및 padding 관련 내용 */
 
-/*다른 css 에서는 padding/margin을 주지 말고 html에서 class로 준다. 
+/*다른 css 에서는 padding/margin을 주지 말고 html에서 class로 준다.
    꼭 필요한 경우에는 html에서 id 나 style 태그로 준다.*/
 
 /*엔터 블록 요소 끼리 적용*/

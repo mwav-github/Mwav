@@ -22,58 +22,59 @@
 		<div class="navbar-header">
 			<%--border 칼라 테두리는 style=border || 안의 icon-bar로 구성 --%>
 			<%--768px 이하부터 변형 --%>
-			<%--navbar-collapse 이게 부트스트랩꺼를 무조권 !important 인식 변경하려면 
+			<%--navbar-collapse 이게 부트스트랩꺼를 무조권 !important 인식 변경하려면
     cdn 말고 직접해서 아래 사이트와 같이 변경
     http://www.bootply.com/120951
  --%>
 			<button type="button" class="navbar-toggle collapsed"
 				data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
 				style="border: 2px solid white">
-				<span class="sr-only">Toggle navigation</span> <span
+			<!-- 	<span class="sr-only">Toggle navigation</span> <span
 					class="icon-bar" style="background-color: white;"></span> <span
 					class="icon-bar" style="background-color: white;"></span> <span
-					class="icon-bar" style="background-color: white;"></span>
+					class="icon-bar" style="background-color: white;"></span> -->
 			</button>
 			<%-- 크기 줄었을 때 우측에 navbar 역할 --%>
-			<a class="navbar-brand active logo_800_m" href="/"> <img
+			<a class="navbar-brand active logo_800_m" href="/">
+			<img
 				src="/Images/CompanyLogos/CompanyLogo.gif"
 				class="img-thumbnail img-responsive logo_800_h"
-				alt="CompanyLogo"> <!-- <font color="#E5E5E5">Mwav</font> --></a>
+				alt="Responsive image"> <!-- <font color="#E5E5E5">Mwav</font> --></a>
 		</div>
 		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="mgt3_5 collapse navbar-collapse"
+		<div class="mgt2 collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
 			<ul class="mgl3 nav navbar-nav lead">
 				<li><a href="/CompanyItem/ITSolutions/OrgChart/OrgChart.mwav"
-					onclick="ga('send', 'event', 'GNB', 'click', 'ITSolutions');"><h4 style="font-size:20px; !important"><strong>IT
-							Solutions</strong></h4></a></li>
+					onclick="ga('send', 'event', 'GNB', 'click', 'ITSolutions');"><h4>IT
+							Solutions</h4></a></li>
 				<li><a href="/CompanyItem/ITProducts/Aervision/Aervision.mwav"
-					onclick="ga('send', 'event', 'GNB', 'click', 'ITProducts');"><h4 style="font-size:20px; !important"><strong>IT
-							Products</strong></h4></a></li>
+					onclick="ga('send', 'event', 'GNB', 'click', 'ITProducts');"><h4>IT
+							Products</h4></a></li>
 				<li><a href="/CompanyItem/WebSiteBuilding/WebSiteBuilding.mwav"
-					onclick="ga('send', 'event', 'GNB', 'click', 'WebsiteBuilding');"><h4 style="font-size:20px; !important"><strong>WebSite
-							Building</strong></h4></a></li>
+					onclick="ga('send', 'event', 'GNB', 'click', 'WebsiteBuilding');"><h4>WebSite
+							Building</h4></a></li>
 				<li><a
 					href="/CompanyItem/DigitalMarketing/DigitalMarketing.mwav"
-					onclick="ga('send', 'event', 'GNB', 'click', 'DigitalMarketing');"><h4 style="font-size:20px; !important"><strong>Digital
-							Marketing</strong></h4></a></li>
+					onclick="ga('send', 'event', 'GNB', 'click', 'DigitalMarketing');"><h4>Digital
+							Marketing</h4></a></li>
 				<li><a href="/CompanyItem/ITConsulting/ITConsulting.mwav"
-					onclick="ga('send', 'event', 'GNB', 'click', 'ITConsulting');"><h4 style="font-size:20px; !important"><strong>IT
-							Consulting</strong></h4></a></li>
+					onclick="ga('send', 'event', 'GNB', 'click', 'ITConsulting');"><h4>IT
+							Consulting</h4></a></li>
 			</ul>
-			<ul class="nav navbar-nav navbar-right">
+			<ul class="mgl3 nav navbar-nav navbar-right">
 				<!-- 일반로그인 부분 -->
 				<c:if test="${sessionScope.member ne null }">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" data-toggle="tooltip"
 						data-placement="bottom"
-						data-original-title="${member.mbrLoginId}님
+						data-original-title="${mbrLoginId}님
 								반갑습니다."><i
 							class="fa fa-user fa-lg"></i> My Mwav</a>
 
 						<ul class="dropdown-menu dropdown-menu_change">
 							<li><a
-								href="/CustomerService/MemberShip/MemberShip.mwav"
+								href="/CustomerService/CS-MasterPage.mwav?mode=SDMyPage"
 								style="color: #428bca;"><h5>
 										My Account <span class="glyphicon glyphicon-cog pull-right"></span>
 									</h5></a></li>
@@ -95,7 +96,7 @@
 						</ul></li>
 				</c:if>
 				<c:if test="${sessionScope.member eq null }">
-					<li><a href="/MasterPage.mwav?mode=SMbrLogin&returnUrl=/login/post.mwav"><i class="fa fa-user fa-lg"></i></a></li>
+					<li><a href="/login/post"><i class="fa fa-user fa-lg"></i></a></li>
 					<li><a href="/MasterPage_1.mwav?mode=Default"><i
 							class="fa fa-user-plus fa-lg"></i></a></li>
 				</c:if>
@@ -111,14 +112,14 @@
 
 <!--  //////////////////////////////////// -->
 
-<%-- 
-  Header Carousel (슬라이드 쇼 부분- 헤더 포함 가능성있음.) 
+<%--
+  Header Carousel (슬라이드 쇼 부분- 헤더 포함 가능성있음.)
      클래스명에 container 추가시 조정가능하나 더 이상한듯 ~!! 조정 요망
-     
+
      중간으로 보내기 위해서 container 추가 (left 메뉴 안의 페이지와 크기 동일) // => 다시 빼고 영역 조절
 --%>
-<header id="myCarousel" class="carousel slide"
-	style="height: 72% !important;">
+<header id="myCarousel" class="mgt5.5 carousel slide"
+	style="height: 55% !important;">
 
 	<!-- Indicators -->
 	<ol class="carousel-indicators">
@@ -139,10 +140,10 @@
 						<h4>Get start your next awesome project</h4>
 					</div>
  --%>
-						<div class="col-md-8 col-md-push-5 col-xs-12 text-right block_no block-3" style="opacity:0.8;">
+						<div class="col-md-9 col-md-push-3 col-xs-12 text-right block block-3" style="opacity:0.8;">
 							<h4 class="">IT Trends</h4>
 							<div class="bs-component" style="background-color: white;">
-								 <jsp:include page="/board/bnsFrontList.mwav" flush="false" /> 
+								 <jsp:include page="/board/bnsFrontList.mwav" flush="false" />
 							</div>
 							<%-- <div class="bs-component" style="background-color: white;">
 						<jsp:include page="/board/bnsFrontList.mwav" flush="false" />
@@ -183,8 +184,8 @@
 				</div>
 			</div>
 		</div>
-		<div class="item slide3">
-			<div class="fill img-responsive customer_slideImg_600"
+		<div class="item slide3" >
+			<div class="fill img-responsive customer_slideImg_200"
 				style="background-image: url('/CustomerService/zImage/education-1651259_1920.jpg'); background-repeat: no-repeat;">
 
 
@@ -293,9 +294,9 @@
 }
          --%>
 
-<%--  
-이미지 태그 사용시 
-단 background 와 다르게 height 에 대해서 그대로 잡아버린다. 
+<%--
+이미지 태그 사용시
+단 background 와 다르게 height 에 대해서 그대로 잡아버린다.
 <div class="container">
 
     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
