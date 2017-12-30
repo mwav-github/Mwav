@@ -126,6 +126,7 @@ public class StatisticsInterceptor extends HandlerInterceptorAdapter {
 			// --> 생성전에 비교를 하게 되므로 에러 발생.
 			/* (사용자 기기체크) if (!(localMachineName.equals("DESKTOP-T79AHJS"))) { */
 
+
 			String auth_url = request.getRequestURI();
 			log.info("auth_url 추적." + auth_url);
 			log.info("statistics_id" + statistics_id);
@@ -162,6 +163,7 @@ public class StatisticsInterceptor extends HandlerInterceptorAdapter {
 					 * statistics_id, "/", 60 * 60 * 24 * 7); // 쿠키의 경우 클라이언트에게
 					 * 생성된 쿠키를 전송해야한다. (삭제도 마찬가지) response.addCookie(cookie);
 
+<<<<<<< HEAD
 */				}
 				else {
 					log.info("statistics_id insertStatics." + statistics_id);
@@ -186,7 +188,9 @@ public class StatisticsInterceptor extends HandlerInterceptorAdapter {
 		try {
 			String setTitle = null;
 			// meta 태그 내 title 지정
+
 			setTitle = Common_Utils.setPageName(request.getRequestURI());
+
 
 			request.setAttribute("setTitle", setTitle.trim());
 		} catch (Exception e) {
@@ -203,6 +207,8 @@ public class StatisticsInterceptor extends HandlerInterceptorAdapter {
 			Member_tbl_VO member = memberService.selectAutoLogin(Integer
 					.parseInt(loginCookie.getValue()));
 			log.info("member의 값은" + member.toString());
+
+
 			if (member != null) {
 				log.info("자동로그인 VO 가져옴");
 				session.setAttribute("member", member);
@@ -212,5 +218,6 @@ public class StatisticsInterceptor extends HandlerInterceptorAdapter {
 		}
 		return false;
 	}
+
 
 }
