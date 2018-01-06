@@ -9,7 +9,6 @@
 <c:choose>
 	<c:when test="${fn:length(selectListBuList) > 0 ">
 		<c:forEach var="VselectListBuList" items="${selectListBuList}">
-			<c:if test="${VselectListBuList.buStatus eq 2}">
 			<input type="hidden" id="bNews_id" name="bNews_id"
 				value="${VselectListBuList.bUsers_id }">
 			<div class="row">
@@ -32,7 +31,6 @@
 				</div>
 			</div>
 			<div class="enter"></div>
-			</c:if>
 		</c:forEach>
 	</c:when>
 	<c:otherwise>

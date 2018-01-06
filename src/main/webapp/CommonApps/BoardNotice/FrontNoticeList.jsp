@@ -26,19 +26,17 @@
 					<c:when test="${fn:length(selectListBuFrontList) > 0}">
 						<c:forEach var="VselectListBuFrontList"
 							items="${selectListBuFrontList}">
-							<c:if test="${VselectListBuFrontList.buStatus eq '2'}">
-								<input type="hidden" name="bUsers_id"
-									value="${VselectListBuFrontList.bUsers_id}" />
-								<input type="hidden" name="buViewCount"
-									value="${VselectListBuFrontList.buViewCount}" />
-								<tr>
-									<!-- a태그로 처리요망 -->
-									<td class="col-md-8 col-xs-8 col-sm-8"><a
-										href="/board/buView.mwav?bUsers_id=${VselectListBuFrontList.bUsers_id}#notice_top">${VselectListBuFrontList.buTitle}</a></td>
-									<%--view를 구현하는 방법에 따라 달라진다. get 문 형태 유망 --%>
-									<td class="col-md-4 col-xs-4 col-sm-4">${VselectListBuFrontList.buInsertDt}</td>
-								</tr>
-							</c:if>
+							<input type="hidden" name="bUsers_id"
+								value="${VselectListBuFrontList.bUsers_id}" />
+							<input type="hidden" name="buViewCount"
+								value="${VselectListBuFrontList.buViewCount}" />
+							<tr>
+								<!-- a태그로 처리요망 -->
+								<td class="col-md-8 col-xs-8 col-sm-8"><a
+									href="/board/buView.mwav?bUsers_id=${VselectListBuFrontList.bUsers_id}#notice_top">${VselectListBuFrontList.buTitle}</a></td>
+								<%--view를 구현하는 방법에 따라 달라진다. get 문 형태 유망 --%>
+								<td class="col-md-4 col-xs-4 col-sm-4">${VselectListBuFrontList.buInsertDt}</td>
+							</tr>
 						</c:forEach>
 					</c:when>
 					<c:otherwise>

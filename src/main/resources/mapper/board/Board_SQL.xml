@@ -120,13 +120,13 @@
 		<![CDATA[
 			SELECT bUsers_id, buTitle, buStatus, date_format(buUpdateDt,'%Y-%m-%d') as buInsertDt
 		    FROM BoardUser_tbl
-		    WHERE buDeleteDt IS NULL ORDER BY buInsertDt DESC Limit 5
+		    WHERE buDeleteDt IS NULL AND buStatus = 2 ORDER BY buInsertDt DESC Limit 5
 		]]>
 	</select>
     
     <select id="selectListBuList" parameterType="hashmap" resultType="hashmap">
 	<![CDATA[
-	select c.*, date_format(buInsertDt,'%Y-%m-%d') as fmbuInsertDt from (select @ROWNUM := @ROWNUM + 1 AS ROWNUM, a.* from (select * from BoardUser_tbl where buDeleteDt IS NULL order by buInsertDt desc) a,  (SELECT @ROWNUM := 0) R ) c where c.ROWNUM >= #{startRow} and c.ROWNUM <= #{endRow} 
+	select c.*, date_format(buInsertDt,'%Y-%m-%d') as fmbuInsertDt from (select @ROWNUM := @ROWNUM + 1 AS ROWNUM, a.* from (select * from BoardUser_tbl where buDeleteDt IS NULL AND buStatus = 2 order by buInsertDt desc) a,  (SELECT @ROWNUM := 0) R ) c where c.ROWNUM >= #{startRow} and c.ROWNUM <= #{endRow} 
 	]]>
 	</select>
 	
