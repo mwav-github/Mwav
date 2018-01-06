@@ -77,9 +77,9 @@ $("#checkbox4").bind("click",function(){
 	
 	var autoUse=$("#checkbox4").is(":checked");
 	if(autoUse==false){
-		$(".test1").val("off");
+		$(".autoLogin").val("off");
 	}else if(autoUse==true){
-		$(".test1").val("on");
+		$(".autoLogin").val("on");
 	}
 	//alert(autoUse);
 	});
@@ -314,7 +314,7 @@ $("#checkbox4").bind("click",function(){
 			<%--https://bootsnipp.com/snippets/featured/checkboxradio-css-only 추후 변경 --%>
 			<div class="form-group mgl3">
 				<div class="checkbox checkbox-info">
-					<input id="checkbox4" name="autoLogin" class="styled"
+					<input id="checkbox4" name="autoLoginChk" class="styled"
 						type="checkbox"> Keep me
 						signed in.
 				</div>
@@ -365,7 +365,7 @@ $("#checkbox4").bind("click",function(){
 				<input type="hidden" name="test" value="123" /> <input
 					type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 				<input type="hidden" name="scope" value="email profile" /> <input
-					type="hidden" name="autoLoginSub" class="test1" value="off" />
+					type="hidden" name="autoLoginChk" class="autoLoginChk" value="off" />
 			</form>
 		</div>
 
@@ -384,7 +384,7 @@ $("#checkbox4").bind("click",function(){
 				</div>
 				<input type="hidden" name="test" value="123" /> <input
 					type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-				<input type="hidden" name="autoLoginSub" class="test1" value="off" />
+				<input type="hidden" name="autoLoginChk" class="autoLoginChk" value="off" />
 			</form>
 		</div>
 
@@ -403,8 +403,8 @@ $("#checkbox4").bind("click",function(){
 					</button>
 				</div>
 				<input type="hidden" name="${_csrf.parameterName}"
-					value="${_csrf.token}" /> <input type="hidden" name="autoLoginSub"
-					class="test1" value="off" />
+					value="${_csrf.token}" /> <input type="hidden" name="autoLoginChk"
+					class="autoLoginChk" value="off" />
 			</form>
 		</div>
 
@@ -421,8 +421,8 @@ $("#checkbox4").bind("click",function(){
 						with Twitter</span>
 				</button>
 				<input type="hidden" name="${_csrf.parameterName}"
-					value="${_csrf.token}" /> <input type="hidden" name="autoLoginSub"
-					class="test1" value="off" />
+					value="${_csrf.token}" /> <input type="hidden" name="autoLoginChk"
+					class="autoLoginChk" value="off" />
 			</form>
 		</div>
 

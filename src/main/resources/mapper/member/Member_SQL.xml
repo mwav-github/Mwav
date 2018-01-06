@@ -58,7 +58,7 @@
 
 	<update id="updateMbrRecLoginDt" parameterType="int">
 		<![CDATA[
-		UPDATE Membervalue_tbl SET  mbrRecentLoginDt= sysdate() WHERE member_id = #{member_id}
+		UPDATE MemberValue_tbl SET  mbrRecentLoginDt= sysdate() WHERE member_id = #{member_id}
 		]]>
 	</update>
 
@@ -174,21 +174,18 @@ select * from postcodebuildinfo_tbl where 시도명 = '서울특별시' and 시�
 	<!-- 오토로그인 데이터 추가 오토로그인 유효날짜 삽입 -->
 	<update id="updateAutoLogin" parameterType="map" >
 		<![CDATA[
-			update membervalue_tbl set mbrAutoLoginDt = #{mbrAutoLoginDt} where member_id= #{member_id};
+			update MemberValue_tbl set mbrAutoLoginDt = #{mbrAutoLoginDt} where member_id= #{member_id};
 		]]>
 	</update>
 
 	<!-- 오토로그인 데이터 삭제 오토로그인 유효날짜 제거 -->
 	<update id="updateAutoLoginDel" parameterType="int" >
 		<![CDATA[
-			update membervalue_tbl set mbrAutoLoginDt = null where member_id= #{member_id};
+			update MemberValue_tbl set mbrAutoLoginDt = null where member_id= #{member_id};
 		]]>
 	</update>
 
 	<!-- AutoLogin을 가져옴, 파라티 타입은 typeAlis를  이용, MapType을 쓰도록 바꿔야함
-
-
-
 	 -->
 	<select id="selectAutoLogin" parameterType="string" resultType="net.mwav.member.vo.Member_tbl_VO">
 		<![CDATA[

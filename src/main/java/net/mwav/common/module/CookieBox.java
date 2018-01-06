@@ -62,7 +62,7 @@ public class CookieBox {
 	 * @param name
 	 * @param value
 	 * @param path
-	 * @param maxAge
+	 * @param maxAge  (일,시간,분,초 //  365*24*60*60 : 1년 // 20*60 : 20분)
 	 * @return cookie
 	 * @throws IOException
 	 */

@@ -602,7 +602,7 @@ var xhr;
 													</div>
 													<div class="col-md-12 ">
 														<div class='col-md-12 form-group center-block'>
-															<textarea class="form-control" name="pmtMarkl"
+															<textarea class="form-control" name="pmtMark"
 																class="pmtMark" rows="15">  </textarea>
 														</div>
 

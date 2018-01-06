@@ -43,7 +43,7 @@
 
 	<insert id="insertPmtForm" parameterType="hashmap">
 		<![CDATA[
-			INSERT INTO promoter_tbl
+			INSERT INTO Promoter_tbl
 		    	values(#{promoter_id}, #{pmtLoginId}, #{pmtLoginPw}, #{pmtName},
 			    #{pmtMail}, #{pmtCellularP},#{pmtPhone},0, #{pmtZipcode},
 			    #{pmtAddress}, #{pmtJobType}, null, null, #{pmtSsn1},#{pmtSsn2},#{pmtMarried},#{pmtMarkl}
@@ -53,7 +53,7 @@
 
 	<insert id="insertPmtValueForm" parameterType="hashmap">
 		<![CDATA[
-			insert INTO promotervalue_tbl
+			insert INTO PromoterValue_tbl
 			values(#{promoter_id}, null,null,#{pmtRcmderId},2,0,0,0,null,
 				sysdate(),NULL,NULL,NULL,SYSDATE(),NULL
 			);
@@ -70,7 +70,7 @@
 
 	<select id="selectOnePmtLoginIdCheck" parameterType="string" resultType="string">
 		<![CDATA[
-	      select pmtLoginId from promoter_tbl where PmtLoginId = #{pmtLoginId};
+	      select pmtLoginId from Promoter_tbl where PmtLoginId = #{pmtLoginId};
 		]]>
 	</select>
 
@@ -84,7 +84,7 @@
 	<select id="selectOnePmtInfo" parameterType="hashmap" resultType="net.promoter.vo.Promoter_VO">
 		<![CDATA[
 		SELECT *
-		FROM promoter_tbl
+		FROM Promoter_tbl
 	    WHERE promoter_id = #{promoter_id}
 		]]>
 	</select>
@@ -92,14 +92,14 @@
 	<select id="selectOnePmtValueInfo" parameterType="string" resultType="net.promoter.vo.PromoterValue_VO">
 		<![CDATA[
 		SELECT *
-		FROM promoterValue_tbl
+		FROM PromoterValue_tbl
 	    WHERE promoter_id = #{promoter_id}
 		]]>
 	</select>
 
 	<select id="selectListPmtList" parameterType="hashmap" resultType="hashmap">
 	<![CDATA[
-	select c.* from (select @ROWNUM := @ROWNUM + 1 AS ROWNUM, a.* from (select * from promoter_tbl order by promoter_id) a,  (SELECT @ROWNUM := 0) R ) c where c.ROWNUM >= #{startRow} and c.ROWNUM <= #{endRow}
+	select c.* from (select @ROWNUM := @ROWNUM + 1 AS ROWNUM, a.* from (select * from Promoter_tbl order by promoter_id) a,  (SELECT @ROWNUM := 0) R ) c where c.ROWNUM >= #{startRow} and c.ROWNUM <= #{endRow}
 	]]>
 	</select>
 
@@ -123,8 +123,8 @@
 	<select id="selectPmtLogin" parameterType="hashmap" resultType="net.promoter.vo.PromoterValue_VO">
 		<![CDATA[
 		SELECT *
-		FROM promoter_tbl
-	    WHERE PmtLoginId = #{PmtLoginId}
+		FROM Promoter_tbl
+	    WHERE pmtLoginId = #{pmtLoginId}
 		]]>
 	</select>
 
@@ -132,7 +132,7 @@
 	<!-- /*========================================업데이트========================================*/ -->
 	<update id="updatePmtPro" parameterType="hashmap">
 	<![CDATA[
-	  update promoter_tbl
+	  update Promoter_tbl
 	  set pmtName=#{pmtName} ,pmtCellularPhone= #{pmtCellularPhone},pmtMail=#{pmtMail},pmtPhone=#{pmtPhone}, pmtMarkl= #{pmtMaikl}
 	]]>
 	  <if test= "#{pmtNewPw}!=null">
@@ -144,7 +144,7 @@
 
 	<update id="updatePmtValuePro" parameterType="hashmap">
 	<![CDATA[
-	  update promoterValue_tbl
+	  update PromoterValue_tbl
 	  set
 	  where promoter_id= #{promoter_id}
 	]]>
@@ -152,7 +152,7 @@
 
 	<update id="updatePmtVisitNbr" parameterType="hashmap">
 	<![CDATA[
-	  update promoterValue_tbl
+	  update PromoterValue_tbl
 	  set PmtVisitNbr = PmtVisitNbr+1
 	  where promoter_id= #{promoter_id}
 	]]>

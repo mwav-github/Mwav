@@ -144,10 +144,10 @@
 			<div class="col-lg-12">
 				<div class="col-xs-12 col-sm-6 col-md-6">
 					<!-- md >= 992 / sm >=768  2행에서 1-->
-					<a href="/CompanyItem/ITProducts/Seqrite/Seqrite.mwav"> <img
+					<a href="/CompanyItem/ITProducts/QuickHeal/QuickHeal.mwav"> <img
 						class="img-responsive img-portfolio img-hover"
-						src="/CompanyItem/ITProducts/Images/Seqrite Antiransomware Leaflet.png"
-						alt="Seqrite Antiransomware Leaflet">
+						src="/CompanyItem/ITProducts/Images/QuickHeal Antiransomware Leaflet.png"
+						alt="QuickHeal Antiransomware Leaflet">
 					</a>
 
 				</div>

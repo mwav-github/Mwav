@@ -135,12 +135,19 @@ public class StatisticsInterceptor extends HandlerInterceptorAdapter {
 			// Java/1.8.0_25 부분 서버로그 남기지 않을 때.
 			String userAgent = request.getHeader("User-Agent");
 
-			if (auth_url != null && !(auth_url.contains(".jsp"))
+			//중요  
+			/*
+			 * 통계가 중복되서 넣어서 에러가 발생하는 케이스 방지(추후 밀리세컨드까지 갔을때에는 고민 필요)
+			 * 1. .jsp -> include 파일인 경우 .jsp로 끝난다.
+			 * 2. /charts -> 차트관련 제외
+			 * 3. /Index.mwav -> 루트의 경우 /로 찍히며 /Index.mwav의 경우 로그인 후 포워딩할때 한다 이때 중복에러 발생.
+			 */
+			if (auth_url != null && !(auth_url.contains(".jsp")) && !(auth_url.contains("Index.mwav"))
 					&& !(auth_url.contains("/charts/highsofts"))) {
 
 				String PageName = null;
 				PageName = Common_Utils.setPageName(auth_url);
-				log.info("임시"+PageName);
+				log.info("임시" + PageName);
 				if (statistics_id == null || statistics_id.equals("")) {
 					// Java/1.8.0_25
 					if (userAgent.contains("Java")) {
@@ -164,14 +171,14 @@ public class StatisticsInterceptor extends HandlerInterceptorAdapter {
 					 * 생성된 쿠키를 전송해야한다. (삭제도 마찬가지) response.addCookie(cookie);
 					 */
 
-				}
-				else {
+				} else {
 					log.info("statistics_id insertStatics." + statistics_id);
 
 					if (!(auth_url.contains("/charts/hightsofts"))) {
-						//System.out.println("차트는 제외");
+						// System.out.println("차트는 제외");
 						request.setAttribute("slPageName", PageName);
-						statisticsController.insertStatics(request, statistics_id);
+						statisticsController.insertStatics(request,
+								statistics_id);
 					}
 				}
 			}
@@ -199,20 +206,25 @@ public class StatisticsInterceptor extends HandlerInterceptorAdapter {
 	}
 
 	private Boolean getAutoLogin(HttpServletRequest request, HttpSession session) {
-		Cookie loginCookie = WebUtils.getCookie(request, "autoLogin");
-		if (loginCookie != null && loginCookie.getValue() != null
-				&& !loginCookie.getValue().equals("")) {
-			log.info("자동로그인 실행 중");
 
-			Member_tbl_VO member = memberService.selectAutoLogin(Integer
-					.parseInt(loginCookie.getValue()));
-			log.info("member의 값은" + member.toString());
-			if (member != null) {
-				log.info("자동로그인 VO 가져옴");
-				session.setAttribute("member", member);
-				return true;
+		try {
+			Cookie loginCookie = WebUtils.getCookie(request, "autoLogin");
+			if (loginCookie != null && loginCookie.getValue() != null
+					&& !loginCookie.getValue().equals("")) {
+				log.info("자동로그인 실행 중");
 
+				Member_tbl_VO member = memberService.selectAutoLogin(Integer
+						.parseInt(loginCookie.getValue()));
+				if (member != null) {
+					log.info("member의 값은" + member.toString());
+					log.info("자동로그인 VO 가져옴");
+					session.setAttribute("member", member);
+					return true;
+
+				}
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		return false;
 	}

@@ -89,6 +89,7 @@
        <url-pattern>*.png</url-pattern>
        <url-pattern>*.swf</url-pattern>
        <url-pattern>*.svg</url-pattern>
+       <url-pattern>*.pdf</url-pattern>
    </servlet-mapping>
 
      <!-- 크로스 사이트(XSS), SQL Injection 스크립트 보안적인 이슈로 강화. 순서도 리스너 등록하고 해야하는듯?-->

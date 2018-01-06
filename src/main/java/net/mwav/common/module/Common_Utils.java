@@ -579,7 +579,12 @@ public class Common_Utils {
 						slPageName = "Windows";
 					} else if (url.contains("Aervision")) {
 						slPageName = "Aervision";
-					}else {
+					} else if (url.contains("vanillaNAV")) {
+						slPageName = "vanillaNAV";
+					} else if (url.contains("QuickHeal")) {
+						slPageName = "QuickHeal";
+					} 
+					else {
 						slPageName = "기타";
 					}
 				} else if (url_2depth.equals("WebSiteBuilding")) {
@@ -589,14 +594,11 @@ public class Common_Utils {
 				} else if (url_2depth.equals("ITConsulting")) {
 					slPageName = "IT컨설팅";
 				} else {
-					// 문자열 자르는것은 추후 모듈화
-					// slPageName 의 경우 varchar(50)
 					if (url.length() > 30) {
 						url = url.substring(0, 29);
 					}
 					slPageName = "CompanyItem_미정_" + url;
 				}
-
 			} else if (url_1depth != null
 					&& url_1depth.equals("CustomerService")) {
 				if (url.contains("Agreement")) {
@@ -675,11 +677,11 @@ public class Common_Utils {
 
 				slPageName = "qa_미정_" + url;
 
-			} else if (url_1depth != null && url_1depth.equals("login")
-					&& url_2depth.equals("post")) {
+			} else if (url_1depth != null && url_1depth.equals("login")) {
+				if (url.contains("post")) {
 
-				slPageName = "로그인 완료";
-
+					slPageName = "로그인 완료";
+				}
 			} else if (url_1depth != null && url_1depth.equals("admins")) {
 
 				slPageName = "관리자" + url;

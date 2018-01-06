@@ -30,14 +30,16 @@ public class PglInterceptor  extends HandlerInterceptorAdapter{
 		  System.out.println("RequestURL : "+request.getRequestURL());
 
 			String pglValue =request.getParameter("pgl");
-			if(pglValue!=null&&!pglValue.equals("")&&request.getSession().getAttribute("pmtName")==null ){  // pgl값이 있을 경우 세션과 쿠키에 저장하고 푸터에 표시함
+			if(pglValue!=null&&!pglValue.equals("")&&request.getSession().getAttribute("pmtName")==null ){  
+				// pgl값이 있을 경우 세션과 쿠키에 저장하고 푸터에 표시함 -
+				// 세션과 쿠키에는 방문자수는 1회만 저장하면 된다.
 				try {
 					getPgl(request, response, pglValue);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 
-			} System.out.println("리퀘스트 밸루:"+  request.getRequestURI() );
+			} log.info("리퀘스트 밸루:"+  request.getRequestURI() );
 
 			return true;
 	}

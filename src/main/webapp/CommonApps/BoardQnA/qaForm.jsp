@@ -201,7 +201,8 @@
 
 <!-- line modal -->
 <div class="modal fade" id="Contact" tabindex="-1" role="dialog"
-	aria-labelledby="modalLabel" aria-hidden="true" style="overflow:hidden">
+	aria-labelledby="modalLabel" aria-hidden="true"
+	style="overflow: hidden">
 
 	<%--성공/실패 레이어 팝업 --%>
 	<div id="alert_success" class="alert alert-success alert-dismissable"
@@ -227,13 +228,12 @@
 			</div> -->
 			<div class="modal-body" style="overflow: auto; max-height: 400px;">
 
-				<form class="form-horizontal" id="QAForm"
-					>
+				<form class="form-horizontal" id="QAForm">
 					<input TYPE="hidden" name="uqStatus" value=""> <input
 						TYPE="hidden" name="before_Q_id" value="${before_Q_id }">
-						
-						<input type="hidden" name="uqInvoker" id="uqInvoker" value=""/>
-						<input type="hidden" name="uqInvoker_id" id="uqInvoker_id" value=""/>
+
+					<input type="hidden" name="uqInvoker" id="uqInvoker" value="" /> <input
+						type="hidden" name="uqInvoker_id" id="uqInvoker_id" value="" />
 					<fieldset>
 
 						<!-- Form Name -->
@@ -249,7 +249,8 @@
 						<!-- Text input-->
 						<div class="form-group">
 							<label class="col-md-3 control-label" for="textinput">Name
-								*</label>
+								<span
+						class="text-color-red"><strong>*</strong></span></label>
 							<div class="col-md-8">
 								<input id="uqUserName" name="uqUserName"
 									placeholder="Enter Your Full Name"
@@ -273,8 +274,8 @@
 
 						<!-- Prepended text-->
 						<div class="form-group">
-							<label class="col-md-3 control-label" for="Phone">Mobile
-								Number *</label>
+							<label class="col-md-3 control-label" for="Phone">MobileNumber <span
+						class="text-color-red"><strong>*</strong></span></label>
 							<div class="col-md-8">
 								<div class="input-group">
 									<span class="input-group-addon">+82</span> <input
@@ -300,7 +301,8 @@
 						<!-- Text input-->
 						<div class="form-group">
 							<label class="col-md-3 control-label" for="email">E-Mail
-								*</label>
+								<span
+						class="text-color-red"><strong>*</strong></span></label>
 							<div class="col-md-8">
 								<input id="uqUserEmail" name="uqUserEmail"
 									placeholder="Enter Your E mail" class="form-control input-md"
@@ -315,7 +317,8 @@
 							<%--비회원인 경우 --%>
 							<div class="form-group">
 								<label class="col-md-3 control-label" for="password">Password
-									*</label>
+									<span
+						class="text-color-red"><strong>*</strong></span></label>
 								<div class="col-md-8">
 									<input id="uqUserPw" name="uqUserPw"
 										placeholder="Enter Your Password"
@@ -328,7 +331,8 @@
 
 						<div class="form-group">
 							<label class="col-md-3 control-label" for="title">Select
-								an issue*</label>
+								an issue <span
+						class="text-color-red"><strong>*</strong></span></label>
 							<div class="col-md-8">
 								<select class="form-control input-sm" id="uqGroup"
 									name="uqGroup">
@@ -346,7 +350,8 @@
 
 						<!-- Text input-->
 						<div class="form-group">
-							<label class="col-md-3 control-label" for="title">Title*</label>
+							<label class="col-md-3 control-label" for="title">Title <span
+						class="text-color-red"><strong>*</strong></span></label>
 							<div class="col-md-8">
 								<input id="uqTitle" name="uqTitle" placeholder="Title"
 									class="form-control input-md" type="text">
@@ -357,20 +362,20 @@
 						<!-- Textarea -->
 						<div class="form-group">
 							<label class="col-md-3 control-label" for="Message">Message
-								*</label>
+								<span
+						class="text-color-red"><strong>*</strong></span></label>
 							<div class="col-md-8">
 								<textarea class="form-control" rows="5" id="uqContent"
-									name="uqContent" placeholder="Enter Your Message *"></textarea>
+									name="uqContent" placeholder="Enter Your Message"></textarea>
 							</div>
 						</div>
-<div class="form-group">
+						<div class="form-group">
 							<div class="col-md-3"></div>
 							<div class="col-md-8">
- 
-								<div class="g-recaptcha" name="recaptcha" 
-									></div>
- 							</div>
- 						</div>
+
+								<div class="g-recaptcha" name="recaptcha"></div>
+							</div>
+						</div>
 
 						<!-- Button 
 						<div class="form-group">
@@ -427,19 +432,24 @@ row 형태로 한줄 씩 한 후 ! enter 해준다.
  --%>
 					<div class="row">
 						<div class="col-md-4 col-sm-4">
-							<label for="state">Name*</label> <input id="uqUserName"
+							<label for="state">Name <span
+						class="text-color-red"><strong>*</strong></span></label> <input id="uqUserName"
 								name="uqUserName" placeholder="Enter Your Full Name"
 								class="form-control " type="text" value="">
 						</div>
 						<div class="col-md-4 col-sm-4">
-							<label for="email">Email*</label> <input id="uqUserEmail"
+							<label for="email">Email <span
+						class="text-color-red"><strong>*</strong></span></label> <input id="uqUserEmail"
 								name="uqUserEmail" placeholder="Enter Your E mail"
-								class="form-control" type="text" value="${param.uqUserEmail }${sessionScope.member.mbrEmail}">
+								class="form-control" type="text"
+								value="${param.uqUserEmail }${sessionScope.member.mbrEmail}">
 						</div>
 						<div class="col-md-4 col-sm-4">
-							<label for="mobile number">Mobile Number*</label> <input
+							<label for="mobile number">MobileNumber <span
+						class="text-color-red"><strong>*</strong></span></label> <input
 								id="uqUserPhone" name="uqUserPhone" class="form-control"
-								placeholder="Mobile" required type="text" value="${sessionScope.member.mbrCellPhone}">
+								placeholder="Mobile" required type="text"
+								value="${sessionScope.member.mbrCellPhone}">
 
 						</div>
 
@@ -449,7 +459,8 @@ row 형태로 한줄 씩 한 후 ! enter 해준다.
 					<c:if test="${sessionScope.Member eq null }">
 						<div class="row">
 							<div class="col-md-12 col-sm-12">
-								<label for="password">Password*</label> <input id="uqUserPw"
+								<label for="password">Password <span
+						class="text-color-red"><strong>*</strong></span></label> <input id="uqUserPw"
 									name="uqUserPw" placeholder="Enter Your password"
 									class="form-control input-md caps_lockchk" type="password"
 									value="" required>
@@ -460,7 +471,8 @@ row 형태로 한줄 씩 한 후 ! enter 해준다.
 
 					<div class="row">
 						<div class="col-md-6 col-sm-6">
-							<label for=uqGroup>Select an issue*</label> <select
+							<label for=uqGroup>Select an issue <span
+						class="text-color-red"><strong>*</strong></span></label> <select
 								class="form-control input-sm" id="uqGroup" name="uqGroup">
 								<option value="">-- Please make a selection --</option>
 								<option value="apply">서비스신청접수</option>
@@ -493,19 +505,20 @@ row 형태로 한줄 씩 한 후 ! enter 해준다.
 
 					<div class="row">
 						<div class="col-md-12 col-sm-12">
-							<label for="Message">Message*</label>
+							<label for="Message">Message <span
+						class="text-color-red"><strong>*</strong></span></label>
 							<textarea class="form-control" rows="10" id="uqContent"
 								name="uqContent" placeholder="Enter Your Message *"></textarea>
 
 						</div>
 					</div>
-					
+
 					<div class="form-group mgt1_8">
 						<div class="col-xs-12 col-md-6 col-md-push-6">
-								<div class="g-recaptcha" name="recaptcha" ></div>
- 						</div>
- 					</div>
-					
+							<div class="g-recaptcha" name="recaptcha"></div>
+						</div>
+					</div>
+
 					<div class="col-md-12 col-sm-12">
 						<div class="pull-right">
 							<input type="submit" class="btn btn-primary" value="Submit" />

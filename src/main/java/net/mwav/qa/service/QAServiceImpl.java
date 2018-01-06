@@ -46,7 +46,6 @@ public class QAServiceImpl implements QAService {
 		map.put("uqStatus", "1");
 
 		// 재문의 인 경우
-
 		String imsi_flag = qaDAO.insertQAForm(map, request);
 		boolean flag = false;
 

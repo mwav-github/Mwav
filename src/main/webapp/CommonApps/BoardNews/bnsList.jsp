@@ -8,9 +8,9 @@
 
 <c:choose>
 	<c:when
-		test="${fn:length(selectListBnsList) > 0 and selectListBnsList.bnStatus == '2'}">
+		test="${fn:length(selectListBnsList) > 0 and selectListBnsList.bnStatus eq '2'}">
 		<c:forEach var="VselectListBnsList" items="${selectListBnsList}">
-			<c:if test="${VselectListBnsList.bnStatus eq 2}">
+			<c:if test="${VselectListBnsList.bnStatus eq '2'}">
 			<input type="hidden" id="bNews_id" name="bNews_id"
 				value="${VselectListBnsList.bNews_id }">
 			<div class="row">

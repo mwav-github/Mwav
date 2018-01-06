@@ -634,28 +634,11 @@ public class MemberController {
 			} else if (b_mbrLoginPw.equals(a_mbrLoginPw)) {
 				// login 성공
 				loginCheck = 1;
-
 				// 세션 지정.
-
 				session.setAttribute("member", member_tbl_VO);
-				if((boolean)commandMap.get("autoLogin").equals("on"))
-				  memberService.updateAutoLogin((String)commandMap.get("autoLogin"), response, member_tbl_VO.getMember_id());
-				/*if (commandMap.get("autoLogin")!=null&&(boolean)commandMap.get("autoLogin").equals("on")) {
-			    	  System.out.println("autologin실행됨");
-			          int amount = 60 * 60 * 24 * 14; //일주일 기간설정
-			          HashMap<String,Object> map = new HashMap<String,Object>();
-			          map.put("member_id", (int) memberLogin.get("member_id"));
-			          map.put("mbrAutoLoginDt", new Date(System.currentTimeMillis() + (1000 * amount)));
-			          memberService.updateAutoLogin(map);
-			          //쿠키박스
-			          Cookie loginCookie = new Cookie("autoLogin", memberLogin.get("member_id").toString());
-			          loginCookie.setPath("/");
-			          loginCookie.setMaxAge(60 * 60 * 24 * 14);
-			          response.addCookie(loginCookie);
-				 }*/
+				if((boolean)commandMap.get("autoLoginChk").equals("on"))
+				  memberService.updateAutoLogin((String)commandMap.get("autoLoginChk"), response, member_tbl_VO.getMember_id());
 
-				// session.setAttribute("mbrLoginId", mbrLoginId);
-				// session.setAttribute("member_id", member_id);
 				System.out.println("로그인성공");
 			} else if (mbrLoginId != null
 					&& !(b_mbrLoginPw.equals(a_mbrLoginPw))) {

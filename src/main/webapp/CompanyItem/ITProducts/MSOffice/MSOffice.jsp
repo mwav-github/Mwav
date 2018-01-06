@@ -72,7 +72,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					<br> -->
 
 				<div class="text-center">
-					<h1 style="color: #04A3ED;">What Is Microsoft Office 2016?</h1>
+					<h1 style="color: #04A3ED;">What Is Microsoft Office 2018?</h1>
 					<hr>
 				</div>
 
@@ -81,21 +81,21 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 						Office에 오신것을 환영합니다.</h3>
 					<p>
 						작업이든 오락이든 Microsoft가 도와드리겠습니다. Microsoft는 Office 365 Home, Office
-						365 Personal, Office Home & Student 2016, Office Home & Business
-						2016, Office Professional 2016 등의 Microsoft Office를 제작한 회사입니다.
+						365 Personal, Office Home & Student 2018, Office Home & Business
+						2018, Office Professional 2018 등의 Microsoft Office를 제작한 회사입니다.
 						Mac용 Office도 제공하고 있습니다. 전문적인 작업을 위해서든 재미가 목적이든 모두 저희가 책임지겠습니다. <br>
 						<br>이제 어디를 가든 Office 365를 통해 모든 기기에서 Office를 사용할 수 있습니다.
 						Office 365를 구독하시면 PC, Mac, 태블릿, 스마트폰에서 최신 버전의 Word, Excel,
 						PowerPoint, Outlook, OneNote 등을 사용할 수 있습니다. 또한 사진, 동영상 및 문서를 위한
 						1TB의 OneDrive 클라우드 저장소 및 Microsoft 전문가의 기술 지원이 추가 요금 없이 제공됩니다. <br>
 						<br>전문적인 디자인의 프레젠테이션 제작, 스프레드시트 작업, 워드 작업 등 가장 자주 사용하는 기능과
-						단축키를 비롯하여 Microsoft Office 2013의 강력한 소프트웨어가 Microsoft Office 2016에
-						그대로 남아 있습니다. Office 2016에서는 클라우드에 있는 문서를 열어 수정, 저장하거나 협업을 할 수 있기
+						단축키를 비롯하여 Microsoft Office 2016의 강력한 소프트웨어가 Microsoft Office 2018에
+						그대로 남아 있습니다. Office 2018에서는 클라우드에 있는 문서를 열어 수정, 저장하거나 협업을 할 수 있기
 						때문에 효율성을 극대화하고 언제 어디서든 일을 처리할 수 있습니다. Microsoft Office는 Open
 						Office나 Google Docs와 같은 무료 소프트웨어와 비교해 훨씬 강력하며, 보다 나은 지원 서비스를
-						제공합니다. <br> <br>Office Home & Student 2013, Office Home
-						& Business 2013, Office Professional 2013 등 이전 버전의 Office를 갖고 계신다면
-						Office 365 또는 Office 2016으로 업그레이드할 때가 되었습니다. Microsoft Office 제품을
+						제공합니다. <br> <br>Office Home & Student 2016, Office Home
+						& Business 2016, Office Professional 2016 등 이전 버전의 Office를 갖고 계신다면
+						Office 365 또는 Office 2018으로 업그레이드할 때가 되었습니다. Microsoft Office 제품을
 						살펴보고 사용자의 개인적 필요나 비즈니스 필요에 맞는 완벽한 솔루션을 찾으십시오. <br> <br>
 				</div>
 
@@ -113,7 +113,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 				<!-- 2.1번 -->
 				<div class="row">
 					<div class="col-md-12">
-						<p>Office 365에는 새로운 Office 2016 버전의 Word, Excel, PowerPoint 등이
+						<p>Office 365에는 새로운 Office 2018 버전의 Word, Excel, PowerPoint 등이
 							포함되어 있습니다.</p>
 					</div>
 				</div>
@@ -128,7 +128,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 							src="/CompanyItem/ITProducts/Images/MSOffice_2.jpg">
 					</div>
 					<div class="col-xs-12 col-sm-12 col-md-6">
-						<h3 class="text-left mgb3" style="color: #04A3ED;">Word 2016</h3>
+						<h3 class="text-left mgb3" style="color: #04A3ED;">Word 2018</h3>
 						<p>최신의 편집, 검토 및 공유 도구가 포함되어 있습니다.</p>
 
 					</div>
@@ -142,7 +142,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					</div>
 
 					<div class="col-xs-12 col-sm-12 col-md-6 col-md-pull-6">
-						<h3 class="text-left mgb3" style="color: #04A3ED;">Excel 2016</h3>
+						<h3 class="text-left mgb3" style="color: #04A3ED;">Excel 2018</h3>
 						<p>클릭 한 번으로 미래의 추세를 쉽게 예측 할 수 있습니다.</p>
 
 					</div>
@@ -159,7 +159,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					</div>
 					<div class="col-xs-12 col-sm-12 col-md-6">
 						<h3 class="text-left mgb3" style="color: #04A3ED;">PowerPoint
-							2016</h3>
+							2018</h3>
 						<p>발표자 보기에는 청중에게는 슬라이드만 보이지만 발표자는 모니터로 메모를 볼 수 있습니다.</p>
 
 					</div>
@@ -175,7 +175,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 
 					<div class="col-xs-12 col-sm-12 col-md-6 col-md-pull-6">
 						<h3 class="text-left mgb3" style="color: #04A3ED;">Outlook
-							2016</h3>
+							2018</h3>
 						<p>피플 카드에서 바로 회의 일정을 잡거나, 인스턴트 메시지를 보내거나, 전화를 걸 수 있습니다.</p>
 
 					</div>

@@ -139,17 +139,16 @@ css 중 가장 마지막에 호출되어야하며, include 되는 파일 중 css
 
 				<ul>
 					<li>CompanyName : Mwav Inc.</li>
-					<li>Business Registration Number : 206-09-41373</li>
-					<li>Address: GV-4F, 5-5, Ttukseom-ro 46-gil, Gwangjin-gu,
-						Seoul , Korea [143-865]</li>
-					<li>TEL : +82-2-6214-7039</li>
-					<li>FAX: +82-2-6214-1122</li>
+					<%-- <li>Business Registration Number : 206-09-41373</li>--%>
+					<li>Address: GV-4F, 5-5, Ttukseom-ro 46-gil, Gwangjin-gu, Seoul , Korea [05099]</li>
+					<li>TEL : +82-70-4655-4777</li>
+					<li>FAX: +82-2-6214-7039</li>
 					<li>CEO : Lewis Kim</li>
 					<li>WebSite Manager : James Lee</li>
 					<li>Marketing Manager :
 						<c:choose>
 							<c:when  test="${sessionScope.pmtName ne null }">
-							${sessionScope.pmtName}님 반갑습니다.
+							${sessionScope.pmtName}
 							</c:when>
 							<c:otherwise>
 								Alex Chae

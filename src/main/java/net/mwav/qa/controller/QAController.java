@@ -70,6 +70,7 @@ public class QAController {
 		boolean flag = false;
 		int member_id = 0;
 		int statistics_id = 0;
+		char uqInvoker;
 		try {
 			HttpSession session = request.getSession();
 
@@ -81,13 +82,25 @@ public class QAController {
 
 			// 통계키 넣기.
 			if (session.getAttribute("statistics_id") != null) {
-				statistics_id = Integer.parseInt((String) session.getAttribute("statistics_id"));
+				statistics_id = Integer.parseInt((String) session
+						.getAttribute("statistics_id"));
 			}
+			
+			// 정리 필요.
+			int uqInvoker_id;
+			String uqInvoker_id_string = (String) commandMap.get("uqInvoker_id");
+			if (Common_Utils.isEmpty(uqInvoker_id_string) == true) {
+				// null인경우
+				uqInvoker_id = 0;
+				commandMap.put("uqInvoker_id", uqInvoker_id);
+			}
+
+			
 
 			commandMap.put("member_id", member_id);
 			commandMap.put("statistics_id", statistics_id);
-			System.out.println("member_id_QA"+member_id);
-			System.out.println("sdf"+statistics_id);
+			System.out.println("member_id_QA" + member_id);
+			System.out.println("sdf" + statistics_id);
 
 			log.debug("인터셉터 테스트");
 			// qaService.insertQAForm(commandMap.getMap(), request);
@@ -113,17 +126,16 @@ public class QAController {
 		HttpSession session = request.getSession();
 		String m_id = (String) session.getAttribute("member_id");
 		commandMap.put("member_id", m_id);
-		
+
 		// 정리 필요.
 		int uqInvoker_id;
 		String uqInvoker_id_string = (String) commandMap.get("uqInvoker_id");
-		if (Common_Utils.isEmpty(uqInvoker_id_string) == true){
-			//null인경우
+		if (Common_Utils.isEmpty(uqInvoker_id_string) == true) {
+			// null인경우
 			uqInvoker_id = 0;
 			commandMap.put("uqInvoker_id", uqInvoker_id);
 		}
-		
-		
+
 		log.info("인터셉터 테스트");
 
 		// 아직 까지는 한벌로

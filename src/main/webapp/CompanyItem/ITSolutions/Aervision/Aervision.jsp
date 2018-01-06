@@ -269,7 +269,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 						<div class="enter"></div>
 					</div>
 					<div class="col-xs-8 col-sm-8 col-md-8">
-						<strong>AerPalm     <a href="/CompanyItem/ITProducts/Aervision/Aervision_before.jsp#AerPalm" class="btn btn-danger btn-sm"
+						<strong>AerPalm     <a href="/CompanyItem/ITProducts/Aervision/Aervision_before.mwav#AerPalm" class="btn btn-danger btn-sm"
 								data-toggle="tooltip" data-placement="right"
 								data-original-title="자세히보기." target="_blank"><span
 									class="glyphicon glyphicon glyphicon-search"></span></a></strong> <br>

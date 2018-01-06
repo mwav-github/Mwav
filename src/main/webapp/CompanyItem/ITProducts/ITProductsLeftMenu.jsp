@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script>
 	$(function() {
-		
+
 		var pgurl = window.location.pathname;
 		var pgurl_ = window.location.search;
 
@@ -15,11 +15,10 @@
 							|| $(this).attr("alt") == pgurl) {
 						$(this).addClass("active");
 					} /* else if($(this).attr("href") == pgurl){
-									
-								} */
+													
+												} */
 				})
 
-		
 	});
 </script>
 <div class="panel-group">
@@ -98,8 +97,10 @@
 				data-original-title="Highmaps"><span
 				class="glyphicon glyphicon-chevron-right"></span> Highmaps</a>
 		</div>
-
-		<a href="/CompanyItem/ITSolutions/OrgChart/OrgChart.mwav"
+		<a href="/CompanyItem/ITProducts/QuickHeal/QuickHeal.mwav"
+			class="list-group-item " data-toggle="tooltip" data-placement="top"
+			data-original-title="QuickHeal">Quick Heal</a> <a
+			href="/CompanyItem/ITSolutions/OrgChart/OrgChart.mwav"
 			class="list-group-item " data-toggle="tooltip" data-placement="top"
 			data-original-title="OrgChart">OrgChart</a> <a
 			href="/CompanyItem/ITProducts/OpenSRS/OpenSRS.mwav"

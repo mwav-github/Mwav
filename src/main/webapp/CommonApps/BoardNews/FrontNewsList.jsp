@@ -14,7 +14,7 @@
 	<!-- NEW  -->
 	<table class="table table-striped">
 
-		<tbody class="mwav_important_10 hidden-xs">
+		<tbody class="mwav_important_10 hidden-xs hidden-sm">
 			<%--큰 화면에서는 5개다. --%>
 			<form name="NsmNews" action="/board/bnsView.mwav" method="post">
 
@@ -46,14 +46,44 @@
 			</form>
 		</tbody>
 
-		<tbody class="mwav_important_10 visible-xs">
+		<tbody class="mwav_important_10 visible-sm">
 			<%--작은 화면에서는 3개만 --%>
 			<form name="NsmNews" action="/board/bnsView.mwav" method="post">
 				<c:choose>
 					<c:when test="${fn:length(selectListBnsFrontList) > 0 }">
 						<c:forEach var="VselectListBnsFrontList"
 							items="${selectListBnsFrontList}" begin="0" end="2" step="1">
-							<c:if test="${VselectListBnsFrontList.bnStatus eq 2}">
+							<c:if test="${VselectListBnsFrontList.bnStatus eq '2'}">
+								<input type="hidden" name="bNews_id"
+									value="${VselectListBnsFrontList.bNews_id}" />
+								<input type="hidden" name="bnViewCount"
+									value="${VselectListBnsFrontList.bnViewCount}" />
+								<tr>
+									<!-- a태그로 처리요망 -->
+
+									<td class="col-xs-12 text-left "><a
+										href="/board/bnsView.mwav?bNews_id=${VselectListBnsFrontList.bNews_id}">${VselectListBnsFrontList.bnTitle}</a></td>
+								</tr>
+							</c:if>
+						</c:forEach>
+					</c:when>
+					<c:otherwise>
+						<tr>
+							<td colspan="2">조회된 결과가 없습니다.</td>
+						</tr>
+					</c:otherwise>
+				</c:choose>
+			</form>
+		</tbody>
+		
+		<tbody class="mwav_important_10 visible-xs">
+			<%--작은 화면에서는 3개만 --%>
+			<form name="NsmNews" action="/board/bnsView.mwav" method="post">
+				<c:choose>
+					<c:when test="${fn:length(selectListBnsFrontList) > 0 }">
+						<c:forEach var="VselectListBnsFrontList"
+							items="${selectListBnsFrontList}" begin="0" end="1" step="1">
+							<c:if test="${VselectListBnsFrontList.bnStatus eq '2'}">
 								<input type="hidden" name="bNews_id"
 									value="${VselectListBnsFrontList.bNews_id}" />
 								<input type="hidden" name="bnViewCount"

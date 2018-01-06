@@ -4,18 +4,9 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
-
 <head>
-
 <!-- /////////// -->
 <jsp:include page="/PartsOfContent/Head_Import.jsp" flush="false" />
-<!-- ////basePackage
-<script src="//cdn.ckeditor.com/4.5.11/basic/ckeditor.js"></script>
-/////// -->
-
-<!-- StandardPackage 
-<script src="//cdn.ckeditor.com/4.5.11/standard/ckeditor.js"></script>-->
-
 <!-- FullPackage -->
 <script src="//cdn.ckeditor.com/4.5.11/full/ckeditor.js"></script>
 </head>
@@ -25,12 +16,8 @@
 	<!--  //////////////////////////////////// -->
 	<jsp:include page="/Admins/AdminsHeader.jsp" flush="false" />
 	<!--  //////////////////////////////////// -->
-
-
-
 	<!-- Page Content -->
 	<div class="container">
-
 		<!-- Page Heading/Breadcrumbs -->
 		<div class="row">
 			<div class="col-lg-12">
@@ -113,10 +100,8 @@
 	
 	}
 </script>
-
 						<!-- Content Column -->
 						<div class="table-responsive">
-
 							<c:choose>
 								<c:when test="${fn:length(updateNtmForm) > 0}">
 									<form role="form" method="post" name="buForm"
@@ -140,8 +125,7 @@
 														<%--직원담당자 staff_id 추후 반영예정 --%>
 														<input type="hidden" name="staff_id" value="0" />
 
-														<c:set var="buStatus"
-															value="${updateNtmForm.buStatus }" />
+														<c:set var="buStatus" value="${updateNtmForm.buStatus }" />
 														<c:if test="${fn:contains(buStatus, '0')}">
 															<span class="pull-right text-danger"><strong>삭제
 															</strong></span>
@@ -331,8 +315,6 @@
 											</tr>
 
 										</table>
-
-
 										<br style="clear: both">
 										<p class="pull-right">
 											<button type="button" class="btn btn-success"
@@ -346,27 +328,20 @@
 									</form>
 								</c:otherwise>
 							</c:choose>
-
 						</div>
-
 						<%--================================================끝========================================================== --%>
 					</div>
-
 				</div>
 			</div>
 		</div>
 	</div>
 	<!-- /.container -->
-
 	<!-- Footer -->
 	<footer>
 		<!--/////////////////////////////////////////////////// -->
 		<jsp:include page="/Admins/AdminsFooter.jsp" flush="false" />
 		<!--/////////////////////////////////////////////////// -->
 	</footer>
-
-
 </body>
-
 </html>
 
