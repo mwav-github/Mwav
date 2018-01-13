@@ -9,14 +9,21 @@
 	<select id="insertFirstStatics" parameterType="net.mwav.statistics.vo.StatisticsVO">
 		<![CDATA[
 			INSERT INTO Statistics_tbl 
-			Values(#{statistics_id}, #{stPageName}, #{stUrlScheme}, #{stUrlHost}, #{stUrlPort}, #{stUrlLocalPath}, #{stQueryString}, #{stUrlPathAndQuery}, #{stPrePageName}, #{stUrlReferrerHost}, #{stUrlReferrer}, #{stPromoterType}, #{stPromoterId}, #{stWhatsAbout}, #{stMember_id}, #{stSessionId}, #{stUserHostAddress}, #{stUserAgent}, #{stClientScreen}, #{stHTTP_UA_CPU}, #{stDeviceType}, #{stDeviceInfo}, #{stBrowserInfo}, #{stCountryInfo}, #{stStatisticsDt} )
+			Values(#{statistics_id}, #{stPageName}, #{stUrlScheme}, #{stUrlHost}, #{stUrlPort}, #{stUrlLocalPath}, #{stQueryString}, #{stUrlPathAndQuery}, #{stPrePageName}, #{stUrlReferrerHost}, #{stUrlReferrer}, #{stPromoterType}, #{stPromoterId}, #{stWhatsAbout}, #{stMember_id}, #{stSessionId}, #{stUserHostAddress}, #{stUserAgent}, #{stClientScreen}, #{stHTTP_UA_CPU}, #{stDeviceType}, #{stDeviceInfo}, #{stBrowserInfo}, #{stCountryInfo}, now() )
 		]]>
 	</select>
 	
 	<select id="insertStatistics" parameterType="net.mwav.statistics.vo.StatisticsLogVO">
 		<![CDATA[
 			INSERT INTO StatisticsLog_tbl  
-			Values(#{statistics_id}, #{slStatLogDt}, #{slPageName}, #{slUrlHost}, #{slUrlLocalPath}, #{slQueryString})
+			Values(#{statistics_id}, now(), #{slPageName}, #{slUrlHost}, #{slUrlLocalPath}, #{slQueryString})
+		]]>
+	</select>
+	
+	<select id="insertErrorStatistics" parameterType="net.mwav.statistics.vo.StatisticsLogVO">
+		<![CDATA[
+			INSERT INTO StatisticsLog_tbl  
+			Values(#{statistics_id}, DATE_ADD(now(), INTERVAL 1 SECOND), #{slPageName}, #{slUrlHost}, #{slUrlLocalPath}, #{slQueryString})
 		]]>
 	</select>
 	<!-- /*========================================보기========================================*/ -->

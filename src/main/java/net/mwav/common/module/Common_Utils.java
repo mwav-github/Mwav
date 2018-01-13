@@ -13,6 +13,7 @@ import java.util.Random;
 import java.util.Map.Entry;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import net.common.Interceptor.StatisticsInterceptor;
 import net.common.common.CommandMap;
@@ -233,6 +234,43 @@ public class Common_Utils {
 		if (obj == null || obj.toString().equals(""))
 			return true;
 		return false;
+	}
+	
+	/**
+	 * 자바 dateformat 변경하기 String expectedPattern = "yyyyMMddkkmmss";
+	 *
+	 * @param textDate
+	 *            ex) 20141219093040
+	 * @return yyyy년MM월dd일 HH시mm분ss초
+	 * 
+	 *         이슈 최초 입력되는 타입에 대한 확인 후 변형되어야한다 최초 입력되는 타입을 어떻게 할지 부분 고민
+	 */
+	@SuppressWarnings("unused")
+	public static String isEmptyPgl(HttpServletRequest request) {
+		String pgl = null;
+		HttpSession session = request.getSession();
+		CookieBox cookieBox = new CookieBox(request);
+		
+		try{
+		if(request.getParameter("pgl") != null){
+			pgl = request.getParameter("pgl");
+			log.info("pgl은 request 값");
+		}else if((String) session.getAttribute("pgl") != null){
+			pgl = (String) session.getAttribute("pgl");
+			log.info("pgl은 세션값");
+		}else if(cookieBox.isExist("pgl")){
+			pgl =cookieBox.getValue("pgl");
+			log.info("pgl은 쿠키값");
+		}else {
+			pgl =null;
+		}
+		}
+		
+		catch(Exception e){
+			e.printStackTrace();
+		}
+	
+		return pgl;
 	}
 
 	/**

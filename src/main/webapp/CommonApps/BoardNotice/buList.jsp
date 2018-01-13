@@ -2,12 +2,14 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<!-- jQuery Version 1.11.0 -->
 
 <input type="hidden" name="pageNum" />
 <div class="text-enter"></div>
 
 <c:choose>
-	<c:when test="${fn:length(selectListBuList) > 0 ">
+	<c:when test="${fn:length(selectListBuList) > 0}">
+	
 		<c:forEach var="VselectListBuList" items="${selectListBuList}">
 			<input type="hidden" id="bNews_id" name="bNews_id"
 				value="${VselectListBuList.bUsers_id }">

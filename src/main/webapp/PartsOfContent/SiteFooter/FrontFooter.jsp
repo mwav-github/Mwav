@@ -272,47 +272,11 @@ css 중 가장 마지막에 호출되어야하며, include 되는 파일 중 css
 
 <div class="footer-bottom">
 	<div class="container">
-		<p class="pull-left col-md-7">
+		<p class="pull-left col-md-7 col-sm-12 col-xs-12">
 			Copyright ⓒ Since 2004 Mwav.net All rights reserved | <a>Privacy
 				Policy</a> | <a>Terms of Use</a>
 		</p>
-		<div class="pull-right col-md-5">
-			<%-- <ul class="nav nav-pills payments">
-				<li class="tooltips" data-toggle="tooltip" data-placement="top"
-					title="" data-original-title="visa"
-					aria-describedby="tooltip235096"><i class="fa fa-cc-visa"></i></li>
-				<li class="tooltips" data-toggle="tooltip" data-placement="top"
-					title="" data-original-title="mastercard"
-					aria-describedby="tooltip235096"><i
-					class="fa fa-cc-mastercard"></i></li>
-				<li class="tooltips" data-toggle="tooltip" data-placement="top"
-					title="" data-original-title="amex"
-					aria-describedby="tooltip235096"><i class="fa fa-cc-amex"></i></li>
-				<li class="tooltips" data-toggle="tooltip" data-placement="top"
-					title="" data-original-title="paypal"
-					aria-describedby="tooltip235096"><i class="fa fa-cc-paypal"></i></li>
-			</ul> -->
-			<!-- 	<ul class="nav nav-pills">
-
-				<li class="tooltips" data-toggle="tooltip" data-placement="top"
-					title="" data-original-title="internet-explorer"><i
-					class="fa fa-internet-explorer fa-2x" aria-hidden="true"></i></li>
-				<li class="tooltips" data-toggle="tooltip" data-placement="top"
-					title="" data-original-title="chrome"><i
-					class="fa fa-chrome fa-2x" aria-hidden="true"></i>
-				<li class="tooltips" data-toggle="tooltip" data-placement="top"
-					title="" data-original-title="firefox"><i
-					class="fa fa-firefox fa-2x" aria-hidden="true"></i>
-				<li class="tool
-				tips" data-toggle="tooltip"
-					data-placement="top" title="" data-original-title="safari"><i
-					class="fa fa-safari fa-2x" aria-hidden="true"></i></li>
-				<li class="tool
-				tips" data-toggle="tooltip"
-					data-placement="top" title="" data-original-title="opera"><i
-					class="fa fa-opera fa-2x" aria-hidden="true"></i></li>
-			</ul> --%>
-
+		<div class="pull-right col-md-5 col-sm-12 col-xs-12">
 			<ul class="nav nav-pills">
 				<p class="pull-left mgr3">All Browsers Compatibility</p>
 				<li class="tooltips" data-toggle="tooltip" data-placement="top"

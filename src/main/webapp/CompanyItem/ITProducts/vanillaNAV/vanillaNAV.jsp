@@ -105,7 +105,7 @@
 									<p class="small pull-left" style="color: #e67525;">Try out
 										vanillaNAV indoor navigation for free for up to 10 navigation
 										destinations</p>
-									<p class="pull-left"><a href="" class="btn btn-xs btn-warning">Android</a></p>
+									<%-- <p class="pull-left"><a href="" class="btn btn-xs btn-warning">Android</a></p> --%>
 								</div>
 							</div>
 						</div>
