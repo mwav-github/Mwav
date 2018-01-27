@@ -242,9 +242,25 @@ public class QAController {
 		ModelAndView mv = new ModelAndView("/CustomerService/CS-MasterPage");
 
 		HttpSession session = request.getSession();
-		String m_id = String.valueOf(session.getAttribute("member_id"));
-		String m_email = (String) commandMap.get("uqUserEmail");
-		commandMap.put("member_id", m_id);
+		
+		try{
+		//회원로그인시 
+		Member_tbl_VO member = (Member_tbl_VO) session.getAttribute("member");
+		String m_email = null;
+		String m_id = null;
+		
+		if(cou.isEmpty(member)){
+			//비회원인경우
+			
+			m_email = (String) commandMap.get("uqUserEmail");
+		}else{
+			//회원인경우
+			int member_id = member.getMember_id();
+			m_id = Integer.toString(member_id);
+			commandMap.put("member_id", m_id);
+		}
+		
+		
 		String pageNum = (String) commandMap.get("pageNum");
 		Paging paging = new Paging();
 		if (pageNum == null) {
@@ -269,7 +285,6 @@ public class QAController {
 		} else {
 			selectListQAList = Collections.emptyList();
 		}
-		System.out.println("찍히낭");
 		String mm = "site";
 		mv.addObject("mm", mm);
 		mv.addObject("mode", "qaList");
@@ -282,7 +297,10 @@ public class QAController {
 		mv.addObject("selectListQAList", selectListQAList);
 		mv.addObject("pagingVO", pagingVO);
 		mv.addObject("totalRow", totalRow);
-		// mv.addObject("paging", pv.print());
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
 		return mv;
 	}
 

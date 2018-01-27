@@ -6,7 +6,8 @@
 Mwav 관련 별도 css 이며, 추가로 해당 부분은 footer 내 위치해야 할 수도있다.
 css 중 가장 마지막에 호출되어야하며, include 되는 파일 중 css가 하단에 위치하는 경우가 존재하는 이슈가 존재.
  --%>
-<link href="/resources/CommonLibrary/CSS/mwav_custom.css" rel="stylesheet">
+<link href="/resources/CommonLibrary/CSS/mwav_custom.css"
+	rel="stylesheet">
 
 
 <!-- Google Analytics Content Experiment code -->
@@ -60,10 +61,10 @@ css 중 가장 마지막에 호출되어야하며, include 되는 파일 중 css
 	var perfData = window.performance.timing;
 	var pageLoadTime = perfData.mwavmComplete - perfData.navigationStart;
 	var loadTime = "";
-	var userId = '<c:out value="${sessionScope.member.member_id}"/>'; 
+	var userId = '<c:out value="${sessionScope.member.member_id}"/>';
 	var pgl = '<c:out value="${param.pgl}"/>';
-    console.log(userId);
-    console.log(pgl);
+	console.log(userId);
+	console.log(pgl);
 <%--https://www.simoahava.com/analytics/page-load-time-universal-analytics/
 
 	//ga('create', 'UA-63623427-1', 'auto');
@@ -73,26 +74,26 @@ css 중 가장 마지막에 호출되어야하며, include 되는 파일 중 css
 		'cookieDomain' : 'www.mwav.net',
 		'siteSpeedSampleRate' : 100
 	}); // 사이트 속도 측정 100은 전체 체크 (2017_01_10)
-	
+
 	//171102 usderid세팅.
-	if(!(gfn_isNull(userId))){
-	ga('set', 'userId', userId);
+	if (!(gfn_isNull(userId))) {
+		ga('set', 'userId', userId);
 	}
 	//171104 맞춤 측정기준 설정(세션).
 	//https://support.google.com/analytics/answer/2709828?hl=ko
-    //ga('send', 'pageview'); 위에 존재해야한다.
-    if(!(gfn_isNull(pgl))){
-	ga('set', 'dimension1', pgl);
-    }
-    ga('send', 'pageview');
+	//ga('send', 'pageview'); 위에 존재해야한다.
+	if (!(gfn_isNull(pgl))) {
+		ga('set', 'dimension1', pgl);
+	}
+	ga('send', 'pageview');
 	ga('require', 'displayfeatures');
 <%-- 인구통계부분 추가 (2017_01_10) --%>
 	ga('require', 'linkid', 'linkid.js');
 <%--향상된 링크 추적코드  (2017_01_10)--%>
-
+	
 <%--https://www.simoahava.com/analytics/page-load-time-universal-analytics/
 	//ga.push({'event': 'GAEvent', 'eventCategory' : 'PageLoadTime', 'eventAction' : loadTime, 'nonInteratction':1});  //  사이트 속도 이벤트 작성중 --%>
-
+	
 </script>
 
 
@@ -140,14 +141,14 @@ css 중 가장 마지막에 호출되어야하며, include 되는 파일 중 css
 				<ul>
 					<li>CompanyName : Mwav Inc.</li>
 					<%-- <li>Business Registration Number : 206-09-41373</li>--%>
-					<li>Address: GV-4F, 5-5, Ttukseom-ro 46-gil, Gwangjin-gu, Seoul , Korea [05099]</li>
+					<li>Address: GV-4F, 5-5, Ttukseom-ro 46-gil, Gwangjin-gu,
+						Seoul , Korea [05099]</li>
 					<li>TEL : +82-70-4655-4777</li>
 					<li>FAX: +82-2-6214-7039</li>
 					<li>CEO : Lewis Kim</li>
 					<li>WebSite Manager : James Lee</li>
-					<li>Marketing Manager :
-						<c:choose>
-							<c:when  test="${sessionScope.pmtName ne null }">
+					<li>Marketing Manager : <c:choose>
+							<c:when test="${sessionScope.pmtName ne null }">
 							${sessionScope.pmtName}
 							</c:when>
 							<c:otherwise>
@@ -209,8 +210,15 @@ css 중 가장 마지막에 호출되어야하며, include 되는 파일 중 css
 						class="fa fa-envelope"></i> Contact</a> 
 						<%--줄 없애기 + 그다음에 메일로 바로연결이아닌 qa쪽 고민 --%>
 
-						<a href="#" class="btn btn-block btn-primary" data-toggle="modal"
-							data-target="#Contact"
+						<a href="#" class="btn btn-block btn-primary hidden-md hidden-lg"
+							data-toggle="modal" data-target="#Contact"
+							onclick="ga('send', 'event', 'Q&A', 'click', 'Footer');"
+							style="color: white;"><span
+							class="glyphicon glyphicon-envelope"></span> Contact</a> 
+							
+							
+							<a href="/CustomerService/QnA/QnA.mwav?mode=qaForm"
+							class="btn btn-block btn-primary visible-md visible-lg"
 							onclick="ga('send', 'event', 'Q&A', 'click', 'Footer');"
 							style="color: white;"><span
 							class="glyphicon glyphicon-envelope"></span> Contact</a>

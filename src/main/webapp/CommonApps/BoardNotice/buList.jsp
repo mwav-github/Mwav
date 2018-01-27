@@ -50,16 +50,16 @@
 
 				<c:if test="${pagingVO.startPage > pagingVO.pageBlock}">
 					<li><a
-						href="/board/buList.mwav?pageNum=${pagingVO.startPage - pagingVO.pageBlock}"><span
+						href="/CustomerService/Announcement/Announcement.mwav?pageNum=${pagingVO.startPage - pagingVO.pageBlock}"><span
 							class="glyphicon glyphicon-chevron-left"></span></a></li>
 				</c:if>
 				<c:forEach var="i" begin="${pagingVO.startPage}"
 					end="${pagingVO.endPage}">
-					<li><a href="/board/buList.mwav?pageNum=${i}">${i}</a></li>
+					<li><a href="/CustomerService/Announcement/Announcement.mwav?pageNum=${i}">${i}</a></li>
 				</c:forEach>
 				<c:if test="${pagingVO.endPage < pagingVO.pageCount}">
 					<li><a
-						href="/board/buList.mwav?pageNum=${pagingVO.startPage + pagingVO.pageBlock}"><span
+						href="/CustomerService/Announcement/Announcement.mwav?pageNum=${pagingVO.startPage + pagingVO.pageBlock}"><span
 							class="glyphicon glyphicon-chevron-right"></span></a></li>
 				</c:if>
 				<!-- <li><a href="">&laquo;</a></li>

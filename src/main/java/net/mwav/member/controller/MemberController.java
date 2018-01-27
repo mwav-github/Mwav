@@ -87,11 +87,11 @@ public class MemberController {
 		 * request.getRequestURL().toString(); String strCurrentUrl =
 		 * request.getScheme() + "://" + request.getServerName() + ":" +
 		 * request.getServerPort() + request.getContextPath();
-		 *
+		 * 
 		 * String getContextPath = request.getContextPath().toString(); // 들어오는
 		 * url에 따라서 분기 실시 위의 url은 /* 형태로 // prehandle 인터셉터로 처리하면 될듯 ~! 확인 요망 if
 		 * (mode != null) { if (mode == "SMbrLogin") ; {
-		 *
+		 * 
 		 * } }
 		 */
 
@@ -273,7 +273,7 @@ public class MemberController {
 
 		/*
 		 * response.setContentType("text/html;charset=UTF-8");
-		 *
+		 * 
 		 * response.setHeader("Cache-Control", "no-cache"); PrintWriter out =
 		 * response.getWriter();
 		 */
@@ -533,18 +533,18 @@ public class MemberController {
 
 	// 3번 추후 return 필요없을ㄷ스 고민
 	@RequestMapping(value = "/member/LogOut.mwav")
-	public ModelAndView logout(HttpServletRequest request, HttpSession session,HttpServletResponse response)
-			throws Exception {
+	public ModelAndView logout(HttpServletRequest request, HttpSession session,
+			HttpServletResponse response) throws Exception {
 		ModelAndView mv = new ModelAndView("/Index");
 		Object obj = session.getAttribute("member");
-		 if (obj != null) {
-			  memberService.updateAutoLoginDel(request,session,response);
-			  session.removeAttribute("member");
-		      session.invalidate();
-		      log.info("세선제거 성공");
-		 }else{
-				log.info("세션에 로그인 정보다 없어 로그아웃 하지 못하였습니다.");
-		 }
+		if (obj != null) {
+			memberService.updateAutoLoginDel(request, session, response);
+			session.removeAttribute("member");
+			session.invalidate();
+			log.info("세선제거 성공");
+		} else {
+			log.info("세션에 로그인 정보다 없어 로그아웃 하지 못하였습니다.");
+		}
 
 		mode = "SDMbrLogout";
 		request.setAttribute("mode", mode);
@@ -552,12 +552,13 @@ public class MemberController {
 		return mv;
 	}
 
-	//로그인 폼 보여주고 리스트로 돌아감
-	@RequestMapping(value="/login/post")
-	public String loginForm(HttpServletRequest request){
+	// 로그인 폼 보여주고 리스트로 돌아감
+	@RequestMapping(value = "/login/post")
+	public String loginForm(HttpServletRequest request) {
 
-		return "forward:"+request.getContextPath()+"/Index.mwav";
+		return "forward:" + request.getContextPath() + "/Index.mwav";
 	}
+
 	/*
 	 * logincheck = 1 : 정상로그인 logincheck = 2 : 비밀번호 틀림 logincheck = 3 : 아이디 존재하지
 	 * 않음 logincheck = 5 : DB 조회시 NULL (임시패스워드 발급 단계에서 중간하였을때 포함) logincheck = 6
@@ -566,7 +567,8 @@ public class MemberController {
 
 	@RequestMapping(value = "/member/Login.mwav")
 	public ModelAndView selectLogin(CommandMap commandMap,
-			HttpServletRequest request,HttpServletResponse response) throws Exception {
+			HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
 
 		HttpSession session = request.getSession();
 		// * action-servlet.xml에서 위에 .jsp 설정해줘서 위의 CommonApps 부터 되는거
@@ -575,16 +577,20 @@ public class MemberController {
 		Map<String, Object> memberLogin = null;
 		memberLogin = memberService.selectLogin(commandMap.getMap());
 		System.out.println("여기는  멤버로그인 찍기전");
-		if(memberLogin!=null)
-		member_tbl_VO = new Member_tbl_VO((int)memberLogin.get("member_id"),
-				(String)memberLogin.get("mbrLoginId"), (String)memberLogin.get("mbrLoginPw"),
-				(String)memberLogin.get("mbrTempLoginPw"),
-				(String)memberLogin.get("mbrFirstName"),
-				(String)memberLogin.get("mbrMiddleName"),
-				(String)memberLogin.get("mbrLastName"), (String)memberLogin.get("mbrEmail"),
-				(String)memberLogin.get("mbrCellPhone"),
-				(Boolean)memberLogin.get("mbrAddrFlag"), (String)memberLogin.get("mbrZipcode"),
-				(String)memberLogin.get("mbrAddress"));
+		if (memberLogin != null)
+			member_tbl_VO = new Member_tbl_VO(
+					(int) memberLogin.get("member_id"),
+					(String) memberLogin.get("mbrLoginId"),
+					(String) memberLogin.get("mbrLoginPw"),
+					(String) memberLogin.get("mbrTempLoginPw"),
+					(String) memberLogin.get("mbrFirstName"),
+					(String) memberLogin.get("mbrMiddleName"),
+					(String) memberLogin.get("mbrLastName"),
+					(String) memberLogin.get("mbrEmail"),
+					(String) memberLogin.get("mbrCellPhone"),
+					(Boolean) memberLogin.get("mbrAddrFlag"),
+					(String) memberLogin.get("mbrZipcode"),
+					(String) memberLogin.get("mbrAddress"));
 		System.out.println("여기는  return URL 찍기전");
 		String returnUrl = null;
 		String returnUrl_imsi = null;
@@ -598,10 +604,12 @@ public class MemberController {
 
 		int loginCheck = 0; // 초기값
 
-		//g-recaptcha-response POST parameter when the user submits the form on your site
-		//recaptcha-token 과는 별개이다.
-		String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
-		System.out.println("gRecaptchaResponse"+gRecaptchaResponse);
+		// g-recaptcha-response POST parameter when the user submits the form on
+		// your site
+		// recaptcha-token 과는 별개이다.
+		String gRecaptchaResponse = request
+				.getParameter("g-recaptcha-response");
+		System.out.println("gRecaptchaResponse" + gRecaptchaResponse);
 		boolean valid;
 		// Verify CAPTCHA.
 		valid = VerifyRecaptcha.verify(gRecaptchaResponse);
@@ -636,9 +644,16 @@ public class MemberController {
 				loginCheck = 1;
 				// 세션 지정.
 				session.setAttribute("member", member_tbl_VO);
-				if((boolean)commandMap.get("autoLoginChk").equals("on"))
-				  memberService.updateAutoLogin((String)commandMap.get("autoLoginChk"), response, member_tbl_VO.getMember_id());
 
+				boolean isAutoLoginChk = true;
+				isAutoLoginChk = cu.isEmpty(commandMap.get("autoLoginChk"));
+				if (isAutoLoginChk == false
+						&& commandMap.get("autoLoginChk").equals("on")) {
+					log.info("자동로그인시도");
+					memberService.updateAutoLogin(
+							(String) commandMap.get("autoLoginChk"), response,
+							member_tbl_VO.getMember_id());
+				}
 				System.out.println("로그인성공");
 			} else if (mbrLoginId != null
 					&& !(b_mbrLoginPw.equals(a_mbrLoginPw))) {
@@ -670,26 +685,25 @@ public class MemberController {
 
 	}
 
-
 	/*
 	 * // 7번 추후
-	 *
+	 * 
 	 * @RequestMapping(value = "/member/PWFinder.mwav") public ModelAndView
 	 * updatePW(CommandMap commandMap, HttpServletRequest request) throws
 	 * Exception {
-	 *
+	 * 
 	 * ModelAndView mv = new ModelAndView("/CompanyItem/CompanyItemMasterPage");
-	 *
+	 * 
 	 * boolean selectPWFinder = memberService.selectPWFinder(commandMap
 	 * .getMap());
-	 *
+	 * 
 	 * mv.addObject("selectPWFinder", selectPWFinder);
-	 *
+	 * 
 	 * if (selectPWFinder == true) { // 찾았다.
 	 * femailSender.sendEmailAction(commandMap); // 메일발송 } else { // 없다.
-	 *
+	 * 
 	 * } return mv;
-	 *
+	 * 
 	 * }
 	 */
 

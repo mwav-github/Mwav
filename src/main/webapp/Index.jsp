@@ -161,7 +161,7 @@
 							<!-- md >= 992 / sm >=768  2행에서 1-->
 							<a href="/CompanyItem/ITSolutions/Aervision/Aervision.mwav">
 								<img class="img-responsive img-portfolio img-hover"
-								src="/CompanyItem/ITProducts/Images/AerVison(h250).png"
+								src="/CompanyItem/ITProducts/Images/AerVision(h250)_2.png"
 								alt="Aervision">
 							</a>
 
@@ -171,7 +171,7 @@
 							<!-- md >= 992 / sm >=768  2행에서 1-->
 							<a href="/hightsofts/hightsofts.mwav?items=Highcharts"> <img
 								class="img-responsive img-portfolio img-hover"
-								src="/CompanyItem/ITProducts/Images/highcharts(250).png"
+								src="/CompanyItem/ITProducts/Images/HighSoft(h250).png"
 								alt="Highcharts">
 							</a>
 

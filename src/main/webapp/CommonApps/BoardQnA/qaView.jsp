@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <script src="//cdn.ckeditor.com/4.4.6/basic/ckeditor.js"></script>
 <!-- jQuery Version 1.11.0 -->
 
@@ -179,7 +179,8 @@
 
 						<c:choose>
 							<c:when test="${selectOneQAView.uaSatisfaction eq null}">
-								<form name="uaSatisfactionForm" id="uaSatisfactionForm" method="post">
+								<form name="uaSatisfactionForm" id="uaSatisfactionForm"
+									method="post">
 									<div class="row">
 										<h5 class="text-right">
 											<i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>
@@ -219,8 +220,9 @@
 											<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
 										</button>
 									</c:forEach>
-									<c:set value="${5 - selectOneQAView.uaSatisfaction}" var="endValue" />
-										
+									<c:set value="${5 - selectOneQAView.uaSatisfaction}"
+										var="endValue" />
+
 									<c:forEach begin="1" end="${endValue }">
 										<button type="button" class="btn btn-defalut btn-sm btn-grey"
 											aria-label="Left Align">
@@ -238,32 +240,28 @@
 			<div class="enter"></div>
 			<hr class="hr_b">
 			<div class="row text-right">
-				<p>
-
-					<!-- <button type="button" class="btn btn-default" data-toggle="modal"
-						data-target="#Contact" id="reContact">
-						<span class="glyphicon glyphicon-envelope"></span> Contact
-					</button> -->
-
 					<button type="button" class="btn btn-default"
-						onclick="javascript:window.location.href='/CustomerService/CS-MasterPage.mwav?mode=qaForm&uqUserEmail=${selectOneQAView.uqUserEmail}&before_Q_id=${selectOneQAView.QnA_id}'">Contact
+						onclick="javascript:window.location.href='/CustomerService/QnA/QnA.mwav?mode=qaForm&uqUserEmail=${selectOneQAView.uqUserEmail}&before_Q_id=${selectOneQAView.QnA_id}'">Contact
 					</button>
 
 					<%--회원 --%>
 					<c:if test="${sessionScope.member_id ne null }">
-						<button type="button" class="btn btn-default"
-							onclick="javascript:window.location.href='/qa/qaList.mwav?member_id=${sessionScope.member_id}'">All
-							List</button>
+						<form method="post" action="/qa/qaList.mwav">
+							<input type="hidden" name="member_id"
+								value="${sessionScope.member_id}">
+							<button type="submit" class="btn btn-default">All List</button>
+						</form>
 					</c:if>
 					<%--비회원 --%>
 					<c:if test="${sessionScope.member_id eq null }">
-						<button type="button" class="btn btn-default"
-							onclick="javascript:window.location.href='/qa/qaList.mwav?uqUserEmail=${selectOneQAView.uqUserEmail}'">All
-							List</button>
+					<form method="post" action="/qa/qaList.mwav">
+							<input type="hidden" name="uqUserEmail"
+								value="${selectOneQAView.uqUserEmail}">
+							<button type="submit" class="btn btn-default">All List</button>
+						</form>
 					</c:if>
 					<button type="button" class="btn btn-default"
 						onclick="javascript:history.go(-1)">BACK</button>
-				</p>
 			</div>
 			<div class="row">
 				<ul class="pager">

@@ -99,9 +99,10 @@ public class StatisticsController {
 			String pgl = Common_Utils.isEmptyPgl(request);
 			log.info("pgl출력" + pgl);
 
+			if(pgl != null){
 			vo.setStPromoterId(Integer.valueOf(pgl));
 			// 이건 프로모터 등록되고 vo.setStPromoterType('');
-
+			}
 			// 세션아이디
 			vo.setStSessionId(session_id);
 
@@ -149,20 +150,10 @@ public class StatisticsController {
 			vo.setStClientScreen(stClientScreen);
 			// 유져CPU (브라우저 와 운영체제 정보포함 분리 희망시 - getUserAgentDetail()) 사용
 			// vo.setStHTTP_UA_CPU((String) staticMap.get("os"));
-			//
 			statisticsService.insertFirstStatics(vo);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("Request-URI" + staticMap.get("Request-URI"));
-		System.out.println("Refer" + staticMap.get("Refer"));
-		/*
-		 * System.out.println("Request-URI"+staticMap.get("Request-URI"));
-		 * System.out.println("Request-URI"+staticMap.get("Request-URI"));
-		 * System.out.println("Request-URI"+staticMap.get("Request-URI"));
-		 * System.out.println("Request-URI"+staticMap.get("Request-URI"));
-		 */
-
 		return st_id;
 
 	}
@@ -220,6 +211,7 @@ public class StatisticsController {
 
 	}
 
+	// 사용하지 않음 삭제필요.
 	public StatisticsVO insertErrorStatics(HttpServletRequest request,
 			String statistics_id) throws Exception {
 

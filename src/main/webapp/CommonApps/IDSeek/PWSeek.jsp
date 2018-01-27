@@ -37,8 +37,7 @@
 		} else {
 			//alert('22');
 
-			var queryString = "mbrCellPhone=" + phone.value + "&mbrEmail="
-					+ email.value;
+			var queryString = "mbrCellPhone=" + phone.value + "&mbrEmail=" + email.value;
 			if (name == null || email == null) {
 				document.getElementById("idcheckLayer").innerHTML = "<font color=red>이름 또는 이메일을 입력하세요.</font>";
 			} else {
@@ -71,7 +70,7 @@
 <script>
 	function mbrTempLoginPwUpdate() { //PWFinder()
 		var aa = document.getElementById("pwid");
-		//$('#pwid'); undefined 출력
+	//$('#pwid'); undefined 출력
 		//document.getElementById("mbrCellPhone");
 		var bb = document.getElementById("pwemail");
 		//document.getElementById("mbrCellPhone");
@@ -197,33 +196,35 @@
 
 <script>
 	function updateMbrLoginPw(form) { //imsiPWFinder()
-
+		
 		// 로그인 및 기타 form 체크
-
-		// 참고 a태그에서는 this 인지 못함
-		// 원래는 로그인이 최상단 이나, 패스워드 찾기에서 패스워드 변경 부분에서 로그인이 위에있으면 그냥 통과라 변경
-		// 추후 필히 변경 필요.
-		if (form.mbrLoginPw.value.length == 0) {
-			alert("패스워드를 입력해주세요");
-			form.mbrLoginPw.focus();
-			return false;
-		}
-		if (form.mbrLoginPw.value != form.mbrLoginPw_check.value) {
-			alert("패스워드를 다시확인해주세요.");
-			form.mbrLoginPw_check.focus();
-			return false;
-		}
-
+		
+			// 참고 a태그에서는 this 인지 못함
+			// 원래는 로그인이 최상단 이나, 패스워드 찾기에서 패스워드 변경 부분에서 로그인이 위에있으면 그냥 통과라 변경
+			// 추후 필히 변경 필요.
+			if (form.mbrLoginPw.value.length == 0) {
+				alert("패스워드를 입력해주세요");
+				form.mbrLoginPw.focus();
+				return false;
+			}
+			if (form.mbrLoginPw.value != form.mbrLoginPw_check.value) {
+				alert("패스워드를 다시확인해주세요.");
+				form.mbrLoginPw_check.focus();
+				return false;
+			}
+		
+		
+		
+		
 		var imsi_mbrLoginPw = $('#imsi_mbrLoginPw').val();
 		var mbrLoginPw = $('#mbrLoginPw_chk').val();
 		var after_value;
 		var after_value_;
-
+		
 		//공백값 제거
 		after_value = trim(imsi_mbrLoginPw);
 		after_value_ = trim(mbrLoginPw);
-		var URL = "imsi_mbrLoginPw=" + after_value + "&mbrLoginPw="
-				+ after_value_;
+		var URL = "imsi_mbrLoginPw=" + after_value +"&mbrLoginPw="+after_value_;
 
 		$.ajax({
 			type : 'POST', // Http Request Method로 POST로 지정
@@ -233,9 +234,9 @@
 
 				if (data == true) {
 					alert('비밀번호를 변경합니다.');
-					document.location = "/MasterPage.jsp?mode=SMbrLogin";
+					document.location="/MasterPage.jsp?mode=SMbrLogin";
 					return true;
-
+					
 				} else if (data == false) {
 					alert('이전에 사용한 비밀번호로 변경이 불가능합니다.');
 					return false;
@@ -256,6 +257,7 @@
 			},
 			error : function() {
 				alert('pw가 맞지 않습니다.다시 입력해주세요.');
+				
 
 			} // 서버로부터 응답 데이터 실패시 로직 처리
 		});
@@ -287,61 +289,6 @@
 		endColorstr='#20000000'; /* ie */
 }
 </style>
-
-<c:if test="${param.type eq 'page'}">
-
-
-	<div class="wrap-loading display-none">
-		<img class="wrap-loading_images "
-			src="/CommonApps/PostSeek/Images/ajax-loader.gif">
-	</div>
-
-	<div class="col-xs-12 ">
-		<p class="intro-text">아이디를 잊어버리셨나요? 아래 입력사항에 가입하실때 작성하신 정보를 입력해주시면
-			확인 가능합니다.!</p>
-		<%--Forgotten your password? Enter your email address below to begin the reset process. --%>
-
-
-		<div class="form-group">
-			<label class="col-sm-3 control-label" for="mbrCellPhone">휴대폰</label>
-			<div class="col-sm-9">
-				<input type="text" name="mbrCellPhone"
-					class="input_custom col-xs-12 col-sm-4" id="mbrCellPhone"
-					placeholder="휴대폰 번호" required>
-			</div>
-		<div class="enter"></div>
-		</div>
-
-		<div class="form-group">
-			<label class="col-sm-3 control-label" for="mbrCellPhone">이메일</label>
-			<div class="col-sm-9">
-				<input type="text" name="mbrEmail"
-					class="input_custom col-xs-12 col-sm-4" id="mbrEmail"
-					placeholder="이메일" onchange="chkEmailPolicy(this.value, this)"
-					required>
-			</div>
-		</div>
-		<div class="enter"></div>
-
-		<hr class="hr_gray_separator">
-
-		<div class="clearfix form-actions">
-			<div class="col-md-offset-5 col-md-7">
-				<button type="button" onclick="selectOneMbrLoginIdSeek()"
-					class="btn-custom-default btn btn-primary">Submit</button>
-			</div>
-		</div>
-
-		<div class="enter"></div>
-		<div id="idcheckLayer" class="col-md-12"></div>
-
-	</div>
-
-</c:if>
-
-<%-- 
-<c:if test="${param.type eq null}">
-
 <div class="container">
 	<!-- Modal -->
 	<div class="modal fade IDPWSeek" id="IDPWSeek" tabindex="-1"
@@ -385,8 +332,8 @@
 
 
 								<!-- 								<div id="idcheckLayer" class="col-md-offset-4 col-md-8"></div>
- 
-								아이디찾기 표기부분 col-xs-12 col-sm-12 표기안하면 전체를 덮는다. -->
+ -->
+								<%--아이디찾기 표기부분 col-xs-12 col-sm-12 표기안하면 전체를 덮는다. --%>
 								<div id="idcheckLayer" class="col-xs-12 col-sm-12 col-md-12"></div>
 								<div class="col-xs-12 col-sm-12 col-md-12 enter">
 									<button type="button" class="btn btn-block btn-sm btn-info"
@@ -432,11 +379,11 @@
 										<div class="col-md-12 mgt5" id="imsipwdisplay"
 											style="display: none;">
 											<div class="col-md-12">
-												<!-- <div class="col-sm-4 col-sm-4 col-md-4">남은시간</div>
+												<%-- <div class="col-sm-4 col-sm-4 col-md-4">남은시간</div>
 												타이머
 												<div class="col-sm-8 col-sm-8 mgb3">
 													<strong id="time1" class="text-danger"></strong>
-												</div> --!>
+												</div> --%>
 
 												<div class='alert alert-danger text-center'>
 													<strong class="text-danger">남은 시간은 </strong><strong
@@ -517,5 +464,3 @@
 		</div>
 	</div>
 </div>
-</c:if>
---%>

@@ -62,7 +62,7 @@
 					<div id="features" class="row">
 						<div class="row">
 							<div class="col-md-3">
-								<img class="img-responsive img-hover"
+								<img class="img-responsive img-hover center-block"
 									src="/CompanyItem/ITProducts/Images/vanillaNAV_marker.png"
 									alt="vanillaNAV_marker">
 
@@ -87,7 +87,7 @@
 						<div class="enter"></div>
 						<div class="row">
 							<div class="col-md-3">
-								<img class="img-responsive img-hover"
+								<img class="img-responsive img-hover center-block"
 									src="/CompanyItem/ITProducts/Images/vanillaNAV_mac.png"
 									alt="vanillaNAV_mac">
 
@@ -112,7 +112,7 @@
 						<div class="enter"></div>
 						<div class="row">
 							<div class="col-md-3">
-								<img class="img-responsive img-hover"
+								<img class="img-responsive img-hover center-block"
 									src="/CompanyItem/ITProducts/Images/vanillaNAV_hand.png"
 									alt="vanillaNAV_mac">
 
@@ -230,7 +230,7 @@
 
 						</div>
 
-						<div class="col-md-12">
+						<div class="col-xs-12 col-sm-12 col-md-12">
 							<h3 class="text-center" style="color: #e67525;">3 easy steps
 								to your indoor navigation system</h3>
 						</div>

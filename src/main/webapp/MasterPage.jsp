@@ -37,41 +37,62 @@
 		flush="false" />
 	<!--  //////////////////////////////////// -->
 
+	<c:choose>
+		<c:when test="${param.mode eq 'SMbrLogin' || mode eq 'SMbrLogin'}">
 
-	<!-- 3. Page Content 
-	      설명 : Header Footer 제외 전 부분
-	      기타 :
-	-->
-	<%-- 로그인 페이지는 내부 넓이때문에 mg5xauto --%>
-	<div class="container mg5xauto">
-		<div class="row">
-		    <div class="enter"></div>
-			<div class="col-md-12 col-sm-12">
-			<%--
+			<%-- 로그인 페이지는 내부 넓이때문에 mg5xauto --%>
+			<div class="container mg5xauto">
+				<div class="row">
+					<div class="enter"></div>
+					<div class="col-md-12 col-sm-12">
+						<%--
 ${param.name} => request.getParameter("name");
 ${member} => request.getAttribute("member");
 			--%>
-				<c:if test="${param.mode != null || mode != null}">
-					<c:if test="${param.mode == 'SMbrLogin' || mode == 'SMbrLogin'}">
-						<div class="col-md-6 col-md-offset-3">
-							<!--/////////////////////////////////////////////////// -->
-							<jsp:include page="/CommonApps/Member/MbrLogin.jsp" flush="false" />
-							<!--/////////////////////////////////////////////////// -->
-						</div>
-					</c:if>
-<%-- 					<c:if test="${param.mode == 'SMbrView'}">
-						<div class="col-md-6 col-md-offset-3">
-							<!--/////////////////////////////////////////////////// -->
-							<jsp:include page="/CommonApps/Member/MbrLogin.jsp" flush="false" />
-							<!--/////////////////////////////////////////////////// -->
-						</div>
-					</c:if> --%>
-				</c:if>
-			</div>
-		</div>
-	</div>
-	<!-- /.container -->
 
+						<div class="col-md-6 col-md-offset-3">
+							<!--/////////////////////////////////////////////////// -->
+							<jsp:include page="/CommonApps/Member/MbrLogin.jsp" flush="false" />
+							<!--/////////////////////////////////////////////////// -->
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /.container -->
+		</c:when>
+		<c:otherwise>
+			<div class="row">
+				<div class="col-lg-12">
+					<img
+						src="/CustomerService/zImage/CustomerService_IN(height_280).jpg"
+						class="img-responsive res_width" alt="CustomerService">
+				</div>
+			</div>
+
+			<!-- /.row -->
+
+			<div class="container">
+
+				<div class="row">
+					<div class="col-lg-12" id="notice_top">
+						<h1 class="page-header">아이디 찾기</h1>
+
+					</div>
+				</div>
+				<!-- Content Row -->
+				<div class="row">
+					<div class="col-md-12">
+						<!--/////////////////////////////////////////////////// -->
+						<jsp:include page="/CommonApps/IDSeek/IDSeek.jsp" flush="false">
+							<jsp:param name="type" value="page" />
+						</jsp:include>
+						<!--/////////////////////////////////////////////////// -->
+					</div>
+				</div>
+			</div>
+
+		</c:otherwise>
+	</c:choose>
 	<!-- FrontFooter -->
 	<footer>
 		<!--/////////////////////////////////////////////////// -->

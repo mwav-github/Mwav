@@ -231,8 +231,9 @@ public class Common_Utils {
 
 	// null 체크
 	public static boolean isEmpty(Object obj) {
-		if (obj == null || obj.toString().equals(""))
+		if (obj == null || obj.toString().equals("")){
 			return true;
+		}
 		return false;
 	}
 	
@@ -262,7 +263,8 @@ public class Common_Utils {
 			pgl =cookieBox.getValue("pgl");
 			log.info("pgl은 쿠키값");
 		}else {
-			pgl =null;
+			//pgl이 null인경우 
+			pgl = null;
 		}
 		}
 		

@@ -32,10 +32,10 @@ Sitemesh의 경우 URL BASE로
     
 -->
 <decorators defaultdir="/Templates/">
-	<excludes>
+	<!-- <excludes>
         <pattern>/CustomerService/CS-MasterPage.mwav</pattern>
     </excludes>
-       
+        -->
     <!-- CustomerService -->
     <decorator name="customerServiceTemplate" title="CustomerService" page="CustomerServiceMasterPage.jsp">               
         <pattern>/CustomerService/*</pattern>

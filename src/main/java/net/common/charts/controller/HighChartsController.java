@@ -38,19 +38,19 @@ public class HighChartsController {
     }
    
 
-    @RequestMapping({"/charts/hightsofts/WeeklyUsers.mwav"})
+    @RequestMapping({"/charts/highsofts/WeeklyUsers.mwav"})
     @ResponseBody
     public DataVO selectListWeeklyUsers() {
         return chartService.selectListWeeklyUsers();
     }
     
-    @RequestMapping({"/charts/hightsofts/Top10PageList.mwav"})
+    @RequestMapping({"/charts/highsofts/Top10PageList.mwav"})
     @ResponseBody
     public DataVO selectListTop10Page() {
         return chartService.selectListTop10Page();
     }
     
-    @RequestMapping({"/charts/hightsofts/ClientScreenSize.mwav"})
+    @RequestMapping({"/charts/highsofts/ClientScreenSize.mwav"})
     @ResponseBody
     public DataVO selectListClientScreenSize() {
         return chartService.selectListClientScreenSize();

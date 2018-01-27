@@ -96,26 +96,127 @@
   cursor:pointer;
 }
 
-/* 텍스트 색상 */
+/*========================================start 폼컨트롤 ========================================*/
+/**
+ * 참조 url : http://www.digitalcontentzone.com/
+ */
+.form-custom-control {
+    display: block;
+    width: 100%;
+    height: 40px;
+    padding: 10px 10px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555 background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    transition: none;
+    font-family: 'Raleway', sans-serif;
+    margin-top: 0px;
+}
+
+.input_custom{
+    border-radius: 0;
+    background-color: #fff;
+    border: 1px solid #e5e5e5;
+    font-size: 13px;
+    box-shadow: none!important;
+    padding: 10px;
+    
+    }
+/*========================================end 폼컨트롤 ========================================*/
+
+/*========================================start 라인 ========================================*/
+/* bootstrap 기본 hr 변형 */
+.hr_b {
+	border-top: 3px solid #337ab7 !important;
+}
+
+.hr_g {
+	border-top: 2px solid #a1d490 !important;
+}
+
+.hr_gray {
+	border-top: 3px solid #78828D !important;
+}
+
+.hr_gray_separator {
+    clear: both;
+    margin-top: 10px;
+    margin-bottom: 13px;
+    border: 0;
+    height: 1px;
+    background-image: -webkit-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,.15),rgba(0,0,0,0));
+}
+.hr_orange {
+	border-top: 2px solid #e67525 !important;
+}
+
+/*========================================end 라인 ========================================*/
+.right_hr {
+border-right: 1px solid #ccc;
+}
+
+/*========================================start 아이콘 ========================================*/
+
+/**
+ * 참조 url : http://www.digitalcontentzone.com/
+ */
+.contactIcon {
+    color: #27b1e2;
+}
+
+.biggerIcon {
+    top: 20%;
+    position: absolute;
+    opacity: 0.07;
+}
+/*========================================end 아이콘 ========================================*/
+
+/*========================================start 버튼 색상 ========================================*/
+.btn-custom-default {
+    border-radius: 0px;
+    border: 1px solid #282828;
+    font-size: 13px;
+    color: #282828;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    background: transparent;
+    -webkit-transition: background-color 0.3s 
+}
+
+.btn-custom-blue-default {
+color: #fff;
+    background-color: #337ab7;
+    border-color: #5bc0de;
+}
+/*========================================end 버튼 색상 ========================================*/
+
+/*========================================start 텍스트 색상 ========================================*/
 .text-color-gray{
  color: #78828D !important;
 }
 
-/* 텍스트 색상 */
 .text-color-red{
  color: #ff0000 !important;
 }
 
-/* 부트스트랩 main 왼, 오른 아이콘 위치 조정
-.carousel-control.left {
-	left: 2%;
-}
 
-.carousel-control.right {
-	right: 2%;
+.intro-text {
+    letter-spacing: 2px;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 16px;
+    line-height: 23px;
+    color: #337ab7; 
+    /*#d5d5d5; */
+    margin-bottom: 40px;
 }
-*/
-
+/*========================================end 텍스트 색상 ========================================*/
 
 /*
  내용 : bootstrap 내 sr-only navbar breakpoint 변경.
