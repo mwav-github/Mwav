@@ -40,12 +40,12 @@ public class MemberController {
 	Logger log = Logger.getLogger(this.getClass());
 	String mode;
 	HttpServletRequest request;
-
-	@Autowired
-	Member_tbl_VO member_tbl_VO;
-
+	
 	@Autowired
 	EmailSender emailSender;
+	
+	@Autowired
+	Member_tbl_VO member_tbl_VO;
 
 	@Resource(name = "memberService")
 	private MemberService memberService;
@@ -282,7 +282,7 @@ public class MemberController {
 		String result = null;
 		System.out.println("mbrLoginPw= " + mbrLoginPw);
 		if (mbrLoginPw == null) {
-			// 응답 메세지 1 : 이미 등록된 ID 입니다.
+			// 정보가 없는 경우.
 			result = "false";
 		} else {
 			// commandMap.put("mbrLoginPw", mbrLoginPw);
@@ -347,21 +347,7 @@ public class MemberController {
 
 		// commandmAP 출력 모듈
 		cu.selectCommandMapList(commandMap);
-		/*
-		 * if (commandMap.isEmpty() == false) { System.out.println("들어옴");
-		 * Iterator<Entry<String, Object>> iterator = commandMap.getMap()
-		 * .entrySet().iterator(); Entry<String, Object> entry = null; while
-		 * (iterator.hasNext()) { entry = iterator.next(); log.debug("key : " +
-		 * entry.getKey() + ",\tvalue : " + entry.getValue());
-		 * System.out.println("key : " + entry.getKey() + ",\tvalue : " +
-		 * entry.getValue()); } }
-		 */
-
-		/*
-		 * 리스트 형태로 변경 String selectIdFinder = memberService
-		 * .selectOneMbrLoginIdSeek(commandMap.getMap());
-		 */
-
+		
 		List<String> selectIdFinder = memberService
 				.selectOneMbrLoginIdSeek(commandMap.getMap());
 
@@ -376,7 +362,7 @@ public class MemberController {
 
 		List<String> convertTxt = cu.convertStringToMark(selectIdFinder);
 		System.out.println("convertTxt.size()" + convertTxt.size());
-		if (selectIdFinder == null) {
+		if (convertTxt.size() == 0) {
 			// 응답 메세지 1 : 이미 등록된 ID 입니다.
 			// result =
 			// "<font color=red><strong>존재하지 않는 ID 입니다.</strong>	</font>";

@@ -263,7 +263,7 @@
 					alt="WebSiteBuilding">
 			</div>
 
-			<div class="col-xs-12 col-md-6 col-md-pull-6 mgt5">
+			<div class="col-xs-12 col-md-6 col-md-pull-6 mgt5 intro-text-kor">
 				<p>
 					<strong>Technologies :</strong>
 				</p>
@@ -307,7 +307,7 @@
 					alt="ITConsulting">
 			</div>
 			<div class="col-md-4 mgt5">
-				<p>다양한 고객 비즈니스에 대한 이해와 컨설팅 수행 경험을 바탕으로 IT의 획기적 고도화 및 선진화를 위해 IT
+				<p class="intro-text-kor">다양한 고객 비즈니스에 대한 이해와 컨설팅 수행 경험을 바탕으로 IT의 획기적 고도화 및 선진화를 위해 IT
 					계획 수립(IT Planning)에서 구축(Implementation), 운영(Operation),
 					유지보수(Maintenance)의 IT 라이프 사이클 활동을 효율적으로 수행할 수 있는 체계를 수립하고, 수립된 체계에
 					따른 효과적 업무 수행을 지원하여 드립니다.</p>
@@ -337,7 +337,7 @@
 			</div>
 
 			<div class="col-xs-12 col-md-6 col-md-pull-6 mgt5">
-				<p>Mwav는 디지털 마케팅과 관련된 모든 분야(SNS, Portals ...)를 지원하며, 많은 고객과의 수행
+				<p class="intro-text-kor">Mwav는 디지털 마케팅과 관련된 모든 분야(SNS, Portals ...)를 지원하며, 많은 고객과의 수행
 					경험을 통해 습득한 통합 마케팅에 관한 남다른 노하우를 바탕으로 디지털 마케팅에 대한 통합적인 마케팅 전략을 수립하고
 					실행하고 있습니다.</p>
 				<br>

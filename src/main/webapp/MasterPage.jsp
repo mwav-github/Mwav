@@ -63,8 +63,7 @@ ${member} => request.getAttribute("member");
 		<c:otherwise>
 			<div class="row">
 				<div class="col-lg-12">
-					<img
-						src="/CustomerService/zImage/CustomerService_IN(height_280).jpg"
+					<img src="/CustomerService/zImage/CustomerService(height_280).jpg"
 						class="img-responsive res_width" alt="CustomerService">
 				</div>
 			</div>
@@ -72,23 +71,43 @@ ${member} => request.getAttribute("member");
 			<!-- /.row -->
 
 			<div class="container">
+				<c:if test="${mode == 'IDSeek' || param.mode == 'IDSeek'}">
+					<div class="row">
+						<div class="col-lg-12" id="notice_top">
+							<h1 class="page-header">아이디 찾기</h1>
 
-				<div class="row">
-					<div class="col-lg-12" id="notice_top">
-						<h1 class="page-header">아이디 찾기</h1>
+						</div>
+					</div>
+					<!-- Content Row -->
+					<div class="row">
+						<div class="col-md-12">
+							<!--/////////////////////////////////////////////////// -->
+							<jsp:include page="/CommonApps/IDSeek/IDSeek.jsp" flush="false">
+								<jsp:param name="type" value="page" />
+							</jsp:include>
+							<!--/////////////////////////////////////////////////// -->
+						</div>
+					</div>
+				</c:if>
+				
+				<c:if test="${mode == 'PWSeek' || param.mode == 'PWSeek'}">
+					<div class="row">
+						<div class="col-lg-12" id="notice_top">
+							<h1 class="page-header">비밀번호 찾기</h1>
 
+						</div>
 					</div>
-				</div>
-				<!-- Content Row -->
-				<div class="row">
-					<div class="col-md-12">
-						<!--/////////////////////////////////////////////////// -->
-						<jsp:include page="/CommonApps/IDSeek/IDSeek.jsp" flush="false">
-							<jsp:param name="type" value="page" />
-						</jsp:include>
-						<!--/////////////////////////////////////////////////// -->
+					<!-- Content Row -->
+					<div class="row">
+						<div class="col-md-12">
+							<!--/////////////////////////////////////////////////// -->
+							<jsp:include page="/CommonApps/IDSeek/PWSeek.jsp" flush="false">
+								<jsp:param name="type" value="page" />
+							</jsp:include>
+							<!--/////////////////////////////////////////////////// -->
+						</div>
 					</div>
-				</div>
+				</c:if>
 			</div>
 
 		</c:otherwise>

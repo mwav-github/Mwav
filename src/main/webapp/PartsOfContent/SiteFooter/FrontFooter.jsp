@@ -139,7 +139,7 @@ css 중 가장 마지막에 호출되어야하며, include 되는 파일 중 css
 				</p>
 
 				<ul>
-					<li>CompanyName : Mwav Inc.</li>
+					<li>Company Name : Mwav Inc.</li>
 					<%-- <li>Business Registration Number : 206-09-41373</li>--%>
 					<li>Address: GV-4F, 5-5, Ttukseom-ro 46-gil, Gwangjin-gu,
 						Seoul , Korea [05099]</li>

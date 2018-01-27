@@ -1,118 +1,120 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns:context="http://www.springframework.org/schema/context"
-   xmlns:p="http://www.springframework.org/schema/p"
-   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-   xmlns="http://www.springframework.org/schema/beans"
-   xmlns:mvc="http://www.springframework.org/schema/mvc"
-   xmlns:tx="http://www.springframework.org/schema/tx"
-   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.springframework.org/schema/beans" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+	
+	<!-- 여기서 안하는 경우 아래 이메일 쪽에서 찾지를 못한다.
+	     패키지 스캔 후 진행해야하니 이메일쪽만 아래 스캔하면 될듯.
+	 -->
+	<context:component-scan base-package="net"></context:component-scan>
 
 
-<!-- 소셜로그인 프로퍼티 파일 연결 -->
-   <bean
-      class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-      <property name="ignoreResourceNotFound" value="true" />
-      <property name="locations">
-         <list>
-            <!-- <value>classpath:googleProperties/googleApi.properties</value> -->
-            <value>classpath:googleProperties/version.properties</value>
-            <value>classpath:googleProperties/datasource.properties</value>
-            <value>classpath:googleProperties/application.properties</value>
-         </list>
-      </property>
-   </bean>
+	<!-- 소셜로그인 프로퍼티 파일 연결 -->
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="ignoreResourceNotFound" value="true" />
+		<property name="locations">
+			<list>
+				<!-- <value>classpath:googleProperties/googleApi.properties</value> -->
+				<value>classpath:googleProperties/version.properties</value>
+				<value>classpath:googleProperties/datasource.properties</value>
+				<value>classpath:googleProperties/application.properties</value>
+			</list>
+		</property>
+	</bean>
 
 
-   <!-- restTemplate 사용위한 bean 생성 -->
-   <bean id="jsonConverter"
-      class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
-      <property name="supportedMediaTypes" value="application/json" />
-   </bean>
-   
-   <bean id="jacksonMessageConverter"
-      class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" />
+	<!-- restTemplate 사용위한 bean 생성 -->
+	<bean id="jsonConverter"
+		class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+		<property name="supportedMediaTypes" value="application/json" />
+	</bean>
 
-   
-
-   <bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
-      <property name="messageConverters">
-         <list>
-            <ref bean="jsonConverter" />
-         </list>
-      </property>
-   </bean>
-
-   <bean id="jsonView"
-      class="org.springframework.web.servlet.view.json.MappingJacksonJsonView" />
+	<bean id="jacksonMessageConverter"
+		class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" />
 
 
 
-   <!-- 파일 업로드 MultipartResolver 설정 CommonsMultipartResolver 등록 / CommonsMultipartResolver은 
-      스프링 파일업로드 기능 구현 10MB로 설정 제대로 설정안하면, java.lang.classcastexception multiparthttpservletrequest 
-      오류발생 -->
-   <bean id="multipartResolver"
-      class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-      <property name="maxUploadSize" value="100000000" />
-      <property name="maxInMemorySize" value="100000000" />
-      <property name="defaultEncoding" value="UTF-8" />
-   </bean>
+	<bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
+		<property name="messageConverters">
+			<list>
+				<ref bean="jsonConverter" />
+			</list>
+		</property>
+	</bean>
 
-   <!--servlet-context는 서블릿 영영의 설정하는 XML 파일 -->
-
-   <!-- 스프링 메일 설정 -->
-   <!-- gmail -->
-   <!-- 이메일 보내기 JavaMailSender -->
-   <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-      <property name="host" value="smtp.gmail.com" />
-      <!-- 서버주소 -->
-      <property name="port" value="587" />
-      <!-- 포트번호 기본 25 구글 587 -->
-      <property name="defaultEncoding" value="utf-8" />
-      <!-- 기본인코딩 -->
-      <property name="username" value="jusung.kim@mwav.net" />
-      <!-- 메일주소 -->
-      <property name="password" value="QkQh1248!!" />
-      <!-- 메일비밀번호 -->
-      <property name="javaMailProperties">
-         <props>
-            <prop key="mail.transport.protocol">smtp</prop>
-            <prop key="mail.smtp.auth">true</prop>
-            <prop key="mail.smtp.starttls.enable">true</prop>
-            <prop key="mail.debug">true</prop>
-            <prop key="mail.mime.charset">utf-8</prop>
-         </props>
-      </property>
-   </bean>
-
-   <bean id="emailVO" class="net.mwav.common.module.EmailVO">
-   </bean>
-
-   <bean id="emailTemplates" class="net.mwav.common.module.EmailTemplates">
-   </bean>
-
-   <bean id="emailSender" class="net.mwav.common.module.EmailSender">
-   </bean>
-
-   <bean id="velocityConfig"
-      class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
-      <property name="resourceLoaderPath" value="Templates/" />
-      <property name="velocityProperties">
-         <props>
-            <prop key="input.encoding">UTF-8</prop>
-            <prop key="output.encoding">UTF-8</prop>
-         </props>
-      </property>
-   </bean>
+	<bean id="jsonView"
+		class="org.springframework.web.servlet.view.json.MappingJacksonJsonView" />
 
 
-<!-- 등록안하는 경우 하기 에러 발생
-Caused by: org.springframework.beans.factory.BeanCreationException: Could not autowire field:
-  -->
-   <bean id="member_tbl_VO" class="net.mwav.member.vo.Member_tbl_VO">
-   </bean>
-   
-   <bean id="staff" class="net.admins.vo.Staff_VO">
-   </bean>
+
+	<!-- 파일 업로드 MultipartResolver 설정 CommonsMultipartResolver 등록 / CommonsMultipartResolver은 
+		스프링 파일업로드 기능 구현 10MB로 설정 제대로 설정안하면, java.lang.classcastexception multiparthttpservletrequest 
+		오류발생 -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="100000000" />
+		<property name="maxInMemorySize" value="100000000" />
+		<property name="defaultEncoding" value="UTF-8" />
+	</bean>
+
+	<!--servlet-context는 서블릿 영영의 설정하는 XML 파일 -->
+
+	<!-- 스프링 메일 설정 -->
+	<!-- gmail -->
+	<!-- 이메일 보내기 JavaMailSender -->
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com" />
+		<!-- 서버주소 -->
+		<property name="port" value="587" />
+		<!-- 포트번호 기본 25 구글 587 -->
+		<property name="defaultEncoding" value="utf-8" />
+		<!-- 기본인코딩 -->
+		<property name="username" value="jusung.kim@mwav.net" />
+		<!-- 메일주소 -->
+		<property name="password" value="QkQh1248!!" />
+		<!-- 메일비밀번호 -->
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.transport.protocol">smtp</prop>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.debug">true</prop>
+				<prop key="mail.mime.charset">utf-8</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="emailTemplates" class="net.mwav.common.module.EmailTemplates">
+	</bean>
+
+	<bean id="emailVO" class="net.mwav.common.module.EmailVO">
+	</bean>
+
+	<bean id="emailSender" class="net.mwav.common.module.EmailSender">
+	</bean>
+
+	<bean id="velocityConfig"
+		class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+		<property name="resourceLoaderPath" value="Templates/" />
+		<property name="velocityProperties">
+			<props>
+				<prop key="input.encoding">UTF-8</prop>
+				<prop key="output.encoding">UTF-8</prop>
+			</props>
+		</property>
+	</bean>
+
+
+	<!-- 등록안하는 경우 하기 에러 발생 Caused by: org.springframework.beans.factory.BeanCreationException: 
+		Could not autowire field: -->
+	<bean id="member_tbl_VO" class="net.mwav.member.vo.Member_tbl_VO">
+	</bean>
+
+	<bean id="staff" class="net.admins.vo.Staff_VO">
+	</bean>
 </beans>

@@ -24,7 +24,7 @@ function decrementTime() {
 		alert('5분의 시간이 지났습니다. 다시 시도해주세요.');
 		// $("#PwFinder").empty();
 		// $("#myTabContent").modal('hide');
-		document.location.href = '/MasterPage.jsp?mode=SMbrLogin';
+		document.location.href = '/MasterPage.mwav?mode=SMbrLogin';
 
 		// 시간이 만료되고 나서 할 작업을 여기에 작성
 		// document.form.submit(); // 예: 강제로 form 실행

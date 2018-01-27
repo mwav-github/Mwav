@@ -216,6 +216,16 @@ color: #fff;
     /*#d5d5d5; */
     margin-bottom: 40px;
 }
+
+.intro-text-kor{
+letter-spacing: 1px;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 14px;
+    line-height: 24px;
+    color: #47525d;
+    margin-bottom: 40px;
+}
 /*========================================end 텍스트 색상 ========================================*/
 
 /*
