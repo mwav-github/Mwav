@@ -58,7 +58,7 @@
 			<div class="col-md-9">
 				<div class="col-xs-12 col-sm-12 col-md-12">
 					<div class="enter"></div>
-
+					
 					<div id="features" class="row">
 						<div class="row">
 							<div class="col-md-3">
@@ -70,12 +70,15 @@
 							<div class="col-md-9">
 								<div class="text-left">
 									<h4 class="pull-left" style="color: #e67525;">
-										<strong>정확하고 신뢰성 높은 실내 위치추적 기술</strong>
+										<strong>Indoor positioning technology</strong>
 									</h4>
-									<p class="pull-left">vanillaNAV의 실내 위치추적 시스템은 복잡한 블루투스 비콘
-										이나 WiFi 인프라망이 필요하지 않습니다. 자사의 시스템은 광학 내비게이션 마커를 통해 간단히 동작합니다.
-										작은 QR코드인 마커를 바닥이나 벽에 붙이면 센티미터 수준의 정확하고 신뢰할 수 있는 실내 위치 추적이
-										가능합니다.</p>
+									<h4 class="pull-left">&nbsp; – accurate and reliable</h4>
+									<p class="pull-left">The vanillaNAV indoor positioning
+										system doesn´t require complex bluetooth beacon or WiFi
+										infrastructure. It simply works via optical navigation
+										markers. Those small QR codes can be attached to the floor or
+										on walls and enable absolutely reliable and precise indoor
+										positioning within centimeters.</p>
 
 								</div>
 							</div>
@@ -92,13 +95,16 @@
 							<div class="col-md-9">
 								<div class="text-left">
 									<h4 class="pull-left" style="color: #e67525;">
-										<strong>간단하고 사용이 쉬운 vanillaNAV 매니저</strong>
+										<strong>vanillaNAV Manager</strong>
 									</h4>
-									<p class="pull-left">웹 백엔드 형태의 기술로, 전 세계에 위치해 있는 여러분의 장소를
-										365일 관리할 수 있습니다. vanillaNAV 매니저를 내비게이션의 목적지를 정의하고, 그에 대한 경로를
-										설정하며 추가 정보를 제공하는 데 이용해 보세요.</p>
-									<p class="small pull-left" style="color: #e67525;">vanillaNAV
-										실내 내비게이션을 목적지 10개까지 무료로 사용해 보세요.</p>
+									<h4 class="pull-left">&nbsp; – simply easy</h4>
+									<p class="pull-left">The web-backend allows you to manage
+										your venue 24/7 from all over the world. Use the vanillaNAV
+										Manager to define navigation destinations, specify routes and
+										add additional information about destinations.</p>
+									<p class="small pull-left" style="color: #e67525;">Try out
+										vanillaNAV indoor navigation for free for up to 10 navigation
+										destinations</p>
 									<%-- <p class="pull-left"><a href="" class="btn btn-xs btn-warning">Android</a></p> --%>
 								</div>
 							</div>
@@ -114,14 +120,19 @@
 							<div class="col-md-9">
 								<div class="text-left">
 									<h4 class="pull-left" style="color: #e67525;">
-										<strong>vanillaNAV 애플리케이션을 통한 편리한 경로 안내</strong>
+										<strong>vanillaNAV App</strong>
 									</h4>
-									<p class="pull-left">내비게이션 목적지는 목적지 목록이나 통합 검색기능을 통해 선택할 수
-										있습니다. 경로 안내가 시작되면, vanillaNAV 애플리케이션은 바닥이나 벽에 위치되어 있는 내비게이션
-										마커를 감지하고 증강현실 방식으로 내비게이션 화살표를 통해 층간 및 실외 지역을 가로지르는 내비게이션 경로를
-										직관적으로 제공해 줍니다.</p>
-									<p class="small pull-left" style="color: #e67525;">vanillaNAV
-										애플리케이션은 구글 플레이 스토어 및 애플 앱 스토어에서 무료로 다운로드 가능합니다.</p>
+									<h4 class="pull-left">&nbsp; – exciting route guidance</h4>
+									<p class="pull-left">Navigation destinations can either be
+										selected from the list of destinations or via the integrated
+										search function. When route guidance is started the vanillaNAV
+										App detects navigation markers on the floor or on walls and
+										provides intuitive turn by turn navigation through an
+										augmented reality navigation arrow – across various floors and
+										outdoor areas. Your visitors will be excited!</p>
+									<p class="small pull-left" style="color: #e67525;">The
+										vanillaNAV indoor navigation App is available free of charge
+										in the Android Play Store and Apple App Store Android</p>
 								</div>
 							</div>
 						</div>
@@ -132,28 +143,34 @@
 							<div class="row">
 								<div class="col-md-6">
 									<h4>
-										<strong>빠르고 쉬우며, 효율적인 비용으로 통합 운영</strong>
+										<strong>Quick, easy and cost-efficient integration
+											and operation</strong>
 									</h4>
 									<ul>
-										<li>WiFi 핫스팟이나 블루투스 비콘과 같이 추가적인 하드웨어나 인프라가 필요하지 않음</li>
-										<li>유지보수 비용이 없음</li>
-										<li>최초 및 재 측정이 필요하지 않음</li>
-										<li>별도로 지도 제작이 필요 없음 – 기존의 평면도를 사용할 수 있음</li>
+										<li>Quick, easy and cost-efficient integration and
+											operation:</li>
+										<li>No costs for addition hardware or infrastructure such
+											as WiFi hotspots or bluetooth beacons</li>
+										<li>No maintenance costs</li>
+										<li>No first-time calibration or recalibration necessary</li>
+										<li>No need for special map material – any existing floor
+											plan can be used</li>
 									</ul>
 								</div>
 								<div class="col-md-6">
 									<h4>
-										<strong>위치 기반 서비스</strong>
+										<strong>Location Based Services</strong>
 									</h4>
 									<ul>
-										<li>전시회/컨퍼런스에서의 강연/이벤트 정보제공</li>
-										<li>제품/기사에 대한 추가 정보제공</li>
-										<li>방문과 조회가 가장 많은 장소표시</li>
+										<li>Information about talks/events at
+											exhibitions/conferences</li>
+										<li>Additional information about products/articles</li>
+										<li>Most visited/searched places in a venue</li>
 										<ul>
-											<li>전시 업체의 강조</li>
-											<li>매장 내 기사</li>
-											<li>전시회 정보</li>
-											<li>게이트에서 출발시간</li>
+											<li>Highlights of an exhibitor</li>
+											<li>Articles in a store</li>
+											<li>Information about an exhibit</li>
+											<li>Departure times at a gate</li>
 										</ul>
 									</ul>
 								</div>
@@ -162,22 +179,28 @@
 							<div class="row">
 								<div class="col-md-6">
 									<h4>
-										<strong>기능보증: vanillaNAV 실내 내비게이션 시스템은 모든 건물에서의 동작을 보장합니다!</strong>
+										<strong>Functioning guarantee: the vanillaNAV indoor
+											navigation system is guaranteed to work in every building!</strong>
 									</h4>
 									<ul>
-										<li>층 간, 엘리베이터, 에스컬레이터, 계단 및 야외 구역에서 작동합니다.</li>
-										<li>센티미터 수준의 실내 위치 추적을 통한 정확한 내비게이션 구현</li>
-										<li>원하는 목적지의 최적 경로로 귀사의 방문객을 안내합니다.</li>
+										<li>Works across various floors, elevators, escalators,
+											stairs and outdoor areas</li>
+										<li>Precise navigation through indoor location tracking
+											within centimeters</li>
+										<li>Takes your visitors on the best path to their
+											destination</li>
 									</ul>
 								</div>
 								<div class="col-md-6">
 									<h4>
-										<strong>위치서비스에 대한 흥미로운 방문경험</strong>
+										<strong>Exciting visitor experience of your location</strong>
 									</h4>
 									<ul>
-										<li>증강 현실 방식의 내비게이션 화살표가 안내하는 편안한 경로 탐색 방식</li>
-										<li>vanillaNAV 앱의 뛰어난 유용성</li>
-										<li>목적지 탐색 기능 : 건물 내 목적지에 대한 빠른 검색 및 찾기</li>
+										<li>Comfortable turn by turn navigation with augmented
+											reality navigation arrows</li>
+										<li>Great usability of the vanillaNAV App</li>
+										<li>Search function for destinations: quick searching and
+											finding of destinations in your building</li>
 									</ul>
 								</div>
 							</div>
@@ -185,20 +208,21 @@
 							<div class="row">
 								<div class="col-md-6">
 									<h4>
-										<strong>모바일 마케팅 & 위치 기반 광고</strong>
+										<strong>Mobile Marketing & Location Based
+											Advertisement:</strong>
 									</h4>
 									<ul>
-										<li>할인 매장 정보</li>
-										<li>특별 행사 정보</li>
-										<li>신제품 광고</li>
+										<li>Shops with discounts</li>
+										<li>Information about special offers</li>
+										<li>Advertisement for new products</li>
 									</ul>
 								</div>
 							</div>
 						</div>
 					</div>
 					<div class="row">
-						<div class="enter"></div>
-
+										<div class="enter"></div>
+	
 						<div
 							class="vid col-xs-push-1 col-xs-10 col-sm-10 col-sm-push-1  col-md-10 col-md-push-1 embed-responsive embed-responsive-16by9">
 							<iframe class="embed-responsive-item"
@@ -207,33 +231,37 @@
 						</div>
 
 						<div class="col-xs-12 col-sm-12 col-md-12">
-							<h3 class="text-center" style="color: #e67525;">귀사의 실내 내비게이션 시스템을 위한 쉬운 3단계 과정</h3>
+							<h3 class="text-center" style="color: #e67525;">3 easy steps
+								to your indoor navigation system</h3>
 						</div>
 
 
 						<div class="col-xs-12 col-sm-12 col-md-12">
 							<div class="enter"></div>
 							<div class="col-md-4">
-								<h4>장소 정의</h4>
+								<h4>Define venue</h4>
 								<ul>
-									<li>우선 장소에 대한 평면도 준비하세요.</li>
-									<li>탐색 목적지 및 모바일 마케팅 정보를 입력하세요.</li>
-									<li>내비게이션 마커의 위치를 지정하세요.</li>
+									<li>Import floor plan of the venue</li>
+									<li>Define navigation destinations and mobile marketing
+										information</li>
+									<li>Define position of navigation markers</li>
 								</ul>
 							</div>
 							<div class="col-md-4">
-								<h4>내비게이션 마커 인쇄</h4>
+								<h4>Print navigation markers</h4>
 								<ul>
-									<li>정의된 내비게이션 마커를 저장하세요.</li>
-									<li>접착이 가능한 인쇄지에 직접 네비게이션 마커를 출력하거나</li>
-									<li>또는 자사의 인쇄서비스 이용하세요.</li>
+									<li>Save used navigation markers</li>
+									<li>Either print navigation markers on self-adhesive
+										material yourself</li>
+									<li>Or use our print service</li>
 								</ul>
 							</div>
 							<div class="col-md-4">
-								<h4>내비게이션 마커 배치하기</h4>
+								<h4>Place navigation markers</h4>
 								<ul>
-									<li>해당 장소로 이동하세요.</li>
-									<li>평면도에 정의된 대로 내비게이션 마커를 배치하세요.</li>
+									<li>Go to the venue</li>
+									<li>Place the navigation markers as defined in the floor
+										plan</li>
 								</ul>
 							</div>
 

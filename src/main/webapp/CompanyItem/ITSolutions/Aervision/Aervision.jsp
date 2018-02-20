@@ -91,32 +91,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 			<div class="col-md-9">
 				<!-- Aervision_AerPass -->
 				<div class="row" id="AerPass">
-					<!-- <div class="col-md-8 col-md-offset-2" style="background-color: #990085; color: white;">
-						<h1 class="text-center">What Is AerPass™?</h1>
-					</div>
-					<br> -->
-					<!-- 
-					<nav \>
-						<ul class="nav nav-pills nav-justified"
-							data-spy="affix" >
-							<li class="active"><a href="#section1">Section 1</a></li>
-							<li><a href="#section2">Section 2</a></li>
-							<li><a href="#section3">Section 3</a></li>
-						</ul>
-					</nav> -->
-
-
-					<!-- <nav class="navbar nav_indication navbar-inverse">
-						<ul class="nav navbar-nav">
-							<li class="active"><a href="#">Basic Topnav</a></li>
-							<li><a href="#">Page 1</a></li>
-							<li><a href="#">Page 2</a></li>
-							<li><a href="#">Page 3</a></li>
-						</ul>
-					</nav> -->
-
 					<div class="enter"></div>
-
 					<div class="text-center">
 						<h1 style="color: #990085;">AerPass™ - 빠른 홍채스캔과 안면인식 단위</h1>
 						<hr>
@@ -166,16 +141,15 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					</div>
 
 
-					<div
+					<%-- <div
 						class="vid col-xs-push-1 col-xs-10 col-sm-10 col-sm-push-1  col-md-10 col-md-push-1 embed-responsive embed-responsive-16by9">
 						<iframe class="embed-responsive-item"
 							src="http://player.vimeo.com/video/117455204"></iframe>
 
-					</div>
+					</div>--%>
 				</div>
 				<div class="enter"></div>
 				<div class="enter"></div>
-				<!-- /.row -->
 
 
 				<!-- Aervision_AerCrowd -->
@@ -223,7 +197,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					</div>
 					<div class="enter"></div>
 
-					<div class="col-xs-6 col-sm-8 col-md-8">
+					<div class="col-xs-12 col-sm-8 col-md-8">
 
 						<p>AerCrowd는 분주한 도시지역, 공항, 철도 역, 쇼핑센터, 스포츠 경기장, 고속도로와 같은 유동인구
 							밀집 지역에서의 대중 행동 패턴에 대한 전례 없는 인사이트를 제공해 줍니다.</p>
@@ -235,7 +209,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 							감지할 수 있다는 것을 의미입니다.</p>
 						<p>따라서 AerCrowd 스캐너는 특정 시간과 장소에 상주하는 사람과 차량의 수를 측정할 수 있습니다.</p>
 					</div>
-					<div class="col-xs-6 col-sm-4 col-md-4">
+					<div class="col-xs-12 col-sm-4 col-md-4">
 						<img class="thumbnail img-responsive text-center"
 							alt="Bootstrap template"
 							src="/CompanyItem/zImage/aercrowd_scanner.jpg"
@@ -261,14 +235,14 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 						<hr>
 					</div>
 
-					<div class="col-xs-4 col-sm-4 col-md-4">
+					<div class="col-xs-12 col-sm-4 col-md-4">
 						<img class="thumbnail img-responsive text-center"
 							alt="Bootstrap template" src="/CompanyItem/zImage/aerpalm.jpg"
 							data-toggle="tooltip" data-placement="middle"
 							data-original-title="AerPalm">
 						<div class="enter"></div>
 					</div>
-					<div class="col-xs-8 col-sm-8 col-md-8">
+					<div class="col-xs-12 col-sm-8 col-md-8">
 						<strong>AerPalm     <a href="/CompanyItem/ITProducts/Aervision/Aervision_before.mwav#AerPalm" class="btn btn-danger btn-sm"
 								data-toggle="tooltip" data-placement="right"
 								data-original-title="자세히보기." target="_blank"><span
@@ -366,14 +340,14 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 						<hr>
 					</div>
 
-					<div class="col-xs-4 col-sm-6 col-md-6">
+					<div class="col-xs-12 col-sm-6 col-md-6">
 						<img class="thumbnail img-responsive text-center"
 							alt="Bootstrap template" src="/CompanyItem/zImage/aergate.jpg"
 							data-toggle="tooltip" data-placement="middle"
 							data-original-title="AerGate">
 						<div class="enter"></div>
 					</div>
-					<div class="col-xs-8 col-sm-6 col-md-6">
+					<div class="col-xs-12 col-sm-6 col-md-6">
 						<strong>AerGate</strong> <br>
 						<p>AerGate는 손바닥 정맥을 측정하여 고도로 신뢰가능하지만, 비용 대비 효과가 탁월하고 사용하기 쉬운
 							접근 통제 시스템입니다. AerGate 시스템은 하나의 패키지 안에 필요한 모든 구성요소를 제공하여, 기존 출입문
@@ -410,14 +384,14 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 						<hr>
 					</div>
 
-					<div class="col-xs-4 col-sm-4 col-md-4">
+					<div class="col-xs-12 col-sm-4 col-md-4">
 						<img class="thumbnail img-responsive text-center"
 							alt="Bootstrap template" src="/CompanyItem/zImage/idmatch.jpg"
 							data-toggle="tooltip" data-placement="middle"
 							data-original-title="IDMatch">
 						<div class="enter"></div>
 					</div>
-					<div class="col-xs-8 col-sm-8 col-md-8">
+					<div class="col-xs-12 col-sm-8 col-md-8">
 						<strong>IDMatch</strong> <br>
 						<p>IDMatch는 귀사의 보안 솔루션이 무엇이던 간에 (접근, 데이터, 결제정보 보호 관련 등) 새로운
 							차원으로 확장해 드립니다.</p>
@@ -458,7 +432,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 						<hr>
 					</div>
 
-					<div class="col-xs-4 col-sm-4 col-md-4">
+					<div class="col-xs-12 col-sm-4 col-md-4">
 						<img class="thumbnail img-responsive text-center"
 							alt="Bootstrap template"
 							src="/CompanyItem/zImage/eyelock_nano_nxt.jpg"
@@ -466,7 +440,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 							data-original-title="eyeLock iris scanner">
 						<div class="enter"></div>
 					</div>
-					<div class="col-xs-8 col-sm-8 col-md-8">
+					<div class="col-xs-12 col-sm-8 col-md-8">
 						<strong>eyelock</strong> <br>
 						<p>EyeLock은 접근통제 기술의 미래를 실현합니다.</p>
 						<p>EyeLock은 DNA 다음으로 가장 정확한 생체정보 인증 솔루션입니다. 기존 접근통제 및 건물관리 그리고

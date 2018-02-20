@@ -68,15 +68,15 @@
 	<!-- gmail -->
 	<!-- 이메일 보내기 JavaMailSender -->
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-		<property name="host" value="smtp.gmail.com" />
+		<property name="host" value="211.233.62.126" /> <!--smtp.gmail.com-->
 		<!-- 서버주소 -->
-		<property name="port" value="587" />
+		<property name="port" value="25" />
 		<!-- 포트번호 기본 25 구글 587 -->
 		<property name="defaultEncoding" value="utf-8" />
 		<!-- 기본인코딩 -->
-		<property name="username" value="jusung.kim@mwav.net" />
+		<property name="username" value="mwav" />
 		<!-- 메일주소 -->
-		<property name="password" value="QkQh1248!!" />
+		<property name="password" value="mwav201502!!" />
 		<!-- 메일비밀번호 -->
 		<property name="javaMailProperties">
 			<props>
