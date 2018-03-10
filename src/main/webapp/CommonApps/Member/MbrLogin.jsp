@@ -255,9 +255,9 @@ $("#checkbox4").bind("click",function(){
 
 
 			<div class="col-md-8">
-				<a href="#IDPWSeek" data-toggle="modal" data-target=".IDPWSeek"
-					role="button" data-toggle="modal"><strong>Forgot your
-						ID or Password?</strong></a>
+				<a href="/MasterPage.mwav?mode=IDSeek"><strong>Forgot your ID?</strong></a> <br>
+								<a href="/MasterPage.mwav?mode=PWSeek"><strong>Forgot your Password?</strong></a>
+					
 			</div>
 
 

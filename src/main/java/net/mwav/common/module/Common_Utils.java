@@ -265,6 +265,7 @@ public class Common_Utils {
 		}else {
 			//pgl이 null인경우 
 			pgl = null;
+			log.info("pgl은 null값");
 		}
 		}
 		

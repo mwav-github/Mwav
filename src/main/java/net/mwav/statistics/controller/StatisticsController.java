@@ -65,8 +65,20 @@ public class StatisticsController {
 
 			// http://helols.tistory.com/15
 			// http://jhleed.tistory.com/43
+			// 1번 통계 키값.
 			vo.setStatistics_id(Long.parseLong(st_id));
-			// 유져Screen
+
+			// 2번 유져Screen
+			String stClientScreen = (String) request.getAttribute("screenSize");
+			// (String) staticMap.get("browser") 사용자 브라우저
+			vo.setStClientScreen(stClientScreen);
+
+			// 유져CPU (브라우저 와 운영체제 정보포함 분리 희망시 - getUserAgentDetail()) 사용
+			// vo.setStHTTP_UA_CPU((String) staticMap.get("os"));
+			// userAgent(클라이언트 환경)
+			vo.setStUserAgent(request.getHeader("User-Agent"));
+			String userAgent = request.getHeader("User-Agent");
+			htmlLib.getParseUserAgent(userAgent, vo);
 
 			int m_id = 0;
 
@@ -99,9 +111,15 @@ public class StatisticsController {
 			String pgl = Common_Utils.isEmptyPgl(request);
 			log.info("pgl출력" + pgl);
 
-			if(pgl != null){
-			vo.setStPromoterId(Integer.valueOf(pgl));
-			// 이건 프로모터 등록되고 vo.setStPromoterType('');
+			if (pgl != null) {
+				vo.setStPromoterId(Integer.valueOf(pgl));
+				//프로모터
+				vo.setStPromoterType('P');
+			} else {
+				vo.setStPromoterId(0);
+				// 이건 프로모터 등록되고 vo.setStPromoterType('');
+				//기타
+				vo.setStPromoterType('N');
 			}
 			// 세션아이디
 			vo.setStSessionId(session_id);
@@ -127,12 +145,6 @@ public class StatisticsController {
 			// request.getLocalAddr() : 127.0.0.1
 			// http, shttp, ftp...
 			vo.setStUrlScheme(request.getScheme());
-			// userAgent(클라이언트 환경)
-			vo.setStUserAgent(request.getHeader("User-Agent"));
-
-			String userAgent = request.getHeader("User-Agent");
-
-			htmlLib.getParseUserAgent(userAgent, vo);
 
 			// userHostAddress(클라이언트IP)
 			vo.setStUserHostAddress(realIp);
@@ -145,11 +157,6 @@ public class StatisticsController {
 			 * System.out.println("테스트"+mathLib.getRandomNum(0, 20));
 			 * vo.setStStatisticsDt(stamp);
 			 */
-			String stClientScreen = (String) request.getAttribute("screenSize");
-			// (String) staticMap.get("browser") 사용자 브라우저
-			vo.setStClientScreen(stClientScreen);
-			// 유져CPU (브라우저 와 운영체제 정보포함 분리 희망시 - getUserAgentDetail()) 사용
-			// vo.setStHTTP_UA_CPU((String) staticMap.get("os"));
 			statisticsService.insertFirstStatics(vo);
 		} catch (Exception e) {
 			e.printStackTrace();
