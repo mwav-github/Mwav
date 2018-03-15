@@ -49,7 +49,7 @@
 		href="/CustomerService/FAQ/FAQ.mwav" class="list-group-item"
 		data-toggle="tooltip" data-placement="top"
 		data-original-title="자주 묻는 질문">FAQ</a> <a
-		href="/CustomerService/QnA/QnA.mwav" class="list-group-item"
+		href="/CustomerService/QnA/QnA.mwav?mode=qaForm" class="list-group-item"
 		data-toggle="tooltip" data-placement="top"
 		data-original-title="묻고 답하기">Q&A</a> <a
 		href="/CustomerService/Contact/Contact.mwav" class="list-group-item"

@@ -108,18 +108,20 @@ public class StatisticsController {
 
 			// 프로모터 PK_id (위의 member_id 처럼 비교 필요)
 
-			String pgl = Common_Utils.isEmptyPgl(request);
-			log.info("pgl출력" + pgl);
+			Map<String, Object> map = Common_Utils.typeToChar(request);
+			
+			char stPromoterType = (char) map.get("type");
+			
 
-			if (pgl != null) {
-				vo.setStPromoterId(Integer.valueOf(pgl));
+			if (stPromoterType != 'N') {
+				vo.setStPromoterId(Integer.valueOf((String) map.get("value")));
 				//프로모터
-				vo.setStPromoterType('P');
+				vo.setStPromoterType(stPromoterType);
 			} else {
 				vo.setStPromoterId(0);
 				// 이건 프로모터 등록되고 vo.setStPromoterType('');
 				//기타
-				vo.setStPromoterType('N');
+				//vo.setStPromoterType('');
 			}
 			// 세션아이디
 			vo.setStSessionId(session_id);

@@ -156,9 +156,12 @@ public class StatisticsInterceptor extends HandlerInterceptorAdapter {
 					} else {
 						request.setAttribute("stPageName", PageName);
 					}
+					
 					statistics_id = statisticsController.insertFirstStatics(
 							request, member_id, statistics_id, session_id);
-
+					
+					
+					
 					log.info("statistics_id insertFirstStatics."
 							+ statistics_id);
 					session.setAttribute("statistics_id", statistics_id);

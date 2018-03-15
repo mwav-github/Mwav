@@ -39,7 +39,14 @@
 	<c:when test="${param.mode eq 'qaForm'}">
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">Contact Us</h1>
+				<h1 class="page-header">
+					Contact Us
+					<span class="pull-right">
+					<a href="/CustomerService/QnA/QnA.mwav">
+						<input type="button"
+							class="btn-custom-default btn btn-md btn-primary" value="문의내역 확인"></a>
+					</span>
+				</h1>
 
 			</div>
 		</div>

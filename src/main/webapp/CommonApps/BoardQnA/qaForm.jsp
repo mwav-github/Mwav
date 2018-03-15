@@ -27,7 +27,6 @@
 		var uqUserPhone = formname.uqUserPhone;
 		//var uqUserEmail = $('#uqUserEmail');
 		//var uqUserPw = $('#uqUserPw');
-		var uqContent = formname.uqContent;
 		var uqUserEmail = formname.uqUserEmail;
 		var uqUserPw = formname.uqUserPw;
 
@@ -35,17 +34,20 @@
 		var uqGroup = formname.uqGroup;
 		//$('#uqContent') 은 undefined
 
+		
+		
 		var check_1 = emptyCheck(uqUserName, "이름을 입력해주세요.");
 		if (check_1 == false) {
 			uqUserName.focus();
 			return false;
 		}
+		
 		var check_2 = emptyCheck(uqUserPhone, "핸드폰 번호을 입력해주세요.");
 		if (check_2 == false) {
 			uqUserPhone.focus();
 			return false;
 		}
-
+		
 		var check_3 = emptyCheck(uqUserEmail, "이메일을 입력해주세요.");
 		check_3 = chkEmailPolicy(uqUserEmail.value, uqUserEmail);
 		if (check_3 == false) {
@@ -54,6 +56,7 @@
 		}
 
 		//회원인경우 해당되지 않음.
+		alert(uqUserPw.value);
 		if (uqUserPw != null) {
 			var check_4 = chkPWPolicy(uqUserPw.value, uqUserPw);
 			if (check_4 == false) {
@@ -67,18 +70,22 @@
 			uqGroup.focus();
 			return false;
 		}
-
+		
 		var check_6 = emptyCheck(uqTitle, "제목을 입력해주세요.");
 		if (check_6 == false) {
 			uqTitle.focus();
 			return false;
 		}
-
+		
+var uqContent = CKEDITOR.instances['uqContent'].getData();
+		
 		var check_7 = emptyCheck(uqContent, "내용을 입력해주세요.");
+		alert(check_7);
 		if (check_7 == false) {
 			uqContent.focus();
 			return false;
 		}
+	
 
 		//alert('d'+formname.recaptcha.attr('data-widget-id'));
 		//jQuery('#your_recaptcha_box_id').attr('data-widget-id')
@@ -257,7 +264,7 @@
 								<label class="col-md-3 text-color-gray control-label"
 									for="textinput">Name <span class="text-color-red"><strong>*</strong></span></label>
 								<div class="col-md-8">
-									<input id="uqUserName" name="uqUserName"
+									<input name="uqUserName"
 										placeholder="Enter Your Full Name"
 										class="form-control input-md" required type="text">
 
@@ -271,7 +278,7 @@
 								<div class="col-md-8">
 									<div class="input-group">
 										<span class="input-group-addon">+82</span> <input
-											id="uqUserPhone" name="uqUserPhone" class="form-control"
+											 name="uqUserPhone" class="form-control"
 											placeholder="Mobile" required type="text">
 									</div>
 
@@ -283,7 +290,7 @@
 								<label class="col-md-3 text-color-gray control-label"
 									for="website">Website</label>
 								<div class="col-md-8">
-									<input id="uqRelatedLink" name="uqRelatedLink"
+									<input  name="uqRelatedLink"
 										placeholder="Enter Your Website" class="form-control input-md"
 										type="text">
 									<!-- <span class="help-block">Ex:
@@ -296,7 +303,7 @@
 								<label class="col-md-3 text-color-gray control-label"
 									for="email">E-Mail <span class="text-color-red"><strong>*</strong></span></label>
 								<div class="col-md-8">
-									<input id="uqUserEmail" name="uqUserEmail"
+									<input  name="uqUserEmail"
 										placeholder="Enter Your E mail" class="form-control input-md"
 										type="text" value="${sessionScope.member.mbrEmail}">
 
@@ -326,7 +333,7 @@
 									class="text-color-red"><strong>*</strong></span>
 								</label>
 								<div class="col-md-8">
-									<select class="form-control input-sm" id="uqGroup"
+									<select class="form-control input-sm" 
 										name="uqGroup">
 										<option value="">-- Please make a selection --</option>
 										<option value="apply">서비스신청접수</option>
@@ -346,7 +353,7 @@
 									for="title">Title <span class="text-color-red"><strong>*</strong></span>
 								</label>
 								<div class="col-md-8">
-									<input id="uqTitle" name="uqTitle" placeholder="Title"
+									<input  name="uqTitle" placeholder="Title"
 										class="form-control input-md" type="text">
 
 								</div>
@@ -358,7 +365,7 @@
 									for="Message">Message <span class="text-color-red"><strong>*</strong></span>
 								</label>
 								<div class="col-md-8">
-									<textarea class="form-control" rows="5" id="uqContent"
+									<textarea class="form-control" rows="5" 
 										name="uqContent" placeholder="Enter Your Message"></textarea>
 								</div>
 							</div>
@@ -454,7 +461,7 @@
 							class="text-color-red"><strong>*</strong></span>
 						</label>
 						<div class="col-sm-9">
-							<input id="uqUserPw" name="uqUserPw"
+							<input  name="uqUserPw"
 								placeholder="Enter Your password"
 								class="input_custom col-xs-12 col-sm-5 caps_lockchk"
 								type="password" value="" required>
