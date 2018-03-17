@@ -240,30 +240,38 @@
 			<div class="enter"></div>
 			<hr class="hr_b">
 			<div class="row text-right">
+				<p class="col-md-12">
 					<button type="button" class="btn btn-default"
 						onclick="javascript:window.location.href='/CustomerService/QnA/QnA.mwav?mode=qaForm&uqUserEmail=${selectOneQAView.uqUserEmail}&before_Q_id=${selectOneQAView.QnA_id}'">Contact
 					</button>
+					<button type="button" class="btn btn-default"
+						onclick="javascript:history.go(-1)">BACK</button>
+				</p>
+				</div>
 
+				<div class="col-md-12 ">
 					<%--회원 --%>
 					<c:if test="${sessionScope.member_id ne null }">
-						<form method="post" action="/qa/qaList.mwav">
+						<form class="pull-right" method="post" action="/qa/qaList.mwav">
 							<input type="hidden" name="member_id"
 								value="${sessionScope.member_id}">
-							<button type="submit" class="btn btn-default">All List</button>
+							<button type="submit" class="btn btn-default btn-md">All
+								List</button>
 						</form>
 					</c:if>
 					<%--비회원 --%>
 					<c:if test="${sessionScope.member_id eq null }">
-					<form method="post" action="/qa/qaList.mwav">
+						<form class="pull-right" method="post" action="/qa/qaList.mwav">
 							<input type="hidden" name="uqUserEmail"
 								value="${selectOneQAView.uqUserEmail}">
-							<button type="submit" class="btn btn-default">All List</button>
+							<button type="submit" class="btn btn-default btn-md">All
+								List</button>
 						</form>
 					</c:if>
-					<button type="button" class="btn btn-default"
-						onclick="javascript:history.go(-1)">BACK</button>
+	
+
 			</div>
-			<div class="row">
+			<%-- <div class="row">
 				<ul class="pager">
 					<c:if test="${(selectOneQAView.QnA_id) ne '1000000'}">
 						<li class="previous"><a
@@ -277,7 +285,7 @@
 								→</a></li>
 					</c:if>
 				</ul>
-			</div>
+			</div> --%>
 
 
 			<%--================================================끝========================================================== --%>

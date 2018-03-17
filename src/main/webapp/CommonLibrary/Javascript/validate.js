@@ -4,6 +4,7 @@
 //onchange는 안먹힐때가 있고 / onkeyup은 다 먹히고 onblur 로 하되 키제어 필요. 
 // 또는 jquery 이용 
 
+
 function emptyCheck(checkObject, alert_txt_) {
 		    var checkVar = checkObject.value;
 		    console.log("checkVar"+checkVar);
@@ -28,7 +29,25 @@ function emptyCheck(checkObject, alert_txt_) {
 		    else{
 		    	return true;
 		    }
+		    return false;
 		}
+
+function ckEditorEmptyCheck(checkObject, alert_txt_) {
+    var checkVar = checkObject.getData();
+    var alert_txt = alert_txt_;
+			    
+    if(checkVar == "" || checkVar == null || checkVar == undefined || ( checkVar != null && typeof checkVar == "object" && !Object.keys(checkVar).length ) ){ 
+        alert(alert_txt);
+        //포커스 안되는 부분 추후 수정 필요.
+        checkObject.focus();
+        return false;
+    }
+    else{
+    	return true;
+    }
+    return false;
+}
+
 
 function return_check(flag){
 	var flag_ = flag;

@@ -19,94 +19,46 @@
 </c:if>
 <script>
 	function reCheckForm(formname) {
-		//var formname;
-		//alert(formname);
+
 		var uqUserName = formname.uqUserName;
-		//alert(uqUserName);
-		//var uqUserName = document.getElementById("uqUserName");
 		var uqUserPhone = formname.uqUserPhone;
-		//var uqUserEmail = $('#uqUserEmail');
-		//var uqUserPw = $('#uqUserPw');
 		var uqUserEmail = formname.uqUserEmail;
 		var uqUserPw = formname.uqUserPw;
-
 		var uqTitle = formname.uqTitle;
 		var uqGroup = formname.uqGroup;
-		//$('#uqContent') 은 undefined
 
+		//ckedtior객체
+		var uqContent = CKEDITOR.instances['uqContent'];
+		//폼 객체
+		var uqContentCheck = ckEditorEmptyCheck(uqContent, "내용을 입력해주세요.");
 		
 		
-		var check_1 = emptyCheck(uqUserName, "이름을 입력해주세요.");
-		if (check_1 == false) {
-			uqUserName.focus();
-			return false;
-		}
-		
-		var check_2 = emptyCheck(uqUserPhone, "핸드폰 번호을 입력해주세요.");
-		if (check_2 == false) {
-			uqUserPhone.focus();
-			return false;
-		}
-		
-		var check_3 = emptyCheck(uqUserEmail, "이메일을 입력해주세요.");
-		check_3 = chkEmailPolicy(uqUserEmail.value, uqUserEmail);
-		if (check_3 == false) {
-			uqUserEmail.focus();
-			return false;
-		}
-
-		//회원인경우 해당되지 않음.
-		alert(uqUserPw.value);
-		if (uqUserPw != null) {
-			var check_4 = chkPWPolicy(uqUserPw.value, uqUserPw);
-			if (check_4 == false) {
-				uqUserPw.focus();
+		var robot_flag = robot_check();
+		if (robot_flag == true) {
+			if (uqContentCheck == true && emptyCheck(uqUserName, "이름을 입력해주세요.") == true
+					&& emptyCheck(uqUserPhone, "핸드폰 번호을 입력해주세요.") == true
+					&& emptyCheck(uqUserEmail, "이메일을 입력해주세요.") == true
+					&& emptyCheck(uqGroup, "분류기준을 선택해주세요.") == true
+					&& emptyCheck(uqTitle, "제목을 입력해주세요.") == true
+					) {
+				
+				if (chkEmailPolicy(uqUserEmail.value, uqUserEmail) == false) {
+				    //이메일의 경우 onchange로 체크하는 경우 로딩시 계속 alert출력.  value="${sessionScope.member.mbrEmail} 부분때문
+					uqUserEmail.focus();
+					return false;
+				}else{
+				return true;
+				}
+			} else {
+				if(uqContentCheck == false){
+					formname.uqContent.focus();
+				}
 				return false;
 			}
-
-		}
-		var check_5 = emptyCheck(uqGroup, "분류기준을 선택해주세요.");
-		if (check_5 == false) {
-			uqGroup.focus();
-			return false;
-		}
-		
-		var check_6 = emptyCheck(uqTitle, "제목을 입력해주세요.");
-		if (check_6 == false) {
-			uqTitle.focus();
-			return false;
-		}
-		
-var uqContent = CKEDITOR.instances['uqContent'].getData();
-		
-		var check_7 = emptyCheck(uqContent, "내용을 입력해주세요.");
-		alert(check_7);
-		if (check_7 == false) {
-			uqContent.focus();
-			return false;
-		}
-	
-
-		//alert('d'+formname.recaptcha.attr('data-widget-id'));
-		//jQuery('#your_recaptcha_box_id').attr('data-widget-id')
-		var robotCheck = robot_check($(formname).find("[name=recaptcha]").attr(
-				'data-widget-id'));
-		if (robotCheck == false) {
-			return false;
-		}
-
-		var check = false;
-		// && check_4 == true 패스워드는 회원인경우 없으니까 
-		if (check_1 == true && check_2 == true && check_3 == true
-				&& check_5 == true && check_6 == true && check_7 == true
-				&& robotCheck == true) {
-			check = true;
-			return true;
-
 		} else {
-			check = false;
 			return false;
 		}
+		return false;
 
 	}
 
@@ -264,8 +216,7 @@ var uqContent = CKEDITOR.instances['uqContent'].getData();
 								<label class="col-md-3 text-color-gray control-label"
 									for="textinput">Name <span class="text-color-red"><strong>*</strong></span></label>
 								<div class="col-md-8">
-									<input name="uqUserName"
-										placeholder="Enter Your Full Name"
+									<input name="uqUserName" placeholder="Enter Your Full Name"
 										class="form-control input-md" required type="text">
 
 								</div>
@@ -278,8 +229,8 @@ var uqContent = CKEDITOR.instances['uqContent'].getData();
 								<div class="col-md-8">
 									<div class="input-group">
 										<span class="input-group-addon">+82</span> <input
-											 name="uqUserPhone" class="form-control"
-											placeholder="Mobile" required type="text">
+											name="uqUserPhone" class="form-control" placeholder="Mobile"
+											required type="text">
 									</div>
 
 								</div>
@@ -290,9 +241,8 @@ var uqContent = CKEDITOR.instances['uqContent'].getData();
 								<label class="col-md-3 text-color-gray control-label"
 									for="website">Website</label>
 								<div class="col-md-8">
-									<input  name="uqRelatedLink"
-										placeholder="Enter Your Website" class="form-control input-md"
-										type="text">
+									<input name="uqRelatedLink" placeholder="Enter Your Website"
+										class="form-control input-md" type="text">
 									<!-- <span class="help-block">Ex:
 									Mwav.net</span> -->
 								</div>
@@ -303,9 +253,9 @@ var uqContent = CKEDITOR.instances['uqContent'].getData();
 								<label class="col-md-3 text-color-gray control-label"
 									for="email">E-Mail <span class="text-color-red"><strong>*</strong></span></label>
 								<div class="col-md-8">
-									<input  name="uqUserEmail"
-										placeholder="Enter Your E mail" class="form-control input-md"
-										type="text" value="${sessionScope.member.mbrEmail}">
+									<input name="uqUserEmail" placeholder="Enter Your E mail"
+										class="form-control input-md" type="text"					
+										value="${sessionScope.member.mbrEmail}">
 
 								</div>
 							</div>
@@ -321,7 +271,7 @@ var uqContent = CKEDITOR.instances['uqContent'].getData();
 										<input id="uqUserPw" name="uqUserPw"
 											placeholder="Enter Your Password"
 											class="form-control input-md caps_lockchk" type="password"
-											value="" required>
+											value="" onchange="chkPWPolicy(this.value, this)" required>
 
 									</div>
 								</div>
@@ -333,8 +283,7 @@ var uqContent = CKEDITOR.instances['uqContent'].getData();
 									class="text-color-red"><strong>*</strong></span>
 								</label>
 								<div class="col-md-8">
-									<select class="form-control input-sm" 
-										name="uqGroup">
+									<select class="form-control input-sm" name="uqGroup">
 										<option value="">-- Please make a selection --</option>
 										<option value="apply">서비스신청접수</option>
 										<option value="gds">일반제품문의</option>
@@ -353,7 +302,7 @@ var uqContent = CKEDITOR.instances['uqContent'].getData();
 									for="title">Title <span class="text-color-red"><strong>*</strong></span>
 								</label>
 								<div class="col-md-8">
-									<input  name="uqTitle" placeholder="Title"
+									<input name="uqTitle" placeholder="Title"
 										class="form-control input-md" type="text">
 
 								</div>
@@ -365,8 +314,8 @@ var uqContent = CKEDITOR.instances['uqContent'].getData();
 									for="Message">Message <span class="text-color-red"><strong>*</strong></span>
 								</label>
 								<div class="col-md-8">
-									<textarea class="form-control" rows="5" 
-										name="uqContent" placeholder="Enter Your Message"></textarea>
+									<textarea class="form-control" rows="5" name="uqContent"
+										placeholder="Enter Your Message"></textarea>
 								</div>
 							</div>
 							<div class="form-group">
@@ -446,13 +395,14 @@ var uqContent = CKEDITOR.instances['uqContent'].getData();
 
 				<div class="form-group">
 					<label class="col-sm-3 control-label" for="inputEmail">Email<span
-						class="text-color-red"><strong>*</strong></span> 
+						class="text-color-red"><strong>*</strong></span>
 					</label>
 					<div class="col-sm-9">
-						<input type="email" name="uqUserEmail" id="uqUserEmail"
+						<input type="text" name="uqUserEmail" id="uqUserEmail"
 							value="${sessionScope.member.mbrEmail}"
 							class="input_custom  col-xs-12 col-sm-5"
-							placeholder="Enter Your E-mail">
+							placeholder="Enter Your E-mail"
+							required>
 					</div>
 				</div>
 				<c:if test="${sessionScope.member eq null }">
@@ -461,10 +411,10 @@ var uqContent = CKEDITOR.instances['uqContent'].getData();
 							class="text-color-red"><strong>*</strong></span>
 						</label>
 						<div class="col-sm-9">
-							<input  name="uqUserPw"
-								placeholder="Enter Your password"
+							<input name="uqUserPw" placeholder="Enter Your password"
 								class="input_custom col-xs-12 col-sm-5 caps_lockchk"
-								type="password" value="" required>
+								type="password" value=""
+								onchange="chkPWPolicy(this.value, this)" required>
 						</div>
 					</div>
 				</c:if>
@@ -517,7 +467,7 @@ var uqContent = CKEDITOR.instances['uqContent'].getData();
 						<textarea name="uqContent" id="uqContent" rows="10"
 							class="input_custom col-xs-12 col-sm-12 ckeditor"
 							placeholder="Enter Your Message"></textarea>
-						
+
 					</div>
 				</div>
 

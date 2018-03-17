@@ -48,13 +48,13 @@ public class EmailSender {
 	public void sendEmailAction(CommandMap commandMap) throws Exception {
 
 		String mbrEmail = (String) commandMap.get("mbrEmail");
-		System.out.println("dd"+commandMap.get("mbrEmail"));
 		String mbrTempLoginPw = (String) commandMap.get("mbrTempLoginPw");
 		String mbrLoginId = (String) commandMap.get("mbrLoginId");
 
 		// log.debug("메일");
+		emailVO.setFrom("webmaster@mwav.net"); // from
+		emailVO.setReceiver(mbrEmail);		
 		emailVO.setContent("비밀번호는 " + mbrTempLoginPw + " 입니다.");
-		emailVO.setReceiver(mbrEmail);
 		emailVO.setSubject("Mwav 홈페이지 " + mbrLoginId + "님 [임시비밀번호]찾기 메일입니다.");
 		System.out.println("여기서에러");
 		emailTemplates.sendBasicEmail(emailVO);

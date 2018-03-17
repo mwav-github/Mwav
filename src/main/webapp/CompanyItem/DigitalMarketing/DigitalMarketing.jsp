@@ -14,33 +14,15 @@
 </head>
 
 <body>
-	<!-- FrontHeader
-	Company의 마스터 페이지 상에서 Header 
-	1. 마스터 헤더 한번 변경해보기 ~!!! container 안으로
-	 -->
+
 	<!--  //////////////////////////////////// -->
 	<div class="container">
 		<!--  //////////////////////////////////// -->
 		<jsp:include page="/PartsOfContent/SiteHeader/FrontHeader_Master.jsp"
 			flush="false" />
-		<!-- Image Container 
-container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다. 
--->
+
 
 	</div>
-	<!--  //////////////////////////////////// 
-	Header 끝
-	-->
-
-	<!-- Page Content -->
-	<!-- <div class="block">
-		<div class="col-lg-12">
-			<img
-				src="/CompanyItem/DigitalMarketing/Images/Marketing_Main_3.jpg"
-				class="img-responsive res_width fix_height_300"
-				alt="Responsive image">
-		</div>
-	</div> -->
 
 
 	<div class="container-fluid">
@@ -59,34 +41,15 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 
 		<!-- Content Row -->
 		<div class="row">
-			<!-- Sidebar Column left메뉴 추후 변경 예정<시작>-->
-			<!-- <div class="col-md-3">
-				<div class="list-group">
-					<a href="#marketing_1" class="list-group-item"
-						data-toggle="tooltip" data-placement="top"
-						data-original-title="키워드마케팅">Keyword Marketing</a> <a
-						href="#marketing_2" class="list-group-item" data-toggle="tooltip"
-						data-placement="top" data-original-title="바이럴마케팅">바이럴마케팅</a>
-					<a
-						href="#" class="list-group-item" data-toggle="tooltip"
-						data-placement="top" data-original-title="바이럴마케팅(PC)">Viral
-						Marketing(PC)</a>
-					<a href="#marketing_3" class="list-group-item"
-						data-toggle="tooltip" data-placement="top"
-						data-original-title="바이럴마케팅(모바일)">Viral Marketing(Mobile)</a> <a
-						href="#marketing_4" class="list-group-item " data-toggle="tooltip"
-						data-placement="top" data-original-title="소셜마케팅">SNS Marketing</a>
-				</div>
-			</div> -->
+		
 			<!-- 끝 -->
 			<div class="col-lg-12">
 				<h2 class="page-header mwav_leftText">Digital Marketing Services</h2>
 			</div>
-			<%--QA이슈 z-index로 처리 
-			<!--///////////////////////////////////////////////////
-			<jsp:include page="/CommonApps/BoardQnA/qaForm.jsp" flush="false" />
 			
-			LayerPopup Alert 아이콘 시작 // footer 간격조정을 위해 mgt5추가
+			<%-- 윤상씨 요청 건
+			
+			
 			<div class="col-md-12 col-xs-12 col-sm-12  alert alert-info"
 				style="z-index: 5;">
 				<div class="container">
@@ -98,7 +61,9 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					<a href="#" data-toggle="modal" data-target="#Contact"
 						class="btn btn-lg btn-primary pull-right">Contact Us</a>
 				</div>
-			</div>--%>
+			</div>
+			
+			 --%>
 
 			<!-- Content Column -->
 			<div class="col-md-12">
@@ -120,14 +85,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 											</figcaption>
 										</figure>
 									</div>
-									<%-- <div class="panel-thumbnail">
-										<a href="#" class="thumbnail" data-toggle="modal"
-											data-target="#lightbox"> <img
-											src="/CompanyItem/DigitalMarketing/Images/Social_Marketing_1.jpg"
-											class="img-responsive img-rounded"
-											data-image="/CompanyItem/DigitalMarketing/Images/2_3.png">
-										</a>
-									</div> --%>
+									
 									<div class="panel-body">
 										<p class="lead">
 											<strong>키워드 검색 광고</strong>
@@ -163,6 +121,8 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 									</div>
 								</div>
 								<!--/panel-->
+								<%-- 모바일 및 테블릿 IE9에서 화면 깨지는 거 방지용. --%>
+								<div class="enter visible-sm visible-xs"></div>
 							</div>
 							<!--/col-->
 							<div class="col-md-3 col-sm-3 col-xs-6">
@@ -219,6 +179,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 								<!--/panel-->
 							</div>
 							<!--/col-->
+							<div class="enter visible-sm visible-xs"></div>
 						</div>
 						<!--/row-->
 
@@ -276,6 +237,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 									</div>
 								</div>
 								<!--/panel-->
+								<div class="enter visible-sm visible-xs"></div>
 							</div>
 							<!--/col-->
 							<div class="col-md-3 col-sm-3 col-xs-6">

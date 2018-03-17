@@ -324,6 +324,7 @@ $("#checkbox4").bind("click",function(){
 			<%-- <span class="pull-left"><a
 				href="/MasterPage_1.jsp?mode=Default"><strong>Sign up
 						now</strong></a></span> --%>
+			
 			<div class="col-md-4">
 				<a href="/MasterPage_1.mwav?mode=Default"><strong>Sign
 						up now</strong></a>
@@ -331,9 +332,9 @@ $("#checkbox4").bind("click",function(){
 
 
 			<div class="col-md-8">
-				<a href="#IDPWSeek" data-toggle="modal" data-target=".IDPWSeek"
-					role="button" data-toggle="modal"><strong>Forgot your
-						ID or Password?</strong></a>
+				<a href="/MasterPage.mwav?mode=IDSeek"><strong>Forgot your ID?</strong></a> <br>
+								<a href="/MasterPage.mwav?mode=PWSeek"><strong>Forgot your Password?</strong></a>
+					
 			</div>
 		</div>
 	</form>
