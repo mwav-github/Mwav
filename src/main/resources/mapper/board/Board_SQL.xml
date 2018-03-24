@@ -46,7 +46,7 @@
 		<![CDATA[
 			SELECT bNews_id, bnTitle, bnStatus, date_format(bnUpdateDt,'%Y-%m-%d') as bnUpdateDt
 		    FROM BoardNews_tbl
-		    WHERE bnDeleteDt IS NULL ORDER BY bnUpdateDt DESC Limit 5
+		    WHERE bnDeleteDt IS NULL AND bnStatus = 2 ORDER BY bnUpdateDt DESC Limit 5
 		]]>
 	</select>
 
@@ -60,7 +60,7 @@
 	<!-- bnsList 호출시 bnContent 등 필요없는 내용 제외 해당 부분 내용이 너무 길다. -->
 	<select id="selectListBnsList" parameterType="hashmap" resultType="hashmap">
 	<![CDATA[
-	select c.*, date_format(bnUpdateDt,'%Y-%m-%d') as fmbnUpdateDt from (select @ROWNUM := @ROWNUM + 1 AS ROWNUM, a.* from (select * from BoardNews_tbl where bnDeleteDt IS NULL order by bnUpdateDt desc) a,  (SELECT @ROWNUM := 0) R ) c where c.ROWNUM >= #{startRow} and c.ROWNUM <= #{endRow} 
+	select c.*, date_format(bnUpdateDt,'%Y-%m-%d') as fmbnUpdateDt from (select @ROWNUM := @ROWNUM + 1 AS ROWNUM, a.* from (select * from BoardNews_tbl where bnDeleteDt IS NULL AND bnStatus = 2 order by bnUpdateDt desc) a,  (SELECT @ROWNUM := 0) R ) c where c.ROWNUM >= #{startRow} and c.ROWNUM <= #{endRow} 
 	]]>
 	</select>
 	
@@ -120,13 +120,13 @@
 		<![CDATA[
 			SELECT bUsers_id, buTitle, buStatus, date_format(buUpdateDt,'%Y-%m-%d') as buInsertDt
 		    FROM BoardUser_tbl
-		    WHERE buDeleteDt IS NULL ORDER BY buInsertDt DESC Limit 5
+		    WHERE buDeleteDt IS NULL AND buStatus = 2 ORDER BY buInsertDt DESC Limit 5
 		]]>
 	</select>
     
     <select id="selectListBuList" parameterType="hashmap" resultType="hashmap">
 	<![CDATA[
-	select c.*, date_format(buInsertDt,'%Y-%m-%d') as fmbuInsertDt from (select @ROWNUM := @ROWNUM + 1 AS ROWNUM, a.* from (select * from BoardUser_tbl where buDeleteDt IS NULL order by buInsertDt desc) a,  (SELECT @ROWNUM := 0) R ) c where c.ROWNUM >= #{startRow} and c.ROWNUM <= #{endRow} 
+	select c.*, date_format(buInsertDt,'%Y-%m-%d') as fmbuInsertDt from (select @ROWNUM := @ROWNUM + 1 AS ROWNUM, a.* from (select * from BoardUser_tbl where buDeleteDt IS NULL AND buStatus = 2 order by buInsertDt desc) a,  (SELECT @ROWNUM := 0) R ) c where c.ROWNUM >= #{startRow} and c.ROWNUM <= #{endRow} 
 	]]>
 	</select>
 	

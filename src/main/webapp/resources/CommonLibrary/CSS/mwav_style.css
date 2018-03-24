@@ -11,9 +11,9 @@ figure.snip1174 {
 	background-color: #1a1a1a;
 	color: #ffffff;
 	text-align: left;
-	margin: 10px;
+	/*margin: 10px;*/
 	margin-bottom: 40px;
-	/*width:   100%;*/
+	width:   100%;
 	border-radius: 0px;
 }
 
@@ -963,6 +963,7 @@ body {
 	font-family: '맑은 고딕', 'Malgun Gothic', '굴림', 'Gulim',
 		'NanumGothic' !important;
     overflow-x : hidden !important;
+    line-height: 25px !important;
 	/* body 선언은 테이블 적용 안된다. -> 별도 적용 필요.*/
 }
 
@@ -1577,22 +1578,6 @@ Reference: http://avexdesigns.com/responsive-youtube-embed/
 	/* 가로 세로 순  보통 100% auto */
 }
 
-/* bootstrap 기본 hr 변형 */
-.hr_b {
-	border-top: 3px solid #337ab7 !important;
-}
-
-.hr_g {
-	border-top: 2px solid #a1d490 !important;
-}
-
-.hr_gray {
-	border-top: 3px solid #78828D !important;
-}
-
-.hr_orange {
-	border-top: 2px solid #e67525 !important;
-}
 
 /*========아래는 텍스트 중앙 정렬 블록요소에만 적용 (p h3 등)태그만 http://webdir.tistory.com/31 */
 .align_left {

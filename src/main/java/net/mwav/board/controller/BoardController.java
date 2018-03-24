@@ -257,6 +257,7 @@ public class BoardController {
 			mv.addObject("page_header", "Announcement");
 
 			String meta_image = (String) selectOneBuView.get("buRelatedLink");
+			
 			String title = (String) selectOneBuView.get("buTitle");
 			String description = (String) selectOneBuView.get("buSubTitle");
 			//meta태그 이미지 

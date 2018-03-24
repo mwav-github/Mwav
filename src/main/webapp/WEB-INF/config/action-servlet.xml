@@ -54,9 +54,6 @@
 		class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
 
 
-	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver"
-		p:order="1" />
-
 	<bean id="jsonView"
 		class="org.springframework.web.servlet.view.json.MappingJacksonJsonView" />
 
@@ -81,10 +78,22 @@
 		InternalResourceViewResolver보다 우선순위가 높아야 제대로 적용이된다. 이건 InternalResourceViewResolver는 
 		아니지만 어쨌든 -->
 	<bean class="org.springframework.web.servlet.view.UrlBasedViewResolver"
-		p:order="1" p:viewClass="org.springframework.web.servlet.view.JstlView"
+		p:order="2" p:viewClass="org.springframework.web.servlet.view.JstlView"
 		p:prefix="/" p:suffix=".jsp">
 		<!-- prefix는 페이지의 기본 루트 // 페이지의 기본 확장자 -->
 	</bean>
+
+
+	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver"
+		p:order="3" />
+
+	<bean id="tilesView"
+		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="order" value="1" />
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.tiles3.TilesView" />
+	</bean>
+
 
 	<bean id="tilesConfigurer"
 		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">

@@ -185,7 +185,10 @@ http://www.egovframe.go.kr/wiki/doku.php?id=egovframework:dev:dep:build:maven
 </dependency>
 
           
-         <!-- MyBatis -->
+         <!-- MyBatis
+         https://okky.kr/article/290317
+         http://www.mybatis.org/mybatis-3/ko/sqlmap-xml.html
+          -->
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>

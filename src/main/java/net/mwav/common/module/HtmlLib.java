@@ -46,16 +46,23 @@ public class HtmlLib {
 	 *        /package-summary.html
 	 */
 	public StatisticsVO getParseUserAgent(String userAgent, StatisticsVO vo) {
+		
+		//* 중요 우리기준으로 가져가야한다. 라이브러리 만약 바꾸게되면 대문자 띄어쓰기 다달라지니. 특히 PC, Mobile 구분은 
+		//http://www.webapps-online.com/online-tools/user-agent-strings/dv/operatingsystem51849/ios
 
 		try {
-			// 테스트 모바일 : SAMSUNG-SGH-E250/1.0
-			// Profile/MIDP-2.0Configuration/CLDC-1.1 UP.Browser/6.2.3.3.c.1.101
-			// (GUI) MMP/2.0
-			// ios : Mozilla/5.0 (iPhone; CPU iPhone OS 10_3 like Mac OS X)
-			// AppleWebKit/602.1.50 (KHTML, like Gecko) CriOS/56.0.2924.75
-			// Mobile/14E5239e Safari/602.1
-			// 구글 bot : Mozilla/5.0 (compatible; Googlebot/2.1;
-			// +http://www.google.com/bot.html)
+			// PC : Mozilla/5.0 (Windows; U; Windows NT 6.1; ko; rv:1.9.2.8) Gecko/20100722 Firefox/3.6.8 IPMS/A640400A-14D460801A1-000000426571
+			// 테스트 모바일 : SAMSUNG-SGH-E250/1.0 Profile/MIDP-2.0Configuration/CLDC-1.1 UP.Browser/6.2.3.3.c.1.101(GUI) MMP/2.0
+			// ios : Mozilla/5.0 (iPhone; CPU iPhone OS 10_3 like Mac OS X)AppleWebKit/602.1.50 (KHTML, like Gecko) CriOS/56.0.2924.75 Mobile/14E5239e Safari/602.1
+	        // 아이폰 7 : Mozilla/5.0 (iPhone; CPU iPhone OS 7_0_6 like Mac OS X) AppleWebKit/537.51.1 (KHTML, like Gecko) CriOS/33.0.1750.14 Mobile/11B651 Safari/9537.53 (47328A61-EB88-4D99-88BD-42F1D5BB7BE0)
+			/*
+			구글 bot : Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)
+			 bing bot : Mozilla/5.0 (compatible; Bingbot/2.0; +http://www.bing.com/bingbot.htm)
+            facebook bot : facebookexternalhit/1.0 (+http://www.facebook.com/externalhit_uatext.php)
+            
+            국가 : Mozilla/5.0 (Linux; Android 4.2.2; nl-nl; SAMSUNG GT-I9505 Build/JDQ39) AppleWebKit/535.19 (KHTML, like Gecko) Version/1.0 Chrome/18.0.1025.308 Mobile Safari/535.19
+ */
+			
 
 			log.info("userAgent" + userAgent);
 			UserAgentDetectionResult res = new UserAgentDetector()
@@ -65,38 +72,66 @@ public class HtmlLib {
 
 			// 봇이아닌 경우
 			if (res.getBot().getFamily().toString().equals("NOT_A_BOT")) {
-
-				log.info(res.getDevice().getDeviceType().getLabel());
-				log.info(res.getDevice().toString());
 				vo.setStDeviceType(res.getDevice().getDeviceType().getLabel());
 				// 컴퓨터인 경우.
-				if (res.getDevice().getDeviceType().equals("COMPUTER")) {
-					//res.getBrowser().getFamily().getLabel()
-					vo.setStBrowserInfo(res.getBrowser().getFullVersion());
+				if (res.getDevice().getDeviceType().getLabel()
+						.equals("COMPUTER")) {
+					// res.getBrowser().getFamily().getLabel()
+					vo.setStDeviceInfo(res.getDevice().getBrand().getLabel()
+							+ "(" + res.getDevice().getDevice() + ")");
+					//
+					vo.setStBrowserInfo(res.getBrowser().getFamily().getLabel()
+							+ "(" + res.getBrowser().getFullVersion() + ")");
 				} else {
-					vo.setStDeviceInfo("("
-							+ res.getDevice().getBrand().getLabel() + ")");
-					// 
-					vo.setStBrowserInfo(res.getBrowser().getFamily().getLabel()+"("+res.getBrowser().getFullVersion()+")");
+					//아이폰인 경우 
+					if (res.getDevice().getDevice().equals("iPhone")) {
+						vo.setStDeviceInfo(res.getDevice().getBrand().getLabel()
+								+ "(" + res.getDevice().getDevice() + res.getOperatingSystem().getVersion() + ")");
+					
+						vo.setStBrowserInfo(res.getBrowser().getFamily().getLabel()
+								+ "(" + res.getBrowser().getFullVersion() + ")");
+					}
+					else{
+					vo.setStDeviceInfo(res.getDevice().getBrand().getLabel()
+							+ "(" + res.getDevice().getDevice() + ")");
+					//
+					vo.setStBrowserInfo(res.getBrowser().getFamily().getLabel()
+							+ "(" + res.getBrowser().getFullVersion() + ")");
+					}
 				}
 			} else {
-				vo.setStDeviceType(res.getBot().getFamily().getLabel());
+				// 로봇인 경우
+				vo.setStDeviceType(res.getBot().getFamily().toString());
 				// res.getBot().getVendor().getLabel()
-				vo.setStDeviceInfo("(" + res.getBot().getDescription() + ")");
-				vo.setStBrowserInfo(res.getBrowser().getFamily().getLabel()+"("+res.getBrowser().getFullVersion()+")");
+				vo.setStDeviceInfo(res.getBot().getDescription() + "("
+						+ res.getBot().getVersion() + ")");
+				vo.setStBrowserInfo(null);
 			}
 
-			log.info("DeviceType" + res.getDevice().getDeviceType());
+
 			vo.setStDeviceType(res.getDevice().getDeviceType().getLabel());
 
+			if(!(res.getLocale().getCountry().getLabel().equals("Unknown"))){
 			vo.setStCountryInfo(res.getLocale().getCountry().getLabel());
+			}
 			vo.setStHTTP_UA_CPU(res.getOperatingSystem().getVendor().getLabel()
 					+ "(" + res.getOperatingSystem().getDescription() + "_"
 					+ res.getOperatingSystem().getVersion() + ")");
 
-			log.info("The operating system is "
-					+ res.getOperatingSystem().getDescription()
-					+ res.getOperatingSystem().getVersion());
+			
+			//DeviceType : PHONE / TABLET / COMPUTER / SDK / UNKNOWN/ CONSOLE / UNKNOWN_MOBILE
+			//DeviceInfo : PC / Galaxy S4, Exhibit 4G	
+			//Iphone 버전 구분안되는 이슈. 아이폰은 다 똑같아서 스크린사이즈로 구분해야한다. 
+			// 7까지는 useragent-detetor 에 버전 구분.
+			// 8, 8S, X 모두 iPhone OS 11_0 iPhone 8 - (750px x 1334px)  / iPhone 8 Plus - (1242px x 2208px)/ iPhone X - (1125px x 2436px)
+			//https://stackoverflow.com/questions/46261031/what-would-be-the-user-agent-string-for-iphone-8-iphone-8-plus-and-iphone-x
+			// -> As far as I know, user agent for iPhone 8, iPhone 8 plus and iPhone X are same. To detect device we need to check screen size of the device.
+			log.info("DeviceType = " + vo.getStDeviceType());
+			log.info("DeviceInfo = " + vo.getStDeviceInfo());
+			log.info("BrowerInfo = " + vo.getStBrowserInfo());
+			log.info("CountryInfo = " + vo.getStCountryInfo());
+			log.info("CPU" + vo.getStHTTP_UA_CPU());
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

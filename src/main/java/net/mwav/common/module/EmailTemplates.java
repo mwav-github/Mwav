@@ -30,12 +30,11 @@ public class EmailTemplates {
 	// 메일을 발송하는 추가적인 기능 정의
 	// - 메일 발송 기능을 위한 MailSender 인터페이스 제공
 	// 여기서 setMailSender로 하면 에러난다.
-	// @Autowired로 없이, 빈 EmailTemplates 내 <property name="mailSender" ref="mailSender"/> 되어야한다.
+	// @Autowired로 없이, 빈 EmailTemplates 내 <property name="mailSender"
+	// ref="mailSender"/> 되어야한다.
 	@Autowired
 	private JavaMailSender mailSender; // 해당 인터페이스는 MimeMessage 객체를 생성해주는
 										// createMimeMessage() 메서드를 제공
-
-	
 
 	@Autowired
 	private VelocityConfig velocityConfig;
@@ -58,12 +57,12 @@ public class EmailTemplates {
 
 				MimeMessageHelper message = new MimeMessageHelper(mimeMessage,
 						true, "utf-8");
-		
+
 				String veloTemplate = VelocityEngineUtils
 						.mergeTemplateIntoString(
 								velocityConfig.getVelocityEngine(),
-								email.getVeloTemplate(),
-								"UTF-8", email.getEmailMap());
+								email.getVeloTemplate(), "UTF-8",
+								email.getEmailMap());
 				message.setSubject(email.getSubject());
 				message.setFrom(email.getFrom());
 				message.setTo(email.getReceiver());
@@ -71,15 +70,16 @@ public class EmailTemplates {
 				// 아니면 message.setText(htmlContent, "UTF-8", "html"); 로 설정
 
 				/*
-				#이미지내 파일 삽입
-				 * FileSystemResource css = new FileSystemResource(new File(
-						"/resources/CommonLibrary/CSS/mwav_style.css"));
-				message.addInline("css", css);
-				
-				#첨부파일
-				DataSource dataSource = new FileDataSource("c:\\책목록.xlsx");
-				message.addAttachment(MimeUtility.encodeText("책목록.xlsx", "UTF-8", "B"), dataSource);
-*/
+				 * #이미지내 파일 삽입 FileSystemResource css = new
+				 * FileSystemResource(new File(
+				 * "/resources/CommonLibrary/CSS/mwav_style.css"));
+				 * message.addInline("css", css);
+				 * 
+				 * #첨부파일 DataSource dataSource = new
+				 * FileDataSource("c:\\책목록.xlsx");
+				 * message.addAttachment(MimeUtility.encodeText("책목록.xlsx",
+				 * "UTF-8", "B"), dataSource);
+				 */
 
 				// setText(String text, boolean html)
 				// Set the given text directly as content in non-multipart mode
@@ -104,13 +104,13 @@ public class EmailTemplates {
 			e.printStackTrace();
 		}
 	}
-	
-	
 
 	public void sendBasicEmail(EmailVO email) throws Exception {
-		msg = mailSender.createMimeMessage(); // MimeMessage 객체 생성
-
 		try {
+			System.out.println("mailSender"+mailSender);
+			System.out.println("출력"+mailSender.createMimeMessage());
+			msg = mailSender.createMimeMessage(); // MimeMessage 객체 생성
+
 			msg.setSubject(email.getSubject());
 			msg.setText(email.getContent());
 			msg.setFrom(new InternetAddress("webmaster@mwav.net"));
@@ -142,8 +142,10 @@ public class EmailTemplates {
 			String htmlContent = "<strong>안녕하세요</strong>, 반갑습니다.";
 			messageHelper.setText(htmlContent, true);
 			messageHelper.setFrom("gz.kyungho@gmail.com", "갱짱");
-/*			messageHelper.setTo(new InternetAddress(email.getReceiver(), email
-					.getName(), "UTF-8"));*/
+			/*
+			 * messageHelper.setTo(new InternetAddress(email.getReceiver(),
+			 * email .getName(), "UTF-8"));
+			 */
 			DataSource dataSource = new FileDataSource(
 					"c:\\Users\\김주성\\Desktop\\123.txt");
 			messageHelper.addAttachment(
@@ -170,8 +172,10 @@ public class EmailTemplates {
 					+ ">";
 			messageHelper.setText(htmlContent, true);
 			messageHelper.setFrom("ebizpromwav@gmail.com", "Mwav");
-/*			messageHelper.setTo(new InternetAddress(email.getReceiver(), email
-					.getName(), "UTF-8"));*/
+			/*
+			 * messageHelper.setTo(new InternetAddress(email.getReceiver(),
+			 * email .getName(), "UTF-8"));
+			 */
 			messageHelper.addInline("첨부파일", new FileDataSource(
 					"c:\\Users\\김주성\\Desktop\\123.txt"));
 

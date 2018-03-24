@@ -17,7 +17,6 @@
 		<tbody class="mwav_important_10 hidden-xs hidden-sm">
 			<%--큰 화면에서는 5개다. --%>
 			<form name="NsmNews" action="/board/bnsView.mwav" method="post">
-
 				<c:choose>
 					<c:when test="${fn:length(selectListBnsFrontList) > 0}">
 						<c:forEach var="VselectListBnsFrontList"
@@ -34,7 +33,7 @@
 									<%--view를 구현하는 방법에 따라 달라진다. get 문 형태 유망 --%>
 									<%-- <td class="col-md-4 hidden-xs text-center" style="color:rgba(0,0,0,.5);">${VselectListBnsFrontList.bnInsertDt}</td> --%>
 								</tr>
-							</c:if>
+								</c:if> 
 						</c:forEach>
 					</c:when>
 					<c:otherwise>
@@ -46,7 +45,7 @@
 			</form>
 		</tbody>
 
-		<tbody class="mwav_important_10 visible-sm">
+		<tbody class="mwav_important_10 visible-sm visible-xs">
 			<%--작은 화면에서는 3개만 --%>
 			<form name="NsmNews" action="/board/bnsView.mwav" method="post">
 				<c:choose>
@@ -54,16 +53,16 @@
 						<c:forEach var="VselectListBnsFrontList"
 							items="${selectListBnsFrontList}" begin="0" end="2" step="1">
 							<c:if test="${VselectListBnsFrontList.bnStatus eq '2'}">
-								<input type="hidden" name="bNews_id"
-									value="${VselectListBnsFrontList.bNews_id}" />
-								<input type="hidden" name="bnViewCount"
-									value="${VselectListBnsFrontList.bnViewCount}" />
-								<tr>
-									<!-- a태그로 처리요망 -->
+							<input type="hidden" name="bNews_id"
+								value="${VselectListBnsFrontList.bNews_id}" />
+							<input type="hidden" name="bnViewCount"
+								value="${VselectListBnsFrontList.bnViewCount}" />
+							<tr>
+								<!-- a태그로 처리요망 -->
 
-									<td class="col-xs-12 text-left "><a
-										href="/board/bnsView.mwav?bNews_id=${VselectListBnsFrontList.bNews_id}">${VselectListBnsFrontList.bnTitle}</a></td>
-								</tr>
+								<td class="col-xs-12 text-left "><a
+									href="/board/bnsView.mwav?bNews_id=${VselectListBnsFrontList.bNews_id}">${VselectListBnsFrontList.bnTitle}</a></td>
+							</tr>
 							</c:if>
 						</c:forEach>
 					</c:when>
@@ -75,26 +74,23 @@
 				</c:choose>
 			</form>
 		</tbody>
-		
-		<tbody class="mwav_important_10 visible-xs">
-			<%--작은 화면에서는 3개만 --%>
+
+		<%-- <tbody class="mwav_important_10 visible-xs">
+			작은 화면에서는 3개만
 			<form name="NsmNews" action="/board/bnsView.mwav" method="post">
 				<c:choose>
 					<c:when test="${fn:length(selectListBnsFrontList) > 0 }">
 						<c:forEach var="VselectListBnsFrontList"
 							items="${selectListBnsFrontList}" begin="0" end="1" step="1">
-							<c:if test="${VselectListBnsFrontList.bnStatus eq '2'}">
-								<input type="hidden" name="bNews_id"
-									value="${VselectListBnsFrontList.bNews_id}" />
-								<input type="hidden" name="bnViewCount"
-									value="${VselectListBnsFrontList.bnViewCount}" />
-								<tr>
-									<!-- a태그로 처리요망 -->
-
-									<td class="col-xs-12 text-left "><a
-										href="/board/bnsView.mwav?bNews_id=${VselectListBnsFrontList.bNews_id}">${VselectListBnsFrontList.bnTitle}</a></td>
-								</tr>
-							</c:if>
+							
+							<input type="hidden" name="bNews_id"
+								value="${VselectListBnsFrontList.bNews_id}" />
+							<input type="hidden" name="bnViewCount"
+								value="${VselectListBnsFrontList.bnViewCount}" />
+							<tr>
+								<td class="col-xs-12 text-left "><a
+									href="/board/bnsView.mwav?bNews_id=${VselectListBnsFrontList.bNews_id}">${VselectListBnsFrontList.bnTitle}</a></td>
+							</tr>
 						</c:forEach>
 					</c:when>
 					<c:otherwise>
@@ -104,6 +100,6 @@
 					</c:otherwise>
 				</c:choose>
 			</form>
-		</tbody>
+		</tbody> --%>
 	</table>
 </div>

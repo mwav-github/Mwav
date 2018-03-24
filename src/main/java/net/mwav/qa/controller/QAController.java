@@ -85,17 +85,16 @@ public class QAController {
 				statistics_id = Integer.parseInt((String) session
 						.getAttribute("statistics_id"));
 			}
-			
+
 			// 정리 필요.
 			int uqInvoker_id;
-			String uqInvoker_id_string = (String) commandMap.get("uqInvoker_id");
+			String uqInvoker_id_string = (String) commandMap
+					.get("uqInvoker_id");
 			if (Common_Utils.isEmpty(uqInvoker_id_string) == true) {
 				// null인경우
 				uqInvoker_id = 0;
 				commandMap.put("uqInvoker_id", uqInvoker_id);
 			}
-
-			
 
 			commandMap.put("member_id", member_id);
 			commandMap.put("statistics_id", statistics_id);
@@ -124,9 +123,26 @@ public class QAController {
 		ModelAndView mv = new ModelAndView("/CustomerService/CS-MasterPage");
 
 		HttpSession session = request.getSession();
-		String m_id = (String) session.getAttribute("member_id");
-		commandMap.put("member_id", m_id);
+		int member_id = 0;
+		int statistics_id = 0;
+		// 회원여부에 따른 member_id insert 여부
+		if (session.getAttribute("member") != null) {
+			member_tbl_VO = (Member_tbl_VO) session.getAttribute("member");
+			member_id = member_tbl_VO.getMember_id();
+		}
 
+		// 통계키 넣기.
+		if (session.getAttribute("statistics_id") != null) {
+			statistics_id = Integer.parseInt((String) session
+					.getAttribute("statistics_id"));
+		}
+		commandMap.put("member_id", member_id);
+		commandMap.put("statistics_id", statistics_id);
+		
+		String referer = request.getHeader("Referer");
+		//mwav url 제외할지 추후 고민 
+		commandMap.put("uqRelatedLink", referer);
+		
 		// 정리 필요.
 		int uqInvoker_id;
 		String uqInvoker_id_string = (String) commandMap.get("uqInvoker_id");
@@ -242,47 +258,67 @@ public class QAController {
 		ModelAndView mv = new ModelAndView("/CustomerService/CS-MasterPage");
 
 		HttpSession session = request.getSession();
-		String m_id = String.valueOf(session.getAttribute("member_id"));
-		String m_email = (String) commandMap.get("uqUserEmail");
-		commandMap.put("member_id", m_id);
-		String pageNum = (String) commandMap.get("pageNum");
-		Paging paging = new Paging();
-		if (pageNum == null) {
-			pageNum = "1";
+
+		try {
+			// 회원로그인시
+			Member_tbl_VO member = (Member_tbl_VO) session
+					.getAttribute("member");
+			String m_email = null;
+			String m_id = null;
+
+			if (cou.isEmpty(member)) {
+				// 비회원인경우
+
+				m_email = (String) commandMap.get("uqUserEmail");
+			} else {
+				// 회원인경우
+				int member_id = member.getMember_id();
+				m_id = Integer.toString(member_id);
+				commandMap.put("member_id", m_id);
+			}
+
+			String pageNum = (String) commandMap.get("pageNum");
+			Paging paging = new Paging();
+			if (pageNum == null) {
+				pageNum = "1";
+			}
+			// totalcount 도 조정이 필요하다. (회원 비회원에 따라)
+			int totalRow = qaService.selectOneGetTotalCount(m_id, m_email);
+			System.out.println("totalRow=" + totalRow);
+
+			// Paging pv = new Paging(pageNum, 10 , 10, totalCount);
+			List<Map<String, Object>> selectListQAList;
+			PagingVO pagingVO = paging.setPagingInfo(totalRow, 5, pageNum); // 총
+																			// 숫자,
+																			// 한페이지에
+																			// 노출
+																			// 수
+			commandMap.put("startRow", paging.getStartRow(pageNum)); // 시작 열
+			commandMap.put("endRow", paging.getEndRow(pageNum)); // 끝 열
+			if (totalRow > 0) {
+				selectListQAList = qaService.selectListQAList(commandMap
+						.getMap());
+				// selectboardList =
+				// boardService.selectbnsList(commandMap.getMap());
+
+			} else {
+				selectListQAList = Collections.emptyList();
+			}
+			String mm = "site";
+			mv.addObject("mm", mm);
+			mv.addObject("mode", "qaList");
+			mv.addObject("NO", "qaList");
+
+			mv.addObject("breadcrumb", "IT Trends");
+			// mv.addObject("page_header", "IT Trends");
+			mv.addObject("page_header", null);
+
+			mv.addObject("selectListQAList", selectListQAList);
+			mv.addObject("pagingVO", pagingVO);
+			mv.addObject("totalRow", totalRow);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		// totalcount 도 조정이 필요하다. (회원 비회원에 따라)
-		int totalRow = qaService.selectOneGetTotalCount(m_id, m_email);
-		System.out.println("totalRow=" + totalRow);
-
-		// Paging pv = new Paging(pageNum, 10 , 10, totalCount);
-		List<Map<String, Object>> selectListQAList;
-		PagingVO pagingVO = paging.setPagingInfo(totalRow, 5, pageNum); // 총 숫자,
-																		// 한페이지에
-																		// 노출 수
-		commandMap.put("startRow", paging.getStartRow(pageNum)); // 시작 열
-		commandMap.put("endRow", paging.getEndRow(pageNum)); // 끝 열
-		if (totalRow > 0) {
-			selectListQAList = qaService.selectListQAList(commandMap.getMap());
-			// selectboardList =
-			// boardService.selectbnsList(commandMap.getMap());
-
-		} else {
-			selectListQAList = Collections.emptyList();
-		}
-		System.out.println("찍히낭");
-		String mm = "site";
-		mv.addObject("mm", mm);
-		mv.addObject("mode", "qaList");
-		mv.addObject("NO", "qaList");
-
-		mv.addObject("breadcrumb", "IT Trends");
-		// mv.addObject("page_header", "IT Trends");
-		mv.addObject("page_header", null);
-
-		mv.addObject("selectListQAList", selectListQAList);
-		mv.addObject("pagingVO", pagingVO);
-		mv.addObject("totalRow", totalRow);
-		// mv.addObject("paging", pv.print());
 		return mv;
 	}
 

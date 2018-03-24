@@ -103,6 +103,9 @@
 			href="/CompanyItem/ITSolutions/OrgChart/OrgChart.mwav"
 			class="list-group-item " data-toggle="tooltip" data-placement="top"
 			data-original-title="OrgChart">OrgChart</a> <a
+			href="/CompanyItem/ITProducts/vanillaNAV/vanillaNAV.mwav"
+			class="list-group-item " data-toggle="tooltip" data-placement="top"
+			data-original-title="vanillaNAV">vanillaNAV</a><a
 			href="/CompanyItem/ITProducts/OpenSRS/OpenSRS.mwav"
 			class="list-group-item " data-toggle="tooltip" data-placement="top"
 			data-original-title="OpenSRS">OpenSRS</a> <a

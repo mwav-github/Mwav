@@ -141,9 +141,10 @@ public class StatisticsInterceptor extends HandlerInterceptorAdapter {
 			 * 1. .jsp -> include 파일인 경우 .jsp로 끝난다.
 			 * 2. /charts -> 차트관련 제외
 			 * 3. /Index.mwav -> 루트의 경우 /로 찍히며 /Index.mwav의 경우 로그인 후 포워딩할때 한다 이때 중복에러 발생.
+			 * 4. /statistics/stClientScreenUpdateAjax -> 해상도 찍는거도 제외 처리.
+			 * 5. /MessageView -> 에러의 경우 파일단위로 떨구며, 통계쪽에 별도로 기입하지 않는다.
 			 */
-			if (auth_url != null && !(auth_url.contains(".jsp")) && !(auth_url.contains("Index.mwav"))
-					&& !(auth_url.contains("/charts/highsofts"))) {
+			if (auth_url != null && !(auth_url.contains(".jsp")) && !(auth_url.contains("Index.mwav")) && !(auth_url.contains("/charts")) && !(auth_url.contains("/statistics/stClientScreenUpdateAjax")) && !(auth_url.contains("/MessageView"))) {
 
 				String PageName = null;
 				PageName = Common_Utils.setPageName(auth_url);
@@ -155,31 +156,23 @@ public class StatisticsInterceptor extends HandlerInterceptorAdapter {
 					} else {
 						request.setAttribute("stPageName", PageName);
 					}
+					
 					statistics_id = statisticsController.insertFirstStatics(
 							request, member_id, statistics_id, session_id);
-
+					
+					
+					
 					log.info("statistics_id insertFirstStatics."
 							+ statistics_id);
-					// 세션 및 쿠키 생성.
 					session.setAttribute("statistics_id", statistics_id);
 					request.setAttribute("stClientScreen", "firstTime");
-					// cookie = CookieBox.createCookie("statistics_id",
-					// statistics_id);
-					/*
-					 * cookie = CookieBox.createCookie("statistics_id",
-					 * statistics_id, "/", 60 * 60 * 24 * 7); // 쿠키의 경우 클라이언트에게
-					 * 생성된 쿠키를 전송해야한다. (삭제도 마찬가지) response.addCookie(cookie);
-					 */
 
-				} else {
+				} else {				
 					log.info("statistics_id insertStatics." + statistics_id);
-
-					if (!(auth_url.contains("/charts/hightsofts"))) {
-						// System.out.println("차트는 제외");
+					log.info("auth_url" + auth_url);
 						request.setAttribute("slPageName", PageName);
 						statisticsController.insertStatics(request,
 								statistics_id);
-					}
 				}
 			}
 		} catch (Exception e) {

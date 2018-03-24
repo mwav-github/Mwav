@@ -10,10 +10,12 @@ https://developers.facebook.com/docs/sharing/webmasters/?locale=ko_KR
 <%-- 웹 사이트의 제목 --%>
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Mwav.net" />
+<meta property="og:type" content="website"/>
+<meta property="og:locale" content="ko_KR" />
 <%-- 트위터 카드 summary는 웹페이지에 대한 요약정보를 보여주는 카드로 우측에 썸네일을 보여주고 그 옆에 페이지의 제목과 요약 내용을 보여준다.--%>
-<meta name="twitter:card" content="summary" />
+<meta name="twitter:card" content="summary" /> 
 <c:choose>
-	<c:when test="${requestScope.meta_image ne null }">
+	<c:when test="${not empty requestScope.meta_image}">
 		<meta property="og:image" content="${requestScope.meta_image }" />
 		<meta name="twitter:image" content="${requestScope.meta_image }" />
 		<c:if test="${requestScope.title ne null}">

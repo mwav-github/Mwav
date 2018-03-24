@@ -13,9 +13,11 @@ import java.util.Random;
 import java.util.Map.Entry;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import net.common.Interceptor.StatisticsInterceptor;
 import net.common.common.CommandMap;
+import net.mwav.member.vo.Member_tbl_VO;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -228,11 +230,119 @@ public class Common_Utils {
 		return result;
 	}
 
-	// null 체크
+	/**
+	 * null체크
+	 *
+	 * @param object
+	 *            객체
+	 * @return null 여부 true : null false : null이 아님.
+	 * 
+	 *         이슈 최초 입력되는 타입에 대한 확인 후 변형되어야한다 최초 입력되는 타입을 어떻게 할지 부분 고민
+	 */
 	public static boolean isEmpty(Object obj) {
-		if (obj == null || obj.toString().equals(""))
+		if (obj == null || obj.toString().equals("")) {
 			return true;
+		}
 		return false;
+	}
+
+	/**
+	 * 접근자 구분하기
+	 *
+	 * @param request
+	 *            객체
+	 * @return yyyy년MM월dd일 HH시mm분ss초
+	 * 
+	 *         이슈 최초 입력되는 타입에 대한 확인 후 변형되어야한다 최초 입력되는 타입을 어떻게 할지 부분 고민
+	 */
+	@SuppressWarnings("unused")
+	public static Map<String, Object> typeToChar(HttpServletRequest request) {
+		char type = 0;
+
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		String key = null;
+		
+
+		HttpSession session = request.getSession();
+		CookieBox cookieBox = new CookieBox(request);
+		Member_tbl_VO Member;
+
+		try {
+
+			// 관리자영역
+			if (request.getParameter("staff") != null) {
+				type = 'S';
+				key = request.getParameter("staff");
+				log.info("staff은 request 값");
+			} else if ((String) session.getAttribute("staff") != null) {
+				type = 'S';
+				key = (String) session.getAttribute("staff");
+				log.info("staff은 세션값");
+			} else if (cookieBox.isExist("staff")) {
+				type = 'S';
+				key = cookieBox.getValue("staff");
+				log.info("staff은 쿠키값");
+			}
+
+			// 파트너영역
+			else if (request.getParameter("partner") != null) {
+				type = 'A';
+				key = request.getParameter("partner");
+				log.info("partner은 request 값");
+			} else if ((String) session.getAttribute("partner") != null) {
+				type = 'A';
+				key = (String) session.getAttribute("partner");
+				log.info("partner은 세션값");
+			} else if (cookieBox.isExist("partner")) {
+				type = 'A';
+				key = cookieBox.getValue("partner");
+				log.info("partner은 쿠키값");
+			}
+			// 회원영역
+			else if (request.getParameter("member") != null) {
+				type = 'M';
+				key = request.getParameter("member");
+				
+				log.info("member은 request 값");
+			} else if ((Member_tbl_VO) session.getAttribute("member") != null) {
+				type = 'M';
+				Member = (Member_tbl_VO) session.getAttribute("member");
+				key = String.valueOf(Member.getMember_id());
+				log.info("member은 세션값");
+			} else if (cookieBox.isExist("member")) {
+				type = 'M';
+				key = cookieBox.getValue("member");
+				log.info("member은 쿠키값");
+			}
+			// 프로모터 영역
+			else if (request.getParameter("pgl") != null) {
+				type = 'P';
+				key = request.getParameter("pgl");
+				log.info("pgl은 request 값");
+			} else if ((String) session.getAttribute("pgl") != null) {
+				type = 'P';
+				key = (String) session.getAttribute("pgl");
+				log.info("pgl은 세션값");
+			} else if (cookieBox.isExist("pgl")) {
+				type = 'P';
+				key = cookieBox.getValue("pgl");
+				log.info("pgl은 쿠키값");
+			} else {
+				type = 'N';
+				
+				
+			}
+			map.put("type", type);
+			map.put("value", key);
+
+		}
+
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return map;
 	}
 
 	/**
@@ -583,8 +693,7 @@ public class Common_Utils {
 						slPageName = "vanillaNAV";
 					} else if (url.contains("QuickHeal")) {
 						slPageName = "QuickHeal";
-					} 
-					else {
+					} else {
 						slPageName = "기타";
 					}
 				} else if (url_2depth.equals("WebSiteBuilding")) {

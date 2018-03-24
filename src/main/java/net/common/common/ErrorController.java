@@ -118,6 +118,8 @@ public class ErrorController {
 	}
 	
 	private void pageErrorLog(HttpServletRequest request){
+		
+		
 		log.info("status_code : " +request.getAttribute("javax.servlet.error.status.code"));
 		log.info("exception_type : " +request.getAttribute("javax.servlet.error.exception_type"));
 		log.info("message : " +request.getAttribute("javax.servlet.error.message"));

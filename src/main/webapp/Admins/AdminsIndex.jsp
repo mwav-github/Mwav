@@ -23,13 +23,13 @@
 				//getRemoteDataDrawChart(contextPath + '/linechart1.chart', createNewLineChart('chart1-container', getBaseChart()));
 				//getRemoteDataDrawChart(contextPath + '/linechart2.chart', createNewLineChart('chart2-container', getBaseChart()));
 				getRemoteDataDrawColumnChart(contextPath
-						+ '/charts/hightsofts/Top10PageList.mwav', createNewColumnChart(
+						+ '/charts/highsofts/Top10PageList.mwav', createNewColumnChart(
 						'chart1-container', getBaseColumnChart()));
-				getRemoteDataDrawChart(contextPath + '/charts/hightsofts/WeeklyUsers.mwav',
+				getRemoteDataDrawChart(contextPath + '/charts/highsofts/WeeklyUsers.mwav',
 						createNewLineChart('chart3-container',
 								getBaseLineChart()));
 				getRemoteDataDrawPieChart(contextPath
-						+ '/charts/hightsofts/ClientScreenSize.mwav', createNewPieChart(
+						+ '/charts/highsofts/ClientScreenSize.mwav', createNewPieChart(
 						'chart2-container', getBasePieChart()));
 			});
 </script>

@@ -26,7 +26,6 @@
 					<c:when test="${fn:length(selectListBuFrontList) > 0}">
 						<c:forEach var="VselectListBuFrontList"
 							items="${selectListBuFrontList}">
-							<c:if test="${VselectListBuFrontList.buStatus eq '2'}">
 								<input type="hidden" name="bUsers_id"
 									value="${VselectListBuFrontList.bUsers_id}" />
 								<input type="hidden" name="buViewCount"
@@ -38,7 +37,7 @@
 									<%--view를 구현하는 방법에 따라 달라진다. get 문 형태 유망 --%>
 									<td class="col-md-4 col-xs-4 col-sm-4">${VselectListBuFrontList.buInsertDt}</td>
 								</tr>
-							</c:if>
+
 						</c:forEach>
 					</c:when>
 					<c:otherwise>

@@ -8,6 +8,8 @@
 	<form name="qaList" method="post" action="/qa/qaList.mwav">
 		<%--비회원인 경우 HIDDEN으로 메일 유지해줘야 한다. 그래야 페이지가 이동하더라도 이상없다.--%>
 		<input type="hidden" name="uqUserEmail" value="${param.uqUserEmail}">
+		<%-- 
+		검색부분은 우선 구현전까지 제외 처리.
 		<div class="input-group custom-search-form">
 			<input type="text" class="form-control" placeholder="Search...">
 			<span class="input-group-btn">
@@ -15,7 +17,7 @@
 					<i class="fa fa-search"></i>
 				</button>
 			</span>
-		</div>
+		</div> --%>
 		<div class="enter"></div>
 		<input type="hidden" name="pageNum" />
 
