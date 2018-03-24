@@ -104,7 +104,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 							</p>
 
 							<p class="more2">
-								<a href="#" data-toggle="modal" data-target="#Contact"><strong>Learn
+								<a href="/CustomerService/QnA/QnA.mwav?mode=qaForm"><strong>Learn
 										more</strong></a><i class="fa fa-angle-right" aria-hidden="true"></i>
 							</p>
 						</div>
@@ -133,7 +133,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 							</p>
 
 							<p class="more2">
-								<a href="#" data-toggle="modal" data-target="#Contact"><strong>Learn
+								<a href="/CustomerService/QnA/QnA.mwav?mode=qaForm"><strong>Learn
 										more</strong></a><i class="fa fa-angle-right" aria-hidden="true"></i>
 							</p>
 						</div>
@@ -168,7 +168,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 							</p>
 
 							<p class="more2">
-								<a href="#" data-toggle="modal" data-target="#Contact"><strong>Learn
+								<a href="/CustomerService/QnA/QnA.mwav?mode=qaForm"><strong>Learn
 										more</strong></a><i class="fa fa-angle-right" aria-hidden="true"></i>
 							</p>
 						</div>
@@ -197,7 +197,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 							</p>
 
 							<p class="more2">
-								<a href="#" data-toggle="modal" data-target="#Contact"><strong>Learn
+								<a href="/CustomerService/QnA/QnA.mwav?mode=qaForm"><strong>Learn
 										more</strong></a><i class="fa fa-angle-right" aria-hidden="true"></i>
 							</p>
 						</div>
@@ -230,7 +230,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 							</p>
 
 							<p class="more2">
-								<a href="#" data-toggle="modal" data-target="#Contact"><strong>Learn
+								<a href="/CustomerService/QnA/QnA.mwav?mode=qaForm"><strong>Learn
 										more</strong></a><i class="fa fa-angle-right" aria-hidden="true"></i>
 							</p>
 						</div>
@@ -258,7 +258,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 									class="glyphicon glyphicon-ok"></span> "시큐리티 어드바이저"를 통해 여러분의
 								디바이스의 보안 수준을 향상 시킵니다.
 							<p class="more2">
-								<a href="#" data-toggle="modal" data-target="#Contact"><strong>Learn
+								<a href="/CustomerService/QnA/QnA.mwav?mode=qaForm"><strong>Learn
 										more</strong></a><i class="fa fa-angle-right" aria-hidden="true"></i>
 							</p>
 						</div>
@@ -291,7 +291,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 							</p>
 
 							<p class="more2">
-								<a href="#" data-toggle="modal" data-target="#Contact"><strong>Learn
+								<a href="/CustomerService/QnA/QnA.mwav?mode=qaForm"><strong>Learn
 										more</strong></a><i class="fa fa-angle-right" aria-hidden="true"></i>
 							</p>
 						</div>
