@@ -1,6 +1,7 @@
 package net.common.charts.controller;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import net.common.charts.service.HighChartsService;
 import net.common.charts.vo.DataVO;
@@ -52,7 +53,10 @@ public class HighChartsController {
     
     @RequestMapping({"/charts/highsofts/ClientScreenSize.mwav"})
     @ResponseBody
-    public DataVO selectListClientScreenSize() {
+    public DataVO selectListClientScreenSize(HttpServletRequest request) {
+    	String stPromoterId = (String) request.getAttribute("stPromoterId");
+    	
+    	System.out.println("테스트11"+stPromoterId);
         return chartService.selectListClientScreenSize();
     }
 

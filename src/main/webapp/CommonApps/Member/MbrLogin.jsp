@@ -72,19 +72,18 @@
 	</c:choose>
 </c:if>
 <script>
- $(function(){
-$("#checkbox4").bind("click",function(){
-	
-	var autoUse=$("#checkbox4").is(":checked");
-	if(autoUse==false){
-		$(".autoLogin").val("off");
-	}else if(autoUse==true){
-		$(".autoLogin").val("on");
-	}
-	//alert(autoUse);
+	$(function() {
+		$("#checkbox4").bind("click", function() {
+
+			var autoUse = $("#checkbox4").is(":checked");
+			if (autoUse == false) {
+				$(".autoLogin").val("off");
+			} else if (autoUse == true) {
+				$(".autoLogin").val("on");
+			}
+			//alert(autoUse);
+		});
 	});
-});
- 
 </script>
 </head>
 <script>
@@ -103,8 +102,6 @@ $("#checkbox4").bind("click",function(){
 		}
 		return false;
 	}
-
-	
 </script>
 
 <%--padding 으로 안쪽 추후 딴건 변경가능 #04A3ED --%>
@@ -133,8 +130,7 @@ $("#checkbox4").bind("click",function(){
 			<div class="form-group mgl3">
 				<div class="checkbox checkbox-info">
 					<input id="checkbox4" name="autoLoginChk" class="styled"
-						type="checkbox"> Keep me
-						signed in.
+						type="checkbox"> Keep me signed in.
 				</div>
 			</div>
 
@@ -165,7 +161,6 @@ $("#checkbox4").bind("click",function(){
 		<%--소셜 로그인 연동부분 
 		중요사항 : col-md-12 외 나머지 것들 col-sm-12 등을 넣으면 버튼 동작이 하지 않음.
 		--%>
-		<input type="hidden" name="test" value="123" />
 		<!-- GOOGLE SIGNIN -->
 		<div class="col-md-12 ">
 			<form action="<c:url value="/signin/google.mwav"/>" method="POST"
@@ -180,10 +175,10 @@ $("#checkbox4").bind("click",function(){
 					</button>
 				</div>
 
-				<input type="hidden" name="test" value="123" /> <input
-					type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-				<input type="hidden" name="scope" value="email profile" /> <input
-					type="hidden" name="autoLoginChk" class="autoLoginChk" value="off" />
+				<input type="hidden" name="${_csrf.parameterName}"
+					value="${_csrf.token}" /> <input type="hidden" name="scope"
+					value="email profile" /> <input type="hidden" name="autoLoginChk"
+					class="autoLoginChk" value="off" />
 			</form>
 		</div>
 
@@ -202,7 +197,8 @@ $("#checkbox4").bind("click",function(){
 				</div>
 				<input type="hidden" name="test" value="123" /> <input
 					type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-				<input type="hidden" name="autoLoginChk" class="autoLoginChk" value="off" />
+				<input type="hidden" name="autoLoginChk" class="autoLoginChk"
+					value="off" />
 			</form>
 		</div>
 
@@ -226,7 +222,7 @@ $("#checkbox4").bind("click",function(){
 			</form>
 		</div>
 
-
+		<%--twitter sign in --%>
 		<div class="col-md-12 mgb3">
 			<form action="<c:url value="/signin/twitter.mwav"/>" method="POST"
 				onSubmit="return robot_check();">
@@ -255,16 +251,17 @@ $("#checkbox4").bind("click",function(){
 
 
 			<div class="col-md-8">
-				<a href="/MasterPage.mwav?mode=IDSeek"><strong>Forgot your ID?</strong></a> <br>
-								<a href="/MasterPage.mwav?mode=PWSeek"><strong>Forgot your Password?</strong></a>
-					
+				<a href="/MasterPage.mwav?mode=IDSeek"><strong>Forgot
+						your ID?</strong></a> <br> <a href="/MasterPage.mwav?mode=PWSeek"><strong>Forgot
+						your Password?</strong></a>
+
 			</div>
 
 
 		</div>
 
 	</div>
-	
+
 </c:if>
 <!-- Login - END -->
 <c:if test="${param.type == 'simple'}">
@@ -285,57 +282,136 @@ $("#checkbox4").bind("click",function(){
 			<input type="password" class="form-control input-lg caps_lockchk"
 				placeholder="Password" name="mbrLoginPw">
 		</div>
+	</form>
 
-
-		<%-- <div class="checkbox">
+	<%-- <div class="checkbox">
 			<label> <input type="checkbox" name="remember" id="remember">
 				Remember login
 			</label>
 			<p class="help-block">(if this is a private computer)</p>
 		</div> --%>
 
-		<div class="form-group">
-			<div class="col-md-12">
-				<%--invisible --%>
-				<%-- 	<button class="g-recaptcha"
-				data-sitekey="6LcHRBoUAAAAAH5dmdNp-Iv1d7MAphM6B71ov9ZD"
-				data-callback="onSubmit">Submit</button> -->
-			<!-- <div id='recaptcha' class="g-recaptcha"
-          data-sitekey="6LcHRBoUAAAAAH5dmdNp-Iv1d7MAphM6B71ov9ZD"
-          data-callback="onSubmit"
-          data-size="invisible"></div> --%>
-				<%--visible --%>
-				<div class="g-recaptcha"
-					data-sitekey="6LcdRxoUAAAAAA4OI0FIN2bv2W0ersTRjqHJdLG-"></div>
+
+	<div class="form-group">
+		<button type="submit" class="btn btn-success btn-block">Login</button>
+	</div>
+
+	<div class="form-group">
+		<div class="col-md-12">
+
+			<div class="g-recaptcha"
+				data-sitekey="6LcdRxoUAAAAAA4OI0FIN2bv2W0ersTRjqHJdLG-"></div>
+		</div>
+	</div>
+
+	<div class="enter"></div>
+
+	<%--소셜 로그인 연동부분 
+		중요사항 : col-md-12 외 나머지 것들 col-sm-12 등을 넣으면 버튼 동작이 하지 않음.
+		--%>
+	<!-- GOOGLE SIGNIN -->
+	<div class="col-md-12 ">
+		<div class="enter"></div>
+		<form action="<c:url value="/signin/google.mwav"/>" method="POST"
+			onSubmit="return robot_check();">
+			<!-- <button type="submit" class="btn btn-danger btn-block">
+						<i class="fa fa-google-plus"></i>
+					</button> -->
+			<div class="form-group">
+				<button type="submit" class="btn btn-block btn-social btn-google">
+					<span class="fa fa-google-plus"></span> <span class="">Sign
+						in with Google</span>
+				</button>
 			</div>
-		</div>
-		<div class="form-group">
-			<button type="submit" class="btn btn-success btn-block">Login</button>
-		</div>
+
+			<input type="hidden" name="test" value="123" /> <input type="hidden"
+				name="${_csrf.parameterName}" value="${_csrf.token}" /> <input
+				type="hidden" name="scope" value="email profile" /> <input
+				type="hidden" name="autoLoginChk" class="autoLoginChk" value="off" />
+		</form>
+	</div>
+
+	<!-- facebook SIGNIN -->
+	<div class="col-md-12">
+		<form action="<c:url value="/signin/facebook.mwav"/>" method="POST"
+			onSubmit="return robot_check();">
+			<!-- <button type="submit" class="btn btn-primary btn-block">
+						<i class="fa fa-facebook"></i>
+					</button> -->
+			<div class="form-group">
+				<button type="submit" class="btn btn-block btn-social btn-facebook">
+					<span class="fa fa-facebook"></span> <span class=""> Sign in
+						with Facebook</span>
+				</button>
+			</div>
+			<input type="hidden" name="test" value="123" /> <input type="hidden"
+				name="${_csrf.parameterName}" value="${_csrf.token}" /> <input
+				type="hidden" name="autoLoginChk" class="autoLoginChk" value="off" />
+		</form>
+	</div>
 
 
-		<div class="form-group ">
-			<%-- <span class="pull-left"><a href="#IDPWSeek"
+	<!-- LINKEDIN SIGNIN -->
+	<div class=" col-md-12">
+		<form action="<c:url value="/signin/linkedin.mwav"/>" method="POST"
+			onSubmit="return robot_check();">
+			<!-- <button type="submit" class="btn btn-danger btn-block">
+						<i class="fa fa-linkedin"></i>
+					</button> -->
+			<div class="form-group">
+				<button type="submit" class="btn btn-block btn-social btn-linkedin">
+					<span class="fa fa-linkedin"></span> <span class="">Sign in
+						with LinkedIn</span>
+				</button>
+			</div>
+			<input type="hidden" name="${_csrf.parameterName}"
+				value="${_csrf.token}" /> <input type="hidden" name="autoLoginChk"
+				class="autoLoginChk" value="off" />
+		</form>
+	</div>
+
+	<%--twitter sign in --%>
+	<div class="col-md-12 mgb3">
+		<form action="<c:url value="/signin/twitter.mwav"/>" method="POST"
+			onSubmit="return robot_check();">
+			<!-- <button type="submit" class="btn btn-info btn-block">
+						<i class="fa fa-twitter"></i>
+					</button> -->
+
+			<button type="submit" class="btn btn-block btn-social btn-twitter">
+				<span class="fa fa-twitter"></span> <span class="">Sign in
+					with Twitter</span>
+			</button>
+			<input type="hidden" name="${_csrf.parameterName}"
+				value="${_csrf.token}" /> <input type="hidden" name="autoLoginChk"
+				class="autoLoginChk" value="off" />
+		</form>
+	</div>
+
+
+	<div class="form-group ">
+		<%-- <span class="pull-left"><a href="#IDPWSeek"
 				data-toggle="modal" data-target=".IDPWSeek" role="button"
 				data-toggle="modal"><strong>Forgot your ID or Password?</strong></a></span>
 
 			이것때문에 tooltip등이 오류가난다
 			<jsp:include page="/CommonApps/IDSeek/IDSeek.jsp" flush="false" /> --%>
-			<%-- <span class="pull-left"><a
+		<%-- <span class="pull-left"><a
 				href="/MasterPage_1.jsp?mode=Default"><strong>Sign up
 						now</strong></a></span> --%>
-			
-			<div class="col-md-4">
-				<a href="/MasterPage_1.mwav?mode=Default"><strong>Sign
-						up now</strong></a>
-			</div>
 
-
-			<div class="col-md-8">
-				<a href="/MasterPage.mwav?mode=IDSeek"><strong>Forgot your ID?</strong></a> <br>
-								<a href="/MasterPage.mwav?mode=PWSeek"><strong>Forgot your Password?</strong></a>
-					
-			</div>
+		<div class="col-md-4">
+			<a href="/MasterPage_1.mwav?mode=Default"><strong>Sign
+					up now</strong></a>
 		</div>
-	</form>
+
+
+		<div class="col-md-8">
+			<a href="/MasterPage.mwav?mode=IDSeek"><strong>Forgot
+					your ID?</strong></a> <br> <a href="/MasterPage.mwav?mode=PWSeek"><strong>Forgot
+					your Password?</strong></a>
+
+		</div>
+	</div>
+
 </c:if>

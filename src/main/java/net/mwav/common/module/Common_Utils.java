@@ -305,7 +305,7 @@ public class Common_Utils {
 				key = request.getParameter("member");
 				
 				log.info("member은 request 값");
-			} else if ((String) session.getAttribute("member") != null) {
+			} else if ((Member_tbl_VO) session.getAttribute("member") != null) {
 				type = 'M';
 				Member = (Member_tbl_VO) session.getAttribute("member");
 				key = String.valueOf(Member.getMember_id());

@@ -208,17 +208,17 @@ css 중 가장 마지막에 호출되어야하며, include 되는 파일 중 css
 					<p>
 						<%-- <a href="mailto:ebizpromwav@gmail.com" title="Contact me!"><i
 						class="fa fa-envelope"></i> Contact</a> 
-						<%--줄 없애기 + 그다음에 메일로 바로연결이아닌 qa쪽 고민 --%>
+						<%--줄 없애기 + 그다음에 메일로 바로연결이아닌 qa쪽 고민 
 
 						<a href="#" class="btn btn-block btn-primary hidden-md hidden-lg"
 							data-toggle="modal" data-target="#Contact"
 							onclick="ga('send', 'event', 'Q&A', 'click', 'Footer');"
 							style="color: white;"><span
 							class="glyphicon glyphicon-envelope"></span> Contact</a> 
-							
+							--%>
 							
 							<a href="/CustomerService/QnA/QnA.mwav?mode=qaForm"
-							class="btn btn-block btn-primary visible-md visible-lg"
+							class="btn btn-block btn-primary "
 							onclick="ga('send', 'event', 'Q&A', 'click', 'Footer');"
 							style="color: white;"><span
 							class="glyphicon glyphicon-envelope"></span> Contact</a>

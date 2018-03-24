@@ -1,36 +1,52 @@
-﻿<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
- 
- 
+﻿<!DOCTYPE tiles-definitions PUBLIC 
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" 
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
-    <!--<definition name="layout" template="/WEB-INF/views/layout.jsp">
-        <put-attribute name="title" value="메인페이지" />
-        <put-attribute name="header" value="/WEB-INF/views/layout/header.jsp" />
-        <put-attribute name="banner" value="/WEB-INF/views/layout/banner.jsp" />
-        <put-attribute name="left" value="/WEB-INF/views/layout/left.jsp" />
-        <put-attribute name="main" value="" />
-        <put-attribute name="login" value="/WEB-INF/views/layout/login.jsp" />
-        <put-attribute name="right" value="/WEB-INF/views/layout/right.jsp" />
-        <put-attribute name="footer" value="/WEB-INF/views/layout/footer.jsp" />
-        <put-attribute name="css" value="/WEB-INF/views/css/main.css" />
-    </definition>-->
-    
-     
- <!-- sitemesh와 다르게 여기서 동적으로 url에 따라 main 설정 가능 뿐만아니라 left등등 다 바꿀수있겠지
- 즉 위에서 tile 처럼 layout안에 정의만해놓고
- 아래처럼 url 패턴등에 따라 적용가능하다. 
- 
- 아래는 main에대한 설정 
- -->
-    <definition name="layout" template="/Templates/CustomerServiceMasterPage.jsp">
+	<definition name="adminLayouts-tiles" template="/AdminPmt/default-layouts.jsp">
+		<put-attribute name="head" value="/AdminPmt/default-head.jsp" />
+		<put-attribute name="header" value="/AdminPmt/default-header.jsp" />
+		<put-attribute name="content" value="" />
+		<put-attribute name="footer" value="/AdminPmt/default-footer.jsp" />
+	</definition>
 
-        <put-attribute name="headerImport" value="/PartsOfContent/Head_Import.jsp" />
-        <put-attribute name="headerMaster" value="/PartsOfContent/SiteHeader/FrontHeader_Master.jsp" />
-        <put-attribute name="header" value="/PartsOfContent/SiteHeader/FrontHeader.jsp" />
-        <put-attribute name="footer" value="/PartsOfContent/SiteFooter/FrontFooter.jsp" />
-    </definition>
+	<definition name="/Promoters/*" extends="adminLayouts-tiles">
+		<put-attribute name="content" value="/AdminPmt/{1}.jsp" />
+	</definition>
+
+	<definition name="/*/*/*.tiles" extends="adminLayouts-tiles">
+		<put-attribute name="content" value="/AdminPmt/{1}/{2}/{3}.jsp" />
+	</definition>
+
+	<!--
+	중요 tiles 는 runtime 시 수정 되므로, 접속하는 url  과 body 부분 include 하는 url 이 동일하는 경우 에러가 생긴다.
+즉 -> 부품 조립하는 것처럼 사용할 때 commonapps 등 조립 등에서 사용하면 좋을
+/web-inf 밑에라면 상관없으나 현재는 / 밑에서 동일 구조라서 이슈발생!
+컨트롤러 url 과 다이렉트 접근 url 이 다른 경우 사용하면 될듯.
+	
+	<definition name="layout" template="/WEB-INF/views/layout.jsp"> <put-attribute 
+		name="title" value="메인페이지" /> <put-attribute name="header" value="/WEB-INF/views/layout/header.jsp" 
+		/> <put-attribute name="banner" value="/WEB-INF/views/layout/banner.jsp" 
+		/> <put-attribute name="left" value="/WEB-INF/views/layout/left.jsp" /> <put-attribute 
+		name="main" value="" /> <put-attribute name="login" value="/WEB-INF/views/layout/login.jsp" 
+		/> <put-attribute name="right" value="/WEB-INF/views/layout/right.jsp" /> 
+		<put-attribute name="footer" value="/WEB-INF/views/layout/footer.jsp" /> 
+		<put-attribute name="css" value="/WEB-INF/views/css/main.css" /> </definition> -->
 
 
-   <!--  <definition name="" extends="layout">
-        <put-attribute name="main" value="/CustomerService/{1}/{2}.jsp" />
-    </definition> -->
+	<!-- sitemesh와 다르게 여기서 동적으로 url에 따라 main 설정 가능 뿐만아니라 left등등 다 바꿀수있겠지 즉 위에서 
+		tile 처럼 layout안에 정의만해놓고 아래처럼 url 패턴등에 따라 적용가능하다. 아래는 main에대한 설정 
+	<definition name="layout" template="/Templates/CustomerServiceMasterPage.jsp">
+
+		<put-attribute name="headerImport" value="/PartsOfContent/Head_Import.jsp" />
+		<put-attribute name="headerMaster"
+			value="/PartsOfContent/SiteHeader/FrontHeader_Master.jsp" />
+		<put-attribute name="header"
+			value="/PartsOfContent/SiteHeader/FrontHeader.jsp" />
+		<put-attribute name="footer"
+			value="/PartsOfContent/SiteFooter/FrontFooter.jsp" />
+	</definition>
+-->
+
+	<!-- <definition name="" extends="layout"> <put-attribute name="main" value="/CustomerService/{1}/{2}.jsp" 
+		/> </definition> -->
 </tiles-definitions>

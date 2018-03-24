@@ -42,38 +42,15 @@
 
 		<!-- Content Row -->
 		<div class="row">
-			<!-- Sidebar Column left메뉴 추후 변경 예정<시작>-->
-			<div class="col-md-3">
-				<%-- 
-			- param으로 같은 이름 지정시 위의 named으로 인식
-			- getparameter는 param.mm // setattribute는 mm
-			- value에 두개다 넣는 경우 비즈니스로직 + 파라미터인경우 문제발생
-			- jsp param 안에 choose, when, otherwise 사용 불가
-			 --%>
-				<c:choose>
-					<c:when test="${param.mm eq null}">
-						<c:set value="${mm}" var="mm" />
-					</c:when>
-					<c:otherwise>
-						<c:set value="${param.mm}" var="mm" />
-					</c:otherwise>
-				</c:choose>
-				<jsp:include page="/admins/LeftMenu.mwav" flush="false">
-					<jsp:param name="mm" value="${mm}" />
-				</jsp:include>
-			</div>
-			<!-- 끝 -->
-
-			<div class="col-md-9">
 
 
-
+			<div class="col-md-12">
 				<!-- Content Column -->
 				<div class="col-lg-12">
 
 					<iframe
-						src="https://calendar.google.com/calendar/embed?src=g9k4j4s3jckhh8a5rqejhh7fhq6aq1p2%40import.calendar.google.com&ctz=Asia/Seoul"
-						style="border: 0" width="850" height="600" frameborder="0"
+						src="https://calendar.google.com/calendar/embed?title=Mwav_WBS&amp;height=800&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=t73a6fe660mb472delh1u3ild52l4hk2%40import.calendar.google.com&amp;color=%232952A3&amp;src=s1vgf025rring9lqn6p0ptgc1uradldf%40import.calendar.google.com&amp;color=%23125A12&amp;src=mwav.net_dcq0ccsaattqooc7htj53jg8n0%40group.calendar.google.com&amp;color=%23691426&amp;ctz=Asia%2FSeoul"
+						style="border-width: 0" width="1200" height="800" frameborder="0"
 						scrolling="no"></iframe>
 
 
