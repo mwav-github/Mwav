@@ -1,7 +1,10 @@
 package net.common.charts.controller;
 
+import java.util.Map;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import net.common.charts.service.HighChartsService;
 import net.common.charts.vo.DataVO;
@@ -19,6 +22,7 @@ public class HighChartsController {
 	@Autowired
     HighChartsService chartService;
 
+	Map<String, Object> chartVar;
 
     @RequestMapping({"/", "/charts"})
     public String showCharts() {
@@ -41,23 +45,30 @@ public class HighChartsController {
 
     @RequestMapping({"/charts/highsofts/WeeklyUsers.mwav"})
     @ResponseBody
-    public DataVO selectListWeeklyUsers() {
-        return chartService.selectListWeeklyUsers();
+    public DataVO selectListWeeklyUsers(HttpServletRequest request) {
+     	chartVar = Common_Utils.typeToChar(request);
+       	chartVar.put("stPromoterId", chartVar.get("value"));
+  	
+        return chartService.selectListWeeklyUsers(chartVar);
     }
     
     @RequestMapping({"/charts/highsofts/Top10PageList.mwav"})
     @ResponseBody
-    public DataVO selectListTop10Page() {
-        return chartService.selectListTop10Page();
+    public DataVO selectListTop10Page(HttpServletRequest request) {
+     	chartVar = Common_Utils.typeToChar(request);
+       	chartVar.put("stPromoterId", chartVar.get("value"));
+   	
+        return chartService.selectListTop10Page(chartVar);
     }
     
     @RequestMapping({"/charts/highsofts/ClientScreenSize.mwav"})
     @ResponseBody
     public DataVO selectListClientScreenSize(HttpServletRequest request) {
-    	String stPromoterId = (String) request.getAttribute("stPromoterId");
-    	
-    	System.out.println("테스트11"+stPromoterId);
-        return chartService.selectListClientScreenSize();
+
+     	chartVar = Common_Utils.typeToChar(request);
+       	chartVar.put("stPromoterId", chartVar.get("value"));
+
+        return chartService.selectListClientScreenSize(chartVar);
     }
 
 

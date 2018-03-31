@@ -35,26 +35,27 @@
 <script src="https://code.highcharts.com/highcharts.src.js"></script>
 <script src="/CommonLibrary/Javascript/custom-chart.js"></script>
 
-
 <script type="text/javascript">
 	var contextPath = '<c:out value="${pageContext.request.contextPath}"/>';
 	//var pgl = '${sessionScope.promoter.promoter_id}"/>';
-	var pgl = '${promoter_id}';
+	//var pgl = '${param.promoter_id}';
+	
+
 	$(document)
 			.ready(
 					function() {
 						//getRemoteDataDrawChart(contextPath + '/linechart1.chart', createNewLineChart('chart1-container', getBaseChart()));
 						//getRemoteDataDrawChart(contextPath + '/linechart2.chart', createNewLineChart('chart2-container', getBaseChart()));
 						getRemoteDataDrawColumnChart(contextPath
-								+ '/charts/highsofts/Top10PageList.mwav?stPromoterId='+ pgl,
+								+ '/charts/highsofts/Top10PageList.mwav',
 								createNewColumnChart('chart1-container',
 										getBaseColumnChart()));
 						getRemoteDataDrawChart(contextPath
-								+ '/charts/highsofts/WeeklyUsers.mwav?stPromoterId='+ pgl,
+								+ '/charts/highsofts/WeeklyUsers.mwav',
 								createNewLineChart('chart3-container',
 										getBaseLineChart()));
 						getRemoteDataDrawPieChart(contextPath
-								+ '/charts/highsofts/ClientScreenSize.mwav?stPromoterId='+ pgl,
+								+ '/charts/highsofts/ClientScreenSize.mwav',
 								createNewPieChart('chart2-container',
 										getBasePieChart()));
 					});

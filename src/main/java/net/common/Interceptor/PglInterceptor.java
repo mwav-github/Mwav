@@ -56,7 +56,7 @@ public class PglInterceptor  extends HandlerInterceptorAdapter{
 	private Boolean getPgl(HttpServletRequest request,HttpServletResponse response,String pglValue) throws Exception{
 		//쿠키와 세션에 pgl값 등록하고  promoterValue_tble의 VisitNbr 수늘려 줌
 		if(pglValue!=null&&!(pglValue.equals(""))){
-			Cookie pmtPK = new Cookie("pglCookie", pglValue); //쿠키 생성
+			Cookie pmtPK = new Cookie("pgl", pglValue); //쿠키 생성
 			pmtPK.setPath("/"); pmtPK.setMaxAge(60 * 60 * 24 * 14);
 		    response.addCookie(pmtPK); //쿠키에 pgp 등록등록
 
