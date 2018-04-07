@@ -3,44 +3,48 @@
 <mapper namespace="highCharts">
 	
 	<sql id="pgl">
-          AND stPromoterId = '10001000'
+	 <if test="stPromoterId != null and stPromoterId != ''" > 
+        AND  stPromoterId = #{stPromoterId}
+      </if>
     </sql>
 
 	<!--/*========================================리스트========================================*/ 
 	 -->
 	
-	<select id="selectListWeeklyUsers" resultType="net.common.charts.vo.SeriesVO_Arrary">
-	<![CDATA[
-	      SELECT DATE_FORMAT(stStatisticsDt, '%W') AS `name`,
-          COUNT(`statistics_id`) AS 'data'
+		<select id="selectListWeeklyUsers" resultType="net.common.charts.vo.SeriesTypeOneVO" parameterType="hashmap" >
+		  SELECT DATE_FORMAT(stStatisticsDt, '%W') AS 'name',
+          COUNT('statistics_id') AS 'data'
           FROM Statistics_tbl
-          WHERE TO_DAYS(NOW()) - TO_DAYS(stStatisticsDt) <= 7 
-          GROUP BY `name`
-          ORDER BY 'name'
-	]]>
-	</select>	
+          WHERE <![CDATA[  TO_DAYS(NOW()) - TO_DAYS(stStatisticsDt) <= 7 ]]>
+          <include refid="pgl" /> 
+          GROUP BY 'name'
+          ORDER BY 'name' desc;
+	</select>
+
 	
-	<select id="selectListTop10Page" resultType="net.common.charts.vo.SeriesVO_Arrary">
-	<![CDATA[
-	      SELECT slPageName AS 'name', 
+	<select id="selectListTop10Page" resultType="net.common.charts.vo.SeriesTypeOneVO" parameterType="hashmap" >
+          SELECT b.slPageName AS 'name', 
 	      FLOOR(COUNT(*)) AS 'data' 
-	      FROM StatisticsLog_tbl 
-	      WHERE slPageName IS NOT NULL
+	      FROM Statistics_tbl a, StatisticsLog_tbl b
+	      WHERE 	<![CDATA[slPageName IS NOT NULL ]]> 
+          <include refid="pgl" /> 
+          AND a.statistics_id = b.statistics_id
 	      GROUP BY `name`
 	      ORDER BY data DESC 
 	      limit 0,10;
-	]]>
+        
 	</select>
 	
 	
-	<select id="selectListClientScreenSize" resultType="net.common.charts.vo.SeriesVO_Arrary2">
-	<![CDATA[
-	      SELECT COUNT(*) AS `y`, stClientScreen AS `name` 
+	<select id="selectListClientScreenSize" resultType="net.common.charts.vo.SeriesDataTypeOneVO" parameterType="hashmap" >
+
+	      SELECT COUNT(*) AS 'y', stClientScreen AS 'name' 
 	      FROM Statistics_tbl 
-	      WHERE stClientScreen IS NOT NULL AND TO_DAYS(NOW()) - TO_DAYS(stStatisticsDt) <= 30 
-	      GROUP BY `name`
-	      ORDER BY `y` DESC 
-	]]>
+	      WHERE <![CDATA[  stClientScreen IS NOT NULL AND TO_DAYS(NOW()) - TO_DAYS(stStatisticsDt) <= 30  ]]>
+	      <include refid="pgl" /> 
+	      GROUP BY 'name'
+	      ORDER BY 'y' DESC 
+
 	</select>
 	
 	<!--/*========================================삭제========================================*/  -->

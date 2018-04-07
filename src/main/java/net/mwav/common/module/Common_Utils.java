@@ -259,6 +259,7 @@ public class Common_Utils {
 	public static Map<String, Object> typeToChar(HttpServletRequest request) {
 		char type = 0;
 
+		System.out.println("들어왔다.");
 		Map<String, Object> map = new HashMap<String, Object>();
 
 		String key = null;
