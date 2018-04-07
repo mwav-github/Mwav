@@ -79,8 +79,8 @@
 	<div class="col-md-12">
 
 
-		<h2 class="news_title">
-			<a>${selectOneBnsView.bnTitle}</a>
+		<h2 class="news_title text-color-blue-type-1">
+			${selectOneBnsView.bnTitle}
 		</h2>
 		<p class="news_subtitle">
 			<c:if
