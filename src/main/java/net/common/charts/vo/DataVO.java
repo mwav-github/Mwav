@@ -4,21 +4,22 @@ package net.common.charts.vo;
 import org.codehaus.jackson.map.annotate.JsonRootName;
 
 import java.util.List;
-
+ 
 @JsonRootName("dataBean")
 public class DataVO {
-    private String divId;
-    private String title;
-    private String yAxisTitle;
-    private String xAxisTitle;
-    private String chartType;
-    private List<String> categories;
-    private List<SeriesVO> series;
-	private List<SeriesVO_C> seriesArrary2;
+    private String divId;    //그려질 위치의 Html Element ID
+    private String title;     // 차트 title
+    private String yAxisTitle;  // y축 제목
+    private String xAxisTitle;  // x축 제목
+    private String chartType; // 차트 유형
+    private List<String> categories; //X축 데이터 
+    private List<SeriesTypeTwoVO> seriesTypeTwoVO;  // 실제 그려질 데이터 type_1  (A series is a set of data)
+    private List<SeriesTypeThreeVO> seriesTypeThreeVO; // // 실제 그려질 데이터 type_2
+
  
 	public DataVO(){}
 	
-    public DataVO(String divId, String title, String yAxisTitle, String xAxisTitle, String chartType, List<String> categories, List<SeriesVO> series) {
+    public DataVO(String divId, String title, String yAxisTitle, String xAxisTitle, String chartType, List<String> categories, List<SeriesTypeTwoVO> series) {
         this.setDivId(divId);
         this.setTitle(title);
         this.setyAxisTitle(yAxisTitle);
@@ -29,7 +30,7 @@ public class DataVO {
     }
     
     //생성자 오버로딩
-    public DataVO(String divId, String title,  String chartType, List<SeriesVO_C> list_2) {
+    public DataVO(String divId, String title,  String chartType, List<SeriesTypeThreeVO> list_2) {
         this.setDivId(divId);
         this.setTitle(title);
         this.setChartType(chartType);
@@ -74,19 +75,19 @@ public class DataVO {
         this.categories = categories;
     }
 
-    public List<SeriesVO> getSeries() {
-        return series;
+    public List<SeriesTypeTwoVO> getSeries() {
+        return seriesTypeTwoVO;
     }
 
-    public void setSeries(List<SeriesVO> series) {
-        this.series = series;
+    public void setSeries(List<SeriesTypeTwoVO> series) {
+        this.seriesTypeTwoVO = series;
     }
-    public List<SeriesVO_C> getSeriesArrary() {
-        return seriesArrary2;
+    public List<SeriesTypeThreeVO> getSeriesArrary() {
+        return seriesTypeThreeVO;
     }
 
-    public void setSeriesArrary(List<SeriesVO_C> list_2) {
-        this.seriesArrary2 = list_2;
+    public void setSeriesArrary(List<SeriesTypeThreeVO> list_2) {
+        this.seriesTypeThreeVO = list_2;
     }
 
     public String getDivId() {

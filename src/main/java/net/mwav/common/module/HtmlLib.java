@@ -55,6 +55,7 @@ public class HtmlLib {
 			// 테스트 모바일 : SAMSUNG-SGH-E250/1.0 Profile/MIDP-2.0Configuration/CLDC-1.1 UP.Browser/6.2.3.3.c.1.101(GUI) MMP/2.0
 			// ios : Mozilla/5.0 (iPhone; CPU iPhone OS 10_3 like Mac OS X)AppleWebKit/602.1.50 (KHTML, like Gecko) CriOS/56.0.2924.75 Mobile/14E5239e Safari/602.1
 	        // 아이폰 7 : Mozilla/5.0 (iPhone; CPU iPhone OS 7_0_6 like Mac OS X) AppleWebKit/537.51.1 (KHTML, like Gecko) CriOS/33.0.1750.14 Mobile/11B651 Safari/9537.53 (47328A61-EB88-4D99-88BD-42F1D5BB7BE0)
+			// edge : Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36 Edge/16.16299
 			/*
 			구글 bot : Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)
 			 bing bot : Mozilla/5.0 (compatible; Bingbot/2.0; +http://www.bing.com/bingbot.htm)
@@ -80,7 +81,7 @@ public class HtmlLib {
 					vo.setStDeviceInfo(res.getDevice().getBrand().getLabel()
 							+ "(" + res.getDevice().getDevice() + ")");
 					//
-					vo.setStBrowserInfo(res.getBrowser().getFamily().getLabel()
+					vo.setStBrowserInfo(res.getBrowser().getDescription()
 							+ "(" + res.getBrowser().getFullVersion() + ")");
 				} else {
 					//아이폰인 경우 
