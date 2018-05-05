@@ -319,6 +319,18 @@
 					<div class="card-footer small text-muted">Updated yesterday
 						at 11:59 PM</div>
 				</div>
+				
+				<div class="card mb-3">
+					<div class="card-header">
+						<i class="fa fa-pie-chart"></i> Column Chart Example
+					</div>
+					<div class="card-body">
+						<div id="chart4-container" width="100%" height="100"></div>
+					</div>
+					<div class="card-footer small text-muted">Updated yesterday
+						at 11:59 PM</div>
+				</div>
+				
 				<!-- Example Notifications Card-->
 				<div class="card mb-3">
 					<div class="card-header">
@@ -382,7 +394,7 @@
 			</div>
 			<div class="card-body">
 				<div class="table-responsive">
-					<jsp:include page="/qa/qaFrontList.mwav" flush="false" />
+					<jsp:include page="/Promoters/StatList.mwav" flush="false" />
 				</div>
 			</div>
 			<div class="card-footer small text-muted">Updated yesterday at

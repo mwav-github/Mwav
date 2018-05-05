@@ -9,6 +9,7 @@
 <!-- /////////// -->
 <jsp:include page="/PartsOfContent/Head_Import.jsp" flush="false" />
 <!-- /////////// -->
+
 </head>
 
 <body>
@@ -404,8 +405,6 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 						</table>
 					</div>
 				</div>
-
-
 
 				<!--Technologies -->
 				<div class="row">

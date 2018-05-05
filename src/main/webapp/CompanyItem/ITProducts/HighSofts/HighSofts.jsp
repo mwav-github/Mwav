@@ -644,8 +644,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 											</c:if>
 											</span></strong>
 										</p>
-										<br> <a href="#" data-toggle="modal"
-											data-target="#Contact" class="btn btn-success btn-block">
+										<br> <a href="/CustomerService/QnA/QnA.mwav?mode=qaForm" target="_blank" class="btn btn-success btn-block">
 											BUY</a>
 									</div>
 									<div class="clearfix"></div>
@@ -677,7 +676,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 											 USD 780.00
 											</c:if> <c:if test="${item == 'Highmaps'}">
 											 USD 390.00
-											</c:if> </strong> <a href="#" data-toggle="modal" data-target="#Contact"
+											</c:if> </strong> <a href="/CustomerService/QnA/QnA.mwav?mode=qaForm" target="_blank" 
 												class="btn btn-success "> BUY</a>
 										</h4>
 
@@ -737,8 +736,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 											</c:if>
 											</span></strong>
 										</p>
-										<br> <a href="#" data-toggle="modal"
-											data-target="#Contact" class="btn btn-success btn-block">
+										<br> <a href="/CustomerService/QnA/QnA.mwav?mode=qaForm" target="_blank" class="btn btn-success btn-block">
 											BUY</a>
 									</div>
 								</div>
@@ -769,7 +767,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 											 USD 3,510.00
 											</c:if> <c:if test="${item == 'Highmaps'}">
 											 USD 1,755.00
-											</c:if> </strong><a href="#" data-toggle="modal" data-target="#Contact"
+											</c:if> </strong><a href="/CustomerService/QnA/QnA.mwav?mode=qaForm" target="_blank" 
 												class="btn btn-success "> BUY</a>
 										</h4>
 
@@ -828,8 +826,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 											</c:if>
 											</span></strong>
 										</p>
-										<br> <a href="#" data-toggle="modal"
-											data-target="#Contact" class="btn btn-success btn-block">
+										<br> <a href="/CustomerService/QnA/QnA.mwav?mode=qaForm" target="_blank"  class="btn btn-success btn-block">
 											BUY</a>
 									</div>
 								</div>
@@ -861,7 +858,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 											</c:if> <c:if test="${item == 'Highmaps'}">
 											 USD 3,320.00
 											</c:if>
-											</strong><a href="#" data-toggle="modal" data-target="#Contact"
+											</strong><a href="/CustomerService/QnA/QnA.mwav?mode=qaForm" target="_blank" 
 												class="btn btn-success "> BUY</a>
 										</h4>
 
@@ -924,7 +921,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 										<h4>
 											<strong>Contact Us For Price </strong>
 										</h4>
-										<a href="#" data-toggle="modal" data-target="#Contact"
+										<a href="/CustomerService/QnA/QnA.mwav?mode=qaForm" target="_blank" 
 											class="btn btn-success btn-block"> Contact Us</a>
 									</div>
 									<div class="clearfix"></div>
@@ -976,7 +973,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 											<strong>Free </strong>
 										</h4>
 										<a class="btn btn-success btn-block"
-											href="/MasterPage_1.jsp?mode=Default" title="Sign up">Sign
+											href="/MasterPage_1.mwav?mode=Default" title="Sign up">Sign
 											up</a>
 
 									</div>

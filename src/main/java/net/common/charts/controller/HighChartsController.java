@@ -62,6 +62,8 @@ public class HighChartsController {
         return chartService.selectListTop10Page(chartVar);
     }
     
+    
+    
     @RequestMapping({"/charts/highsofts/ClientScreenSize.mwav"})
     @ResponseBody
     public DataVO selectListClientScreenSize(HttpServletRequest request) {
@@ -71,6 +73,18 @@ public class HighChartsController {
 
         return chartService.selectListClientScreenSize(chartVar);
     }
+    
+    
+    @RequestMapping({"/charts/highsofts/ClientBrowerInfo.mwav"})
+    @ResponseBody
+    public DataVO selectListClientBrowerInfo(HttpServletRequest request) {
+
+     	chartVar = Common_Utils.typeToChar(request);
+       	chartVar.put("stPromoterId", chartVar.get("value"));
+
+        return chartService.selectListClientBrowerInfo(chartVar);
+    }
+
 
 
 }

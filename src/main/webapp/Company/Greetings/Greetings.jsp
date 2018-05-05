@@ -61,7 +61,7 @@
 				<p>고객감동을 통한 최고의 기업가치를 제공할 수 있도록 열정을 가지고 임하겠습니다.</p>
 				<br> <br>
 				<p class="text-right">
-					<strong>CEO: Mr.Kim</strong>
+					<strong>CEO: Lewis.Kim</strong>
 				</p>
 			</div>
 

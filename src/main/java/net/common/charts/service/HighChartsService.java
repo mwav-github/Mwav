@@ -155,4 +155,51 @@ public class HighChartsService {
 		return new DataVO("chart2-container", "abc", "pie", list_2);
 	}
 
+	public DataVO selectListClientBrowerInfo(Map<String, Object> hashmap) {
+		// TODO Auto-generated method stub
+		List<SeriesTypeOneVO> list = HighChartsDAO.selectListClientBrowerInfo(hashmap);
+		List<SeriesTypeOneVO> list3 = null;
+		List<SeriesTypeTwoVO> list_3 = null;
+		double[] data = new double[list.size()];
+		double[] data2 = null;
+		String[] page = new String[list.size()];
+		for (int i = 0; i < list.size(); i++) {
+			// 소수점버리기
+			data[i] = list.get(i).getData();
+
+			if (list.get(i).getName() == null) {
+				System.out.println("널인경우");
+				page[i] = "null";
+			} else {
+				page[i] = list.get(i).getName();
+			}
+			list3 = HighChartsDAO.selectListClientBrowerVersion(page[i]);
+			for (int ii = 0; ii < list3.size(); ii++) {
+				data2 = new double[list3.size()];
+				data2[i] = list3.get(i).getData();
+			}
+			list_3 = new ArrayList<SeriesTypeTwoVO>();
+			System.out.println("Size = " + list.size());
+			System.out.println("Name = " + list.get(i).getName());
+			System.out.println("Data = " + Math.floor(list.get(i).getData()));
+			// System.out.println("x"+ x);
+			
+			list_3.add(new SeriesTypeTwoVO(page[i], data2));
+		}
+		// double x[] = list.toArray();
+		List<SeriesTypeTwoVO> list_2 = new ArrayList<SeriesTypeTwoVO>();
+
+		list_2.add(new SeriesTypeTwoVO("Count", data));
+		
+		System.out.println("크기" + data.length);
+
+		System.out.println("크기2" + page.length);
+		
+		
+		// String[] categories = new String[] {"Mont",
+		// "14 Feb '13","15 Mar '13","11 Apr '13","19 May '13","23 Jun '13","3 Jul '13","8 Aug '13","5 Sep '13","17 Oct '13","23 Nov '13","5 Dec '13"};
+		return new DataVO("chart4-container", "ClientBrowerInfo", "통계",
+				"Run Dates", "column", Arrays.asList(page), list_2, list_3);
+	}
+
 }

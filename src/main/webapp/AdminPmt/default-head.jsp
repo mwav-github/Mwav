@@ -58,5 +58,9 @@
 								+ '/charts/highsofts/ClientScreenSize.mwav',
 								createNewPieChart('chart2-container',
 										getBasePieChart()));
+						getRemoteDataDrawColumnDrilldownChart(contextPath
+								+ '/charts/highsofts/ClientBrowerInfo.mwav',
+								createNewColumnChart('chart4-container',
+										getBaseColumnChart()));
 					});
 </script>

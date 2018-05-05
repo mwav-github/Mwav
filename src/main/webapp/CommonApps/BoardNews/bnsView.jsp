@@ -134,18 +134,5 @@
 			</p>
 		</div>
 
-		<!-- Pager -->
-		<%--이전 이후있는 경우만 가능하도록 if 문 처리 필요. --%>
-		<div class="row">
-			<ul class="pager">
-				<li class="previous"><a
-					href="/board/bnsView.mwav?bNews_id=${selectOneBnsView.bNews_id-1}">←
-						Older</a></li>
-				<li class="next"><a
-					href="/board/bnsView.mwav?bNews_id=${selectOneBnsView.bNews_id+1}">Newer
-						→</a></li>
-			</ul>
-		</div>
-
 	</div>
 </div>

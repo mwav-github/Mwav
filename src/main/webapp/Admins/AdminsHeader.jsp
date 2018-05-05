@@ -36,21 +36,21 @@
 					</tr>
 					<tr>
 						<td>사번:</td>
-						<td>${selectStfLogin.stfNumber}</td>
+						<td>${staff.stfNumber}</td>
 						<td>성명:</td>
-						<td>${selectStfLogin.stfName}</td>
+						<td>${staff.stfName}</td>
 					</tr>
 					<tr>
 						<td>부서:</td>
-						<td>${selectStfLogin.stfDeptName}</td>
+						<td>${staff.stfDeptName}</td>
 						<td>아이디:</td>
-						<td>${selectStfLogin.stfLoginId}</td>
+						<td>${staff.stfLoginId}</td>
 					</tr>
 					<tr>
 						<td>직급:</td>
-						<td>${selectStfLogin.stfClass}</td>
+						<td>${staff.stfClass}</td>
 						<td>프로모션:</td>
-						<td></td>
+						<td>${staff.staff_id}</td>
 					</tr>
 
 				</table>

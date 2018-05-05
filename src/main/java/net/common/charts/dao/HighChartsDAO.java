@@ -39,4 +39,18 @@ public class HighChartsDAO extends AbstractDAO {
 		return (List<SeriesDataTypeOneVO>) selectList("highCharts.selectListClientScreenSize", hashmap);
 	}
 
+	public List<SeriesTypeOneVO> selectListClientBrowerInfo(
+			Map<String, Object> hashmap) {
+		// TODO Auto-generated method stub
+		return (List<SeriesTypeOneVO>) selectList("highCharts.selectListClientBrowerInfo", hashmap);
+	}
+
+
+	public List<SeriesTypeOneVO> selectListClientBrowerVersion(String browser) {
+		// TODO Auto-generated method stub
+		System.out.println("df비나이다"+browser);
+		return (List<SeriesTypeOneVO>) selectList("highCharts.selectListClientBrowerVersion", browser);
+	}
+
+
 }

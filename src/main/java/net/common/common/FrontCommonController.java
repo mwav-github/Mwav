@@ -222,15 +222,15 @@ public class FrontCommonController {
 			throws Exception {
 
 		// System.out.println("열로들어오나");
-		/*String url = request.getRequestURI();
+		String url = request.getRequestURI();
 		int pos = url.lastIndexOf(".");
-		// String ext = url.substring(pos + 1);
-		ext_url = url.substring(0, pos);*/
+		 String ext = url.substring(pos + 1);
+		ext_url = url.substring(0, pos);
 		// System.out.println("확장자 제외" + ext);
-		// System.out.println("return URL"+ext_url);
+		System.out.println("return URL"+ext_url);
 		//ModelAndView mv = new ModelAndView(ext_url);
 		
-		ModelAndView mv = new ModelAndView("/Promoters/Index");
+		ModelAndView mv = new ModelAndView("/Promoters"+ext_url);
 		mv.addObject("promoter_id", "10001000");
 		return mv;
 	}

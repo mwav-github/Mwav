@@ -8,6 +8,11 @@
 <!-- /////////// -->
 <jsp:include page="/PartsOfContent/Head_Import.jsp" flush="false" />
 <!-- /////////// -->
+<script>
+	$(document).ready(function() {
+		$('[data-toggle="popover"]').popover();
+	});
+</script>
 </head>
 
 <body>
@@ -27,8 +32,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 	<div class="row">
 		<div class="col-lg-12">
 			<img src="/CompanyItem/zImage/CompanyItem_IN(height_280).jpg"
-				class="img-responsive res_width fix_height_300"
-				alt="Responsive image">
+				class="img-responsive res_width fix_height_300" alt="CompanyItem">
 		</div>
 	</div>
 	<!--  //////////////////////////////////// 
@@ -55,7 +59,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 		<!-- /.row -->
 
 		<!-- Content Row -->
-		<div class="row">
+		<div class="row ">
 			<!-- Sidebar Column left메뉴 추후 변경 예정<시작>-->
 			<div class="col-md-3">
 				<jsp:include page="/CompanyItem/ITProducts/ITProductsLeftMenu.jsp"
@@ -64,9 +68,9 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 			<!-- 끝 -->
 
 			<!-- Content Column -->
-			<div class="col-md-9">
+			<div class="col-md-9 text-color-gray">
 				<!-- OpenSRS_SSL Certificates -->
-				<div class="row">
+				<div class="row text-color-gray">
 					<!-- <div class="col-md-8 col-md-offset-2" style="background-color: #990085; color: white;">
 						<h1 class="text-center">What Is AerPass™?</h1>
 					</div>
@@ -77,407 +81,321 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					</div>
 
 					<div
-						class="col-xs-8 col-xs-offset-2 col-sm-8 col-sm-offset-2 col-md-2 col-md-offset-0">
-						<img class="thumbnail img-responsive" alt="Bootstrap template"
+						class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-4 col-md-2 col-md-offset-0">
+						<img class="thumbnail img-responsive" alt="ssl"
 							src="/CompanyItem/ITProducts/Images/ssl.png"
 							data-toggle="tooltip" data-placement="top"
 							data-original-title="SSL Certificates">
 						<div class="enter"></div>
 					</div>
-					<div class="col-xs-12 col-sm-12 col-md-10">
+					<div class="col-xs-12 col-sm-12 col-md-10 text-center">
 						<h3>SSL Certificates for every customer need.</h3>
 						<p>OpenSRS partners with leading providers so you can offer
 							your customers the right SSL certificates no matter what their
 							unique need or circumstance might be.</p>
-						<br />
-						<p>
-							<strong>What’s the difference between certificates?</strong>
-						</p>
-						<br />
-						<div class="col-md-4">
-							<strong>1)Domain Validated (DV):</strong>
-							<p>Inexpensive, basic protection recommended for personal or
-								hobby sites and small forums that need basic encryption for
-								things like logins, forms or other non-transactional data.</p>
-						</div>
-						<div class="col-md-4">
-							<strong>2)Organization Validated (OV):</strong>
-							<p>Affordable protection for small businesses. Recommended
-								for small- to mid-sized business sites where validation of the
-								company is important. Highly recommended for sites with
-								low-volume eCommerce transactions.</p>
-
-							<%--br은 <p>근처에서 작동하므로 가장 긴 글아래에 투입 --%>
-						</div>
-						<div class="col-md-4">
-							<strong>3)Extended Validated (EV):</strong>
-							<p>Proven to boost customer confidence. Recommended for
-								mid-sized to enterprise sites where visitor confidence is key. A
-								must for websites with transactions for payments, online
-								banking, and eCommerce.</p>
-						</div>
 					</div>
+
 
 					<div class="col-xs-12 col-sm-12 col-md-12 text-center">
-						<h3>The leading SSL providers with dozens of certificate
-							options.</h3>
-						<br />
+						<h3>A more secure Internet starts with you</h3>
 					</div>
+					<div class="col-xs-12 col-sm-9 col-md-9">
+
+						<p>Did you know that 97% of all websites lack basic security?
+							Just let that sink in for a minute. Only 3% of websites are
+							considered “safe”. Chances are, you probably visited an
+							unencrypted site today. In an effort to make the Internet more
+							secure, we have partnered with Symantec to bring you the
+							Encryption Everywhere program.</p>
+					</div>
+					<div
+						class="col-xs-6 col-xs-offset-3 col-sm-3 col-sm-offset-0 col-md-3 col-md-offset-0">
+						<img class="img-responsive" alt="orgchart-now-3"
+							src="/CompanyItem/ITProducts/Images/encryption-everywhere.jpg">
+					</div>
+					<div class="col-xs-12 col-sm-12 col-md-12 text-center">
+						<h3>Program at a glance</h3>
+					</div>
+					<br>
 					<div class="col-xs-12 col-sm-12 col-md-12">
-						<div class="col-xs-6 col-sm-6 col-md-offset-1 col-md-2 ">
-							<img class="img-responsive"
-								src="/CompanyItem/ITProducts/Images/symantec.png"
-								data-toggle="tooltip" data-placement="top"
-								data-original-title="symantec">
-							<p>Offer the Norton Secured seal for customer peace of mind
-								at all points of their online experience.</p>
-							<br>
-						</div>
-						<div class="col-xs-6 col-sm-6 col-md-2">
-							<img class="img-responsive"
-								src="/CompanyItem/ITProducts/Images/thawte.png"
-								data-toggle="tooltip" data-placement="top"
-								data-original-title="thawte">
-							<p>Thawte is a leading provider of domain, business and
-								extended validation SSL certificates. Particularly strong in
-								Europe.</p>
-							<br>
-						</div>
-						<div class="col-xs-6 col-sm-6 col-md-2">
-							<img class="img-responsive"
-								src="/CompanyItem/ITProducts/Images/trustwave.png"
-								data-toggle="tooltip" data-placement="top"
-								data-original-title="trustwave">
-							<p>GeoTrust is one of the world’s largest SSL certificate
-								providers. Its product line is extremely popular with small
-								businesses.</p>
-							<br>
-						</div>
-						<div class="col-xs-6 col-sm-6 col-md-2">
-							<img class="img-responsive"
-								src="/CompanyItem/ITProducts/Images/geotrust.png"
-								data-toggle="tooltip" data-placement="top"
-								data-original-title="geotrust">
-							<p>Trustwave SSL helps companies of all sizes reduce SSL
-								costs while maintaining a high level of trust and security.</p>
-							<br>
-						</div>
-						<div class="col-xs-6 col-sm-6 col-md-2">
-							<!-- col-xs-6 col-xs-pull-6 col-sm-6 col-sm-pull-6 col-md-2 col-md-pull-0 -->
-							<img class="img-responsive"
-								src="/CompanyItem/ITProducts/Images/comodo.png"
-								data-toggle="tooltip" data-placement="top"
-								data-original-title="comodo">
-							<p>Comodo offers a comprehensive range of highly-trusted SSL
-								certificate products designed to meet the needs of every
-								business.</p>
-							<br>
-						</div>
+						<p>
+							The Encryption Everywhere program was designed to provide basic
+							web security to everyone, FREE of charge. This is accomplished
+							through SSL Lite – a complimentary certificate that provides
+							basic encryption without the bells and whistles. By participating
+							in this program, you will gain exclusive access to SSL Lite with
+							the opportunity to grow your business and change the Internet
+							security game. If you’re looking for something more robust, you
+							can always offer our other <span class="text-color-orange-type-1"></span>
+						</p>
+						<br>
 					</div>
 
-					<hr>
-					<div class="col-md-12 text-center">
-						<h3>
-							<b>RapidSSL</b>
-						</h3>
-						<div class="col-md-3 col-sm-3 col-xs-3 well">
+					<div class="col-md-12 col-xs-12 col-sm-12 text-center">
+						<h3>Why consider Encryption Everywhere?</h3>
+						<div class="col-md-3 col-sm-6 col-xs-6 right_hr">
+							<p>
+								<img class="col-md-12 col-md-push-0 col-xs-8 col-xs-push-2 col-sm-6 col-sm-push-3 img-responsive"
+									src="/CompanyItem/ITProducts/Images/EE_icn1.png" alt="EE_icn1" />
+							</p>
+							<p class="col-md-12 col-sm-12 col-xs-12">Increase growth and revenue by upselling more robust <span class="text-color-orange-type-1"><strong>SSL
+								certificates</strong></span> later on.</p>
+								<div class="enter visible-xs visible-sm hidden-md hidden-lg"></div>
+						</div>
+						<div class="col-md-3 col-sm-6 col-xs-6 right_hr">
+							<p>
+								<img class="col-md-12 col-md-push-0 col-xs-8 col-xs-push-2 col-sm-6 col-sm-push-3 img-responsive"
+									src="/CompanyItem/ITProducts/Images/EE_icn22.png" alt="EE_icn22" />
+							</p>
+							<p class="col-md-12 col-sm-12 col-xs-12">Provide basic security to your customers’ websites, valid
+								up to 365 days.</p>
+						</div>
+						<%--박스 2/2 배열일 때 칸 띄우기 --%>
+						<div class="enter col-md-12 col-xs-12 col-sm-12 hidden-md hidden-lg" ></div>
+						
+						<div class="col-md-3 col-sm-6 col-xs-6 right_hr">
+							<p>
+								<img class="col-md-12 col-md-push-0 col-xs-8 col-xs-push-2 col-sm-6 col-sm-push-3 img-responsive"
+									src="/CompanyItem/ITProducts/Images/EE_icn44.png" alt="EE_icn44" />
+							</p>
+							<p class="col-md-12 col-sm-12 col-xs-12">Hassle-free, instant startup and immediate validation with
+								no commitment/application required.</p>
+						</div>
+						<div class="col-md-3 col-sm-6 col-xs-6 right_hr">
+							<p>
+								<img class="col-md-12 col-md-push-0 col-xs-8 col-xs-push-2 col-sm-6 col-sm-push-3 img-responsive"
+									src="/CompanyItem/ITProducts/Images/EE_icn55.png" alt="EE_icn55" />
+							</p>
+							<p class="col-md-12 col-sm-12 col-xs-12">Contribute to the bigger picture of a safer and more
+								secure Internet.</p>
+						</div>
+
+					</div>
+					<div class="col-md-12">
+						<div
+							class="mgt3 col-md-12 col-xs-12 col-sm-12 Leading providers. Dozens of options. text-center">
+							<h3>The leading SSL providers with dozens of certificate
+								options.</h3>
+							<br />
+						</div>
+						<div class="col-xs-4 col-sm-4 col-md-offset-2 col-md-2 ">
+							<img class="img-responsive"
+								src="/CompanyItem/ITProducts/Images/rapidssllogo.png"
+								alt="rapidssllogo" data-toggle="tooltip" data-placement="top"
+								data-original-title="rapidssl">
+
+						</div>
+						<div class="col-xs-4 col-sm-4 col-md-2 ">
+							<img class="img-responsive"
+								src="/CompanyItem/ITProducts/Images/digicertlogo.png"
+								alt="digicertlogo" data-toggle="tooltip" data-placement="top"
+								data-original-title="digicertlogo">
+
+						</div>
+						<div class="col-xs-4 col-sm-4 col-md-2">
+							<img class="img-responsive"
+								src="/CompanyItem/ITProducts/Images/symantec.png" alt="symantec"
+								data-toggle="tooltip" data-placement="top"
+								data-original-title="symantec">
+
+						</div>
+						<div class="col-xs-4 col-sm-4 col-md-2">
+							<img class="img-responsive"
+								src="/CompanyItem/ITProducts/Images/thawte.png" alt="thawte"
+								data-toggle="tooltip" data-placement="top"
+								data-original-title="thawte"> <br>
+						</div>
+						<div class="col-xs-4 col-sm-4 col-md-offset-3 col-md-2">
+							<img class="img-responsive"
+								src="/CompanyItem/ITProducts/Images/trustwave.png"
+								alt="trustwave" data-toggle="tooltip" data-placement="top"
+								data-original-title="trustwave"> <br>
+						</div>
+						<div class="col-xs-4 col-sm-4 col-md-2">
+							<img class="img-responsive"
+								src="/CompanyItem/ITProducts/Images/geotrust.png" alt="geotrust"
+								data-toggle="tooltip" data-placement="top"
+								data-original-title="geotrust"> <br>
+						</div>
+						<div class="col-xs-4 col-sm-4 col-md-2">
+							<!-- col-xs-6 col-xs-pull-6 col-sm-6 col-sm-pull-6 col-md-2 col-md-pull-0 -->
+							<img class="img-responsive"
+								src="/CompanyItem/ITProducts/Images/comodo.png" alt="comodo"
+								data-toggle="tooltip" data-placement="top"
+								data-original-title="comodo"> <br>
+						</div>
+					</div>
+				</div>
+				<div class="enter"></div>
+				<!-- /.row -->
+
+
+
+
+				<!-- Features Table -->
+				<div class="row text-color-gray">
+					<div
+						class="col-md-12 col-xs-12 col-sm-12 Leading providers. Dozens of options. text-center">
+						<h3>Compare RapidSSL Certificates</h3>
+						<br>
+					</div>
+
+					<div class="col-md-12 col-xs-12 col-sm-12 text-center">
+						<h4>
+							<b>RapidSSL Basic</b><br>
+						</h4>
+						<div class="col-md-3 col-sm-3 col-xs-6 well">
 							<p>Validation type</p>
-							<h4>Domain Validated</h4>
+							<h4>DomainValidated</h4>
 						</div>
-						<div class="col-md-3 col-sm-3 col-xs-3 well">
-							<p>Price</p>
-							<h4>$10/year</h4>
+						<div class="col-md-3 col-sm-3 col-xs-6 well">
+							<p>Browser compatibility</p>
+							<h4>99%</h4>
 						</div>
-						<div class="col-md-3 col-sm-3 col-xs-3 well">
+						<div class="col-md-3 col-sm-3 col-xs-6 well">
 							<p>Issuance</p>
 							<h4>Minutes</h4>
 						</div>
-						<div class="col-md-3 col-sm-3 col-xs-3 well">
+						<div class="col-md-3 col-sm-3 col-xs-6 well">
 							<p>Warranty</p>
 							<h4>$10,000</h4>
 						</div>
 						<div class="enter"></div>
 					</div>
 
-					<div class="col-md-6 col-sm-6 col-xs-12">
-						<ul>
-							<li>Wildcard <a class="btn btn-info btn-xs"
-								data-toggle="tooltip" data-placement="right"
-								data-original-title="A wildcard certificate allows for unlimited subdomains to be protected with a single certificate."><span
-									class="glyphicon glyphicon glyphicon-search"></span></a> <span
-								class="float_right">Yes $85/year</span>
-							</li>
-							<li>SAN support <a class="btn btn-info btn-xs"
-								data-toggle="tooltip" data-placement="right"
-								data-original-title="A SAN certificate allows for multiple domain names to be protected with a single certificate."><span
-									class="glyphicon glyphicon glyphicon-search"></span></a> <a
-								class="btn btn-danger btn-xs float_right"><span
-									class="glyphicon glyphicon-remove float_right"></span></a></li>
-							<li>Price <span class="float_right">$10/year</span></li>
-							<li>Business validated <a
-								class="btn btn-danger btn-xs float_right"><span
-									class="glyphicon glyphicon-remove float_right"></span></a></li>
-							<li>Green address bar <a
-								class="btn btn-danger btn-xs float_right"><span
-									class="glyphicon glyphicon-remove float_right"></span></a></li>
-							<li>Security and encryption <span class="float_right">256-bit
-									encryption</span></li>
-							<li>Available periods <span class="float_right">1-3
-									years</span></li>
-						</ul>
-					</div>
+					<div class="col-lg-12">
+						<table
+							class="table table-bordered table-hover table-striped text-center">
+							<colgroup>
+								<col style="width: 40%;">
+								<col style="width: 30%;">
+								<col style="width: 30%;">
+							</colgroup>
+							<thead>
+								<tr class="well">
+									<th class="text-center"></th>
+									<th class="text-center">
+										<h5>
+											<strong>RapidSSL Basic</strong>
+										</h5>
+									</th>
+									<th class="text-center">
+										<h5>
+											<strong>RapidSSL Wildcard </strong>
+										</h5>
+									</th>
+								</tr>
+							</thead>
 
-					<div class="col-md-6 col-sm-6 col-xs-12 text-left">
-						<ul>
-							<li>Vulnerability assessment <a
-								class="btn btn-danger btn-xs float_right"><span
-									class="glyphicon glyphicon-remove float_right"></span></a></li>
-							<li>Site seal <span class="float_right">Static</span></li>
-							<li>Server licensing <span class="float_right">Unlimited</span></li>
-							<li>Malware scan <a
-								class="btn btn-danger btn-xs float_right"><span
-									class="glyphicon glyphicon-remove float_right"></span></a></li>
-							<li>Mobile friendly <a
-								class="btn btn-success btn-xs float_right"><span
-									class="glyphicon glyphicon-ok float_right"></span></a></li>
-							<li>Browser compatibility <span class="float_right">99%</span></li>
-						</ul>
-					</div>
+							<tbody>
+								<tr>
+									<td>Validation type</td>
+									<td>Domain Validated</td>
+									<td>Domain Validated</td>
+								</tr>
 
+								<tr>
+									<td>Wildcard <%--pc에서는 hover --%> <a
+										class="btn btn-primary btn-xs btn-pointer hidden-xs hidden-sm"
+										data-toggle="popover" data-trigger="hover" title="Wildcard"
+										data-placement="right"
+										data-content="A wildcard certificate allows for unlimited subdomains to be protected with a single certificate."><span
+											class="glyphicon glyphicon glyphicon-search"></span></a> <%--mobile에서는 popover --%>
+										<a
+										class="btn btn-primary btn-xs btn-pointer hidden-lg hidden-md"
+										data-toggle="popover" title="Wildcard" data-placement="right"
+										data-content="A wildcard certificate allows for unlimited subdomains to be protected with a single certificate."><span
+											class="glyphicon glyphicon glyphicon-search"></span></a>
+									</td>
+									<td><span class="glyphicon glyphicon-remove text-danger"></span></td>
+									<td><span class="glyphicon glyphicon-ok text-success"></span></td>
+								</tr>
+								<tr>
+									<td>SAN support <%--pc에서는 hover --%> <a
+										class="btn btn-primary btn-xs btn-pointer hidden-xs hidden-sm"
+										data-toggle="popover" data-trigger="hover" title="SAN"
+										data-placement="right"
+										data-content="A SAN certificate allows for multiple domain names to be protected with a single certificate."><span
+											class="glyphicon glyphicon glyphicon-search"></span></a> <%--mobile에서는 popover --%>
+										<a
+										class="btn btn-primary btn-xs btn-pointer hidden-lg hidden-md"
+										data-toggle="popover" title="SAN" data-placement="right"
+										data-content="A SAN certificate allows for multiple domain names to be protected with a single certificate."><span
+											class="glyphicon glyphicon glyphicon-search"></span></a>
+									</td>
+									<td><span class="glyphicon glyphicon-remove text-danger"></span></td>
+									<td><span class="glyphicon glyphicon-remove text-danger"></span></td>
+								</tr>
+								<tr>
+									<td>Issuance</td>
+									<td>Minutes</td>
+									<td>Minutes</td>
+								</tr>
+								<tr>
+									<td>Re-issues</td>
+									<td>Unlimited</td>
+									<td>Unlimited</td>
+								</tr>
+								<tr>
+									<td>Warranty</td>
+									<td>$10,000</td>
+									<td>$10,000</td>
+								</tr>
+								<tr>
+									<td>Business validated</td>
+									<td><span class="glyphicon glyphicon-remove text-danger"></span></td>
+									<td><span class="glyphicon glyphicon-remove text-danger"></span></td>
+								</tr>
+								<tr>
+									<td>Green address bar</td>
+									<td><span class="glyphicon glyphicon-remove text-danger"></span></td>
+									<td><span class="glyphicon glyphicon-remove text-danger"></span></td>
+								</tr>
+								<tr>
+									<td>Security and encryption</td>
+									<td>256-bit encryption</td>
+									<td>256-bit encryption</td>
+								</tr>
+								<tr>
+									<td>Available periods</td>
+									<td>1-2 years</td>
+									<td>1-2 years</td>
+								</tr>
+								<tr>
+									<td>Vulnerability assessment</td>
+									<td><span class="glyphicon glyphicon-remove text-danger"></span></td>
+									<td><span class="glyphicon glyphicon-remove text-danger"></span></td>
+								</tr>
+								<tr>
+									<td>Site seal</td>
+									<td>Static</td>
+									<td>Static</td>
+								</tr>
+								<tr>
+									<td>Server licensing</td>
+									<td>Unlimited</td>
+									<td>Unlimited</td>
+								</tr>
+								<tr>
+									<td>Malware scan</td>
+									<td><span class="glyphicon glyphicon-remove text-danger"></span></td>
+									<td><span class="glyphicon glyphicon-remove text-danger"></span></td>
+								</tr>
+								<tr>
+									<td>Mobile friendly</td>
+									<td><span class="glyphicon glyphicon-ok text-success"></span></td>
+									<td><span class="glyphicon glyphicon-ok text-success"></span></td>
+								</tr>
+								<tr>
+									<td>Browser compatibility</td>
+									<td>99%</td>
+									<td>99%</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="enter"></div>
 				</div>
-				<div class="enter"></div>
-				<!-- /.row -->
-
-
-
-
-				<!-- OpenSRS_WebSecurity -->
-				<div class="row">
-					<div class="col-md-12 text-center">
-						<h1 style="color: #f37d27;">WebSecurity</h1>
-						<hr>
-					</div>
-
-					<div
-						class="col-xs-8 col-xs-offset-2 col-sm-8 col-sm-offset-2 col-md-2 col-md-offset-0">
-						<img class="thumbnail img-responsive" alt="Bootstrap template"
-							src="/CompanyItem/ITProducts/Images/security.png"
-							data-toggle="tooltip" data-placement="top"
-							data-original-title="WebSecurity">
-						<div class="enter"></div>
-					</div>
-					<div class="col-xs-12 col-sm-12 col-md-10">
-						<h3>Safeguard against any possible online threats.</h3>
-						<p>Ensuring the safety and security of websites is a must for
-							all site owners, no matter their size or industry. OpenSRS gives
-							you a way to offer the right security product at the right price,
-							no matter the customer need.</p>
-						<br />
-						<p>
-							<strong>What’s the difference between certificates?</strong>
-						</p>
-						<br />
-						<div class="col-md-4">
-							<strong>1)Domain Validated (DV):</strong>
-							<p>Inexpensive, basic protection recommended for personal or
-								hobby sites and small forums that need basic encryption for
-								things like logins, forms or other non-transactional data.</p>
-						</div>
-						<div class="col-md-4">
-							<strong>2)Organization Validated (OV):</strong>
-							<p>Affordable protection for small businesses. Recommended
-								for small- to mid-sized business sites where validation of the
-								company is important. Highly recommended for sites with
-								low-volume eCommerce transactions.</p>
-							<%--br은 <p>근처에서 작동하므로 가장 긴 글아래에 투입 --%>
-						</div>
-						<div class="col-md-4">
-							<strong>3)Extended Validated (EV):</strong>
-							<p>Proven to boost customer confidence. Recommended for
-								mid-sized to enterprise sites where visitor confidence is key. A
-								must for websites with transactions for payments, online
-								banking, and eCommerce.</p>
-						</div>
-					</div>
-					<div class="enter"></div>
-
-					<div class="col-xs-12 col-sm-12 col-md-12 text-center">
-						<h3>Our security offerings:</h3>
-					</div>
-
-					<div class="col-md-12">
-
-						<div class="col-xs-12 col-md-4">
-							<img class="img-responsive"
-								src="/CompanyItem/ITProducts/Images/sitelock_large-300x58.png" />
-							<br>
-						</div>
-						<div class="col-xs-12 col-md-4">
-							<img class="img-responsive"
-								src="/CompanyItem/ITProducts/Images/sitelock_large_911.png" />
-							<br>
-						</div>
-						<div class="col-xs-12 col-md-4">
-							<img class="img-responsive"
-								src="/CompanyItem/ITProducts/Images/geotrustlogo_horizontal.png" />
-							<br>
-						</div>
-					</div>
-
-					<div class="enter"></div>
-					<div class="col-md-12 hidden-xs hidden-sm">
-						<div class="col-md-4">
-							<h4>
-								<b>From $10/yr</b>
-							</h4>
-						</div>
-						<div class="col-md-4">
-							<h4>
-								<b>$200 one-time free</b>
-							</h4>
-						</div>
-						<div class="col-md-4">
-							<h4>
-								<b>$50/yr</b>
-							</h4>
-						</div>
-					</div>
-
-				</div>
-				<div class="enter"></div>
-
-				<!-- /.row -->
-
-				<!-- OpenSRS_Domains -->
-				<div class="row">
-					<div class="col-md-12 text-center">
-						<%--아래 a태그 자체에 색 적용시 가능하다. --%>
-						<h1 style="color: #f37d27;">Domains</h1>
-						<hr>
-					</div>
-					<div
-						class="col-xs-8 col-xs-offset-2 col-sm-8 col-sm-offset-2 col-md-2 col-md-offset-0">
-						<img class="thumbnail img-responsive" alt="Bootstrap template"
-							src="/CompanyItem/ITProducts/Images/domain.png"
-							data-toggle="tooltip" data-placement="top"
-							data-original-title="Domains">
-						<div class="enter"></div>
-					</div>
-					<div class="col-xs-12 col-sm-12 col-md-10">
-						<h3>Every domain extension you will ever need...and more.</h3>
-						<p>
-							OpenSRS gives you access to the largest selection of domain names
-							available on the market through a single platform. All generic,
-							specialty and country-code extensions at <b>competitive
-								prices</b> plus hundreds of <strong>brand new top-level
-								domains</strong> including an available inventory of over 17 million <strong>premium
-								domains.</strong>
-						</p>
-						<br />
-
-
-					</div>
-					<div class="col-xs-12 col-sm-12 col-md-12 text-center">
-						<h3>Included with our domain service:</h3>
-						<br />
-					</div>
-
-					<div class="col-md-12">
-						<div class="col-xs-4 col-md-4">
-							<img class="img-responsive"
-								src="/CompanyItem/ITProducts/Images/lightbulb.png"
-								data-toggle="tooltip" data-placement="top"
-								data-original-title="Name Suggestion" />
-						</div>
-						<div class="col-xs-4 col-md-4">
-							<img class="img-responsive"
-								src="/CompanyItem/ITProducts/Images/gears.png"
-								data-toggle="tooltip" data-placement="top"
-								data-original-title="Managed DNS" />
-						</div>
-						<div class="col-xs-4 col-md-4">
-							<img class="img-responsive"
-								src="/CompanyItem/ITProducts/Images/support.png"
-								data-toggle="tooltip" data-placement="top"
-								data-original-title="Knowledgeable Customer Care" />
-						</div>
-					</div>
-
-					<div class="enter"></div>
-					<div class="col-md-12 hidden-xs hidden-sm">
-						<div class="col-md-4">
-							<p>
-								<b>Name Suggestion</b>
-							</p>
-							<p>Powered by DomainsBot, name suggestions are displayed
-								based on keyword popularity, domain extension and word
-								relevance.</p>
-						</div>
-						<div class="col-md-4 ">
-							<p>
-								<b>Managed DNS</b>
-							</p>
-							<p>Provide reliable and extensive managed DNS service with
-								guaranteed uptime and increased website performance.</p>
-						</div>
-						<div class="col-md-4 ">
-							<p>
-								<b>Knowledgeable Customer Care</b>
-							</p>
-							<p>Access to our award-winning customer support team whenever
-								you need a helping hand.</p>
-						</div>
-					</div>
-					<br />
-					<div class="col-md-12">
-						<div class="col-xs-4 col-md-4">
-							<img class="img-responsive"
-								src="/CompanyItem/ITProducts/Images/private.png"
-								data-toggle="tooltip" data-placement="top"
-								data-original-title="Contact Privacy" />
-						</div>
-						<div class="col-xs-4 col-md-4">
-							<img class="img-responsive"
-								src="/CompanyItem/ITProducts/Images/keys.png"
-								data-toggle="tooltip" data-placement="top"
-								data-original-title="Parked Pages" />
-
-						</div>
-						<div class="col-xs-4 col-md-4">
-							<img class="img-responsive"
-								src="/CompanyItem/ITProducts/Images/network.png"
-								data-toggle="tooltip" data-placement="top"
-								data-original-title="Dedicated Support Team" />
-						</div>
-					</div>
-					<div class="enter"></div>
-					<div class="col-md-12 hidden-xs hidden-sm">
-						<div class="col-md-4 ">
-							<p>
-								<b>Contact Privacy</b>
-							</p>
-							<p>For some, having their sensitive WHOIS information
-								protected is a priority. OpenSRS offers</p>
-						</div>
-						<div class="col-md-4 ">
-							<p>
-								<b>Parked Pages</b>
-							</p>
-							<p>By placing pay-per-click (PPC) advertisements on unused
-								domain names, you earn additional revenue with no effort.</p>
-						</div>
-						<div class="col-md-4">
-							<p>
-								<b>Dedicated Support Team</b>
-							</p>
-							<p>The OpenSRS team is committed to the on-going success of
-								each of our resellers.</p>
-						</div>
-					</div>
-				</div>
-				<div class="enter"></div>
-				<!-- /.row -->
-
 			</div>
 		</div>
 	</div>

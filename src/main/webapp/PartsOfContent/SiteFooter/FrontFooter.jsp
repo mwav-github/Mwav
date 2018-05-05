@@ -27,9 +27,9 @@ css 중 가장 마지막에 호출되어야하며, include 되는 파일 중 css
 	var pageLoadTime = perfData.mwavmComplete - perfData.navigationStart;
 	var loadTime = "";
 	var userId = '<c:out value="${sessionScope.member.member_id}"/>';
-	var pgl = '<c:out value="${param.pgl}"/>';
-	console.log(userId);
-	console.log(pgl);
+	var pgl = '<c:out value="${param.pgl}"/>'; //세션으로 변경
+	var statistics_id = '<c:out value="${sessionScope.statistics_id}"/>'; //세션으로 변경
+
 <%--https://www.simoahava.com/analytics/page-load-time-universal-analytics/
 
 	//ga('create', 'UA-63623427-1', 'auto');
@@ -49,6 +49,9 @@ css 중 가장 마지막에 호출되어야하며, include 되는 파일 중 css
 	//ga('send', 'pageview'); 위에 존재해야한다.
 	if (!(gfn_isNull(pgl))) {
 		ga('set', 'dimension1', pgl);
+	}
+	if (!(gfn_isNull(statistics_id))) {
+		ga('set', 'dimension2', statistics_id);
 	}
 	ga('require', 'GTM-ML32Q9G');
 	ga('send', 'pageview');

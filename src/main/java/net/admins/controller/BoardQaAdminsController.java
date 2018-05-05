@@ -184,7 +184,7 @@ public class BoardQaAdminsController {
 			HttpServletRequest request) throws Exception {
 
 		HttpSession session = request.getSession();
-		Map<String, Object> selectStfLogin = (Map<String, Object>) session.getAttribute("selectStfLogin");
+		Map<String, Object> selectStfLogin = (Map<String, Object>) session.getAttribute("staff");
 		
 		System.out.println("qna_id__"+commandMap.get("QnA_id"));
 		

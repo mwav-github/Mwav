@@ -19,7 +19,7 @@
 
 	 <select id="selectOneQAView" parameterType="hashmap" resultType="hashmap">
 	<![CDATA[
-	    select *, date_format(uqInsertDt,'%Y-%m-%d') as fmuqInsertDt from UserQuestion_tbl where QnA_id = #{QnA_id}
+	    select *, date_format(uqInsertDt,'%Y/%m/%d') as fmuqInsertDt from UserQuestion_tbl where QnA_id = #{QnA_id}
 	]]>
 	</select>
 	
@@ -72,7 +72,7 @@
 	
 	<select id="selectListQAFrontList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			SELECT QnA_id, uqViewCount, member_id, uqGroup,  uqTitle, date_format(uqInsertDt,'%Y-%m-%d') as uqInsertDt
+			SELECT QnA_id, uqViewCount, member_id, uqGroup,  uqTitle, date_format(uqInsertDt,'%Y/%m/%d') as uqInsertDt
 		    FROM UserQuestion_tbl
 		    WHERE uqDeleteDt IS NULL ORDER BY uqDeleteDt DESC Limit 5
 		]]>
@@ -81,13 +81,13 @@
 	
 	<select id="selectListNonMemberQAList" parameterType="hashmap" resultType="hashmap">
 	<![CDATA[
-	select c.*, date_format(uqInsertDt,'%Y-%m-%d') as fmuqInsertDt from (select FORMAT(@ROWNUM := @ROWNUM +1, 0) AS ROWNUM, a.* from (select * from UserQuestion_tbl where uqUserEmail = #{uqUserEmail} and uqDeleteDt IS NULL order by QnA_id desc) a,  (SELECT @ROWNUM := 0) R ) c where c.ROWNUM >= #{startRow} and c.ROWNUM <= #{endRow} 
+	select c.*, date_format(uqInsertDt,'%Y/%m/%d') as fmuqInsertDt from (select FORMAT(@ROWNUM := @ROWNUM +1, 0) AS ROWNUM, a.* from (select * from UserQuestion_tbl where uqUserEmail = #{uqUserEmail} and uqDeleteDt IS NULL order by QnA_id desc) a,  (SELECT @ROWNUM := 0) R ) c where c.ROWNUM >= #{startRow} and c.ROWNUM <= #{endRow} 
 	]]>
 	</select>
 	
 	<select id="selectListMemberQAList" parameterType="hashmap" resultType="hashmap">
 	<![CDATA[
-	select c.*, date_format(uqInsertDt,'%Y-%m-%d') as fmuqInsertDt from (select FORMAT(@ROWNUM := @ROWNUM +1, 0) AS ROWNUM, a.* from (select * from UserQuestion_tbl where member_id = #{member_id} and uqDeleteDt IS NULL order by QnA_id desc) a,  (SELECT @ROWNUM := 0) R ) c where c.ROWNUM >= #{startRow} and c.ROWNUM <= #{endRow} 
+	select c.*, date_format(uqInsertDt,'%Y/%m/%d') as fmuqInsertDt from (select FORMAT(@ROWNUM := @ROWNUM +1, 0) AS ROWNUM, a.* from (select * from UserQuestion_tbl where member_id = #{member_id} and uqDeleteDt IS NULL order by QnA_id desc) a,  (SELECT @ROWNUM := 0) R ) c where c.ROWNUM >= #{startRow} and c.ROWNUM <= #{endRow} 
 	]]>
 	</select>
 	

@@ -268,7 +268,7 @@ function reCheckuaForm(formname){
 3. 사용자는 아직 안릭
  --%>
 								<c:set var="stf_id"
-									value="${sessionScope.selectStfLogin.staff_id}" scope="session"></c:set>
+									value="${sessionScope.staff.staff_id}" scope="session"></c:set>
 								<c:if
 									test="${param.qaComment eq null &&  selectOneQnAView.uqStatus ne '1' && selectOneQnAView.uaResponser_id ne null }">
 									<div class="span12">
