@@ -1,7 +1,9 @@
 package net.promoter.controller;
 
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -9,12 +11,6 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import net.common.common.CommandMap;
-import net.mwav.common.module.Common_Utils;
-import net.mwav.common.module.Paging;
-import net.mwav.common.module.PagingVO;
-import net.promoter.service.PromoterService;
-import net.promoter.vo.Promoter_VO;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -24,48 +20,90 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import net.common.common.CommandMap;
+import net.mwav.common.module.AesEncryption;
+import net.mwav.common.module.Common_Utils;
+import net.mwav.common.module.Paging;
+import net.mwav.common.module.PagingVO;
+import net.promoter.service.PromoterService;
+import net.promoter.vo.Promoter_VO;
+
+/**
+ * @author 신윤상
+ *
+ */
 @Controller
 public class PromoterController {
 	Logger log = Logger.getLogger(this.getClass());
 
 	Common_Utils cou = new Common_Utils();
 
+
 	String mode;
+
 
 	@Resource(name = "promoterService")
 	private PromoterService promoterService;
 
+
+	/*---------------단순 페이지이동           -----------*/
 	@RequestMapping(value = "/promoter/proForm.mwav")
-	public ModelAndView test(CommandMap commandMap,
+	public ModelAndView insertPromoter(CommandMap commandMap,
 			HttpServletRequest request) throws Exception{
 		ModelAndView mv = new ModelAndView("/Promoter/PmtForm2");
 		return mv;
 	}
 
-
-	@RequestMapping(value = "/promoter/pmtLogin.mwav",method = RequestMethod.GET)
-	public ModelAndView selectLogin(CommandMap commandMap,
+	@RequestMapping(value = "/pmt/pmtLoginForm.mwav",method = RequestMethod.GET)
+	public String selectLogin(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("/Promoter/PmtLogin");
-
-		String mm = "firms";
-		mv.addObject("mm", mm);
-		mv.addObject("test1","end1");
-		mv.addObject("test2","end2");
-		mv.addObject("mode", "m_PmtForm");
-		return mv;
-
+		return "/Promoter/PmtLogin";
 	}
 
+
+	@RequestMapping(value = "/promoter/viewMyPoint.mwav",method = RequestMethod.GET)
+	public ModelAndView viewMyPoint(CommandMap commandMap,
+			HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("/Promoter/PmtMyPoint");
+
+		return mv;
+	}
+
+
+
+	/*---------------단순 페이지이동           -----------*/
+
+
+	@RequestMapping(value = "/pmt/pmtLogin.mwav",method = RequestMethod.POST)
+	public ModelAndView selectLoginPro(CommandMap commandMap,
+			HttpServletRequest request,RedirectAttributes rtr) throws Exception {
+		ModelAndView mv = new ModelAndView("/Promoter/PmtLogin");
+		Map<String, Object> pmt = commandMap.getMap();
+
+		if(((String) pmt.get("pmtLoginPw")).length()<3||((String) pmt.get("pmtLoginId")).length()<3 ){
+			rtr.addFlashAttribute("msg", "비밀번호와 아이디를 확인해주세요");
+			return mv;
+		}
+
+
+
+		Promoter_VO promoter = promoterService.selectPmtLogin(commandMap.getMap());
+		if(promoter==null){
+			log.info("프로모터 로그인 실패");
+			rtr.addFlashAttribute("msg", "비밀번호와 아이디를 확인해주세요");
+		}
+		else {
+			log.info("프로모터 로그인 성공");
+			request.getSession().setAttribute("promoterId",promoter.getPromoter_id() );
+		}
+		return mv;
+	}
 
     @RequestMapping(value="/promoter/pmtLoginIdCheck.mwav")
 	public void selectOnePmtIdCheck(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-
 		String pmtLoginId = request.getParameter("LoginId");
-
 		boolean selectIdCheck = promoterService.selectOnePmtLoginIdCheck(pmtLoginId);
-
 		response.setContentType("text/html;charset=UTF-8");
 		response.setHeader("Cache-Control", "no-cache");
 		PrintWriter out = response.getWriter();
@@ -261,6 +299,7 @@ public class PromoterController {
 				commandMap.put("pmtNewPw", pmtPw1);
 				System.out.println("비밀번호가 다름");
 		}
+
 		promoterService.updatePmtPro(commandMap.getMap());
 		ModelAndView mv = new ModelAndView("/Promoter/PmtForm");
 		return "redirect:/promoter/pmtList.mwav";

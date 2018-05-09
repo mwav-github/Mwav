@@ -55,11 +55,8 @@ public class PromoterServiceImpl implements PromoterService {
 	@Override
 	public Promoter_VO selectPmtLogin(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return null;
+		return promoterDAO.selectPmtLogin(map);
 	}
-
-
-
 
 	@Override
 	public Promoter_VO selectOnePmtInfo(String promoter_id) {

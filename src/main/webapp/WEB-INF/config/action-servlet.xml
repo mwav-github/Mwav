@@ -150,6 +150,13 @@
 			<bean id="loginInterceptor" class="net.common.Interceptor.LoginInterceptor">
 			</bean>
 		</mvc:interceptor>
+		
+	    <mvc:interceptor>
+			<mvc:mapping path="/promoter/**" />
+			<!--<mvc:mapping path="/member/**" /> -->
+			<bean id="pmtInterceptor" class="net.common.Interceptor.PmtInterceptor">
+		</bean>
+		</mvc:interceptor>
 		<mvc:interceptor>
 			<mvc:mapping path="/signin/linkedin.mwav" />
 			<mvc:mapping path="/signin/google.mwav" />

@@ -100,9 +100,6 @@ Structure101
 	public Promoter_VO selectOnePmtInfo(String promoter_id){
 		return (Promoter_VO)selectOne("promoter.selectOnePmtInfo",promoter_id);
 	}
-	public PromoterValue_VO selectOnePmtValueInfo(Map<String, Object> map){
-		return (PromoterValue_VO)selectOne("promoter.selectOnePmtValueInfo",map);
-	}
 
 	//update
 
@@ -116,6 +113,9 @@ Structure101
 
 	public int updatePmtVisitNbr(String promoter_id){
 		return (int)update("promoter.updatePmtVisitNbr",promoter_id);
+	}
+	public Promoter_VO selectPmtLogin(Map<String, Object> map){
+		return (Promoter_VO)selectOne("promoter.selectPmtLogin",map);
 	}
 
 }

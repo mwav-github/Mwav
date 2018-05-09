@@ -217,7 +217,7 @@ public class FrontCommonController {
 		return mv;
 	}
 	
-	@RequestMapping(value = "/Promoters/**")
+	/*@RequestMapping(value = "/Promoters/**")
 	public ModelAndView redirectAdminsPmtController(HttpServletRequest request)
 			throws Exception {
 
@@ -234,7 +234,7 @@ public class FrontCommonController {
 		mv.addObject("promoter_id", "10001000");
 		return mv;
 	}
-
+*/
 	@RequestMapping(value = "/Templates/**")
 	public ModelAndView redirectTemplatesController(HttpServletRequest request)
 			throws Exception {
