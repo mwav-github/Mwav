@@ -217,7 +217,7 @@ public class FrontCommonController {
 		return mv;
 	}
 	
-	/*@RequestMapping(value = "/Promoters/**")
+	@RequestMapping(value = "/Promoter/Index")
 	public ModelAndView redirectAdminsPmtController(HttpServletRequest request)
 			throws Exception {
 
@@ -230,11 +230,11 @@ public class FrontCommonController {
 		System.out.println("return URL"+ext_url);
 		//ModelAndView mv = new ModelAndView(ext_url);
 		
-		ModelAndView mv = new ModelAndView("/Promoters"+ext_url);
+		ModelAndView mv = new ModelAndView("/Promoters/Index");
 		mv.addObject("promoter_id", "10001000");
 		return mv;
 	}
-*/
+
 	@RequestMapping(value = "/Templates/**")
 	public ModelAndView redirectTemplatesController(HttpServletRequest request)
 			throws Exception {
