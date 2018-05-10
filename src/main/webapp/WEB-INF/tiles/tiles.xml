@@ -9,19 +9,23 @@
 		<put-attribute name="footer" value="/AdminPmt/default-footer.jsp" />
 	</definition>
 
-	<definition name="/Promoters" extends="adminLayouts-tiles">
+	<definition name="/Promoter/Index" extends="adminLayouts-tiles">
 		<put-attribute name="content" value="/AdminPmt/Index.jsp" />
 	</definition>
 
-	<definition name="/Promoters/*/*" extends="adminLayouts-tiles">
+	<definition name="/Promoter/*" extends="adminLayouts-tiles">
+		<put-attribute name="content" value="/AdminPmt/Promoters/{1}.jsp" />
+	</definition>
+
+	<definition name="/Promoter/*/*" extends="adminLayouts-tiles">
 		<put-attribute name="content" value="/AdminPmt/{1}/{2}.jsp" />
 	</definition>
 	
-	<definition name="/Promoters/*/*/*" extends="adminLayouts-tiles">
+	<definition name="/Promoter/*/*/*" extends="adminLayouts-tiles">
 		<put-attribute name="content" value="/AdminPmt/{1}/{2}/{3}.jsp" />
 	</definition>
 	
-	<definition name="/Promoters/*/*/*/*" extends="adminLayouts-tiles">
+	<definition name="/Promoter/*/*/*/*" extends="adminLayouts-tiles">
 		<put-attribute name="content" value="/AdminPmt/{1}/{2}/{3}/{4}.jsp" />
 	</definition>
 	<!--
