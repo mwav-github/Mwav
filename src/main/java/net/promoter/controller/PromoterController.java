@@ -45,12 +45,21 @@ public class PromoterController {
 	@Resource(name = "promoterService")
 	private PromoterService promoterService;
 
+	@RequestMapping(value = "/Promoter/Index")
+	public ModelAndView redirectAdminsPmtController(HttpServletRequest request)
+			throws Exception {
+
+		ModelAndView mv = new ModelAndView("/Promoter/Index");
+		mv.addObject("promoter_id", "10001000");
+		return mv;
+	}
+	
 
 	/*---------------단순 페이지이동           -----------*/
-	@RequestMapping(value = "/promoter/proForm.mwav")
+	@RequestMapping(value = "/Promoter/promoter-add")
 	public ModelAndView insertPromoter(CommandMap commandMap,
 			HttpServletRequest request) throws Exception{
-		ModelAndView mv = new ModelAndView("/Promoter/PmtForm2");
+		ModelAndView mv = new ModelAndView("/Promoter/PmtForm");
 		return mv;
 	}
 
@@ -125,7 +134,7 @@ public class PromoterController {
 		// response.getWriter().print(result);
 	}
 
-	@RequestMapping(value = "/promoter/pmtList.mwav")
+	@RequestMapping(value = "/Promoter/PmtList.mwav")
 	public ModelAndView selectListPmtList(CommandMap commandMap,
 			HttpServletRequest request, HttpServletResponse reponse)
 			throws Exception {
@@ -173,7 +182,7 @@ public class PromoterController {
 	@RequestMapping(value = "/promoter/PmtForm.mwav",method = RequestMethod.POST )
 	public ModelAndView insertPmtForm(CommandMap commandMap,RedirectAttributes rttr,
 		Promoter_VO promoter,Errors errors) throws Exception {
-		ModelAndView mv = new ModelAndView("/Promoter/PmtForm2");
+		ModelAndView mv = new ModelAndView("/Promoter/PmtForm");
 
 		if(errors.hasFieldErrors("pmtPhone")){
 			errors.rejectValue("pmtPhone", "핸드폰 ","핸드폰 번호가 없습니다");
@@ -207,7 +216,7 @@ public class PromoterController {
 
 
 		promoterService.insertPmtForm(commandMap.getMap());
-		mv.setViewName("redirect:/promoter/pmtLogin.mwav");
+		mv.setViewName("redirect:/Promoter/PmtLogin");
 		rttr.addFlashAttribute("msg", "SUCCESS");
 
 		return mv;

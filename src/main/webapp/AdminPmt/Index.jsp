@@ -1,13 +1,40 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<script type="text/javascript">
+	var contextPath = '<c:out value="${pageContext.request.contextPath}"/>';
+	//var pgl = '${sessionScope.promoter.promoter_id}"/>';
+	//var pgl = '${param.promoter_id}';
+	
 
-<div class="content-wrapper">
-	<div class="container-fluid">
+	$(document)
+			.ready(
+					function() {
+						//getRemoteDataDrawChart(contextPath + '/linechart1.chart', createNewLineChart('chart1-container', getBaseChart()));
+						//getRemoteDataDrawChart(contextPath + '/linechart2.chart', createNewLineChart('chart2-container', getBaseChart()));
+						getRemoteDataDrawColumnChart(contextPath
+								+ '/charts/highsofts/Top10PageList.mwav',
+								createNewColumnChart('chart1-container',
+										getBaseColumnChart()));
+						getRemoteDataDrawChart(contextPath
+								+ '/charts/highsofts/WeeklyUsers.mwav',
+								createNewLineChart('chart3-container',
+										getBaseLineChart()));
+						getRemoteDataDrawPieChart(contextPath
+								+ '/charts/highsofts/ClientScreenSize.mwav',
+								createNewPieChart('chart2-container',
+										getBasePieChart()));
+						getRemoteDataDrawColumnDrilldownChart(contextPath
+								+ '/charts/highsofts/ClientBrowerInfo.mwav',
+								createNewColumnChart('chart4-container',
+										getBaseColumnChart()));
+					});
+</script>
+
 		<!-- Breadcrumbs-->
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-			<li class="breadcrumb-item active">My Dashboard</li>
+			<li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+			<li class="breadcrumb-item active">Blank Page</li>
 		</ol>
 		<!-- Icon Cards-->
 		<div class="row">
@@ -319,7 +346,7 @@
 					<div class="card-footer small text-muted">Updated yesterday
 						at 11:59 PM</div>
 				</div>
-				
+
 				<div class="card mb-3">
 					<div class="card-header">
 						<i class="fa fa-pie-chart"></i> Column Chart Example
@@ -330,7 +357,7 @@
 					<div class="card-footer small text-muted">Updated yesterday
 						at 11:59 PM</div>
 				</div>
-				
+
 				<!-- Example Notifications Card-->
 				<div class="card mb-3">
 					<div class="card-header">
@@ -428,5 +455,4 @@
 				<a class="btn btn-primary" href="login.html">Logout</a>
 			</div>
 		</div>
-	</div>
-</div>
+
