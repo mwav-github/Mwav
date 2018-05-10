@@ -216,8 +216,6 @@ public class FrontCommonController {
 
 		return mv;
 	}
-	
-
 
 	@RequestMapping(value = "/Templates/**")
 	public ModelAndView redirectTemplatesController(HttpServletRequest request)
