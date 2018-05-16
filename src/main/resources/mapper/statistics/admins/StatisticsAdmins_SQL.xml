@@ -46,7 +46,7 @@
 	
 	<select id="selectListStatistics" parameterType="hashmap" resultType="hashmap">
 	
-	select c.* from (select @ROWNUM := @ROWNUM + 1 AS ROWNUM, a.* from (select * from Statistics_tbl 
+	select c.* from (select @ROWNUM := @ROWNUM + 1 AS ROWNUM, a.* from (select *, date_format(stStatisticsDt, '%Y-%m-%d') AS date from Statistics_tbl 
 	 <include refid="promoter" /> 
 	order by stStatisticsDt desc) a,  (SELECT @ROWNUM := 0) R ) c where <![CDATA[ c.ROWNUM >= #{startRow} and c.ROWNUM <= #{endRow}	]]>  
 

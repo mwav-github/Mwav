@@ -24,8 +24,9 @@ var xhr;
 	}
 
 	function idcheck(id) {
-		var idValue = document.getElementsId(id)[0].value;
-		alert(idValue);
+		//var idValue = document.getElementsId(id)[0].value;
+		var idValue = document.getElementsByName("pmtLoginId")[0].value;
+		//alert(idValue);
 		<%--var id = document.getElementsByName("mbrLoginId")[0].value;
 		//alert(id);
 		//var html_object = document.getElementsByName("mbrLoginId");
@@ -562,7 +563,7 @@ $(document).ready(function(){
 
 							<div class="panel panel-primary">
 								<div class="panel-heading">
-									<h3 class="panel-title">Mwav - Staff Registration</h3>
+									<h3 class="panel-title">Mwav - Promoter Registration</h3>
 								</div>
 								<div class="panel-body">
 									<div class="row">
@@ -740,11 +741,11 @@ $(document).ready(function(){
 														<td>결혼여부</td>
 														<td><div class='form-group'>
 																<div class='col-md-3'>
-																	<input class="form-control" id="pmtMarried"
+																	<input class="form-control" 
 																		name="pmtMarried" value="0" type="radio" /> 미혼
 																</div>
 																<div class='col-md-3'>
-																	<input class="form-control" id="pmtMarried"
+																	<input class="form-control" 
 																		name="pmtMarried" value="1" type="radio" /> 결혼
 																</div>
 															</div></td>
@@ -846,8 +847,5 @@ $(document).ready(function(){
 <%-- 아래의 내용을 위에 주소 위치에 둘 경우 form태그가 해당위치로 닫힌다 form태그 중복 추후 확인 필요 --%>
 <jsp:include page="/CommonApps/PostSeek/PostSeek.jsp" flush="false" />
 
-
-<%-- <!-- --> 주석처리해도 include는 된다.  --%>
-<jsp:include page="/Admins/Goods/GdsUpLoader.jsp" flush="false" />
 
 

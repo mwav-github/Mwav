@@ -92,6 +92,35 @@ public class PromoterStatisticsController {
 		return mv;
 	}
 
+	@RequestMapping(value = "/Promoters/StatView.mwav")
+	public ModelAndView selectOneStatsView(CommandMap commandMap,
+			HttpServletRequest request, HttpSession session) throws Exception {
+		ModelAndView mv = new ModelAndView(
+				"/Promoter/Marketing/Statistics/StatsView");
+		
+		log.debug("인터셉터 테스트");
+		int statistics_id = Integer.parseInt((String) commandMap
+				.get("statistics_id"));
+		System.out.println("statistics_id" + statistics_id);
+		Map<String, Object> selectOneStatView = statisticsAdminsService
+				.selectOneStatView(statistics_id);
+
+		List<Map<String, Object>> selectListStatLogDateList = statisticsAdminsService
+				.selectListStatLogDateList(statistics_id);
+
+		List<Map<String, Object>> selectListStatLogList = statisticsAdminsService
+				.selectListStatLogList(statistics_id);
+
+		if (selectOneStatView != null && !selectOneStatView.isEmpty()) {
+			String mm = "crm";
+			mv.addObject("mm", mm);
+			mv.addObject("selectOneStatView", selectOneStatView);
+			mv.addObject("selectListStatLogDateList", selectListStatLogDateList);
+			mv.addObject("selectListStatLogList", selectListStatLogList);
+		}
+
+		return mv;
+	}
 
 
 }
