@@ -671,7 +671,8 @@ Licensed under MIT
 					VIEW
 *********************************************/
 .content-wrapper {
-	max-width: 1140px;
+	/*max-width: 1140px;*/
+	max-width: 100%;
 	background: #fff;
 	margin: 0 auto;
 	margin-top: 25px;
