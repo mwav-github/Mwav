@@ -54,6 +54,14 @@ public class PromoterController {
 		return mv;
 	}
 	
+	@RequestMapping(value = "/Promoter/ProductList")
+	public ModelAndView redirectAdminsPmtGoodsController(HttpServletRequest request)
+			throws Exception {
+
+		ModelAndView mv = new ModelAndView("/Promoter/Goods/GoodsList");
+		return mv;
+	}
+	
 
 	/*---------------단순 페이지이동           -----------*/
 	@RequestMapping(value = "/Promoter/promoter-add")
