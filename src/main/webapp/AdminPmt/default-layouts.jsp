@@ -6,7 +6,7 @@
 <head>
 <tiles:insertAttribute name="head" />
 </head>
-<body class="fixed-nav sticky-footer bg-dark">
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
 	<tiles:insertAttribute name="header" />
 	<div class="content-wrapper">
 		<div class="container-fluid">
