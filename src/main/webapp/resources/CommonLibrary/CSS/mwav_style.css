@@ -322,6 +322,101 @@ p.more2 {
 	padding: 3px 15px;
 }
 
+.smallcat_darkblue {
+	background: #091D42;
+	color: #fff;
+	text-transform: uppercase;
+	position: absolute;
+	left: 0;
+	top: 20px;
+	z-index: 1;
+	padding: 3px 15px;
+	font-size:12px;
+}
+.smallcat_blue {
+	background: #396A92;
+	color: #fff;
+	text-transform: uppercase;
+	position: absolute;
+	left: 0;
+	top: 20px;
+	z-index: 1;
+	padding: 3px 15px;
+	font-size:12px;
+}
+.smallcat_orange {
+	background: #F07241;
+	color: #fff;
+	text-transform: uppercase;
+	position: absolute;
+	left: 0;
+	top: 20px;
+	z-index: 1;
+	padding: 3px 15px;
+	font-size:12px;
+}
+
+.smallcat_red {
+	background: #C04848;
+	color: #fff;
+	text-transform: uppercase;
+	position: absolute;
+	left: 0;
+	top: 20px;
+	z-index: 1;
+	padding: 3px 15px;
+	font-size:12px;
+}
+
+.smallcat_red_type2 {
+	background: #280600;
+	color: #fff;
+	text-transform: uppercase;
+	position: absolute;
+	left: 0;
+	top: 20px;
+	z-index: 1;
+	padding: 3px 15px;
+	font-size:12px;
+}
+
+.smallcat_gray_type1 {
+	background: #776A6A;
+	color: #fff;
+	text-transform: uppercase;
+	position: absolute;
+	left: 0;
+	top: 20px;
+	z-index: 1;
+	padding: 3px 15px;
+	font-size:12px;
+}
+
+.smallcat_kakie {
+	background: #AD9A6F;
+	color: #fff;
+	text-transform: uppercase;
+	position: absolute;
+	left: 0;
+	top: 20px;
+	z-index: 1;
+	padding: 3px 15px;
+	font-size:12px;
+}
+
+.smallcat_kakie_type2 {
+	background: #776A6A;
+	color: #fff;
+	text-transform: uppercase;
+	position: absolute;
+	left: 0;
+	top: 20px;
+	z-index: 1;
+	padding: 3px 15px;
+	font-size:12px;
+}
+
+
 /* mwav hover */
 .portfolio-hover {
 	background: rgba( 98, 175, 208, .8);

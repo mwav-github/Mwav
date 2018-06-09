@@ -2,6 +2,25 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script>
+	$(document).ready(function() {
+		
+		var url = $( location ).attr( 'pathname' ) + $( location ).attr( 'search' )
+		console.log(url);
+		if ( url == "/CompanyItem/ITProducts/FusionCharts/FusionCharts.mwav?overview" ) {
+			$('html, body').animate({
+				scrollTop : $("#fusionchart_features_position").offset().top
+			}, 1000)
+		}/* , $('div.middle').click(function() {
+			$('html, body').animate({
+				scrollTop : $("div.bottom").offset().top
+			}, 1000)
+		}), $('div.bottom').click(function() {
+			$('html, body').animate({
+				scrollTop : $("div.top").offset().top
+			}, 1000)
+		}) */
+	});
+
 	$(function() {
 
 		var pgurl = window.location.pathname;
@@ -15,8 +34,8 @@
 							|| $(this).attr("alt") == pgurl) {
 						$(this).addClass("active");
 					} /* else if($(this).attr("href") == pgurl){
-													
-												} */
+																	
+																} */
 				})
 
 	});
@@ -77,6 +96,20 @@
 				class="glyphicon glyphicon-chevron-right"></span> AboutUs</a>
 		</div>
 
+		<a class="btn list-group-item " data-toggle="collapse"
+			data-target="#list_menu_fusioncharts"
+			alt="/CompanyItem/ITProducts/HighSofts/HighSofts.mwav"
+			style="text-align: left !important">FusionCharts</a>
+		<div id="list_menu_fusioncharts" class="collapse child_left_menu">
+			<a href="/CompanyItem/ITProducts/FusionCharts/FusionCharts.mwav"
+				class="list-group-item " data-toggle="tooltip" data-placement="top"
+				data-original-title="Overview"><span
+				class="glyphicon glyphicon-chevron-right"></span> Overview</a> <a
+				href="/CompanyItem/ITProducts/FusionCharts/FusionCharts.mwav?overview" 
+				class="list-group-item " data-toggle="tooltip" data-placement="top"
+				data-original-title="Features"><span
+				class="glyphicon glyphicon-chevron-right"></span> Features</a> 
+		</div>
 
 		<a class="btn list-group-item " data-toggle="collapse"
 			data-target="#list_menu_highsofts"
