@@ -117,26 +117,38 @@
 			<input type="hidden" name="returnUrl" value="${param.returnUrl}" />
 			<div class="enter"></div>
 
-			<div class="form-group">
-				<input type="text" name="mbrLoginId"
-					class="form-control input-lg caps_lockchk"
-					placeholder="Email or member ID">
-			</div>
-			<div class="form-group">
-				<input type="password" class="form-control input-lg caps_lockchk"
-					placeholder="Password" name="mbrLoginPw">
+			<div class="col-md-12">
+				<div class="form-group">
+					<div class="input-group">
+						<span class="input-group-addon"><i
+							class="glyphicon glyphicon-user"></i></span><input type="text"
+							name="mbrLoginId" class="form-control input-lg caps_lockchk"
+							placeholder="Email">
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="input-group">
+						<span class="input-group-addon"><i
+							class="glyphicon glyphicon-lock"></i></span><input type="password"
+							class="form-control input-lg caps_lockchk" placeholder="Password"
+							name="mbrLoginPw">
+					</div>
+				</div>
 			</div>
 			<%--https://bootsnipp.com/snippets/featured/checkboxradio-css-only 추후 변경 --%>
 			<div class="form-group mgl3">
-				<div class="checkbox checkbox-info">
-					<input id="checkbox4" name="autoLoginChk" class="styled"
-						type="checkbox"> Keep me signed in.
+				<div class="checkbox checbox-switch switch-primary">
+					<label> <input type="checkbox" id="checkbox4"
+						name="autoLoginChk"> <span></span> Keep me signed in.
+					</label>
 				</div>
 			</div>
 
-			<div class="form-group">
-				<button type="submit" class="btn btn-primary btn-lg btn-block">Sign
-					In</button>
+			<div class="col-md-12">
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary btn-lg btn-block">Sign
+						In</button>
+				</div>
 			</div>
 
 			<%--recapCha --%>
@@ -282,9 +294,9 @@
 			<input type="password" class="form-control input-lg caps_lockchk"
 				placeholder="Password" name="mbrLoginPw">
 		</div>
-	</form>
 
-	<%-- <div class="checkbox">
+
+		<%-- <div class="checkbox">
 			<label> <input type="checkbox" name="remember" id="remember">
 				Remember login
 			</label>
@@ -292,20 +304,20 @@
 		</div> --%>
 
 
-	<div class="form-group">
-		<button type="submit" class="btn btn-success btn-block">Login</button>
-	</div>
-
-	<div class="form-group">
-		<div class="col-md-12">
-
-			<div class="g-recaptcha"
-				data-sitekey="6LcdRxoUAAAAAA4OI0FIN2bv2W0ersTRjqHJdLG-"></div>
+		<div class="form-group">
+			<button type="submit" class="btn btn-primary btn-block">Login</button>
 		</div>
-	</div>
 
+		<div class="form-group">
+			<div class="col-md-12">
+
+				<div class="g-recaptcha"
+					data-sitekey="6LcdRxoUAAAAAA4OI0FIN2bv2W0ersTRjqHJdLG-"></div>
+			</div>
+		</div>
+
+	</form>
 	<div class="enter"></div>
-
 	<%--소셜 로그인 연동부분 
 		중요사항 : col-md-12 외 나머지 것들 col-sm-12 등을 넣으면 버튼 동작이 하지 않음.
 		--%>

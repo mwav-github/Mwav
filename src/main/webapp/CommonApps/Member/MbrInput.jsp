@@ -184,22 +184,8 @@ http://planbong.tistory.com/531
 
 					<%--tooltip에 html을쓰려면 설정해줘야 한다. --%>
 					<%--모바일 및 테블릿에서는 popover --%>
-					<a class="btn-pointer hidden-lg hidden-md" data-toggle="popover"
-						data-placement="bottom" data-html="true" title="Login ID Rules"
-						data-content="
-	1. 4 ~ 20 자 사이의 문자길이  <br/>	
-	2. 첫 문자는 영어로 시작  <br/>
-	3. 특수문자 사용금지 <br/> &nbsp;&nbsp;&nbsp;(제외문자: . _ -) <br/>
-	4. 공백문자 사용금지  <br/>
-	5. 대소문자는 식별이 가능하나   <br/> &nbsp;&nbsp;&nbsp;구분 하지 않음">
-
-						<span class="glyphicon glyphicon-question-sign fa-lg text-info">
-					</span>
-					</a>
-
-					<%--PC에서는 hover --%>
-					<a class="btn-pointer hidden-xs hidden-sm" data-toggle="popover"
-						data-trigger="hover" data-placement="bottom" data-html="true"
+					<a class="btn btn-primary btn-xs btn-pointer hidden-lg hidden-md"
+						data-toggle="popover" data-placement="bottom" data-html="true"
 						title="Login ID Rules"
 						data-content="
 	1. 4 ~ 20 자 사이의 문자길이  <br/>	
@@ -208,8 +194,21 @@ http://planbong.tistory.com/531
 	4. 공백문자 사용금지  <br/>
 	5. 대소문자는 식별이 가능하나   <br/> &nbsp;&nbsp;&nbsp;구분 하지 않음">
 
-						<span class="glyphicon glyphicon-question-sign fa-lg text-info">
-					</span>
+						<span class="glyphicon glyphicon glyphicon-search"></span>
+					</a>
+
+					<%--PC에서는 hover --%>
+					<a class="btn btn-primary btn-xs btn-pointer hidden-xs hidden-sm"
+						data-toggle="popover" data-trigger="hover" data-placement="bottom"
+						data-html="true" title="Login ID Rules"
+						data-content="
+	1. 4 ~ 20 자 사이의 문자길이  <br/>	
+	2. 첫 문자는 영어로 시작  <br/>
+	3. 특수문자 사용금지 <br/> &nbsp;&nbsp;&nbsp;(제외문자: . _ -) <br/>
+	4. 공백문자 사용금지  <br/>
+	5. 대소문자는 식별이 가능하나   <br/> &nbsp;&nbsp;&nbsp;구분 하지 않음">
+
+						<span class="glyphicon glyphicon glyphicon-search"></span>
 					</a>
 
 					<div class='col-md-6'>
@@ -245,7 +244,7 @@ http://planbong.tistory.com/531
 						class="text-color-red"><strong>*</strong></span></label>
 
 					<%--모바일 popover--%>
-					<a class="btn-pointer hidden-lg hidden-md" data-toggle="popover"
+					<a class="btn btn-primary btn-xs btn-pointer hidden-lg hidden-md" data-toggle="popover"
 						data-placement="bottom" data-html="true" title="Password Rules"
 						data-content="
 	1. 8~255자 사이의 문자길이  <br/>	
@@ -254,11 +253,11 @@ http://planbong.tistory.com/531
 	4. 공백문자 사용금지  <br/>
 	5. 영문 대문자와 소문자의 구분 ">
 
-						<span class="glyphicon glyphicon-question-sign fa-lg text-info"></span>
+						<span class="glyphicon glyphicon glyphicon-search"></span>
 					</a>
 
 					<%--pc hover--%>
-					<a class="btn-pointer hidden-xs hidden-sm" data-toggle="popover"
+					<a class="btn btn-primary btn-xs btn-pointer hidden-xs hidden-sm" data-toggle="popover"
 						data-trigger="hover" data-placement="bottom" data-html="true"
 						title="Password Rules"
 						data-content="
@@ -268,7 +267,7 @@ http://planbong.tistory.com/531
 	4. 공백문자 사용금지  <br/>
 	5. 영문 대문자와 소문자의 구분 ">
 
-						<span class="glyphicon glyphicon-question-sign fa-lg text-info"></span>
+						<span class="glyphicon glyphicon glyphicon-search"></span>
 					</a>
 
 					<div class='col-md-6'>

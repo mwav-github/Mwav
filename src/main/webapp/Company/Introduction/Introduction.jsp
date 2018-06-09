@@ -57,8 +57,7 @@
 							<h3 class="align_center fontsize_18">Unleash your
 								infinite possibilities with IT Optimization!!</h3>
 							<h4 class="mgt5 fontsize_14">We are an IT development
-								company possessing total E-Commerce platform based on the fancy
-								technologies.</h4>
+								company possessing total E-Commerce platform based on the internet technology in Korea.</h4>
 						</div>
 					</div>
 				</div>

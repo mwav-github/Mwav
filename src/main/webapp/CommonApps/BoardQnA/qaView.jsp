@@ -9,15 +9,7 @@
 <!-- imsi -->
 
 <script>
-	function check2(obj) {
-		if (confirm("정말 삭제하시겠습니까??") == true) { //확인
-			var bbb = obj;
-			location.href = "/admin/boardNews/nsmDelete.mwav?bNews_id=" + bbb;
-		} else { //취소
-			return;
-		}
 
-	}
 
 	$(function() {
 		return $(".starrr").starrr();
@@ -103,10 +95,10 @@
 
 						</tr>
 						<tr class="active">
-							<th>Group</th>
-							<th>InsertDate</th>
-							<th>Answer</th>
-							<th>Status</th>
+							<th>분류</th>
+							<th>등록일</th>
+							<th>답변자</th>
+							<th></th>
 						</tr>
 					</thead>
 
@@ -141,25 +133,25 @@
 
 				<table class="table table-bordered ">
 					<colgroup>
-						<col class="col-md-4">
-						<col class="col-md-8">
+						<col class="col-md-4 col-sm-4 col-xs-3">
+						<col class="col-md-8 col-sm-8 col-xs-9">
 					</colgroup>
 
 					<tr>
-						<th class="active">Title</th>
+						<th class="active">제목</th>
 						<td>${selectOneQAView.uqTitle}</td>
 					</tr>
 					<tr>
-						<th class="active">SubTitle</th>
+						<th class="active">부제목</th>
 						<td>${selectOneQAView.uqSubTitle}</td>
 					</tr>
 					<tr>
-						<th class="active">Reference</th>
+						<th class="active">홈페이지</th>
 						<td>${selectOneQAView.uqRelatedLink}</td>
 					</tr>
 				</table>
 				<div class="enter"></div>
-				<p>${selectOneQAView.uqContent}</p>
+				<div class="col-md-12"><p>${selectOneQAView.uqContent}</p></div>
 			</form>
 
 			<div class="enter"></div>

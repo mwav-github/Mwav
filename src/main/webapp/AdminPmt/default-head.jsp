@@ -7,12 +7,15 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>SB Admin - Start Bootstrap Template</title>
+<title>Mwav - Promoter Page</title>
+
+<link href="/resources/CommonLibrary/CSS/mwav_style.css"
+	rel="stylesheet">
+
 <!-- Bootstrap core CSS-->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-	crossorigin="anonymous">
+	>
 
 <!-- Custom fonts for this template-->
 <link rel="stylesheet"
@@ -21,42 +24,41 @@
 <!-- Page level plugin CSS
   <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
   <!-- Custom styles for this template-->
-<link href="/resources/CommonLibrary/CSS/mwav_admin.css"
+<link href="/AdminPmt/css/mwav_promoter.css"
 	rel="stylesheet">
 <!-- Bootstrap core JavaScript-->
-<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
-<!-- Custom scripts for all pages
-<script src="/CommonLibrary/Javascript/mwav_admin.js"></script>-->
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+	></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-	crossorigin="anonymous"></script>
+	></script>
 
 <script src="https://code.highcharts.com/highcharts.src.js"></script>
 <script src="/CommonLibrary/Javascript/custom-chart.js"></script>
+<script src="/CommonLibrary/Javascript/Common.js"></script>
+<script src="/CommonLibrary/Javascript/validate.js"></script>
+ 
+ 
+ 
+     <!-- Custom scripts for this page-->
+    <!-- Toggle between fixed and static navbar-->
+    <script>
+    $('#toggleNavPosition').click(function() {
+      $('body').toggleClass('fixed-nav');
+      $('nav').toggleClass('fixed-top static-top');
+    });
 
-<script type="text/javascript">
-	var contextPath = '<c:out value="${pageContext.request.contextPath}"/>';
-	//var pgl = '${sessionScope.promoter.promoter_id}"/>';
-	//var pgl = '${param.promoter_id}';
-	
+    </script>
+    <!-- Toggle between dark and light navbar-->
+    <script>
+    $('#toggleNavColor').click(function() {
+      $('nav').toggleClass('navbar-dark navbar-light');
+      $('nav').toggleClass('bg-dark bg-light');
+      $('body').toggleClass('bg-dark bg-light');
+    });
 
-	$(document)
-			.ready(
-					function() {
-						//getRemoteDataDrawChart(contextPath + '/linechart1.chart', createNewLineChart('chart1-container', getBaseChart()));
-						//getRemoteDataDrawChart(contextPath + '/linechart2.chart', createNewLineChart('chart2-container', getBaseChart()));
-						getRemoteDataDrawColumnChart(contextPath
-								+ '/charts/highsofts/Top10PageList.mwav',
-								createNewColumnChart('chart1-container',
-										getBaseColumnChart()));
-						getRemoteDataDrawChart(contextPath
-								+ '/charts/highsofts/WeeklyUsers.mwav',
-								createNewLineChart('chart3-container',
-										getBaseLineChart()));
-						getRemoteDataDrawPieChart(contextPath
-								+ '/charts/highsofts/ClientScreenSize.mwav',
-								createNewPieChart('chart2-container',
-										getBasePieChart()));
-					});
-</script>
+    </script>

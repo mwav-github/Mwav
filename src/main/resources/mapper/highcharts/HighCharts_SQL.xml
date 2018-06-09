@@ -23,7 +23,7 @@
 
 	
 	<select id="selectListTop10Page" resultType="net.common.charts.vo.SeriesTypeOneVO" parameterType="hashmap" >
-          SELECT b.slPageName AS 'name', 
+          SELECT b.slPageName AS 'name', b.slPageName AS 'name', 
 	      FLOOR(COUNT(*)) AS 'data' 
 	      FROM Statistics_tbl a, StatisticsLog_tbl b
 	      WHERE 	<![CDATA[slPageName IS NOT NULL ]]> 
@@ -45,6 +45,20 @@
 	      GROUP BY 'name'
 	      ORDER BY 'y' DESC 
 
+	</select>
+	<select id="selectListClientBrowerInfo" resultType="net.common.charts.vo.SeriesTypeOneVO" parameterType="hashmap" >
+
+    select distinct SUBSTRING_INDEX(stBrowserInfo, '(', 1) AS 'name', count(*) as 'data', stDeviceType
+    from Statistics_tbl where stDeviceType = 'COMPUTER' and stPromoterId = '0' group by name 
+ 
+	</select>
+	
+	
+	<select id="selectListClientBrowerVersion" resultType="net.common.charts.vo.SeriesTypeOneVO" parameterType="String"  >
+select distinct SUBSTRING_INDEX(SUBSTRING_INDEX(stBrowserInfo, '(', -1),')', 1) as 'name', SUBSTRING_INDEX(stBrowserInfo, '(', 1) as 'no', count('name') as 'data'
+ from Statistics_tbl where stDeviceType = 'COMPUTER' and SUBSTRING_INDEX(stBrowserInfo, '(', 1) =  #{value} group by name 
+ 
+ 
 	</select>
 	
 	<!--/*========================================삭제========================================*/  -->

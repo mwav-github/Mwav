@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
-
 <mapper namespace="statisticsAdminsDAO">
+
+	<sql id="promoter">
+	 <if test="stPromoterId != null and stPromoterId != ''" > 
+     where stPromoterId = #{stPromoterId}
+      </if>
+    </sql>
 	
 	<!-- /*========================================등록========================================*/ -->
 	
@@ -41,9 +45,11 @@
 	</select>
 	
 	<select id="selectListStatistics" parameterType="hashmap" resultType="hashmap">
-	<![CDATA[
-	select c.* from (select @ROWNUM := @ROWNUM + 1 AS ROWNUM, a.* from (select * from Statistics_tbl order by stStatisticsDt desc) a,  (SELECT @ROWNUM := 0) R ) c where c.ROWNUM >= #{startRow} and c.ROWNUM <= #{endRow} 
-	]]>
+	
+	select c.* from (select @ROWNUM := @ROWNUM + 1 AS ROWNUM, a.* from (select *, date_format(stStatisticsDt, '%Y-%m-%d') AS date from Statistics_tbl 
+	 <include refid="promoter" /> 
+	order by stStatisticsDt desc) a,  (SELECT @ROWNUM := 0) R ) c where <![CDATA[ c.ROWNUM >= #{startRow} and c.ROWNUM <= #{endRow}	]]>  
+
 	</select>
 	
 	<!--/*========================================삭제========================================*/-->

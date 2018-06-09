@@ -26,7 +26,8 @@
 		var uqUserPw = formname.uqUserPw;
 		var uqTitle = formname.uqTitle;
 		var uqGroup = formname.uqGroup;
-
+		var uqRules = formname.uqRules;
+		var uqRules = formname.uqRulesCheck;
 		//ckedtior객체
 		var uqContent = CKEDITOR.instances['uqContent'];
 		//폼 객체
@@ -41,6 +42,11 @@
 					&& emptyCheck(uqGroup, "분류기준을 선택해주세요.") == true
 					&& emptyCheck(uqTitle, "제목을 입력해주세요.") == true
 					) {
+				
+				if(uqRules.checked == false){
+					alert('개인정보 수집 동의를 해주세요.');
+					return false;
+				}
 				
 				if (chkEmailPolicy(uqUserEmail.value, uqUserEmail) == false) {
 				    //이메일의 경우 onchange로 체크하는 경우 로딩시 계속 alert출력.  value="${sessionScope.member.mbrEmail} 부분때문
@@ -254,7 +260,7 @@
 									for="email">E-Mail <span class="text-color-red"><strong>*</strong></span></label>
 								<div class="col-md-8">
 									<input name="uqUserEmail" placeholder="Enter Your E mail"
-										class="form-control input-md" type="text"					
+										class="form-control input-md" type="text"
 										value="${sessionScope.member.mbrEmail}">
 
 								</div>
@@ -384,7 +390,7 @@
 					TYPE="hidden" name="QnA_id" value="${before_Q_id }">
 
 				<div class="form-group">
-					<label class="col-sm-3 control-label" for="uqUserName">Name<span
+					<label class="col-sm-3 control-label" for="uqUserName">이름<span
 						class="text-color-red"><strong>*</strong></span></label>
 					<div class="col-sm-9">
 						<input type="text" name="uqUserName" id="uqUserName" value=""
@@ -394,20 +400,19 @@
 				</div>
 
 				<div class="form-group">
-					<label class="col-sm-3 control-label" for="inputEmail">Email<span
+					<label class="col-sm-3 control-label" for="inputEmail">이메일<span
 						class="text-color-red"><strong>*</strong></span>
 					</label>
 					<div class="col-sm-9">
 						<input type="text" name="uqUserEmail" id="uqUserEmail"
 							value="${sessionScope.member.mbrEmail}"
 							class="input_custom  col-xs-12 col-sm-5"
-							placeholder="Enter Your E-mail"
-							required>
+							placeholder="Enter Your E-mail" required>
 					</div>
 				</div>
 				<c:if test="${sessionScope.member eq null }">
 					<div class="form-group">
-						<label class="col-sm-3 control-label" for="uqUserPw">Password<span
+						<label class="col-sm-3 control-label" for="uqUserPw">비밀번호<span
 							class="text-color-red"><strong>*</strong></span>
 						</label>
 						<div class="col-sm-9">
@@ -419,7 +424,7 @@
 					</div>
 				</c:if>
 				<div class="form-group">
-					<label class="col-sm-3 control-label" for="inputSubject">Phone<span
+					<label class="col-sm-3 control-label" for="inputSubject">전화번호<span
 						class="text-color-red"><strong>*</strong></span></label>
 					<div class="col-sm-9">
 						<input type="text" name="uqUserPhone" id="uqUserPhone" value=""
@@ -432,7 +437,8 @@
 				<hr class="hr_gray_separator">
 
 				<div class="form-group">
-					<label class="col-sm-3 control-label" for="uqTitle">Title</label>
+					<label class="col-sm-3 control-label" for="uqTitle">제목<span
+						class="text-color-red"><strong>*</strong></span></label>
 					<div class="col-sm-9">
 						<input type="text" name="uqTitle" id="uqTitle" value=""
 							class="input_custom col-xs-12 col-sm-8" placeholder="Title">
@@ -440,8 +446,8 @@
 				</div>
 
 				<div class="form-group">
-					<label class="col-sm-3 control-label" for="uqGroup">Select
-						an issue <span class="text-color-red"><strong>*</strong></span>
+					<label class="col-sm-3 control-label" for="uqGroup">분류 <span
+						class="text-color-red"><strong>*</strong></span>
 					</label>
 					<div class="col-sm-9">
 						<select name="uqGroup" id="uqGroup"
@@ -460,14 +466,80 @@
 
 				<hr class="hr_gray_separator">
 				<div class="form-group">
-					<label class="col-sm-3 control-label" for="uqContent">Message
-						<span class="text-color-red"><strong>*</strong></span>
+					<label class="col-sm-3 control-label" for="uqContent">내용 <span
+						class="text-color-red"><strong>*</strong></span>
 					</label>
 					<div class="col-sm-9">
 						<textarea name="uqContent" id="uqContent" rows="10"
 							class="input_custom col-xs-12 col-sm-12 ckeditor"
 							placeholder="Enter Your Message"></textarea>
 
+					</div>
+				</div>
+
+				<hr class="hr_gray_separator">
+
+				<div class="form-group mgt3">
+					
+					<div class="col-sm-3 col-md-3 hidden-xs">
+					</div>
+					
+
+					<div class="col-sm-9 col-md-9 col-xs-12">
+					
+					<div class="checkbox checbox-switch switch-primary">
+                                    <label>
+                                        <input type="checkbox" name="uqRules" >
+                                        <span></span>
+                                        아래와 같은 개인정보의 수집/이용에 동의 합니다.<br>
+                                    </label>
+                                </div>
+
+						<div class="txtarea mgt3" style="height: 200px;">
+                    <strong>1. 수집하는 개인정보의 항목</strong>
+                    회사는 회원가입, 원활한 고객상담, 서비스 제공을 위해 아래와 같은 최소한의 개인정보를 필수항목으로 수집하고 있습니다.
+                    - 필수항목 : 이름, 이메일, 전화번호	
+
+                    또한 서비스 이용과정이나 사업처리 과정에서 아래와 같은 정보들이 자동으로 생성되어 수집될 수 있습니다.
+                    - IP Address, 쿠키, 방문 일시, 서비스 이용 기록, 불량 이용 기록 등
+
+                    아래의 회사(단체)정보도 수집되나, 이는 개인정보에 해당하지 않습니다. 다만, 개인 사업자 등의 특수한 경우에 한해 아래의 정보 중 개인정보가 포함되어 있을 수 있습니다.
+                    - 필수항목 : 도메인 정보, 회사(단체)명, 대표자명, 대표주소, 대표번호(유선), 사업자 등록번호, 법인 등록번호, 고유번호
+                    - 선택항목 : 팩스번호
+
+                    <strong>2. 개인정보의 수집 및 이용목적</strong>
+                    가. 서비스 제공에 관한 계약 이행 및 서비스 제공에 따른 요금정산
+                    컨텐츠 제공, 특정 맞춤 서비스 제공, 물품배송 또는 청구서 등 발송, 본인확인, 구매 및 요금 결제, 요금추심
+
+                    나. 회원관리
+                    회원제 서비스 제공, 개인식별, 이용약관 위반 회원에 대한 이용제한 조치, 서비스의 원활한 운영에 지장을 미치는 행위 및 서비스 부정이용 행위 제재, 가입의사 확인, 가입 및 가입횟수 제한, 만14세 미만 아동의 개인정보 수집 시 법정 대리인 동의여부 확인, 추후 법정 대리인 본인확인, 분쟁 조정을 위한 기록보존, 불만처리 등 민원처리, 고지사항 전달, 회원탈퇴 의사의 확인
+
+                    다. 신규 서비스 개발 및 마케팅?광고에의 활용
+                    신규 서비스 개발 및 맞춤 서비스 제공, 통계학적 특성에 따른 서비스 제공 및 광고 게재, 서비스의 유효성 확인, 이벤트 정보 및 참여기회 제공, 광고성 정보 제공, 접속빈도 파악, 회원의 서비스이용에 대한 통계
+
+                    3. 개인정보의 보유 및 이용기간
+                    이용자의 개인정보는 원칙적으로 개인정보의 수집 및 이용목적이 달성되면 지체 없이 파기합니다. 단, 상법, 전자상거래 등에서의 소비자보호에 관한 법률 등 관계법령의 규정에 의하여 보존할 필요가 있는 경우 회사는 관계법령에서 정한 일정한 기간 동안 회원정보를 보관합니다. 이 경우 회사는 보관하는 정보를 그 보관의 목적으로만 이용하며 보존기간은 아래와 같습니다.
+
+                    - 계약 또는 청약철회 등에 관한 기록
+                    보존 이유 : 전자상거래 등에서의 소비자보호에 관한 법률
+                    보존 기간 : 5년
+
+                    - 대금결제 및 재화 등의 공급에 관한 기록
+                    보존 이유 : 전자상거래 등에서의 소비자보호에 관한 법률
+                    보존 기간 : 5년
+
+                    - 전자금융 거래에 관한 기록
+                    보존이유 : 전자금융거래법
+                    보존 기간: 5년
+
+                    - 소비자의 불만 또는 분쟁처리에 관한 기록
+                    보존 이유 : 전자상거래 등에서의 소비자보호에 관한 법률
+                    보존 기간 : 3년
+
+                    - 웹사이트 방문기록
+                    보존 이유 : 통신비밀보호법
+                    보존 기간 : 3개월
+						</div>
 					</div>
 				</div>
 

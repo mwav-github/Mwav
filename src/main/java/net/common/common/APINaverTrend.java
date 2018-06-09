@@ -10,8 +10,8 @@ import java.net.URL;
 public class APINaverTrend {
 
     public static void main(String[] args) {
-        String clientId = "IgsxtB0uBqToYHbY1TEK";//애플리케이션 클라이언트 아이디값";
-        String clientSecret = "Md4yzO3biF";//애플리케이션 클라이언트 시크릿값";
+        String clientId = "YOUR_CLIENT_ID";//애플리케이션 클라이언트 아이디값";
+        String clientSecret = "YOUR_CLIENT_SECRET";//애플리케이션 클라이언트 시크릿값";
 
         try {
             String apiURL = "https://openapi.naver.com/v1/datalab/search";

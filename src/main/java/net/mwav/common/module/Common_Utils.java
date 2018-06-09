@@ -334,6 +334,7 @@ public class Common_Utils {
 				
 				
 			}
+			// 지금구조는 마지막에 있는 놈이 될 수 밖에없다. 
 			map.put("type", type);
 			map.put("value", key);
 

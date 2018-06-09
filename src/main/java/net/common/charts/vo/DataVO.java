@@ -19,7 +19,7 @@ public class DataVO {
  
 	public DataVO(){}
 	
-    public DataVO(String divId, String title, String yAxisTitle, String xAxisTitle, String chartType, List<String> categories, List<SeriesTypeTwoVO> series) {
+	public DataVO(String divId, String title, String yAxisTitle, String xAxisTitle, String chartType, List<String> categories,List<SeriesTypeTwoVO> series) {
         this.setDivId(divId);
         this.setTitle(title);
         this.setyAxisTitle(yAxisTitle);
@@ -27,9 +27,42 @@ public class DataVO {
         this.setChartType(chartType);
         this.setCategories(categories);
         this.setSeries(series);
+        
+    }
+	
+    public DataVO(String divId, String title, String yAxisTitle, String xAxisTitle, String chartType, List<String> categories,List<SeriesTypeTwoVO> series, List<SeriesTypeTwoVO> drilldown) {
+        this.setDivId(divId);
+        this.setTitle(title);
+        this.setyAxisTitle(yAxisTitle);
+        this.setxAxisTitle(xAxisTitle);
+        this.setChartType(chartType);
+        this.setCategories(categories);
+        this.setSeries(series);
+        this.setDrilldown(drilldown);
     }
     
-    //생성자 오버로딩
+    private void setDrilldown(List<SeriesTypeTwoVO> drilldown) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public List<SeriesTypeTwoVO> getSeriesTypeTwoVO() {
+		return seriesTypeTwoVO;
+	}
+
+	public void setSeriesTypeTwoVO(List<SeriesTypeTwoVO> seriesTypeTwoVO) {
+		this.seriesTypeTwoVO = seriesTypeTwoVO;
+	}
+
+	public List<SeriesTypeThreeVO> getSeriesTypeThreeVO() {
+		return seriesTypeThreeVO;
+	}
+
+	public void setSeriesTypeThreeVO(List<SeriesTypeThreeVO> seriesTypeThreeVO) {
+		this.seriesTypeThreeVO = seriesTypeThreeVO;
+	}
+
+	//생성자 오버로딩
     public DataVO(String divId, String title,  String chartType, List<SeriesTypeThreeVO> list_2) {
         this.setDivId(divId);
         this.setTitle(title);

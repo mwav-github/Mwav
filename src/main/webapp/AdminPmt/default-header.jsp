@@ -45,7 +45,7 @@
 						<li><a href="login.html">Login Page</a></li>
 						<li><a href="register.html">Registration Page</a></li>
 						<li><a href="forgot-password.html">Forgot Password Page</a></li>
-						<li><a href="blank.html">Blank Page</a></li>
+						<li><a href="/Promoters/StatList.mwav">방문리스트</a></li>
 					</ul></li>
 				<li class="nav-item" data-toggle="tooltip" data-placement="right"
 					title="Menu Levels"><a

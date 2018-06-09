@@ -322,6 +322,101 @@ p.more2 {
 	padding: 3px 15px;
 }
 
+.smallcat_darkblue {
+	background: #091D42;
+	color: #fff;
+	text-transform: uppercase;
+	position: absolute;
+	left: 0;
+	top: 20px;
+	z-index: 1;
+	padding: 3px 15px;
+	font-size:12px;
+}
+.smallcat_blue {
+	background: #396A92;
+	color: #fff;
+	text-transform: uppercase;
+	position: absolute;
+	left: 0;
+	top: 20px;
+	z-index: 1;
+	padding: 3px 15px;
+	font-size:12px;
+}
+.smallcat_orange {
+	background: #F07241;
+	color: #fff;
+	text-transform: uppercase;
+	position: absolute;
+	left: 0;
+	top: 20px;
+	z-index: 1;
+	padding: 3px 15px;
+	font-size:12px;
+}
+
+.smallcat_red {
+	background: #C04848;
+	color: #fff;
+	text-transform: uppercase;
+	position: absolute;
+	left: 0;
+	top: 20px;
+	z-index: 1;
+	padding: 3px 15px;
+	font-size:12px;
+}
+
+.smallcat_red_type2 {
+	background: #280600;
+	color: #fff;
+	text-transform: uppercase;
+	position: absolute;
+	left: 0;
+	top: 20px;
+	z-index: 1;
+	padding: 3px 15px;
+	font-size:12px;
+}
+
+.smallcat_gray_type1 {
+	background: #776A6A;
+	color: #fff;
+	text-transform: uppercase;
+	position: absolute;
+	left: 0;
+	top: 20px;
+	z-index: 1;
+	padding: 3px 15px;
+	font-size:12px;
+}
+
+.smallcat_kakie {
+	background: #AD9A6F;
+	color: #fff;
+	text-transform: uppercase;
+	position: absolute;
+	left: 0;
+	top: 20px;
+	z-index: 1;
+	padding: 3px 15px;
+	font-size:12px;
+}
+
+.smallcat_kakie_type2 {
+	background: #776A6A;
+	color: #fff;
+	text-transform: uppercase;
+	position: absolute;
+	left: 0;
+	top: 20px;
+	z-index: 1;
+	padding: 3px 15px;
+	font-size:12px;
+}
+
+
 /* mwav hover */
 .portfolio-hover {
 	background: rgba( 98, 175, 208, .8);
@@ -494,98 +589,7 @@ p.more2 {
 /* ====status bar======
  */
 
-/*=====카드결제 및 입력====== */
-/* Everything but the jumbotron gets side spacing for mobile first views */
-.header, .marketing, .footer {
-	padding-right: 15px;
-	padding-left: 15px;
-}
 
-/* Make the masthead heading the same height as the navigation */
-.header           h3 {
-	margin-top: 0;
-	margin-bottom: 0;
-	line-height: 40px;
-}
-
-.show-on-hover:hover>ul.dropdown-menu {
-	display: block;
-}
-
-.container-narrow>hr {
-	margin: 30px 0;
-	background: #ffffff;
-}
-
-/* Supporting marketing content */
-.marketing {
-	margin: 20px 0;
-}
-
-.marketing           p+h4 {
-	margin-top: 28px;
-}
-
-/* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px ) {
-	/* Remove the padding we set earlier */
-	.header, .marketing, .footer {
-		padding-right: 0;
-		padding-left: 0;
-	}
-
-	/* Space out the masthead */
-	.header {
-		margin-bottom: 30px;
-	}
-
-	/* Remove the bottom border on the jumbotron for visual effect */
-	.jumbotron {
-		border-bottom: 0;
-	}
-	
-.mgt3 {
-	margin-top: 3% !important;
-}
-}
-
-.panel-title {
-	display: inline;
-	font-weight: bold;
-}
-
-.checkbox.pull-right {
-	margin: 0;
-}
-
-.pl-ziro {
-	padding-left: 0px;
-}
-
-.panel {
-	border: 0px solid transparent;
-	background: #f1f1f1;
-}
-
-.panel-default>.panel-heading      .badge {
-	color: #ffffff;
-	background-color: transparent;
-}
-
-.panel-heading {
-	border-bottom: 0px solid #555555 !important;
-}
-
-.panel-default>.panel-heading {
-	color: #ffffff;
-	background-color: #333333;
-}
-
-.panel-default>.panel-heading {
-	color: #ffffff;
-	background-color: #333333;
-	padding-bottom: 15px;
-}
 
 /* ================장바구니============== */
 /***
@@ -762,7 +766,8 @@ Licensed under MIT
 					VIEW
 *********************************************/
 .content-wrapper {
-	max-width: 1140px;
+	/*max-width: 1140px;*/
+	max-width: 100%;
 	background: #fff;
 	margin: 0 auto;
 	margin-top: 25px;

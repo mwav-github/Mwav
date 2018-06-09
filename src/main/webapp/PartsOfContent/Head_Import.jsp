@@ -17,7 +17,7 @@
 	</c:otherwise>
 </c:choose>
 <meta id="metaDescription" name="description"
-	content="This is the website for Mwav.net. We are an IT development company possessing total E-Commerce platform based on the fancy technologies. You can contact at http://www.mwav.net/CustomerService/Contact/Contact.mwav?modal=Q&A if you have a question or an inquiry on the site." />
+	content="This is the website for Mwav.net. We are an IT development company possessing total E-Commerce platform based on the fancy technologies. You can contact at http://www.mwav.net/CustomerService/QnA/QnA.mwav?mode=qaForm if you have a question or an inquiry on the site." />
 <meta name="Owner" content="Mwav.net" />
 <meta name="Author" content="Zeus, Peter J." />
 <meta name="copyright" content="All contents are copyright by Mwav.net" />
