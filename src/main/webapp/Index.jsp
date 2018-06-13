@@ -77,7 +77,7 @@
 				<div class="col-xs-12 col-sm-6 col-md-6">
 					<div class="news">
 						<div class="img-figure">
-							<div class="cat">Chart</div>
+							<div class="cat">Visualization</div>
 							<a href="/hightsofts/hightsofts.mwav?items=Highcharts"><img
 								src="/CompanyItem/zImage/Main_chart.jpg" class="img-responsive"
 								alt="Main_chart"></a>
@@ -162,7 +162,7 @@
 					<div class="row">
 						<div class="col-xs-12 col-sm-6 col-md-6">
 							<div class="img-figure">
-								<div class="smallcat_blue">Chart</div>
+								<div class="smallcat_blue">Visualization</div>
 								<!-- md >= 992 / sm >=768  2행에서 1-->
 								<a href="/CompanyItem/ITProducts/FusionCharts/FusionCharts.mwav">
 									<img class="img-responsive img-portfolio img-hover"
@@ -173,7 +173,7 @@
 						</div>
 						<div class="col-xs-12 col-sm-6 col-md-6">
 							<div class="img-figure">
-								<div class="smallcat_blue">Chart</div>
+								<div class="smallcat_blue">Visualization</div>
 								<!-- md >= 992 / sm >=768  2행에서 1-->
 								<a href="/hightsofts/hightsofts.mwav?items=Highcharts"> <img
 									class="img-responsive img-portfolio img-hover"
