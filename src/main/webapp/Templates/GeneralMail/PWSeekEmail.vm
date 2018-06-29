@@ -1,0 +1,155 @@
+<html>
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>Mwav Naming Document</title>
+<head>
+<link
+	href=" //maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"
+	rel="stylesheet">
+</head>
+<body>
+	<div style="margin: 0; padding: 0">
+	<table width="720" border="0" cellpadding="0" cellspacing="0"
+		style="margin: 0 auto">
+		<tbody>
+			<tr>
+				<td style="background: #fff">
+					<!-- Information Area -->
+					<table width="100%" border="0" cellspacing="0" cellpadding="0">
+						<tbody>
+							<tr>
+								<td
+									style="padding: 30px 40px 25px; font-size: 1px; line-height: 1px; border-bottom: 2px #e0e0e0 solid">
+									<a
+									href="http://mwav.net?utm_source=internal&utm_medium=email&utm_campaign=questions"
+									title="새창" target="_blank"><img
+										src="http://www.mwav.net/Images/CompanyLogos/CompanyLogo.gif"
+										alt="gabia" style="vertical-align: top; border: none"></a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					
+					<!-- Email Body Area -->
+					<!-- 임시 비밀번호  -->
+					<table width="100%" border="0" cellspacing="0" cellpadding="0">
+						<tbody>
+							<tr>
+								<td style="width: 40px"></td>
+								<td style="padding: 20px 0 30px">
+									<table width="100%" border="0" cellspacing="0" cellpadding="0">
+										<tbody>
+											<tr>
+												<td
+													style="font: 23px/38px Malgun Gothic; letter-spacing: -1px; color: #0879c9">
+													임시 비밀번호 발급
+												</td>
+											</tr>
+											<tr>
+												<td
+													style="padding: 30px 0 25px; font: 16px/26px Malgun Gothic; color: #767676">
+													아래 비밀번호로 로그인 한 후 비밀번호를 변경해주십시오.
+													<br>
+												</td>
+											</tr>
+											<tr>
+												<td style="font: 14px/22px Malgun Gothic; color: #666">
+
+
+													<table border="0" cellpadding="0" cellspacing="0">
+														<tbody>
+															<tr>
+																<td style="display: block; height: 10px"></td>
+															</tr>
+														</tbody>
+													</table>
+
+													<table cellpadding="0" cellspacing="0" style="width: 100%">
+														<tbody>
+															<tr>
+																<td
+																	style="background: #a5a5a5; font-size: 1px; line-height: 1px; height: 2px"></td>
+															</tr>
+														</tbody>
+													</table>
+													<table cellpadding="0" cellspacing="0"
+														style="width: 100%; table-layout: fixed; border-bottom: 1px #a5a5a5 solid; word-break: break-all">
+														<colgroup>
+															<col width="140">
+															<col>
+														</colgroup>
+														<tbody>
+															<tr>
+																<th colspan="1" rowspan="1" width="140"
+																	style="padding: 8px 10px; font: bold 14px/20px Malgun Gothic; 
+																	color: #4b5964; letter-spacing: -1px; color: #4b5964; 
+																	text-align: left; background: #f3f3f3">
+																	임시 비밀번호
+																</th>
+																<td style="padding: 8px 10px; font: 14px/20px Malgun Gothic; 
+																	color: #4b5964; border-left: 1px #e0e0e0 solid">
+																	<p>
+																		${Temporary.PW}
+																	</p>
+																</td>
+															</tr>
+															
+														</tbody>
+													</table>
+												</td>
+											</tr>
+											<!-- <tr>
+												<td>
+													<table cellspacing="0" cellpadding="0" width="690"
+														border="0">
+														<tbody>
+															<tr>
+																<td width="210"></td>
+																<td width="270">
+																	<a href="http://www.mwav.net"
+																		style="BORDER: #00547E 1px solid; FONT-FAMILY: Nanum GothicB, Malgun Gothic, dotum, gulim, verdana, sans-serif; 
+																		PADDING-BOTTOM: 13px; TEXT-ALIGN: center; PADDING-TOP: 13px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; 
+																		BACKGROUND-COLOR: #00547E; color: white;">
+																		Mwav 바로가기
+																	</a>
+																</td>
+																<td width="210"></td>
+															</tr>
+														</tbody>
+													</table>
+												</td>
+											</tr> -->
+										</tbody>
+									</table>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					
+				</td>
+			</tr>
+			<tr style="text-align: center;">
+				<td style="padding: 30px 0 25px; font: 16px/26px Malgun Gothic; color: #767676">
+					<a href="http://www.mwav.net"
+						style="BORDER: #00547E 1px solid; FONT-FAMILY: Nanum GothicB, Malgun Gothic, dotum, gulim, verdana, sans-serif; 
+						PADDING-BOTTOM: 13px; TEXT-ALIGN: center; PADDING-TOP: 13px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; 
+						BACKGROUND-COLOR: #00547E; color: white; text-decoration:none;">
+						Mwav 바로가기
+					</a>
+				</td>
+			</tr>
+			<tr style="text-align: center;">
+				<td style="padding: 30px 0 25px; font: 16px/26px Malgun Gothic; color: #767676">
+					Copyright © Since 2004 Mwav.net All rights reserved 
+				</td>
+			<tr>
+		</tbody>
+	</table>
+</div>
+</body>
+</html>
