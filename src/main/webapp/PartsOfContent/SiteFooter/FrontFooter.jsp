@@ -200,22 +200,22 @@ css 중 가장 마지막에 호출되어야하며, include 되는 파일 중 css
 							onclick="ga('send', 'event', 'twitter', 'click', 'Footer'); redirectUrl('https://twitter.com/mwavnet', '_blank'); ">
 								<span class="fa fa-twitter"></span>
 						</a></li>
-						<li><a href="" class="btn btn-social-icon btn-facebook"
+						<li><a  class="btn btn-social-icon btn-facebook"
 							style="color: white;" target="_blank"
 							onclick="ga('send', 'event', 'facebook', 'click', 'Footer'); redirectUrl('https://www.facebook.com/mwavsns', '_blank'); ">
 								<span class="fa fa-facebook"></span>
 						</a></li>
-						<li><a href="" class="btn btn-social-icon btn-google"
+						<li><a  class="btn btn-social-icon btn-google"
 							style="color: white;" target="_blank"
 							onclick="ga('send', 'event', 'googleplus', 'click', 'Footer'); redirectUrl('https://plus.google.com/113341818785719365682?hl=ko', '_blank'); ">
 								<span class="fa fa-google"></span>
 						</a></li>
-						<li><a href="" class="btn btn-social-icon btn-linkedin"
+						<li><a class="btn btn-social-icon btn-linkedin"
 							style="color: white;"
 							onclick="ga('send', 'event', 'linkedin', 'click', 'Footer'); redirectUrl('https://www.linkedin.com/in/mwav-net-255543133/', '_blank');"
 							target="_blank"> <span class="fa fa-linkedin"></span>
 						</a></li>
-						<li><a href="" class="btn btn-social-icon btn-instagram"
+						<li><a class="btn btn-social-icon btn-instagram"
 							style="color: white;" target="_blank"
 							onclick="ga('send', 'event', 'instagram', 'click', 'Footer'); redirectUrl('https://www.instagram.com/mwavnet/', '_blank'); ">
 								<span class="fa fa-instagram"></span>
