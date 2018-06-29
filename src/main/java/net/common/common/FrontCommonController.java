@@ -1,16 +1,21 @@
 package net.common.common;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import net.common.common.CommandMap;
+import net.mwav.common.module.Common_Utils;
+import net.mwav.member.vo.Member_tbl_VO;
+
 
 import org.apache.log4j.Logger;
 import org.apache.maven.model.Model;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import net.common.common.CommandMap;
-import net.mwav.common.module.Common_Utils;
 
 @Controller
 public class FrontCommonController {
@@ -248,6 +253,7 @@ public class FrontCommonController {
 
 		return mv;
 	}
+
 
 	// 미적용 + 파라미터 붙여서 넘길수있게 ㅎㅎ
 	public ModelAndView redirectController(HttpServletRequest request,

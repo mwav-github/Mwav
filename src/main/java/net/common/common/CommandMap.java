@@ -1,4 +1,4 @@
-	package net.common.common;
+package net.common.common;
  
 import java.util.HashMap;
 import java.util.Map;

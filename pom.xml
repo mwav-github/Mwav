@@ -303,7 +303,6 @@ http://www.egovframe.go.kr/wiki/doku.php?id=egovframework:dev:dep:build:maven
     <!-- http://addio3305.tistory.com/66 -->
 </dependency>
 
-
          
         <!-- MappingJacksonJsonView -->
         <dependency>
@@ -325,6 +324,17 @@ http://www.egovframe.go.kr/wiki/doku.php?id=egovframework:dev:dep:build:maven
            <artifactId>javax.json</artifactId>
            <version>1.0.4</version>
        </dependency>
+         
+         <!--JSON.simple Dependency
+출처: http://linuxism.tistory.com/552 [linuxism]
+         -->
+           <dependency>
+	           <groupId>com.googlecode.json-simple</groupId>
+	           <artifactId>json-simple</artifactId>
+	           <version>1.1</version>
+           </dependency>
+
+         
          
         <!-- MultipartHttpServletRequset -->
         <dependency>

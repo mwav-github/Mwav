@@ -70,7 +70,22 @@ public class PromoterController {
 		ModelAndView mv = new ModelAndView("/Promoter/PmtForm");
 		return mv;
 	}
+	
+	@RequestMapping(value = "/Promoter/Policy")
+	public ModelAndView PromoterPolicy(CommandMap commandMap,
+			HttpServletRequest request) throws Exception{
+		ModelAndView mv = new ModelAndView("/Promoter/PmtPolicy");
+		return mv;
+	}
 
+	@RequestMapping(value = "/Promoter/URLShorten")
+	public ModelAndView PromoterShorten(CommandMap commandMap,
+			HttpServletRequest request) throws Exception{
+		ModelAndView mv = new ModelAndView("/Promoter/URLShorten");
+		return mv;
+	}
+
+	
 	@RequestMapping(value = "/pmt/pmtLoginForm.mwav",method = RequestMethod.GET)
 	public String selectLogin(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
