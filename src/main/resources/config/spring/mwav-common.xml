@@ -117,4 +117,6 @@
 
 	<bean id="staff" class="net.admins.vo.Staff_VO">
 	</bean>
+	
+	<bean id="apiNaverTrend" class="net.common.common.APINaverTrend"></bean>
 </beans>
