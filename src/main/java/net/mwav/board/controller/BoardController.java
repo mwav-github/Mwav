@@ -9,10 +9,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import net.common.common.APINaverTrend;
 import net.common.common.CommandMap;
 import net.mwav.board.service.BoardService;
 import net.mwav.common.module.Common_Utils;
@@ -25,6 +27,9 @@ public class BoardController {
 
 	@Resource(name = "boardService")
 	private BoardService boardService;
+	
+	@Autowired
+	private APINaverTrend apiNaverTrend;
 
 	private Common_Utils cou = new Common_Utils();
 	private String mode = null;
@@ -91,8 +96,11 @@ public class BoardController {
 		 */
 
 		Map<String, Object> selectOneBnsView = boardService.selectOneBnsView(commandMap.getMap());
-
-
+		
+		String dataJsonString = apiNaverTrend.requestNaverTrend(selectOneBnsView.get("bnKeyword").toString());
+		System.out.println("dataJsonString>>>>");
+		System.out.println(dataJsonString);
+		System.out.println("dataJsonString>>>>");
 		if (selectOneBnsView != null && !selectOneBnsView.isEmpty()) {
 
 			mv.addObject("mm", "site");
