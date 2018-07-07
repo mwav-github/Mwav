@@ -32,13 +32,13 @@ public class EmailSender {
 		String mbrEmail = (String) commandMap.get("mbrEmail");
 		String mbrTempLoginPw = (String) commandMap.get("mbrTempLoginPw");
 		String mbrLoginId = (String) commandMap.get("mbrLoginId");
-
+		emailVO.setHtmlYn("Y"); // html 형식으로 세팅
 		emailVO.setFrom("webmaster@mwav.net"); // from
 		emailVO.setReceiver(mbrEmail);		
 		emailVO.setContent("비밀번호는 " + mbrTempLoginPw + " 입니다.");
 		emailVO.setSubject("Mwav 홈페이지 " + mbrLoginId + "님 [임시비밀번호]찾기 메일입니다.");
 
-		//		emailTemplates.sendBasicEmail(emailVO);
+		//emailTemplates.sendBasicEmail(emailVO);
 		emailVO.setVeloTemplate("GeneralMail/PWSeekEmail.vm"); // 템플릿 파일명
 		emailTemplates.sendVelocityEmail(emailVO); // 메일 전송
 	}
