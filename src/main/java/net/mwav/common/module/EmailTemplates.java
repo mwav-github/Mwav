@@ -105,6 +105,31 @@ public class EmailTemplates {
 		}
 	}
 
+	public void sendAlertEmail(String title) throws Exception {
+		try {
+			System.out.println("mailSender"+mailSender);
+			System.out.println("출력"+mailSender.createMimeMessage());
+			msg = mailSender.createMimeMessage(); // MimeMessage 객체 생성
+
+			msg.setSubject(title);
+			msg.setText("");
+			msg.setFrom(new InternetAddress("webmaster@mwav.net"));
+			msg.setRecipients(MimeMessage.RecipientType.TO,
+					InternetAddress.parse("jusung.kim@mwav.net"));
+		} catch (MessagingException e) {
+			e.printStackTrace();
+			System.out.println("MessagingException");
+		}
+		try {
+			mailSender.send(msg);
+
+		} catch (MailException e) {
+			System.out.println("MailException발생");
+			// 상세내용을 알수 있따.
+			e.printStackTrace();
+		}
+	}
+	
 	public void sendBasicEmail(EmailVO email) throws Exception {
 		try {
 			System.out.println("mailSender"+mailSender);

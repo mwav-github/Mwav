@@ -1,5 +1,6 @@
 package net.mwav.common.module;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import net.common.common.CommandMap;
@@ -35,11 +36,14 @@ public class EmailSender {
 		emailVO.setHtmlYn("Y"); // html 형식으로 세팅
 		emailVO.setFrom("webmaster@mwav.net"); // from
 		emailVO.setReceiver(mbrEmail);		
-		emailVO.setContent("비밀번호는 " + mbrTempLoginPw + " 입니다.");
-		emailVO.setSubject("Mwav 홈페이지 " + mbrLoginId + "님 [임시비밀번호]찾기 메일입니다.");
+		//emailVO.setContent("비밀번호는 " + mbrTempLoginPw + " 입니다.");
+		emailVO.setSubject("Mwav 홈페이지 " + mbrLoginId + "님 [임시비밀번호]발급 메일입니다.");
 
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("TempPw", mbrTempLoginPw);
 		//emailTemplates.sendBasicEmail(emailVO);
 		emailVO.setVeloTemplate("GeneralMail/PWSeekEmail.vm"); // 템플릿 파일명
+		emailVO.setEmailMap(map);
 		emailTemplates.sendVelocityEmail(emailVO); // 메일 전송
 	}
 
@@ -53,7 +57,9 @@ public class EmailSender {
 		emailVO.setEmailMap(map);
 
 		emailVO.setRegUsr("0"); // 이메일 전송 로그
+		
 		emailTemplates.sendVelocityEmail(emailVO); // 메일 전송
+		emailTemplates.sendAlertEmail("회원이 가입되었습니다."); // 관리자 Alert
 	}
 
 	public void sendQuestionEmail(Map<String, Object> map) throws Exception {
@@ -63,9 +69,11 @@ public class EmailSender {
 		emailVO.setSubject("[접수]_"+(String) map.get("uqUserName")
 				+ "님 문의해주신 내용이 정상 접수 되었습니다."); // 메일 제목 properties 파일 참조
 		emailVO.setVeloTemplate("QnAnswer/Question.vm"); // 템플릿 파일명
+		map.put("userName", (String) map.get("uqUserName"));
 		emailVO.setEmailMap(map);
 
 		emailVO.setRegUsr("0"); // 이메일 전송 로그
 		emailTemplates.sendVelocityEmail(emailVO); // 메일 전송
+		emailTemplates.sendAlertEmail("문의가 접수되었습니다."); // 관리자 Alert
 	}
 }
