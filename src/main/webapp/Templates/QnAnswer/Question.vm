@@ -1,31 +1,43 @@
-<html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Mwav 회원가입 메일</title>
+<html>
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>Mwav Naming Document</title>
+<head>
+<link
+	href=" //maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"
+	rel="stylesheet">
 </head>
 <body>
-<div style="margin: 0; padding: 0">
+	<div style="margin: 0; padding: 0">
 	<table width="720" border="0" cellpadding="0" cellspacing="0"
 		style="margin: 0 auto">
 		<tbody>
 			<tr>
 				<td style="background: #fff">
-
+					<!-- Information Area -->
 					<table width="100%" border="0" cellspacing="0" cellpadding="0">
 						<tbody>
 							<tr>
 								<td
-									style="padding: 30px 40px 25px; font-size: 1px; line-height: 1px; border-bottom: 2px #e0e0e0 solid">
+									style="padding: 30px 40px 25px; font-size: 1px; line-height: 1px;">
 									<a
 									href="http://mwav.net?utm_source=internal&utm_medium=email&utm_campaign=questions"
 									title="새창" target="_blank"><img
 										src="http://www.mwav.net/Images/CompanyLogos/CompanyLogo.gif"
-										alt="gabia" style="vertical-align: top; border: none"></a>
+										alt="Mwav" style="vertical-align: top; border: none"></a>
 								</td>
 							</tr>
 						</tbody>
 					</table>
-
-					<table width="100%" border="0" cellspacing="0" cellpadding="0">
+					
+					<!-- Email Body Area -->
+					<!-- QnA -->
+					<table width="100%" border="0" cellspacing="0" cellpadding="0" style="border-top: 2px #e0e0e0 solid">
 						<tbody>
 							<tr>
 								<td style="width: 40px"></td>
@@ -35,114 +47,41 @@
 											<tr>
 												<td
 													style="font: 23px/38px Malgun Gothic; letter-spacing: -1px; color: #0879c9">
-													[접수]질문하신 내용이 접수되었습니다.</td>
+													질문이 정상적으로 접수되었습니다.</td>
 											</tr>
 											<tr>
 												<td
-													style="padding: 30px 0 25px; font: 16px/26px Malgun Gothic; color: #767676">
-													언제나 최선을 다하는 Mwav가 되겠습니다.</td>
-											</tr>
-											<tr>
-												<td style="font: 14px/22px Malgun Gothic; color: #666">
-
-
-													<table border="0" cellpadding="0" cellspacing="0">
-														<tbody>
-															<tr>
-																<td style="display: block; height: 10px"></td>
-															</tr>
-														</tbody>
-													</table>
-
-													<table cellpadding="0" cellspacing="0" style="width: 100%">
-														<tbody>
-															<tr>
-																<td
-																	style="background: #a5a5a5; font-size: 1px; line-height: 1px; height: 2px"></td>
-															</tr>
-														</tbody>
-													</table>
-													<table cellpadding="0" cellspacing="0"
-														style="width: 100%; table-layout: fixed; border-bottom: 1px #a5a5a5 solid; word-break: break-all">
-														<colgroup>
-															<col width="140">
-															<col>
-														</colgroup>
-														<tbody>
-															<tr>
-																<th colspan="1" rowspan="1" width="140"
-																	style="padding: 8px 10px; font: bold 14px/20px Malgun Gothic; color: #4b5964; letter-spacing: -1px; color: #4b5964; text-align: left; background: #f3f3f3">접수번호</th>
-																<td
-																	style="padding: 8px 10px; font: 14px/20px Malgun Gothic; color: #4b5964; border-left: 1px #e0e0e0 solid">
-																	${QnA_id}</td>
-															</tr>
-															<tr>
-																<th colspan="1" rowspan="1"
-																	style="padding: 8px 10px; font: bold 14px/20px Malgun Gothic; color: #4b5964; letter-spacing: -1px; color: #4b5964; text-align: left; background: #f3f3f3; border-top: 1px #e0e0e0 solid">제
-																	목</th>
-																<td
-																	style="padding: 8px 10px; font: 14px/20px Malgun Gothic; color: #4b5964; border-top: 1px #e0e0e0 solid; border-left: 1px #e0e0e0 solid">
-																	${uqTitle}</td>
-															</tr>
-															<tr>
-																<th colspan="1" rowspan="1"
-																	style="padding: 8px 10px; font: bold 14px/20px Malgun Gothic; color: #4b5964; letter-spacing: -1px; color: #4b5964; text-align: left; background: #f3f3f3; border-top: 1px #e0e0e0 solid">
-																	분류<br>
-																</th>
-																<td
-																	style="padding: 8px 10px; font: 14px/20px Malgun Gothic; color: #4b5964; border-top: 1px #e0e0e0 solid; border-left: 1px #e0e0e0 solid">
-																	${uqGroup}</td>
-															</tr>
-
-															<tr>
-																<th colspan="2" rowspan="1"
-																	style="padding: 8px 10px; font: bold 14px/20px Malgun Gothic; color: #4b5964; letter-spacing: -1px; color: #4b5964; text-align: left; background: #f3f3f3; border-top: 1px #e0e0e0 solid"
-																	align="left">문의내용</th>
-															</tr>
-															<tr>
-																<td colspan="2"
-																	style="padding-bottom: 5px; vertical-align: top; font: 14px/20px Malgun Gothic; color: #666"
-																	align="left">${uqContent}</td>
-															</tr>
-
-														</tbody>
-													</table>
+													style="padding: 0px 0 10px; font: 16px/26px Malgun Gothic; color: #767676">
+													문의하신 내용은 최대한 빠른 시일내에 답변 드리겠습니다.
+													<br>
+													감사합니다.
 												</td>
 											</tr>
-											<tr>
-												<td>
-													<table cellspacing="0" cellpadding="0" width="690"
-														border="0">
-														<tbody>
-															<tr>
-																<td width="210"></td>
-																<td width="270"><a
-																	href="http://mwav.net/CustomerService/QnA/QnA.mwav?utm_source=internal&utm_medium=email&utm_campaign=questions">
-																		<p
-																			style="BORDER: #00547E 1px solid; FONT-FAMILY: Nanum GothicB, Malgun Gothic, dotum, gulim, verdana, sans-serif; PADDING-BOTTOM: 13px; TEXT-ALIGN: center; PADDING-TOP: 13px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; BACKGROUND-COLOR: #00547E; color: white;">
-																			문의내용 확인하기</p>
-																</a></td>
-																<td width="210"></td>
-															</tr>
-														</tbody>
-													</table>
-												</td>
-											</tr>
+											
 										</tbody>
 									</table>
 								</td>
 							</tr>
 						</tbody>
 					</table>
-
+					
 				</td>
 			</tr>
-			<tr>
-				<td
-					style="padding: 30px 0 25px; font: 16px/26px Malgun Gothic; color: #767676">
-					Copyright © Mwav Website 2016
-			<tr>
+			<tr style="text-align: center;">
+				<td style="padding: 0px 0 30px; font: 16px/26px Malgun Gothic; color: #767676; ">
+					<a href="http://www.mwav.net/CustomerService/QnA/QnA.mwav?utm_source=internal&utm_medium=email&utm_campaign=questions"
+						style="BORDER: #00547E 1px solid; FONT-FAMILY: Nanum GothicB, Malgun Gothic, dotum, gulim, verdana, sans-serif; 
+						PADDING-BOTTOM: 13px; TEXT-ALIGN: center; PADDING-TOP: 13px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; 
+						BACKGROUND-COLOR: #00547E; color: white; text-decoration:none;">
+						문의 내용 확인
+					</a>
 				</td>
+			</tr>
+			<tr style="text-align: center;">
+				<td style="padding: 30px 0 25px; font: 16px/26px Malgun Gothic; color: #767676; border-top: 2px #e0e0e0 solid;">
+					Copyright © Since 2004 Mwav.net All rights reserved 
+				</td>
+			<tr>
 		</tbody>
 	</table>
 </div>

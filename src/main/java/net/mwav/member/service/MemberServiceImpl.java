@@ -83,14 +83,14 @@ public class MemberServiceImpl implements MemberService {
 //&& snsLogin != null
 
 		//회원가입 메일 발송
-		/*if ("insertForm Success".equals(result) ) {
+		if ("insertForm Success".equals(result) ) {
 			try {
 				System.out.println("이메일");
 				emailSender.sendRegistrationEmail(map);
 			} catch (Exception e) { // TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}*/
+		}
 
 		return result;
 	}
