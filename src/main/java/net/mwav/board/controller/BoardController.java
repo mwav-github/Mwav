@@ -21,13 +21,14 @@ import net.mwav.common.module.Common_Utils;
 import net.mwav.common.module.Paging;
 import net.mwav.common.module.PagingVO;
 
+
 @Controller
 public class BoardController {
 	Logger log = Logger.getLogger(this.getClass());
 
 	@Resource(name = "boardService")
 	private BoardService boardService;
-	
+
 	@Autowired
 	private APINaverTrend apiNaverTrend;
 
@@ -50,13 +51,12 @@ public class BoardController {
 		log.info("insertBnsForm()");
 		ModelAndView mv = new ModelAndView("/Company/CompanyMasterPage_1");
 
-		/* forward logic
-		 * if (staff_id == null){
-			forward_url = "/Company/CompanyMasterPage_1";
-		}else{
-			forward_url = "/Admins/AdminsMasterPage";
-		}
-		ModelAndView mv = new ModelAndView(forward_url);*/
+		/*
+		 * forward logic if (staff_id == null){ forward_url =
+		 * "/Company/CompanyMasterPage_1"; }else{ forward_url =
+		 * "/Admins/AdminsMasterPage"; } ModelAndView mv = new
+		 * ModelAndView(forward_url);
+		 */
 
 		boardService.insertBnsForm(commandMap.getMap());
 
@@ -70,7 +70,6 @@ public class BoardController {
 		return mv;
 	}
 
-
 	// 1번 bnsView : 수정/삭제가능
 	@RequestMapping(value = "/board/bnsView.mwav")
 	public ModelAndView selectOneBnsView(CommandMap commandMap,
@@ -79,45 +78,71 @@ public class BoardController {
 		ModelAndView mv = new ModelAndView("/Company/CompanyMasterPage_1");
 
 		// Common_Util.selectListCommandMap(commandMap); // 키 출력
+		try {
+			/*
+			 * if (commandMap.isEmpty() == false) { System.out.println("들어옴");
+			 * Iterator<Entry<String, Object>> iterator = commandMap.getMap()
+			 * .entrySet().iterator(); Entry<String, Object> entry = null; while
+			 * (iterator.hasNext()) { entry = iterator.next();
+			 * log.debug("key : " + entry.getKey() + ",\tvalue : " +
+			 * entry.getValue()); System.out.println("key : " + entry.getKey() +
+			 * ",\tvalue : " + entry.getValue()); } }
+			 */
 
-		/*
-		 * if (commandMap.isEmpty() == false) { System.out.println("들어옴");
-		 * Iterator<Entry<String, Object>> iterator = commandMap.getMap()
-		 * .entrySet().iterator(); Entry<String, Object> entry = null; while
-		 * (iterator.hasNext()) { entry = iterator.next(); log.debug("key : " +
-		 * entry.getKey() + ",\tvalue : " + entry.getValue());
-		 * System.out.println("key : " + entry.getKey() + ",\tvalue : " +
-		 * entry.getValue()); } }
-		 */
+			/*
+			 * log.info("call filter.do"); String param = (String)
+			 * request.getParameter("bNews_id");
+			 * log.info("call filter.value"+param);
+			 */
 
-		/*	log.info("call filter.do");
-		String param = (String) request.getParameter("bNews_id");
-		log.info("call filter.value"+param);
-		 */
+			Map<String, Object> selectOneBnsView = boardService
+					.selectOneBnsView(commandMap.getMap());
+			String bnKeyword = null;
+			String dataJsonString = null;
+			if (Common_Utils.isEmpty(selectOneBnsView.get("bnKeyword")) == false) {
+				bnKeyword = selectOneBnsView.get("bnKeyword").toString();
+				dataJsonString = apiNaverTrend
+						.requestNaverTrend(selectOneBnsView.get("bnKeyword")
+								.toString());
+				
+				//http://noritersand.tistory.com/240
+		       /* ObjectMapper mapper = new ObjectMapper();
 
-		Map<String, Object> selectOneBnsView = boardService.selectOneBnsView(commandMap.getMap());
-		
-		String dataJsonString = apiNaverTrend.requestNaverTrend(selectOneBnsView.get("bnKeyword").toString());
-		System.out.println("dataJsonString>>>>");
-		System.out.println(dataJsonString);
-		System.out.println("dataJsonString>>>>");
-		if (selectOneBnsView != null && !selectOneBnsView.isEmpty()) {
+		        List<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
+				list = mapper
+						.readValue(
+								dataJsonString,
+								new TypeReference<ArrayList<HashMap<String, String>>>() {
+								});*/
+				
+				//Common_Utils.selectMapList(list);
+			}
 
-			mv.addObject("mm", "site");
-			mv.addObject("mode", "m_bnsView");
-			mv.addObject("breadcrumb", "IT Trends");
-			mv.addObject("page_header", null);
-			// mv.addObject("page_header", "IT Trends");
+			System.out.println("dataJsonString>>>>");
+			System.out.println(dataJsonString);
+			System.out.println("dataJsonString>>>>");
+			if (selectOneBnsView != null && !selectOneBnsView.isEmpty()) {
 
-			String meta_image = (String) selectOneBnsView.get("bnRelatedLink");
-			//meta태그 이미지 
-			String title = (String) selectOneBnsView.get("bnTitle");
-			String description = (String) selectOneBnsView.get("bnSubTitle");
-			//meta태그 이미지 
-			mv.addObject("meta_image", meta_image);
-			mv.addObject("title", title);
-			mv.addObject("description", description);
-			mv.addObject("selectOneBnsView", selectOneBnsView);
+				mv.addObject("mm", "site");
+				mv.addObject("mode", "m_bnsView");
+				mv.addObject("breadcrumb", "IT Trends");
+				mv.addObject("page_header", null);
+				// mv.addObject("page_header", "IT Trends");
+
+				String meta_image = (String) selectOneBnsView
+						.get("bnRelatedLink");
+				// meta태그 이미지
+				String title = (String) selectOneBnsView.get("bnTitle");
+				String description = (String) selectOneBnsView
+						.get("bnSubTitle");
+				// meta태그 이미지
+				mv.addObject("meta_image", meta_image);
+				mv.addObject("title", title);
+				mv.addObject("description", description);
+				mv.addObject("selectOneBnsView", selectOneBnsView);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		return mv;
 	}
@@ -151,8 +176,9 @@ public class BoardController {
 	public ModelAndView selectListBnsFrontList(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
 		log.info("selectListBnsFrontList()");
-		ModelAndView mv = new ModelAndView("/CommonApps/BoardNews/FrontNewsList");
-		
+		ModelAndView mv = new ModelAndView(
+				"/CommonApps/BoardNews/FrontNewsList");
+
 		cou.selectCommandMapList(commandMap); // 키 출력
 		List<Map<String, Object>> selectListBnsFrontList = boardService
 				.selectListBnsFrontList(commandMap.getMap());
@@ -189,7 +215,8 @@ public class BoardController {
 		commandMap.put("startRow", paging.getStartRow(pageNum)); // 시작 열
 		commandMap.put("endRow", paging.getEndRow(pageNum)); // 끝 열
 		if (totalRow > 0) {
-			selectListBnsList = boardService.selectListBnsList(commandMap.getMap());
+			selectListBnsList = boardService.selectListBnsList(commandMap
+					.getMap());
 
 		} else {
 			selectListBnsList = Collections.emptyList();
@@ -198,7 +225,7 @@ public class BoardController {
 		mv.addObject("mode", "m_bnsList");
 		mv.addObject("breadcrumb", "IT Trends");
 		mv.addObject("page_header", null);
-		//mv.addObject("page_header", "IT Trends");
+		// mv.addObject("page_header", "IT Trends");
 
 		mv.addObject("selectListBnsList", selectListBnsList);
 		mv.addObject("pagingVO", pagingVO);
@@ -216,8 +243,6 @@ public class BoardController {
 		return mv;
 	}
 
-
-	
 	// Notice
 	// 1번 BuForm : Form 입력만 가능 (뒤로가기, list)
 	@RequestMapping(value = "/board/buForm.mwav")
@@ -236,7 +261,7 @@ public class BoardController {
 		// mv.addObject("IDX", commandMap.get("IDX"));
 		return mv;
 	}
-	
+
 	// 2번 BuView : 수정/삭제가능
 	@RequestMapping(value = "/board/buView.mwav")
 	public ModelAndView selectOneBuView(CommandMap commandMap,
@@ -265,10 +290,10 @@ public class BoardController {
 			mv.addObject("page_header", "Announcement");
 
 			String meta_image = (String) selectOneBuView.get("buRelatedLink");
-			
+
 			String title = (String) selectOneBuView.get("buTitle");
 			String description = (String) selectOneBuView.get("buSubTitle");
-			//meta태그 이미지 
+			// meta태그 이미지
 			mv.addObject("meta_image", meta_image);
 			mv.addObject("title", title);
 			mv.addObject("description", description);
@@ -290,7 +315,7 @@ public class BoardController {
 		mv.addObject("page_header", "IT Trends");
 
 		boardService.updateBuform(commandMap.getMap());
-		
+
 		return mv;
 	}
 
@@ -308,7 +333,8 @@ public class BoardController {
 	public ModelAndView selectListBuFrontList(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
 		log.info("selectListBuFrontList()");
-		ModelAndView mv = new ModelAndView("/CommonApps/BoardNotice/FrontNoticeList");
+		ModelAndView mv = new ModelAndView(
+				"/CommonApps/BoardNotice/FrontNoticeList");
 
 		// * action-servlet.xml에서 위에 .jsp 설정해줘서 위의 CommonApps 부터 되는거
 		cou.selectCommandMapList(commandMap); // 키 출력
@@ -345,7 +371,8 @@ public class BoardController {
 		commandMap.put("startRow", paging.getStartRow(pageNum));
 		commandMap.put("endRow", paging.getEndRow(pageNum));
 		if (totalRow > 0) {
-			selectListBuList = boardService.selectListBuList(commandMap.getMap());
+			selectListBuList = boardService.selectListBuList(commandMap
+					.getMap());
 		} else {
 			selectListBuList = Collections.emptyList();
 		}
