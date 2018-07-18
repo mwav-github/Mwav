@@ -95,18 +95,14 @@ public class BoardController {
 			 * log.info("call filter.value"+param);
 			 */
 
-			Map<String, Object> selectOneBnsView = boardService
-					.selectOneBnsView(commandMap.getMap());
-			String bnKeyword = null;
+			Map<String, Object> selectOneBnsView = boardService.selectOneBnsView(commandMap.getMap());
+			String bnKeyword = selectOneBnsView.get("bnKeyword").toString();
 			String dataJsonString = null;
-			if (Common_Utils.isEmpty(selectOneBnsView.get("bnKeyword")) == false) {
-				bnKeyword = selectOneBnsView.get("bnKeyword").toString();
-				dataJsonString = apiNaverTrend
-						.requestNaverTrend(selectOneBnsView.get("bnKeyword")
-								.toString());
-				
+			if (Common_Utils.isEmpty(bnKeyword) == false) {
+				dataJsonString = apiNaverTrend.requestNaverTrend(bnKeyword);
+
 				//http://noritersand.tistory.com/240
-		       /* ObjectMapper mapper = new ObjectMapper();
+				/* ObjectMapper mapper = new ObjectMapper();
 
 		        List<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
 				list = mapper
@@ -114,13 +110,11 @@ public class BoardController {
 								dataJsonString,
 								new TypeReference<ArrayList<HashMap<String, String>>>() {
 								});*/
-				
+
 				//Common_Utils.selectMapList(list);
 			}
 
-			System.out.println("dataJsonString>>>>");
 			System.out.println(dataJsonString);
-			System.out.println("dataJsonString>>>>");
 			if (selectOneBnsView != null && !selectOneBnsView.isEmpty()) {
 
 				mv.addObject("mm", "site");
