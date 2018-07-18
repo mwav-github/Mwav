@@ -42,23 +42,24 @@ public class APINaverTrend {
 		try {
 			String apiURL = "https://openapi.naver.com/v1/datalab/search";
 			/* example) */
-			String body = "{\"startDate\":\"2017-01-01\","
-					+ "\"endDate\":\"2017-12-30\",\"timeUnit\":\"month\","
-					+ "\"keywordGroups\":"
-					+ "[{\"groupName\":\"한글\",\"keywords\":[\"한글\",\"korean\"]},"
-					+ "{\"groupName\":\"영어\",\"keywords\":[\"영어\",\"english\"]}],"
-					+ "\"device\":\"pc\",\"ages\":[\"1\",\"2\"],\"gender\":\"f\"}";
-//			String body = "{\"startDate\":\"" + privousDate + "\","
-//					+ "\"endDate\":\"" + currentDate + "\",\"timeUnit\":\"month\","
+//			String body = "{\"startDate\":\"2017-01-01\","
+//					+ "\"endDate\":\"2017-12-30\",\"timeUnit\":\"month\","
 //					+ "\"keywordGroups\":"
-//					+ "[";
-//			
-//			for(int i = 0; i < keywords.size(); i++) {
-//				body += "{\"groupName\":\"" + keywords.get(i) + "\",\"keywords\":[\"" + keywords.get(i) + "\"]}";
-//				if(i < (keywords.size()-1)){
-//					body += ",";
-//				}
-//			}
+//					+ "[{\"groupName\":\"한글\",\"keywords\":[\"한글\",\"korean\"]},"
+//					+ "{\"groupName\":\"영어\",\"keywords\":[\"영어\",\"english\"]}],"
+//					+ "\"device\":\"pc\",\"ages\":[\"1\",\"2\"],\"gender\":\"f\"}";
+			String body = "{\"startDate\":\"" + privousDate + "\","
+					+ "\"endDate\":\"" + currentDate + "\",\"timeUnit\":\"month\","
+					+ "\"keywordGroups\":"
+					+ "[";
+			
+			for(int i = 0; i < keywords.size(); i++) {
+				body += "{\"groupName\":\"" + keywords.get(i) + "\",\"keywords\":[\"" + keywords.get(i) + "\"]}";
+				if(i < (keywords.size()-1)){
+					body += ",";
+				}
+			}
+			body += "]}"; // all device, all ages, all gender
 //			body += "],\"device\":\"pc\",\"mo\",\"ages\":[\"10\",\"20\",\"30\",\"40\"],\"gender\":\"m\",\"f\"}";
 			
 			
