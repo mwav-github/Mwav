@@ -8,18 +8,18 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
-
 import net.common.common.APINaverTrend;
 import net.common.common.CommandMap;
 import net.mwav.board.service.BoardService;
 import net.mwav.common.module.Common_Utils;
 import net.mwav.common.module.Paging;
 import net.mwav.common.module.PagingVO;
+
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 
 @Controller
@@ -97,9 +97,9 @@ public class BoardController {
 
 			Map<String, Object> selectOneBnsView = boardService.selectOneBnsView(commandMap.getMap());
 			String bnKeyword = selectOneBnsView.get("bnKeyword").toString();
-			String dataJsonString = null;
+			String naverLabJsonString = null;
 			if (Common_Utils.isEmpty(bnKeyword) == false) {
-				dataJsonString = apiNaverTrend.requestNaverTrend(bnKeyword);
+				naverLabJsonString = apiNaverTrend.requestNaverTrend(bnKeyword);
 
 				//http://noritersand.tistory.com/240
 				/* ObjectMapper mapper = new ObjectMapper();
@@ -112,9 +112,11 @@ public class BoardController {
 								});*/
 
 				//Common_Utils.selectMapList(list);
+			} else { // bnKeyword is null
+				naverLabJsonString = null;
 			}
 
-			System.out.println(dataJsonString);
+//			System.out.println(dataJsonString);
 			if (selectOneBnsView != null && !selectOneBnsView.isEmpty()) {
 
 				mv.addObject("mm", "site");
@@ -123,17 +125,17 @@ public class BoardController {
 				mv.addObject("page_header", null);
 				// mv.addObject("page_header", "IT Trends");
 
-				String meta_image = (String) selectOneBnsView
-						.get("bnRelatedLink");
+				String meta_image = (String) selectOneBnsView.get("bnRelatedLink");
 				// meta태그 이미지
 				String title = (String) selectOneBnsView.get("bnTitle");
-				String description = (String) selectOneBnsView
-						.get("bnSubTitle");
+				String description = (String) selectOneBnsView.get("bnSubTitle");
 				// meta태그 이미지
 				mv.addObject("meta_image", meta_image);
 				mv.addObject("title", title);
 				mv.addObject("description", description);
 				mv.addObject("selectOneBnsView", selectOneBnsView);
+				
+				mv.addObject("naverLabJsonString", naverLabJsonString);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
