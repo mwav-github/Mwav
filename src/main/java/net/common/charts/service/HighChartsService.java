@@ -10,8 +10,18 @@ import net.mwav.common.module.Common_Utils;
 
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.core.JsonParser.Feature;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.databind.DeserializationConfig;
+import com.fasterxml.jackson.databind.JsonMappingException;
+
+
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -74,6 +84,31 @@ public class HighChartsService {
 		// String[] categories = new String[] {"Mont",
 		// "14 Feb '13","15 Mar '13","11 Apr '13","19 May '13","23 Jun '13","3 Jul '13","8 Aug '13","5 Sep '13","17 Oct '13","23 Nov '13","5 Dec '13"};
 		return new DataVO("chart3-container", "LineChart Title", "통계",
+				"Run Dates", "line", Arrays.asList(day), list_2);
+	}
+	
+
+	public DataVO selectListKeyword(List<SeriesTypeOneVO> list2) {
+		List<SeriesTypeOneVO> list = list2;
+
+		
+		double[] nums = new double[list.size()];
+		String[] day = new String[list.size()];
+		for (int i = 0; i < list.size(); i++) {
+			nums[i] = list.get(i).getData();
+			day[i] = list.get(i).getName();
+			System.out.println("1x" + list.get(i).getName());
+			System.out.println("2x" + list.get(i).getData());
+			// System.out.println("x"+ x);
+		}
+		// double x[] = list.toArray();
+		List<SeriesTypeTwoVO> list_2 = new ArrayList<SeriesTypeTwoVO>();
+
+		list_2.add(new SeriesTypeTwoVO("Munich", nums));
+
+		// String[] categories = new String[] {"Mont",
+		// "14 Feb '13","15 Mar '13","11 Apr '13","19 May '13","23 Jun '13","3 Jul '13","8 Aug '13","5 Sep '13","17 Oct '13","23 Nov '13","5 Dec '13"};
+		return new DataVO("chart4-container", "LineChart Title", "통계",
 				"Run Dates", "line", Arrays.asList(day), list_2);
 	}
 

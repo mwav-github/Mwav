@@ -293,6 +293,81 @@ function getRemoteDataDrawChart(url, chartType) {
 	});
 } // function end
 
+function getRemoteDataDrawChart_3(categories, title, yAxisTitle,xAxisTitle, divId, series, chartType) {
+
+			var categories = categories;
+			var title = title;
+			var yTitle = yAxisTitle;
+			var xTitle = xAxisTitle;
+			 alert(series);
+			var divId = divId;
+
+			// populate the lineChart options (highchart)
+			chartType.highchart.xAxis.categories = categories;
+			chartType.highchart.title.text = title;
+			chartType.highchart.yAxis.title.text = yTitle;
+			chartType.highchart.xAxis.title.text = xTitle;
+			chartType.highchart.chart.renderTo = divId;
+
+			$.each(series, function(i, seriesItem) {
+				console.log(seriesItem);
+				var series = {
+					data : []
+				};
+				series.name = seriesItem.name;
+				series.color = seriesItem.color;
+
+				$.each(seriesItem.data, function(j, seriesItemData) {
+					//console.log("Data (" + j + "): " + seriesItemData);
+					series.data.push(parseFloat(seriesItemData));
+				});
+
+				chartType.highchart.series[i] = series;
+			});
+
+			// draw the chart
+			chartType.create();
+	
+} // function end
+
+function getRemoteDataDrawChart_4(data, chartType) {
+
+	var categories = data.categories;
+	var title = data.title;
+	var yTitle = data.yAxisTitle;
+	var xTitle = data.xAxisTitle;
+	 alert(xTitle);
+	 alert(data.series);
+	var divId = data.divId;
+
+	// populate the lineChart options (highchart)
+	chartType.highchart.xAxis.categories = categories;
+	chartType.highchart.title.text = title;
+	chartType.highchart.yAxis.title.text = yTitle;
+	chartType.highchart.xAxis.title.text = xTitle;
+	chartType.highchart.chart.renderTo = divId;
+
+	$.each(data.series, function(i, seriesItem) {
+		console.log(seriesItem);
+		var series = {
+			data : []
+		};
+		series.name = seriesItem.name;
+		series.color = seriesItem.color;
+
+		$.each(seriesItem.data, function(j, seriesItemData) {
+			//console.log("Data (" + j + "): " + seriesItemData);
+			series.data.push(parseFloat(seriesItemData));
+		});
+
+		chartType.highchart.series[i] = series;
+	});
+
+	// draw the chart
+	chartType.create();
+
+}
+
 function getRemoteDataDrawColumnDrilldownChart(url, chartType) {
 
 	$.ajax({
