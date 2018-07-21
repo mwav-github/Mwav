@@ -35,13 +35,14 @@ public class APINaverTrend {
 		int previousYear = dateObj.getYear();
 		calendarObj.set(Calendar.YEAR, previousYear);
 		String privousDate = simpleDataFormat.format(dateObj);
-		
+
 //		System.out.println("currentDate : " + currentDate);
 //		System.out.println("privousDate : " + privousDate);
 		
 		try {
 			String apiURL = "https://openapi.naver.com/v1/datalab/search";
 			/* example) */
+<<<<<<< HEAD
 //			String body = "{\"startDate\":\"2017-01-01\","
 //					+ "\"endDate\":\"2017-12-30\",\"timeUnit\":\"month\","
 //					+ "\"keywordGroups\":"
@@ -55,12 +56,32 @@ public class APINaverTrend {
 			
 			for(int i = 0; i < keywords.size(); i++) {
 				body += "{\"groupName\":\"" + keywords.get(i) + "\",\"keywords\":[\"" + keywords.get(i) + "\"]}";
+=======
+			String body = "{\"startDate\":\""+privousDate+"\","
+					+ "\"endDate\":\""+currentDate+"\","
+					+ "\"timeUnit\":\"month\","
+					+ "\"keywordGroups\":";
+//					+ "[{\"groupName\":\"한글\",\"keywords\":[\"한글\",\"korean\"]},";
+//					+ "{\"groupName\":\"영어\",\"keywords\":[\"영어\",\"english\"]}],"
+//					+ "\"device\":\"pc\",\"ages\":[\"1\",\"2\"],\"gender\":\"f\"}";
+//			String body = "{\"startDate\":\"" + privousDate + "\","
+//					+ "\"endDate\":\"" + currentDate + "\",\"timeUnit\":\"month\","
+//					+ "\"keywordGroups\":"
+//					+ "[";
+//			
+			for(int i = 0; i < keywords.size(); i++) {
+				body += "[{\"groupName\":\"" + keywords.get(i) + "\",\"keywords\":[\"" + keywords.get(i) + "\"]}";
+>>>>>>> feature/naverlab_n_highchart
 				if(i < (keywords.size()-1)){
 					body += ",";
 				}
 			}
+<<<<<<< HEAD
 			body += "]}"; // all device, all ages, all gender
 //			body += "],\"device\":\"pc\",\"mo\",\"ages\":[\"10\",\"20\",\"30\",\"40\"],\"gender\":\"m\",\"f\"}";
+=======
+      		body += "],\"device\":\"\",\"ages\": [],\"gender\":\"\"}";
+>>>>>>> feature/naverlab_n_highchart
 			
 			
 			System.out.println("body : " + body);

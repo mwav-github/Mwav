@@ -61,6 +61,11 @@ select distinct SUBSTRING_INDEX(SUBSTRING_INDEX(stBrowserInfo, '(', -1),')', 1) 
  
 	</select>
 	
+	<select id="selectListBoardKeyword" resultType="String" parameterType="hashmap" >
+          SELECT bnKeyword From BoardNews_tbl where bNews_id = #{bNews_id};
+        
+	</select>
+	
 	<!--/*========================================삭제========================================*/  -->
 
 </mapper>

@@ -1,5 +1,6 @@
 package net.common.charts.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import net.common.charts.service.HighChartsService;
 import net.common.charts.vo.DataVO;
+import net.common.charts.vo.SeriesTypeOneVO;
 import net.mwav.common.module.Common_Utils;
 
 import org.springframework.beans.factory.annotation.Autowired;
