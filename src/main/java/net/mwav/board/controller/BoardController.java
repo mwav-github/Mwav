@@ -11,8 +11,6 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-<<<<<<< HEAD
-=======
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,7 +21,6 @@ import net.common.charts.controller.HighChartsController;
 import net.common.charts.service.HighChartsService;
 import net.common.charts.vo.DataVO;
 import net.common.charts.vo.SeriesTypeOneVO;
->>>>>>> feature/naverlab_n_highchart
 import net.common.common.APINaverTrend;
 import net.common.common.CommandMap;
 import net.mwav.board.service.BoardService;
@@ -31,19 +28,10 @@ import net.mwav.common.module.Common_Utils;
 import net.mwav.common.module.Paging;
 import net.mwav.common.module.PagingVO;
 
-<<<<<<< HEAD
-import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
-
-=======
 import com.fasterxml.jackson.core.JsonParser.Feature;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
->>>>>>> feature/naverlab_n_highchart
 
 @Controller
 public class BoardController {
@@ -107,41 +95,19 @@ public class BoardController {
 				.selectOneBnsView(commandMap.getMap());
 		// Common_Util.selectListCommandMap(commandMap); // 키 출력
 		try {
-<<<<<<< HEAD
-			/*
-			 * if (commandMap.isEmpty() == false) { System.out.println("들어옴");
-			 * Iterator<Entry<String, Object>> iterator = commandMap.getMap()
-			 * .entrySet().iterator(); Entry<String, Object> entry = null; while
-			 * (iterator.hasNext()) { entry = iterator.next();
-			 * log.debug("key : " + entry.getKey() + ",\tvalue : " +
-			 * entry.getValue()); System.out.println("key : " + entry.getKey() +
-			 * ",\tvalue : " + entry.getValue()); } }
-			 */
+//			Map<String, Object> selectOneBnsView = boardService.selectOneBnsView(commandMap.getMap());
+//			String bnKeyword = selectOneBnsView.get("bnKeyword").toString();
+//			String naverLabJsonString = null;
+//			if (Common_Utils.isEmpty(bnKeyword) == false) {
+//				naverLabJsonString = apiNaverTrend.requestNaverTrend(bnKeyword);
 
-			/*
-			 * log.info("call filter.do"); String param = (String)
-			 * request.getParameter("bNews_id");
-			 * log.info("call filter.value"+param);
-			 */
-
-			Map<String, Object> selectOneBnsView = boardService.selectOneBnsView(commandMap.getMap());
-			String bnKeyword = selectOneBnsView.get("bnKeyword").toString();
-			String naverLabJsonString = null;
-			if (Common_Utils.isEmpty(bnKeyword) == false) {
-				naverLabJsonString = apiNaverTrend.requestNaverTrend(bnKeyword);
-
-				//http://noritersand.tistory.com/240
-				/* ObjectMapper mapper = new ObjectMapper();
-=======
-
-			String bnKeyword = null;
-			String dataJsonString = null;
-			if (Common_Utils.isEmpty(selectOneBnsView.get("bnKeyword")) == false) {
-				bnKeyword = selectOneBnsView.get("bnKeyword").toString();
-				dataJsonString = apiNaverTrend
-						.requestNaverTrend(selectOneBnsView.get("bnKeyword")
-								.toString());
->>>>>>> feature/naverlab_n_highchart
+//			String bnKeyword = null;
+//			String dataJsonString = null;
+//			if (Common_Utils.isEmpty(selectOneBnsView.get("bnKeyword")) == false) {
+//				bnKeyword = selectOneBnsView.get("bnKeyword").toString();
+//				dataJsonString = apiNaverTrend
+//						.requestNaverTrend(selectOneBnsView.get("bnKeyword")
+//								.toString());
 
 				// http://noritersand.tistory.com/240
 
@@ -154,19 +120,10 @@ public class BoardController {
 								new TypeReference<ArrayList<HashMap<String, String>>>() {
 								});*/
 
-<<<<<<< HEAD
-				//Common_Utils.selectMapList(list);
-			} else { // bnKeyword is null
-				naverLabJsonString = null;
-			}
-
-//			System.out.println(dataJsonString);
-=======
 				// Common_Utils.selectMapList(list);
-			}
 
-			System.out.println("dataJsonString>>>>");
-			System.out.println(dataJsonString);
+//			System.out.println("dataJsonString>>>>");
+//			System.out.println(dataJsonString);
 
 			ObjectMapper mapper = new ObjectMapper();
 			// https://stackoverflow.com/questions/4486787/jackson-with-json-unrecognized-field-not-marked-as-ignorable
@@ -181,50 +138,42 @@ public class BoardController {
 
 			// convert JSON string to Map
 			// http://starplaying.tistory.com/492
-			map = mapper.readValue(dataJsonString,
-					new TypeReference<Map<String, Object>>() {
-					});
-
-			System.out.println("map" + map.get("startDate"));
-			System.out.println("map" + map.get("results").toString());
-			System.out.println("map" + map.get("data"));
+//			map = mapper.readValue(dataJsonString,
+//					new TypeReference<Map<String, Object>>() {
+//					});
 
 			Map<String, Object> map2 = new HashMap<String, Object>();
-			String results = map.get("results").toString();
-			String jsonInString = mapper.writeValueAsString(results);
-			jsonInString = mapper.writerWithDefaultPrettyPrinter()
-					.writeValueAsString(jsonInString);
+//			String results = map.get("results").toString();
+//			String jsonInString = mapper.writeValueAsString(results);
+//			jsonInString = mapper.writerWithDefaultPrettyPrinter()
+//					.writeValueAsString(jsonInString);
 
-			System.out.println("jsonString" + jsonInString);
-
-			String results2 = results.substring(1, results.length() - 1);
-			System.out.println("re" + results2);
+//			System.out.println("jsonString" + jsonInString);
+//			String results2 = results.substring(1, results.length() - 1);
+//			System.out.println("re" + results2);
 			System.out.println(mapper.writeValueAsString(map.get("results")));
 
 			// results2 = results2.replace("=", ":");
 
-			results2 = mapper.writeValueAsString(map.get("results"));
-			int a1 = results2.indexOf("period"); // 1 // 맨 처음값의 위치를 찾음
-			results2 = results2.substring(a1 - 3, results2.length() - 2);
-			System.out.println("results2" + results2);
-			results2 = results2.replace("period", "name");
-			results2 = results2.replace("ratio", "data");
+//			results2 = mapper.writeValueAsString(map.get("results"));
+//			int a1 = results2.indexOf("period"); // 1 // 맨 처음값의 위치를 찾음
+//			results2 = results2.substring(a1 - 3, results2.length() - 2);
+//			System.out.println("results2" + results2);
+//			results2 = results2.replace("period", "name");
+//			results2 = results2.replace("ratio", "data");
 
 			mapper.configure(
 					DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
 
 			mapper.configure(Feature.ALLOW_UNQUOTED_FIELD_NAMES, true);
-			List<SeriesTypeOneVO> map21 = mapper.readValue(results2,
-					new TypeReference<List<SeriesTypeOneVO>>() {
-					});
+//			List<SeriesTypeOneVO> map21 = mapper.readValue(results2, new TypeReference<List<SeriesTypeOneVO>>() {});
 
 			System.out.println("=====");
-			DataVO vo = highChartService.selectListKeyword(map21);
-			System.out.println("d"+vo);
+//			DataVO vo = highChartService.selectListKeyword(map21);
+//			System.out.println("d"+vo);
 
 			//String json = new ObjectMapper().writeValueAsString(vo);
 			//System.out.println("!+0"+json);
->>>>>>> feature/naverlab_n_highchart
 			if (selectOneBnsView != null && !selectOneBnsView.isEmpty()) {
 
 				mv.addObject("mm", "site");
@@ -242,13 +191,8 @@ public class BoardController {
 				mv.addObject("title", title);
 				mv.addObject("description", description);
 				mv.addObject("selectOneBnsView", selectOneBnsView);
-<<<<<<< HEAD
-				
-				mv.addObject("naverLabJsonString", naverLabJsonString);
-=======
-				mv.addObject("charData", vo);
-				mv.addObject("charData2", vo.getSeries());
->>>>>>> feature/naverlab_n_highchart
+//				mv.addObject("charData", vo);
+//				mv.addObject("charData2", vo.getSeries());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
