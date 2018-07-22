@@ -195,7 +195,13 @@
 													placeholder="Text input" name="buRelatedLink"
 													value="${updateNtmForm.buRelatedLink}"></td>
 											</tr>
-
+											
+											<tr>
+												<th class="active">Keywords</th>
+												<td><input type="text" class="form-control"
+													placeholder="Text input" name="buKeyword"
+													value="${updateNtmForm.buKeyword}"></td>
+											</tr>
 
 											<tr>
 												<th class="active">Content</th>
