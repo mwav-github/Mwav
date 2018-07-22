@@ -35,8 +35,7 @@ public class BoardNewsAdminsDAO extends AbstractDAO {
 	public Map<String, Object> selectOneNsmView(Map<String, Object> map) {
 		// TODO Auto-generated method stub
 
-		return (Map<String, Object>) selectOne(
-				"boardNewsAdminsDAO.selectOneNsmView", map);
+		return (Map<String, Object>) selectOne("boardNewsAdminsDAO.selectOneNsmView", map);
 	}
 
 	/*
