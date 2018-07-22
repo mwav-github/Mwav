@@ -149,14 +149,21 @@
 									<tr>
 										<td>${selectOneNsmView.bnSubTitle}</td>
 									</tr>
-
+									
 									<tr>
 										<th class="active">Reference</th>
 									</tr>
 									<tr>
 										<td>${selectOneNsmView.bnRelatedLink}</td>
 									</tr>
-
+									
+									<tr>
+										<th class="active">Keywords</th>
+									</tr>
+									<tr>
+										<td>${selectOneNsmView.bnKeyword}</td>
+									</tr>
+									
 									<tr>
 										<th class="active">Content</th>
 

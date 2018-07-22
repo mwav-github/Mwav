@@ -305,7 +305,13 @@
 												<td><input type="text" class="form-control"
 													placeholder="Text input" name="buRelatedLink"></td>
 											</tr>
-
+											
+											<tr>
+												<th class="active">Keywords</th>
+												<td><input type="text" class="form-control"
+													placeholder="Text input" name="buKeyword"></td>
+											</tr>
+											
 											<tr>
 												<th class="active">Content</th>
 												<td><textarea name="buContent"

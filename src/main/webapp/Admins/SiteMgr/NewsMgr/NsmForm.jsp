@@ -207,6 +207,13 @@
 													placeholder="Text input" name="bnSubTitle"
 													value="${updateNsmForm.bnSubTitle}"></td>
 											</tr>
+											
+											<tr>
+												<th class="active">Keywords</th>
+												<td><input type="text" class="form-control"
+													placeholder="Text input" name="bnKeyword"
+													value="${updateNsmForm.bnKeyword}"></td>
+											</tr>
 
 											<tr>
 												<th class="active">Reference</th>
