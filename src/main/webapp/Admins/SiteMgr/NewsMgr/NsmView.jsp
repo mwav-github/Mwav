@@ -140,9 +140,6 @@
 										<td>${selectOneNsmView.bnTitle}</td>
 									</tr>
 
-
-
-
 									<tr>
 										<th class="active">SubTitle</th>
 									</tr>
