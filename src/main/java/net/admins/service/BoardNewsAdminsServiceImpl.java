@@ -114,4 +114,16 @@ public class BoardNewsAdminsServiceImpl implements BoardNewsAdminsService {
 		boardNewsAdminsDAO.deleteNsmDelete(map);
 	}
 
+	@Override
+	public void updateNsmBnStatus(String bNews_id) {
+		// TODO Auto-generated method stub
+		boardNewsAdminsDAO.updateNsmBnStatus(bNews_id);
+	}
+
+	@Override
+	public void updateNsmBnStatusNotice(String bNews_id) {
+		// TODO Auto-generated method stub
+		boardNewsAdminsDAO.updateNsmBnStatusNotice(bNews_id);
+	}
+
 }

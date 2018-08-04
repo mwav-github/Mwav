@@ -50,10 +50,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 		try {
 
 			HttpSession session = request.getSession();
-			/*
-			 * if (member_tbl_VO != null) { member =
-			 * String.valueOf(member_tbl_VO.getmember()); }
-			 */
+		
 			staff = (Staff_VO) session.getAttribute("staff");
 			member = (Member_tbl_VO) session.getAttribute("member");
 			// 디버그 레벨일때 true
@@ -78,14 +75,14 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 			// System.out.println("auth_url" + auth_url);
 			// staff 권한 체크.
 
-			// System.out.println("staff" + staff);
-			// System.out.println("returnUrl" + returnUrl);
 			String auth_url = null;
 			// 안하면, / 등의 경로에서는 에러 발생
 			// 에러명 : java.lang.StringIndexOutOfBoundsException: String index out
 			// of range: 7 (7까지는 /Admins 글자 수!)
+			auth_url = request.getRequestURI().substring(0, 7); // 현재 URL
+
 			if (request.getRequestURI().length() >= 7 && staff != null) {
-				auth_url = request.getRequestURI().substring(0, 7); // 현재 URL
+				System.out.println("auth_url11"+auth_url);
 				key_id = Integer.toString(staff.getStaff_id());
 			}
 			if (auth_url != null

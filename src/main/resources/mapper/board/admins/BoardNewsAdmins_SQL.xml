@@ -38,6 +38,18 @@
         update BoardNews_tbl set bnGroup= #{bnGroup}, bnHighLight= #{bnHighLight}, bnTitle= #{bnTitle}, bnSubTitle= #{bnSubTitle}, bnRelatedLink= #{bnRelatedLink}, bnContent= #{bnContent}, bnUpdateDt= NOW(), bnKeyword= #{bnKeyword} where bNews_id = #{bNews_id}
     ]]>
     </update>
+    
+     <update id="updateNsmBnStatus" parameterType="String">
+    <![CDATA[
+        UPDATE BoardNews_tbl SET bnStatus='1' WHERE bNews_id = #{bNews_id};
+    ]]>
+    </update>
+    
+     <update id="updateNsmBnStatusNotice" parameterType="String">
+    <![CDATA[
+        UPDATE BoardNews_tbl SET bnStatus='2' WHERE bNews_id = #{bNews_id};
+    ]]>
+    </update>
  
 	
 	<!--/*========================================리스트(SelctOne, SelectList 순)========================================*/  -->
