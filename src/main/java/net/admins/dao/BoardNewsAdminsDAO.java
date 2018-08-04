@@ -96,4 +96,14 @@ public class BoardNewsAdminsDAO extends AbstractDAO {
 		update("boardNewsAdminsDAO.deleteNsmDelete", map);
 	}
 
+	public void updateNsmBnStatus(String bNews_id) {
+		// TODO Auto-generated method stub
+		update("boardNewsAdminsDAO.updateNsmBnStatus", bNews_id);
+	}
+
+	public void updateNsmBnStatusNotice(String bNews_id) {
+		// TODO Auto-generated method stub
+		update("boardNewsAdminsDAO.updateNsmBnStatusNotice", bNews_id);
+	}
+
 }
