@@ -214,6 +214,13 @@
 													placeholder="Text input" name="bnRelatedLink"
 													value="${updateNsmForm.bnRelatedLink}"></td>
 											</tr>
+											
+											<tr>
+												<th class="active">Keywords</th>
+												<td><input type="text" class="form-control"
+													placeholder="Text input" name="bnKeyword"
+													value="${updateNsmForm.bnKeyword}"></td>
+											</tr>
 
 											<tr>
 												<th class="active">Content</th>
