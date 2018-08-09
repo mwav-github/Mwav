@@ -42,25 +42,26 @@ public class APINaverTrend {
 		try {
 			String apiURL = "https://openapi.naver.com/v1/datalab/search";
 			/* example) */
-			String body = "{\"startDate\":\""+privousDate+"\","
-					+ "\"endDate\":\""+currentDate+"\","
-					+ "\"timeUnit\":\"month\","
-					+ "\"keywordGroups\":";
+//			String body = "{\"startDate\":\""+privousDate+"\","
+//					+ "\"endDate\":\""+currentDate+"\","
+//					+ "\"timeUnit\":\"month\","
+//					+ "\"keywordGroups\":";
 //					+ "[{\"groupName\":\"한글\",\"keywords\":[\"한글\",\"korean\"]},";
 //					+ "{\"groupName\":\"영어\",\"keywords\":[\"영어\",\"english\"]}],"
 //					+ "\"device\":\"pc\",\"ages\":[\"1\",\"2\"],\"gender\":\"f\"}";
-//			String body = "{\"startDate\":\"" + privousDate + "\","
-//					+ "\"endDate\":\"" + currentDate + "\",\"timeUnit\":\"month\","
-//					+ "\"keywordGroups\":"
-//					+ "[";
-//			
+			String body = "{\"startDate\":\"" + privousDate + "\","
+					+ "\"endDate\":\"" + currentDate + "\",\"timeUnit\":\"month\","
+					+ "\"keywordGroups\":"
+					+ "[";
+			
 			for(int i = 0; i < keywords.size(); i++) {
-				body += "[{\"groupName\":\"" + keywords.get(i) + "\",\"keywords\":[\"" + keywords.get(i) + "\"]}";
+				body += "{\"groupName\":\"" + keywords.get(i) + "\",\"keywords\":[\"" + keywords.get(i) + "\"]}";
 				if(i < (keywords.size()-1)){
 					body += ",";
 				}
 			}
-      		body += "],\"device\":\"\",\"ages\": [],\"gender\":\"\"}";
+			body += "]}"; // all device, all ages, all genders
+//      		body += "],\"device\":\"\",\"ages\": [],\"gender\":\"\"}";
 			
 			
 			System.out.println("body : " + body);
@@ -93,7 +94,7 @@ public class APINaverTrend {
 				response.append(inputLine);
 			}
 			br.close();
-//			System.out.println("response.toString() : " + response.toString());
+			System.out.println("response.toString() : " + response.toString());
 			
 			return response.toString(); // 정상로직
 		} catch (Exception e) {
