@@ -22,7 +22,7 @@
 		<div class="navbar-header">
 			<%--border 칼라 테두리는 style=border || 안의 icon-bar로 구성 --%>
 			<%--768px 이하부터 변형 --%>
-			<%--navbar-collapse 이게 부트스트랩꺼를 무조권 !important 인식 변경하려면 
+			<%--navbar-collapse 이게 부트스트랩꺼를 무조권 !important 인식 변경하려면
     cdn 말고 직접해서 아래 사이트와 같이 변경
     http://www.bootply.com/120951
  --%>
@@ -54,7 +54,7 @@
 					onclick="ga('send', 'event', 'GNB', 'click', 'WebsiteBuilding');"><h4 class="nav_fontsize"><strong>WebSite
 							Building</strong></h4></a></li>
 				<li><a
-					href="/CompanyItem/DigitalMarketing/DigitalMarketing.mwav"
+					href="/CompanyItem/DigitalMarketing/DigitalMarketing_eng.mwav"
 					onclick="ga('send', 'event', 'GNB', 'click', 'DigitalMarketing');"><h4 class="nav_fontsize"><strong>Digital
 							Marketing</strong></h4></a></li>
 				<li><a href="/CompanyItem/ITConsulting/ITConsulting.mwav"
@@ -111,10 +111,10 @@
 
 <!--  //////////////////////////////////// -->
 
-<%-- 
-  Header Carousel (슬라이드 쇼 부분- 헤더 포함 가능성있음.) 
+<%--
+  Header Carousel (슬라이드 쇼 부분- 헤더 포함 가능성있음.)
      클래스명에 container 추가시 조정가능하나 더 이상한듯 ~!! 조정 요망
-     
+
      중간으로 보내기 위해서 container 추가 (left 메뉴 안의 페이지와 크기 동일) // => 다시 빼고 영역 조절
 --%>
 <header id="myCarousel" class="carousel slide"
@@ -142,7 +142,7 @@
 						<div class="col-md-8 col-md-push-5 col-xs-12 text-right block_no block-3" style="opacity:0.8;">
 							<h4 class="">IT Trends</h4>
 							<div class="bs-component" style="background-color: white;">
-								 <jsp:include page="/board/bnsFrontList.mwav" flush="false" /> 
+								 <jsp:include page="/board/bnsFrontList.mwav" flush="false" />
 							</div>
 							<%-- <div class="bs-component" style="background-color: white;">
 						<jsp:include page="/board/bnsFrontList.mwav" flush="false" />
@@ -293,9 +293,9 @@
 }
          --%>
 
-<%--  
-이미지 태그 사용시 
-단 background 와 다르게 height 에 대해서 그대로 잡아버린다. 
+<%--
+이미지 태그 사용시
+단 background 와 다르게 height 에 대해서 그대로 잡아버린다.
 <div class="container">
 
     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
