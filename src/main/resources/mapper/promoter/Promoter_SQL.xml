@@ -120,16 +120,14 @@
 		]]>
 	</select> -->
 
-	<select id="selectPmtLogin" parameterType="hashmap" resultType="net.promoter.vo.PromoterValue_VO">
+	<select id="selectPmtLogin" parameterType="hashmap" resultType="net.promoter.vo.Promoter_VO">
 		<![CDATA[
 		SELECT *
 		FROM Promoter_tbl
 	    WHERE pmtLoginId = #{pmtLoginId}
 		]]>
 	</select>
-
-
-	<!-- /*========================================업데이트========================================*/ -->
+<!-- /*========================================업데이트========================================*/ -->
 	<update id="updatePmtPro" parameterType="hashmap">
 	<![CDATA[
 	  update Promoter_tbl
