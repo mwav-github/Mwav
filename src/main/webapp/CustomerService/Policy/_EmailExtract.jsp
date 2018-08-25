@@ -5,9 +5,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 <title>Mwav 이메일 주소 무단수집 거부</title>
-<link
-	href=" //maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"
-	rel="stylesheet">
 </head>
 <body>
 	<div class="row">

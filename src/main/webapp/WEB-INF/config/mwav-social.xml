@@ -26,14 +26,14 @@
 		<!-- <aop:scoped-proxy proxy-target-class="false" /> -->
 	</bean>
 
-	
-
 	 <facebook:config app-id="${facebook.clientId}" app-secret="${facebook.clientSecret}" app-namespace="socialshowcase" />
 	<!-- <twitter:config app-id="${twitter.consumerKey}" app-secret="${twitter.consumerSecret}"/> -->
 	<google:config app-id="${google.appKey}" app-secret="${google.appSecret}"/>
 
 	<!-- <social:jdbc-connection-repository/> -->	
 	<bean id="userIdSource" class="org.springframework.social.security.AuthenticationNameUserIdSource" />
+
+	
 
 <!-- 
  it will only invoke the interceptor methods for those interceptors whose service operations type matches the service provider’s operations type.

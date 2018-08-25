@@ -2,22 +2,14 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <script src="//cdn.ckeditor.com/4.4.6/basic/ckeditor.js"></script>
 <!-- jQuery Version 1.11.0 -->
 
 <!-- imsi -->
 
 <script>
-	function check2(obj) {
-		if (confirm("정말 삭제하시겠습니까??") == true) { //확인
-			var bbb = obj;
-			location.href = "/admin/boardNews/nsmDelete.mwav?bNews_id=" + bbb;
-		} else { //취소
-			return;
-		}
 
-	}
 
 	$(function() {
 		return $(".starrr").starrr();
@@ -103,10 +95,10 @@
 
 						</tr>
 						<tr class="active">
-							<th>Group</th>
-							<th>InsertDate</th>
-							<th>Answer</th>
-							<th>Status</th>
+							<th>분류</th>
+							<th>등록일</th>
+							<th>답변자</th>
+							<th></th>
 						</tr>
 					</thead>
 
@@ -141,25 +133,25 @@
 
 				<table class="table table-bordered ">
 					<colgroup>
-						<col class="col-md-4">
-						<col class="col-md-8">
+						<col class="col-md-4 col-sm-4 col-xs-3">
+						<col class="col-md-8 col-sm-8 col-xs-9">
 					</colgroup>
 
 					<tr>
-						<th class="active">Title</th>
+						<th class="active">제목</th>
 						<td>${selectOneQAView.uqTitle}</td>
 					</tr>
 					<tr>
-						<th class="active">SubTitle</th>
+						<th class="active">부제목</th>
 						<td>${selectOneQAView.uqSubTitle}</td>
 					</tr>
 					<tr>
-						<th class="active">Reference</th>
+						<th class="active">홈페이지</th>
 						<td>${selectOneQAView.uqRelatedLink}</td>
 					</tr>
 				</table>
 				<div class="enter"></div>
-				<p>${selectOneQAView.uqContent}</p>
+				<div class="col-md-12"><p>${selectOneQAView.uqContent}</p></div>
 			</form>
 
 			<div class="enter"></div>
@@ -179,7 +171,8 @@
 
 						<c:choose>
 							<c:when test="${selectOneQAView.uaSatisfaction eq null}">
-								<form name="uaSatisfactionForm" id="uaSatisfactionForm" method="post">
+								<form name="uaSatisfactionForm" id="uaSatisfactionForm"
+									method="post">
 									<div class="row">
 										<h5 class="text-right">
 											<i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>
@@ -219,8 +212,9 @@
 											<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
 										</button>
 									</c:forEach>
-									<c:set value="${5 - selectOneQAView.uaSatisfaction}" var="endValue" />
-										
+									<c:set value="${5 - selectOneQAView.uaSatisfaction}"
+										var="endValue" />
+
 									<c:forEach begin="1" end="${endValue }">
 										<button type="button" class="btn btn-defalut btn-sm btn-grey"
 											aria-label="Left Align">
@@ -238,34 +232,38 @@
 			<div class="enter"></div>
 			<hr class="hr_b">
 			<div class="row text-right">
-				<p>
-
-					<!-- <button type="button" class="btn btn-default" data-toggle="modal"
-						data-target="#Contact" id="reContact">
-						<span class="glyphicon glyphicon-envelope"></span> Contact
-					</button> -->
-
+				<p class="col-md-12">
 					<button type="button" class="btn btn-default"
-						onclick="javascript:window.location.href='/CustomerService/CS-MasterPage.mwav?mode=qaForm&uqUserEmail=${selectOneQAView.uqUserEmail}&before_Q_id=${selectOneQAView.QnA_id}'">Contact
+						onclick="javascript:window.location.href='/CustomerService/QnA/QnA.mwav?mode=qaForm&uqUserEmail=${selectOneQAView.uqUserEmail}&before_Q_id=${selectOneQAView.QnA_id}'">Contact
 					</button>
-
-					<%--회원 --%>
-					<c:if test="${sessionScope.member_id ne null }">
-						<button type="button" class="btn btn-default"
-							onclick="javascript:window.location.href='/qa/qaList.mwav?member_id=${sessionScope.member_id}'">All
-							List</button>
-					</c:if>
-					<%--비회원 --%>
-					<c:if test="${sessionScope.member_id eq null }">
-						<button type="button" class="btn btn-default"
-							onclick="javascript:window.location.href='/qa/qaList.mwav?uqUserEmail=${selectOneQAView.uqUserEmail}'">All
-							List</button>
-					</c:if>
 					<button type="button" class="btn btn-default"
 						onclick="javascript:history.go(-1)">BACK</button>
 				</p>
+				</div>
+
+				<div class="col-md-12 ">
+					<%--회원 --%>
+					<c:if test="${sessionScope.member_id ne null }">
+						<form class="pull-right" method="post" action="/qa/qaList.mwav">
+							<input type="hidden" name="member_id"
+								value="${sessionScope.member_id}">
+							<button type="submit" class="btn btn-default btn-md">All
+								List</button>
+						</form>
+					</c:if>
+					<%--비회원 --%>
+					<c:if test="${sessionScope.member_id eq null }">
+						<form class="pull-right" method="post" action="/qa/qaList.mwav">
+							<input type="hidden" name="uqUserEmail"
+								value="${selectOneQAView.uqUserEmail}">
+							<button type="submit" class="btn btn-default btn-md">All
+								List</button>
+						</form>
+					</c:if>
+	
+
 			</div>
-			<div class="row">
+			<%-- <div class="row">
 				<ul class="pager">
 					<c:if test="${(selectOneQAView.QnA_id) ne '1000000'}">
 						<li class="previous"><a
@@ -279,7 +277,7 @@
 								→</a></li>
 					</c:if>
 				</ul>
-			</div>
+			</div> --%>
 
 
 			<%--================================================끝========================================================== --%>

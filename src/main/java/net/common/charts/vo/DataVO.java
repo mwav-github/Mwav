@@ -4,21 +4,22 @@ package net.common.charts.vo;
 import org.codehaus.jackson.map.annotate.JsonRootName;
 
 import java.util.List;
-
+ 
 @JsonRootName("dataBean")
 public class DataVO {
-    private String divId;
-    private String title;
-    private String yAxisTitle;
-    private String xAxisTitle;
-    private String chartType;
-    private List<String> categories;
-    private List<SeriesVO> series;
-	private List<SeriesVO_Arrary> seriesArrary;
+    private String divId;    //그려질 위치의 Html Element ID
+    private String title;     // 차트 title
+    private String yAxisTitle;  // y축 제목
+    private String xAxisTitle;  // x축 제목
+    private String chartType; // 차트 유형
+    private List<String> categories; //X축 데이터 
+    private List<SeriesTypeTwoVO> seriesTypeTwoVO;  // 실제 그려질 데이터 type_1  (A series is a set of data)
+    private List<SeriesTypeThreeVO> seriesTypeThreeVO; // // 실제 그려질 데이터 type_2
+
  
 	public DataVO(){}
 	
-    public DataVO(String divId, String title, String yAxisTitle, String xAxisTitle, String chartType, List<String> categories, List<SeriesVO> series) {
+	public DataVO(String divId, String title, String yAxisTitle, String xAxisTitle, String chartType, List<String> categories,List<SeriesTypeTwoVO> series) {
         this.setDivId(divId);
         this.setTitle(title);
         this.setyAxisTitle(yAxisTitle);
@@ -26,14 +27,47 @@ public class DataVO {
         this.setChartType(chartType);
         this.setCategories(categories);
         this.setSeries(series);
+        
+    }
+	
+    public DataVO(String divId, String title, String yAxisTitle, String xAxisTitle, String chartType, List<String> categories,List<SeriesTypeTwoVO> series, List<SeriesTypeTwoVO> drilldown) {
+        this.setDivId(divId);
+        this.setTitle(title);
+        this.setyAxisTitle(yAxisTitle);
+        this.setxAxisTitle(xAxisTitle);
+        this.setChartType(chartType);
+        this.setCategories(categories);
+        this.setSeries(series);
+        this.setDrilldown(drilldown);
     }
     
-    //생성자 오버로딩
-    public DataVO(String divId, String title,  String chartType, List<SeriesVO_Arrary> seriesArrary) {
+    private void setDrilldown(List<SeriesTypeTwoVO> drilldown) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public List<SeriesTypeTwoVO> getSeriesTypeTwoVO() {
+		return seriesTypeTwoVO;
+	}
+
+	public void setSeriesTypeTwoVO(List<SeriesTypeTwoVO> seriesTypeTwoVO) {
+		this.seriesTypeTwoVO = seriesTypeTwoVO;
+	}
+
+	public List<SeriesTypeThreeVO> getSeriesTypeThreeVO() {
+		return seriesTypeThreeVO;
+	}
+
+	public void setSeriesTypeThreeVO(List<SeriesTypeThreeVO> seriesTypeThreeVO) {
+		this.seriesTypeThreeVO = seriesTypeThreeVO;
+	}
+
+	//생성자 오버로딩
+    public DataVO(String divId, String title,  String chartType, List<SeriesTypeThreeVO> list_2) {
         this.setDivId(divId);
         this.setTitle(title);
         this.setChartType(chartType);
-        this.setSeriesArrary(seriesArrary);
+        this.setSeriesArrary(list_2);
     }
     
   
@@ -74,19 +108,19 @@ public class DataVO {
         this.categories = categories;
     }
 
-    public List<SeriesVO> getSeries() {
-        return series;
+    public List<SeriesTypeTwoVO> getSeries() {
+        return seriesTypeTwoVO;
     }
 
-    public void setSeries(List<SeriesVO> series) {
-        this.series = series;
+    public void setSeries(List<SeriesTypeTwoVO> series) {
+        this.seriesTypeTwoVO = series;
     }
-    public List<SeriesVO_Arrary> getSeriesArrary() {
-        return seriesArrary;
+    public List<SeriesTypeThreeVO> getSeriesArrary() {
+        return seriesTypeThreeVO;
     }
 
-    public void setSeriesArrary(List<SeriesVO_Arrary> seriesArrary) {
-        this.seriesArrary = seriesArrary;
+    public void setSeriesArrary(List<SeriesTypeThreeVO> list_2) {
+        this.seriesTypeThreeVO = list_2;
     }
 
     public String getDivId() {

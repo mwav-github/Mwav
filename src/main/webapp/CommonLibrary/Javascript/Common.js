@@ -24,7 +24,7 @@ function decrementTime() {
 		alert('5분의 시간이 지났습니다. 다시 시도해주세요.');
 		// $("#PwFinder").empty();
 		// $("#myTabContent").modal('hide');
-		document.location.href = '/MasterPage.jsp?mode=SMbrLogin';
+		document.location.href = '/MasterPage.mwav?mode=SMbrLogin';
 
 		// 시간이 만료되고 나서 할 작업을 여기에 작성
 		// document.form.submit(); // 예: 강제로 form 실행
@@ -426,31 +426,38 @@ function res_Text() {
 	
 	// 큰 폰트 (기존 60px)
 	newFontSize = (preferredFontSize[0] * scalePercentage) / 100;
+	//console.log(newFontSize);
 	$(".fontsize_60").css("font-size", newFontSize + 'em');
 
 	// 큰 폰트 (기존 30px)
 	newFontSize = (preferredFontSize[1] * scalePercentage) / 100;
+	//console.log(newFontSize);
 	$(".fontsize_30").css("font-size", newFontSize + 'em');
 
 	// 중간 폰트 (기존 20px)
 	newFontSize = (preferredFontSize[2] * scalePercentage) / 100;
+	//console.log(newFontSize);
 	$(".fontsize_20").css("font-size", newFontSize + 'em');
 
 	// 중간 폰트 (기존 18px)
 	newFontSize = (preferredFontSize[3] * scalePercentage) / 100;
+	//console.log(newFontSize);
 	$(".fontsize_18").css("font-size", newFontSize + 'em');
 
 	// 작은 폰트 (기존 14px)
 	newFontSize = (preferredFontSize[4] * scalePercentage) / 100;
+	//console.log(newFontSize);
 	$(".fontsize_14").css("font-size", newFontSize + 'em');
 
 	// 작은 폰트 (기존 12px)
 	newFontSize = (preferredFontSize[5] * scalePercentage) / 100;
+	//console.log(newFontSize);
 	$(".fontsize_12").css("font-size", newFontSize + 'em');
 
 	
 	// 작은 폰트 (기존 10px)
 	newFontSize = (preferredFontSize[6] * scalePercentage) / 100;
+	console.log(newFontSize);
 	$(".fontsize_10").css("font-size", newFontSize + 'em');
 }
 
@@ -701,15 +708,15 @@ function caps_lockchk() {
 //소셜 공유하기
 //http://dev.epiloum.net/916
 //http://www.sharelinkgenerator.com/
-function sendSns(url, utm_source, utm_campaign ,utm_medium, utm_content, subTitle)
+function sendSns(url, utm_source, utm_campaign ,utm_medium, utm_content, subTitle, pgl)
 {
 	//alert(sns);
 	//alert(url);
 	//alert(txt);
 	
 	//통계기 추가 필요
-	console.log(utm_campaign);
-	console.log(trim(utm_campaign));
+	//console.log(utm_campaign);
+	//console.log(trim(utm_campaign));
 	
     var o;
     
@@ -717,11 +724,13 @@ function sendSns(url, utm_source, utm_campaign ,utm_medium, utm_content, subTitl
     //var _txt = encodeURIComponent(txt);
     var _br  = encodeURIComponent('\r\n');
     
-    var googleAnalytics_var = '&utm_source='+ utm_source +'&utm_campaign='+ trim(utm_campaign)+'&utm_medium='+utm_medium+'&utm_content='+utm_content;
-    var _url = encodeURIComponent(url+googleAnalytics_var);
+    //trim 처리를 안하는 경우 url이 중간에 짤려서 다 인식못함.
+    var googleAnalytics_var = '&utm_source='+ utm_source +'&utm_campaign='+ trim(utm_campaign) +'&utm_medium='+utm_medium+'&utm_content='+utm_content;
+    var pgl = '&pgl='+pgl
+    var _url = encodeURIComponent(url+googleAnalytics_var+pgl+'#news_top');
     	
     //alert(url + googleAnalytics_var);
-    console.log(_url);
+    console.log(url+googleAnalytics_var+pgl+'#news_top');
     //alert(googleAnalytics_var);
     switch(utm_source)
     {

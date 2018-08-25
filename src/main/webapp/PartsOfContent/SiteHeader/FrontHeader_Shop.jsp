@@ -3,20 +3,21 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <script>
-$(document).ready(function(){
-// 아래의 내용을 해야지 dropdown 됬을때 유지된다
-    $(".dropdown").hover(            
-        function() {
-            $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideDown("400");
-            $(this).toggleClass('open_');        
-        },
-        function() {
-            $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideUp("400");
-            $(this).toggleClass('open_');       
-        }
-    )
-});
-
+	$(document).ready(
+			function() {
+				// 아래의 내용을 해야지 dropdown 됬을때 유지된다
+				$(".dropdown").hover(
+						function() {
+							$('.dropdown-menu', this).not('.in .dropdown-menu')
+									.stop(true, true).slideDown("400");
+							$(this).toggleClass('open_');
+						},
+						function() {
+							$('.dropdown-menu', this).not('.in .dropdown-menu')
+									.stop(true, true).slideUp("400");
+							$(this).toggleClass('open_');
+						})
+			});
 </script>
 
 <!-- Navigation (=메인 메뉴 및 슬라이드 쇼 포함)
@@ -218,8 +219,7 @@ http://bootsnipp.com/snippets/featured/bootstrap-mega-menu
 		<!-- End Item -->
 		<div class="item active">
 			<img src="/Shop/zImages/promotion_4.png">
-			<div class="carousel-caption">
-				<h3>Headline</h3>
+			<div class="carousel-caption"> <h3>Headline</h3>
 				<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
 					diam nonumy eirmod tempor invidunt ut labore et dolore magna
 					aliquyam erat, sed diam voluptua. Lorem ipsum dolor sit amet,

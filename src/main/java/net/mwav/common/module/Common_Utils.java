@@ -13,9 +13,11 @@ import java.util.Random;
 import java.util.Map.Entry;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import net.common.Interceptor.StatisticsInterceptor;
 import net.common.common.CommandMap;
+import net.mwav.member.vo.Member_tbl_VO;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -217,20 +219,132 @@ public class Common_Utils {
 		String result = null;
 		if (type == "board") {
 			if (before == 0) {
-				result = "임시저장상태";
+				result = "삭제완료.";
 			} else if (before == 1) {
-				result = "현재공지상태";
+				result = "임시저장.";
+			} else if (before == 2) {
+				result = "공지완료.";
 			}
 
 		}
 		return result;
 	}
 
-	// null 체크
+	/**
+	 * null체크
+	 *
+	 * @param object
+	 *            객체
+	 * @return null 여부 true : null false : null이 아님.
+	 * 
+	 *         이슈 최초 입력되는 타입에 대한 확인 후 변형되어야한다 최초 입력되는 타입을 어떻게 할지 부분 고민
+	 */
 	public static boolean isEmpty(Object obj) {
-		if (obj == null || obj.toString().equals(""))
+		if (obj == null || obj.toString().equals("")) {
 			return true;
+		}
 		return false;
+	}
+
+	/**
+	 * 접근자 구분하기
+	 *
+	 * @param request
+	 *            객체
+	 * @return yyyy년MM월dd일 HH시mm분ss초
+	 * 
+	 *         이슈 최초 입력되는 타입에 대한 확인 후 변형되어야한다 최초 입력되는 타입을 어떻게 할지 부분 고민
+	 */
+	@SuppressWarnings("unused")
+	public static Map<String, Object> typeToChar(HttpServletRequest request) {
+		char type = 0;
+
+		System.out.println("들어왔다.");
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		String key = null;
+		
+
+		HttpSession session = request.getSession();
+		CookieBox cookieBox = new CookieBox(request);
+		Member_tbl_VO Member;
+
+		try {
+
+			// 관리자영역
+			if (request.getParameter("staff") != null) {
+				type = 'S';
+				key = request.getParameter("staff");
+				log.info("staff은 request 값");
+			} else if ((String) session.getAttribute("staff") != null) {
+				type = 'S';
+				key = (String) session.getAttribute("staff");
+				log.info("staff은 세션값");
+			} else if (cookieBox.isExist("staff")) {
+				type = 'S';
+				key = cookieBox.getValue("staff");
+				log.info("staff은 쿠키값");
+			}
+
+			// 파트너영역
+			else if (request.getParameter("partner") != null) {
+				type = 'A';
+				key = request.getParameter("partner");
+				log.info("partner은 request 값");
+			} else if ((String) session.getAttribute("partner") != null) {
+				type = 'A';
+				key = (String) session.getAttribute("partner");
+				log.info("partner은 세션값");
+			} else if (cookieBox.isExist("partner")) {
+				type = 'A';
+				key = cookieBox.getValue("partner");
+				log.info("partner은 쿠키값");
+			}
+			// 회원영역
+			else if (request.getParameter("member") != null) {
+				type = 'M';
+				key = request.getParameter("member");
+				
+				log.info("member은 request 값");
+			} else if ((Member_tbl_VO) session.getAttribute("member") != null) {
+				type = 'M';
+				Member = (Member_tbl_VO) session.getAttribute("member");
+				key = String.valueOf(Member.getMember_id());
+				log.info("member은 세션값");
+			} else if (cookieBox.isExist("member")) {
+				type = 'M';
+				key = cookieBox.getValue("member");
+				log.info("member은 쿠키값");
+			}
+			// 프로모터 영역
+			else if (request.getParameter("pgl") != null) {
+				type = 'P';
+				key = request.getParameter("pgl");
+				log.info("pgl은 request 값");
+			} else if ((String) session.getAttribute("pgl") != null) {
+				type = 'P';
+				key = (String) session.getAttribute("pgl");
+				log.info("pgl은 세션값");
+			} else if (cookieBox.isExist("pgl")) {
+				type = 'P';
+				key = cookieBox.getValue("pgl");
+				log.info("pgl은 쿠키값");
+			} else {
+				type = 'N';
+				
+				
+			}
+			// 지금구조는 마지막에 있는 놈이 될 수 밖에없다. 
+			map.put("type", type);
+			map.put("value", key);
+
+		}
+
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return map;
 	}
 
 	/**
@@ -482,12 +596,14 @@ public class Common_Utils {
 		String slPageName = null;
 		String url_1depth = null;
 		String url_2depth = null;
+		String last_depth = null;
 		int first_slash = url.indexOf("/");
 		int second_slash = url.indexOf("/", first_slash + 1);
 		int third_slash = url.indexOf("/", second_slash + 1);
 		// int fourth_slash = url.indexOf("/", third_slash + 1);
 		// int last_slash = url.lastIndexOf("/");
-		// int lastDot = url.lastIndexOf('.');
+		int last_slash = url.lastIndexOf("/");
+		int lastDot = url.lastIndexOf('.');
 
 		try {
 
@@ -499,12 +615,20 @@ public class Common_Utils {
 				url_2depth = url.substring(second_slash + 1, third_slash);
 				log.info("url_2depth" + url_2depth);
 			}
+			if (lastDot != -1) {
+				last_depth = url.substring(last_slash + 1, lastDot);
+				// System.out.println("last_depth"+last_depth);
+			}
 
 			// url 은 전체 url_1depth은 /제외
-			if (url != null && url_1depth != null && (url.equals("/") || url_1depth.equals("Index"))) {
+			if (url != null && url_1depth != null
+					&& (url.equals("/") || url_1depth.equals("Index"))) {
 				slPageName = "메인페이지";
 			} else if (url_1depth != null && url_1depth.equals("Company")) {
-				// 회사 색션.
+				// 회사 색션.'
+				// url_2depth.equals -> contains으로 변경 언제가 마지막 / 일지 모른다.
+				// 즉 /Company/ITTrends/ITTrends 등 마지막 단계가 어딘지.
+				// url_2depth.equals로 하게되면.
 				if (url.contains("ActualResults")) {
 					slPageName = "회사실적";
 				} else if (url.contains("BusinessField")) {
@@ -529,23 +653,31 @@ public class Common_Utils {
 					slPageName = "회사조직도";
 				} else if (url.contains("Profitsharing")) {
 					slPageName = "수익분배 프로그램";
-				} else if (url.contains("언론보도")) {
+				} else if (url.contains("ITTrends")) {
 					slPageName = "언론보도";
-				} else if (url.contains("경영기념(비전)")) {
-					slPageName = "Vision";
+				} else if (url.contains("Vision")) {
+					slPageName = "경영기념(비전)";
 				} else {
+					// 문자열 자르는것은 추후 모듈화
+					// slPageName 의 경우 varchar(50)
+					if (url.length() > 35) {
+						url = url.substring(0, 34);
+					}
 					slPageName = "Company_미정_" + url;
+
 				}
+				// URL 변경시 변동 필요.
 			} else if (url_1depth != null && url_1depth.equals("CompanyItem")) {
 				if (url_2depth.equals("ITSolutions")) {
 					if (url.contains("OrgChart")) {
 						slPageName = "OrgChart";
+					} else if (url.contains("Aervision")) {
+						slPageName = "Aervision";
 					} else {
+						slPageName = "기타";
 					}
 				} else if (url_2depth.equals("ITProducts")) {
-					if (url.contains("Aervision")) {
-						slPageName = "Aervision";
-					} else if (url.contains("Azure")) {
+					if (url.contains("Azure")) {
 						slPageName = "Azure";
 					} else if (url.contains("HighSofts")) {
 						slPageName = "HighSofts";
@@ -557,8 +689,14 @@ public class Common_Utils {
 						slPageName = "OpenSRS";
 					} else if (url.contains("Windows")) {
 						slPageName = "Windows";
+					} else if (url.contains("Aervision")) {
+						slPageName = "Aervision";
+					} else if (url.contains("vanillaNAV")) {
+						slPageName = "vanillaNAV";
+					} else if (url.contains("QuickHeal")) {
+						slPageName = "QuickHeal";
 					} else {
-
+						slPageName = "기타";
 					}
 				} else if (url_2depth.equals("WebSiteBuilding")) {
 					slPageName = "웹사이트제작";
@@ -567,10 +705,13 @@ public class Common_Utils {
 				} else if (url_2depth.equals("ITConsulting")) {
 					slPageName = "IT컨설팅";
 				} else {
+					if (url.length() > 30) {
+						url = url.substring(0, 29);
+					}
 					slPageName = "CompanyItem_미정_" + url;
 				}
-
-			} else if (url_1depth != null && url_1depth.equals("CustomerService")) {
+			} else if (url_1depth != null
+					&& url_1depth.equals("CustomerService")) {
 				if (url.contains("Agreement")) {
 					slPageName = "이용약관";
 				} else if (url.contains("Announcement")) {
@@ -598,10 +739,16 @@ public class Common_Utils {
 				} else if (url.contains("Summary")) {
 					slPageName = "CS요약";
 				} else {
+					// 문자열 자르는것은 추후 모듈화
+					// slPageName 의 경우 varchar(50)
+					if (url.length() > 28) {
+						url = url.substring(0, 27);
+					}
 					slPageName = "CustomerService_미정_" + url;
 				}
-			} else if (url_1depth != null && url_1depth.equals("MasterPage")
-					|| url_1depth.equals("MasterPage_1")) {
+			} else if (url_1depth != null
+					&& (url_1depth.equals("MasterPage") || url_1depth
+							.equals("MasterPage_1"))) {
 				if (url.contains("mode=SMbrLogin")) {
 					slPageName = "로그인페이지";
 				} else if (url.contains("mode=Default")) {
@@ -611,71 +758,93 @@ public class Common_Utils {
 				} else if (url.contains("mode=SDMbrInput")) {
 					slPageName = "가입완료";
 				} else {
+					// 문자열 자르는것은 추후 모듈화
+					// slPageName 의 경우 varchar(50)
+					if (url.length() > 35) {
+						url = url.substring(0, 34);
+					}
 					slPageName = "MasterPage_미정_" + url;
 				}
 			} else if (url_1depth != null && url_1depth.equals("member")) {
-				if (url_2depth.equals("mbrTempLoginPwUpdate")) {
+				if (url.contains("mbrTempLoginPwUpdate")) {
 					slPageName = "패스워드찾기(비밀번호 초기화)";
-				} else if (url_2depth.equals("Login")) {
+				} else if (url.contains("Login")) {
 					slPageName = "로그인시도";
-				} else if (url_2depth.equals("mbrTempLoginPwSeek ")) {
+				} else if (url.contains("mbrTempLoginPwSeek ")) {
 					slPageName = "패스워드찾기(비밀번호 조회)";
-				} else if (url_2depth.equals("mbrLoginPwUpdate")) {
+				} else if (url.contains("mbrLoginPwUpdate")) {
 					slPageName = "패스워드찾기(비밀번호 업데이트)";
-				} else if (url_2depth.equals("mbrLoginIdSeek")) {
+				} else if (url.contains("mbrLoginIdSeek")) {
 					slPageName = "아이디찾기(아이디조회)";
 				} else {
+					// 문자열 자르는것은 추후 모듈화
+					// slPageName 의 경우 varchar(50)
+					if (url.length() > 37) {
+						url = url.substring(0, 36);
+					}
 					slPageName = "member_미정_" + url;
 				}
 			} else if (url_1depth != null && url_1depth.equals("qa")) {
 
 				slPageName = "qa_미정_" + url;
 
-			} else if (url_1depth != null && url_1depth.equals("login") && url_2depth.equals("post")) {
+			} else if (url_1depth != null && url_1depth.equals("login")) {
+				if (url.contains("post")) {
 
-				slPageName = "로그인 완료";
-
+					slPageName = "로그인 완료";
+				}
 			} else if (url_1depth != null && url_1depth.equals("admins")) {
 
 				slPageName = "관리자" + url;
 
 			} else if (url_1depth != null && url_1depth.equals("board")) {
-				if (url_2depth.equals("bnsList")) {
+				if (url.contains("bnsList")) {
 					slPageName = "뉴스목록";
-				} else if (url_2depth.equals("buView")) {
+				} else if (url.contains("buView")) {
 					slPageName = "뉴스조회";
-				} else if (url_2depth.equals("buList")) {
+				} else if (url.contains("buList")) {
 					slPageName = "공지목록";
-				} else if (url_2depth.equals("buView")) {
+				} else if (url.contains("buView")) {
 					slPageName = "공지사항조회";
 				}
 			}
+
 			// 예외 발생 부분.
 			else if (url_1depth != null && url_1depth.equals("MessageView")) {
-				if (url_2depth.equals("throwable")) {
+				if (url.contains("throwable")) {
 					slPageName = "에러(최상위)";
-				} else if (url_2depth.equals("exception")) {
+				} else if (url.contains("exception")) {
 					slPageName = "예외";
-				} else if (url_2depth.equals("400")) {
+				} else if (url.contains("400")) {
 					slPageName = "에러(400)";
-				} else if (url_2depth.equals("401")) {
+				} else if (url.contains("401")) {
 					slPageName = "에러(401)";
-				} else if (url_2depth.equals("403")) {
+				} else if (url.contains("403")) {
 					slPageName = "에러(403)";
-				} else if (url_2depth.equals("404")) {
+				} else if (url.contains("404")) {
 					slPageName = "에러(404)";
-				} else if (url_2depth.equals("500")) {
+				} else if (url.contains("500")) {
 					slPageName = "에러(500)";
-				} else if (url_2depth.equals("503")) {
+				} else if (url.contains("503")) {
 					slPageName = "에러(503)";
 				} else {
+					// 문자열 자르는것은 추후 모듈화
+					// slPageName 의 경우 varchar(50)
+					if (url.length() > 39) {
+						url = url.substring(0, 38);
+					}
 					slPageName = "에러_미정_" + url;
 				}
 			}
 			// 서블릿 거치는 부분, Admin
 			else {
 				// statistics_tbl 의 PageName 은 null 이 허용안된다.
-				slPageName = url;
+				// 문자열 자르는것은 추후 모듈화
+				// slPageName 의 경우 varchar(50)
+				if (url.length() > 44) {
+					url = url.substring(0, 43);
+				}
+				slPageName = "기타_" + url;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -742,9 +911,9 @@ public class Common_Utils {
 
 		String keywords_default = "Digital Marketing, E-Consulting, IT Consulting, WebSite Building, Cloud, AI, MR, VR, ARIoT Platform, Deep Learning, Agile, DevOps, Domain, Web Hosting, Server Hosting, Hosting, HomePage, IT Solution, IT Product, DataBase, Maintenance, EC, Shopping Mall, Web Mail, News Solution, 디지털마케팅, E-컨설팅, IT컨설팅, 웹사이트 제작, 클라우드, 인공지능, 증강현실, 혼합현실, 가상현실, IOT 플랫폼, 딥 러닝, 에자일, 데브옵스, 도메인, 웹호스팅, 서버호스팅, 호스팅, 홈페이지, 웹사이트, 솔루션개발, 데이터베이스, 유지보수, 전자상거래, 쇼핑몰, 웹메일, 뉴스솔루션";
 		String keywords = null;
-	    
+
 		String description = "This is the website for Mwav.net. We are an IT development company possessing total E-Commerce platform based on the fancy technologies. You can contact at http://www.mwav.net/CustomerService/Contact/Contact.mwav?modal=Q&A if you have a question or an inquiry on the site.";
-		
+
 		// 대분류 안에 소분류로 !
 		if (url_1depth.equals("Company")) {
 			set_Title = "[Mwav.net] >> [" + url_1depth + " > " + last_depth
@@ -755,14 +924,13 @@ public class Common_Utils {
 			set_Title = "[Mwav.net] >> [" + url_1depth + " > " + last_depth
 					+ "] - " + main_Title;
 
-		} else if (url_1depth.equals("hightsofts") && url_2depth.equals("hightsofts")) {
+		} else if (url_1depth.equals("hightsofts")
+				&& url_2depth.equals("hightsofts")) {
 			url_1depth = "CS";
-			set_Title = "[Mwav.net] >> [HightSofts] - "
-					+ main_Title;
+			set_Title = "[Mwav.net] >> [HightSofts] - " + main_Title;
 			keywords = "Highcharts, Highstock, Highmaps, " + keywords_default;
-			
-		}
-		else if (url_1depth.equals("CompanyItem")) {
+
+		} else if (url_1depth.equals("CompanyItem")) {
 			// 여기는 디지털마케팅 등 포함 2depth로
 
 			if (url_2depth.equals("ITProducts")
@@ -775,36 +943,37 @@ public class Common_Utils {
 					set_Title = "[Mwav.net] >> [" + url_3depth + "> "
 							+ aervision_Title + "] - " + main_Title;
 
-					keywords = "AerPass, AerCrowd, AerPalm, AerID, AerGate, IDMatch, eyeLock, " + keywords_default;
-				
+					keywords = "AerPass, AerCrowd, AerPalm, AerID, AerGate, IDMatch, eyeLock, "
+							+ keywords_default;
+
 				} else if (url_3depth.equals("OrgChart")) {
 					set_Title = "[Mwav.net] >> [" + url_3depth + "] - "
 							+ main_Title;
-					
-					keywords = "OrgChart Platinum, OrgChart Now, OrgChart Enterprise, OrgChart Pro, " + keywords_default;
-				}
-				else if (url_3depth.equals("Azure")) {
+
+					keywords = "OrgChart Platinum, OrgChart Now, OrgChart Enterprise, OrgChart Pro, "
+							+ keywords_default;
+				} else if (url_3depth.equals("Azure")) {
 					set_Title = "[Mwav.net] >> [" + url_3depth + "] - "
 							+ main_Title;
-					
+
 					keywords = "Azure, " + keywords_default;
-				}
-				else if (url_3depth.equals("MSOffice")) {
+				} else if (url_3depth.equals("MSOffice")) {
 					set_Title = "[Mwav.net] >> [" + url_3depth + "] - "
 							+ main_Title;
-					keywords = "Word, PowerPoint, Excel, Outlook, " + keywords_default;
-					
+					keywords = "Word, PowerPoint, Excel, Outlook, "
+							+ keywords_default;
+
 				} else if (url_3depth.equals("InsWave")) {
 					set_Title = "[Mwav.net] >> [" + url_3depth + "] - "
 							+ main_Title;
 					keywords = "NewsLetter Solutions, " + keywords_default;
-					
+
 				} else if (url_3depth.equals("Windows")) {
 					set_Title = "[Mwav.net] >> [" + url_3depth + "] - "
 							+ main_Title;
-					
+
 					keywords = "Windows10, " + keywords_default;
-				}else {
+				} else {
 					set_Title = "[Mwav.net] >> [" + url_3depth + "] - "
 							+ main_Title;
 				}
@@ -833,8 +1002,19 @@ public class Common_Utils {
 		map.put("title", set_Title);
 		map.put("keywords", keywords);
 		map.put("description", description);
-		
+
 		return map;
+	}
+
+	// Hex Random Color 출력.
+	public static String getRandomColor() {
+		final Random random = new Random();
+		final String[] letters = "0123456789ABCDEF".split("");
+		String color = "#";
+		for (int i = 0; i < 6; i++) {
+			color += letters[Math.round(random.nextFloat() * 15)];
+		}
+		return color;
 	}
 
 }

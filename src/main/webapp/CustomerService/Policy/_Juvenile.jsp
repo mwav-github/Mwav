@@ -5,9 +5,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 <title>Mwav 청소년 보호정책</title>
-<link
-	href=" //maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"
-	rel="stylesheet">
 </head>
 <body>
 	<div class="row">

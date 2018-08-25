@@ -1,10 +1,12 @@
 package net.common.Interceptor;
 
 import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import net.admins.vo.Staff_VO;
 import net.mwav.member.vo.Member_tbl_VO;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,9 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 	// Logger log = Logger.getLogger(this.getClass());
 	@Autowired
 	Member_tbl_VO member_tbl_VO;
+
+	@Autowired
+	Staff_VO staff;
 
 	List<String> urls;
 
@@ -37,18 +42,16 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 
 		Member_tbl_VO member = null;
 		// member 및 비교할 값.
-		String key_id = "";
+		String key_id = null;
 		String returnUrl = "";
 		String url = request.getRequestURI();
-		String staff = null;
+		// String staff = null;
 		member_tbl_VO = null;
 		try {
 
 			HttpSession session = request.getSession();
-			/*if (member_tbl_VO != null) {
-				member = String.valueOf(member_tbl_VO.getmember());
-			}*/
-			staff = (String) session.getAttribute("staff");
+		
+			staff = (Staff_VO) session.getAttribute("staff");
 			member = (Member_tbl_VO) session.getAttribute("member");
 			// 디버그 레벨일때 true
 			// http://planmaster.tistory.com/66
@@ -72,48 +75,55 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 			// System.out.println("auth_url" + auth_url);
 			// staff 권한 체크.
 
-			// System.out.println("staff" + staff);
-			// System.out.println("returnUrl" + returnUrl);
 			String auth_url = null;
 			// 안하면, / 등의 경로에서는 에러 발생
 			// 에러명 : java.lang.StringIndexOutOfBoundsException: String index out
-			// of range: 7  (7까지는 /Admins 글자 수!)
-			if (request.getRequestURI().length() >= 7) {
-				auth_url = request.getRequestURI().substring(0, 7); // 현재 URL
-				key_id = staff;
+			// of range: 7 (7까지는 /Admins 글자 수!)
+			auth_url = request.getRequestURI().substring(0, 7); // 현재 URL
+
+			if (request.getRequestURI().length() >= 7 && staff != null) {
+				System.out.println("auth_url11"+auth_url);
+				key_id = Integer.toString(staff.getStaff_id());
 			}
-			if (auth_url != null && (auth_url.equals("/Admins") || auth_url.equals("/admins"))) {
-				System.out.println("staff"+key_id);
-				System.out.println("staff"+request.getRequestURI().equals("/admins/staff/stfLogin.mwav"));
-				
-				if (!(request.getRequestURI().equals("/admins/staff/stfLogin.mwav")) && (key_id == null || key_id.equals("")
-						|| key_id.equals("null"))) {
-				
-					/*[중요]
-					 http://enosent.tistory.com/34
-					 http://blog.danggun.net/4063
-					 이 웹페이지에 리디렉션 순환 오류가 있습니다.' 또는 'ERR_TOO_MANY_REDIRECTS'
-					 위의 오류가 나타나는 이유는 무한대로 리다이랙션이 되면서 나타나는 오류이다. 
-					 즉 권한부여 페이지/ 로그인 페이지 모두 stfLogin 페이지로 리다이렉트하니까.
-					 
-					 이때 해당 페이지 URL 과 동일하면 그만 멈추도록 해야한다. 
-					 
-					 리다이렉션은 그 뒤의 문장까지 다실행한다.
+			if (auth_url != null
+					&& (auth_url.equals("/Admins") || auth_url
+							.equals("/admins"))) {
+				System.out.println("staff" + key_id);
+				System.out.println("staff"
+						+ request.getRequestURI().equals(
+								"/admins/staff/stfLogin.mwav"));
+
+				if (!(request.getRequestURI()
+						.equals("/admins/staff/stfLogin.mwav"))
+						&& (key_id == null || key_id.equals("") || key_id
+								.equals("null"))) {
+
+					/*
+					 * [중요] http://enosent.tistory.com/34
+					 * http://blog.danggun.net/4063 이 웹페이지에 리디렉션 순환 오류가 있습니다.'
+					 * 또는 'ERR_TOO_MANY_REDIRECTS' 위의 오류가 나타나는 이유는 무한대로 리다이랙션이
+					 * 되면서 나타나는 오류이다. 즉 권한부여 페이지/ 로그인 페이지 모두 stfLogin 페이지로
+					 * 리다이렉트하니까.
+					 * 
+					 * 이때 해당 페이지 URL 과 동일하면 그만 멈추도록 해야한다.
+					 * 
+					 * 리다이렉션은 그 뒤의 문장까지 다실행한다.
 					 */
-					
-					//현재들어온 url 과 동일한 경우 true 제출함으로써 무한 리다이렉션을 막는다.
+
+					// 현재들어온 url 과 동일한 경우 true 제출함으로써 무한 리다이렉션을 막는다.
 					if ("/Admins/CompanyMgr/Staff/StfLogin.mwav".equals(request
-							.getRequestURI())){
-						//들어왔나?
+							.getRequestURI())) {
+						// 들어왔나?
 						System.out.println("제발");
 						return true;
 					}
 					response.sendRedirect("/Admins/CompanyMgr/Staff/StfLogin.mwav");
 
 					return false;
-				}else{
-					//staff 로그인한 상태 또는 로그인을 시도 (/admins/staff/stfLogin.mwav)
-					//위에서 !(auth_url.equals("/admins/staff/stfLogin.mwav") 체크 안하면 로그인 시도해도 그냥 로그인페이지로 리다이렉트
+				} else {
+					// staff 로그인한 상태 또는 로그인을 시도 (/admins/staff/stfLogin.mwav)
+					// 위에서 !(auth_url.equals("/admins/staff/stfLogin.mwav") 체크
+					// 안하면 로그인 시도해도 그냥 로그인페이지로 리다이렉트
 					System.out.println("로그인상태 (staff)");
 					return true;
 				}
@@ -133,14 +143,18 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 							 * (http://localhost:8080/test/index.jsp)
 							 * request.getServletPath(); //파일명 (/index.jsp)
 							 */
-							// System.out.println("== 인증 체크가 필요 있는 URL ============================");
-							// System.out.println("== URL : " + urls.get(i)+
-							// " ============================");
+							log.info("== 인증 체크가 필요 있는 URL ============================");
+							log.info("== URL : " + urls.get(i)
+									+ " ============================");
 
 							try {
 
-								key_id = Integer.toString(member.getMember_id()); // request에서
-							
+								if (member != null) {
+									key_id = Integer.toString(member
+											.getMember_id()); // request에서
+								} else {
+									key_id = null;
+								}
 								returnUrl = request.getRequestURI(); // 현재 URL
 								if (key_id == null || key_id.equals("")
 										|| key_id.equals("null")) { // id가 Null

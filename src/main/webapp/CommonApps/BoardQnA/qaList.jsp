@@ -3,31 +3,22 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
-<div class="row">
+
+<div class="row col-md-12 col-xs-12 col-sm-12">
 	<%--================================================시작========================================================== --%>
 	<form name="qaList" method="post" action="/qa/qaList.mwav">
 		<%--비회원인 경우 HIDDEN으로 메일 유지해줘야 한다. 그래야 페이지가 이동하더라도 이상없다.--%>
 		<input type="hidden" name="uqUserEmail" value="${param.uqUserEmail}">
-		<div class="input-group custom-search-form">
-			<input type="text" class="form-control" placeholder="Search...">
-			<span class="input-group-btn">
-				<button class="btn btn-default" type="button">
-					<i class="fa fa-search"></i>
-				</button>
-			</span>
-		</div>
 		<div class="enter"></div>
 		<input type="hidden" name="pageNum" />
 
-		<table class="table table-striped">
+		<table class="table table-hover">
 			<thead>
 				<tr>
-					<th class="">NO.</th>
-					<th class="">Group</th>
-					<th class="">Title</th>
-					<th class="hidden-xs">Content</th>
-					<th class="hidden-xs">WriteDate</th>
-					<th class="">Status</th>
+					<th class="col-md-2">분류</th>
+					<th class="col-md-7">제목</th>
+					<th class="col-md-2">등록일</th>
+					<th class="col-md-1"></th>
 					<%-- <th>관리메뉴</th> 삭제예정 --%>
 
 				</tr>
@@ -42,12 +33,12 @@
 									value="${RselectListQAList.QnA_id }">
 
 								<input type="hidden" id="no" name="NO" value="${status.count}">
-							
-								<td class="">${RselectListQAList.ROWNUM}</td>
+								<%-- 
+								<td class="">${RselectListQAList.ROWNUM}</td> --%>
 								<td class="">${RselectListQAList.uqGroup}</td>
 								<td><a
 									href="javascript:window.location.href='/qa/qaView.mwav?QnA_id=${RselectListQAList.QnA_id}'">${RselectListQAList.uqTitle}</a></td>
-								<td class="hidden-xs">${RselectListQAList.uqContent}</td>
+								<%-- <td class="hidden-xs">${RselectListQAList.uqContent}</td> --%>
 								<%-- <td>
 										<button type="button" class="btn btn-info"
 											onclick="javascript:window.location.href='/qa/qaView.mwav?QnA_id=${RselectListQAList.QnA_id}'">보기</button>&nbsp;
@@ -124,10 +115,9 @@
 						</c:if>
 						<c:forEach var="i" begin="${pagingVO.startPage}"
 							end="${pagingVO.endPage}">
-							<li><a href="/qa/qaList.mwav?pageNum=${i}&uqUserEmail=${param.uqUserEmail}">${i}</a>
-							<%--회원 비회원 처리해줘야 한다 --%>
-							
-							</li>
+							<li><a
+								href="/qa/qaList.mwav?pageNum=${i}&uqUserEmail=${param.uqUserEmail}">${i}</a>
+								<%--회원 비회원 처리해줘야 한다 --%></li>
 						</c:forEach>
 						<c:if test="${pagingVO.endPage < pagingVO.pageCount}">
 							<li><a

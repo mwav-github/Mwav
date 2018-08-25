@@ -12,10 +12,7 @@
 container 안에 포함시키면된다.
 
 -->
-<!-- imsi -->
-<link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"
-	rel="stylesheet">
+
 
 <input type="hidden" name="pageNum" />
 <%-- <div id="table_reset" class="table-responsive">
@@ -66,6 +63,7 @@ container 안에 포함시키면된다.
 <c:choose>
 	<c:when test="${fn:length(selectListBnsList) > 0}">
 		<c:forEach var="VselectListBnsList" items="${selectListBnsList}">
+				<c:if test="${VselectListBnsList.bnStatus eq '2'}">
 			<input type="hidden" id="bNews_id" name="bNews_id"
 				value="${VselectListBnsList.bNews_id }">
 			<div class="row">
@@ -86,6 +84,7 @@ container 안에 포함시키면된다.
 				</div>
 			</div>
 			<div class="enter"></div>
+			</c:if>
 		</c:forEach>
 	</c:when>
 	<c:otherwise>
@@ -102,16 +101,16 @@ container 안에 포함시키면된다.
 
 				<c:if test="${pagingVO.startPage > pagingVO.pageBlock}">
 					<li><a
-						href="/board/bnsList.mwav?pageNum=${pagingVO.startPage - pagingVO.pageBlock}"><span
+						href="/Company/ITTrends/ITTrends.mwav?pageNum=${pagingVO.startPage - pagingVO.pageBlock}"><span
 							class="glyphicon glyphicon-chevron-left"></span></a></li>
 				</c:if>
 				<c:forEach var="i" begin="${pagingVO.startPage}"
 					end="${pagingVO.endPage}">
-					<li><a href="/board/bnsList.mwav?pageNum=${i}">${i}</a></li>
+					<li><a href="/Company/ITTrends/ITTrends.mwav?pageNum=${i}">${i}</a></li>
 				</c:forEach>
 				<c:if test="${pagingVO.endPage < pagingVO.pageCount}">
 					<li><a
-						href="/board/bnsList.mwav?pageNum=${pagingVO.startPage + pagingVO.pageBlock}"><span
+						href="/Company/ITTrends/ITTrends.mwav?pageNum=${pagingVO.startPage + pagingVO.pageBlock}"><span
 							class="glyphicon glyphicon-chevron-right"></span></a></li>
 				</c:if>
 				<!-- <li><a href="">&laquo;</a></li>

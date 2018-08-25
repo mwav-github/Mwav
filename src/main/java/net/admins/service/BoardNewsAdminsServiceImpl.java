@@ -35,7 +35,7 @@ public class BoardNewsAdminsServiceImpl implements BoardNewsAdminsService {
 	public void insertNsmForm(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		System.out.println("map=" + map);
-
+		map.put("bnStatus", 1);
 		boardNewsAdminsDAO.insertNsmForm(map);
 	}
 
@@ -112,6 +112,18 @@ public class BoardNewsAdminsServiceImpl implements BoardNewsAdminsService {
 	public void deleteNsmDelete(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		boardNewsAdminsDAO.deleteNsmDelete(map);
+	}
+
+	@Override
+	public void updateNsmBnStatus(String bNews_id) {
+		// TODO Auto-generated method stub
+		boardNewsAdminsDAO.updateNsmBnStatus(bNews_id);
+	}
+
+	@Override
+	public void updateNsmBnStatusNotice(String bNews_id) {
+		// TODO Auto-generated method stub
+		boardNewsAdminsDAO.updateNsmBnStatusNotice(bNews_id);
 	}
 
 }

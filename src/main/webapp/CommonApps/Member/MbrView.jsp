@@ -86,7 +86,7 @@
 					<a href="/member/mbrUpdate.mwav" data-original-title="Edit this user"
 					data-toggle="tooltip" type="button" class="btn btn-md btn-warning"><i
 						class="glyphicon glyphicon-edit"></i></a> <a
-					href="/CustomerService/CS-MasterPage.mwav?mode=SDMbrDelete"
+					href="/CustomerService/CS-MasterPage_1.mwav?mode=SDMbrDelete"
 					data-original-title="Remove this user" data-toggle="tooltip"
 					type="button" class="btn btn-md btn-danger"><i
 						class="glyphicon glyphicon-remove"></i></a>

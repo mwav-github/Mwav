@@ -3,27 +3,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!-- jQuery Version 1.11.0 -->
-<script src="/CommonLibrary/Javascript/Common.js"></script>
-<!-- 소제목 -->
-
-<!-- ----- -->
-
-<!-- Content Column 
-container 안에 포함시키면된다.
-
--->
-<!-- imsi -->
-<link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"
-	rel="stylesheet">
 
 <input type="hidden" name="pageNum" />
-
-
 <div class="text-enter"></div>
 
 <c:choose>
 	<c:when test="${fn:length(selectListBuList) > 0}">
+	
 		<c:forEach var="VselectListBuList" items="${selectListBuList}">
 			<input type="hidden" id="bNews_id" name="bNews_id"
 				value="${VselectListBuList.bUsers_id }">
@@ -64,16 +50,16 @@ container 안에 포함시키면된다.
 
 				<c:if test="${pagingVO.startPage > pagingVO.pageBlock}">
 					<li><a
-						href="/board/buList.mwav?pageNum=${pagingVO.startPage - pagingVO.pageBlock}"><span
+						href="/CustomerService/Announcement/Announcement.mwav?pageNum=${pagingVO.startPage - pagingVO.pageBlock}"><span
 							class="glyphicon glyphicon-chevron-left"></span></a></li>
 				</c:if>
 				<c:forEach var="i" begin="${pagingVO.startPage}"
 					end="${pagingVO.endPage}">
-					<li><a href="/board/buList.mwav?pageNum=${i}">${i}</a></li>
+					<li><a href="/CustomerService/Announcement/Announcement.mwav?pageNum=${i}">${i}</a></li>
 				</c:forEach>
 				<c:if test="${pagingVO.endPage < pagingVO.pageCount}">
 					<li><a
-						href="/board/buList.mwav?pageNum=${pagingVO.startPage + pagingVO.pageBlock}"><span
+						href="/CustomerService/Announcement/Announcement.mwav?pageNum=${pagingVO.startPage + pagingVO.pageBlock}"><span
 							class="glyphicon glyphicon-chevron-right"></span></a></li>
 				</c:if>
 				<!-- <li><a href="">&laquo;</a></li>

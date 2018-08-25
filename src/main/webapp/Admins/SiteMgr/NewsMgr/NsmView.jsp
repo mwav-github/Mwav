@@ -93,17 +93,21 @@
 								<table class="table table-striped">
 									<thead>
 										<tr>
-
-											<c:set var="bnStatus" value="${selectOneNsmView.bnStatus }" />
-											<c:if test="${fn:contains(bnStatus, '임시저장상태')}">
-												<span class="pull-right text-danger"><strong>${selectOneNsmView.bnStatus }
-												</strong></span>
-											</c:if>
-											<c:if test="${fn:contains(bnStatus, '현재공지상태')}">
-												<span class="pull-right text-primary"><strong>${selectOneNsmView.bnStatus }
-												</strong></span>
-											</c:if>
-
+											<td><c:set var="bnStatus"
+													value="${selectOneNsmView.bnStatus }" /> <c:if
+													test="${fn:contains(bnStatus, '삭제완료.')}">
+													<span class="pull-right text-danger"><strong>${bnStatus }
+													</strong></span>
+												</c:if> <c:if test="${fn:contains(bnStatus, '임시저장.')}">
+													<span class="pull-right text-primary"><strong>${bnStatus }
+													</strong></span>
+												</c:if> <c:if test="${fn:contains(bnStatus, '공지완료.')}">
+													<span class="pull-right text-success"><strong>${bnStatus }
+													</strong></span>
+												</c:if></td>
+											<td><a
+												href="/board/bnsView.mwav?bNews_id=${selectOneNsmView.bNews_id}" target="_blank">게시글
+													확인</a></td>
 											<div class="enter"></div>
 										</tr>
 										<tr class="active">
@@ -124,7 +128,7 @@
 											<td>${selectOneNsmView.bnViewCount}</td>
 											<td>${selectOneNsmView.bnInsertDt}</td>
 											<td>${selectOneNsmView.staff_id}</td>
-											<td>${selectOneBnsView.bnOrder}</td>
+											<td>${selectOneNsmView.bnOrder}</td>
 										</tr>
 									</tbody>
 								</table>
@@ -138,23 +142,27 @@
 										<td>${selectOneNsmView.bnTitle}</td>
 									</tr>
 
-
-
-
 									<tr>
 										<th class="active">SubTitle</th>
 									</tr>
 									<tr>
 										<td>${selectOneNsmView.bnSubTitle}</td>
 									</tr>
-
+									
 									<tr>
 										<th class="active">Reference</th>
 									</tr>
 									<tr>
 										<td>${selectOneNsmView.bnRelatedLink}</td>
 									</tr>
-
+									
+									<tr>
+										<th class="active">Keywords</th>
+									</tr>
+									<tr>
+										<td>${selectOneNsmView.bnKeyword}</td>
+									</tr>
+									
 									<tr>
 										<th class="active">Content</th>
 
@@ -168,6 +176,11 @@
 
 							<br style="clear: both">
 							<p class="pull-right">
+								<button type="button" class="btn btn-success"
+									onClick="javascript:window.location.href='/admin/boardNews/nsmBnStatusUpdate.mwav?bNews_id=${selectOneNsmView.bNews_id}'">임시저장</button>
+								<button type="button" class="btn btn-success"
+									onClick="javascript:window.location.href='/admin/boardNews/nsmBnStatusNoticeUpdate.mwav?bNews_id=${selectOneNsmView.bNews_id}'">공지완료</button>
+
 								<button type="button" class="btn btn-success"
 									onClick="javascript:window.location.href='/admin/boardNews/nsmList.mwav?pageNum=${pageNum}'">All
 									List</button>

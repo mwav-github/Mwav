@@ -1,6 +1,8 @@
 @charset "utf-8";
 
-/* mwav card section_3  */
+/* mwav card section_3  
+ * 사용 URL : http://www.mwav.net/CompanyItem/WebSiteBuilding/WebSiteBuilding.mwav
+ * */
 figure.snip1174 {
 	color: #fff;
 	position: relative;
@@ -9,9 +11,9 @@ figure.snip1174 {
 	background-color: #1a1a1a;
 	color: #ffffff;
 	text-align: left;
-	margin: 10px;
+	/*margin: 10px;*/
 	margin-bottom: 40px;
-	/*width:   100%;*/
+	width:   100%;
 	border-radius: 0px;
 }
 
@@ -119,7 +121,9 @@ figure.snip1174:hover   p, figure.snip1174:hover   h2 {
 	}
 }
 
-/* mwav card section */
+/* mwav card section_1_1 
+ * 사용 : 메인페이지 
+ * */
 .news {
 	background: #fff;
 	position: relative;
@@ -137,7 +141,7 @@ figure.snip1174:hover   p, figure.snip1174:hover   h2 {
 	position: relative;
 }
 
-.news   .img-figure     img {
+.news   .img-figure  img {
 	position: relative;
 	overflow: hidden;
 	-webkit-transition: all 1s ease;
@@ -201,6 +205,22 @@ figure.snip1174:hover   p, figure.snip1174:hover   h2 {
 	transition: all 0.5s ease;
 }
 
+.news      p.description2 {
+	position: relative;
+	font-weight: normal;
+	line-height: 22px;
+	font-size: 12px;
+	/*opacity: 0;*/
+	text-align: left;
+	/*padding: 15px 30px 0px 30px; */
+	padding: 70px 30px 0px 30px;
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-ms-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+}
+
 /* 
 .news:hover p.description  {
 	opacity: 1;
@@ -209,6 +229,10 @@ figure.snip1174:hover   p, figure.snip1174:hover   h2 {
 p.more {
 	text-align: center;
 }
+p.more2 {
+	text-align: center;
+}
+
 
 .more     a {
 	position: relative;
@@ -222,6 +246,37 @@ p.more {
 	transition: all 0.5s ease;
 	display: inline-block;
 	color: #28998b;
+}
+
+.more2     a {
+	position: relative;
+	font-size: 13px;
+	margin-top: 10px;
+	display: block;
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-ms-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+	display: inline-block;
+	color: #28998b;
+}
+
+.more2     a:after {
+	content: '';
+	width: 18px;
+	height: 1px;
+	position: absolute;
+	left: 55px;
+	top: 9px;
+	background: #28998b;
+	vertical-align: middle;
+	margin-left: 10px;
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-ms-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
 }
 
 .more     a:after {
@@ -256,6 +311,112 @@ p.more {
 	padding: 3px 15px;
 }
 
+.cat2 {
+	background: #ff5900;
+	color: #fff;
+	text-transform: uppercase;
+	position: absolute;
+	left: 0;
+	top: 20px;
+	z-index: 1;
+	padding: 3px 15px;
+}
+
+.smallcat_darkblue {
+	background: #091D42;
+	color: #fff;
+	text-transform: uppercase;
+	position: absolute;
+	left: 0;
+	top: 20px;
+	z-index: 1;
+	padding: 3px 15px;
+	font-size:12px;
+}
+.smallcat_blue {
+	background: #396A92;
+	color: #fff;
+	text-transform: uppercase;
+	position: absolute;
+	left: 0;
+	top: 20px;
+	z-index: 1;
+	padding: 3px 15px;
+	font-size:12px;
+}
+.smallcat_orange {
+	background: #F07241;
+	color: #fff;
+	text-transform: uppercase;
+	position: absolute;
+	left: 0;
+	top: 20px;
+	z-index: 1;
+	padding: 3px 15px;
+	font-size:12px;
+}
+
+.smallcat_red {
+	background: #C04848;
+	color: #fff;
+	text-transform: uppercase;
+	position: absolute;
+	left: 0;
+	top: 20px;
+	z-index: 1;
+	padding: 3px 15px;
+	font-size:12px;
+}
+
+.smallcat_red_type2 {
+	background: #280600;
+	color: #fff;
+	text-transform: uppercase;
+	position: absolute;
+	left: 0;
+	top: 20px;
+	z-index: 1;
+	padding: 3px 15px;
+	font-size:12px;
+}
+
+.smallcat_gray_type1 {
+	background: #776A6A;
+	color: #fff;
+	text-transform: uppercase;
+	position: absolute;
+	left: 0;
+	top: 20px;
+	z-index: 1;
+	padding: 3px 15px;
+	font-size:12px;
+}
+
+.smallcat_kakie {
+	background: #AD9A6F;
+	color: #fff;
+	text-transform: uppercase;
+	position: absolute;
+	left: 0;
+	top: 20px;
+	z-index: 1;
+	padding: 3px 15px;
+	font-size:12px;
+}
+
+.smallcat_kakie_type2 {
+	background: #776A6A;
+	color: #fff;
+	text-transform: uppercase;
+	position: absolute;
+	left: 0;
+	top: 20px;
+	z-index: 1;
+	padding: 3px 15px;
+	font-size:12px;
+}
+
+
 /* mwav hover */
 .portfolio-hover {
 	background: rgba( 98, 175, 208, .8);
@@ -278,6 +439,8 @@ p.more {
 	margin-top: -12px;
 	color: #fff
 }
+
+
 
 .portfolio-hover:hover {
 	opacity: 1 color:   white;
@@ -426,94 +589,7 @@ p.more {
 /* ====status bar======
  */
 
-/*=====카드결제 및 입력====== */
-/* Everything but the jumbotron gets side spacing for mobile first views */
-.header, .marketing, .footer {
-	padding-right: 15px;
-	padding-left: 15px;
-}
 
-/* Make the masthead heading the same height as the navigation */
-.header           h3 {
-	margin-top: 0;
-	margin-bottom: 0;
-	line-height: 40px;
-}
-
-.show-on-hover:hover>ul.dropdown-menu {
-	display: block;
-}
-
-.container-narrow>hr {
-	margin: 30px 0;
-	background: #ffffff;
-}
-
-/* Supporting marketing content */
-.marketing {
-	margin: 20px 0;
-}
-
-.marketing           p+h4 {
-	margin-top: 28px;
-}
-
-/* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px ) {
-	/* Remove the padding we set earlier */
-	.header, .marketing, .footer {
-		padding-right: 0;
-		padding-left: 0;
-	}
-
-	/* Space out the masthead */
-	.header {
-		margin-bottom: 30px;
-	}
-
-	/* Remove the bottom border on the jumbotron for visual effect */
-	.jumbotron {
-		border-bottom: 0;
-	}
-}
-
-.panel-title {
-	display: inline;
-	font-weight: bold;
-}
-
-.checkbox.pull-right {
-	margin: 0;
-}
-
-.pl-ziro {
-	padding-left: 0px;
-}
-
-.panel {
-	border: 0px solid transparent;
-	background: #f1f1f1;
-}
-
-.panel-default>.panel-heading      .badge {
-	color: #ffffff;
-	background-color: transparent;
-}
-
-.panel-heading {
-	border-bottom: 0px solid #555555 !important;
-}
-
-.panel-default>.panel-heading {
-	color: #ffffff;
-	background-color: #333333;
-}
-
-.panel-default>.panel-heading {
-	color: #ffffff;
-	background-color: #333333;
-	padding-bottom: 15px;
-}
 
 /* ================장바구니============== */
 /***
@@ -690,7 +766,8 @@ Licensed under MIT
 					VIEW
 *********************************************/
 .content-wrapper {
-	max-width: 1140px;
+	/*max-width: 1140px;*/
+	max-width: 100%;
 	background: #fff;
 	margin: 0 auto;
 	margin-top: 25px;
@@ -890,7 +967,8 @@ body {
 	/*background : #F5F5F5 !important;  shop에만 적용되도록 수정 필요.*/
 	font-family: '맑은 고딕', 'Malgun Gothic', '굴림', 'Gulim',
 		'NanumGothic' !important;
-
+    overflow-x : hidden !important;
+    line-height: 25px !important;
 	/* body 선언은 테이블 적용 안된다. -> 별도 적용 필요.*/
 }
 
@@ -1113,13 +1191,16 @@ body {
 /* 로고 수정 위치에 따른 수정 !!
  * 추후 정확히 변경 필요
  * */
-@media screen and (max-width: 800px ) {
+@media screen and (max-width: 1023px) {
 	.logo_800_m {
 		margin-left: -10px !important;
 		margin-top: -8px !important;
 	}
 	.logo_800_h {
 		height: 40px !important;
+	}
+	.mgl3_1023 {
+		margin-left: 3% !important;
 	}
 }
 
@@ -1408,6 +1489,7 @@ padding: 10px 35px; */
 	color: white;
 }
 
+/* 테블릿 경계 */
 @media screen and (max-width: 768px ) {
 	.dropdown-menu_change>li>a {
 		color: white !important;
@@ -1418,6 +1500,11 @@ padding: 10px 35px; */
 	.dropdown-menu_change>li>a:active {
 		background-color: #04a3ed !important;
 	}
+	
+    .mgt3_768 {
+	margin-top: 3% !important;
+}
+	
 }
 
 .menu_shop        .navbar-nav>li>a {
@@ -1496,18 +1583,6 @@ Reference: http://avexdesigns.com/responsive-youtube-embed/
 	/* 가로 세로 순  보통 100% auto */
 }
 
-/* bootstrap 기본 hr 변형 */
-.hr_b {
-	border-top: 3px solid #337ab7 !important;
-}
-
-.hr_g {
-	border-top: 2px solid #a1d490 !important;
-}
-
-.hr_gray {
-	border-top: 3px solid #78828D !important;
-}
 
 /*========아래는 텍스트 중앙 정렬 블록요소에만 적용 (p h3 등)태그만 http://webdir.tistory.com/31 */
 .align_left {
@@ -1571,10 +1646,6 @@ Reference: http://avexdesigns.com/responsive-youtube-embed/
 	padding: 20px 0;
 }
 
-.mgt-1_9 {
-	margin-top: -1.9% !important;
-}
-
 /*margin left 5%*/
 .mgl5 {
 	margin-left: 5% !important;
@@ -1596,9 +1667,6 @@ Reference: http://avexdesigns.com/responsive-youtube-embed/
 	margin-top: 2% !important;
 }
 
-.mgt3 {
-	margin-top: 3% !important;
-}
 
 .mgt3_5 {
 	margin-top: 3.5% !important;
@@ -1607,6 +1675,11 @@ Reference: http://avexdesigns.com/responsive-youtube-embed/
 /*margin top 5%*/
 .mgt5 {
 	margin-top: 5% !important;
+}
+
+/*margin top 10%*/
+.mgt10 {
+	margin-top: 10% !important;
 }
 
 /*margin bottom 5%*/
@@ -1620,6 +1693,19 @@ Reference: http://avexdesigns.com/responsive-youtube-embed/
 
 .mgb3 {
 	margin-bottom: 3% !important;
+}
+
+/*margin top 1% 
+사용 : GNB 로그인 버튼. 
+*/
+
+.mgt1 {
+	margin-top: 1.0% !important;
+}
+
+/*margin top -1.9% */
+.mgt-1_9 {
+	margin-top: -1.9% !important;
 }
 
 /*margin top 4% */

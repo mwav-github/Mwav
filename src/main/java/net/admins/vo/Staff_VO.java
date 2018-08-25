@@ -1,7 +1,6 @@
 package net.admins.vo;
 
-public class Staff_VO {
-	private short staff_id; // 직원코드 ID(PK)
+public class Staff_VO extends Staff {
 	private String stfLoginId; // 직원아이디
 	private String stfLoginPw; // 직원패스워드
 	private String stfNumber; // 사번
@@ -37,14 +36,6 @@ public class Staff_VO {
 	private java.sql.Timestamp stfRecentLoginDt; // 최근접속일
 	private String stfIpAddress; // PC아이피
 	
-	public short getStaff_id() {
-		return staff_id;
-	}
-
-	public void setStaff_id(short staff_id) {
-		this.staff_id = staff_id;
-	}
-
 	public String getStfLoginId() {
 		return stfLoginId;
 	}
@@ -319,7 +310,7 @@ public class Staff_VO {
 
 	@Override
 	public String toString() {
-		return "Staff_VO의 정보입니다 [staff_id=" + staff_id + ", stfLoginId=" + stfLoginId
+		return "Staff_VO의 정보입니다 [staff_id=" + super.getStaff_id() + ", stfLoginId=" + stfLoginId
 				+ ", stfLoginPw=" + stfLoginPw + ", stfNumber=" + stfNumber
 				+ ", stfName=" + stfName + ", stfNickname=" + stfNickname
 				+ ", stfBranch=" + stfBranch + ", stfDeptName=" + stfDeptName

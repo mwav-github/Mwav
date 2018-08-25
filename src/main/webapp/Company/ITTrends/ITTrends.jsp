@@ -18,7 +18,7 @@
 <!-- /.row -->
 
 <!-- Content Row -->
-<div class="row">
+<div class="row" >
 	<!-- Sidebar Column left메뉴 추후 변경 예정<시작>-->
 	<div class="col-md-3">
 		<jsp:include page="/Company/CompanyLeftMenu.jsp" flush="false" />

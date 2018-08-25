@@ -23,6 +23,34 @@ public class StatisticsVO {
 	private String stUserAgent;
 	private String stClientScreen;
 	private String stHTTP_UA_CPU;
+	private String stDeviceType;
+	private String stDeviceInfo;
+	private String stBrowserInfo;
+	private String stCountryInfo;
+	public String getStDeviceType() {
+		return stDeviceType;
+	}
+	public void setStDeviceType(String stDeviceType) {
+		this.stDeviceType = stDeviceType;
+	}
+	public String getStDeviceInfo() {
+		return stDeviceInfo;
+	}
+	public void setStDeviceInfo(String stDeviceInfo) {
+		this.stDeviceInfo = stDeviceInfo;
+	}
+	public String getStBrowserInfo() {
+		return stBrowserInfo;
+	}
+	public void setStBrowserInfo(String stBrowserInfo) {
+		this.stBrowserInfo = stBrowserInfo;
+	}
+	public String getStCountryInfo() {
+		return stCountryInfo;
+	}
+	public void setStCountryInfo(String stCountryInfo) {
+		this.stCountryInfo = stCountryInfo;
+	}
 	private Timestamp stStatisticsDt;
 	
 

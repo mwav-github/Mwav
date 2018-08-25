@@ -9,6 +9,11 @@
 	<configs>
 	</configs>
 	<autoconfigs>
+		<config>src/main/resources/config/spring/mwav-data.xml</config>
+		<config>src/main/resources/config/spring/mwav-mapper.xml</config>
+		<config>src/main/resources/config/spring/mwav-framework.xml</config>
+		<config>src/main/resources/config/spring/mwav-common.xml</config>
+		<config>src/main/resources/config/spring/mwav-mvc.xml</config>
 	</autoconfigs>
 	<configSets>
 	</configSets>

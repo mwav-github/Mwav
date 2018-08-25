@@ -3,8 +3,9 @@ package net.common.charts.dao;
 import java.util.List;
 import java.util.Map;
 
-import net.common.charts.vo.SeriesVO;
-import net.common.charts.vo.SeriesVO_Arrary;
+import net.common.charts.vo.SeriesTypeTwoVO;
+import net.common.charts.vo.SeriesTypeOneVO;
+import net.common.charts.vo.SeriesDataTypeOneVO;
 import net.common.dao.AbstractDAO;
 
 import org.springframework.stereotype.Repository;
@@ -18,21 +19,38 @@ public class HighChartsDAO extends AbstractDAO {
 	
 
 	@SuppressWarnings("unchecked")
-	public List<SeriesVO_Arrary> selectListWeeklyUsers() {
+	public List<SeriesTypeOneVO> selectListWeeklyUsers(Map<String, Object> hashmap) {
 		// TODO Auto-generated method stub
-		return (List<SeriesVO_Arrary>) selectList("highCharts.selectListWeeklyUsers");
+		
+		System.out.println("ddd"+hashmap.get("stPromoterId"));
+
+		return (List<SeriesTypeOneVO>) selectList("highCharts.selectListWeeklyUsers", hashmap);
 
 	}
 
-	public List<SeriesVO_Arrary> selectListTop10Page() {
+	public List<SeriesTypeOneVO> selectListTop10Page(Map<String, Object> hashmap) {
 		// TODO Auto-generated method stub
-		return (List<SeriesVO_Arrary>) selectList("highCharts.selectListTop10Page");
+		return (List<SeriesTypeOneVO>) selectList("highCharts.selectListTop10Page", hashmap);
 
 	}
 
-	public List<SeriesVO_Arrary> selectListClientScreenSize() {
+	public List<SeriesDataTypeOneVO> selectListClientScreenSize(Map<String, Object> hashmap) {
 		// TODO Auto-generated method stub
-		return (List<SeriesVO_Arrary>) selectList("highCharts.selectListClientScreenSize");
+		return (List<SeriesDataTypeOneVO>) selectList("highCharts.selectListClientScreenSize", hashmap);
 	}
+
+	public List<SeriesTypeOneVO> selectListClientBrowerInfo(
+			Map<String, Object> hashmap) {
+		// TODO Auto-generated method stub
+		return (List<SeriesTypeOneVO>) selectList("highCharts.selectListClientBrowerInfo", hashmap);
+	}
+
+
+	public List<SeriesTypeOneVO> selectListClientBrowerVersion(String browser) {
+		// TODO Auto-generated method stub
+		System.out.println("df비나이다"+browser);
+		return (List<SeriesTypeOneVO>) selectList("highCharts.selectListClientBrowerVersion", browser);
+	}
+
 
 }

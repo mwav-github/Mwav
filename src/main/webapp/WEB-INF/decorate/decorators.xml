@@ -20,16 +20,24 @@ http://stg.etribe.co.kr/2014/07/29/view-technology/
    > layout이 먼저 html 생성되고 그리고 그안에 각각 들어갈 body가 포함되서 레이아웃출력
      header footer 등 정한건 고정
 
+
+Sitemesh의 경우 URL BASE로 
+
+예) 아래의 경우 실제 주소창에는 /board/buView.mwav로 찍히므로 이때 sitemesh가 동작하지 않는다.
+   redirect 시키거나 해야 한다. 
+@RequestMapping(value = "/board/buView.mwav")
+	public ModelAndView selectOneBuView(CommandMap commandMap,
+			HttpServletRequest request, HttpSession session) throws Exception {
+		ModelAndView mv = new ModelAndView("/CustomerService/CS-MasterPage");
     
 -->
 <decorators defaultdir="/Templates/">
-	<excludes>
+	<!-- <excludes>
         <pattern>/CustomerService/CS-MasterPage.mwav</pattern>
     </excludes>
-        
+        -->
     <!-- CustomerService -->
-    <decorator name="customerServiceTemplate" title="CustomerService" page="CustomerServiceMasterPage.jsp">
-                
+    <decorator name="customerServiceTemplate" title="CustomerService" page="CustomerServiceMasterPage.jsp">               
         <pattern>/CustomerService/*</pattern>
     </decorator>
  	<!-- 일단 주석-->
@@ -54,8 +62,7 @@ http://stg.etribe.co.kr/2014/07/29/view-technology/
         많은 URL을 포함하고 있는 프로젝트라면
         decorator를 검색하는 시간도 오래 걸리므로
         decorator를 사용하지 않는 페이지도 반드시 등록을 해주어야 한다. 
-    -->
-    <!-- 
+  
     <excludes>
         <pattern>/popup/*</pattern>
     </excludes>
@@ -74,7 +81,7 @@ http://stg.etribe.co.kr/2014/07/29/view-technology/
                 page="template/mypage.jsp">
         <pattern>/member/mypage</pattern>
     </decorator>
-    -->
+    
 
         여러개의 URL에 하나의 Template을 정의하고 싶다면
         <pattern>/test/*</pattern> 엘리먼트를

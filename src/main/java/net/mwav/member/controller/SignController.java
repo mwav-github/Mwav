@@ -201,9 +201,9 @@ public class SignController {
 			memberService.insertSnsForm(map);
 			member_tbl_VO.setMember_id(member_id);
 			session.setAttribute("member", member_tbl_VO);
-			if(request.getSession().getAttribute("autoLoginSub")!=null){
-				memberService.updateAutoLogin((String)request.getSession().getAttribute("autoLoginSub"), response, member_tbl_VO.getMember_id());
-				request.getSession().removeAttribute("autoLoginSub");
+			if(request.getSession().getAttribute("autoLoginChk")!=null){
+				memberService.updateAutoLogin((String)request.getSession().getAttribute("autoLoginChk"), response, member_tbl_VO.getMember_id());
+				request.getSession().removeAttribute("autoLoginChk");
 			}
 			logger.info("insertSnsForm success!!!!!!");
 		} else {
@@ -220,10 +220,10 @@ public class SignController {
 
 			member_tbl_VO.setMember_id(member_id);
 			session.setAttribute("member", member_tbl_VO);
-			System.out.println("자동로그인값"+request.getSession().getAttribute("autoLoginSub"));
-			if(request.getSession().getAttribute("autoLoginSub")!=null){
-				memberService.updateAutoLogin((String)request.getSession().getAttribute("autoLoginSub"), response, member_tbl_VO.getMember_id());
-				request.getSession().removeAttribute("autoLoginSub");
+			System.out.println("자동로그인값"+request.getSession().getAttribute("autoLoginChk"));
+			if(request.getSession().getAttribute("autoLoginChk")!=null){
+				memberService.updateAutoLogin((String)request.getSession().getAttribute("autoLoginChk"), response, member_tbl_VO.getMember_id());
+				request.getSession().removeAttribute("autoLoginChk");
 			}
 		}
 

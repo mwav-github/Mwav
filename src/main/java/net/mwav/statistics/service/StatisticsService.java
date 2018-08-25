@@ -14,7 +14,7 @@ public interface StatisticsService {
 	String selectNextPk();
 
 	void insertStatistics(StatisticsLogVO log_vo);
-
+	void insertErrorStatistics(StatisticsLogVO log_vo);
 	
 	void updateStClientScreen(Map<String, Object> map);
 

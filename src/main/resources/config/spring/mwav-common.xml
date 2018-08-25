@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:p="http://www.springframework.org/schema/p"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="http://www.springframework.org/schema/beans"
-	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.springframework.org/schema/beans" xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+	
+	<!-- 여기서 안하는 경우 아래 이메일 쪽에서 찾지를 못한다.
+	     패키지 스캔 후 진행해야하니 이메일쪽만 아래 스캔하면 될듯.
+	 -->
+	<context:component-scan base-package="net"></context:component-scan>
 
 
-<!-- 소셜로그인 프로퍼티 파일 연결 -->
+	<!-- 소셜로그인 프로퍼티 파일 연결 -->
 	<bean
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="ignoreResourceNotFound" value="true" />
@@ -30,11 +33,11 @@
 		class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
 		<property name="supportedMediaTypes" value="application/json" />
 	</bean>
-	
+
 	<bean id="jacksonMessageConverter"
 		class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" />
 
-	
+
 
 	<bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
 		<property name="messageConverters">
@@ -65,15 +68,15 @@
 	<!-- gmail -->
 	<!-- 이메일 보내기 JavaMailSender -->
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-		<property name="host" value="smtp.gmail.com" />
+		<property name="host" value="smtp.gmail.com" /> <!--smtp.gmail.com-->
 		<!-- 서버주소 -->
 		<property name="port" value="587" />
 		<!-- 포트번호 기본 25 구글 587 -->
 		<property name="defaultEncoding" value="utf-8" />
 		<!-- 기본인코딩 -->
-		<property name="username" value="jusung.kim@mwav.net" />
+		<property name="username" value="mwavemailtest@gmail.com" />
 		<!-- 메일주소 -->
-		<property name="password" value="QkQh1248!!" />
+		<property name="password" value="mwavtest1234" />
 		<!-- 메일비밀번호 -->
 		<property name="javaMailProperties">
 			<props>
@@ -86,10 +89,10 @@
 		</property>
 	</bean>
 
-	<bean id="emailVO" class="net.mwav.common.module.EmailVO">
+	<bean id="emailTemplates" class="net.mwav.common.module.EmailTemplates">
 	</bean>
 
-	<bean id="emailTemplates" class="net.mwav.common.module.EmailTemplates">
+	<bean id="emailVO" class="net.mwav.common.module.EmailVO">
 	</bean>
 
 	<bean id="emailSender" class="net.mwav.common.module.EmailSender">
@@ -107,7 +110,13 @@
 	</bean>
 
 
-
+	<!-- 등록안하는 경우 하기 에러 발생 Caused by: org.springframework.beans.factory.BeanCreationException: 
+		Could not autowire field: -->
 	<bean id="member_tbl_VO" class="net.mwav.member.vo.Member_tbl_VO">
 	</bean>
+
+	<bean id="staff" class="net.admins.vo.Staff_VO">
+	</bean>
+	
+	<bean id="apiNaverTrend" class="net.common.common.APINaverTrend"></bean>
 </beans>

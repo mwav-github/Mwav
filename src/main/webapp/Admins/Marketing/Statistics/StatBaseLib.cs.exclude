@@ -1,0 +1,163 @@
+using System;
+using System.Web;
+using System.Collections;
+using System.Web.UI.WebControls;
+using System.Data;
+using System.Data.SqlClient;
+
+using JinsLibrary;
+using JinsLibrary.CONFIG;
+using JinsLibrary.STATEMANAGE;
+using KistelSite.Admins.CompanyMgr.Staffs;
+
+namespace KistelSite.Admins.Statistics
+{
+	public class StatBase : System.Web.UI.Page
+	{	
+		public decimal stat_id;
+		public string pageName;
+		public string UrlHost;
+		public string UrlLocalPath;
+		public string QueryString;
+		public string UrlPathAndQuery;
+		public string prePageName = "";
+		public string UrlReferrerHost = "";
+		public string UrlReferrer = "";
+		public System.Int16 staff_id;		
+		public System.Int16 whatsAbout;
+		public int member_id;
+		public string sessionID;
+		public string UserHostAddress;
+		public string UserAgent;
+		//public string clientScreen;
+		public string HTTP_UA_CPU;
+
+		
+		private DBLib dbUtil;
+		private SqlCommand myCommand;
+		//private SqlParameter[] mySqlParameters;
+		
+		//메인통계작업
+		public int Insert()
+		{			
+			FillSlqParameters("i");
+			return dbUtil.ExecProcedure(myCommand,"sp_Statistic");
+		}
+		public int Update() //필요없지 않나(사용자가 로그인 하면.. 세션을 찾아 이름을 업데이트해야 ?
+		{
+			//FillSlqParameters("u");
+			//return dbUtil.ExecProcedure(myCommand,"sp_Statistics");
+			//세션을 찾아 이름을 업데이트해야
+			return 0;
+		}
+		//세부로그작업
+		public int Process_Log()
+		{			
+			FillSlqParameters("l");		// process Log
+			return dbUtil.ExecProcedure(myCommand,"sp_Stat_Log");
+		}
+		public void FillSlqParameters(string mode)	// mode i,u
+		{
+			myCommand = new SqlCommand();	//("sp_Assets", dbUtil.SqlConnection);
+			myCommand.CommandType = CommandType.StoredProcedure;
+
+			SqlParameter sp_mode = new SqlParameter("@sp_mode", SqlDbType.VarChar, 1);
+			sp_mode.Value = mode;
+			myCommand.Parameters.Add(sp_mode);
+			//////////////////////////////////
+			myCommand.Parameters.Add("@stat_id", SqlDbType.Decimal).Value						= stat_id;
+			if(mode == "i")		//메인통계 입력작업
+			{
+				myCommand.Parameters.Add("@UrlPathAndQuery", SqlDbType.VarChar, 500).Value	= UrlPathAndQuery;
+				myCommand.Parameters.Add("@UserHostAddress", SqlDbType.VarChar, 100).Value	= UserHostAddress;
+				myCommand.Parameters.Add("@UserAgent", SqlDbType.VarChar, 300).Value		= UserAgent;
+				myCommand.Parameters.Add("@UrlReferrerHost", SqlDbType.VarChar, 200).Value	= UrlReferrerHost;
+				myCommand.Parameters.Add("@UrlReferrer", SqlDbType.VarChar, 500).Value		= UrlReferrer;
+				myCommand.Parameters.Add("@staff_id", SqlDbType.SmallInt).Value				= staff_id;
+				myCommand.Parameters.Add("@prePageName", SqlDbType.VarChar, 50).Value		= prePageName;
+				myCommand.Parameters.Add("@whatsAbout", SqlDbType.SmallInt).Value			= whatsAbout;
+				myCommand.Parameters.Add("@member_id", SqlDbType.Int).Value					= member_id;
+				myCommand.Parameters.Add("@sessionID", SqlDbType.VarChar, 50).Value			= sessionID;
+				//myCommand.Parameters.Add("@clientScreen", SqlDbType.VarChar, 50).Value	= clientScreen;
+				myCommand.Parameters.Add("@HTTP_UA_CPU", SqlDbType.VarChar, 50).Value		= HTTP_UA_CPU;
+			}	
+			myCommand.Parameters.Add("@pageName", SqlDbType.VarChar, 50).Value			= pageName;
+			myCommand.Parameters.Add("@UrlHost", SqlDbType.VarChar, 200).Value			= UrlHost;
+			myCommand.Parameters.Add("@UrlLocalPath", SqlDbType.VarChar, 500).Value		= UrlLocalPath;
+			myCommand.Parameters.Add("@QueryString", SqlDbType.VarChar, 500).Value		= QueryString;
+			////////////////
+			myCommand.Parameters.Add("@returnValue", SqlDbType.Int).Direction = ParameterDirection.ReturnValue;
+		}
+		public StatBase()
+		{
+			dbUtil = new DBLib("sqlMyLogConnection.ConnectionString");
+		}
+		
+	}
+		
+	/// <summary>
+	/// StatBaseLib에 대한 요약 설명입니다.      /// 프로세서를 쓴다면 이게 필요한강?
+	/// </summary>	
+	public class StatBaseLib
+	{
+		/// <summary>
+		/// 유져해상도를 구한다.
+		/// </summary>
+		/// <param name="stat_id">정보를 입력할 DB의 PK</param>
+		public static void SetScreenInfo(decimal stat_id)
+		{
+			string screenInfo = CommonLibrary.WebServices.WebService.screenInfo;
+			if(screenInfo != "")
+			{
+				DBLib dbUtil = new DBLib("sqlMyLogConnection.ConnectionString");
+				dbUtil.Update_EN("t_Statistics", "clientScreen='" +screenInfo+ "'", "stat_id=" + stat_id.ToString());
+				//CommonLibrary.WebServices.WebService.screenInfo = "";
+			}
+//HttpContext.Current.Response.Write("screenInfo = " + screenInfo + "--" + stat_id + "<br>");
+		}
+		
+		/// <summary>
+		/// Major Sites의 목록
+		/// </summary>
+		/// <returns></returns>
+		public Hashtable GetMSListItems()
+		{
+			Hashtable htMajorSites = new Hashtable();
+			htMajorSites.Add("키스텔", "kistel.");
+			htMajorSites.Add("버팔로텍", "buffalotech.");
+			htMajorSites.Add("네이버", "naver.");
+			htMajorSites.Add("구글", "google.");
+			htMajorSites.Add("파란", "paran.");
+			htMajorSites.Add("다음", "daum.");
+			htMajorSites.Add("야후", "yahoo.");
+			htMajorSites.Add("엠파스", "empas.");
+			htMajorSites.Add("알타비스타", "altavista.");
+			htMajorSites.Add("드림위즈", "dreamwiz.");
+			htMajorSites.Add("네띠앙", "netian.");
+			htMajorSites.Add("코리아닷컴", "korea.");			
+			htMajorSites.Add("MSN", "msn.");
+			htMajorSites.Add("프리첼", "freechal.");
+			htMajorSites.Add("네이트", "nate.");
+			htMajorSites.Add("천리안", "chol.");
+			htMajorSites.Add("한게임", "hangame.");
+			htMajorSites.Add("다나와", "danawa.");
+			return htMajorSites;
+		}
+		public string GetMSKeyListItems(string urlReferrerHost) //kistel.co.kr
+		{
+			IDictionaryEnumerator myEnumerator = GetMSListItems().GetEnumerator();
+			while ( myEnumerator.MoveNext() )
+			{
+				//HttpContext.Current.Response.Write(myEnumerator.Key + " : "+ myEnumerator.Value + "<br>");
+				if(urlReferrerHost.ToLower().IndexOf(myEnumerator.Value.ToString()) >= 0)
+					return myEnumerator.Key.ToString();				
+			}
+			return "?";
+		}
+	
+		public StatBaseLib()
+		{
+		}
+	}
+	
+}

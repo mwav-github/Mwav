@@ -1,0 +1,423 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* 로그인 단계 관련 CSS */
+.smpl-step {
+	margin-top: 40px;
+}
+
+.smpl-step {
+	border-bottom: solid 1px #e0e0e0;
+	padding: 0 0 10px 0;
+}
+
+.smpl-step>.smpl-step-step {
+	padding: 0;
+	position: relative;
+}
+
+.smpl-step>.smpl-step-step .smpl-step-num {
+	font-size: 17px;
+	margin-top: -20px;
+	margin-left: 47px;
+}
+
+.smpl-step>.smpl-step-step .smpl-step-info {
+	font-size: 14px;
+	padding-top: 27px;
+}
+
+.smpl-step>.smpl-step-step>.smpl-step-icon {
+	position: absolute;
+	width: 70px;
+	height: 70px;
+	display: block;
+	background: #5CB85C;
+	top: 45px;
+	left: 50%;
+	margin-top: -35px;
+	margin-left: -15px;
+	border-radius: 50%;
+}
+
+.smpl-step>.smpl-step-step>.progress {
+	position: relative;
+	border-radius: 0px;
+	height: 8px;
+	box-shadow: none;
+	margin-top: 37px;
+}
+
+.smpl-step>.smpl-step-step>.progress>.progress-bar {
+	width: 0px;
+	box-shadow: none;
+	background: #428BCA;
+}
+
+.smpl-step>.smpl-step-step.complete>.progress>.progress-bar {
+	width: 100%;
+}
+
+.smpl-step>.smpl-step-step.active>.progress>.progress-bar {
+	width: 50%;
+}
+
+.smpl-step>.smpl-step-step:first-child.active>.progress>.progress-bar {
+	width: 0%;
+}
+
+.smpl-step>.smpl-step-step:last-child.active>.progress>.progress-bar {
+	width: 100%;
+}
+
+.smpl-step>.smpl-step-step.disabled>.smpl-step-icon {
+	background-color: #f5f5f5;
+}
+
+.smpl-step>.smpl-step-step.disabled>.smpl-step-icon:after {
+	opacity: 0;
+}
+
+.smpl-step>.smpl-step-step:first-child>.progress {
+	left: 50%;
+	width: 50%;
+}
+
+.smpl-step>.smpl-step-step:last-child>.progress {
+	width: 50%;
+}
+
+.smpl-step>.smpl-step-step.disabled a.smpl-step-icon {
+	pointer-events: none;
+}
+
+/* 마우스 커서 */
+.btn-pointer{
+  cursor:pointer;
+}
+
+/*========================================start textarea ========================================*/
+.txtarea {
+word-wrap: break-word;
+white-space: pre-line;
+padding: 0px 30px 30px 30px;
+height: 350px;
+overflow-y: scroll;
+width: 100%;
+border: 2px solid #d0d0d0;
+font-size: 12px;
+background-color: #fff;
+}
+/*========================================end textarea ========================================*/
+
+/*========================================start checkbox ========================================*/
+/*https://bootsnipp.com/snippets/Wa3np*/
+
+
+.checkbox.checbox-switch {
+    padding-left: 0;
+}
+
+.checkbox.checbox-switch label,
+.checkbox-inline.checbox-switch {
+    display: inline-block;
+    position: relative;
+    padding-left: 0;
+}
+.checkbox.checbox-switch label input,
+.checkbox-inline.checbox-switch input {
+    display: none;
+}
+.checkbox.checbox-switch label span,
+.checkbox-inline.checbox-switch span {
+    width: 35px;
+    border-radius: 20px;
+    height: 22px;
+    border: 1px solid #dbdbdb;
+    background-color: rgb(255, 255, 255);
+    border-color: rgb(223, 223, 223);
+    box-shadow: rgb(223, 223, 223) 0px 0px 0px 0px inset;
+    transition: border 0.4s ease 0s, box-shadow 0.4s ease 0s;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+.checkbox.checbox-switch label span:before,
+.checkbox-inline.checbox-switch span:before {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: rgb(255,255,255);
+    content: " ";
+    top: 0;
+    position: relative;
+    left: 0;
+    transition: all 0.3s ease;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+}
+.checkbox.checbox-switch label > input:checked + span:before,
+.checkbox-inline.checbox-switch > input:checked + span:before {
+    left: 17px;
+}
+
+
+/* Switch Primary */
+.checkbox.checbox-switch.switch-primary label > input:checked + span,
+.checkbox-inline.checbox-switch.switch-primary > input:checked + span {
+    background-color: rgb(0, 105, 217);
+    border-color: rgb(0, 105, 217);
+    box-shadow: rgb(0, 105, 217) 0px 0px 0px 8px inset;
+    transition: border 0.4s ease 0s, box-shadow 0.4s ease 0s, background-color 1.2s ease 0s;
+}
+.checkbox.checbox-switch.switch-primary label > input:checked:disabled + span,
+.checkbox-inline.checbox-switch.switch-primary > input:checked:disabled + span {
+    background-color: rgb(109, 163, 221);
+    border-color: rgb(109, 163, 221);
+    box-shadow: rgb(109, 163, 221) 0px 0px 0px 8px inset;
+    transition: border 0.4s ease 0s, box-shadow 0.4s ease 0s, background-color 1.2s ease 0s;
+}
+
+/*========================================end checkbox=========================================*/
+
+/*========================================start 폼컨트롤 ========================================*/
+/**
+ * 참조 url : http://www.digitalcontentzone.com/
+ */
+.form-custom-control {
+    display: block;
+    width: 100%;
+    height: 40px;
+    padding: 10px 10px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555 background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    transition: none;
+    font-family: 'Raleway', sans-serif;
+    margin-top: 0px;
+}
+
+.input_custom{
+    border-radius: 0;
+    background-color: #fff;
+    border: 1px solid #e5e5e5;
+    font-size: 13px;
+    box-shadow: none!important;
+    padding: 10px;
+    
+    }
+/*========================================end 폼컨트롤 ========================================*/
+
+/*========================================start 라인 ========================================*/
+/* bootstrap 기본 hr 변형 */
+.hr_b {
+	border-top: 3px solid #337ab7 !important;
+}
+
+.hr_g {
+	border-top: 2px solid #a1d490 !important;
+}
+
+.hr_gray {
+	border-top: 3px solid #78828D !important;
+}
+
+.hr_gray_separator {
+    clear: both;
+    margin-top: 10px;
+    margin-bottom: 13px;
+    border: 0;
+    height: 1px;
+    background-image: -webkit-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,.15),rgba(0,0,0,0));
+}
+.hr_orange {
+	border-top: 2px solid #e67525 !important;
+}
+
+
+
+/*========================================end 라인 ========================================*/
+.right_hr {
+border-right: 3px solid #eeeeec;
+}
+
+.left_hr {
+position: absolute;
+    top: 0;
+    left: -0.5em;
+    content: '';
+    width: 3px;
+    height: 90%;
+    background-color: #eeeeec;
+}
+
+/*========================================start 아이콘 ========================================*/
+
+/**
+ * 참조 url : http://www.digitalcontentzone.com/
+ */
+.contactIcon {
+    color: #27b1e2;
+}
+
+.biggerIcon {
+    top: 20%;
+    position: absolute;
+    opacity: 0.07;
+}
+/*========================================end 아이콘 ========================================*/
+
+/*========================================start 버튼 색상 ========================================*/
+.btn-custom-default {
+    border-radius: 0px;
+    border: 1px solid #282828;
+    font-size: 13px;
+    color: #282828;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    background: transparent;
+    -webkit-transition: background-color 0.3s 
+}
+
+.btn-custom-blue-default {
+color: #fff;
+    background-color: #337ab7;
+    border-color: #5bc0de;
+}
+/*========================================end 버튼 색상 ========================================*/
+
+/*========================================start 테이블 ========================================*/
+/*type1 */
+.table-wrapper {
+    background: #fff;
+    padding: 20px 25px;
+    margin: 30px 0;
+    border-radius: 3px;
+    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+}
+.table-title {
+    padding-bottom: 15px;
+    background: #286090;
+    color: #fff;
+    padding: 16px 30px;
+    margin: -20px -25px 10px;
+    border-radius: 3px 3px 0 0;
+    }
+/*========================================end 테이블  ========================================*/
+
+/*========================================start 텍스트 색상 ========================================*/
+.text-color-gray{
+ color: #78828D !important;
+}
+.text-color-gray-type-2{
+ color: #595858 !important
+}
+
+.text-color-red{
+ color: #ff0000 !important;
+}
+
+.text-color-blue-type-1{
+ color: #47a9ef !important;
+}
+.text-color-orange-type-1{
+color: #ea5329;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.intro-text {
+    letter-spacing: 2px;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 16px;
+    line-height: 23px;
+    color: #337ab7; 
+    /*#d5d5d5; */
+    margin-bottom: 40px;
+}
+
+.intro-text-kor{
+letter-spacing: 1px;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 14px;
+    line-height: 24px;
+    color: #47525d;
+    margin-bottom: 40px;
+}
+/*========================================end 텍스트 색상 ========================================*/
+
+/*
+ 내용 : bootstrap 내 sr-only navbar breakpoint 변경.
+      기존 크기대로는 글자 크기 등등 제약되는 부분이 많음.
+ * as-is) 768px 아래부터 적용
+ * to-be) 1024px 아래부터 적용
+ * 
+https://www.bootply.com/120604#
+https://stackoverflow.com/questions/19827605/change-bootstrap-navbar-collapse-breakpoint-without-using-less
+
+
+1024 ~ 1190 16px 
+1200 ~ 이후 20px
+ */
+@media screen and (min-width: 1024px) and  (max-width: 1190px) {
+	.nav_fontsize {
+		font-size : 15px !important;
+	}
+}
+
+@media screen and (min-width: 1200px) {
+	.nav_fontsize {
+		font-size : 20px !important;
+	}
+}
+@media screen and (min-width: 769px) and  (max-width: 1023px) {
+    .navbar-header {
+        float: none;
+    }
+    .navbar-left,.navbar-right {
+        float: none !important;
+    }
+    .navbar-toggle {
+        display: block;
+    }
+    .navbar-collapse {
+        border-top: 1px solid transparent;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    .navbar-fixed-top {
+		top: 0;
+		border-width: 0 0 1px;
+		z-index : 1030;
+	}
+	.navbar-fixed-bottom{
+		z-index : 1030;
+	}
+	
+    .navbar-collapse.collapse {
+        display: none!important;
+    }
+    .navbar-nav {
+        float: none!important;
+		margin-top: 7.5px;
+	}
+	.navbar-nav>li {
+        float: none;
+    }
+    .navbar-nav>li>a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .collapse.in{
+  		display:block !important;
+  		overflow-y: auto !important;
+    	overflow-x: hidden !important;
+	}
+}

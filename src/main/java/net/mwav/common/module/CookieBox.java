@@ -14,13 +14,15 @@ public class CookieBox {
 	 * 
 	 * // CookieBox 클래스의 생성자는 request로부터 쿠키 정보를 추출 CookieBox cookieBox = new
 	 * CookieBox(request);
-	 * 
+	 * CookieBox.createCookie("statistics_id", statistics_id);
+	 * CookieBox.createCookie("statistics_id", statistics_id, "/", 60 * 60 * 24 * 7);
 	 * Cookie idCookie = cookieBox.getCookie("id"); // 쿠키가 존재하지 않으면 null 리턴
 	 * 
 	 * // 지정한 이름의 쿠키가 존재하는지의 여부 if (cookieBox.exists("name")) { ... }
 	 * 
 	 * // 지정한 이름의 쿠키가 존재하지 않으면 값으로 null 리턴 String value =
 	 * cookieBox.getValue("ROLE");
+	 * 
 	 * 
 	 * 
 	 * 출처: http://cofs.tistory.com/38 [Continuous Of Shoveling]
@@ -62,7 +64,7 @@ public class CookieBox {
 	 * @param name
 	 * @param value
 	 * @param path
-	 * @param maxAge
+	 * @param maxAge  (일,시간,분,초 //  365*24*60*60 : 1년 // 20*60 : 20분)
 	 * @return cookie
 	 * @throws IOException
 	 */

@@ -46,7 +46,6 @@ public class QAServiceImpl implements QAService {
 		map.put("uqStatus", "1");
 
 		// 재문의 인 경우
-
 		String imsi_flag = qaDAO.insertQAForm(map, request);
 		boolean flag = false;
 
@@ -56,7 +55,7 @@ public class QAServiceImpl implements QAService {
 				map.put("QnA_id", imsi_flag);
 				
 				//QA문의 발송
-				/*emailSender.sendQuestionEmail(map);*/
+				emailSender.sendQuestionEmail(map);
 			} catch (Exception e) { // TODO Auto-generated catch block
 				e.printStackTrace();
 			} // 메일발송

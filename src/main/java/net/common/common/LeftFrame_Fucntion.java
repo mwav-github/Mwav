@@ -115,13 +115,13 @@ public class LeftFrame_Fucntion {
 
 					menuList.add(vo);
 				}
-			} else if (mm.equals("category")) { // 카테고리 추가 부분!!!!!!!!!!!
+			} else if (mm.equals("rel")) { // 카테고리 추가 부분!!!!!!!!!!!
 
-				String[] streName = { "gcl", "gci" };
+				String[] streName = { "caset", "gci" };
 				String[] strhName = { "카테고리등록", "릴레이션등록" };
 				String[] strhEName = { "카테고리등록", "릴레이션등록" };
 				String[] strurl = {
-						"/Admins/Goods/GdsCaInsert.jsp?mm=category",
+						"/Admins/Goods/GdsCaInsert.mwav?mm=category",
 						"/admins/goods/categoryList.mwav",
 
 				};
@@ -143,12 +143,12 @@ public class LeftFrame_Fucntion {
 				}
 			} else if (mm.equals("crm")) { // 카테고리 추가 부분!!!!!!!!!!!
 
-				String[] streName = { "gcl", "gci" };
-				String[] strhName = { "카테고리등록", "릴레이션등록" };
-				String[] strhEName = { "카테고리등록", "릴레이션등록" };
+				String[] streName = { "stati", "sche" };
+				String[] strhName = { "StatisticsMgr", "ScheduleMgr" };
+				String[] strhEName = { "통계관리", "일정관리" };
 				String[] strurl = {
-						"/Admins/Goods/GdsCaInsert.jsp?mm=category",
-						"/admins/goods/categoryList.mwav",
+						"/admins/marketing/statistics/statsList.mwav?mm=crm",
+						"/Admins/Marketing/ScheduleMgr/ScheView.mwav?mm=crm",
 
 				};
 				String[] strmAuthority = { "1", "1" };

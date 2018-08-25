@@ -9,6 +9,7 @@ import java.util.Set;
 import javax.annotation.Resource;
 
 import net.common.common.CommandMap;
+import net.mwav.common.module.Common_Utils;
 import net.admins.dao.BoardNoticeAdminsDAO;
 
 import org.apache.log4j.Logger;
@@ -20,10 +21,11 @@ public class BoardNoticeAdminsServiceImpl implements BoardNoticeAdminsService {
 	Logger log = Logger.getLogger(this.getClass());
 
 	@Resource(name = "boardNoticeAdminsDAO")
-	@Autowired(required=true)
+	@Autowired(required = true)
 	private BoardNoticeAdminsDAO boardNoticeAdminsDAO;
+	Common_Utils cou = new Common_Utils();
 
-/////////////////////////////////////BoardNews/////////////////////////////////////
+	// ///////////////////////////////////BoardNews/////////////////////////////////////
 
 	/*
 	 * ========================================등록================================
@@ -33,7 +35,8 @@ public class BoardNoticeAdminsServiceImpl implements BoardNoticeAdminsService {
 	public void insertNtmForm(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		System.out.println("map=" + map);
-		
+
+		map.put("buStatus", 1);
 		boardNoticeAdminsDAO.insertNtmForm(map);
 	}
 
@@ -54,7 +57,12 @@ public class BoardNoticeAdminsServiceImpl implements BoardNoticeAdminsService {
 					+ entry.getValue());
 		}
 
-		Map<String, Object> resultMap = boardNoticeAdminsDAO.selectOneNtmView(map);
+		Map<String, Object> resultMap = boardNoticeAdminsDAO
+				.selectOneNtmView(map);
+		int test = (int) resultMap.get("buStatus");
+		String result = cou.TypeIntToString("board", test);
+		resultMap.put("buStatus", result);
+
 		return resultMap;
 	}
 

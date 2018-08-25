@@ -34,6 +34,11 @@ public class StatisticsDAO extends AbstractDAO {
 		update("statistics.updateStClientScreen", map);
 	}
 
+	public void insertErrorStatistics(StatisticsLogVO log_vo) {
+		// TODO Auto-generated method stub
+		insert("statistics.insertErrorStatistics", log_vo);
+	}
+
 
 
 }

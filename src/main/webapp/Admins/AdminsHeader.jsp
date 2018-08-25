@@ -36,21 +36,21 @@
 					</tr>
 					<tr>
 						<td>사번:</td>
-						<td>${selectStfLogin.stfNumber}</td>
+						<td>${staff.stfNumber}</td>
 						<td>성명:</td>
-						<td>${selectStfLogin.stfName}</td>
+						<td>${staff.stfName}</td>
 					</tr>
 					<tr>
 						<td>부서:</td>
-						<td>${selectStfLogin.stfDeptName}</td>
+						<td>${staff.stfDeptName}</td>
 						<td>아이디:</td>
-						<td>${selectStfLogin.stfLoginId}</td>
+						<td>${staff.stfLoginId}</td>
 					</tr>
 					<tr>
 						<td>직급:</td>
-						<td>${selectStfLogin.stfClass}</td>
+						<td>${staff.stfClass}</td>
 						<td>프로모션:</td>
-						<td></td>
+						<td>${staff.staff_id}</td>
 					</tr>
 
 				</table>
@@ -113,7 +113,7 @@
 				<li><a href="/admins/staff/stfList.mwav?mm=firms"
 					title="1.회원기본정보 2.회원부가정보 3.회원평가치 4.회원가입">회원관리</a></li>
 				<li class="active"><a
-					href="/HomePage/DefaultFrameset.mwav?mm=crm"
+					href="/admins/marketing/statistics/statsList.mwav?mm=crm"
 					title="1.통계관리 2.인적자원 3.상품통계 4.회원메일 5.임박기념일 6.이벤트목록 7.고객충성도">마케팅관리</a></li>
 				<li><a href="/admins/staff/stfList.mwav"
 					title="1.시스템상태요약 2.로그관리">시스템관리</a></li>

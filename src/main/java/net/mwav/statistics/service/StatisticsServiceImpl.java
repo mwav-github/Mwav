@@ -47,6 +47,12 @@ public  class StatisticsServiceImpl implements StatisticsService {
 		statisticsDAO.updateStClientScreen(map);
 	}
 
+	@Override
+	public void insertErrorStatistics(StatisticsLogVO log_vo) {
+		// TODO Auto-generated method stub
+		statisticsDAO.insertErrorStatistics(log_vo);
+	}
+
 	
 
 }

@@ -10,7 +10,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import javax.annotation.Resource;
-import javax.inject.Inject;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,8 +19,6 @@ import net.common.common.CommandMap;
 import net.mwav.common.module.Common_Utils;
 import net.mwav.common.module.EmailSender;
 import net.mwav.common.module.VerifyRecaptcha;
-import net.mwav.framework.DateLib;
-import net.mwav.framework.SecurityLib;
 import net.mwav.member.service.MemberService;
 import net.mwav.member.vo.Member_tbl_VO;
 
@@ -35,7 +32,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.WebUtils;
 
-
 /**
  * 프로세스 1) 비밀번호 찾기 : mbrTempLoginPwUpdate -> mbrTempLoginPwSeek -> //
  */
@@ -44,17 +40,13 @@ public class MemberController {
 	Logger log = Logger.getLogger(this.getClass());
 	String mode;
 	HttpServletRequest request;
-
-	@Inject
-	SecurityLib securityLib; 
-	 
-	
-	@Autowired
-	Member_tbl_VO member_tbl_VO;
 	
 	@Autowired
 	EmailSender emailSender;
 	
+	@Autowired
+	Member_tbl_VO member_tbl_VO;
+
 	@Resource(name = "memberService")
 	private MemberService memberService;
 
@@ -70,7 +62,7 @@ public class MemberController {
 
 	@RequestMapping(value = "/login.mwav", method = RequestMethod.GET)
 	public String login(Model model) {
-		
+
 		return "redirect:/MasterPage.mwav?mode=SMbrLogin";
 	}
 
@@ -290,7 +282,7 @@ public class MemberController {
 		String result = null;
 		System.out.println("mbrLoginPw= " + mbrLoginPw);
 		if (mbrLoginPw == null) {
-			// 응답 메세지 1 : 이미 등록된 ID 입니다.
+			// 정보가 없는 경우.
 			result = "false";
 		} else {
 			// commandMap.put("mbrLoginPw", mbrLoginPw);
@@ -355,21 +347,7 @@ public class MemberController {
 
 		// commandmAP 출력 모듈
 		cu.selectCommandMapList(commandMap);
-		/*
-		 * if (commandMap.isEmpty() == false) { System.out.println("들어옴");
-		 * Iterator<Entry<String, Object>> iterator = commandMap.getMap()
-		 * .entrySet().iterator(); Entry<String, Object> entry = null; while
-		 * (iterator.hasNext()) { entry = iterator.next(); log.debug("key : " +
-		 * entry.getKey() + ",\tvalue : " + entry.getValue());
-		 * System.out.println("key : " + entry.getKey() + ",\tvalue : " +
-		 * entry.getValue()); } }
-		 */
-
-		/*
-		 * 리스트 형태로 변경 String selectIdFinder = memberService
-		 * .selectOneMbrLoginIdSeek(commandMap.getMap());
-		 */
-
+		
 		List<String> selectIdFinder = memberService
 				.selectOneMbrLoginIdSeek(commandMap.getMap());
 
@@ -384,7 +362,7 @@ public class MemberController {
 
 		List<String> convertTxt = cu.convertStringToMark(selectIdFinder);
 		System.out.println("convertTxt.size()" + convertTxt.size());
-		if (selectIdFinder == null || convertTxt.size() == 0 ) {
+		if (convertTxt.size() == 0) {
 			// 응답 메세지 1 : 이미 등록된 ID 입니다.
 			// result =
 			// "<font color=red><strong>존재하지 않는 ID 입니다.</strong>	</font>";
@@ -452,9 +430,8 @@ public class MemberController {
 		mv.addObject("breadcrumb", "MemberShip");
 		// mv.addObject("page_header", "IT Trends");
 		mv.addObject("page_header", null);
-		
-		  session.removeAttribute("member");
-	      log.info("member 세선제거 성공");	
+		session.invalidate();
+
 		return mv;
 	}
 
@@ -542,17 +519,18 @@ public class MemberController {
 
 	// 3번 추후 return 필요없을ㄷ스 고민
 	@RequestMapping(value = "/member/LogOut.mwav")
-	public ModelAndView logout(HttpServletRequest request, HttpSession session,HttpServletResponse response)
-			throws Exception {
+	public ModelAndView logout(HttpServletRequest request, HttpSession session,
+			HttpServletResponse response) throws Exception {
 		ModelAndView mv = new ModelAndView("/Index");
 		Object obj = session.getAttribute("member");
-		 if (obj != null) {
-			  memberService.updateAutoLoginDel(request,session,response);
-			  session.removeAttribute("member");
-		      log.info("member 세선제거 성공");			      
-		 }else{
-				log.info("세션에 로그인 정보다 없어 로그아웃 하지 못하였습니다.");
-		 }
+		if (obj != null) {
+			memberService.updateAutoLoginDel(request, session, response);
+			session.removeAttribute("member");
+			session.invalidate();
+			log.info("세선제거 성공");
+		} else {
+			log.info("세션에 로그인 정보다 없어 로그아웃 하지 못하였습니다.");
+		}
 
 		mode = "SDMbrLogout";
 		request.setAttribute("mode", mode);
@@ -560,21 +538,23 @@ public class MemberController {
 		return mv;
 	}
 
-	//로그인 폼 보여주고 리스트로 돌아감
-	@RequestMapping(value="/login/post")
-	public String loginForm(HttpServletRequest request){
+	// 로그인 폼 보여주고 리스트로 돌아감
+	@RequestMapping(value = "/login/post")
+	public String loginForm(HttpServletRequest request) {
 
-		return "forward:"+request.getContextPath()+"/Index.mwav";
+		return "forward:" + request.getContextPath() + "/Index.mwav";
 	}
+
 	/*
 	 * logincheck = 1 : 정상로그인 logincheck = 2 : 비밀번호 틀림 logincheck = 3 : 아이디 존재하지
 	 * 않음 logincheck = 5 : DB 조회시 NULL (임시패스워드 발급 단계에서 중간하였을때 포함) logincheck = 6
 	 * : 탈퇴하지 않음 logincheck = 7 : 탈퇴
 	 */
-	
+
 	@RequestMapping(value = "/member/Login.mwav")
 	public ModelAndView selectLogin(CommandMap commandMap,
-			HttpServletRequest request,HttpServletResponse response) throws Exception {
+			HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
 
 		HttpSession session = request.getSession();
 		// * action-servlet.xml에서 위에 .jsp 설정해줘서 위의 CommonApps 부터 되는거
@@ -583,16 +563,20 @@ public class MemberController {
 		Map<String, Object> memberLogin = null;
 		memberLogin = memberService.selectLogin(commandMap.getMap());
 		System.out.println("여기는  멤버로그인 찍기전");
-		if(memberLogin!=null)
-		member_tbl_VO = new Member_tbl_VO((int)memberLogin.get("member_id"),
-				(String)memberLogin.get("mbrLoginId"), (String)memberLogin.get("mbrLoginPw"),
-				(String)memberLogin.get("mbrTempLoginPw"),
-				(String)memberLogin.get("mbrFirstName"),
-				(String)memberLogin.get("mbrMiddleName"),
-				(String)memberLogin.get("mbrLastName"), (String)memberLogin.get("mbrEmail"),
-				(String)memberLogin.get("mbrCellPhone"),
-				(Boolean)memberLogin.get("mbrAddrFlag"), (String)memberLogin.get("mbrZipcode"),
-				(String)memberLogin.get("mbrAddress"));
+		if (memberLogin != null)
+			member_tbl_VO = new Member_tbl_VO(
+					(int) memberLogin.get("member_id"),
+					(String) memberLogin.get("mbrLoginId"),
+					(String) memberLogin.get("mbrLoginPw"),
+					(String) memberLogin.get("mbrTempLoginPw"),
+					(String) memberLogin.get("mbrFirstName"),
+					(String) memberLogin.get("mbrMiddleName"),
+					(String) memberLogin.get("mbrLastName"),
+					(String) memberLogin.get("mbrEmail"),
+					(String) memberLogin.get("mbrCellPhone"),
+					(Boolean) memberLogin.get("mbrAddrFlag"),
+					(String) memberLogin.get("mbrZipcode"),
+					(String) memberLogin.get("mbrAddress"));
 		System.out.println("여기는  return URL 찍기전");
 		String returnUrl = null;
 		String returnUrl_imsi = null;
@@ -606,13 +590,15 @@ public class MemberController {
 
 		int loginCheck = 0; // 초기값
 
-		//g-recaptcha-response POST parameter when the user submits the form on your site
-		//recaptcha-token 과는 별개이다. 
-		String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
-		System.out.println("gRecaptchaResponse"+gRecaptchaResponse);
+		// g-recaptcha-response POST parameter when the user submits the form on
+		// your site
+		// recaptcha-token 과는 별개이다.
+		String gRecaptchaResponse = request
+				.getParameter("g-recaptcha-response");
+		System.out.println("gRecaptchaResponse" + gRecaptchaResponse);
 		boolean valid;
 		// Verify CAPTCHA.
-		valid = securityLib.recapchaVerify(gRecaptchaResponse);
+		valid = VerifyRecaptcha.verify(gRecaptchaResponse);
 		if (!valid) {
 			// RECAPTCHA 오류 (false)
 			loginCheck = 6;
@@ -642,27 +628,18 @@ public class MemberController {
 			} else if (b_mbrLoginPw.equals(a_mbrLoginPw)) {
 				// login 성공
 				loginCheck = 1;
-
 				// 세션 지정.
-
 				session.setAttribute("member", member_tbl_VO);
-				memberService.updateAutoLogin((String)commandMap.get("autoLogin"), response, member_tbl_VO.getMember_id());
-				/*if (commandMap.get("autoLogin")!=null&&(boolean)commandMap.get("autoLogin").equals("on")) {         
-			    	  System.out.println("autologin실행됨");
-			          int amount = 60 * 60 * 24 * 14; //일주일 기간설정
-			          HashMap<String,Object> map = new HashMap<String,Object>();
-			          map.put("member_id", (int) memberLogin.get("member_id"));
-			          map.put("mbrAutoLoginDt", new Date(System.currentTimeMillis() + (1000 * amount)));
-			          memberService.updateAutoLogin(map);
-			          //쿠키박스
-			          Cookie loginCookie = new Cookie("autoLogin", memberLogin.get("member_id").toString());
-			          loginCookie.setPath("/");
-			          loginCookie.setMaxAge(60 * 60 * 24 * 14);
-			          response.addCookie(loginCookie);
-				 }*/
-				
-				// session.setAttribute("mbrLoginId", mbrLoginId);
-				// session.setAttribute("member_id", member_id);
+
+				boolean isAutoLoginChk = true;
+				isAutoLoginChk = cu.isEmpty(commandMap.get("autoLoginChk"));
+				if (isAutoLoginChk == false
+						&& commandMap.get("autoLoginChk").equals("on")) {
+					log.info("자동로그인시도");
+					memberService.updateAutoLogin(
+							(String) commandMap.get("autoLoginChk"), response,
+							member_tbl_VO.getMember_id());
+				}
 				System.out.println("로그인성공");
 			} else if (mbrLoginId != null
 					&& !(b_mbrLoginPw.equals(a_mbrLoginPw))) {
@@ -693,7 +670,6 @@ public class MemberController {
 		return mv;
 
 	}
-
 
 	/*
 	 * // 7번 추후

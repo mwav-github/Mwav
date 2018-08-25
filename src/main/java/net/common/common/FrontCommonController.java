@@ -41,10 +41,14 @@ public class FrontCommonController {
 			String url = request.getRequestURI();
 			int pos = url.lastIndexOf(".");
 			System.out.println("pos" + pos);
+
+			// Root 인경우
 			if (pos != -1) {
 				ext_url = url.substring(0, pos);
 				mv = new ModelAndView(ext_url);
-			} else {
+			}
+			// Index 인경우
+			else {
 
 				mv = new ModelAndView("/Index");
 			}
@@ -54,6 +58,21 @@ public class FrontCommonController {
 			e.printStackTrace();
 		}
 		return mv;
+	}
+
+	@RequestMapping(value = { "/Shop/Index" })
+	public ModelAndView redirectShopIndexController(HttpServletRequest request)
+			throws Exception {
+		String url = request.getRequestURI();
+		int pos = url.lastIndexOf(".");
+		// String ext = url.substring(pos + 1);
+		ext_url = url.substring(0, pos);
+		// System.out.println("확장자 제외" + ext);
+		// System.out.println("return URL"+ext_url);
+		ModelAndView mv = new ModelAndView(ext_url);
+
+		return mv;
+
 	}
 
 	// 1번 bnsForm : Form 입력만 가능 (뒤로가기, list)
@@ -159,9 +178,8 @@ public class FrontCommonController {
 	public ModelAndView filter(HttpServletRequest request) {
 		log.info("call filter.do");
 		String param = (String) request.getParameter("param");
-		log.info("call filter.value"+param);
-		
-		
+		log.info("call filter.value" + param);
+
 		ModelAndView mv = new ModelAndView("/filter");
 		mv.addObject("param1", param);
 		return mv;

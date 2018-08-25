@@ -3,12 +3,10 @@ package net.mwav.board.service;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import javax.annotation.Resource;
 
-import net.common.common.CommandMap;
 import net.mwav.board.dao.BoardDAO;
 import net.mwav.common.module.Common_Utils;
 

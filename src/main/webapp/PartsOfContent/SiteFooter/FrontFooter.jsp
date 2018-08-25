@@ -1,40 +1,14 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!-- Google Analytics Content Experiment code -->
-<script>
-	function utmx_section() {
-	}
-	function utmx() {
-	}
-	(function() {
-		var k = '140395023-0', d = document, l = d.location, c = d.cookie;
-		if (l.search.indexOf('utm_expid=' + k) > 0)
-			return;
-		function f(n) {
-			if (c) {
-				var i = c.indexOf(n + '=');
-				if (i > -1) {
-					var j = c.indexOf(';', i);
-					return escape(c.substring(i + n.length + 1,
-							j < 0 ? c.length : j))
-				}
-			}
-		}
-		var x = f('__utmx'), xx = f('__utmxx'), h = l.hash;
-		d.write('<sc' + 'ript src="' + 'http'
-				+ (l.protocol == 'https:' ? 's://ssl' : '://www')
-				+ '.google-analytics.com/ga_exp.js?' + 'utmxkey=' + k
-				+ '&utmx=' + (x ? x : '') + '&utmxx=' + (xx ? xx : '')
-				+ '&utmxtime=' + new Date().valueOf()
-				+ (h ? '&utmxhash=' + escape(h.substr(1)) : '')
-				+ '" type="text/javascript" charset="utf-8"><\/sc'+'ript>')
-	})();
-</script>
-<script>
-	utmx('url', 'A/B');
-</script>
-<!-- End of Google Analytics Content Experiment code -->
+
+<%-- Customize CSS
+Mwav 관련 별도 css 이며, 추가로 해당 부분은 footer 내 위치해야 할 수도있다.
+css 중 가장 마지막에 호출되어야하며, include 되는 파일 중 css가 하단에 위치하는 경우가 존재하는 이슈가 존재.
+ --%>
+<link href="/resources/CommonLibrary/CSS/mwav_custom.css"
+	rel="stylesheet">
+
 
 <script>
 	(function(i, s, o, g, r, a, m) {
@@ -52,6 +26,10 @@
 	var perfData = window.performance.timing;
 	var pageLoadTime = perfData.mwavmComplete - perfData.navigationStart;
 	var loadTime = "";
+	var userId = '<c:out value="${sessionScope.member.member_id}"/>';
+	var pgl = '<c:out value="${param.pgl}"/>'; //세션으로 변경
+	var statistics_id = '<c:out value="${sessionScope.statistics_id}"/>'; //세션으로 변경
+
 <%--https://www.simoahava.com/analytics/page-load-time-universal-analytics/
 
 	//ga('create', 'UA-63623427-1', 'auto');
@@ -61,6 +39,21 @@
 		'cookieDomain' : 'www.mwav.net',
 		'siteSpeedSampleRate' : 100
 	}); // 사이트 속도 측정 100은 전체 체크 (2017_01_10)
+
+	//171102 usderid세팅.
+	if (!(gfn_isNull(userId))) {
+		ga('set', 'userId', userId);
+	}
+	//171104 맞춤 측정기준 설정(세션).
+	//https://support.google.com/analytics/answer/2709828?hl=ko
+	//ga('send', 'pageview'); 위에 존재해야한다.
+	if (!(gfn_isNull(pgl))) {
+		ga('set', 'dimension1', pgl);
+	}
+	if (!(gfn_isNull(statistics_id))) {
+		ga('set', 'dimension2', statistics_id);
+	}
+	ga('require', 'GTM-ML32Q9G');
 	ga('send', 'pageview');
 	ga('require', 'displayfeatures');
 <%-- 인구통계부분 추가 (2017_01_10) --%>
@@ -83,8 +76,6 @@
 
 
 <div class="mgt5">
-
-
 	<%--QA이슈 z-index로 처리 --%>
 	<!--/////////////////////////////////////////////////// -->
 	<jsp:include page="/CommonApps/BoardQnA/qaForm.jsp" flush="false" />
@@ -117,20 +108,29 @@
 				</p>
 
 				<ul>
-					<li>CompanyName : Mwav Inc.</li>
-					<li>Business Registration Number : 206-09-41373</li>
+					<li>Company Name : Mwav corp.</li>
+					<%-- <li>Business Registration Number : 206-09-41373</li>--%>
 					<li>Address: GV-4F, 5-5, Ttukseom-ro 46-gil, Gwangjin-gu,
-						Seoul , Korea [143-865]</li>
-					<li>TEL : +82-2-6214-7039</li>
-					<li>FAX: +82-2-6214-1122</li>
-					<li>CEO : Lewis Kim</li>
-					<li>WebSite Manager : James Lee</li>
-					<li>Marketing Manager : Alex Chae</li>
+						Seoul , Korea [05099]</li>
+					<li>TEL : +82-70-4655-4777</li>
+					<li>FAX: +82-2-6214-7039</li>
+					<li>CEO : Lewis, Kim</li>
+					<li>WebSite Manager : Hunt, Kim</li>
+					<li>Marketing Manager : <c:choose>
+							<c:when test="${sessionScope.pmtName ne null }">
+							${sessionScope.pmtName}
+							</c:when>
+							<c:otherwise>
+								Jose, Shin
+							</c:otherwise>
+						</c:choose>
+
+					</li>
 					<li>Chief IT-Business Advisor : Peter J.</li>
-					<%-- <li>Sales Manager: ${param.pgl}</li> --%>
+					<%-- <li>Sales Manager: ${param.pglName}</li> --%>
 				</ul>
 				<%--
-				
+
 				<ul>
 						<li>회사상호 : 엠웨이브넷(Mwav.net)</li>
 						<li>사업자번호: 206-09-41373</li>
@@ -177,10 +177,17 @@
 					<p>
 						<%-- <a href="mailto:ebizpromwav@gmail.com" title="Contact me!"><i
 						class="fa fa-envelope"></i> Contact</a> 
-						<%--줄 없애기 + 그다음에 메일로 바로연결이아닌 qa쪽 고민 --%>
+						<%--줄 없애기 + 그다음에 메일로 바로연결이아닌 qa쪽 고민 
 
-						<a href="#" class="btn btn-block btn-primary" data-toggle="modal"
-							data-target="#Contact"
+						<a href="#" class="btn btn-block btn-primary hidden-md hidden-lg"
+							data-toggle="modal" data-target="#Contact"
+							onclick="ga('send', 'event', 'Q&A', 'click', 'Footer');"
+							style="color: white;"><span
+							class="glyphicon glyphicon-envelope"></span> Contact</a> 
+							--%>
+							
+							<a href="/CustomerService/QnA/QnA.mwav?mode=qaForm"
+							class="btn btn-block btn-primary "
 							onclick="ga('send', 'event', 'Q&A', 'click', 'Footer');"
 							style="color: white;"><span
 							class="glyphicon glyphicon-envelope"></span> Contact</a>
@@ -242,47 +249,11 @@
 
 <div class="footer-bottom">
 	<div class="container">
-		<p class="pull-left col-md-7">
+		<p class="pull-left col-md-7 col-sm-12 col-xs-12">
 			Copyright ⓒ Since 2004 Mwav.net All rights reserved | <a>Privacy
 				Policy</a> | <a>Terms of Use</a>
 		</p>
-		<div class="pull-right col-md-5">
-			<%-- <ul class="nav nav-pills payments">
-				<li class="tooltips" data-toggle="tooltip" data-placement="top"
-					title="" data-original-title="visa"
-					aria-describedby="tooltip235096"><i class="fa fa-cc-visa"></i></li>
-				<li class="tooltips" data-toggle="tooltip" data-placement="top"
-					title="" data-original-title="mastercard"
-					aria-describedby="tooltip235096"><i
-					class="fa fa-cc-mastercard"></i></li>
-				<li class="tooltips" data-toggle="tooltip" data-placement="top"
-					title="" data-original-title="amex"
-					aria-describedby="tooltip235096"><i class="fa fa-cc-amex"></i></li>
-				<li class="tooltips" data-toggle="tooltip" data-placement="top"
-					title="" data-original-title="paypal"
-					aria-describedby="tooltip235096"><i class="fa fa-cc-paypal"></i></li>
-			</ul> -->
-			<!-- 	<ul class="nav nav-pills">
-
-				<li class="tooltips" data-toggle="tooltip" data-placement="top"
-					title="" data-original-title="internet-explorer"><i
-					class="fa fa-internet-explorer fa-2x" aria-hidden="true"></i></li>
-				<li class="tooltips" data-toggle="tooltip" data-placement="top"
-					title="" data-original-title="chrome"><i
-					class="fa fa-chrome fa-2x" aria-hidden="true"></i>
-				<li class="tooltips" data-toggle="tooltip" data-placement="top"
-					title="" data-original-title="firefox"><i
-					class="fa fa-firefox fa-2x" aria-hidden="true"></i>
-				<li class="tool
-				tips" data-toggle="tooltip"
-					data-placement="top" title="" data-original-title="safari"><i
-					class="fa fa-safari fa-2x" aria-hidden="true"></i></li>
-				<li class="tool
-				tips" data-toggle="tooltip"
-					data-placement="top" title="" data-original-title="opera"><i
-					class="fa fa-opera fa-2x" aria-hidden="true"></i></li>
-			</ul> --%>
-
+		<div class="pull-right col-md-5 col-sm-12 col-xs-12">
 			<ul class="nav nav-pills">
 				<p class="pull-left mgr3">All Browsers Compatibility</p>
 				<li class="tooltips" data-toggle="tooltip" data-placement="top"
@@ -364,6 +335,10 @@
 		</div>
 	</div>
 </div>
+
+
+
+
 
 
 
