@@ -47,8 +47,6 @@
 				<h2 class="page-header mwav_leftText">Digital Marketing Services</h2>
 			</div>
 			
-			<%-- 윤상씨 요청 건
-			
 			
 			<div class="col-md-12 col-xs-12 col-sm-12  alert alert-info"
 				style="z-index: 5;">
@@ -63,7 +61,20 @@
 				</div>
 			</div>
 			
-			 --%>
+			<div class="col-md-12 col-xs-12 col-sm-12  alert alert-info"
+				style="z-index: 5;">
+				<div class="container">
+					<h3>
+						<strong> <span class="glyphicon glyphicon-question-sign"
+							aria-hidden="true"></span> Have Questions?
+						</strong>
+					</h3>
+					<a href="#" data-toggle="modal" data-target="#Contact"
+						class="btn btn-lg btn-primary pull-right">Contact Us</a>
+				</div>
+			</div>
+		
+			 
 
 			<!-- Content Column -->
 			<div class="col-md-12">
