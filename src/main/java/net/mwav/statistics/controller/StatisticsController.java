@@ -21,7 +21,7 @@ import net.mwav.statistics.service.StatisticsService;
 import net.mwav.statistics.vo.StatisticsLogVO;
 import net.mwav.statistics.vo.StatisticsVO;
 import net.mwav.common.module.Common_Utils;
-import net.mwav.common.module.HtmlLib;
+//import net.mwav.common.module.HtmlLib;
 
 @Controller
 public class StatisticsController {
@@ -31,7 +31,7 @@ public class StatisticsController {
 	private HttpServletRequest request;
 
 	// 싱글톤 형태.
-	HtmlLib htmlLib = HtmlLib.getInstance();
+//	HtmlLib htmlLib = HtmlLib.getInstance();
 
 	static Common_Utils cou = new Common_Utils();
 	String mode;
@@ -78,7 +78,7 @@ public class StatisticsController {
 			// userAgent(클라이언트 환경)
 			vo.setStUserAgent(request.getHeader("User-Agent"));
 			String userAgent = request.getHeader("User-Agent");
-			htmlLib.getParseUserAgent(userAgent, vo);
+//			htmlLib.getParseUserAgent(userAgent, vo);
 
 			int m_id = 0;
 

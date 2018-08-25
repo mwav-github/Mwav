@@ -45,7 +45,7 @@
 						//이메일 발송 에러 체크 
 
 						alert('입력해주신 ' + data
-								+ '이메일로 임시PW를 발급완료했습니다. (5분안에 입력해주세요.)');
+								+ '이메일로 임시 비밀번호를 발급완료했습니다. (5분 내에 입력해주세요.)');
 						document.getElementById("pwid").readOnly = true;
 						document.getElementById("pwemail").readOnly = true;
 						document.getElementById("pwok").disabled = true;

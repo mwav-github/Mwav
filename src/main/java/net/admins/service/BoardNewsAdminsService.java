@@ -51,6 +51,10 @@ public interface BoardNewsAdminsService {
 
 	void deleteNsmDelete(Map<String, Object> map) throws Exception;
 
+	void updateNsmBnStatus(String bNews_id);
+
+	void updateNsmBnStatusNotice(String bNews_id);
+
 
 
 

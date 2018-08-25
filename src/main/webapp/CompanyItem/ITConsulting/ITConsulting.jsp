@@ -184,7 +184,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 									to technology We involved in sales and business development, as
 									well as technical duties</p>
 							</div>
-							<a href="#"
+							<a href="/CompanyItem/ITServices/ITServices.mwav"
 								class="btn btn-primary btn-sm btn-block">Learn More</a>
 						</div>
 
