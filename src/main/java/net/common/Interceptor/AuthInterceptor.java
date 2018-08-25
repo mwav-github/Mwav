@@ -1,19 +1,21 @@
 package net.common.Interceptor;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import net.admins.vo.Staff_VO;
-import net.mwav.member.vo.Member_tbl_VO;
-
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+
+import net.admins.vo.Staff_VO;
+import net.mwav.common.module.DomReadXMLFile;
+import net.mwav.member.vo.Member_tbl_VO;
 
 //
 
@@ -33,12 +35,34 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 	}
 
 	protected Log log = LogFactory.getLog(AuthInterceptor.class);
-
 	@Override
 	public boolean preHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler) throws Exception {
 		log.info("======================================          START         ======================================");
 		log.info(" Request URI \t:  " + request.getRequestURI());
+
+		log.info("Systemqwdqwd "+request.getContextPath());
+		log.info("Systemqwdqwd2 "+request.getLocalName());
+		log.info("Systemqwdqwd3 "+request.getPathInfo());
+		log.info("Systemqwdqwd4 "+request.getServletPath());
+		log.info("Systemqwdqwd5 "+System.getProperty("user.dir"));
+
+		log.info("Systemqwdqwd5 "+this.getClass().getResource("/").getPath());
+		Map<String, Object> footerMap= DomReadXMLFile.xmlParser("/footer.xml.config");
+		//Map<String, Object> footerMap= DomReadXMLFile.xmlParser("\\Users\\신윤상\\Documents\\mwav\\src\\main\\webapp\\xConfig\footer.xml.config");
+
+
+
+		log.info("CompanyName !!!!!!!!" + (String)footerMap.get("companyName"));
+		
+		request.setAttribute("companyName", (String)footerMap.get("companyName"));
+		request.setAttribute("address", (String)footerMap.get("address"));
+		request.setAttribute("TEL", (String)footerMap.get("TEL"));
+		request.setAttribute("FAX", (String)footerMap.get("FAX"));
+		request.setAttribute("webSiteManager", (String)footerMap.get("webSiteManager"));
+		request.setAttribute("marketingManager", (String)footerMap.get("marketingManager"));
+		request.setAttribute("chief_IT_BusinessAdvisor", (String)footerMap.get("chief_IT_BusinessAdvisor"));
+
 
 		Member_tbl_VO member = null;
 		// member 및 비교할 값.
@@ -66,7 +90,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 			/*
 			 * int pos = url.lastIndexOf("."); String ext = url.substring(pos +
 			 * 1); System.out.println("확장자 제외" + ext);
-			 * 
+			 *
 			 * if(ext.equals("jsp")){ System.out.println("jsp 파일이다.");
 			 * statisticsController.redirectController(request, ext); }
 			 */
@@ -104,9 +128,9 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 					 * 또는 'ERR_TOO_MANY_REDIRECTS' 위의 오류가 나타나는 이유는 무한대로 리다이랙션이
 					 * 되면서 나타나는 오류이다. 즉 권한부여 페이지/ 로그인 페이지 모두 stfLogin 페이지로
 					 * 리다이렉트하니까.
-					 * 
+					 *
 					 * 이때 해당 페이지 URL 과 동일하면 그만 멈추도록 해야한다.
-					 * 
+					 *
 					 * 리다이렉션은 그 뒤의 문장까지 다실행한다.
 					 */
 
@@ -165,7 +189,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 									// // 로그인 페이지로 리다이렉트 한다.
 									/*
 									 * 중요
-									 * 
+									 *
 									 * .jsp -> jsp는 서블릿을 안탄다 즉 서블릿을 안타는 대상은 포워딩이
 									 * 불가 !! 밑에 redirect는 되나
 									 */

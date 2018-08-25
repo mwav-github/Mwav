@@ -148,6 +148,12 @@
 		<priority>1.0</priority>
 	</url>
 	<url>
+		<loc>http://www.mwav.net/CompanyItem/DigitalMarketing/DigitalMarketing_eng.mwav</loc>
+		<lastmod>2017-09-10</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>1.0</priority>
+	</url>
+	<url>
 		<loc>http://www.mwav.net/CompanyItem/ITConsulting/ITConsulting.mwav</loc>
 		<lastmod>2017-09-07</lastmod>
 		<changefreq>monthly</changefreq>
@@ -180,17 +186,17 @@
 		<changefreq>monthly</changefreq>
 		<priority>0.4</priority>
 	</url>
-               
+
 
         <!-- CustomerSevice -->
- 
+
 	<url>
 		<loc>http://www.mwav.net/CustomerService/MemberShip/MemberShip.mwav</loc>
 		<lastmod>2017-09-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
-	
+
         <url>
 		<loc>http://www.mwav.net/CustomerService/Agreement/Agreement.mwav</loc>
 		<lastmod>2016-06-26</lastmod>
@@ -291,7 +297,7 @@
 		<changefreq>monthly</changefreq>
 		<priority>1.0</priority>
 	</url>
-	
+
 
 	<!-- Notice -->
 	<url>

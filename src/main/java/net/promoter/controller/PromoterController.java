@@ -1,9 +1,7 @@
 package net.promoter.controller;
 
 import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -21,7 +19,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import net.common.common.CommandMap;
-import net.mwav.common.module.AesEncryption;
 import net.mwav.common.module.Common_Utils;
 import net.mwav.common.module.Paging;
 import net.mwav.common.module.PagingVO;
@@ -53,7 +50,7 @@ public class PromoterController {
 		mv.addObject("promoter_id", "10001000");
 		return mv;
 	}
-	
+
 	@RequestMapping(value = "/Promoter/ProductList")
 	public ModelAndView redirectAdminsPmtGoodsController(HttpServletRequest request)
 			throws Exception {
@@ -61,7 +58,7 @@ public class PromoterController {
 		ModelAndView mv = new ModelAndView("/Promoter/Goods/GoodsList");
 		return mv;
 	}
-	
+
 
 	/*---------------단순 페이지이동           -----------*/
 	@RequestMapping(value = "/Promoter/promoter-add")
@@ -74,7 +71,7 @@ public class PromoterController {
 	@RequestMapping(value = "/pmt/pmtLoginForm.mwav",method = RequestMethod.GET)
 	public String selectLogin(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
-		return "/Promoter/PmtLogin";
+		return "/AdminPmt/Promoters/PmtLogin";
 	}
 
 
@@ -94,23 +91,21 @@ public class PromoterController {
 	@RequestMapping(value = "/pmt/pmtLogin.mwav",method = RequestMethod.POST)
 	public ModelAndView selectLoginPro(CommandMap commandMap,
 			HttpServletRequest request,RedirectAttributes rtr) throws Exception {
-		ModelAndView mv = new ModelAndView("/Promoter/PmtLogin");
+		ModelAndView mv = new ModelAndView("/AdminPmt/Promoters/PmtLogin");
+		Promoter_VO promoter =null;
 		Map<String, Object> pmt = commandMap.getMap();
-
 		if(((String) pmt.get("pmtLoginPw")).length()<3||((String) pmt.get("pmtLoginId")).length()<3 ){
 			rtr.addFlashAttribute("msg", "비밀번호와 아이디를 확인해주세요");
 			return mv;
 		}
-
-
-
-		Promoter_VO promoter = promoterService.selectPmtLogin(commandMap.getMap());
+			promoter = (Promoter_VO)promoterService.selectPmtLogin(commandMap.getMap());
 		if(promoter==null){
 			log.info("프로모터 로그인 실패");
 			rtr.addFlashAttribute("msg", "비밀번호와 아이디를 확인해주세요");
 		}
 		else {
 			log.info("프로모터 로그인 성공");
+			log.info("pw!!!!!!"+ promoter.getPmtLoginPw());
 			request.getSession().setAttribute("promoterId",promoter.getPromoter_id() );
 		}
 		return mv;
@@ -196,8 +191,6 @@ public class PromoterController {
 			errors.rejectValue("pmtPhone", "핸드폰 ","핸드폰 번호가 없습니다");
 			return mv;
 		}
-
-
 		log.info("순서");
 		log.info("인터셉터 테스트");
 		String PmtCellularP_1 = (String) commandMap.get("pmtCellularP_1");
