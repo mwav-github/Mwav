@@ -708,69 +708,52 @@ function caps_lockchk() {
 //소셜 공유하기
 //http://dev.epiloum.net/916
 //http://www.sharelinkgenerator.com/
-function sendSns(url, utm_source, utm_campaign ,utm_medium, utm_content, subTitle, pgl)
+function sendSns(url, utm_source, utm_campaign, utm_medium, utm_content, subTitle, pgl)
 {
-	//alert(sns);
-	//alert(url);
-	//alert(txt);
-	
-	//통계기 추가 필요
-	//console.log(utm_campaign);
-	//console.log(trim(utm_campaign));
-	
-    var o;
-    
-    //보안이슈 인코딩 처리.
-    //var _txt = encodeURIComponent(txt);
-    var _br  = encodeURIComponent('\r\n');
-    
-    //trim 처리를 안하는 경우 url이 중간에 짤려서 다 인식못함.
-    var googleAnalytics_var = '&utm_source='+ utm_source +'&utm_campaign='+ trim(utm_campaign) +'&utm_medium='+utm_medium+'&utm_content='+utm_content;
-    var pgl = '&pgl='+pgl
-    var _url = encodeURIComponent(url+googleAnalytics_var+pgl+'#news_top');
-    	
-    //alert(url + googleAnalytics_var);
-    console.log(url+googleAnalytics_var+pgl+'#news_top');
-    //alert(googleAnalytics_var);
-    switch(utm_source)
-    {
-        case 'facebook':
-            o = {
-                method:'popup',
-                url:'http://www.facebook.com/sharer/sharer.php?u=' + _url
-            };
-            break;
- 
-        case 'twitter':
-            o = {
-                method:'popup',
-                url:'http://twitter.com/intent/tweet?text=' + utm_campaign + '&url=' + _url 
-            };
-            break;
- 
-        case 'me2day':
+//	console.log("sendSns : " + url + ", " + utm_source + ", " + utm_campaign);
+//	console.log("sendSns : " + utm_medium + ", " + subTitle + ", " + pgl);
+//	console.log("sendSns : " + utm_content);
+	// TODO 통계기 추가 필요
+	var o;
+	var _br = encodeURIComponent('\r\n'); // 보안이슈 인코딩 처리.
+
+	//trim 처리를 안하는 경우 url이 중간에 짤려서 다 인식못함.
+	var googleAnalytics_var = '&utm_source=' + utm_source +'&utm_campaign=' + trim(utm_campaign) +'&utm_medium=' + utm_medium + '&utm_content=' + utm_content;
+	var pgl = '&pgl='+pgl
+	var _url = encodeURIComponent(url + googleAnalytics_var + pgl + '#news_top');
+
+	switch(utm_source){
+	case 'facebook':
+		o = {
+			method:'popup',
+			url:'http://www.facebook.com/sharer/sharer.php?u=' + _url
+		};
+		break;
+		/* case 'me2day':
             o = {
                 method:'popup',
                 url:'http://me2day.net/posts/new?new_post[body]=' + _txt + _br + _url + '&new_post[tags]=epiloum'
             };
-            break;
- 
-        case 'googleplus':
-            o = {
-                method:'popup',
-                url:'https://plus.google.com/share?&url='+ _url
-            };
-            break;
-        
-        case 'linkedin':
-            o = {
-                method:'popup',
-                url:'https://www.linkedin.com/shareArticle?mini=true&url=' + _url +'&title=' + utm_campaign + '&summary=' + subTitle
-            };
-            break;    
-     
-            
-        case 'kakaotalk':
+            break;*/
+	case 'googleplus':
+		o = {
+			method:'popup',
+			url:'https://plus.google.com/share?&url='+ _url
+		};
+		break;
+	case 'linkedin':
+		o = {
+			method:'popup',
+			url:'https://www.linkedin.com/shareArticle?mini=true&url=' + _url +'&title=' + utm_campaign + '&summary=' + subTitle
+		};
+		break;    
+	case 'twitter':
+		o = {
+			method:'popup',
+			url:'http://twitter.com/intent/tweet?text=' + utm_campaign + '&url=' + _url 
+		};
+		break;
+		/*case 'kakaotalk':
             o = {
                 method:'web2app',
                 param:'sendurl?msg=' + _txt + '&url=' + _url + '&type=link&apiver=2.0.1&appver=2.0&appid=dev.epiloum.net&appname=' + encodeURIComponent('Epiloum 개발노트'),
@@ -780,7 +763,7 @@ function sendSns(url, utm_source, utm_campaign ,utm_medium, utm_content, subTitl
                 g_proto:'scheme=kakaolink;package=com.kakao.talk'
             };
             break;
- 
+
         case 'kakaostory':
             o = {
                 method:'web2app',
@@ -791,7 +774,6 @@ function sendSns(url, utm_source, utm_campaign ,utm_medium, utm_content, subTitl
                 g_proto:'scheme=kakaolink;package=com.kakao.story'
             };
             break;
- 
         case 'band':
             o = {
                 method:'web2app',
@@ -801,37 +783,73 @@ function sendSns(url, utm_source, utm_campaign ,utm_medium, utm_content, subTitl
                 a_proto:'bandapp://',
                 g_proto:'scheme=bandapp;package=com.nhn.android.band'
             };
-            break;
- 
-        default:
-            alert('지원하지 않는 SNS입니다.');
-            return false;
-    }
- 
-    switch(o.method)
-    {
-        case 'popup':
-            window.open(o.url);
-            break;
- 
-        case 'web2app':
-            if(navigator.userAgent.match(/android/i))
-            {
-                // Android
-                setTimeout(function(){ location.href = 'intent://' + o.param + '#Intent;' + o.g_proto + ';end'}, 100);
-            }
-            else if(navigator.userAgent.match(/(iphone)|(ipod)|(ipad)/i))
-            {
-                // Apple
-                setTimeout(function(){ location.href = o.a_store; }, 200);          
-                setTimeout(function(){ location.href = o.a_proto + o.param }, 100);
-            }
-            else
-            {
-                alert('이 기능은 모바일에서만 사용할 수 있습니다.');
-            }
-            break;
-    }
+            break;*/
+	case 'kakao':
+		o = {
+			method:'kakao',
+			url : url + googleAnalytics_var + pgl + '#news_top',
+			utm_source : utm_source,
+			utm_campaign : utm_campaign,
+			utm_medium : utm_medium,
+			utm_content : utm_content,
+			subTitle : subTitle,
+			pgl : pgl
+		};
+		break;
+	default:
+		alert('곧 지원될 예정입니다.');
+		break;
+		return;
+	}
+
+	
+	switch(o.method) {
+	case 'popup':
+		window.open(o.url);
+		break;
+	case 'web2app':
+		if(navigator.userAgent.match(/android/i)){ 
+			setTimeout(function(){ location.href = 'intent://' + o.param + '#Intent;' + o.g_proto + ';end'}, 100);
+		} else if(navigator.userAgent.match(/(iphone)|(ipod)|(ipad)/i)) {
+			setTimeout(function(){ location.href = o.a_store; }, 200);          
+			setTimeout(function(){ location.href = o.a_proto + o.param }, 100);
+		} else {
+			alert('이 기능은 모바일에서만 사용할 수 있습니다.');
+		}
+		break;
+	case 'kakao' :
+	    // 카카오링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
+//	    Kakao.Link.sendDefault({
+//	    	container : '#kakao-link-btn',
+//	    	objectType : 'commerce',
+//	    	content : {
+//	    		title : o.utm_campaign,
+//	    		imageUrl : 'http://mud-kage.kakao.co.kr/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
+//	    		link : {
+//	    			mobileWebUrl : o.url,
+//	    			webUrl : o.url
+//	    		}
+//	    	}, 
+//	    	commerce : {
+//	    		regularPrice : 10000,
+//	    		discountPrice : 50000,
+//	    		discountRate : 50
+//	    	}
+//	    });
+	    
+	    
+	    // TODO add after creating template
+		var _url_query = o.url.split("?")[1];
+		console.log("_url_query : " + _url_query);
+	    Kakao.Link.sendCustom({
+	    	templateId : 11887,
+	    	templateArgs : {
+	    		'mwav_news_title' : o.utm_campaign,
+	    		'mwav_news_desc' : o.subTitle,
+	    		'mwav_news_query' : _url_query
+	    	}
+	    });
+	}
 }
 
 function reloadPage(paramName, paramValue){
