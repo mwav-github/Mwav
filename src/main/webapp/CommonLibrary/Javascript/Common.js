@@ -818,27 +818,6 @@ function sendSns(url, utm_source, utm_campaign, utm_medium, utm_content, subTitl
 		}
 		break;
 	case 'kakao' :
-	    // 카카오링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
-//	    Kakao.Link.sendDefault({
-//	    	container : '#kakao-link-btn',
-//	    	objectType : 'commerce',
-//	    	content : {
-//	    		title : o.utm_campaign,
-//	    		imageUrl : 'http://mud-kage.kakao.co.kr/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
-//	    		link : {
-//	    			mobileWebUrl : o.url,
-//	    			webUrl : o.url
-//	    		}
-//	    	}, 
-//	    	commerce : {
-//	    		regularPrice : 10000,
-//	    		discountPrice : 50000,
-//	    		discountRate : 50
-//	    	}
-//	    });
-	    
-	    
-	    // TODO add after creating template
 		var _url_query = o.url.split("?")[1];
 		console.log("_url_query : " + _url_query);
 	    Kakao.Link.sendCustom({
