@@ -41,18 +41,11 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 		log.info("======================================          START         ======================================");
 		log.info(" Request URI \t:  " + request.getRequestURI());
 
-		log.info("Systemqwdqwd "+request.getContextPath());
-		log.info("Systemqwdqwd2 "+request.getLocalName());
-		log.info("Systemqwdqwd3 "+request.getPathInfo());
-		log.info("Systemqwdqwd4 "+request.getServletPath());
-		log.info("Systemqwdqwd5 "+System.getProperty("user.dir"));
-
-		log.info("Systemqwdqwd5 "+this.getClass().getResource("/").getPath());
-		Map<String, Object> footerMap= DomReadXMLFile.xmlParser("/footer.xml.config");
+		HttpSession session = request.getSession();
+		String uploadRootPath = session.getServletContext().getRealPath(
+				"\\");
+		Map<String, Object> footerMap= DomReadXMLFile.xmlParser(uploadRootPath+"/xConfig/footer.xml.config");
 		//Map<String, Object> footerMap= DomReadXMLFile.xmlParser("\\Users\\신윤상\\Documents\\mwav\\src\\main\\webapp\\xConfig\footer.xml.config");
-
-
-
 		log.info("CompanyName !!!!!!!!" + (String)footerMap.get("companyName"));
 		
 		request.setAttribute("companyName", (String)footerMap.get("companyName"));
@@ -73,7 +66,6 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 		member_tbl_VO = null;
 		try {
 
-			HttpSession session = request.getSession();
 		
 			staff = (Staff_VO) session.getAttribute("staff");
 			member = (Member_tbl_VO) session.getAttribute("member");
