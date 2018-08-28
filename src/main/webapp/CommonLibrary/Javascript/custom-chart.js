@@ -305,6 +305,7 @@ function getRemoteDataDrawChart_News(categories, title, yTitle, xTitle, divId, s
 	
 	// populate the lineChart options (highchart)
 	chartType.highchart.xAxis.categories = categories;
+	chartType.highchart.yAxis.max = 100;
 	chartType.highchart.title.text = title;
 	chartType.highchart.yAxis.title.text = yTitle;
 	chartType.highchart.xAxis.title.text = xTitle;
