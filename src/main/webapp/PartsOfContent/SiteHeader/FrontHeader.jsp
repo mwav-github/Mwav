@@ -253,8 +253,6 @@
 							<h4 class="">IT Trends</h4>
 							<div class="bs-component" style="background-color: white;">
 								 <jsp:include page="/board/bnsFrontList.mwav" flush="false" />
-
-								<jsp:include page="/board/bnsFrontList.mwav" flush="false" />
 							</div>
 							<%-- <div class="bs-component" style="background-color: white;">
 						<jsp:include page="/board/bnsFrontList.mwav" flush="false" />
