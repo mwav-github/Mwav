@@ -37,29 +37,136 @@
 			<%-- 크기 줄었을 때 우측에 navbar 역할 --%>
 			<a class="navbar-brand active logo_800_m" href="/"> <img
 				src="/Images/CompanyLogos/CompanyLogo.gif"
-				class="img-thumbnail img-responsive logo_800_h"
-				alt="CompanyLogo"> <!-- <font color="#E5E5E5">Mwav</font> --></a>
+				class="img-thumbnail img-responsive logo_800_h" alt="CompanyLogo">
+				<!-- <font color="#E5E5E5">Mwav</font> --></a>
 		</div>
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse "
 			id="bs-example-navbar-collapse-1">
 			<ul class="mgt1 mgl3 nav navbar-nav lead ">
+				<!-- <li class="dropdown mega-dropdown hidden-xs hidden-sm"><h4 class="nav_fontsize"><a
+					href="#" class="dropdown-toggle backgroud_transparent"
+					data-toggle="dropdown"><i class="fa fa-align-justify"></i> 
+							<strong>Categories</strong>
+						</a></h4>
+					<ul class="dropdown-menu mega-dropdown-menu">
+						<li class="col-sm-3">
+							<ul>
+								<li class="dropdown-header_type2">Features</li>
+								<li><a href="#">Auto Carousel</a></li>
+								<li><a href="#">Carousel Control</a></li>
+								<li><a href="#">Left & Right Navigation</a></li>
+								<li><a href="#">Four Columns Grid</a></li>
+								<li class="divider"></li>
+								<li class="dropdown-header_type2">Fonts</li>
+								<li><a href="#">Glyphicon</a></li>
+								<li><a href="#">Google Fonts</a></li>
+							</ul>
+						</li>
+						<li class="col-sm-3">
+							<ul>
+								<li class="dropdown-header_type2">Plus</li>
+								<li><a href="#">Navbar Inverse</a></li>
+								<li><a href="#">Pull Right Elements</a></li>
+								<li><a href="#">Coloured Headers</a></li>
+								<li><a href="#">Primary Buttons & Default</a></li>
+							</ul>
+						</li>
+						<li class="col-sm-3">
+							<ul>
+								<li class="dropdown-header_type2">Accessories</li>
+								<li><a href="#">Default Navbar</a></li>
+								<li><a href="#">Lovely Fonts</a></li>
+								<li><a href="#">Responsive Dropdown </a></li>
+								<li class="divider"></li>
+								<li class="dropdown-header_type2">Newsletter</li>
+								<form class="form" role="form">
+									<div class="form-group">
+										<label class="sr-only" for="email">Email address</label> <input
+											type="email" class="form-control" id="email"
+											placeholder="Enter email">
+									</div>
+									<button type="submit" class="btn btn-primary btn-block">Sign
+										in</button>
+								</form>
+								<br>
+							</ul>
+						</li>
+						<li class="col-sm-3">
+							<ul>
+								<li class="dropdown-header_type2">Collection</li>
+								<div id="carousel-example-generic" class="carousel slide"
+									data-ride="carousel">
+									<ol class="carousel-indicators">
+										<li data-target="#carousel-example-generic" data-slide-to="0"
+											class="active"></li>
+										<li data-target="#carousel-example-generic" data-slide-to="1"
+											class=""></li>
+										<li data-target="#carousel-example-generic" data-slide-to="2"
+											class=""></li>
+									</ol>
+									<div class="carousel-inner" role="listbox">
+										<div class="item active">
+											<img src="/Shop/zImages/promotion_1.jpg">
+										</div>
+										<div class="item">
+											<img
+												data-src="holder.js/900x500/auto/#666:#444/text:Second slide"
+												alt="Second slide [900x500]"
+												src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iOTAwIiBoZWlnaHQ9IjUwMCIgdmlld0JveD0iMCAwIDkwMCA1MDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iOTAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzY2NiIvPjxnPjx0ZXh0IHg9IjI3Ny4yODkwNjI1IiB5PSIyNTAiIHN0eWxlPSJmaWxsOiM0NDQ7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6NDJwdDtkb21pbmFudC1iYXNlbGluZTpjZW50cmFsIj5TZWNvbmQgc2xpZGU8L3RleHQ+PC9nPjwvc3ZnPg=="
+												data-holder-rendered="true">
+										</div>
+										<div class="item">
+											<img
+												data-src="holder.js/900x500/auto/#555:#333/text:Third slide"
+												alt="Third slide [900x500]"
+												src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iOTAwIiBoZWlnaHQ9IjUwMCIgdmlld0JveD0iMCAwIDkwMCA1MDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iOTAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzU1NSIvPjxnPjx0ZXh0IHg9IjMwOC40Mjk2ODc1IiB5PSIyNTAiIHN0eWxlPSJmaWxsOiMzMzM7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6NDJwdDtkb21pbmFudC1iYXNlbGluZTpjZW50cmFsIj5UaGlyZCBzbGlkZTwvdGV4dD48L2c+PC9zdmc+"
+												data-holder-rendered="true">
+										</div>
+									</div>
+									<a class="left carousel-control"
+										href="#carousel-example-generic" role="button"
+										data-slide="prev"> <span
+										class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+										<span class="sr-only">Previous</span>
+									</a> <a class="right carousel-control"
+										href="#carousel-example-generic" role="button"
+										data-slide="next"> <span
+										class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+										<span class="sr-only">Next</span>
+									</a>
+								</div>
+								<li><a href="#">View all Collection <span
+										class="glyphicon glyphicon-chevron-right pull-right"></span></a></li>
+							</ul>
+						</li>
+					</ul></li> -->
 				<li><a href="/CompanyItem/ITSolutions/Aervision/Aervision.mwav"
-					onclick="ga('send', 'event', 'GNB', 'click', 'ITSolutions');"><h4 class="nav_fontsize"><strong>IT
-							Solutions</strong></h4></a></li>
+					onclick="ga('send', 'event', 'GNB', 'click', 'ITSolutions');"><h4
+							class="nav_fontsize">
+							<strong>IT Solutions</strong>
+						</h4></a></li>
 				<li><a href="/CompanyItem/ITProducts/QuickHeal/QuickHeal.mwav"
-					onclick="ga('send', 'event', 'GNB', 'click', 'ITProducts');"><h4 class="nav_fontsize"><strong>IT
-							Products</strong></h4></a></li>
+					onclick="ga('send', 'event', 'GNB', 'click', 'ITProducts');"><h4
+							class="nav_fontsize">
+							<strong>IT Products</strong>
+						</h4></a></li>
 				<li><a href="/CompanyItem/WebSiteBuilding/WebSiteBuilding.mwav"
-					onclick="ga('send', 'event', 'GNB', 'click', 'WebsiteBuilding');"><h4 class="nav_fontsize"><strong>WebSite
-							Building</strong></h4></a></li>
+					onclick="ga('send', 'event', 'GNB', 'click', 'WebsiteBuilding');"><h4
+							class="nav_fontsize">
+							<strong>WebSite Building</strong>
+						</h4></a></li>
 				<li><a
-					href="/CompanyItem/DigitalMarketing/DigitalMarketing_eng.mwav"
-					onclick="ga('send', 'event', 'GNB', 'click', 'DigitalMarketing');"><h4 class="nav_fontsize"><strong>Digital
-							Marketing</strong></h4></a></li>
+					href="/CompanyItem/DigitalMarketing/DigitalMarketing.mwav"
+					onclick="ga('send', 'event', 'GNB', 'click', 'DigitalMarketing');"><h4
+							class="nav_fontsize">
+							<strong>Digital Marketing</strong>
+						</h4></a></li>
 				<li><a href="/CompanyItem/ITConsulting/ITConsulting.mwav"
-					onclick="ga('send', 'event', 'GNB', 'click', 'ITConsulting');"><h4 class="nav_fontsize"><strong>IT
-							Consulting</strong></h4></a></li>
+					onclick="ga('send', 'event', 'GNB', 'click', 'ITConsulting');"><h4
+							class="nav_fontsize">
+							<strong>IT Consulting</strong>
+						</h4></a></li>
 			</ul>
 			<ul class="mgt2 nav navbar-nav navbar-right mgl3_1023">
 				<!-- 일반로그인 부분 -->
@@ -72,8 +179,7 @@
 							class="fa fa-user fa-lg"></i> My Mwav</a>
 
 						<ul class="dropdown-menu dropdown-menu_change">
-							<li><a
-								href="/CustomerService/MemberShip/MemberShip.mwav"
+							<li><a href="/CustomerService/MemberShip/MemberShip.mwav"
 								style="color: #428bca;"><h5>
 										My Account <span class="glyphicon glyphicon-cog pull-right"></span>
 									</h5></a></li>
@@ -95,7 +201,9 @@
 						</ul></li>
 				</c:if>
 				<c:if test="${sessionScope.member eq null }">
-					<li><a href="/MasterPage.mwav?mode=SMbrLogin&returnUrl=/login/post.mwav"><i class="fa fa-user fa-lg"></i></a></li>
+					<li><a
+						href="/MasterPage.mwav?mode=SMbrLogin&returnUrl=/login/post.mwav"><i
+							class="fa fa-user fa-lg"></i></a></li>
 					<li><a href="/MasterPage_1.mwav?mode=Default"><i
 							class="fa fa-user-plus fa-lg"></i></a></li>
 				</c:if>
@@ -139,10 +247,14 @@
 						<h4>Get start your next awesome project</h4>
 					</div>
  --%>
-						<div class="col-md-8 col-md-push-5 col-xs-12 text-right block_no block-3" style="opacity:0.8;">
+						<div
+							class="col-md-8 col-md-push-5 col-xs-12 text-right block_no block-3"
+							style="opacity: 0.8;">
 							<h4 class="">IT Trends</h4>
 							<div class="bs-component" style="background-color: white;">
 								 <jsp:include page="/board/bnsFrontList.mwav" flush="false" />
+
+								<jsp:include page="/board/bnsFrontList.mwav" flush="false" />
 							</div>
 							<%-- <div class="bs-component" style="background-color: white;">
 						<jsp:include page="/board/bnsFrontList.mwav" flush="false" />
@@ -158,7 +270,8 @@
 				<div class="carousel-caption "
 					style="color: rgba(138, 109, 59, 0.14)">
 
-					<h4 class="fontsize_30">We are creative Get start your next awesome project</h4>
+					<h4 class="fontsize_30">We are creative Get start your next
+						awesome project</h4>
 					<div class="col-xs-6 col-sm-4 col-md-4">
 						<div class="block block-1">
 							<h4 class="fontsize_20">WebSite Building</h4>
@@ -175,7 +288,9 @@
 					</div>
 					<div class="col-xs-6 col-sm-4 col-md-4">
 						<div class="block block-3">
-							<h4 class="fontsize_20">IT <br>Consulting</h4>
+							<h4 class="fontsize_20">
+								IT <br>Consulting
+							</h4>
 							<a href="/CompanyItem/ITConsulting/ITConsulting.mwav"><button
 									class="btn btn-default btn-lg fontsize_14">Learn More</button></a>
 						</div>
@@ -248,95 +363,3 @@
 
 </header>
 
-<%-- Controls (왼, 오른쪽 화살표 버튼)--%>
-<!-- End Wrapper for slides-->
-<%--  <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-            <i class="fa fa-angle-left"></i><span class="sr-only">Previous</span>
-        </a>
-        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-            <i class="fa fa-angle-right"></i><span class="sr-only">Next</span>
-        </a>
-        /* ==============슬라이더================*/
-.carousel-control {
-    opacity: 1;
-    filter: alpha(opacity=100);
-}
-.carousel-control .fa-angle-right, .carousel-control .fa-angle-left {
-    position: absolute;
-    top: 50%;
-    z-index: 5;
-    display: inline-block;
-}
-.carousel-control .fa-angle-left{
-    left: 50%;
-    width: 38px;
-    height: 38px;
-    margin-top: -15px;
-    font-size: 30px;
-    color: #fff;
-    border: 3px solid #ffffff;
-    -webkit-border-radius: 23px;
-    -moz-border-radius: 23px;
-    border-radius: 53px;
-}
-.carousel-control .fa-angle-right{
-    right: 50%;
-    width: 38px;
-    height: 38px;
-    margin-top: -15px;
-    font-size: 30px;
-    color: #fff;
-    border: 3px solid #ffffff;
-    -webkit-border-radius: 23px;
-    -moz-border-radius: 23px;
-    border-radius: 53px;
-}
-         --%>
-
-<%--
-이미지 태그 사용시
-단 background 와 다르게 height 에 대해서 그대로 잡아버린다.
-<div class="container">
-
-    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-      <!-- Indicators -->
-      <ol class="carousel-indicators">
-        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-      </ol>
-
-      <!-- Wrapper for slides -->
-      <div class="carousel-inner">
-        <div class="item active">
-          <img src="/Company/zImage/CompanyInfo_2(width1000).jpg" alt="...">
-          <div class="carousel-caption">
-            <h2>Heading</h2>
-          </div>
-        </div>
-        <div class="item">
-          <img src="/CompanyItem/zImage/CompanyItem_Main(height_300).jpg" alt="...">
-          <div class="carousel-caption">
-            <h2>Heading</h2>
-          </div>
-        </div>
-        <div class="item">
-          <img src="/CustomerService/zImage/CustomerService_Main(height_300).jpg" alt="...">
-          <div class="carousel-caption">
-            <h2>Heading</h2>
-          </div>
-        </div>
-      </div>
-
-      <!-- Controls -->
-      <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left"></span>
-      </a>
-      <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right"></span>
-      </a>
-    </div>
-
-  </div>
-
---%>

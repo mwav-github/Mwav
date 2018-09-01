@@ -1008,11 +1008,11 @@ function redirectUrl (url, name) {
 
     // Internet Explorer 8 and lower
     if (isIE && version < 9) {
-    	alert('12');
-        var link = document.createElement('a');
+    	var link = document.createElement('a');
         link.href = url;
         document.body.appendChild(link);
         link.click();
+        return false;
     }
 
     // All other browsers can use the standard window.location.href (they don't lose HTTP_REFERER like Internet Explorer 8 & lower does)
@@ -1020,5 +1020,7 @@ function redirectUrl (url, name) {
     	//https://www.w3schools.com/jsref/met_win_open.asp
     	window.open(url, name);
     	//window.location.href 로 하는 경우 새로 뜨는 창이 mwav가 된다.
+    	return false;
     }
+    return false;
 }

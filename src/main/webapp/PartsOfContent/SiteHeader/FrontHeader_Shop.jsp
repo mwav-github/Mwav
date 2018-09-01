@@ -6,7 +6,7 @@
 	$(document).ready(
 			function() {
 				// 아래의 내용을 해야지 dropdown 됬을때 유지된다
-				$(".dropdown").hover(
+				$(".dropdown").click(
 						function() {
 							$('.dropdown-menu', this).not('.in .dropdown-menu')
 									.stop(true, true).slideDown("400");
