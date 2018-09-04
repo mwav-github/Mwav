@@ -708,7 +708,7 @@ function caps_lockchk() {
 //소셜 공유하기
 //http://dev.epiloum.net/916
 //http://www.sharelinkgenerator.com/
-function sendSns(url, utm_source, utm_campaign, utm_medium, utm_content, subTitle, pgl)
+function sendSns(url, utm_source, utm_campaign, utm_medium, utm_content, subTitle, pgl, thumbnail_link)
 {
 //	console.log("sendSns : " + url + ", " + utm_source + ", " + utm_campaign);
 //	console.log("sendSns : " + utm_medium + ", " + subTitle + ", " + pgl);
@@ -825,7 +825,8 @@ function sendSns(url, utm_source, utm_campaign, utm_medium, utm_content, subTitl
 	    	templateArgs : {
 	    		'mwav_news_title' : o.utm_campaign,
 	    		'mwav_news_desc' : o.subTitle,
-	    		'mwav_news_query' : _url_query
+	    		'mwav_news_query' : _url_query,
+	    		'mwav_news_thumbnail' : thumbnail_link
 	    	}
 	    });
 	}
