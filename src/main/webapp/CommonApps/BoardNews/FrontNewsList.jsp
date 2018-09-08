@@ -29,8 +29,8 @@
 							<fmt:parseDate var="parse_targetDate" pattern="yyyy-MM-dd" value="${jstl_targetDate }" />
 							<fmt:formatDate value="${parse_targetDate }" pattern="yyyy-MM-dd" var="targetdate"/>
 							
-							<c:set var="jstl_today" value="<%=new java.util.Date()%>" />
-							<fmt:formatDate value="${jstl_today}" pattern="yyyy-MM-dd" var="today" />
+							<%-- <c:set var="jstl_today" value="<%=new java.util.Date()%>" />
+							<fmt:formatDate value="${jstl_today}" pattern="yyyy-MM-dd" var="today" /> --%>
 							
 							<c:set var="jstl_ago" value="<%=new java.util.Date(new java.util.Date().getTime()-(60*60*24*1000*21)) %>"/><!-- 3주 -->
 							<fmt:formatDate value="${jstl_ago}" pattern="yyyy-MM-dd" var="ago" />
@@ -51,7 +51,8 @@
 									<!-- a태그로 처리요망 -->
 									<td class="col-md-12 text-left ">
 										<a href="/board/bnsView.mwav?bNews_id=${VselectListBnsFrontList.bNews_id}#news_top">
-											<c:if test="${parseTdate -parseAgo < 20 && parseTdate -parseAgo > 0}">
+											<%-- <c:if test="${parseTdate -parseAgo < 20 && parseTdate -parseAgo > 0}"> --%>
+											<c:if test="${parseAgo < parseTdate}">
 											    <span class="label label-danger">new</span>
 											</c:if>
 											${VselectListBnsFrontList.bnTitle}
@@ -86,8 +87,8 @@
 							<fmt:parseDate var="parse_targetDate" pattern="yyyy-MM-dd" value="${jstl_targetDate }" />
 							<fmt:formatDate value="${parse_targetDate }" pattern="yyyy-MM-dd" var="targetdate"/>
 							
-							<c:set var="jstl_today" value="<%=new java.util.Date()%>" />
-							<fmt:formatDate value="${jstl_today}" pattern="yyyy-MM-dd" var="today" />
+							<%-- <c:set var="jstl_today" value="<%=new java.util.Date()%>" />
+							<fmt:formatDate value="${jstl_today}" pattern="yyyy-MM-dd" var="today" /> --%>
 							
 							<c:set var="jstl_ago" value="<%=new java.util.Date(new java.util.Date().getTime()-(60*60*24*1000*21)) %>"/><!-- 3주 -->
 							<fmt:formatDate value="${jstl_ago}" pattern="yyyy-MM-dd" var="ago" />
@@ -106,7 +107,8 @@
 							<tr>
 								<td class="col-xs-12  text-left ">
 									<a href="/board/bnsView.mwav?bNews_id=${VselectListBnsFrontList.bNews_id}">
-										<c:if test="${parseTdate -parseAgo < 20 && parseTdate -parseAgo > 0}">
+										<%-- <c:if test="${parseTdate -parseAgo < 20 && parseTdate -parseAgo > 0}"> --%>
+											<c:if test="${parseAgo < parseTdate}">
 										    <span class="label label-danger">new</span>
 										</c:if>
 										${VselectListBnsFrontList.bnTitle}
