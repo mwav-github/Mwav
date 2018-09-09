@@ -110,6 +110,16 @@
     <url-pattern>*.mwav</url-pattern>
   </filter-mapping>
    
+   <!-- 2018.09.09 dhkim http to https redirect -->
+	<filter>
+		<filter-name>HttpsFilter</filter-name>
+		<filter-class>net.common.filter.HttpsFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>HttpsFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
    <!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
    <!-- 이녀석은 루트 컨텍스트로 모든 서블릿과 필터들이 공유한다고 합니다. 바로 root-context.xml을 정의해 두었네요-->
    <!-- ContextLoaderListener와 DispatcherServlet은 각각 WebApplicationContext 인스턴스를 생성하게 된다.
