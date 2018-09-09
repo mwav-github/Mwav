@@ -6,6 +6,7 @@
 <script src="//cdn.ckeditor.com/4.4.6/basic/ckeditor.js"></script>
 <script src="https://code.highcharts.com/highcharts.src.js"></script>
 <script src="/CommonLibrary/Javascript/custom-chart.js"></script>
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script type="text/javascript">
 	var charData = '<c:out value="${charData}"/>';
 
@@ -33,6 +34,9 @@
 
 				});
 	}
+	
+    // kko init
+    Kakao.init('df1b79024461392087ab0dcbc2ca15ba');
 </script>
 <!-- imsi -->
 
@@ -58,17 +62,23 @@
 		<hr>
 		<div class="text-right">
 			<a class="btn btn-social-icon btn-facebook"
-				onClick="sendSns('http://www.mwav.net/board/bnsView.mwav?bNews_id=${selectOneBnsView.bNews_id}', 'facebook', '${selectOneBnsView.bnTitle}', 'social', 'news', '${selectOneBnsView.bnSubTitle}', '${param.pgl}')"><span
+				onClick="sendSns('http://www.mwav.net/board/bnsView.mwav?bNews_id=${selectOneBnsView.bNews_id}', 'facebook', '${selectOneBnsView.bnTitle}', 'social', 'news', '${selectOneBnsView.bnSubTitle}', '${param.pgl}', 'null')"><span
 				class="fa fa-facebook"></span></a> <a
 				class="btn btn-social-icon btn-google"
-				onClick="sendSns('http://www.mwav.net/board/bnsView.mwav?bNews_id=${selectOneBnsView.bNews_id}','googleplus', '${selectOneBnsView.bnTitle}', 'social', 'news', '${selectOneBnsView.bnSubTitle}', '${param.pgl}')"><span
+				onClick="sendSns('http://www.mwav.net/board/bnsView.mwav?bNews_id=${selectOneBnsView.bNews_id}','googleplus', '${selectOneBnsView.bnTitle}', 'social', 'news', '${selectOneBnsView.bnSubTitle}', '${param.pgl}', 'null')"><span
 				class="fa fa-google"></span></a> <a
 				class="btn btn-social-icon btn-linkedin"
-				onClick="sendSns('http://www.mwav.net/board/bnsView.mwav?bNews_id=${selectOneBnsView.bNews_id}','linkedin', '${selectOneBnsView.bnTitle}', 'social', 'news', '${selectOneBnsView.bnSubTitle}', '${param.pgl}')"><span
+				onClick="sendSns('http://www.mwav.net/board/bnsView.mwav?bNews_id=${selectOneBnsView.bNews_id}','linkedin', '${selectOneBnsView.bnTitle}', 'social', 'news', '${selectOneBnsView.bnSubTitle}', '${param.pgl}', 'null')"><span
 				class="fa fa-linkedin"></span></a> <a
 				class="btn btn-social-icon btn-twitter"
-				onClick="sendSns('http://www.mwav.net/board/bnsView.mwav?bNews_id=${selectOneBnsView.bNews_id}','twitter', '${selectOneBnsView.bnTitle}', 'social', 'news', '${selectOneBnsView.bnSubTitle}', '${param.pgl}')"><span
-				class="fa fa-twitter"></span></a>
+				onClick="sendSns('http://www.mwav.net/board/bnsView.mwav?bNews_id=${selectOneBnsView.bNews_id}','twitter', '${selectOneBnsView.bnTitle}', 'social', 'news', '${selectOneBnsView.bnSubTitle}', '${param.pgl}', 'null')"><span
+				class="fa fa-twitter"></span></a> <a
+				id="kakao-link-btn" 
+				class="btn btn-social-icon btn-facebook"
+				onClick="sendSns('http://www.mwav.net/board/bnsView.mwav?bNews_id=${selectOneBnsView.bNews_id}','kakao', '${selectOneBnsView.bnTitle}', 'social', 'news', '${selectOneBnsView.bnSubTitle}', '${param.pgl}', '${selectOneBnsView.bnRelatedLink}')">
+				<img class="fa fa-facebook"
+				src="//developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png" />
+			</a>
 		</div>
 		<div class="enter"></div>
 
@@ -117,4 +127,5 @@
 		</div>
 
 	</div>
+
 </div>
