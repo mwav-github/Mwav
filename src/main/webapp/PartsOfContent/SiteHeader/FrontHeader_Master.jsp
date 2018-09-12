@@ -53,7 +53,7 @@
 								<strong>WebSite Building</strong>
 							</h4></a></li>
 					<li><a
-						href="/CompanyItem/DigitalMarketing/DigitalMarketing_eng.mwav"
+						href="/CompanyItem/DigitalMarketing/DigitalMarketing.mwav"
 						onclick="ga('send', 'event', 'GNB', 'click', 'DigitalMarketing');"><h4
 								class="nav_fontsize">
 								<strong>Digital Marketing</strong>

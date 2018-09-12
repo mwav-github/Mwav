@@ -113,7 +113,7 @@ css 중 가장 마지막에 호출되어야하며, include 되는 파일 중 css
 					<li>Address: GV-4F, 5-5, Ttukseom-ro 46-gil, Gwangjin-gu,
 						Seoul , Korea [05099]</li>
 					<li>TEL : +82-70-4655-4777</li>
-					<li>FAX: +82-2-6214-7039</li>
+					<li>FAX : +82-2-6214-7039</li>
 					<li>CEO : Lewis, Kim</li>
 					<li>WebSite Manager : Hunt, Kim</li>
 					<li>Marketing Manager : <c:choose>
@@ -144,7 +144,7 @@ css 중 가장 마지막에 호출되어야하며, include 되는 파일 중 css
 
 			</div>
 			<div class="col-xs-12 col-sm-8 col-md-4">
-				<h3>Navigate</h3>
+				<h3>Site Navigation:</h3>
 				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 					<ul>
 						<li><a href="/">Home</a></li>
@@ -251,13 +251,17 @@ css 중 가장 마지막에 호출되어야하며, include 되는 파일 중 css
 
 <div class="footer-bottom">
 	<div class="container">
-		<p class="pull-left col-md-7 col-sm-12 col-xs-12">
+		<p class="pull-left col-md-5 col-sm-12 col-xs-12">
 			Copyright ⓒ Since 2004 Mwav.net All rights reserved | <a>Privacy
 				Policy</a> | <a>Terms of Use</a>
 		</p>
+		<p class="pull-right col-md-2 col-sm-12 col-xs-12">
+			<img src="/Images/TrustBanners/comodo_secure_seal_100x85_transp.png"
+					class="img-thumbnail img-responsive" alt="internet-explorer">
+		</p>
 		<div class="pull-right col-md-5 col-sm-12 col-xs-12">
 			<ul class="nav nav-pills">
-				<p class="pull-left mgr3">All Browsers Compatibility</p>
+				<p class="pull-left mgr2">All Browsers Compatibility</p>
 				<li class="tooltips" data-toggle="tooltip" data-placement="top"
 					title="" data-original-title="internet-explorer"><img
 					src="/PartsOfContent/SiteFooter/Images/Edge.png"
