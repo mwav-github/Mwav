@@ -705,6 +705,27 @@ function caps_lockchk() {
 			});
 }
 
+// http://leesdp.blogspot.com/2017/06/ajax.html
+// ajax를 쓰면 리턴값을 가져올 수 없기 때문에 동기방식(send 해서 답이 돌아올 때까지 기다렸다가 실행)으로 변수에 값을 할당해서 값을 받아옵니다.
+
+function getNaverShortenUrl(originalUrl) {
+	var shortenUrl;
+	$.ajax({
+		url : "/API/NaverShorten.mwav",
+		type : "post",
+		data : originalUrl,
+		async: false,
+		success : function(data) {
+			shortenUrl = data;
+		},
+		error : function(xhr, status, error) {
+			alert("에러발생");
+		}
+	});
+	
+	return shortenUrl;
+}
+
 //소셜 공유하기
 //http://dev.epiloum.net/916
 //http://www.sharelinkgenerator.com/
@@ -748,9 +769,11 @@ function sendSns(url, utm_source, utm_campaign, utm_medium, utm_content, subTitl
 		};
 		break;    
 	case 'twitter':
+		var shortenUrl = getNaverShortenUrl(_url);
+		// http://leesdp.blogspot.com/2017/06/ajax.html
 		o = {
 			method:'popup',
-			url:'http://twitter.com/intent/tweet?text=' + utm_campaign + '&url=' + _url 
+			url:'http://twitter.com/intent/tweet?text=' + utm_campaign + '&url=' + shortenUrl 
 		};
 		break;
 		/*case 'kakaotalk':
@@ -831,6 +854,7 @@ function sendSns(url, utm_source, utm_campaign, utm_medium, utm_content, subTitl
 	    });
 	}
 }
+
 
 function reloadPage(paramName, paramValue){
 	var parameterName = paramName;

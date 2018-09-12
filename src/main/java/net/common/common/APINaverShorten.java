@@ -10,11 +10,11 @@ public class APINaverShorten {
 	public static String getNaverShortenUrl(String originalUrl) {
         String clientId = "IgsxtB0uBqToYHbY1TEK";//애플리케이션 클라이언트 아이디값";
         String clientSecret = "Md4yzO3biF";//애플리케이션 클라이언트 시크릿값";
-        String test = "http://www.mwav.net/board/buView.mwav?bUsers_id=100010&utm_source=twitter&utm_campaign=[업무제휴]Mwav&FusionCharts와업무제휴체결.&utm_medium=social&utm_content=notices&pgl=#news_top";
+        //String test = "http://www.mwav.net/board/buView.mwav?bUsers_id=100010&utm_source=twitter&utm_campaign=[업무제휴]Mwav&FusionCharts와업무제휴체결.&utm_medium=social&utm_content=notices&pgl=#news_top";
         String result = null;
         try {
-            String text = "https://developers.naver.com/notice";
-            String apiURL = "https://openapi.naver.com/v1/util/shorturl?url=" + test;
+            //String text = "https://developers.naver.com/notice";
+            String apiURL = "https://openapi.naver.com/v1/util/shorturl?url=" + originalUrl;
             URL url = new URL(apiURL);
             HttpURLConnection con = (HttpURLConnection)url.openConnection();
             con.setRequestMethod("GET");

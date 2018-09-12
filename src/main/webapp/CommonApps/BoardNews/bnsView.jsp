@@ -62,20 +62,20 @@
 		<hr>
 		<div class="text-right">
 			<a class="btn btn-social-icon btn-facebook"
-				onClick="sendSns('http://www.mwav.net/board/bnsView.mwav?bNews_id=${selectOneBnsView.bNews_id}', 'facebook', '${selectOneBnsView.bnTitle}', 'social', 'news', '${selectOneBnsView.bnSubTitle}', '${param.pgl}', 'null')"><span
+				onClick="sendSns('https://www.mwav.net/board/bnsView.mwav?bNews_id=${selectOneBnsView.bNews_id}', 'facebook', '${selectOneBnsView.bnTitle}', 'social', 'news', '${selectOneBnsView.bnSubTitle}', '${param.pgl}', 'null')"><span
 				class="fa fa-facebook"></span></a> <a
 				class="btn btn-social-icon btn-google"
-				onClick="sendSns('http://www.mwav.net/board/bnsView.mwav?bNews_id=${selectOneBnsView.bNews_id}','googleplus', '${selectOneBnsView.bnTitle}', 'social', 'news', '${selectOneBnsView.bnSubTitle}', '${param.pgl}', 'null')"><span
+				onClick="sendSns('https://www.mwav.net/board/bnsView.mwav?bNews_id=${selectOneBnsView.bNews_id}','googleplus', '${selectOneBnsView.bnTitle}', 'social', 'news', '${selectOneBnsView.bnSubTitle}', '${param.pgl}', 'null')"><span
 				class="fa fa-google"></span></a> <a
 				class="btn btn-social-icon btn-linkedin"
-				onClick="sendSns('http://www.mwav.net/board/bnsView.mwav?bNews_id=${selectOneBnsView.bNews_id}','linkedin', '${selectOneBnsView.bnTitle}', 'social', 'news', '${selectOneBnsView.bnSubTitle}', '${param.pgl}', 'null')"><span
+				onClick="sendSns('https://www.mwav.net/board/bnsView.mwav?bNews_id=${selectOneBnsView.bNews_id}','linkedin', '${selectOneBnsView.bnTitle}', 'social', 'news', '${selectOneBnsView.bnSubTitle}', '${param.pgl}', 'null')"><span
 				class="fa fa-linkedin"></span></a> <a
 				class="btn btn-social-icon btn-twitter"
-				onClick="sendSns('http://www.mwav.net/board/bnsView.mwav?bNews_id=${selectOneBnsView.bNews_id}','twitter', '${selectOneBnsView.bnTitle}', 'social', 'news', '${selectOneBnsView.bnSubTitle}', '${param.pgl}', 'null')"><span
+				onClick="sendSns('https://www.mwav.net/board/bnsView.mwav?bNews_id=${selectOneBnsView.bNews_id}','twitter', '${selectOneBnsView.bnTitle}', 'social', 'news', '${selectOneBnsView.bnSubTitle}', '${param.pgl}', 'null')"><span
 				class="fa fa-twitter"></span></a> <a
 				id="kakao-link-btn" 
 				class="btn btn-social-icon btn-facebook"
-				onClick="sendSns('http://www.mwav.net/board/bnsView.mwav?bNews_id=${selectOneBnsView.bNews_id}','kakao', '${selectOneBnsView.bnTitle}', 'social', 'news', '${selectOneBnsView.bnSubTitle}', '${param.pgl}', '${selectOneBnsView.bnRelatedLink}')">
+				onClick="sendSns('https://www.mwav.net/board/bnsView.mwav?bNews_id=${selectOneBnsView.bNews_id}','kakao', '${selectOneBnsView.bnTitle}', 'social', 'news', '${selectOneBnsView.bnSubTitle}', '${param.pgl}', '${selectOneBnsView.bnRelatedLink}')">
 				<img class="fa fa-facebook"
 				src="//developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png" />
 			</a>
