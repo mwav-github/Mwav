@@ -35,6 +35,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 	}
 
 	protected Log log = LogFactory.getLog(AuthInterceptor.class);
+
 	@Override
 	public boolean preHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler) throws Exception {
@@ -42,20 +43,30 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 		log.info(" Request URI \t:  " + request.getRequestURI());
 
 		HttpSession session = request.getSession();
-		String uploadRootPath = session.getServletContext().getRealPath(
-				"\\");
-		Map<String, Object> footerMap= DomReadXMLFile.xmlParser(uploadRootPath+"/xConfig/footer.xml.config");
-		//Map<String, Object> footerMap= DomReadXMLFile.xmlParser("\\Users\\신윤상\\Documents\\mwav\\src\\main\\webapp\\xConfig\footer.xml.config");
-		log.info("CompanyName !!!!!!!!" + (String)footerMap.get("companyName"));
-		
-		request.setAttribute("companyName", (String)footerMap.get("companyName"));
-		request.setAttribute("address", (String)footerMap.get("address"));
-		request.setAttribute("TEL", (String)footerMap.get("TEL"));
-		request.setAttribute("FAX", (String)footerMap.get("FAX"));
-		request.setAttribute("webSiteManager", (String)footerMap.get("webSiteManager"));
-		request.setAttribute("marketingManager", (String)footerMap.get("marketingManager"));
-		request.setAttribute("chief_IT_BusinessAdvisor", (String)footerMap.get("chief_IT_BusinessAdvisor"));
-
+		String uploadRootPath = session.getServletContext().getRealPath("\\");
+		/*
+		 * 서버 올린 후 에러내용 : java.io.FileNotFoundException:
+		 * /home/user/mwav/null/xConfig/footer.xml.config (그런 파일이나 디렉터리가 없습니다)
+		 * at java.io.FileInputStream.open0(Native Method) Map<String, Object>
+		 * footerMap=
+		 * DomReadXMLFile.xmlParser(uploadRootPath+"/xConfig/footer.xml.config"
+		 * ); //Map<String, Object> footerMap= DomReadXMLFile.xmlParser(
+		 * "\\Users\\신윤상\\Documents\\mwav\\src\\main\\webapp\\xConfig\footer.xml.config"
+		 * ); log.info("CompanyName !!!!!!!!" +
+		 * (String)footerMap.get("companyName"));
+		 * 
+		 * request.setAttribute("companyName",
+		 * (String)footerMap.get("companyName"));
+		 * request.setAttribute("address", (String)footerMap.get("address"));
+		 * request.setAttribute("TEL", (String)footerMap.get("TEL"));
+		 * request.setAttribute("FAX", (String)footerMap.get("FAX"));
+		 * request.setAttribute("webSiteManager",
+		 * (String)footerMap.get("webSiteManager"));
+		 * request.setAttribute("marketingManager",
+		 * (String)footerMap.get("marketingManager"));
+		 * request.setAttribute("chief_IT_BusinessAdvisor",
+		 * (String)footerMap.get("chief_IT_BusinessAdvisor"));
+		 */
 
 		Member_tbl_VO member = null;
 		// member 및 비교할 값.
@@ -66,7 +77,6 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 		member_tbl_VO = null;
 		try {
 
-		
 			staff = (Staff_VO) session.getAttribute("staff");
 			member = (Member_tbl_VO) session.getAttribute("member");
 			// 디버그 레벨일때 true
@@ -82,13 +92,12 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 			/*
 			 * int pos = url.lastIndexOf("."); String ext = url.substring(pos +
 			 * 1); System.out.println("확장자 제외" + ext);
-			 *
+			 * 
 			 * if(ext.equals("jsp")){ System.out.println("jsp 파일이다.");
 			 * statisticsController.redirectController(request, ext); }
 			 */
 
 			// Admin(관리자) 회원 관리
-			// System.out.println("auth_url" + auth_url);
 			// staff 권한 체크.
 
 			String auth_url = null;
@@ -98,17 +107,12 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 			auth_url = request.getRequestURI().substring(0, 7); // 현재 URL
 
 			if (request.getRequestURI().length() >= 7 && staff != null) {
-				System.out.println("auth_url11"+auth_url);
 				key_id = Integer.toString(staff.getStaff_id());
 			}
 			if (auth_url != null
-					&& (auth_url.equals("/Admins") || auth_url
-							.equals("/admins"))) {
-				System.out.println("staff" + key_id);
-				System.out.println("staff"
-						+ request.getRequestURI().equals(
-								"/admins/staff/stfLogin.mwav"));
-
+					&& (auth_url.equals("/Admins")
+							|| auth_url.equals("/admins") || auth_url
+								.equals("/admin/"))) {
 				if (!(request.getRequestURI()
 						.equals("/admins/staff/stfLogin.mwav"))
 						&& (key_id == null || key_id.equals("") || key_id
@@ -120,9 +124,9 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 					 * 또는 'ERR_TOO_MANY_REDIRECTS' 위의 오류가 나타나는 이유는 무한대로 리다이랙션이
 					 * 되면서 나타나는 오류이다. 즉 권한부여 페이지/ 로그인 페이지 모두 stfLogin 페이지로
 					 * 리다이렉트하니까.
-					 *
+					 * 
 					 * 이때 해당 페이지 URL 과 동일하면 그만 멈추도록 해야한다.
-					 *
+					 * 
 					 * 리다이렉션은 그 뒤의 문장까지 다실행한다.
 					 */
 
@@ -130,7 +134,6 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 					if ("/Admins/CompanyMgr/Staff/StfLogin.mwav".equals(request
 							.getRequestURI())) {
 						// 들어왔나?
-						System.out.println("제발");
 						return true;
 					}
 					response.sendRedirect("/Admins/CompanyMgr/Staff/StfLogin.mwav");
@@ -181,7 +184,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 									// // 로그인 페이지로 리다이렉트 한다.
 									/*
 									 * 중요
-									 *
+									 * 
 									 * .jsp -> jsp는 서블릿을 안탄다 즉 서블릿을 안타는 대상은 포워딩이
 									 * 불가 !! 밑에 redirect는 되나
 									 */
