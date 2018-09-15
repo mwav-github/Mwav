@@ -251,40 +251,24 @@ css 중 가장 마지막에 호출되어야하며, include 되는 파일 중 css
 
 <div class="footer-bottom">
 	<div class="container">
-		<p class="pull-left col-md-5 col-sm-12 col-xs-12">
+		<p class="pull-left col-md-7 col-sm-12 col-xs-12">
 			Copyright ⓒ Since 2004 Mwav.net All rights reserved | <a>Privacy
 				Policy</a> | <a>Terms of Use</a>
 		</p>
-		<p class="pull-right col-md-2 col-sm-12 col-xs-12">
-			<img src="/Images/TrustBanners/comodo_secure_seal_100x85_transp.png"
-					class="img-thumbnail img-responsive" alt="internet-explorer">
+		<p class="pull-right col-md-2 col-sm-12 col-xs-4">
+			<img src="/Images/TrustBanners/comodo_secure_seal_100x85_transp.png" class="img-thumbnail img-responsive" alt="internet-explorer">
 		</p>
-		<div class="pull-right col-md-5 col-sm-12 col-xs-12">
+		<div class="col-md-5 col-sm-12 col-xs-8">
 			<ul class="nav nav-pills">
-				<p class="pull-left mgr2">All Browsers Compatibility</p>
-				<li class="tooltips" data-toggle="tooltip" data-placement="top"
-					title="" data-original-title="internet-explorer"><img
-					src="/PartsOfContent/SiteFooter/Images/Edge.png"
-					class="img-thumbnail img-responsive" alt="internet-explorer"></li>
-				<li class="tooltips" data-toggle="tooltip" data-placement="top"
-					title="" data-original-title="chrome"><img
-					src="/PartsOfContent/SiteFooter/Images/Chrome.png"
-					class="img-thumbnail img-responsive" alt="internet-explorer">
-				<li class="tooltips" data-toggle="tooltip" data-placement="top"
-					title="" data-original-title="firefox"><img
-					src="/PartsOfContent/SiteFooter/Images/Firefox.png"
-					class="img-thumbnail img-responsive" alt="firefox">
+				<p class="pull-left mgr2">All Browsers Compatibility  </p>
+				<li class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="internet-explorer"><img src="/PartsOfContent/SiteFooter/Images/Edge.png" class="img-thumbnail img-responsive" alt="internet-explorer"></li>
+				<li class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="chrome"><img src="/PartsOfContent/SiteFooter/Images/Chrome.png" class="img-thumbnail img-responsive" alt="internet-explorer">
+				</li><li class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="firefox"><img src="/PartsOfContent/SiteFooter/Images/Firefox.png" class="img-thumbnail img-responsive" alt="firefox">
+				</li><li class="tool
+				tips" data-toggle="tooltip" data-placement="top" title="" data-original-title="safari"><img src="/PartsOfContent/SiteFooter/Images/Safari.png" class="img-thumbnail img-responsive" alt="safari"></li>
 				<li class="tool
-				tips" data-toggle="tooltip"
-					data-placement="top" title="" data-original-title="safari"><img
-					src="/PartsOfContent/SiteFooter/Images/Safari.png"
-					class="img-thumbnail img-responsive" alt="safari"></li>
-				<li class="tool
-				tips" data-toggle="tooltip"
-					data-placement="top" title="" data-original-title="opera"><img
-					src="/PartsOfContent/SiteFooter/Images/Opera.png"
-					class="img-thumbnail img-responsive" alt="opera">
-			</ul>
+				tips" data-toggle="tooltip" data-placement="top" title="" data-original-title="opera"><img src="/PartsOfContent/SiteFooter/Images/Opera.png" class="img-thumbnail img-responsive" alt="opera">
+			</li></ul>
 		</div>
 	</div>
 </div>
