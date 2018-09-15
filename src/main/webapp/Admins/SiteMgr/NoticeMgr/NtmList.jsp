@@ -75,6 +75,8 @@
 
 					<div class="row">
 						<%--================================================시작========================================================== --%>
+						<button type="button" class="pull-right btn btn-default"><a href="/Admins/SiteMgr/NoticeMgr/NtmForm.mwav?mm=site">공지사항 등록</a></button>
+						
 						<form name="ntmList" method="post"
 							action="/admin/boardNotice/ntmList.mwav">
 

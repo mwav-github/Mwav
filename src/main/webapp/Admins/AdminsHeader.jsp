@@ -104,7 +104,7 @@
 				<li><a href="/HomePage/DefaultFrameset.mwav?mm=cStk"
 					title="1.상품재고관리">재고관리</a></li>
 				<li class="active"><a
-					href="/Admins/SiteMgr/NoticeMgr/NtmList.mwav?mm=site"
+					href="/admin/boardNews/nsmList.mwav"
 					title="1.공지관리 2.뉴스관리 3.Q&A관리 4.폴관리">사이트관리</a></li>
 				<li><a href="/HomePage/DefaultFrameset.mwav?mm=firm"
 					title="1.문서자료 2.직원조회 3.회사자산">회사관리</a></li>
