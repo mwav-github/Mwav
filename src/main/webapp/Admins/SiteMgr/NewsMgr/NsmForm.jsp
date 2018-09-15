@@ -138,12 +138,11 @@
 														<%--높을수록 TOP (추후 반영)_15.08.01 --%>
 														<input type="hidden" name="bnOrder" value="0" />
 														<%--직원담당자 staff_id 추후 반영예정 --%>
-														<input type="hidden" name="staff_id" value="0" /> 
-														
-														
-														
-														<c:set var="bnStatus"
-															value="${updateNsmForm.bnStatus }" />
+														<input type="hidden" name="staff_id" value="0" />
+
+
+
+														<c:set var="bnStatus" value="${updateNsmForm.bnStatus }" />
 														<c:if test="${fn:contains(bnStatus, '0')}">
 															<span class="pull-right text-danger"><strong>삭제
 															</strong></span>
@@ -156,7 +155,7 @@
 															<span class="pull-right text-success"><strong>게시
 																	중 </strong></span>
 														</c:if>
-														
+
 														<div class="enter"></div>
 													</div>
 												</tr>
@@ -198,30 +197,30 @@
 													placeholder="Text input" name="bnTitle"
 													value="${updateNsmForm.bnTitle}"></td>
 											</tr>
-
-
-
 											<tr>
 												<th class="active">SubTitle</th>
 												<td><input type="text" class="form-control"
 													placeholder="Text input" name="bnSubTitle"
 													value="${updateNsmForm.bnSubTitle}"></td>
 											</tr>
-
 											<tr>
-												<th class="active">Reference</th>
-												<td><input type="text" class="form-control"
-													placeholder="Text input" name="bnRelatedLink"
-													value="${updateNsmForm.bnRelatedLink}"></td>
-											</tr>
-											
-											<tr>
-												<th class="active">Keywords</th>
+												<th class="active">Keyword</th>
 												<td><input type="text" class="form-control"
 													placeholder="Text input" name="bnKeyword"
 													value="${updateNsmForm.bnKeyword}"></td>
 											</tr>
-
+											<tr>
+												<th class="active">TitleImageLink</th>
+												<td><input type="text" class="form-control"
+													placeholder="Text input" name="bnTitleImageLink"
+													value="${updateNsmForm.bnTitleImageLink}"></td>
+											</tr>
+											<tr>
+												<th class="active">Reference URL</th>
+												<td><input type="text" class="form-control"
+													placeholder="Text input" name="bnRelatedLink"
+													value="${updateNsmForm.bnRelatedLink}"></td>
+											</tr>
 											<tr>
 												<th class="active">Content</th>
 												<td><textarea name="bnContent"
@@ -322,10 +321,19 @@
 												<td><input type="text" class="form-control"
 													placeholder="Text input" name="bnSubTitle"></td>
 											</tr>
-
+											<tr>
+												<th class="active">Keyword</th>
+												<td><input type="text" class="form-control"
+													placeholder="Text input" name="bnKeyword"></td>
+											</tr>
+											<tr>
+												<th class="active">TitleImageLink</th>
+												<td><input type="text" class="form-control"
+													placeholder="Text input" name="bnTitleImageLink"></td>
+											</tr>
 
 											<tr>
-												<th class="active">Reference</th>
+												<th class="active">Reference URL</th>
 												<td><input type="text" class="form-control"
 													placeholder="Text input" name="bnRelatedLink"></td>
 											</tr>

@@ -180,7 +180,7 @@ public class BoardController {
 				// mv.addObject("page_header", "IT Trends");
 
 				String meta_image = (String) selectOneBnsView
-						.get("bnRelatedLink");
+						.get("bnTitleImageLink");
 				// meta태그 이미지
 				String title = (String) selectOneBnsView.get("bnTitle");
 				String description = (String) selectOneBnsView
