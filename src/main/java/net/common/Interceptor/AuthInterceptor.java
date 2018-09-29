@@ -104,10 +104,13 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 			// 안하면, / 등의 경로에서는 에러 발생
 			// 에러명 : java.lang.StringIndexOutOfBoundsException: String index out
 			// of range: 7 (7까지는 /Admins 글자 수!)
-			auth_url = request.getRequestURI().substring(0, 7); // 현재 URL
 
+			if (request.getRequestURI().length() >= 7 && staff == null) {
+				auth_url = request.getRequestURI().substring(0, 7); // 현재 URL
+			}
 			if (request.getRequestURI().length() >= 7 && staff != null) {
 				key_id = Integer.toString(staff.getStaff_id());
+
 			}
 			if (auth_url != null
 					&& (auth_url.equals("/Admins")

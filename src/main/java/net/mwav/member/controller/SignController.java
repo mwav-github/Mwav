@@ -174,17 +174,20 @@ public class SignController {
 				Email = "sns_imsi";
 			}
 			map.put("member_id", member_id);
+
+			//로그인한 SNS의 값이 동일하므로 난수 발생으로 대응 필요하며, 순서대로 채번 필요. 
 			map.put("mbrLoginId", social + "_imsi");
+			//현재는 SNS 패스워드의 모든 값이 동일하다.
 			map.put("mbrLoginPw", "sns_imsi");
 			map.put("mbrTempLoginPw", null);
 			map.put("mbrFirstName", First_Name);
 			map.put("mbrLastName", Last_Name);
 			map.put("mbrMiddleNam", "sns_imsi");
 			map.put("mbrEmail", Email);
-			map.put("mbrCellPhone", "sns_imsi");
+			map.put("mbrCellPhone", null);
 			map.put("mbrAddrFlag", 0);
-			map.put("mbrZipcode", 123456);
-			map.put("mbrAddress", "sns_imsi");
+			map.put("mbrZipcode", "");
+			map.put("mbrAddress", null);
 
 			// 회원가입.
 			memberService.insertMbrForm(map);
