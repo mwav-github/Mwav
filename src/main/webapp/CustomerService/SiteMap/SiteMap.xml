@@ -1,187 +1,204 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
      <!-- Index -->
 	<url>
-		<loc>http://www.mwav.net/</loc>
-		<lastmod>2017-09-08</lastmod>
+		<loc>https://www.mwav.net</loc>
+		<lastmod>2018-09-08</lastmod>
 		<changefreq>daily</changefreq>
 		<priority>1.0</priority>
 	</url>
 
 	<!-- CompanyItem -->
 	<url>
-		<loc>http://www.mwav.net/CompanyItem/ITProducts/Aervision/Aervision.mwav#AerPass</loc>
-		<lastmod>2017-09-08</lastmod>
+		<loc>https://www.mwav.net/CompanyItem/ITProducts/FusionCharts/FusionCharts.mwav</loc>
+		<lastmod>2018-09-08</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.7</priority>
+	</url>
+	<url>
+		<loc>https://www.mwav.net/CompanyItem/ITProducts/Aervision/Aervision.mwav#AerPass</loc>
+		<lastmod>2018-09-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>1.0</priority>
 	</url>
         <url>
-		<loc>http://www.mwav.net/CompanyItem/ITProducts/Aervision/Aervision.mwav#AerPass</loc>
-		<lastmod>2017-09-08</lastmod>
+		<loc>https://www.mwav.net/CompanyItem/ITProducts/Aervision/Aervision.mwav#AerPass</loc>
+		<lastmod>2018-09-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>1.0</priority>
 	</url>
         <url>
-		<loc>http://www.mwav.net/CompanyItem/ITProducts/Aervision/Aervision.mwav#AerPass</loc>
-		<lastmod>2017-09-08</lastmod>
+		<loc>https://www.mwav.net/CompanyItem/ITProducts/Aervision/Aervision.mwav#AerPass</loc>
+		<lastmod>2018-09-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>1.0</priority>
 	</url>
         <url>
-		<loc>http://www.mwav.net/CompanyItem/ITProducts/Aervision/Aervision.mwav#AerPass</loc>
-		<lastmod>2017-09-08</lastmod>
+		<loc>https://www.mwav.net/CompanyItem/ITProducts/Aervision/Aervision.mwav#AerPass</loc>
+		<lastmod>2018-09-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>1.0</priority>
 	</url>
         <url>
-		<loc>http://www.mwav.net/CompanyItem/ITProducts/Aervision/Aervision.mwav#AerCrowd</loc>
-		<lastmod>2017-09-08</lastmod>
+		<loc>https://www.mwav.net/CompanyItem/ITProducts/Aervision/Aervision.mwav#AerCrowd</loc>
+		<lastmod>2018-09-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>1.0</priority>
 	</url>
         <url>
-		<loc>http://www.mwav.net/CompanyItem/ITProducts/Aervision/Aervision.mwav#AerPalm</loc>
-		<lastmod>2017-09-08</lastmod>
+		<loc>https://www.mwav.net/CompanyItem/ITProducts/Aervision/Aervision.mwav#AerPalm</loc>
+		<lastmod>2018-09-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>1.0</priority>
 	</url>
         <url>
-		<loc>http://www.mwav.net/CompanyItem/ITProducts/Aervision/Aervision.mwav#AerID</loc>
-		<lastmod>2017-09-08</lastmod>
+		<loc>https://www.mwav.net/CompanyItem/ITProducts/Aervision/Aervision.mwav#AerID</loc>
+		<lastmod>2018-09-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>1.0</priority>
 	</url>
         <url>
-		<loc>http://www.mwav.net/CompanyItem/ITProducts/Aervision/Aervision.mwav#AerGate</loc>
-		<lastmod>2017-09-08</lastmod>
+		<loc>https://www.mwav.net/CompanyItem/ITProducts/Aervision/Aervision.mwav#AerGate</loc>
+		<lastmod>2018-09-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>1.0</priority>
 	</url>
         <url>
-		<loc>http://www.mwav.net/CompanyItem/ITProducts/Aervision/Aervision.mwav#IDMatch</loc>
-		<lastmod>2017-09-08</lastmod>
+		<loc>https://www.mwav.net/CompanyItem/ITProducts/Aervision/Aervision.mwav#IDMatch</loc>
+		<lastmod>2018-09-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>1.0</priority>
 	</url>
         <url>
-		<loc>http://www.mwav.net/CompanyItem/ITProducts/Aervision/Aervision.mwav#eyeLock</loc>
-		<lastmod>2017-09-08</lastmod>
+		<loc>https://www.mwav.net/CompanyItem/ITProducts/Aervision/Aervision.mwav#eyeLock</loc>
+		<lastmod>2018-09-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>1.0</priority>
 	</url>
         <url>
-		<loc>http://www.mwav.net/CompanyItem/ITProducts/Aervision/Aervision.mwav#Services</loc>
-		<lastmod>2017-09-08</lastmod>
+		<loc>https://www.mwav.net/CompanyItem/ITProducts/Aervision/Aervision.mwav#Services</loc>
+		<lastmod>2018-09-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>1.0</priority>
 	</url>
 	<url>
-		<loc>http://www.mwav.net/CompanyItem/ITProducts/Aervision/Aervision.mwav#AboutUs</loc>
-		<lastmod>2017-09-08</lastmod>
+		<loc>https://www.mwav.net/CompanyItem/ITProducts/Aervision/Aervision.mwav#AboutUs</loc>
+		<lastmod>2018-09-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>1.0</priority>
 	</url>
 	<url>
-		<loc>http://www.mwav.net/hightsofts/hightsofts.mwav?items=Highcharts</loc>
-		<lastmod>2017-08-30</lastmod>
+		<loc>https://www.mwav.net/hightsofts/hightsofts.mwav?items=Highcharts</loc>
+		<lastmod>2018-08-30</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>1.0</priority>
 	</url>
 	<url>
-		<loc>http://www.mwav.net/hightsofts/hightsofts.mwav?items=Highstock</loc>
-		<lastmod>2017-08-30</lastmod>
+		<loc>https://www.mwav.net/hightsofts/hightsofts.mwav?items=Highstock</loc>
+		<lastmod>2018-08-30</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>1.0</priority>
 	</url>
 	<url>
-		<loc>http://www.mwav.net/hightsofts/hightsofts.mwav?items=Highmaps</loc>
-		<lastmod>2017-08-30</lastmod>
+		<loc>https://www.mwav.net/hightsofts/hightsofts.mwav?items=Highmaps</loc>
+		<lastmod>2018-08-30</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>1.0</priority>
 	</url>
 	<url>
-		<loc>http://www.mwav.net/CompanyItem/ITProducts/InsWave/InsWave.mwav</loc>
-		<lastmod>2017-09-08</lastmod>
+		<loc>https://www.mwav.net/CompanyItem/ITProducts/InsWave/InsWave.mwav</loc>
+		<lastmod>2018-09-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.8</priority>
 	</url>
 	<url>
-		<loc>http://www.mwav.net/CompanyItem/ITSolutions/OpenSRS/OpenSRS.mwav</loc>
-		<lastmod>2017-09-08</lastmod>
+		<loc>https://www.mwav.net/CompanyItem/ITSolutions/OpenSRS/OpenSRS.mwav</loc>
+		<lastmod>2018-09-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.8</priority>
 	</url>
 	<url>
-		<loc>http://www.mwav.net/CompanyItem/ITSolutions/OrgChart/OrgChart.mwav</loc>
-		<lastmod>2017-09-08</lastmod>
+		<loc>https://www.mwav.net/CompanyItem/ITSolutions/OrgChart/OrgChart.mwav</loc>
+		<lastmod>2018-09-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.7</priority>
 	</url>
 	<url>
-		<loc>http://www.mwav.net/CompanyItem/ITProducts/Azure/Azure.mwav</loc>
-		<lastmod>2017-09-08</lastmod>
+		<loc>https://www.mwav.net/CompanyItem/ITProducts/QuickHeal/QuickHeal.mwav</loc>
+		<lastmod>2018-08-30</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>1.0</priority>
+	</url>
+	<url>
+		<loc>https://www.mwav.net/CompanyItem/ITProducts/vanillaNAV/vanillaNAV.mwav</loc>
+		<lastmod>2018-08-30</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>1.0</priority>
+	</url>
+	<url>
+		<loc>https://www.mwav.net/CompanyItem/ITProducts/Azure/Azure.mwav</loc>
+		<lastmod>2018-09-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.7</priority>
 	</url>
 	<url>
-		<loc>http://www.mwav.net/CompanyItem/ITProducts/Windows/Windows.mwav</loc>
-		<lastmod>2017-09-08</lastmod>
+		<loc>https://www.mwav.net/CompanyItem/ITProducts/Windows/Windows.mwav</loc>
+		<lastmod>2018-09-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.7</priority>
 	</url>
 	<url>
-		<loc>http://www.mwav.net/CompanyItem/ITProducts/MSOffice/MSOffice.mwav</loc>
-		<lastmod>2017-09-08</lastmod>
+		<loc>https://www.mwav.net/CompanyItem/ITProducts/MSOffice/MSOffice.mwav</loc>
+		<lastmod>2018-09-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.7</priority>
 	</url>
 	<url>
-		<loc>http://www.mwav.net/CompanyItem/WebSiteBuilding/WebSiteBuilding.mwav</loc>
-		<lastmod>2017-09-02</lastmod>
+		<loc>https://www.mwav.net/CompanyItem/WebSiteBuilding/WebSiteBuilding.mwav</loc>
+		<lastmod>2018-09-02</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>1.0</priority>
 	</url>
 	<url>
-		<loc>http://www.mwav.net/CompanyItem/DigitalMarketing/DigitalMarketing.mwav</loc>
-		<lastmod>2017-09-10</lastmod>
+		<loc>https://www.mwav.net/CompanyItem/DigitalMarketing/DigitalMarketing.mwav</loc>
+		<lastmod>2018-09-10</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>1.0</priority>
 	</url>
 	<url>
-		<loc>http://www.mwav.net/CompanyItem/DigitalMarketing/DigitalMarketing_eng.mwav</loc>
-		<lastmod>2017-09-10</lastmod>
+		<loc>https://www.mwav.net/CompanyItem/ITConsulting/ITConsulting.mwav</loc>
+		<lastmod>2018-09-07</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>1.0</priority>
 	</url>
 	<url>
-		<loc>http://www.mwav.net/CompanyItem/ITConsulting/ITConsulting.mwav</loc>
-		<lastmod>2017-09-07</lastmod>
+		<loc>https://www.mwav.net/CompanyItem/ITServices/ITServices.mwav</loc>
+		<lastmod>2018-09-07</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>1.0</priority>
 	</url>
-
 
         <!-- Company -->
 	<url>
-		<loc>http://www.mwav.net/Company/BusinessField/BusinessField.mwav</loc>
-		<lastmod>2017-04-26</lastmod>
+		<loc>https://www.mwav.net/Company/BusinessField/BusinessField.mwav</loc>
+		<lastmod>2018-04-26</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.8</priority>
 	</url>
                 <url>
-		<loc>http://www.mwav.net/Company/Greetings/Greetings.mwav</loc>
+		<loc>https://www.mwav.net/Company/Greetings/Greetings.mwav</loc>
 		<lastmod>2016-04-26</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
                 <url>
-		<loc>http://www.mwav.net/Company/Introduction/Introduction.mwav</loc>
-		<lastmod>2017-06-26</lastmod>
+		<loc>https://www.mwav.net/Company/Introduction/Introduction.mwav</loc>
+		<lastmod>2018-06-26</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.8</priority>
 	</url>
         <url>
-		<loc>http://www.mwav.net/Company/LocationMap/LocationMap.mwav</loc>
+		<loc>https://www.mwav.net/Company/LocationMap/LocationMap.mwav</loc>
 		<lastmod>2016-06-26</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.4</priority>
@@ -191,109 +208,175 @@
         <!-- CustomerSevice -->
 
 	<url>
-		<loc>http://www.mwav.net/CustomerService/MemberShip/MemberShip.mwav</loc>
-		<lastmod>2017-09-08</lastmod>
+		<loc>https://www.mwav.net/CustomerService/MemberShip/MemberShip.mwav</loc>
+		<lastmod>2018-09-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 
         <url>
-		<loc>http://www.mwav.net/CustomerService/Agreement/Agreement.mwav</loc>
+		<loc>https://www.mwav.net/CustomerService/Agreement/Agreement.mwav</loc>
 		<lastmod>2016-06-26</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.3</priority>
 	</url>
         <url>
-		<loc>http://www.mwav.net/CustomerService/FAQ/FAQ.mwav</loc>
+		<loc>https://www.mwav.net/CustomerService/FAQ/FAQ.mwav</loc>
 		<lastmod>2016-07-26</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
         <url>
-		<loc>http://www.mwav.net/CustomerService/QnA/QnA.mwav</loc>
-		<lastmod>2017-09-10</lastmod>
+		<loc>https://www.mwav.net/CustomerService/QnA/QnA.mwav</loc>
+		<lastmod>2018-09-10</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>1.0</priority>
 	</url>
         <url>
-		<loc>http://www.mwav.net/CustomerService/Contact/Contact.mwav</loc>
-		<lastmod>2017-09-10</lastmod>
+		<loc>https://www.mwav.net/CustomerService/QnA/QnA.mwav?mode=qaForm</loc>
+		<lastmod>2018-09-10</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>1.0</priority>
 	</url>
         <url>
-		<loc>http://www.mwav.net/CustomerService/SiteMap/SiteMap.mwav</loc>
-		<lastmod>2017-07-21</lastmod>
+		<loc>https://www.mwav.net/CustomerService/Contact/Contact.mwav</loc>
+		<lastmod>2018-09-10</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>1.0</priority>
+	</url>
+        <url>
+		<loc>https://www.mwav.net/CustomerService/SiteMap/SiteMap.mwav</loc>
+		<lastmod>2018-07-21</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.8</priority>
 	</url>
 
         <!-- MasterPage -->
 	<url>
-		<loc>http://www.mwav.net/login.mwav</loc>
-		<lastmod>2017-09-08</lastmod>
+		<loc>https://www.mwav.net/MasterPage.mwav?mode=SMbrLogin</loc>
+		<lastmod>2018-09-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.8</priority>
 	</url>
 	<url>
-		<loc>http://www.mwav.net/MasterPage_1.mwav?mode=Default</loc>
-		<lastmod>2017-09-08</lastmod>
+		<loc>https://www.mwav.net/MasterPage_1.mwav?mode=Default</loc>
+		<lastmod>2018-09-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.8</priority>
 	</url>
 
        <!-- News -->
+
 	<url>
-		<loc>http://www.mwav.net/board/bnsView.mwav?bNews_id=100007</loc>
-		<lastmod>2017-09-08</lastmod>
+		<loc>https://www.mwav.net/board/bnsView.mwav?bNews_id=100018</loc>
+		<lastmod>2018-09-08</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>1.0</priority>
+	</url>	<url>
+		<loc>https://www.mwav.net/board/bnsView.mwav?bNews_id=100017</loc>
+		<lastmod>2018-09-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>1.0</priority>
 	</url>
 	<url>
-		<loc>http://www.mwav.net/board/bnsView.mwav?bNews_id=100006</loc>
-		<lastmod>2017-09-08</lastmod>
+		<loc>https://www.mwav.net/board/bnsView.mwav?bNews_id=100016</loc>
+		<lastmod>2018-09-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>1.0</priority>
 	</url>
 	<url>
-		<loc>http://www.mwav.net/board/bnsView.mwav?bNews_id=100005</loc>
-		<lastmod>2017-09-08</lastmod>
+		<loc>https://www.mwav.net/board/bnsView.mwav?bNews_id=100014</loc>
+		<lastmod>2018-09-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>1.0</priority>
 	</url>
 	<url>
-		<loc>http://www.mwav.net/board/bnsView.mwav?bNews_id=100004</loc>
-		<lastmod>2017-09-08</lastmod>
+		<loc>https://www.mwav.net/board/bnsView.mwav?bNews_id=100013</loc>
+		<lastmod>2018-09-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>1.0</priority>
 	</url>
 	<url>
-		<loc>http://www.mwav.net/board/bnsView.mwav?bNews_id=100003</loc>
-		<lastmod>2017-09-08</lastmod>
+		<loc>https://www.mwav.net/board/bnsView.mwav?bNews_id=100012</loc>
+		<lastmod>2018-09-08</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>1.0</priority>
+	</url>
+	<url>
+		<loc>https://www.mwav.net/board/bnsView.mwav?bNews_id=100011</loc>
+		<lastmod>2018-09-08</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>1.0</priority>
+	</url>
+	<url>
+		<loc>https://www.mwav.net/board/bnsView.mwav?bNews_id=100010</loc>
+		<lastmod>2018-09-08</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>1.0</priority>
+	</url>
+	<url>
+		<loc>https://www.mwav.net/board/bnsView.mwav?bNews_id=100009</loc>
+		<lastmod>2018-09-08</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>1.0</priority>
+	</url>
+	<url>
+		<loc>https://www.mwav.net/board/bnsView.mwav?bNews_id=100008</loc>
+		<lastmod>2018-09-08</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>1.0</priority>
+	</url>
+	<url>
+		<loc>https://www.mwav.net/board/bnsView.mwav?bNews_id=100007</loc>
+		<lastmod>2018-09-08</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>1.0</priority>
+	</url>
+	<url>
+		<loc>https://www.mwav.net/board/bnsView.mwav?bNews_id=100006</loc>
+		<lastmod>2018-09-08</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>1.0</priority>
+	</url>
+	<url>
+		<loc>https://www.mwav.net/board/bnsView.mwav?bNews_id=100005</loc>
+		<lastmod>2018-09-08</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>1.0</priority>
+	</url>
+	<url>
+		<loc>https://www.mwav.net/board/bnsView.mwav?bNews_id=100004</loc>
+		<lastmod>2018-09-08</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>1.0</priority>
+	</url>
+	<url>
+		<loc>https://www.mwav.net/board/bnsView.mwav?bNews_id=100003</loc>
+		<lastmod>2018-09-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>1.0</priority>
 	</url>
         <url>
-		<loc>http://www.mwav.net/board/bnsView.mwav?bNews_id=100002</loc>
-		<lastmod>2017-09-08</lastmod>
+		<loc>https://www.mwav.net/board/bnsView.mwav?bNews_id=100002</loc>
+		<lastmod>2018-09-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>1.0</priority>
 	</url>
         <url>
-		<loc>http://www.mwav.net/board/bnsView.mwav?bNews_id=100001</loc>
-		<lastmod>2017-09-08</lastmod>
+		<loc>https://www.mwav.net/board/bnsView.mwav?bNews_id=100001</loc>
+		<lastmod>2018-09-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>1.0</priority>
 	</url>
 	<url>
-		<loc>http://www.mwav.net/board/bnsList.mwav?pageNum=1</loc>
-		<lastmod>2017-09-08</lastmod>
+		<loc>https://www.mwav.net/board/bnsList.mwav?pageNum=1</loc>
+		<lastmod>2018-09-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>1.0</priority>
 	</url>
 	<url>
-		<loc>http://www.mwav.net/board/bnsList.mwav?pageNum=2</loc>
-		<lastmod>2017-09-08</lastmod>
+		<loc>https://www.mwav.net/board/bnsList.mwav?pageNum=2</loc>
+		<lastmod>2018-09-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>1.0</priority>
 	</url>
@@ -301,45 +384,75 @@
 
 	<!-- Notice -->
 	<url>
-		<loc>http://www.mwav.net/board/buView.mwav?bUsers_id=100005</loc>
-		<lastmod>2017-09-08</lastmod>
+		<loc>https://www.mwav.net/board/buView.mwav?bUsers_id=100010</loc>
+		<lastmod>2018-09-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.7</priority>
 	</url>
 	<url>
-		<loc>http://www.mwav.net/board/buView.mwav?bUsers_id=100004</loc>
-		<lastmod>2017-09-08</lastmod>
+		<loc>https://www.mwav.net/board/buView.mwav?bUsers_id=100009</loc>
+		<lastmod>2018-09-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.7</priority>
 	</url>
 	<url>
-		<loc>http://www.mwav.net/board/buView.mwav?bUsers_id=100002</loc>
-		<lastmod>2017-09-08</lastmod>
+		<loc>https://www.mwav.net/board/buView.mwav?bUsers_id=100008</loc>
+		<lastmod>2018-09-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.7</priority>
 	</url>
 	<url>
-		<loc>http://www.mwav.net/board/buView.mwav?bUsers_id=100001</loc>
-		<lastmod>2017-09-08</lastmod>
+		<loc>https://www.mwav.net/board/buView.mwav?bUsers_id=100007</loc>
+		<lastmod>2018-09-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.7</priority>
 	</url>
 	<url>
-		<loc>http://www.mwav.net/board/buList.mwav?pageNum=1</loc>
-		<lastmod>2017-09-08</lastmod>
+		<loc>https://www.mwav.net/board/buView.mwav?bUsers_id=100006</loc>
+		<lastmod>2018-09-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.7</priority>
 	</url>
 	<url>
-		<loc>http://www.mwav.net/board/bnsList.mwav?pageNum=1</loc>
-		<lastmod>2017-09-08</lastmod>
+		<loc>https://www.mwav.net/board/buView.mwav?bUsers_id=100005</loc>
+		<lastmod>2018-09-08</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.7</priority>
+	</url>
+	<url>
+		<loc>https://www.mwav.net/board/buView.mwav?bUsers_id=100004</loc>
+		<lastmod>2018-09-08</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.7</priority>
+	</url>
+	<url>
+		<loc>https://www.mwav.net/board/buView.mwav?bUsers_id=100002</loc>
+		<lastmod>2018-09-08</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.7</priority>
+	</url>
+	<url>
+		<loc>https://www.mwav.net/board/buView.mwav?bUsers_id=100001</loc>
+		<lastmod>2018-09-08</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.7</priority>
+	</url>
+	<url>
+		<loc>https://www.mwav.net/board/buList.mwav?pageNum=1</loc>
+		<lastmod>2018-09-08</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.7</priority>
+	</url>
+	<url>
+		<loc>https://www.mwav.net/board/bnsList.mwav?pageNum=1</loc>
+		<lastmod>2018-09-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.7</priority>
 	</url>
         <!--etc-->
 	<url>
-		<loc>http://www.mwav.net/Templates/FrontTemplate.html</loc>
-		<lastmod>2017-04-26</lastmod>
+		<loc>https://www.mwav.net/Templates/FrontTemplate.html</loc>
+		<lastmod>2018-04-26</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.8</priority>
 	</url>

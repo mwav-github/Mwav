@@ -1,6 +1,10 @@
 <%@ page contentType="text/html;charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%--bing 인증 --%>
+<meta name="msvalidate.01" content="0FE30DF009A686534424BAC0EBB34813" />
+<%--네이버 인증 --%>
+<meta name="naver-site-verification" content="ec4a8405c82d31675b6464471b2bc4b3a2be1913"/>
+<%--페이스북 인증 --%>
 <meta property="fb:app_id" content="956230164513468" />
 <%-- 앱아이디 --%>
 
@@ -15,16 +19,17 @@ https://developers.facebook.com/docs/sharing/webmasters/?locale=ko_KR
 <%-- 트위터 카드 summary는 웹페이지에 대한 요약정보를 보여주는 카드로 우측에 썸네일을 보여주고 그 옆에 페이지의 제목과 요약 내용을 보여준다.--%>
 <meta name="twitter:card" content="summary" /> 
 <c:choose>
-	<c:when test="${not empty requestScope.meta_image}">
+	<c:when test="${not empty requestScope.metaData}">
 		<meta property="og:image" content="${requestScope.meta_image }" />
 		<meta name="twitter:image" content="${requestScope.meta_image }" />
-		<c:if test="${requestScope.title ne null}">
-			<meta property="og:title" content="${requestScope.title }" />
+		<c:if test="${requestScope.metaData.title ne null}">
+			<meta property="og:title" content="${requestScope.metaData.title }" />
 			<%-- 트위터 카드에 나타날 웹 사이트의 제목 --%>
-			<meta name="twitter:title" content="${requestScope.title }" />
+			<meta name="twitter:title" content="${requestScope.metaData.title }" />
 
 		</c:if>
-		<c:if test="${requestScope.title eq null}">
+		
+		<c:if test="${requestScope.metaData.title eq null}">
 			<meta property="og:title"
 				content="Turning Data Into Insights-How to use Data Visualization for Storytelling" />
 			<meta name="twitter:title"
@@ -33,15 +38,15 @@ https://developers.facebook.com/docs/sharing/webmasters/?locale=ko_KR
 
 		<%--  페이지 설명 
 		트위터의 경우 없는 경우 생략되나, 페이스북의 경우 없는 경우 <meta id="metaDescription" name="description"에서 찾는다.--%>
-		<c:if test="${requestScope.description ne null}">
+		<c:if test="${requestScope.metaData.description ne null}">
 			<meta property="og:description"
-				content="${requestScope.description }" />
+				content="${requestScope.metaData.description }" />
 			<%-- 카드에 나타날 요약 설명 --%>
 			<meta name="twitter:description"
-				content="${requestScope.description }" />
+				content="${requestScope.metaData.description }" />
 		</c:if>
 		
-		<c:if test="${requestScope.title eq null}">
+		<c:if test="${requestScope.metaData.title eq null}">
 			<meta property="og:description"
 				content="데이터를 사용하여 전달하려는 내용을 쉽게 설명하고, 역동적이고 설득력 있는 데이터스토리텔링을 위한 시각화 방법." />
 			<%-- 카드에 나타날 요약 설명 --%>

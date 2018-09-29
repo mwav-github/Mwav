@@ -17,7 +17,7 @@
 	</c:otherwise>
 </c:choose>
 <meta id="metaDescription" name="description"
-	content="This is the website for Mwav.net. We are an IT development company possessing total E-Commerce platform based on the fancy technologies. You can contact at http://www.mwav.net/CustomerService/QnA/QnA.mwav?mode=qaForm if you have a question or an inquiry on the site." />
+	content="This is the website for Mwav.net. We are an IT development company possessing total E-Commerce platform based on the fancy technologies. You can contact at https://www.mwav.net/CustomerService/QnA/QnA.mwav?mode=qaForm if you have a question or an inquiry on the site." />
 <meta name="Owner" content="Mwav.net" />
 <meta name="Author" content="Zeus, Peter J." />
 <meta name="copyright" content="All contents are copyright by Mwav.net" />
@@ -219,4 +219,10 @@ https://stackoverflow.com/questions/1241947/how-do-i-show-multiple-recaptchas-on
 	})(window, document.documentElement, 'async-hide', 'dataLayer', 4000, {
 		'GTM-ML32Q9G' : true
 	});
+</script>
+<%-- Comodo Certificated 18.09.15 --%>
+<script type="text/javascript"> //<![CDATA[ 
+var tlJsHost = ((window.location.protocol == "https:") ? "https://secure.comodo.com/" : "http://www.trustlogo.com/");
+document.write(unescape("%3Cscript src='" + tlJsHost + "trustlogo/javascript/trustlogo.js' type='text/javascript'%3E%3C/script%3E"));
+//]]>
 </script>
