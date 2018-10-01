@@ -52,7 +52,7 @@
 									<td class="col-md-12 text-left ">
 										<a href="/board/bnsView.mwav?bNews_id=${VselectListBnsFrontList.bNews_id}#news_top">
 											<%-- <c:if test="${parseTdate -parseAgo < 20 && parseTdate -parseAgo > 0}"> --%>
-											<c:if test="${parseAgo < parseTdate}">
+											<c:if test="${parseTdate - parseAgo > 0}">
 											    <span class="label label-danger">new</span>
 											</c:if>
 											${VselectListBnsFrontList.bnTitle}
@@ -108,7 +108,7 @@
 								<td class="col-xs-12  text-left ">
 									<a href="/board/bnsView.mwav?bNews_id=${VselectListBnsFrontList.bNews_id}">
 										<%-- <c:if test="${parseTdate -parseAgo < 20 && parseTdate -parseAgo > 0}"> --%>
-											<c:if test="${parseAgo < parseTdate}">
+											<c:if test="${parseTdate - parseAgo > 0}">
 										    <span class="label label-danger">new</span>
 										</c:if>
 										${VselectListBnsFrontList.bnTitle}
