@@ -35,7 +35,7 @@ public class HttpsFilter implements Filter {
 			response.setContentType("text/html");
 
 			// New location to be redirected
-			String httpsPath = "https" + "://" + getDomain + ":" + getPort + uri;
+			String httpsPath = "https" + "://" + getDomain + uri;
 
 			logger.debug("Changed https path : " + httpsPath);
 
