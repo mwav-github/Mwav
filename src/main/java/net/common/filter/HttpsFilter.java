@@ -40,7 +40,7 @@ public class HttpsFilter implements Filter {
 			logger.debug("Changed https path : " + httpsPath);
 
 			String site = new String(httpsPath);
-			res.setStatus(HttpServletResponse.SC_MOVED_TEMPORARILY);
+			res.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
 			res.setHeader("Location", site);
 		}
 
