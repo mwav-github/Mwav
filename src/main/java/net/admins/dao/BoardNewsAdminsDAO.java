@@ -35,8 +35,7 @@ public class BoardNewsAdminsDAO extends AbstractDAO {
 	public Map<String, Object> selectOneNsmView(Map<String, Object> map) {
 		// TODO Auto-generated method stub
 
-		return (Map<String, Object>) selectOne(
-				"boardNewsAdminsDAO.selectOneNsmView", map);
+		return (Map<String, Object>) selectOne("boardNewsAdminsDAO.selectOneNsmView", map);
 	}
 
 	/*
@@ -94,6 +93,16 @@ public class BoardNewsAdminsDAO extends AbstractDAO {
 	public void deleteNsmDelete(Map<String, Object> map) {
 		// TODO Auto-generated method stub
 		update("boardNewsAdminsDAO.deleteNsmDelete", map);
+	}
+
+	public void updateNsmBnStatus(String bNews_id) {
+		// TODO Auto-generated method stub
+		update("boardNewsAdminsDAO.updateNsmBnStatus", bNews_id);
+	}
+
+	public void updateNsmBnStatusNotice(String bNews_id) {
+		// TODO Auto-generated method stub
+		update("boardNewsAdminsDAO.updateNsmBnStatusNotice", bNews_id);
 	}
 
 }

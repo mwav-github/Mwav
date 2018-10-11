@@ -29,7 +29,6 @@ css 중 가장 마지막에 호출되어야하며, include 되는 파일 중 css
 	var userId = '<c:out value="${sessionScope.member.member_id}"/>';
 	var pgl = '<c:out value="${param.pgl}"/>'; //세션으로 변경
 	var statistics_id = '<c:out value="${sessionScope.statistics_id}"/>'; //세션으로 변경
-
 <%--https://www.simoahava.com/analytics/page-load-time-universal-analytics/
 
 	//ga('create', 'UA-63623427-1', 'auto');
@@ -113,7 +112,7 @@ css 중 가장 마지막에 호출되어야하며, include 되는 파일 중 css
 					<li>Address: GV-4F, 5-5, Ttukseom-ro 46-gil, Gwangjin-gu,
 						Seoul , Korea [05099]</li>
 					<li>TEL : +82-70-4655-4777</li>
-					<li>FAX: +82-2-6214-7039</li>
+					<li>FAX : +82-2-6214-7039</li>
 					<li>CEO : Lewis, Kim</li>
 					<li>WebSite Manager : Hunt, Kim</li>
 					<li>Marketing Manager : <c:choose>
@@ -144,7 +143,7 @@ css 중 가장 마지막에 호출되어야하며, include 되는 파일 중 css
 
 			</div>
 			<div class="col-xs-12 col-sm-8 col-md-4">
-				<h3>Navigate</h3>
+				<h3>Site Navigation:</h3>
 				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 					<ul>
 						<li><a href="/">Home</a></li>
@@ -185,8 +184,8 @@ css 중 가장 마지막에 호출되어야하며, include 되는 파일 중 css
 							style="color: white;"><span
 							class="glyphicon glyphicon-envelope"></span> Contact</a> 
 							--%>
-							
-							<a href="/CustomerService/QnA/QnA.mwav?mode=qaForm"
+
+						<a href="/CustomerService/QnA/QnA.mwav?mode=qaForm"
 							class="btn btn-block btn-primary "
 							onclick="ga('send', 'event', 'Q&A', 'click', 'Footer');"
 							style="color: white;"><span
@@ -195,27 +194,29 @@ css 중 가장 마지막에 호출되어야하며, include 되는 파일 중 css
 					<p>&nbsp;</p>
 
 					<ul class="list-unstyled list-inline list-social-icons">
-						<li><a href="" class="btn btn-social-icon btn-twitter"
-							style="color: white;" target="_blank"
-							onclick="ga('send', 'event', 'twitter', 'click', 'Footer'); redirectUrl('https://twitter.com/mwavnet', '_blank'); ">
-								<span class="fa fa-twitter"></span>
-						</a></li>
-						<li><a href="" class="btn btn-social-icon btn-facebook"
-							style="color: white;" target="_blank"
-							onclick="ga('send', 'event', 'facebook', 'click', 'Footer'); redirectUrl('https://www.facebook.com/mwavsns', '_blank'); ">
-								<span class="fa fa-facebook"></span>
-						</a></li>
-						<li><a href="" class="btn btn-social-icon btn-google"
-							style="color: white;" target="_blank"
-							onclick="ga('send', 'event', 'googleplus', 'click', 'Footer'); redirectUrl('https://plus.google.com/113341818785719365682?hl=ko', '_blank'); ">
-								<span class="fa fa-google"></span>
-						</a></li>
-						<li><a href="" class="btn btn-social-icon btn-linkedin"
+
+						<li><a class="btn btn-social-icon btn-linkedin"
 							style="color: white;"
 							onclick="ga('send', 'event', 'linkedin', 'click', 'Footer'); redirectUrl('https://www.linkedin.com/in/mwav-net-255543133/', '_blank');"
 							target="_blank"> <span class="fa fa-linkedin"></span>
 						</a></li>
-						<li><a href="" class="btn btn-social-icon btn-instagram"
+						<li><a class="btn btn-social-icon btn-twitter"
+							style="color: white;" target="_blank"
+							onclick="ga('send', 'event', 'twitter', 'click', 'Footer'); redirectUrl('https://twitter.com/mwavnet', '_blank');">
+								<span class="fa fa-twitter"></span>
+						</a></li>
+						<li><a class="btn btn-social-icon btn-facebook"
+							style="color: white;" target="_blank"
+							onclick="ga('send', 'event', 'facebook', 'click', 'Footer'); redirectUrl('https://www.facebook.com/mwavsns', '_blank'); ">
+								<span class="fa fa-facebook"></span>
+						</a></li>
+						<li><a class="btn btn-social-icon btn-google"
+							style="color: white;" target="_blank"
+							onclick="ga('send', 'event', 'googleplus', 'click', 'Footer'); redirectUrl('https://plus.google.com/113341818785719365682?hl=ko', '_blank'); ">
+								<span class="fa fa-google"></span>
+						</a></li>
+
+						<li><a class="btn btn-social-icon btn-instagram"
 							style="color: white;" target="_blank"
 							onclick="ga('send', 'event', 'instagram', 'click', 'Footer'); redirectUrl('https://www.instagram.com/mwavnet/', '_blank'); ">
 								<span class="fa fa-instagram"></span>
@@ -253,9 +254,20 @@ css 중 가장 마지막에 호출되어야하며, include 되는 파일 중 css
 			Copyright ⓒ Since 2004 Mwav.net All rights reserved | <a>Privacy
 				Policy</a> | <a>Terms of Use</a>
 		</p>
-		<div class="pull-right col-md-5 col-sm-12 col-xs-12">
+		<p class="pull-right col-md-2 col-sm-12 col-xs-4">
+			<%-- Comodo Certificated 18.09.15 --%>
+			<script language="JavaScript" type="text/javascript">
+				TrustLogo(
+						"https://www.mwav.net/Images/TrustBanners/comodo_secure_seal_100x85_transp.png",
+						"CL1", "none");
+			</script>
+			<a href="https://www.positivessl.com/" id="comodoTL">Positive SSL</a>
+
+			<!-- <img src="/Images/TrustBanners/comodo_secure_seal_100x85_transp.png" class="img-thumbnail img-responsive" alt="internet-explorer"> -->
+		</p>
+		<div class="col-md-5 col-sm-12 col-xs-8">
 			<ul class="nav nav-pills">
-				<p class="pull-left mgr3">All Browsers Compatibility</p>
+				<p class="pull-left mgr2">All Browsers Compatibility</p>
 				<li class="tooltips" data-toggle="tooltip" data-placement="top"
 					title="" data-original-title="internet-explorer"><img
 					src="/PartsOfContent/SiteFooter/Images/Edge.png"
@@ -264,10 +276,11 @@ css 중 가장 마지막에 호출되어야하며, include 되는 파일 중 css
 					title="" data-original-title="chrome"><img
 					src="/PartsOfContent/SiteFooter/Images/Chrome.png"
 					class="img-thumbnail img-responsive" alt="internet-explorer">
+				</li>
 				<li class="tooltips" data-toggle="tooltip" data-placement="top"
 					title="" data-original-title="firefox"><img
 					src="/PartsOfContent/SiteFooter/Images/Firefox.png"
-					class="img-thumbnail img-responsive" alt="firefox">
+					class="img-thumbnail img-responsive" alt="firefox"></li>
 				<li class="tool
 				tips" data-toggle="tooltip"
 					data-placement="top" title="" data-original-title="safari"><img
@@ -277,7 +290,7 @@ css 중 가장 마지막에 호출되어야하며, include 되는 파일 중 css
 				tips" data-toggle="tooltip"
 					data-placement="top" title="" data-original-title="opera"><img
 					src="/PartsOfContent/SiteFooter/Images/Opera.png"
-					class="img-thumbnail img-responsive" alt="opera">
+					class="img-thumbnail img-responsive" alt="opera"></li>
 			</ul>
 		</div>
 	</div>
@@ -335,8 +348,6 @@ css 중 가장 마지막에 호출되어야하며, include 되는 파일 중 css
 		</div>
 	</div>
 </div>
-
-
 
 
 

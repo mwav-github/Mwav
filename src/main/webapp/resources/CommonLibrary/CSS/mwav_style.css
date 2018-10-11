@@ -1,5 +1,23 @@
 @charset "utf-8";
 
+/* mwav left card  18/06/26
+ * 관련 url : https://www.securesign.kr/tools/online-check-ssl-installation   
+ * */
+.left-card-info {
+    border-left-color: #1b809e !important;
+}
+
+/*
+ * blockquote 흡사
+ */
+.left-card {
+    padding: 20px;
+    margin: 20px 0;
+    border: 1px solid #eee;
+    border-left-width: 5px;
+    border-radius: 3px;
+}
+
 /* mwav card section_3  
  * 사용 URL : http://www.mwav.net/CompanyItem/WebSiteBuilding/WebSiteBuilding.mwav
  * */
@@ -849,7 +867,7 @@ Licensed under MIT
 
 /*
  * 
-megamenu
+megamenu type1번 
  * 
  */
 .mega-dropdown {
@@ -873,9 +891,14 @@ megamenu
 }
 
 .mega-dropdown-menu>li>ul>li>a {
-	display: block;
-	color: #222;
-	padding: 3px 5px;
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    /*font-weight: normal;*/
+        font-weight: bold;
+    line-height: 1.428571429;
+    color: #777;
+    white-space: normal;
 }
 
 .mega-dropdown-menu>li             ul>li>a:hover, .mega-dropdown-menu>li             ul>li>a:focus
@@ -885,15 +908,28 @@ megamenu
 
 .mega-dropdown-menu       .dropdown-header {
 	font-size: 18px;
-	color: #ff3546;
-	padding: 5px 60px 5px 5px;
+	color: #428bca;
+	padding: 5px 60px 5px 12px;
 	line-height: 30px;
+     font-weight:bold;
 }
+
+.mega-dropdown-menu       .dropdown-header_type2 {
+	font-size: 18px;
+	color: #428bca;
+	padding: 5px 60px 5px 12px;
+	line-height: 30px;
+	 font-weight:bold;
+}
+
+    
 
 .left      .carousel-control {
 	right: 30px;
 	left: inherit;
 }
+
+
 
 /*
  * center-block
@@ -1654,9 +1690,20 @@ Reference: http://avexdesigns.com/responsive-youtube-embed/
 .mgl3 {
 	margin-left: 3% !important;
 }
+.mgl2 {
+	margin-left: 2% !important;
+}
 
 .mgr3 {
 	margin-right: 3% !important;
+}
+
+.mgr2 {
+	margin-right: 2% !important;
+}
+
+.mgr1 {
+	margin-right: 1% !important;
 }
 
 .mgt1_8 {

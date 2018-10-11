@@ -436,7 +436,7 @@ public class StaffController {
 	@RequestMapping(value = "/admins/staff/stfLogout.mwav")
 	public ModelAndView selectLogout(HttpSession  session,
 			HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("/Admins/CompanyMgr/Staff/StfLogin.mwav");
+		ModelAndView mv = new ModelAndView("/Admins/CompanyMgr/Staff/StfLogin");
 		Object obj = session.getAttribute("staff");
 		 if (obj != null) {
 			  session.removeAttribute("staff");

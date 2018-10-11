@@ -88,14 +88,14 @@ public class HighChartsService {
 	}
 	
 
-	public DataVO selectListKeyword(List<SeriesTypeOneVO> list2) {
+	public DataVO selectListKeyword(List<SeriesTypeOneVO> list2, String bnKeyword) {
 		List<SeriesTypeOneVO> list = list2;
 
 		
 		double[] nums = new double[list.size()];
 		String[] day = new String[list.size()];
 		for (int i = 0; i < list.size(); i++) {
-			nums[i] = list.get(i).getData();
+			nums[i] = Math.floor(list.get(i).getData());
 			day[i] = list.get(i).getName();
 			System.out.println("1x" + list.get(i).getName());
 			System.out.println("2x" + list.get(i).getData());
@@ -103,15 +103,12 @@ public class HighChartsService {
 		}
 		// double x[] = list.toArray();
 		List<SeriesTypeTwoVO> list_2 = new ArrayList<SeriesTypeTwoVO>();
-
-		list_2.add(new SeriesTypeTwoVO("Munich", nums));
-
-		// String[] categories = new String[] {"Mont",
-		// "14 Feb '13","15 Mar '13","11 Apr '13","19 May '13","23 Jun '13","3 Jul '13","8 Aug '13","5 Sep '13","17 Oct '13","23 Nov '13","5 Dec '13"};
-		return new DataVO("chart4-container", "LineChart Title", "통계",
+		
+		list_2.add(new SeriesTypeTwoVO(bnKeyword, nums));
+		return new DataVO("chart4-container", " 네이버 데이터랩의 검색어 트렌드", "통계",
 				"Run Dates", "line", Arrays.asList(day), list_2);
 	}
-
+	
 	public DataVO selectListTop10Page(Map<String, Object> hashmap) {
 		List<SeriesTypeOneVO> list = HighChartsDAO.selectListTop10Page(hashmap);
 
@@ -143,8 +140,8 @@ public class HighChartsService {
 		
 		// String[] categories = new String[] {"Mont",
 		// "14 Feb '13","15 Mar '13","11 Apr '13","19 May '13","23 Jun '13","3 Jul '13","8 Aug '13","5 Sep '13","17 Oct '13","23 Nov '13","5 Dec '13"};
-		return new DataVO("chart1-container", "Top10 PageList", "통계",
-				"Run Dates", "column", Arrays.asList(page), list_2);
+		return new DataVO("chart1-container", "Top10 PageList", "검색량",
+				"년/월/일", "column", Arrays.asList(page), list_2);
 	}
 
 

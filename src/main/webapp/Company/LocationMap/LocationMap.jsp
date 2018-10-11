@@ -56,24 +56,41 @@
 			</p>
 			
 			<ul class="list-unstyled list-inline list-social-icons">
-				<li><a class="btn btn-social-icon btn-twitter"> <span
-						class="fa fa-twitter"></span>
-				</a></li>
-				<li><a class="btn btn-social-icon btn-facebook"> <span
-						class="fa fa-facebook"></span>
-				</a></li>
-				<li><a class="btn btn-social-icon btn-google"> <span
-						class="fa fa-google"></span>
-				</a></li>
-				<li><a class="btn btn-social-icon btn-linkedin"> <span
-						class="fa fa-linkedin"></span>
-				</a></li>
-			</ul>
+						
+						<li><a class="btn btn-social-icon btn-linkedin"
+							style="color: white;"
+							onclick="ga('send', 'event', 'linkedin', 'click', 'LocationMap'); redirectUrl('https://www.linkedin.com/in/mwav-net-255543133/', '_blank');"
+							target="_blank"> <span class="fa fa-linkedin"></span>
+						</a></li>
+						<li><a class="btn btn-social-icon btn-twitter"
+							style="color: white;" target="_blank"
+							onclick="ga('send', 'event', 'twitter', 'click', 'LocationMap'); redirectUrl('https://twitter.com/mwavnet', '_blank');">
+								<span class="fa fa-twitter"></span>
+						</a></li>
+						<li><a  class="btn btn-social-icon btn-facebook"
+							style="color: white;" target="_blank"
+							onclick="ga('send', 'event', 'facebook', 'click', 'LocationMap'); redirectUrl('https://www.facebook.com/mwavsns', '_blank'); ">
+								<span class="fa fa-facebook"></span>
+						</a></li>
+						<li><a  class="btn btn-social-icon btn-google"
+							style="color: white;" target="_blank"
+							onclick="ga('send', 'event', 'googleplus', 'click', 'LocationMap'); redirectUrl('https://plus.google.com/113341818785719365682?hl=ko', '_blank'); ">
+								<span class="fa fa-google"></span>
+						</a></li>
+						
+						<li><a class="btn btn-social-icon btn-instagram"
+							style="color: white;" target="_blank"
+							onclick="ga('send', 'event', 'instagram', 'click', 'LocationMap'); redirectUrl('https://www.instagram.com/mwavnet/', '_blank'); ">
+								<span class="fa fa-instagram"></span>
+						</a></li>
+					</ul>
 			<p></p>
 			<p >
-				<a href="#" class="btn btn-block btn-default "
-					data-toggle="modal" data-target="#Contact"><span
-					class="glyphicon glyphicon-envelope"></span> Contact</a>
+				<a href="/CustomerService/QnA/QnA.mwav?mode=qaForm"
+							class="btn btn-block btn-primary "
+							onclick="ga('send', 'event', 'Q&A', 'click', 'LocationMap');"
+							style="color: white;"><span
+							class="glyphicon glyphicon-envelope"></span> Contact</a>
 			</p>
 		</div>
 

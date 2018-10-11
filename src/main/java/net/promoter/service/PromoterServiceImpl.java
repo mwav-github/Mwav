@@ -33,8 +33,6 @@ public class PromoterServiceImpl implements PromoterService {
 		return promoterDAO.insertPmtForm(map);
 	}
 
-
-
 	@Override
 	public List<Map<String, Object>> selectListPmtList(Map<String, Object> map) {
 		// TODO Auto-generated method stub
@@ -55,7 +53,7 @@ public class PromoterServiceImpl implements PromoterService {
 	@Override
 	public Promoter_VO selectPmtLogin(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return promoterDAO.selectPmtLogin(map);
+		return  (Promoter_VO)promoterDAO.selectPmtLogin(map);
 	}
 
 	@Override

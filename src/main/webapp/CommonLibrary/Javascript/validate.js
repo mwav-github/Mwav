@@ -1,9 +1,18 @@
 
+function emptyChk(checkVar) {
+	if(checkVar == "" || checkVar == null || checkVar == undefined || ( checkVar != null && typeof checkVar == "object" && !Object.keys(checkVar).length ) ){ 
+
+		return false;
+    }
+    else{
+
+    	return true;
+    }
+}
 //아래 참고해보면 다수일때 flag 하나로 쓰면 최종값이 결국은 결과값이 되기때문에 이부분 생각하기
 //http://sanghaklee.tistory.com/3
 //onchange는 안먹힐때가 있고 / onkeyup은 다 먹히고 onblur 로 하되 키제어 필요. 
 // 또는 jquery 이용 
-
 
 function emptyCheck(checkObject, alert_txt_) {
 		    var checkVar = checkObject.value;

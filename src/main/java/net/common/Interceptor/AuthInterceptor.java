@@ -1,19 +1,21 @@
 package net.common.Interceptor;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import net.admins.vo.Staff_VO;
-import net.mwav.member.vo.Member_tbl_VO;
-
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+
+import net.admins.vo.Staff_VO;
+import net.mwav.common.module.DomReadXMLFile;
+import net.mwav.member.vo.Member_tbl_VO;
 
 //
 
@@ -40,6 +42,32 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 		log.info("======================================          START         ======================================");
 		log.info(" Request URI \t:  " + request.getRequestURI());
 
+		HttpSession session = request.getSession();
+		String uploadRootPath = session.getServletContext().getRealPath("\\");
+		/*
+		 * 서버 올린 후 에러내용 : java.io.FileNotFoundException:
+		 * /home/user/mwav/null/xConfig/footer.xml.config (그런 파일이나 디렉터리가 없습니다)
+		 * at java.io.FileInputStream.open0(Native Method) Map<String, Object>
+		 * footerMap=
+		 * DomReadXMLFile.xmlParser(uploadRootPath+"/xConfig/footer.xml.config"
+		 * ); //Map<String, Object> footerMap= DomReadXMLFile.xmlParser(
+		 * "\\Users\\신윤상\\Documents\\mwav\\src\\main\\webapp\\xConfig\footer.xml.config"
+		 * ); log.info("CompanyName !!!!!!!!" +
+		 * (String)footerMap.get("companyName"));
+		 * 
+		 * request.setAttribute("companyName",
+		 * (String)footerMap.get("companyName"));
+		 * request.setAttribute("address", (String)footerMap.get("address"));
+		 * request.setAttribute("TEL", (String)footerMap.get("TEL"));
+		 * request.setAttribute("FAX", (String)footerMap.get("FAX"));
+		 * request.setAttribute("webSiteManager",
+		 * (String)footerMap.get("webSiteManager"));
+		 * request.setAttribute("marketingManager",
+		 * (String)footerMap.get("marketingManager"));
+		 * request.setAttribute("chief_IT_BusinessAdvisor",
+		 * (String)footerMap.get("chief_IT_BusinessAdvisor"));
+		 */
+
 		Member_tbl_VO member = null;
 		// member 및 비교할 값.
 		String key_id = null;
@@ -49,11 +77,6 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 		member_tbl_VO = null;
 		try {
 
-			HttpSession session = request.getSession();
-			/*
-			 * if (member_tbl_VO != null) { member =
-			 * String.valueOf(member_tbl_VO.getmember()); }
-			 */
 			staff = (Staff_VO) session.getAttribute("staff");
 			member = (Member_tbl_VO) session.getAttribute("member");
 			// 디버그 레벨일때 true
@@ -75,27 +98,24 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 			 */
 
 			// Admin(관리자) 회원 관리
-			// System.out.println("auth_url" + auth_url);
 			// staff 권한 체크.
 
-			// System.out.println("staff" + staff);
-			// System.out.println("returnUrl" + returnUrl);
 			String auth_url = null;
 			// 안하면, / 등의 경로에서는 에러 발생
 			// 에러명 : java.lang.StringIndexOutOfBoundsException: String index out
 			// of range: 7 (7까지는 /Admins 글자 수!)
-			if (request.getRequestURI().length() >= 7 && staff != null) {
+
+			if (request.getRequestURI().length() >= 7 && staff == null) {
 				auth_url = request.getRequestURI().substring(0, 7); // 현재 URL
+			}
+			if (request.getRequestURI().length() >= 7 && staff != null) {
 				key_id = Integer.toString(staff.getStaff_id());
+
 			}
 			if (auth_url != null
-					&& (auth_url.equals("/Admins") || auth_url
-							.equals("/admins"))) {
-				System.out.println("staff" + key_id);
-				System.out.println("staff"
-						+ request.getRequestURI().equals(
-								"/admins/staff/stfLogin.mwav"));
-
+					&& (auth_url.equals("/Admins")
+							|| auth_url.equals("/admins") || auth_url
+								.equals("/admin/"))) {
 				if (!(request.getRequestURI()
 						.equals("/admins/staff/stfLogin.mwav"))
 						&& (key_id == null || key_id.equals("") || key_id
@@ -117,7 +137,6 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 					if ("/Admins/CompanyMgr/Staff/StfLogin.mwav".equals(request
 							.getRequestURI())) {
 						// 들어왔나?
-						System.out.println("제발");
 						return true;
 					}
 					response.sendRedirect("/Admins/CompanyMgr/Staff/StfLogin.mwav");

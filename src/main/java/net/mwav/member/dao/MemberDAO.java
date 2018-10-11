@@ -35,15 +35,17 @@ public class MemberDAO extends AbstractDAO {
 			String b_mbrLoginPw = (String) map.get("mbrLoginPw");
 			System.out.println("* AES/CBC/IV");
 			System.out.println("b_mbrLoginPw=" + b_mbrLoginPw);
-			System.out.println("    - KEY : " + AesEncryption.sKey); // Static 변수
-			System.out.println("    - IV : " + AesEncryption.sInitVector); //Static 변수
+			System.out.println("    - KEY : " + AesEncryption.sKey); // Static
+																		// 변수
+			System.out.println("    - IV : " + AesEncryption.sInitVector); // Static
+																			// 변수
 			System.out.println("    - TEXT : " + b_mbrLoginPw);
 
 			// AES/CBC/IV 암호화 (키,암호화텍스트,iv)
-			encrypted = AesEncryption.aesEncryptCbc(AesEncryption.sKey, b_mbrLoginPw,
-					AesEncryption.sInitVector);
+			encrypted = AesEncryption.aesEncryptCbc(AesEncryption.sKey,
+					b_mbrLoginPw, AesEncryption.sInitVector);
 
-			//암호화된 값이 String으로 반환
+			// 암호화된 값이 String으로 반환
 			String sBase = AesEncryption.aesEncodeBuf(encrypted);
 
 			System.out.println("    - TEXT2 : " + sBase);
@@ -52,7 +54,8 @@ public class MemberDAO extends AbstractDAO {
 			if (encrypted == null) {
 				System.out.println("    - Encrypted : ERROR!!!");
 			} else {
-				System.out.println("    - Encrypted : " + sBase); //암호화된 String 값
+				System.out.println("    - Encrypted : " + sBase); // 암호화된 String
+																	// 값
 			}
 
 			Map<String, Object> imsimap = (Map<String, Object>) selectOne(
@@ -94,8 +97,8 @@ public class MemberDAO extends AbstractDAO {
 	}
 
 	@SuppressWarnings("unchecked")
-	public int updateMbrRecLoginDt(int member_id){
-		return (int)update("member.updateMbrRecLoginDt",member_id);
+	public int updateMbrRecLoginDt(int member_id) {
+		return (int) update("member.updateMbrRecLoginDt", member_id);
 	}
 
 	public void updateProMbrform(Map<String, Object> map) {
@@ -106,54 +109,55 @@ public class MemberDAO extends AbstractDAO {
 	@SuppressWarnings("unchecked")
 	public boolean updateMbrLoginPw(Map<String, Object> map) throws IOException {
 		// TODO Auto-generated method stub
-		
+
 		boolean flag = true;
-		try{
-		
-		String b_mbrLoginPw = (String) map.get("mbrLoginPw");
-		System.out.println("* AES/CBC/IV");
-		System.out.println("b_mbrLoginPw=" + b_mbrLoginPw);
-		System.out.println("    - KEY : " + AesEncryption.sKey);
-		System.out.println("    - IV : " + AesEncryption.sInitVector);
-		System.out.println("    - TEXT : " + b_mbrLoginPw);
+		try {
 
-		// AES/CBC/IV 암호화
-		encrypted = AesEncryption.aesEncryptCbc(AesEncryption.sKey, b_mbrLoginPw,
-				AesEncryption.sInitVector);
-		String sBase = AesEncryption.aesEncodeBuf(encrypted);
+			String b_mbrLoginPw = (String) map.get("mbrLoginPw");
+			System.out.println("* AES/CBC/IV");
+			System.out.println("b_mbrLoginPw=" + b_mbrLoginPw);
+			System.out.println("    - KEY : " + AesEncryption.sKey);
+			System.out.println("    - IV : " + AesEncryption.sInitVector);
+			System.out.println("    - TEXT : " + b_mbrLoginPw);
 
-		// String b2_mbrLoginPw = AesTest.toHexString(encrypted);
-		System.out.println("    - TEXT2 : " + sBase);
+			// AES/CBC/IV 암호화
+			encrypted = AesEncryption.aesEncryptCbc(AesEncryption.sKey,
+					b_mbrLoginPw, AesEncryption.sInitVector);
+			String sBase = AesEncryption.aesEncodeBuf(encrypted);
 
-		map.put("hope_mbrLoginPw", sBase);
-		if (encrypted == null) {
-			System.out.println("    - Encrypted : ERROR!!!");
-		} else {
-			System.out.println("    - Encrypted : " + sBase);
-		}
-		//이전 pw워드와 동일한것으로 바뀌었는지 여부
-		String before_mbrLoginPw = (String) selectOne("member.selectMbrLoginPw", map);
-		System.out.println("이전"+before_mbrLoginPw);
-		System.out.println("입력"+sBase);
-		if (before_mbrLoginPw.equals(sBase)){
-			//이전비밀번호 입력과 동일하다.
-			//1차로 거르는거
-			flag = false;
-		}else{
+			// String b2_mbrLoginPw = AesTest.toHexString(encrypted);
+			System.out.println("    - TEXT2 : " + sBase);
 
-			//2차로 동일조건으로 거르는거
-			int imsiflag = (int) update("member.updateMbrLoginPw", map);
-			if (imsiflag == 1) {
-				System.out.println("성공");
-				flag = true;
+			map.put("hope_mbrLoginPw", sBase);
+			if (encrypted == null) {
+				System.out.println("    - Encrypted : ERROR!!!");
 			} else {
-				System.out.println("실패");
-				flag = true;
+				System.out.println("    - Encrypted : " + sBase);
+			}
+			// 이전 pw워드와 동일한것으로 바뀌었는지 여부
+			String before_mbrLoginPw = (String) selectOne(
+					"member.selectMbrLoginPw", map);
+			System.out.println("이전" + before_mbrLoginPw);
+			System.out.println("입력" + sBase);
+			if (before_mbrLoginPw.equals(sBase)) {
+				// 이전비밀번호 입력과 동일하다.
+				// 1차로 거르는거
+				flag = false;
+			} else {
+
+				// 2차로 동일조건으로 거르는거
+				int imsiflag = (int) update("member.updateMbrLoginPw", map);
+				if (imsiflag == 1) {
+					System.out.println("성공");
+					flag = true;
+				} else {
+					System.out.println("실패");
+					flag = true;
+				}
+
 			}
 
-		}
-		
-		}catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
@@ -206,13 +210,10 @@ public class MemberDAO extends AbstractDAO {
 		List<String> imsimap = (List<String>) selectList(
 				"member.selectListMbrLoginIdSeek", map);
 
-
-		/*if(imsimap == null) {
-			mbrLoginId = null;
-		 }
-		else{
-			mbrLoginId = (List<String>) imsimap.get("mbrLoginId");
-		}*/
+		/*
+		 * if(imsimap == null) { mbrLoginId = null; } else{ mbrLoginId =
+		 * (List<String>) imsimap.get("mbrLoginId"); }
+		 */
 		return imsimap;
 	}
 
@@ -222,10 +223,9 @@ public class MemberDAO extends AbstractDAO {
 		Map<String, Object> imsimap = (Map<String, Object>) selectOne(
 				"member.selectOneMbrLoginPWSeek", map);
 
-		if(imsimap == null) {
+		if (imsimap == null) {
 			mbrLoginPw = null;
-		 }
-		else{
+		} else {
 			mbrLoginPw = (String) imsimap.get("mbrLoginPw");
 		}
 		return mbrLoginPw;
@@ -261,8 +261,8 @@ public class MemberDAO extends AbstractDAO {
 		System.out.println("    - TEXT : " + b_mbrLoginPw);
 
 		// AES/CBC/IV 암호화
-		encrypted = AesEncryption.aesEncryptCbc(AesEncryption.sKey, b_mbrLoginPw,
-				AesEncryption.sInitVector);
+		encrypted = AesEncryption.aesEncryptCbc(AesEncryption.sKey,
+				b_mbrLoginPw, AesEncryption.sInitVector);
 		String sBase = null;
 		try {
 			sBase = AesEncryption.aesEncodeBuf(encrypted);
@@ -301,60 +301,56 @@ public class MemberDAO extends AbstractDAO {
 				zcSiDoName);
 	}
 
-	//@SuppressWarnings({ "unchecked", "null" })
+	// @SuppressWarnings({ "unchecked", "null" })
 	@SuppressWarnings("unchecked")
 	public List<Map<String, Object>> selectListZcAll(Map<String, Object> map) {
 		// TODO Auto-generated method stub
 
 		List<Map<String, Object>> selectListZcAll = null;
 
-	/*	String zcRoadName = null;
-		zcRoadName = (String) map.get("zcRoadName");
-		System.out.println("zcRoadName"+zcRoadName);
+		/*
+		 * String zcRoadName = null; zcRoadName = (String)
+		 * map.get("zcRoadName"); System.out.println("zcRoadName"+zcRoadName);
+		 * 
+		 * String zcLegalEupMyeonDongName = null; zcLegalEupMyeonDongName =
+		 * (String) map.get("zcLegalEupMyeonDongName");
+		 * System.out.println("zcLegalEupMyeonDongName"
+		 * +zcLegalEupMyeonDongName);
+		 * 
+		 * String zcBuildingBook = null; zcBuildingBook = (String)
+		 * map.get("zcBuildingBook");
+		 * System.out.println("zcBuildingBook"+zcBuildingBook);
+		 */
 
-		String zcLegalEupMyeonDongName = null;
-		zcLegalEupMyeonDongName = (String) map.get("zcLegalEupMyeonDongName");
-		System.out.println("zcLegalEupMyeonDongName"+zcLegalEupMyeonDongName);
-
-		String zcBuildingBook = null;
-		zcBuildingBook = (String) map.get("zcBuildingBook");
-		System.out.println("zcBuildingBook"+zcBuildingBook);*/
-
-	/*	if (zcRoadName != null) {
-			selectListZcAll = selectList("member.post_zcRoadName", map);
-			System.out.println("zcRoadName");
-		}
-		else if (zcLegalEupMyeonDongName != null){
-			selectListZcAll = selectList("member.post_zcLegalEupMyeonDongName", map);
-			System.out.println("zcLegalEupMyeonDongName");
-		}
-		else if (zcBuildingBook != null){
-			selectListZcAll = selectList("member.post_zcBuildingBook", map);
-			System.out.println("zcBuildingBook");
-		}*/
+		/*
+		 * if (zcRoadName != null) { selectListZcAll =
+		 * selectList("member.post_zcRoadName", map);
+		 * System.out.println("zcRoadName"); } else if (zcLegalEupMyeonDongName
+		 * != null){ selectListZcAll =
+		 * selectList("member.post_zcLegalEupMyeonDongName", map);
+		 * System.out.println("zcLegalEupMyeonDongName"); } else if
+		 * (zcBuildingBook != null){ selectListZcAll =
+		 * selectList("member.post_zcBuildingBook", map);
+		 * System.out.println("zcBuildingBook"); }
+		 */
 
 		String post_mode = null;
 		post_mode = (String) map.get("post_mode");
-	/*	map = new HashMap<String, Object>();
-		map.put("post_mode", post_mode);
-		System.out.println("post_mode"+post_mode);
-		selectListZcAll.add(map);
-	*/
+		/*
+		 * map = new HashMap<String, Object>(); map.put("post_mode", post_mode);
+		 * System.out.println("post_mode"+post_mode); selectListZcAll.add(map);
+		 */
 		if (post_mode.equals("post_zcRoadName")) {
 			selectListZcAll = selectList("member.post_zcRoadName", map);
-		}
-		else if (post_mode.equals("post_zcLegalEupMyeonDongName")){
-			selectListZcAll = selectList("member.post_zcLegalEupMyeonDongName", map);
-		}
-		else if (post_mode.equals("post_post_zcBuildingBook")){
+		} else if (post_mode.equals("post_zcLegalEupMyeonDongName")) {
+			selectListZcAll = selectList("member.post_zcLegalEupMyeonDongName",
+					map);
+		} else if (post_mode.equals("post_post_zcBuildingBook")) {
 			selectListZcAll = selectList("member.post_zcBuildingBook", map);
 		}
 
 		return selectListZcAll;
 	}
-
-
-
 
 	@SuppressWarnings("unchecked")
 	@Transactional
@@ -379,12 +375,12 @@ public class MemberDAO extends AbstractDAO {
 		try {
 			Decrypt_mbrLoginPw = (String) memberLogin.get("mbrLoginPw");
 
-			//복호화 전 암호화된 값 바이트 배열로 변경
+			// 복호화 전 암호화된 값 바이트 배열로 변경
 			byte[] b_decrypted = AesEncryption.aesDecodeBuf(Decrypt_mbrLoginPw);
 
-			//복호화 메소드 (키, 복호화대상, iv)
-			decrypted = AesEncryption.aesDecryptCbc(AesEncryption.sKey, b_decrypted,
-					AesEncryption.sInitVector);
+			// 복호화 메소드 (키, 복호화대상, iv)
+			decrypted = AesEncryption.aesDecryptCbc(AesEncryption.sKey,
+					b_decrypted, AesEncryption.sInitVector);
 			String decrypted1 = null;
 			decrypted1 = new String(decrypted);
 			System.out.println("decrypted1=" + decrypted1);
@@ -398,9 +394,16 @@ public class MemberDAO extends AbstractDAO {
 			mbrLeaveDt = sdfCurrent.format(memberLogin.get("mbrLeaveDt")); // java.sql.Timestamp
 																			// cannot
 																			// be
-																			// cast
-																			// to
-																			// java.lang.String
+			// new String(decrypted, "UTF-8");
+			if (memberLogin != null) {
+
+				if (updateMbrRecLoginDt((int) memberLogin.get("member_id")) == 1)
+					log.info("최근로그인날 반영성공");
+				else
+					log.info("최근로그인날 반영실패");
+			} // cast
+			// to
+			// java.lang.String
 			System.out.println("mbrLeaveDt =" + mbrLeaveDt);
 			if (mbrLeaveDt != null) {
 				System.out.println("탈퇴한 회원?");
@@ -412,11 +415,17 @@ public class MemberDAO extends AbstractDAO {
 				memberLogin.put("loginCheck", 6);
 				System.out.println("탈퇴 x");
 			}
+			// http://linuxism.tistory.com/1089
 
 		} catch (Exception e) {
 			if (memberLogin != null) {
 				// 보통 null 포인터 Exception 뜬 경우.
 				memberLogin.put("loginCheck", 5);
+				
+				if (updateMbrRecLoginDt((int) memberLogin.get("member_id")) == 1)
+					log.info("최근로그인날 반영성공");
+				else
+					log.info("최근로그인날 반영실패");
 			}
 		}
 
@@ -427,11 +436,6 @@ public class MemberDAO extends AbstractDAO {
 		 * out.writeObject(memberLogin.get("mbrLoginPw"));
 		 */
 
-		// http://linuxism.tistory.com/1089
-
-		// new String(decrypted, "UTF-8");
-		if(updateMbrRecLoginDt((int)memberLogin.get("member_id"))==1)log.info("최근로그인날 반영성공");
-		else log.info("최근로그인날 반영실패");
 		return memberLogin;
 	}
 
@@ -450,7 +454,8 @@ public class MemberDAO extends AbstractDAO {
 	public boolean selectOneSnsMbrLoginIdCheck(String fsmMember_id) {
 		// TODO Auto-generated method stub
 		boolean check;
-		//System.out.println("값이?="+ selectOne("member.selectOneSnsMbrLoginIdCheck", fsmMember_id));
+		// System.out.println("값이?="+
+		// selectOne("member.selectOneSnsMbrLoginIdCheck", fsmMember_id));
 		if (selectOne("member.selectOneSnsMbrLoginIdCheck", fsmMember_id) == null) {
 			check = false; // 아이디가 없는 경우
 			System.out.println("아이디가 없는 경우");
@@ -464,8 +469,7 @@ public class MemberDAO extends AbstractDAO {
 
 	public String selectOneMemberPkCheck() {
 		// TODO Auto-generated method stub
-		Map<String, Object> memberid = (Map<String, Object>) selectOne(
-				"member.selectNextPk");
+		Map<String, Object> memberid = (Map<String, Object>) selectOne("member.selectNextPk");
 
 		String member_id = String.valueOf(memberid.get("member_id"));
 		return member_id;
@@ -473,40 +477,43 @@ public class MemberDAO extends AbstractDAO {
 
 	public String selectOneSmMemberPkCheck(String smMember_id) {
 		// TODO Auto-generated method stub
-		return smMember_id = (String) selectOne("member.selectOneSmMemberPkCheck", smMember_id);
+		return smMember_id = (String) selectOne(
+				"member.selectOneSmMemberPkCheck", smMember_id);
 	}
 
-	//오토로그인 체크되었을 시  오토로그인 날짜 업데이트
-	public boolean updateAutoLogin(Map<String,Object> map){
-		if((int)update("member.updateAutoLogin",map)==1){
+	// 오토로그인 체크되었을 시 오토로그인 날짜 업데이트
+	public boolean updateAutoLogin(Map<String, Object> map) {
+		if ((int) update("member.updateAutoLogin", map) == 1) {
 			return true;
-		}else {
+		} else {
 			return false;
 		}
 	}
 
 	//
 	@Transactional
-	public Member_tbl_VO selectAutoLogin(int member_id){
-		Member_tbl_VO member = (Member_tbl_VO)selectOne("member.selectAutoLogin",member_id);
-		if(member!=null){
-			if(updateMbrRecLoginDt(member_id)==1)log.info("최근로그인날 반영성공");
-			else log.info("최근로그인날 반영실패");
-				return member;
-		}else {
+	public Member_tbl_VO selectAutoLogin(int member_id) {
+		Member_tbl_VO member = (Member_tbl_VO) selectOne(
+				"member.selectAutoLogin", member_id);
+		if (member != null) {
+			if (updateMbrRecLoginDt(member_id) == 1)
+				log.info("최근로그인날 반영성공");
+			else
+				log.info("최근로그인날 반영실패");
+			return member;
+		} else {
 			System.out.println("가져온 멤버 값이 비어있습니다");
 			return member;
 		}
 	}
 
-	//로그아웃 했을 시 오토로그인 날짜 데이터 삭제
-	public boolean updateAutoLoginDel(int member_id){
-		if((int)update("member.updateAutoLoginDel",member_id)==1){
+	// 로그아웃 했을 시 오토로그인 날짜 데이터 삭제
+	public boolean updateAutoLoginDel(int member_id) {
+		if ((int) update("member.updateAutoLoginDel", member_id) == 1) {
 			return true;
-		}else {
+		} else {
 			return false;
 		}
 	}
-
 
 }

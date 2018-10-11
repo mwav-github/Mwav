@@ -13,7 +13,7 @@
 
 <script>
 	$(function() {
-		
+
 		var pgurl = window.location.pathname;
 		//alert(pgurl);
 
@@ -29,7 +29,7 @@
 
 <body>
 	<!-- FrontHeader
-	Company의 마스터 페이지 상에서 Header 
+	Company의 마스터 페이지 상에서 Header
 	1. 마스터 헤더 한번 변경해보기 ~!!! container 안으로
 	 -->
 	<!--  //////////////////////////////////// -->
@@ -59,7 +59,7 @@
 								href="/CompanyItem/WebSiteBuilding/WebSiteBuilding.jsp">WebSite
 									Building</a></li>
 							<li><a
-								href="/CompanyItem/DigitalMarketing/DigitalMarketing.jsp">Digital
+								href="/CompanyItem/DigitalMarketing/DigitalMarketing_eng.jsp">Digital
 									Marketing</a></li>
 							<li><a href="/CompanyItem/ITConsulting/ITConsulting.jsp">IT
 									Consulting</a></li>
@@ -81,8 +81,8 @@
 				<!-- /.container -->
 			</nav>
 		</div>
-		<!-- Image Container 
-container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다. 
+		<!-- Image Container
+container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 -->
 		<div class="row">
 			<div class="col-lg-12">
@@ -91,7 +91,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 			</div>
 		</div>
 	</div>
-	<!--  //////////////////////////////////// 
+	<!--  ////////////////////////////////////
 	Header 끝
 	-->
 
@@ -175,7 +175,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 		<!-- /.row -->
 	</div>
 	<!-- /.container -->
-	
+
 					<div class="col-md-12">
 					<h3>Contact:</h3>
 					<p>Have a question or feedback?</p>
@@ -192,7 +192,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 							class="glyphicon glyphicon-envelope"></span> Contact</a>
 					</p>
 					<p>&nbsp;</p>
-	
+
 
 	<!-- Footer -->
 	<footer>

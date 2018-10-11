@@ -56,27 +56,24 @@ public class BoardNewsAdminsController {
 	/*
 	 * ========================================등록================================
 	 * ========
-	 * 
-	 * 
-	
 	 */
 	// 1번 bnsForm : Form 입력만 가능 (뒤로가기, list)
 	@RequestMapping(value = "/admin/boardNews/nsmForm.mwav")
-	//http://egloos.zum.com/nadostar/v/210497
+	// http://egloos.zum.com/nadostar/v/210497
 	public ModelAndView insertNsmForm(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
 
 		ModelAndView mv = new ModelAndView("/Admins/SiteMgr/NewsMgr/NsmForm");
-		
+
 		log.debug("인터셉터 테스트");
 		boardNewsAdminsService.insertNsmForm(commandMap.getMap());
 
 		String mm = "site";
 		mv.addObject("mm", mm);
 		mv.addObject("mode", "m_nsmForm");
-		
+
 		mv.addObject("depth_1", depth_1);
-     	mv.addObject("depth_2", depth_2);
+		mv.addObject("depth_2", depth_2);
 		mv.addObject("depth_3", "NsmForm");
 
 		// mv.addObject("insertBnsForm", insertBnsForm);
@@ -85,14 +82,11 @@ public class BoardNewsAdminsController {
 		return mv;
 	}
 
-
 	// 1번 bnsView : 수정/삭제가능
 	@RequestMapping(value = "/admin/boardNews/nsmView.mwav")
 	public ModelAndView selectOneNsmView(CommandMap commandMap,
 			HttpServletRequest request, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/SiteMgr/NewsMgr/NsmView");
-
-		
 
 		log.debug("인터셉터 테스트");
 		System.out.println("테스트");
@@ -102,16 +96,15 @@ public class BoardNewsAdminsController {
 		if (selectOneNsmView != null && !selectOneNsmView.isEmpty()) {
 			System.out.println("view 줄랭");
 
-			
 			String mm = "site";
 			mv.addObject("mm", mm);
 			mv.addObject("mode", "m_nsmView");
-						
+
 			mv.addObject("depth_1", depth_1);
-	     	mv.addObject("depth_2", depth_2);
+			mv.addObject("depth_2", depth_2);
 			mv.addObject("depth_3", "NsmView");
-			mv.addObject("pageNum", paging.getPageNum( (String) commandMap.get("pageNum")));
-			
+			mv.addObject("pageNum",
+					paging.getPageNum((String) commandMap.get("pageNum")));
 
 			mv.addObject("selectOneNsmView", selectOneNsmView);
 		}
@@ -123,14 +116,13 @@ public class BoardNewsAdminsController {
 	 * ========================================수정================================
 	 * ========
 	 */
-	
+
 	// 1번 bnsUpdate : 리스트 업데이트
 	@RequestMapping(value = "/admin/boardNews/nsmUpdate.mwav")
 	public ModelAndView updateNsmForm(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/SiteMgr/NewsMgr/NsmForm");
 
-		
 		// 위의 view랑 동일하게 사용
 
 		Map<String, Object> updateNsmForm = boardNewsAdminsService
@@ -138,13 +130,44 @@ public class BoardNewsAdminsController {
 		if (updateNsmForm != null && !updateNsmForm.isEmpty()) {
 			System.out.println("view 줄랭");
 			String mm = "site";
-			mv.addObject("pageNum", paging.getPageNum( (String) commandMap.get("pageNum")));
+			mv.addObject("pageNum",
+					paging.getPageNum((String) commandMap.get("pageNum")));
 			mv.addObject("mm", mm);
 			mv.addObject("mode", "m_nsmUpdate");
-			
+
 			mv.addObject("updateNsmForm", updateNsmForm);
 		}
-		return mv;	}
+		return mv;
+	}
+
+	@RequestMapping(value = "/admin/boardNews/nsmBnStatusUpdate.mwav")
+	public ModelAndView updateNsmBnStatus(CommandMap commandMap,
+			HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("/Admins/SiteMgr/NewsMgr/NsmList");
+
+		String bNews_id = (String) commandMap.get("bNews_id");
+		String mm = "site";
+		mv.addObject("mm", mm);
+		mv.addObject("mode", "m_ntmList");
+		boardNewsAdminsService.updateNsmBnStatus(bNews_id);
+		return mv;
+	}
+	
+	@RequestMapping(value = "/admin/boardNews/nsmBnStatusNoticeUpdate.mwav")
+	public ModelAndView updateNsmBnStatusNotice(CommandMap commandMap,
+			HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("/Admins/SiteMgr/NewsMgr/NsmList");
+
+		String bNews_id = (String) commandMap.get("bNews_id");
+
+		String mm = "site";
+		mv.addObject("mm", mm);
+		mv.addObject("mode", "m_ntmList");
+		boardNewsAdminsService.updateNsmBnStatusNotice(bNews_id);
+		return mv;
+	}
+
+	
 	
 	// 1번 bnsUpdate : 리스트 업데이트
 	@RequestMapping(value = "/admin/boardNews/nsmUpdatePro.mwav")
@@ -152,11 +175,11 @@ public class BoardNewsAdminsController {
 			HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/SiteMgr/NewsMgr/NsmList");
 
-		
 		// 위의 view랑 동일하게 사용
-		mv.addObject("pageNum", paging.getPageNum( (String) commandMap.get("pageNum")));
+		mv.addObject("pageNum",
+				paging.getPageNum((String) commandMap.get("pageNum")));
 		boardNewsAdminsService.updateProNsmForm(commandMap.getMap());
-		
+
 		String mm = "site";
 		mv.addObject("mm", mm);
 		mv.addObject("mode", "m_ntmList");
@@ -213,12 +236,11 @@ public class BoardNewsAdminsController {
 			HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/SiteMgr/NewsMgr/NsmList");
 
-		String pageNum =paging.getPageNum( (String) commandMap.get("pageNum"));
-		
-		//중요한건 이거 역시삭제한것제외하고 가야한다. 
+		String pageNum = paging.getPageNum((String) commandMap.get("pageNum"));
+
+		// 중요한건 이거 역시삭제한것제외하고 가야한다.
 		int totalRow = boardNewsAdminsService.selectOneGetNsmTotalCount();
 		System.out.println("totalRow=" + totalRow);
-		
 
 		// Paging pv = new Paging(pageNum, 10 , 10, totalCount);
 		List<Map<String, Object>> selectListNsmList;
@@ -228,11 +250,11 @@ public class BoardNewsAdminsController {
 		commandMap.put("startRow", paging.getStartRow(pageNum)); // 시작 열
 		commandMap.put("endRow", paging.getEndRow(pageNum)); // 끝 열
 		if (totalRow > 0) {
-			selectListNsmList = boardNewsAdminsService.selectListNsmList(commandMap
-					.getMap());
+			selectListNsmList = boardNewsAdminsService
+					.selectListNsmList(commandMap.getMap());
 			// selectboardList =
 			// boardService.selectbnsList(commandMap.getMap());
-			
+
 		} else {
 			selectListNsmList = Collections.emptyList();
 		}
@@ -243,9 +265,9 @@ public class BoardNewsAdminsController {
 
 		mv.addObject("pageNum", pageNum);
 		mv.addObject("depth_1", depth_1);
-     	mv.addObject("depth_2", depth_2);
+		mv.addObject("depth_2", depth_2);
 		mv.addObject("depth_3", "NsmList");
-		
+
 		mv.addObject("selectListNsmList", selectListNsmList);
 		mv.addObject("pagingVO", pagingVO);
 		mv.addObject("totalRow", totalRow);
@@ -264,13 +286,13 @@ public class BoardNewsAdminsController {
 		ModelAndView mv = new ModelAndView("/Admins/SiteMgr/NewsMgr/NsmList");
 
 		boardNewsAdminsService.deleteNsmDelete(commandMap.getMap());
-		
-		mv.addObject("pageNum", paging.getPageNum( (String) commandMap.get("pageNum")));
-		
-		mv.addObject("depth_1", depth_1);
-     	mv.addObject("depth_2", depth_2);
-		mv.addObject("depth_3", "NsmDelete");
 
+		mv.addObject("pageNum",
+				paging.getPageNum((String) commandMap.get("pageNum")));
+
+		mv.addObject("depth_1", depth_1);
+		mv.addObject("depth_2", depth_2);
+		mv.addObject("depth_3", "NsmDelete");
 
 		return mv;
 	}

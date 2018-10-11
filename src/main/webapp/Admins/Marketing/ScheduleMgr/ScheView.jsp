@@ -48,10 +48,7 @@
 				<!-- Content Column -->
 				<div class="col-lg-12">
 
-					<iframe
-						src="https://calendar.google.com/calendar/embed?title=Mwav_WBS&amp;height=800&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=t73a6fe660mb472delh1u3ild52l4hk2%40import.calendar.google.com&amp;color=%232952A3&amp;src=s1vgf025rring9lqn6p0ptgc1uradldf%40import.calendar.google.com&amp;color=%23125A12&amp;src=mwav.net_dcq0ccsaattqooc7htj53jg8n0%40group.calendar.google.com&amp;color=%23691426&amp;ctz=Asia%2FSeoul"
-						style="border-width: 0" width="1200" height="800" frameborder="0"
-						scrolling="no"></iframe>
+					<iframe src="https://calendar.google.com/calendar/embed?title=Mwav_WBS&amp;height=400&amp;wkst=1&amp;hl=en&amp;bgcolor=%23FFFFFF&amp;src=t73a6fe660mb472delh1u3ild52l4hk2%40import.calendar.google.com&amp;color=%232952A3&amp;src=mwav.net_dcq0ccsaattqooc7htj53jg8n0%40group.calendar.google.com&amp;color=%232952A3&amp;src=s1vgf025rring9lqn6p0ptgc1uradldf%40import.calendar.google.com&amp;color=%2328754E&amp;ctz=Asia%2FSeoul" style="border-width:0" width="1150" height="400" frameborder="0" scrolling="no"></iframe>
 
 
 				</div>

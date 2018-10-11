@@ -154,6 +154,13 @@
 									<tr>
 										<td>${selectOneNtmView.buRelatedLink}</td>
 									</tr>
+									
+									<tr>
+										<th class="active">Keywords</th>
+									</tr>
+									<tr>
+										<td>${selectOneNtmView.buKeyword}</td>
+									</tr>
 
 									<tr>
 										<th class="active">Content</th>

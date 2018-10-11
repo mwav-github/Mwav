@@ -17,7 +17,7 @@
 	</c:otherwise>
 </c:choose>
 <meta id="metaDescription" name="description"
-	content="This is the website for Mwav.net. We are an IT development company possessing total E-Commerce platform based on the fancy technologies. You can contact at http://www.mwav.net/CustomerService/QnA/QnA.mwav?mode=qaForm if you have a question or an inquiry on the site." />
+	content="This is the website for Mwav.net. We are an IT development company possessing total E-Commerce platform based on the fancy technologies. You can contact at https://www.mwav.net/CustomerService/QnA/QnA.mwav?mode=qaForm if you have a question or an inquiry on the site." />
 <meta name="Owner" content="Mwav.net" />
 <meta name="Author" content="Zeus, Peter J." />
 <meta name="copyright" content="All contents are copyright by Mwav.net" />
@@ -129,7 +129,11 @@
 							}, 800);
 							return false;
 						});
-
+						
+						//MegaMenu 클릭.
+						jQuery(document).on('click', '.mega-dropdown', function(e) {
+							e.stopPropagation()
+						})
 					});
 </script>
 <script>
@@ -194,9 +198,31 @@ https://stackoverflow.com/questions/1241947/how-do-i-show-multiple-recaptchas-on
 	};
 </script>
 
-<style>.async-hide { opacity: 0 !important} </style>
-<script>(function(a,s,y,n,c,h,i,d,e){s.className+=' '+y;h.start=1*new Date;
-h.end=i=function(){s.className=s.className.replace(RegExp(' ?'+y),'')};
-(a[n]=a[n]||[]).hide=h;setTimeout(function(){i();h.end=null},c);h.timeout=c;
-})(window,document.documentElement,'async-hide','dataLayer',4000,
-{'GTM-ML32Q9G':true});</script>
+<style>
+.async-hide {
+	opacity: 0 !important
+}
+</style>
+<script>
+	(function(a, s, y, n, c, h, i, d, e) {
+		s.className += ' ' + y;
+		h.start = 1 * new Date;
+		h.end = i = function() {
+			s.className = s.className.replace(RegExp(' ?' + y), '')
+		};
+		(a[n] = a[n] || []).hide = h;
+		setTimeout(function() {
+			i();
+			h.end = null
+		}, c);
+		h.timeout = c;
+	})(window, document.documentElement, 'async-hide', 'dataLayer', 4000, {
+		'GTM-ML32Q9G' : true
+	});
+</script>
+<%-- Comodo Certificated 18.09.15 --%>
+<script type="text/javascript"> //<![CDATA[ 
+var tlJsHost = ((window.location.protocol == "https:") ? "https://secure.comodo.com/" : "http://www.trustlogo.com/");
+document.write(unescape("%3Cscript src='" + tlJsHost + "trustlogo/javascript/trustlogo.js' type='text/javascript'%3E%3C/script%3E"));
+//]]>
+</script>

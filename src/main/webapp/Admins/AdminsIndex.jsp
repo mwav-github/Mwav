@@ -103,6 +103,9 @@
 
 			<div class="enter"></div>
 			<!-- Marketing Icons Section -->
+			
+			<iframe src="https://calendar.google.com/calendar/embed?title=Mwav_WBS&amp;height=400&amp;wkst=1&amp;hl=en&amp;bgcolor=%23FFFFFF&amp;src=t73a6fe660mb472delh1u3ild52l4hk2%40import.calendar.google.com&amp;color=%232952A3&amp;src=mwav.net_dcq0ccsaattqooc7htj53jg8n0%40group.calendar.google.com&amp;color=%232952A3&amp;src=s1vgf025rring9lqn6p0ptgc1uradldf%40import.calendar.google.com&amp;color=%2328754E&amp;ctz=Asia%2FSeoul" style="border-width:0" width="1150" height="400" frameborder="0" scrolling="no"></iframe>
+			
 			<div class="row mg5xauto">
 				<%--장바구니 테스트 --%>
 				<!-- <span class="pull-right"><a href="#orderCart"

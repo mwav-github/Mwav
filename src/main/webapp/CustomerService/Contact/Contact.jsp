@@ -55,9 +55,73 @@
 
 					</p>
 					<p class="more">
-						<a href="#" data-type="P" data-id="10001001"
-							class="qaModal_Contact" data-toggle="modal"
-							data-target="#Contact"> Contact </a> <i class="fa fa-angle-right"
+					
+					<a href="/CustomerService/QnA/QnA.mwav?mode=qaForm"
+							data-type="P" data-id="10001001"
+							onclick="ga('send', 'event', 'Q&A', 'click', 'Contact');"
+							> Contact </a>
+						<i class="fa fa-angle-right"
+							aria-hidden="true"></i>
+					</p>
+				</div>
+				<div class="enter"></div>
+			</div>
+
+			
+
+			<div class="col-xs-12 col-sm-4 col-md-4">
+				<div class="news">
+					<div class="title">
+						<%-- <i class="fa fa-user-o" aria-hidden="true"
+									style="text-align:center; font-size: 3rem; color: #D8D8D8; -webkit-transition: all .3s ease-in-out; transition: all .3s ease-in-out;"></i> --%>
+						<br>
+						<h1>Dave Shin</h1>
+						<br>
+					</div>
+					<p class="description">
+						<strong>Chief Marketing Officer</strong> <br />
+						<br /> <small><cite title="Source Title">Seoul,
+								KOREA <i class="glyphicon glyphicon-map-marker"> </i>
+						</cite></small><br />
+						<%-- <small><i class="fa fa-envelope-o"
+									aria-hidden="true"></i></small> Alex.Chae@mwav.net <br /> --%>
+						<small><i class="fa fa-calendar-o" aria-hidden="true"></i>
+						</small> June 02, 1975
+
+					</p>
+					<p class="more">
+					<a href="/CustomerService/QnA/QnA.mwav?mode=qaForm"
+							data-type="P" data-id="10001002"
+							onclick="ga('send', 'event', 'Q&A', 'click', 'Contact');"
+							> Contact</a>
+						<i
+							class="fa fa-angle-right" aria-hidden="true"></i>
+					</p>
+				</div>
+				<div class="enter"></div>
+			</div>
+			
+			<div class="col-xs-12 col-sm-4 col-md-4">
+				<div class="news">
+					<div class="title">
+						<%-- <i class="fa fa-user-o" aria-hidden="true"
+									style="text-align:center; font-size: 3rem; color: #D8D8D8; -webkit-transition: all .3s ease-in-out; transition: all .3s ease-in-out;"></i> --%>
+						<br>
+						<h1>TaeYi Yoon</h1>
+						<br>
+					</div>
+					<p class="description">
+						<strong>Chief Financial Officer</strong> <br />
+						<br /> <small><cite title="Source Title">Seoul,
+								KOREA <i class="glyphicon glyphicon-map-marker"> </i>
+						</cite></small><br /> <small><i class="fa fa-calendar-o"
+							aria-hidden="true"></i> </small> January 07, 1961
+
+					</p>
+					<p class="more">
+					<a href="/CustomerService/QnA/QnA.mwav?mode=qaForm"
+							onclick="ga('send', 'event', 'Q&A', 'click', 'Contact');"
+							> Contact</a> <i class="fa fa-angle-right"
 							aria-hidden="true"></i>
 					</p>
 				</div>
@@ -65,6 +129,34 @@
 			</div>
 
 			<div class="col-xs-12 col-sm-4 col-md-4">
+				<div class="news">
+					<div class="title">
+						<%-- <i class="fa fa-user-o" aria-hidden="true"
+									style="text-align:center; font-size: 3rem; color: #D8D8D8; -webkit-transition: all .3s ease-in-out; transition: all .3s ease-in-out;"></i> --%>
+						<br>
+						<h1>Hunt Kim</h1>
+						<br>
+					</div>
+					<p class="description">
+						<strong>Chief Operation Officer</strong> <br />
+						<br /> <small><cite title="Source Title">Seoul,
+								KOREA <i class="glyphicon glyphicon-map-marker"> </i>
+						</cite></small><br /> <small><i class="fa fa-calendar-o"
+							aria-hidden="true"></i> </small> June 01, 1970
+
+					</p>
+					<p class="more">
+						<a href="/CustomerService/QnA/QnA.mwav?mode=qaForm"
+							data-type="P" data-id="10001002"
+							onclick="ga('send', 'event', 'Q&A', 'click', 'Contact');"
+							> Contact</a> <i
+							class="fa fa-angle-right" aria-hidden="true"></i>
+					</p>
+				</div>
+				<div class="enter"></div>
+			</div>
+
+<div class="col-xs-12 col-sm-4 col-md-4">
 				<div class="news">
 					<div class="title">
 						<%-- <i class="fa fa-user-o" aria-hidden="true"
@@ -82,8 +174,11 @@
 
 					</p>
 					<p class="more">
-						<a href="#" data-type="S" data-id="102" class="qaModal_Contact"
-							data-toggle="modal" data-target="#Contact"> Contact </a> <i
+									<a href="/CustomerService/QnA/QnA.mwav?mode=qaForm"
+							data-type="S" data-id="102"
+							onclick="ga('send', 'event', 'Q&A', 'click', 'Contact');"
+							> Contact</a>
+						<i
 							class="fa fa-angle-right" aria-hidden="true"></i>
 					</p>
 				</div>
@@ -96,66 +191,11 @@
 						<%-- <i class="fa fa-user-o" aria-hidden="true"
 									style="text-align:center; font-size: 3rem; color: #D8D8D8; -webkit-transition: all .3s ease-in-out; transition: all .3s ease-in-out;"></i> --%>
 						<br>
-						<h1>Alex Chae</h1>
+						<h1>Peter J. Cho</h1>
 						<br>
 					</div>
 					<p class="description">
-						<strong>Chief Marketing Officer</strong> <br />
-						<br /> <small><cite title="Source Title">Seoul,
-								KOREA <i class="glyphicon glyphicon-map-marker"> </i>
-						</cite></small><br />
-						<%-- <small><i class="fa fa-envelope-o"
-									aria-hidden="true"></i></small> Alex.Chae@mwav.net <br /> --%>
-						<small><i class="fa fa-calendar-o" aria-hidden="true"></i>
-						</small> June 02, 1975
-
-					</p>
-					<p class="more">
-						<a href="#" data-type="S" data-id="103" class="qaModal_Contact"
-							data-toggle="modal" data-target="#Contact"> Contact </a> <i
-							class="fa fa-angle-right" aria-hidden="true"></i>
-					</p>
-				</div>
-				<div class="enter"></div>
-			</div>
-
-			<div class="col-xs-12 col-sm-4 col-md-4">
-				<div class="news">
-					<div class="title">
-						<%-- <i class="fa fa-user-o" aria-hidden="true"
-									style="text-align:center; font-size: 3rem; color: #D8D8D8; -webkit-transition: all .3s ease-in-out; transition: all .3s ease-in-out;"></i> --%>
-						<br>
-						<h1>Evan Martin</h1>
-						<br>
-					</div>
-					<p class="description">
-						<strong>Chief Operation Officer</strong> <br />
-						<br /> <small><cite title="Source Title">Seoul,
-								KOREA <i class="glyphicon glyphicon-map-marker"> </i>
-						</cite></small><br /> <small><i class="fa fa-calendar-o"
-							aria-hidden="true"></i> </small> June 01, 1970
-
-					</p>
-					<p class="more">
-						<a href="#" data-type="S" data-id="104" class="qaModal_Contact"
-							data-toggle="modal" data-target="#Contact"> Contact </a> <i
-							class="fa fa-angle-right" aria-hidden="true"></i>
-					</p>
-				</div>
-				<div class="enter"></div>
-			</div>
-
-			<div class="col-xs-12 col-sm-4 col-md-4">
-				<div class="news">
-					<div class="title">
-						<%-- <i class="fa fa-user-o" aria-hidden="true"
-									style="text-align:center; font-size: 3rem; color: #D8D8D8; -webkit-transition: all .3s ease-in-out; transition: all .3s ease-in-out;"></i> --%>
-						<br>
-						<h1>Peter J</h1>
-						<br>
-					</div>
-					<p class="description">
-						<strong>Chief Information Officer</strong> <br />
+						<strong>Chief Information Officer (CIO)</strong> <br />
 						<br /> <small><cite title="Source Title">Seoul,
 								KOREA <i class="glyphicon glyphicon-map-marker"> </i>
 						</cite></small><br /> <small><i class="fa fa-calendar-o"
@@ -163,14 +203,16 @@
 
 					</p>
 					<p class="more">
-						<a href="#" data-type="P" data-id="10001000"
-							class="qaModal_Contact" data-toggle="modal"
-							data-target="#Contact"> Contact </a> <i class="fa fa-angle-right"
+					<a href="/CustomerService/QnA/QnA.mwav?mode=qaForm"
+							data-type="P" data-id="10001002"
+							onclick="ga('send', 'event', 'Q&A', 'click', 'Contact');"
+							> Contact</a> <i class="fa fa-angle-right"
 							aria-hidden="true"></i>
 					</p>
 				</div>
 				<div class="enter"></div>
 			</div>
+			
 		</div>
 	</div>
 </div>

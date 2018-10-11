@@ -36,7 +36,7 @@
     
     <update id="updateProNtmform" parameterType="hashmap">
     <![CDATA[
-        update BoardUser_tbl set buGroup= #{buGroup}, buHighLight= #{buHighLight}, buTitle= #{buTitle}, buSubTitle= #{buSubTitle}, buRelatedLink= #{buRelatedLink}, buContent= #{buContent},  buUpdateDt= NOW() where bUsers_id = #{bUsers_id}
+        update BoardUser_tbl set buGroup= #{buGroup}, buHighLight= #{buHighLight}, buTitle= #{buTitle}, buSubTitle= #{buSubTitle}, buRelatedLink= #{buRelatedLink}, buContent= #{buContent},  buUpdateDt= NOW(), buKeyword= #{buKeyword} where bUsers_id = #{bUsers_id}
     ]]>
     </update>
  

@@ -61,7 +61,7 @@
 						</p>
 
 						<a href="/Templates/FrontTemplate.html"
-							class="btn btn-primary btn-md btn-block">LIVE PREVIEW</a>
+							class="btn btn-primary btn-md btn-block" target="_blank">LIVE PREVIEW</a>
 					</div>
 					<div class="col-md-8">
 						<img class="img-responsive img-rounded"
