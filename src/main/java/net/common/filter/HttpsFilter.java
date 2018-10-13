@@ -39,7 +39,7 @@ public class HttpsFilter implements Filter {
 			}
 			// Set URI
 			if(getUri.equals("/") || getUri == null){
-				getUri = ""; // paramter 없을때 "/" 슬러시 추가되는 이슈해결 안됨. Browser 스펙상 "/" 강제추가됨
+				getUri = ""; // paramter 없을때 "/" 슬러시 추가되는 이슈해결 안됨. Browser 스펙상 "/" 강제추가됨 >> 상관없음 됨.
 			}
 			// Set query string
 			if(getParameters == null){
