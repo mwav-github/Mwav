@@ -1,6 +1,8 @@
 package net.common.filter;
 
 import java.io.IOException;
+import java.util.Iterator;
+import java.util.Map;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -24,20 +26,34 @@ public class HttpsFilter implements Filter {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
 
-		String uri = req.getRequestURI();
+		String getUri = req.getRequestURI();
 		String getProtocol = req.getScheme();
 		String getDomain = req.getServerName();
 		String getPort = Integer.toString(req.getServerPort());
-
+		String getParameters = req.getQueryString();
+		logger.info("getUri : " + getUri);
 		if (getProtocol.toLowerCase().equals("http")) {
-
+			// Set www. domain style
+			if(!getDomain.contains("www.")){
+				getDomain = "www." + getDomain;
+			}
+			// Set URI
+			if(getUri.equals("/") || getUri == null){
+				getUri = ""; // paramter 없을때 "/" 슬러시 추가되는 이슈해결 안됨. Browser 스펙상 "/" 강제추가됨 >> 상관없음 됨.
+			}
+			// Set query string
+			if(getParameters == null){
+				getParameters = "";
+			} else {
+				getParameters = "?" + getParameters;
+			}
+			logger.info("httpspath : " + "https" + "://" + getDomain + getUri + getParameters);
 			// Set response content type
 			response.setContentType("text/html");
 
 			// New location to be redirected
-			String httpsPath = "https" + "://" + getDomain + uri;
-
-			logger.debug("Changed https path : " + httpsPath);
+			String httpsPath = "https" + "://" + getDomain + getUri + getParameters;
+			logger.info("httpspath : " + httpsPath);
 
 			String site = new String(httpsPath);
 			res.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
