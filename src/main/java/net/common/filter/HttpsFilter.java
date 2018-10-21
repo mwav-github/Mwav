@@ -31,8 +31,11 @@ public class HttpsFilter implements Filter {
 		String getDomain = req.getServerName();
 		String getPort = Integer.toString(req.getServerPort());
 		String getParameters = req.getQueryString();
-		logger.info("getUri : " + getUri);
-		if (getProtocol.toLowerCase().equals("http")) {
+		
+		if(getDomain.equals("localhost") || getDomain.equals("localhost:8080")){
+			// localhost 테스트 환경에서 filter 타지 않도록 로직 구현 : localhost:8080 으로 접근가능
+		} else {
+//		if (getProtocol.toLowerCase().equals("http")) { // http, https 구분없이 filter 적용
 			// Set www. domain style
 			if(!getDomain.contains("www.")){
 				getDomain = "www." + getDomain;
@@ -47,7 +50,6 @@ public class HttpsFilter implements Filter {
 			} else {
 				getParameters = "?" + getParameters;
 			}
-			logger.info("httpspath : " + "https" + "://" + getDomain + getUri + getParameters);
 			// Set response content type
 			response.setContentType("text/html");
 
@@ -58,8 +60,8 @@ public class HttpsFilter implements Filter {
 			String site = new String(httpsPath);
 			res.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
 			res.setHeader("Location", site);
+//		}
 		}
-
 		// Pass request back down the filter chain
 		chain.doFilter(req, res);
 	}
