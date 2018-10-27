@@ -62,7 +62,20 @@ public class HttpsFilter implements Filter {
 				String tempCheckUrl = "";
 				if(!getDomain.contains("www.")){
 					if(getDomain.equals("mwav.net") || getDomain.equals("mwav.net/")){
-						tempCheckUrl = "https" + "://www" + getDomain + getUri + getParameters;
+						// Set URI
+						if(getUri.equals("/") || getUri == null){
+							getUri = ""; // paramter 없을때 "/" 슬러시 추가되는 이슈해결 안됨. Browser 스펙상 "/" 강제추가됨 >> 상관없음 됨.
+						}
+						// Set query string
+						if(getParameters == null){
+							getParameters = "";
+						} else {
+							getParameters = "?" + getParameters;
+						}
+						// Set response content type
+						response.setContentType("text/html");
+						
+						tempCheckUrl = "https" + "://www." + getDomain + getUri + getParameters;
 					}
 				}
 				String site = new String(tempCheckUrl);
