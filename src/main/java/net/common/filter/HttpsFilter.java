@@ -1,8 +1,6 @@
 package net.common.filter;
 
 import java.io.IOException;
-import java.util.Iterator;
-import java.util.Map;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -55,7 +53,7 @@ public class HttpsFilter implements Filter {
 
 			// New location to be redirected
 			String httpsPath = "https" + "://" + getDomain + getUri + getParameters;
-			logger.info("httpspath : " + httpsPath);
+			logger.debug("httpspath : " + httpsPath);
 
 			String site = new String(httpsPath);
 			res.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
