@@ -53,7 +53,7 @@ public class HttpsFilter implements Filter {
 
 				// New location to be redirected
 				String httpsPath = "https" + "://" + getDomain + getUri + getParameters;
-				logger.debug("httpspath(http) : " + httpsPath);
+				logger.info("httpspath(http) : " + httpsPath);
 
 				String site = new String(httpsPath);
 				res.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
@@ -78,7 +78,7 @@ public class HttpsFilter implements Filter {
 						tempCheckUrl = "https" + "://www." + getDomain + getUri + getParameters;
 					}
 				}
-				logger.debug("tempCheckUrl(https) : " + tempCheckUrl);
+				logger.info("tempCheckUrl(https) : " + tempCheckUrl);
 				String site = new String(tempCheckUrl);
 //				res.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
 				res.setHeader("Location", site);
