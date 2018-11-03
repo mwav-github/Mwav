@@ -61,6 +61,7 @@ public class HttpsFilter implements Filter {
 			if(getProtocol.toLowerCase().equals("http")){
 				res.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
 				res.sendRedirect(site);
+				return;
 			}
 //			res.setHeader("Location", site);
 			
