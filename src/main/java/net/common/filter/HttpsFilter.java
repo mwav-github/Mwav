@@ -60,8 +60,9 @@ public class HttpsFilter implements Filter {
 			// http 요청시 301 redirect
 			if(getProtocol.toLowerCase().equals("http")){
 				res.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
+				res.sendRedirect(site);
 			}
-			res.setHeader("Location", site);
+//			res.setHeader("Location", site);
 			
 			/*if (getProtocol.toLowerCase().equals("http")) {
 				// Set www. domain style
