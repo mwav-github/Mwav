@@ -35,7 +35,9 @@ public class HttpsFilter implements Filter {
 		} else { // http, https 구분없이 filter 적용
 			// Set www. domain style
 			if(!getDomain.contains("www.")){
+				logger.info("filtercheck1 : " + getDomain);
 				getDomain = "www." + getDomain;
+				logger.info("filtercheck2 : " + getDomain);
 			}
 			// Set URI
 			if(getUri.equals("/") || getUri == null){
