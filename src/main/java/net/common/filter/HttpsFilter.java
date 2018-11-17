@@ -1,8 +1,6 @@
 package net.common.filter;
 
 import java.io.IOException;
-import java.util.Iterator;
-import java.util.Map;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -22,7 +20,7 @@ public class HttpsFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
 		logger.debug("HttpsFilter doFileter()");
-		
+
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
 
@@ -31,35 +29,60 @@ public class HttpsFilter implements Filter {
 		String getDomain = req.getServerName();
 		String getPort = Integer.toString(req.getServerPort());
 		String getParameters = req.getQueryString();
-		logger.info("getUri : " + getUri);
-		if (getProtocol.toLowerCase().equals("http")) {
-			// Set www. domain style
-			if(!getDomain.contains("www.")){
-				getDomain = "www." + getDomain;
-			}
-			// Set URI
-			if(getUri.equals("/") || getUri == null){
-				getUri = ""; // paramter 없을때 "/" 슬러시 추가되는 이슈해결 안됨. Browser 스펙상 "/" 강제추가됨 >> 상관없음 됨.
-			}
-			// Set query string
-			if(getParameters == null){
-				getParameters = "";
-			} else {
-				getParameters = "?" + getParameters;
-			}
-			logger.info("httpspath : " + "https" + "://" + getDomain + getUri + getParameters);
-			// Set response content type
-			response.setContentType("text/html");
 
-			// New location to be redirected
-			String httpsPath = "https" + "://" + getDomain + getUri + getParameters;
-			logger.info("httpspath : " + httpsPath);
+		if(getDomain.equals("localhost") || getDomain.equals("localhost:8080")){
+			// localhost 테스트 환경에서 filter 타지 않도록 로직 구현 : localhost:8080 으로 접근가능
+		} else { // http, https 구분없이 filter 적용
+			if (getProtocol.toLowerCase().equals("http")) {
+				// Set www. domain style
+				if(!getDomain.contains("www.")){
+					getDomain = "www." + getDomain;
+				}
+				// Set URI
+				if(getUri.equals("/") || getUri == null){
+					getUri = ""; // paramter 없을때 "/" 슬러시 추가되는 이슈해결 안됨. Browser 스펙상 "/" 강제추가됨 >> 상관없음 됨.
+				}
+				// Set query string
+				if(getParameters == null){
+					getParameters = "";
+				} else {
+					getParameters = "?" + getParameters;
+				}
+				// Set response content type
+				response.setContentType("text/html");
 
-			String site = new String(httpsPath);
-			res.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
-			res.setHeader("Location", site);
+				// New location to be redirected
+				String httpsPath = "https" + "://" + getDomain + getUri + getParameters;
+				logger.debug("httpspath : " + httpsPath);
+
+				String site = new String(httpsPath);
+				res.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
+				res.setHeader("Location", site);
+			} else if (getProtocol.toLowerCase().equals("https")) {
+				String tempCheckUrl = "";
+				if(!getDomain.contains("www.")){
+					if(getDomain.equals("mwav.net") || getDomain.equals("mwav.net/")){
+						// Set URI
+						if(getUri.equals("/") || getUri == null){
+							getUri = ""; // paramter 없을때 "/" 슬러시 추가되는 이슈해결 안됨. Browser 스펙상 "/" 강제추가됨 >> 상관없음 됨.
+						}
+						// Set query string
+						if(getParameters == null){
+							getParameters = "";
+						} else {
+							getParameters = "?" + getParameters;
+						}
+						// Set response content type
+						response.setContentType("text/html");
+						
+						tempCheckUrl = "https" + "://www." + getDomain + getUri + getParameters;
+					}
+				}
+				String site = new String(tempCheckUrl);
+				res.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
+				res.setHeader("Location", site);
+			}
 		}
-
 		// Pass request back down the filter chain
 		chain.doFilter(req, res);
 	}
