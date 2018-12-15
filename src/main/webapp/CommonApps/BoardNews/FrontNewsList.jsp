@@ -15,6 +15,7 @@
 	<!-- NEW  -->
 	<table class="table table-striped">
 
+		<%-- pc 화면 --%>
 		<tbody class="mwav_important_10 hidden-xs hidden-sm">
 			<%--큰 화면에서는 5개다. --%>
 			<form name="NsmNews" action="/board/bnsView.mwav" method="post">
@@ -55,7 +56,15 @@
 											<c:if test="${parseTdate - parseAgo > 0}">
 											    <span class="label label-danger">new</span>
 											</c:if>
-											${VselectListBnsFrontList.bnTitle}
+											<c:choose>
+												<c:when test="${fn:length(VselectListBnsFrontList.bnTitle) < 70}">
+													${VselectListBnsFrontList.bnTitle}
+												</c:when>
+												<c:otherwise>
+													${fn:substring(VselectListBnsFrontList.bnTitle, 0, 70)} ...
+												</c:otherwise>
+											</c:choose>
+											<%-- ${VselectListBnsFrontList.bnTitle} --%>
 										</a>
 									</td>
 									<%--view를 구현하는 방법에 따라 달라진다. get 문 형태 유망 --%>
@@ -73,6 +82,7 @@
 			</form>
 		</tbody>
 
+		<%-- 태블릿/모바일 화면 --%>
 		<tbody class="mwav_important_10 visible-sm visible-xs">
 			<%--작은 화면에서는 3개만 --%>
 			<form name="NsmNews" action="/board/bnsView.mwav" method="post">
@@ -104,14 +114,21 @@
 								value="${VselectListBnsFrontList.bNews_id}" />
 							<input type="hidden" name="bnViewCount"
 								value="${VselectListBnsFrontList.bnViewCount}" />
-							<tr>
+							<tr class="center-block">
 								<td class="col-xs-12  text-left ">
 									<a href="/board/bnsView.mwav?bNews_id=${VselectListBnsFrontList.bNews_id}">
 										<%-- <c:if test="${parseTdate -parseAgo < 20 && parseTdate -parseAgo > 0}"> --%>
 											<c:if test="${parseTdate - parseAgo > 0}">
 										    <span class="label label-danger">new</span>
 										</c:if>
-										${VselectListBnsFrontList.bnTitle}
+										<c:choose>
+											<c:when test="${fn:length(VselectListBnsFrontList.bnTitle) < 40}">
+												${VselectListBnsFrontList.bnTitle}
+											</c:when>
+											<c:otherwise>
+												${fn:substring(VselectListBnsFrontList.bnTitle, 0, 40)} ...	
+											</c:otherwise>
+										</c:choose>
 									</a>
 								</td>
 							</tr>
