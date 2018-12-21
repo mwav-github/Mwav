@@ -92,6 +92,8 @@
 					function() {
 						var height = (($('.navbar-fixed-top').height()) + 4);
 						res_Text();
+						
+						$("#comodoTL").css('display', 'none');
 <%--/* $('#myCarousel').css({
 			'margin-top' : (($('.navbar-fixed-top').height()) + 4) + 'px'
 		}); */
