@@ -21,7 +21,7 @@ public class HttpsFilter implements Filter {
 			FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
-		logger.debug("User call url : " + req.getRequestURL());
+		logger.info("User call url : " + req.getRequestURL());
 
 		String getUri = req.getRequestURI();
 		String getProtocol = req.getScheme().toLowerCase();
@@ -31,7 +31,7 @@ public class HttpsFilter implements Filter {
 
 		if(getDomain.contains("localhost")){
 			// localhost 테스트 환경에서 filter 타지 않도록 로직 구현 : localhost:8080 으로 접근가능
-			logger.debug("Local develop 환경 call : localhost:8080");
+			logger.info("Local develop 환경 call : localhost:8080");
 		} else { // http, https 구분없이 filter 적용
 
 			if(getProtocol.equals("https") && getDomain.contains("www.")){ 
@@ -55,11 +55,12 @@ public class HttpsFilter implements Filter {
 				}
 
 				httpsRedirectPath = httpsRedirectPath + getDomain + getUri + getParameters; // New location to be redirected
-				logger.debug("https converted check : " + httpsRedirectPath);
+				logger.info("https converted check : " + httpsRedirectPath);
 
 				res.setContentType("text/html"); // Set response content type
 				res.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY); // http 요청시 301 redirect
-				res.sendRedirect(httpsRedirectPath);
+				res.setHeader("Location", httpsRedirectPath);
+				//res.sendRedirect(httpsRedirectPath);
 				return;
 			}
 		}
