@@ -816,7 +816,8 @@ function sendSns(url, utm_source, utm_campaign, utm_medium, utm_content, subTitl
 			utm_medium : utm_medium,
 			utm_content : utm_content,
 			subTitle : subTitle,
-			pgl : pgl
+			pgl : pgl,
+			params : url.split("mwav.net/")[1]
 		};
 		break;
 	default:
@@ -841,14 +842,15 @@ function sendSns(url, utm_source, utm_campaign, utm_medium, utm_content, subTitl
 		}
 		break;
 	case 'kakao' :
-		var _url_query = o.url.split("?")[1];
-		console.log("_url_query : " + _url_query);
+//		var _url_query = o.url.split("&")[0];
+		var params = o.params;
+//		console.log("params : " + params);
 	    Kakao.Link.sendCustom({
 	    	templateId : 11887,
 	    	templateArgs : {
 	    		'mwav_news_title' : o.utm_campaign,
 	    		'mwav_news_desc' : o.subTitle,
-	    		'mwav_news_query' : _url_query,
+	    		'mwav_news_query' : params,
 	    		'mwav_news_thumbnail' : thumbnail_link
 	    	}
 	    });
