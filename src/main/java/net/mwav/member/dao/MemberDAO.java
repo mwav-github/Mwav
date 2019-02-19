@@ -196,9 +196,9 @@ public class MemberDAO extends AbstractDAO {
 		System.out.println("값이?="
 				+ selectOne("member.selectOneMbrLoginIdCheck", mbrLoginId));
 		if (selectOne("member.selectOneMbrLoginIdCheck", mbrLoginId) == null) {
-			check = false; // 아이디가 없는 경우
+			check = true; // 아이디가 없는 경우
 		} else {
-			check = true; // 아이디가 있는 경우
+			check = false; // 아이디가 있는 경우
 		}
 
 		return check;

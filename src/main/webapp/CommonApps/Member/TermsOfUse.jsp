@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script>
 	function AllCheck() {
@@ -10,8 +9,7 @@
 		var agree_2_2_d = document.getElementById("agree_2_2_d");
 
 		if (agree_1_1_d.checked && agree_2_1_d.checked) {
-			alert("이용약관에 동의하셨습니다.");
-
+			//alert("이용약관에 동의하셨습니다.");
 			location.href = "/MasterPage_1.mwav?mode=SMbrInput"
 		} else {
 			alert("이용약관에 동의하지 않으셨습니다. 동의 후 이용 가능하십니다.")
@@ -19,21 +17,38 @@
 			return false;
 		}
 	}
+
+	// 2019-01-31
+	// 작성자 : 남동희
+	// 약관 전체 선택 기능 추가
+	// 전체동의 선택시 약관 agree checked, 한번 더 누르면 checked 해제
+	$(document).ready(function() {
+		$("#agree_all").click(function() {
+			var flag = $(this).prop('checked');
+			$("#agree_1_1_d").prop('checked', flag);
+			$("#agree_2_1_d").prop('checked', flag);
+		});
+	})
 </script>
 <div class="row setup-content">
 	<div class="col-xs-12">
 		<h1 class="text-left">STEP 1</h1>
-		<div class="col-md-12 well text-center mgt4">
-			<div class="form-group">
 
+		<div class="col-md-12 well text-center mgt4">
+			<p class="text-left">
+				<label class="mgr3">
+					<input type="checkbox" name="agree_all" id="agree_all"> [Mwav] 이용자 약관 및 개인정보 정책에 전부 동의합니다.
+				</label>
+			</p>
+
+			<div class="form-group">
 				<%-- 약관동의 1_Mwav회원약관 
 				"Mwav 약관"을 "이용자 약관" 으로 교체 - 16/10/26
 				--%>
 				<p class="text-left">
 					<label for="comment"> 이용자 약관 </label>
 				</p>
-				<textarea class="form-control" rows="15" readonly="readonly"
-					id="comment"> 
+				<textarea class="form-control" rows="15" readonly="readonly" id="comment"> 
   ① 이용자는 “Mwav”이 정한 가입 양식에 따라 회원정보를 기입한 후 이 약관에 동의한다는 의사표시를 함으로서 회원가입을 신청합니다.
   
   ② “Mwav”은 제1항과 같이 회원으로 가입할 것을 신청한 이용자 중 다음 각 호에 해당하지 않는 한 회원으로 등록합니다.
@@ -49,16 +64,18 @@
 					</textarea>
 				<!-- name 으로 안묶이면 중복선택이 안되므로 id값으로 구분 값 변경 -->
 				<p class="text-center pdt1_5">
-					<label class="mgr3"><input type="radio" name="agree_1_d"
-						id="agree_1_1_d" > Agree</label> <label><input type="radio"
-						name="agree_1_d" id="agree_1_2_d"> Disagree</label>
+					<label class="mgr3">
+						<input type="radio" name="agree_1_d" id="agree_1_1_d"> Agree
+					</label>
+					<label>
+						<input type="radio" name="agree_1_d" id="agree_1_2_d"> Disagree
+					</label>
 				</p>
 				<%-- 약관동의 1_Mwav회원약관 --%>
 				<p class="text-left mgt5">
 					<label for="comment"> [Mwav]개인정보 수집 및 이용에 대한 안내 </label>
 				</p>
-				<textarea class="form-control " rows="15" readonly="readonly"
-					id="comment">
+				<textarea class="form-control " rows="15" readonly="readonly" id="comment">
 [개인정보 수집 및 이용에 대한 안내]
 
 1. 개인정보 수집 및 이용목적
@@ -86,9 +103,12 @@
 					</textarea>
 				<!-- name 으로 안묶이면 중복선택이 안되므로 id값으로 구분 값 변경 -->
 				<p class="text-center pdt1_5">
-					<label class="mgr3"><input type="radio" name="agree_2_d"
-						id="agree_2_1_d" > Agree</label> <label><input type="radio"
-						name="agree_2_d" id="agree_2_2_d"> Disagree</label>
+					<label class="mgr3">
+						<input type="radio" name="agree_2_d" id="agree_2_1_d"> Agree
+					</label>
+					<label>
+						<input type="radio" name="agree_2_d" id="agree_2_2_d"> Disagree
+					</label>
 				</p>
 				<button class="btn btn-primary btn-lg mgt4" onclick="AllCheck();">동의합니다.</button>
 			</div>
