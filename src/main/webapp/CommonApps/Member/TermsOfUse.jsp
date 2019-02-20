@@ -36,7 +36,7 @@
 
 		<div class="col-md-12 well text-center mgt4">
 			<p class="text-left">
-				<label class="mgr3">
+				<label class="mgr3" style="font-size: 20px;">
 					<input type="checkbox" name="agree_all" id="agree_all"> [Mwav] 이용자 약관 및 개인정보 정책에 전부 동의합니다.
 				</label>
 			</p>

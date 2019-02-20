@@ -17,7 +17,7 @@ http://planbong.tistory.com/531
 				<%--action="/member/memberForm.mwav" --%>
 				<div class='form-group'>
 					<label class='text-color-gray control-label col-md-2 col-md-offset-2' for='id_accomodation'>
-						Login ID
+						아이디
 						<span class="text-color-red">
 							<strong>*</strong>
 						</span>
@@ -59,7 +59,7 @@ http://planbong.tistory.com/531
 				</div>
 				<div class='form-group'>
 					<label class='text-color-gray control-label col-md-2 col-md-offset-2' for='id_accomodation'>
-						Password
+						비밀번호
 						<span class="text-color-red">
 							<strong>*</strong>
 						</span>
@@ -100,7 +100,7 @@ http://planbong.tistory.com/531
 
 				<div class='form-group'>
 					<label class='text-color-gray control-label col-md-2 col-md-offset-2' for='id_title'>
-						Name
+						이름
 						<span class="text-color-red">
 							<strong>*</strong>
 						</span>
@@ -108,7 +108,7 @@ http://planbong.tistory.com/531
 					<div class='col-md-6'>
 						<div class='col-md-4 indent-small'>
 							<div class='form-group internal'>
-								<input class='form-control caps_lockchk' name="mbrFirstName" id='mbrFirstName' placeholder='First Name(성)' type='text' required>
+								<input class='form-control caps_lockchk' name="mbrLastName" id='mbrLastName' placeholder='성' type='text' required>
 							</div>
 						</div>
 						<!-- 						<div class='col-md-4 indent-small'>
@@ -116,9 +116,9 @@ http://planbong.tistory.com/531
 								<input class='form-control caps_lockchk' name="mbrMiddleName" id='mbrMiddleName' placeholder='Middle Name' type='text'>
 							</div>
 						</div> -->
-						<div class='col-md-4 col-md-offset-2 indent-small'>
+						<div class='col-md-4 col-md-offset-1 indent-small'>
 							<div class='form-group internal'>
-								<input class='form-control caps_lockchk' name="mbrLastName" id='mbrLastName' placeholder='Last Name(이름)' type='text' required>
+								<input class='form-control caps_lockchk' name="mbrFirstName" id='mbrFirstName' placeholder='이름' type='text' required>
 							</div>
 						</div>
 
@@ -129,7 +129,7 @@ http://planbong.tistory.com/531
 				</div>
 				<div class='form-group'>
 					<label class='text-color-gray control-label col-md-2 col-md-offset-2' for='id_adults'>
-						Phone
+						전화번호
 						<span class="text-color-red">
 							<strong>*</strong>
 						</span>
@@ -138,17 +138,17 @@ http://planbong.tistory.com/531
 					<div class='col-md-6'>
 						<div class='form-group'>
 							<div class='col-md-12 col-sm-12 col-xs-12'>
-								<input type="text" class="form-control caps_lockchk" name="mbrCellPhone" id="mbrCellPhone" placeholder="-없이 입력해주세요" value="" required>
+								<input type="text" class="form-control caps_lockchk" name="mbrCellPhone" id="mbrCellPhone" placeholder="예) 010-1234-5678" value="" required>
 							</div>
 						</div>
 					</div>
 					<p class="col-md-5 col-md-offset-4">
-						<span id="cellCheckLayer"></span>
+						<span id="phoneCheckLayer"></span>
 					</p>
 				</div>
 				<div class='form-group'>
 					<label class='text-color-gray control-label col-md-2 col-md-offset-2' for='id_email'>
-						E-mail
+						이메일
 						<span class="text-color-red">
 							<strong>*</strong>
 						</span>
@@ -156,7 +156,7 @@ http://planbong.tistory.com/531
 					<div class='col-md-6'>
 						<div class='form-group'>
 							<div class='col-md-12'>
-								<input class='form-control caps_lockchk' name="mbrEmail" id='chkEmail' placeholder='E-mail' type='text' onchange="chkEmailPolicy(this.value, this)" required>
+								<input class='form-control caps_lockchk' name="mbrEmail" id='chkEmail' placeholder='예) id@domain.com' type='text' required>
 							</div>
 						</div>
 					</div>
@@ -165,7 +165,7 @@ http://planbong.tistory.com/531
 					</p>
 				</div>
 				<div class="form-group">
-					<label class="text-color-gray control-label col-md-2 col-md-offset-2" for="id_pets">Address</label>
+					<label class="text-color-gray control-label col-md-2 col-md-offset-2" for="id_pets">주소</label>
 
 					<p class="col-lg-2 col-md-2 col-lg-push-4 col-md-push-4">
 						<button class="btn btn-primary btn-block" type="button" data-toggle="modal" data-target=".modal_post" data-dismiss="modal">주소찾기</button>
@@ -187,8 +187,8 @@ http://planbong.tistory.com/531
 				<!-- disable는 제출되지 않는다 즉 값이 전달되지 않음. *중요 -->
 				<div class='form-group'>
 					<div class="col-md-offset-4 col-md-6">
-						<input name="mbrAddress_1" class='form-control' id='Address' placeholder='주소' type='text' value="" readonly="readonly"> <input name="mbrAddress_2" class="form-control"
-							placeholder='나머지 주소' type="text" id="rest_address" />
+						<input name="mbrAddress_1" class='form-control' id='Address' placeholder='주소' type='text' value="" readonly="readonly"> 
+						<input name="mbrAddress_2" class="form-control" placeholder='나머지 주소' type="text" id="rest_address" />
 						<div class="enter"></div>
 					</div>
 
@@ -239,6 +239,65 @@ http://planbong.tistory.com/531
 		target.append(msg);
 		fcTarget.focus();
 	}
+	
+	function idCheck(obj) {
+		// onchange로 넘어올때는 event.target, 직접 object를 넘길때는 event.target이 undefined니까 
+		var idObj = obj.target || obj;
+
+		var result = /[a-zA-Z0-9_-]{4,20}$/g.test(idObj.value);
+		var msg = "";
+		if (!result) {
+			msg += "<div class='alert alert-warning text-left'><strong>";
+			msg += "유효하지 않은 아이디입니다. </br>";
+			msg += "4~20자 사이의 영문,숫자, -_ 만 사용할 수 있습니다.";
+			msg += "</strong></div>";
+		}
+		user_guide(result, $("#idCheckLayer"), msg, idObj);
+		//console.log(result);
+		return result;
+	}
+	
+
+	function pwCheck(obj) {
+		var pwObj = obj.target || obj;
+		var result = /^(?=.*[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"])(?=.*[0-9])(?=.*[a-zA-Z])[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"0-9a-zA-Z]{8,255}$/g.test(pwObj.value);
+		var msg = "";
+		if (!result) {
+			msg += "<div class='alert alert-warning text-left'><strong>";
+			msg += "유효하지 않은 비밀번호 입니다. </br>";
+			msg += "8~255자 사이의 영문,숫자,특수문자로 구성되어야 합니다.";
+			msg += "</strong></div>";
+		}
+		user_guide(result, $("#pwCheckLayer"), msg, pwObj);
+		//console.log(pwObj.value + ":" + result);
+		return result;
+	}
+	
+	function nameCheck(obj) {
+		var nameObj = obj.target|| obj;
+		var result = /^[가-힣]+$/g.test(nameObj.value);
+		var msg = "";
+		if(!result) {
+			msg += "<div class='alert alert-warning text-left'><strong>";
+			msg += "한글만 입력해주세요 </br>";
+			msg += "</strong></div>";
+		}
+		user_guide(result, $("#nameCheckLayer"),msg, nameObj);
+		return result;
+	}
+	
+	function phoneCheck(obj) {
+		var nameObj = obj.target|| obj;
+		var result = /^\d{3}-\d{3,4}-\d{4}$/g.test(nameObj.value);
+		var msg = "";
+		if(!result) {
+			msg += "<div class='alert alert-warning text-left'><strong>";
+			msg += "010-1234-5678 형태로 입력해주세요 </br>";
+			msg += "</strong></div>";
+		}
+		user_guide(result, $("#phoneCheckLayer"),msg, nameObj);
+		return result;
+	}
 
 	function emailCheck(obj) {
 		var emailObj = obj.target || obj;
@@ -253,44 +312,13 @@ http://planbong.tistory.com/531
 		return result;
 	}
 
-	function pwCheck(obj) {
-		var pwObj = obj.target || obj;
-		var result = /^(?=.*[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"])(?=.*[0-9])(?=.*[a-zA-Z])[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"0-9a-zA-Z]{8,255}$/g.test(pwObj.value);
-
-		var msg = "";
-		if (!result) {
-			msg += "<div class='alert alert-warning text-left'><strong>";
-			msg += "유효하지 않은 비밀번호 입니다. </br>";
-			msg += "비밀번호는 8~255자 사이의 영문,숫자,특수문자로 구성되어야 합니다.";
-			msg += "</strong></div>";
-		}
-		user_guide(result, $("#pwCheckLayer"), msg, pwObj);
-		//console.log(pwObj.value + ":" + result);
-		return result;
-	}
-
-	function idCheck(obj) {
-		// onchange로 넘어올때는 event.target, 직접 object를 넘길때는 event.target이 undefined니까 
-		var idObj = obj.target || obj;
-
-		var result = /[a-zA-Z0-9_-]{4,20}$/g.test(idObj.value);
-		var msg = "";
-		if (!result) {
-			msg += "<div class='alert alert-warning text-left'><strong>";
-			msg += "유효하지 않은 아이디입니다. </br>";
-			msg += "아이디에는 4~20자 사이의 영문,숫자, -_ 만 사용할 수 있습니다.";
-			msg += "</strong></div>";
-		}
-		user_guide(result, $("#idCheckLayer"), msg, idObj);
-		//console.log(result);
-		return result;
-	}
-
 	function validCheck() {
 		if (!idCheck($("#chkLoginId")[0])) return false;
 		if (!pwCheck($("#chkLoginPW")[0])) return false;
+		if (!nameCheck($("#mbrFirstName")[0])) return false;
+		if (!nameCheck($("#mbrLastName")[0])) return false;
+		if (!phoneCheck($("#mbrCellPhone")[0])) return false;		
 		if (!emailCheck($("#chkEmail")[0])) return false;
-		
 		$.ajax({
 	        url: "/member/mbrLoginIdCheck.mwav",
 	        method: "GET",
@@ -312,7 +340,8 @@ http://planbong.tistory.com/531
 	        }
 	    });
 	}
-
+	
+	
 	$("#chkLoginId").on("change", function(event) {
 		idCheck(event);
 	});
@@ -320,7 +349,19 @@ http://planbong.tistory.com/531
 	$("#chkLoginPW").on("change", function(event) {
 		pwCheck(event);
 	});
+	
+	$("#mbrFirstName").on("change", function(event) {
+		nameCheck(event);
+	});
+	
+	$("#mbrLastName").on("change", function(event) {
+		nameCheck(event);
+	});
 
+	$("#mbrCellPhone").on("change", function(event) {
+		phoneCheck(event);
+	});
+	
 	$("#chkEmail").on("change", function(event) {
 		emailCheck(event);
 	});
