@@ -110,7 +110,7 @@ public class MemberController {
 	@RequestMapping(value = "/member/mbrForm.mwav")
 	public String insertMbrForm(CommandMap commandMap, Model model) throws Exception {
 
-		//model.addAttribute("mode", "SDMbrInput");
+		// model.addAttribute("mode", "SDMbrInput");
 
 		String result = memberService.insertMbrForm(commandMap.getMap());
 
