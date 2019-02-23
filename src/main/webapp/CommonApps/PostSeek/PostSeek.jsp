@@ -2,8 +2,7 @@
  파일명 : apiSampleApplicationXML.jsp
  내  용 : 웹 ↔ Java Controller ↔ 도로명주소 검색API 방식(검색결과형식 XML)
 */ -->
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -122,12 +121,8 @@
 	function enterSearch() {
 		var evt_code = (window.netscape) ? ev.which : event.keyCode;
 		if (evt_code == 13) {
-			//event.keyCode = 0;
-			//getAddrLoc();
-
-			//위에는 레이어팝업에서 엔터 먹으면 되게하려는거
-			//alert('11');
-			return false;
+			event.preventDefault();
+			getAddrLoc();
 		}
 	}
 
@@ -299,15 +294,15 @@
 	//http://findfun.tistory.com/167
 	function classToggle() {
 		//alert('12');
-$('.pageClick').toggleClass("active");
+		$('.pageClick').toggleClass("active");
 		$('.pageClick').on("click", function() {
 
 			alert('112');
 			$(this).toggleClass("active");
 		});
 	}
-	
-	$(document).ready(function () {
+
+	$(document).ready(function() {
 		$('.pageClick').on("click", function() {
 
 			alert('112');
@@ -330,14 +325,12 @@ $('.pageClick').toggleClass("active");
 		<!-- Modal 
 		 aria-hidden="true" false 이면 재클릭시 모달창이 안띄워진다. display: none로 되서 
 		-->
-		<div class="modal fade modal_post " id="PostModal" aria-hidden="true"
-			role="dialog">
+		<div class="modal fade modal_post " id="PostModal" aria-hidden="true" role="dialog">
 			<div class="modal-dialog modal-md">
 
 				<div class="modal-content">
 
-					<div class="modal-header"
-						style="border-bottom: 0px solid #eee; background-color: #0480be; color: white;">
+					<div class="modal-header" style="border-bottom: 0px solid #eee; background-color: #0480be; color: white;">
 						<h4 class="modal-title">주소찾기</h4>
 					</div>
 					<br>
@@ -366,27 +359,25 @@ $('.pageClick').toggleClass("active");
  -->
 
 													<!-- 요청 변수 설정 (키워드) -->
-													<input type="text" name="keyword" class="form-control"
-														placeholder="도로명주소, 건물명 또는 지번 입력"
-														onkeydown="return enterSearch();" /> <span
-														class="input-group-btn">
+													<!-- <input type="text" name="keyword" class="form-control" placeholder="도로명주소, 건물명 또는 지번 입력" onkeydown="return enterSearch();" /> -->
+													<input type="text" name="keyword" class="form-control" placeholder="도로명주소, 건물명 또는 지번 입력" onkeydown="enterSearch();" />
+													<span class="input-group-btn">
 
-														<button type="button" class="btn btn-default"
-															onclick="getAddrLoc()">
-															<span class="glyphicon glyphicon-search"> <span
-																class="sr-only">Search</span>
+														<button type="button" class="btn btn-default" onclick="getAddrLoc()">
+															<span class="glyphicon glyphicon-search">
+																<span class="sr-only">Search</span>
 															</span>
 														</button>
 													</span>
 												</div>
-												<span class="text-center text-primary"> &nbsp;검색어 예 :
-													도로명(반포대로 58), 건물명(독립기념관), 지번(삼성동 25)<br>
+												<span class="text-center text-primary">
+													&nbsp;검색어 예 : 도로명(반포대로 58), 건물명(독립기념관), 지번(삼성동 25)<br>
 
 												</span>
 											</div>
 											<div class="enter"></div>
 											<div class="row">
-												<div id="resultpostseek" >
+												<div id="resultpostseek">
 													<p class="ondis" style="display: none">
 														&nbsp;*해당되는 주소를 선택해주세요. (총 : <strong class="tnt_result"></strong>개)
 													</p>
@@ -423,8 +414,7 @@ $('.pageClick').toggleClass("active");
 							</div>
 						</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-default"
-								data-dismiss="modal">Close</button>
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 						</div>
 					</div>
 				</div>

@@ -101,19 +101,14 @@ public class MemberController {
 	/**
 	 * @date 2016.04.27
 	 * @author Kim YJ
-	 * @param b_mbrLoginPw
-	 *            - js에서 pw값을 수정후 보내면 이에 대한 확인부분이 미흡하다
-	 * @param mbrCellPhone
-	 *            - 각각의 값이 문자, 조합, 불필요한 칸 나눔이 포함되어 있다
-	 * @param mbrAddress
-	 *            - 기능 사용 안됨(API를 만들어서 주소를 호출해야됨! 중요!!), 로직 불합리
-	 * @throws Exception
-	 *             - Exception 발생시 무엇에 대한 에러인지 처리 미흡, 에러 페이지로 redirect??
+	 * @param b_mbrLoginPw - js에서 pw값을 수정후 보내면 이에 대한 확인부분이 미흡하다
+	 * @param mbrCellPhone - 각각의 값이 문자, 조합, 불필요한 칸 나눔이 포함되어 있다
+	 * @param mbrAddress   - 기능 사용 안됨(API를 만들어서 주소를 호출해야됨! 중요!!), 로직 불합리
+	 * @throws Exception - Exception 발생시 무엇에 대한 에러인지 처리 미흡, 에러 페이지로 redirect??
 	 * @see 컨트롤러 부분과 서비스로직 분리
 	 */
 	@RequestMapping(value = "/member/mbrForm.mwav")
-	public String insertMbrForm(CommandMap commandMap, Model model)
-			throws Exception {
+	public String insertMbrForm(CommandMap commandMap, Model model) throws Exception {
 
 		// model.addAttribute("mode", "SDMbrInput");
 
@@ -122,7 +117,6 @@ public class MemberController {
 		if (!"insertForm Success".equals(result)) {
 			return "redirect:/MasterPage_1.mwav?mode=SMbrInput";
 		}
-
 		return "redirect:/MasterPage_1.mwav?mode=SDMbrInput";
 	}
 
@@ -305,51 +299,25 @@ public class MemberController {
 	}
 
 	/*
-	 * ========================================리스트(SelectOne, SelectList
-	 * 순)========================================
+	 * ========================================리스트(SelectOne, SelectList순)========================================
 	 */
 	// 1번 추후
 	@RequestMapping(value = "/member/mbrLoginIdCheck.mwav")
-	public void selectOneMbrLoginIdCheck(HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
+	@ResponseBody
+	public boolean selectOneMbrLoginIdCheck(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		String mbrLoginId = request.getParameter("mbrLoginId");
-
-		boolean selectIdCheck = memberService
-				.selectOneMbrLoginIdCheck(mbrLoginId);
-
-		response.setContentType("text/html;charset=UTF-8");
-		response.setHeader("Cache-Control", "no-cache");
-		PrintWriter out = response.getWriter();
-		// id 중복 처리
-
-		String result = null;
-		System.out.println("selectIdCheck" + selectIdCheck);
-		if (selectIdCheck == true) {
-			// 응답 메세지 1 : 이미 등록된 ID 입니다.
-			// 이때 pw 규칙 알려주기
-			result = "<div class='alert alert-danger text-left'><strong>이미 등록된 ID 입니다. 재 입력해주세요.<br>"
-					+ "<strong>1. 4 ~ 20 자 사이의 문자길이 <br> 2. 첫 문자는 영어로 시작 <br> 3. 특수문자 사용금지 (제외문자: . _ -) <br> 4. 공백문자 사용금지  <br> 5. 대소문자는 식별이 가능하나 구분 및 구별을 하지 않음</strong></strong></div>";
-		} else {
-			// 응답 메세지 2 : 사용할 수 있는 ID 입니다.
-			result = "<div class='alert alert-success text-left'><strong>사용할 수 있는 ID 입니다.</strong></div>";
-		}
-		out.println(result);
-		// response.getWriter().print(result); 주석풀면 3번 나온다.
-		// response.getWriter().print(result);
+		return memberService.selectOneMbrLoginIdCheck(mbrLoginId);
 	}
 
 	// 2번 추후
 	@RequestMapping(value = "/member/mbrLoginIdSeek.mwav")
-	public void selectOneMbrLoginIdSeek(CommandMap commandMap,
-			HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
+	public void selectOneMbrLoginIdSeek(CommandMap commandMap, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		// commandmAP 출력 모듈
 		cu.selectCommandMapList(commandMap);
-		
-		List<String> selectIdFinder = memberService
-				.selectOneMbrLoginIdSeek(commandMap.getMap());
+
+		List<String> selectIdFinder = memberService.selectOneMbrLoginIdSeek(commandMap.getMap());
 
 		response.setContentType("text/html;charset=UTF-8");
 

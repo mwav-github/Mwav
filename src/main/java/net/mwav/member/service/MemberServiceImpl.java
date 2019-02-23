@@ -59,9 +59,7 @@ public class MemberServiceImpl implements MemberService {
 			return "pwWrongType"; // 공백일 경우 처리
 		}
 
-		String mbrCellPhone = String.valueOf(map.get("mbrCellPhone_1"))
-				+ String.valueOf(map.get("mbrCellPhone_2"))
-				+ String.valueOf(map.get("mbrCellPhone_3"));
+		String mbrCellPhone = (String)map.get("mbrCellPhone");
 		map.put("mbrCellPhone", mbrCellPhone);
 
 		String mbrName = String.valueOf(map.get("mbrFirstName"))
