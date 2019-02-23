@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
@@ -26,10 +25,24 @@
 <!-- /////////// -->
 
 <script>
+	function goFirst() {
+		location.href = "/MasterPage_1.mwav?mode=Default";
+	}
+
+	window.onpageshow = function(event) {
+		if (event.persisted
+				|| (window.performance && window.performance.navigation.type == 2)) {
+			// Back Forward Cache로 브라우저가 로딩될 경우 혹은 브라우저 뒤로가기 했을 경우
+			console.log("backward 호출됨");
+			goFirst();
+		}
+	}
+
 	$(document).ready(
 			//URL 파라미터 내에서 포함되어있는 경우 그 값을 뱉는다
 			// 예) ab.com?ab=cd =>$.getUrlVar('ab'); 의 결과는 cd이다.  
 			function() {
+
 				$.extend({
 					getUrlVars : function() {
 						var vars = [], hash;
@@ -77,8 +90,7 @@
            기타 : 추후 SPA 등 변경 예정
 	-->
 	<!--  //////////////////////////////////// -->
-	<jsp:include page="/PartsOfContent/SiteHeader/FrontHeader_Master.jsp"
-		flush="false" />
+	<jsp:include page="/PartsOfContent/SiteHeader/FrontHeader_Master.jsp" flush="false" />
 	<!--  //////////////////////////////////// -->
 
 
@@ -88,24 +100,30 @@
 	-->
 	<div class="container mg9xauto">
 		<div class="row">
-		<div class="enter"></div>
+			<div class="enter"></div>
 			<div class="col-md-12 col-sm-12">
 				<div class="row form-group">
 					<div class="col-xs-12">
 						<ul class="nav nav-pills nav-justified thumbnail setup-panel">
 							<!-- a태그는 css 기본적용 때문에 추가 -->
-							<li class="active"><a>
+							<li class="active">
+								<a>
 									<h4 class="list-group-item-heading">Step 1</h4>
 									<p class="list-group-item-text">약관동의.</p>
-							</a></li>
-							<li class="disabled"><a>
+								</a>
+							</li>
+							<li class="disabled">
+								<a>
 									<h4 class="list-group-item-heading">Step 2</h4>
 									<p class="list-group-item-text">회원정보 입력.</p>
-							</a></li>
-							<li class="disabled"><a>
+								</a>
+							</li>
+							<li class="disabled">
+								<a>
 									<h4 class="list-group-item-heading">Step 3</h4>
 									<p class="list-group-item-text">회원가입 완료 & 추가 정보 입력.</p>
-							</a></li>
+								</a>
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -134,8 +152,7 @@
 							<h1 class="text-left">STEP 3</h1>
 
 							<!--/////////////////////////////////////////////////// -->
-							<jsp:include page="/CommonApps/Member/MbrLandingPage.jsp"
-								flush="false" />
+							<jsp:include page="/CommonApps/Member/MbrLandingPage.jsp" flush="false" />
 							<!--/////////////////////////////////////////////////// -->
 						</div>
 					</div>
@@ -149,8 +166,7 @@
 	<!-- FrontFooter -->
 	<footer>
 		<!--/////////////////////////////////////////////////// -->
-		<jsp:include page="/PartsOfContent/SiteFooter/FrontFooter.jsp"
-			flush="false" />
+		<jsp:include page="/PartsOfContent/SiteFooter/FrontFooter.jsp" flush="false" />
 		<!--/////////////////////////////////////////////////// -->
 	</footer>
 
