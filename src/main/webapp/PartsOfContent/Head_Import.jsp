@@ -6,6 +6,7 @@
 
 <jsp:include page="SNS_Head_Import.jsp" flush="false" />
 <%--아래 keyword 및 description은 변경 예정. --%>
+
 <c:choose>
 	<c:when test="${metaData.keywords eq null }">
 		<meta id="metaKeywords" name="keywords"
