@@ -27,52 +27,9 @@ public class MemberDAO extends AbstractDAO {
 	 * ========================================등록================================
 	 * ========
 	 */
-	@Transactional
-	public String insertMbrForm(Map<String, Object> map) {
-
-		try {
-
-			String b_mbrLoginPw = (String) map.get("mbrLoginPw");
-			System.out.println("* AES/CBC/IV");
-			System.out.println("b_mbrLoginPw=" + b_mbrLoginPw);
-			System.out.println("    - KEY : " + AesEncryption.sKey); // Static
-																		// 변수
-			System.out.println("    - IV : " + AesEncryption.sInitVector); // Static
-																			// 변수
-			System.out.println("    - TEXT : " + b_mbrLoginPw);
-
-			// AES/CBC/IV 암호화 (키,암호화텍스트,iv)
-			encrypted = AesEncryption.aesEncryptCbc(AesEncryption.sKey,
-					b_mbrLoginPw, AesEncryption.sInitVector);
-
-			// 암호화된 값이 String으로 반환
-			String sBase = AesEncryption.aesEncodeBuf(encrypted);
-
-			System.out.println("    - TEXT2 : " + sBase);
-
-			map.put("mbrLoginPw", sBase);
-			if (encrypted == null) {
-				System.out.println("    - Encrypted : ERROR!!!");
-			} else {
-				System.out.println("    - Encrypted : " + sBase); // 암호화된 String
-																	// 값
-			}
-
-			Map<String, Object> imsimap = (Map<String, Object>) selectOne(
-					"member.selectNextPk", map);
-			// map을 위에서 써버리면 그 다음 쿼리시 null 값 나온다. !! (가져오는값이라?)
-			String m_pk = String.valueOf(imsimap.get("member_id"));
-			map.put("member_id", m_pk);
-			insert("member.insertMbrForm", map); // Membertbl
-
-			// Insert
-			insert("member.insertMemberValue_tbl", map); // Membertbl Insert
-		} catch (Exception e) {
-			e.printStackTrace();
-			return "insertForm Error";
-		}
-
-		return "insertForm Success";
+	public void insertMbrForm(Map<String, Object> map) throws Exception {
+		insert("member.insertMbrForm", map);
+		insert("member.insertMemberValue_tbl", map);
 	}
 
 	/*
@@ -191,24 +148,13 @@ public class MemberDAO extends AbstractDAO {
 	 * 순)========================================
 	 */
 	public boolean selectOneMbrLoginIdCheck(String mbrLoginId) {
-		// TODO Auto-generated method stub
-		boolean check;
-		System.out.println("값이?="
-				+ selectOne("member.selectOneMbrLoginIdCheck", mbrLoginId));
-		if (selectOne("member.selectOneMbrLoginIdCheck", mbrLoginId) == null) {
-			check = true; // 아이디가 없는 경우
-		} else {
-			check = false; // 아이디가 있는 경우
-		}
-
-		return check;
+		return selectOne("member.selectOneMbrLoginIdCheck", mbrLoginId) == null ? true : false;
 	}
 
 	public List<String> selectOneMbrLoginIdSeek(Map<String, Object> map) {
 		// TODO Auto-generated method stub
 		List<String> mbrLoginId = null;
-		List<String> imsimap = (List<String>) selectList(
-				"member.selectListMbrLoginIdSeek", map);
+		List<String> imsimap = (List<String>) selectList("member.selectListMbrLoginIdSeek", map);
 
 		/*
 		 * if(imsimap == null) { mbrLoginId = null; } else{ mbrLoginId =
