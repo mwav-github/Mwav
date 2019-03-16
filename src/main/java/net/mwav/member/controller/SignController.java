@@ -74,13 +74,10 @@ public class SignController {
 		throw new ExpiredAuthorizationException("google");
 	}
 
-	@RequestMapping(value = "/signup.mwav", method = { RequestMethod.GET,
-			RequestMethod.POST })
-	public String signupForm2(WebRequest req, Model model,
-			HttpServletRequest request, HttpServletResponse response) {
-		Connection<?> connection = providerSignInUtils
-				.getConnectionFromSession(req);
-		
+	@RequestMapping(value = "/signup.mwav", method = { RequestMethod.GET, RequestMethod.POST })
+	public String signupForm2(WebRequest req, Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		Connection<?> connection = providerSignInUtils.getConnectionFromSession(req);
+
 		int loginCheck = 0;
 		Map<String, Object> map = new HashMap<String, Object>();
 		HttpSession session = request.getSession();
@@ -164,34 +161,34 @@ public class SignController {
 			// 메번로그인할때마다 생성하면 애매하니까
 
 			if (First_Name == null) {
-				First_Name = "sns_imsi";
+				First_Name = "sns_temp";
 			}
 
 			if (Last_Name == null) {
-				Last_Name = "sns_imsi";
+				Last_Name = "sns_temp";
 			}
 			if (Email == null) {
-				Email = "sns_imsi";
+				Email = "sns_temp@temp.com";
 			}
 			map.put("member_id", member_id);
 
 			//로그인한 SNS의 값이 동일하므로 난수 발생으로 대응 필요하며, 순서대로 채번 필요. 
-			map.put("mbrLoginId", social + "_imsi");
+			map.put("mbrLoginId", social + "_temp");
 			//현재는 SNS 패스워드의 모든 값이 동일하다.
-			map.put("mbrLoginPw", "sns_imsi");
+			map.put("mbrLoginPw", "sns_temp1@");
 			map.put("mbrTempLoginPw", null);
 			map.put("mbrFirstName", First_Name);
 			map.put("mbrLastName", Last_Name);
-			map.put("mbrMiddleNam", "sns_imsi");
+			map.put("mbrMiddleName", null);
 			map.put("mbrEmail", Email);
-			map.put("mbrCellPhone", null);
+			map.put("mbrCellPhone", "01000000000");
 			map.put("mbrAddrFlag", 0);
 			map.put("mbrZipcode", "");
 			map.put("mbrAddress", null);
 
 			// 회원가입.
 			memberService.insertMbrForm(map);
-			
+
 			map.put("smMember_id", smMember_id);
 			map.put("First_Name", First_Name);
 			map.put("Last_Name", Last_Name);
