@@ -3,7 +3,8 @@
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
-       http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+       http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
 
 	<!-- net 하위 모든 패키지에 있는 파일의 어노테이션을 스캔해서 빈으로 등록하겠다는 말 즉 사용하는 bean을 일일이 xml에 선언하지 않고도 필요한 것을 어노테이션(Annotation)을 자동으로 인식하게 하는 역할 <context:component 이것과 <mvc:annotation-driven> 이두개의 설정이 즉 아래 모든 패키지에 스캔을하면서 어노테이션을 확인하면서 전체 다 주입해준다.!!! 원래는 각각각 어디어디어디에 다 지정해서 주입해줘야 했다. 주의할점 : 프로젝트 내 주입할 객체 타입은 하나만 있어야 한다. 만약 
 		두개이상이 있다면 @Qualify 라는 걸로 어떤게 맞는지 체크해줘야 한다. http://mainichibenkyo.tistory.com/242 -->
@@ -15,6 +16,8 @@
 
 	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
 
+	<!-- Configures transaction management around @Transactional components -->
+	<tx:annotation-driven transaction-manager="transactionManager" />
 
 	<!-- 구글 프로퍼티 파일 연결 -->
 	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">

@@ -18,6 +18,7 @@ import javax.servlet.http.HttpSession;
 import net.common.common.CommandMap;
 import net.mwav.common.module.Common_Utils;
 import net.mwav.common.module.EmailSender;
+import net.mwav.common.module.ValidationLib.VALID_STATUS;
 import net.mwav.common.module.VerifyRecaptcha;
 import net.mwav.member.service.MemberService;
 import net.mwav.member.vo.Member_tbl_VO;
@@ -110,11 +111,9 @@ public class MemberController {
 	@RequestMapping(value = "/member/mbrForm.mwav")
 	public String insertMbrForm(CommandMap commandMap, Model model) throws Exception {
 
-		// model.addAttribute("mode", "SDMbrInput");
-
-		String result = memberService.insertMbrForm(commandMap.getMap());
-
-		if (!"insertForm Success".equals(result)) {
+		Map<String, Object> result = memberService.insertMbrForm(commandMap.getMap());
+		
+		if (result.get("status") != VALID_STATUS.VALID) {
 			return "redirect:/MasterPage_1.mwav?mode=SMbrInput";
 		}
 		return "redirect:/MasterPage_1.mwav?mode=SDMbrInput";
