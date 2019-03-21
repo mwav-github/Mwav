@@ -77,7 +77,7 @@ css 중 가장 마지막에 호출되어야하며, include 되는 파일 중 css
 <div class="mgt5">
 	<%--QA이슈 z-index로 처리 --%>
 	<!--/////////////////////////////////////////////////// -->
-	<jsp:include page="/CommonApps/BoardQnA/qaForm.jsp" flush="false" />
+	<!--<jsp:include page="/CommonApps/BoardQnA/qaForm.jsp" flush="false" />-->
 	<!--/////////////////////////////////////////////////// -->
 	<%--LayerPopup Alert 아이콘 시작 // footer 간격조정을 위해 mgt5추가--%>
 	<!-- <div class="col-md-12 col-xs-12 col-sm-12  alert alert-info"
