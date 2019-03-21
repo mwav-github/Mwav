@@ -34,7 +34,7 @@ public class PglInterceptor  extends HandlerInterceptorAdapter{
 	
 		// pgl값이 있을 경우 세션과 쿠키에 저장하고 푸터에 표시함 
 		// 세션과 쿠키에는 방문자수는 1회만 저장하면 된다.
-		if(request.getSession().getAttribute("pmtName")==null ){  
+		if(request.getSession().getAttribute("pmtPK")!=pglValue ){  
 			try {
 				getPgl(request, response, pglValue);
 			} catch (Exception e) {
@@ -57,11 +57,11 @@ public class PglInterceptor  extends HandlerInterceptorAdapter{
 		//쿠키와 세션에 pgl값 등록하고  promoterValue_tble의 VisitNbr 수늘려 줌
 		StateManageLib stateManageLib = StateManageLib.getInstance();
 		Cookie pmtPK = stateManageLib.createCookie("pgl", pglValue, "/", 60 * 60 * 24 * 14); //쿠키 생성
-	    response.addCookie(pmtPK); //쿠키에 pgp 등록등록
 
 	    Promoter_VO pgl = promoterService.selectOnePmtInfo(pglValue);
 	    
 	    if(pgl!=null){
+	    	response.addCookie(pmtPK); //쿠키에 pgp 등록등록
 	    	request.getSession().setAttribute("pmtName", pgl.getPmtName());
 	    	request.getSession().setAttribute("pmtNick", pgl.getPmtNickName());
 	    	request.getSession().setAttribute("pmtPK",pgl.getPromoter_id());
