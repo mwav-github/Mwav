@@ -7,6 +7,8 @@ public class Promoter_VO extends Promoter {
 	private String pmtLoginPw;
 
 	private String pmtName;
+	
+	private String pmtNickName;
 
 	private String pmtMail;
 
@@ -55,6 +57,15 @@ public class Promoter_VO extends Promoter {
 	public void setPmtName(String pmtName) {
 		this.pmtName = pmtName;
 	}
+	
+	public String getPmtNickName() {
+		return pmtNickName;
+	}
+
+	public void setPmtNickName(String pmtNickName) {
+		this.pmtNickName = pmtNickName;
+	}
+	
 	public String getPmtMail() {
 		return pmtMail;
 	}
@@ -129,18 +140,6 @@ public class Promoter_VO extends Promoter {
 	}
 	public void setPmtPhone(String pmtPhone) {
 		this.pmtPhone = pmtPhone;
-	}
-	@Override
-	public String toString() {
-		return "Promoter_VO [ promoter_id=" +super.getPromoter_id()+ ", pmtLoginId="
-				+ pmtLoginId + ", pmtLoginPw=" + pmtLoginPw + ", pmtName="
-				+ pmtName + ", pmtMail=" + pmtMail + ", pmtCellularPhone="
-				+ pmtCellularPhone + ", pmtPhone=" + pmtPhone
-				+ ", pmtAddrFlag=" + pmtAddrFlag + ", pmtZipcod=" + pmtZipcod
-				+ ", pmtAddress=" + pmtAddress + ", pmtJobType=" + pmtJobType
-				+ ", pmtFindingId=" + pmtFindingId + ", pmtFindingA="
-				+ pmtFindingA + ", pmtSsn1=" + pmtSsn1 + ", pmtSsn2=" + pmtSsn2
-				+ ", pmtMarried=" + pmtMarried + ", pmtMarkl=" + pmtMarkl + "]";
 	}
 
 }

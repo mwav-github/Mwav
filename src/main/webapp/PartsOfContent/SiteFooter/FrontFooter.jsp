@@ -123,8 +123,16 @@ css 중 가장 마지막에 호출되어야하며, include 되는 파일 중 css
 								Jose, Shin
 							</c:otherwise>
 						</c:choose>
-
 					</li>
+					<c:choose>
+						<c:when test="${!empty sessionScope.pmtNick}">
+							<li>Sales Manager : ${sessionScope.pmtNick}</li>
+						</c:when>
+						<c:when test="${!empty sessionScope.pmtName}">
+							<li>Sales Manager : ${sessionScope.pmtName}</li>
+						</c:when>
+					</c:choose>
+					
 					<li>Chief IT-Business Advisor : Peter J.</li>
 					<%-- <li>Sales Manager: ${param.pglName}</li> --%>
 				</ul>
