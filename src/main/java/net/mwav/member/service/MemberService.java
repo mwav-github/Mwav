@@ -14,7 +14,7 @@ public interface MemberService {
 
 	/*========================================등록========================================*/
 	
-	String insertMbrForm(Map<String, Object> map);
+	Map<String, Object> insertMbrForm(Map<String, Object> map) throws Exception;
 
 	/*========================================보기========================================*/
 	Map<String, Object> selectMbrView(Map<String, Object> map);
