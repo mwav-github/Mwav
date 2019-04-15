@@ -44,11 +44,11 @@
 		</repository>
 
 		<!-- Maven Repository 가 없는 로컬 jar 파일 을 maven project 에 추가하는 방법 http://hasunjjang.blogspot.kr/2015/08/posted-by-httpitnp.html -->
-		<repository>
+		<!-- <repository>
 			<id>mwavframework</id>
 			<name>custom jars</name>
 			<url>file://${project.basedir}/lib</url>
-		</repository>
+		</repository>-->
 
 		<!-- <repository> <id>UserAgent</id> <name>custom jars</name> <url>file://${project.basedir}/lib</url> 
 			</repository> <repository> <id>google-api-services</id> <url>http://google-api-client-libraries.appspot.com/mavenrepo</url> 
