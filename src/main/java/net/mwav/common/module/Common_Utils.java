@@ -39,8 +39,7 @@ public class Common_Utils {
 		System.out.println("소문자 (16자리) : " + rndStr.getString(16, "a"));
 		System.out.println("대문자 + 숫자 (32자리) : " + rndStr.getString(32, "A1"));
 		System.out.println("소문자 + 숫자 (32자리) : " + rndStr.getString(32, "a1"));
-		System.out.println("대문자 + 소문자 + 숫자 (32자리) : "
-				+ rndStr.getString(15, ""));
+		System.out.println("대문자 + 소문자 + 숫자 (32자리) : " + rndStr.getString(15, ""));
 	}
 
 	// Overload Constructor
@@ -132,8 +131,8 @@ public class Common_Utils {
 	// 접속 IP 확인
 	/*
 	 * 접속하는 클라이언트의 아이피를 확인 하려면 HttpServletRequest 객체에서 가져와서 확인하면 된다.
-	 * request.getRemoteAddr() ; 그러나 프록시나 Load Balancer 같은것을 겨쳐 오게 되는 경우 위의
-	 * 방법으로는 정확한 아이피를 가져 오지 못하게 된다.
+	 * request.getRemoteAddr() ; 그러나 프록시나 Load Balancer 같은것을 겨쳐 오게 되는 경우 위의 방법으로는
+	 * 정확한 아이피를 가져 오지 못하게 된다.
 	 * 
 	 * URL : http://apieceofspace.blogspot.kr/2014/01/jsp.html
 	 * https://www.lesstif.com/pages/viewpage.action?pageId=20775886 (참고)
@@ -165,15 +164,12 @@ public class Common_Utils {
 	public void selectCommandMapList(CommandMap commandMap) {
 		if (commandMap.isEmpty() == false) {
 			System.out.println("들어옴");
-			Iterator<Entry<String, Object>> iterator = commandMap.getMap()
-					.entrySet().iterator();
+			Iterator<Entry<String, Object>> iterator = commandMap.getMap().entrySet().iterator();
 			Entry<String, Object> entry = null;
 			while (iterator.hasNext()) {
 				entry = iterator.next();
-				log.debug("key : " + entry.getKey() + ",\tvalue : "
-						+ entry.getValue());
-				System.out.println("key : " + entry.getKey() + ",\tvalue : "
-						+ entry.getValue());
+				log.debug("key : " + entry.getKey() + ",\tvalue : " + entry.getValue());
+				System.out.println("key : " + entry.getKey() + ",\tvalue : " + entry.getValue());
 			}
 		}
 	}
@@ -181,16 +177,13 @@ public class Common_Utils {
 	public void selectMap(Map<String, Object> map) {
 		if (map.isEmpty() == false) {
 			System.out.println("들어옴");
-			Iterator<Entry<String, Object>> iterator = map.entrySet()
-					.iterator();
+			Iterator<Entry<String, Object>> iterator = map.entrySet().iterator();
 			// map.entryset vs mapkeySet 차이 찾아보기
 			Entry<String, Object> entry = null;
 			while (iterator.hasNext()) {
 				entry = iterator.next();
-				log.debug("key : " + entry.getKey() + ",\tvalue : "
-						+ entry.getValue());
-				System.out.println("key : " + entry.getKey() + ",\tvalue : "
-						+ entry.getValue());
+				log.debug("key : " + entry.getKey() + ",\tvalue : " + entry.getValue());
+				System.out.println("key : " + entry.getKey() + ",\tvalue : " + entry.getValue());
 			}
 		}
 	}
@@ -205,8 +198,7 @@ public class Common_Utils {
 			iterator = mapList.get(i).entrySet().iterator();
 			while (iterator.hasNext()) {
 				entry = iterator.next();
-				log.debug("key : " + entry.getKey() + ",\tvalue : "
-						+ entry.getValue());
+				log.debug("key : " + entry.getKey() + ",\tvalue : " + entry.getValue());
 			}
 			log.debug("\n");
 		}
@@ -233,8 +225,7 @@ public class Common_Utils {
 	/**
 	 * null체크
 	 *
-	 * @param object
-	 *            객체
+	 * @param object 객체
 	 * @return null 여부 true : null false : null이 아님.
 	 * 
 	 *         이슈 최초 입력되는 타입에 대한 확인 후 변형되어야한다 최초 입력되는 타입을 어떻게 할지 부분 고민
@@ -249,8 +240,7 @@ public class Common_Utils {
 	/**
 	 * 접근자 구분하기
 	 *
-	 * @param request
-	 *            객체
+	 * @param request 객체
 	 * @return yyyy년MM월dd일 HH시mm분ss초
 	 * 
 	 *         이슈 최초 입력되는 타입에 대한 확인 후 변형되어야한다 최초 입력되는 타입을 어떻게 할지 부분 고민
@@ -263,7 +253,6 @@ public class Common_Utils {
 		Map<String, Object> map = new HashMap<String, Object>();
 
 		String key = null;
-		
 
 		HttpSession session = request.getSession();
 		CookieBox cookieBox = new CookieBox(request);
@@ -304,7 +293,7 @@ public class Common_Utils {
 			else if (request.getParameter("member") != null) {
 				type = 'M';
 				key = request.getParameter("member");
-				
+
 				log.info("member은 request 값");
 			} else if ((Member_tbl_VO) session.getAttribute("member") != null) {
 				type = 'M';
@@ -331,10 +320,9 @@ public class Common_Utils {
 				log.info("pgl은 쿠키값");
 			} else {
 				type = 'N';
-				
-				
+
 			}
-			// 지금구조는 마지막에 있는 놈이 될 수 밖에없다. 
+			// 지금구조는 마지막에 있는 놈이 될 수 밖에없다.
 			map.put("type", type);
 			map.put("value", key);
 
@@ -350,8 +338,7 @@ public class Common_Utils {
 	/**
 	 * 자바 dateformat 변경하기 String expectedPattern = "yyyyMMddkkmmss";
 	 *
-	 * @param textDate
-	 *            ex) 20141219093040
+	 * @param textDate ex) 20141219093040
 	 * @return yyyy년MM월dd일 HH시mm분ss초
 	 * 
 	 *         이슈 최초 입력되는 타입에 대한 확인 후 변형되어야한다 최초 입력되는 타입을 어떻게 할지 부분 고민
@@ -384,16 +371,15 @@ public class Common_Utils {
 			 * String todate= formatter.format(new Date());
 			 * 
 			 * 
-			 * log.info("현재시간 년월일 = " + todate01); log.info("현재시간 년월일 = " +
-			 * todate02); log.info("현재시간 년월일 = " + todate03);
+			 * log.info("현재시간 년월일 = " + todate01); log.info("현재시간 년월일 = " + todate02);
+			 * log.info("현재시간 년월일 = " + todate03);
 			 * 
-			 * String testDate = "20160421"; Date todate_date =
-			 * formatter03.parse(todate03); Date test_date =
-			 * formatter03.parse(testDate);
+			 * String testDate = "20160421"; Date todate_date = formatter03.parse(todate03);
+			 * Date test_date = formatter03.parse(testDate);
 			 * 
 			 * log.info(todate_date + "====== " + test_date); long diff =
-			 * todate_date.getTime() - test_date.getTime(); // 시간차이를 시간,분,초를 곱한
-			 * 값으로 나누면 하루 단위가 나옴 long diffDays = diff / (24 * 60 * 60 * 1000);
+			 * todate_date.getTime() - test_date.getTime(); // 시간차이를 시간,분,초를 곱한 값으로 나누면 하루
+			 * 단위가 나옴 long diffDays = diff / (24 * 60 * 60 * 1000);
 			 * 
 			 * log.info("날짜계산차이 : " + diff); log.info("일차이 : " + diffDays);
 			 * log.info("년차이 : " + diffDays / 365);
@@ -408,8 +394,7 @@ public class Common_Utils {
 	/**
 	 * 자바 string 치환하기
 	 * 
-	 * @param String
-	 *            textData 대상 문자열
+	 * @param String textData 대상 문자열
 	 * @return result 치환된 문자열
 	 * 
 	 */
@@ -428,15 +413,12 @@ public class Common_Utils {
 			if (txt_length >= 7) {
 				// 7자리 이상이면 3개이상 변환
 
-				extract_textData = imsi_textData.substring(start_point - 1,
-						end_point);
-				result = selectIdFinder.get(i)
-						.replace(extract_textData, "****");
+				extract_textData = imsi_textData.substring(start_point - 1, end_point);
+				result = selectIdFinder.get(i).replace(extract_textData, "****");
 
 			} else {
 				// 7자리 이하이면 2개변환
-				extract_textData = imsi_textData.substring(start_point,
-						end_point);
+				extract_textData = imsi_textData.substring(start_point, end_point);
 				result = selectIdFinder.get(i).replace(extract_textData, "***");
 
 			}
@@ -467,8 +449,7 @@ public class Common_Utils {
 		String browser = "";
 
 		log.info("User Agent for the request is===>" + browserDetails);
-		System.out
-				.println("User Agent for the request is===>" + browserDetails);
+		System.out.println("User Agent for the request is===>" + browserDetails);
 		// =================OS=======================
 		if (userAgent.toLowerCase().indexOf("windows") >= 0) {
 			os = "Windows";
@@ -485,43 +466,30 @@ public class Common_Utils {
 		}
 		// ===============Browser===========================
 		if (user.contains("msie")) {
-			String substring = userAgent.substring(userAgent.indexOf("MSIE"))
-					.split(";")[0];
-			browser = substring.split(" ")[0].replace("MSIE", "IE") + "-"
-					+ substring.split(" ")[1];
+			String substring = userAgent.substring(userAgent.indexOf("MSIE")).split(";")[0];
+			browser = substring.split(" ")[0].replace("MSIE", "IE") + "-" + substring.split(" ")[1];
 		} else if (user.contains("safari") && user.contains("version")) {
-			browser = (userAgent.substring(userAgent.indexOf("Safari")).split(
-					" ")[0]).split("/")[0]
-					+ "-"
-					+ (userAgent.substring(userAgent.indexOf("Version")).split(
-							" ")[0]).split("/")[1];
+			browser = (userAgent.substring(userAgent.indexOf("Safari")).split(" ")[0]).split("/")[0] + "-"
+					+ (userAgent.substring(userAgent.indexOf("Version")).split(" ")[0]).split("/")[1];
 		} else if (user.contains("opr") || user.contains("opera")) {
 			if (user.contains("opera"))
-				browser = (userAgent.substring(userAgent.indexOf("Opera"))
-						.split(" ")[0]).split("/")[0]
-						+ "-"
-						+ (userAgent.substring(userAgent.indexOf("Version"))
-								.split(" ")[0]).split("/")[1];
+				browser = (userAgent.substring(userAgent.indexOf("Opera")).split(" ")[0]).split("/")[0] + "-"
+						+ (userAgent.substring(userAgent.indexOf("Version")).split(" ")[0]).split("/")[1];
 			else if (user.contains("opr"))
-				browser = ((userAgent.substring(userAgent.indexOf("OPR"))
-						.split(" ")[0]).replace("/", "-")).replace("OPR",
-						"Opera");
+				browser = ((userAgent.substring(userAgent.indexOf("OPR")).split(" ")[0]).replace("/", "-"))
+						.replace("OPR", "Opera");
 		} else if (user.contains("chrome")) {
-			browser = (userAgent.substring(userAgent.indexOf("Chrome")).split(
-					" ")[0]).replace("/", "-");
-		} else if ((user.indexOf("mozilla/7.0") > -1)
-				|| (user.indexOf("netscape6") != -1)
-				|| (user.indexOf("mozilla/4.7") != -1)
-				|| (user.indexOf("mozilla/4.78") != -1)
-				|| (user.indexOf("mozilla/4.08") != -1)
-				|| (user.indexOf("mozilla/3") != -1)) {
-			// browser=(userAgent.substring(userAgent.indexOf("MSIE")).split(" ")[0]).replace("/",
+			browser = (userAgent.substring(userAgent.indexOf("Chrome")).split(" ")[0]).replace("/", "-");
+		} else if ((user.indexOf("mozilla/7.0") > -1) || (user.indexOf("netscape6") != -1)
+				|| (user.indexOf("mozilla/4.7") != -1) || (user.indexOf("mozilla/4.78") != -1)
+				|| (user.indexOf("mozilla/4.08") != -1) || (user.indexOf("mozilla/3") != -1)) {
+			// browser=(userAgent.substring(userAgent.indexOf("MSIE")).split("
+			// ")[0]).replace("/",
 			// "-");
 			browser = "Netscape-?";
 
 		} else if (user.contains("firefox")) {
-			browser = (userAgent.substring(userAgent.indexOf("Firefox")).split(
-					" ")[0]).replace("/", "-");
+			browser = (userAgent.substring(userAgent.indexOf("Firefox")).split(" ")[0]).replace("/", "-");
 		} else if (user.contains("rv")) {
 			browser = "IE";
 		} else {
@@ -539,21 +507,16 @@ public class Common_Utils {
 		String search_parameter = parameter.toString();
 		String result = null;
 		if (search_parameter != null && search_parameter != "") {
-			String charset[] = { "KSC5601", "8859_1", "ascii", "UTF-8",
-					"EUC-KR", "MS949" };
+			String charset[] = { "KSC5601", "8859_1", "ascii", "UTF-8", "EUC-KR", "MS949" };
 
-			System.out.println("Not convert charset : " + search_parameter
-					+ "<br>");
+			System.out.println("Not convert charset : " + search_parameter + "<br>");
 			for (int i = 0; i < charset.length; i++) {
 				for (int j = 0; j < charset.length; j++) {
 					if (i == j) {
 						continue;
 					} else {
-						result = new String(
-								search_parameter.getBytes(charset[i]),
-								charset[j]);
-						System.out.println(charset[i] + " : " + charset[j]
-								+ " :" + result + "<br>");
+						result = new String(search_parameter.getBytes(charset[i]), charset[j]);
+						System.out.println(charset[i] + " : " + charset[j] + " :" + result + "<br>");
 					}
 				}
 			}
@@ -566,9 +529,9 @@ public class Common_Utils {
 	/*
 	 * http://erictus.tistory.com/entry/Map-to-Object-%EC%99%80-Object-to-Map
 	 * 
-	 * Object를 Map으로 변경해주는 ObjectUtil!! 1. getDeclaredFields()를 통해 선언되어있는 필드를
-	 * 가져온후 Loop돌며 2. Field.setAccessible(true)를 통해 private 필드접근을 가능하도록 한다. 3.
-	 * 그담엔? 필드명을 Key로하고 값을 저장하여 Map을 뱉어내면 끝~!!
+	 * Object를 Map으로 변경해주는 ObjectUtil!! 1. getDeclaredFields()를 통해 선언되어있는 필드를 가져온후
+	 * Loop돌며 2. Field.setAccessible(true)를 통해 private 필드접근을 가능하도록 한다. 3. 그담엔? 필드명을
+	 * Key로하고 값을 저장하여 Map을 뱉어내면 끝~!!
 	 */
 	public static Map ConverObjectToMap(Object obj) {
 		try {
@@ -621,8 +584,7 @@ public class Common_Utils {
 			}
 
 			// url 은 전체 url_1depth은 /제외
-			if (url != null && url_1depth != null
-					&& (url.equals("/") || url_1depth.equals("Index"))) {
+			if (url != null && url_1depth != null && (url.equals("/") || url_1depth.equals("Index"))) {
 				slPageName = "메인페이지";
 			} else if (url_1depth != null && url_1depth.equals("Company")) {
 				// 회사 색션.'
@@ -710,8 +672,7 @@ public class Common_Utils {
 					}
 					slPageName = "CompanyItem_미정_" + url;
 				}
-			} else if (url_1depth != null
-					&& url_1depth.equals("CustomerService")) {
+			} else if (url_1depth != null && url_1depth.equals("CustomerService")) {
 				if (url.contains("Agreement")) {
 					slPageName = "이용약관";
 				} else if (url.contains("Announcement")) {
@@ -746,9 +707,7 @@ public class Common_Utils {
 					}
 					slPageName = "CustomerService_미정_" + url;
 				}
-			} else if (url_1depth != null
-					&& (url_1depth.equals("MasterPage") || url_1depth
-							.equals("MasterPage_1"))) {
+			} else if (url_1depth != null && (url_1depth.equals("MasterPage") || url_1depth.equals("MasterPage_1"))) {
 				if (url.contains("mode=SMbrLogin")) {
 					slPageName = "로그인페이지";
 				} else if (url.contains("mode=Default")) {
@@ -852,7 +811,7 @@ public class Common_Utils {
 		return slPageName;
 	}
 
-	public static Map<String, Object> setMetaData(String url) {
+	public static Map<String, Object> setMetaData(String url, Map<String, Object> metaData) {
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		// System.out.println("url은" + url);
@@ -911,100 +870,101 @@ public class Common_Utils {
 
 		String keywords_default = "Digital Marketing, E-Consulting, IT Consulting, WebSite Building, Cloud, AI, MR, VR, ARIoT Platform, Deep Learning, Agile, DevOps, Domain, Web Hosting, Server Hosting, Hosting, HomePage, IT Solution, IT Product, DataBase, Maintenance, EC, Shopping Mall, Web Mail, News Solution, 디지털마케팅, E-컨설팅, IT컨설팅, 웹사이트 제작, 클라우드, 인공지능, 증강현실, 혼합현실, 가상현실, IOT 플랫폼, 딥 러닝, 에자일, 데브옵스, 도메인, 웹호스팅, 서버호스팅, 호스팅, 홈페이지, 웹사이트, 솔루션개발, 데이터베이스, 유지보수, 전자상거래, 쇼핑몰, 웹메일, 뉴스솔루션";
 		String keywords = null;
-
-		String description = "This is the website for Mwav.net. We are an IT development company possessing total E-Commerce platform based on the fancy technologies. You can contact at https://www.mwav.net/CustomerService/Contact/Contact.mwav?modal=Q&A if you have a question or an inquiry on the site.";
+		String thumbnail = null;
+		String description = null;
 
 		// 대분류 안에 소분류로 !
-		if (url_1depth.equals("Company")) {
-			set_Title = "[Mwav.net] >> [" + url_1depth + " > " + last_depth
-					+ "] - " + main_Title;
+		StringLib stringLib = StringLib.getInstance();
+		System.out.println("test" + stringLib.isEmpty(metaData));
+		if (!(stringLib.isEmpty(metaData))) {
+			main_Title = "[Mwav.net] >> [" + url_1depth + " > " + last_depth + "] - " + (String) metaData.get("title");
+			set_Title = (String) metaData.get("title");
+			description = (String) metaData.get("description");
+			thumbnail = (String) metaData.get("thumbnail");
+			keywords = (String) metaData.get("newsKeyword") + " " + keywords_default;
 
-		} else if (url_1depth.equals("CustomerService")) {
-			url_1depth = "CS";
-			set_Title = "[Mwav.net] >> [" + url_1depth + " > " + last_depth
-					+ "] - " + main_Title;
+			System.out.println("thumbnail"+thumbnail);
+			System.out.println("keywords "+keywords);
+		} else {
+			description = "This is the website for Mwav.net. We are an IT development company possessing total E-Commerce platform based on the fancy technologies. You can contact at https://www.mwav.net/CustomerService/Contact/Contact.mwav?modal=Q&A if you have a question or an inquiry on the site.";
+			thumbnail = "https://www.mwav.net/Images/CompanyLogos/CompanyLogo.ico";
 
-		} else if (url_1depth.equals("hightsofts")
-				&& url_2depth.equals("hightsofts")) {
-			url_1depth = "CS";
-			set_Title = "[Mwav.net] >> [HightSofts] - " + main_Title;
-			keywords = "Highcharts, Highstock, Highmaps, " + keywords_default;
+			if (url_1depth.equals("Company")) {
+				set_Title = "[Mwav.net] >> [" + url_1depth + " > " + last_depth + "] - " + main_Title;
 
-		} else if (url_1depth.equals("CompanyItem")) {
-			// 여기는 디지털마케팅 등 포함 2depth로
+			} else if (url_1depth.equals("CustomerService")) {
+				url_1depth = "CS";
+				set_Title = "[Mwav.net] >> [" + url_1depth + " > " + last_depth + "] - " + main_Title;
 
-			if (url_2depth.equals("ITProducts")
-					|| url_2depth.equals("ITSolutions")) {
-				if (url_3depth.equals("OpenSRS")) {
-					set_Title = "[Mwav.net] >> [" + url_3depth + "] - "
-							+ main_Title;
-					keywords = "SSL, Domains, RapisSSL, " + keywords_default;
-				} else if (url_3depth.equals("Aervision")) {
-					set_Title = "[Mwav.net] >> [" + url_3depth + "> "
-							+ aervision_Title + "] - " + main_Title;
+			} else if (url_1depth.equals("hightsofts") && url_2depth.equals("hightsofts")) {
+				url_1depth = "CS";
+				set_Title = "[Mwav.net] >> [HightSofts] - " + main_Title;
+				keywords = "Highcharts, Highstock, Highmaps, " + keywords_default;
 
-					keywords = "AerPass, AerCrowd, AerPalm, AerID, AerGate, IDMatch, eyeLock, "
-							+ keywords_default;
+			} else if (url_1depth.equals("CompanyItem")) {
+				// 여기는 디지털마케팅 등 포함 2depth로
 
-				} else if (url_3depth.equals("OrgChart")) {
-					set_Title = "[Mwav.net] >> [" + url_3depth + "] - "
-							+ main_Title;
+				if (url_2depth.equals("ITProducts") || url_2depth.equals("ITSolutions")) {
+					if (url_3depth.equals("OpenSRS")) {
+						set_Title = "[Mwav.net] >> [" + url_3depth + "] - " + main_Title;
+						keywords = "SSL, Domains, RapisSSL, " + keywords_default;
+					} else if (url_3depth.equals("Aervision")) {
+						set_Title = "[Mwav.net] >> [" + url_3depth + "> " + aervision_Title + "] - " + main_Title;
 
-					keywords = "OrgChart Platinum, OrgChart Now, OrgChart Enterprise, OrgChart Pro, "
-							+ keywords_default;
-				} else if (url_3depth.equals("Azure")) {
-					set_Title = "[Mwav.net] >> [" + url_3depth + "] - "
-							+ main_Title;
+						keywords = "AerPass, AerCrowd, AerPalm, AerID, AerGate, IDMatch, eyeLock, " + keywords_default;
 
-					keywords = "Azure, " + keywords_default;
-				} else if (url_3depth.equals("MSOffice")) {
-					set_Title = "[Mwav.net] >> [" + url_3depth + "] - "
-							+ main_Title;
-					keywords = "Word, PowerPoint, Excel, Outlook, "
-							+ keywords_default;
+					} else if (url_3depth.equals("OrgChart")) {
+						set_Title = "[Mwav.net] >> [" + url_3depth + "] - " + main_Title;
 
-				} else if (url_3depth.equals("InsWave")) {
-					set_Title = "[Mwav.net] >> [" + url_3depth + "] - "
-							+ main_Title;
-					keywords = "NewsLetter Solutions, " + keywords_default;
+						keywords = "OrgChart Platinum, OrgChart Now, OrgChart Enterprise, OrgChart Pro, "
+								+ keywords_default;
+					} else if (url_3depth.equals("Azure")) {
+						set_Title = "[Mwav.net] >> [" + url_3depth + "] - " + main_Title;
 
-				} else if (url_3depth.equals("Windows")) {
-					set_Title = "[Mwav.net] >> [" + url_3depth + "] - "
-							+ main_Title;
+						keywords = "Azure, " + keywords_default;
+					} else if (url_3depth.equals("MSOffice")) {
+						set_Title = "[Mwav.net] >> [" + url_3depth + "] - " + main_Title;
+						keywords = "Word, PowerPoint, Excel, Outlook, " + keywords_default;
 
-					keywords = "Windows10, " + keywords_default;
+					} else if (url_3depth.equals("InsWave")) {
+						set_Title = "[Mwav.net] >> [" + url_3depth + "] - " + main_Title;
+						keywords = "NewsLetter Solutions, " + keywords_default;
+
+					} else if (url_3depth.equals("Windows")) {
+						set_Title = "[Mwav.net] >> [" + url_3depth + "] - " + main_Title;
+
+						keywords = "Windows10, " + keywords_default;
+					} else {
+						set_Title = "[Mwav.net] >> [" + url_3depth + "] - " + main_Title;
+					}
+				}
+				// 디지털 마케팅 등
+				else {
+					set_Title = "[Mwav.net] >> [" + url_2depth + " > " + last_depth + "] - " + main_Title;
+				}
+			} else {
+				if (url_1depth.equals("/") && (!"/".equals(last_depth))) {
+					set_Title = "[Mwav.net] >> [" + last_depth + "] - " + main_Title;
+					// System.out.println("열로1");
+				} else if (url_1depth.equals("/") && last_depth.equals("/")) {
+					set_Title = "[Mwav.net] >> " + main_Title;
+					// System.out.println("set_Title"+set_Title);
+					// System.out.println("열로2");
 				} else {
-					set_Title = "[Mwav.net] >> [" + url_3depth + "] - "
-							+ main_Title;
+					// .do 등등 일단은 고객친화적이게 임시 변환
+					set_Title = "[Mwav.net] - " + main_Title;
+					// System.out.println("열로3");
 				}
 			}
-			// 디지털 마케팅 등
-			else {
-				set_Title = "[Mwav.net] >> [" + url_2depth + " > " + last_depth
-						+ "] - " + main_Title;
-			}
-		} else {
-			if (url_1depth.equals("/") && (!"/".equals(last_depth))) {
-				set_Title = "[Mwav.net] >> [" + last_depth + "] - "
-						+ main_Title;
-				// System.out.println("열로1");
-			} else if (url_1depth.equals("/") && last_depth.equals("/")) {
-				set_Title = "[Mwav.net] >> " + main_Title;
-				// System.out.println("set_Title"+set_Title);
-				// System.out.println("열로2");
-			} else {
-				// .do 등등 일단은 고객친화적이게 임시 변환
-				set_Title = "[Mwav.net] - " + main_Title;
-				// System.out.println("열로3");
-			}
 		}
-
-        log.info("title"+set_Title);
-        log.info("keywords"+keywords);
-        log.info("description"+description);
+		log.info("title" + set_Title);
+		log.info("keywords" + keywords);
+		log.info("description" + description);
+		map.put("mainTitle", main_Title);
 		map.put("title", set_Title);
 		map.put("keywords", keywords);
 		map.put("description", description);
+		map.put("thumbnail", thumbnail);
 
 		return map;
 	}
