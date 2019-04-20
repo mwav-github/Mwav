@@ -115,15 +115,7 @@ css 중 가장 마지막에 호출되어야하며, include 되는 파일 중 css
 					<li>FAX : +82-2-6214-7039</li>
 					<li>CEO : Lewis, Kim</li>
 					<li>WebSite Manager : Hunt, Kim</li>
-					<li>Marketing Manager : <c:choose>
-							<c:when test="${sessionScope.pmtName ne null }">
-							${sessionScope.pmtName}
-							</c:when>
-							<c:otherwise>
-								Jose, Shin
-							</c:otherwise>
-						</c:choose>
-					</li>
+					<li>Marketing Manager : Jose, Shin</li>
 					<c:choose>
 						<c:when test="${!empty sessionScope.pmtNick}">
 							<li>Sales Manager : ${sessionScope.pmtNick}</li>
