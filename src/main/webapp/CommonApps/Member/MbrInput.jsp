@@ -13,7 +13,7 @@ http://planbong.tistory.com/531
 			<h5>Mwav - Member Registration</h5>
 		</div>
 		<div class='panel-body'>
-			<form role="form" class='form-horizontal' name="change_record" method="post" action="/member/mbrForm.mwav">
+			<form role="form" class='form-horizontal' name="change_record" method="post" action="/member/mbrForm.mwav" autocomplete="off">
 				<%--action="/member/memberForm.mwav" --%>
 				<div class='form-group'>
 					<label class='text-color-gray control-label col-md-2 col-md-offset-2' for='id_accomodation'>
@@ -187,8 +187,8 @@ http://planbong.tistory.com/531
 				<!-- disable는 제출되지 않는다 즉 값이 전달되지 않음. *중요 -->
 				<div class='form-group'>
 					<div class="col-md-offset-4 col-md-6">
-						<input name="mbrAddress_1" class='form-control' id='Address' placeholder='주소' type='text' value="" readonly="readonly"> 
-						<input name="mbrAddress_2" class="form-control" placeholder='나머지 주소' type="text" id="rest_address" />
+						<input name="mbrAddress_1" class='form-control' id='Address' placeholder='주소' type='text' value="" readonly="readonly"> <input name="mbrAddress_2" class="form-control"
+							placeholder='나머지 주소' type="text" id="rest_address" />
 						<div class="enter"></div>
 					</div>
 
@@ -239,24 +239,23 @@ http://planbong.tistory.com/531
 		target.append(msg);
 		fcTarget.focus();
 	}
-	
+
 	function idCheck(obj) {
 		// onchange로 넘어올때는 event.target, 직접 object를 넘길때는 event.target이 undefined니까 
 		var idObj = obj.target || obj;
 
-		var result = /[a-zA-Z0-9_-]{4,20}$/g.test(idObj.value);
+		var result = /^[a-zA-Z]{1}[a-zA-Z0-9_-]{3,19}$/g.test(idObj.value);
 		var msg = "";
 		if (!result) {
 			msg += "<div class='alert alert-warning text-left'><strong>";
 			msg += "유효하지 않은 아이디입니다. </br>";
-			msg += "4~20자 사이의 영문,숫자, -_ 만 사용할 수 있습니다.";
+			msg += "4~20자 사이의 영문,숫자,-_ 만 사용할 수 있습니다.";
 			msg += "</strong></div>";
 		}
 		user_guide(result, $("#idCheckLayer"), msg, idObj);
 		//console.log(result);
 		return result;
 	}
-	
 
 	function pwCheck(obj) {
 		var pwObj = obj.target || obj;
@@ -272,30 +271,32 @@ http://planbong.tistory.com/531
 		//console.log(pwObj.value + ":" + result);
 		return result;
 	}
-	
+
 	function nameCheck(obj) {
-		var nameObj = obj.target|| obj;
+		var nameObj = obj.target || obj;
 		var result = /^[가-힣]+$/g.test(nameObj.value);
 		var msg = "";
-		if(!result) {
+		if (!result) {
 			msg += "<div class='alert alert-warning text-left'><strong>";
 			msg += "한글만 입력해주세요 </br>";
 			msg += "</strong></div>";
 		}
-		user_guide(result, $("#nameCheckLayer"),msg, nameObj);
+		user_guide(result, $("#nameCheckLayer"), msg, nameObj);
 		return result;
 	}
-	
+
 	function phoneCheck(obj) {
-		var nameObj = obj.target|| obj;
-		var result = /^\d{3}-\d{3,4}-\d{4}$/g.test(nameObj.value);
+		var nameObj = obj.target || obj;
+		//var result = /^\d{3}-\d{3,4}-\d{4}$/g.test(nameObj.value);
+		var result = /^\d{3}-\d{3,4}-\d{4}$/g.test(nameObj.value) 
+						|| /^\d{10,11}$/g.test(nameObj.value);
 		var msg = "";
-		if(!result) {
+		if (!result) {
 			msg += "<div class='alert alert-warning text-left'><strong>";
-			msg += "010-1234-5678 형태로 입력해주세요 </br>";
+			msg += "유효한 전화번호 형식이 아닙니다. </br>";
 			msg += "</strong></div>";
 		}
-		user_guide(result, $("#phoneCheckLayer"),msg, nameObj);
+		user_guide(result, $("#phoneCheckLayer"), msg, nameObj);
 		return result;
 	}
 
@@ -313,35 +314,41 @@ http://planbong.tistory.com/531
 	}
 
 	function validCheck() {
-		if (!idCheck($("#chkLoginId")[0])) return false;
-		if (!pwCheck($("#chkLoginPW")[0])) return false;
-		if (!nameCheck($("#mbrFirstName")[0])) return false;
-		if (!nameCheck($("#mbrLastName")[0])) return false;
-		if (!phoneCheck($("#mbrCellPhone")[0])) return false;		
-		if (!emailCheck($("#chkEmail")[0])) return false;
+		if (!idCheck($("#chkLoginId")[0]))
+			return false;
+		if (!pwCheck($("#chkLoginPW")[0]))
+			return false;
+		if (!nameCheck($("#mbrFirstName")[0]))
+			return false;
+		if (!nameCheck($("#mbrLastName")[0]))
+			return false;
+		if (!phoneCheck($("#mbrCellPhone")[0]))
+			return false;
+		if (!emailCheck($("#chkEmail")[0]))
+			return false;
 		$.ajax({
-	        url: "/member/mbrLoginIdCheck.mwav",
-	        method: "GET",
-	        data: { "mbrLoginId": $("#chkLoginId").val() },
-	        dataType: "json",
-	        cache: false,
-	        success: function(data) {
-	            console.log(data);
-	            if (!data) {
-	                var msg = "";
-	                msg += "<div class='alert alert-warning text-left'><strong>";
-	                msg += "중복된 아이디입니다.";
-	                msg += "</strong></div>";
-	                user_guide(false, $("#idCheckLayer"), msg, $("#chkLoginId")[0]);
-	                return false;
-	            } else {
-					document.change_record.submit();	            	
-	            }
-	        }
-	    });
+			url : "/member/mbrLoginIdCheck.mwav",
+			method : "GET",
+			data : {
+				"mbrLoginId" : $("#chkLoginId").val()
+			},
+			dataType : "json",
+			cache : false,
+			success : function(data) {
+				if (!data) {
+					var msg = "";
+					msg += "<div class='alert alert-warning text-left'><strong>";
+					msg += "중복된 아이디입니다.";
+					msg += "</strong></div>";
+					user_guide(false, $("#idCheckLayer"), msg, $("#chkLoginId")[0]);
+					return false;
+				} else {
+					document.change_record.submit();
+				}
+			}
+		});
 	}
-	
-	
+
 	$("#chkLoginId").on("change", function(event) {
 		idCheck(event);
 	});
@@ -349,11 +356,11 @@ http://planbong.tistory.com/531
 	$("#chkLoginPW").on("change", function(event) {
 		pwCheck(event);
 	});
-	
+
 	$("#mbrFirstName").on("change", function(event) {
 		nameCheck(event);
 	});
-	
+
 	$("#mbrLastName").on("change", function(event) {
 		nameCheck(event);
 	});
@@ -361,7 +368,7 @@ http://planbong.tistory.com/531
 	$("#mbrCellPhone").on("change", function(event) {
 		phoneCheck(event);
 	});
-	
+
 	$("#chkEmail").on("change", function(event) {
 		emailCheck(event);
 	});

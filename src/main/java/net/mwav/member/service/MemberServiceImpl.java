@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
-import javax.inject.Inject;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,7 +21,6 @@ import org.springframework.web.util.WebUtils;
 import net.mwav.common.module.AesEncryption;
 import net.mwav.common.module.EmailSender;
 import net.mwav.common.module.ValidationLib;
-import net.mwav.common.module.ValidationLib.VALID_STATUS;
 import net.mwav.member.dao.MemberDAO;
 import net.mwav.member.vo.Member_tbl_VO;
 
@@ -37,10 +35,6 @@ public class MemberServiceImpl implements MemberService {
 
 	@Autowired
 	EmailSender emailSender;
-
-	@Inject
-	ValidationLib validation;
-
 	/*
 	 * ========================================등록========================================
 	 */
@@ -53,79 +47,54 @@ public class MemberServiceImpl implements MemberService {
 	@Transactional(rollbackFor = { Exception.class }, readOnly = false)
 	@Override
 	public Map<String, Object> insertMbrForm(Map<String, Object> map) throws Exception {
+		Map<String, Object> result = new HashMap<String, Object>();
+		try {
+			ValidationLib validation = ValidationLib.getInstance();
+			// 1. 아이디 중복 검사
+			if (!selectOneMbrLoginIdCheck(map.get("mbrLoginId").toString())) {
+				result.put("result", "31");
+				result.put("message", "DUPLICATED");
+				return result;
+			}
 
-		Map<String, Object> result = new HashMap<>();
-		Enum<VALID_STATUS> status = null;
+			// 2. 유효성 검증(추후에 유효성 검증 구현체 개발 시 변환)
+			boolean isValid = validation.matches(map.get("mbrLoginId").toString(), "^[a-zA-Z]{1}[a-zA-Z0-9_-]{3,19}$")
+					|| validation.matches(map.get("mbrLoginPw").toString(), "^(?=.*[\\{\\}\\[\\]\\/?.,;:|\\)*~`!^\\-_+<>@\\#$%&\\\\\\=\\(\\'\\\"])(?=.*[0-9])(?=.*[a-zA-Z])[\\{\\}\\[\\]\\/?.,;:|\\)*~`!^\\-_+<>@\\#$%&\\\\\\=\\(\\'\\\"0-9a-zA-Z]{8,255}$")
+					|| validation.isKorName(map.get("mbrFirstName").toString(), map.get("mbrLastName").toString()) 
+					|| validation.iskorCellurar(map.get("mbrCellPhone").toString()) 
+					|| validation.isEmail(map.get("mbrEmail").toString());
+			if (!isValid) {
+				result.put("result", "42");
+				result.put("message", "INVALID");
+				return result;
+			}
 
-		// 유효성 검증
-		// 1. ID
-		status = validation.isId(map.get("mbrLoginId").toString(), 4, 20);
-		if (status != VALID_STATUS.VALID) {
-			result.put("origin", "mbrLoginId");
-			result.put("status", status);
-			return result;
+			// 3. Member_id 추출(멀티 유저 transaction을 고려해보면 추후 수정필요하다 사료됨)
+			map.put("member_id", selectOneMemberPkCheck());
+
+			// 4. 비밀번호 암호화
+			String b_mbrLoginPw = map.get("mbrLoginPw").toString();
+			//AES/CBC/IV 암호화 (키,암호화텍스트,iv)
+			encrypted = AesEncryption.aesEncryptCbc(AesEncryption.sKey, b_mbrLoginPw, AesEncryption.sInitVector);
+			String sBase = AesEncryption.aesEncodeBuf(encrypted);
+			if (sBase == null) {
+				result.put("result", "99");
+				result.put("message", "EXCEPTION");
+			}
+			map.put("mbrLoginPw", sBase);
+
+			// 5. Member_tbl, MemberValue_tbl insert
+			if (memberDAO.insertMbrForm(map) == 0) {
+				result.put("result", "30");
+				result.put("message", "NO_AFFECTED");
+			}
+			//emailSender.sendRegistrationEmail(map);
+			result.put("result", "1");
+			result.put("message", "SUCCESS");
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
 		}
-
-		// 2. Password
-		status = validation.isPassword(map.get("mbrLoginPw").toString(), 8, 255);
-		if (status != VALID_STATUS.VALID) {
-			result.put("origin", "mbrLoginPw");
-			result.put("status", status);
-			return result;
-		}
-
-		// 3. name
-		//status = validation.isKorName(map.get("mbrFirstName").toString(), map.get("mbrLastName").toString());
-		status = validation.isName(map.get("mbrFirstName").toString(), map.get("mbrLastName").toString());
-		if (status != VALID_STATUS.VALID) {
-			result.put("origin", "mbrName");
-			result.put("status", status);
-			return result;
-		}
-
-		// 4. cellPhone 
-		status = validation.isCellurar(map.get("mbrCellPhone").toString());
-		if (status != VALID_STATUS.VALID) {
-			result.put("origin", "mbrCellPhone");
-			result.put("status", status);
-			return result;
-		}
-
-		// 5. email
-		status = validation.isEmail(map.get("mbrEmail").toString());
-		if (status != VALID_STATUS.VALID) {
-			result.put("origin", "mbrEmail");
-			result.put("status", status);
-			return result;
-		}
-
-		// 6. 아이디 중복 검사
-		if (!selectOneMbrLoginIdCheck(map.get("mbrLoginId").toString())) {
-			result.put("origin", "mbrLoginId");
-			result.put("status", VALID_STATUS.ERROR);
-			return result;
-		}
-
-		// 7. Member_id 추출(멀티 유저 transaction을 고려해보면 추후 수정필요하다 사료됨)
-		map.put("member_id", selectOneMemberPkCheck());
-
-		// 8. 비밀번호 암호화
-		String b_mbrLoginPw = map.get("mbrLoginPw").toString();
-		//AES/CBC/IV 암호화 (키,암호화텍스트,iv)
-		encrypted = AesEncryption.aesEncryptCbc(AesEncryption.sKey, b_mbrLoginPw, AesEncryption.sInitVector);
-		if (encrypted == null) {
-			result.put("origin", "mbrLoginPw");
-			result.put("status", VALID_STATUS.ERROR);
-			return result;
-		}
-		String sBase = AesEncryption.aesEncodeBuf(encrypted);
-		map.put("mbrLoginPw", sBase);
-
-		// 8. Member_tbl, MemberValue_tbl insert
-		memberDAO.insertMbrForm(map);
-		emailSender.sendRegistrationEmail(map);
-		
-		result.put("status", VALID_STATUS.VALID);
 		return result;
 	}
 
