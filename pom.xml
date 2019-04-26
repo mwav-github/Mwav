@@ -594,8 +594,8 @@
 		</plugins>
 	</build>
 	<distributionManagement>
-		<!-- Copy this section from the Maven section of the "Connect to Feed" 
-			dialog -->
+		Copy this section from the Maven section of the "Connect to Feed" 
+			dialog
 		<repository>
 			<id>dev-azure-com-mwavcorp-mwav</id>
 			<url>https://pkgs.dev.azure.com/MwavCorp/_packaging/Mwav/maven/v1</url>
