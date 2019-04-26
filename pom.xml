@@ -5,12 +5,11 @@
 	<groupId>net.company</groupId>
 	<artifactId>mwav</artifactId>
 	<name>Mwav</name>
-	<packaging>jar</packaging>
-	<url>http://maven.apache.org</url>
-	<version>1.0-SNAPSHOT</version>
+	<packaging>war</packaging>
+	<version>1.0.0</version>
 	<properties>
-		<java-version>1.7</java-version>
-		<org.springframework-version>3.2.3.RELEASE</org.springframework-version>
+		<java-version>1.8</java-version>
+		<org.springframework-version>4.0.0.RELEASE</org.springframework-version>
 		<org.springsecurity-version>3.2.3.RELEASE</org.springsecurity-version>
 		<org.springframework.social.version>1.1.4.RELEASE</org.springframework.social.version>
 		<org.aspectj-version>1.7.3</org.aspectj-version>
@@ -45,11 +44,11 @@
 		</repository>
 
 		<!-- Maven Repository 가 없는 로컬 jar 파일 을 maven project 에 추가하는 방법 http://hasunjjang.blogspot.kr/2015/08/posted-by-httpitnp.html -->
-		<repository>
+		<!-- <repository>
 			<id>mwavframework</id>
 			<name>custom jars</name>
 			<url>file://${project.basedir}/lib</url>
-		</repository>
+		</repository>-->
 
 		<!-- <repository> <id>UserAgent</id> <name>custom jars</name> <url>file://${project.basedir}/lib</url> 
 			</repository> <repository> <id>google-api-services</id> <url>http://google-api-client-libraries.appspot.com/mavenrepo</url> 
@@ -59,8 +58,8 @@
 		<!-- Copy this section from the Maven section of the "Connect to Feed" 
 			dialog -->
 		<repository>
-			<id>dev-azure-com-mwavcorp-mwav</id>
-			<url>https://pkgs.dev.azure.com/MwavCorp/_packaging/Mwav/maven/v1</url>
+  			<id>dev-azure-com-webmaster0770-mwavcorp</id>
+ 			<url>https://pkgs.dev.azure.com/webmaster0770/_packaging/MwavCorp/maven/v1</url>
 			<releases>
 				<enabled>true</enabled>
 			</releases>
@@ -72,11 +71,13 @@
 
 
 	<dependencies>
-		<dependency>
+		<!--<dependency>
 			<groupId>net.company</groupId>
 			<artifactId>mwav</artifactId>
 			<version>1.0-SNAPSHOT</version>
-		</dependency>
+		</dependency>-->	
+	
+		
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -249,18 +250,20 @@
 
 		<!-- Web -->
 		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<scope>provided</scope>
-			<version>2.5</version>
+ 		   <groupId>javax.servlet</groupId>
+ 		   <artifactId>javax.servlet-api</artifactId>
+ 		   <version>3.1.0</version>
+ 		   <scope>provided</scope>
 		</dependency>
 
-		<dependency>
-			<groupId>javax.servlet.jsp</groupId>
-			<artifactId>jsp-api</artifactId>
-			<scope>provided</scope>
-			<version>2.1</version>
+ 		   <!-- https://mvnrepository.com/artifact/javax.servlet.jsp/javax.servlet.jsp-api -->
+ 		   <dependency>
+   		     <groupId>javax.servlet.jsp</groupId>
+   		     <artifactId>javax.servlet.jsp-api</artifactId>
+    		    <version>2.3.1</version>
+  		      <scope>provided</scope>
 		</dependency>
+
 
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -503,7 +506,7 @@
 			<version>1</version>
 		</dependency>
 
-		<!--@MwavFramework -->
+<!--@MwavFramework -->
 		<dependency>
 			<groupId>MwavFrameWork</groupId>
 			<artifactId>MwavFrameWork</artifactId>
@@ -597,14 +600,8 @@
 		Copy this section from the Maven section of the "Connect to Feed" 
 			dialog
 		<repository>
-			<id>dev-azure-com-mwavcorp-mwav</id>
-			<url>https://pkgs.dev.azure.com/MwavCorp/_packaging/Mwav/maven/v1</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
+  			<id>dev-azure-com-webmaster0770-mwavcorp</id>
+ 			<url>https://pkgs.dev.azure.com/webmaster0770/_packaging/MwavCorp/maven/v1</url>
 		</repository>
 	</distributionManagement>
 </project>
