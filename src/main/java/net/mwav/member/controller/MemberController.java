@@ -109,9 +109,9 @@ public class MemberController {
 	public String insertMbrForm(CommandMap commandMap, Model model) throws Exception {
 
 		Map<String, Object> result = memberService.insertMbrForm(commandMap.getMap());
-		if (!result.get("result").toString().equals("1"))
-			return "redirect:/MasterPage_1.mwav?mode=SMbrInput";
-		return "redirect:/MasterPage_1.mwav?mode=SDMbrInput";
+		if (result.get("result").toString().equals("1") || result.get("result").toString().equals("91"))
+			return "redirect:/MasterPage_1.mwav?mode=SDMbrInput";
+		return "redirect:/MasterPage_1.mwav?mode=SMbrInput";
 	}
 
 	/*

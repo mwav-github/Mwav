@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailAuthenticationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.util.WebUtils;
@@ -88,9 +89,13 @@ public class MemberServiceImpl implements MemberService {
 				result.put("result", "30");
 				result.put("message", "NO_AFFECTED");
 			}
-			//emailSender.sendRegistrationEmail(map);
+			emailSender.sendRegistrationEmail(map);
 			result.put("result", "1");
 			result.put("message", "SUCCESS");
+		} catch (MailAuthenticationException e) {
+			e.printStackTrace();
+			result.put("result", "91");
+			result.put("message", "MAIL_EXCEPTION");
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
