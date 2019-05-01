@@ -7,6 +7,8 @@ public class Promoter_VO extends Promoter {
 	private String pmtLoginPw;
 
 	private String pmtName;
+	
+	private String pmtNickName;
 
 	private String pmtMail;
 
@@ -41,13 +43,16 @@ public class Promoter_VO extends Promoter {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Promoter_VO(String pmtLoginId, String pmtLoginPw, String pmtName, String pmtMail, String pmtCellularPhone,
-			String pmtPhone, int pmtAddrFlag, String pmtZipcod, String pmtZipcode, String pmtAddress, String pmtJobType,
-			int pmtFindingId, String pmtFindingA, String pmtSsn1, String pmtSsn2, int pmtMarried, String pmtMarkl) {
+
+	public Promoter_VO(String pmtLoginId, String pmtLoginPw, String pmtName, String pmtNickName, String pmtMail,
+			String pmtCellularPhone, String pmtPhone, int pmtAddrFlag, String pmtZipcod, String pmtZipcode,
+			String pmtAddress, String pmtJobType, int pmtFindingId, String pmtFindingA, String pmtSsn1, String pmtSsn2,
+			int pmtMarried, String pmtMarkl) {
 		super();
 		this.pmtLoginId = pmtLoginId;
 		this.pmtLoginPw = pmtLoginPw;
 		this.pmtName = pmtName;
+		this.pmtNickName = pmtNickName;
 		this.pmtMail = pmtMail;
 		this.pmtCellularPhone = pmtCellularPhone;
 		this.pmtPhone = pmtPhone;
@@ -63,6 +68,7 @@ public class Promoter_VO extends Promoter {
 		this.pmtMarried = pmtMarried;
 		this.pmtMarkl = pmtMarkl;
 	}
+
 
 	public String getPmtZipcode() {
 		return pmtZipcode;
@@ -170,14 +176,25 @@ public class Promoter_VO extends Promoter {
 		this.pmtPhone = pmtPhone;
 	}
 
+
+	public String getPmtNickName() {
+		return pmtNickName;
+	}
+
+
+	public void setPmtNickName(String pmtNickName) {
+		this.pmtNickName = pmtNickName;
+	}
+
+
 	@Override
 	public String toString() {
 		return "Promoter_VO [pmtLoginId=" + pmtLoginId + ", pmtLoginPw=" + pmtLoginPw + ", pmtName=" + pmtName
-				+ ", pmtMail=" + pmtMail + ", pmtCellularPhone=" + pmtCellularPhone + ", pmtPhone=" + pmtPhone
-				+ ", pmtAddrFlag=" + pmtAddrFlag + ", pmtZipcod=" + pmtZipcod + ", pmtZipcode=" + pmtZipcode
-				+ ", pmtAddress=" + pmtAddress + ", pmtJobType=" + pmtJobType + ", pmtFindingId=" + pmtFindingId
-				+ ", pmtFindingA=" + pmtFindingA + ", pmtSsn1=" + pmtSsn1 + ", pmtSsn2=" + pmtSsn2 + ", pmtMarried="
-				+ pmtMarried + ", pmtMarkl=" + pmtMarkl + "]";
+				+ ", pmtNickName=" + pmtNickName + ", pmtMail=" + pmtMail + ", pmtCellularPhone=" + pmtCellularPhone
+				+ ", pmtPhone=" + pmtPhone + ", pmtAddrFlag=" + pmtAddrFlag + ", pmtZipcod=" + pmtZipcod
+				+ ", pmtZipcode=" + pmtZipcode + ", pmtAddress=" + pmtAddress + ", pmtJobType=" + pmtJobType
+				+ ", pmtFindingId=" + pmtFindingId + ", pmtFindingA=" + pmtFindingA + ", pmtSsn1=" + pmtSsn1
+				+ ", pmtSsn2=" + pmtSsn2 + ", pmtMarried=" + pmtMarried + ", pmtMarkl=" + pmtMarkl + "]";
 	}
 
 }
