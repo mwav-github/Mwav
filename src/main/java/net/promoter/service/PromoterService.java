@@ -12,7 +12,7 @@ public interface PromoterService {
 
 	public boolean selectOnePmtLoginIdCheck(String PmtLoginId) throws Exception;
 
-	int insertPmtForm(Map<String, Object> map) throws Exception;
+	int insertPmtForm(Promoter_VO promoter) throws Exception;
 
 	int selectOneGetTotalCount()throws Exception;
 

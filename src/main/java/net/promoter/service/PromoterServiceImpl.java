@@ -29,8 +29,8 @@ public class PromoterServiceImpl implements PromoterService {
 	}
 
 	@Override
-	public int insertPmtForm(Map<String, Object> map) throws Exception {
-		return promoterDAO.insertPmtForm(map);
+	public int insertPmtForm(Promoter_VO promoter) throws Exception {
+		return promoterDAO.insertPmtForm(promoter);
 	}
 
 	@Override
