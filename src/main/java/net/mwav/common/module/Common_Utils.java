@@ -811,45 +811,63 @@ public class Common_Utils {
 		return slPageName;
 	}
 
+	/** 
+	 * @method name : setMetaData
+	 * @author : (정) Lewis
+	             (부)
+	 * @since  : 2019. 5. 4.
+	 * @version : v1.0
+	 * @see :
+	 * @description :   
+	 * @history :
+	   ----------------------------------------
+	   * Modification Information(개정이력)
+	   ----------------------------------------
+	           수정일                    수정자                  수정내용
+	   --------       --------    ----------------
+	     2019. 5. 4.  jusun       
+	 * @param : url 
+	 * @param : metaData
+	 * @return : meta
+	 * @throws : IllegalArgumentException 날짜 포맷이 정해진 바와 다를 경우.
+	 *           입력 값이 <code>null</code>인 경우.
+	 <pre>
+	 * {@code : 예제 코드 작성
+	 * xxxx.setMetaData(request.getRequestURI(), (Map<String, Object>) request.getAttribute("boardMetaData"))  = "19810916"
+	 * } 
+	 </pre>
+	*/
 	public static Map<String, Object> setMetaData(String url, Map<String, Object> metaData) {
 
 		Map<String, Object> map = new HashMap<String, Object>();
-		// System.out.println("url은" + url);
 
+		//URL 
 		int first_slash = url.indexOf("/");
-		// System.out.println("first_slash" + first_slash);
 		int second_slash = url.indexOf("/", first_slash + 1);
-		// System.out.println("second_slash" + second_slash);
-
 		int third_slash = url.indexOf("/", second_slash + 1);
 		int fourth_slash = url.indexOf("/", third_slash + 1);
-
 		int last_slash = url.lastIndexOf("/");
 		int lastDot = url.lastIndexOf('.');
+
 		String url_1depth = null;
 		String url_2depth = null;
 		String url_3depth = null;
 		String last_depth = null;
-		// System.out.println("lastDot" + lastDot);
-
+		
 		if (second_slash != -1) {
 			url_1depth = url.substring(first_slash + 1, second_slash);
-			// System.out.println("url_1depth"+url_1depth);
 		}
 		if (third_slash != -1) {
 			url_2depth = url.substring(second_slash + 1, third_slash);
-			// System.out.println("url_2depth"+url_2depth);
 		}
 		if (fourth_slash != -1) {
 			url_3depth = url.substring(third_slash + 1, fourth_slash);
-			// System.out.println("url_3depth"+url_3depth);
 		}
 		if (lastDot != -1) {
 			last_depth = url.substring(last_slash + 1, lastDot);
-			// System.out.println("last_depth"+last_depth);
 		}
 
-		// 두개 모두 지정해줘야 nullpointerexception 안남.
+		// 두개 모두 지정해줘야 NULLPOINTEREXCEPTION 안남.
 		if (url_1depth == null) {
 			url_1depth = "/";
 		}
@@ -857,25 +875,24 @@ public class Common_Utils {
 		if (last_depth == null) {
 			last_depth = "/";
 		}
-		// System.out.println("url_1depth" + url_1depth);
-		// System.out.println("last_depth" + last_depth);
-
-		// sSystem.out.println("123" + (!"/".equals(last_depth)));
 
 		String set_Title = null;
 
-		// 이걸 캐치프레이즈라고 한다.
+		// 캐치프레이즈라고 한다.
 		String main_Title = "Unleash your infinite possibilities with IT Optimization!!";
 		String aervision_Title = "Biometric authentication & computer vision & machine learning";
 
+		
 		String keywords_default = "Digital Marketing, E-Consulting, IT Consulting, WebSite Building, Cloud, AI, MR, VR, ARIoT Platform, Deep Learning, Agile, DevOps, Domain, Web Hosting, Server Hosting, Hosting, HomePage, IT Solution, IT Product, DataBase, Maintenance, EC, Shopping Mall, Web Mail, News Solution, 디지털마케팅, E-컨설팅, IT컨설팅, 웹사이트 제작, 클라우드, 인공지능, 증강현실, 혼합현실, 가상현실, IOT 플랫폼, 딥 러닝, 에자일, 데브옵스, 도메인, 웹호스팅, 서버호스팅, 호스팅, 홈페이지, 웹사이트, 솔루션개발, 데이터베이스, 유지보수, 전자상거래, 쇼핑몰, 웹메일, 뉴스솔루션";
 		String keywords = null;
+		
+		//
 		String thumbnail = null;
+		
 		String description = null;
 
 		// 대분류 안에 소분류로 !
 		StringLib stringLib = StringLib.getInstance();
-		System.out.println("test" + stringLib.isEmpty(metaData));
 		if (!(stringLib.isEmpty(metaData))) {
 			main_Title = "[Mwav.net] >> [" + url_1depth + " > " + last_depth + "] - " + (String) metaData.get("title");
 			set_Title = (String) metaData.get("title");
@@ -945,11 +962,8 @@ public class Common_Utils {
 			} else {
 				if (url_1depth.equals("/") && (!"/".equals(last_depth))) {
 					set_Title = "[Mwav.net] >> [" + last_depth + "] - " + main_Title;
-					// System.out.println("열로1");
 				} else if (url_1depth.equals("/") && last_depth.equals("/")) {
 					set_Title = "[Mwav.net] >> " + main_Title;
-					// System.out.println("set_Title"+set_Title);
-					// System.out.println("열로2");
 				} else {
 					// .do 등등 일단은 고객친화적이게 임시 변환
 					set_Title = "[Mwav.net] - " + main_Title;
@@ -960,6 +974,7 @@ public class Common_Utils {
 		log.info("title" + set_Title);
 		log.info("keywords" + keywords);
 		log.info("description" + description);
+		
 		map.put("mainTitle", main_Title);
 		map.put("title", set_Title);
 		map.put("keywords", keywords);
