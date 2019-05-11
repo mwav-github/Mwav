@@ -20,8 +20,8 @@ https://developers.facebook.com/docs/sharing/webmasters/?locale=ko_KR
 <meta name="twitter:card" content="summary" /> 
 <c:choose>
 	<c:when test="${not empty requestScope.metaData}">
-		<meta property="og:image" content="${requestScope.meta_image }" />
-		<meta name="twitter:image" content="${requestScope.meta_image }" />
+		<meta property="og:image" content="${requestScope.metaData.thumbnail}" />
+		<meta name="twitter:image" content="${requestScope.metaData.thumbnail }" />
 		<c:if test="${requestScope.metaData.title ne null}">
 			<meta property="og:title" content="${requestScope.metaData.title }" />
 			<%-- 트위터 카드에 나타날 웹 사이트의 제목 --%>
@@ -72,3 +72,24 @@ https://developers.facebook.com/docs/sharing/webmasters/?locale=ko_KR
 <%-- 트위터 카드에 배포자 트위터아이디 --%>
 <%--페이스북 카카오톡 구글 플러스 추적(스크랩가능여부) : https://developers.facebook.com/tools/debug/  --%>
 
+<c:choose>
+	<c:when test="${requestScope.metaData.keywords eq null }">
+		<meta id="metaKeywords" name="keywords"
+			content="Digital Marketing, E-Consulting, IT Consulting, WebSite Building, Cloud, AI, MR, VR, AR, IoT Platform, Deep Learning, Agile, DevOps, Domain, Web Hosting, Server Hosting, Hosting, HomePage, IT Solution, IT Product, DataBase, Maintenance, EC, Shopping Mall, Web Mail, News Solution, 디지털마케팅, E-컨설팅, IT컨설팅, 웹사이트 제작, 클라우드, 인공지능, 증강현실, 혼합현실, 가상현실, IOT 플랫폼, 딥 러닝, 에자일, 데브옵스, 도메인, 웹호스팅, 서버호스팅, 호스팅, 홈페이지, 웹사이트, 솔루션개발, 데이터베이스, 유지보수, 전자상거래, 쇼핑몰, 웹메일, 뉴스솔루션" />
+	</c:when>
+	<c:otherwise>
+		<meta id="metaKeywords" name="keywords"
+			content="${requestScope.metaData.keywords }" />
+	</c:otherwise>
+</c:choose>
+<meta id="metaDescription" name="description"
+	content="This is the website for Mwav.net. We are an IT development company possessing total E-Commerce platform based on the fancy technologies. You can contact at https://www.mwav.net/CustomerService/QnA/QnA.mwav?mode=qaForm if you have a question or an inquiry on the site." />
+<meta name="Owner" content="Mwav.net" />
+<meta name="Author" content="Zeus, Peter J." />
+<meta name="copyright" content="All contents are copyright by Mwav.net" />
+<meta name="distribution" content="global" />
+<link rel="icon" href="/Images/CompanyLogos/CompanyLogo.ico" />
+<title><c:choose>
+		<c:when test="${metaData.title eq null }">[Mwav.net] >> Unleash your infinite possibilities with IT Optimization!!</c:when>
+		<c:otherwise>${metaData.mainTitle }</c:otherwise>
+	</c:choose></title>
