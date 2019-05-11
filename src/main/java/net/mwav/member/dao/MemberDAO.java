@@ -27,9 +27,13 @@ public class MemberDAO extends AbstractDAO {
 	 * ========================================등록================================
 	 * ========
 	 */
-	public void insertMbrForm(Map<String, Object> map) throws Exception {
-		insert("member.insertMbrForm", map);
-		insert("member.insertMemberValue_tbl", map);
+	public int insertMbrForm(Map<String, Object> map) throws Exception {
+		return (int) insert("member.insertMbrForm", map);
+		
+	}
+	
+	public int insertMemberValue_tbl(Map<String, Object> map) throws Exception {
+		return (int) insert("member.insertMemberValue_tbl", map);
 	}
 
 	/*

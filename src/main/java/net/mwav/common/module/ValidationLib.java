@@ -2,179 +2,315 @@ package net.mwav.common.module;
 
 import java.util.regex.Pattern;
 
-import org.springframework.stereotype.Component;
-
 /**
  * 
- * 포맷 및 유효성체크 에 대한 Util 클래스 
- * @author Mwav 김주성
- * @since 2017.08.24
- * @version 1.0
+ * @class name : ValidationLib.java
+ * @description : Utility Class for validation check.
+ * 				  It is a Singleton Class so use getInstance() method to get a reference.
+ * 				  Implemented by Regular Expression so this Class depends on java.utils.regex.Pattern.
+ * @author : (정) 남동희
+             (부)
+ * @since : 2019. 4. 19.
+ * @version : v1.2
  * @see
- *
- *
- * <pre>
- * << 개정이력(Modification Information) >>
- *
- *   수정일      수정자           수정내용
- *  -------    --------    ---------------------------
- *   2017.08.24  김주성          최초 생성
- *   2019.02.25	  남동희	   유효성 검증에 필요한 기본 메서드 추가
- *
- * </pre>
+ * @history :
+   ----------------------------------------
+ * Modification Information(개정이력)
+   ----------------------------------------
+     수정일              수정자              수정내용
+   --------    --------    ----------------
+ * 2017.08.24     김주성          	최초 생성
+ * 2019.02.25     남동희	   	유효성 검증에 필요한 기본 메서드 추가
+ * 2019.04.19     남동희		isId, isPassword 삭제 및 메서드 분리			
  */
-@Component
 public class ValidationLib {
-	public enum VALID_STATUS {
-		INVALID_LENGTH, INVALID_INPUT, INVALID_FORMAT, ERROR, VALID
+	private ValidationLib() {}
+
+	private static class ValidationHolder {
+		private static final ValidationLib validationLib = new ValidationLib();
+	}
+	
+	/**
+	 * 
+	 * @method name : getInstance
+	 * @author : (정) 남동희
+	             (부)
+	 * @since  : 2019. 4. 19.
+	 * @version : v1.0
+	 * @see :
+	 * @description : Instance method of ValidationLib Class
+	 * @history :
+	   ----------------------------------------
+	   * Modification Information(개정이력)
+	   ----------------------------------------
+	     수정일     		수정자        	수정내용
+	   --------    --------    ----------------
+	   2019. 4. 19. 남동희		최초 생성     
+	 * @param :
+	 * @return : ValidationLib
+	 * @throws : 
+	 <pre>
+	 * {@code : 
+	 * ValidationLib validation = ValidationLib.getInstance();
+	 * } 
+	 </pre>
+	 */
+	public static ValidationLib getInstance() {
+		return ValidationHolder.validationLib;
 	}
 
 	/**
-	@method name : isLength @author : 남동희
-	@since : 2019. 2. 25. @version : v1.0
-	@Description : 문자열의 길이가 최소값 이상인지 검사
-	@history :
-	
-	DATE AUTHOR DESCRIPTION
-	2019. 2. 25. 남동희 최초 작성
-	@param : input - 길이 검사 대상 문자열 <br>
-			 min - 길이 최소값
-	@return : 대상 문자열의 길이가 최소값 이상인지 여부
-	*/
+	 * 
+	 * @method name : isLength
+	 * @author : (정) 남동희
+	             (부)
+	 * @since  : 2019. 2. 25.
+	 * @version : v1.1
+	 * @see :
+	 * @description : Returns true if length(string) >=  minimum length.
+	 * @history :
+	   ----------------------------------------
+	   * Modification Information(개정이력)
+	   ----------------------------------------
+	     수정일             수정자              수정내용
+	   --------    --------    ----------------
+	   2019. 2. 25. 남동희     	    최초 생성
+	 * @param : CharSequence input - input String <br>
+	 * 			int min - minimum length
+	 * @return : boolean
+	 * @throws : throws ArithmeticException if minimun length <= 0 
+	 <pre>
+	 * {@code : example
+	 * validation.isLength("1234",3) returns true
+	 * validation.isLength("1234",5) returns false
+	 * } 
+	 </pre>
+	 */
 	public boolean isLength(CharSequence input, int min) {
 		if (min < 0)
 			throw new ArithmeticException("Must be greater or equal than zero. min : " + min);
-		if (input.length() >= min)
-			return true;
-		return false;
+		return input.length() >= min;
 	}
 
-	/** 
-	@method name : isLength @author : 남동희
-	@since : 2019. 2. 25. @version : v1.0
-	@Description : 문자열의 길이가 기준값 이상(이하)인지 검사
-	@history :
-	
-	DATE AUTHOR DESCRIPTION
-	2019. 2. 25. 남동희 최초 작성
-	@param : input - 길이 검사 대상 문자열 <br>
-			 boundary - 길이 기준값 <br>
-			 flag - true : 기준값 이상인지 검사/ false : 기준값 이하인지 검사
-	@return : 대상 문자열의 길이가 기준값 이상(이하)인지 여부
-	*/
-	public boolean isLength(CharSequence input, int boundary, boolean flag) {
-		if (boundary < 0)
-			throw new ArithmeticException("Must be greater or equal than zero. boundary : " + boundary);
-		if (flag)
-			return isLength(input, boundary);
-		else
-			return isLength(input, 0, boundary);
+	/**
+	 * 
+	 * @method name : isLength
+	 * @author : (정) 남동희
+	             (부)
+	 * @since  : 2019. 2. 25.
+	 * @version : v1.1
+	 * @see : ValidationLib.isLength(String, int)
+	 * 		  ValidationLib.isLength(String, int, int)
+	 * @description : Compares legnth of input String according to mode. <br>
+	 * 				  When mode is true, returns true if length(string) '>=' criteria length. <br>
+	 * 				  Otherwise, returns true if length(string) '<=' criteria length. 
+	 * @history :
+	   ----------------------------------------
+	   * Modification Information(개정이력)
+	   ----------------------------------------
+	     수정일     		수정자       	 수정내용
+	   --------    --------    ----------------
+	   2019. 2. 25. 남동희		최초 생성     
+	 * @param : CharSequence input - input String <br>
+	 * 			int criteria - criteria length <br>
+	 * 			boolean mode - comparison mode
+	 * @return : boolean
+	 * @throws : throws ArithmeticException if boundary <= 0
+	 <pre>
+	 * {@code : 
+	 * validation.isLength("1234", 2, true) returns true
+	 * validation.isLength("1234", 5, false) returns true
+	 * } 
+	 </pre>
+	 */
+	public boolean isLength(CharSequence input, int criteria, boolean mode) {
+		if (criteria < 0)
+			throw new ArithmeticException("Must be greater or equal than zero. criteria : " + criteria);
+		return mode ? isLength(input, criteria) : isLength(input, 0, criteria);
 	}
 
-	/** 
-	@method name : isLength @author : 남동희
-	@since : 2019. 2. 25. @version : v1.0
-	@Description : 문자열의 길이가 최소값과 최대값 사이에 있는지 검사
-	@history :
-	
-	DATE AUTHOR DESCRIPTION
-	2019. 2. 25. 남동희 최초 작성
-	@param : input - 길이 검사 대상 문자열 <br>
-			 min - 길이 최소값<br>
-			 max - 길이 최대값
-	@return : 대상 문자열의 길이가 최소값과 최대값 영역에 포함되는지 여부
-	*/
+	/**
+	 * 
+	 * @method name : isLength
+	 * @author : (정) 남동희
+	             (부)
+	 * @since  : 2019. 2. 25.
+	 * @version : v1.1
+	 * @see :
+	 * @description : Returns true if length(String) is in interval.
+	 * @history :
+	   ----------------------------------------
+	   * Modification Information(개정이력)
+	   ----------------------------------------
+	    수정일     		수정자        	수정내용
+	   --------    --------    ----------------
+	   2019. 2. 25.  남동희		최초 생성     
+	 * @param : CharSequence input - input String <br>
+	 * 			int min - minimum length of interval <br>
+	 * 			int max - maximum length of interval
+	 * @return : boolean
+	 * @throws : throws ArithmeticException if min, max < 0 or min > max
+	 <pre>
+	 * {@code : 
+	 * validation.isLength("1234", 1, 3) returns true
+	 * Especially validation.isLength('1234', 0, 2) = validation('1234', 2, false)
+	 * } 
+	 </pre>
+	 */
 	public boolean isLength(CharSequence input, int min, int max) {
 		if (min < 0 || max < 0)
 			throw new ArithmeticException("Must be greater or equal than zero. min : " + min + ", max : " + max);
 		else if (max < min)
 			throw new ArithmeticException("Max must be greater or equal than min. min : " + min + ", max : " + max);
-		if (input.length() >= min && input.length() <= max)
-			return true;
-		return false;
+		return input.length() >= min && input.length() <= max;
 	}
 
-	/** 
-	@method name : matches @author : 남동희
-	@since : 2019. 2. 26. @version : v1.0
-	@Description : 문자열이 대상과 일치하는지 검사
-	@history :
-	
-	DATE AUTHOR DESCRIPTION
-	2019. 2. 26. 남동희 최초 작성
-	@param : CharSequence input - 검사할 문자열 <br>
-			 CharSequence regex - 대상 정규표현식 문자열
-	@return : 문자열이 대상과 일치하는지 여부
-	*/
+	/**
+	 * 
+	 * @method name : matches
+	 * @author : (정) 남동희
+	             (부)
+	 * @since  : 2019. 2. 25.
+	 * @version : v1.1
+	 * @see : java.util.regex.Pattern.matches()
+	 * @description : Returns true if String matches with Regular expression
+	 * @history :
+	   ----------------------------------------
+	   * Modification Information(개정이력)
+	   ----------------------------------------
+	     수정일     		수정자        	수정내용
+	   --------    --------    ----------------
+	   2019. 2. 25.  남동희		최초 생성     
+	 * @param : CharSequence input - input String <br>
+	 * 			String regex - Regular expression
+	 * @return : boolean
+	 * @throws : 
+	 <pre>
+	 * {@code 
+	 * validation.matches("1234", "\\d*") returns true
+	 * } 
+	 </pre>
+	 */
 	public boolean matches(CharSequence input, String regex) {
 		return Pattern.matches(regex, input);
 	}
 
-	/** 
-	@method name : contains @author : 남동희
-	@since : 2019. 2. 25. @version : v1.0
-	@Description : 문자열이 대상을 포함하는지 검사
-	@history : 
-	
-	DATE AUTHOR DESCRIPTION
-	2019. 2. 25. 남동희 최초 작성
-	@param : CharSequence input - 검사할 문자열 <br>
-			 CharSequence regex - 대상 정규표현식 문자열
-	@return : 문자열이 대상을 포함하는지 여부
-	*/
+	/**
+	 * 
+	 * @method name : contains
+	 * @author : (정) 남동희
+	             (부)
+	 * @since  : 2019. 2. 25.
+	 * @version : v1.1
+	 * @see : java.util.regex.Pattern.compile()
+	 * 		  java.util.regex.Matcher.find()
+	 * @description : Returns true if String contains Pattern of Regular expression.
+	 * @history :
+	   ----------------------------------------
+	   * Modification Information(개정이력)
+	   ----------------------------------------
+	   수정일     수정자        수정내용
+	   --------    --------    ----------------
+	   2019. 4. 20.     78371     
+	 * @param : CharSequence input - input String <br>
+	 * 			String regex - Regular expression
+	 * @return : boolean
+	 * @throws : 
+	 <pre>
+	 * {@code : 
+	 * validationLib.contains("1234", "\\d") returns true
+	 * } 
+	 </pre>
+	 */
 	public boolean contains(CharSequence input, CharSequence regex) {
 		return Pattern.compile(regex.toString()).matcher(input).find();
 	}
 
-	/** 
-	@method name : hasAlpha @author : 남동희
-	@since : 2019. 2. 26. @version : v1.0
-	@Description : 문자열이 영어를 포함하는지 검사
-	@history :
-	
-	DATE AUTHOR DESCRIPTION
-	2019. 2. 26. 남동희 최초 작성
-	@param : CharSequence input - 검사 대상 문자열
-	@return : 문자열이 영어를 포함하는지 여부
-	*/
+	/**
+	 * 
+	 * @method name : hasAlpha
+	 * @author : (정) 남동희
+	             (부)
+	 * @since  : 2019. 2. 25.
+	 * @version : v1.1
+	 * @see : ValidationLib.contains(string, regexp)
+	 * @description : Returns true if String contains Alphabet.
+	 * @history :
+	   ----------------------------------------
+	   * Modification Information(개정이력)
+	   ----------------------------------------
+	     수정일    		 수정자       	 수정내용
+	   --------    --------    ----------------
+	   2019. 2. 25.  남동희		최초 생성     
+	 * @param : CharSequence input - input String
+	 * @return : boolean
+	 * @throws : 
+	 <pre>
+	 * {@code :
+	 *  ValidationLib.hasAlpha("a1234") returns true
+	 * } 
+	 </pre>
+	 */
 	public boolean hasAlpha(CharSequence input) {
-		if (contains(input, "[a-zA-Z]"))
-			return true;
-		return false;
+		return contains(input, "[a-zA-Z]");
 	}
 
-	/** 
-	@method name : hasNumber @author : 남동희
-	@since : 2019. 2. 26. @version : v1.0
-	@Description : 문자열이 숫자를 포함하는지 검사
-	@history :
-	
-	DATE AUTHOR DESCRIPTION
-	2019. 2. 26. 남동희 최초 작성
-	@param : CharSequence input - 검사 대상 문자열
-	@return : 문자열이 숫자를 포함하는지 여부
-	*/
+	/**
+	 * 
+	 * @method name : hasNumber
+	 * @author : (정) 남동희
+	             (부)
+	 * @since  : 2019. 2. 25.
+	 * @version : v1.1
+	 * @see : ValidationLib.contains(string, regexp)
+	 * @description : Returns true if String contatins number.
+	 * @history :
+	   ----------------------------------------
+	   * Modification Information(개정이력)
+	   ----------------------------------------
+	   	수정일     		수정자        	수정내용
+	   --------    --------    ----------------
+	   2019. 2. 25.  남동희		최초 생성     
+	 * @param : CharSequence input - input String
+	 * @return : boolean
+	 * @throws : 
+	 <pre>
+	 * {@code : 예제 코드 작성
+	 * ValidationLib.hasNumber("a!12") returns true
+	 * } 
+	 </pre>
+	 */
 	public boolean hasNumber(CharSequence input) {
-		if (contains(input, "[0-9]"))
-			return true;
-		return false;
+		return contains(input, "[0-9]");
 	}
 
-	/** 
-	@method name : hasSymbols @author : 남동희
-	@since : 2019. 2. 26. @version : v1.0
-	@Description : 문자열이 특수문자를 포함하는지 검사
-	@history :
-	
-	DATE AUTHOR DESCRIPTION
-	2019. 2. 26. 남동희 최초 작성
-	@param : CharSequence input - 검사 대상 문자열
-	@return : 문자열이 특수문자를 포함하는지 여부
-	*/
+	/**
+	 * 
+	 * @method name : hasSymbols
+	 * @author : (정) 남동희
+	             (부)
+	 * @since  : 2019. 2. 25.
+	 * @version : v1.1
+	 * @see : ValidationLib.contains(string, regexp)
+	 * @description : Returns true if String contains special character.
+	 * @history :
+	   ----------------------------------------
+	   * Modification Information(개정이력)
+	   ----------------------------------------
+	   	수정일     		수정자        	수정내용
+	   --------    --------    ----------------
+	   2019. 2. 25.  남동희		최초 생성     
+	 * @param : CharSequence input - input String
+	 * @return : boolean
+	 * @throws : 
+	 <pre>
+	 * {@code : 예제 코드 작성
+	 * ValidationLib.hasSymbols("!12a") returns true
+	 * } 
+	 </pre>
+	 */
 	public boolean hasSymbols(CharSequence input) {
-		if (contains(input, "[\\{\\}\\[\\]\\/?.,;:|\\)*~`!^\\-_+<>@\\#$%&\\\\\\=\\(\\'\\\"]"))
-			return true;
-		return false;
+		return contains(input, "[\\{\\}\\[\\]\\/?.,;:|\\)*~`!^\\-_+<>@\\#$%&\\\\\\=\\(\\'\\\"]");
 	}
 
 	/**
@@ -188,10 +324,33 @@ public class ValidationLib {
 	@param : CharSequence input - 검사 대상 문자열
 	@return : 문자열이 공백을 포함하는지 여부
 	*/
+	/**
+	 * 
+	 * @method name : hasBlank
+	 * @author : (정) 남동희
+	             (부)
+	 * @since  : 2019. 2. 25.
+	 * @version : v1.1
+	 * @see : ValidationLib.contains(String, regexp)
+	 * @description : Returns true if String contains all kinds of blank(e.g Enter, tab, space)
+	 * @history :
+	   ----------------------------------------
+	   * Modification Information(개정이력)
+	   ----------------------------------------
+	   	수정일     		수정자        	수정내용
+	   --------    --------    ----------------
+	   2019. 2. 25. 남동희		최초 생성     
+	 * @param : CharSequence input - input String
+	 * @return : boolean
+	 * @throws : 
+	 <pre>
+	 * {@code : 
+	 * ValidationLib.hasBlank("1 2") returns true
+	 * } 
+	 </pre>
+	 */
 	public boolean hasBlank(CharSequence input) {
-		if (contains(input, "\\s"))
-			return true;
-		return false;
+		return contains(input, "\\s");
 	}
 
 	/**
@@ -205,253 +364,205 @@ public class ValidationLib {
 	@param : CharSequence input - 검사 대상 문자열
 	@return : 문자열이 한글인지 여부
 	*/
+	/**
+	 * 
+	 * @method name : isKor
+	 * @author : (정) 남동희
+	             (부)
+	 * @since  : 2019. 2. 25.
+	 * @version : v1.1
+	 * @see : ValidationLib.matches(String, regexp)
+	 * @description : Returns true if String matches with Korean.
+	 * 				  Retruns FALSE if String contains SINGLE Korean Character(e.g ㄱ,ㄷ).
+	 * @history :
+	   ----------------------------------------
+	   * Modification Information(개정이력)
+	   ----------------------------------------
+	   	수정일     		수정자        	수정내용
+	   --------    --------    ----------------
+	   2019. 2. 25.  남동희		최초 생성     
+	 * @param : CharSequence input - input String
+	 * @return : boolean
+	 * @throws : 
+	 <pre>
+	 * {@code :
+	 * ValidationLib.isKor("가나다") returns true
+	 * ValidationLib.isKor("ㄱㄴㄷ") returns FALSE
+	 * } 
+	 </pre>
+	 */
 	public boolean isKor(CharSequence input) {
-		if (matches(input, "[가-힣]*"))
-			return true;
-		return false;
+		return matches(input, "[가-힣]*");
 	}
-
+	
 	/**
-	@method name : isId @author : 남동희
-	@since : 2019. 3. 4. @version : v1.0
-	@Description : 문자열이 유효한 아이디 형식인지 mwav의 아이디 정책에 의거하여 검사
-	@history :
-	
-	DATE AUTHOR DESCRIPTION
-	2019. 3. 4. 남동희 최초 작성
-	@param : CharSequence input - 아이디 문자열 <br>
-		     int min - 아이디 최소 길이 <br>
-		     int max - 아이디 최대 길이 <br>
-	@return : Enum VALID_STATUS <br>
-			  INVALID_LENGTH - 아이디 길이가 최소값과 최대값 영역에 포함되지 않는 경우 <br>
-			  INVALID_INPUT - 아이디에  숫자, 영어, -, ., - 의외에 문자가 포함된 경우 <br>
-			  INVALID_FORMAT - 아이디의 첫 글자가 영어가 아닌 경우<br>
-			  VALID_INPUT - 유효한 아이디인 경우
-	*/
-	public Enum<VALID_STATUS> isId(CharSequence input, int min, int max) {
-		if (min < 0 || max < 0)
-			throw new ArithmeticException("Must be greater or equal than zero. min : " + min + ", max : " + max);
-		else if (max < min)
-			throw new ArithmeticException("Max must be greater or equal than min. min : " + min + ", max : " + max);
-
-		if (!isLength(input, min, max))
-			return VALID_STATUS.INVALID_LENGTH;
-		else if (!matches(input, "[\\w_\\.\\-]*"))
-			return VALID_STATUS.INVALID_INPUT;
-		else if (!matches(input, "^[a-zA-Z][\\w_\\.\\-]*"))
-			return VALID_STATUS.INVALID_FORMAT;
-
-		return VALID_STATUS.VALID;
+	 * 
+	 * @method name : isKorName
+	 * @author : (정) 남동희
+	             (부)
+	 * @since  : 2019. 4. 20.
+	 * @version : v1.1
+	 * @see : ValidationLib.isKor(String)
+	 * @description : Equals to isKor() method.
+	 * @history :
+	   ----------------------------------------
+	   * Modification Information(개정이력)
+	   ----------------------------------------
+	   	수정일     		수정자       	수정내용
+	   --------    --------    ----------------
+	   2019. 4. 20.  남동희		최초 생성     
+	 * @param : CharSequence input - input String
+	 * @return : boolean
+	 * @throws : 
+	 <pre>
+	 * {@code :
+	 * 
+	 * } 
+	 </pre>
+	 */
+	public boolean isKorName(CharSequence input) {
+		return isKor(input);
 	}
-
+	
 	/**
-	@method name : isPassword @author : 남동희
-	@since : 2019. 3. 4. @version : v1.0
-	@Description : 문자열이 유효한 비밀번호 형식인지 mwav의 비밀번호 정책에 의거하여 검사 
-	@history :
-	
-	DATE AUTHOR DESCRIPTION
-	2019. 3. 4. 남동희 최초 작성
-	@param : CharSequence input - 비밀번호 문자열 <br>
-			 int min - 비밀번호 최소 길이 <br>
-			 int max - 비밀번호 최대 길이
-	@return : Enum VALID_STATUS <br>
-			  INVALID_LENGTH - 비밀번호 길이가 최소값과 최대값 영역에 포함되지 않는 경우 <br>
-			  INVALID_FORMAT - 비밀번호가 숫자, 영어, 특수문자로 구성되어있지 않는 경우 <br>
-			  INVALID_INPUT - 숫자,영어,특수문자 외  문자가 포함된 경우<br>
-			  VALID_INPUT - 유효한 비밀번호인 경우
-	*/
-	public Enum<VALID_STATUS> isPassword(CharSequence input, int min, int max) {
-		if (min < 0 || max < 0)
-			throw new ArithmeticException("Must be greater or equal than zero. min : " + min + ", max : " + max);
-		else if (max < min)
-			throw new ArithmeticException("Max must be greater or equal than min. min : " + min + ", max : " + max);
-
-		if (!isLength(input, min, max))
-			return VALID_STATUS.INVALID_LENGTH;
-		else if (!hasAlpha(input) || !hasNumber(input) || !hasSymbols(input))
-			return VALID_STATUS.INVALID_FORMAT;
-		else if (!matches(input, "[\\{\\}\\[\\]\\/?.,;:|\\)*~`!^\\-_+<>@\\#$%&\\\\\\=\\(\\'\\\"0-9a-zA-Z]*"))
-			return VALID_STATUS.INVALID_INPUT;
-		return VALID_STATUS.VALID;
+	 * 
+	 * @method name : isKorName
+	 * @author : (정) 남동희
+	             (부)
+	 * @since  : 2019. 4. 20.
+	 * @version : v1.0
+	 * @see : ValidationLib.isKorName(String)
+	 * @description : Returns true if String firstName and lastName are Korean.
+	 * 				  If one of name String is empty, returns false.
+	 * @history :
+	   ----------------------------------------
+	   * Modification Information(개정이력)
+	   ----------------------------------------
+	   	수정일     		수정자        	수정내용
+	   --------    --------    ----------------
+	   2019. 4. 20.  남동희		최초 생성     
+	 * @param : CharSequence firstName - firstName String
+	 * 			CharSequence lastName - lastName String
+	 * @return : boolean
+	 * @throws : 
+	 <pre>
+	 * {@code : 
+	 * ValidationLib.isKorName("남", "동희") returns true
+	 * } 
+	 </pre>
+	 */
+	public boolean isKorName(CharSequence firstName, CharSequence lastName) {
+		return (firstName.toString().isEmpty() || lastName.toString().isEmpty()) ? false : isKorName(firstName.toString() + lastName.toString());
 	}
-
+	
 	/**
-	@method name : isKorName @author : 남동희
-	@since : 2019. 3. 14. @version : v1.0
-	@Description : 문자열이 내국인 이름 형식과 일치하는지 검사
-	@history :
-	
-	DATE AUTHOR DESCRIPTION
-	2019. 3. 14. 남동희 최초 작성
-	@param : CharSequence input - 한글 이름 문자열
-	@return : Enum VALID_STATUS <br>
-			  INVALID_INPUT - 한글이 아닌 경우
-			  VALID_INPUT - 유효한 한글 이름인 경우
-	*/
-	public Enum<VALID_STATUS> isKorName(CharSequence input) {
-		if (!isKor(input))
-			return VALID_STATUS.INVALID_INPUT;
-		return VALID_STATUS.VALID;
+	 * 
+	 * @method name : isEmail
+	 * @author : (정) 남동희
+	             (부)
+	 * @since  : 2019. 4. 20.
+	 * @version : v1.1
+	 * @see : ValidationLib.matches(String, regexp)
+	 * @description : Returns true if String matches with email format described below.
+	 * 				  ================================================================
+	 * 				  Most of email address format is "id@domain.com"
+	 * 				  e.g)
+	 * 				  ab_.-@domain.com
+	 * 				  -a1_-@domain.kr
+	 * @history :
+	   ----------------------------------------
+	   * Modification Information(개정이력)
+	   ----------------------------------------
+	   수정일     수정자        수정내용
+	   --------    --------    ----------------
+	   2019. 4. 20.     78371     
+	 * @param : Charsequence input - input String
+	 * @return : boolean
+	 * @throws : 
+	 <pre>
+	 * {@code : 
+	 * ValidationLib.isEmail("id@domain.com") returns true
+	 * } 
+	 </pre>
+	 */
+	public boolean isEmail(CharSequence input) {
+		return matches(input, "^\\w[\\w_\\.\\-]+@[\\w\\-]+\\.[A-Za-z]{2,3}");
 	}
-
+	
 	/**
-	@method name : isKorName @author : 남동희
-	@since : 2019. 3. 5. @version : v1.0
-	@Description : 문자열이 한글 이름 형식과 일치하는지 검사
-	@history : 
-	
-	DATE AUTHOR DESCRIPTION
-	2019. 3. 5. 남동희 최초 작성
-	@param : CharSequence firstName - 한글 이름 문자열<br> 
-			 CharSequence lastName - 한글 성 문자열
-	@return : Enum VALID_STATUS <br>
-			  INVALID_LENGTH - firstName 혹은 lastName이 null인 경우 <br>
-			  INVALID_INPUT - 한글이 아닌 경우
-			  VALID_INPUT - 유효한 한글 이름인 경우
-	*/
-	public Enum<VALID_STATUS> isKorName(CharSequence firstName, CharSequence lastName) {
-		if (firstName.toString().isEmpty() || lastName.toString().isEmpty())
-			return VALID_STATUS.INVALID_LENGTH;
-		return isKorName(firstName.toString() + lastName.toString());
+	 * 
+	 * @method name : isKorTelephone
+	 * @author : (정) 남동희
+	             (부)
+	 * @since  : 2019. 4. 20.
+	 * @version : v1.1
+	 * @see : ValidationLib.matches()
+	 * @description : Returns true if String matches with Telephone number format of Korea.
+	 * 				  =====================================================================
+	 * 				  02		+  3~4 numbers + 4 numbers
+	 * 				  070
+	 * 				  080
+	 * 				  0505						
+	 * 				  031-033
+	 * 				  041-043 
+	 * 				  061-063
+	 * 				  051-055
+	 * 				  
+	 * @history :
+	   ----------------------------------------
+	   * Modification Information(개정이력)
+	   ----------------------------------------
+	     수정일     		수정자        	수정내용
+	   --------    --------    ----------------
+	   2019. 4. 20.   남동희		최초 생성    
+	 * @param : CharSequence input - input String
+	 * @return : boolean
+	 * @throws : 
+	 <pre>
+	 * {@code : 
+	 * ValidationLib.isKorTelephone("0531234567") returns true
+	 * ValidationLib.isKorTelephone("053-123-4567") also returns true
+	 * ValidationLib.isKorTelephone("053-1234567") returns false
+	 * } 
+	 </pre>
+	 */
+	public boolean isKorTelephone(CharSequence input) {
+		if (input.toString().contains("-"))
+			return matches(input, "^((02)|(070)|(080)|(0505)|((03)|(04)|(06))[1-3]|(05)[1-5])-[\\d]{3,4}-[\\d]{4}");
+		else
+			return matches(input, "^((02)|(070)|(080)|(0505)|((03)|(04)|(06))[1-3]|(05)[1-5])[\\d]{7,8}");
 	}
-
+	
 	/**
-	@method name : isName @author : 남동희
-	@since : 2019. 3. 5. @version : v1.0
-	@Description : 문자열이 이름 형식과 일치하는지 검사 <br>
-	 			       내국인, 외국인의 이름 형식 및 SNS 가입 시 얻게되는 이름 DATA까지 포괄적으로 검증할 수 있는 메서드(개발 중)<br> 
-	@history : 현재는 NULL 체크만 수행
-	
-	DATE AUTHOR DESCRIPTION
-	2019. 3. 5. 남동희 최초 작성
-	@param : CharSequence firstName - 이름 문자열 <br> 
-			 CharSequence lastName - 성 문자열
-	@return : Enum VALID_STATUS <br>
-			  INVALID_LENGTH - firstName 혹은 lastName이 null인 경우
-			  VALID - firstName과 lastName이 not null인 경우
-	*/
-	public Enum<VALID_STATUS> isName(CharSequence firstName, CharSequence lastName) {
-		if (firstName.toString().isEmpty() || lastName.toString().isEmpty())
-			return VALID_STATUS.INVALID_LENGTH;
-		return VALID_STATUS.VALID;
-	}
-
-	/** 
-	@method name : isEmail @author : 남동희
-	@since : 2019. 2. 26. @version : v1.0
-	@Description : 문자열이 이메일 형식과 일치하는지 검사
-	@history :
-	
-	DATE AUTHOR DESCRIPTION
-	2019. 2. 26. 남동희 최초 작성
-	@param : CharSequence input - 이메일 문자열
-	@return : Enum VALID_STATUS <br>
-			  INVALID_INPUT - 문자열에 숫자, -, ., _ 를 제외한 문자가 포함된 경우 <br>
-			  INVALID_FORMAT - id@domain 형식과 일치하지 않는 경우 <br>
-			  VALID - 유효한 이메일인 경우
-	*/
-	public Enum<VALID_STATUS> isEmail(CharSequence input) {
-		String[] email = input.toString().split("@");
-
-		if (email.length != 2)
-			return VALID_STATUS.INVALID_FORMAT;
-
-		if (!matches(email[0], "[\\w_\\.\\-]*") || !matches(email[1], "[\\w\\-\\.]*"))
-			return VALID_STATUS.INVALID_INPUT;
-
-		if (!matches(input, "^\\w[\\w_\\.\\-]+@[\\w\\-]+\\.[A-Za-z]{2,3}"))
-			return VALID_STATUS.INVALID_FORMAT;
-
-		return VALID_STATUS.VALID;
-	}
-
-	/**
-	@method name : isTelephone @author : 남동희
-	@since : 2019. 2. 26. @version : v1.0
-	@Description : 문자열이 국내 전화번호(무선) 형식과 일치하는지 검사
-	@history :
-	
-	DATE AUTHOR DESCRIPTION
-	2019. 2. 26. 남동희 최초 작성
-	@param : CharSequence input - 전화번호 문자열
-	@return : Enum VALID_STATUS <br>
-			  INVALID_INPUT - 문자열에 숫자, - 를 제외한 문자가 포함된 경우 <br>
-			  INVALID_LENGTH - 문자열의 길이가 9~11자 사이가 아닌 경우 <br>
-			  INVALID_FORMAT - 전화번호 형식이 아닌 경우 <br>
-			  VALID - 유효한 휴대전화 번호인 경우
-	*/
-	public Enum<VALID_STATUS> isTelephone(CharSequence input) {
-		// 1. 숫자와 - 만 포함하는지 검사
-		if (!matches(input, "[\\d-]*"))
-			return VALID_STATUS.INVALID_INPUT;
-		// 2. 길이 검사
-		else if (!isLength(input.toString().replaceAll("-", ""), 9, 11))
-			return VALID_STATUS.INVALID_LENGTH;
-
-		// 3. 형식 검사
-		// -이 있을 때 형식 검사 및 국번 검사
-		if (contains(input, "-")) {
-			// 형식 검사
-			if (!matches(input, "[\\d]{2,4}-[\\d]{3,4}-[\\d]{4}"))
-				return VALID_STATUS.INVALID_FORMAT;
-
-			// 국번 검사
-			String inputCode = input.toString().substring(0, input.toString().indexOf("-"));
-			String code = "(02)|(070)|(080)|(0505)|((03)|(04)|(06))[1-3]|(05)[1-5]";
-
-			if (!matches(inputCode, code))
-				return VALID_STATUS.INVALID_FORMAT;
-		} else {
-			// -이 없을 때 형식 검사 및 국번 검사
-			String code = "^((02)|(070)|(080)|(0505)|((03)|(04)|(06))[1-3]|(05)[1-5])\\d*";
-			if (!matches(input, code))
-				return VALID_STATUS.INVALID_FORMAT;
-		}
-		return VALID_STATUS.VALID;
-	}
-
-	/**
-	@method name : isCellurar @author : 남동희
-	@since : 2019. 2. 26. @version : v1.0
-	@Description : 문자열이 국내 휴대 전화번호 형식과 일치하는지 검사
-	@history :
-	
-	DATE AUTHOR DESCRIPTION
-	2019. 2. 26. 남동희 최초 작성
-	@param : CharSequence input - 휴대 전화번호 형식의 문자열
-	@return : Enum VALID_STATUS <br>
-			  INVALID_INPUT - 문자열에 숫자, - 를 제외한 문자가 포함된 경우 <br>
-			  INVALID_LENGTH - 문자열의 길이가 10~11자 사이가 아닌 경우 <br>
-			  INVALID_FORMAT - 휴대전화 번호 형식이 아닌 경우 <br>
-			  VALID - 유효한 휴대전화 번호인 경우
-	*/
-	public Enum<VALID_STATUS> isCellurar(CharSequence input) {
-		// 1. 숫자와 - 만 포함하는지 검사
-		if (!matches(input, "[\\d-]*"))
-			return VALID_STATUS.INVALID_INPUT;
-		// 2. 길이 검사
-		else if (!isLength(input.toString().replaceAll("-", ""), 10, 11))
-			return VALID_STATUS.INVALID_LENGTH;
-
-		// 3. 형식 검사
-		// -이 있을 때 형식 검사 및 국번 검사
-		if (contains(input, "-")) {
-			// 형식 검사
-			if (!matches(input, "[\\d]{3}-[\\d]{3,4}-[\\d]{4}"))
-				return VALID_STATUS.INVALID_FORMAT;
-
-			// 국번 검사
-			String inputCode = input.toString().substring(0, input.toString().indexOf("-"));
-			String code = "(010)|(011)|(016)|(017)|(018)|(019)";
-			if (!matches(inputCode, code))
-				return VALID_STATUS.INVALID_FORMAT;
-		} else {
-			// -이 없을 때 형식 검사 및 국번 검사
-			String code = "^((010)|(011)|(016)|(017)|(018)|(019))\\d*";
-			if (!matches(input, code))
-				return VALID_STATUS.INVALID_FORMAT;
-		}
-		return VALID_STATUS.VALID;
+	 * 
+	 * @method name : iskorCellurar
+	 * @author : (정) 남동희
+	             (부)
+	 * @since  : 2019. 4. 20.
+	 * @version : v1.1
+	 * @see : ValidationLib.matches(input, regexp)
+	 * @description : Returns true if String matches with CellPhone number format of Korea.
+	 * @history :
+	   ----------------------------------------
+	   * Modification Information(개정이력)
+	   ----------------------------------------
+	   	수정일     		수정자        	수정내용
+	   --------    --------    ----------------
+	   2019. 4. 20.   남동희		최초 생성     
+	 * @param : CharSequence input
+	 * @return : boolean
+	 * @throws : 
+	 <pre>
+	 * {@code : 
+	 * ValidationLib.isKorCellurar("01012345678") returns true
+	 * ValidationLib.isKorCellurar("010-1234-5678") returns true
+	 * } 
+	 </pre>
+	 */
+	public boolean iskorCellurar(CharSequence input) {
+		if (input.toString().contains("-"))
+			return matches(input, "^((010)|(011)|(016)|(017)|(018)|(019))-[\\d]{3,4}-[\\d]{4}");
+		else
+			return matches(input, "^((010)|(011)|(016)|(017)|(018)|(019))[\\d]{7,8}");
 	}
 }

@@ -10,18 +10,9 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import javax.annotation.Resource;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import net.common.common.CommandMap;
-import net.mwav.common.module.Common_Utils;
-import net.mwav.common.module.EmailSender;
-import net.mwav.common.module.ValidationLib.VALID_STATUS;
-import net.mwav.common.module.VerifyRecaptcha;
-import net.mwav.member.service.MemberService;
-import net.mwav.member.vo.Member_tbl_VO;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,20 +22,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.util.WebUtils;
+
+import net.common.common.CommandMap;
+import net.mwav.common.module.Common_Utils;
+import net.mwav.common.module.EmailSender;
+import net.mwav.common.module.VerifyRecaptcha;
+import net.mwav.member.service.MemberService;
+import net.mwav.member.vo.Member_tbl_VO;
 
 /**
  * 프로세스 1) 비밀번호 찾기 : mbrTempLoginPwUpdate -> mbrTempLoginPwSeek -> //
  */
 @Controller
 public class MemberController {
+
 	Logger log = Logger.getLogger(this.getClass());
 	String mode;
 	HttpServletRequest request;
-	
+
 	@Autowired
 	EmailSender emailSender;
-	
+
 	@Autowired
 	Member_tbl_VO member_tbl_VO;
 
@@ -77,8 +75,7 @@ public class MemberController {
 	 */
 
 	@RequestMapping(value = "/memberDefault.mwav")
-	public ModelAndView defaultMember(CommandMap commandMap,
-			HttpServletRequest request, HttpSession session) throws Exception {
+	public ModelAndView defaultMember(CommandMap commandMap, HttpServletRequest request, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView("/MasterPage_1");
 
 		// String mode = (String) request.getAttribute("mode");
@@ -112,11 +109,9 @@ public class MemberController {
 	public String insertMbrForm(CommandMap commandMap, Model model) throws Exception {
 
 		Map<String, Object> result = memberService.insertMbrForm(commandMap.getMap());
-		
-		if (result.get("status") != VALID_STATUS.VALID) {
-			return "redirect:/MasterPage_1.mwav?mode=SMbrInput";
-		}
-		return "redirect:/MasterPage_1.mwav?mode=SDMbrInput";
+		if (result.get("result").toString().equals("1") || result.get("result").toString().equals("91"))
+			return "redirect:/MasterPage_1.mwav?mode=SDMbrInput";
+		return "redirect:/MasterPage_1.mwav?mode=SMbrInput";
 	}
 
 	/*
@@ -126,15 +121,13 @@ public class MemberController {
 
 	// 2번 MbrView : 수정/삭제가능 (view만사용.)
 	@RequestMapping(value = "/member/mbrView.mwav")
-	public ModelAndView selectMbrView(CommandMap commandMap,
-			HttpServletRequest request) throws Exception {
+	public ModelAndView selectMbrView(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		HttpSession session = request.getSession();
 
 		Member_tbl_VO Member = (Member_tbl_VO) session.getAttribute("member");
 		commandMap.put("member_id", Member.getMember_id());
 		ModelAndView mv = new ModelAndView("/CommonApps/Member/MbrView");
-		Map<String, Object> selectMbrView = memberService
-				.selectMbrView(commandMap.getMap());
+		Map<String, Object> selectMbrView = memberService.selectMbrView(commandMap.getMap());
 
 		if (selectMbrView != null && !selectMbrView.isEmpty()) {
 			System.out.println("view 줄랭");
@@ -158,8 +151,7 @@ public class MemberController {
 	 * 동일하므로 view 이용하면된다. ~! 즉 controller에서만 작업 후 이후 꺼는 view 이용
 	 */
 	@RequestMapping(value = "/member/mbrUpdate.mwav")
-	public ModelAndView updateMbrform(CommandMap commandMap,
-			HttpServletRequest request) throws Exception {
+	public ModelAndView updateMbrform(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/CustomerService/CS-MasterPage");
 
 		mode = "SmbrUpdate";
@@ -169,8 +161,7 @@ public class MemberController {
 		commandMap.put("member_id", Member.getMember_id());
 		// 위의 view랑 동일하게 사용
 
-		Map<String, Object> updateMbrForm = memberService
-				.updateMbrForm(commandMap.getMap());
+		Map<String, Object> updateMbrForm = memberService.updateMbrForm(commandMap.getMap());
 		if (updateMbrForm != null && !updateMbrForm.isEmpty()) {
 			System.out.println("view 줄랭");
 			System.out.println("mode 출력" + mode);
@@ -181,8 +172,7 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/member/mbrUpdatePro.mwav")
-	public ModelAndView updateProMbrform(CommandMap commandMap,
-			HttpServletRequest request) throws Exception {
+	public ModelAndView updateProMbrform(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/CustomerService/CS-MasterPage");
 
 		mode = "SDMyPage";
@@ -223,9 +213,7 @@ public class MemberController {
 	// 4번 추후 패스워드 찾기 순서 mbrTempLoginPwUpdate -> mbrTempLoginPwSeek ->
 	// mbrLoginPwUpdate
 	@RequestMapping(value = "/member/mbrLoginPwUpdate.mwav")
-	public @ResponseBody boolean updateMbrLoginPw(CommandMap commandMap,
-			HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
+	public @ResponseBody boolean updateMbrLoginPw(CommandMap commandMap, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// ModelAndView mv = new ModelAndView("/MasterPage");
 
 		// String cc = (String) commandMap.get("mbrLoginPw");
@@ -238,8 +226,7 @@ public class MemberController {
 
 		System.out.println("출력+" + cc);
 
-		boolean updateMbrLoginPw = memberService.updateMbrLoginPw(commandMap
-				.getMap());
+		boolean updateMbrLoginPw = memberService.updateMbrLoginPw(commandMap.getMap());
 
 		// mv.addObject("updateMbrLoginPw", updateMbrLoginPw); // updatePw
 		// mv.addObject("mode", "SMbrLogin");
@@ -252,17 +239,14 @@ public class MemberController {
 	 * 변경 처리 만약 중간에 창을 닫고 로그인 시도하면 안되므로~!
 	 */
 	@RequestMapping(value = "/member/mbrTempLoginPwUpdate.mwav")
-	public @ResponseBody String updateMbrTempLoginPw(CommandMap commandMap,
-			HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
+	public @ResponseBody String updateMbrTempLoginPw(CommandMap commandMap, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		boolean updateMbrTempLoginPw;
 
 		System.out.println(commandMap.get("mbrLoginId"));
 		System.out.println(commandMap.get("mbrEmail"));
 
-		String mbrLoginPw = memberService.selectOneMbrLoginPWSeek(commandMap
-				.getMap());
+		String mbrLoginPw = memberService.selectOneMbrLoginPWSeek(commandMap.getMap());
 
 		/*
 		 * response.setContentType("text/html;charset=UTF-8");
@@ -279,8 +263,7 @@ public class MemberController {
 			result = "false";
 		} else {
 			// commandMap.put("mbrLoginPw", mbrLoginPw);
-			updateMbrTempLoginPw = memberService
-					.updateMbrTempLoginPw(commandMap.getMap());
+			updateMbrTempLoginPw = memberService.updateMbrTempLoginPw(commandMap.getMap());
 
 			if (updateMbrTempLoginPw == true) {
 				// 찾았다.
@@ -343,13 +326,11 @@ public class MemberController {
 
 				result = "<div class='alert alert-success text-center'><strong>당신의 아이디는 아래 중 하나입니다.</strong><br>";
 				for (int i = 0; i < convertTxt.size(); i++) {
-					result = result + "<br><strong>" + convertTxt.get(i)
-							+ "</strong><br>";
+					result = result + "<br><strong>" + convertTxt.get(i) + "</strong><br>";
 				}
 				result = result + "</div>";
 			} else {
-				result = "<div class='alert alert-success text-center'><strong>당신의 아이디는 "
-						+ convertTxt.get(0) + " 입니다.</strong></div>";
+				result = "<div class='alert alert-success text-center'><strong>당신의 아이디는 " + convertTxt.get(0) + " 입니다.</strong></div>";
 			}
 		}
 		out.println(result);
@@ -359,11 +340,9 @@ public class MemberController {
 
 	// 7번 추후
 	@RequestMapping(value = "/member/mbrTempLoginPwSeek.mwav")
-	public @ResponseBody boolean selectOneMbrTempLoginPwSeek(
-			CommandMap commandMap, HttpServletRequest request) throws Exception {
+	public @ResponseBody boolean selectOneMbrTempLoginPwSeek(CommandMap commandMap, HttpServletRequest request) throws Exception {
 
-		boolean selectOneMbrTempLoginPwSeek = memberService
-				.selectOneMbrTempLoginPwSeek(commandMap.getMap());
+		boolean selectOneMbrTempLoginPwSeek = memberService.selectOneMbrTempLoginPwSeek(commandMap.getMap());
 
 		return selectOneMbrTempLoginPwSeek;
 
@@ -376,8 +355,7 @@ public class MemberController {
 
 	// 4번 추후
 	@RequestMapping(value = "/member/mbrDelete.mwav")
-	public ModelAndView deleteMbrDelete(CommandMap commandMap,
-			HttpServletRequest request) throws Exception {
+	public ModelAndView deleteMbrDelete(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/Index");
 
 		HttpSession session = request.getSession();
@@ -390,8 +368,7 @@ public class MemberController {
 		// System.out.println("mbrLoginId=" + mbrLoginId);
 		// commandMap.put("member_id", member_id);
 		// commandMap.put("mbrLoginId", mbrLoginId);
-		boolean deleteMbrDelete = memberService.deleteMbrDelete(commandMap
-				.getMap());
+		boolean deleteMbrDelete = memberService.deleteMbrDelete(commandMap.getMap());
 
 		mv.addObject("deleteMbrDelete", deleteMbrDelete);
 		mv.addObject("breadcrumb", "MemberShip");
@@ -404,15 +381,12 @@ public class MemberController {
 
 	// 8번 추후
 	@RequestMapping(value = "/PostSeek/zcGunGuSeek.mwav")
-	public @ResponseBody List<String> selectListZcGunGuSeek(
-			HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
+	public @ResponseBody List<String> selectListZcGunGuSeek(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		String zcSiDoName = request.getParameter("zcSiDoName");
 		System.out.println("zcSiDoName" + zcSiDoName);
 
-		List<String> selectListZcGunGuSeek = memberService
-				.selectListZcGunGuSeek(zcSiDoName);
+		List<String> selectListZcGunGuSeek = memberService.selectListZcGunGuSeek(zcSiDoName);
 
 		return selectListZcGunGuSeek;
 	}
@@ -420,9 +394,7 @@ public class MemberController {
 	// consumes를 통해 POST방식으로 넘어온 요청에서 json 형태로 postData를 넘겨줌을 정의
 	// 9번 추후
 	@RequestMapping(value = "/PostSeek/zcAll.mwav")
-	public @ResponseBody List<Map<String, Object>> selectListZcAll(
-			CommandMap commandMap, HttpServletResponse response)
-			throws Exception {
+	public @ResponseBody List<Map<String, Object>> selectListZcAll(CommandMap commandMap, HttpServletResponse response) throws Exception {
 
 		// @RequestParam 어노테이션 : HTTP 요청 파라미터를 메서드의 파라미터로 전달받을 때 사용 그러나
 		// commandMap에는 안되는듯 serial~ 부분이라
@@ -437,8 +409,7 @@ public class MemberController {
 		// user)
 
 		System.out.println("들어옴");
-		Iterator<Entry<String, Object>> iterator = commandMap.getMap()
-				.entrySet().iterator();
+		Iterator<Entry<String, Object>> iterator = commandMap.getMap().entrySet().iterator();
 		Entry<String, Object> entry = null;
 
 		// String post_mode = (String) commandMap.get("post_mode");
@@ -446,10 +417,8 @@ public class MemberController {
 
 		while (iterator.hasNext()) {
 			entry = iterator.next();
-			log.debug("key : " + entry.getKey() + ",\tvalue : "
-					+ entry.getValue());
-			System.out.println("key : " + entry.getKey() + ",\tvalue : "
-					+ entry.getValue());
+			log.debug("key : " + entry.getKey() + ",\tvalue : " + entry.getValue());
+			System.out.println("key : " + entry.getKey() + ",\tvalue : " + entry.getValue());
 		}
 
 		List<Map<String, Object>> selectListZcAll = null;
@@ -486,8 +455,7 @@ public class MemberController {
 
 	// 3번 추후 return 필요없을ㄷ스 고민
 	@RequestMapping(value = "/member/LogOut.mwav")
-	public ModelAndView logout(HttpServletRequest request, HttpSession session,
-			HttpServletResponse response) throws Exception {
+	public ModelAndView logout(HttpServletRequest request, HttpSession session, HttpServletResponse response) throws Exception {
 		ModelAndView mv = new ModelAndView("/Index");
 		Object obj = session.getAttribute("member");
 		if (obj != null) {
@@ -519,9 +487,7 @@ public class MemberController {
 	 */
 
 	@RequestMapping(value = "/member/Login.mwav")
-	public ModelAndView selectLogin(CommandMap commandMap,
-			HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
+	public ModelAndView selectLogin(CommandMap commandMap, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		HttpSession session = request.getSession();
 		// * action-servlet.xml에서 위에 .jsp 설정해줘서 위의 CommonApps 부터 되는거
@@ -531,19 +497,8 @@ public class MemberController {
 		memberLogin = memberService.selectLogin(commandMap.getMap());
 		System.out.println("여기는  멤버로그인 찍기전");
 		if (memberLogin != null)
-			member_tbl_VO = new Member_tbl_VO(
-					(int) memberLogin.get("member_id"),
-					(String) memberLogin.get("mbrLoginId"),
-					(String) memberLogin.get("mbrLoginPw"),
-					(String) memberLogin.get("mbrTempLoginPw"),
-					(String) memberLogin.get("mbrFirstName"),
-					(String) memberLogin.get("mbrMiddleName"),
-					(String) memberLogin.get("mbrLastName"),
-					(String) memberLogin.get("mbrEmail"),
-					(String) memberLogin.get("mbrCellPhone"),
-					(Boolean) memberLogin.get("mbrAddrFlag"),
-					(String) memberLogin.get("mbrZipcode"),
-					(String) memberLogin.get("mbrAddress"));
+			member_tbl_VO = new Member_tbl_VO((int) memberLogin.get("member_id"), (String) memberLogin.get("mbrLoginId"), (String) memberLogin.get("mbrLoginPw"), (String) memberLogin.get("mbrTempLoginPw"), (String) memberLogin.get("mbrFirstName"), (String) memberLogin.get("mbrMiddleName"),
+					(String) memberLogin.get("mbrLastName"), (String) memberLogin.get("mbrEmail"), (String) memberLogin.get("mbrCellPhone"), (Boolean) memberLogin.get("mbrAddrFlag"), (String) memberLogin.get("mbrZipcode"), (String) memberLogin.get("mbrAddress"));
 		System.out.println("여기는  return URL 찍기전");
 		String returnUrl = null;
 		String returnUrl_imsi = null;
@@ -560,8 +515,7 @@ public class MemberController {
 		// g-recaptcha-response POST parameter when the user submits the form on
 		// your site
 		// recaptcha-token 과는 별개이다.
-		String gRecaptchaResponse = request
-				.getParameter("g-recaptcha-response");
+		String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
 		System.out.println("gRecaptchaResponse" + gRecaptchaResponse);
 		boolean valid;
 		// Verify CAPTCHA.
@@ -600,16 +554,12 @@ public class MemberController {
 
 				boolean isAutoLoginChk = true;
 				isAutoLoginChk = cu.isEmpty(commandMap.get("autoLoginChk"));
-				if (isAutoLoginChk == false
-						&& commandMap.get("autoLoginChk").equals("on")) {
+				if (isAutoLoginChk == false && commandMap.get("autoLoginChk").equals("on")) {
 					log.info("자동로그인시도");
-					memberService.updateAutoLogin(
-							(String) commandMap.get("autoLoginChk"), response,
-							member_tbl_VO.getMember_id());
+					memberService.updateAutoLogin((String) commandMap.get("autoLoginChk"), response, member_tbl_VO.getMember_id());
 				}
 				System.out.println("로그인성공");
-			} else if (mbrLoginId != null
-					&& !(b_mbrLoginPw.equals(a_mbrLoginPw))) {
+			} else if (mbrLoginId != null && !(b_mbrLoginPw.equals(a_mbrLoginPw))) {
 				// check 0 비밀번호가 틀렸을 때
 				loginCheck = 2;
 				System.out.println("비밀번호틀림");
@@ -688,9 +638,7 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/member/snsForm.mwav")
-	public ModelAndView insertSnsForm(CommandMap commandMap,
-			HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
+	public ModelAndView insertSnsForm(CommandMap commandMap, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		// signController 로 진행
 		ModelAndView mv = new ModelAndView("/Index");
