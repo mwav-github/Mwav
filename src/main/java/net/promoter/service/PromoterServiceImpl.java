@@ -23,7 +23,7 @@ public class PromoterServiceImpl implements PromoterService {
 	}
 
 	@Override
-	public boolean selectOnePmtLoginIdCheck(String PmtLoginId) throws Exception {
+	public int selectOnePmtLoginIdCheck(String PmtLoginId) throws Exception {
 		// TODO Auto-generated method stub
 		return promoterDAO.selectOnePmtLoginIdCheck(PmtLoginId);
 	}

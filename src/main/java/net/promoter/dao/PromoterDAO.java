@@ -30,14 +30,14 @@ Structure101
 		return (int) selectOne("promoter.selectNextPmtPk");
 	}
 
-	public boolean selectOnePmtLoginIdCheck(String pmtLoginId) {
+	public int selectOnePmtLoginIdCheck(String pmtLoginId) {
 		// TODO Auto-generated method stub
-		boolean check;
+		int check;
 		System.out.println("값이?=" + selectOne("promoter.selectOnePmtLoginIdCheck", pmtLoginId));
 		if (selectOne("promoter.selectOnePmtLoginIdCheck", pmtLoginId) == null) {
-			check = false; // 아이디가 없는 경우
+			check = 0; // 아이디가 없는 경우
 		} else {
-			check = true; // 아이디가 있는 경우
+			check = 1; // 아이디가 있는 경우
 		}
 
 		return check;
@@ -90,7 +90,6 @@ Structure101
 		int promoterid = (int)selectOne("promoter.selectNextPmtPk");	//Promoter_tbl.promoter_id의 가장 max 값을 가져온다.
 		
 		promoter.setPromoter_id(promoterid);
-//		map.put("promoter_id",promoterid);
 		System.out.println(" 최종 : " +  promoter);
 		result = (int) insert("promoter.insertPmtForm", promoter);		//한쪽이 에러가 나는 경우를 대비해 트랜잭션 처리를 해야함.. 근데 처리를 위해선 구조를 크게 바꿔야함 (보류)
 		result = (int) insert("promoter.insertPmtValueForm",promoter);

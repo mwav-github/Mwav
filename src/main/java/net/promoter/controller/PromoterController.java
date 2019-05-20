@@ -126,30 +126,16 @@ public class PromoterController {
 		return mv;
 	}
 
+	//회원가입시 유효성체크 ajax 처리 매핑
+	//이 매핑 Interceptor는 ajax 사용을 위하여 제외 -> action-servlet.xml 
     @RequestMapping(value="/promoter/pmtLoginIdCheck.mwav")
-	public void selectOnePmtIdCheck(HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
-		String pmtLoginId = request.getParameter("LoginId");
-		boolean selectIdCheck = promoterService.selectOnePmtLoginIdCheck(pmtLoginId);
-		response.setContentType("text/html;charset=UTF-8");
-		response.setHeader("Cache-Control", "no-cache");
-		PrintWriter out = response.getWriter();
-		// id 중복 처리
-
-		String result = null;
-		System.out.println("selectIdCheck" + selectIdCheck);
-		if (selectIdCheck == true) {
-			// 응답 메세지 1 : 이미 등록된 ID 입니다.
-			// 이때 pw 규칙 알려주기
-			result = "<div class='alert alert-danger text-left'><strong>이미 등록된 ID 입니다. 재 입력해주세요.<br>"
-					+ "<strong>1. 4 ~ 20 자 사이의 문자길이 <br> 2. 첫 문자는 영어로 시작 <br> 3. 특수문자 사용금지 (제외문자: . _ -) <br> 4. 공백문자 사용금지  <br> 5. 대소문자는 식별이 가능하나 구분 및 구별을 하지 않음</strong></strong></div>";
-		} else {
-			// 응답 메세지 2 : 사용할 수 있는 ID 입니다.
-			result = "<div class='alert alert-success text-left'><strong>사용할 수 있는 ID 입니다.</strong></div>";
-		}
-		out.println(result);
-		// response.getWriter().print(result); 주석풀면 3번 나온다.
-		// response.getWriter().print(result);
+	public void selectOnePmtIdCheck(HttpServletRequest request, HttpServletResponse response,
+			String type, String value) throws Exception {
+    	response.setContentType("text/html;charset=UTF-8");
+    	response.setHeader("Cache-Control", "no-cache");
+		int selectIdCheck = promoterService.selectOnePmtLoginIdCheck(value);
+		
+		response.getWriter().println(selectIdCheck);
 	}
 
 	@RequestMapping(value = "/Promoter/PmtList.mwav")
@@ -203,21 +189,11 @@ public class PromoterController {
 		Promoter_VO promoter,Errors errors) throws Exception {
 		String ViewName = "";
 
-		String pmtCellularPhone_1 = (String) commandMap.get("pmtCellularPhone_1");
-		String pmtCellularPhone_2 = (String) commandMap.get("pmtCellularPhone_2");
-		String pmtCellularPhone_3 = (String) commandMap.get("pmtCellularPhone_3");
-
-		String PmtCellularPhone = pmtCellularPhone_1 + pmtCellularPhone_2 + pmtCellularPhone_3;
-		promoter.setPmtCellularPhone(PmtCellularPhone);
-		
 		String PmtAddress_1 = (String) commandMap.get("pmtAddress_1");
 		String PmtAddress_2 = (String) commandMap.get("pmtAddress_2");
 		String PmtAddress = PmtAddress_1 + PmtAddress_2;
 		promoter.setPmtAddress(PmtAddress);
 		
-//		commandMap.put("pmtPhone", PmtPhone);		// commandMap -> promoter vo로 사용 변경
-//		commandMap.put("pmtAddress", PmtAddress);
-
 		int result = promoterService.insertPmtForm(promoter);
 		
 		ModelAndView mv = new ModelAndView();
@@ -229,9 +205,6 @@ public class PromoterController {
 			ViewName = "/Promoter/PmtForm";						
 		}
 		mv.setViewName(ViewName);
-		
-//		mv.setViewName("redirect:/Promoter/PmtLogin");
-//		rttr.addFlashAttribute("status", "joinSuccess");
 
 		return mv;
 	}

@@ -37,17 +37,17 @@ public class Promoter_VO extends Promoter {
 
 	private String pmtMarkl;
 
+	private String pmtRcmderId;	// 추천인 아이디
 	
 	public Promoter_VO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-
 	public Promoter_VO(String pmtLoginId, String pmtLoginPw, String pmtName, String pmtNickName, String pmtMail,
 			String pmtCellularPhone, String pmtPhone, int pmtAddrFlag, String pmtZipcod, String pmtZipcode,
 			String pmtAddress, String pmtJobType, int pmtFindingId, String pmtFindingA, String pmtSsn1, String pmtSsn2,
-			int pmtMarried, String pmtMarkl) {
+			int pmtMarried, String pmtMarkl, String pmtRcmderId) {
 		super();
 		this.pmtLoginId = pmtLoginId;
 		this.pmtLoginPw = pmtLoginPw;
@@ -67,8 +67,16 @@ public class Promoter_VO extends Promoter {
 		this.pmtSsn2 = pmtSsn2;
 		this.pmtMarried = pmtMarried;
 		this.pmtMarkl = pmtMarkl;
+		this.pmtRcmderId = pmtRcmderId;
 	}
 
+	public String getPmtRcmderId() {
+		return pmtRcmderId;
+	}
+
+	public void setPmtRcmderId(String pmtRcmderId) {
+		this.pmtRcmderId = pmtRcmderId;
+	}
 
 	public String getPmtZipcode() {
 		return pmtZipcode;
@@ -186,7 +194,6 @@ public class Promoter_VO extends Promoter {
 		this.pmtNickName = pmtNickName;
 	}
 
-
 	@Override
 	public String toString() {
 		return "Promoter_VO [pmtLoginId=" + pmtLoginId + ", pmtLoginPw=" + pmtLoginPw + ", pmtName=" + pmtName
@@ -194,7 +201,8 @@ public class Promoter_VO extends Promoter {
 				+ ", pmtPhone=" + pmtPhone + ", pmtAddrFlag=" + pmtAddrFlag + ", pmtZipcod=" + pmtZipcod
 				+ ", pmtZipcode=" + pmtZipcode + ", pmtAddress=" + pmtAddress + ", pmtJobType=" + pmtJobType
 				+ ", pmtFindingId=" + pmtFindingId + ", pmtFindingA=" + pmtFindingA + ", pmtSsn1=" + pmtSsn1
-				+ ", pmtSsn2=" + pmtSsn2 + ", pmtMarried=" + pmtMarried + ", pmtMarkl=" + pmtMarkl + "]";
+				+ ", pmtSsn2=" + pmtSsn2 + ", pmtMarried=" + pmtMarried + ", pmtMarkl=" + pmtMarkl + ", pmtRcmderId="
+				+ pmtRcmderId + "]";
 	}
 
 }
