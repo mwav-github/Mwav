@@ -19,110 +19,142 @@
 	    $('[data-toggle="popover"]').popover(); 
 	});
 	
+	function ajaxIdCheck(type,value){
+		//ajax를 사용하여 해당 아이디 중복 여부 확인
+		// 에이젝스 동기처리 ....
+		var result = false;
+		
+		$.ajax({
+			url:'/promoter/pmtLoginIdCheck.mwav',
+			data:{
+				type:type,
+				value:value
+			},
+			async: false,
+			success:function(data){
+				var reulstData = data;
+				//해당 아이디가 존재하면 1, 없는 아이디면 0
+				if(data <= 0){
+					alert('해당 아이디는 사용하실수 있는 아이디입니다.');
+					result = true;
+				}else{
+					alert('이미 존재하는 아이디입니다.');
+					result = false;
+				}
+			},
+			error:function(err){
+				alert('Error!\n관리자에게 문의하여 주시기 바랍니다.');
+				result = false;
+			}
+		});
+		
+		return result;
+	}
+	
 	//타입별 정규식, 정규식 표현은 멤버 회원가입과 동일
 	function regexCheck(type, value){
-		var result = false;
 		switch(type){
 		case 'pmtLoginId' :
 			//아이디의 경우 정규식 유효성 체크 후, 중복여부 확인
-			result = /[a-zA-Z0-9_-]{4,20}$/g.test(value);
-			if(!result){
-				console.log('유효하지 않은 아이디입니다. \n4~20자 사이의 영문,숫자, -_ 만 사용할 수 있습니다.')
-				result = false;
+			regex = /[a-zA-Z0-9_-]{4,20}$/g.test(value);
+			if(regex){
+				//아이디 중복 검사
+				IdCheckYN = ajaxIdCheck(type,value);
+				return IdCheckYN; 
+			}else{
+				alert('유효하지 않은 아이디입니다. \n4~20자 사이의 영문,숫자, -_ 만 사용할 수 있습니다.')
+				return false;
 			}
-			//ajax를 사용하여 해당 아이디 중복 여부 확인
-			// 에이젝스 비동기처리 ....
-			$.ajax({
-				url:'/promoter/pmtLoginIdCheck.mwav',
-				data:{
-					type:type,
-					value:value
-				},
-				success:function(data){
-					//해당 아이디가 존재하면 1, 없는 아이디면 0
-					if(data == '0'){
-						IdCheckYN = true;
-						alert('해당 아이디는 사용하실수 있는 아이디입니다.');
-					}else{
-						console.log('data2 : '+ data);
-						alert('이미 존재하는 아이디입니다.');
-					}
-				},
-				error:function(err){
-					alert('Error!\n관리자에게 문의하여 주시기 바랍니다.');
-				}
-			});
-			
 			break;
 		
 		case 'pmtLoginPw' : 
-			result = /^(?=.*[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"])(?=.*[0-9])(?=.*[a-zA-Z])[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"0-9a-zA-Z]{8,255}$/g.test(value);
-			if(!result)
-				result = false;
-			else
+			regex = /^(?=.*[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"])(?=.*[0-9])(?=.*[a-zA-Z])[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"0-9a-zA-Z]{8,255}$/g.test(value);
+			console.log('result : '+ regex)
+			if(regex)
 				PwdCheckYN = true;
+			else
+				return false;
 			break;
 			
 		case 'pmtLoginPwChk' : 
 			var pwd = $('input[name=pmtLoginPw]').val();
 			if(pwd != value || pwd.length == 0)
-				result = false;
+				return false;
 			else
 				PwdCheck2YN = true;
 			break;
 			
 		case 'pmtName' : 
-			result = /^[가-힣]+$/g.test(value);
-			if(!result)
-				result = false;
-			else
+			regex = /^[가-힣]+$/g.test(value);
+			if(regex)
 				NameCheckYN = true;
+			else
+				return false;
 			break;
 		
 		case 'pmtCellularPhone' : 
-			result = /^\d{3}-\d{3,4}-\d{4}$/g.test(value);
-			if(!result)
-				result = false;
-			else
+			regex = /^\d{3}-\d{3,4}-\d{4}$/g.test(value);
+			if(regex)
 				PhoneCheckYN = true;
+			else
+				return false;
 			break;
 		
 		case 'pmtMail' : 
-			result = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/g.test(value);
-			if(!result)
-				result = false;
-			else
+			regex = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/g.test(value);
+			if(regex)
 				EmailCheckYN = true;
+			else
+				return false;
 			break;
+			
 		default : alert('Error!\n잘못된 타입입니다.');
 		}
-		return result;	//이상이 없다면 정규식 true
+		
+		return true;	//유효성 체크에 이상이없다면 true
 	}	
 	
 	//각각의 입력란에 대한 유효성 체크를 한다.
 	function validateCheck(type){
 		var value = $('input[name='+ type +']').val();
 		//정규식 유효성 체크
-		if(!regexCheck(type, value)){
-			$('input[name='+ type +']').css("border","solid 3px red");
-			$('#'+ type +'False').css('display','block');	//정규식 설명
-		}else{
+		if(regexCheck(type, value)){
 			$('input[name='+ type +']').css("border","solid 3px greenyellow");
 			$('#'+ type +'False').css('display','none');	//숨김
+		}else{
+			$('input[name='+ type +']').css("border","solid 3px red");
+			$('#'+ type +'False').css('display','block');	//정규식 설명
 		}
 		
-		//console.log('확인 : '+IdCheckYN +', '+PwdCheckYN +', '+ PwdCheck2YN +', ' +NameCheckYN +', '+ PhoneCheckYN +', '+EmailCheckYN);
+	}
+	
+	//모든 값들이 유효하다면 submit
+	function pmtSubmit(){
+		console.log(IdCheckYN + ', ' + PwdCheckYN + ', ' + PwdCheck2YN + ', ' + NameCheckYN + ', ' + PhoneCheckYN + ', ' + EmailCheckYN)
+		if(IdCheckYN && PwdCheckYN && PwdCheck2YN && NameCheckYN && PhoneCheckYN && EmailCheckYN){
+			if(confirm('Promoter 가입을 하시겠습니까?')){
+				$('#joinForm').submit();
+			}
+		}else{
+			alert('부적절한 값이 있습니다.');
+		}
 	}
 </script>
 
 </head>
+
+<style>
+	.input-margin{
+		margin-bottom: 15px;
+	}
+</style>
 
 <div class="col-md-12">
 	<!-- Content Column -->
 	<div class="col-lg-12">
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 				<%-- 1. 회원정보 입력 --%>
-				<form class='form-horizontal' method="post" action="/promoter/PmtForm.mwav">
+				<form id='joinForm' class='form-horizontal' method="post" action="/promoter/PmtForm.mwav">
 					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
 						<div class="panel panel-primary">
@@ -135,15 +167,14 @@
 										<table class="table table-user-information">
 											<tbody>
 												<tr>
-													<td>아이디:</td>
+													<td >아이디:</td>
 													<td>
 														<div class='form-group'>
 															<div class='col-md-8'>
 
-																<input class='form-control' name="pmtLoginId"
-																	id="chkLoginId" type='text' maxlength="15"> 
+																<input class='form-control input-margin' name="pmtLoginId" id="chkLoginId" type='text' maxlength="15"> 
 																	
-																<button type='button' onclick='validateCheck("pmtLoginId");'>아이디 중복 체크</button>
+																<button type='button' class='btn btn-primary' onclick='validateCheck("pmtLoginId");'>아이디 중복 체크</button>
 																
 																<span class="col-md-12" id="idcheckLayer"></span>
 															</div>
@@ -156,9 +187,9 @@
 													<td>
 														<div class='form-group'>
 															<div class='col-md-8'>
-																<input class='form-control' name="pmtLoginPw"
+																<input class='form-control input-margin' name="pmtLoginPw"
 																	id="chkLoginPW" type='password' onfocusout='validateCheck("pmtLoginPw");'>
-																<div id='pmtLoginPwFalse' class='checkFalse' style="display:none; background:red; color:white;">유효하지 않은 비밀번호입니다. <br>8~255자 사이의 영문,숫자,특수문자로 구성되어야 합니다.</div>
+																<div id='pmtLoginPwFalse' class='checkFalse alert alert-danger' style="display:none;">유효하지 않은 비밀번호입니다. <br>8~255자 사이의 영문,숫자,특수문자로 구성되어야 합니다.</div>
 															</div>
 														</div>
 													</td>
@@ -168,9 +199,9 @@
 													<td>
 														<div class='form-group'>
 															<div class='col-md-8'>
-																<input class='form-control' name="pmtLoginPwChk"
+																<input class='form-control input-margin' name="pmtLoginPwChk"
 																	id="chkLoginPwChk" type='password' onfocusout='validateCheck("pmtLoginPwChk");'>
-																	<div id='pmtLoginPwChkFalse' class='checkFalse' style="display:none; background:red; color:white;">비밀번호가 일치하지 않습니다.</div>
+																	<div id='pmtLoginPwChkFalse' class='checkFalse alert alert-danger' style="display:none;">비밀번호가 일치하지 않습니다.</div>
 															</div>
 														</div>
 													</td>
@@ -179,9 +210,9 @@
 													<td>이름:</td>
 													<td><div class='form-group'>
 															<div class='col-md-8'>
-																<input class="form-control" name="pmtName" type="text"
+																<input class="form-control input-margin" name="pmtName" type="text"
 																	maxlength="20" onfocusout='validateCheck("pmtName");' />
-																<div id='pmtNameFalse' class='checkFalse' style="display:none; background:red; color:white;">한글만 입력해주세요.</div>
+																<div id='pmtNameFalse' class='checkFalse alert alert-danger' style="display:none;">한글만 입력해주세요.</div>
 															</div>
 														</div></td>
 												</tr>
@@ -190,9 +221,9 @@
 													<td><div class='form-group'>
 
 															<div class='col-md-8'>
-																<input class="form-control" name="pmtCellularPhone"
+																<input class="form-control input-margin" name="pmtCellularPhone"
 																	type="text" maxlength="13" onfocusout='validateCheck("pmtCellularPhone");' />
-																<div id='pmtCellularPhoneFalse' class='checkFalse' style="display:none; background:red; color:white;">010-1234-5678 형태로 입력해주세요 </div>
+																<div id='pmtCellularPhoneFalse' class='checkFalse alert alert-danger' style="display:none;">010-1234-5678 형태로 입력해주세요 </div>
 															</div>
 														</div>
 													</td>
@@ -201,8 +232,8 @@
 													<td>이메일:</td>
 													<td><div class='form-group'>
 															<div class='col-md-8'>
-																<input class="form-control" name="pmtMail" id="chkEmail" type="text" onfocusout='validateCheck("pmtMail");' />
-																<div id='pmtMailFalse' class='checkFalse' style="display:none; background:red; color:white;">유효하지 않은 이메일 입니다.</div>
+																<input class="form-control input-margin" name="pmtMail" id="chkEmail" type="text" onfocusout='validateCheck("pmtMail");' />
+																<div id='pmtMailFalse' class='checkFalse alert alert-danger' style="display:none;">유효하지 않은 이메일 입니다.</div>
 															</div>
 														</div></td>
 												</tr>
@@ -211,7 +242,7 @@
 													<td>직업 :</td>
 													<td><div class='form-group'>
 															<div class='col-md-8'>
-																<input class="form-control" name="pmtJobType"
+																<input class="form-control input-margin" name="pmtJobType"
 																	type="text" maxlength="200" />
 															</div>
 														</div></td>
@@ -345,23 +376,6 @@
 		$(xmlStr).find("juso").each(
 				function(index) {
 					var roadAddr = $(this).find('roadAddr').text();
-					//alert(roadAddr);
-					//이건 this가 아니다 노드 depth가 하나더 위이니 
-					//var currentPage =  $(xmlStr).find('currentPage').text();
-					//index *= 1;
-					//currentPage *= 1;
-					//alert(currentPage);
-					//console.log(index);
-					//console.log(currentPage);
-
-					//var index_ = index+1;
-					//위에서 더하기 안하면 0이나와 곱하기시 값이 0나와서 따로 해야한다.
-					//var no = currentPage * index_;
-
-					//alert(typeof(index));
-
-					//공백등으로 제대로 안출력되므로 특수문자등 제거해줘야 스크립트 먹힌다.
-					//다른부분에 대한 고민해보기 
 					roadAddr = roadAddr.replace(/"/g, "");
 					roadAddr = roadAddr.replace(/(\s*)/g, "");
 					//alert(roadAddr);
@@ -375,25 +389,14 @@
 							+ "')>"
 					htmlStr += $(this).find('roadAddr').text() + "</br>"
 							+ $(this).find('jibunAddr').text() + "</a></td>";
-					/* htmlStr += "<td>" + $(this).find('roadAddrPart1').text() + "</td>";
-					htmlStr += "<td>" + $(this).find('roadAddrPart2').text() + "</td>";
-					 */
-					//htmlStr += "<td>" + $(this).find('engAddr').text() + "</td>";
 					htmlStr += "<td class=" + "\" text-center \">"
 							+ $(this).find('zipNo').text() + "</td>";
-					//htmlStr += "<td>" + $(this).find('admCd').text() + "</td>";
-					//htmlStr += "<td>" + $(this).find('rnMgtSn').text() + "</td>";
-					//htmlStr += "<td>" + $(this).find('bdMgtSn').text() + "</td>";
-					//htmlStr += "<td>" + $(this).find('detBdNmList').text() + "</td>";
 					htmlStr += "</tr>";
 				});
 		htmlStr += "</table>";
 		$("#postresult").html(htmlStr);
 	}
 
-	//레이어팝업 이기 때문에 엔터는 조심
-	//엔터 가능하도록 ! 
-	//http://stackoverflow.com/questions/15239236/bootstrap-modal-dialogs-with-a-single-text-input-field-always-dismiss-on-enter-k
 	function enterSearch() {
 		var evt_code = (window.netscape) ? ev.which : event.keyCode;
 		if (evt_code == 13) {
@@ -405,45 +408,24 @@
 	function showhide() {
 
 		if ($(".ondis").css("display") == "none") {
-			//alert("on");
 			$(".ondis").show();
-			//$(".offdis").hide();
-			/*
-			$("#postresult").empty();
-							$("#postnull").empty();
-							조회된 결과 값이 계속해서 나오지 않도록 empty로 해준다 상단 ajax 결과에서 참고~! 
-			 */
 
 		}
 	}
 
 	function showonhide() {
-		//alert('111');
 		if ($(".offdis").css("display") == "none") {
 			alert("on");
 			$(".offdis").show();
 			$(".ondis").hide();
-			/*
-			$("#postresult").empty();
-							$("#postnull").empty();
-							조회된 결과 값이 계속해서 나오지 않도록 empty로 해준다 상단 ajax 결과에서 참고~! 
-			 */
 
 		}
-		// prevent default browser behaviour
 		event.preventDefault();
 	}
 
 	//페이징 처리 자바스크립트 모듈화 고민 
 	function pageMake(xmlStr) {
 		var total = $(xmlStr).find("totalCount").text(); // 총건수
-		//alert(total);
-
-		// 중요 이슈 !!!! 페이징 계산이 안되서 확인해보니 
-		// 자바스크립트에서 아래와 같이 받는 경우 STRING타입으로 받아서 계산시
-		// 예) 10(STRING) + 11(NUMBE)  = 21 이 아닌 1011로 나왔다
-		// 아래와 같이 타입변경 
-		//https://blog.outsider.ne.kr/361
 
 		var pageNum = $('input[name="currentPage"]').val();// 현재페이지
 		//alert(pageNum);
@@ -451,16 +433,11 @@
 		if (total < 1) {
 		} else {
 			var PAGEBLOCK = $('input[name="countPerPage"]').val(); // // 하나의 블록에 몇 페이지가 속해있는지
-			// 즉 3이면 보이지는 곳에는 1,2,3 페이지가 한블록 // 4,5,6 페이지가 한 블록
 			;
-			//alert(typeof(PAGEBLOCK));
 			PAGEBLOCK *= 1;
-			//alert(typeof(PAGEBLOCK));
-			//alert(PAGEBLOCK);
 			var pageSize = $('input[name="countPerPage"]').val(); //  한 페이지의 글의 개수
 			;
 			pageSize *= 1;
-			//alert(typeof(pageSize));
 			var totalPages = Math.floor((total - 1) / pageSize) + 1;
 			var firstPage = Math.floor((pageNum - 1) / PAGEBLOCK) * PAGEBLOCK
 					+ 1;
@@ -503,26 +480,11 @@
 			}
 
 			pageCount = totalRow / pageSize + remainRow;
-			//alert("pageCount" + pageCount);
-			//pageBlock = 5; // <<1,2,3,4,5>>
 
 			result = parseInt((currentPage - 1) / pageBlock);
-			//alert("result=" + result);
 
 			startPage = result * pageBlock + 1;
-			//alert("startPage=" + startPage);
-
-			//alert(typeof(startPage));
-			//alert(typeof(pageBlock - 1));
-			//alert(typeof(pageBlock));
 			endPage = (startPage + pageBlock) - 1;
-			//alert("endPage=" + endPage);
-
-			//여기선 사용 x 그기준으로 쿼리를 뽑는게 아니니  startRow = (currentPage - 1) * pageSize + 1;
-			//여기선 사용 xendRow = currentPage * pageSize;
-
-			// 즉 서버사이드에서는 위의 로우를 기준으로 재 뽑느다
-			// 여기서는 전체 xml 리스트 중에서 다시 뽑는게 아닌 조개서 보여주는 것. 
 
 			if (firstPage > PAGEBLOCK) {
 				paggingStr += "<li><a class='pageClick'  href='javascript:goPage("
@@ -554,15 +516,12 @@
 
 		$("#Address").attr('value', address);
 		$("#Zipcode").attr('value', zcZipCode);
-		//$("#PostModal").hide();
-		//$("#PostModal").modal('hide');
 		$('#modalClose').click();
 
 	}
 
 	function goPage(pageNum) {
 		$('input[name="currentPage"]').val(pageNum);
-		//document.form.currentPage.value=pageNum;
 		classToggle();
 		getAddrLoc();
 	}
@@ -574,7 +533,6 @@
 		$('.pageClick').toggleClass("active");
 		$('.pageClick').on("click", function() {
 
-			alert('112');
 			$(this).toggleClass("active");
 		});
 	}
