@@ -164,131 +164,102 @@
 							<div class="panel-body">
 								<div class="row">
 									<div class=" col-md-12 col-lg-12 ">
-										<table class="table table-user-information">
-											<tbody>
-												<tr>
-													<td >아이디:</td>
-													<td>
-														<div class='form-group'>
-															<div class='col-md-8'>
+										<%-- form-group row는 부트스트랩에서 정식으로 사용함... https://getbootstrap.com/docs/4.0/components/forms/#readonly-plain-text --%>
+										<div class='form-group row'>
+											<div class='col-md-2'>아이디:</div>
+											<div class='col-md-5'>
+												<input class='form-control' style='margin-bottom: 10px;' name="pmtLoginId" id="chkLoginId" type='text' maxlength="15"> 
+												<button type='button' class='btn btn-primary col-md-offset-4' onclick='validateCheck("pmtLoginId");'>아이디 중복 체크</button>
+											</div>
+										</div>
 
-																<input class='form-control input-margin' name="pmtLoginId" id="chkLoginId" type='text' maxlength="15"> 
-																	
-																<button type='button' class='btn btn-primary' onclick='validateCheck("pmtLoginId");'>아이디 중복 체크</button>
-																
-																<span class="col-md-12" id="idcheckLayer"></span>
-															</div>
-														</div>
-													</td>
-												</tr>
+										<div class='form-group row'>
+											<div class='col-md-2'>비밀번호:</div>
+											<div class='col-md-10'>
+												<input class='form-control input-margin' name="pmtLoginPw"
+													id="chkLoginPW" type='password' onfocusout='validateCheck("pmtLoginPw");'>
+												<div id='pmtLoginPwFalse' class='checkFalse alert alert-danger' style="display:none;">유효하지 않은 비밀번호입니다. <br>8~255자 사이의 영문,숫자,특수문자로 구성되어야 합니다.</div>
+											</div>
+										</div>
+									
+										<div class='form-group row'>
+											<div class='col-md-2'>비밀번호 확인:</div>
+											<div class='col-md-10'>
+												<input class='form-control input-margin' name="pmtLoginPwChk"
+													id="chkLoginPwChk" type='password' onfocusout='validateCheck("pmtLoginPwChk");'>
+													<div id='pmtLoginPwChkFalse' class='checkFalse alert alert-danger' style="display:none;">비밀번호가 일치하지 않습니다.</div>
+											</div>
+										</div>
+									
+									<div class='form-group row'>
+											<div class='col-md-2'>이름:</div>
+											<div class='col-md-10'>
+												<input class="form-control input-margin" name="pmtName" type="text"
+													maxlength="20" onfocusout='validateCheck("pmtName");' />
+												<div id='pmtNameFalse' class='checkFalse alert alert-danger' style="display:none;">한글만 입력해주세요.</div>
+											</div>
+										</div>
+										
+									<div class='form-group row'>
+											<div class='col-md-2'>핸드폰번호:</div>
 
-												<tr>
-													<td>비밀번호:</td>
-													<td>
-														<div class='form-group'>
-															<div class='col-md-8'>
-																<input class='form-control input-margin' name="pmtLoginPw"
-																	id="chkLoginPW" type='password' onfocusout='validateCheck("pmtLoginPw");'>
-																<div id='pmtLoginPwFalse' class='checkFalse alert alert-danger' style="display:none;">유효하지 않은 비밀번호입니다. <br>8~255자 사이의 영문,숫자,특수문자로 구성되어야 합니다.</div>
-															</div>
-														</div>
-													</td>
-												</tr>
-												<tr>
-													<td>비밀번호 확인:</td>
-													<td>
-														<div class='form-group'>
-															<div class='col-md-8'>
-																<input class='form-control input-margin' name="pmtLoginPwChk"
-																	id="chkLoginPwChk" type='password' onfocusout='validateCheck("pmtLoginPwChk");'>
-																	<div id='pmtLoginPwChkFalse' class='checkFalse alert alert-danger' style="display:none;">비밀번호가 일치하지 않습니다.</div>
-															</div>
-														</div>
-													</td>
-												</tr>												
-												<tr>
-													<td>이름:</td>
-													<td><div class='form-group'>
-															<div class='col-md-8'>
-																<input class="form-control input-margin" name="pmtName" type="text"
-																	maxlength="20" onfocusout='validateCheck("pmtName");' />
-																<div id='pmtNameFalse' class='checkFalse alert alert-danger' style="display:none;">한글만 입력해주세요.</div>
-															</div>
-														</div></td>
-												</tr>
-												<tr>
-													<td>핸드폰번호:</td>
-													<td><div class='form-group'>
+											<div class='col-md-10'>
+												<input class="form-control input-margin" name="pmtCellularPhone"
+													type="text" maxlength="13" onfocusout='validateCheck("pmtCellularPhone");' />
+												<div id='pmtCellularPhoneFalse' class='checkFalse alert alert-danger' style="display:none;">010-1234-5678 형태로 입력해주세요 </div>
+											</div>
+										</div>
+									
+									
+									<div class='form-group row'>
+											<div class='col-md-2'>이메일:</div>
+											<div class='col-md-10'>
+												<input class="form-control input-margin" name="pmtMail" id="chkEmail" type="text" onfocusout='validateCheck("pmtMail");' />
+												<div id='pmtMailFalse' class='checkFalse alert alert-danger' style="display:none;">유효하지 않은 이메일 입니다.</div>
+											</div>
+										</div>
+										
+									<div class='form-group row'>
+											<div class='col-md-2'>직업 :</div>
+											<div class='col-md-10'>
+												<input class="form-control input-margin" name="pmtJobType"
+													type="text" maxlength="200" />
+											</div>
+										</div>
+										
+									<div class='form-group row'>
+											<div class='col-md-2'>결혼여부</div>
+											<div class='col-md-10'>
+												<label class='radio-inline' style='margin-right:20px;'><input id='MarriedN' class="" name="pmtMarried" value="0" type="radio" /> 미혼</label>																
+												<label class='radio-inline'><input id='MarriedY' class="" name="pmtMarried" value="1" type="radio" /> 결혼</label>
+											</div>
+										</div>
+									
+									
+									
+										<div class='form-group row'>
+											<div class='col-md-2'>주소:</div>
+											<p class="col-md-3 pull-right">
+												<button class="btn btn-primary btn-block" type="button" data-toggle="modal" data-target=".modal_post" data-dismiss="modal">주소찾기</button>
+											</p>
 
-															<div class='col-md-8'>
-																<input class="form-control input-margin" name="pmtCellularPhone"
-																	type="text" maxlength="13" onfocusout='validateCheck("pmtCellularPhone");' />
-																<div id='pmtCellularPhoneFalse' class='checkFalse alert alert-danger' style="display:none;">010-1234-5678 형태로 입력해주세요 </div>
-															</div>
-														</div>
-													</td>
-												</tr>
-												<tr>
-													<td>이메일:</td>
-													<td><div class='form-group'>
-															<div class='col-md-8'>
-																<input class="form-control input-margin" name="pmtMail" id="chkEmail" type="text" onfocusout='validateCheck("pmtMail");' />
-																<div id='pmtMailFalse' class='checkFalse alert alert-danger' style="display:none;">유효하지 않은 이메일 입니다.</div>
-															</div>
-														</div></td>
-												</tr>
-
-												<tr>
-													<td>직업 :</td>
-													<td><div class='form-group'>
-															<div class='col-md-8'>
-																<input class="form-control input-margin" name="pmtJobType"
-																	type="text" maxlength="200" />
-															</div>
-														</div></td>
-												</tr>
-												<tr>
-													<td>결혼여부</td>
-													<td><div class='form-group'>
-															<div class='col-md-6'>
-																<label class='radio-inline' style='margin-right:20px;'><input id='MarriedN' class="" name="pmtMarried" value="0" type="radio" /> 미혼</label>																
-																<label class='radio-inline'><input id='MarriedY' class="" name="pmtMarried" value="1" type="radio" /> 결혼</label>
-															</div>
-														</div>
-													</td>
-												</tr>
-												<tr>
-													<td>주소:</td>
-													<td>
-
-														<div class='form-group'>
-
-															<p class="col-md-3 pull-right">
-																<button class="btn btn-primary btn-block" type="button" data-toggle="modal" data-target=".modal_post" data-dismiss="modal">주소찾기</button>
-															</p>
-
-															<div class='col-md-8'>
-																<div style='margin-bottom: 15px;'>
-																	<input class="form-control" id="Zipcode" name="pmtZipcode" type="text" maxlength="6" value="" placeholder='우편번호' readOnly />
-																</div>
-																<input class="form-control" id="Address" value="" name="pmtAddress_1" type="text" placeholder='주소' readOnly />
-																<input class="form-control" id='rest_address'     name="pmtAddress_2" value="" id="rest_Address" type="text" placeholder='나머지 주소' required />
-															</div>
-														</div>
-													</td>
-												</tr>
-												<tr>
-														<td>추천인아이디:</td>
-														<td>
-															<div class='col-md-8'>
-																<input class='form-control' name="pmtRcmderId"
-																	id="chkUpperPromo_id" type='text' maxlength="20"
-																	onchange="idcheck('chkUpperPromo_id')" required>
-															</div>
-														</td>
-													</tr>
-											</tbody>
-										</table>
+											<div class='col-md-10'>
+												<div style='margin-bottom: 15px;'>
+													<input class="form-control" id="Zipcode" name="pmtZipcode" type="text" maxlength="6" value="" placeholder='우편번호' readOnly />
+												</div>
+												<input class="form-control" id="Address" value="" name="pmtAddress_1" type="text" placeholder='주소' readOnly />
+												<input class="form-control" id='rest_address'     name="pmtAddress_2" value="" id="rest_Address" type="text" placeholder='나머지 주소' required />
+											</div>
+										</div>
+										
+										<div class='form-group row'>
+											<div class='col-md-2'>추천인아이디:</div>
+											<div class='col-md-10'>
+												<input class='form-control' name="pmtRcmderId"
+													id="chkUpperPromo_id" type='text' maxlength="20"
+													onchange="idcheck('chkUpperPromo_id')" required>
+											</div>
+										</div>
 									</div>
 								</div>
 								<div class="panel-footer">
