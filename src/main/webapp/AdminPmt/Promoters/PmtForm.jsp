@@ -5,7 +5,10 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ page import="net.promoter.vo.Promoter_VO"%>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<!-- /////////// -->
+<jsp:include page="/PartsOfContent/Head_Import.jsp" flush="false" />
+<!-- /////////// -->
+
 <script>
 //회원가입시 아래의 6개의 변수가 true가 되어야지만 가입할수있다.
 	var IdCheckYN = false;		//아이디
@@ -69,7 +72,24 @@
 		
 		case 'pmtLoginPw' : 
 			regex = /^(?=.*[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"])(?=.*[0-9])(?=.*[a-zA-Z])[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"0-9a-zA-Z]{8,255}$/g.test(value);
-			console.log('result : '+ regex)
+			
+			
+			// 비밀번호같은경우 사용자 변심으로 인해 수정할수 있기 때문..
+			var pwdChk = $('input[name=pmtLoginPwChk]').val();
+			if(pwdChk.length != 0){
+				console.log('pwdChk : ' + pwdChk);
+				console.log('value : ' + value);
+				if(value != pwdChk){	
+					console.log('false')
+					$('input[name=pmtLoginPwChk]').css("border","solid 3px red");
+					$('#pmtLoginPwChkFalse').css('display','block');
+				}else{
+					console.log('true')
+					$('input[name=pmtLoginPwChk]').css("border","solid 3px greenyellow");
+					$('#pmtLoginPwChkFalse').css('display','none');	//숨김
+				}
+			}
+			
 			if(regex)
 				PwdCheckYN = true;
 			else
@@ -149,470 +169,149 @@
 	}
 </style>
 
-<div class="col-md-12">
-	<!-- Content Column -->
-	<div class="col-lg-12">
-		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-				<%-- 1. 회원정보 입력 --%>
-				<form id='joinForm' class='form-horizontal' method="post" action="/promoter/PmtForm.mwav">
-					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+<body>
+	<div class="col-md-12">
+		<div class='center-block' style='border: 1px solid red; width: 80%; height: 100px; margin-bottom: 30px;'>
+		</div>
+		<hr>
+		<!-- Content Column -->
+		<div class="center-block">
+			<%-- 1. 회원정보 입력 --%>
+			<form id='joinForm' class='form-horizontal' method="post" action="/promoter/PmtForm.mwav">
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
-						<div class="panel panel-primary">
-							<div class="panel-heading">
-								<h3 class="panel-title">Mwav - Promoter Registration</h3>
-							</div>
-							<div class="panel-body">
-								<div class="row">
-									<div class=" col-md-12 col-lg-12 ">
-										<%-- form-group row는 부트스트랩에서 정식으로 사용함... https://getbootstrap.com/docs/4.0/components/forms/#readonly-plain-text --%>
-										<div class='form-group row'>
-											<div class='col-md-2'>아이디:</div>
-											<div class='col-md-5'>
-												<input class='form-control' style='margin-bottom: 10px;' name="pmtLoginId" id="chkLoginId" type='text' maxlength="15"> 
-												<button type='button' class='btn btn-primary col-md-offset-4' onclick='validateCheck("pmtLoginId");'>아이디 중복 체크</button>
-											</div>
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							<h3 class="panel-title">Mwav - Promoter Registration</h3>
+						</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class=" col-md-12 col-lg-12 ">
+									<%-- form-group row는 부트스트랩에서 정식으로 사용함... https://getbootstrap.com/docs/4.0/components/forms/#readonly-plain-text --%>
+									<div class='form-group' style='margin-bottom: 0px;'>
+										<div class='col-md-2 col-md-offset-2'>아이디 * :</div>
+										<div class='col-md-5'>
+											<input class='form-control' style='margin-bottom: 10px;' name="pmtLoginId" id="chkLoginId" type='text' maxlength="15"> 
 										</div>
+									</div>
+									
+									<div class='form-group'>
+										<div class='col-md-2 col-md-offset-2'></div>
+										<div class='col-md-5'>
+											<button type='button' class='btn btn-primary' onclick='validateCheck("pmtLoginId");'>아이디 중복 체크</button>
+										</div>
+									</div>
 
-										<div class='form-group row'>
-											<div class='col-md-2'>비밀번호:</div>
-											<div class='col-md-10'>
-												<input class='form-control input-margin' name="pmtLoginPw"
-													id="chkLoginPW" type='password' onfocusout='validateCheck("pmtLoginPw");'>
-												<div id='pmtLoginPwFalse' class='checkFalse alert alert-danger' style="display:none;">유효하지 않은 비밀번호입니다. <br>8~255자 사이의 영문,숫자,특수문자로 구성되어야 합니다.</div>
-											</div>
+									<div class='form-group'>
+										<div class='col-md-2 col-md-offset-2'>비밀번호 * :</div>
+										<div class='col-md-5'>
+											<input class='form-control input-margin' name="pmtLoginPw"
+												id="chkLoginPW" type='password' onfocusout='validateCheck("pmtLoginPw");'>
+											<div id='pmtLoginPwFalse' class='checkFalse alert alert-danger' style="display:none;">유효하지 않은 비밀번호입니다. <br>8~255자 사이의 영문,숫자,특수문자로 구성되어야 합니다.</div>
 										</div>
+									</div>
+								
+									<div class='form-group'>
+										<div class='col-md-2 col-md-offset-2'>비밀번호 확인 * :</div>
+										<div class='col-md-5'>
+											<input class='form-control input-margin' name="pmtLoginPwChk"
+												id="chkLoginPwChk" type='password' onfocusout='validateCheck("pmtLoginPwChk");'>
+												<div id='pmtLoginPwChkFalse' class='checkFalse alert alert-danger' style="display:none;">비밀번호가 일치하지 않습니다.</div>
+										</div>
+									</div>
+								
+								<div class='form-group'>
+										<div class='col-md-2 col-md-offset-2'>이름 * :</div>
+										<div class='col-md-5'>
+											<input class="form-control input-margin" name="pmtName" type="text"
+												maxlength="20" onfocusout='validateCheck("pmtName");' />
+											<div id='pmtNameFalse' class='checkFalse alert alert-danger' style="display:none;">한글만 입력해주세요.</div>
+										</div>
+									</div>
 									
-										<div class='form-group row'>
-											<div class='col-md-2'>비밀번호 확인:</div>
-											<div class='col-md-10'>
-												<input class='form-control input-margin' name="pmtLoginPwChk"
-													id="chkLoginPwChk" type='password' onfocusout='validateCheck("pmtLoginPwChk");'>
-													<div id='pmtLoginPwChkFalse' class='checkFalse alert alert-danger' style="display:none;">비밀번호가 일치하지 않습니다.</div>
-											</div>
-										</div>
-									
-									<div class='form-group row'>
-											<div class='col-md-2'>이름:</div>
-											<div class='col-md-10'>
-												<input class="form-control input-margin" name="pmtName" type="text"
-													maxlength="20" onfocusout='validateCheck("pmtName");' />
-												<div id='pmtNameFalse' class='checkFalse alert alert-danger' style="display:none;">한글만 입력해주세요.</div>
-											</div>
-										</div>
-										
-									<div class='form-group row'>
-											<div class='col-md-2'>핸드폰번호:</div>
+								<div class='form-group'>
+										<div class='col-md-2 col-md-offset-2'>핸드폰번호 * :</div>
 
-											<div class='col-md-10'>
-												<input class="form-control input-margin" name="pmtCellularPhone"
-													type="text" maxlength="13" onfocusout='validateCheck("pmtCellularPhone");' />
-												<div id='pmtCellularPhoneFalse' class='checkFalse alert alert-danger' style="display:none;">010-1234-5678 형태로 입력해주세요 </div>
-											</div>
+										<div class='col-md-5'>
+											<input class="form-control input-margin" name="pmtCellularPhone"
+												type="text" maxlength="13" onfocusout='validateCheck("pmtCellularPhone");' />
+											<div id='pmtCellularPhoneFalse' class='checkFalse alert alert-danger' style="display:none;">010-1234-5678 형태로 입력해주세요 </div>
 										</div>
-									
-									
-									<div class='form-group row'>
-											<div class='col-md-2'>이메일:</div>
-											<div class='col-md-10'>
-												<input class="form-control input-margin" name="pmtMail" id="chkEmail" type="text" onfocusout='validateCheck("pmtMail");' />
-												<div id='pmtMailFalse' class='checkFalse alert alert-danger' style="display:none;">유효하지 않은 이메일 입니다.</div>
-											</div>
+									</div>
+								
+								
+								<div class='form-group'>
+										<div class='col-md-2 col-md-offset-2'>이메일 * :</div>
+										<div class='col-md-5'>
+											<input class="form-control input-margin" name="pmtMail" id="chkEmail" type="text" onfocusout='validateCheck("pmtMail");' />
+											<div id='pmtMailFalse' class='checkFalse alert alert-danger' style="display:none;">유효하지 않은 이메일 입니다.</div>
 										</div>
-										
-									<div class='form-group row'>
-											<div class='col-md-2'>직업 :</div>
-											<div class='col-md-10'>
-												<input class="form-control input-margin" name="pmtJobType"
-													type="text" maxlength="200" />
-											</div>
+									</div>
+									
+								<div class='form-group'>
+										<div class='col-md-2 col-md-offset-2'>직업 :</div>
+										<div class='col-md-5'>
+											<input class="form-control input-margin" name="pmtJobType" type="text" maxlength="200" />
 										</div>
-										
-									<div class='form-group row'>
-											<div class='col-md-2'>결혼여부</div>
-											<div class='col-md-10'>
-												<label class='radio-inline' style='margin-right:20px;'><input id='MarriedN' class="" name="pmtMarried" value="0" type="radio" /> 미혼</label>																
-												<label class='radio-inline'><input id='MarriedY' class="" name="pmtMarried" value="1" type="radio" /> 결혼</label>
-											</div>
+									</div>
+									
+								<div class='form-group'>
+										<div class='col-md-2 col-md-offset-2'>결혼여부 * </div>
+										<div class='col-md-5'>
+											<label class='radio-inline' style='margin-right:20px;'><input id='MarriedN' class="" name="pmtMarried" value="0" type="radio" checked/> 미혼</label>																
+											<label class='radio-inline'><input id='MarriedY' class="" name="pmtMarried" value="1" type="radio" /> 결혼</label>
 										</div>
-									
-									
-									
-										<div class='form-group row'>
-											<div class='col-md-2'>주소:</div>
-											<p class="col-md-3 pull-right">
-												<button class="btn btn-primary btn-block" type="button" data-toggle="modal" data-target=".modal_post" data-dismiss="modal">주소찾기</button>
-											</p>
+									</div>
+								
+								
+								
+									<div class='form-group'>
+										<div class='col-md-2 col-md-offset-2'>주소 * :</div>
 
-											<div class='col-md-10'>
-												<div style='margin-bottom: 15px;'>
-													<input class="form-control" id="Zipcode" name="pmtZipcode" type="text" maxlength="6" value="" placeholder='우편번호' readOnly />
-												</div>
-												<input class="form-control" id="Address" value="" name="pmtAddress_1" type="text" placeholder='주소' readOnly />
-												<input class="form-control" id='rest_address'     name="pmtAddress_2" value="" id="rest_Address" type="text" placeholder='나머지 주소' required />
-											</div>
+										<div class='col-md-5'>
+											<input class="form-control" id="Zipcode" name="pmtZipcode" type="text" maxlength="6" placeholder='우편번호' style='width:40%; display:inline;' readOnly />
+											<button class="btn btn-primary" type="button" data-toggle="modal" data-target=".modal_post" data-dismiss="modal" style='vertical-align: unset;'>주소찾기</button>
 										</div>
-										
-										<div class='form-group row'>
-											<div class='col-md-2'>추천인아이디:</div>
-											<div class='col-md-10'>
-												<input class='form-control' name="pmtRcmderId"
-													id="chkUpperPromo_id" type='text' maxlength="20"
-													onchange="idcheck('chkUpperPromo_id')" required>
-											</div>
+									</div>
+									
+									<div class='form-group'>
+										<div class='col-md-2 col-md-offset-2'></div>
+										<div class='col-md-5'>
+											<input class="form-control" id="Address" name="pmtAddress_1" type="text" placeholder='주소' style='margin-bottom: 5px;' readOnly />
+											<input class="form-control" id='rest_address'     name="pmtAddress_2" value="" id="rest_Address" type="text" placeholder='상세 주소' required />
+										</div>
+									</div>
+									
+									<div class='form-group'>
+										<div class='col-md-2 col-md-offset-2'>추천인아이디:</div>
+										<div class='col-md-5'>
+											<input class='form-control' name="pmtRcmderId"
+												id="chkUpperPromo_id" type='text' maxlength="20"
+												onchange="idcheck('chkUpperPromo_id')">
 										</div>
 									</div>
 								</div>
-								<div class="panel-footer">
+							</div>
+							
+							<div class="panel-footer">
+								<!-- <button type="button" class="btn btn-sm btn-primary"
+									onclick="javascript:window.location.href='/admins/staff/pmtList.mwav'">
+									리스트</button> -->
 
-									<button type="button" class="btn btn-sm btn-primary"
-										onclick="javascript:window.location.href='/admins/staff/pmtList.mwav'">
-										리스트</button>
+								<button type="button" class="btn btn-sm btn-primary"
+									onClick="javascript:history.go(-1)">뒤로가기</button>
 
-									<button type="button" class="btn btn-sm btn-primary"
-										onClick="javascript:history.go(-1)">뒤로가기</button>
-
-									<button onclick="pmtSubmit()" type="button"
-										class="btn btn-sm btn-primary">가입하기</button>
-
-								</div>
+								<button onclick="pmtSubmit()" type="button"
+									class="btn btn-sm btn-primary">가입하기</button>
 
 							</div>
-						</div>
-					</div>
-				</form>
-		</div>
-	</div>
-</div>
 
-
-
-<%-- 
-	Promoter Form은 부트스트랩 4를 사용하므로 주소찾기jsp인 PostSeek(부스스트랩3)를 사용하지 못한다.
-	 그러므로 별도로 생성 
---%>
-<script language="javascript">
-	function getAddrLoc() {
-		$.ajax({
-			url : "/sample/getAddrApi.mwav",
-			type : "post",
-			data : $("#post_form").serialize(),
-			dataType : "xml",
-			success : function(xmlStr) {
-				$("#postresult").html("");
-
-				var errCode = $(xmlStr).find("errorCode").text();
-				var errDesc = $(xmlStr).find("errorMessage").text();
-				if (errCode != "0") {
-					//alert(errCode + "=" + errDesc);
-					alert(errDesc);
-				} else {
-					if (xmlStr != null) {
-						showhide();
-						makeList(xmlStr);
-
-						var objSet = document.getElementById("resultpostseek");
-						var objSet_height = $("#resultpostseek").height();
-						//alert($("#resultpostseek").height());
-						if (objSet_height >= "300") {
-							objSet.style.height = "300px";
-							objSet.style.overflowY = "scroll";
-						} else {
-							objSet.style.height = "auto";
-							objSet.style.overflowY = "hidden";
-						}
-						objSet.style.overflowX = "hidden";
-						pageMake(xmlStr);
-
-					}
-				}
-			},
-			error : function(xhr, status, error) {
-				alert("에러발생");
-			}
-		});
-	}
-
-	function makeList(xmlStr) {
-		//총 출력 개수
-		var total = $(xmlStr).find("totalCount").text();
-		$(".tnt_result").html(total);
-
-		//$('input[name="totalPage"]').val(total);
-
-		var currentPage = $(xmlStr).find('currentPage').text();
-		var no = (currentPage - 1) * 10;
-		//리스트 출력
-		var htmlStr = "";
-		htmlStr += "<table>";
-		$(xmlStr).find("juso").each(
-				function(index) {
-					var roadAddr = $(this).find('roadAddr').text();
-					roadAddr = roadAddr.replace(/"/g, "");
-					roadAddr = roadAddr.replace(/(\s*)/g, "");
-					//alert(roadAddr);
-
-					htmlStr += "<tr>";
-					htmlStr += "<td class=" + "\" text-center \">"
-							+ (no + index + 1) + "</td>";
-					htmlStr += "<td class=" + "\"text-left \">"
-							+ "<a href=" + "javascript:" + "sendAddress('"
-							+ roadAddr + "','" + $(this).find('zipNo').text()
-							+ "')>"
-					htmlStr += $(this).find('roadAddr').text() + "</br>"
-							+ $(this).find('jibunAddr').text() + "</a></td>";
-					htmlStr += "<td class=" + "\" text-center \">"
-							+ $(this).find('zipNo').text() + "</td>";
-					htmlStr += "</tr>";
-				});
-		htmlStr += "</table>";
-		$("#postresult").html(htmlStr);
-	}
-
-	function enterSearch() {
-		var evt_code = (window.netscape) ? ev.which : event.keyCode;
-		if (evt_code == 13) {
-			event.preventDefault();
-			getAddrLoc();
-		}
-	}
-
-	function showhide() {
-
-		if ($(".ondis").css("display") == "none") {
-			$(".ondis").show();
-
-		}
-	}
-
-	function showonhide() {
-		if ($(".offdis").css("display") == "none") {
-			alert("on");
-			$(".offdis").show();
-			$(".ondis").hide();
-
-		}
-		event.preventDefault();
-	}
-
-	//페이징 처리 자바스크립트 모듈화 고민 
-	function pageMake(xmlStr) {
-		var total = $(xmlStr).find("totalCount").text(); // 총건수
-
-		var pageNum = $('input[name="currentPage"]').val();// 현재페이지
-		//alert(pageNum);
-		var paggingStr = "";
-		if (total < 1) {
-		} else {
-			var PAGEBLOCK = $('input[name="countPerPage"]').val(); // // 하나의 블록에 몇 페이지가 속해있는지
-			;
-			PAGEBLOCK *= 1;
-			var pageSize = $('input[name="countPerPage"]').val(); //  한 페이지의 글의 개수
-			;
-			pageSize *= 1;
-			var totalPages = Math.floor((total - 1) / pageSize) + 1;
-			var firstPage = Math.floor((pageNum - 1) / PAGEBLOCK) * PAGEBLOCK
-					+ 1;
-			if (firstPage <= 0)
-				firstPage = 1;
-			var lastPage = firstPage - 1 + PAGEBLOCK;
-			if (lastPage > totalPages)
-				lastPage = totalPages;
-			var nextPage = lastPage + 1;
-			var prePage = firstPage - 5;
-
-			var currentPage = pageNum; // 현재 페이지
-			// *pageNum도 현재 페이지 단! pageNum은 세션으로 고정 // currentPage는 계산으로 쓰이기에 분리
-			var startRow; // 한 페이지의 시작글 번호 =쿼리에서 ROWNUM (시작)
-			// ex) pageSize가 5인경우 1페이지 - 1 // 2페이지 - 6
-			var endRow; // 한 페이지의 마지막 글번호 = ROWNUM (끝)
-			// ex) pageSize가 5인경우 1페이지 - 5 // 2페이지 - 10
-			var totalRow = total; // 전체 글의 갯수
-
-			var pageCount; // 전체 페이지수
-			// 위는 전체 글의 갯수이고 해당 필드는 전체 페이지의 수이다.
-
-			var remainRow; // 남은 행이 있는지 검사
-			// 전체 행(=COUNT) % 페이지 크기(10)0이면 딱 맞는 것이고 1이면 false 적거나 많은 것
-			var pageBlock = PAGEBLOCK; // 하나의 블록에 몇 페이지가 속해있는지
-			// 즉 3이면 보이지는 곳에는 1,2,3 페이지가 한블록 // 4,5,6 페이지가 한 블록
-			var result; // 시작페이지를 잡아준다.
-			var startPage; // 현재 블록의 시작 페이지 아래를 보면 6페이지부터는 2블록이 된다.
-			// 1페이지 는 0 * 1/5 + 1 => 1
-			// 6페이지 는 6 * 6/5 + 1 => 2
-
-			var endPage; // 현재 블록의 마지막 페이지
-
-			var number; // 실제 화면에 보여지는 시작 글 번호 1페이지 맨위 번호
-
-			if (totalRow % pageSize == 0) {
-				remainRow = 0;
-			} else {
-				remainRow = 1;
-			}
-
-			pageCount = totalRow / pageSize + remainRow;
-
-			result = parseInt((currentPage - 1) / pageBlock);
-
-			startPage = result * pageBlock + 1;
-			endPage = (startPage + pageBlock) - 1;
-
-			if (firstPage > PAGEBLOCK) {
-				paggingStr += "<li><a class='pageClick'  href='javascript:goPage("
-						+ prePage
-						+ ");'><span class='glyphicon glyphicon-chevron-left'></span></a></li>  ";
-			}
-			for (i = firstPage; i <= lastPage; i++) {
-				if (pageNum == i) {
-					paggingStr += "<li><a class='pageClick' href='javascript:goPage("
-							+ i + ");'>" + i + "</a></li>  ";
-				} else {
-					paggingStr += "<li><a class='pageClick' href='javascript:goPage("
-							+ i + ");'>" + i + "</a></li>  ";
-
-				}
-			}
-			if (lastPage < totalPages) {
-				paggingStr += "<li><a class='pageClick' href='javascript:goPage("
-						+ nextPage
-						+ ");'><span class='glyphicon glyphicon-chevron-right'></span></a></li>";
-			}
-			$("#pageApi").html(paggingStr);
-		}
-	}
-
-	function sendAddress(address, zcZipCode) {
-		var address = address;
-		var zcZipCode = zcZipCode;
-
-		$("#Address").attr('value', address);
-		$("#Zipcode").attr('value', zcZipCode);
-		$('#modalClose').click();
-
-	}
-
-	function goPage(pageNum) {
-		$('input[name="currentPage"]').val(pageNum);
-		classToggle();
-		getAddrLoc();
-	}
-
-	//클릭시 active 추가 
-	//http://findfun.tistory.com/167
-	function classToggle() {
-		//alert('12');
-		$('.pageClick').toggleClass("active");
-		$('.pageClick').on("click", function() {
-
-			$(this).toggleClass("active");
-		});
-	}
-
-	$(document).ready(function() {
-		$('.pageClick').on("click", function() {
-
-			alert('112');
-			$(this).toggleClass("active");
-		});
-	});
-</script>
-
-<!-- 모든필드 필수값으로 ~!  -->
-	<div class="container">
-		<!-- Modal 
-		 aria-hidden="true" false 이면 재클릭시 모달창이 안띄워진다. display: none로 되서 
-		-->
-		<div class="modal fade modal_post " id="PostModal" aria-hidden="true" role="dialog">
-			<div class="modal-dialog modal-md">
-
-				<div class="modal-content">
-
-					<div class="modal-header" style="border-bottom: 0px solid #eee; background-color: #0480be; color: white;">
-						<h4 class="modal-title">주소찾기</h4>
-					</div>
-					<br>
-
-					<div class="modal-body">
-						<div class="container-fluid">
-							<div id="myTabContent" class="tab-content">
-								<div class="tab-pane active">
-									<form class="form-horizontal" id="post_form" method="post">
-										<%--method="post" 없으면 안된다.! 이상한 페이지로 포워딩 및 정확한 값이 들어가도 오류발생--%>
-										<div class="col-md-12 ">
-
-											<!--  <input type="hidden" name="post_mode" value="post_zcRoadName" /> -->
-											<div class="row">
-
-												<div class="input-group">
-
-													<input type="hidden" name="currentPage" value="1" />
-													<!-- 요청 변수 설정 (현재 페이지) -->
-													<input type="hidden" name="countPerPage" value="5" />
-													<!-- 요청 변수 설정 (페이지당 출력 개수) -->
-
-													<!-- <input type="hidden" name="totalRow" value="10" />
- -->
-
-													<!-- 요청 변수 설정 (키워드) -->
-													<!-- <input type="text" name="keyword" class="form-control" placeholder="도로명주소, 건물명 또는 지번 입력" onkeydown="return enterSearch();" /> -->
-													<input type="text" name="keyword" class="form-control" placeholder="도로명주소, 건물명 또는 지번 입력" onkeydown="enterSearch();" />
-													<span class="input-group-btn">
-
-														<button type="button" class="btn btn-primary" onclick="getAddrLoc()">
-															<span class="fa fa-search">
-																<span class="sr-only">Search</span>
-															</span>
-														</button>
-													</span>
-												</div>
-												<span class="text-center text-primary">
-													&nbsp;검색어 예 : 도로명(반포대로 58), 건물명(독립기념관), 지번(삼성동 25)<br>
-
-												</span>
-											</div>
-											<div class="enter"></div>
-											<div class="row">
-												<div id="resultpostseek">
-													<p class="ondis" style="display: none">
-														&nbsp;*해당되는 주소를 선택해주세요. (총 : <strong class="tnt_result"></strong>개)
-													</p>
-													<table class="table-responsive table table-striped ">
-														<thead>
-															<tr>
-																<th class="text-center">NO.</th>
-																<th class="text-center">도로명/지번주소</th>
-																<th class="text-center">우편번호</th>
-															</tr>
-														</thead>
-														<tbody id="postresult" class="ondis" style="display: none">
-
-														</tbody>
-														<tbody id="postnull">
-
-														</tbody>
-													</table>
-
-												</div>
-												<div class="text-center">
-													<div class="col-lg-12">
-														<ul class="pagination" id="pageApi">
-														</ul>
-													</div>
-												</div>
-											</div>
-										</div>
-									</form>
-								</div>
-
-
-
-							</div>
-						</div>
-						<div class="modal-footer">
-							<button type="button" id='modalClose' class="btn btn-primary" data-dismiss="modal">Close</button>
 						</div>
 					</div>
 				</div>
-			</div>
+			</form>
 		</div>
 	</div>
+</body>
+<%-- 아래의 내용을 위에 주소 위치에 둘 경우 form태그가 해당위치로 닫힌다 form태그 중복 추후 확인 필요 --%>
+		<jsp:include page="/CommonApps/PostSeek/PostSeek.jsp" flush="false" />

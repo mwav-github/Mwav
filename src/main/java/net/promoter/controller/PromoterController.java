@@ -61,11 +61,19 @@ public class PromoterController {
 
 
 	/*---------------단순 페이지이동           -----------*/
-	@RequestMapping(value = "/Promoter/promoter-add")
-	public ModelAndView insertPromoter(CommandMap commandMap,
+	//프로모터 로그인, tiles에 영향 안받음
+	@RequestMapping(value = "/pmt/pmtLoginForm.mwav",method = RequestMethod.GET)
+	public String selectLogin(CommandMap commandMap,
+			HttpServletRequest request) throws Exception {
+		return "/AdminPmt/Promoters/PmtLogin";
+	}
+	//프로모터 회원가입 
+	@RequestMapping(value = "/Promoter/promoter-add.mwav")
+	public String insertPromoter(CommandMap commandMap,
 			HttpServletRequest request) throws Exception{
-		ModelAndView mv = new ModelAndView("/Promoter/PmtForm");
-		return mv;
+//		ModelAndView mv = new ModelAndView("/Promoter/PmtForm");
+//		return mv;
+		return "/AdminPmt/Promoters/PmtForm";
 	}
 	
 	@RequestMapping(value = "/Promoter/Policy")
@@ -83,11 +91,6 @@ public class PromoterController {
 	}
 
 	
-	@RequestMapping(value = "/pmt/pmtLoginForm.mwav",method = RequestMethod.GET)
-	public String selectLogin(CommandMap commandMap,
-			HttpServletRequest request) throws Exception {
-		return "/AdminPmt/Promoters/PmtLogin";
-	}
 
 
 	@RequestMapping(value = "/promoter/viewMyPoint.mwav",method = RequestMethod.GET)
@@ -100,16 +103,16 @@ public class PromoterController {
 
 
 
-	/*---------------단순 페이지이동           -----------*/
+	/*---------------  로그인 및 회원가입           -----------*/
 
-
+	//로그인
 	@RequestMapping(value = "/pmt/pmtLogin.mwav",method = RequestMethod.POST)
 	public ModelAndView selectLoginPro(CommandMap commandMap,
 			HttpServletRequest request,RedirectAttributes rtr) throws Exception {
 		ModelAndView mv = new ModelAndView("/AdminPmt/Promoters/PmtLogin");
 		Promoter_VO promoter =null;
 		Map<String, Object> pmt = commandMap.getMap();
-		if(((String) pmt.get("pmtLoginPw")).length()<3||((String) pmt.get("pmtLoginId")).length()<3 ){
+		if( ((String) pmt.get("pmtLoginPw")).length()<3 || ((String) pmt.get("pmtLoginId")).length()<3 ){
 			rtr.addFlashAttribute("msg", "비밀번호와 아이디를 확인해주세요");
 			return mv;
 		}
@@ -138,6 +141,35 @@ public class PromoterController {
 		response.getWriter().println(selectIdCheck);
 	}
 
+
+	//Promoter 회원가입 
+	@RequestMapping(value = "/promoter/PmtForm.mwav",method = RequestMethod.POST )
+	public ModelAndView insertPmtForm(CommandMap commandMap,RedirectAttributes rttr,
+		Promoter_VO promoter,Errors errors, HttpServletRequest request) throws Exception {
+		String ViewName = "";
+
+		String PmtAddress_1 = (String) commandMap.get("pmtAddress_1");
+		String PmtAddress_2 = (String) commandMap.get("pmtAddress_2");
+		String PmtAddress = PmtAddress_1 + PmtAddress_2;
+		promoter.setPmtAddress(PmtAddress);
+		
+		int result = promoterService.insertPmtForm(promoter);
+		
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("status", "joinSuccess");	// 로그인페이지에 status를 넘긴다.
+		
+		if(result==1){ 	// 회원가입 성공시 로그인페이지로 보낸다.
+			request.setAttribute("msg", "joinSuccess");
+			ViewName = "/AdminPmt/Promoters/PmtLogin";
+		}else{			// 실패시 다시 회원가입페이지로 보낸다.
+			ViewName = "/Promoter/PmtForm";						
+		}
+		mv.setViewName(ViewName);
+
+		return mv;
+	}
+    
+	//??
 	@RequestMapping(value = "/Promoter/PmtList.mwav")
 	public ModelAndView selectListPmtList(CommandMap commandMap,
 			HttpServletRequest request, HttpServletResponse reponse)
@@ -182,74 +214,6 @@ public class PromoterController {
 		// mv.addObject("paging", pv.print());
 		return mv;
 	}
-
-	//Promoter 회원가입 
-	@RequestMapping(value = "/promoter/PmtForm.mwav",method = RequestMethod.POST )
-	public ModelAndView insertPmtForm(CommandMap commandMap,RedirectAttributes rttr,
-		Promoter_VO promoter,Errors errors) throws Exception {
-		String ViewName = "";
-
-		String PmtAddress_1 = (String) commandMap.get("pmtAddress_1");
-		String PmtAddress_2 = (String) commandMap.get("pmtAddress_2");
-		String PmtAddress = PmtAddress_1 + PmtAddress_2;
-		promoter.setPmtAddress(PmtAddress);
-		
-		int result = promoterService.insertPmtForm(promoter);
-		
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("status", "joinSuccess");	// 로그인페이지에 status를 넘긴다.
-		
-		if(result==1){ 	// 회원가입 성공시 로그인페이지로 보낸다.
-			ViewName = "/AdminPmt/Promoters/PmtLogin";
-		}else{			// 실패시 다시 회원가입페이지로 보낸다.
-			ViewName = "/Promoter/PmtForm";						
-		}
-		mv.setViewName(ViewName);
-
-		return mv;
-	}
-
-	/*@RequestMapping(value = "/promoter/PmtForm.mwav",method = RequestMethod.POST )
-	public ModelAndView insertPmtForm(CommandMap commandMap,RedirectAttributes rttr,
-			 Promoter_VO promoter) throws Exception {
-		ModelAndView mv = new ModelAndView("/Promoter/PmtLogin");
-
-		log.info("순서");
-		log.info("인터셉터 테스트");
-		String PmtCellularP_1 = (String) commandMap.get("pmtCellularP_1");
-		String PmtCellularP_2 = (String) commandMap.get("pmtCellularP_2");
-		String PmtCellularP_3 = (String) commandMap.get("pmtCellularP_3");
-
-		String PmtCellularP = PmtCellularP_1 + PmtCellularP_2 + PmtCellularP_3;
-		commandMap.put("pmtCellularP", PmtCellularP);
-
-		String PmtPhone_1 = (String) commandMap.get("pmtPhone_1");
-		String PmtPhone_2 = (String) commandMap.get("pmtPhone_2");
-		String PmtPhone_3 = (String) commandMap.get("pmtPhone_3");
-
-		String PmtPhone = PmtPhone_1 + PmtPhone_2 + PmtPhone_3;
-		commandMap.put("pmtPhone", PmtPhone);
-
-		String PmtAddress_1 = (String) commandMap.get("pmtAddress_1");
-		String PmtAddress_2 = (String) commandMap.get("pmtAddress_2");
-
-		String PmtAddress = PmtAddress_1 + PmtAddress_2;
-		log.info("pmtAddress=" + PmtAddress);
-
-		commandMap.put("pmtAddress", PmtAddress);
-
-
-		promoterService.insertPmtForm(commandMap.getMap());
-
-		rttr.addFlashAttribute("msg", "SUCCESS");
-		String mm = "firms";
-		mv.addObject("mm", mm);
-		mv.addObject("mode", "m_PmtForm");
-
-		return mv;
-	}*/
-
-
 
 	// update
 
