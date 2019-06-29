@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+	
+	<context:property-placeholder location="classpath:googleProperties/application.properties" />
+	
+	<bean id="NaverApi" class="com.github.scribejava.apis.NaverApi" />
+	
+	<bean id="naverDto" class="net.mwav.member.vo.SNSDto">
+		<constructor-arg index="0" type="java.lang.String" value="${naver.service}"/> 
+		<constructor-arg index="1" type="java.lang.String" value="${naver.appKey}"/> 
+		<constructor-arg index="2" type="java.lang.String" value="${naver.appSecret}"/> 
+		<constructor-arg index="3" type="java.lang.String" value="${naver.redirectUrl}"/> 
+		<constructor-arg index="4" type="java.lang.String"  value="${naver.state}"/> 
+		<constructor-arg index="5" type="com.github.scribejava.core.builder.api.DefaultApi20" ref="NaverApi"/> 
+	</bean>
+</beans>

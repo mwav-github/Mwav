@@ -236,5 +236,14 @@ public class SignController {
 		request.getSession().setAttribute("loginCheck", null);
 		return "/Index";
 	}
-
+	
+	
+	@RequestMapping(value = "/{sns}/signin.mwav", method = RequestMethod.POST )
+	public ModelAndView snsSignin(@PathVariable String sns) {
+		logger.info("sns : " + sns);
+		logger.info(naverDto.toString());
+		
+		return new ModelAndView("Index");
+	}	
+	
 }
