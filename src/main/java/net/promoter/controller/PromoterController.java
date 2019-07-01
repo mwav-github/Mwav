@@ -1,6 +1,7 @@
 package net.promoter.controller;
 
-import java.io.PrintWriter;
+import java.net.URI;
+import java.net.URL;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -25,6 +26,8 @@ import net.mwav.common.module.PagingVO;
 import net.promoter.service.PromoterService;
 import net.promoter.vo.Promoter_VO;
 
+import net.mwav.common.module.AesEncryption;
+import org.apache.http.client.utils.URIBuilder;
 /**
  * @author 신윤상
  *
@@ -67,12 +70,18 @@ public class PromoterController {
 			HttpServletRequest request) throws Exception {
 		return "/AdminPmt/Promoters/PmtLogin";
 	}
-	//프로모터 회원가입 
+	//프로모터 회원가입
 	@RequestMapping(value = "/Promoter/promoter-add.mwav")
 	public String insertPromoter(CommandMap commandMap,
 			HttpServletRequest request) throws Exception{
-//		ModelAndView mv = new ModelAndView("/Promoter/PmtForm");
-//		return mv;
+		
+		byte[] decrypted = AesEncryption.hexToByteArray((String) commandMap.get("pmtUpperPromoId"));
+        
+        // AES/ECB 복호화
+        decrypted = AesEncryption.aesDecryptEcb("pmt", decrypted);
+        System.out.println("암호화 : " + (String) commandMap.get("pmtUpperPromoId"));
+        System.out.println("복호화 : " + new String(decrypted, "UTF-8"));
+		
 		return "/AdminPmt/Promoters/PmtForm";
 	}
 	
@@ -144,28 +153,43 @@ public class PromoterController {
 
 	//Promoter 회원가입 
 	@RequestMapping(value = "/promoter/PmtForm.mwav",method = RequestMethod.POST )
-	public ModelAndView insertPmtForm(CommandMap commandMap,RedirectAttributes rttr,
+	public ModelAndView insertPmtForm(CommandMap commandMap,RedirectAttributes rtr,
 		Promoter_VO promoter,Errors errors, HttpServletRequest request) throws Exception {
-		String ViewName = "";
-
-		String PmtAddress_1 = (String) commandMap.get("pmtAddress_1");
-		String PmtAddress_2 = (String) commandMap.get("pmtAddress_2");
-		String PmtAddress = PmtAddress_1 + PmtAddress_2;
-		promoter.setPmtAddress(PmtAddress);
 		
+        byte[] decrypted = AesEncryption.hexToByteArray(promoter.getPmtRcmderId());
+        
+        // AES/ECB 복호화
+        decrypted = AesEncryption.aesDecryptEcb("pmt", decrypted);
+		promoter.setPmtRcmderId(new String(decrypted, "UTF-8"));
+		
+		String ViewName = "";
 		int result = promoterService.insertPmtForm(promoter);
 		
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("status", "joinSuccess");	// 로그인페이지에 status를 넘긴다.
+		mv.addObject("status", "1");	// 로그인페이지에 status를 넘긴다.
 		
 		if(result==1){ 	// 회원가입 성공시 로그인페이지로 보낸다.
-			request.setAttribute("msg", "joinSuccess");
+			request.setAttribute("status", "1");
 			ViewName = "/AdminPmt/Promoters/PmtLogin";
 		}else{			// 실패시 다시 회원가입페이지로 보낸다.
 			ViewName = "/Promoter/PmtForm";						
 		}
 		mv.setViewName(ViewName);
 
+		return mv;
+	}
+	
+	//Promoter 회원가입 
+	@RequestMapping(value = "/promoter/test.mwav" )
+	public ModelAndView testController(CommandMap commandMap,RedirectAttributes rtr,
+		Promoter_VO promoter,Errors errors, HttpServletRequest request) throws Exception {
+		
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("statusTest", "1");	// 로그인페이지에 status를 넘긴다.
+		rtr.addFlashAttribute("statusTest", "1");
+		System.out.println("테스트 요청 왔음 !");
+		mv.setViewName("/AdminPmt/Promoters/PmtLogin");
+		
 		return mv;
 	}
     

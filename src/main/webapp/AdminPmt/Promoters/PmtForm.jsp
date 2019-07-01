@@ -153,12 +153,27 @@
 		console.log(IdCheckYN + ', ' + PwdCheckYN + ', ' + PwdCheck2YN + ', ' + NameCheckYN + ', ' + PhoneCheckYN + ', ' + EmailCheckYN)
 		if(IdCheckYN && PwdCheckYN && PwdCheck2YN && NameCheckYN && PhoneCheckYN && EmailCheckYN){
 			if(confirm('Promoter 가입을 하시겠습니까?')){
+				//queryString에 있는 파라메터 pmtUpperPromoId를 파싱후 전달
+				$('#pmtRcmderId').val(getUrlParams().pmtUpperPromoId);	
+				
+				//주소를 하나로 합쳐 전달한다.
+				var pmtAddress = $('#Address').val() + $('#rest_address').val(); 
+				$('#pmtAddress').val(pmtAddress);
+				
 				$('#joinForm').submit();
 			}
 		}else{
 			alert('부적절한 값이 있습니다.');
 		}
 	}
+	
+	//쿼리스트링 파서
+	function getUrlParams() {
+	    var params = {};
+	    window.location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(str, key, value) { params[key] = value; });
+	    return params;
+	} 
+	
 </script>
 
 </head>
@@ -279,15 +294,16 @@
 										<div class='col-md-5'>
 											<input class="form-control" id="Address" name="pmtAddress_1" type="text" placeholder='주소' style='margin-bottom: 5px;' readOnly />
 											<input class="form-control" id='rest_address'     name="pmtAddress_2" value="" id="rest_Address" type="text" placeholder='상세 주소' required />
+											<!-- 주소 문자를 한꺼번에 합치는 작업을 프론트에서 처리한다. -->
+											<input type='hidden' id='pmtAddress' name='pmtAddress'>
 										</div>
 									</div>
 									
-									<div class='form-group'>
+									<div class='form-group' style = "display:none">
 										<div class='col-md-2 col-md-offset-2'>추천인아이디:</div>
 										<div class='col-md-5'>
 											<input class='form-control' name="pmtRcmderId"
-												id="chkUpperPromo_id" type='text' maxlength="20"
-												onchange="idcheck('chkUpperPromo_id')">
+												id="pmtRcmderId" type='hidden' maxlength="20">
 										</div>
 									</div>
 								</div>
@@ -313,5 +329,11 @@
 		</div>
 	</div>
 </body>
+<div>
+<h1>테스트 </h1>
+<form id='joinForm' class='form-horizontal' method="post" action="/promoter/test.mwav">
+	<button class="btn btn-sm btn-primary">제출</button>
+</form>
+</div>
 <%-- 아래의 내용을 위에 주소 위치에 둘 경우 form태그가 해당위치로 닫힌다 form태그 중복 추후 확인 필요 --%>
 		<jsp:include page="/CommonApps/PostSeek/PostSeek.jsp" flush="false" />
