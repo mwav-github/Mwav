@@ -123,6 +123,7 @@
 			<!--<mvc:mapping path="/member/**" /> -->
 			<!-- 프로모터 회원가입시 인증을 위한 interceptor exclude 처리 -->
 			<mvc:exclude-mapping path="/promoter/pmtLoginIdCheck.mwav" />
+			<mvc:exclude-mapping path="/promoter/PmtForm.mwav" />
 			<bean id="pmtInterceptor" class="net.common.Interceptor.PmtInterceptor"></bean>
 		</mvc:interceptor>
 		<mvc:interceptor>

@@ -156,6 +156,7 @@ public class PromoterController {
 	public ModelAndView insertPmtForm(CommandMap commandMap,RedirectAttributes rtr,
 		Promoter_VO promoter,Errors errors, HttpServletRequest request) throws Exception {
 		
+		String pmtRcmderId = promoter.getPmtRcmderId();
         byte[] decrypted = AesEncryption.hexToByteArray(promoter.getPmtRcmderId());
         
         // AES/ECB 복호화
@@ -166,14 +167,16 @@ public class PromoterController {
 		int result = promoterService.insertPmtForm(promoter);
 		
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("status", "1");	// 로그인페이지에 status를 넘긴다.
 		
 		if(result==1){ 	// 회원가입 성공시 로그인페이지로 보낸다.
-			request.setAttribute("status", "1");
+			mv.addObject("status", "1");	// 로그인페이지에 status를 넘긴다.
 			ViewName = "/AdminPmt/Promoters/PmtLogin";
+			
 		}else{			// 실패시 다시 회원가입페이지로 보낸다.
-			ViewName = "/Promoter/PmtForm";						
+			mv.addObject("pmtUpperPromoId", pmtRcmderId);	//쿼리스트링에 추천인 아이디를 남긴다.
+			ViewName = "redirect:/Promoter/promoter-add.mwav";
 		}
+		
 		mv.setViewName(ViewName);
 
 		return mv;
@@ -187,8 +190,8 @@ public class PromoterController {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("statusTest", "1");	// 로그인페이지에 status를 넘긴다.
 		rtr.addFlashAttribute("statusTest", "1");
-		System.out.println("테스트 요청 왔음 !");
-		mv.setViewName("/AdminPmt/Promoters/PmtLogin");
+		 
+		mv.setViewName("redirect:/Promoter/promoter-add.mwav");
 		
 		return mv;
 	}

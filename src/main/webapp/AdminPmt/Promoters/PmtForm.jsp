@@ -173,7 +173,7 @@
 	    window.location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(str, key, value) { params[key] = value; });
 	    return params;
 	} 
-	
+
 </script>
 
 </head>
@@ -182,11 +182,18 @@
 	.input-margin{
 		margin-bottom: 15px;
 	}
+	
+	.txt_red {
+	    color: red;
+	    padding: 0 2px;
+	    font-weight: bold;
+	}
 </style>
 
 <body>
-	<div class="col-md-12">
+	<div class="container">
 		<div class='center-block' style='border: 1px solid red; width: 80%; height: 100px; margin-bottom: 30px;'>
+			<!-- <img src='/Images/CompanyLogos/CompanyLogo.gif'> -->
 		</div>
 		<hr>
 		<!-- Content Column -->
@@ -204,7 +211,7 @@
 								<div class=" col-md-12 col-lg-12 ">
 									<%-- form-group row는 부트스트랩에서 정식으로 사용함... https://getbootstrap.com/docs/4.0/components/forms/#readonly-plain-text --%>
 									<div class='form-group' style='margin-bottom: 0px;'>
-										<div class='col-md-2 col-md-offset-2'>아이디 * :</div>
+										<div class='col-md-2 col-md-offset-2'>아이디<span class="txt_red">*</span> :</div>
 										<div class='col-md-5'>
 											<input class='form-control' style='margin-bottom: 10px;' name="pmtLoginId" id="chkLoginId" type='text' maxlength="15"> 
 										</div>
@@ -218,7 +225,7 @@
 									</div>
 
 									<div class='form-group'>
-										<div class='col-md-2 col-md-offset-2'>비밀번호 * :</div>
+										<div class='col-md-2 col-md-offset-2'>비밀번호<span class="txt_red">*</span> :</div>
 										<div class='col-md-5'>
 											<input class='form-control input-margin' name="pmtLoginPw"
 												id="chkLoginPW" type='password' onfocusout='validateCheck("pmtLoginPw");'>
@@ -227,7 +234,7 @@
 									</div>
 								
 									<div class='form-group'>
-										<div class='col-md-2 col-md-offset-2'>비밀번호 확인 * :</div>
+										<div class='col-md-2 col-md-offset-2'>비밀번호 확인<span class="txt_red">*</span> :</div>
 										<div class='col-md-5'>
 											<input class='form-control input-margin' name="pmtLoginPwChk"
 												id="chkLoginPwChk" type='password' onfocusout='validateCheck("pmtLoginPwChk");'>
@@ -236,7 +243,7 @@
 									</div>
 								
 								<div class='form-group'>
-										<div class='col-md-2 col-md-offset-2'>이름 * :</div>
+										<div class='col-md-2 col-md-offset-2'>이름<span class="txt_red">*</span> :</div>
 										<div class='col-md-5'>
 											<input class="form-control input-margin" name="pmtName" type="text"
 												maxlength="20" onfocusout='validateCheck("pmtName");' />
@@ -245,7 +252,7 @@
 									</div>
 									
 								<div class='form-group'>
-										<div class='col-md-2 col-md-offset-2'>핸드폰번호 * :</div>
+										<div class='col-md-2 col-md-offset-2'>핸드폰번호<span class="txt_red">*</span> :</div>
 
 										<div class='col-md-5'>
 											<input class="form-control input-margin" name="pmtCellularPhone"
@@ -256,7 +263,7 @@
 								
 								
 								<div class='form-group'>
-										<div class='col-md-2 col-md-offset-2'>이메일 * :</div>
+										<div class='col-md-2 col-md-offset-2'>이메일<span class="txt_red">*</span> :</div>
 										<div class='col-md-5'>
 											<input class="form-control input-margin" name="pmtMail" id="chkEmail" type="text" onfocusout='validateCheck("pmtMail");' />
 											<div id='pmtMailFalse' class='checkFalse alert alert-danger' style="display:none;">유효하지 않은 이메일 입니다.</div>
@@ -266,7 +273,34 @@
 								<div class='form-group'>
 										<div class='col-md-2 col-md-offset-2'>직업 :</div>
 										<div class='col-md-5'>
-											<input class="form-control input-margin" name="pmtJobType" type="text" maxlength="200" />
+											<select name="pmtJobType" id="pmtJobType" class="form-control">
+												<option value="미입력">미입력</option>
+												<option value='건설기술직'>건설기술직</option>
+												<option value='건축/기술전문직'>건축/기술전문직</option>
+												<option value='경영/재무관련직'>경영/재무관련직</option>
+												<option value='공무원'>공무원</option>
+												<option value='교사/교육관련직'>교사/교육관련직</option>
+												<option value='농수축임업관련직'>농수축임업관련직</option>
+												<option value='대표,임원'>대표,임원</option>
+												<option value='대학교수/강사'>대학교수/강사</option>
+												<option value='법률관련직'>법률관련직</option>
+												<option value='법률전문직'>법률전문직</option>
+												<option value='사무직'>사무직</option>
+												<option value='사회사업/상담관련직'>사회사업/상담관련직</option>
+												<option value='서비스관련직'>서비스관련직</option>
+												<option value='설비/수리/생산직'>설비/수리/생산직</option>
+												<option value='안전/용역관련직'>안전/용역관련직</option>
+												<option value='연구직'>연구직</option>
+												<option value='예술/연예/스포츠관련직'>예술/연예/스포츠관련직</option>
+												<option value='운송관련직'>운송관련직</option>
+												<option value='음식료관련직'>음식료관련직</option>
+												<option value='의료관련직'>의료관련직</option>
+												<option value='의료전문직'>의료전문직</option>
+												<option value='전산관련직'>전산관련직</option>
+												<option value='중간관리자'>중간관리자</option>
+												<option value='판매영업직'>판매영업직</option>
+												<option value='기타'>기타</option>
+											</select>
 										</div>
 									</div>
 									
@@ -305,21 +339,13 @@
 											<input class='form-control' name="pmtRcmderId"
 												id="pmtRcmderId" type='hidden' maxlength="20">
 										</div>
+										
 									</div>
 								</div>
 							</div>
 							
 							<div class="panel-footer">
-								<!-- <button type="button" class="btn btn-sm btn-primary"
-									onclick="javascript:window.location.href='/admins/staff/pmtList.mwav'">
-									리스트</button> -->
-
-								<button type="button" class="btn btn-sm btn-primary"
-									onClick="javascript:history.go(-1)">뒤로가기</button>
-
-								<button onclick="pmtSubmit()" type="button"
-									class="btn btn-sm btn-primary">가입하기</button>
-
+								<button onclick="pmtSubmit()" type="button" class="btn btn-success" style='width:200px'>가입하기</button>
 							</div>
 
 						</div>
@@ -329,11 +355,5 @@
 		</div>
 	</div>
 </body>
-<div>
-<h1>테스트 </h1>
-<form id='joinForm' class='form-horizontal' method="post" action="/promoter/test.mwav">
-	<button class="btn btn-sm btn-primary">제출</button>
-</form>
-</div>
 <%-- 아래의 내용을 위에 주소 위치에 둘 경우 form태그가 해당위치로 닫힌다 form태그 중복 추후 확인 필요 --%>
-		<jsp:include page="/CommonApps/PostSeek/PostSeek.jsp" flush="false" />
+<jsp:include page="/CommonApps/PostSeek/PostSeek.jsp" flush="false" />

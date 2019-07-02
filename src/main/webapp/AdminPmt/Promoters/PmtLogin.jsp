@@ -9,10 +9,11 @@
 <!-- /////////// -->
 
 <script type="text/javascript">
+
 	var status = ${status};
-	console.log('status : '+status);
+	console.log('상황 : ', status);
 	switch(status){
-	case 'joinSuccess' : alert('회원가입에 성공하셨습니다.');	//PromoterControll -> /promoter/PmtForm.mwav 매핑
+		case '1' : alert('회원가입에 성공하셨습니다.');	//PromoterControll -> /promoter/PmtForm.mwav 매핑
 	}
 </script>
 
@@ -44,12 +45,8 @@
 			return false;
 		}
 
-
 		frm.submit();
 	}
-
-
-
 </script>
 
 
