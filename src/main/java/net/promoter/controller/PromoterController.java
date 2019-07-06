@@ -75,12 +75,17 @@ public class PromoterController {
 	public String insertPromoter(CommandMap commandMap,
 			HttpServletRequest request) throws Exception{
 		
-		byte[] decrypted = AesEncryption.hexToByteArray((String) commandMap.get("pmtUpperPromoId"));
-        
-        // AES/ECB 복호화
-        decrypted = AesEncryption.aesDecryptEcb("pmt", decrypted);
-        System.out.println("암호화 : " + (String) commandMap.get("pmtUpperPromoId"));
-        System.out.println("복호화 : " + new String(decrypted, "UTF-8"));
+		String pmtUpperPromoId = (String) commandMap.get("pmtUpperPromoId");
+		
+		byte[] decrypted = AesEncryption.hexToByteArray(pmtUpperPromoId);
+		
+		// AES/ECB 복호화
+		decrypted = AesEncryption.aesDecryptEcb("pmt", decrypted);
+		System.out.println("암호화 : " + pmtUpperPromoId);
+		System.out.println("복호화 : " + new String(decrypted, "UTF-8"));
+		
+		//암호화된 추천인 아이디를 넘겨준다.
+        request.setAttribute("pmtUpperPromoId", pmtUpperPromoId);
 		
 		return "/AdminPmt/Promoters/PmtForm";
 	}
@@ -159,12 +164,20 @@ public class PromoterController {
 		String pmtRcmderId = promoter.getPmtRcmderId();
         byte[] decrypted = AesEncryption.hexToByteArray(promoter.getPmtRcmderId());
         
-        // AES/ECB 복호화
-        decrypted = AesEncryption.aesDecryptEcb("pmt", decrypted);
-		promoter.setPmtRcmderId(new String(decrypted, "UTF-8"));
-		
-		String ViewName = "";
-		int result = promoterService.insertPmtForm(promoter);
+        int result = 0;
+        String ViewName = "";
+        
+        try{
+        	// 추천인은 AES/ECB 복호화 후 vo에 넣는다.
+        	decrypted = AesEncryption.aesDecryptEcb("pmt", decrypted);
+        	promoter.setPmtRcmderId(new String(decrypted, "UTF-8"));
+        	
+        	result = promoterService.insertPmtForm(promoter);
+        }catch(NullPointerException err){
+        	//잘못된 추천인아이디 
+        	result = -1;
+        }
+	
 		
 		ModelAndView mv = new ModelAndView();
 		
@@ -174,6 +187,7 @@ public class PromoterController {
 			
 		}else{			// 실패시 다시 회원가입페이지로 보낸다.
 			mv.addObject("pmtUpperPromoId", pmtRcmderId);	//쿼리스트링에 추천인 아이디를 남긴다.
+			mv.addObject("status", "-1");	 
 			ViewName = "redirect:/Promoter/promoter-add.mwav";
 		}
 		

@@ -9,6 +9,10 @@
 <jsp:include page="/PartsOfContent/Head_Import.jsp" flush="false" />
 <!-- /////////// -->
 
+<!--  //////////////////////////////////// -->
+<jsp:include page="/PartsOfContent/SiteHeader/FrontHeader_Master.jsp" flush="false" />
+<!--  //////////////////////////////////// -->
+
 <script>
 //회원가입시 아래의 6개의 변수가 true가 되어야지만 가입할수있다.
 	var IdCheckYN = false;		//아이디
@@ -19,7 +23,11 @@
 	var EmailCheckYN = false;	//이메일
 
 	$(document).ready(function(){
-	    $('[data-toggle="popover"]').popover(); 
+	    $('[data-toggle="popover"]').popover();
+	    
+		switch('${status}'){
+			case '-1' : alert('회원가입에 실패하였습니다. 관리자에게 문의주세요.');
+		}
 	});
 	
 	function ajaxIdCheck(type,value){
@@ -153,8 +161,7 @@
 		console.log(IdCheckYN + ', ' + PwdCheckYN + ', ' + PwdCheck2YN + ', ' + NameCheckYN + ', ' + PhoneCheckYN + ', ' + EmailCheckYN)
 		if(IdCheckYN && PwdCheckYN && PwdCheck2YN && NameCheckYN && PhoneCheckYN && EmailCheckYN){
 			if(confirm('Promoter 가입을 하시겠습니까?')){
-				//queryString에 있는 파라메터 pmtUpperPromoId를 파싱후 전달
-				$('#pmtRcmderId').val(getUrlParams().pmtUpperPromoId);	
+				$('#pmtRcmderId').val('${pmtUpperPromoId}');	
 				
 				//주소를 하나로 합쳐 전달한다.
 				var pmtAddress = $('#Address').val() + $('#rest_address').val(); 
@@ -166,14 +173,8 @@
 			alert('부적절한 값이 있습니다.');
 		}
 	}
-	
-	//쿼리스트링 파서
-	function getUrlParams() {
-	    var params = {};
-	    window.location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(str, key, value) { params[key] = value; });
-	    return params;
-	} 
 
+	$('#pmtRcmderId').val('D0D88569BCC02A2064F38CF21D1D4A64');
 </script>
 
 </head>
@@ -191,10 +192,7 @@
 </style>
 
 <body>
-	<div class="container">
-		<div class='center-block' style='border: 1px solid red; width: 80%; height: 100px; margin-bottom: 30px;'>
-			<!-- <img src='/Images/CompanyLogos/CompanyLogo.gif'> -->
-		</div>
+	<div class="container" style='margin-top: 130px;'>
 		<hr>
 		<!-- Content Column -->
 		<div class="center-block">
@@ -337,7 +335,7 @@
 										<div class='col-md-2 col-md-offset-2'>추천인아이디:</div>
 										<div class='col-md-5'>
 											<input class='form-control' name="pmtRcmderId"
-												id="pmtRcmderId" type='hidden' maxlength="20">
+												id="pmtRcmderId" type='hidden'>
 										</div>
 										
 									</div>
@@ -355,5 +353,12 @@
 		</div>
 	</div>
 </body>
+
+<footer>
+	<!--/////////////////////////////////////////////////// -->
+	<jsp:include page="/PartsOfContent/SiteFooter/FrontFooter.jsp"
+		flush="false" />
+	<!--/////////////////////////////////////////////////// -->
+</footer>
 <%-- 아래의 내용을 위에 주소 위치에 둘 경우 form태그가 해당위치로 닫힌다 form태그 중복 추후 확인 필요 --%>
 <jsp:include page="/CommonApps/PostSeek/PostSeek.jsp" flush="false" />
