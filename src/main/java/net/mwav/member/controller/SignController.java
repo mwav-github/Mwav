@@ -15,8 +15,10 @@
  */
 package net.mwav.member.controller;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
@@ -25,6 +27,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import net.mwav.member.auth.naver.NaverUrlBuilder;
 import net.mwav.member.service.MemberService;
 import net.mwav.member.vo.Member_tbl_VO;
 
@@ -41,8 +44,11 @@ import org.springframework.social.facebook.api.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.util.WebUtils;
+
+import com.github.scribejava.core.model.OAuth2AccessToken;
 
 @Controller
 public class SignController {
@@ -57,14 +63,14 @@ public class SignController {
 	private MemberService memberService;
 
 	@Inject
-	public SignController(ConnectionFactoryLocator connectionFactoryLocator,
-			UsersConnectionRepository connectionRepository) {
-		this.providerSignInUtils = new ProviderSignInUtils(
-				connectionFactoryLocator, connectionRepository);
+	NaverUrlBuilder naverUrlBuilder;
+
+	@Inject
+	public SignController(ConnectionFactoryLocator connectionFactoryLocator, UsersConnectionRepository connectionRepository) {
+		this.providerSignInUtils = new ProviderSignInUtils(connectionFactoryLocator, connectionRepository);
 	}
 
-	@RequestMapping(value = "/signin", method = { RequestMethod.GET,
-			RequestMethod.POST })
+	@RequestMapping(value = "/signin", method = { RequestMethod.GET, RequestMethod.POST })
 	public void signin() {
 		System.out.println("출력3");
 	}
@@ -100,8 +106,7 @@ public class SignController {
 
 		if (social.equals("facebook")) {
 			facebook = (Facebook) connection.getApi();
-			String[] fields = { "id", "email", "first_name", "last_name",
-					"gender", "birthday", "link" };
+			String[] fields = { "id", "email", "first_name", "last_name", "gender", "birthday", "link" };
 			/*
 			 * System.out.println("이건뭘까" +
 			 * facebook.userOperations().getUserProfile());
@@ -151,7 +156,7 @@ public class SignController {
 		int member_id = 0;
 		String m_id = null;
 		check = memberService.selectOneSnsMbrLoginIdCheck(smMember_id);
-		
+
 		logger.info("check = " + check);
 		if (check == false) { // 기존에 등록 아이디가 존재하지 않는 경우
 
@@ -201,8 +206,8 @@ public class SignController {
 			memberService.insertSnsForm(map);
 			member_tbl_VO.setMember_id(member_id);
 			session.setAttribute("member", member_tbl_VO);
-			if(request.getSession().getAttribute("autoLoginChk")!=null){
-				memberService.updateAutoLogin((String)request.getSession().getAttribute("autoLoginChk"), response, member_tbl_VO.getMember_id());
+			if (request.getSession().getAttribute("autoLoginChk") != null) {
+				memberService.updateAutoLogin((String) request.getSession().getAttribute("autoLoginChk"), response, member_tbl_VO.getMember_id());
 				request.getSession().removeAttribute("autoLoginChk");
 			}
 			logger.info("insertSnsForm success!!!!!!");
@@ -220,9 +225,9 @@ public class SignController {
 
 			member_tbl_VO.setMember_id(member_id);
 			session.setAttribute("member", member_tbl_VO);
-			System.out.println("자동로그인값"+request.getSession().getAttribute("autoLoginChk"));
-			if(request.getSession().getAttribute("autoLoginChk")!=null){
-				memberService.updateAutoLogin((String)request.getSession().getAttribute("autoLoginChk"), response, member_tbl_VO.getMember_id());
+			System.out.println("자동로그인값" + request.getSession().getAttribute("autoLoginChk"));
+			if (request.getSession().getAttribute("autoLoginChk") != null) {
+				memberService.updateAutoLogin((String) request.getSession().getAttribute("autoLoginChk"), response, member_tbl_VO.getMember_id());
 				request.getSession().removeAttribute("autoLoginChk");
 			}
 		}
@@ -237,4 +242,14 @@ public class SignController {
 		return "/Index";
 	}
 
+	@RequestMapping(value = "/naver/signin.mwav")
+	public String naverCallBack(@RequestParam String code, @RequestParam String state, HttpSession session) throws IOException, InterruptedException, ExecutionException {
+
+		OAuth2AccessToken token = naverUrlBuilder.getAccessToken(session, code, state);
+
+		String result = naverUrlBuilder.getUserProfile(token);
+		logger.info("result : " + result);
+
+		return "/Index";
+	}
 }
