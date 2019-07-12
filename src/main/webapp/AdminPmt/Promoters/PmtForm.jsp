@@ -9,10 +9,6 @@
 <jsp:include page="/PartsOfContent/Head_Import.jsp" flush="false" />
 <!-- /////////// -->
 
-<!--  //////////////////////////////////// -->
-<jsp:include page="/PartsOfContent/SiteHeader/FrontHeader_Master.jsp" flush="false" />
-<!--  //////////////////////////////////// -->
-
 <script>
 //회원가입시 아래의 6개의 변수가 true가 되어야지만 가입할수있다.
 	var IdCheckYN = false;		//아이디
@@ -355,10 +351,6 @@
 </body>
 
 <footer>
-	<!--/////////////////////////////////////////////////// -->
-	<jsp:include page="/PartsOfContent/SiteFooter/FrontFooter.jsp"
-		flush="false" />
-	<!--/////////////////////////////////////////////////// -->
 </footer>
 <%-- 아래의 내용을 위에 주소 위치에 둘 경우 form태그가 해당위치로 닫힌다 form태그 중복 추후 확인 필요 --%>
 <jsp:include page="/CommonApps/PostSeek/PostSeek.jsp" flush="false" />
