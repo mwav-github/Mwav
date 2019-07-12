@@ -157,7 +157,7 @@
 		console.log(IdCheckYN + ', ' + PwdCheckYN + ', ' + PwdCheck2YN + ', ' + NameCheckYN + ', ' + PhoneCheckYN + ', ' + EmailCheckYN)
 		if(IdCheckYN && PwdCheckYN && PwdCheck2YN && NameCheckYN && PhoneCheckYN && EmailCheckYN){
 			if(confirm('Promoter 가입을 하시겠습니까?')){
-				$('#pmtRcmderId').val('${pmtUpperPromoId}');	
+				$('#pmtRcmderId').val('${p}');	
 				
 				//주소를 하나로 합쳐 전달한다.
 				var pmtAddress = $('#Address').val() + $('#rest_address').val(); 
@@ -170,7 +170,6 @@
 		}
 	}
 
-	$('#pmtRcmderId').val('D0D88569BCC02A2064F38CF21D1D4A64');
 </script>
 
 </head>
