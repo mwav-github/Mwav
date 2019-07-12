@@ -80,7 +80,7 @@ public class PromoterController {
 		byte[] decrypted = AesEncryption.hexToByteArray(pmtUpperPromoId);
 		
 		// AES/ECB 복호화
-		decrypted = AesEncryption.aesDecryptEcb("pmt", decrypted);
+		decrypted = AesEncryption.aesDecryptEcb(AesEncryption.sKey, decrypted);
 		System.out.println("암호화 : " + pmtUpperPromoId);
 		System.out.println("복호화 : " + new String(decrypted, "UTF-8"));
 		
@@ -169,7 +169,7 @@ public class PromoterController {
         
         try{
         	// 추천인은 AES/ECB 복호화 후 vo에 넣는다.
-        	decrypted = AesEncryption.aesDecryptEcb("pmt", decrypted);
+        	decrypted = AesEncryption.aesDecryptEcb(AesEncryption.sKey, decrypted);
         	promoter.setPmtRcmderId(new String(decrypted, "UTF-8"));
         	
         	result = promoterService.insertPmtForm(promoter);
