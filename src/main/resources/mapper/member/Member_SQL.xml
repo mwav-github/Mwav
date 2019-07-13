@@ -8,7 +8,21 @@
 	<insert id="insertMbrForm" parameterType="hashmap">
 		<![CDATA[
 	INSERT INTO Member_tbl
-		Values(#{member_id}, #{mbrLoginId}, #{mbrLoginPw}, #{mbrTempLoginPw}, #{mbrFirstName}, #{mbrLastName}, #{mbrMiddleName}, #{mbrEmail}, #{mbrCellPhone}, #{mbrAddrFlag}, #{mbrZipcode}, #{mbrAddress})
+		VALUES
+		(
+			#{member_id, jdbcType=VARCHAR},
+			#{mbrLoginId, jdbcType=VARCHAR},
+			#{mbrLoginPw, jdbcType=VARCHAR}, 
+			#{mbrTempLoginPw, jdbcType=VARCHAR},
+			#{mbrFirstName, jdbcType=VARCHAR},
+			#{mbrLastName, jdbcType=VARCHAR},
+			#{mbrMiddleName, jdbcType=VARCHAR},
+			#{mbrEmail, jdbcType=VARCHAR},
+			#{mbrCellPhone, jdbcType=VARCHAR},
+			#{mbrAddrFlag, jdbcType=VARCHAR},
+			#{mbrZipcode, jdbcType=VARCHAR},
+			#{mbrAddress, jdbcType=VARCHAR}
+		)
 		]]>
 	</insert>
 

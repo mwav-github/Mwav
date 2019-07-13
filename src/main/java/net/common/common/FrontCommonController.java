@@ -238,6 +238,13 @@ public class FrontCommonController {
 	public ModelAndView redirectMasterPageController(HttpSession session, HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("/MasterPage");
 
+		Enumeration<?> param = request.getParameterNames();
+
+		while (param.hasMoreElements()) {
+			String paramName = (String) param.nextElement();
+			mv.addObject(paramName, request.getParameter(paramName));
+		}
+		
 		String naverAuthUrl = naverUrlBuilder.getAuthorizationUrl(session);
 		log.info("url : " + naverAuthUrl);
 		mv.addObject("naver_url", naverAuthUrl);
