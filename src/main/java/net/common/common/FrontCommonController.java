@@ -1,5 +1,7 @@
 package net.common.common;
 
+import java.util.Enumeration;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -130,14 +132,6 @@ public class FrontCommonController {
 			mv.addObject("demo_4_text", "Map bubble");
 
 		}
-		/*
-		 * String mm = "site"; mv.addObject("mm", mm); mv.addObject("item",
-		 * "m_bnsForm"); mv.addObject("breadcrumb", "IT Trends");
-		 * mv.addObject("page_header", "IT Trends");
-		 * 
-		 * // mv.addObject("insertBnsForm", insertBnsForm); //
-		 * mv.addObject("IDX", commandMap.get("IDX"));
-		 */
 		return mv;
 	}
 
@@ -227,7 +221,7 @@ public class FrontCommonController {
 
 		return mv;
 	}
-	
+
 	/**
 	 * 로그인 페이지 호출
 	 * @param session
@@ -252,7 +246,7 @@ public class FrontCommonController {
 		return mv;
 	}
 
-	@RequestMapping(value = "/MasterPage_1" )
+	@RequestMapping(value = "/MasterPage_1")
 	public ModelAndView redirectMasterPage1Controller(HttpServletRequest request) throws Exception {
 
 		// System.out.println("열로들어오나");
