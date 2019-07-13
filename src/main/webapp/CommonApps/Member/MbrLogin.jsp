@@ -1,10 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!-- imsi -->
-<!--  <link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"
-	rel="stylesheet">  -->
+
+<!--  http://kninami.github.io/bootstrap-social/ -->
 <link href="/resources/JsFramework/Bootstrap/bootstrap-social.css"
 	rel="stylesheet">
 
@@ -172,32 +170,72 @@
 
 		<%--소셜 로그인 연동부분 
 		중요사항 : col-md-12 외 나머지 것들 col-sm-12 등을 넣으면 버튼 동작이 하지 않음.
+		<input type="hidden" name="autoLoginChk" class="autoLoginChk" value="off"> 확인 필요. 
+		
 		--%>
-		<div id="naver_id_login" style="text-align: center">
-			<a href="${naver_url}">
-				naver
+
+		<div id="kakao_id_login" onClick="return robot_check();"
+			class="form-group col-md-6">
+			<a href="${naver_url}" class="btn btn-block btn-social btn-kakao">
+				<i class="icon-kakao"></i>Sign
+					in with Kakao
 			</a>
 		</div>
 
-
-
+		<div id="naver_id_login" onClick="return robot_check();"
+			class="form-group col-md-6">
+			<a href="" class="btn btn-block btn-social btn-naver">
+				<i class="icon-naver"></i>Sign
+					in with Naver
+			</a>
+		</div>
+		
+		<div id="facebook_id_login" onClick="return robot_check();"
+			class="form-group col-md-6">
+			<a href="" class="btn btn-block btn-social btn-facebook">
+				<i class="fa fa-facebook"></i>Sign
+					in with Facebook
+			</a>
+		</div>
+		
+		<div id="linkedin_id_login" onClick="return robot_check();"
+			class="form-group col-md-6">
+			<a href="" class="btn btn-block btn-social btn-linkedin">
+				<i class="fa fa-linkedin"></i>Sign
+					in with LinkedIn
+			</a>
+		</div>
+		
+		<div id="twitter_id_login" onClick="return robot_check();"
+			class="form-group col-md-6">
+			<a href="" class="btn btn-block btn-social btn-twitter">
+				<i class="fa fa-twitter"></i> <span class="">Sign
+					in with Twitter</span>
+			</a>
+		</div>
+		
+		<div id="google_id_login" onClick="return robot_check();"
+			class="form-group col-md-6">
+			<a href="${naver_url}" class="btn btn-block btn-social btn-google">
+				<i class="fa fa-google"></i>Sign
+					in with Google
+			</a>
+		</div>
 
 
 		<%--아이디 비밀번호 찾기 --%>
 		<div class="col-md-12">
 			<div class="col-md-4">
-				<a href="/MasterPage_1.mwav?mode=Default">
-					<strong>Sign up now</strong>
+				<a href="/MasterPage_1.mwav?mode=Default"> <strong>Sign
+						up now</strong>
 				</a>
 			</div>
 
 			<div class="col-md-8">
-				<a href="/MasterPage.mwav?mode=IDSeek">
-					<strong>Forgot your ID?</strong>
-				</a>
-				<br>
-				<a href="/MasterPage.mwav?mode=PWSeek">
-					<strong>Forgot your Password?</strong>
+				<a href="/MasterPage.mwav?mode=IDSeek"> <strong>Forgot
+						your ID?</strong>
+				</a> <br> <a href="/MasterPage.mwav?mode=PWSeek"> <strong>Forgot
+						your Password?</strong>
 				</a>
 			</div>
 		</div>
@@ -207,16 +245,21 @@
 <!-- Login - END -->
 <c:if test="${param.type == 'simple'}">
 
-	<form name="login_form_simple" action="/member/Login.mwav" role="form" class='form-horizontal' method="post" onsubmit="return re_check(document.login_form_simple);">
+	<form name="login_form_simple" action="/member/Login.mwav" role="form"
+		class='form-horizontal' method="post"
+		onsubmit="return re_check(document.login_form_simple);">
 
 		<input type="hidden" name="returnUrl" value="${param.returnUrl }" />
 
 
 		<div class="form-group">
-			<input type="text" name="mbrLoginId" class="form-control input-lg caps_lockchk" placeholder="Email or member ID">
+			<input type="text" name="mbrLoginId"
+				class="form-control input-lg caps_lockchk"
+				placeholder="Email or member ID">
 		</div>
 		<div class="form-group">
-			<input type="password" class="form-control input-lg caps_lockchk" placeholder="Password" name="mbrLoginPw">
+			<input type="password" class="form-control input-lg caps_lockchk"
+				placeholder="Password" name="mbrLoginPw">
 		</div>
 
 
