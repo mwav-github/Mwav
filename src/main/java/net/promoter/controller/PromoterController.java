@@ -75,7 +75,7 @@ public class PromoterController {
 	public String insertPromoter(CommandMap commandMap,
 			HttpServletRequest request) throws Exception{
 		
-		String pmtUpperPromoId = (String) commandMap.get("pmtUpperPromoId");
+		String pmtUpperPromoId = (String) commandMap.get("p");
 		
 		byte[] decrypted = AesEncryption.hexToByteArray(pmtUpperPromoId);
 		
@@ -85,7 +85,7 @@ public class PromoterController {
 		System.out.println("복호화 : " + new String(decrypted, "UTF-8"));
 		
 		//암호화된 추천인 아이디를 넘겨준다.
-        request.setAttribute("pmtUpperPromoId", pmtUpperPromoId);
+        request.setAttribute("p", pmtUpperPromoId);
 		
 		return "/AdminPmt/Promoters/PmtForm";
 	}
