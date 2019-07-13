@@ -4,27 +4,30 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
 import java.util.regex.Pattern;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.URL;
 
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
 import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.HttpsURLConnection;
 
 /**
- * 
- *
- * <pre>
- * << 개정이력(Modification Information) >>
- * 
- *   수정일      수정자           수정내용
- *  -------    	--------    ---------------------------
- *   2017.08.30  김주성          최초 생성
- *
- * </pre>
+ *@class name : SecurityLib.java
+ *@description : 
+ *@author : (정)
+            (부)
+ *@since : 2019. 7. 13.
+ *@version : v1.0
+ *@see
+   #method : 현재 클래스의 메소드나 변수 연결
+   MyClass#method : MyClass 클래스의 메소드나 변수 연결
+   my.package.MyClass#method : my.package 에 있는 MyClass 클래스의 메소드나 변수 연결
+ * @history :
+   ----------------------------------------
+   * Modification Information(개정이력)
+   ----------------------------------------
+           수정일                   수정자                        수정내용
+   --------    --------    ----------------
+    2019. 7. 13.     jusun    
  */
 public class SecurityLib {
 	private static SecurityLib securityLib;
@@ -133,28 +136,39 @@ public class SecurityLib {
 	}
 	
 
-	/**
-	 *
-	 * <pre>
-	 * 
-	 * 	g-recaptcha-response POST parameter when the user submits the form on your site
-	 * 	recaptcha-token 과는 별개이다. 
-	 * 	String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
-	 *  securityLib.recapchaVerify(gRecaptchaResponse)  =  true || false 
-     *  
-	 * </pre>
-	 *
-	 * @param  gRecaptchaResponse 구글 API 리턴값으로 리캡처 체크 후 ServerSide로 오는 경우 자동으로 전달 받음. (http attributes)
-	 * @return  true || false 
-	 * @throws 에러발생하는 경우.
+	/** 
+	 * @method name : recapchaVerify
+	 * @author : (정) 김주성
+	             (부) 
+	 * @since  : 2019. 7. 13.
+	 * @version : v1.0
+	 * @see : https://o7planning.org/en/10397/using-google-recaptcha-with-java-web-application#a859239
+	 * @description : recapcha에 대해서 middletier에서 구글 서버와 rq/rs를 통해서, 재 점검 가능. 
+	 * @history :
+	   ----------------------------------------
+	   * Modification Information(개정이력)
+	   ----------------------------------------
+	            수정일                              수정자                        수정내용
+	   --------          --------    ----------------
+	     2019. 7. 13.     jusun       최초 작성.
+	 * @param : gRecaptchaResponse - authentication code from google server <br>
+	 *          *g-recaptcha-response POST parameter when the user submits the form on your site (http attributes, hidden field)
+	 * @return : boolean
+	 * @throws : 
 	 * @Library <!-- http://mvnrepository.com/artifact/org.glassfish/javax.json --> 필수        
-	 * 참고 URL :
-	 	// http://o7planning.org/en/10397/using-google-recaptcha-with-java-web-application
-	    // Required. The shared key between your site and reCAPTCHA.
-        // http://blog.saltfactory.net/using-resttemplate-in-spring/
-	    // https://developers.google.com/recaptcha/old/docs/java
-	    // https://www.google.com/recaptcha/admin?hl=en#site/337266461
-	 */
+	 <pre>
+	 * {@code : 예제 코드 작성
+	 *  if (valid) {
+         String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
+         // Verify CAPTCHA.
+         valid = SecurityLib.recapchaVerify(gRecaptchaResponse);
+         if (!valid) {
+             errorString = "Captcha invalid!";
+         }
+     }
+	 * } 
+	 </pre>
+	*/
 	public boolean recapchaVerify(String gRecaptchaResponse) {
 		final String SECRET_KEY = "6LcdRxoUAAAAAEhlMG_bH6mhyxLMIoBLTuAhtA1E";
 		final String SITE_VERIFY_URL = "https://www.google.com/recaptcha/api/siteverify";
