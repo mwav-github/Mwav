@@ -179,16 +179,18 @@ public class BoardController {
 				mv.addObject("page_header", null);
 				// mv.addObject("page_header", "IT Trends");
 
-				String meta_image = (String) selectOneBnsView
-						.get("bnTitleImageLink");
+				Map<String, Object> metaData = new HashMap<String, Object>();
 				// meta태그 이미지
-				String title = (String) selectOneBnsView.get("bnTitle");
-				String description = (String) selectOneBnsView
-						.get("bnSubTitle");
+				metaData.put("title", (String) selectOneBnsView.get("bnTitle"));
+				metaData.put("description", (String) selectOneBnsView.get("bnSubTitle"));
+				metaData.put("thumbnail", (String) selectOneBnsView.get("bnTitleImageLink"));
+				metaData.put("newsKeyword", bnKeyword);
+				metaData.put("isCheck", false);
+				System.out.println("dsf"+bnKeyword);
+				
+					
+				request.setAttribute("boardMetaData", metaData);
 				// meta태그 이미지
-				mv.addObject("meta_image", meta_image);
-				mv.addObject("title", title);
-				mv.addObject("description", description);
 				mv.addObject("selectOneBnsView", selectOneBnsView);
 				mv.addObject("charDataSeries", charDataSeries);
 				mv.addObject("charData", vo);

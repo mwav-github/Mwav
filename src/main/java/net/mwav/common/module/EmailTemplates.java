@@ -55,14 +55,9 @@ public class EmailTemplates {
 
 			public void prepare(MimeMessage mimeMessage) throws Exception {
 
-				MimeMessageHelper message = new MimeMessageHelper(mimeMessage,
-						true, "utf-8");
+				MimeMessageHelper message = new MimeMessageHelper(mimeMessage, true, "utf-8");
 
-				String veloTemplate = VelocityEngineUtils
-						.mergeTemplateIntoString(
-								velocityConfig.getVelocityEngine(),
-								email.getVeloTemplate(), "UTF-8",
-								email.getEmailMap());
+				String veloTemplate = VelocityEngineUtils.mergeTemplateIntoString(velocityConfig.getVelocityEngine(), email.getVeloTemplate(), "UTF-8", email.getEmailMap());
 				message.setSubject(email.getSubject());
 				message.setFrom(email.getFrom());
 				message.setTo(email.getReceiver());
@@ -85,8 +80,7 @@ public class EmailTemplates {
 				// Set the given text directly as content in non-multipart mode
 				// or as default body part in multipart mode
 
-				if (StringUtils.isEmpty(email.getHtmlYn()) == false
-						&& email.getHtmlYn().equals("Y")) {
+				if (StringUtils.isEmpty(email.getHtmlYn()) == false && email.getHtmlYn().equals("Y")) {
 					message.setText(veloTemplate, true);
 				} else {
 					message.setText(veloTemplate);
@@ -106,41 +100,28 @@ public class EmailTemplates {
 	}
 
 	public void sendAlertEmail(String title) throws Exception {
-		try {
-			System.out.println("mailSender"+mailSender);
-			System.out.println("출력"+mailSender.createMimeMessage());
-			msg = mailSender.createMimeMessage(); // MimeMessage 객체 생성
+		System.out.println("mailSender" + mailSender);
+		System.out.println("출력" + mailSender.createMimeMessage());
+		msg = mailSender.createMimeMessage(); // MimeMessage 객체 생성
 
-			msg.setSubject(title);
-			msg.setText("");
-			msg.setFrom(new InternetAddress("webmaster@mwav.net"));
-			msg.setRecipients(MimeMessage.RecipientType.TO,
-					InternetAddress.parse("jusung.kim@mwav.net"));
-		} catch (MessagingException e) {
-			e.printStackTrace();
-			System.out.println("MessagingException");
-		}
-		try {
-			mailSender.send(msg);
+		msg.setSubject(title);
+		msg.setText("");
+		msg.setFrom(new InternetAddress("webmaster@mwav.net"));
+		msg.setRecipients(MimeMessage.RecipientType.TO, InternetAddress.parse("jusung.kim@mwav.net"));
 
-		} catch (MailException e) {
-			System.out.println("MailException발생");
-			// 상세내용을 알수 있따.
-			e.printStackTrace();
-		}
+		mailSender.send(msg);
 	}
-	
+
 	public void sendBasicEmail(EmailVO email) throws Exception {
 		try {
-			System.out.println("mailSender"+mailSender);
-			System.out.println("출력"+mailSender.createMimeMessage());
+			System.out.println("mailSender" + mailSender);
+			System.out.println("출력" + mailSender.createMimeMessage());
 			msg = mailSender.createMimeMessage(); // MimeMessage 객체 생성
 
 			msg.setSubject(email.getSubject());
 			msg.setText(email.getContent());
 			msg.setFrom(new InternetAddress("webmaster@mwav.net"));
-			msg.setRecipients(MimeMessage.RecipientType.TO,
-					InternetAddress.parse(email.getReceiver()));
+			msg.setRecipients(MimeMessage.RecipientType.TO, InternetAddress.parse(email.getReceiver()));
 		} catch (MessagingException e) {
 			e.printStackTrace();
 			System.out.println("MessagingException");
@@ -156,13 +137,11 @@ public class EmailTemplates {
 	}
 
 	// 파일 또는 이미지 첨부
-	public void sendMailWithAttachment(EmailVO email)
-			throws UnsupportedEncodingException {
+	public void sendMailWithAttachment(EmailVO email) throws UnsupportedEncodingException {
 		msg = mailSender.createMimeMessage();
 
 		try {
-			MimeMessageHelper messageHelper = new MimeMessageHelper(msg, true,
-					"UTF-8");
+			MimeMessageHelper messageHelper = new MimeMessageHelper(msg, true, "UTF-8");
 			messageHelper.setSubject("[공지] 회원 가입 안내");
 			String htmlContent = "<strong>안녕하세요</strong>, 반갑습니다.";
 			messageHelper.setText(htmlContent, true);
@@ -171,11 +150,8 @@ public class EmailTemplates {
 			 * messageHelper.setTo(new InternetAddress(email.getReceiver(),
 			 * email .getName(), "UTF-8"));
 			 */
-			DataSource dataSource = new FileDataSource(
-					"c:\\Users\\김주성\\Desktop\\123.txt");
-			messageHelper.addAttachment(
-					MimeUtility.encodeText("책목록.xlsx", "UTF-8", "B"),
-					dataSource);
+			DataSource dataSource = new FileDataSource("c:\\Users\\김주성\\Desktop\\123.txt");
+			messageHelper.addAttachment(MimeUtility.encodeText("책목록.xlsx", "UTF-8", "B"), dataSource);
 
 		} catch (MessagingException e) {
 			throw new MailParseException(e);
@@ -184,25 +160,20 @@ public class EmailTemplates {
 	}
 
 	// 이메일 내 파일 또는 이미지 삽입
-	public void sendMailInAttachment(EmailVO email)
-			throws UnsupportedEncodingException {
+	public void sendMailInAttachment(EmailVO email) throws UnsupportedEncodingException {
 		msg = mailSender.createMimeMessage();
 
 		try {
-			MimeMessageHelper messageHelper = new MimeMessageHelper(msg, true,
-					"UTF-8");
+			MimeMessageHelper messageHelper = new MimeMessageHelper(msg, true, "UTF-8");
 			messageHelper.setSubject("[공지] 회원 가입 안내");
-			String htmlContent = "<strong>안녕하세요</strong>, 반갑습니다." + "<img src="
-					+ "http://mwav.net/Images/CompanyLogos/CompanyLogo.gif"
-					+ ">";
+			String htmlContent = "<strong>안녕하세요</strong>, 반갑습니다." + "<img src=" + "http://mwav.net/Images/CompanyLogos/CompanyLogo.gif" + ">";
 			messageHelper.setText(htmlContent, true);
 			messageHelper.setFrom("ebizpromwav@gmail.com", "Mwav");
 			/*
 			 * messageHelper.setTo(new InternetAddress(email.getReceiver(),
 			 * email .getName(), "UTF-8"));
 			 */
-			messageHelper.addInline("첨부파일", new FileDataSource(
-					"c:\\Users\\김주성\\Desktop\\123.txt"));
+			messageHelper.addInline("첨부파일", new FileDataSource("c:\\Users\\김주성\\Desktop\\123.txt"));
 
 		} catch (MessagingException e) {
 			throw new MailParseException(e);

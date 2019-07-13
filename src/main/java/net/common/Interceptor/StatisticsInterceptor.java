@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import net.mwav.common.module.Common_Utils;
 import net.mwav.common.module.CookieBox;
+import net.mwav.common.module.StringLib;
 import net.mwav.member.service.MemberService;
 import net.mwav.member.vo.Member_tbl_VO;
 import net.mwav.statistics.controller.StatisticsController;
@@ -188,7 +189,8 @@ public class StatisticsInterceptor extends HandlerInterceptorAdapter {
 		try {
 			Map<String, Object> map = new HashMap<String, Object>();
 			// meta 태그 내 title 지정
-			map = Common_Utils.setMetaData(request.getRequestURI());
+			
+			map = Common_Utils.setMetaData(request.getRequestURI(), (Map<String, Object>) request.getAttribute("boardMetaData"));
 
 			request.setAttribute("metaData", map);
 		} catch (Exception e) {
