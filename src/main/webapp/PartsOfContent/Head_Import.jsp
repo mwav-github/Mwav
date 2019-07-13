@@ -219,7 +219,7 @@ https://stackoverflow.com/questions/1241947/how-do-i-show-multiple-recaptchas-on
 			h.end = null
 		}, c);
 		h.timeout = c;
-	})(window, document.documentElement, 'async-hide', 'dataLayer', 4000, {
+	})(window, document.documentElement, 'async-hide', 'dataLayer', 0, {	//임시로 수정 4000	
 		'GTM-ML32Q9G' : true
 	});
 </script>

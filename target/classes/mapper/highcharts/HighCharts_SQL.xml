@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="highCharts">
+	
+	<sql id="pgl">
+	 <if test="stPromoterId != null and stPromoterId != ''" > 
+        AND  stPromoterId = #{stPromoterId}
+      </if>
+    </sql>
+
+	<!--/*========================================리스트========================================*/ 
+	 -->
+	
+		<select id="selectListWeeklyUsers" resultType="net.common.charts.vo.SeriesTypeOneVO" parameterType="hashmap" >
+		  SELECT DATE_FORMAT(stStatisticsDt, '%W') AS 'name',
+          COUNT('statistics_id') AS 'data'
+          FROM Statistics_tbl
+          WHERE <![CDATA[  TO_DAYS(NOW()) - TO_DAYS(stStatisticsDt) <= 7 ]]>
+          <include refid="pgl" /> 
+          GROUP BY 'name'
+          ORDER BY 'name' desc;
+	</select>
+
+	
+	<select id="selectListTop10Page" resultType="net.common.charts.vo.SeriesTypeOneVO" parameterType="hashmap" >
+          SELECT b.slPageName AS 'name', b.slPageName AS 'name', 
+	      FLOOR(COUNT(*)) AS 'data' 
+	      FROM Statistics_tbl a, StatisticsLog_tbl b
+	      WHERE 	<![CDATA[slPageName IS NOT NULL ]]> 
+          <include refid="pgl" /> 
+          AND a.statistics_id = b.statistics_id
+	      GROUP BY `name`
+	      ORDER BY data DESC 
+	      limit 0,10;
+        
+	</select>
+	
+	
+	<select id="selectListClientScreenSize" resultType="net.common.charts.vo.SeriesDataTypeOneVO" parameterType="hashmap" >
+
+	      SELECT COUNT(*) AS 'y', stClientScreen AS 'name' 
+	      FROM Statistics_tbl 
+	      WHERE <![CDATA[  stClientScreen IS NOT NULL AND TO_DAYS(NOW()) - TO_DAYS(stStatisticsDt) <= 30  ]]>
+	      <include refid="pgl" /> 
+	      GROUP BY 'name'
+	      ORDER BY 'y' DESC 
+
+	</select>
+	<select id="selectListClientBrowerInfo" resultType="net.common.charts.vo.SeriesTypeOneVO" parameterType="hashmap" >
+
+    select distinct SUBSTRING_INDEX(stBrowserInfo, '(', 1) AS 'name', count(*) as 'data', stDeviceType
+    from Statistics_tbl where stDeviceType = 'COMPUTER' and stPromoterId = '0' group by name 
+ 
+	</select>
+	
+	
+	<select id="selectListClientBrowerVersion" resultType="net.common.charts.vo.SeriesTypeOneVO" parameterType="String"  >
+select distinct SUBSTRING_INDEX(SUBSTRING_INDEX(stBrowserInfo, '(', -1),')', 1) as 'name', SUBSTRING_INDEX(stBrowserInfo, '(', 1) as 'no', count('name') as 'data'
+ from Statistics_tbl where stDeviceType = 'COMPUTER' and SUBSTRING_INDEX(stBrowserInfo, '(', 1) =  #{value} group by name 
+ 
+ 
+	</select>
+	
+	<select id="selectListBoardKeyword" resultType="String" parameterType="hashmap" >
+          SELECT bnKeyword From BoardNews_tbl where bNews_id = #{bNews_id};
+        
+	</select>
+	
+	<!--/*========================================삭제========================================*/  -->
+
+</mapper>

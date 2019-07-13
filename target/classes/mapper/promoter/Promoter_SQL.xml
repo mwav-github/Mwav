@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- #은 ' ' string // $ 은 숫자 ' ' 없음 -->
+<mapper namespace="promoter">
+
+	<!--]]]\
+<resultMap type="net.admins.dao.StaffVO" id="StaffVO">
+	  <id property="staff_id" column="staff_id" />
+	  <result column="PmtLoginId" property="PmtLoginId" />
+	 <result column="PmtLoginPw" property="PmtLoginPw" />
+	 <result column="PmtNumber" property="PmtNumber" />
+	 <result column="PmtName" property="Pmt"Name />
+	 <result column="PmtNickname" property="PmtNickname" />
+	 <result column="PmtBranch" property="PmtBranch" />
+	 <result column="PmtDeptName" property="PmtDeptName" />
+	 <result column="PmtClass" property="PmtClass" />
+	 <result column="PmtSubJobs" property="PmtSubJobs" />
+	 <result column="PmtPhone" property="PmtPhone" />
+	 <result column="PmtCellularP" property="PmtCellularP" />
+	 <result column="PmtExtNbr" property="PmtExtNbr" />
+	 <result column="PmtEmail" property="PmtEmail" />
+	 <result column="PmtSsn1" property="PmtSsn1" />
+	 <result column="PmtSsn2" property="PmtSsn2" />
+	 <result column="PmtZipCode" property="PmtZipCode" />
+	 <result column="PmtAddress" property="PmtAddress" />
+	 <result column="PmtMessengerName" property="PmtMessengerName" />
+	 <result column="PmtMessengerId" property="PmtMessengerId" />
+	 <result column="PmtHomepage" property="PmtHomepage" />
+	 <result column="PmtMark" property="PmtMark" />
+	 <result column="PmtMark" property="PmtMark" />
+	 <result column="PmtLevel" property="PmtLevel" />
+	 <result column="PmtBusinessPic" property="Pmt" />
+	 <result column="Pmt" property="Pmt" />
+	 <result column="Pmt" property="Pmt" />
+	 <result column="Pmt" property="Pmt" />
+	 <result column="Pmt" property="Pmt" />
+ </resultMap> -->
+
+
+
+
+
+	<insert id="insertPmtForm" parameterType="net.promoter.vo.Promoter_VO">
+		<![CDATA[
+			INSERT INTO Promoter_tbl
+		    	values(#{promoter_id}, #{pmtLoginId}, #{pmtLoginPw}, #{pmtName},
+			    #{pmtMail}, #{pmtPhone}, #{pmtCellularPhone},0, #{pmtZipcode},
+			    #{pmtAddress}, #{pmtJobType}, null, null, #{pmtSsn1},#{pmtSsn2},#{pmtMarried},#{pmtMarkl}
+			);
+		]]>
+	</insert>
+
+	<insert id="insertPmtValueForm" parameterType="net.promoter.vo.Promoter_VO">
+		<![CDATA[
+			insert INTO PromoterValue_tbl
+			values(#{promoter_id}, null,null, #{pmtRcmderId}, 2,0,0,0,null,
+				SYSDATE(),NULL,NULL,NULL,SYSDATE(),NULL
+			);
+		]]>
+	</insert>
+
+	<!--/*========================================리스트(SelctOne, SelectList 순)========================================*/  -->
+
+	<select id="selectNextPmtPk" resultType="int">
+		<![CDATA[
+	       select IFNULL(max(promoter_id+1) , 10001000) AS promoter_id from Promoter_tbl
+		]]>
+	</select>
+
+	<select id="selectOnePmtLoginIdCheck" parameterType="string" resultType="string">
+		<![CDATA[
+	      select pmtLoginId from Promoter_tbl where PmtLoginId = #{pmtLoginId};
+		]]>
+	</select>
+
+
+	<select id="selectOneGetTotalCount" resultType="int">
+	<![CDATA[
+	   select count(*) from Promoter_tbl
+	]]>
+	</select>
+
+	<select id="selectOnePmtInfo" parameterType="hashmap" resultType="net.promoter.vo.Promoter_VO">
+		<![CDATA[
+		SELECT *
+		FROM Promoter_tbl
+	    WHERE promoter_id = #{promoter_id}
+		]]>
+	</select>
+
+	<select id="selectOnePmtValueInfo" parameterType="string" resultType="net.promoter.vo.PromoterValue_VO">
+		<![CDATA[
+		SELECT *
+		FROM PromoterValue_tbl
+	    WHERE promoter_id = #{promoter_id}
+		]]>
+	</select>
+
+	<select id="selectListPmtList" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+	select c.* from (select @ROWNUM := @ROWNUM + 1 AS ROWNUM, a.* from (select * from Promoter_tbl order by promoter_id) a,  (SELECT @ROWNUM := 0) R ) c where c.ROWNUM >= #{startRow} and c.ROWNUM <= #{endRow}
+	]]>
+	</select>
+
+
+	<!-- /*========================================보기========================================*/ -->
+	<select id="selectPmtView" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+	      select * from Staff_tbl where staff_id= #{staff_id}
+		]]>
+	</select>
+
+
+	<!-- <select id="selectPmtLogin" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+		SELECT *
+		FROM Staff_tbl
+	    WHERE PmtLoginId = #{PmtLoginId}
+		]]>
+	</select> -->
+
+	<select id="selectPmtLogin" parameterType="hashmap" resultType="net.promoter.vo.Promoter_VO">
+		<![CDATA[
+		SELECT *
+		FROM Promoter_tbl
+	    WHERE pmtLoginId = #{pmtLoginId}
+		]]>
+	</select>
+<!-- /*========================================업데이트========================================*/ -->
+	<update id="updatePmtPro" parameterType="hashmap">
+	<![CDATA[
+	  update Promoter_tbl
+	  set pmtName=#{pmtName} ,pmtCellularPhone= #{pmtCellularPhone},pmtMail=#{pmtMail},pmtPhone=#{pmtPhone}, pmtMarkl= #{pmtMaikl}
+	]]>
+	  <if test= "#{pmtNewPw}!=null">
+	       , pmtLoginPw = #{pmtNewPw}
+	  </if>
+	  where promoter_id= #{promoter_id}
+
+	</update>
+
+	<update id="updatePmtValuePro" parameterType="hashmap">
+	<![CDATA[
+	  update PromoterValue_tbl
+	  set
+	  where promoter_id= #{promoter_id}
+	]]>
+	</update>
+
+	<update id="updatePmtVisitNbr" parameterType="hashmap">
+	<![CDATA[
+	  update PromoterValue_tbl
+	  set PmtVisitNbr = PmtVisitNbr+1
+	  where promoter_id= #{promoter_id}
+	]]>
+	</update>
+
+
+
+	<!-- <insert id="insertPmtRegist" parameterType="hashmap" >
+		insert into staff_tbl value(#{staff_id},#{PmtLoginId},#{PmtLoginPw},#{PmtNumber},#{PmtName},
+		#{PmtNickname},#{PmtBranch},#{PmtDeptName},#{PmtClass},#{PmtSubJobs},#{PmtPhone},#{PmtCellularP}
+		,#{PmtExtNbr},#{sftExtNbr},#{PmtEmail},#{sftSsn1},#{sftSsn2},#{sftZipcode},#{sftAddress},#{sftMessengerName}
+		,#{sftMessengerId},#{sftHomepage},#{sftMark},#{sftLevel},#{sftBusinessPic},#{sftAvataImage},#{sftData},#{sftPointAc}
+		,#{sftJoinDt},#{sftDeleteDt},#{sftInserDt},#{sftUpdateDt},#{sftRecentLoginDt},#{sftIpAddress}
+		)
+	</insert> -->
+</mapper>
+

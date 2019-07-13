@@ -33,6 +33,40 @@ import sun.misc.BASE64Encoder;
    padding :  속, 충전재 - http://acaasia.blogspot.kr/2013/07/padding-mode.html
 - 암호화가 병렬처리가 아닌 순차적으로 수행되어야 한다. (단점)
  */
+
+
+
+/**
+ *@class name : AesEncryption.java
+ *@description : 
+ *@author : (정) ?
+            (부) 공태현
+ *@since : 2019. 7. 1.
+ *@version : v1.0
+ *@see
+ *
+ * // AES/ECB 암호화
+   encrypted = aesEncryptEcb(sKey, sText);
+ 
+   // AES/ECB 복호화
+   decrypted = aesDecryptEcb(sKey, encrypted);
+   
+   //암호화 된 값
+   toHexString(encrypted);
+   
+   //복호화시 디코딩 필요
+   new String(decrypted, "UTF-8");
+ *
+ * @history :
+   ----------------------------------------
+   * Modification Information(개정이력)
+   ----------------------------------------
+   수정일     수정자        수정내용
+   --------    --------    ----------------
+   2019. 7. 1.     John    
+ */
+
+
 public class AesEncryption {
  
     public static final String sKey = "Mwav.net";
@@ -239,8 +273,8 @@ public class AesEncryption {
 		
     	return encryptEncoding;
     }
-    
-    private byte[] hexToByteArray(String s) { // 16진수 문자열을 바이트 배열로
+    //private byte[] hexToByteArray(String s) { // 16진수 문자열을 바이트 배열로
+    public static byte[] hexToByteArray(String s) { // 16진수 문자열을 바이트 배열로
         byte[] retValue = null;
         if (s != null && s.length() != 0) {
             retValue = new byte[s.length() / 2];
@@ -256,8 +290,8 @@ public class AesEncryption {
     //테스트 결과 확인.
  
     public static void main(String[] args){
-        String sKey = "ABC";
-        String sText = "123";
+        String sKey = "pmt";
+        String sText = "testpwd";
         String sInitVector = "123가나다";
         byte[] encrypted = null;
         byte[] decrypted = null;
@@ -268,11 +302,11 @@ public class AesEncryption {
             System.out.println("    - TEXT : " + sText);
  
             // AES/ECB 암호화
-            encrypted = aesEncryptEcb(sKey, sText);
+            encrypted = aesEncryptEcb(AesEncryption.sKey, sText);
  
             // AES/ECB 복호화
-            decrypted = aesDecryptEcb(sKey, encrypted);
- 
+            decrypted = aesDecryptEcb(AesEncryption.sKey, encrypted);
+            
             if (encrypted == null) {
                 System.out.println("    - Encrypted : ERROR!!!");
             } else {

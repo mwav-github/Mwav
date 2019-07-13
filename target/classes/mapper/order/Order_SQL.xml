@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="order">
+	
+	<!--
+	parameterType="net.mwav.order.vo.OrderCartVO" vo 타입 에러체크 
+	
+	/*========================================등록========================================*/ 
+	<insert id="insertOrderForm" parameterType="net.mwav.order.vo.OrderCartVO" >
+		<![CDATA[
+			INSERT INTO ordercart_tbl(orderCart_id, ocChoiceDt, goods_id, ocAmount, gcr_id, ocIpAddress) values(#{orderCart_id},#{ocChoiceDt},#{goods_id},#{ocAmount},#{gcr_id},#{ocIpAddress})
+		]]>
+	</insert>
+ -->
+    <!--/*========================================보기========================================*/  -->
+
+  
+	<!--/*======================+==================수정========================================*/  -->
+	
+	<update id="updateOrderCart" parameterType="hashmap"  >
+		<![CDATA[
+	       update ordercart_tbl set ocAmount= #{ocAmount} where orderCart_id = #{orderCart_id} and goods_id = #{goods_id} and ocChoiceDt= #{ocChoiceDt}
+		]]>
+	</update>
+	
+	<!--<update id="deleteOrderCartDelete" parameterType="hashmap"  >
+		<![CDATA[
+	       update ordercart_tbl set ocChoiceDt= null where orderCart_id = #{orderCart_id} and goods_id = #{goods_id} and ocChoiceDt= #{ocChoiceDt}
+		]]>
+	</update>-->
+	
+	<!--/*========================================리스트(SelctOne, SelectList 순)========================================*/  -->
+	
+	<select id="selectisOrderCart" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+	      select count(*) as count, ocAmount, ocChoiceDt from ordercart_tbl where orderCart_id= #{ForderCart_id} and goods_id = #{Fgoods_id}
+		]]>
+	</select>
+	
+	<select id="selectOneOrderTotalCount" resultType="int">
+	<![CDATA[
+	   select count(*) from ordercart_tbl
+	]]>
+	</select>
+	
+	<select id="selectOrderCartCalculate" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+	      select * 
+           FROM ordercart_tbl oc, goodsmaster_tbl gm
+           where (oc.orderCart_id = #{orderCart_id}) and (oc.goods_id = gm.goods_id) and (oc.ocChoiceDt IS NOT NULL)
+           order by oc.goods_id  
+		]]>
+	</select>
+	
+		<select id="selectOrderCartCalculate2" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+	      select * 
+           FROM ordercart_tbl oc, goodsmaster_tbl gm
+           where (oc.orderCart_id = #{orderCart_id}) and (oc.goods_id = #{goods_id}) and (gm.goods_id = #{goods_id}) and (oc.ocChoiceDt IS NOT NULL)
+           order by oc.goods_id  
+		]]>
+	</select>
+	
+	
+	<!-- SELECT GOODS_ID 고고   -->
+		<select id="selectListOrderCartList" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+	select c.* from (select @ROWNUM := @ROWNUM + 1 AS ROWNUM, a.* from (SELECT oc.orderCart_id,
+       oc.ocChoiceDt,
+       oc.goods_id AS A,
+       oc.ocOption,
+       oc.ocAmount,
+       oc.gcr_id,
+       oc.ocIpAddress,
+       oc.statistics_id,gm.*
+  FROM ordercart_tbl oc, goodsmaster_tbl gm
+    where (oc.orderCart_id = #{orderCart_id} ) and (oc.goods_id = gm.goods_id) and oc.goods_id is not NULL order by ocChoiceDt asc) a,  (SELECT @ROWNUM := 0) R ) c where c.ROWNUM >= #{startRow} and c.ROWNUM <= #{endRow}
+	
+	]]>
+	</select>
+	
+	<select id="selectListOrderCartChecked" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+		select * from ordercart_tbl oc, goodsmaster_tbl gm where oc.goods_id = gm.goods_id and oc.orderCart_id = #{orderCart_id} order by ocChoiceDt asc 
+		]]>
+	</select>
+	
+	<!--/*========================================삭제========================================*/  -->
+	
+	<delete id="deleteOrderCartDelete" parameterType="hashmap"> 
+		<![CDATA[		
+		
+		delete from ordercart_tbl where orderCart_id = #{orderCart_id} and goods_id = #{goods_id} and ocChoiceDt= #{ocChoiceDt}
+		]]>
+	</delete>
+	
+	<!--<update id="deleteOrderCartDelete" parameterType="hashmap"> 
+		<![CDATA[		
+		
+		update ordercart_tbl set ocChoiceDt=NULL where orderCart_id = #{orderCart_id} and goods_id = #{goods_id} and ocChoiceDt= #{ocChoiceDt}
+		]]>
+	</update>-->
+
+</mapper>

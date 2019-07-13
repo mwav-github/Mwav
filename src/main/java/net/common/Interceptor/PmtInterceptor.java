@@ -17,7 +17,7 @@ public class PmtInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler) throws Exception {
-		log.info("======================================          START(LoginInterceptor)         ======================================");
+		log.info("======================================          START(PmtInterceptor)         ======================================");
 
 		if (log.isDebugEnabled()) {
 			log.info(" Request URI \t:  " + request.getRequestURI());
@@ -44,7 +44,7 @@ public class PmtInterceptor extends HandlerInterceptorAdapter {
 			ModelAndView modelAndView) throws Exception {
 		System.out.println("모든 것을 수행한 후  promoterInterCeptor에 나갔다.11");
 
-		log.info("======================================           END(LoginInterceptor)          ======================================\n");
+		log.info("======================================           END(PmtInterceptor)          ======================================\n");
 	}
 
 

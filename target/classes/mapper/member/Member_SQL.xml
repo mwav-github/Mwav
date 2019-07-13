@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- #은 ' ' string // $ 은 숫자 ' ' 없음 -->
+<mapper namespace="member">
+
+	<!-- /*========================================등록========================================*/ -->
+	<insert id="insertMbrForm" parameterType="hashmap">
+		<![CDATA[
+	INSERT INTO Member_tbl
+		Values(#{member_id}, #{mbrLoginId}, #{mbrLoginPw}, #{mbrTempLoginPw}, #{mbrFirstName}, #{mbrLastName}, #{mbrMiddleName}, #{mbrEmail}, #{mbrCellPhone}, #{mbrAddrFlag}, #{mbrZipcode}, #{mbrAddress})
+		]]>
+	</insert>
+
+	<insert id="insertMemberValue_tbl" parameterType="hashmap">
+		<![CDATA[
+	INSERT INTO MemberValue_tbl
+	    Values(#{member_id},'0','0','0','0','0','0','0','0','0',null,now(),null,null,null,null,null,null,null,null,null)
+		]]>
+	</insert>
+
+	<select id="selectMbrLoginPw" parameterType="hashmap" resultType="string" >
+		<![CDATA[
+		select mbrLoginPw from Member_tbl where mbrTempLoginPw = #{imsi_mbrLoginPw}
+		]]>
+	</select>
+
+	<!-- /*========================================보기========================================*/ -->
+	<select id="selectMbrView" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+	      select * from Member_tbl where member_id= #{member_id}
+		]]>
+	</select>
+
+	<!-- /*========================================수정========================================*/ -->
+	<select id="updateMbrForm" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+	      select * from Member_tbl where member_id= #{member_id}
+		]]>
+	</select>
+	<update id="updateProMbrform" parameterType="hashmap" >
+		<![CDATA[
+	       update Member_tbl set mbrFirstName=#{mbrFirstName}, mbrMiddleName= #{mbrMiddleName}, mbrLastName= #{mbrLastName} , mbrEmail= #{mbrEmail}, mbrCellPhone= #{mbrCellPhone}, mbrAddrFlag =  #{mbrAddrFlag}, mbrZipcode = #{mbrZipcode}, mbrAddress = #{mbrAddress} where member_id = #{member_id}
+		]]>
+	</update>
+
+	<update id="updateMbrLoginPw" parameterType="hashmap" >
+		<![CDATA[
+		UPDATE Member_tbl SET mbrLoginPw = #{mbrLoginPw} WHERE mbrTempLoginPw = #{imsi_mbrLoginPw} and mbrLoginPw != #{hope_mbrLoginPw}
+		]]>
+	</update>
+
+	<update id="updateMbrTempLoginPw" parameterType="hashmap">
+		<![CDATA[
+		UPDATE Member_tbl SET mbrTempLoginPw = #{mbrTempLoginPw} WHERE mbrEmail = #{mbrEmail} and mbrLoginId = #{mbrLoginId}
+		]]>
+	</update>
+
+	<update id="updateMbrRecLoginDt" parameterType="int">
+		<![CDATA[
+		UPDATE MemberValue_tbl SET  mbrRecentLoginDt= sysdate() WHERE member_id = #{member_id}
+		]]>
+	</update>
+
+	<!--/*========================================리스트(SelectOne, SelectList 순)========================================*/-->
+
+	<select id="selectOneMbrLoginIdCheck" parameterType="string" resultType="string">
+		<![CDATA[
+	      select mbrLoginId from Member_tbl where mbrLoginId = #{mbrLoginId};
+		]]>
+	</select>
+
+    <select id="selectListMbrLoginIdSeek" parameterType="hashmap" resultType="String">
+		<![CDATA[
+		select mbrLoginId from Member_tbl where mbrCellPhone = #{mbrCellPhone} and mbrEmail = #{mbrEmail}
+		]]>
+	</select>
+
+	<select id="selectOneMbrLoginPWSeek" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+		select mbrLoginPw from Member_tbl where mbrLoginId = #{mbrLoginId} and mbrEmail = #{mbrEmail}
+		]]>
+	</select>
+
+	 <select id="selectOneMbrTempLoginPwSeek" parameterType="hashmap" resultType="string">
+		<![CDATA[
+		select mbrTempLoginPw from Member_tbl where mbrTempLoginPw = #{mbrTempLoginPw}
+		]]>
+	</select>
+
+	<!--/*========================================삭제========================================*/-->
+	<update id="deleteMbrDelete" parameterType="hashmap">
+		<![CDATA[
+		update MemberValue_tbl set mbrLeaveDt=NOW() where member_id = (SELECT member_id FROM member_tbl where mbrLoginPw = #{mbrLoginPw} and member_id = #{member_id})
+		]]>
+	</update>
+
+	<!--
+	http://blog.naver.com/PostView.nhn?blogId=nebadak&logNo=90098352281&redirect=Dlog&widgetTypeCall=true
+		select distinct(zcSiGunGuName) from ZipCode_tbl where zcSiDoName = #{zcSiDoName}
+	-->
+	<select id="selectListZcGunGuSeek" parameterType="String" resultType="String">
+		<![CDATA[
+		SELECT zcSiGunGuName FROM ZipCode_tbl where zcSiDoName =#{zcSiDoName}
+        GROUP BY zcSiGunGuName
+		]]>
+	</select>
+
+	<select id="post_zcRoadName" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+select * from ZipCode_tbl where zcSiDoName = #{zcSiDoName} and zcSiGunGuName = #{zcSiGunGuName} and zcRoadName = #{zcRoadName} and zcBuildingMainNo = #{zcBuildingMainNo}
+		]]>
+	</select>
+	<!-- select * from ZipCode_tbl where zcSiDoName = #{zcSiDoName} and zcSiGunGuName = #{zcSiGunGuName} and zcRoadName = #{zcRoadName} and zcBuildingMainNo = #{zcBuildingMainNo}-->
+
+	<select id="post_zcLegalEupMyeonDongName" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+
+select * from ZipCode_tbl where zcSiDoName = #{zcSiDoName} and zcSiGunGuName = #{zcSiGunGuName} and zcLegalEupMyeonDongName = #{zcLegalEupMyeonDongName} and zcJiBunMain = #{zcJiBunMain}
+
+		]]>
+	</select>
+	<!-- select * from ZipCode_tbl where zcSiDoName = #{zcSiDoName} and zcSiGunGuName = #{zcSiGunGuName} and zcLegalEupMyeonDongName = #{zcLegalEupMyeonDongName} and zcJiBunMain = #{zcJiBunMain}-->
+	<select id="post_zcBuildingBook" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			select * from ZipCode_tbl where zcSiDoName = #{zcSiDoName} and zcSiGunGuName = #{zcSiGunGuName} and zcBuildingBook = #{zcBuildingBook}
+
+		]]>
+	</select>
+	<!--select * from ZipCode_tbl where zcSiDoName = #{zcSiDoName} and zcSiGunGuName = #{zcSiGunGuName} and zcBuildingBook = #{zcBuildingBook} -->
+
+    <!--
+select * from postcodebuildinfo_tbl where 시도명 = '강원도' and 시군구명 = '춘천시' and 법정읍면동명 = '봉의동' and 지번본번 = '1'
+select * from postcodebuildinfo_tbl where 시도명 = '강원도' and 시군구명 = '춘천시' and 도로명 = '봉의산길' and 건물본번 = '28'
+select * from postcodebuildinfo_tbl where 시도명 = '서울특별시' and 시군구명 = '강동구' and 건축물대장 건물명 = '힐링하우스'
+    -->
+    <select id="selectNextPk" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+	       select IFNULL(max(member_id+1) , 100000) AS member_id from Member_tbl
+		]]>
+	</select>
+
+
+	<select id="selectLogin" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+		SELECT a.*, b.mbrLeaveDt
+		FROM Member_tbl a, MemberValue_tbl b
+	    WHERE a.member_id = b.member_id and mbrLoginId = #{mbrLoginId}
+		]]>
+	</select>
+
+	<!-- /*========================================SNS========================================*/ -->
+	<select id="insertSnsForm" parameterType="hashmap">
+		<![CDATA[
+			INSERT INTO SnsMember_tbl
+			Values(#{smMember_id}, #{First_Name}, #{Last_Name}, NULL, #{Email}, #{Gender}, #{Picture}, #{Link}, #{member_id})
+		]]>
+	</select>
+
+
+
+	<select id="selectOneSnsMbrLoginIdCheck" parameterType="String" resultType="String">
+		<![CDATA[
+			select smMember_id from SnsMember_tbl where smMember_id IN (#{smMember_id});
+		]]>
+	</select>
+
+	<select id="selectOneSmMemberPkCheck" parameterType="String" resultType="String">
+		<![CDATA[
+			select member_id from SnsMember_tbl where smMember_id = #{smMember_id};
+		]]>
+	</select>
+
+	<!-- 오토로그인 데이터 추가 오토로그인 유효날짜 삽입 -->
+	<update id="updateAutoLogin" parameterType="map" >
+		<![CDATA[
+			update MemberValue_tbl set mbrAutoLoginDt = #{mbrAutoLoginDt} where member_id= #{member_id};
+		]]>
+	</update>
+
+	<!-- 오토로그인 데이터 삭제 오토로그인 유효날짜 제거 -->
+	<update id="updateAutoLoginDel" parameterType="int" >
+		<![CDATA[
+			update MemberValue_tbl set mbrAutoLoginDt = null where member_id= #{member_id};
+		]]>
+	</update>
+
+	<!-- AutoLogin을 가져옴, 파라티 타입은 typeAlis를  이용, MapType을 쓰도록 바꿔야함
+	 -->
+	<select id="selectAutoLogin" parameterType="string" resultType="net.mwav.member.vo.Member_tbl_VO">
+		<![CDATA[
+		SELECT a.member_id member_id , a.mbrLoginId mbrLoginId,a.mbrLoginPw mbrLoginPw ,a.mbrTempLoginPw mbrTempLoginPw ,
+		       a.mbrFirstName mbrFirstName ,a.mbrMiddleName mbrMiddleName ,a.mbrLastName mbrLastName ,a.mbrEmail mbrEmail,
+		        a.mbrCellPhone mbrCellPhone ,a.mbrAddrFlag mbrAddrFlag ,a.mbrZipCode mbrZipCode ,a.mbrAddress mbrAddress
+		FROM Member_tbl a, MemberValue_tbl b
+	    WHERE mbrAutoLoginDt > now() and a.member_id = b.member_id and a.member_id = #{member_id};
+		]]>
+	</select>
+
+</mapper>
+

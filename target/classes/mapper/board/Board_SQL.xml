@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="board">
+	
+	<!--/*========================================등록========================================*/  -->
+	<insert id="insertBnsForm" parameterType="hashmap">
+		<![CDATA[
+			INSERT INTO BoardNews_tbl
+				SELECT IFNULL(max(bNews_id)+1,100001), #{bnGroup}, #{bnHighLight}, #{bnTitle}, #{bnSubTitle}, #{bnRelatedLink}, #{bnContent}, #{bnViewCount}, #{bnOrder}, #{bnStatus}, #{staff_id}, NOW(), NOW(), null FROM BoardNews_tbl
+		]]>
+	</insert>
+
+    <!--/*========================================보기========================================*/  -->
+
+   <select id="selectOneBnsView" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+	    select *, date_format(bnUpdateDt,'%Y-%m-%d') as fmbnUpdateDt from BoardNews_tbl where bNews_id = #{bNews_id}
+	]]>
+	</select>
+	
+	<!--/*======================+==================수정========================================*/  -->
+	
+	<update id="updateNewsHitCnt" parameterType="hashmap">
+    <![CDATA[
+       update BoardNews_tbl set bnViewCount = iFnull(bnViewCount, 0) +1 where bNews_id = #{bNews_id} 
+    ]]>
+    </update>
+    
+    <update id="updateBnsform" parameterType="hashmap">
+    <![CDATA[
+        update BoardNews_tbl set bnGroup= #{bnGroup}, bnHighLight= #{bnHighLight}, bnTitle= #{bnTitle}, bnSubTitle= #{bnSubTitle}, bnRelatedLink= #{bnRelatedLink}, bnContent= #{bnContent}, bnViewCount= #{bnViewCount}, bnOrder= #{bnOrder}, bnStatus= #{bnStatus}, staff_id= #{staff_id}, bnInsertDt= #{bnInsertDt}, bnUpdateDt= NOW(), bnDeleteDt=null where bNews_id = #{bNews_id}
+    ]]>
+    </update>
+ 
+	
+	<!--/*========================================리스트(SelctOne, SelectList 순)========================================*/  -->
+	
+	<select id="selectOneGetTotalCount" resultType="int">
+	<![CDATA[
+	   select count(*) from BoardNews_tbl WHERE bnDeleteDt IS NULL 
+	]]>
+	</select>
+	
+	<select id="selectListBnsFrontList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT bNews_id, bnTitle, bnStatus, date_format(bnUpdateDt,'%Y-%m-%d') as bnUpdateDt
+		    FROM BoardNews_tbl
+		    WHERE bnDeleteDt IS NULL AND bnStatus = 2 ORDER BY bnUpdateDt DESC Limit 5
+		]]>
+	</select>
+
+	
+	<!-- .
+	normal : select bNews_id, bnGroup, bnTitle, bnSubTitle, bnSubTitle, date_format(bnUpdateDt,'%d %b %Y %T') as bnUpdateDt from BoardNews_tbl WHERE bnDeleteDt IS NULL ORDER BY bNews_id;
+	mysql : select c.* from (select @ROWNUM := @ROWNUM + 1 AS ROWNUM, a.* from (select * from BoardNews_tbl order by bnInsertDt desc) a,  (SELECT @ROWNUM := 0) R ) c where c.ROWNUM >= 0 and c.ROWNUM <= 10
+    oracle : select * from (select rownum rnum, news_id, bnGroup, bnHighLight, bnTitle, bnSubTitle, bnRelatedLink, bnContent, bnViewCount, bnOrder, bnStatus, staff_id, bnWriteDt, bnModifyDt, bnDeleteDt from (select * from BoardNews_tbl order by bnWriteDt desc)) where rnum >= ? and rnum <= ?	
+	-->
+	
+	<!-- bnsList 호출시 bnContent 등 필요없는 내용 제외 해당 부분 내용이 너무 길다. -->
+	<select id="selectListBnsList" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+	select c.*, date_format(bnUpdateDt,'%Y-%m-%d') as fmbnUpdateDt from (select @ROWNUM := @ROWNUM + 1 AS ROWNUM, a.* from (select * from BoardNews_tbl where bnDeleteDt IS NULL AND bnStatus = 2 order by bnUpdateDt desc) a,  (SELECT @ROWNUM := 0) R ) c where c.ROWNUM >= #{startRow} and c.ROWNUM <= #{endRow} 
+	]]>
+	</select>
+	
+	
+	<!--/*========================================삭제========================================*/  -->
+	
+	
+	<update id="deleteBnsDelete" parameterType="hashmap">
+    <![CDATA[
+        update BoardNews_tbl set bnDeleteDt = NOW() where bNews_id = #{bNews_id}
+    ]]>
+    </update>
+
+
+	<!-- =================================Notice부분========================================== -->
+	
+	<!--/*========================================등록========================================*/  -->
+	<insert id="insertBuForm" parameterType="hashmap">
+		<![CDATA[
+			INSERT INTO BoardUser_tbl
+				SELECT IFNULL(max(bUsers_id)+1,100001), #{buGroup}, #{buHighLight}, #{buTitle}, #{buSubTitle}, #{buRelatedLink}, #{buContent}, #{buViewCount}, #{buOrder}, #{buStatus}, #{staff_id}, NOW(), NOW(), null FROM BoardUser_tbl
+		]]>
+	</insert>
+    
+    <!--/*========================================보기========================================*/  -->
+
+   <select id="selectOneBuView" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+	    select *, date_format(buInsertDt,'%Y-%m-%d') as fmbuInsertDt from BoardUser_tbl where bUsers_id = #{bUsers_id}
+	]]>
+	</select>
+	
+	<!--/*========================================수정========================================*/  -->
+	
+	<update id="updateNoticeHitCnt" parameterType="hashmap">
+    <![CDATA[
+       update BoardUser_tbl set buViewCount = iFnull(buViewCount, 0) +1 where bUsers_id = #{bUsers_id} 
+    ]]>
+    </update>
+    
+    <update id="updateBuform" parameterType="hashmap">
+    <![CDATA[
+        update BoardUser_tbl set buGroup= #{buGroup}, buHighLight= #{buHighLight}, buTitle= #{buTitle}, buSubTitle= #{buSubTitle}, buRelatedLink= #{buRelatedLink}, buContent= #{buContent}, buViewCount= #{buViewCount}, buOrder= #{buOrder}, buStatus= #{buStatus}, staff_id= #{staff_id}, buInsertDt= #{buInsertDt}, buUpdateDt= NOW(), buDeleteDt=null where bUsers_id = #{bUsers_id}
+    ]]>
+    </update>
+ 
+	
+	<!--/*========================================리스트(SelctOne, SelectList 순)========================================*/  -->
+	
+	<select id="selectNoticeOneGetTotalCount" resultType="int">
+	<![CDATA[
+	   select count(*) from BoardUser_tbl WHERE buDeleteDt IS NULL
+	]]>
+	</select>
+	
+	<select id="selectListBuFrontList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT bUsers_id, buTitle, buStatus, date_format(buUpdateDt,'%Y-%m-%d') as buInsertDt
+		    FROM BoardUser_tbl
+		    WHERE buDeleteDt IS NULL AND buStatus = 2 ORDER BY buInsertDt DESC Limit 5
+		]]>
+	</select>
+    
+    <select id="selectListBuList" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+	select c.*, date_format(buInsertDt,'%Y-%m-%d') as fmbuInsertDt from (select @ROWNUM := @ROWNUM + 1 AS ROWNUM, a.* from (select * from BoardUser_tbl where buDeleteDt IS NULL AND buStatus = 2 order by buInsertDt desc) a,  (SELECT @ROWNUM := 0) R ) c where c.ROWNUM >= #{startRow} and c.ROWNUM <= #{endRow} 
+	]]>
+	</select>
+	
+	
+	<!--/*========================================삭제========================================*/  -->
+	
+	
+	<update id="deleteBuDelete" parameterType="hashmap">
+    <![CDATA[
+        update BoardUser_tbl set buDeleteDt = NOW() where bUsers_id = #{bUsers_id}
+    ]]>
+    </update>
+
+    
+
+</mapper>

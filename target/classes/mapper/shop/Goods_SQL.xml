@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="goods">
+	
+	
+	<!--/*========================================리스트(SelctOne, SelectList 순)========================================*/  -->
+	
+	<select id="selectOneGetGdsTotalCount" resultType="int">
+	<![CDATA[
+	   select count(*) from GoodsMaster_tbl
+	]]>
+	</select>
+	
+	<select id="selectListGdsList" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+	select * from GoodsMaster_tbl
+	]]>
+	</select>
+    
+    <select id="selectOneGdsView" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+	       	        
+	        select * from GoodsMaster_tbl where goods_id = #{goods_id}
+		]]>
+	</select>
+	<!-- select * from goodscategory_tbl, goodsmaster_tbl where goodsmaster_tbl.goods_id =#{goods_id}-->
+
+</mapper>
