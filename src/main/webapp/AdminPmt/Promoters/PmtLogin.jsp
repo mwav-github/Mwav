@@ -9,12 +9,12 @@
 <!-- /////////// -->
 
 <script type="text/javascript">
-	var result =${"msg"};
-	alert(result);
-	if (result != '') {
-		alert(result);
-	}
 
+	var status = ${status};
+	console.log('상황 : ', status);
+	switch(status){
+		case '1' : alert('회원가입에 성공하셨습니다.');	//PromoterControll -> /promoter/PmtForm.mwav 매핑
+	}
 </script>
 
 
@@ -45,12 +45,8 @@
 			return false;
 		}
 
-
 		frm.submit();
 	}
-
-
-
 </script>
 
 
@@ -79,7 +75,6 @@
 			</div>
 			<div class="col-md-6 col-md-offset-3">
 
-${msg}asdasd
 				<%--참고로 sr-only는 화면에는 표시되지 않으나 스크린 리더에 표시하려고 할때 사용
 			<label for="inputEmail" class="sr-only">StaffLoginId</label
 			--%>

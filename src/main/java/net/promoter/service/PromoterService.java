@@ -10,9 +10,9 @@ public interface PromoterService {
 	/*========================================등록========================================*/
 	int selectNextPmtPk() throws Exception;
 
-	public boolean selectOnePmtLoginIdCheck(String PmtLoginId) throws Exception;
+	public int selectOnePmtLoginIdCheck(String PmtLoginId) throws Exception;
 
-	int insertPmtForm(Map<String, Object> map) throws Exception;
+	int insertPmtForm(Promoter_VO promoter) throws Exception;
 
 	int selectOneGetTotalCount()throws Exception;
 

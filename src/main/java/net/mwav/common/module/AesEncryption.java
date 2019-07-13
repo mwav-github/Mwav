@@ -240,7 +240,7 @@ public class AesEncryption {
     	return encryptEncoding;
     }
     
-    private byte[] hexToByteArray(String s) { // 16진수 문자열을 바이트 배열로
+    public static byte[] hexToByteArray(String s) { // 16진수 문자열을 바이트 배열로
         byte[] retValue = null;
         if (s != null && s.length() != 0) {
             retValue = new byte[s.length() / 2];

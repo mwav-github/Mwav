@@ -1,6 +1,7 @@
 package net.promoter.controller;
 
-import java.io.PrintWriter;
+import java.net.URI;
+import java.net.URL;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -25,6 +26,8 @@ import net.mwav.common.module.PagingVO;
 import net.promoter.service.PromoterService;
 import net.promoter.vo.Promoter_VO;
 
+import net.mwav.common.module.AesEncryption;
+import org.apache.http.client.utils.URIBuilder;
 /**
  * @author 신윤상
  *
@@ -61,11 +64,30 @@ public class PromoterController {
 
 
 	/*---------------단순 페이지이동           -----------*/
-	@RequestMapping(value = "/Promoter/promoter-add")
-	public ModelAndView insertPromoter(CommandMap commandMap,
+	//프로모터 로그인, tiles에 영향 안받음
+	@RequestMapping(value = "/pmt/pmtLoginForm.mwav",method = RequestMethod.GET)
+	public String selectLogin(CommandMap commandMap,
+			HttpServletRequest request) throws Exception {
+		return "/AdminPmt/Promoters/PmtLogin";
+	}
+	//프로모터 회원가입
+	@RequestMapping(value = "/Promoter/promoter-add.mwav")
+	public String insertPromoter(CommandMap commandMap,
 			HttpServletRequest request) throws Exception{
-		ModelAndView mv = new ModelAndView("/Promoter/PmtForm");
-		return mv;
+		
+		String pmtUpperPromoId = (String) commandMap.get("p");
+		
+		byte[] decrypted = AesEncryption.hexToByteArray(pmtUpperPromoId);
+		
+		// AES/ECB 복호화
+		decrypted = AesEncryption.aesDecryptEcb(AesEncryption.sKey, decrypted);
+		System.out.println("암호화 : " + pmtUpperPromoId);
+		System.out.println("복호화 : " + new String(decrypted, "UTF-8"));
+		
+		//암호화된 추천인 아이디를 넘겨준다.
+        request.setAttribute("p", pmtUpperPromoId);
+		
+		return "/AdminPmt/Promoters/PmtForm";
 	}
 	
 	@RequestMapping(value = "/Promoter/Policy")
@@ -83,11 +105,6 @@ public class PromoterController {
 	}
 
 	
-	@RequestMapping(value = "/pmt/pmtLoginForm.mwav",method = RequestMethod.GET)
-	public String selectLogin(CommandMap commandMap,
-			HttpServletRequest request) throws Exception {
-		return "/AdminPmt/Promoters/PmtLogin";
-	}
 
 
 	@RequestMapping(value = "/promoter/viewMyPoint.mwav",method = RequestMethod.GET)
@@ -100,16 +117,16 @@ public class PromoterController {
 
 
 
-	/*---------------단순 페이지이동           -----------*/
+	/*---------------  로그인 및 회원가입           -----------*/
 
-
+	//로그인
 	@RequestMapping(value = "/pmt/pmtLogin.mwav",method = RequestMethod.POST)
 	public ModelAndView selectLoginPro(CommandMap commandMap,
 			HttpServletRequest request,RedirectAttributes rtr) throws Exception {
 		ModelAndView mv = new ModelAndView("/AdminPmt/Promoters/PmtLogin");
 		Promoter_VO promoter =null;
 		Map<String, Object> pmt = commandMap.getMap();
-		if(((String) pmt.get("pmtLoginPw")).length()<3||((String) pmt.get("pmtLoginId")).length()<3 ){
+		if( ((String) pmt.get("pmtLoginPw")).length()<3 || ((String) pmt.get("pmtLoginId")).length()<3 ){
 			rtr.addFlashAttribute("msg", "비밀번호와 아이디를 확인해주세요");
 			return mv;
 		}
@@ -126,32 +143,74 @@ public class PromoterController {
 		return mv;
 	}
 
+	//회원가입시 유효성체크 ajax 처리 매핑
+	//이 매핑 Interceptor는 ajax 사용을 위하여 제외 -> action-servlet.xml 
     @RequestMapping(value="/promoter/pmtLoginIdCheck.mwav")
-	public void selectOnePmtIdCheck(HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
-		String pmtLoginId = request.getParameter("LoginId");
-		boolean selectIdCheck = promoterService.selectOnePmtLoginIdCheck(pmtLoginId);
-		response.setContentType("text/html;charset=UTF-8");
-		response.setHeader("Cache-Control", "no-cache");
-		PrintWriter out = response.getWriter();
-		// id 중복 처리
-
-		String result = null;
-		System.out.println("selectIdCheck" + selectIdCheck);
-		if (selectIdCheck == true) {
-			// 응답 메세지 1 : 이미 등록된 ID 입니다.
-			// 이때 pw 규칙 알려주기
-			result = "<div class='alert alert-danger text-left'><strong>이미 등록된 ID 입니다. 재 입력해주세요.<br>"
-					+ "<strong>1. 4 ~ 20 자 사이의 문자길이 <br> 2. 첫 문자는 영어로 시작 <br> 3. 특수문자 사용금지 (제외문자: . _ -) <br> 4. 공백문자 사용금지  <br> 5. 대소문자는 식별이 가능하나 구분 및 구별을 하지 않음</strong></strong></div>";
-		} else {
-			// 응답 메세지 2 : 사용할 수 있는 ID 입니다.
-			result = "<div class='alert alert-success text-left'><strong>사용할 수 있는 ID 입니다.</strong></div>";
-		}
-		out.println(result);
-		// response.getWriter().print(result); 주석풀면 3번 나온다.
-		// response.getWriter().print(result);
+	public void selectOnePmtIdCheck(HttpServletRequest request, HttpServletResponse response,
+			String type, String value) throws Exception {
+    	response.setContentType("text/html;charset=UTF-8");
+    	response.setHeader("Cache-Control", "no-cache");
+		int selectIdCheck = promoterService.selectOnePmtLoginIdCheck(value);
+		
+		response.getWriter().println(selectIdCheck);
 	}
 
+
+	//Promoter 회원가입 
+	@RequestMapping(value = "/promoter/PmtForm.mwav",method = RequestMethod.POST )
+	public ModelAndView insertPmtForm(CommandMap commandMap,RedirectAttributes rtr,
+		Promoter_VO promoter,Errors errors, HttpServletRequest request) throws Exception {
+		
+		String pmtRcmderId = promoter.getPmtRcmderId();
+        byte[] decrypted = AesEncryption.hexToByteArray(promoter.getPmtRcmderId());
+        
+        int result = 0;
+        String ViewName = "";
+        
+        try{
+        	// 추천인은 AES/ECB 복호화 후 vo에 넣는다.
+        	decrypted = AesEncryption.aesDecryptEcb(AesEncryption.sKey, decrypted);
+        	promoter.setPmtRcmderId(new String(decrypted, "UTF-8"));
+        	
+        	result = promoterService.insertPmtForm(promoter);
+        }catch(NullPointerException err){
+        	//잘못된 추천인아이디 
+        	result = -1;
+        }
+	
+		
+		ModelAndView mv = new ModelAndView();
+		
+		if(result==1){ 	// 회원가입 성공시 로그인페이지로 보낸다.
+			mv.addObject("status", "1");	// 로그인페이지에 status를 넘긴다.
+			ViewName = "/AdminPmt/Promoters/PmtLogin";
+			
+		}else{			// 실패시 다시 회원가입페이지로 보낸다.
+			mv.addObject("pmtUpperPromoId", pmtRcmderId);	//쿼리스트링에 추천인 아이디를 남긴다.
+			mv.addObject("status", "-1");	 
+			ViewName = "redirect:/Promoter/promoter-add.mwav";
+		}
+		
+		mv.setViewName(ViewName);
+
+		return mv;
+	}
+	
+	//Promoter 회원가입 
+	@RequestMapping(value = "/promoter/test.mwav" )
+	public ModelAndView testController(CommandMap commandMap,RedirectAttributes rtr,
+		Promoter_VO promoter,Errors errors, HttpServletRequest request) throws Exception {
+		
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("statusTest", "1");	// 로그인페이지에 status를 넘긴다.
+		rtr.addFlashAttribute("statusTest", "1");
+		 
+		mv.setViewName("redirect:/Promoter/promoter-add.mwav");
+		
+		return mv;
+	}
+    
+	//??
 	@RequestMapping(value = "/Promoter/PmtList.mwav")
 	public ModelAndView selectListPmtList(CommandMap commandMap,
 			HttpServletRequest request, HttpServletResponse reponse)
@@ -196,89 +255,6 @@ public class PromoterController {
 		// mv.addObject("paging", pv.print());
 		return mv;
 	}
-
-	@RequestMapping(value = "/promoter/PmtForm.mwav",method = RequestMethod.POST )
-	public ModelAndView insertPmtForm(CommandMap commandMap,RedirectAttributes rttr,
-		Promoter_VO promoter,Errors errors) throws Exception {
-		ModelAndView mv = new ModelAndView("/Promoter/PmtForm");
-
-		if(errors.hasFieldErrors("pmtPhone")){
-			errors.rejectValue("pmtPhone", "핸드폰 ","핸드폰 번호가 없습니다");
-			return mv;
-		}
-		log.info("순서");
-		log.info("인터셉터 테스트");
-		String PmtCellularP_1 = (String) commandMap.get("pmtCellularP_1");
-		String PmtCellularP_2 = (String) commandMap.get("pmtCellularP_2");
-		String PmtCellularP_3 = (String) commandMap.get("pmtCellularP_3");
-
-		String PmtCellularP = PmtCellularP_1 + PmtCellularP_2 + PmtCellularP_3;
-		commandMap.put("pmtCellularP", PmtCellularP);
-
-		String PmtPhone_1 = (String) commandMap.get("pmtPhone_1");
-		String PmtPhone_2 = (String) commandMap.get("pmtPhone_2");
-		String PmtPhone_3 = (String) commandMap.get("pmtPhone_3");
-
-		String PmtPhone = PmtPhone_1 + PmtPhone_2 + PmtPhone_3;
-		commandMap.put("pmtPhone", PmtPhone);
-
-		String PmtAddress_1 = (String) commandMap.get("pmtAddress_1");
-		String PmtAddress_2 = (String) commandMap.get("pmtAddress_2");
-
-		String PmtAddress = PmtAddress_1 + PmtAddress_2;
-		log.info("pmtAddress=" + PmtAddress);
-
-		commandMap.put("pmtAddress", PmtAddress);
-
-
-		promoterService.insertPmtForm(commandMap.getMap());
-		mv.setViewName("redirect:/Promoter/PmtLogin");
-		rttr.addFlashAttribute("msg", "SUCCESS");
-
-		return mv;
-	}
-
-	/*@RequestMapping(value = "/promoter/PmtForm.mwav",method = RequestMethod.POST )
-	public ModelAndView insertPmtForm(CommandMap commandMap,RedirectAttributes rttr,
-			 Promoter_VO promoter) throws Exception {
-		ModelAndView mv = new ModelAndView("/Promoter/PmtLogin");
-
-		log.info("순서");
-		log.info("인터셉터 테스트");
-		String PmtCellularP_1 = (String) commandMap.get("pmtCellularP_1");
-		String PmtCellularP_2 = (String) commandMap.get("pmtCellularP_2");
-		String PmtCellularP_3 = (String) commandMap.get("pmtCellularP_3");
-
-		String PmtCellularP = PmtCellularP_1 + PmtCellularP_2 + PmtCellularP_3;
-		commandMap.put("pmtCellularP", PmtCellularP);
-
-		String PmtPhone_1 = (String) commandMap.get("pmtPhone_1");
-		String PmtPhone_2 = (String) commandMap.get("pmtPhone_2");
-		String PmtPhone_3 = (String) commandMap.get("pmtPhone_3");
-
-		String PmtPhone = PmtPhone_1 + PmtPhone_2 + PmtPhone_3;
-		commandMap.put("pmtPhone", PmtPhone);
-
-		String PmtAddress_1 = (String) commandMap.get("pmtAddress_1");
-		String PmtAddress_2 = (String) commandMap.get("pmtAddress_2");
-
-		String PmtAddress = PmtAddress_1 + PmtAddress_2;
-		log.info("pmtAddress=" + PmtAddress);
-
-		commandMap.put("pmtAddress", PmtAddress);
-
-
-		promoterService.insertPmtForm(commandMap.getMap());
-
-		rttr.addFlashAttribute("msg", "SUCCESS");
-		String mm = "firms";
-		mv.addObject("mm", mm);
-		mv.addObject("mode", "m_PmtForm");
-
-		return mv;
-	}*/
-
-
 
 	// update
 

@@ -41,21 +41,21 @@
 
 
 
-	<insert id="insertPmtForm" parameterType="hashmap">
+	<insert id="insertPmtForm" parameterType="net.promoter.vo.Promoter_VO">
 		<![CDATA[
 			INSERT INTO Promoter_tbl
 		    	values(#{promoter_id}, #{pmtLoginId}, #{pmtLoginPw}, #{pmtName},
-			    #{pmtMail}, #{pmtCellularP},#{pmtPhone},0, #{pmtZipcode},
+			    #{pmtMail}, #{pmtPhone}, #{pmtCellularPhone},0, #{pmtZipcode},
 			    #{pmtAddress}, #{pmtJobType}, null, null, #{pmtSsn1},#{pmtSsn2},#{pmtMarried},#{pmtMarkl}
 			);
 		]]>
 	</insert>
 
-	<insert id="insertPmtValueForm" parameterType="hashmap">
+	<insert id="insertPmtValueForm" parameterType="net.promoter.vo.Promoter_VO">
 		<![CDATA[
 			insert INTO PromoterValue_tbl
-			values(#{promoter_id}, null,null,#{pmtRcmderId},2,0,0,0,null,
-				sysdate(),NULL,NULL,NULL,SYSDATE(),NULL
+			values(#{promoter_id}, null,null, #{pmtRcmderId}, 2,0,0,0,null,
+				SYSDATE(),NULL,NULL,NULL,SYSDATE(),NULL
 			);
 		]]>
 	</insert>

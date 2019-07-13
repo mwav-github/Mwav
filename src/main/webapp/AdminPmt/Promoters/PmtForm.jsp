@@ -5,847 +5,351 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ page import="net.promoter.vo.Promoter_VO"%>
 
+<!-- /////////// -->
+<jsp:include page="/PartsOfContent/Head_Import.jsp" flush="false" />
+<!-- /////////// -->
 
 <script>
-var result = '${msg}';
+//회원가입시 아래의 6개의 변수가 true가 되어야지만 가입할수있다.
+	var IdCheckYN = false;		//아이디
+	var PwdCheckYN = false;		//비밀번호
+	var PwdCheck2YN = false;	//비밀번호확인
+	var NameCheckYN = false;	//이름
+	var PhoneCheckYN = false;	//핸드폰
+	var EmailCheckYN = false;	//이메일
 
-if (result == '1') 	alert("서버에서 눌 값을 발견했습니다.");
-else if(result == '2')	alert("서버에서 이름을 발견하지 못했습니다.");
-else if(result =='3') alert("결혼값이 비어있습니다.");
-
-
-var xhr;
-	function createXhr() {
-		if (window.ActiveXObject) { // IE 이전버전
-			xhr = new ActiveXObject("Microsoft.XMLHTTP");
-		} else {
-			xhr = new XMLHttpRequest();
+	$(document).ready(function(){
+	    $('[data-toggle="popover"]').popover();
+	    
+		switch('${status}'){
+			case '-1' : alert('회원가입에 실패하였습니다. 관리자에게 문의주세요.');
 		}
-	}
-
-	function idcheck(id) {
-		//var idValue = document.getElementsId(id)[0].value;
-		var idValue = document.getElementsByName("pmtLoginId")[0].value;
-		//alert(idValue);
-		<%--var id = document.getElementsByName("mbrLoginId")[0].value;
-		//alert(id);
-		//var html_object = document.getElementsByName("mbrLoginId");
-		//위에로 하면 HTMLCollection로 나오며 이는  리턴 결과가 복수인 경우에 사용하게 되는 객체다
-		// 아래는 HTML INPUTELEMENT? 하나 !
-		//유효성 체크  후 ajax --%>
-		var input_object = document.getElementById(id);
-
-		var flagPolicy = chkLoginPolicy(idValue,input_object);
-
-		var queryString = "pmtLoginId=" + idValue;
-		if (id.length < 6) {
-			document.getElementById("idcheckLayer").innerHTML = "<font color=red>6자리 이상 입력하세요.</font>";
-		}
-		else if (flagPolicy == true){
-			<%-- 1. XMLHttpReqeust 객체 생성 --%>
-			createXhr();
-			<%-- 2. 이벤트 핸들러 등록 --%>
-			if(id="chkUpperPromo_id") xhr.onreadystatechange = callback2;
-			else xhr.onreadystatechange = callback;
-			<%-- callback 함수를 등록
-			// 3. open()를 통해 요청관련 설정을 설정 --%>
-			xhr.open("POST", "/promoter/pmtLoginIdCheck.mwav", true);
-			<%-- 4. Header에 contentType 지정 - post --%>
-			xhr.setRequestHeader("Content-Type",
-					"application/x-www-form-urlencoded");
-			<%-- 5. send()를 통해 요청 // 요청 쿼리를 보내준다. --%>
-			xhr.send(queryString);
-		}
-
-
-	}
-
-
-
-
-
-	function callback() {
-		if (xhr.readyState == 4) { // 응답을 다 받은 경우
-			if (xhr.status == 200) { // 응답코드가 200인 경우 - 정상인 경우
-				var resTxt1 = xhr.responseText; // 서버가 보낸 응답 text
-				//console.log(resTxt);
-				var resTxt = resTxt1.trim(); // 공백제거 안하면 같은게 안됨
-				var imsiresTxt = "<div class='alert alert-success text-left'><strong>사용할 수 있는 ID 입니다.</strong></div>";
-				//alert(resTxt);
-				//alert(imsiresTxt);
-				if (resTxt == imsiresTxt) {
-					//아이디 중복되지 않음
-					//alert('1');
-					document.getElementById("idcheckLayer").innerHTML = resTxt;
-
-				} else {
-					//아이디 중복
-					//alert('11');
-					document.getElementById("idcheckLayer").innerHTML = resTxt;
-
-					$('input[name="mbrLoginId"]').val('');
-					$('input[name="mbrLoginId"]').focus();
-					return false;
+	});
+	
+	function ajaxIdCheck(type,value){
+		//ajax를 사용하여 해당 아이디 중복 여부 확인
+		// 에이젝스 동기처리 ....
+		var result = false;
+		
+		$.ajax({
+			url:'/promoter/pmtLoginIdCheck.mwav',
+			data:{
+				type:type,
+				value:value
+			},
+			async: false,
+			success:function(data){
+				var reulstData = data;
+				//해당 아이디가 존재하면 1, 없는 아이디면 0
+				if(data <= 0){
+					alert('해당 아이디는 사용하실수 있는 아이디입니다.');
+					result = true;
+				}else{
+					alert('이미 존재하는 아이디입니다.');
+					result = false;
 				}
-			} else {
-				alert("요청 처리가 정상적으로 되지 않았습니다.\n" + xhr.status);
+			},
+			error:function(err){
+				alert('Error!\n관리자에게 문의하여 주시기 바랍니다.');
+				result = false;
 			}
-		}
+		});
+		
+		return result;
 	}
-
-	function callback2() {
-		if (xhr.readyState == 4) { // 응답을 다 받은 경우
-			if (xhr.status == 200) { // 응답코드가 200인 경우 - 정상인 경우
-				var resTxt1 = xhr.responseText; // 서버가 보낸 응답 text
-				//console.log(resTxt);
-				var resTxt = resTxt1.trim(); // 공백제거 안하면 같은게 안됨
-				var imsiresTxt = "<div class='alert alert-success text-left'><strong>사용할 수 있는 ID 입니다.</strong></div>";
-				//alert(resTxt);
-				//alert(imsiresTxt);
-				if (resTxt == imsiresTxt) {
-					//아이디 중복되지 않음
-					//alert('1');
-					alert("추천인 아이디를 찾을 수가 없습니다.");
-
-				} else {
-					//아이디 중복
-					//alert('11');
-					alert("해당 추천인을 찾았습니다.");
-
-					$('input[name="mbrLoginId"]').val('');
-					$('input[name="mbrLoginId"]').focus();
-					return false;
+	
+	//타입별 정규식, 정규식 표현은 멤버 회원가입과 동일
+	function regexCheck(type, value){
+		switch(type){
+		case 'pmtLoginId' :
+			//아이디의 경우 정규식 유효성 체크 후, 중복여부 확인
+			regex = /[a-zA-Z0-9_-]{4,20}$/g.test(value);
+			if(regex){
+				//아이디 중복 검사
+				IdCheckYN = ajaxIdCheck(type,value);
+				return IdCheckYN; 
+			}else{
+				alert('유효하지 않은 아이디입니다. \n4~20자 사이의 영문,숫자, -_ 만 사용할 수 있습니다.')
+				return false;
+			}
+			break;
+		
+		case 'pmtLoginPw' : 
+			regex = /^(?=.*[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"])(?=.*[0-9])(?=.*[a-zA-Z])[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"0-9a-zA-Z]{8,255}$/g.test(value);
+			
+			
+			// 비밀번호같은경우 사용자 변심으로 인해 수정할수 있기 때문..
+			var pwdChk = $('input[name=pmtLoginPwChk]').val();
+			if(pwdChk.length != 0){
+				console.log('pwdChk : ' + pwdChk);
+				console.log('value : ' + value);
+				if(value != pwdChk){	
+					console.log('false')
+					$('input[name=pmtLoginPwChk]').css("border","solid 3px red");
+					$('#pmtLoginPwChkFalse').css('display','block');
+				}else{
+					console.log('true')
+					$('input[name=pmtLoginPwChk]').css("border","solid 3px greenyellow");
+					$('#pmtLoginPwChkFalse').css('display','none');	//숨김
 				}
-			} else {
-				alert("요청 처리가 정상적으로 되지 않았습니다.\n" + xhr.status);
 			}
+			
+			if(regex)
+				PwdCheckYN = true;
+			else
+				return false;
+			break;
+			
+		case 'pmtLoginPwChk' : 
+			var pwd = $('input[name=pmtLoginPw]').val();
+			if(pwd != value || pwd.length == 0)
+				return false;
+			else
+				PwdCheck2YN = true;
+			break;
+			
+		case 'pmtName' : 
+			regex = /^[가-힣]+$/g.test(value);
+			if(regex)
+				NameCheckYN = true;
+			else
+				return false;
+			break;
+		
+		case 'pmtCellularPhone' : 
+			regex = /^\d{3}-\d{3,4}-\d{4}$/g.test(value);
+			if(regex)
+				PhoneCheckYN = true;
+			else
+				return false;
+			break;
+		
+		case 'pmtMail' : 
+			regex = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/g.test(value);
+			if(regex)
+				EmailCheckYN = true;
+			else
+				return false;
+			break;
+			
+		default : alert('Error!\n잘못된 타입입니다.');
+		}
+		
+		return true;	//유효성 체크에 이상이없다면 true
+	}	
+	
+	//각각의 입력란에 대한 유효성 체크를 한다.
+	function validateCheck(type){
+		var value = $('input[name='+ type +']').val();
+		//정규식 유효성 체크
+		if(regexCheck(type, value)){
+			$('input[name='+ type +']').css("border","solid 3px greenyellow");
+			$('#'+ type +'False').css('display','none');	//숨김
+		}else{
+			$('input[name='+ type +']').css("border","solid 3px red");
+			$('#'+ type +'False').css('display','block');	//정규식 설명
+		}
+		
+	}
+	
+	//모든 값들이 유효하다면 submit
+	function pmtSubmit(){
+		console.log(IdCheckYN + ', ' + PwdCheckYN + ', ' + PwdCheck2YN + ', ' + NameCheckYN + ', ' + PhoneCheckYN + ', ' + EmailCheckYN)
+		if(IdCheckYN && PwdCheckYN && PwdCheck2YN && NameCheckYN && PhoneCheckYN && EmailCheckYN){
+			if(confirm('Promoter 가입을 하시겠습니까?')){
+				$('#pmtRcmderId').val('${p}');	
+				
+				//주소를 하나로 합쳐 전달한다.
+				var pmtAddress = $('#Address').val() + $('#rest_address').val(); 
+				$('#pmtAddress').val(pmtAddress);
+				
+				$('#joinForm').submit();
+			}
+		}else{
+			alert('부적절한 값이 있습니다.');
 		}
 	}
 
-	function msubmit() {
-
-		var Zipcode = $('#Zipcode').val();
-		var Address = $('#Address').val();
-		var rest_address = $('#rest_Address').val();
-		//html element에 대하여 null 또는 비어있는지 체크 및 alert 문구 노출
-		var flag; // return false 여부 체크 이함수도 false 시켜야하므로
-
-		//flag 마지막 값만 인식하므로 수정이 필요하긴 함.
-		//필수값은 아니다.
-		flag = emptyCheck(rest_address, "나머지 주소를 입력해주세요.");
-		flag = emptyCheck(Zipcode, "우편번호를 입력해주세요.");
-		flag = emptyCheck(Address, "주소를 입력해주세요.");
-
-		 if (flag == false || flag == undefined) {
-			//alert('11');
-			return false;
-		} else {
-		 document.change_record.submit();
-		}
-		alert(flag);
-		 $("change_record").validate({
-		    //validation이 끝난 이후의 submit 직전 추가 작업할 부분
-		    //http://hellogk.tistory.com/48
-		    submitHandler: function() {
-		        var f = confirm("회원가입을 완료하겠습니까?");
-		        if(f){
-		            return true;
-		        } else {
-		            return false;
-		        }
-		    },
-		    //규칙
-		    rules: {
-		    	pmtLoginId: {
-		            required : true,
-		            minlength : 5,
-		        },
-		        pmtLoginPw: {
-		            required : true,
-		            minlength : 10
-		        },
-		        pmtEmail: {
-		            required : true,
-		            minlength : 2,
-		            email : true
-		        }
-		    },
-		    //규칙체크 실패시 출력될 메시지
-		    messages : {
-		    	mbrLoginId: {
-		            required : "필수로입력하세요",
-		            minlength : "최소 {0}글자이상이어야 합니다",
-		            remote : "존재하는 아이디입니다"
-		        },
-		        mbrLoginPw: {
-		            required : "필수로입력하세요",
-		            minlength : "최소 {0}글자이상이어야 합니다"
-		        },
-		        mbrEmail: {
-		            required : "필수로입력하세요",
-		            minlength : "최소 {0}글자이상이어야 합니다",
-		            email : "메일규칙에 어긋납니다"
-		        }
-		    }
-		});
-
-	}
-
-	function mmodify() {
-
-		var Zipcode = $('#Zipcode').val();
-		var Address = $('#Address').val();
-		var rest_address = $('#rest_Address').val();
-		var chkLoginPW = $('#chkLoginPW').val();
-		var chkLoginPW2 = $('#chkLoginPW2').val();
-
-		//html element에 대하여 null 또는 비어있는지 체크 및 alert 문구 노출
-		var flag; // return false 여부 체크 이함수도 false 시켜야하므로
-
-		//flag 마지막 값만 인식하므로 수정이 필요하긴 함.
-		//필수값은 아니다.
-		flag = emptyCheck(rest_address, "나머지 주소를 입력해주세요.");
-		flag = emptyCheck(Zipcode, "우편번호를 입력해주세요.");
-		flag = emptyCheck(Address, "주소를 입력해주세요.");
-		if(chkLoginPW!=chkLoginPW2) flag="비밀번호 확인을 다시해주세요.";
-
-		 if (flag == false || flag == undefined) {
-			//alert('11');
-			return false;
-		} else {
-			document.change_record.submit();
-		}
-		alert(flag);
-		 $("change_record").validate({
-		    //validation이 끝난 이후의 submit 직전 추가 작업할 부분
-		    //http://hellogk.tistory.com/48
-		    submitHandler: function() {
-		        var f = confirm("수정하시겠습니까?");
-		        if(f){
-		            return true;
-		        } else {
-		            return false;
-		        }
-		    },
-		    //규칙
-		    rules: {
-		    	pmtLoginId: {
-		            required : true,
-		            minlength : 5,
-		        },
-		        pmtLoginPw: {
-		            required : true,
-		            minlength : 10
-		        },
-		        pmtEmail: {
-		            required : true,
-		            minlength : 2,
-		            email : true
-		        }
-		    },
-		    //규칙체크 실패시 출력될 메시지
-		    messages : {
-		    	mbrLoginId: {
-		            required : "필수로입력하세요",
-		            minlength : "최소 {0}글자이상이어야 합니다",
-		            remote : "존재하는 아이디입니다"
-		        },
-		        mbrLoginPw: {
-		            required : "필수로입력하세요",
-		            minlength : "최소 {0}글자이상이어야 합니다"
-		        },
-		        mbrEmail: {
-		            required : "필수로입력하세요",
-		            minlength : "최소 {0}글자이상이어야 합니다",
-		            email : "메일규칙에 어긋납니다"
-		        }
-		    }
-		});
-
-
-	}
-
-
-	function filterNumber(event) {
-		  var code = event.keyCode;
-		  if (code > 47 && code < 58) { //숫자만 입력받음
-		    return;
-		  }
-		/*
-		  if (code === 110 || code === 190) {
-		    return; 소수까지 받을 수 있도록 점 찍을 수 있음
-		  }
-		*/
-		  if (event.ctrlKey || event.altKey) { //컨트롤과 알트키 가능하게 끔
-		    return;
-		  }
-		  if (code === 9 || code === 36 || code === 35 || code === 37 ||
-		      code === 39 || code === 8 || code === 46) {
-		    return; //화살표 가능하게끔
-		  }
-		  event.preventDefault();
-		}
-</script>
-<script>
-$(document).ready(function(){
-    $('[data-toggle="popover"]').popover(); 
-});
 </script>
 
 </head>
-<!-- Breadcrumbs-->
-<ol class="breadcrumb">
-	<li class="breadcrumb-item"><a href="#">Promoter</a></li>
-	<li class="breadcrumb-item active">PromoterForm</li>
-</ol>
 
-<div class="col-md-12">
-	<!-- Content Column -->
-	<div class="col-lg-12">
-		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+<style>
+	.input-margin{
+		margin-bottom: 15px;
+	}
+	
+	.txt_red {
+	    color: red;
+	    padding: 0 2px;
+	    font-weight: bold;
+	}
+</style>
 
-			<c:choose>
-				<c:when
-					test="${!empty updatePmtForm && updatePmtForm.promoter_id ne null }">
+<body>
+	<div class="container" style='margin-top: 130px;'>
+		<hr>
+		<!-- Content Column -->
+		<div class="center-block">
+			<%-- 1. 회원정보 입력 --%>
+			<form id='joinForm' class='form-horizontal' method="post" action="/promoter/PmtForm.mwav">
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
-					<%-- 1. 회원정보 수정 --%>
-
-					<form class='form-horizontal' method="post"
-						action="/promoter/PmtUpdatePro.mwav">
-
-
-						<div class="panel panel-primary">
-							<div class="panel-heading">
-								<h3 class="panel-title">Mwav - Promoter Modify</h3>
-							</div>
-							<div class="panel-body">
-								<div class="row">
-									<div class="col-md-3 col-lg-3 " align="center">
-										<img alt="User Pic"
-											src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=100"
-											class="img-circle">
-									</div>
-
-
-									<div class=" col-md-9 col-lg-9 ">
-										<table class="table table-user-information">
-											<tbody>
-												<tr>
-													<td width="40">아이디: <a data-toggle="popover"
-														data-placement="bottom" data-html="true"
-														title="MemberId Rules"
-														data-content="
-	1. 4 ~ 20 자 사이의 문자길이  <br/>
-	2. 첫 문자는 영어로 시작  <br/>
-	3. 특수문자 사용금지 (제외문자: . _ -) <br/>
-	4. 공백문자 사용금지  <br/>
-	5. 대소문자는 식별이 가능하나 구분 및 구별을 하지 않음">
-
-															<span
-															class="glyphicon glyphicon-question-sign fa-lg text-muted">
-														</span>
-													</a>
-
-
-
-													</td>
-
-
-													<td><div class='form-group'>
-															<div class='col-md-8'>
-
-																<input class='form-control' name="pmtLoginId"
-																	id="chkLoginId" type='text' maxlength="20"
-																	value="${updatePmtForm.pmtLoginId }"
-																	readonly="readonly" onchange="idcheck()" required>
-															</div>
-														</div></td>
-													<td><input type="hidden" name="promoter_id"
-														value="${updatePmtForm.promoter_id}" />
-														<p class="col-md-5 col-md-offset-4">
-															<span id="idcheckLayer"></span>
-														</p></td>
-												</tr>
-												<tr>
-													<td>비밀번호:</td>
-													<td><div class='form-group'>
-															<div class='col-md-8'>
-
-																<input class='form-control' name="pmtLoginPw"
-																	type='password' id="chkLoginPW"
-																	value="${updatePmtForm.pmtLoginPw }"
-																	readonly="readonly" onchange="chkPWPolicy()" required>
-															</div>
-														</div></td>
-												</tr>
-												<tr>
-													<td>새로운 비밀번호:</td>
-													<td><div class='form-group'>
-															<div class='col-md-8'>
-
-																<input class='form-control' name="pmtLogiNewPw"
-																	type='password' id="chkLoginPW"
-																	onchange="chkPWPolicy()" required>
-															</div>
-														</div></td>
-												</tr>
-												<tr>
-													<td>새로운 비밀번호 확인:</td>
-													<td><div class='form-group'>
-															<div class='col-md-8'>
-
-																<input class='form-control' name="pmtLoginNewPw2"
-																	type='password' id="chkLoginPW2"
-																	onchange="chkPWPolicy()" required>
-															</div>
-														</div></td>
-												</tr>
-
-												<tr>
-													<td>이름:</td>
-													<td><div class='form-group'>
-															<div class='col-md-8'>
-																<input class="form-control" name="pmtName"
-																	value="${updatePmtForm.pmtName}" type="text"
-																	maxlength="20" readOnly required />
-															</div>
-														</div></td>
-												</tr>
-												<tr>
-													<td>추천인아이디:</td>
-													<td>
-														<div class='col-md-8'>
-															<input class='form-control' name="pmtUpperPromo_id"
-																id="chkUpperPromo_id" type='text' maxlength="20"
-																readonly="readonly" onchange="idcheck()" required>
-														</div>
-													</td>
-												</tr>
-												<tr>
-													<td>자택전화:</td>
-													<td><div class='form-group'>
-															<div class='col-md-8'>
-																<input class="form-control" name="pmtPhone" type="text"
-																	value="${updatePmtForm.pmtPhone}"
-																	onkeypress='return event.charCode >= 48 && event.charCode <= 57'
-																	required />
-															</div>
-														</div></td>
-												</tr>
-												<tr>
-													<td>핸드폰번호:</td>
-
-													<td><div class='form-group'>
-															<div class='col-md-8'>
-																<input class="form-control" name="pmtCellularPhone"
-																	type="text" value="${updatePmtForm.pmtCellularPhone}"
-																	onkeypress='return event.charCode >= 48 && event.charCode <= 57'
-																	required />
-															</div>
-														</div></td>
-												</tr>
-												<tr>
-													<td>이메일:</td>
-													<td><div class='form-group'>
-															<div class='col-md-8'>
-																<input class="form-control" name="pmtMail" id="chkEmail"
-																	type="text" value="${updatePmtForm.pmtMail}"
-																	onchange="chkEmailPolicy()" required />
-															</div>
-														</div></td>
-												</tr>
-
-												<tr>
-													<td>결혼여부</td>
-													<td><div class='form-group'>
-															<div class='col-md-3'>
-																<input class="form-control" id="pmtMarried"
-																	name="pmtMarried1" value="0" type="radio" /> 미혼
-															</div>
-															<div class='col-md-3'>
-																<input class="form-control" id="pmtMarried"
-																	name="pmtMarried1" value="1" type="radio" /> 결혼
-															</div>
-														</div></td>
-												</tr>
-
-												<tr>
-													<td>우편번호:</td>
-													<td><div class='form-group'>
-															<div class='col-md-8'>
-																<input class="form-control" id="Zipcode"
-																	name="pmtZipcode" type="text" maxlength="6"
-																	readonly="readonly" />
-															</div>
-														</div></td>
-												</tr>
-												<tr>
-													<td>주소:</td>
-													<td>
-
-														<div class='form-group'>
-
-															<p class="col-md-3 pull-right">
-																<button class="btn btn-primary btn-block" type="button"
-																	data-toggle="modal" data-target=".modal_post"
-																	onclick="showhide();">주소찾기</button>
-
-															</p>
-															<!-- <div class='col-md-8'>
-						<label><input type="radio" name="optradio" value="0">지번
-							주소</label> <label><input type="radio" name="optradio" value="1">도로명
-							주소</label>
-					</div> -->
-
-															<div class='col-md-8'>
-																<input class="form-control" id="Address"
-																	name="pmtAddress_1" type="text"
-																	value="${updatePmtForm.pmtAddress}" placeholder='주소'
-																	readonly="readonly" />
-															</div>
-															<div class='col-md-8'>
-																<input class="form-control" name="pmtAddress_2"
-																	type="text" placeholder='나머지 주소' required />
-															</div>
-														</div>
-													</td>
-												</tr>
-
-												<tr>
-													<td class="active">아바타:</td>
-													<td><div class='form-group'>
-															<div class='col-md-8'>
-																<input class="form-control" name="pmtAvataImage"
-																	type="file" />
-															</div>
-														</div></td>
-												</tr>
-												<tr class="info">
-												</tr>
-											</tbody>
-										</table>
-									</div>
-									<div class="col-md-12 ">
-										<div class='col-md-12 form-group center-block'>
-											<textarea class="form-control" name="pmtMark" class="pmtMark"
-												rows="15">  </textarea>
-										</div>
-
-									</div>
-								</div>
-								<div class="panel-footer">
-
-									<button type="button" class="btn btn-sm btn-primary"
-										onclick="javascript:window.location.href='/promoter/pmrList.mwav'">
-										리스트</button>
-
-									<button type="button" class="btn btn-sm btn-primary"
-										onClick="javascript:history.go(-1)">뒤로가기</button>
-
-									<button type="submit" id="modifyBuotton" onclick="mmodify()"
-										class="btn btn-sm btn-primary">수정하기</button>
-
-								</div>
-
-							</div>
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							<h3 class="panel-title">Mwav - Promoter Registration</h3>
 						</div>
-
-					</form>
-
-
-				</c:when>
-
-				<c:otherwise>
-					<%-- 1. 회원정보 입력 --%>
-					<form class='form-horizontal' method="post"
-						action="/promoter/PmtForm.mwav">
-						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-
-							<div class="panel panel-primary">
-								<div class="panel-heading">
-									<h3 class="panel-title">Mwav - Promoter Registration</h3>
-								</div>
-								<div class="panel-body">
-									<div class="row">
-										<div class="col-md-3 col-lg-3 " align="center">
-											<img alt="User Pic"
-												src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=100"
-												class="img-circle">
-										</div>
-
-
-										<div class=" col-md-9 col-lg-9 ">
-											<table class="table table-user-information">
-												<tbody>
-													<tr>
-														<td>아이디:</td>
-														<td><div class='form-group'>
-																<div class='col-md-8'>
-
-																	<input class='form-control' name="pmtLoginId"
-																		id="chkLoginId" type='text' maxlength="15"
-																		onchange="idcheck('chkLoginId')" required> <br>
-
-																	<span class="col-md-12" id="idcheckLayer"></span>
-
-																</div>
-																<a data-toggle="popover" data-placement="bottom"
-																	data-html="true" title="MemberId Rules"
-																	data-content="
-																				1. 4 ~ 20 자 사이의 문자길이  <br/>
-																				2. 첫 문자는 영어로 시작  <br/>
-																				3. 특수문자 사용금지 (제외문자: . _ -) <br/>
-																				4. 공백문자 사용금지  <br/>
-																				5. 대소문자는 식별이 가능하나 구분 및 구별을 하지 않음">
-
-																	<span
-																	class="glyphicon glyphicon-question-sign fa-lg text-muted">
-																</span>
-																</a>
-															</div></td>
-													</tr>
-
-													<tr>
-														<td>비밀번호:</td>
-														<td><div class='form-group'>
-																<div class='col-md-8'>
-
-																	<input class='form-control' name="pmtLoginPw"
-																		id="chkLoginPW" type='password'
-																		onchange="chkPWPolicy(this.value, this)" required>
-																</div>
-																<a data-toggle="popover" data-placement="bottom"
-																	data-html="true" title="Password Rules"
-																	data-content="
-														1. 8~255자 사이의 문자길이  <br/>
-														2. 영문, 숫자, 특수문자로 구성 <br/>
-														3. 특수문자 한 개 이상 꼭 포함 <br/>
-														4. 공백문자 사용금지  <br/>
-														5. 영문 대문자와 소문자의 구분 ">
-
-																	<span
-																	class="glyphicon glyphicon-question-sign fa-lg text-muted"></span>
-																</a>
-															</div></td>
-													</tr>
-													<tr>
-													<tr>
-														<td>이름:</td>
-														<td><div class='form-group'>
-																<div class='col-md-8'>
-																	<input class="form-control" name="pmtName" type="text"
-																		maxlength="20" required />
-																</div>
-															</div></td>
-													</tr>
-													<tr>
-														<td>추천인아이디:</td>
-														<td>
-															<div class='col-md-8'>
-																<input class='form-control' name="pmtRcmderId"
-																	id="chkUpperPromo_id" type='text' maxlength="20"
-																	onchange="idcheck('chkUpperPromo_id')" required>
-															</div>
-														</td>
-													</tr>
-													<tr>
-														<td>자택전화:</td>
-														<td><div class='form-group'>
-																<div class='col-md-3'>
-																	<input class="form-control" name="pmtPhone_1"
-																		type="text" onkeydown="filterNumber(event);"
-																		maxlength="4" required />
-																</div>
-																<div class='col-md-1'>-</div>
-																<div class="col-md-3">
-
-																	<input class="form-control" name="pmtPhone_2"
-																		type="text" maxlength="4"
-																		onkeydown="filterNumber(event);" maxlength="4"
-																		required />
-																</div>
-																<div class='col-md-1'>-</div>
-
-																<div class="col-md-3">
-																	<input class="form-control" name="pmtPhone_3"
-																		type="text" maxlength="4"
-																		onkeydown="filterNumber(event);" maxlength="4"
-																		required />
-																</div>
-															</div></td>
-													</tr>
-													<tr>
-														<td>핸드폰번호:</td>
-														<td><div class='form-group'>
-
-																<div class='col-md-3'>
-																	<input class="form-control" name="pmtCellularP_1"
-																		type="text" maxlength="4"
-																		onkeydown="filterNumber(event);" required />
-
-																</div>
-																<div class='col-md-1'>-</div>
-
-																<div class="col-md-3">
-																	<input class="form-control" name="pmtCellularP_2"
-																		type="text" maxlength="4"
-																		onkeydown="filterNumber(event);" required />
-																</div>
-																<div class='col-md-1'>-</div>
-
-																<div class='col-md-3'>
-																	<input class="form-control" name="pmtCellularP_3"
-																		type="text" maxlength="4"
-																		onkeydown="filterNumber(event);" required />
-																</div>
-
-															</div></td>
-													</tr>
-													<tr>
-														<td>이메일:</td>
-														<td><div class='form-group'>
-																<div class='col-md-8'>
-																	<input class="form-control" name="pmtMail"
-																		id="chkEmail" type="text"
-																		onchange="chkEmailPolicy(this.value, this)" required />
-																</div>
-															</div></td>
-													</tr>
-
-													<tr>
-														<td>주민등록번호:</td>
-														<td><div class='form-group'>
-																<div class='col-md-4'>
-																	<input class="form-control" name="pmtSsn1" type="text"
-																		maxlength="6" />
-																</div>
-																<div class='col-md-1'>-</div>
-																<div class='col-md-4'>
-																	<input class="form-control" name="pmtSsn2" type="text"
-																		maxlength="7" />
-																</div>
-															</div></td>
-													</tr>
-
-
-													<tr>
-														<td>부업무:</td>
-														<td><div class='form-group'>
-																<div class='col-md-8'>
-																	<input class="form-control" name="pmtJobType"
-																		type="text" maxlength="200" />
-																</div>
-															</div></td>
-													</tr>
-													<tr>
-														<td>결혼여부</td>
-														<td><div class='form-group'>
-																<div class='col-md-3'>
-																	<input class="form-control" 
-																		name="pmtMarried" value="0" type="radio" /> 미혼
-																</div>
-																<div class='col-md-3'>
-																	<input class="form-control" 
-																		name="pmtMarried" value="1" type="radio" /> 결혼
-																</div>
-															</div></td>
-													</tr>
-													<tr>
-														<td>우편번호:</td>
-														<td><div class='form-group'>
-																<div class='col-md-8'>
-																	<input class="form-control" id="Zipcode"
-																		name="pmtZipcode" type="text" maxlength="6" value=""
-																		readonly="readonly" />
-																</div>
-															</div></td>
-													</tr>
-													<tr>
-														<td>주소:</td>
-														<td>
-
-															<div class='form-group'>
-
-																<p class="col-md-3 pull-right">
-																	<button class="btn btn-primary btn-block" type="button"
-																		data-toggle="modal" data-target=".modal_post"
-																		onclick="showhide();">주소찾기</button>
-
-																</p>
-																<!-- <div class='col-md-8'>
-						<label><input type="radio" name="optradio" value="0">지번
-							주소</label> <label><input type="radio" name="optradio" value="1">도로명
-							주소</label>
-					</div> readonly="readonly" -->
-
-																<div class='col-md-8'>
-																	<input class="form-control" id="Address" value=""
-																		name="pmtAddress_1" type="text" placeholder='주소'
-																		readOnly />
-																</div>
-																<div class='col-md-8'>
-																	<input class="form-control" name="pmtAddress_2"
-																		value="" id="rest_Address" type="text"
-																		placeholder='나머지 주소' required />
-																</div>
-															</div>
-														</td>
-													</tr>
-
-													<tr>
-														<td class="active">아바타:</td>
-														<td><div class='form-group'>
-																<div class='col-md-8'>
-																	<button type="button" name="pmtAvataImage"
-																		class="btn btn-sm btn-primary" data-toggle="modal"
-																		data-target=".modalUploadImages">이미지업로드</button>
-
-																</div>
-															</div></td>
-													</tr>
-													<tr class="info">
-													</tr>
-												</tbody>
-											</table>
-										</div>
-										<div class="col-md-12 ">
-											<div class='col-md-12 form-group center-block'>
-												<textarea class="form-control" name="pmtMarkl"
-													class="pmtMark" placeholder="자기소개나 하고싶은 말을 써주세요" rows="15"></textarea>
-											</div>
-
+						<div class="panel-body">
+							<div class="row">
+								<div class=" col-md-12 col-lg-12 ">
+									<%-- form-group row는 부트스트랩에서 정식으로 사용함... https://getbootstrap.com/docs/4.0/components/forms/#readonly-plain-text --%>
+									<div class='form-group' style='margin-bottom: 0px;'>
+										<div class='col-md-2 col-md-offset-2'>아이디<span class="txt_red">*</span> :</div>
+										<div class='col-md-5'>
+											<input class='form-control' style='margin-bottom: 10px;' name="pmtLoginId" id="chkLoginId" type='text' maxlength="15"> 
 										</div>
 									</div>
-									<div class="panel-footer">
-
-										<button type="button" class="btn btn-sm btn-primary"
-											onclick="javascript:window.location.href='/admins/staff/pmtList.mwav'">
-											리스트</button>
-
-										<button type="button" class="btn btn-sm btn-primary"
-											onClick="javascript:history.go(-1)">뒤로가기</button>
-
-										<button onclick="msubmit()" type="submit"
-											class="btn btn-sm btn-primary">가입하기</button>
-
+									
+									<div class='form-group'>
+										<div class='col-md-2 col-md-offset-2'></div>
+										<div class='col-md-5'>
+											<button type='button' class='btn btn-primary' onclick='validateCheck("pmtLoginId");'>아이디 중복 체크</button>
+										</div>
 									</div>
 
+									<div class='form-group'>
+										<div class='col-md-2 col-md-offset-2'>비밀번호<span class="txt_red">*</span> :</div>
+										<div class='col-md-5'>
+											<input class='form-control input-margin' name="pmtLoginPw"
+												id="chkLoginPW" type='password' onfocusout='validateCheck("pmtLoginPw");'>
+											<div id='pmtLoginPwFalse' class='checkFalse alert alert-danger' style="display:none;">유효하지 않은 비밀번호입니다. <br>8~255자 사이의 영문,숫자,특수문자로 구성되어야 합니다.</div>
+										</div>
+									</div>
+								
+									<div class='form-group'>
+										<div class='col-md-2 col-md-offset-2'>비밀번호 확인<span class="txt_red">*</span> :</div>
+										<div class='col-md-5'>
+											<input class='form-control input-margin' name="pmtLoginPwChk"
+												id="chkLoginPwChk" type='password' onfocusout='validateCheck("pmtLoginPwChk");'>
+												<div id='pmtLoginPwChkFalse' class='checkFalse alert alert-danger' style="display:none;">비밀번호가 일치하지 않습니다.</div>
+										</div>
+									</div>
+								
+								<div class='form-group'>
+										<div class='col-md-2 col-md-offset-2'>이름<span class="txt_red">*</span> :</div>
+										<div class='col-md-5'>
+											<input class="form-control input-margin" name="pmtName" type="text"
+												maxlength="20" onfocusout='validateCheck("pmtName");' />
+											<div id='pmtNameFalse' class='checkFalse alert alert-danger' style="display:none;">한글만 입력해주세요.</div>
+										</div>
+									</div>
+									
+								<div class='form-group'>
+										<div class='col-md-2 col-md-offset-2'>핸드폰번호<span class="txt_red">*</span> :</div>
+
+										<div class='col-md-5'>
+											<input class="form-control input-margin" name="pmtCellularPhone"
+												type="text" maxlength="13" onfocusout='validateCheck("pmtCellularPhone");' />
+											<div id='pmtCellularPhoneFalse' class='checkFalse alert alert-danger' style="display:none;">010-1234-5678 형태로 입력해주세요 </div>
+										</div>
+									</div>
+								
+								
+								<div class='form-group'>
+										<div class='col-md-2 col-md-offset-2'>이메일<span class="txt_red">*</span> :</div>
+										<div class='col-md-5'>
+											<input class="form-control input-margin" name="pmtMail" id="chkEmail" type="text" onfocusout='validateCheck("pmtMail");' />
+											<div id='pmtMailFalse' class='checkFalse alert alert-danger' style="display:none;">유효하지 않은 이메일 입니다.</div>
+										</div>
+									</div>
+									
+								<div class='form-group'>
+										<div class='col-md-2 col-md-offset-2'>직업 :</div>
+										<div class='col-md-5'>
+											<select name="pmtJobType" id="pmtJobType" class="form-control">
+												<option value="미입력">미입력</option>
+												<option value='건설기술직'>건설기술직</option>
+												<option value='건축/기술전문직'>건축/기술전문직</option>
+												<option value='경영/재무관련직'>경영/재무관련직</option>
+												<option value='공무원'>공무원</option>
+												<option value='교사/교육관련직'>교사/교육관련직</option>
+												<option value='농수축임업관련직'>농수축임업관련직</option>
+												<option value='대표,임원'>대표,임원</option>
+												<option value='대학교수/강사'>대학교수/강사</option>
+												<option value='법률관련직'>법률관련직</option>
+												<option value='법률전문직'>법률전문직</option>
+												<option value='사무직'>사무직</option>
+												<option value='사회사업/상담관련직'>사회사업/상담관련직</option>
+												<option value='서비스관련직'>서비스관련직</option>
+												<option value='설비/수리/생산직'>설비/수리/생산직</option>
+												<option value='안전/용역관련직'>안전/용역관련직</option>
+												<option value='연구직'>연구직</option>
+												<option value='예술/연예/스포츠관련직'>예술/연예/스포츠관련직</option>
+												<option value='운송관련직'>운송관련직</option>
+												<option value='음식료관련직'>음식료관련직</option>
+												<option value='의료관련직'>의료관련직</option>
+												<option value='의료전문직'>의료전문직</option>
+												<option value='전산관련직'>전산관련직</option>
+												<option value='중간관리자'>중간관리자</option>
+												<option value='판매영업직'>판매영업직</option>
+												<option value='기타'>기타</option>
+											</select>
+										</div>
+									</div>
+									
+								<div class='form-group'>
+										<div class='col-md-2 col-md-offset-2'>결혼여부 * </div>
+										<div class='col-md-5'>
+											<label class='radio-inline' style='margin-right:20px;'><input id='MarriedN' class="" name="pmtMarried" value="0" type="radio" checked/> 미혼</label>																
+											<label class='radio-inline'><input id='MarriedY' class="" name="pmtMarried" value="1" type="radio" /> 결혼</label>
+										</div>
+									</div>
+								
+								
+								
+									<div class='form-group'>
+										<div class='col-md-2 col-md-offset-2'>주소 * :</div>
+
+										<div class='col-md-5'>
+											<input class="form-control" id="Zipcode" name="pmtZipcode" type="text" maxlength="6" placeholder='우편번호' style='width:40%; display:inline;' readOnly />
+											<button class="btn btn-primary" type="button" data-toggle="modal" data-target=".modal_post" data-dismiss="modal" style='vertical-align: unset;'>주소찾기</button>
+										</div>
+									</div>
+									
+									<div class='form-group'>
+										<div class='col-md-2 col-md-offset-2'></div>
+										<div class='col-md-5'>
+											<input class="form-control" id="Address" name="pmtAddress_1" type="text" placeholder='주소' style='margin-bottom: 5px;' readOnly />
+											<input class="form-control" id='rest_address'     name="pmtAddress_2" value="" id="rest_Address" type="text" placeholder='상세 주소' required />
+											<!-- 주소 문자를 한꺼번에 합치는 작업을 프론트에서 처리한다. -->
+											<input type='hidden' id='pmtAddress' name='pmtAddress'>
+										</div>
+									</div>
+									
+									<div class='form-group' style = "display:none">
+										<div class='col-md-2 col-md-offset-2'>추천인아이디:</div>
+										<div class='col-md-5'>
+											<input class='form-control' name="pmtRcmderId"
+												id="pmtRcmderId" type='hidden'>
+										</div>
+										
+									</div>
 								</div>
 							</div>
-						</div>
-					</form>
+							
+							<div class="panel-footer">
+								<button onclick="pmtSubmit()" type="button" class="btn btn-success" style='width:200px'>가입하기</button>
+							</div>
 
-				</c:otherwise>
-			</c:choose>
+						</div>
+					</div>
+				</div>
+			</form>
 		</div>
 	</div>
-</div>
+</body>
 
-<!-- /.container -->
-
-
+<footer>
+</footer>
 <%-- 아래의 내용을 위에 주소 위치에 둘 경우 form태그가 해당위치로 닫힌다 form태그 중복 추후 확인 필요 --%>
 <jsp:include page="/CommonApps/PostSeek/PostSeek.jsp" flush="false" />
-
-
-
