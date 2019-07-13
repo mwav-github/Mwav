@@ -244,13 +244,25 @@ public class SignController {
 	}
 
 	/**
-	 * 네이버 아이디 로그인 callback 처리
-	 * @param code    : 네이버 로그인 서버에서 return하는 token 발급용 code
-	 * @param state   : 네이버 로그인 서버로 send 했던 state(난수), session의 state와 비교 검증할 때 사용
-	 * @param session
-	 * @return        : 메인 화면으로 forward
-	 * @throws Exception
-	 * 세세한 예외처리가 필요하나 지금은 ON-GOING
+	 * 
+	 * @method name : naverCallBack
+	 * @author : (정) 남동희
+	             (부)
+	 * @since  : 2019. 7. 13.
+	 * @version : v1.1
+	 * @see :
+	 * @description : 네이버 로그인 후 CALLBACK 처리
+	 * @history :
+	   ----------------------------------------
+	   * Modification Information(개정이력)
+	   ----------------------------------------
+	        수정일                수정자                   수정내용
+	   --------    --------    ----------------
+	   2019.7. 13. 남동희     	       최초 생성
+	 * @param : String code  - 네이버 로그인 서버에서 return하는 token 발급용 code<br>
+	 * 			String state - 네이버 로그인 서버로 send 했던 state(난수), session의 state와 비교 검증할 때 사용
+	 * @return : 메인화면으로  Forward
+	 * @throws : 
 	 */
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/naver/signin.mwav")

@@ -19,12 +19,26 @@ public class SignService {
 	EmailSender emailSender;
 
 	/**
-	 * 네이버 로그인 처리
-	 * 이미 가입된 사용자면 로그인 처리
-	 * 신규 사용자면 DB에 저장 후 로그인 처리
-	 * @param userInfoMap ex) {resultcode=00, message=success, response={id=45211094, email=7837167@naver.com, name=남동희}}
-	 * @return
-	 * @throws Exception
+	 * 
+	 * @method name : signService
+	 * @author : (정) 남동희
+	             (부)
+	 * @since  : 2019. 7. 13.
+	 * @version : v1.1
+	 * @see :
+	 * @description :  네이버 로그인 처리
+	 * 				     이미 가입된 사용자면 로그인 처리
+	 * 				     신규 사용자면 DB에 저장 후 로그인 처리
+	 * @history :
+	   ----------------------------------------
+	   * Modification Information(개정이력)
+	   ----------------------------------------
+	        수정일                수정자                   수정내용
+	   --------    --------    ----------------
+	   2019.7. 13. 남동희     	       최초 생성
+	 * @param : Map userInfoMap  - 네이버 프로필을 통해 받은 사용자 정보<br>
+	 * @return : Map - 처리 결과
+	 * @throws : 
 	 */
 	public Map<String, Object> signService(Map<String, Object> userInfoMap) throws Exception {
 		Map<String, Object> result = new HashMap<String, Object>();

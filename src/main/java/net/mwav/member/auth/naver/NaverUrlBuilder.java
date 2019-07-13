@@ -20,6 +20,25 @@ import com.github.scribejava.core.model.Response;
 import com.github.scribejava.core.model.Verb;
 import com.github.scribejava.core.oauth.OAuth20Service;
 
+
+/**
+ * 
+ * @class name : NaverUrlBuilder.java
+ * @description : 네이버 로그인 인증 url 생성<br>
+ * 				  application.properties의 값을 참조
+ * @author : (정) 남동희
+             (부)
+ * @since : 2019. 7. 13
+ * @version : v1.1
+ * @see
+ * @history :
+   ----------------------------------------
+ * Modification Information(개정이력)
+   ----------------------------------------
+     수정일              	수정자                수정내용
+   --------    --------    ----------------
+ * 2019.07.13    남동희          		최초 생성		
+ */
 @Configuration
 @PropertySource("classpath:googleProperties/application.properties")
 @Component
