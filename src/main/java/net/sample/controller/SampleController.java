@@ -4,18 +4,13 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 
 import net.common.common.CommandMap;
-import net.mwav.common.module.FileHandler;
 import net.sample.service.SampleService;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 /* 
@@ -115,85 +110,6 @@ public class SampleController {
 		
 		sampleService.deleteBoard(commandMap.getMap());
 		
-		return mv;
-	}
-	
-	/* 20190504,정재현,파일업로드 테스트
-	 * fileHandler 테스트
-	 */	
-	@RequestMapping(value="/FileTestV2/FileUpload.mwav", method = RequestMethod.POST)
-    @ResponseBody
-    public boolean fileUpload(MultipartHttpServletRequest multipartRequest) { 
-        // String filePath = "C:/fileUpload";
-		String filePath = "/xUpload/GdsData/GC10000/Images";
-		
-		/*
-		String rootPath = multipartRequest.getSession().getServletContext().getRealPath("/");
-        String midPath = "xUpload/GdsData/GC10000/Images/";        
-        String fullPath = rootPath+midPath;
-        */
-		
-        Map<String, List<String>> fileNames = new FileHandler(multipartRequest, filePath).getUploadFileName();
-        System.err.println(fileNames.toString());
-        
-        // 실제저장파일명과 원본파일명 DB저장처리
-        //System.err.println(fileNames.toString());
-        //파일 업로드 성공여부 체크
-        return true;
-    }
-	
-	/* 20190504,정재현,파일업로드 테스트
-	 * fileHandler 테스트
-	 */	
-	@RequestMapping(value="/FileTestV2/TempUpload.mwav", method = RequestMethod.POST)
-    @ResponseBody
-    public boolean tempUpload(MultipartHttpServletRequest multipartRequest) { 
-        // String filePath = "C:/fileUpload";
-		String filePath = "/xUpload/Temp";
-		
-		/*
-		String rootPath = multipartRequest.getSession().getServletContext().getRealPath("/");
-        String midPath = "xUpload/GdsData/GC10000/Images/";        
-        String fullPath = rootPath+midPath;
-        */
-		
-        Map<String, List<String>> fileNames = new FileHandler(multipartRequest, filePath).getUploadFileName();
-        System.err.println(fileNames.toString());
-        
-        // 실제저장파일명과 원본파일명 DB저장처리
-        //System.err.println(fileNames.toString());
-        //파일 업로드 성공여부 체크
-        return true;
-    }
-	
-	//http://localhost:8080/FileTestV2/GdsCellForm.mwav
-	
-	/* 20190504,정재현,파일업로드 테스트
-	 * fileHandler 테스트
-	 */	
-	@RequestMapping(value = "/FileTest/**")
-	public ModelAndView redirectFileTestController(HttpServletRequest request)
-			throws Exception {
-		String url = request.getRequestURI();
-		int pos = url.lastIndexOf(".");
-		
-		String ext_url = null;
-		ext_url = url.substring(0, pos);
-		ModelAndView mv = new ModelAndView(ext_url);
-
-		return mv;
-	}
-	
-	@RequestMapping(value = "/FileTestV2/**")
-	public ModelAndView redirectFileTestV2Controller(HttpServletRequest request)
-			throws Exception {
-		String url = request.getRequestURI();
-		int pos = url.lastIndexOf(".");
-		
-		String ext_url = null;
-		ext_url = url.substring(0, pos);
-		ModelAndView mv = new ModelAndView(ext_url);
-
 		return mv;
 	}
 }
