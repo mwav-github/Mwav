@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link href="/resources/JsFramework/Bootstrap/bootstrap-social.css" rel="stylesheet">
-<script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
-
 <%--padding 으로 안쪽 추후 딴건 변경가능 #04A3ED --%>
 <c:if test="${param.type eq null}">
 	<div class="enter"></div>
@@ -50,6 +48,8 @@
 
 		<%--소셜 로그인 연동부분 
 		중요사항 : col-md-12 외 나머지 것들 col-sm-12 등을 넣으면 버튼 동작이 하지 않음.
+		<input type="hidden" name="autoLoginChk" class="autoLoginChk" value="off"> 확인 필요. 
+		
 		--%>
 		<!-- GOOGLE SIGNIN -->
 		<div class="col-md-12 ">
@@ -107,8 +107,8 @@
 		<%--naver sign in --%>
 		<div class="col-md-12 mgb3">
 			<form action="${naver_url}" method="POST" onSubmit="return robot_check();">
-				<button type="submit" class="btn btn-block">
-					<span class="fa"></span> <span class="">Sign in with Naver</span>
+				<button type="submit" class="btn btn-block btn-social btn-naver">
+					<span class="fa icon-naver"></span> <span class="">Sign in with Naver</span>
 				</button>
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 				<input type="hidden" name="autoLoginChk" class="autoLoginChk" value="off" />
@@ -134,7 +134,6 @@
 			</div>
 		</div>
 	</div>
-
 </c:if>
 <!-- Login - END -->
 <c:if test="${param.type == 'simple'}">
@@ -157,7 +156,6 @@
 
 		<div class="form-group">
 			<div class="col-md-12">
-
 				<div class="g-recaptcha" data-sitekey="6LcdRxoUAAAAAA4OI0FIN2bv2W0ersTRjqHJdLG-"></div>
 			</div>
 		</div>
@@ -199,7 +197,6 @@
 		</form>
 	</div>
 
-
 	<!-- LINKEDIN SIGNIN -->
 	<div class=" col-md-12">
 		<form action="<c:url value="/signin/linkedin.mwav"/>" method="POST" onSubmit="return robot_check();">
@@ -227,14 +224,13 @@
 	<%--naver sign in --%>
 	<div class="col-md-12 mgb3">
 		<form action="${naver_url}" method="POST" onSubmit="return robot_check();">
-			<button type="submit" class="btn btn-block">
-				<span class="fa"></span> <span class="">Sign in with Naver</span>
+			<button type="submit" class="btn btn-block btn-social btn-naver">
+				<span class="fa icon-naver"></span> <span class="">Sign in with Naver</span>
 			</button>
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 			<input type="hidden" name="autoLoginChk" class="autoLoginChk" value="off" />
 		</form>
 	</div>
-
 
 	<div class="form-group ">
 		<div class="col-md-4">
