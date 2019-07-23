@@ -1,16 +1,19 @@
 package net.common.common;
 
+import java.util.Enumeration;
+
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
-import org.apache.maven.model.Model;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import net.common.common.CommandMap;
 import net.mwav.common.module.Common_Utils;
+import net.mwav.member.auth.naver.NaverUrlBuilder;
 
 @Controller
 public class FrontCommonController {
@@ -18,6 +21,9 @@ public class FrontCommonController {
 
 	Common_Utils cou = new Common_Utils();
 	String mode;
+
+	@Inject
+	NaverUrlBuilder naverUrlBuilder;
 
 	/*
 	 * ========================================등록================================
@@ -34,8 +40,7 @@ public class FrontCommonController {
 	String ext_url = null;
 
 	@RequestMapping(value = { "/", "/Index" })
-	public ModelAndView redirectIndexController(HttpServletRequest request)
-			throws Exception {
+	public ModelAndView redirectIndexController(HttpServletRequest request) throws Exception {
 		ModelAndView mv = null;
 		try {
 			String url = request.getRequestURI();
@@ -61,8 +66,7 @@ public class FrontCommonController {
 	}
 
 	@RequestMapping(value = { "/Shop/Index" })
-	public ModelAndView redirectShopIndexController(HttpServletRequest request)
-			throws Exception {
+	public ModelAndView redirectShopIndexController(HttpServletRequest request) throws Exception {
 		String url = request.getRequestURI();
 		int pos = url.lastIndexOf(".");
 		// String ext = url.substring(pos + 1);
@@ -78,11 +82,9 @@ public class FrontCommonController {
 	// 1번 bnsForm : Form 입력만 가능 (뒤로가기, list)
 	@RequestMapping(value = "/hightsofts/hightsofts.mwav")
 	// http://egloos.zum.com/nadostar/v/210497
-	public ModelAndView highsots(CommandMap commandMap,
-			HttpServletRequest request) throws Exception {
+	public ModelAndView highsots(CommandMap commandMap, HttpServletRequest request) throws Exception {
 
-		ModelAndView mv = new ModelAndView(
-				"/CompanyItem/ITProducts/HighSofts/HighSofts");
+		ModelAndView mv = new ModelAndView("/CompanyItem/ITProducts/HighSofts/HighSofts");
 
 		// String items =(String) request.getAttribute("items");
 		String items = (String) commandMap.get("items");
@@ -130,20 +132,11 @@ public class FrontCommonController {
 			mv.addObject("demo_4_text", "Map bubble");
 
 		}
-		/*
-		 * String mm = "site"; mv.addObject("mm", mm); mv.addObject("item",
-		 * "m_bnsForm"); mv.addObject("breadcrumb", "IT Trends");
-		 * mv.addObject("page_header", "IT Trends");
-		 * 
-		 * // mv.addObject("insertBnsForm", insertBnsForm); //
-		 * mv.addObject("IDX", commandMap.get("IDX"));
-		 */
 		return mv;
 	}
 
 	@RequestMapping(value = "/CompanyItem/**")
-	public ModelAndView redirectCompanyItemController(HttpServletRequest request)
-			throws Exception {
+	public ModelAndView redirectCompanyItemController(HttpServletRequest request) throws Exception {
 
 		// System.out.println("열로들어오나");
 		String url = request.getRequestURI();
@@ -158,8 +151,7 @@ public class FrontCommonController {
 	}
 
 	@RequestMapping(value = "/CustomerService/**")
-	public ModelAndView redirectCustomerServiceItemController(
-			HttpServletRequest request) throws Exception {
+	public ModelAndView redirectCustomerServiceItemController(HttpServletRequest request) throws Exception {
 
 		// tiles 의 경우 해당 경로로 들어가게되면, 서블릿을 탄다.
 		// 그런데 main 에서
@@ -186,8 +178,7 @@ public class FrontCommonController {
 	}
 
 	@RequestMapping(value = "/Company/**")
-	public ModelAndView redirectCompanyController(HttpServletRequest request)
-			throws Exception {
+	public ModelAndView redirectCompanyController(HttpServletRequest request) throws Exception {
 
 		// System.out.println("열로들어오나");
 		String url = request.getRequestURI();
@@ -202,8 +193,7 @@ public class FrontCommonController {
 	}
 
 	@RequestMapping(value = "/Admins/**")
-	public ModelAndView redirectAdminsController(HttpServletRequest request)
-			throws Exception {
+	public ModelAndView redirectAdminsController(HttpServletRequest request) throws Exception {
 
 		// System.out.println("열로들어오나");
 		String url = request.getRequestURI();
@@ -218,8 +208,7 @@ public class FrontCommonController {
 	}
 
 	@RequestMapping(value = "/Templates/**")
-	public ModelAndView redirectTemplatesController(HttpServletRequest request)
-			throws Exception {
+	public ModelAndView redirectTemplatesController(HttpServletRequest request) throws Exception {
 
 		// System.out.println("열로들어오나");
 		String url = request.getRequestURI();
@@ -233,9 +222,32 @@ public class FrontCommonController {
 		return mv;
 	}
 
-	@RequestMapping(value = { "/MasterPage", "/MasterPage_1" })
-	public ModelAndView redirectMasterPageController(HttpServletRequest request)
-			throws Exception {
+	/**
+	 * 로그인 페이지 호출
+	 * @param session
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "/MasterPage")
+	public ModelAndView redirectMasterPageController(HttpSession session, HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView("/MasterPage");
+
+		Enumeration<?> param = request.getParameterNames();
+
+		while (param.hasMoreElements()) {
+			String paramName = (String) param.nextElement();
+			mv.addObject(paramName, request.getParameter(paramName));
+		}
+		
+		String naverAuthUrl = naverUrlBuilder.getAuthorizationUrl(session);
+		log.info("url : " + naverAuthUrl);
+		mv.addObject("naver_url", naverAuthUrl);
+
+		return mv;
+	}
+
+	@RequestMapping(value = "/MasterPage_1")
+	public ModelAndView redirectMasterPage1Controller(HttpServletRequest request) throws Exception {
 
 		// System.out.println("열로들어오나");
 		String url = request.getRequestURI();
@@ -250,10 +262,8 @@ public class FrontCommonController {
 	}
 
 	// 미적용 + 파라미터 붙여서 넘길수있게 ㅎㅎ
-	public ModelAndView redirectController(HttpServletRequest request,
-			String url) throws Exception {
-		ModelAndView mv = new ModelAndView(
-				"/CompanyItem/ITProducts/HighSofts/HighSofts");
+	public ModelAndView redirectController(HttpServletRequest request, String url) throws Exception {
+		ModelAndView mv = new ModelAndView("/CompanyItem/ITProducts/HighSofts/HighSofts");
 
 		return mv;
 	}

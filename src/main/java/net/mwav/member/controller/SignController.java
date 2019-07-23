@@ -20,13 +20,9 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import net.mwav.member.service.MemberService;
-import net.mwav.member.vo.Member_tbl_VO;
 
 import org.apache.log4j.Logger;
 import org.apache.maven.model.Model;
@@ -41,8 +37,16 @@ import org.springframework.social.facebook.api.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.WebRequest;
-import org.springframework.web.util.WebUtils;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.scribejava.core.model.OAuth2AccessToken;
+
+import net.mwav.member.auth.naver.NaverUrlBuilder;
+import net.mwav.member.service.MemberService;
+import net.mwav.member.service.SignService;
+import net.mwav.member.vo.Member_tbl_VO;
 
 @Controller
 public class SignController {
@@ -57,14 +61,17 @@ public class SignController {
 	private MemberService memberService;
 
 	@Inject
-	public SignController(ConnectionFactoryLocator connectionFactoryLocator,
-			UsersConnectionRepository connectionRepository) {
-		this.providerSignInUtils = new ProviderSignInUtils(
-				connectionFactoryLocator, connectionRepository);
+	NaverUrlBuilder naverUrlBuilder;
+
+	@Inject
+	SignService signService;
+
+	@Inject
+	public SignController(ConnectionFactoryLocator connectionFactoryLocator, UsersConnectionRepository connectionRepository) {
+		this.providerSignInUtils = new ProviderSignInUtils(connectionFactoryLocator, connectionRepository);
 	}
 
-	@RequestMapping(value = "/signin", method = { RequestMethod.GET,
-			RequestMethod.POST })
+	@RequestMapping(value = "/signin", method = { RequestMethod.GET, RequestMethod.POST })
 	public void signin() {
 		System.out.println("출력3");
 	}
@@ -100,8 +107,7 @@ public class SignController {
 
 		if (social.equals("facebook")) {
 			facebook = (Facebook) connection.getApi();
-			String[] fields = { "id", "email", "first_name", "last_name",
-					"gender", "birthday", "link" };
+			String[] fields = { "id", "email", "first_name", "last_name", "gender", "birthday", "link" };
 			/*
 			 * System.out.println("이건뭘까" +
 			 * facebook.userOperations().getUserProfile());
@@ -151,7 +157,7 @@ public class SignController {
 		int member_id = 0;
 		String m_id = null;
 		check = memberService.selectOneSnsMbrLoginIdCheck(smMember_id);
-		
+
 		logger.info("check = " + check);
 		if (check == false) { // 기존에 등록 아이디가 존재하지 않는 경우
 
@@ -201,8 +207,8 @@ public class SignController {
 			memberService.insertSnsForm(map);
 			member_tbl_VO.setMember_id(member_id);
 			session.setAttribute("member", member_tbl_VO);
-			if(request.getSession().getAttribute("autoLoginChk")!=null){
-				memberService.updateAutoLogin((String)request.getSession().getAttribute("autoLoginChk"), response, member_tbl_VO.getMember_id());
+			if (request.getSession().getAttribute("autoLoginChk") != null) {
+				memberService.updateAutoLogin((String) request.getSession().getAttribute("autoLoginChk"), response, member_tbl_VO.getMember_id());
 				request.getSession().removeAttribute("autoLoginChk");
 			}
 			logger.info("insertSnsForm success!!!!!!");
@@ -220,9 +226,9 @@ public class SignController {
 
 			member_tbl_VO.setMember_id(member_id);
 			session.setAttribute("member", member_tbl_VO);
-			System.out.println("자동로그인값"+request.getSession().getAttribute("autoLoginChk"));
-			if(request.getSession().getAttribute("autoLoginChk")!=null){
-				memberService.updateAutoLogin((String)request.getSession().getAttribute("autoLoginChk"), response, member_tbl_VO.getMember_id());
+			System.out.println("자동로그인값" + request.getSession().getAttribute("autoLoginChk"));
+			if (request.getSession().getAttribute("autoLoginChk") != null) {
+				memberService.updateAutoLogin((String) request.getSession().getAttribute("autoLoginChk"), response, member_tbl_VO.getMember_id());
 				request.getSession().removeAttribute("autoLoginChk");
 			}
 		}
@@ -237,4 +243,64 @@ public class SignController {
 		return "/Index";
 	}
 
+	/**
+	 * 
+	 * @method name : naverCallBack
+	 * @author : (정) 남동희
+	             (부)
+	 * @since  : 2019. 7. 13.
+	 * @version : v1.1
+	 * @see :
+	 * @description : 네이버 로그인 후 CALLBACK 처리
+	 * @history :
+	   ----------------------------------------
+	   * Modification Information(개정이력)
+	   ----------------------------------------
+	        수정일                수정자                   수정내용
+	   --------    --------    ----------------
+	   2019.7. 13. 남동희     	       최초 생성
+	 * @param : String code  - 네이버 로그인 서버에서 return하는 token 발급용 code<br>
+	 * 			String state - 네이버 로그인 서버로 send 했던 state(난수), session의 state와 비교 검증할 때 사용
+	 * @return : 메인화면으로  Forward
+	 * @throws : 
+	 */
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value = "/naver/signin.mwav")
+	public String naverCallBack(@RequestParam String code, @RequestParam String state, HttpSession session, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		try {
+			OAuth2AccessToken token = naverUrlBuilder.getAccessToken(session, code, state);
+
+			Map<String, Object> userInfo = new ObjectMapper().readValue(naverUrlBuilder.getUserProfile(token), Map.class);
+
+			if ("00".equals(userInfo.get("resultcode"))) {
+				Map<String, Object> result = signService.signService((Map<String, Object>) userInfo.get("response"));
+
+				switch (result.get("result").toString()) {
+				// 로그인, 신규 가입이 성공한 경우
+				case "1":
+				case "11":
+					// 왜 굳이 INT형을?
+					member_tbl_VO.setMember_id(Integer.parseInt(result.get("memberId").toString()));
+					session.setAttribute("member", member_tbl_VO);
+					if (request.getSession().getAttribute("autoLoginChk") != null) {
+						memberService.updateAutoLogin((String) request.getSession().getAttribute("autoLoginChk"), response, member_tbl_VO.getMember_id());
+						request.getSession().removeAttribute("autoLoginChk");
+					}
+					break;
+
+				// 로그인, 신규 가입 시 에러가 발생한 경우
+				default:
+					break;
+				}
+			}
+			
+			// 뭔 짓거리를 한 건지 모르지만 일단 남겨둠
+			request.setAttribute("loginCheck", 1);
+			request.getSession().setAttribute("loginCheck", null);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+		return "/Index";
+	}
 }

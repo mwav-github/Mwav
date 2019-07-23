@@ -89,6 +89,8 @@ public class MemberServiceImpl implements MemberService {
 				result.put("result", "30");
 				result.put("message", "NO_AFFECTED");
 			}
+			
+			memberDAO.insertMemberValue_tbl(map);
 			emailSender.sendRegistrationEmail(map);
 			result.put("result", "1");
 			result.put("message", "SUCCESS");
