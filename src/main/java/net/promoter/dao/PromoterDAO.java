@@ -9,7 +9,9 @@ import net.promoter.vo.PromoterValue_VO;
 import net.promoter.vo.Promoter_VO;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 @Repository("promoterDAO")
 public class PromoterDAO extends AbstractDAO{
@@ -28,21 +30,21 @@ Structure101
 		return (int) selectOne("promoter.selectNextPmtPk");
 	}
 
-	public boolean selectOnePmtLoginIdCheck(String pmtLoginId) {
+	public int selectOnePmtLoginIdCheck(String pmtLoginId) {
 		// TODO Auto-generated method stub
-		boolean check;
+		int check;
 		System.out.println("값이?=" + selectOne("promoter.selectOnePmtLoginIdCheck", pmtLoginId));
 		if (selectOne("promoter.selectOnePmtLoginIdCheck", pmtLoginId) == null) {
-			check = false; // 아이디가 없는 경우
+			check = 0; // 아이디가 없는 경우
 		} else {
-			check = true; // 아이디가 있는 경우
+			check = 1; // 아이디가 있는 경우
 		}
 
 		return check;
 	}
 
 	@Transactional
-	public int insertPmtForm(Map<String, Object> map) {
+	public int insertPmtForm(Promoter_VO promoter) {
 		// TODO Auto-generated method stub
 		try {
 			/*
@@ -50,7 +52,9 @@ Structure101
 			 */
 			// byte[] encrypted = null;
 
-			String b_PmtLoginPw = (String) map.get("pmtLoginPw");
+//			String b_PmtLoginPw = (String) map.get("pmtLoginPw");
+			String b_PmtLoginPw = promoter.getPmtLoginPw();
+			
 			System.out.println("* AES/CBC/IV");
 			System.out.println("b_stfLoginPw=" + b_PmtLoginPw);
 			System.out.println("    - KEY : " + AesEncryption.sKey); // Static
@@ -69,7 +73,9 @@ Structure101
 			// String b2_mbrLoginPw = AesTest.toHexString(encrypted);
 			System.out.println("    - TEXT2 : " + sBase);
 
-			map.put("pmtLoginPw", sBase);
+//			map.put("pmtLoginPw", sBase);
+			promoter.setPmtLoginPw(sBase);
+			
 			if (encrypted == null) {
 				System.out.println("    - Encrypted : ERROR!!!");
 			} else {
@@ -79,12 +85,15 @@ Structure101
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 		int result =0;
-		int promoterid = (int)selectOne("promoter.selectNextPmtPk", map);
-		System.out.println(promoterid+ "아이디값");
-		map.put("promoter_id",promoterid);
-		result = (int) insert("promoter.insertPmtForm", map);
-		result = (int) insert("promoter.insertPmtValueForm",map);
+		int promoterid = (int)selectOne("promoter.selectNextPmtPk");	//Promoter_tbl.promoter_id의 가장 max 값을 가져온다.
+		
+		promoter.setPromoter_id(promoterid);
+		System.out.println(" 최종 : " +  promoter);
+		result = (int) insert("promoter.insertPmtForm", promoter);		//한쪽이 에러가 나는 경우를 대비해 트랜잭션 처리를 해야함.. 근데 처리를 위해선 구조를 크게 바꿔야함 (보류)
+		result = (int) insert("promoter.insertPmtValueForm",promoter);
+		
 		return result;
 	}
 

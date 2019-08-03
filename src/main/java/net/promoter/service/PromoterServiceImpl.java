@@ -23,14 +23,14 @@ public class PromoterServiceImpl implements PromoterService {
 	}
 
 	@Override
-	public boolean selectOnePmtLoginIdCheck(String PmtLoginId) throws Exception {
+	public int selectOnePmtLoginIdCheck(String PmtLoginId) throws Exception {
 		// TODO Auto-generated method stub
 		return promoterDAO.selectOnePmtLoginIdCheck(PmtLoginId);
 	}
 
 	@Override
-	public int insertPmtForm(Map<String, Object> map) throws Exception {
-		return promoterDAO.insertPmtForm(map);
+	public int insertPmtForm(Promoter_VO promoter) throws Exception {
+		return promoterDAO.insertPmtForm(promoter);
 	}
 
 	@Override
