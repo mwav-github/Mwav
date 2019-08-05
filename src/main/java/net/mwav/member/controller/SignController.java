@@ -67,7 +67,8 @@ public class SignController {
 	SignService signService;
 
 	@Inject
-	public SignController(ConnectionFactoryLocator connectionFactoryLocator, UsersConnectionRepository connectionRepository) {
+	public SignController(ConnectionFactoryLocator connectionFactoryLocator,
+			UsersConnectionRepository connectionRepository) {
 		this.providerSignInUtils = new ProviderSignInUtils(connectionFactoryLocator, connectionRepository);
 	}
 
@@ -82,7 +83,8 @@ public class SignController {
 	}
 
 	@RequestMapping(value = "/signup.mwav", method = { RequestMethod.GET, RequestMethod.POST })
-	public String signupForm2(WebRequest req, Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public String signupForm2(WebRequest req, Model model, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
 		Connection<?> connection = providerSignInUtils.getConnectionFromSession(req);
 
 		int loginCheck = 0;
@@ -90,8 +92,7 @@ public class SignController {
 		HttpSession session = request.getSession();
 
 		/*
-		 * API 마다 메소드가 다르기때문에 이부분은 체크 필요.
-		 * http://docs.spring.io/spring-social/docs
+		 * API 마다 메소드가 다르기때문에 이부분은 체크 필요. http://docs.spring.io/spring-social/docs
 		 * /1.0.3.RELEASE/api/org/springframework
 		 * /social/connect/Connection.html#fetchUserProfile()
 		 */
@@ -109,8 +110,7 @@ public class SignController {
 			facebook = (Facebook) connection.getApi();
 			String[] fields = { "id", "email", "first_name", "last_name", "gender", "birthday", "link" };
 			/*
-			 * System.out.println("이건뭘까" +
-			 * facebook.userOperations().getUserProfile());
+			 * System.out.println("이건뭘까" + facebook.userOperations().getUserProfile());
 			 */
 			User user = facebook.fetchObject("me", User.class, fields);
 
@@ -178,9 +178,9 @@ public class SignController {
 			}
 			map.put("member_id", member_id);
 
-			//로그인한 SNS의 값이 동일하므로 난수 발생으로 대응 필요하며, 순서대로 채번 필요. 
+			// 로그인한 SNS의 값이 동일하므로 난수 발생으로 대응 필요하며, 순서대로 채번 필요.
 			map.put("mbrLoginId", social + "_temp");
-			//현재는 SNS 패스워드의 모든 값이 동일하다.
+			// 현재는 SNS 패스워드의 모든 값이 동일하다.
 			map.put("mbrLoginPw", "sns_temp1@");
 			map.put("mbrTempLoginPw", null);
 			map.put("mbrFirstName", First_Name);
@@ -208,7 +208,8 @@ public class SignController {
 			member_tbl_VO.setMember_id(member_id);
 			session.setAttribute("member", member_tbl_VO);
 			if (request.getSession().getAttribute("autoLoginChk") != null) {
-				memberService.updateAutoLogin((String) request.getSession().getAttribute("autoLoginChk"), response, member_tbl_VO.getMember_id());
+				memberService.updateAutoLogin((String) request.getSession().getAttribute("autoLoginChk"), response,
+						member_tbl_VO.getMember_id());
 				request.getSession().removeAttribute("autoLoginChk");
 			}
 			logger.info("insertSnsForm success!!!!!!");
@@ -228,7 +229,8 @@ public class SignController {
 			session.setAttribute("member", member_tbl_VO);
 			System.out.println("자동로그인값" + request.getSession().getAttribute("autoLoginChk"));
 			if (request.getSession().getAttribute("autoLoginChk") != null) {
-				memberService.updateAutoLogin((String) request.getSession().getAttribute("autoLoginChk"), response, member_tbl_VO.getMember_id());
+				memberService.updateAutoLogin((String) request.getSession().getAttribute("autoLoginChk"), response,
+						member_tbl_VO.getMember_id());
 				request.getSession().removeAttribute("autoLoginChk");
 			}
 		}
@@ -246,31 +248,29 @@ public class SignController {
 	/**
 	 * 
 	 * @method name : naverCallBack
-	 * @author : (정) 남동희
-	             (부)
-	 * @since  : 2019. 7. 13.
+	 * @author : (정) 남동희 (부)
+	 * @since : 2019. 7. 13.
 	 * @version : v1.1
 	 * @see :
 	 * @description : 네이버 로그인 후 CALLBACK 처리
-	 * @history :
-	   ----------------------------------------
-	   * Modification Information(개정이력)
-	   ----------------------------------------
-	        수정일                수정자                   수정내용
-	   --------    --------    ----------------
-	   2019.7. 13. 남동희     	       최초 생성
-	 * @param : String code  - 네이버 로그인 서버에서 return하는 token 발급용 code<br>
-	 * 			String state - 네이버 로그인 서버로 send 했던 state(난수), session의 state와 비교 검증할 때 사용
-	 * @return : 메인화면으로  Forward
-	 * @throws : 
+	 * @history : ---------------------------------------- Modification
+	 *          Information(개정이력) ---------------------------------------- 수정일 수정자
+	 *          수정내용 -------- -------- ---------------- 2019.7. 13. 남동희 최초 생성
+	 * @param : String code - 네이버 로그인 서버에서 return하는 token 발급용 code<br>
+	 *          String state - 네이버 로그인 서버로 send 했던 state(난수), session의 state와 비교 검증할
+	 *          때 사용
+	 * @return : 메인화면으로 Forward
+	 * @throws :
 	 */
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/naver/signin.mwav")
-	public String naverCallBack(@RequestParam String code, @RequestParam String state, HttpSession session, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public String naverCallBack(@RequestParam String code, @RequestParam String state, HttpSession session,
+			HttpServletRequest request, HttpServletResponse response) throws Exception {
 		try {
 			OAuth2AccessToken token = naverUrlBuilder.getAccessToken(session, code, state);
 
-			Map<String, Object> userInfo = new ObjectMapper().readValue(naverUrlBuilder.getUserProfile(token), Map.class);
+			Map<String, Object> userInfo = new ObjectMapper().readValue(naverUrlBuilder.getUserProfile(token),
+					Map.class);
 
 			if ("00".equals(userInfo.get("resultcode"))) {
 				Map<String, Object> result = signService.signService((Map<String, Object>) userInfo.get("response"));
@@ -279,11 +279,14 @@ public class SignController {
 				// 로그인, 신규 가입이 성공한 경우
 				case "1":
 				case "11":
+				// mail exception
+				case "91":
 					// 왜 굳이 INT형을?
 					member_tbl_VO.setMember_id(Integer.parseInt(result.get("memberId").toString()));
 					session.setAttribute("member", member_tbl_VO);
 					if (request.getSession().getAttribute("autoLoginChk") != null) {
-						memberService.updateAutoLogin((String) request.getSession().getAttribute("autoLoginChk"), response, member_tbl_VO.getMember_id());
+						memberService.updateAutoLogin((String) request.getSession().getAttribute("autoLoginChk"),
+								response, member_tbl_VO.getMember_id());
 						request.getSession().removeAttribute("autoLoginChk");
 					}
 					break;
@@ -293,7 +296,7 @@ public class SignController {
 					break;
 				}
 			}
-			
+
 			// 뭔 짓거리를 한 건지 모르지만 일단 남겨둠
 			request.setAttribute("loginCheck", 1);
 			request.getSession().setAttribute("loginCheck", null);
