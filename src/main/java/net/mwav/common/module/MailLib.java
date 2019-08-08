@@ -296,6 +296,9 @@ public class MailLib {
 	 *          templatePath - html or *.vm file Path
 	 *          map - template Variable
 	 * @return : boolean
+	 * @throws MessagingException 
+	 * @throws IOException 
+	 * @throws VelocityException 
 	 * @throws : 
 	 <pre>
 	 * {@code : 예제 코드 작성
@@ -305,23 +308,19 @@ public class MailLib {
 	 * } 
 	 </pre>
 	*/
-	public boolean sendEmail(String toAddress, String subject, String templatePath, Map<String, String> map){
+	public boolean sendEmail(String toAddress, String subject, String templatePath, Map<String, String> map) throws MessagingException, VelocityException, IOException{
 		boolean check = false;
 		
-		try{
-			MimeMessageHelper msg = new MimeMessageHelper(createMimeMessage(), true, encoding);
-			
-			//email require setting
-			emailRequiredSet(msg, toAddress, subject, templatePath, map);
-			
-			//send emails
-			send(msg);
-
-			//if return check a false, error send a email.
-			check = true;
-		}catch(IOException | VelocityException | MessagingException err){
-			err.printStackTrace();
-		}
+		MimeMessageHelper msg = new MimeMessageHelper(createMimeMessage(), true, encoding);
+		
+		//email require setting
+		emailRequiredSet(msg, toAddress, subject, templatePath, map);
+		
+		//send emails
+		send(msg);
+	
+		//if return check a false, error send a email.
+		check = true;
 		
 		return check;
 	}
@@ -346,6 +345,8 @@ public class MailLib {
 	 * @param : title - mail subject
 	 *          toAddress - Recipient Email Address
 	 * @return : boolean
+	 * @throws MessagingException 
+	 * @throws UnsupportedEncodingException 
 	 * @throws : 
 	 <pre>
 	 * {@code : 
@@ -353,25 +354,21 @@ public class MailLib {
 	 * } 
 	 </pre>
 	*/
-	public boolean sendEmailOrigin(String title, String toAddress, String contents){
+	public boolean sendEmailOrigin(String title, String toAddress, String contents) throws MessagingException, UnsupportedEncodingException{
 		
 		boolean check = false;
 		
-		try{
-			MimeMessageHelper msg = new MimeMessageHelper(createMimeMessage(), true, encoding);
-			
-			//"jusung.kim@mwav.net"
-			//email require setting
-			emailRequiredSet(msg, toAddress, title, contents, true);
-			
-			//send emails
-			send(msg);
-			
-			//if return check a false, error send a email.
-			check = true;
-		}catch(IOException | VelocityException | MessagingException err){
-			err.printStackTrace();
-		}
+		MimeMessageHelper msg = new MimeMessageHelper(createMimeMessage(), true, encoding);
+		
+		//"jusung.kim@mwav.net"
+		//email require setting
+		emailRequiredSet(msg, toAddress, title, contents, true);
+		
+		//send emails
+		send(msg);
+		
+		//if return check a false, error send a email.
+		check = true;
 		
 		return check;
 	}
