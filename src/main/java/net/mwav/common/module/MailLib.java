@@ -1,21 +1,23 @@
 package net.mwav.common.module;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.Map;
 import java.util.Properties;
 
-import javax.mail.Authenticator;
 import javax.mail.MessagingException;
-import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.internet.MimeMessage;
 
 import org.apache.velocity.exception.VelocityException;
+import org.junit.runner.RunWith;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.GenericXmlApplicationContext;
 import org.springframework.mail.MailException;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.ui.velocity.VelocityEngineUtils;
 import org.springframework.web.servlet.view.velocity.VelocityConfigurer;
 
@@ -48,58 +50,41 @@ public class MailLib {
 	private VelocityConfigurer velocityConfig;
 	
 	private String fromAddress;
-	private String fromAddressName = "thKong";
-	private String host;
-	private String post;
+	private String fromAddressName;
+	private final String host = "smtp.gmail.com";
+	private final int port = 587;
 	
 	private final String encoding = "UTF-8";
 	private final String contentEncoding = "text/html; charset=UTF-8";
 	
 	private MailLib() {
-		this.javaMailSender = new JavaMailSenderImpl();
+//		this.javaMailSender = new JavaMailSenderImpl();
 		this.velocityConfig = new VelocityConfigurer();
 		
-		velocityConfig.setResourceLoaderPath("/Templates");
+		ApplicationContext app = new GenericXmlApplicationContext("/gmailAccout.xml");
+		this.javaMailSender = app.getBean("EMSMailSender", JavaMailSenderImpl.class);
 		
-		//------------------------------------------------------
-		try {
-			property = new Properties();
-			
-		    // 기본 경로 : /mwav/src/main/resources/googleProperties/googleAccout.properties
-		    InputStream inputStream = getClass().getClassLoader().getResourceAsStream("googleProperties/googleAccout.properties");
-		    
-		    //가져온 property를 읽고 load
-		    property.load(inputStream);
-		    
-		    //전역변수로 등록
-		    fromAddress = property.getProperty("mail.smtp.username");
-		    fromAddressName = property.getProperty("mail.smtp.nickname");
-		    host = property.getProperty("mail.smtp.host");
-		    post = property.getProperty("mail.smtp.port");
-		    
-		    
-		    //람다가 안됨; https://stackoverflow.com/questions/26875226/using-a-lambda-expression-in-session
-		    //구글 인증 객체 생성
-		    session = Session.getDefaultInstance(property, new Authenticator(){
-		    	public PasswordAuthentication getPasswordAuthentication() {
-		    		return new PasswordAuthentication(property.getProperty("mail.smtp.username"), property.getProperty("mail.smtp.password"));
-		    	}
-		    });
-		    
-		    javaMailSender.setSession(session);
-		    javaMailSender.setUsername(property.getProperty("mail.smtp.username"));
-		    javaMailSender.setPassword(property.getProperty("mail.smtp.password"));
-		    javaMailSender.setJavaMailProperties(property);
-		    
-			System.out.println("Success, First create MailLib getInstence! And Fist Setting");
-			
-		} catch (IOException e) {
-			System.out.println("Error Fail, First Setting. Please Check your googleProperties/googleAccout.properties !");
-			e.printStackTrace();
-		}
+		fromAddress = "tony950620";
+		fromAddressName = "thKong";
 		
-		//------------------------------------------------------		
+		System.out.println(javaMailSender.getHost());
+		System.out.println(javaMailSender.getPort());
+		System.out.println(javaMailSender.getProtocol());
+		System.out.println(javaMailSender.getUsername());
+		System.out.println(javaMailSender.getPassword());
 		
+//		property = new Properties();
+//		
+//		property.put("mail.smtp.starttls.enable" ,"true");
+////		property.put("mail.smtp.auth" ,"true");
+//		javaMailSender.setUsername("tony950620");
+//		javaMailSender.setPassword("****");
+//		
+//		javaMailSender.setPort(587);
+//		javaMailSender.setHost("smtp.gmail.com");
+//		javaMailSender.setProtocol("smtp");
+		
+//		javaMailSender.setJavaMailProperties(property);
 	}
 	
 	private static class MailLibSingleton{
@@ -107,8 +92,8 @@ public class MailLib {
 	}
 	
 	public static MailLib getInstance() {
-		return MailLibSingleton.instance;
-//		return new MailLib();
+//		return MailLibSingleton.instance;
+		return new MailLib();
 	}
 	
 	/** 
