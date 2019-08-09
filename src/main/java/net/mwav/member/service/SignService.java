@@ -64,6 +64,7 @@ public class SignService {
 			Map<String, Object> signUpMap = new HashMap<String, Object>();
 			// select IFNULL(max(member_id+1) , 100000) AS member_id from Member_tbl
 			String member_id = memberDao.selectOneMemberPkCheck();
+			result.put("memberId", Integer.parseInt(member_id));
 
 			signUpMap.put("member_id", member_id);
 			signUpMap.put("mbrLoginId", email);
@@ -91,7 +92,6 @@ public class SignService {
 			emailSender.sendRegistrationEmail(signUpMap);
 			result.put("result", "1");
 			result.put("message", "SUCCESS");
-			result.put("memberId", Integer.parseInt(member_id));
 
 		} catch (MailAuthenticationException e) {
 			e.printStackTrace();
