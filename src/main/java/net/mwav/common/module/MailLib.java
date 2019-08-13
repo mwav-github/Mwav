@@ -265,11 +265,11 @@ public class MailLib {
 	 *          subject - email subject
 	 *          templatePath - html or *.vm file Path
 	 *          map - template Variable
-	 * @return : boolean
+//	 * @return : boolean
 	 * @throws MessagingException 
 	 * @throws IOException 
 	 * @throws VelocityException 
-	 * @throws : 
+	 * @throws : MessagingException, VelocityException, IOException
 	 <pre>
 	 * {@code : 예제 코드 작성
 	 * Map<String, String> map = new HashMap<String, String>():
@@ -282,6 +282,59 @@ public class MailLib {
 		boolean check = false;
 		
 		MimeMessageHelper msg = new MimeMessageHelper(createMimeMessage(), true, encoding);
+		
+		//email require setting
+		emailRequiredSet(msg, toAddress, subject, templatePath, map);
+		
+		//send emails
+		send(msg);
+	
+		//if return check a false, error send a email.
+		check = true;
+		
+		return check;
+	}
+	
+	/** 
+	 * @method name : sendEmail
+	 * @author : (정) 공태현
+	             (부)
+	 * @since  : 2019. 8. 13.
+	 * @version : v1.0
+	 * @see : java.util.Map
+	 *        org.springframework.mail.javamail.MimeMessageHelper
+	 *        java.io.File
+	 * @description : Set the file attached email to send.
+	 * @history :
+	   ----------------------------------------
+	   * Modification Information(개정이력)
+	   ----------------------------------------
+	   수정일     수정자        수정내용
+	   --------    --------    ----------------
+	   2019. 8. 13.     gong tae hyun     
+	 * @param : toAddress - Recipient Email Address
+	 *          subject - email subject
+	 *          templatePath - html or *.vm file Path
+	 *          map - template Variable
+	 *          fileName - attach file name
+	 *          file - attach file
+	 * @return : boolean
+	 * @throws : MessagingException, VelocityException, IOException
+	 <pre>
+	 * {@code : 예제 코드 작성
+	 * File file = new File("C:\\Users\\gong tae hyun\\Desktop\\국토면적_20190725155900.csv");
+	 * Map<String, String> map = new HashMap<String, String>():
+	 * contents.put("TempPw", "encryptPassword");
+	 * mail.sendEmail("tony950620@naver.com", "테스트메일입니다.", "/Templates/GeneralMail/PWSeekEmail.vm", map, file.getName(), file);
+	 * } 
+	 </pre>
+	*/
+	public boolean sendEmail(String toAddress, String subject, String templatePath, Map<String, String> map, String fileName, File file) throws MessagingException, VelocityException, IOException{
+		boolean check = false;
+		
+		MimeMessageHelper msg = new MimeMessageHelper(createMimeMessage(), true, encoding);
+		//파일 첨부
+		msg.addAttachment(fileName, file);
 		
 		//email require setting
 		emailRequiredSet(msg, toAddress, subject, templatePath, map);
@@ -342,26 +395,5 @@ public class MailLib {
 		
 		return check;
 	}
-	
-	//템플릿 + 파일 보내기
-	public boolean sendEmail(String toAddress, String subject, String templatePath, Map<String, String> map, String fileName, File file) throws MessagingException, VelocityException, IOException{
-		boolean check = false;
-		
-		MimeMessageHelper msg = new MimeMessageHelper(createMimeMessage(), true, encoding);
-		//파일 첨부
-		msg.addAttachment(fileName, file);
-		
-		//email require setting
-		emailRequiredSet(msg, toAddress, subject, templatePath, map);
-		
-		//send emails
-		send(msg);
-	
-		//if return check a false, error send a email.
-		check = true;
-		
-		return check;
-	}
-	
 }
 
