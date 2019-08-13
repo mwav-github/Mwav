@@ -1,5 +1,6 @@
 package net.mwav.common.module;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.Map;
@@ -10,14 +11,11 @@ import javax.mail.Session;
 import javax.mail.internet.MimeMessage;
 
 import org.apache.velocity.exception.VelocityException;
-import org.junit.runner.RunWith;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
 import org.springframework.mail.MailException;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.ui.velocity.VelocityEngineUtils;
 import org.springframework.web.servlet.view.velocity.VelocityConfigurer;
 
@@ -58,7 +56,6 @@ public class MailLib {
 	private final String contentEncoding = "text/html; charset=UTF-8";
 	
 	private MailLib() {
-//		this.javaMailSender = new JavaMailSenderImpl();
 		this.velocityConfig = new VelocityConfigurer();
 		
 		ApplicationContext app = new GenericXmlApplicationContext("/gmailAccout.xml");
@@ -73,18 +70,6 @@ public class MailLib {
 		System.out.println(javaMailSender.getUsername());
 		System.out.println(javaMailSender.getPassword());
 		
-//		property = new Properties();
-//		
-//		property.put("mail.smtp.starttls.enable" ,"true");
-////		property.put("mail.smtp.auth" ,"true");
-//		javaMailSender.setUsername("tony950620");
-//		javaMailSender.setPassword("****");
-//		
-//		javaMailSender.setPort(587);
-//		javaMailSender.setHost("smtp.gmail.com");
-//		javaMailSender.setProtocol("smtp");
-		
-//		javaMailSender.setJavaMailProperties(property);
 	}
 	
 	private static class MailLibSingleton{
@@ -358,6 +343,25 @@ public class MailLib {
 		return check;
 	}
 	
+	//템플릿 + 파일 보내기
+	public boolean sendEmail(String toAddress, String subject, String templatePath, Map<String, String> map, String fileName, File file) throws MessagingException, VelocityException, IOException{
+		boolean check = false;
+		
+		MimeMessageHelper msg = new MimeMessageHelper(createMimeMessage(), true, encoding);
+		//파일 첨부
+		msg.addAttachment(fileName, file);
+		
+		//email require setting
+		emailRequiredSet(msg, toAddress, subject, templatePath, map);
+		
+		//send emails
+		send(msg);
+	
+		//if return check a false, error send a email.
+		check = true;
+		
+		return check;
+	}
 	
 }
 
