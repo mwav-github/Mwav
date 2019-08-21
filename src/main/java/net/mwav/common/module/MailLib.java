@@ -12,15 +12,14 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-public class MailLib {
+public class MailLib extends MimeMessage{
 
-	MimeMessage msg = null;
-	
-	public MailLib(){
-		
+	public MailLib(Session session) {
+		super(session);
 	}
 
-	public MailLib initializeSession(Properties props){
+	// properties로 정보를 받고 session생성후 MimeMessage를 상속받은 MailLib를 넘겨줌.
+	public static MailLib createMessage(Properties props){
 		//초기 MimeMessage 작업시 필요
 		Session session = Session.getDefaultInstance(props,  new Authenticator() {
 			@Override
@@ -28,32 +27,31 @@ public class MailLib {
 				return new PasswordAuthentication(props.getProperty("user"), props.getProperty("password"));
 			}
 		});
-		this.msg = new MimeMessage(session);
-		return this;
+		return new MailLib(session);
 	}
 	
 	//발신자
 	public MailLib setFrom(String address, String recipentName) throws UnsupportedEncodingException, MessagingException{
-		this.msg.setFrom(new InternetAddress(address, recipentName));
+		super.setFrom(new InternetAddress(address, recipentName));
 		return this;
 	}
 	
 	//받는 사람
 	public MailLib setRecipient(String address, String recipentName) throws UnsupportedEncodingException, MessagingException{
-		this.msg.addRecipient(Message.RecipientType.TO, new InternetAddress(address, recipentName));
+		super.addRecipient(Message.RecipientType.TO, new InternetAddress(address, recipentName));
 //	    msg.addRecipient(Message.RecipientType.CC, new InternetAddress("ggg@hhh.co.kr", "의자왕"));
 		return this;
 	}
 	
-	//제목
-	public MailLib setSubject(String subject) throws MessagingException{
-		this.msg.setSubject(subject);
+	//제목 subject에서 title로 변경.. MimeMessage 클래스와 메소드 충돌...
+	public MailLib setTitle(String subject) throws MessagingException{
+		super.setSubject(subject);
 		return this;
 	}
 	
 	//본문
 	public MailLib setContent(String content) throws MessagingException{
-		this.msg.setContent(content, "text/html; charset=utf-8");
+		super.setContent(content, "text/html; charset=utf-8");
 		return this;
 	}
 	
@@ -62,7 +60,7 @@ public class MailLib {
 		boolean check = false;
 		
 	    try {
-			Transport.send(this.msg);
+			Transport.send(this);
 			check = true;
 		} catch (Exception e) {
 			throw e;
