@@ -35,22 +35,41 @@ public class MessageBuilder{
    
    Message msg;   
    
+   /** 
+    * <pre>description : MessageBuilder는 필수로 email 정보가 담긴 properties를 받야만 한다.</pre>
+	 * @constructors
+	 * @author : (정) 공태현
+	             (부)
+	 * @since  : 2019. 8. 31.
+	 * @version : v1.0
+	 * @see : javax.mail.Address;
+	 * @description :
+	 * @history :
+	   ----------------------------------------
+	   * Modification Information(개정이력)
+	   ----------------------------------------
+		  수정일 	          수정자    		        수정내용
+	   --------    --------    ----------------
+	   2019. 8. 31.     John     
+	 <pre>
+	 * {@code : 예제 코드 작성
+	 * 	new MessageBuilder(props);
+	 * } 
+	 </pre>
+	*/
+   public MessageBuilder(Properties props) {
+      Session session = Session.getInstance(props, new Authenticator() {
+          @Override
+          protected PasswordAuthentication getPasswordAuthentication() {
+             return new PasswordAuthentication(props.getProperty("user"), props.getProperty("password"));
+          }
+       });
+       
+       this.msg = new MimeMessage(session);
+   }
+
    public Message build() {
       return this.msg;
-   }
-   
-   public MessageBuilder createMessage(Properties props) {
-      //초기 MimeMessage 작업시 필요
-      Session session = Session.getInstance(props, new Authenticator() {
-         @Override
-         protected PasswordAuthentication getPasswordAuthentication() {
-            return new PasswordAuthentication(props.getProperty("user"), props.getProperty("password"));
-         }
-      });
-      
-      this.msg = new MimeMessage(session);
-      
-      return this;
    }
    
    /** 
