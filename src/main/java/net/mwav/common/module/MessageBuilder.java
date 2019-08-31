@@ -15,6 +15,22 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+/**
+ * <pre>description : Email객체 생성을 도와주는 빌더패턴의 객체</pre>
+ *@class name : MessageBuilder.java
+ *@author : (정) 공태현
+            (부)
+ *@since : 2019. 8. 31.
+ *@version : v1.0
+ *@see
+ * @history :
+   ----------------------------------------
+   * Modification Information(개정이력)
+   ----------------------------------------
+           수정일                  수정자                         수정내용
+   --------    --------    ----------------
+   2019. 8. 31.     John    
+ */
 public class MessageBuilder{
    
    Message msg;   
@@ -190,7 +206,7 @@ public class MessageBuilder{
    }
    
    /** 
-	 * <pre>description : 수신자의 이메일주소를 받는다. 필수값</pre>
+	 * <pre>description : 수신자의 이메일주소를 받는다.</pre>
 	 * @method name : setRecipient
 	 * @author : (정) 공태현
 	             (부)
@@ -219,7 +235,7 @@ public class MessageBuilder{
    }
    
    /** 
-	 * <pre>description : 수신자의 이메일주소와 수신자 이름을 받는다. 필수값</pre>
+	 * <pre>description : 수신자의 이메일주소와 수신자 이름을 받는다.</pre>
 	 * @method name : setRecipient
 	 * @author : (정) 공태현
 	             (부)
@@ -238,7 +254,7 @@ public class MessageBuilder{
 	 * @throws : MessagingException, UnsupportedEncodingException
 	 <pre>
 	 * {@code : 예제 코드 작성
-	 * DateUtil.addYearMonthDay("19810828", 0, 0, 19)  = "19810916"
+	 * setRecipent("email@gmail.com", "홍길동");
 	 * } 
 	 </pre>
 	*/
@@ -248,8 +264,64 @@ public class MessageBuilder{
       return this;
    }
    
+   /** 
+	 * <pre>description : 발신자 이메일주소를 받는다.</pre>
+	 * @method name : setFrom
+	 * @author : (정) 공태현
+	             (부)
+	 * @since  : 2019. 8. 31.
+	 * @version : v1.0
+	 * @see :
+	 * @history :
+	   ----------------------------------------
+	   * Modification Information(개정이력)
+	   ----------------------------------------
+		  수정일 	          수정자    		        수정내용
+	   --------    --------    ----------------
+	   2019. 8. 31.     John     
+	 * @param : 발신자의 이메일주소
+	 * @return : 자기자신을 반환받아 builder 패턴을 적용
+	 * @throws : MessagingException
+	 <pre>
+	 * {@code : 예제 코드 작성
+	 *  setFrom("email@gmail.com");
+	 * } 
+	 </pre>
+	*/
    public MessageBuilder setFrom(String address) throws MessagingException{
 	   this.msg.setFrom(convertAddress(address));
+	   return this;
+   }
+   
+   /** 
+	 * <pre>description : 발신자 이메일주소와 이름을 받는다.</pre>
+	 * @method name : setFrom
+	 * @author : (정) 공태현
+	             (부)
+	 * @since  : 2019. 8. 31.
+	 * @version : v1.0
+	 * @see :
+	   #method : 현재 클래스의 메소드나 변수 연결
+	   MyClass#method : MyClass 클래스의 메소드나 변수 연결
+	   my.package.MyClass#method : my.package 에 있는 MyClass 클래스의 메소드나 변수 연결
+	 * @history :
+	   ----------------------------------------
+	   * Modification Information(개정이력)
+	   ----------------------------------------
+		  수정일 	          수정자    		        수정내용
+	   --------    --------    ----------------
+	   2019. 8. 31.     John     
+	 * @param : 발신자의 이메일주소, 발신자 이름
+	 * @return : 자기자신을 반환받아 builder 패턴을 적용
+	 * @throws : MessagingException, UnsupportedEncodingException
+	 <pre>
+	 * {@code : 예제 코드 작성
+	 * setFrom("email@gmail.com", "홍길동");
+	 * } 
+	 </pre>
+	*/
+   public MessageBuilder setFrom(String address, String fromName) throws MessagingException, UnsupportedEncodingException{
+	   this.msg.setFrom(convertAddress(address, fromName));
 	   return this;
    }
    
