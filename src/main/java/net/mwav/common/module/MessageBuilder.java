@@ -156,7 +156,13 @@ public class MessageBuilder{
 	 </pre>
 	*/
    public Address[] convertAddress(List<String> addressList) throws AddressException {
-      return (Address[]) addressList.toArray();
+	  Address[] address = new Address[addressList.size()]; 
+	   
+	  for(int i=0; i<addressList.size(); i++){
+		  address[i] = new InternetAddress(addressList.get(i));
+	  }
+	  
+      return address;
    }
    
    /** 
