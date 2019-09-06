@@ -373,7 +373,36 @@ public class MessageBuilder{
 		  수정일 	          수정자    		        수정내용
 	   --------    --------    ----------------
 	   2019. 9. 7.     John     
-	 * @param : 참조인 이메일주소 리스트
+	 * @param : 참조인 이메일주소 문자열
+	 * @return : 자기자신을 반환받아 builder 패턴을 적용
+	 * @throws : MessagingException, UnsupportedEncodingException
+	 <pre>
+	 * {@code : 예제 코드 작성
+	 * setRecipientCC("email");
+	 * } 
+	 </pre>
+	*/
+	public MessageBuilder setRecipientCC(String address) throws MessagingException, UnsupportedEncodingException {
+      this.msg.addRecipient(RecipientType.CC, convertAddress(address));
+      return this;
+	}
+
+	/** 
+	 * <pre>description : 참조인들의 이메일 주소 리스트를 받는다.</pre>
+	 * @method name : setRecipientCC
+	 * @author : (정) 공태현
+	             (부)
+	 * @since  : 2019. 9. 7.
+	 * @version : v1.0
+	 * @see :
+	 * @history :
+	   ----------------------------------------
+	   * Modification Information(개정이력)
+	   ----------------------------------------
+		  수정일 	          수정자    		        수정내용
+	   --------    --------    ----------------
+	   2019. 9. 7.     John     
+	 * @param : 참조인들의 이메일주소 리스트
 	 * @return : 자기자신을 반환받아 builder 패턴을 적용
 	 * @throws : MessagingException, UnsupportedEncodingException
 	 <pre>
@@ -382,10 +411,10 @@ public class MessageBuilder{
 	 * } 
 	 </pre>
 	*/
-	public MessageBuilder setRecipientCC(String address) throws MessagingException, UnsupportedEncodingException {
-      this.msg.addRecipient(RecipientType.CC, convertAddress(address));
+	public MessageBuilder setRecipientCC(List<String> address) throws MessagingException, UnsupportedEncodingException {
+      this.msg.addRecipients(RecipientType.CC, convertAddress(address));
       return this;
-	}
+	}	
 	
    /** 
 	 * <pre>description : 발신자 이메일주소를 받는다.</pre>
