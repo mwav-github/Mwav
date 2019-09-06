@@ -61,7 +61,7 @@ public class MessageBuilder{
       Session session = Session.getInstance(props, new Authenticator() {
           @Override
           protected PasswordAuthentication getPasswordAuthentication() {
-             return new PasswordAuthentication(props.getProperty("user"), props.getProperty("password"));
+             return new PasswordAuthentication(props.getProperty("mail.smtp.user"), props.getProperty("mail.smtp.password"));
           }
        });
        
