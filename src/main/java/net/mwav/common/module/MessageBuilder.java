@@ -89,9 +89,6 @@ public class MessageBuilder{
 	 * @since  : 2019. 9. 7.
 	 * @version : v1.0
 	 * @see :
-	   #method : 현재 클래스의 메소드나 변수 연결
-	   MyClass#method : MyClass 클래스의 메소드나 변수 연결
-	   my.package.MyClass#method : my.package 에 있는 MyClass 클래스의 메소드나 변수 연결
 	 * @history :
 	   ----------------------------------------
 	   * Modification Information(개정이력)
@@ -100,8 +97,8 @@ public class MessageBuilder{
 	   --------    --------    ----------------
 	   2019. 9. 7.     John     
 	 * @param :
-	 * @return :
-	 * @throws : 
+	 * @return : Message 객체
+	 * @throws : MessagingException
 	 <pre>
 	 * {@code : 예제 코드 작성
 	 * build();
@@ -325,8 +322,39 @@ public class MessageBuilder{
 	 </pre>
 	*/
    public MessageBuilder setRecipient(String address, String recipentName) throws MessagingException, UnsupportedEncodingException {
-      Address ad = new InternetAddress(address, recipentName);
-      this.msg.setRecipient(RecipientType.TO, ad);
+      this.msg.setRecipient(RecipientType.TO, convertAddress(address, recipentName));
+      return this;
+   }
+   
+   /** 
+	 * <pre>description : 수신자들의 이메일 주소 리스트를 받는다.</pre>
+	 * @method name : setRecipient
+	 * @author : (정) 공태현
+	             (부)
+	 * @since  : 2019. 9. 7.
+	 * @version : v1.0
+	 * @see :
+	   #method : 현재 클래스의 메소드나 변수 연결
+	   MyClass#method : MyClass 클래스의 메소드나 변수 연결
+	   my.package.MyClass#method : my.package 에 있는 MyClass 클래스의 메소드나 변수 연결
+	 * @history :
+	   ----------------------------------------
+	   * Modification Information(개정이력)
+	   ----------------------------------------
+		  수정일 	          수정자    		        수정내용
+	   --------    --------    ----------------
+	   2019. 9. 7.     John     
+	 * @param : 전달받을 수신자 이메일주소 리스트
+	 * @return : 자기자신을 반환받아 builder 패턴을 적용
+	 * @throws : MessagingException, UnsupportedEncodingException
+	 <pre>
+	 * {@code : 예제 코드 작성
+	 * DateUtil.addYearMonthDay("19810828", 0, 0, 19)  = "19810916"
+	 * } 
+	 </pre>
+	*/
+	public MessageBuilder setRecipient(List<String> address) throws MessagingException, UnsupportedEncodingException {
+      this.msg.setRecipients(RecipientType.TO, convertAddress(address));
       return this;
    }
    
