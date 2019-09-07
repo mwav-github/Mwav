@@ -98,7 +98,7 @@ public class LeftFrame_Fucntion {
 				String[] strhKName = { "상품리스트", "상품등록" };
 				String[] strhEName = { "상품리스트", "상품등록" };
 				String[] strurl = { "/admins/goods/gdsList.mwav",
-						"/Admins/Goods/GdsCellForm.jsp?mm=cGds", };
+						"/Admins/Goods/GdsCellForm.mwav?mm=cGds", };
 				String[] strmAuthority = { "1", "1" };
 				String[] strdAuthority = { "*", "*" };
 
@@ -122,7 +122,7 @@ public class LeftFrame_Fucntion {
 				String[] strhEName = { "카테고리등록", "릴레이션등록" };
 				String[] strurl = {
 						"/Admins/Goods/GdsCaInsert.mwav?mm=category",
-						"/admins/goods/categoryList.mwav",
+						"/admins/goods/categoryList.mwav?mm=category",
 
 				};
 				String[] strmAuthority = { "1", "1" };

@@ -95,27 +95,27 @@
 
 			<ul class="nav navbar-nav">
 				<li class="active"><a
-					href="/HomePage/DefaultFrameset.mwav?mm=mine"
+					href="#"
 					title="1.나의업무 2.쪽지관리 3.명함관리 4.메일관리">마이존</a></li>
 				<li><a href="/Admins/Goods/GdsCaInsert.mwav?mm=category"
 					title="1.카테고리등록">카테고리등록</a></li>
 				<li class="active"><a
 					href="/admins/goods/gdsList.mwav" title="1.상품입력 2.상품 리스트">상품관리</a></li>
-				<li><a href="/HomePage/DefaultFrameset.mwav?mm=cStk"
+				<li><a href="#"
 					title="1.상품재고관리">재고관리</a></li>
 				<li class="active"><a
 					href="/admin/boardNews/nsmList.mwav"
 					title="1.공지관리 2.뉴스관리 3.Q&A관리 4.폴관리">사이트관리</a></li>
-				<li><a href="/HomePage/DefaultFrameset.mwav?mm=firm"
+				<li><a href="/admins/staff/stfList.mwav?mm=firms"
 					title="1.문서자료 2.직원조회 3.회사자산">회사관리</a></li>
 				<li class="active"><a
-					href="/HomePage/DefaultFrameset.mwav?mm=ptn" title="1.협력사목록 2.협력사입력">관계사관리</a></li>
-				<li><a href="/admins/staff/stfList.mwav?mm=firms"
+					href="#" title="1.협력사목록 2.협력사입력">관계사관리</a></li>
+				<li><a href="#"
 					title="1.회원기본정보 2.회원부가정보 3.회원평가치 4.회원가입">회원관리</a></li>
 				<li class="active"><a
 					href="/admins/marketing/statistics/statsList.mwav?mm=crm"
 					title="1.통계관리 2.인적자원 3.상품통계 4.회원메일 5.임박기념일 6.이벤트목록 7.고객충성도">마케팅관리</a></li>
-				<li><a href="/admins/staff/stfList.mwav"
+				<li><a href="#"
 					title="1.시스템상태요약 2.로그관리">시스템관리</a></li>
 
 
