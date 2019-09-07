@@ -9,7 +9,6 @@ css 중 가장 마지막에 호출되어야하며, include 되는 파일 중 css
 <link href="/resources/CommonLibrary/CSS/mwav_custom.css"
 	rel="stylesheet">
 
-
 <script>
 	(function(i, s, o, g, r, a, m) {
 		i['GoogleAnalyticsObject'] = r;
@@ -76,11 +75,7 @@ css 중 가장 마지막에 호출되어야하며, include 되는 파일 중 css
 
 <div class="mgt5">
 	<%--QA이슈 z-index로 처리 --%>
-	<!--/////////////////////////////////////////////////// -->
-	<!--<jsp:include page="/CommonApps/BoardQnA/qaForm.jsp" flush="false" />-->
-	<!--/////////////////////////////////////////////////// -->
-	<%--LayerPopup Alert 아이콘 시작 // footer 간격조정을 위해 mgt5추가--%>
-	<!-- <div class="col-md-12 col-xs-12 col-sm-12  alert alert-info"
+	<%-- <div class="col-md-12 col-xs-12 col-sm-12  alert alert-info"
 		style="z-index: 5;">
 		<div class="container">
 			<h3>
@@ -91,9 +86,8 @@ css 중 가장 마지막에 호출되어야하며, include 되는 파일 중 css
 			<a href="#" data-toggle="modal" data-target="#Contact"
 				class="btn btn-lg btn-primary pull-right">Contact Us</a>
 		</div>
-	</div> -->
+	</div> --%>
 	<%--footer --%>
-
 	<div class="footer" id="footer">
 		<%--row로 하면 전체잡힌다. --%>
 		<div class="container">
@@ -126,21 +120,7 @@ css 중 가장 마지막에 호출되어야하며, include 되는 파일 중 css
 					</c:choose>
 					
 					<li>Chief IT-Business Advisor : Peter J.</li>
-					<%-- <li>Sales Manager: ${param.pglName}</li> --%>
 				</ul>
-				<%--
-
-				<ul>
-						<li>회사상호 : 엠웨이브넷(Mwav.net)</li>
-						<li>사업자번호: 206-09-41373</li>
-						<li>주소: 서울 광진 자양2동 607-20 GV4F</li>
-						<li>TEL : +82-2-6214-7039</li>
-						<li>FAX: +82-2-6214-1122</li>
-						<li>대표이사 : Zeus | 영업담당자: Song</li>
-						<li>사이트 담당자 : James | 사업 고문 : Peter</li>
-					</ul>
-				 --%>
-
 			</div>
 			<div class="col-xs-12 col-sm-8 col-md-4">
 				<h3>Site Navigation:</h3>
@@ -262,8 +242,6 @@ css 중 가장 마지막에 호출되어야하며, include 되는 파일 중 css
 						"CL1", "none");
 			</script>
 			<a href="https://www.positivessl.com/" id="comodoTL">Positive SSL</a>
-
-			<!-- <img src="/Images/TrustBanners/comodo_secure_seal_100x85_transp.png" class="img-thumbnail img-responsive" alt="internet-explorer"> -->
 		</p>
 		<div class="col-md-5 col-sm-12 col-xs-8">
 			<ul class="nav nav-pills">

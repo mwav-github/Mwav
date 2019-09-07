@@ -10,8 +10,6 @@
 -기본구조는 Header / LEFT / BODY / FOOTER 를 가진다.
 -해당 구조에 따른 PX 값에 따른 크기 규정은 상황에 따라 유동적으로 변동하며, 명시한다
 -LEFT 메뉴에 대해서는 SPA 방식 도입시 대대적 변경한다.
--
--
  --%>
 
 <!--1. Head_Import 
@@ -83,7 +81,7 @@
 			<div class="col-md-9 col-sm-9">
 				<!-- Content Column -->
 				BODY 부분으로서 언제든지 편할 때로의 조작이 가능합니다. 내부 공간에 대한 활용은 알아서 하시면 됩니다. *아래는
-				공간에 대한 분할 부분인식 http://bootstrapk.com/BS3/css#grid-options
+				공간에 대한 분할 부분인식 http://bootstrapk.com/BS3/css#grid-options-->
 				<!-- 2-1 8/12열 변경 가능-->
 				<div class="col-md-8 col-sm-8">
 					<!--body 내에서 조작 (수정가능)  -->

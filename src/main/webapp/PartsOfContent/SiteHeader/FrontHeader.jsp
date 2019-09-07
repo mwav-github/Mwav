@@ -44,103 +44,6 @@
 		<div class="collapse navbar-collapse "
 			id="bs-example-navbar-collapse-1">
 			<ul class="mgt1 mgl3 nav navbar-nav lead ">
-				<!-- <li class="dropdown mega-dropdown hidden-xs hidden-sm"><h4 class="nav_fontsize"><a
-					href="#" class="dropdown-toggle backgroud_transparent"
-					data-toggle="dropdown"><i class="fa fa-align-justify"></i> 
-							<strong>Categories</strong>
-						</a></h4>
-					<ul class="dropdown-menu mega-dropdown-menu">
-						<li class="col-sm-3">
-							<ul>
-								<li class="dropdown-header_type2">Features</li>
-								<li><a href="#">Auto Carousel</a></li>
-								<li><a href="#">Carousel Control</a></li>
-								<li><a href="#">Left & Right Navigation</a></li>
-								<li><a href="#">Four Columns Grid</a></li>
-								<li class="divider"></li>
-								<li class="dropdown-header_type2">Fonts</li>
-								<li><a href="#">Glyphicon</a></li>
-								<li><a href="#">Google Fonts</a></li>
-							</ul>
-						</li>
-						<li class="col-sm-3">
-							<ul>
-								<li class="dropdown-header_type2">Plus</li>
-								<li><a href="#">Navbar Inverse</a></li>
-								<li><a href="#">Pull Right Elements</a></li>
-								<li><a href="#">Coloured Headers</a></li>
-								<li><a href="#">Primary Buttons & Default</a></li>
-							</ul>
-						</li>
-						<li class="col-sm-3">
-							<ul>
-								<li class="dropdown-header_type2">Accessories</li>
-								<li><a href="#">Default Navbar</a></li>
-								<li><a href="#">Lovely Fonts</a></li>
-								<li><a href="#">Responsive Dropdown </a></li>
-								<li class="divider"></li>
-								<li class="dropdown-header_type2">Newsletter</li>
-								<form class="form" role="form">
-									<div class="form-group">
-										<label class="sr-only" for="email">Email address</label> <input
-											type="email" class="form-control" id="email"
-											placeholder="Enter email">
-									</div>
-									<button type="submit" class="btn btn-primary btn-block">Sign
-										in</button>
-								</form>
-								<br>
-							</ul>
-						</li>
-						<li class="col-sm-3">
-							<ul>
-								<li class="dropdown-header_type2">Collection</li>
-								<div id="carousel-example-generic" class="carousel slide"
-									data-ride="carousel">
-									<ol class="carousel-indicators">
-										<li data-target="#carousel-example-generic" data-slide-to="0"
-											class="active"></li>
-										<li data-target="#carousel-example-generic" data-slide-to="1"
-											class=""></li>
-										<li data-target="#carousel-example-generic" data-slide-to="2"
-											class=""></li>
-									</ol>
-									<div class="carousel-inner" role="listbox">
-										<div class="item active">
-											<img src="/Shop/zImages/promotion_1.jpg">
-										</div>
-										<div class="item">
-											<img
-												data-src="holder.js/900x500/auto/#666:#444/text:Second slide"
-												alt="Second slide [900x500]"
-												src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iOTAwIiBoZWlnaHQ9IjUwMCIgdmlld0JveD0iMCAwIDkwMCA1MDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iOTAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzY2NiIvPjxnPjx0ZXh0IHg9IjI3Ny4yODkwNjI1IiB5PSIyNTAiIHN0eWxlPSJmaWxsOiM0NDQ7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6NDJwdDtkb21pbmFudC1iYXNlbGluZTpjZW50cmFsIj5TZWNvbmQgc2xpZGU8L3RleHQ+PC9nPjwvc3ZnPg=="
-												data-holder-rendered="true">
-										</div>
-										<div class="item">
-											<img
-												data-src="holder.js/900x500/auto/#555:#333/text:Third slide"
-												alt="Third slide [900x500]"
-												src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iOTAwIiBoZWlnaHQ9IjUwMCIgdmlld0JveD0iMCAwIDkwMCA1MDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iOTAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzU1NSIvPjxnPjx0ZXh0IHg9IjMwOC40Mjk2ODc1IiB5PSIyNTAiIHN0eWxlPSJmaWxsOiMzMzM7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6NDJwdDtkb21pbmFudC1iYXNlbGluZTpjZW50cmFsIj5UaGlyZCBzbGlkZTwvdGV4dD48L2c+PC9zdmc+"
-												data-holder-rendered="true">
-										</div>
-									</div>
-									<a class="left carousel-control"
-										href="#carousel-example-generic" role="button"
-										data-slide="prev"> <span
-										class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-										<span class="sr-only">Previous</span>
-									</a> <a class="right carousel-control"
-										href="#carousel-example-generic" role="button"
-										data-slide="next"> <span
-										class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-										<span class="sr-only">Next</span>
-									</a>
-								</div>
-								<li><a href="#">View all Collection <span
-										class="glyphicon glyphicon-chevron-right pull-right"></span></a></li>
-							</ul>
-						</li>
-					</ul></li> -->
 				<li><a href="/CompanyItem/ITSolutions/Aervision/Aervision.mwav"
 					onclick="ga('send', 'event', 'GNB', 'click', 'ITSolutions');"><h4
 							class="nav_fontsize">
@@ -184,16 +87,11 @@
 										My Account <span class="glyphicon glyphicon-cog pull-right"></span>
 									</h5></a></li>
 							<li class=""></li>
-							<!-- <li><a href="#">User stats <span
-									class="glyphicon glyphicon-stats pull-right"></span></a></li> -->
 							<li class=""></li>
 							<%--QA 답변 달린 것에 대한 확인. --%>
 							<li><a href="/qa/qaList.mwav" style="color: #428bca;"><h5>
 										Messages <span class="badge pull-right"> </span>
 									</h5></a></li>
-
-							<!-- <li><a href="#">Favourites Snippets <span
-									class="glyphicon glyphicon-heart pull-right"></span></a></li> -->
 							<li class="divider"></li>
 							<li><a href="/member/LogOut.mwav" style="color: #428bca;"><h5>
 										Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span>
@@ -215,10 +113,7 @@
 	<!-- /.navbar-collapse -->
 </nav>
 
-
-
 <!--  //////////////////////////////////// -->
-
 <%--
   Header Carousel (슬라이드 쇼 부분- 헤더 포함 가능성있음.)
      클래스명에 container 추가시 조정가능하나 더 이상한듯 ~!! 조정 요망
@@ -242,11 +137,6 @@
 				style="background-image: url('/Company/zImage/keyboard-428326_1920.jpg'); background-repeat: no-repeat;">
 				<div class="carousel-caption">
 					<div class="container">
-						<%-- <div class="col-md-7 text-left">
-						<h3>We are creative</h3>
-						<h4>Get start your next awesome project</h4>
-					</div>
- --%>
 						<div
 							class="col-md-8 col-md-push-5 col-xs-12 text-right block_no block-3"
 							style="opacity: 0.8;">
@@ -254,9 +144,6 @@
 							<div class="bs-component" style="background-color: white;">
 								 <jsp:include page="/board/bnsFrontList.mwav" flush="false" />
 							</div>
-							<%-- <div class="bs-component" style="background-color: white;">
-						<jsp:include page="/board/bnsFrontList.mwav" flush="false" />
-					</div> --%>
 						</div>
 					</div>
 				</div>
@@ -299,56 +186,6 @@
 		<div class="item slide3">
 			<div class="fill img-responsive customer_slideImg_600"
 				style="background-image: url('/CustomerService/zImage/education-1651259_1920.jpg'); background-repeat: no-repeat;">
-
-
-				<%-- 전체크기는 일괄되게 --%>
-				<%-- <div class="hidden-xs hidden-sm col-md-8 row pull-right">
-					<h1 style="color: white;">Contact Address</h1>
-					<br />
-					<div class="row text-center">
-						<div class="col-xs-3 col-sm-3 col-md-3"
-							style="padding: 10px; background: #9C0;">
-							<h1>
-								<span class="glyphicon glyphicon-earphone"></span>
-							</h1>
-							<h3>Tel</h3>
-							<br />
-							<p>+82-2-6214-7039</p>
-							<br />
-						</div>
-						<div class="col-xs-3 col-sm-3 col-md-3"
-							style="padding: 10px; background: #39F;">
-							<h1>
-								<span class="glyphicon glyphicon-home"></span>
-							</h1>
-							<h3>Location</h3>
-							<p>607-20, Jayang-dong, Gwangjin-gu, Seoul, Korea</p>
-							<br>
-
-						</div>
-						<div class="col-xs-3 col-sm-3 col-md-3"
-							style="padding: 10px; background: #F66;">
-							<h1>
-								<span class="glyphicon glyphicon-send"></span>
-							</h1>
-							<h3>E-mail</h3>
-							<br />
-							<p>ebizpromwav@gmail.com</p>
-							추후 클릭스 Contact 쪽으로 넘기면 좋을듯.
-							<br />
-						</div>
-						<div class="col-xs-3 col-sm-3 col-md-3"
-							style="padding: 10px; background: #6CC;">
-							<h1>
-								<span class="glyphicon glyphicon-leaf"></span>
-							</h1>
-							<h3>Web</h3>
-							<br />
-							<p>Mwav.net</p>
-							<br />
-						</div>
-					</div>
-				</div> --%>
 			</div>
 		</div>
 		<a class="left carousel-control" href="#myCarousel" data-slide="prev">
@@ -358,6 +195,4 @@
 			class="glyphicon glyphicon-chevron-right"></span>
 		</a>
 	</div>
-
 </header>
-

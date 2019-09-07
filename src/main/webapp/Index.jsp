@@ -105,25 +105,8 @@
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-12">
 					<div class="bs-component">
-						<%-- 이클립스 해제 희망시 
-				     1. http://ifone420.tistory.com/107
-				     
-				     추가적으로 
-				     
-				     localhost:8080/CWS 이부분은 server.xml 에서 지정한다.
-				--%>
-
 						<jsp:include page="/board/buFrontList.mwav" flush="false" />
 
-						<%-- <div class="enter"></div>
-						<h4>
-							<strong>News</strong>
-						</h4>
-						<jsp:include page="/board/bnsFrontList.mwav" flush="false" /> --%>
-
-						<%--notice/news 순으로 5개씩 삽입 예정
-						    만약에 공간 및 제약시 추후 tab 형태 고려 
-						  --%>
 					</div>
 				</div>
 			</div>
