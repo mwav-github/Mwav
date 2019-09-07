@@ -1,12 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<link href="/resources/JsFramework/Bootstrap/bootstrap-social.css" rel="stylesheet">
+<link href="/resources/JsFramework/Bootstrap/bootstrap-social.css"
+	rel="stylesheet">
 <%--padding 으로 안쪽 추후 딴건 변경가능 #04A3ED --%>
 <c:if test="${param.type eq null}">
 	<div class="enter"></div>
-	<div class="col-md-12" style="padding: 5%; box-shadow: 0 0 20px 3px #04A3ED; background: #f7f7f7;">
+	<div class="col-md-12"
+		style="padding: 5%; box-shadow: 0 0 20px 3px #04A3ED; background: #f7f7f7;">
 
-		<form name="login_form" action="/member/Login.mwav" role="form" class='form-horizontal' method="post" onsubmit="return re_check(document.login_form);">
+		<form name="login_form" action="/member/Login.mwav" role="form"
+			class='form-horizontal' method="post"
+			onsubmit="return re_check(document.login_form);">
 			<%--get문으로 넘어온 것은 param으로 받는다. "${param.returnUrl}" --%>
 			<input type="hidden" name="returnUrl" value="${param.returnUrl}" />
 			<div class="enter"></div>
@@ -14,34 +19,41 @@
 			<div class="col-md-12">
 				<div class="form-group">
 					<div class="input-group">
-						<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-						<input type="text" name="mbrLoginId" class="form-control input-lg caps_lockchk" placeholder="Email">
+						<span class="input-group-addon"><i
+							class="glyphicon glyphicon-user"></i></span> <input type="text"
+							name="mbrLoginId" class="form-control input-lg caps_lockchk"
+							placeholder="Email">
 					</div>
 				</div>
 				<div class="form-group">
 					<div class="input-group">
-						<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-						<input type="password" class="form-control input-lg caps_lockchk" placeholder="Password" name="mbrLoginPw">
+						<span class="input-group-addon"><i
+							class="glyphicon glyphicon-lock"></i></span> <input type="password"
+							class="form-control input-lg caps_lockchk" placeholder="Password"
+							name="mbrLoginPw">
 					</div>
 				</div>
 			</div>
 			<%--https://bootsnipp.com/snippets/featured/checkboxradio-css-only 추후 변경 --%>
 			<div class="form-group mgl3">
 				<div class="checkbox checbox-switch switch-primary">
-					<label> <input type="checkbox" id="checkbox4" name="autoLoginChk"> <span></span> Keep me signed in.
+					<label> <input type="checkbox" id="checkbox4"
+						name="autoLoginChk"> <span></span> Keep me signed in.
 					</label>
 				</div>
 			</div>
 
 			<div class="col-md-12">
 				<div class="form-group">
-					<button type="submit" class="btn btn-primary btn-lg btn-block">Sign In</button>
+					<button type="submit" class="btn btn-primary btn-lg btn-block">Sign
+						In</button>
 				</div>
 			</div>
 
 			<%--recapCha --%>
 			<div class="col-md-12">
-				<div class="g-recaptcha" data-sitekey="6LcdRxoUAAAAAA4OI0FIN2bv2W0ersTRjqHJdLG-"
+				<div class="g-recaptcha"
+					data-sitekey="6LcdRxoUAAAAAA4OI0FIN2bv2W0ersTRjqHJdLG-"
 					style="transform: scale(0.88); -webkit-transform: scale(0.88); transform-origin: 0 0; -webkit-transform-origin: 0 0;"></div>
 			</div>
 		</form>
@@ -53,83 +65,96 @@
 		--%>
 		<!-- GOOGLE SIGNIN -->
 		<div class="col-md-12 ">
-			<form action="<c:url value="/signin/google.mwav"/>" method="POST" onSubmit="return robot_check();">
+			<form action="<c:url value="/signin/google.mwav"/>" method="POST"
+				onSubmit="return robot_check();">
 				<div class="form-group">
 					<button type="submit" class="btn btn-block btn-social btn-google">
-						<span class="fa fa-google-plus"></span> <span class="">Sign in with Google</span>
+						<span class="fa fa-google-plus"></span> <span class="">Sign
+							in with Google</span>
 					</button>
 				</div>
 
-				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-				<input type="hidden" name="scope" value="email profile" />
-				<input type="hidden" name="autoLoginChk" class="autoLoginChk" value="off" />
+				<input type="hidden" name="${_csrf.parameterName}"
+					value="${_csrf.token}" /> <input type="hidden" name="scope"
+					value="email profile" /> <input type="hidden" name="autoLoginChk"
+					class="autoLoginChk" value="off" />
 			</form>
 		</div>
 
 		<!-- facebook SIGNIN -->
 		<div class="col-md-12">
-			<form action="<c:url value="/signin/facebook.mwav"/>" method="POST" onSubmit="return robot_check();">
+			<form action="<c:url value="/signin/facebook.mwav"/>" method="POST"
+				onSubmit="return robot_check();">
 				<div class="form-group">
 					<button type="submit" class="btn btn-block btn-social btn-facebook">
-						<span class="fa fa-facebook"></span> <span class=""> Sign in with Facebook</span>
+						<span class="fa fa-facebook"></span> <span class=""> Sign
+							in with Facebook</span>
 					</button>
 				</div>
-				<input type="hidden" name="test" value="123" />
-				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-				<input type="hidden" name="autoLoginChk" class="autoLoginChk" value="off" />
+				<input type="hidden" name="test" value="123" /> <input
+					type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+				<input type="hidden" name="autoLoginChk" class="autoLoginChk"
+					value="off" />
 			</form>
 		</div>
 
 		<!-- LINKEDIN SIGNIN -->
 		<div class=" col-md-12">
-			<form action="<c:url value="/signin/linkedin.mwav"/>" method="POST" onSubmit="return robot_check();">
+			<form action="<c:url value="/signin/linkedin.mwav"/>" method="POST"
+				onSubmit="return robot_check();">
 				<div class="form-group">
 					<button type="submit" class="btn btn-block btn-social btn-linkedin">
-						<span class="fa fa-linkedin"></span> <span class="">Sign in with LinkedIn</span>
+						<span class="fa fa-linkedin"></span> <span class="">Sign in
+							with LinkedIn</span>
 					</button>
 				</div>
-				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-				<input type="hidden" name="autoLoginChk" class="autoLoginChk" value="off" />
+				<input type="hidden" name="${_csrf.parameterName}"
+					value="${_csrf.token}" /> <input type="hidden" name="autoLoginChk"
+					class="autoLoginChk" value="off" />
 			</form>
 		</div>
 
 		<%--twitter sign in --%>
 		<div class="col-md-12 mgb3">
-			<form action="<c:url value="/signin/twitter.mwav"/>" method="POST" onSubmit="return robot_check();">
+			<form action="<c:url value="/signin/twitter.mwav"/>" method="POST"
+				onSubmit="return robot_check();">
 				<button type="submit" class="btn btn-block btn-social btn-twitter">
-					<span class="fa fa-twitter"></span> <span class="">Sign in with Twitter</span>
+					<span class="fa fa-twitter"></span> <span class="">Sign in
+						with Twitter</span>
 				</button>
-				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-				<input type="hidden" name="autoLoginChk" class="autoLoginChk" value="off" />
+				<input type="hidden" name="${_csrf.parameterName}"
+					value="${_csrf.token}" /> <input type="hidden" name="autoLoginChk"
+					class="autoLoginChk" value="off" />
 			</form>
 		</div>
 
 		<%--naver sign in --%>
 		<div class="col-md-12 mgb3">
-			<form action="${naver_url}" method="POST" onSubmit="return robot_check();">
+			<form action="${naver_url}" method="POST"
+				onSubmit="return robot_check();">
 				<button type="submit" class="btn btn-block btn-social btn-naver">
-					<span class="fa icon-naver"></span> <span class="">Sign in with Naver</span>
+					<span class="fa icon-naver"></span> <span class="">Sign in
+						with Naver</span>
 				</button>
-				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-				<input type="hidden" name="autoLoginChk" class="autoLoginChk" value="off" />
+				<input type="hidden" name="${_csrf.parameterName}"
+					value="${_csrf.token}" /> <input type="hidden" name="autoLoginChk"
+					class="autoLoginChk" value="off" />
 			</form>
 		</div>
 
 		<%--아이디 비밀번호 찾기 --%>
 		<div class="col-md-12">
 			<div class="col-md-4">
-				<a href="/MasterPage_1.mwav?mode=Default">
-					<strong>Sign up now</strong>
+				<a href="/MasterPage_1.mwav?mode=Default"> <strong>Sign
+						up now</strong>
 				</a>
 			</div>
 
 			<div class="col-md-8">
-				<a href="/MasterPage.mwav?mode=IDSeek">
-					<strong>Forgot your ID?</strong>
-				</a>
-				<br>
-				<a href="/MasterPage.mwav?mode=PWSeek">
-					<strong>Forgot your Password?</strong>
+				<a href="/MasterPage.mwav?mode=IDSeek"> <strong>Forgot
+						your ID?</strong>
+				</a> <br> <a href="/MasterPage.mwav?mode=PWSeek"> <strong>Forgot
+						your Password?</strong>
 				</a>
 			</div>
 		</div>
@@ -138,16 +163,21 @@
 <!-- Login - END -->
 <c:if test="${param.type == 'simple'}">
 
-	<form name="login_form_simple" action="/member/Login.mwav" role="form" class='form-horizontal' method="post" onsubmit="return re_check(document.login_form_simple);">
+	<form name="login_form_simple" action="/member/Login.mwav" role="form"
+		class='form-horizontal' method="post"
+		onsubmit="return re_check(document.login_form_simple);">
 
 		<input type="hidden" name="returnUrl" value="${param.returnUrl }" />
 
 
 		<div class="form-group">
-			<input type="text" name="mbrLoginId" class="form-control input-lg caps_lockchk" placeholder="Email or member ID">
+			<input type="text" name="mbrLoginId"
+				class="form-control input-lg caps_lockchk"
+				placeholder="Email or member ID">
 		</div>
 		<div class="form-group">
-			<input type="password" class="form-control input-lg caps_lockchk" placeholder="Password" name="mbrLoginPw">
+			<input type="password" class="form-control input-lg caps_lockchk"
+				placeholder="Password" name="mbrLoginPw">
 		</div>
 
 		<div class="form-group">
@@ -156,7 +186,8 @@
 
 		<div class="form-group">
 			<div class="col-md-12">
-				<div class="g-recaptcha" data-sitekey="6LcdRxoUAAAAAA4OI0FIN2bv2W0ersTRjqHJdLG-"></div>
+				<div class="g-recaptcha"
+					data-sitekey="6LcdRxoUAAAAAA4OI0FIN2bv2W0ersTRjqHJdLG-"></div>
 			</div>
 		</div>
 
@@ -169,83 +200,95 @@
 	<!-- GOOGLE SIGNIN -->
 	<div class="col-md-12 ">
 		<div class="enter"></div>
-		<form action="<c:url value="/signin/google.mwav"/>" method="POST" onSubmit="return robot_check();">
+		<form action="<c:url value="/signin/google.mwav"/>" method="POST"
+			onSubmit="return robot_check();">
 			<div class="form-group">
 				<button type="submit" class="btn btn-block btn-social btn-google">
-					<span class="fa fa-google-plus"></span> <span class="">Sign in with Google</span>
+					<span class="fa fa-google-plus"></span> <span class="">Sign
+						in with Google</span>
 				</button>
 			</div>
 
-			<input type="hidden" name="test" value="123" />
-			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-			<input type="hidden" name="scope" value="email profile" />
-			<input type="hidden" name="autoLoginChk" class="autoLoginChk" value="off" />
-		</form>
-	</div>
-
-	<!-- facebook SIGNIN -->
-	<div class="col-md-12">
-		<form action="<c:url value="/signin/facebook.mwav"/>" method="POST" onSubmit="return robot_check();">
-			<div class="form-group">
-				<button type="submit" class="btn btn-block btn-social btn-facebook">
-					<span class="fa fa-facebook"></span> <span class=""> Sign in with Facebook</span>
-				</button>
-			</div>
-			<input type="hidden" name="test" value="123" />
-			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-			<input type="hidden" name="autoLoginChk" class="autoLoginChk" value="off" />
-		</form>
-	</div>
-
-	<!-- LINKEDIN SIGNIN -->
-	<div class=" col-md-12">
-		<form action="<c:url value="/signin/linkedin.mwav"/>" method="POST" onSubmit="return robot_check();">
-			<div class="form-group">
-				<button type="submit" class="btn btn-block btn-social btn-linkedin">
-					<span class="fa fa-linkedin"></span> <span class="">Sign in with LinkedIn</span>
-				</button>
-			</div>
-			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-			<input type="hidden" name="autoLoginChk" class="autoLoginChk" value="off" />
-		</form>
-	</div>
-
-	<%--twitter sign in --%>
-	<div class="col-md-12 mgb3">
-		<form action="<c:url value="/signin/twitter.mwav"/>" method="POST" onSubmit="return robot_check();">
-			<button type="submit" class="btn btn-block btn-social btn-twitter">
-				<span class="fa fa-twitter"></span> <span class="">Sign in with Twitter</span>
-			</button>
-			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-			<input type="hidden" name="autoLoginChk" class="autoLoginChk" value="off" />
+			<input type="hidden" name="test" value="123" /> <input type="hidden"
+				name="${_csrf.parameterName}" value="${_csrf.token}" /> <input
+				type="hidden" name="scope" value="email profile" /> <input
+				type="hidden" name="autoLoginChk" class="autoLoginChk" value="off" />
 		</form>
 	</div>
 
 	<%--naver sign in --%>
 	<div class="col-md-12 mgb3">
-		<form action="${naver_url}" method="POST" onSubmit="return robot_check();">
+		<form action="${naver_url}" method="POST"
+			onSubmit="return robot_check();">
 			<button type="submit" class="btn btn-block btn-social btn-naver">
-				<span class="fa icon-naver"></span> <span class="">Sign in with Naver</span>
+				<span class="fa icon-naver"></span> <span class="">Sign in
+					with Naver</span>
 			</button>
-			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-			<input type="hidden" name="autoLoginChk" class="autoLoginChk" value="off" />
+			<input type="hidden" name="${_csrf.parameterName}"
+				value="${_csrf.token}" /> <input type="hidden" name="autoLoginChk"
+				class="autoLoginChk" value="off" />
 		</form>
 	</div>
 
+	<!-- facebook SIGNIN -->
+	<div class="col-md-12">
+		<form action="<c:url value="/signin/facebook.mwav"/>" method="POST"
+			onSubmit="return robot_check();">
+			<div class="form-group">
+				<button type="submit" class="btn btn-block btn-social btn-facebook">
+					<span class="fa fa-facebook"></span> <span class=""> Sign in
+						with Facebook</span>
+				</button>
+			</div>
+			<input type="hidden" name="test" value="123" /> <input type="hidden"
+				name="${_csrf.parameterName}" value="${_csrf.token}" /> <input
+				type="hidden" name="autoLoginChk" class="autoLoginChk" value="off" />
+		</form>
+	</div>
+
+	<!-- LINKEDIN SIGNIN -->
+	<div class=" col-md-12">
+		<form action="<c:url value="/signin/linkedin.mwav"/>" method="POST"
+			onSubmit="return robot_check();">
+			<div class="form-group">
+				<button type="submit" class="btn btn-block btn-social btn-linkedin">
+					<span class="fa fa-linkedin"></span> <span class="">Sign in
+						with LinkedIn</span>
+				</button>
+			</div>
+			<input type="hidden" name="${_csrf.parameterName}"
+				value="${_csrf.token}" /> <input type="hidden" name="autoLoginChk"
+				class="autoLoginChk" value="off" />
+		</form>
+	</div>
+
+	<%--twitter sign in --%>
+	<div class="col-md-12 mgb3">
+		<form action="<c:url value="/signin/twitter.mwav"/>" method="POST"
+			onSubmit="return robot_check();">
+			<button type="submit" class="btn btn-block btn-social btn-twitter">
+				<span class="fa fa-twitter"></span> <span class="">Sign in
+					with Twitter</span>
+			</button>
+			<input type="hidden" name="${_csrf.parameterName}"
+				value="${_csrf.token}" /> <input type="hidden" name="autoLoginChk"
+				class="autoLoginChk" value="off" />
+		</form>
+	</div>
+
+
 	<div class="form-group ">
 		<div class="col-md-4">
-			<a href="/MasterPage_1.mwav?mode=Default">
-				<strong>Sign up now</strong>
+			<a href="/MasterPage_1.mwav?mode=Default"> <strong>Sign
+					up now</strong>
 			</a>
 		</div>
 
 		<div class="col-md-8">
-			<a href="/MasterPage.mwav?mode=IDSeek">
-				<strong>Forgot your ID?</strong>
-			</a>
-			<br>
-			<a href="/MasterPage.mwav?mode=PWSeek">
-				<strong>Forgot your Password?</strong>
+			<a href="/MasterPage.mwav?mode=IDSeek"> <strong>Forgot
+					your ID?</strong>
+			</a> <br> <a href="/MasterPage.mwav?mode=PWSeek"> <strong>Forgot
+					your Password?</strong>
 			</a>
 		</div>
 	</div>
