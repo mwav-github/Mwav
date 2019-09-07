@@ -32,17 +32,6 @@
 			</snapshots>
 		</repository>
 
-		<repository>
-			<id>egovframe</id>
-			<url>http://www.egovframe.go.kr/maven/</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-
 		<!-- Maven Repository 가 없는 로컬 jar 파일 을 maven project 에 추가하는 방법 http://hasunjjang.blogspot.kr/2015/08/posted-by-httpitnp.html -->
 		<!-- <repository>
 			<id>mwavframework</id>
@@ -357,13 +346,6 @@
 			<groupId>commons-codec</groupId>
 			<artifactId>commons-codec</artifactId>
 			<version>1.10</version>
-		</dependency>
-
-		<!-- EgovProperty -->
-		<dependency>
-			<groupId>egovframework.rte</groupId>
-			<artifactId>egovframework.rte.fdl.property</artifactId>
-			<version>2.7.0</version>
 		</dependency>
 
 		<!-- Log4j -->
