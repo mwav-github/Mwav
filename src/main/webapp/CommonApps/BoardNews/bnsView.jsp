@@ -35,8 +35,8 @@
 				});
 	}
 	
-    // kko init
-    Kakao.init('df1b79024461392087ab0dcbc2ca15ba');
+    // kakao init
+    Kakao.init('b66e3d6516bdc422b77b51024332a218');
 </script>
 <!-- imsi -->
 
@@ -63,8 +63,7 @@
 		<div class="text-right">
 			<a class="btn btn-social-icon btn-facebook"
 				onClick="sendSns('https://www.mwav.net/board/bnsView.mwav?bNews_id=${selectOneBnsView.bNews_id}', 'facebook', '${selectOneBnsView.bnTitle}', 'social', 'news', '${selectOneBnsView.bnSubTitle}', '${param.pgl}', 'null')"><span
-				class="fa fa-facebook"></span></a> <a
-				class="btn btn-social-icon btn-google"
+				class="fa fa-facebook"></span></a> <a class="btn btn-social-icon btn-google"
 				onClick="sendSns('https://www.mwav.net/board/bnsView.mwav?bNews_id=${selectOneBnsView.bNews_id}','googleplus', '${selectOneBnsView.bnTitle}', 'social', 'news', '${selectOneBnsView.bnSubTitle}', '${param.pgl}', 'null')"><span
 				class="fa fa-google"></span></a> <a
 				class="btn btn-social-icon btn-linkedin"
@@ -72,13 +71,10 @@
 				class="fa fa-linkedin"></span></a> <a
 				class="btn btn-social-icon btn-twitter"
 				onClick="sendSns('https://www.mwav.net/board/bnsView.mwav?bNews_id=${selectOneBnsView.bNews_id}','twitter', '${selectOneBnsView.bnTitle}', 'social', 'news', '${selectOneBnsView.bnSubTitle}', '${param.pgl}', 'null')"><span
-				class="fa fa-twitter"></span></a> <a
-				id="kakao-link-btn" 
-				class="btn btn-social-icon btn-facebook"
-				onClick="sendSns('https://www.mwav.net/board/bnsView.mwav?bNews_id=${selectOneBnsView.bNews_id}','kakao', '${selectOneBnsView.bnTitle}', 'social', 'news', '${selectOneBnsView.bnSubTitle}', '${param.pgl}', '${selectOneBnsView.bnRelatedLink}')">
-				<img class="fa fa-facebook"
-				src="//developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png" />
-			</a>
+				class="fa fa-twitter"></span></a> <a class="btn btn-social-icon btn-kakao" 
+				onClick="sendSns('https://www.mwav.net/board/bnsView.mwav?bNews_id=${selectOneBnsView.bNews_id}','kakao', '${selectOneBnsView.bnTitle}', 'social', 'news', '${selectOneBnsView.bnSubTitle}', '${param.pgl}', '${selectOneBnsView.bnRelatedLink}', ${selectOneBnsView.bnViewCount})">
+				<span class="icon-kakao"> </span>
+			</a> 
 		</div>
 		<div class="enter"></div>
 

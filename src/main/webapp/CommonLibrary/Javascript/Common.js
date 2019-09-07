@@ -729,7 +729,7 @@ function getNaverShortenUrl(originalUrl) {
 //소셜 공유하기
 //http://dev.epiloum.net/916
 //http://www.sharelinkgenerator.com/
-function sendSns(url, utm_source, utm_campaign, utm_medium, utm_content, subTitle, pgl, thumbnail_link)
+function sendSns(url, utm_source, utm_campaign, utm_medium, utm_content, subTitle, pgl, thumbnail_link, count)
 {
 //	console.log("sendSns : " + url + ", " + utm_source + ", " + utm_campaign);
 //	console.log("sendSns : " + utm_medium + ", " + subTitle + ", " + pgl);
@@ -776,37 +776,6 @@ function sendSns(url, utm_source, utm_campaign, utm_medium, utm_content, subTitl
 			url:'http://twitter.com/intent/tweet?text=' + utm_campaign + '&url=' + shortenUrl 
 		};
 		break;
-		/*case 'kakaotalk':
-            o = {
-                method:'web2app',
-                param:'sendurl?msg=' + _txt + '&url=' + _url + '&type=link&apiver=2.0.1&appver=2.0&appid=dev.epiloum.net&appname=' + encodeURIComponent('Epiloum 개발노트'),
-                a_store:'itms-apps://itunes.apple.com/app/id362057947?mt=8',
-                g_store:'market://details?id=com.kakao.talk',
-                a_proto:'kakaolink://',
-                g_proto:'scheme=kakaolink;package=com.kakao.talk'
-            };
-            break;
-
-        case 'kakaostory':
-            o = {
-                method:'web2app',
-                param:'posting?post=' + _txt + _br + _url + '&apiver=1.0&appver=2.0&appid=dev.epiloum.net&appname=' + encodeURIComponent('Epiloum 개발노트'),
-                a_store:'itms-apps://itunes.apple.com/app/id486244601?mt=8',
-                g_store:'market://details?id=com.kakao.story',
-                a_proto:'storylink://',
-                g_proto:'scheme=kakaolink;package=com.kakao.story'
-            };
-            break;
-        case 'band':
-            o = {
-                method:'web2app',
-                param:'create/post?text=' + _txt + _br + _url,
-                a_store:'itms-apps://itunes.apple.com/app/id542613198?mt=8',
-                g_store:'market://details?id=com.nhn.android.band',
-                a_proto:'bandapp://',
-                g_proto:'scheme=bandapp;package=com.nhn.android.band'
-            };
-            break;*/
 	case 'kakao':
 		o = {
 			method:'kakao',
@@ -817,6 +786,7 @@ function sendSns(url, utm_source, utm_campaign, utm_medium, utm_content, subTitl
 			utm_content : utm_content,
 			subTitle : subTitle,
 			pgl : pgl,
+			count : count,
 			params : url.split("mwav.net/")[1]
 		};
 		break;
@@ -842,10 +812,8 @@ function sendSns(url, utm_source, utm_campaign, utm_medium, utm_content, subTitl
 		}
 		break;
 	case 'kakao' :
-//		var _url_query = o.url.split("&")[0];
-		var params = o.params;
-//		console.log("params : " + params);
-	    Kakao.Link.sendCustom({
+		
+/*	    Kakao.Link.sendCustom({
 	    	templateId : 11887,
 	    	templateArgs : {
 	    		'mwav_news_title' : o.utm_campaign,
@@ -853,7 +821,38 @@ function sendSns(url, utm_source, utm_campaign, utm_medium, utm_content, subTitl
 	    		'mwav_news_query' : params,
 	    		'mwav_news_thumbnail' : thumbnail_link
 	    	}
-	    });
+	    });*/
+	    
+	    Kakao.Link.sendDefault({
+          objectType:"feed"
+         // , address:"노스렌드"    // 공유할 위치의 주소
+         // , addressTitle:"얼음왕관의 성채"   // 카카오톡 내의 지도 뷰에서 사용되는 타이틀
+         ,content: {
+                title: o.utm_campaign   // 콘텐츠의 타이틀
+              , description: o.subTitle  // 콘텐츠 상세설명
+              , imageUrl: thumbnail_link // 썸네일 이미지
+              , link: {
+                    mobileWebUrl: o.url   // 모바일 카카오톡에서 사용하는 웹 링크 URL
+                  , webUrl: o.url // PC버전 카카오톡에서 사용하는 웹 링크 URL
+              }
+          }
+          , social: {
+              //likeCount:0       // LIKE 개수
+              //commentCount:0    // 댓글 개수
+              //sharedCount:0     // 공유 회수 
+              viewCount : o.count //조회수 
+        	  
+          }
+          , buttons: [
+              {
+                    title:"상세확인" // 버튼 제목
+                  , link: {
+                        mobileWebUrl:o.url  // 모바일 카카오톡에서 사용하는 웹 링크 URL
+                      , webUrl:o.url // PC버전 카카오톡에서 사용하는 웹 링크 URL
+                  }
+              }
+          ]
+      });
 	}
 }
 

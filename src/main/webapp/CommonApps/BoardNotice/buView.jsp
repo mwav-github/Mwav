@@ -4,7 +4,11 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <script src="//cdn.ckeditor.com/4.4.6/basic/ckeditor.js"></script>
 
-
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script type="text/javascript">
+	//kakao init
+	Kakao.init('b66e3d6516bdc422b77b51024332a218');
+</script>
 <!-- Content Column -->
 <div class="row news_fontfamilly">
 	<div class="col-md-12">
@@ -36,10 +40,14 @@
 				class="fa fa-linkedin"></span></a> <a
 				class="btn btn-social-icon btn-twitter"
 				onClick="sendSns('http://www.mwav.net/board/buView.mwav?bUsers_id=${selectOneBuView.bUsers_id}','twitter', '${selectOneBuView.buTitle}', 'social', 'notices', '${selectOneBuView.buSubTitle}', '${param.pgl}')"><span
-				class="fa fa-twitter"></span></a>
+				class="fa fa-twitter"></span></a> <a
+				class="btn btn-social-icon btn-kakao"
+				onClick="sendSns('https://www.mwav.net/board/buView.mwav?bUsers_id=${selectOneBuView.bUsers_id}','kakao', '${selectOneBuView.buTitle}', 'social', 'notices', '${selectOneBuView.buSubTitle}', '${param.pgl}', '${selectOneBuView.buRelatedLink}', ${selectOneBuView.buViewCount})">
+			<span class="icon-kakao"> </span>
+			</a>
 		</div>
 		<div class="enter"></div>
-		
+
 		<div class="news_contents">${selectOneBuView.buContent}</div>
 
 		<div class="enter"></div>
