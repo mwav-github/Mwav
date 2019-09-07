@@ -51,7 +51,7 @@
 	
 	<select id="selectListNtmFrontList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			SELECT bUsers_id, buTitle, date_format(buUpdateDt,'%Y%m%d') as buUpdateDt
+			SELECT bUsers_id, buTitle, date_format(buInsertDt,'%Y%m%d') as buInsertDt
 		    FROM BoardUser_tbl
 		    WHERE buDeleteDt IS NULL ORDER BY buUpdateDt DESC Limit 5
 		]]>

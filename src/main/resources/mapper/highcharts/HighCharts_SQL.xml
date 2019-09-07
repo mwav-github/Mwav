@@ -15,10 +15,10 @@
 		  SELECT DATE_FORMAT(stStatisticsDt, '%W') AS 'name',
           COUNT('statistics_id') AS 'data'
           FROM Statistics_tbl
-          WHERE <![CDATA[  TO_DAYS(NOW()) - TO_DAYS(stStatisticsDt) <= 7 ]]>
+          WHERE <![CDATA[TO_DAYS(NOW()) - TO_DAYS(stStatisticsDt) <= 7]]>
           <include refid="pgl" /> 
-          GROUP BY 'name'
-          ORDER BY 'name' desc;
+          GROUP BY `name`
+          ORDER BY `name` desc;
 	</select>
 
 	
@@ -40,10 +40,10 @@
 
 	      SELECT COUNT(*) AS 'y', stClientScreen AS 'name' 
 	      FROM Statistics_tbl 
-	      WHERE <![CDATA[  stClientScreen IS NOT NULL AND TO_DAYS(NOW()) - TO_DAYS(stStatisticsDt) <= 30  ]]>
+	      WHERE <![CDATA[stClientScreen IS NOT NULL AND TO_DAYS(NOW()) - TO_DAYS(stStatisticsDt) <= 30]]>
 	      <include refid="pgl" /> 
-	      GROUP BY 'name'
-	      ORDER BY 'y' DESC 
+	      GROUP BY `name`
+	      ORDER BY `y` DESC 
 
 	</select>
 	<select id="selectListClientBrowerInfo" resultType="net.common.charts.vo.SeriesTypeOneVO" parameterType="hashmap" >
