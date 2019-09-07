@@ -21,8 +21,8 @@
 	<table class="table table-striped">
 		<thead>
 			<tr>
-				<th>Title</th>
-				<th>UpdateDate</th>
+				<th>제목</th>
+				<th>등록일자</th>
 			</tr>
 		</thead>
 		<tbody>

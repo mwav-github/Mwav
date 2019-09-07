@@ -257,7 +257,7 @@ function getRemoteDataDrawChart(url, chartType) {
 			var title = data.title;
 			var yTitle = data.yAxisTitle;
 			var xTitle = data.xAxisTitle;
-			 alert(xTitle);
+			 //alert(xTitle);
 			var divId = data.divId;
 
 			// populate the lineChart options (highchart)

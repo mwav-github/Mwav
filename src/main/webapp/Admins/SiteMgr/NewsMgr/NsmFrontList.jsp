@@ -21,8 +21,8 @@
 	<table class="table table-striped">
 		<thead>
 			<tr>
-				<th>Title</th>
-				<th>UpdateDate</th>
+				<th>제목</th>
+				<th>수정일자</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -38,7 +38,7 @@
 								<td><a
 									href="/admin/boardNews/nsmView.mwav?bNews_id=${selectListNsmFrontList.bNews_id}">${selectListNsmFrontList.bnTitle}</a></td>
 								<%--view를 구현하는 방법에 따라 달라진다. get 문 형태 유망 --%>
-								<td>${selectListNsmFrontList.bnInsertDt}</td>
+								<td>${selectListNsmFrontList.bnUpdateDt}</td>
 							</tr>
 						</c:forEach>
 					</c:when>
