@@ -91,19 +91,6 @@
 																	style="padding: 8px 10px; font: bold 14px/20px Malgun Gothic; 
 																	color: #4b5964; letter-spacing: -1px; color: #4b5964; 
 																	text-align: left; background: #f3f3f3">
-																	회원명
-																</th>
-																<td style="padding: 8px 10px; font: 14px/20px Malgun Gothic; 
-																	color: #4b5964; border-left: 1px #e0e0e0 solid">
-																		${mbrName}
-																	
-																</td>
-															</tr>
-															<tr>
-																<th colspan="1" rowspan="1" width="140"
-																	style="padding: 8px 10px; font: bold 14px/20px Malgun Gothic; 
-																	color: #4b5964; letter-spacing: -1px; color: #4b5964; 
-																	text-align: left; background: #f3f3f3">
 																	아이디
 																</th>
 																<td style="padding: 8px 10px; font: 14px/20px Malgun Gothic; 
