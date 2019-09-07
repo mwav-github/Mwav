@@ -80,7 +80,7 @@ public class StaffDAO extends AbstractDAO {
 		}
 
 		insert("staff.insertStfForm", map);
-		insert("staff.insertPrmForm",map);
+		//insert("promoter.insertPmtForm",map);
 	}
 
 	public int selectOneGetTotalCount() {

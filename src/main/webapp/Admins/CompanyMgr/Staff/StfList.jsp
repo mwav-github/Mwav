@@ -84,7 +84,9 @@ ${member} => request.getAttribute("member");
 
 				<!-- Content Column -->
 				<div class="col-lg-12">
-
+					<button type="button" class="pull-right btn btn-default">
+						<a href="/Admins/CompanyMgr/Staff/StfForm.mwav?mm=firms">관리자 등록</a>
+					</button>
 					<form name="StfList" method="post"
 						action="/admins/staff/stfList.mwav">
 						<div class="row">
@@ -157,7 +159,8 @@ ${member} => request.getAttribute("member");
 
 											<c:if test="${pagingVO.startPage > pagingVO.pageBlock}">
 												<li><a
-													href="/admins/staff/stfList.mwav?pageNum=${pagingVO.startPage - pagingVO.pageBlock}"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
+													href="/admins/staff/stfList.mwav?pageNum=${pagingVO.startPage - pagingVO.pageBlock}"><span
+														class="glyphicon glyphicon-chevron-left"></span></a></li>
 											</c:if>
 											<c:forEach var="i" begin="${pagingVO.startPage}"
 												end="${pagingVO.endPage}">
@@ -165,7 +168,8 @@ ${member} => request.getAttribute("member");
 											</c:forEach>
 											<c:if test="${pagingVO.endPage < pagingVO.pageCount}">
 												<li><a
-													href="/admins/staff/stfList.mwav?pageNum=${pagingVO.startPage + pagingVO.pageBlock}"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+													href="/admins/staff/stfList.mwav?pageNum=${pagingVO.startPage + pagingVO.pageBlock}"><span
+														class="glyphicon glyphicon-chevron-right"></span></a></li>
 											</c:if>
 											<!-- <li><a href="">&laquo;</a></li>
 			<li class="active"><a href="#">1</a></li>

@@ -47,7 +47,7 @@
 	
 	<select id="selectOneStfLoginIdCheck" parameterType="string" resultType="string">
 		<![CDATA[
-	      select stfLoginId from staff_tbl where stfLoginId = #{stfLoginId};
+	      select stfLoginId from Staff_tbl where stfLoginId = #{stfLoginId};
 		]]>
 	</select>
 	
