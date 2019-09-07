@@ -742,7 +742,6 @@ function sendSns(url, utm_source, utm_campaign, utm_medium, utm_content, subTitl
 	var googleAnalytics_var = '&utm_source=' + utm_source +'&utm_campaign=' + trim(utm_campaign) +'&utm_medium=' + utm_medium + '&utm_content=' + utm_content;
 	var pgl = '&pgl='+pgl
 	var _url = encodeURIComponent(url + googleAnalytics_var + pgl + '#news_top');
-	var shortenUrl = getNaverShortenUrl(_url);
 
 	switch(utm_source){
 	case 'facebook':
