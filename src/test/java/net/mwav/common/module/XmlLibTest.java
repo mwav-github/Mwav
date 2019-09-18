@@ -1,6 +1,7 @@
 package net.mwav.common.module;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertSame;
 
 import org.junit.Test;
 
@@ -47,5 +48,12 @@ public class XmlLibTest {
         String expectedDescription = "This is the website for Mwav.net and has been developed by Nam Jin, Cho. You can contact him at webmaster@mwav.net if you have a question or an inquiry on the site.";
         assertEquals(expectedDescription, description);
 	}
-
+	
+	@Test
+	public void usageTest() throws Exception {
+		String path = "./src/main/webapp/xConfig/footer.xml";
+		GeneralConfig generalConfig = (GeneralConfig) XmlLib.getInstance().unmarshal(path, GeneralConfig.class);
+		GeneralConfig generalConfig2 = (GeneralConfig) XmlLib.getInstance().unmarshal(path, GeneralConfig.class);
+		assertSame(generalConfig, generalConfig2);
+	}
 }

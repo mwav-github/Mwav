@@ -26,17 +26,14 @@ public class XmlLib {
 	 * @return
 	 * @throws Exception
 	 */
-	public Object unmarshal(final String path, final Class<?> classObject) throws Exception {
+	public Object unmarshal(final String path, final Class<?> cls) throws Exception {
 
 		JAXBContext jaxbContext = null;
 		Unmarshaller unmarshaller = null;
 		Object unmarshallerObj = null;
 
-		// JAXB Context Create
-		jaxbContext = JAXBContext.newInstance(classObject);
-		// Unmarshaller Object Create
+		jaxbContext = JAXBContext.newInstance(cls);
 		unmarshaller = jaxbContext.createUnmarshaller();
-		// unmarshall Create
 		unmarshallerObj = unmarshaller.unmarshal(new FileReader(path));
 
 		return unmarshallerObj;
