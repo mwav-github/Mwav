@@ -14,7 +14,7 @@ public class XmlLib {
 		private static final XmlLib xmlLib = new XmlLib();
 	}
 
-	public XmlLib getInstance() {
+	public static XmlLib getInstance() {
 		return XmlHolder.xmlLib;
 	}
 
@@ -26,7 +26,7 @@ public class XmlLib {
 	 * @return
 	 * @throws Exception
 	 */
-	public static Object unmarshal(final String path, final Class<?> classObject) throws Exception {
+	public Object unmarshal(final String path, final Class<?> classObject) throws Exception {
 
 		JAXBContext jaxbContext = null;
 		Unmarshaller unmarshaller = null;
@@ -38,7 +38,7 @@ public class XmlLib {
 		unmarshaller = jaxbContext.createUnmarshaller();
 		// unmarshall Create
 		unmarshallerObj = unmarshaller.unmarshal(new FileReader(path));
-		
+
 		return unmarshallerObj;
 	}
 
