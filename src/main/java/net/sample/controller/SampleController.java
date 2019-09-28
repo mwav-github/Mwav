@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import net.common.common.CommandMap;
 import net.sample.service.SampleService;
@@ -11,7 +12,11 @@ import net.sample.service.SampleService;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
+import net.mwav.common.module.FileLib;
 
 /* 
  * - Controller > Service > ServiceImpl > DAO > SQL(XML) > JSP
@@ -82,6 +87,34 @@ public class SampleController {
 		mv.addObject("map", map);
 		
 		return mv;
+	}
+	
+	/*
+	 * 20190504,정재현,파일업로드 테스트 fileHandler 테스트
+	 */
+	@RequestMapping(value = "/FileTestSample/FileTestMain.mwav")
+	public ModelAndView redirectFileTestSampleController(HttpServletRequest request) throws Exception {
+		String url = request.getRequestURI();
+		int pos = url.lastIndexOf(".");
+
+		String ext_url = null;
+		ext_url = url.substring(0, pos);
+		ModelAndView mv = new ModelAndView("CommonApps/Goods/fileUploader");
+
+		return mv;
+	}
+	
+	FileLib fileLib = FileLib.getInstance();
+	/*
+	 * 정재현,파일업로드 테스트,fileHandler 테스트
+	 */
+	@RequestMapping(value = "/FileTestSample/TempUpload.mwav", method = RequestMethod.POST)
+	@ResponseBody
+	public boolean tempUpload(MultipartHttpServletRequest multipartRequest) {
+		String filePath = "/xUpload/Temp";		
+		List<String> fileNames = fileLib.upload(multipartRequest, filePath);
+
+		return true;
 	}
 	
 	@RequestMapping(value="/sample/openBoardUpdate.mwav")

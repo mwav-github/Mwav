@@ -1269,7 +1269,7 @@
 
 
 	<%-- <!-- --> 주석처리해도 include는 된다.  --%>
-	<jsp:include page="/Admins/Goods/GdsUpLoader.jsp" flush="false" />
+	<jsp:include page="/CommonApps/Goods/fileUploader.jsp" flush="false" />
 
 
 	<!-- Footer -->
