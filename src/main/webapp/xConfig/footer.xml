@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GeneralConfig>
+	<CompanyInfo>
+		<CompanyName>Mwav corp</CompanyName>
+		<FirmName>엠웨이브넷</FirmName>
+		<Chief_IT_BusinessAdvisor>Peter, J</Chief_IT_BusinessAdvisor>
+		<CEO>Lewis, Kim></CEO>
+		<WebSiteManager>Hunt, Kim></WebSiteManager>
+		<MarketingManager>Dave, Shin> </MarketingManager>
+		<SitePromoter>박원호</SitePromoter>
+		<TEL>+82-70-4655-4777</TEL>
+		<FAX>+82-2-6214-7039</FAX>
+		<SiteAddress>http://mwav.net</SiteAddress>
+		<FirmEmail>webmaster@mwav.net</FirmEmail>
+		<BusinessID>206-09-41373</BusinessID>
+		<Address>GV-4F, 5-5, Ttukseom-ro 46-gil, Gwangjin-gu, Seoul , Korea [05099]</Address>
+		<Copyright>Copyright ⓒ Since 2004 Mwav.net All rights reserved</Copyright>
+	</CompanyInfo>
+	<TechCompanyInfo>
+		<SolutionName>엠웨이브샵</SolutionName>
+		<TechFirmName>엠웨이브</TechFirmName>
+		<TechManager>기획개발팀장</TechManager>
+		<TechPhone>+82-2-6214-1122</TechPhone>
+		<TechFax>+82-2-6214-7039</TechFax>
+		<TechSite>http://www.Mwav.net</TechSite>
+		<TechEmail>webmaster@Mwav.net</TechEmail>
+		<TechBusinessID>206-09-41373</TechBusinessID>
+		<TechFirmAddr>서울특별시 광진구 노유2동 한강현대APT 101-1403</TechFirmAddr>
+	</TechCompanyInfo>
+	<WebSiteInfo>
+		<Keywords>E-컨설팅, 도메인, 웹호스팅, 서버호스팅, 호스팅, 홈페이지, 웹사이트, 솔루션개발, 데이터베이스, 유지보수, 전자상거래, 쇼핑몰, 웹메일, 뉴스솔루션, 서버, 파이어월, 스토리지, 네트워크, 하드웨어, e-consulting, domain, web hosting, server hosting, hosting, homepage, web solution, database, maintenance, EC, shopping mall, web mail, news solution, server, firewall, storage, network, h/w</Keywords>
+		<Description>This is the website for Mwav.net and has been developed by Nam Jin, Cho. You can contact him at webmaster@mwav.net if you have a question or an inquiry on the site.</Description>
+	</WebSiteInfo>
+</GeneralConfig>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>net.company</groupId>
@@ -33,11 +34,8 @@
 		</repository>
 
 		<!-- Maven Repository 가 없는 로컬 jar 파일 을 maven project 에 추가하는 방법 http://hasunjjang.blogspot.kr/2015/08/posted-by-httpitnp.html -->
-		<!-- <repository>
-			<id>mwavframework</id>
-			<name>custom jars</name>
-			<url>file://${project.basedir}/lib</url>
-		</repository>-->
+		<!-- <repository> <id>mwavframework</id> <name>custom jars</name> <url>file://${project.basedir}/lib</url> 
+			</repository> -->
 
 		<!-- <repository> <id>UserAgent</id> <name>custom jars</name> <url>file://${project.basedir}/lib</url> 
 			</repository> <repository> <id>google-api-services</id> <url>http://google-api-client-libraries.appspot.com/mavenrepo</url> 
@@ -47,8 +45,8 @@
 		<!-- Copy this section from the Maven section of the "Connect to Feed" 
 			dialog -->
 		<repository>
-  			<id>dev-azure-com-webmaster0770-mwavcorp</id>
- 			<url>https://pkgs.dev.azure.com/webmaster0770/_packaging/MwavCorp/maven/v1</url>
+			<id>dev-azure-com-webmaster0770-mwavcorp</id>
+			<url>https://pkgs.dev.azure.com/webmaster0770/_packaging/MwavCorp/maven/v1</url>
 			<releases>
 				<enabled>true</enabled>
 			</releases>
@@ -60,13 +58,10 @@
 
 
 	<dependencies>
-		<!-- <dependency>
-			<groupId>net.company</groupId>
-			<artifactId>mwav</artifactId>
-			<version>1.0-SNAPSHOT</version>
-		</dependency>	 -->
-	
-		
+		<!-- <dependency> <groupId>net.company</groupId> <artifactId>mwav</artifactId> 
+			<version>1.0-SNAPSHOT</version> </dependency> -->
+
+
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -239,18 +234,18 @@
 
 		<!-- Web -->
 		<dependency>
- 		   <groupId>javax.servlet</groupId>
- 		   <artifactId>javax.servlet-api</artifactId>
- 		   <version>3.1.0</version>
- 		   <scope>provided</scope>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+			<scope>provided</scope>
 		</dependency>
 
- 		   <!-- https://mvnrepository.com/artifact/javax.servlet.jsp/javax.servlet.jsp-api -->
- 		   <dependency>
-   		     <groupId>javax.servlet.jsp</groupId>
-   		     <artifactId>javax.servlet.jsp-api</artifactId>
-    		    <version>2.3.1</version>
-  		      <scope>provided</scope>
+		<!-- https://mvnrepository.com/artifact/javax.servlet.jsp/javax.servlet.jsp-api -->
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>javax.servlet.jsp-api</artifactId>
+			<version>2.3.1</version>
+			<scope>provided</scope>
 		</dependency>
 
 
@@ -502,7 +497,7 @@
 			<version>1</version>
 		</dependency>
 
-<!--@ Framework -->
+		<!--@ Framework -->
 		<dependency>
 			<groupId>MwavFrameWork</groupId>
 			<artifactId>MwavFrameWork</artifactId>
@@ -515,6 +510,13 @@
 			<groupId>UserAgent</groupId>
 			<artifactId>UserAgentDetector</artifactId>
 			<version>v1.0.0</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api -->
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>2.2.11</version>
 		</dependency>
 
 		<!-- @UserAgentAnalyis 171117 http://www.bitwalker.eu/software/user-agent-utils 
@@ -596,8 +598,8 @@
 		<!-- Copy this section from the Maven section of the "Connect to Feed" 
 			dialog -->
 		<repository>
-  			<id>dev-azure-com-webmaster0770-mwavcorp</id>
- 			<url>https://pkgs.dev.azure.com/webmaster0770/_packaging/MwavCorp/maven/v1</url>
+			<id>dev-azure-com-webmaster0770-mwavcorp</id>
+			<url>https://pkgs.dev.azure.com/webmaster0770/_packaging/MwavCorp/maven/v1</url>
 		</repository>
 	</distributionManagement>
 </project>
