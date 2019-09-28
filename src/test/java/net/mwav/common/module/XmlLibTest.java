@@ -1,7 +1,6 @@
 package net.mwav.common.module;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertSame;
 
 import org.junit.Test;
 
@@ -49,11 +48,4 @@ public class XmlLibTest {
         assertEquals(expectedDescription, description);
 	}
 	
-	@Test
-	public void usageTest() throws Exception {
-		String path = "./src/main/webapp/xConfig/footer.xml";
-		GeneralConfig generalConfig = (GeneralConfig) XmlLib.getInstance().unmarshal(path, GeneralConfig.class);
-		GeneralConfig generalConfig2 = (GeneralConfig) XmlLib.getInstance().unmarshal(path, GeneralConfig.class);
-		assertSame(generalConfig, generalConfig2);
-	}
 }
