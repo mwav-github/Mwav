@@ -1,5 +1,8 @@
 package net.sample.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -10,10 +13,12 @@ import net.common.common.CommandMap;
 import net.sample.service.SampleService;
 
 import org.apache.log4j.Logger;
+import org.aspectj.org.eclipse.jdt.core.dom.rewrite.ITrackedNodePosition;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import net.mwav.common.module.FileLib;
@@ -107,11 +112,20 @@ public class SampleController {
 	 */
 	@RequestMapping(value = "/FileTestSample/TempUpload.mwav", method = RequestMethod.POST)
 	@ResponseBody
-	public boolean tempUpload(MultipartHttpServletRequest multipartRequest) {
+	public boolean tempUpload(MultipartHttpServletRequest multipartRequest) throws Exception {
 		String filePath = "/xUpload/Temp";
 		FileLib fileLib = FileLib.getInstance();
-		List<String> fileNames = fileLib.upload(multipartRequest, filePath);
-
+		
+		Iterator<String> iterator = multipartRequest.getFileNames();
+		while(iterator.hasNext()) {
+			MultipartFile multipartFile = multipartRequest.getFile(iterator.next());
+			String originalFileName = multipartFile.getOriginalFilename();
+			
+			String pathname = filePath + "/" + originalFileName;
+			byte[] contents = multipartFile.getBytes();
+			fileLib.upload(contents, pathname);
+		}
+		
 		return true;
 	}
 
