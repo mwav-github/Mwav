@@ -2,29 +2,24 @@ package net.mwav.common.module;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
-
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.commons.io.FileUtils;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 /**
+ * <pre>description : Utility class to upload, delete and download Files</pre> 
  * @class name : FileLib.java
- * @description : FileUtils를 위한 branch project
- * @author : (정) 정재현 (부)
+ * @author : (정) 정재현 
  * @since : 2019. 7. 24.
  * @version : v1.0
- * @see 
- *  #method : File 업로드,다운,삭제 처리
+ * @see : java.io.File
  * @history : 
  * ---------------------------------------- 
  * Modification Information(개정이력) 
  * ---------------------------------------- 
  * 수정일             수정자         수정내용 
  * -------- -------- ---------------- 
- * 2019.      7. 24. 정재현 최초작성
+ * 2019.7.24. 정재현 	  최초작성
  */
-
 public class FileLib {
 
 	private FileLib() {
@@ -39,11 +34,11 @@ public class FileLib {
 	}
 
 	/**
-	 * @method name : FileHandler
+	 * @method name : upload
 	 * @author : (정) 정재현
 	 * @since : 2019. 7. 24.
 	 * @version : v1.0
-	 * @see : #method : upload
+	 * @see : java.io.File
 	 * @description : multipartRequest 파일업로드(저장)
 	 * @history : 
 	 * ---------------------------------------- 
@@ -69,8 +64,7 @@ public class FileLib {
 		if (!destination.exists()) {
 			destination.mkdirs();
 		}
-		destination.createNewFile();
-
+		//destination.createNewFile();
 		try (FileOutputStream fos = new FileOutputStream(destination);) {
 			fos.write(contents);
 		} catch (Exception e) {
@@ -79,7 +73,7 @@ public class FileLib {
 	}
 
 	/**
-	 * @method name : FileHandler
+	 * @method name : delete
 	 * @author : (정) 정재현
 	 * @since : 2019. 7. 24.
 	 * @version : v1.0
@@ -92,8 +86,36 @@ public class FileLib {
 	 * 수정일  		    수정자	    수정내용 
 	 * -------- -------- ---------------- 
 	 * 2019. 7.24. 정재현 		최초작성
-	 * @param : String filePath	 
-	 * @param : String fileName	 
+	 * @param : String pathname	 
+	 * @return : boolean success flag return: 성공하면 true return
+	 * @throws :
+	 * 
+	 * <pre>
+	 * {@code : 예제 코드 작성
+	 *  boolean success = fileLib.delete(filePath, "savedFileName.jpg");
+	 * }
+	 * </pre>
+	 */
+	public boolean delete(String pathname) throws Exception {
+		File file = new File(pathname);
+		return file.exists() ? file.delete() : false;
+	}
+
+	/**
+	 * @method name : dowonload
+	 * @author : (정) 정재현
+	 * @since : 2019. 7. 24.
+	 * @version : v1.0
+	 * @see :
+	 * @description : 저장경로 파일삭제
+	 * @history : 
+	 * ---------------------------------------- 
+	 * Modification Information(개정이력) 
+	 * ---------------------------------------- 
+	 * 수정일  		    수정자	    수정내용 
+	 * -------- -------- ---------------- 
+	 * 2019. 7.24. 정재현 		최초작성
+	 * @param : String pathname
 	 * @return : boolean success flag return: 성공하면 true return
 	 * @throws :
 	 * 
@@ -103,29 +125,7 @@ public class FileLib {
 	 * }
 	 * </pre>
 	 */
-	public boolean deleteFile(String filePath, String fileName) {
-		String fullPath = filePath + "/" + fileName;
-		File file = new File(fullPath);
-		if (file.exists()) {
-			return file.delete();
-		}
-		return false;
-	}
-
-	public byte[] dowonload(HttpServletResponse response, String filePath, String fileName) {
-
-		String fullPath = filePath + "/" + fileName;
-		byte[] fileByte = null;
-
-		try {
-			fileByte = FileUtils.readFileToByteArray(new File(fullPath));
-			response.setContentType("application/octet-stream");
-			response.setContentLength(fileByte.length);
-			response.setHeader("Content-Transfer-Encoding", "binary");
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return fileByte;
+	public byte[] dowonload(String pathname) throws Exception {
+		return Files.readAllBytes(Paths.get(pathname));
 	}
 }
