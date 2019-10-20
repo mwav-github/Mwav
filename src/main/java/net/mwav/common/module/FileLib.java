@@ -3,7 +3,6 @@ package net.mwav.common.module;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.nio.file.Files;
-import java.nio.file.Paths;
 
 /**
  * <pre>description : Utility class to upload, delete and download Files</pre> 
@@ -59,13 +58,13 @@ public class FileLib {
 	 * }
 	 * </pre>
 	 */
-	public void upload(byte[] contents, String pathname) throws Exception {
-		File destination = new File(pathname);
+	public void upload(byte[] contents, String parent, String child) throws Exception {
+		File destination = new File(parent);
 		if (!destination.exists()) {
 			destination.mkdirs();
 		}
-		//destination.createNewFile();
-		try (FileOutputStream fos = new FileOutputStream(destination);) {
+
+		try (FileOutputStream fos = new FileOutputStream(new File(parent + File.separator + child));) {
 			fos.write(contents);
 		} catch (Exception e) {
 			throw e;
@@ -96,8 +95,8 @@ public class FileLib {
 	 * }
 	 * </pre>
 	 */
-	public boolean delete(String pathname) throws Exception {
-		File file = new File(pathname);
+	public boolean delete(String parent, String child) throws Exception {
+		File file = new File(parent, child);
 		return file.exists() ? file.delete() : false;
 	}
 
@@ -125,7 +124,7 @@ public class FileLib {
 	 * }
 	 * </pre>
 	 */
-	public byte[] dowonload(String pathname) throws Exception {
-		return Files.readAllBytes(Paths.get(pathname));
+	public byte[] dowonload(String parent, String child) throws Exception {
+		return Files.readAllBytes(new File(parent, child).toPath());
 	}
 }

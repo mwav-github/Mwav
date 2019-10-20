@@ -116,11 +116,10 @@ public class SampleController {
 		Iterator<String> iterator = multipartRequest.getFileNames();
 		while(iterator.hasNext()) {
 			MultipartFile multipartFile = multipartRequest.getFile(iterator.next());
-			String originalFileName = multipartFile.getOriginalFilename();
-			
-			String pathname = filePath + "/" + originalFileName;
+			String originalFileName = multipartFile.getOriginalFilename();			
 			byte[] contents = multipartFile.getBytes();
-			fileLib.upload(contents, pathname);
+			
+			fileLib.upload(contents, filePath, originalFileName);
 		}
 		
 		return true;
