@@ -27,18 +27,17 @@ https://developers.facebook.com/docs/sharing/webmasters/?locale=ko_KR
 			<%-- 트위터 카드에 나타날 웹 사이트의 제목 --%>
 			<meta name="twitter:title" content="${requestScope.metaData.title }" />
 
-		</c:if>
-		
-		<c:if test="${requestScope.metaData.title eq null}">
+		</c:if>		
+		<c:if test="${empty requestScope.metaData.title}">
 			<meta property="og:title"
-				content="Turning Data Into Insights-How to use Data Visualization for Storytelling" />
+				content="[Mwav.net] - Unleash your infinite possibilities with IT Optimization!!" />
 			<meta name="twitter:title"
-				content="Turning Data Into Insights-How to use Data Visualization for Storytelling" />
+				content="[Mwav.net] - Unleash your infinite possibilities with IT Optimization!!" />
 		</c:if>
 
 		<%--  페이지 설명 
 		트위터의 경우 없는 경우 생략되나, 페이스북의 경우 없는 경우 <meta id="metaDescription" name="description"에서 찾는다.--%>
-		<c:if test="${requestScope.metaData.description ne null}">
+		<c:if test="${not empty requestScope.metaData.description}">
 			<meta property="og:description"
 				content="${requestScope.metaData.description }" />
 			<%-- 카드에 나타날 요약 설명 --%>
@@ -46,12 +45,12 @@ https://developers.facebook.com/docs/sharing/webmasters/?locale=ko_KR
 				content="${requestScope.metaData.description }" />
 		</c:if>
 		
-		<c:if test="${requestScope.metaData.title eq null}">
+		<c:if test="${empty requestScope.metaData.description}">
 			<meta property="og:description"
-				content="데이터를 사용하여 전달하려는 내용을 쉽게 설명하고, 역동적이고 설득력 있는 데이터스토리텔링을 위한 시각화 방법." />
+				content="This is the website for Mwav.net. We are an IT development company possessing total E-Commerce platform based on the fancy technologies. You can contact at https://www.mwav.net/CustomerService/Contact/Contact.mwav?modal=Q&A if you have a question or an inquiry on the site." />
 			<%-- 카드에 나타날 요약 설명 --%>
 			<meta name="twitter:description"
-				content="데이터를 사용하여 전달하려는 내용을 쉽게 설명하고, 역동적이고 설득력 있는 데이터스토리텔링을 위한 시각화 방법." />		
+				content="This is the website for Mwav.net. We are an IT development company possessing total E-Commerce platform based on the fancy technologies. You can contact at https://www.mwav.net/CustomerService/Contact/Contact.mwav?modal=Q&A if you have a question or an inquiry on the site." />		
 		</c:if>
 	</c:when>
 	<c:otherwise>
@@ -73,7 +72,7 @@ https://developers.facebook.com/docs/sharing/webmasters/?locale=ko_KR
 <%--페이스북 카카오톡 구글 플러스 추적(스크랩가능여부) : https://developers.facebook.com/tools/debug/  --%>
 
 <c:choose>
-	<c:when test="${requestScope.metaData.keywords eq null }">
+	<c:when test="${empty requestScope.metaData.keywords}">
 		<meta id="metaKeywords" name="keywords"
 			content="Digital Marketing, E-Consulting, IT Consulting, WebSite Building, Cloud, AI, MR, VR, AR, IoT Platform, Deep Learning, Agile, DevOps, Domain, Web Hosting, Server Hosting, Hosting, HomePage, IT Solution, IT Product, DataBase, Maintenance, EC, Shopping Mall, Web Mail, News Solution, 디지털마케팅, E-컨설팅, IT컨설팅, 웹사이트 제작, 클라우드, 인공지능, 증강현실, 혼합현실, 가상현실, IOT 플랫폼, 딥 러닝, 에자일, 데브옵스, 도메인, 웹호스팅, 서버호스팅, 호스팅, 홈페이지, 웹사이트, 솔루션개발, 데이터베이스, 유지보수, 전자상거래, 쇼핑몰, 웹메일, 뉴스솔루션" />
 	</c:when>
@@ -90,6 +89,6 @@ https://developers.facebook.com/docs/sharing/webmasters/?locale=ko_KR
 <meta name="distribution" content="global" />
 <link rel="icon" href="/Images/CompanyLogos/CompanyLogo.ico" />
 <title><c:choose>
-		<c:when test="${metaData.title eq null }">[Mwav.net] >> Unleash your infinite possibilities with IT Optimization!!</c:when>
+		<c:when test="${empty metaData.title}">[Mwav.net] >> Unleash your infinite possibilities with IT Optimization!!</c:when>
 		<c:otherwise>${metaData.mainTitle }</c:otherwise>
 	</c:choose></title>
