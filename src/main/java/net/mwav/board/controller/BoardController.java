@@ -345,14 +345,18 @@ public class BoardController {
 			mv.addObject("breadcrumb", "Announcement");
 			mv.addObject("page_header", "Announcement");
 
-			String meta_image = (String) selectOneBuView.get("buRelatedLink");
-
-			String title = (String) selectOneBuView.get("buTitle");
-			String description = (String) selectOneBuView.get("buSubTitle");
+			
+			Map<String, Object> metaData = new HashMap<String, Object>();
 			// meta태그 이미지
-			mv.addObject("meta_image", meta_image);
-			mv.addObject("title", title);
-			mv.addObject("description", description);
+			metaData.put("title", (String) selectOneBuView.get("buTitle"));
+			metaData.put("description", (String) selectOneBuView.get("buSubTitle"));
+			metaData.put("thumbnail", (String) selectOneBuView.get("buRelatedLink"));
+			
+				
+			request.setAttribute("boardMetaData", metaData);
+			// meta태그 이미지
+			
+			// meta태그 이미지
 			mv.addObject("selectOneBuView", selectOneBuView);
 		}
 		return mv;

@@ -109,6 +109,10 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 				auth_url = request.getRequestURI().substring(0, 7); // 현재 URL
 			}
 			if (request.getRequestURI().length() >= 7 && staff != null) {
+				auth_url = request.getRequestURI().substring(0, 7); // 현재 URL
+				System.out.println("여기 걸리지롱"+auth_url);
+			}
+			if (request.getRequestURI().length() >= 7 && staff != null) {
 				key_id = Integer.toString(staff.getStaff_id());
 
 			}
@@ -146,7 +150,19 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 					// staff 로그인한 상태 또는 로그인을 시도 (/admins/staff/stfLogin.mwav)
 					// 위에서 !(auth_url.equals("/admins/staff/stfLogin.mwav") 체크
 					// 안하면 로그인 시도해도 그냥 로그인페이지로 리다이렉트
-					System.out.println("로그인상태 (staff)");
+					log.info("로그인상태 (staff)");
+					if ("/Admins/".equals(request
+							.getRequestURI()) || "/Admins".equals(request
+									.getRequestURI())) {
+						// 들어왔나?
+						response.sendRedirect("/admins/Default.mwav");
+
+						return false;
+					}else if("admins/staff/stfLogin.mwav".equals(request
+							.getRequestURI())) {
+						response.sendRedirect("/admins/Default.mwav");
+						return false;
+					}
 					return true;
 				}
 			} else {
