@@ -43,8 +43,22 @@
 <div class="panel-group">
 	<div class="panel list-group" id="left_menu">
 
+		<a class="btn list-group-item " data-toggle="collapse"
+			data-target="#list_menu_fusioncharts"
+			alt="/CompanyItem/ITProducts/HighSofts/HighSofts.mwav"
+			style="text-align: left !important">FusionCharts</a>
+		<div id="list_menu_fusioncharts" class="collapse child_left_menu">
+			<a href="/CompanyItem/ITProducts/FusionCharts/FusionCharts.mwav"
+				class="list-group-item " data-toggle="tooltip" data-placement="top"
+				data-original-title="Overview"><span
+				class="glyphicon glyphicon-chevron-right"></span> Overview</a> <a
+				href="/CompanyItem/ITProducts/FusionCharts/FusionCharts.mwav?overview"
+				class="list-group-item " data-toggle="tooltip" data-placement="top"
+				data-original-title="Features"><span
+				class="glyphicon glyphicon-chevron-right"></span> Features</a>
+		</div>
+
 		<%--사용자 시각에서 hover시 포인터가 떠야한다.
-         
          1. href="#"을 하면 자꾸 상단으로 이동
          2. 없애면 hover시 포인터가 없다 
          3. btn 클래스 등록하면 포인터 등장
@@ -94,21 +108,6 @@
 				class="list-group-item " data-toggle="tooltip" data-placement="top"
 				data-original-title="AboutUs"><span
 				class="glyphicon glyphicon-chevron-right"></span> AboutUs</a>
-		</div>
-
-		<a class="btn list-group-item " data-toggle="collapse"
-			data-target="#list_menu_fusioncharts"
-			alt="/CompanyItem/ITProducts/HighSofts/HighSofts.mwav"
-			style="text-align: left !important">FusionCharts</a>
-		<div id="list_menu_fusioncharts" class="collapse child_left_menu">
-			<a href="/CompanyItem/ITProducts/FusionCharts/FusionCharts.mwav"
-				class="list-group-item " data-toggle="tooltip" data-placement="top"
-				data-original-title="Overview"><span
-				class="glyphicon glyphicon-chevron-right"></span> Overview</a> <a
-				href="/CompanyItem/ITProducts/FusionCharts/FusionCharts.mwav?overview" 
-				class="list-group-item " data-toggle="tooltip" data-placement="top"
-				data-original-title="Features"><span
-				class="glyphicon glyphicon-chevron-right"></span> Features</a> 
 		</div>
 
 		<a class="btn list-group-item " data-toggle="collapse"
