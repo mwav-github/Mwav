@@ -49,7 +49,28 @@
 					<h2 class="col-md-12 page-header" style="color: #317eac">IT
 						Solutions</h2>
 				</div>
+				
+				<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="news">
+						<div class="img-figure">
+							<div class="cat">Visualization</div>
+							<a href="/CompanyItem/ITProducts/FusionCharts/FusionCharts.mwav"><img
+								src="/CompanyItem/zImage/Main_chart.jpg" class="img-responsive"
+								alt="Main_chart"></a>
+						</div>
 
+						<div class="title">
+							<h1>Make your data come alive</h1>
+						</div>
+						<p class="description">FusionCharts makes it easy for developers
+							to set up interactive charts in their web pages...</p>
+
+						<p class="more">
+							<a href="/CompanyItem/ITProducts/FusionCharts/FusionCharts.mwav">read
+								more</a><i class="fa fa-angle-right" aria-hidden="true"></i>
+						</p>
+					</div>
+				</div>
 				<div class="col-xs-12 col-sm-6 col-md-6">
 					<div class="news">
 						<div class="img-figure">
@@ -69,28 +90,6 @@
 
 						<p class="more">
 							<a href="/CompanyItem/ITProducts/Aervision/Aervision.mwav">read
-								more</a><i class="fa fa-angle-right" aria-hidden="true"></i>
-						</p>
-					</div>
-				</div>
-
-				<div class="col-xs-12 col-sm-6 col-md-6">
-					<div class="news">
-						<div class="img-figure">
-							<div class="cat">Visualization</div>
-							<a href="/hightsofts/hightsofts.mwav?items=Highcharts"><img
-								src="/CompanyItem/zImage/Main_chart.jpg" class="img-responsive"
-								alt="Main_chart"></a>
-						</div>
-
-						<div class="title">
-							<h1>Make your data come alive</h1>
-						</div>
-						<p class="description">Highcharts makes it easy for developers
-							to set up interactive charts in their web pages...</p>
-
-						<p class="more">
-							<a href="/hightsofts/hightsofts.mwav?items=Highcharts">read
 								more</a><i class="fa fa-angle-right" aria-hidden="true"></i>
 						</p>
 					</div>
