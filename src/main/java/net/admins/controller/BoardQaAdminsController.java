@@ -1,14 +1,11 @@
 package net.admins.controller;
 
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
@@ -17,8 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import net.common.common.CommandMap;
 import net.admins.service.BoardQaAdminsService;
+import net.admins.vo.Staff_VO;
+import net.common.common.CommandMap;
 import net.mwav.common.module.Common_Utils;
 import net.mwav.common.module.Paging;
 import net.mwav.common.module.PagingVO;
@@ -184,13 +182,13 @@ public class BoardQaAdminsController {
 			HttpServletRequest request) throws Exception {
 
 		HttpSession session = request.getSession();
-		Map<String, Object> selectStfLogin = (Map<String, Object>) session.getAttribute("staff");
+		Staff_VO selectStfLogin = (Staff_VO) session.getAttribute("staff");
 		
 		System.out.println("qna_id__"+commandMap.get("QnA_id"));
 		
 		if(selectStfLogin != null){
 		commandMap.put("uaResponser", 'S');
-		int staff_id = (Integer) selectStfLogin.get("staff_id");
+		int staff_id = selectStfLogin.getStaff_id();
 	
 		commandMap.put("uaResponser_id", staff_id);
 		

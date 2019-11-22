@@ -58,8 +58,7 @@ function reCheckuaForm(formname){
 		//alert(url);
 			
 		if (check == true) {
-			$
-					.ajax({
+			$.ajax({
 						url : url,
 						type : "post",
 						data : uaFormSerialize.serialize(),
