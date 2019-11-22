@@ -19,7 +19,7 @@ public interface BoardQaAdminsService {
 
 	List<Map<String, Object>> selectListQnAFrontList(Map<String, Object> map);
 
-	boolean insertQnAUaForm(Map<String, Object> map);
+	boolean insertQnAUaForm(Map<String, Object> map) throws Exception;
 
 	boolean updateQnAUaForm(Map<String, Object> map);
 

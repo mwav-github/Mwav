@@ -339,14 +339,16 @@ function reCheckuaForm(formname){
 								test="${selectOneQnAView.uqStatus eq '1' && selectOneQnAView.uaResponser_id eq null }">
 								<div class="span12" id="uadivForm">
 									<form method="post" name="uaForm" id="uaForm">
-										<input type="hidden" name="uaProfit" value="1" /> <input
-											type="hidden" name="QnA_id"
-											value="${selectOneQnAView.QnA_id}" />
+										<input type="hidden" name="uaProfit" value="1" /> 
+										<input type="hidden" name="QnA_id" value="${selectOneQnAView.QnA_id}" />
 
 										<div class="well">
-											<label for="title">Title</label> <input name="uaTitle"
-												placeholder="Title" class="form-control input-md"
-												type="text"> <label for="Message">Message*</label>
+											<label for="email">Receipter Email</label> 
+											<input name="uaEmail" placeholder="Email" class="form-control input-md" type="text" value="${selectOneQnAView.uqUserEmail}" readonly>
+											
+											<label for="title">Title</label> 
+											<input name="uaTitle" placeholder="Title" class="form-control input-md" type="text"> 
+											<label for="Message">Message*</label>
 											<textarea class="form-control" rows="10" name="uaContent"
 												placeholder="Enter Your Message *"></textarea>
 											<div class="enter"></div>

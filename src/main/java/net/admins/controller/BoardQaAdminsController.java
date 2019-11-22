@@ -184,6 +184,7 @@ public class BoardQaAdminsController {
 		HttpSession session = request.getSession();
 		Staff_VO selectStfLogin = (Staff_VO) session.getAttribute("staff"); 
 		
+		
 		System.out.println("qna_id__"+commandMap.get("QnA_id"));
 		
 		if(selectStfLogin != null){
@@ -196,9 +197,10 @@ public class BoardQaAdminsController {
 		commandMap.put("uaIpAddress", realIp);
 		}
 		
-		boolean flag = BoardQaAdminsService
-				.insertQnAUaForm(commandMap.getMap());
-
+		commandMap.put("xmlPath", request.getRealPath("/xConfig/mail.xml.config"));
+		commandMap.put("staff", selectStfLogin);
+		
+		boolean flag = BoardQaAdminsService.insertQnAUaForm(commandMap.getMap());
 		//System.out.println("df" + flag);
 		// mv.addObject("insertBnsForm", insertBnsForm);
 		// mv.addObject("IDX", commandMap.get("IDX"));
