@@ -11,6 +11,8 @@ import javax.mail.Message;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.velocity.VelocityEngineUtils;
+import org.springframework.web.servlet.view.velocity.VelocityConfigurer;
 
 import net.admins.dao.BoardQaAdminsDAO;
 import net.admins.vo.Staff_VO;
@@ -24,7 +26,11 @@ import net.mwav.common.module.XmlLib;
 public class BoardQaAdminsServiceImpl implements BoardQaAdminsService {
 	Logger log = Logger.getLogger(this.getClass());
 
+	@Autowired
+	VelocityConfigurer velocityConfig;
+	
 	@Resource(name = "boardQaAdminsDAO")
+	
 	@Autowired(required = true)
 	private BoardQaAdminsDAO boardQaAdminsDAO;
 	Common_Utils cou = new Common_Utils();
@@ -89,13 +95,14 @@ public class BoardQaAdminsServiceImpl implements BoardQaAdminsService {
 		
 		Staff_VO staff = (Staff_VO)map.get("staff");
 		
-		System.out.println("수신자 :" + recipient);
-		System.out.println("mailConfig" + mailConfig.getUser());
+		//메일 문의 답변 템플릿
+		String content = VelocityEngineUtils.mergeTemplateIntoString(velocityConfig.createVelocityEngine(), "QnAnswer/Question.vm", "UTF-8", map);
 		
 		//문의자에게 답변 메일 발신
 		Message recipientMsg = new MessageBuilder(mailConfig.getCollectAllFieldProp())
 						.setSubject(title)		//제목
-						.setContent(contents)		//내용
+//						.setContent(contents)		//내용
+						.setContent(content)
 						.setFrom(mailConfig.getUser())					//발신자
 						.setRecipient(recipient)	//수신자
 						.build();
