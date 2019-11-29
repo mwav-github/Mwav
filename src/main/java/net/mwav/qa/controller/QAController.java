@@ -65,12 +65,10 @@ public class QAController {
 	@RequestMapping(value = "/qa/qaFormAjax.mwav")
 	public @ResponseBody boolean insertQAFormaAjax(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
-		// System.out.println("sdfdfs");
 
 		boolean flag = false;
 		int member_id = 0;
 		int statistics_id = 0;
-		char uqInvoker;
 		try {
 			HttpSession session = request.getSession();
 
@@ -98,17 +96,9 @@ public class QAController {
 
 			commandMap.put("member_id", member_id);
 			commandMap.put("statistics_id", statistics_id);
-			System.out.println("member_id_QA" + member_id);
-			System.out.println("sdf" + statistics_id);
-
-			log.debug("인터셉터 테스트");
-			// qaService.insertQAForm(commandMap.getMap(), request);
 
 			flag = qaService.insertQAForm(commandMap.getMap(), request);
 
-			System.out.println("df" + flag);
-			// mv.addObject("insertBnsForm", insertBnsForm);
-			// mv.addObject("IDX", commandMap.get("IDX"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

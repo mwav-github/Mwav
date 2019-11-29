@@ -96,7 +96,7 @@ public class BoardQaAdminsServiceImpl implements BoardQaAdminsService {
 		Staff_VO staff = (Staff_VO)map.get("staff");
 		
 		//메일 문의 답변 템플릿
-		String content = VelocityEngineUtils.mergeTemplateIntoString(velocityConfig.createVelocityEngine(), "QnAnswer/Question.vm", "UTF-8", map);
+		String content = VelocityEngineUtils.mergeTemplateIntoString(velocityConfig.createVelocityEngine(), "QnAnswer/QuestionAnswer.vm", "UTF-8", map);
 		
 		//문의자에게 답변 메일 발신
 		Message recipientMsg = new MessageBuilder(mailConfig.getCollectAllFieldProp())

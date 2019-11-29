@@ -91,40 +91,10 @@
 						dataType : "json", // 데이터타입을 JSON형식으로 지정
 						success : function(xmlStr) {
 
-							//alert(xmlStr);
-							//alert(typeof(xmlStr));
-							//alert(trim(xmlStr));
-							if (xmlStr != null) {
-								//http://devbox.tistory.com/entry/%EB%B9%84%EA%B5%90-%EC%99%80-%EC%9D%98-%EC%B0%A8%EC%9D%B4-1
-								//alert($("#resultpostseek").height());
-								if (xmlStr === true) {
-									//alert('정상등록');
-									$("#alert_success").show();
-									//$("#QAForm").reset();						
-									//document.getElementById("insertQA").disabled = true;
-
-									//전체 폼 리셋
-									$('#QAForm').each(function() {
-										this.reset();
-									});
-									//
-
-									setTimeout(function() {
-										$("#Contact").modal('hide');
-										$("#alert_success").hide();
-									}, 1500);
-
-								} else if (xmlStr === false) {
-
-									$("#alert_failure").show();
-									//alert('등록실패');
-									//안내 어떻게 해줄지 추후 구현 필요
-									setTimeout(function() {
-										$("#Contact").modal('hide');
-										$("#alert_failure").hide();
-									}, 1500);
-								}
-
+							alert('문의가 등록되었습니다.\n감사합니다.');
+							if (xmlStr === true) {
+							} else if (xmlStr === false) {
+								alert('등록실패');
 							}
 						},
 						error : function(xhr, status, error) {
@@ -385,7 +355,7 @@
 		<!-- Container for main page display content -->
 		<div class="col-md-9 pull-left">
 			<form class="form-horizontal" id="QAFormPage" method="post"
-				action="/qa/qaForm.mwav" onsubmit="return reCheckForm(this);">
+				action="/" onsubmit="return reCheckForm(this);">
 				<input TYPE="hidden" name="uqStatus" value=""> <input
 					TYPE="hidden" name="QnA_id" value="${before_Q_id }">
 
