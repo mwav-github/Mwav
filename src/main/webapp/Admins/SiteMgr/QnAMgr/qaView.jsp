@@ -58,58 +58,57 @@ function reCheckuaForm(formname){
 		//alert(url);
 			
 		if (check == true) {
-			$
-					.ajax({
-						url : url,
-						type : "post",
-						data : uaFormSerialize.serialize(),
-						contentType : "application/x-www-form-urlencoded; charset=utf-8",
-						dataType : "json", // 데이터타입을 JSON형식으로 지정
-						success : function(xmlStr) {
-							if (xmlStr != null) {
-								//http://devbox.tistory.com/entry/%EB%B9%84%EA%B5%90-%EC%99%80-%EC%9D%98-%EC%B0%A8%EC%9D%B4-1
-								//alert($("#resultpostseek").height());
-								if (xmlStr === true) {
-								alert('정상적으로 답변이 등록되었습니다.')
-								//$('#uadivForm').hide();
-								var url = location.href;
-								var position = url.indexOf("&");
-								var suburl = url.substring(0,position);
-								
-								//&이 없는 경우 - 댓글 최초 등록
-								if(position == '-1'){
-								location.replace(url);
-								}
-								//&이 있는 경우 - 댓글 수정시
-								else {
-								location.replace(suburl);
-									
-								}
-								// 이럴경우 댓글 수정하기 후 리로드하면 또 수정하기 페이지 
-								//http://localhost:8080/admin/boardQnA/qaView.mwav?QnA_id=1000063&qaComment=modify
-								//location.reload();
-							return true;
-
-								} else if (xmlStr === false) {
-
-							    alert('답변이 등록되지 않았습니다.');
-							    return false;
-								}
-
+			$.ajax({
+					url : url,
+					type : "post",
+					data : uaFormSerialize.serialize(),
+					contentType : "application/x-www-form-urlencoded; charset=utf-8",
+					dataType : "json", // 데이터타입을 JSON형식으로 지정
+					success : function(xmlStr) {
+						if (xmlStr != null) {
+							//http://devbox.tistory.com/entry/%EB%B9%84%EA%B5%90-%EC%99%80-%EC%9D%98-%EC%B0%A8%EC%9D%B4-1
+							//alert($("#resultpostseek").height());
+							if (xmlStr === true) {
+							alert('정상적으로 답변이 등록되었습니다.')
+							//$('#uadivForm').hide();
+							var url = location.href;
+							var position = url.indexOf("&");
+							var suburl = url.substring(0,position);
+							
+							//&이 없는 경우 - 댓글 최초 등록
+							if(position == '-1'){
+							location.replace(url);
 							}
-						},
-						error : function(xhr, status, error) {
-							var errorMsg = 'status(code): ' + jqXHR.status
-									+ '\n';
-							errorMsg += 'statusText: ' + jqXHR.statusText
-									+ '\n';
-							errorMsg += 'responseText: ' + jqXHR.responseText
-									+ '\n';
-							errorMsg += 'textStatus: ' + textStatus + '\n';
-							errorMsg += 'errorThrown: ' + errorThrown;
-							alert(errorMsg);
+							//&이 있는 경우 - 댓글 수정시
+							else {
+							location.replace(suburl);
+								
+							}
+							// 이럴경우 댓글 수정하기 후 리로드하면 또 수정하기 페이지 
+							//http://localhost:8080/admin/boardQnA/qaView.mwav?QnA_id=1000063&qaComment=modify
+							//location.reload();
+						return true;
+
+							} else if (xmlStr === false) {
+
+						    alert('답변이 등록되지 않았습니다.');
+						    return false;
+							}
+
 						}
-					});
+					},
+					error : function(xhr, status, error) {
+						var errorMsg = 'status(code): ' + jqXHR.status
+								+ '\n';
+						errorMsg += 'statusText: ' + jqXHR.statusText
+								+ '\n';
+						errorMsg += 'responseText: ' + jqXHR.responseText
+								+ '\n';
+						errorMsg += 'textStatus: ' + textStatus + '\n';
+						errorMsg += 'errorThrown: ' + errorThrown;
+						alert(errorMsg);
+					}
+				});
 		} else {
 			return false;
 		}
@@ -340,14 +339,16 @@ function reCheckuaForm(formname){
 								test="${selectOneQnAView.uqStatus eq '1' && selectOneQnAView.uaResponser_id eq null }">
 								<div class="span12" id="uadivForm">
 									<form method="post" name="uaForm" id="uaForm">
-										<input type="hidden" name="uaProfit" value="1" /> <input
-											type="hidden" name="QnA_id"
-											value="${selectOneQnAView.QnA_id}" />
+										<input type="hidden" name="uaProfit" value="1" /> 
+										<input type="hidden" name="QnA_id" value="${selectOneQnAView.QnA_id}" />
 
 										<div class="well">
-											<label for="title">Title</label> <input name="uaTitle"
-												placeholder="Title" class="form-control input-md"
-												type="text"> <label for="Message">Message*</label>
+											<label for="email">Receipter Email</label> 
+											<input name="uaEmail" placeholder="Email" class="form-control input-md" type="text" value="${selectOneQnAView.uqUserEmail}" readonly>
+											
+											<label for="title">Title</label> 
+											<input name="uaTitle" placeholder="Title" class="form-control input-md" type="text"> 
+											<label for="Message">Message*</label>
 											<textarea class="form-control" rows="10" name="uaContent"
 												placeholder="Enter Your Message *"></textarea>
 											<div class="enter"></div>
