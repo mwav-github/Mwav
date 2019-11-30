@@ -355,7 +355,7 @@
 		<!-- Container for main page display content -->
 		<div class="col-md-9 pull-left">
 			<form class="form-horizontal" id="QAFormPage" method="post"
-				action="/" onsubmit="return reCheckForm(this);">
+				action="/qa/qaForm.mwav" onsubmit="return reCheckForm(this);">
 				<input TYPE="hidden" name="uqStatus" value=""> <input
 					TYPE="hidden" name="QnA_id" value="${before_Q_id }">
 
