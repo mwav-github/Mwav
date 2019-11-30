@@ -100,11 +100,10 @@ public class BoardQaAdminsServiceImpl implements BoardQaAdminsService {
 		
 		//문의자에게 답변 메일 발신
 		Message recipientMsg = new MessageBuilder(mailConfig.getCollectAllFieldProp())
-						.setSubject(title)		//제목
-//						.setContent(contents)		//내용
-						.setContent(content)
-						.setFrom(mailConfig.getUser())					//발신자
-						.setRecipient(recipient)	//수신자
+						.setSubject("[고객센터] Mwav에서 문의하신 내용에 답변이 등록되었습니다.")		//제목
+						.setContent(content)				//내용
+						.setFrom(mailConfig.getUser())		//발신자
+						.setRecipient(recipient)			//수신자
 						.build();
 		mail.send(recipientMsg);
 		
