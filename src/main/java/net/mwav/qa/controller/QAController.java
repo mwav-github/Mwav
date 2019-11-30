@@ -147,6 +147,8 @@ public class QAController {
 		// 아직 까지는 한벌로
 		boolean flag = qaService.insertQAForm(commandMap.getMap(), request);
 		request.setAttribute("check", flag);
+		request.setAttribute("mode", "qaCompleted");
+
 		// mv.addObject("check", flag);
 		// mv.addObject("IDX", commandMap.get("IDX"));
 

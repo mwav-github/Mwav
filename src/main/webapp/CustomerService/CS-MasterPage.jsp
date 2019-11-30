@@ -90,6 +90,10 @@
 
 					<jsp:include page="/CommonApps/BoardQnA/qaList.jsp" flush="false" />
 				</c:if>
+				<c:if test="${mode == 'qaCompleted'}">
+
+					<jsp:include page="/CommonApps/BoardQnA/qaLanding.jsp" flush="false" />
+				</c:if>
 				<c:if test="${mode == 'qaView'}">
 
 					<jsp:include page="/CommonApps/BoardQnA/qaView.jsp" flush="false" />
