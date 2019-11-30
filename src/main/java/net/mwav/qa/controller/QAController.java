@@ -65,7 +65,6 @@ public class QAController {
 	@RequestMapping(value = "/qa/qaFormAjax.mwav")
 	public @ResponseBody boolean insertQAFormaAjax(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
-
 		boolean flag = false;
 		int member_id = 0;
 		int statistics_id = 0;
@@ -96,7 +95,10 @@ public class QAController {
 
 			commandMap.put("member_id", member_id);
 			commandMap.put("statistics_id", statistics_id);
-
+			
+			//템플릿 경로
+			commandMap.put("xmlPath", request.getRealPath("/xConfig/mail.xml.config"));
+			
 			flag = qaService.insertQAForm(commandMap.getMap(), request);
 
 		} catch (Exception e) {
@@ -144,6 +146,9 @@ public class QAController {
 
 		log.info("인터셉터 테스트");
 
+		//템플릿 경로
+		commandMap.put("xmlPath", request.getRealPath("/xConfig/mail.xml.config"));
+		
 		// 아직 까지는 한벌로
 		boolean flag = qaService.insertQAForm(commandMap.getMap(), request);
 		request.setAttribute("check", flag);
