@@ -9,7 +9,7 @@ import net.common.common.CommandMap;
 
 public interface QAService {
 
-	boolean insertQAForm(Map<String, Object> map, HttpServletRequest request);
+	boolean insertQAForm(Map<String, Object> map, HttpServletRequest request) throws Exception;
 
 /////////////////////////////////////Goods/////////////////////////////////////
 
