@@ -102,7 +102,7 @@ public class BoardQaAdminsServiceImpl implements BoardQaAdminsService {
 		Message recipientMsg = new MessageBuilder(mailConfig.getCollectAllFieldProp())
 						.setSubject("[고객센터] Mwav에서 문의하신 내용에 답변이 등록되었습니다.")		//제목
 						.setContent(content)				//내용
-						.setFrom(mailConfig.getUser())		//발신자
+						.setFrom("webmaster@mwav.net")		//발신자
 						.setRecipient(recipient)			//수신자
 						.build();
 		mail.send(recipientMsg);
@@ -111,7 +111,7 @@ public class BoardQaAdminsServiceImpl implements BoardQaAdminsService {
 		Message msg = new MessageBuilder(mailConfig.getCollectAllFieldProp())
 				.setSubject(staff.getStfNickname()+"님이 " + String.valueOf(map.get("QnA_id")) + "번의 문의 답변을 보냈습니다.")		//제목
 				.setContent("답변: " + title+"\n"+contents)		//내용
-				.setFrom(staff.getStfEmail())					//발신자
+				.setFrom("webmaster@mwav.net")					//발신자
 				.setRecipient(mailConfig.getUser())	//수신자
 				.build();
 		mail.send(msg);

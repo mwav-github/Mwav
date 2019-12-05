@@ -64,7 +64,7 @@ public class QAServiceImpl implements QAService {
 			try {
 				map.put("QnA_id", imsi_flag);
 				//QA문의 발송
-				//emailSender.sendQuestionEmail(map);
+//				emailSender.sendQuestionEmail(map);
 				
 				String path = String.valueOf(map.get("xmlPath"));
 				System.out.println("패스 : " + path);
@@ -77,14 +77,15 @@ public class QAServiceImpl implements QAService {
 				Message recipientMsg = new MessageBuilder(mailConfig.getCollectAllFieldProp())
 								.setSubject("[고객센터] Mwav에서 문의하신 내용이 접수되었습니다.")		//제목
 								.setContent(content)				//내용
-								.setFrom(mailConfig.getUser())		//발신자
+								.setFrom("webmaster@mwav.net")		//발신자
 								.setRecipient((String) map.get("uqUserEmail"))			//수신자
 								.build();
 				MailLib.getInstance().send(recipientMsg);
 				
 			} catch (Exception e) { // TODO Auto-generated catch block
+				flag = false;
 				e.printStackTrace();
-			} // 메일발송
+			} 
 		} else if (imsi_flag == null) {
 			flag = false;
 		}
