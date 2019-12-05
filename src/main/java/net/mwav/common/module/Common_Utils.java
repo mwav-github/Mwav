@@ -904,7 +904,7 @@ public class Common_Utils {
 			System.out.println("keywords "+keywords);
 		} else {
 			description = "This is the website for Mwav.net. We are an IT development company possessing total E-Commerce platform based on the fancy technologies. You can contact at https://www.mwav.net/CustomerService/Contact/Contact.mwav?modal=Q&A if you have a question or an inquiry on the site.";
-			thumbnail = "https://www.mwav.net/Images/CompanyLogos/CompanyLogo.ico";
+			thumbnail = "https://www.mwav.net/Images/CompanyLogos/CompanyLogo_L.jpg";
 
 			if (url_1depth.equals("Company")) {
 				set_Title = "[Mwav.net] >> [" + url_1depth + " > " + last_depth + "] - " + main_Title;
