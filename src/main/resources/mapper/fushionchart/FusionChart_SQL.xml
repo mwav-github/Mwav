@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="fusionChart">
+	
+	<select id="selectWeeklyUsersList" resultType="net.common.charts.vo.FusionChartVo" parameterType="hashmap" >
+		  SELECT /* fusionChart.selectWeeklyUsersList */ 
+		  			DATE_FORMAT(stStatisticsDt, '%W') AS 'name',
+          			COUNT('statistics_id') AS 'data'
+          FROM Statistics_tbl
+          WHERE <![CDATA[ TO_DAYS(NOW()) - TO_DAYS(stStatisticsDt) <= 7 ]]>
+          			<if test="stPromoterId != null and stPromoterId != ''" >
+	      			  AND  stPromoterId = #{stPromoterId}
+	      			</if>
+          GROUP BY `name`
+          ORDER BY `name` DESC
+	</select>
+	
+	<select id="selectTop10PageList" resultType="net.common.charts.vo.FusionChartVo" parameterType="hashmap" >
+          SELECT /* fusionChart.selectTop10PageList */ 
+          			b.slPageName AS 'name', 
+	      			COUNT(*) AS 'data' 
+	      FROM Statistics_tbl a, StatisticsLog_tbl b
+	      WHERE <![CDATA[ slPageName IS NOT NULL ]]> 
+	          		<if test="stPromoterId != null and stPromoterId != ''" >
+	      			  AND  stPromoterId = #{stPromoterId}
+	      			</if>
+	          		AND a.statistics_id = b.statistics_id
+	      GROUP BY `name`
+	      ORDER BY data DESC 
+	      LIMIT 0,10
+	</select>
+	
+	<select id="selectClientScreenSizeList" resultType="net.common.charts.vo.FusionChartVo" parameterType="hashmap" >
+	      SELECT /* fusionChart.selectClientScreenSizeList */
+	      			COUNT(*) AS 'data', 
+	      			stClientScreen AS 'name' 
+	      FROM Statistics_tbl 
+	      WHERE <![CDATA[ stClientScreen IS NOT NULL AND TO_DAYS(NOW()) - TO_DAYS(stStatisticsDt) <= 30 ]]>
+	      			<if test="stPromoterId != null and stPromoterId != ''" >
+	      			  AND  stPromoterId = #{stPromoterId}
+	      			</if>
+	      GROUP BY `name`
+	      ORDER BY `data` DESC 
+	</select>
+	
+	
+</mapper>

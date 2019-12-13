@@ -16,123 +16,61 @@
 <!-- <script src="https://code.highcharts.com/highcharts.src.js"></script> -->
 <!-- <script src="/CommonLibrary/Javascript/custom-chart.js"></script> -->
 
-<script type="text/javascript"
-	src="https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.js"></script>
-<script type="text/javascript"
-	src="https://cdn.fusioncharts.com/fusioncharts/latest/themes/fusioncharts.theme.fusion.js"></script>
+<script src="https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.js"></script>
+<script src="https://cdn.fusioncharts.com/fusioncharts/latest/themes/fusioncharts.theme.fusion.js"></script>
+<script src="/CommonLibrary/Javascript/fusion-chart.js"></script>
 
 <script type="text/javascript">
 	var contextPath = '<c:out value="${pageContext.request.contextPath}"/>';
-
+	
 	$(document).ready(
-
-			function() {
-				// 	getRemoteDataDrawChart(contextPath + '/linechart1.chart', createNewLineChart('chart1-container', getBaseChart()));
-				// 	getRemoteDataDrawChart(contextPath + '/linechart2.chart', createNewLineChart('chart2-container', getBaseChart()));
-				// 	getRemoteDataDrawColumnChart(contextPath + '/charts/highsofts/Top10PageList.mwav', createNewColumnChart('chart1-container', getBaseColumnChart()));
-				// 	getRemoteDataDrawChart(contextPath + '/charts/highsofts/WeeklyUsers.mwav', createNewLineChart('chart3-container', getBaseLineChart()));
-				// 	getRemoteDataDrawPieChart(contextPath+ '/charts/highsofts/ClientScreenSize.mwav', createNewPieChart('chart2-container', getBasePieChart()));
-
-				
-				// 컬럼차트 -------------------------------------------------------
-				var columnChartData = {
-					'chart' : {
-						'caption' : 'Top 10 Page List',
-						'xAxisName' : 'Pages',
-						'yAxisName' : 'Counts',
-						'numberPrefix' : '',
-						'theme': 'fusion'
-					},
-					'data' : []
-				};
-
-				var columnChartConfig = new FusionCharts({
-					type : 'column2d',
-					renderAt : 'chart1-container',
-					width : '100%',
-					height : '400',
-					dataFormat : 'json',
-					dataSource : columnChartData
-				});
-
-				$.ajax({
-					url : contextPath + "/charts/fushionchart/selectTop10PageList.mwav",
-					dataType : "text",
-					success : function(data) {
-						var dataObjectArray = new Array();
-						var tmp = JSON.parse(decodeURIComponent(data));
-						
-						$.each(tmp, function(key, value) {
-							var dataObject = {
-								label : '',
-								value : ''
-							};
-							dataObject.label = value.label;
-							dataObject.value = value.value;
-							dataObjectArray.push(dataObject);
-
-						});
-						columnChartData.data = dataObjectArray;
-						columnChartConfig.setJSONData(columnChartData);
-						columnChartConfig.render();
-					},
-					error : function(data) {
-						alert("Column Chart ERROR!");
-					}
-				});
-
-				
-				// 라인 차트 -------------------------------------------------------
-				var lineChartData = {
-					'chart' : {
-						'caption' : 'Weekly Users List',
-						'yaxisname' : 'Visitors',
-						'numberPrefix' : '',
-						'rotatelabels' : '1',
-						'setadaptiveymin' : '1',
-						'theme': 'fusion'
-					},
-					'data' : []
-				};
-				
-				var lineChartConfig = new FusionCharts({
-					type : 'line',
-					renderAt : 'chart3-container',
-					width : '100%',
-					height : '300',
-					dataFormat : 'json',
-					dataSource : lineChartData
-				});
-
-				$.ajax({
-					url : contextPath + "/charts/fushionchart/selectWeeklyUsersList.mwav",
-					dataType : "text",
-					success : function(data) {
-						var dataObjectArray = new Array();
-						var tmp = JSON.parse(data);
-
-						$.each(tmp, function(key, value) {
-							var dataObject = {
-								label : '',
-								value : ''
-							};
-							dataObject.label = value.label;
-							dataObject.value = value.value;
-							dataObjectArray.push(dataObject);
-
-						});
-						lineChartData.data = dataObjectArray;
-						lineChartConfig.setJSONData(lineChartData);
-						lineChartConfig.render();
-					},
-					error : function(data) {
-						alert("Line Chart ERROR!");
-					}
-				});
-				
-				
-				// 파이 차트 -------------------------------------------------------
-				var pieChartData = {
+		
+		function() {
+			
+			// 하이차트
+			// 	getRemoteDataDrawChart(contextPath + '/linechart1.chart', createNewLineChart('chart1-container', getBaseChart()));
+			// 	getRemoteDataDrawChart(contextPath + '/linechart2.chart', createNewLineChart('chart2-container', getBaseChart()));
+			// 	getRemoteDataDrawColumnChart(contextPath + '/charts/highsofts/Top10PageList.mwav', createNewColumnChart('chart1-container', getBaseColumnChart()));
+			// 	getRemoteDataDrawChart(contextPath + '/charts/highsofts/WeeklyUsers.mwav', createNewLineChart('chart3-container', getBaseLineChart()));
+			// 	getRemoteDataDrawPieChart(contextPath+ '/charts/highsofts/ClientScreenSize.mwav', createNewPieChart('chart2-container', getBasePieChart()));
+			
+			
+			// 컬럼형 퓨전차트 문구, 데이터 단위 설정
+			setColumnChartData('Top 10 Page List', '', 'Pages', 'Counts', '');
+			
+			// 컬럼형 퓨전차트 설정
+ 			var columnChartConfig = new FusionCharts({
+ 				type : 'column2d',
+ 				renderAt : 'chart1-container',
+ 				width : '100%',
+ 				height : '400',
+ 				dataFormat : 'json',
+ 				dataSource : columnChartData
+ 			});
+ 			
+			// 컬럼형 퓨전차트 데이터 호출, 랜더링
+ 			renderColumnChart(columnChartConfig, contextPath, "/charts/fushionchart/selectTop10PageList.mwav");
+			
+			
+			// 라인형 퓨전차트 문구, 데이터 단위 설정
+			setLineChartData('Weekly Users List', '', 'Visitors', '', '3', '1');
+			
+			// 라인형 퓨전차트 설정
+			var lineChartConfig = new FusionCharts({
+				type : 'line',
+				renderAt : 'chart3-container',
+				width : '100%',
+				height : '300',
+				dataFormat : 'json',
+				dataSource : lineChartData
+			});
+			
+			// 라인형 퓨전차트 데이터 호출, 랜더링
+			renderLineChart(lineChartConfig, contextPath, "/charts/fushionchart/selectWeeklyUsersList.mwav");
+			
+			
+			// 파이 차트 -------------------------------------------------------
+			var pieChartData = {
 					'chart' : {
 						'caption' : 'Client Screen Size List',
 						'plottooltext': '<b>$percentValue</b> of web browsers run on $label ',
@@ -169,7 +107,6 @@
 							dataObject.label = value.label;
 							dataObject.value = value.value;
 							dataObjectArray.push(dataObject);
-
 						});
 						pieChartData.data = dataObjectArray;
 						pieChartConfig.setJSONData(pieChartData);
