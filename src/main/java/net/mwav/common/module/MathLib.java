@@ -1,59 +1,74 @@
-//--------------------------------------------------------------------------------------------------
-// �� �� �� Ʈ : The Framework of Mwav.net
-// ��       �� : ���� ó����ƾ
-// ���α׷� �� : MathLib.java
-// �� �� �� �� : --------
-// ��       �� : JAVA
-// Ư �� �� �� : None
-//--------------------------------------------------------------------------------------------------
-// �� �� ��  ��          ��  ��      ��  ��    ��
-//---------  --------------  ----------  -----------------------------------------------------------
-// �� �� ��    �����̺�    2016.11.30  �����ۼ�
-//--------------------------------------------------------------------------------------------------
 
 package net.mwav.common.module;
 
-import java.util.Random;
 import java.security.SecureRandom;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Random;
+
 /**
- * @author student
- *
+ * <pre>description : Utility Class for Mathematical operations </pre>
+ * @class name : MathLib.java
+ * @author : (정) 남동희
+            (부) 김주성
+ * @since : 2019. 12. 02.
+ * @version : v1.0
+ * @see
+ * @history :
+   ----------------------------------------
+   * Modification Information(개정이력)
+   ----------------------------------------
+           수정일          수정자     		수정내용
+   --------    --------    ----------------
+   2019. 12. 02.    남동희	최초 생성    
  */
 public class MathLib {
-	private static MathLib mathLib;
-	private MathLib(){}
-	
-	public static synchronized MathLib getInstance(){
-		if(mathLib ==null){
-			mathLib = new MathLib();
-		}
-		return mathLib;   
-	}
-	
-	// ��ȸ method
-	//public static EagerInitialization getInstance () {
-	//	return instance;
-	//}
-	/*
-	 * public static MathLib Self { get { return dir; } set { dir = value; } }
-	 */
 
-	/// <summary>
-	/// �Խ��ǿ� ǥ�� �� ���� ����� ���� ���� ǥ�� �մϴ�.
-	/// </summary>
-	/// <param name="filesize">byte�� �Ѱ��ݴϴ�.</param>
-	/// <returns></returns>
+	private MathLib() {
+	}
+
+	private static class MathLibHolder {
+		private static final MathLib mathLib = new MathLib();
+	}
+
+	/**
+	 * 
+	 * @method name : getInstance
+	 * @author : (정) 남동희
+	             (부)
+	 * @since  : 2019. 12. 02.
+	 * @version : v1.0
+	 * @see :
+	 * @description : Instance method of MathLib Class
+	 * @history :
+	   ----------------------------------------
+	   * Modification Information(개정이력)
+	   ----------------------------------------
+	     수정일     		수정자        	수정내용
+	   --------    --------    ----------------
+	   2019. 12. 02. 남동희		최초 생성     
+	 * @param :
+	 * @return : MathLib Instance
+	 * @throws : 
+	 <pre>
+	 * {@code : 
+	 * MathLib mathLib = MathLib.getInstance();
+	 * } 
+	 </pre>
+	 */
+	public static MathLib getInstance() {
+		return MathLibHolder.mathLib;
+	}
+
 	public String GetFileSizeUnit(long filesize) {
 		float tmp = filesize; //Int32.Parse(filesize);
 
 		String tmstr = "", tmphead = "", tmptail = "";
 
 		if (tmp > 1024000) {
-			tmstr = String.valueOf(tmp/1024000);
+			tmstr = String.valueOf(tmp / 1024000);
 
 			if (tmstr.lastIndexOf(".") > 0) {
 				tmphead = tmstr.substring(0, tmstr.lastIndexOf("."));
@@ -68,7 +83,7 @@ public class MathLib {
 				return tmstr + "MB";
 			}
 		} else if (tmp > 1024) {
-			tmstr =  String.valueOf(tmp/1024);
+			tmstr = String.valueOf(tmp / 1024);
 
 			if (tmstr.lastIndexOf(".") > 0) {
 				tmphead = tmstr.substring(0, tmstr.lastIndexOf("."));
@@ -86,25 +101,20 @@ public class MathLib {
 			return filesize + "byte";
 		}
 	}
-	
-	
-	// �ζ� ��ȣ�� �ڵ����� �����ؼ� ��ȯ�Ѵ�.  lowNumber, highNumber ����
-	public int generateRandomNumber(int lowNumber, int highNumber)
-	{
+
+	public int generateRandomNumber(int lowNumber, int highNumber) {
 		int returnValue;
-		Random r = new Random();		
-		returnValue = r.nextInt(highNumber-lowNumber + 1) + lowNumber;
+		Random r = new Random();
+		returnValue = r.nextInt(highNumber - lowNumber + 1) + lowNumber;
 		return returnValue;
 	}
-	public int generateRandomNumber(int highNumber)
-	{
+
+	public int generateRandomNumber(int highNumber) {
 		int returnValue;
 		returnValue = generateRandomNumber(0, highNumber);
 		return returnValue;
 	}
-	
-	
-	
+
 	/**
 	 * 특정숫자 집합에서 랜덤 숫자를 구하는 기능 시작숫자와 종료숫자 사이에서 구한 랜덤 숫자를 반환한다
 	 *
@@ -294,6 +304,64 @@ public class MathLib {
 			}
 		}
 	}
-	
-	
+
+	/** 
+	 * <pre>description : returns random Integer value </pre>
+	 * @method name : getRandomInt
+	 * @author : (정) 남동희
+	             (부)
+	 * @since  : 2019. 12. 02.
+	 * @version : v1.0
+	 * @see : java.util.Random 
+	 * @history :
+	   ----------------------------------------
+	   * Modification Information(개정이력)
+	   ----------------------------------------
+		  수정일 	          수정자    		        수정내용
+	   --------    --------    ----------------
+	   2019. 12. 02.  남동희		최초 생성
+	 * @param : A boundary
+	 * @return : Random Integer value in boundary
+	 * @throws : java.lang.IllegalStateException
+	 <pre>
+	 * {@code : 예제 코드 작성
+	 * mathLib.getRandomInt(2,5) -> 2 || 3 || 4 || 5
+	 * } 
+	 </pre>
+	*/
+	public int getRandomInt(int min, int max) throws Exception {
+		if (min > max) {
+			throw new IllegalStateException();
+		}
+		return new Random().nextInt((max - min) + 1) + min;
+	}
+
+	/** 
+	 * <pre>description : returns random Integer value </pre>
+	 * @method name : getRandomInt
+	 * @author : (정) 남동희
+	             (부)
+	 * @since  : 2019. 12. 02.
+	 * @version : v1.0
+	 * @see : java.util.Random 
+	 * @history :
+	   ----------------------------------------
+	   * Modification Information(개정이력)
+	   ----------------------------------------
+		  수정일 	          수정자    		        수정내용
+	   --------    --------    ----------------
+	   2019. 12. 02.  남동희		최초 생성
+	 * @param : A boundary
+	 * @return : Random Integer value in boundary
+	 * @throws : java.lang.IllegalStateException
+	 <pre>
+	 * {@code : 예제 코드 작성
+	 * mathLib.getRandomInt(2) -> 0 || 1 || 2
+	 * mathLib.getRandomInt(0) -> 0
+	 * } 
+	 </pre>
+	*/
+	public int getRandomInt(int boundary) throws Exception {
+		return (boundary > 0 ? 1 : -1) * new Random().nextInt(Math.abs(boundary) + 1);
+	}
 }
