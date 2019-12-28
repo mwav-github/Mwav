@@ -3,6 +3,9 @@
 	// ======================
 	var dropZone;
 	var uploadForm;
+	var uploadData;
+	
+	const imgUploadMng = new ImageUpload();
 
 	$(document).ready(function() {
 		dropZone = document.getElementById('drop-zone');
@@ -32,7 +35,22 @@
 		dropZone.ondrop = function(e) {
 			e.preventDefault();
 			this.className = 'upload-drop-zone';
-			tempUpload(e.dataTransfer.files);
+			//tempUpload(e.dataTransfer.files);
+			//setImgLocation();
+			
+			var fd = new FormData();			
+			var files = e.dataTransfer.files;
+			fd.append(files[0].name, files[0]);			
+			fd.append("imgLocation", $("#images_position").val());
+						
+			isError.isErr = false;
+			imgUploadMng.tempUpload(
+					fd, 
+					"/admins/goods/tmpUpload.mwav",
+					isError); 
+			
+			if(!isError.isErr){setSuccessBar(e.dataTransfer.files); alert("업로드성공");}	
+			else{alert("업로드실패");}
 		}
 
 		dropZone.ondragover = function() {
@@ -47,9 +65,13 @@
 	}
 
 	var tempUpload = function(files) {
-		console.log(files);
+		//console.log(files);
 		tempFileUpload(files);
 		setSuccessBar(files);
+	}
+	
+	function setImgLocation(){
+		$("#imgLocation").val($("#images_position").val());
 	}
 
 	var setSuccessBar = function(files) {
@@ -64,6 +86,7 @@
 		}
 	}
 
+	/*	
 	function tempFileUpload(files) {
 		if (files == null || files.length == 0) {
 			alert('파일이 없습니다.');
@@ -75,7 +98,7 @@
 
 		$.ajax({
 			type : "POST",
-			url : "/FileTestSample/TempUpload.mwav", // Upload URL
+			url : "/admins/goods/tempUpload.mwav", // Upload URL
 			data : fd,
 			contentType : false,
 			processData : false,
@@ -90,6 +113,7 @@
 		});
 
 	}
+	*/
 
 })(jQuery);
 

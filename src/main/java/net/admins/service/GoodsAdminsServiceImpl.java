@@ -16,6 +16,7 @@ import net.mwav.common.module.FileUtils;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -135,6 +136,17 @@ public class GoodsAdminsServiceImpl implements GoodsAdminsService {
 	public void deleteGdsDelete(Map<String, Object> map) {
 		// TODO Auto-generated method stub
 		goodsAdminsDAO.deleteGdsDelete(map);
+	}
+	
+	public String mkTempImgFileName(String imgLocation) {
+		
+		// Ex> vkz25mmqcitube55l32xyxmz-S5-Front_1024x768.jpg (.jpg는 사용자가 업로드한 확장자인가 ?)
+		String tempFileName = "";
+		tempFileName = RequestContextHolder.currentRequestAttributes().getSessionId();
+		tempFileName = tempFileName + "-S5-" + imgLocation;
+		
+		return tempFileName;
+		
 	}
 
 }

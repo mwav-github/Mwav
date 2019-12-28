@@ -15,6 +15,8 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
@@ -22,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 import net.admins.service.GoodsAdminsService;
 import net.common.common.CommandMap;
 import net.mwav.common.module.Common_Utils;
+import net.mwav.common.module.FileLib;
 import net.mwav.common.module.FileUtils;
 import net.mwav.common.module.ImageUtill;
 import net.mwav.common.module.Paging;
@@ -43,8 +46,8 @@ public class GoodsAdminsController {
 
 	// 페이지별 세션지정 -> GET문
 	/*
-	 * 1. bnsForm : mode = SbnsForm /CommonApps/BoardNews/bnsForm.jsp 2. bnsList
-	 * : mode = SbnsList /CommonApps/BoardNews/bnsList.jsp 3. bnsView : mode =
+	 * 1. bnsForm : mode = SbnsForm /CommonApps/BoardNews/bnsForm.jsp 2. bnsList :
+	 * mode = SbnsList /CommonApps/BoardNews/bnsList.jsp 3. bnsView : mode =
 	 * SbnsView /CommonApps/BoardNews/bnsView.jsp 4. FrontNewsList : mode =
 	 * SFbnsList /CommonApps/BoardNews/FrontNewsList.jsp 5. bnsUpdate : mode =
 	 * SbnsUpdate /CommonApps/BoardNews/bnsForm.jsp
@@ -63,12 +66,11 @@ public class GoodsAdminsController {
 	 */
 	// 1번 StfForm : Form 입력만 가능 (뒤로가기, list)
 	@RequestMapping(value = "/admins/goods/gdsForm.mwav")
-	public ModelAndView insertGdsForm(CommandMap commandMap,
-			HttpServletRequest request, HttpSession session) throws Exception {
+	public ModelAndView insertGdsForm(CommandMap commandMap, HttpServletRequest request, HttpSession session)
+			throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/Goods/GdsCellList");
 
-		Map<String, Object> map = goodsAdminsService.insertGdsForm(commandMap
-				.getMap());
+		Map<String, Object> map = goodsAdminsService.insertGdsForm(commandMap.getMap());
 
 		// 이미지 전체 등록 goods_id 전달해줘야 한다. 고민
 		// FileUtils fileutill = new FileUtils(); 이렇게 빈등록안하고 사용하면 null 값 오류 뜬다.
@@ -93,17 +95,15 @@ public class GoodsAdminsController {
 
 	// 1번 bnsView : 수정/삭제가능
 	@RequestMapping(value = "/admins/goods/gdsView.mwav")
-	public ModelAndView selectOneGdsView(CommandMap commandMap,
-			HttpServletRequest request, HttpSession session) throws Exception {
+	public ModelAndView selectOneGdsView(CommandMap commandMap, HttpServletRequest request, HttpSession session)
+			throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/Goods/GdsCellView");
 
 		log.debug("인터셉터 테스트");
 		System.out.println("테스트");
-		Map<String, Object> selectOneGdsView = goodsAdminsService
-				.selectOneGdsView(commandMap.getMap());
+		Map<String, Object> selectOneGdsView = goodsAdminsService.selectOneGdsView(commandMap.getMap());
 
-		List<Map<String, Object>> selectListGdsList = goodsAdminsService
-				.selectListGdsList(commandMap.getMap());
+		List<Map<String, Object>> selectListGdsList = goodsAdminsService.selectListGdsList(commandMap.getMap());
 
 		if (selectOneGdsView != null && !selectOneGdsView.isEmpty()) {
 			System.out.println("view 줄랭");
@@ -125,14 +125,13 @@ public class GoodsAdminsController {
 
 	// 1번 bnsUpdate : 리스트 업데이트
 	@RequestMapping(value = "/admin/goods/gdsUpdate.mwav")
-	public ModelAndView updateGdsForm(CommandMap commandMap,
-			HttpServletRequest request, HttpSession session) throws Exception {
+	public ModelAndView updateGdsForm(CommandMap commandMap, HttpServletRequest request, HttpSession session)
+			throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/Goods/GdsCellForm");
 
 		// 위의 view랑 동일하게 사용
 
-		Map<String, Object> updateGdsForm = goodsAdminsService
-				.updateGdsForm(commandMap.getMap());
+		Map<String, Object> updateGdsForm = goodsAdminsService.updateGdsForm(commandMap.getMap());
 		if (updateGdsForm != null && !updateGdsForm.isEmpty()) {
 			System.out.println("view 줄랭");
 			String mm = "cGds";
@@ -141,37 +140,30 @@ public class GoodsAdminsController {
 
 			String goods_id = String.valueOf(updateGdsForm.get("goods_id"));
 
-			String uploadRootPath = session.getServletContext().getRealPath(
-					"\\");
+			String uploadRootPath = session.getServletContext().getRealPath("\\");
 			System.out.println("루트경로" + uploadRootPath);
 
 			// 파일 루트 경로 표현시 / 이 아닌, \\ 로 표기해야한다.
-			String path = uploadRootPath + "\\xUpload\\GdsData\\GC" + goods_id
-					+ "\\";
+			String path = uploadRootPath + "\\xUpload\\GdsData\\GC" + goods_id + "\\";
 			// String path = "\\xUpload\\GdsData\\GC"+goods_id+"\\";
 			System.out.println("경로 ==" + path);
 
 			mv.addObject("updateGdsForm", updateGdsForm);
 
 			/*
-			 * http://www.tutorialspoint.com/java/util/arrays_aslist.htm >
-			 * aslist란
+			 * http://www.tutorialspoint.com/java/util/arrays_aslist.htm > aslist란
 			 * 
-			 * http://seemoon.tistory.com/entry/JAVA-Array-%EB%B3%B5%EC%82%AC >
-			 * aslist 출력방법
+			 * http://seemoon.tistory.com/entry/JAVA-Array-%EB%B3%B5%EC%82%AC > aslist 출력방법
 			 * 
-			 * 중요 아래와 같이 출력하면 경로가 아래와 같이 잡힌다.
-			 * file:///F:/Mwav/dev/git/mwav/mwav/src
-			 * /main/webapp/xUpload/GdsData/
-			 * GC10045/m_S1_20160522133939_Basic.png 문제는 ! > 이럴 경우 html 상 value
-			 * 에는 서버 /로읽어온다 즉 차이가 발생한다.
+			 * 중요 아래와 같이 출력하면 경로가 아래와 같이 잡힌다. file:///F:/Mwav/dev/git/mwav/mwav/src
+			 * /main/webapp/xUpload/GdsData/ GC10045/m_S1_20160522133939_Basic.png 문제는 ! >
+			 * 이럴 경우 html 상 value 에는 서버 /로읽어온다 즉 차이가 발생한다.
 			 */
 
 			try {
-				List<Map<String, Object>> fileList = fileUtils
-						.getDirFileList(path);
+				List<Map<String, Object>> fileList = fileUtils.getDirFileList(path);
 
-				//String filePosition = null;
+				// String filePosition = null;
 				// List<Map<String, Object>> fileList =
 				// fileUtils.getDirFileList(path);
 
@@ -187,8 +179,6 @@ public class GoodsAdminsController {
 					System.out.println("=============" + excelMap.get("filePosition"));
 				}
 
-				
-
 				mv.addObject("goodsFileList", fileList);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -201,8 +191,7 @@ public class GoodsAdminsController {
 			 * 
 			 * File[] fileList = filepath.listFiles();
 			 * 
-			 * for(int i=0; i < fileList.length; i++){
-			 * System.out.println(fileList[i]) ; }
+			 * for(int i=0; i < fileList.length; i++){ System.out.println(fileList[i]) ; }
 			 */
 
 		}
@@ -211,8 +200,7 @@ public class GoodsAdminsController {
 
 	// 1번 bnsUpdate : 리스트 업데이트
 	@RequestMapping(value = "/admin/goods/gdsUpdatePro.mwav")
-	public ModelAndView updateProGdsForm(CommandMap commandMap,
-			HttpServletRequest request) throws Exception {
+	public ModelAndView updateProGdsForm(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/Goods/GdsCellList");
 
 		// 위의 view랑 동일하게 사용
@@ -226,9 +214,8 @@ public class GoodsAdminsController {
 	}
 
 	@RequestMapping(value = "/admins/goods/gdsList.mwav")
-	public ModelAndView selectListGdsList(CommandMap commandMap,
-			HttpServletRequest request, HttpServletResponse reponse,
-			HttpSession session) throws Exception {
+	public ModelAndView selectListGdsList(CommandMap commandMap, HttpServletRequest request,
+			HttpServletResponse reponse, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/Goods/GdsCellList");
 
 		String pageNum = (String) commandMap.get("pageNum");
@@ -249,8 +236,7 @@ public class GoodsAdminsController {
 		commandMap.put("endRow", paging.getEndRow(pageNum)); // 끝 열
 		if (totalRow > 0) {
 			System.out.println("전체행의 갯수 1이상");
-			selectListGdsList = goodsAdminsService.selectListGdsList(commandMap
-					.getMap());
+			selectListGdsList = goodsAdminsService.selectListGdsList(commandMap.getMap());
 			// selectboardList =
 			// boardService.selectbnsList(commandMap.getMap());
 
@@ -271,15 +257,40 @@ public class GoodsAdminsController {
 
 		return mv;
 	}
-	
+
 	@RequestMapping(value = "/admins/goods/gdsDelete.mwav")
-	public ModelAndView deleteGdsDelete(CommandMap commandMap,
-			HttpServletRequest request) throws Exception {
+	public ModelAndView deleteGdsDelete(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/Goods/GdsCellForm");
 
 		goodsAdminsService.deleteGdsDelete(commandMap.getMap());
 
 		return mv;
+	}
+	
+	/*
+	 * 
+	 */
+	@RequestMapping(value = "/admins/goods/tmpUpload.mwav", method = RequestMethod.POST)
+	@ResponseBody
+	public boolean tempUpload(MultipartHttpServletRequest multipartRequest) throws Exception {
+		String filePath = "/xUpload/GoodsData/TempImages";
+		FileLib fileLib = FileLib.getInstance();		
+		String imgLocation = multipartRequest.getParameter("imgLocation");		
+		
+		Iterator<String> iterator = multipartRequest.getFileNames();
+		while(iterator.hasNext()) {
+			MultipartFile multipartFile = multipartRequest.getFile(iterator.next());
+			String originalFileName = multipartFile.getOriginalFilename();	
+			System.out.println("originalFileName:: " + originalFileName);
+			String tempFilename = goodsAdminsService.mkTempImgFileName(imgLocation);
+			System.out.println("tempFilename :: " + tempFilename);
+			
+			byte[] contents = multipartFile.getBytes();
+			
+			fileLib.upload(contents, filePath, tempFilename);
+		}
+		
+		return true;
 	}
 
 }
