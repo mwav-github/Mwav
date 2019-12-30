@@ -35,7 +35,7 @@
 			// 	getRemoteDataDrawPieChart(contextPath+ '/charts/highsofts/ClientScreenSize.mwav', createNewPieChart('chart2-container', getBasePieChart()));
 			
 			
-			// 컬럼형 퓨전차트 문구, 데이터 단위 설정
+			// 컬럼형 퓨전차트 문구, 데이터 단위 설정 ->
 			setColumnChartData('Top 10 Page List', '', 'Pages', 'Counts', '');
 			
 			// 컬럼형 퓨전차트 설정
@@ -48,11 +48,11 @@
  				dataSource : columnChartData
  			});
  			
-			// 컬럼형 퓨전차트 데이터 호출, 랜더링
+			// 컬럼형 퓨전차트 데이터 호출, 랜더링 <-
  			renderColumnChart(columnChartConfig, contextPath, "/charts/fushionchart/selectTop10PageList.mwav");
 			
 			
-			// 라인형 퓨전차트 문구, 데이터 단위 설정
+			// 라인형 퓨전차트 문구, 데이터 단위 설정 ->
 			setLineChartData('Weekly Users List', '', 'Visitors', '', '3', '1');
 			
 			// 라인형 퓨전차트 설정
@@ -65,60 +65,28 @@
 				dataSource : lineChartData
 			});
 			
-			// 라인형 퓨전차트 데이터 호출, 랜더링
+			// 라인형 퓨전차트 데이터 호출, 랜더링 <-
 			renderLineChart(lineChartConfig, contextPath, "/charts/fushionchart/selectWeeklyUsersList.mwav");
 			
 			
-			// 파이 차트 -------------------------------------------------------
-			var pieChartData = {
-					'chart' : {
-						'caption' : 'Client Screen Size List',
-						'plottooltext': '<b>$percentValue</b> of web browsers run on $label ',
-					    'showlegend': '1',
-					    'showpercentvalues': '1',
-					    'legendposition': 'bottom',
-					    'usedataplotcolorforlabels': '1',
-						'theme': 'fusion'
-					},
-					'data' : []
-				};
-
-				var pieChartConfig = new FusionCharts({
-					type : 'pie2d',
-					renderAt : 'chart2-container',
-					width : '100%',
-					height : '300',
-					dataFormat : 'json',
-					dataSource : pieChartData
-				});
-
-				$.ajax({
-					url : contextPath + "/charts/fushionchart/selectClientScreenSizeList.mwav",
-					dataType : "text",
-					success : function(data) {
-						var dataObjectArray = new Array();
-						var tmp = JSON.parse(data);
-
-						$.each(tmp, function(key, value) {
-							var dataObject = {
-								label : '',
-								value : ''
-							};
-							dataObject.label = value.label;
-							dataObject.value = value.value;
-							dataObjectArray.push(dataObject);
-						});
-						pieChartData.data = dataObjectArray;
-						pieChartConfig.setJSONData(pieChartData);
-						pieChartConfig.render();
-					},
-					error : function(data) {
-						alert("Pie Chart ERROR!");
-					}
-				});
-				
-				
+			// 파이형 퓨전차트 문구, 데이터 단위 설정 ->
+			setPieChartData('Client Screen Size List', '<b>$percentValue</b> of web browsers run on $label ', 1, 1, 'bottom', 1);
+			
+			// 파이형 퓨전차트 설정
+			var pieChartConfig = new FusionCharts({
+				type : 'pie2d',
+				renderAt : 'chart2-container',
+				width : '100%',
+				height : '300',
+				dataFormat : 'json',
+				dataSource : pieChartData
 			});
+			
+			// 파이형 퓨전차트 데이터 호출, 랜더링 <-
+			renderPieChart(pieChartConfig, contextPath, "/charts/fushionchart/selectClientScreenSizeList.mwav");
+			
+			
+		});
 </script>
 
 <%-- 

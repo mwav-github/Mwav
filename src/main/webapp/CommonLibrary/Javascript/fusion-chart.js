@@ -43,29 +43,7 @@ var setColumnChartData = function(caption, subCaption, xAxisName, yAxisName, num
 	columnChartData.chart.numberPrefix = numberPrefix;
 }
 
-
-//var columnChartConfig = new FusionCharts({
-//	type : 'column2d',
-//	renderAt : 'chart1-container',
-//	width : '100%',
-//	height : '400',
-//	dataFormat : 'json',
-//	dataSource : columnChartData
-//});
-////var setColumnChartConfig = function(renderAt, width, height){
-//	if(renderAt == null || renderAt.length < 1){//		alert("[ERROR.setColumnChartConfig] Cannot find render ID. ");//	}else{//		columnChartConfig.renderAt = renderAt;//	}//	if(width == null || width.length < 1){
-//		columnChartConfig.width = '100%';
-//	}else{
-//		columnChartConfig.width = width;
-//	}
-//	if(height == null || height.length < 1){
-//		columnChartConfig.height = '100%';
-//	}else{
-//		columnChartConfig.height = height;
-//	}//}
-
-
-// 컬럼형 퓨전차트 데이터 호출, 랜더링
+// 컬럼차트 데이터 호출, 랜더링
 var renderColumnChart = function(columnChartConfig, contextPath, url){
 	
 	$.ajax({
@@ -110,7 +88,7 @@ var lineChartData = {
 	'data' : []
 };
 
-//컬럼차트 문구 설정
+// 라인차트 문구 설정
 var setLineChartData = function(caption, subCaption, yaxisname, numberPrefix, rotatelabels, setadaptiveymin){
 	lineChartData.chart.caption = caption;
 	lineChartData.chart.subCaption = subCaption;
@@ -120,12 +98,11 @@ var setLineChartData = function(caption, subCaption, yaxisname, numberPrefix, ro
 	lineChartData.chart.setadaptiveymin = setadaptiveymin;
 }
 
-
-// 라인형 퓨전차트 데이터 호출, 랜더링
+// 라인차트 데이터 호출, 랜더링
 var renderLineChart = function(lineChartConfig, contextPath, url){
 	
 	$.ajax({
-		url : contextPath + "/charts/fushionchart/selectWeeklyUsersList.mwav",
+		url : contextPath + url,
 		dataType : "text",
 		success : function(data) {
 			var dataObjectArray = new Array();
@@ -150,4 +127,57 @@ var renderLineChart = function(lineChartConfig, contextPath, url){
 	});
 }
 
+
+// 파이차트 문구
+var pieChartData = {
+	'chart' : {
+		'caption' : 'Client Screen Size List',
+		'plottooltext': '<b>$percentValue</b> of web browsers run on $label ', 
+	    'showlegend': '1',
+	    'showpercentvalues': '1',
+	    'legendposition': 'bottom',
+	    'usedataplotcolorforlabels': '1',
+		'theme': 'fusion'
+	},
+	'data' : []
+};
+
+// 파이차트 문구 설정
+var setPieChartData = function(caption, plottooltext, showlegend, showpercentvalues, legendposition, usedataplotcolorforlabels){
+	pieChartData.chart.caption = caption;
+	pieChartData.chart.plottooltext = plottooltext;
+	pieChartData.chart.showlegend = showlegend;
+	pieChartData.chart.showpercentvalues = showpercentvalues;
+	pieChartData.chart.legendposition = legendposition;
+	pieChartData.chart.usedataplotcolorforlabels = usedataplotcolorforlabels;
+}
+
+// 파이차트 데이터 호출, 랜더링
+var renderPieChart = function(pieChartConfig, contextPath, url){
+	
+	$.ajax({
+		url : contextPath + url,
+		dataType : "text",
+		success : function(data) {
+			var dataObjectArray = new Array();
+			var tmp = JSON.parse(data);
+	
+			$.each(tmp, function(key, value) {
+				var dataObject = {
+					label : '',
+					value : ''
+				};
+				dataObject.label = value.label;
+				dataObject.value = value.value;
+				dataObjectArray.push(dataObject);
+			});
+			pieChartData.data = dataObjectArray;
+			pieChartConfig.setJSONData(pieChartData);
+			pieChartConfig.render();
+		},
+		error : function(data) {
+			alert("Pie Chart ERROR!");
+		}
+	});
+}
 
