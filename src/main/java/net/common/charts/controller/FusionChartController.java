@@ -62,7 +62,7 @@ public class FusionChartController {
 		paramMap.put("stPromoterId", paramMap.get("value"));
 		
 		return fusionChartService.selectClientScreenSizeList(paramMap);
-	} 
+	}
 	
 	
 }
