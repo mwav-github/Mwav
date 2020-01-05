@@ -58,20 +58,37 @@ public class GoodsAdminsController {
 	@Resource(name = "fileUtils")
 	private FileUtils fileUtils;
 
-	/* ======================Staff====================== */
-
-	/*
-	 * ========================================등록================================
-	 * ========
-	 */
-	// 1번 StfForm : Form 입력만 가능 (뒤로가기, list)
+	/** 
+	 * @method name : insertGdsForm
+	 * @author : (정) 정재현
+	 * @since  : 2020. 1. 4.
+	 * @version : v1.0
+	 * @see :
+	   #method 
+	 * @description : staff 상품등록, http://localhost:8080/Admins/Goods/GoodsRegForm.mwav?mm=cGds에서 '상품등록'버튼을 누를시 동작
+	 * @history :
+	   ----------------------------------------
+	   * Modification Information(개정이력)
+	   ----------------------------------------
+	           수정일                  수정자                       수정내용
+	   --------    --------    ----------------
+	   2020. 1. 4.  정재현     
+	 * @param :
+	 * @return :
+	 * @throws :
+	*/
 	@RequestMapping(value = "/admins/goods/gdsForm.mwav")
 	public ModelAndView insertGdsForm(CommandMap commandMap, HttpServletRequest request, HttpSession session)
 			throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/Goods/GdsCellList");
-
+		
+		// 상품DB등록
 		Map<String, Object> map = goodsAdminsService.insertGdsForm(commandMap.getMap());
-
+		
+		// 임시파일을 이용해서 이미지 저장
+		goodsAdminsService.saveImage();
+		
+		
 		// 이미지 전체 등록 goods_id 전달해줘야 한다. 고민
 		// FileUtils fileutill = new FileUtils(); 이렇게 빈등록안하고 사용하면 null 값 오류 뜬다.
 		String uploadRootPath = session.getServletContext().getRealPath("\\");
@@ -266,7 +283,7 @@ public class GoodsAdminsController {
 
 		return mv;
 	}
-	
+
 	/*
 	 * 
 	 */
@@ -274,22 +291,22 @@ public class GoodsAdminsController {
 	@ResponseBody
 	public boolean tempUpload(MultipartHttpServletRequest multipartRequest) throws Exception {
 		String filePath = "/xUpload/GoodsData/TempImages";
-		FileLib fileLib = FileLib.getInstance();		
-		String imgLocation = multipartRequest.getParameter("imgLocation");		
-		
+		FileLib fileLib = FileLib.getInstance();
+		String imgLocation = multipartRequest.getParameter("imgLocation");
+
 		Iterator<String> iterator = multipartRequest.getFileNames();
-		while(iterator.hasNext()) {
+		while (iterator.hasNext()) {
 			MultipartFile multipartFile = multipartRequest.getFile(iterator.next());
-			String originalFileName = multipartFile.getOriginalFilename();	
+			String originalFileName = multipartFile.getOriginalFilename();
 			System.out.println("originalFileName:: " + originalFileName);
 			String tempFilename = goodsAdminsService.mkTempImgFileName(imgLocation);
 			System.out.println("tempFilename :: " + tempFilename);
-			
+
 			byte[] contents = multipartFile.getBytes();
-			
+
 			fileLib.upload(contents, filePath, tempFilename);
 		}
-		
+
 		return true;
 	}
 

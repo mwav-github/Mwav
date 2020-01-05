@@ -29,4 +29,6 @@ public interface GoodsAdminsService {
 	void deleteGdsDelete(Map<String, Object> map);
 	
 	String mkTempImgFileName(String imgLocation);
+	
+	void saveImage();
 }

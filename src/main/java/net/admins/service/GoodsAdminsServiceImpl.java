@@ -138,6 +138,7 @@ public class GoodsAdminsServiceImpl implements GoodsAdminsService {
 		goodsAdminsDAO.deleteGdsDelete(map);
 	}
 	
+	@Override
 	public String mkTempImgFileName(String imgLocation) {
 		
 		// Ex> vkz25mmqcitube55l32xyxmz-S5-Front_1024x768.jpg (.jpg는 사용자가 업로드한 확장자인가 ?)
@@ -146,6 +147,21 @@ public class GoodsAdminsServiceImpl implements GoodsAdminsService {
 		tempFileName = tempFileName + "-S5-" + imgLocation;
 		
 		return tempFileName;
+		
+	}
+	
+	
+	/*
+	 * (non-Javadoc)
+	 * @see net.admins.service.GoodsAdminsService#saveImage()
+	 * 임시파일을 이용한 이미지 저장
+	 * 1.파일시스템에 이미지 저장
+	 * 2.GoodsFiles_tbl insert 
+	 */
+	public void saveImage() {
+		
+		
+		
 		
 	}
 
