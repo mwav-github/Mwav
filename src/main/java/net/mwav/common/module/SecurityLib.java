@@ -1,6 +1,7 @@
 package net.mwav.common.module;
 
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Base64;
 
@@ -13,8 +14,8 @@ import javax.crypto.spec.SecretKeySpec;
  * In order to create SecurityLib object, the application calls {@link #getInstance()} method.<p>
  * 
  * Since AES/CBC/PKCS5Padding cryption requires 128bits(16byte) length of key and iv,<p>
- * cryption methods call {@link #convertToSpec(String)} internally to prevent IllegalBlockSizeException.<p>
- * The {@link #encryptToString(String, String, String)} and {@link #decryptToString(String, String, String)} methods 
+ * cryption methods call {@link #convertToSpec(byte[])} internally to prevent IllegalBlockSizeException.<p>
+ * The {@link #encryptToString(String, String, String)} and {@link #decryptToString(String, String, String)}
  * return BASE64 encoded result of cryption.<p>
  * 
  * Order of encryption :
@@ -22,7 +23,7 @@ import javax.crypto.spec.SecretKeySpec;
  * <li>get byte array of text</li>
  * <li>encrypt to AES128</li>
  * <li>encode encrypted text to BASE64</li>
- * <li>convert to String</li> 
+ * <li>convert to String</li>
  * </ol>
  * 
  * Order of decryption :
@@ -30,7 +31,7 @@ import javax.crypto.spec.SecretKeySpec;
  * <li>get byte array of text</li>
  * <li>decode encrypted result to BASE64</li>
  * <li>decrypt</li>
- * <li>convert to String</li> 
+ * <li>convert to String</li>
  * </ol>
  * 
  * <pre>
@@ -55,6 +56,8 @@ public class SecurityLib {
 	 */
 	public static final int AES128_SIZE = 16;
 
+	private static final String ENCODING = StandardCharsets.UTF_8.name();
+
 	private SecurityLib() {
 	}
 
@@ -76,10 +79,10 @@ public class SecurityLib {
 	 * <pre>
 	 * {@code
 	 * String shortKey = "mwav.net";
-	 * String adjustedShortKey = new String(generateKey(shortKey));// "mwav.net        "
+	 * String adjustedShortKey = new String(convertToSpec(shortKey));// "mwav.net        "
 	 * 
 	 * String longKey = "abcdefghijklmnopqrs";
-	 * String adjustedLongKey = new String(generateKey(longKey));// "abcdefghijklmnop"
+	 * String adjustedLongKey = new String(convertToSpec(longKey));// "abcdefghijklmnop"
 	 * }
 	 * </pre>
 	 * 
@@ -100,7 +103,7 @@ public class SecurityLib {
 	 * @see #convertToSpec(byte[])
 	 */
 	public byte[] convertToSpec(String input) throws UnsupportedEncodingException {
-		return convertToSpec(input.getBytes("UTF-8"));
+		return convertToSpec(input.getBytes(ENCODING));
 	}
 
 	/**
@@ -117,9 +120,9 @@ public class SecurityLib {
 		cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(convertToSpec(key), "AES"),
 				new IvParameterSpec(convertToSpec(iv)));
 
-		return cipher.doFinal(text.getBytes("UTF-8"));
+		return cipher.doFinal(text.getBytes(ENCODING));
 	}
-	
+
 	/**
 	 * Encrypt the text to AES128 with given key and iv.<p>
 	 * @param key the key
@@ -130,9 +133,9 @@ public class SecurityLib {
 	 * @see #encrypt(byte[], byte[], String)
 	 */
 	public byte[] encrypt(String key, String iv, String text) throws Exception {
-		return encrypt(key.getBytes("UTF-8"), iv.getBytes("UTF-8"), text);
+		return encrypt(key.getBytes(ENCODING), iv.getBytes(ENCODING), text);
 	}
-	
+
 	/**
 	 * Encrypt the text to AES128 with given key and iv and encode it to BASE64.
 	 * @param key the key
@@ -145,9 +148,9 @@ public class SecurityLib {
 	 */
 	public String encryptToString(String key, String iv, String text) throws Exception {
 		byte[] encrypted = encrypt(key, iv, text);
-		return new String(Base64.getEncoder().encode(encrypted));
+		return new String(Base64.getEncoder().encode(encrypted), ENCODING);
 	}
-	
+
 	/**
 	 * Decrypt the text to AES128 with given key and iv.<p>
 	 * Calls {@link #convertToSpec(byte[])} and decode the text to BASE64 before decryption.
@@ -162,10 +165,10 @@ public class SecurityLib {
 		cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(convertToSpec(key), "AES"),
 				new IvParameterSpec(convertToSpec(iv)));
 
-		byte[] encrypted = Base64.getDecoder().decode(text.getBytes("UTF-8"));
+		byte[] encrypted = Base64.getDecoder().decode(text.getBytes(ENCODING));
 		return cipher.doFinal(encrypted);
 	}
-	
+
 	/**
 	 * Decrypt the text to AES128 with given key and iv.<p>
 	 * @param key the key
@@ -176,9 +179,9 @@ public class SecurityLib {
 	 * @see #decrypt(byte[], byte[], String)
 	 */
 	public byte[] decrypt(String key, String iv, String text) throws Exception {
-		return decrypt(key.getBytes("UTF-8"), iv.getBytes("UTF-8"), text);
+		return decrypt(key.getBytes(ENCODING), iv.getBytes(ENCODING), text);
 	}
-	
+
 	/**
 	 * Decrypt the text to AES128 with given key and iv, and converts it to the String.
 	 * @param key the key
@@ -190,6 +193,6 @@ public class SecurityLib {
 	 */
 	public String decryptToString(String key, String iv, String text) throws Exception {
 		byte[] decrypted = decrypt(key, iv, text);
-		return new String(decrypted);
+		return new String(decrypted, ENCODING);
 	}
 }
