@@ -1,5 +1,6 @@
 package net.admins.service;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -30,5 +31,5 @@ public interface GoodsAdminsService {
 	
 	String mkTempImgFileName(String imgLocation);
 	
-	void saveImage();
+	void saveImage(String goodsId) throws Exception;
 }

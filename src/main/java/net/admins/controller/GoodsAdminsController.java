@@ -24,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 import net.admins.service.GoodsAdminsService;
 import net.common.common.CommandMap;
 import net.mwav.common.module.Common_Utils;
+import net.mwav.common.module.Constants;
 import net.mwav.common.module.FileLib;
 import net.mwav.common.module.FileUtils;
 import net.mwav.common.module.ImageUtill;
@@ -57,6 +58,9 @@ public class GoodsAdminsController {
 
 	@Resource(name = "fileUtils")
 	private FileUtils fileUtils;
+	
+	@Resource(name = "constants")
+	private Constants c;
 
 	/** 
 	 * @method name : insertGdsForm
@@ -86,9 +90,9 @@ public class GoodsAdminsController {
 		Map<String, Object> map = goodsAdminsService.insertGdsForm(commandMap.getMap());
 		
 		// 임시파일을 이용해서 이미지 저장
-		goodsAdminsService.saveImage();
+		goodsAdminsService.saveImage(map.get("goods_id").toString());
 		
-		
+		/*
 		// 이미지 전체 등록 goods_id 전달해줘야 한다. 고민
 		// FileUtils fileutill = new FileUtils(); 이렇게 빈등록안하고 사용하면 null 값 오류 뜬다.
 		String uploadRootPath = session.getServletContext().getRealPath("\\");
@@ -101,7 +105,9 @@ public class GoodsAdminsController {
 		String mm = "cGds";
 		mv.addObject("mm", mm);
 		mv.addObject("mode", "m_gdsForm");
-
+		 */
+		
+		
 		return mv;
 	}
 
@@ -290,7 +296,7 @@ public class GoodsAdminsController {
 	@RequestMapping(value = "/admins/goods/tmpUpload.mwav", method = RequestMethod.POST)
 	@ResponseBody
 	public boolean tempUpload(MultipartHttpServletRequest multipartRequest) throws Exception {
-		String filePath = "/xUpload/GoodsData/TempImages";
+		// String filePath = "/xUpload/GoodsData/TempImages";
 		FileLib fileLib = FileLib.getInstance();
 		String imgLocation = multipartRequest.getParameter("imgLocation");
 
@@ -299,12 +305,13 @@ public class GoodsAdminsController {
 			MultipartFile multipartFile = multipartRequest.getFile(iterator.next());
 			String originalFileName = multipartFile.getOriginalFilename();
 			System.out.println("originalFileName:: " + originalFileName);
-			String tempFilename = goodsAdminsService.mkTempImgFileName(imgLocation);
+			String tempFilename = goodsAdminsService.mkTempImgFileName(imgLocation) + ".jpg";
 			System.out.println("tempFilename :: " + tempFilename);
 
 			byte[] contents = multipartFile.getBytes();
 
-			fileLib.upload(contents, filePath, tempFilename);
+			// fileLib.upload(contents, tmpImgFilePath, tempFilename);
+			fileLib.upload(contents, c.goods.tmpImgFilePath, tempFilename);
 		}
 
 		return true;
