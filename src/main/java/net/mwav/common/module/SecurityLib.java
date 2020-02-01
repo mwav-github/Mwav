@@ -1,239 +1,198 @@
 package net.mwav.common.module;
 
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.URL;
-import java.util.regex.Pattern;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+import java.util.Base64;
 
-import javax.json.Json;
-import javax.json.JsonObject;
-import javax.json.JsonReader;
-import javax.net.ssl.HttpsURLConnection;
+import javax.crypto.Cipher;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
 
 /**
- *@class name : SecurityLib.java
- *@description : 
- *@author : (정)
-            (부)
- *@since : 2019. 7. 13.
- *@version : v1.0
- *@see
-   #method : 현재 클래스의 메소드나 변수 연결
-   MyClass#method : MyClass 클래스의 메소드나 변수 연결
-   my.package.MyClass#method : my.package 에 있는 MyClass 클래스의 메소드나 변수 연결
- * @history :
-   ----------------------------------------
-   * Modification Information(개정이력)
-   ----------------------------------------
-           수정일                   수정자                        수정내용
-   --------    --------    ----------------
-    2019. 7. 13.     jusun    
+ * This class provides the AES/CBC/PKCS5Padding cryption.<p>
+ * In order to create SecurityLib object, the application calls {@link #getInstance()} method.<p>
+ * 
+ * Since AES/CBC/PKCS5Padding cryption requires 128bits(16byte) length of key and iv,<p>
+ * cryption methods call {@link #convertToSpec(byte[])} internally to prevent IllegalBlockSizeException.<p>
+ * The {@link #encryptToString(String, String, String)} and {@link #decryptToString(String, String, String)}
+ * return BASE64 encoded result of cryption.<p>
+ * 
+ * Order of encryption :
+ * <ol>
+ * <li>get byte array of text</li>
+ * <li>encrypt to AES128</li>
+ * <li>encode encrypted text to BASE64</li>
+ * <li>convert to String</li>
+ * </ol>
+ * 
+ * Order of decryption :
+ * <ol>
+ * <li>get byte array of text</li>
+ * <li>decode encrypted result to BASE64</li>
+ * <li>decrypt</li>
+ * <li>convert to String</li>
+ * </ol>
+ * 
+ * <pre>
+ * {@code
+ * SecurityLib securityLib = SecurityLib.getInstance();
+ * String encrypted = securityLib.encryptToString("key", "iv", "password");
+ * String decrypted = securityLib.decryptToString("key", "iv", encrypted);
+ * //"password".equals(decrypted) may return true
+ * }
+ * </pre>
+ * @author (정) 남동희
+ * @since 1.0.1
+ * @version v1.0
+ * @see javax.crypto.Cipher
+ * @see javax.crypto.spec.IvParameterSpec
+ * @see javax.crypto.spec.SecretKeySpec
  */
 public class SecurityLib {
-	private static SecurityLib securityLib;
 
-	private SecurityLib() {}
+	/**
+	 * Constant used to indicate the length of key and iv in AES128 cryption
+	 */
+	public static final int AES128_SIZE = 16;
 
-	public static synchronized SecurityLib getInstance() {
-		if (securityLib == null) {
-			securityLib = new SecurityLib();
-		}
-		return securityLib;
+	private static final String ENCODING = StandardCharsets.UTF_8.name();
+
+	private SecurityLib() {
 	}
 
-	public String clearXSSMinimum(String value) {
-		if (value == null || value.trim().equals("")) {
-			return "";
-		}
-
-		String returnValue = value;
-
-		returnValue = returnValue.replaceAll("&", "&amp;");
-		returnValue = returnValue.replaceAll("<", "&lt;");
-		returnValue = returnValue.replaceAll(">", "&gt;");
-		returnValue = returnValue.replaceAll("\"", "&#34;");
-		returnValue = returnValue.replaceAll("\'", "&#39;");
-		returnValue = returnValue.replaceAll(".", "&#46;");
-		returnValue = returnValue.replaceAll("%2E", "&#46;");
-		returnValue = returnValue.replaceAll("%2F", "&#47;");
-		return returnValue;
-	}
-
-	public String clearXSSMaximum(String value) {
-		String returnValue = value;
-		returnValue = clearXSSMinimum(returnValue);
-
-		returnValue = returnValue.replaceAll("%00", null);
-
-		returnValue = returnValue.replaceAll("%", "&#37;");
-
-		// \\. => .
-
-		returnValue = returnValue.replaceAll("\\.\\./", ""); // ../
-		returnValue = returnValue.replaceAll("\\.\\.\\\\", ""); // ..\
-		returnValue = returnValue.replaceAll("\\./", ""); // ./
-		returnValue = returnValue.replaceAll("%2F", "");
-
-		return returnValue;
-	}
-
-	public String filePathBlackList(String value) {
-		String returnValue = value;
-		if (returnValue == null || returnValue.trim().equals("")) {
-			return "";
-		}
-
-		returnValue = returnValue.replaceAll("\\.\\./", ""); // ../
-		returnValue = returnValue.replaceAll("\\.\\.\\\\", ""); // ..\
-
-		return returnValue;
+	private static class SecurityLibHolder {
+		private static final SecurityLib securityLib = new SecurityLib();
 	}
 
 	/**
-	 * 행안부 보안취약점 점검 조치 방안.
-	 *
-	 * @param value
-	 * @return
+	 * @return Returns a SecurityLib object
 	 */
-	public String filePathReplaceAll(String value) {
-		String returnValue = value;
-		if (returnValue == null || returnValue.trim().equals("")) {
-			return "";
-		}
-
-		returnValue = returnValue.replaceAll("/", "");
-		returnValue = returnValue.replaceAll("\\", "");
-		returnValue = returnValue.replaceAll("\\.\\.", ""); // ..
-		returnValue = returnValue.replaceAll("&", "");
-
-		return returnValue;
+	public static SecurityLib getInstance() {
+		return SecurityLibHolder.securityLib;
 	}
 
-	public String filePathWhiteList(String value) {
-		return value;
+	/**
+	 * Converts the input to byte array and copies it truncating or padding with zeros.<p>
+	 * If the length is greater than 16, truncates until 16th index.<p>
+	 * If not, pads with zeros.
+	 * <pre>
+	 * {@code
+	 * String shortKey = "mwav.net";
+	 * String adjustedShortKey = new String(convertToSpec(shortKey));// "mwav.net        "
+	 * 
+	 * String longKey = "abcdefghijklmnopqrs";
+	 * String adjustedLongKey = new String(convertToSpec(longKey));// "abcdefghijklmnop"
+	 * }
+	 * </pre>
+	 * 
+	 * @param input the input
+	 * @return Returns the byte array of size 16
+	 * @throws UnsupportedEncodingException if The Character Encoding is not supported
+	 * @see java.util.Arrays#copyOf(byte[], int)
+	 */
+	public byte[] convertToSpec(byte[] input) throws UnsupportedEncodingException {
+		return Arrays.copyOf(input, AES128_SIZE);
 	}
 
-	public boolean isIPAddress(String str) {
-		Pattern ipPattern = Pattern
-				.compile("\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}");
-
-		return ipPattern.matcher(str).matches();
+	/**
+	 * Converts the input to byte array and copies it truncating or padding with zeros.<p>
+	 * @param input the input
+	 * @return Returns the byte array of size 16
+	 * @throws UnsupportedEncodingException if The Character Encoding is not supported
+	 * @see #convertToSpec(byte[])
+	 */
+	public byte[] convertToSpec(String input) throws UnsupportedEncodingException {
+		return convertToSpec(input.getBytes(ENCODING));
 	}
 
-	public String removeCRLF(String parameter) {
-		return parameter.replaceAll("\r", "").replaceAll("\n", "");
+	/**
+	 * Encrypt the text to AES128 with given key and iv.<p>
+	 * Calls {@link #convertToSpec(byte[])} before encryption.
+	 * @param key the key
+	 * @param iv the initial vector
+	 * @param text the text to encrypt
+	 * @return Returns the byte array of encrypted text.
+	 * @throws Exception if the key or iv are invalid
+	 */
+	public byte[] encrypt(byte[] key, byte[] iv, String text) throws Exception {
+		Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+		cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(convertToSpec(key), "AES"),
+				new IvParameterSpec(convertToSpec(iv)));
+
+		return cipher.doFinal(text.getBytes(ENCODING));
 	}
 
-	public String removeSQLInjectionRisk(String parameter) {
-		return parameter.replaceAll("\\p{Space}", "").replaceAll("\\*", "")
-				.replaceAll("%", "").replaceAll(";", "").replaceAll("-", "")
-				.replaceAll("\\+", "").replaceAll(",", "");
+	/**
+	 * Encrypt the text to AES128 with given key and iv.<p>
+	 * @param key the key
+	 * @param iv the initial vector
+	 * @param text the text to encrypt
+	 * @return Returns the byte array of encrypted text.
+	 * @throws Exception if the key or iv are invalid
+	 * @see #encrypt(byte[], byte[], String)
+	 */
+	public byte[] encrypt(String key, String iv, String text) throws Exception {
+		return encrypt(key.getBytes(ENCODING), iv.getBytes(ENCODING), text);
 	}
 
-	public String removeOSCmdRisk(String parameter) {
-		return parameter.replaceAll("\\p{Space}", "").replaceAll("\\*", "")
-				.replaceAll("|", "").replaceAll(";", "");
+	/**
+	 * Encrypt the text to AES128 with given key and iv and encode it to BASE64.
+	 * @param key the key
+	 * @param iv the initial vector
+	 * @param text the text to encrypt
+	 * @return Returns the BASE64 encoded text.
+	 * @throws Exception if the key or iv are invalid
+	 * @see #encrypt(String, String, String)
+	 * @see java.util.Base64
+	 */
+	public String encryptToString(String key, String iv, String text) throws Exception {
+		byte[] encrypted = encrypt(key, iv, text);
+		return new String(Base64.getEncoder().encode(encrypted), ENCODING);
 	}
-	
 
-	/** 
-	 * @method name : recapchaVerify
-	 * @author : (정) 김주성
-	             (부) 
-	 * @since  : 2019. 7. 13.
-	 * @version : v1.0
-	 * @see : https://o7planning.org/en/10397/using-google-recaptcha-with-java-web-application#a859239
-	 * @description : recapcha에 대해서 middletier에서 구글 서버와 rq/rs를 통해서, 재 점검 가능. 
-	 * @history :
-	   ----------------------------------------
-	   * Modification Information(개정이력)
-	   ----------------------------------------
-	            수정일                              수정자                        수정내용
-	   --------          --------    ----------------
-	     2019. 7. 13.     jusun       최초 작성.
-	 * @param : gRecaptchaResponse - authentication code from google server <br>
-	 *          *g-recaptcha-response POST parameter when the user submits the form on your site (http attributes, hidden field)
-	 * @return : boolean
-	 * @throws : 
-	 * @Library <!-- http://mvnrepository.com/artifact/org.glassfish/javax.json --> 필수        
-	 <pre>
-	 * {@code : 예제 코드 작성
-	 *  if (valid) {
-         String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
-         // Verify CAPTCHA.
-         valid = SecurityLib.recapchaVerify(gRecaptchaResponse);
-         if (!valid) {
-             errorString = "Captcha invalid!";
-         }
-     }
-	 * } 
-	 </pre>
-	*/
-	public boolean recapchaVerify(String gRecaptchaResponse) {
-		final String SECRET_KEY = "6LcdRxoUAAAAAEhlMG_bH6mhyxLMIoBLTuAhtA1E";
-		final String SITE_VERIFY_URL = "https://www.google.com/recaptcha/api/siteverify";
+	/**
+	 * Decrypt the text to AES128 with given key and iv.<p>
+	 * Calls {@link #convertToSpec(byte[])} and decode the text to BASE64 before decryption.
+	 * @param key the key
+	 * @param iv the initial vector
+	 * @param text the text to decrypt
+	 * @return Returns the byte array of decrypted text.
+	 * @throws Exception if the key or iv are invalid
+	 */
+	public byte[] decrypt(byte[] key, byte[] iv, String text) throws Exception {
+		Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+		cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(convertToSpec(key), "AES"),
+				new IvParameterSpec(convertToSpec(iv)));
 
-		
-		if (gRecaptchaResponse == null || gRecaptchaResponse.length() == 0) {
-			return false;
-		}
+		byte[] encrypted = Base64.getDecoder().decode(text.getBytes(ENCODING));
+		return cipher.doFinal(encrypted);
+	}
 
-		try {
-			URL verifyUrl = new URL(SITE_VERIFY_URL);
+	/**
+	 * Decrypt the text to AES128 with given key and iv.<p>
+	 * @param key the key
+	 * @param iv the initial vector
+	 * @param text the text to decrypt
+	 * @return Returns the byte array of decrypted text.
+	 * @throws Exception if the key or iv are invalid
+	 * @see #decrypt(byte[], byte[], String)
+	 */
+	public byte[] decrypt(String key, String iv, String text) throws Exception {
+		return decrypt(key.getBytes(ENCODING), iv.getBytes(ENCODING), text);
+	}
 
-			// Open Connection to URL
-			HttpsURLConnection conn = (HttpsURLConnection) verifyUrl
-					.openConnection();
-
-			// Add Request Header
-			conn.setRequestMethod("POST");
-			// conn.setRequestProperty("User-Agent", "Mozilla/5.0");
-			// conn.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
-
-			// Data will be sent to the server.
-			String postParams = "secret=" + SECRET_KEY + "&response="
-					+ gRecaptchaResponse;
-
-			// Send Request
-			conn.setDoOutput(true);
-
-			// Get the output stream of Connection
-			// Write data in this stream, which means to send data to Server.
-			OutputStream outStream = conn.getOutputStream();
-			outStream.write(postParams.getBytes());
-
-			outStream.flush();
-			outStream.close();
-
-			// Response code return from server.
-			// HTTP.STATUS CODE
-			int responseCode = conn.getResponseCode();
-			//System.out.println("responseCode=" + responseCode);
-
-			// Get the InputStream from Connection to read data sent from the
-			// server.
-			InputStream is = conn.getInputStream();
-
-			JsonReader jsonReader = Json.createReader(is);
-			JsonObject jsonObject = jsonReader.readObject();
-			jsonReader.close();
-
-			// ==> {"success": true}
-			// 예)
-			/*
-			 * { "success": true|false, "challenge_ts": timestamp, // timestamp
-			 * of the challenge load (ISO format yyyy-MM-dd'T'HH:mm:ssZZ)
-			 * "hostname": string, // the hostname of the site where the
-			 * reCAPTCHA was solved "error-codes": [...] // optional }
-			 */
-
-			//System.out.println("Response: " + jsonObject);
-
-			boolean success = jsonObject.getBoolean("success");
-			return success;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
+	/**
+	 * Decrypt the text to AES128 with given key and iv, and converts it to the String.
+	 * @param key the key
+	 * @param iv the initial vector
+	 * @param text the text to decrypt
+	 * @return Returns a String of the decrypted text.
+	 * @throws Exception if the key or iv are invalid
+	 * @see #decrypt(String, String, String)
+	 */
+	public String decryptToString(String key, String iv, String text) throws Exception {
+		byte[] decrypted = decrypt(key, iv, text);
+		return new String(decrypted, ENCODING);
 	}
 }
