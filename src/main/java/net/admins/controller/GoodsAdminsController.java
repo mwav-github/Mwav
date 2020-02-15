@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FilenameUtils;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -58,7 +59,7 @@ public class GoodsAdminsController {
 
 	@Resource(name = "fileUtils")
 	private FileUtils fileUtils;
-	
+
 	@Resource(name = "constants")
 	private Constants c;
 
@@ -85,29 +86,13 @@ public class GoodsAdminsController {
 	public ModelAndView insertGdsForm(CommandMap commandMap, HttpServletRequest request, HttpSession session)
 			throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/Goods/GdsCellList");
-		
+
 		// 상품DB등록
 		Map<String, Object> map = goodsAdminsService.insertGdsForm(commandMap.getMap());
-		
+
 		// 임시파일을 이용해서 이미지 저장
 		goodsAdminsService.saveImage(map.get("goods_id").toString());
-		
-		/*
-		// 이미지 전체 등록 goods_id 전달해줘야 한다. 고민
-		// FileUtils fileutill = new FileUtils(); 이렇게 빈등록안하고 사용하면 null 값 오류 뜬다.
-		String uploadRootPath = session.getServletContext().getRealPath("\\");
-		System.out.println("루트경로" + uploadRootPath);
 
-		map.put("uploadRootPath", uploadRootPath);
-
-		fileUtils.totalFileProcess(map);
-
-		String mm = "cGds";
-		mv.addObject("mm", mm);
-		mv.addObject("mode", "m_gdsForm");
-		 */
-		
-		
 		return mv;
 	}
 
@@ -304,17 +289,18 @@ public class GoodsAdminsController {
 		while (iterator.hasNext()) {
 			MultipartFile multipartFile = multipartRequest.getFile(iterator.next());
 			String originalFileName = multipartFile.getOriginalFilename();
-			System.out.println("originalFileName:: " + originalFileName);
-			String tempFilename = goodsAdminsService.mkTempImgFileName(imgLocation) + ".jpg";
-			System.out.println("tempFilename :: " + tempFilename);
 
+			String extension = FilenameUtils.getExtension(originalFileName);
+			String tempFilename = goodsAdminsService.mkTempImgFileName(imgLocation);
+			String tempFileFullname = tempFilename + c.dot + extension;
+
+			if (goodsAdminsService.deletePreTempFile(tempFilename))
+				System.out.println("goodsAdminsService.deletePreTempFile success");
+			
 			byte[] contents = multipartFile.getBytes();
-
-			// fileLib.upload(contents, tmpImgFilePath, tempFilename);
-			fileLib.upload(contents, c.goods.tmpImgFilePath, tempFilename);
+			fileLib.upload(contents, c.goods.tmpImgFilePath, tempFileFullname);
 		}
 
 		return true;
 	}
-
 }

@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -24,6 +25,7 @@ import net.mwav.common.module.FileLib;
 import net.mwav.common.module.FileUtils;
 import net.mwav.common.module.ImageUtill;
 
+import org.apache.commons.io.FilenameUtils;
 import org.apache.log4j.Logger;
 import org.codehaus.plexus.util.DirectoryScanner;
 import org.springframework.stereotype.Service;
@@ -161,9 +163,7 @@ public class GoodsAdminsServiceImpl implements GoodsAdminsService {
 
 	}
 
-	private ArrayList<File> getTmpImgFromSvr() {
-		// File tmpImgFolder = new File(c.goods.tmpImgFilePath);
-		String scanKey = RequestContextHolder.currentRequestAttributes().getSessionId() + "-S5-*.jpg";
+	private ArrayList<File> getFilesFromSvr(String scanKey, String path) {
 
 		DirectoryScanner scanner = new DirectoryScanner();
 		scanner.setIncludes(new String[] { scanKey });
@@ -183,6 +183,22 @@ public class GoodsAdminsServiceImpl implements GoodsAdminsService {
 		return files;
 	}
 
+	public boolean deletePreTempFile(String fileName) throws Exception {
+		String scanKey = fileName + "*";
+		ArrayList<File> tmpImgFiles = getFilesFromSvr(scanKey, c.goods.tmpImgFilePath);
+		if (tmpImgFiles == null)
+			return Constants.FAIL;
+
+		FileLib fileLib = FileLib.getInstance();
+		for (File tmpImgFile : tmpImgFiles) {
+			boolean result = fileLib.delete(c.goods.tmpImgFilePath, tmpImgFile.getName());
+			if (result == Constants.FAIL)
+				return Constants.FAIL;
+		}
+
+		return Constants.SUCEESS;
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -192,15 +208,27 @@ public class GoodsAdminsServiceImpl implements GoodsAdminsService {
 	@Override
 	public void saveImage(String goodsId) throws Exception {
 		// 임시파일경로에서 이미지 가져오기
-		ArrayList<File> tmpImgFiles = getTmpImgFromSvr();
+		String scanKey = RequestContextHolder.currentRequestAttributes().getSessionId() + "-S5-*";
+		ArrayList<File> tmpImgFiles = getFilesFromSvr(scanKey, c.goods.tmpImgFilePath);
 		if (tmpImgFiles == null)
 			return;
 
 		// 임시파일 resize,저장
 		String path = c.goods.imgFilePath + "-" + goodsId;
+		String fileName = "";
+
 		for (File tmpImgFile : tmpImgFiles) {
-			saveImage(tmpImgFile, path, "S1");
+			fileName = saveImage(tmpImgFile, path, "S1");
+			modifyGoodsFilesTbl(fileName, goodsId, "");
 		}
+	}
+
+	private void modifyGoodsFilesTbl(String fileName, String GoodsId, String gFileDesc) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("gFileName", fileName);
+		map.put("goods_id", GoodsId);
+		map.put("gFileDesc", gFileDesc);
+		goodsAdminsDAO.modifyGoodsFiles(map);
 	}
 
 	private String getFileLocationIndex(File file) {
@@ -215,7 +243,7 @@ public class GoodsAdminsServiceImpl implements GoodsAdminsService {
 		return locationIndex;
 	}
 
-	private void saveImage(File file, String path, String imageSizeIndex) throws Exception {
+	private String saveImage(File file, String path, String imageSizeIndex) throws Exception {
 
 		String fileName = "";
 		BufferedImage bufferedImg = null;
@@ -223,12 +251,15 @@ public class GoodsAdminsServiceImpl implements GoodsAdminsService {
 		switch (imageSizeIndex) {
 		case "S1":
 			String locationIndex = getFileLocationIndex(file);
-			fileName = "S1" + "-" + locationIndex + ".jpg";
+			fileName = "S1" + "-" + locationIndex + c.dot + FilenameUtils.getExtension(file.getName());
 			bufferedImg = imageResize(file, 100, 100);
 			break;
 		}
 
 		upload(bufferedImg, path, fileName);
+
+		// 성공시 fileName return
+		return fileName;
 	}
 
 	private BufferedImage imageResize(File file, double width, double height) throws IOException {
@@ -242,19 +273,19 @@ public class GoodsAdminsServiceImpl implements GoodsAdminsService {
 		resizedImg = ImageUtill.scaleSize(sourceImg, 100, 100); // 이미지 유틸
 		return resizedImg;
 	}
-	
+
 	private byte[] toByte(BufferedImage bufferedImg) throws IOException {
 		byte[] byteImg = null;
 		if (bufferedImg == null) {
 			return byteImg;
 		}
-		
+
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		ImageIO.write( bufferedImg, "jpg", baos );
+		ImageIO.write(bufferedImg, "jpg", baos);
 		baos.flush();
 		byteImg = baos.toByteArray();
 		baos.close();
-		
+
 		return byteImg;
 	}
 

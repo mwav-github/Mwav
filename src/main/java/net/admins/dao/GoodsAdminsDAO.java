@@ -20,6 +20,11 @@ public class GoodsAdminsDAO extends AbstractDAO {
 		insert("goodsAdmins.insertGdsForm", map); // Membertbl
 		return map;
 	}
+	
+	public Map<String, Object> modifyGoodsFiles(Map<String, Object> map) {
+		insert("goodsAdmins.modifyGoodsFiles", map); 
+		return map;
+	}
 
 	public int selectOneGetGdsTotalCount() {
 		// TODO Auto-generated method stub
