@@ -23,29 +23,7 @@
 		중요 -->
 	<repositories>
 		<repository>
-			<id>mvn2</id>
-			<url>http://repo1.maven.org/maven2/</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-
-		<!-- Maven Repository 가 없는 로컬 jar 파일 을 maven project 에 추가하는 방법 http://hasunjjang.blogspot.kr/2015/08/posted-by-httpitnp.html -->
-		<!-- <repository> <id>mwavframework</id> <name>custom jars</name> <url>file://${project.basedir}/lib</url> 
-			</repository> -->
-
-		<!-- <repository> <id>UserAgent</id> <name>custom jars</name> <url>file://${project.basedir}/lib</url> 
-			</repository> <repository> <id>google-api-services</id> <url>http://google-api-client-libraries.appspot.com/mavenrepo</url> 
-			</repository> -->
-
-
-		<!-- Copy this section from the Maven section of the "Connect to Feed" 
-			dialog -->
-		<repository>
-			<id>dev-azure-com-webmaster0770-mwavcorp</id>
+			<id>MwavCorp</id>
 			<url>https://pkgs.dev.azure.com/webmaster0770/_packaging/MwavCorp/maven/v1</url>
 			<releases>
 				<enabled>true</enabled>
