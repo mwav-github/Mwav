@@ -49,7 +49,7 @@
 					<h2 class="col-md-12 page-header" style="color: #317eac">IT
 						Solutions</h2>
 				</div>
-				
+
 				<div class="col-xs-12 col-sm-6 col-md-6">
 					<div class="news">
 						<div class="img-figure">
@@ -62,8 +62,8 @@
 						<div class="title">
 							<h1>Make your data come alive</h1>
 						</div>
-						<p class="description">FusionCharts makes it easy for developers
-							to set up interactive charts in their web pages...</p>
+						<p class="description">FusionCharts makes it easy for
+							developers to set up interactive charts in their web pages...</p>
 
 						<p class="more">
 							<a href="/CompanyItem/ITProducts/FusionCharts/FusionCharts.mwav">read
@@ -190,6 +190,49 @@
 						</div>
 						<div class="col-xs-12 col-sm-6 col-md-4">
 							<div class="img-figure">
+								<div class="smallcat_green">OFFICE</div>
+								<a href="/CompanyItem/ITProducts/OfficeSuite/OfficeSuite.mwav">
+									<img class="img-responsive img-portfolio img-hover"
+									src="/CompanyItem/ITProducts/Images/officesuite_main.png"
+									alt="OfficeSuite">
+								</a>
+							</div>
+						</div>
+						
+						<div class="col-xs-12 col-sm-6 col-md-4">
+							<div class="img-figure">
+								<div class="smallcat_green">OFFICE</div>
+								<a href="/CompanyItem/ITProducts/MSOffice/MSOffice.mwav"> <img
+									class="img-responsive img-portfolio img-hover"
+									src="/CompanyItem/ITProducts/Images/MsOffice(h250).jpg"
+									alt="MSOffice">
+								</a>
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-6 col-md-4">
+							<div class="img-figure">
+								<div class="smallcat_lightblue">Cloud</div>
+								<a href="/CompanyItem/ITProducts/Azure/Azure.mwav"> <img
+									class="img-responsive img-portfolio img-hover"
+									src="/CompanyItem/ITProducts/Images/ms_azure(h250).png"
+									alt="Azure">
+								</a>
+							</div>
+						</div>
+
+						<div class="col-xs-12 col-sm-6 col-md-4">
+							<div class="img-figure">
+								<div class="smallcat_lightblue">OS</div>
+								<a href="/CompanyItem/ITProducts/Windows/Windows.mwav"> <img
+									class="img-responsive img-portfolio img-hover"
+									src="/CompanyItem/ITProducts/Images/windows10(h250).jpg"
+									alt="Windows">
+								</a>
+							</div>
+						</div>
+						
+						<div class="col-xs-12 col-sm-6 col-md-4">
+							<div class="img-figure">
 								<div class="smallcat_orange">AR Navigation</div>
 								<a href="/CompanyItem/ITProducts/vanillaNAV/vanillaNAV.mwav">
 									<img class="img-responsive img-portfolio img-hover"
@@ -198,32 +241,6 @@
 								</a>
 							</div>
 						</div>
-						<div class="col-xs-12 col-sm-6 col-md-4">
-							<a href="/CompanyItem/ITProducts/Azure/Azure.mwav"> <img
-								class="img-responsive img-portfolio img-hover"
-								src="/CompanyItem/ITProducts/Images/ms_azure(h250).png"
-								alt="Azure">
-							</a>
-
-						</div>
-
-
-						<div class="col-xs-12 col-sm-6 col-md-4">
-							<a href="/CompanyItem/ITProducts/Windows/Windows.mwav"> <img
-								class="img-responsive img-portfolio img-hover"
-								src="/CompanyItem/ITProducts/Images/windows10(h250).jpg"
-								alt="Windows">
-							</a>
-						</div>
-						<div class="col-xs-12 col-sm-6 col-md-4">
-							<a href="/CompanyItem/ITProducts/MSOffice/MSOffice.mwav"> <img
-								class="img-responsive img-portfolio img-hover"
-								src="/CompanyItem/ITProducts/Images/MsOffice(h250).jpg"
-								alt="MSOffice">
-							</a>
-						</div>
-
-
 						<div class="col-xs-12 col-sm-6 col-md-4">
 							<div class="img-figure">
 								<div class="smallcat_gray_type1">HR Solutions</div>

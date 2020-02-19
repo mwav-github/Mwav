@@ -40,7 +40,7 @@
 				href="/CompanyItem/ITProducts/FusionCharts/FusionCharts.mwav?type=overview"
 				class="list-group-item " data-toggle="tooltip" data-placement="top"
 				data-original-title="Overview"><span
-				class="glyphicon glyphicon-chevron-right"></span> Overview</a> <a
+				class="glyphicon glyphicon-chevron-right"></span> Overview</a> <!-- <a
 				href="/CompanyItem/ITProducts/FusionCharts/FusionCharts.mwav?type=FusionChartsSuiteXT"
 				class="list-group-item " data-toggle="tooltip" data-placement="top"
 				data-original-title="Features"><span
@@ -57,7 +57,7 @@
 				href="/CompanyItem/ITProducts/FusionCharts/FusionCharts.mwav?type=Dashboards"
 				class="list-group-item " data-toggle="tooltip" data-placement="top"
 				data-original-title="Features"><span
-				class="glyphicon glyphicon-chevron-right"></span> FusionExport</a>
+				class="glyphicon glyphicon-chevron-right"></span> FusionExport</a> -->
 		</div>
 
 		<%--사용자 시각에서 hover시 포인터가 떠야한다.

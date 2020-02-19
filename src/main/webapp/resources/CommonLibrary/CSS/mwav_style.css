@@ -392,8 +392,31 @@ p.more2 {
 	padding: 3px 15px;
 	font-size:12px;
 }
+.smallcat_lightblue {
+	background: #007FFF;
+	color: #fff;
+	text-transform: uppercase;
+	position: absolute;
+	left: 0;
+	top: 20px;
+	z-index: 1;
+	padding: 3px 15px;
+	font-size:12px;
+}
 .smallcat_orange {
 	background: #F07241;
+	color: #fff;
+	text-transform: uppercase;
+	position: absolute;
+	left: 0;
+	top: 20px;
+	z-index: 1;
+	padding: 3px 15px;
+	font-size:12px;
+}
+
+.smallcat_green {
+	background: #6CBB3C;
 	color: #fff;
 	text-transform: uppercase;
 	position: absolute;
