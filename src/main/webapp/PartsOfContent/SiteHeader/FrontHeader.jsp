@@ -47,28 +47,28 @@
 				<li><a href="/CompanyItem/ITSolutions/Aervision/Aervision.mwav"
 					onclick="ga('send', 'event', 'GNB', 'click', 'ITSolutions');"><h4
 							class="nav_fontsize">
-							<strong>IT Solutions</strong>
+							<strong>One</strong>
 						</h4></a></li>
 				<li><a href="https://www.mwav.net/CompanyItem/ITProducts/FusionCharts/FusionCharts.mwav"
 					onclick="ga('send', 'event', 'GNB', 'click', 'ITProducts');"><h4
 							class="nav_fontsize">
-							<strong>IT Products</strong>
+							<strong>Two</strong>
 						</h4></a></li>
 				<li><a href="/CompanyItem/WebSiteBuilding/WebSiteBuilding.mwav"
 					onclick="ga('send', 'event', 'GNB', 'click', 'WebsiteBuilding');"><h4
 							class="nav_fontsize">
-							<strong>WebSite Building</strong>
+							<strong>Three</strong>
 						</h4></a></li>
 				<li><a
 					href="/CompanyItem/DigitalMarketing/DigitalMarketing.mwav"
 					onclick="ga('send', 'event', 'GNB', 'click', 'DigitalMarketing');"><h4
 							class="nav_fontsize">
-							<strong>Digital Marketing</strong>
+							<strong>Four</strong>
 						</h4></a></li>
 				<li><a href="/CompanyItem/ITConsulting/ITConsulting.mwav"
 					onclick="ga('send', 'event', 'GNB', 'click', 'ITConsulting');"><h4
 							class="nav_fontsize">
-							<strong>IT Consulting</strong>
+							<strong>five</strong>
 						</h4></a></li>
 			</ul>
 			<ul class="mgt2 nav navbar-nav navbar-right mgl3_1023">
