@@ -26,6 +26,7 @@ import net.common.common.LeftFrame_VO;
 import net.mwav.common.module.Common_Utils;
 import net.mwav.common.module.Paging;
 import net.mwav.common.module.PagingVO;
+import net.mwav.common.module.XmlLib;
 
 @Controller
 public class CommonController {
@@ -164,5 +165,18 @@ public class CommonController {
 
 		return insertGdsUpLoader;
 
+	}
+	
+	/**
+	 * @author 박정은
+	 * @since
+	 * @version 1.0
+	 * @see
+	 */
+	@RequestMapping(value = "/PartsOfContent/SiteFooter/FrontFooter.mwav")
+	public ModelAndView getFrontFooter(ModelAndView mv, HttpServletRequest request) throws Exception {
+		mv.setViewName("/PartsOfContent/SiteFooter/FrontFooter");
+		mv.addObject("generalConfig", CommonService.getFrontFooter(request));	
+		return mv;			
 	}
 }

@@ -411,7 +411,7 @@ function cartSubmit(ocAmount) {
 	<!-- Footer -->
 	<footer>
 		<!--/////////////////////////////////////////////////// -->
-		<jsp:include page="/PartsOfContent/SiteFooter/FrontFooter_Shop.jsp"
+		<jsp:include page="/PartsOfContent/SiteFooter/FrontFooter_Shop.mwav"
 			flush="false" />
 		<!--/////////////////////////////////////////////////// -->
 	</footer>

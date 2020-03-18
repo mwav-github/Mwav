@@ -14,11 +14,14 @@ import net.admins.dao.CommonDAO;
 import net.admins.dao.StaffDAO;
 import net.common.common.CommandMap;
 import net.mwav.common.module.FileUtils;
+import net.mwav.common.module.GeneralConfig;
+import net.mwav.common.module.XmlLib;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 @Service("CommonService")
 public class CommonServiceImpl implements CommonService {
@@ -102,6 +105,19 @@ public class CommonServiceImpl implements CommonService {
 		}
 		// ////////////////////////	
 		return map;
+	}
+	
+	/**
+	 * @author 박정은
+	 * @since
+	 * @version 1.0
+	 * @see
+	 */
+	@Override
+	public GeneralConfig getFrontFooter(HttpServletRequest request) throws Exception {
+		String path = request.getRealPath("/xConfig/footer.xml");
+		GeneralConfig generalConfig = (GeneralConfig) XmlLib.getInstance().unmarshal(path, GeneralConfig.class);
+		return generalConfig;
 	}
 
 }

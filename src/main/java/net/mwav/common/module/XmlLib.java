@@ -100,5 +100,11 @@ public class XmlLib {
 
 		return unmarshallerObj;
 	}
+	
+	public Class<?> test(final String path, final Class<?> cls) throws Exception {
+		Class<?> generalConfig = (Class<?>) XmlLib.getInstance().unmarshal(path, cls);	
+		
+		return generalConfig;
+	}
 
 }

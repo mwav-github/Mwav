@@ -825,7 +825,7 @@ wish 는 https://www.wish.com/#cid=563db50683b75d5a54fedcfc 와 같이 id 값은
 	<!-- Footer -->
 	<footer>
 		<!--/////////////////////////////////////////////////// -->
-		<jsp:include page="/PartsOfContent/SiteFooter/FrontFooter_Shop.jsp"
+		<jsp:include page="/PartsOfContent/SiteFooter/FrontFooter_Shop.mwav"
 			flush="false" />
 		<!--/////////////////////////////////////////////////// -->
 	</footer>

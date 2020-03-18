@@ -101,15 +101,14 @@ css 중 가장 마지막에 호출되어야하며, include 되는 파일 중 css
 				</p>
 
 				<ul>
-					<li>Company Name : Mwav corp.</li>
+					<li>Company Name : ${generalConfig.companyInfo.companyName}</li>
 					<%-- <li>Business Registration Number : 206-09-41373</li>--%>
-					<li>Address: GV-4F, 5-5, Ttukseom-ro 46-gil, Gwangjin-gu,
-						Seoul , Korea [05099]</li>
-					<li>TEL : +82-70-4655-4777</li>
-					<li>FAX : +82-2-6214-7039</li>
-					<li>CEO : Lewis, Kim</li>
-					<li>WebSite Manager : Hunt, Kim</li>
-					<li>Marketing Manager : Jose, Shin</li>
+					<li>Address : ${generalConfig.companyInfo.address}</li>
+					<li>TEL : ${generalConfig.companyInfo.tel}</li>
+					<li>FAX : ${generalConfig.companyInfo.fax}</li>
+					<li>CEO : ${generalConfig.companyInfo.ceo}</li>
+					<li>WebSite Manager : ${generalConfig.companyInfo.webSiteManager}</li>
+					<li>Marketing Manager : ${generalConfig.companyInfo.marketingManager}</li>
 					<c:choose>
 						<c:when test="${!empty sessionScope.pmtNick}">
 							<li>Sales Manager : ${sessionScope.pmtNick}</li>
