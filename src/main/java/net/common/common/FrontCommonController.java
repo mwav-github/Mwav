@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import net.common.service.FrontService;
 import net.mwav.common.module.Common_Utils;
 import net.mwav.common.module.GeneralConfig;
 import net.mwav.member.auth.naver.NaverUrlBuilder;

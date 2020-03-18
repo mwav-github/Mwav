@@ -1,6 +1,8 @@
 package net.admins.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.Collections;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +16,8 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -176,7 +180,7 @@ public class CommonController {
 	@RequestMapping(value = "/PartsOfContent/SiteFooter/FrontFooter.mwav")
 	public ModelAndView getFrontFooter(ModelAndView mv, HttpServletRequest request) throws Exception {
 		mv.setViewName("/PartsOfContent/SiteFooter/FrontFooter");
-		mv.addObject("generalConfig", CommonService.getFrontFooter(request));	
-		return mv;			
+		mv.addObject("generalConfig", CommonService.getFrontFooter(request, "footer"));
+		return mv;
 	}
 }

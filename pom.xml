@@ -492,6 +492,20 @@
 			<version>2.2.11</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-cache -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-cache</artifactId>
+			<version>2.2.5.RELEASE</version>
+		</dependency>
+
+		<!-- EHCache 모듈 -->
+		<dependency>
+			<groupId>net.sf.ehcache</groupId>
+			<artifactId>ehcache</artifactId>
+			<version>2.10.6</version>
+		</dependency>
+
 		<!-- @UserAgentAnalyis 171117 http://www.bitwalker.eu/software/user-agent-utils 
 			https://mvnrepository.com/search?q=eu.bitwalker https://javalibs.com/artifact/eu.bitwalker/UserAgentUtils 
 			https://javalibs.com/artifact/nl.basjes.parse.useragent/yauaa <dependency> 
