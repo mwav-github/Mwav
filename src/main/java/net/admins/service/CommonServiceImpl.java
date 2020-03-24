@@ -1,7 +1,10 @@
 package net.admins.service;
 
+import java.nio.file.FileSystems;
+import java.nio.file.WatchService;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -15,11 +18,13 @@ import javax.servlet.http.HttpSession;
 import net.admins.dao.CommonDAO;
 import net.admins.dao.StaffDAO;
 import net.common.common.CommandMap;
+import net.common.common.WatchController;
 import net.mwav.common.module.FileUtils;
 import net.mwav.common.module.GeneralConfig;
 import net.mwav.common.module.XmlLib;
 
 import org.apache.log4j.Logger;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -119,14 +124,20 @@ public class CommonServiceImpl implements CommonService {
 	@Override
 	@Cacheable(value="xmlCache", key="#xml") // key를 설정해줘야 함
 	public GeneralConfig getFrontFooter(HttpServletRequest request, String xml) throws Exception {
-		String path = request.getRealPath("/xConfig/footer.xml");
-		GeneralConfig generalConfig = (GeneralConfig) XmlLib.getInstance().unmarshal(path, GeneralConfig.class);
+		Map<String, String> watchMap = new HashMap<String, String>();
+		String filePath = request.getRealPath("/xConfig/");
+		String fileName = "footer.xml";
+		watchMap.put("filePath", filePath);
+		watchMap.put("fileName", fileName);
+		watchMap.put("cacheValue", "xmlCache");
+		watchMap.put("cacheKey", xml);
 		
-		Date time = new Date(); ///
-		SimpleDateFormat format = new SimpleDateFormat("HH시mm분ss초"); ///
-		System.out.println("서비스 " + format.format(time)); ///
+		WatchController watch = new WatchController();
+		watch.watchService(watchMap);
 		
+		System.out.println("서비스 Cacheable");
+		
+		GeneralConfig generalConfig = (GeneralConfig) XmlLib.getInstance().unmarshal(filePath+fileName, GeneralConfig.class);		
 		return generalConfig;
 	}
-
 }

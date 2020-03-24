@@ -1,15 +1,9 @@
 package net.admins.service;
 
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.web.servlet.ModelAndView;
-
-import net.common.common.CommandMap;
 import net.mwav.common.module.GeneralConfig;
 
 public interface CommonService {
