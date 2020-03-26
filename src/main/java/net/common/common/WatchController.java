@@ -64,10 +64,14 @@ public class WatchController {
                     Kind<?> kind = event.kind();
                     System.out.println("경로출력" + watchMap.get("filePath") + watchMap.get("fileName"));
                     if(kind.equals(StandardWatchEventKinds.ENTRY_MODIFY)) {
-                    	
-                    	//CacheManager 사용해서 cache clear
+                    	Path changed = (Path) event.context();
                     	try {
-                    		CacheManager.getInstance().getCache(watchMap.get("cacheValue")).remove(watchMap.get("cacheKey"));
+                    		// cacheable을 이용하여 담아둔 파일일 경우에만... 해당 부분이 없으면 디렉토리의 어떤 파일이 변경되어도 cache가 clear 됨
+                    		if(changed.endsWith(watchMap.get("fileName"))) {
+                    			//CacheManager 사용해서 cache clear
+                    			CacheManager.getInstance().getCache(watchMap.get("cacheValue")).remove(watchMap.get("cacheKey"));
+                    		}
+                    		
 						} catch (Exception e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
