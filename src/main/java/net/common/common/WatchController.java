@@ -29,7 +29,6 @@ import net.sf.ehcache.CacheManager;
 public class WatchController {
 	@Resource(name = "CommonService")
 	private CommonService CommonService;
-	
     private WatchKey watchKey;
     
     private final static WatchController INSTANCE = new WatchController();

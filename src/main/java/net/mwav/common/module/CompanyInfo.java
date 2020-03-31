@@ -41,6 +41,8 @@ public class CompanyInfo implements Serializable {
 	private String address;
 	@XmlElement(name = "Copyright")
 	private String copyright;
+	@XmlElement(name = "BranchOfficeInfo")
+	private BranchOfficeInfo branchOfficeInfo;
 
 	public CompanyInfo() {
 		super();
@@ -101,5 +103,8 @@ public class CompanyInfo implements Serializable {
 	public String getCopyright() {
 		return this.copyright;
 	}
-
+	
+	public BranchOfficeInfo getBranchOfficeInfo() {
+		return branchOfficeInfo;
+	}
 }

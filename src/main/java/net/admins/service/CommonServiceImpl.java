@@ -126,7 +126,7 @@ public class CommonServiceImpl implements CommonService {
 	public GeneralConfig getFrontFooter(HttpServletRequest request, String xml) throws Exception {
 		Map<String, String> watchMap = new HashMap<String, String>();
 		String filePath = request.getRealPath("/xConfig/");
-		String fileName = "footer.xml";
+		String fileName = "general.xml.config";
 		watchMap.put("filePath", filePath);
 		watchMap.put("fileName", fileName);
 		watchMap.put("cacheValue", "xmlCache");

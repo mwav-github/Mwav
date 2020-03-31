@@ -118,7 +118,7 @@ css 중 가장 마지막에 호출되어야하며, include 되는 파일 중 css
 						</c:when>
 					</c:choose>
 					
-					<li>Chief IT-Business Advisor : Peter J.</li>
+					<li>Chief IT-Business Advisor : ${generalConfig.techCompanyInfo.techManager}</li>
 				</ul>
 			</div>
 			<div class="col-xs-12 col-sm-8 col-md-4">
@@ -205,17 +205,15 @@ css 중 가장 마지막에 호출되어야하며, include 되는 파일 중 css
 				<div class="col-md-12">
 					<h3 style="padding: 0 0 10px;">Branch Office India:</h3>
 					<p>
-						<i class="fa fa-map-marker" aria-hidden="true"></i> 52C, Nanjappan
-						Street, Maruthapuram Bharathiary University (P.O) Coimbatore -
-						641046
+						<i class="fa fa-map-marker" aria-hidden="true"></i> ${generalConfig.companyInfo.branchOfficeInfo.address}
 					</p>
 					<p>
-						<i class="fa fa-phone"></i> 044- 42 875 952
+						<i class="fa fa-phone"></i> ${generalConfig.companyInfo.branchOfficeInfo.tel}
 					</p>
 
 					<p>
 						<i class="fa fa-envelope-o" aria-hidden="true"></i>
-						info@cliqtechnologies.in
+						${generalConfig.companyInfo.branchOfficeInfo.firmEmail}
 					</p>
 
 				</div>
@@ -230,7 +228,7 @@ css 중 가장 마지막에 호출되어야하며, include 되는 파일 중 css
 <div class="footer-bottom">
 	<div class="container">
 		<p class="pull-left col-md-7 col-sm-12 col-xs-12">
-			Copyright ⓒ Since 2004 Mwav.net All rights reserved | <a>Privacy
+			${generalConfig.companyInfo.copyright} | <a>Privacy
 				Policy</a> | <a>Terms of Use</a>
 		</p>
 		<p class="pull-right col-md-2 col-sm-12 col-xs-4">
