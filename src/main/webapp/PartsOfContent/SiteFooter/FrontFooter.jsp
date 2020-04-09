@@ -1,13 +1,11 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%-- Customize CSS
 Mwav 관련 별도 css 이며, 추가로 해당 부분은 footer 내 위치해야 할 수도있다.
 css 중 가장 마지막에 호출되어야하며, include 되는 파일 중 css가 하단에 위치하는 경우가 존재하는 이슈가 존재.
  --%>
-<link href="/resources/CommonLibrary/CSS/mwav_custom.css"
-	rel="stylesheet">
+<link href="/resources/CommonLibrary/CSS/mwav_custom.css" rel="stylesheet">
 
 <script>
 	(function(i, s, o, g, r, a, m) {
@@ -63,14 +61,14 @@ css 중 가장 마지막에 호출되어야하며, include 되는 파일 중 css
 	
 </script>
 
-
-
 <br />
+
 <!--TOP아이콘 -->
 <a id="back-to-top" href="#"
 	class="pull-right btn btn-primary btn-lg back-to-top" role="button"
 	title="Click to return on the top page" data-placement="left"
-	style="z-index: 6;"><span class="glyphicon glyphicon-chevron-up"></span></a>
+	style="z-index: 6;"><span class="glyphicon glyphicon-chevron-up"></span>
+</a>
 
 
 <div class="mgt5">
@@ -231,8 +229,7 @@ css 중 가장 마지막에 호출되어야하며, include 되는 파일 중 css
 <div class="footer-bottom">
 	<div class="container">
 		<p class="pull-left col-md-7 col-sm-12 col-xs-12">
-			Copyright ⓒ Since 2004 Mwav.net All rights reserved | <a>Privacy
-				Policy</a> | <a>Terms of Use</a>
+			Copyright ⓒ Since 2004 Mwav.net All rights reserved | <a>Privacy Policy</a> | <a>Terms of Use</a>
 		</p>
 		<p class="pull-right col-md-2 col-sm-12 col-xs-4">
 			<%-- Comodo Certificated 18.09.15 --%>
@@ -327,7 +324,35 @@ css 중 가장 마지막에 호출되어야하며, include 되는 파일 중 css
 	</div>
 </div>
 
+<!-- 챗봇 -->
+<!-- Load Facebook SDK for JavaScript -->
+<div id="fb-root"></div>
+<style>
+	.fb_customer_chat_bubble_pop_in{
+		bottom: 60px;
+	}
+</style>
+<script>
+	window.fbAsyncInit = function() {
+        FB.init({
+            xfbml   : true,
+            version : 'v6.0'
+        });
+    };
+    
+    (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/ko_KR/sdk/xfbml.customerchat.js';
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+</script>
 
-
-
+<!-- Your customer chat code -->
+<div class="fb-customerchat" attribution=setup_tool
+	page_id="1763283283755673" theme_color="#0084ff"
+	logged_in_greeting="안녕하세요 Mwav 입니다. 무엇을 도와 드릴까요?"
+	logged_out_greeting="이용해주셔서 감사합니다.">
+</div>
 
