@@ -324,7 +324,33 @@ css 중 가장 마지막에 호출되어야하며, include 되는 파일 중 css
 	</div>
 </div>
 
+<!-- 챗봇 -->
+<!-- Load Facebook SDK for JavaScript -->
+<div id="fb-root"></div>
 
+<script>
+	window.fbAsyncInit = function() {
+        FB.init({
+            xfbml   : true,
+            version : 'v6.0'
+        });
+    };
+    
+    (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/ko_KR/sdk/xfbml.customerchat.js';
+        fjs.parentNode.insertBefore(js, fjs);
+        
+        $(".fb_customer_chat_bubble_pop_in").css("bottom", "60px");
+        
+      }(document, 'script', 'facebook-jssdk'));
+</script>
 
-
-
+<!-- Your customer chat code -->
+<div class="fb-customerchat" attribution=setup_tool
+	page_id="1763283283755673" theme_color="#0084ff"
+	logged_in_greeting="안녕하세요 Mwav 입니다. 무엇을 도와 드릴까요?"
+	logged_out_greeting="이용해주셔서 감사합니다.">
+</div>
