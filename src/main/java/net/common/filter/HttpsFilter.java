@@ -29,9 +29,9 @@ public class HttpsFilter implements Filter {
 		String getPort = Integer.toString(req.getServerPort());
 		String getParameters = req.getQueryString();
 
-		if(getDomain.contains("localhost")){
+		if(getDomain.contains("localhost") || getDomain.contains("mwavtst.nanuminet") || getDomain.contains("koreacentral.cloudapp.azure")){
 			// localhost 테스트 환경에서 filter 타지 않도록 로직 구현 : localhost:8080 으로 접근가능
-			logger.info("Local develop 환경 call : localhost:8080");
+			logger.info("Dev / Stg 환경 call : localhost:8080");
 		} else { // http, https 구분없이 filter 적용
 
 			if(getProtocol.equals("https") && getDomain.contains("www.")){ 
