@@ -99,15 +99,14 @@ css 중 가장 마지막에 호출되어야하며, include 되는 파일 중 css
 				</p>
 
 				<ul>
-					<li>Company Name : Mwav corp.</li>
+					<li>Company Name : ${generalConfig.companyInfo.companyName}</li>
 					<%-- <li>Business Registration Number : 206-09-41373</li>--%>
-					<li>Address: GV-4F, 5-5, Ttukseom-ro 46-gil, Gwangjin-gu,
-						Seoul , Korea [05099]</li>
-					<li>TEL : +82-70-4655-4777</li>
-					<li>FAX : +82-2-6214-7039</li>
-					<li>CEO : Lewis, Kim</li>
-					<li>WebSite Manager : Hunt, Kim</li>
-					<li>Marketing Manager : Jose, Shin</li>
+					<li>Address : ${generalConfig.companyInfo.address}</li>
+					<li>TEL : ${generalConfig.companyInfo.tel}</li>
+					<li>FAX : ${generalConfig.companyInfo.fax}</li>
+					<li>CEO : ${generalConfig.companyInfo.ceo}</li>
+					<li>WebSite Manager : ${generalConfig.companyInfo.webSiteManager}</li>
+					<li>Marketing Manager : ${generalConfig.companyInfo.marketingManager}</li>
 					<c:choose>
 						<c:when test="${!empty sessionScope.pmtNick}">
 							<li>Sales Manager : ${sessionScope.pmtNick}</li>
@@ -117,7 +116,7 @@ css 중 가장 마지막에 호출되어야하며, include 되는 파일 중 css
 						</c:when>
 					</c:choose>
 					
-					<li>Chief IT-Business Advisor : Peter J.</li>
+					<li>Chief IT-Business Advisor : ${generalConfig.techCompanyInfo.techManager}</li>
 				</ul>
 			</div>
 			<div class="col-xs-12 col-sm-8 col-md-4">
@@ -204,17 +203,15 @@ css 중 가장 마지막에 호출되어야하며, include 되는 파일 중 css
 				<div class="col-md-12">
 					<h3 style="padding: 0 0 10px;">Branch Office India:</h3>
 					<p>
-						<i class="fa fa-map-marker" aria-hidden="true"></i> 52C, Nanjappan
-						Street, Maruthapuram Bharathiary University (P.O) Coimbatore -
-						641046
+						<i class="fa fa-map-marker" aria-hidden="true"></i> ${generalConfig.companyInfo.branchOfficeInfo.address}
 					</p>
 					<p>
-						<i class="fa fa-phone"></i> 044- 42 875 952
+						<i class="fa fa-phone"></i> ${generalConfig.companyInfo.branchOfficeInfo.tel}
 					</p>
 
 					<p>
 						<i class="fa fa-envelope-o" aria-hidden="true"></i>
-						info@cliqtechnologies.in
+						${generalConfig.companyInfo.branchOfficeInfo.firmEmail}
 					</p>
 
 				</div>
@@ -229,7 +226,8 @@ css 중 가장 마지막에 호출되어야하며, include 되는 파일 중 css
 <div class="footer-bottom">
 	<div class="container">
 		<p class="pull-left col-md-7 col-sm-12 col-xs-12">
-			Copyright ⓒ Since 2004 Mwav.net All rights reserved | <a>Privacy Policy</a> | <a>Terms of Use</a>
+			${generalConfig.companyInfo.copyright} | <a>Privacy
+				Policy</a> | <a>Terms of Use</a>
 		</p>
 		<p class="pull-right col-md-2 col-sm-12 col-xs-4">
 			<%-- Comodo Certificated 18.09.15 --%>
@@ -327,11 +325,7 @@ css 중 가장 마지막에 호출되어야하며, include 되는 파일 중 css
 <!-- 챗봇 -->
 <!-- Load Facebook SDK for JavaScript -->
 <div id="fb-root"></div>
-<style>
-	.fb_customer_chat_bubble_pop_in{
-		bottom: 60px;
-	}
-</style>
+
 <script>
 	window.fbAsyncInit = function() {
         FB.init({
@@ -346,6 +340,9 @@ css 중 가장 마지막에 호출되어야하며, include 되는 파일 중 css
         js = d.createElement(s); js.id = id;
         js.src = 'https://connect.facebook.net/ko_KR/sdk/xfbml.customerchat.js';
         fjs.parentNode.insertBefore(js, fjs);
+        
+        $(".fb_customer_chat_bubble_pop_in").css("bottom", "60px");
+        
       }(document, 'script', 'facebook-jssdk'));
 </script>
 
