@@ -879,7 +879,7 @@ public class Common_Utils {
 		String set_Title = null;
 
 		// 캐치프레이즈라고 한다.
-		String main_Title = "dddd your infinite possibilities with IT Optimization!!";
+		String main_Title = "hihi your infinite possibilities with IT Optimization!!";
 		String aervision_Title = "Biometric authentication & computer vision & machine learning";
 
 		
