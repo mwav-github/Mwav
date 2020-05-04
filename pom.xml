@@ -519,7 +519,7 @@
                    </goals>
                    <configuration>
                      <tasks>
-                       <!-- mwav-data 소스를 제거 후 Staging용 소스로 교체 -->
+                       <!-- mwav-data 소스를 제거 후 Staging용 소스로 교체 !-->
                        <delete file="src/main/resources/config/spring/mwav-data.xml"/>
                        <copy file="/app/dev_file/mwav-data-stg.xml" tofile="src/main/resources/config/spring/mwav-data.xml" />
 
