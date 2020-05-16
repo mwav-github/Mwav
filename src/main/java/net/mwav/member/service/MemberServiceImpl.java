@@ -21,6 +21,7 @@ import org.springframework.web.util.WebUtils;
 
 import net.mwav.common.module.AesEncryption;
 import net.mwav.common.module.EmailSender;
+import net.mwav.common.module.SecurityLib;
 import net.mwav.common.module.ValidationLib;
 import net.mwav.member.dao.MemberDAO;
 import net.mwav.member.vo.Member_tbl_VO;
@@ -29,7 +30,7 @@ import net.mwav.member.vo.Member_tbl_VO;
 public class MemberServiceImpl implements MemberService {
 	Logger log = Logger.getLogger(this.getClass());
 
-	byte[] encrypted = null;
+	String encrypted = null;
 
 	@Resource(name = "memberDAO")
 	private MemberDAO memberDAO;
@@ -76,13 +77,12 @@ public class MemberServiceImpl implements MemberService {
 			// 4. 비밀번호 암호화
 			String b_mbrLoginPw = map.get("mbrLoginPw").toString();
 			//AES/CBC/IV 암호화 (키,암호화텍스트,iv)
-			encrypted = AesEncryption.aesEncryptCbc(AesEncryption.sKey, b_mbrLoginPw, AesEncryption.sInitVector);
-			String sBase = AesEncryption.aesEncodeBuf(encrypted);
-			if (sBase == null) {
+			encrypted = SecurityLib.getInstance().encryptToString(AesEncryption.sKey, AesEncryption.sInitVector, b_mbrLoginPw);	
+			if (encrypted == null) {
 				result.put("result", "99");
 				result.put("message", "EXCEPTION");
 			}
-			map.put("mbrLoginPw", sBase);
+			map.put("mbrLoginPw", encrypted);
 
 			// 5. Member_tbl, MemberValue_tbl insert
 			if (memberDAO.insertMbrForm(map) == 0) {
@@ -135,11 +135,11 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public boolean updateMbrLoginPw(Map<String, Object> map) throws IOException {
+	public boolean updateMbrLoginPwTmp(Map<String, Object> map) throws IOException {
 		// TODO Auto-generated method stub
 
 		boolean flag = false;
-		flag = memberDAO.updateMbrLoginPw(map);
+		flag = memberDAO.updateMbrLoginPwTmp(map);
 		return flag;
 	}
 
@@ -193,7 +193,7 @@ public class MemberServiceImpl implements MemberService {
 	 * ========
 	 */
 	@Override
-	public boolean deleteMbrDelete(Map<String, Object> map) {
+	public boolean deleteMbrDelete(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		return memberDAO.deleteMbrDelete(map);
 	}
