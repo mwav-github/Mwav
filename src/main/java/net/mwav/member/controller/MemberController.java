@@ -24,9 +24,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import net.common.common.CommandMap;
+import net.common.common.Status;
 import net.mwav.common.module.Common_Utils;
 import net.mwav.common.module.EmailSender;
 import net.mwav.common.module.VerifyRecaptcha;
+import net.mwav.login.service.LoginService;
+import net.mwav.login.vo.LoginVO;
 import net.mwav.member.service.MemberService;
 import net.mwav.member.vo.Member_tbl_VO;
 
@@ -45,9 +48,15 @@ public class MemberController {
 
 	@Autowired
 	Member_tbl_VO member_tbl_VO;
+	
+	@Autowired
+	LoginVO loginVO;
 
 	@Resource(name = "memberService")
 	private MemberService memberService;
+	
+	@Resource(name = "loginService")
+	private LoginService loginService;
 
 	Common_Utils cu = new Common_Utils();
 
@@ -139,6 +148,21 @@ public class MemberController {
 		}
 		return mv;
 	}
+	
+	@RequestMapping(value = "/login/pwUpdateLater.mwav")
+	@ResponseBody
+	public int pwUpdateLater(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		HttpSession session = request.getSession();
+
+		Member_tbl_VO Member = (Member_tbl_VO) session.getAttribute("member");
+		commandMap.put("member_id", Member.getMember_id());
+		
+		int updateYN = loginService.pwUpdateLater(Member);
+		
+		System.out.println("updateYN: " + updateYN);
+		
+		return updateYN;
+	}
 
 	/*
 	 * ========================================수정================================
@@ -213,7 +237,7 @@ public class MemberController {
 	// 4번 추후 패스워드 찾기 순서 mbrTempLoginPwUpdate -> mbrTempLoginPwSeek ->
 	// mbrLoginPwUpdate
 	@RequestMapping(value = "/member/mbrLoginPwUpdate.mwav")
-	public @ResponseBody boolean updateMbrLoginPw(CommandMap commandMap, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public @ResponseBody boolean updateMbrLoginPwTmp(CommandMap commandMap, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// ModelAndView mv = new ModelAndView("/MasterPage");
 
 		// String cc = (String) commandMap.get("mbrLoginPw");
@@ -226,11 +250,26 @@ public class MemberController {
 
 		System.out.println("출력+" + cc);
 
-		boolean updateMbrLoginPw = memberService.updateMbrLoginPw(commandMap.getMap());
+		boolean updateMbrLoginPw = memberService.updateMbrLoginPwTmp(commandMap.getMap());
 
 		// mv.addObject("updateMbrLoginPw", updateMbrLoginPw); // updatePw
 		// mv.addObject("mode", "SMbrLogin");
 		return updateMbrLoginPw;
+	}
+	
+	/**
+	 * @author 박정은
+	 * @param commandMap
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/login/mbrLoginPwUpdate.mwav")
+	public @ResponseBody Status updateMbrLoginPw(Member_tbl_VO member_tbl_VO, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		// 변경예정비밀번호
+		return loginService.updateMbrLoginPw(request, member_tbl_VO);
+		//return updateMbrLoginPw;
 	}
 
 	// 7번 추후 패스워드 찾기 1단계 맞으면 imsi 패스워드 넣으니
@@ -511,6 +550,10 @@ public class MemberController {
 		}
 
 		int loginCheck = 0; // 초기값
+		int updatePW = 0;
+		
+		loginVO.setAlEntityType('M');
+		loginVO.setAlEntityTarget_id(member_tbl_VO.getMember_id());
 
 		// g-recaptcha-response POST parameter when the user submits the form on
 		// your site
@@ -534,14 +577,13 @@ public class MemberController {
 			System.out.println("loginCheck =" + loginCheck);
 			String b_mbrLoginPw = null;
 			b_mbrLoginPw = (String) commandMap.get("mbrLoginPw");
-			System.out.println("페이지에서 온값 " + b_mbrLoginPw);
-
+            System.out.println("페이지에서 온값 " + b_mbrLoginPw);
+			
 			// 디비 다녀와서 온 값
 			String a_mbrLoginPw = (String) memberLogin.get("mbrLoginPw");
 			System.out.println("디비다녀온값" + a_mbrLoginPw);
 
 			String mbrLoginId = (String) memberLogin.get("mbrLoginId");
-			// int member_id = (int) memberLogin.get("member_id");
 
 			if (loginCheck == 7) {
 				loginCheck = 7;
@@ -558,11 +600,32 @@ public class MemberController {
 					log.info("자동로그인시도");
 					memberService.updateAutoLogin((String) commandMap.get("autoLoginChk"), response, member_tbl_VO.getMember_id());
 				}
+				
+				loginService.deleteAuditLogin(loginVO);
+				updatePW = loginService.getUpdatePwYN(member_tbl_VO);
+				
 				System.out.println("로그인성공");
 			} else if (mbrLoginId != null && !(b_mbrLoginPw.equals(a_mbrLoginPw))) {
 				// check 0 비밀번호가 틀렸을 때
 				loginCheck = 2;
 				System.out.println("비밀번호틀림");
+				// 박정은
+				LoginVO vo = new LoginVO();
+				vo = loginService.getLoginFailCount(loginVO);
+				
+				loginVO.setAlFailCount(vo.getAlFailCount());
+				loginVO.setAuditLogin_id(vo.getAuditLogin_id());
+				loginVO.setAlIpAddress(cu.getClientIP(request));
+				loginService.mergeAuditLogin(loginVO);
+				
+				if(vo.getAlFailCount() >= 5) {
+					ModelAndView mv = new ModelAndView("/MasterPage");
+					mv.addObject("memberLogin", memberLogin);
+					mv.addObject("mode", "PWFail");
+					request.setAttribute("returnUrl", returnUrl);
+					request.setAttribute("loginCheck", loginCheck);
+					return mv;
+				}
 			}
 		} else if (memberLogin != null && loginCheck == 5) {
 			loginCheck = 5; // 임시패스워드
@@ -584,6 +647,7 @@ public class MemberController {
 		mv.addObject("mode", "SMbrLogin");
 		request.setAttribute("returnUrl", returnUrl);
 		request.setAttribute("loginCheck", loginCheck);
+		request.setAttribute("updatePW", updatePW);
 		return mv;
 
 	}

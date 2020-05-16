@@ -35,6 +35,7 @@ public class Member_tbl_VO {
 	private Boolean mbrAddrFlag;
 	private String mbrZipcode;
 	private String mbrAddress;
+	private String hope_mbrLoginPw;
 
 	public Member_tbl_VO() {
 	}
@@ -150,6 +151,14 @@ public class Member_tbl_VO {
 
 	public void setMbrAddress(String mbrAddress) {
 		this.mbrAddress = mbrAddress;
+	}
+
+	public String getHope_mbrLoginPw() {
+		return hope_mbrLoginPw;
+	}
+
+	public void setHope_mbrLoginPw(String hope_mbrLoginPw) {
+		this.hope_mbrLoginPw = hope_mbrLoginPw;
 	}
 }
 /*

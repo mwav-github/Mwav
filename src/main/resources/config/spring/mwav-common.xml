@@ -133,4 +133,6 @@
 	</bean>
 	
 	<bean id="apiNaverTrend" class="net.common.common.APINaverTrend"></bean>
+	
+	<bean id="loginVO" class="net.mwav.login.vo.LoginVO"></bean>
 </beans>
