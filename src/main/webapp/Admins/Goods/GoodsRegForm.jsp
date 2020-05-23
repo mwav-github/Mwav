@@ -26,7 +26,9 @@
 		$("#images_position").val(modalUploadImages);
 
 		//기존 정보 초기화 
-		$('#filebody').empty();
+		//$('#filebody').empty();
+		//$('.js-upload-finished').empty();
+		$('#upload-finish-file').empty();
 	}
 </script>
 <style type="text/css">
@@ -78,7 +80,9 @@
 		<!-- Page Heading/Breadcrumbs -->
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">Admins <small> Goods</small></h1>
+				<h1 class="page-header">
+					Admins <small> Goods</small>
+				</h1>
 				<ol class="breadcrumb">
 					<li><a href="index.html">Home</a></li>
 					<li>Goods</li>
@@ -86,7 +90,7 @@
 				</ol>
 			</div>
 		</div>
-		
+
 		<!-- Content Row -->
 		<div class="row">
 			<!-- Sidebar Column left메뉴 추후 변경 예정<시작>-->
@@ -124,7 +128,7 @@
 					<div class="row">
 
 						<c:choose>
-							<c:when test="${fn:length(updateGdsForm) > 0}">
+							<c:when test="${fn:length(updateGdsForm) = 0}">
 
 								<%-- 1. 회원정보 수정 --%>
 								<form class='form-horizontal' method="post" action="/admins/goods/gdsForm.mwav">
@@ -160,9 +164,7 @@
 																							<%--http://bootsnipp.com/snippets/featured/bootstrap-lightbox --%>
 
 																							<div ${status.first ? 'class="active item"' : 'class="item"'} data-slide-number="${status.index}">
-																								<a href="#" class="thumbnail" data-toggle="modal" data-target="#lightbox"> <img
-																									src="/xUpload/GdsData/GC${updateGdsForm.goods_id}/${VgoodsFileList.fileName}"
-																								>
+																								<a href="#" class="thumbnail" data-toggle="modal" data-target="#lightbox"> <img src="/xUpload/GdsData/GC${updateGdsForm.goods_id}/${VgoodsFileList.fileName}">
 																								</a>
 																							</div>
 
@@ -205,9 +207,7 @@
 
 																		<ul class="hide-bullets">
 																			<li class="col-sm-6"><a class="thumbnail" <%--start.count는 1부터 시작 // index는 0부터 시작 --%>
-																				id="carousel-selector-${status.index}"><img
-																					src="/xUpload/GdsData/GC${updateGdsForm.goods_id}/${VgoodsFileList.fileName}"
-																				></a></li>
+																				id="carousel-selector-${status.index}"><img src="/xUpload/GdsData/GC${updateGdsForm.goods_id}/${VgoodsFileList.fileName}"></a></li>
 																		</ul>
 																	</c:forEach>
 																</c:when>
@@ -514,12 +514,12 @@
 																			</c:choose>  --%>
 																<%-- <c:choose>
 																				<c:when
-																					test="${ (fn:trim(filePosition) == 'Basic') && (fn:trim(fileNameExcept) == 's_S1_Basic')}">
+																					test="${ (fn:trim(filePosition) == 'Base') && (fn:trim(fileNameExcept) == 's_S1_Base')}">
 																					<div class='col-md-8'>
 
 																						<button type="button" name="bnUpload0"
 																							class="btn btn-sm btn-danger"
-																							onclick="showImageWindow('Basic')">재이미지업로드</button>
+																							onclick="showImageWindow('Base')">재이미지업로드</button>
 																						<p class="text-danger">
 																							<strong>${FgoodsFileList.fileName} /
 																								${FgoodsFileList.fileSize} </strong>
@@ -531,7 +531,7 @@
 																					<div class='col-md-8'>
 																						<button type="button" name="bnUpload0"
 																							class="btn btn-sm btn-primary"
-																							onclick="showImageWindow('Basic')">이미지업로드</button>
+																							onclick="showImageWindow('Base')">이미지업로드</button>
 																					</div>
 																				</c:otherwise>
 																			</c:choose> 
@@ -552,10 +552,10 @@
 																			<c:set var="fileNameExcept" value="${FgoodsFileList.fileNameExcept} " />
 																			<%-- <c:out value="${fileNameExcept}" /> --%>
 																			<c:choose>
-																				<c:when test="${ (fn:trim(filePosition) == 'Basic') && (fn:trim(fileNameExcept) == 's_S1_Basic')}">
+																				<c:when test="${ (fn:trim(filePosition) == 'Base') && (fn:trim(fileNameExcept) == 's_S1_Base')}">
 																					<div class='col-md-8'>
 
-																						<button type="button" name="bnUpload0" class="fileclear btn btn-sm btn-danger" onclick="showImageWindow('Basic')">재이미지업로드</button>
+																						<button type="button" name="bnUpload0" class="fileclear btn btn-sm btn-danger" onclick="showImageWindow('Base')">재이미지업로드</button>
 																						<p class="text-danger">
 																							<strong>${FgoodsFileList.fileName} / ${FgoodsFileList.fileSize} ${FgoodsFileList.fileDate} </strong>
 																						</p>
@@ -564,7 +564,7 @@
 																				<c:otherwise>
 
 																					<div class='col-md-8'>
-																						<button type="button" name="bnUpload0" class="fileclear btn btn-sm btn-primary" onclick="showImageWindow('Basic')">이미지업로드</button>
+																						<button type="button" name="bnUpload0" class="fileclear btn btn-sm btn-primary" onclick="showImageWindow('Base')">이미지업로드</button>
 																					</div>
 																				</c:otherwise>
 																			</c:choose>
@@ -765,8 +765,6 @@
 											<div class="panel-body">
 												<div class="row">
 													<div class="col-sm-12 col-md-4 col-lg-4 " align="center">
-
-
 														<!-- Slider -->
 														<div class="row">
 															<div class="col-xs-12" id="slider">
@@ -820,14 +818,13 @@
 														<div class="row hidden-xs" id="slider-thumbs">
 															<!-- Bottom switcher of slider -->
 															<ul class="hide-bullets">
-																<li class="col-sm-6"><a class="thumbnail" id="carousel-selector-0"><img src="http://placehold.it/170x100&text=one"></a></li>
-
-																<li class="col-sm-6"><a class="thumbnail" id="carousel-selector-1"><img src="http://placehold.it/170x100&text=two"></a></li>
-
-																<li class="col-sm-6"><a class="thumbnail" id="carousel-selector-2"><img src="http://placehold.it/170x100&text=three"></a></li>
-
-																<li class="col-sm-6"><a class="thumbnail" id="carousel-selector-3"><img src="http://placehold.it/170x100&text=four"></a></li>
-
+																<li class="col-sm-6"><a class="thumbnail" id="carousel-selector-0"><img id="s-Base" src="http://placehold.it/170x100&text=one"></a></li>
+																<li class="col-sm-6"><a class="thumbnail" id="carousel-selector-1"><img id="s-Front" src="http://placehold.it/170x100&text=two"></a></li>
+																<li class="col-sm-6"><a class="thumbnail" id="carousel-selector-2"><img id="s-Rear" src="http://placehold.it/170x100&text=three"></a></li>
+																<li class="col-sm-6"><a class="thumbnail" id="carousel-selector-3"><img id="s-Right" src="http://placehold.it/170x100&text=four"></a></li>
+																<li class="col-sm-6"><a class="thumbnail" id="carousel-selector-4"><img id="s-Left" src="http://placehold.it/170x100&text=five"></a></li>		
+																<li class="col-sm-6"><a class="thumbnail" id="carousel-selector-5"><img id="s-Top" src="http://placehold.it/170x100&text=six"></a></li>
+																<li class="col-sm-6"><a class="thumbnail" id="carousel-selector-6"><img id="s-Bottom" src="http://placehold.it/170x100&text=seven"></a></li>																		
 															</ul>
 														</div>
 
@@ -1073,7 +1070,7 @@
 																	<td class="active">대표(표준)</td>
 																	<td>
 																		<div class='col-md-8'>
-																			<button type="button" name="bnUpload0" class="fileclear btn btn-sm btn-primary" onclick="showImageWindow('Basic')">이미지업로드</button>
+																			<button type="button" name="bnUpload0" class="fileclear btn btn-sm btn-primary" onclick="showImageWindow('Base')">이미지업로드</button>
 																		</div>
 																	</td>
 																</tr>
@@ -1140,11 +1137,11 @@
 																<script type="text/javascript">
 																	//open GdsUpLoader window
 																	function showImageWindow(position) {
-																		//var myBookId = $(this).data('id');
 																		var modalUploadImages = position;
 																		$("#modalUploadImages").modal("show");
 																		$("#images_position").val(modalUploadImages);
-
+																		//$('.js-upload-finished').empty();
+																		$('#upload-finish-file').empty();
 																	}
 																</script>
 															</tbody>

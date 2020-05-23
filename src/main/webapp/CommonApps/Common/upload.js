@@ -15,7 +15,7 @@ class ImageUpload {
 	tempUpload(fd, url, isError) {
 		if (fd == null || fd.length == 0) {
 			// alert('파일이 없습니다.');
-			isError.isErr = false;
+			isError.isErr = true;
 			isError.errString = "파일이 없습니다.";
 			
 			return;
@@ -33,8 +33,7 @@ class ImageUpload {
 			cache : false,
 			success : function(data) {
 				if (data) {					
-					isError.isErr = false;	
-					isError.errString = "업로드 성공";
+					isError.isErr = false;						
 				} 
 				else {
 					isError.isErr = true;

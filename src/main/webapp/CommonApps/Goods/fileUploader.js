@@ -4,8 +4,9 @@
 	var dropZone;
 	var uploadForm;
 	var uploadData;
-	
+
 	const imgUploadMng = new ImageUpload();
+	const imgMng = new ImageMng();
 
 	$(document).ready(function() {
 		dropZone = document.getElementById('drop-zone');
@@ -37,20 +38,40 @@
 			this.className = 'upload-drop-zone';
 			//tempUpload(e.dataTransfer.files);
 			//setImgLocation();
-			
-			var fd = new FormData();			
+
+			var fd = new FormData();
 			var files = e.dataTransfer.files;
-			fd.append(files[0].name, files[0]);			
+			fd.append(files[0].name, files[0]);
 			fd.append("imgLocation", $("#images_position").val());
-						
+
 			isError.isErr = false;
-			imgUploadMng.tempUpload(
-					fd, 
-					"/admins/goods/tmpUpload.mwav",
-					isError); 
-			
-			if(!isError.isErr){setSuccessBar(e.dataTransfer.files); alert("업로드성공");}	
-			else{alert("업로드실패");}
+			imgUploadMng.tempUpload(fd, "/admins/goods/tmpUpload.mwav", isError);
+
+			if (!isError.isErr) {
+				setSuccessBar(e.dataTransfer.files);
+				alert("업로드성공");
+
+				//로드 한 후
+				var imgVal = $("#images_position").val();
+				var imgId = "#";
+				imgId = imgId.concat(imgVal);
+
+				var smallImgId = "#s-";
+				smallImgId = smallImgId.concat(imgVal);
+					
+				var smallImg = document.querySelector(smallImgId);	
+				var reader = new FileReader();
+							
+				reader.onload = function() {					
+					smallImg.src = reader.result;
+					smallImg.onload= function() {
+						smallImg.src = imgMng.getResizeDataurl(smallImg, '95', '56', 'jpeg');
+					}					
+				};
+				
+				reader.readAsDataURL(files[0]);
+				
+			} else { alert("업로드실패"); }
 		}
 
 		dropZone.ondragover = function() {
@@ -63,14 +84,26 @@
 			return false;
 		}
 	}
+	
+	var resizeImage = function(readerResult) {
+		var img = document.createElement("img");
+		img.src = readerResult;
+		
+		var canvas = document.createElement("canvas");
+		var ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0);
+        
+        var dataurl = canvas.toDataURL("image/jpeg");
+        return dataurl;
+	}	
 
 	var tempUpload = function(files) {
 		//console.log(files);
 		tempFileUpload(files);
 		setSuccessBar(files);
 	}
-	
-	function setImgLocation(){
+
+	function setImgLocation() {
 		$("#imgLocation").val($("#images_position").val());
 	}
 
@@ -86,34 +119,14 @@
 		}
 	}
 
-	/*	
-	function tempFileUpload(files) {
-		if (files == null || files.length == 0) {
-			alert('파일이 없습니다.');
-			return;
-		}
-
-		var fd = new FormData();
-		fd.append(files[0].name, files[0]);
-
-		$.ajax({
-			type : "POST",
-			url : "/admins/goods/tempUpload.mwav", // Upload URL
-			data : fd,
-			contentType : false,
-			processData : false,
-			cache : false,
-			success : function(data) {
-				if (data) {
-					alert('업로드 성공');
-				} else {
-					alert('업로드 실패');
-				}
-			}
-		});
-
-	}
-	*/
+	/*
+	 * function tempFileUpload(files) { if (files == null || files.length == 0) { alert('파일이 없습니다.'); return; }
+	 * 
+	 * var fd = new FormData(); fd.append(files[0].name, files[0]);
+	 * 
+	 * $.ajax({ type : "POST", url : "/admins/goods/tempUpload.mwav", // Upload URL data : fd, contentType : false, processData : false, cache : false, success : function(data) {
+	 * if (data) { alert('업로드 성공'); } else { alert('업로드 실패'); } } }); }
+	 */
 
 })(jQuery);
 
@@ -145,24 +158,22 @@ $(function() {
 	});
 
 	// Create the preview image
-	$(".image-preview-input input:file").change(
-			function() {
-				var img = $('<img/>', {
-					id : 'dynamic',
-					width : 250,
-					height : 200
-				});
-				var file = this.files[0];
-				var reader = new FileReader();
-				// Set preview image into the popover data-content
-				reader.onload = function(e) {
-					$(".image-preview-input-title").text("Change");
-					$(".image-preview-clear").show();
-					$(".image-preview-filename").val(file.name);
-					img.attr('src', e.target.result);
-					$(".image-preview").attr("data-content",
-							$(img)[0].outerHTML).popover("show");
-				}
-				reader.readAsDataURL(file);
-			});
+	$(".image-preview-input input:file").change(function() {
+		var img = $('<img/>', {
+			id : 'dynamic',
+			width : 250,
+			height : 200
+		});
+		var file = this.files[0];
+		var reader = new FileReader();
+		// Set preview image into the popover data-content
+		reader.onload = function(e) {
+			$(".image-preview-input-title").text("Change");
+			$(".image-preview-clear").show();
+			$(".image-preview-filename").val(file.name);
+			img.attr('src', e.target.result);
+			$(".image-preview").attr("data-content", $(img)[0].outerHTML).popover("show");
+		}
+		reader.readAsDataURL(file);
+	});
 });
