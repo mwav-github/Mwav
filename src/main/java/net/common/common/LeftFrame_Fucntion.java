@@ -98,7 +98,7 @@ public class LeftFrame_Fucntion {
 				String[] strhKName = { "상품리스트", "상품등록" };
 				String[] strhEName = { "상품리스트", "상품등록" };
 				String[] strurl = { "/admins/goods/gdsList.mwav",
-						"/Admins/Goods/GdsCellForm.mwav?mm=cGds", };
+						"/Admins/Goods/GoodsRegForm.mwav?mm=cGds", };
 				String[] strmAuthority = { "1", "1" };
 				String[] strdAuthority = { "*", "*" };
 
