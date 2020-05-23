@@ -166,7 +166,7 @@
 	<!-- FrontFooter -->
 	<footer>
 		<!--/////////////////////////////////////////////////// -->
-		<jsp:include page="/PartsOfContent/SiteFooter/FrontFooter.jsp" flush="false" />
+		<jsp:include page="/PartsOfContent/SiteFooter/FrontFooter.mwav" flush="false" />
 		<!--/////////////////////////////////////////////////// -->
 	</footer>
 

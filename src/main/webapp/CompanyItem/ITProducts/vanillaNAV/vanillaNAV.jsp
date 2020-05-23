@@ -247,7 +247,7 @@
 	<!-- Footer -->
 	<footer>
 		<!--/////////////////////////////////////////////////// -->
-		<jsp:include page="/PartsOfContent/SiteFooter/FrontFooter.jsp"
+		<jsp:include page="/PartsOfContent/SiteFooter/FrontFooter.mwav"
 			flush="false" />
 		<!--/////////////////////////////////////////////////// -->
 	</footer>

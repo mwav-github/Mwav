@@ -1,7 +1,10 @@
 package net.common.common;
 
+import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.List;
 
+import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import net.mwav.common.module.Common_Utils;
+import net.mwav.common.module.GeneralConfig;
 import net.mwav.member.auth.naver.NaverUrlBuilder;
 
 @Controller
@@ -42,6 +46,7 @@ public class FrontCommonController {
 	@RequestMapping(value = { "/", "/Index" })
 	public ModelAndView redirectIndexController(HttpServletRequest request) throws Exception {
 		ModelAndView mv = null;
+				
 		try {
 			String url = request.getRequestURI();
 			int pos = url.lastIndexOf(".");
@@ -57,6 +62,7 @@ public class FrontCommonController {
 
 				mv = new ModelAndView("/Index");
 			}
+			
 		}
 
 		catch (Exception e) {

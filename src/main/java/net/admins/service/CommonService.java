@@ -1,12 +1,11 @@
 package net.admins.service;
 
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
-import net.common.common.CommandMap;
+import net.admins.vo.WatchVO;
+import net.mwav.common.module.GeneralConfig;
 
 public interface CommonService {
 
@@ -14,5 +13,7 @@ public interface CommonService {
 
 	/*========================================등록========================================*/
 	
+	public GeneralConfig getFrontFooter(HttpServletRequest request, String xml) throws Exception;
 	
+	public void CreateWatchMap(WatchVO watchVO);
 }
