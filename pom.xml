@@ -23,9 +23,22 @@
 	<!-- 빌트플랫폼인 메이븐 디펜던시를 관리해주는 녀석 http://www.egovframe.go.kr/wiki/doku.php?id=egovframework:dev:dep:build:maven 
 		중요 -->
 	<repositories>
+		<!-- legacy -->
 		<repository>
 			<id>MwavCorp</id>
 			<url>https://pkgs.dev.azure.com/webmaster0770/_packaging/MwavCorp/maven/v1</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+
+		<!-- net.mwav.framework -->
+		<repository>
+			<id>mvn-repo</id>
+			<url>https://pkgs.dev.azure.com/Mwav-repo/Mwav-repo-prd/_packaging/mvn-repo/maven/v1</url>
 			<releases>
 				<enabled>true</enabled>
 			</releases>
@@ -477,7 +490,13 @@
 			<artifactId>MwavFrameWork</artifactId>
 			<version>1.0.1</version>
 		</dependency>
-
+		
+		<!-- net.mwav.framework -->
+		<dependency>
+			<groupId>net.mwav</groupId>
+			<artifactId>framework</artifactId>
+			<version>1.0.1</version>
+		</dependency>
 
 		<!-- @UserAgentDetector -->
 		<dependency>
