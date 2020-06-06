@@ -108,6 +108,63 @@ ${member} => request.getAttribute("member");
 						</div>
 					</div>
 				</c:if>
+				
+				<c:if test="${mode == 'PWFail' || param.mode == 'PWFail'}">
+					<div class="row">
+						<div class="col-lg-12" id="notice_top">
+							<h1 class="page-header">아이디 또는 비밀번호 입력 오류</h1>
+
+						</div>
+					</div>
+					<!-- Content Row -->
+					<div class="row">
+						<div class="col-md-12">
+							<!--/////////////////////////////////////////////////// -->
+							<jsp:include page="/CommonApps/IDSeek/PWFail.jsp" flush="false">
+								<jsp:param name="type" value="page" />
+							</jsp:include>
+							<!--/////////////////////////////////////////////////// -->
+						</div>
+					</div>
+				</c:if>
+				
+				<c:if test="${mode == 'PWUpdateYN' || param.mode == 'PWUpdateYN'}">
+					<div class="row">
+						<div class="col-lg-12" id="notice_top">
+							<h1 class="page-header">비밀번호 변경</h1>
+
+						</div>
+					</div>
+					<!-- Content Row -->
+					<div class="row">
+						<div class="col-md-12">
+							<!--/////////////////////////////////////////////////// -->
+							<jsp:include page="/CommonApps/Login/PWUpdateYN.jsp" flush="false">
+								<jsp:param name="type" value="page" />
+							</jsp:include>
+							<!--/////////////////////////////////////////////////// -->
+						</div>
+					</div>
+				</c:if>
+				
+				<c:if test="${mode == 'PWUpdate' || param.mode == 'PWUpdate'}">
+					<div class="row">
+						<div class="col-lg-12" id="notice_top">
+							<h1 class="page-header">비밀번호 변경</h1>
+
+						</div>
+					</div>
+					<!-- Content Row -->
+					<div class="row">
+						<div class="col-md-12">
+							<!--/////////////////////////////////////////////////// -->
+							<jsp:include page="/CommonApps/Login/PWUpdate.jsp" flush="false">
+								<jsp:param name="type" value="page" />
+							</jsp:include>
+							<!--/////////////////////////////////////////////////// -->
+						</div>
+					</div>
+				</c:if>
 			</div>
 
 		</c:otherwise>

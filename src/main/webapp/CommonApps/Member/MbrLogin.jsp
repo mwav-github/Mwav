@@ -299,9 +299,15 @@
 	function controlDisplay() {
 		var loginCheck = '<c:out value="${requestScope.loginCheck}"/>';
 		var returnUrl = '<c:out value="${requestScope.returnUrl}"/>';
+		var updatePW = '<c:out value="${requestScope.updatePW}"/>';
 
 		switch (String(loginCheck)) {
 		case '1':
+			if(updatePW == '1'){
+				location.replace("/MasterPage.mwav?mode=PWUpdateYN");
+				
+				break;
+			}
 			if (String(returnUrl))
 				location.href = "/";
 			else
