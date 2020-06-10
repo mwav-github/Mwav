@@ -6,3 +6,9 @@
 .classpath
 bin/
 *.ucls
+
+# IntelliJ Git ignore
+.idea/*
+# *.iml
+# modules.xml
+# *.ipr
