@@ -9,6 +9,6 @@ bin/
 
 # IntelliJ Git ignore
 .idea/*
-# *.iml
-# modules.xml
-# *.ipr
+*.iml
+modules.xml
+*.ipr
