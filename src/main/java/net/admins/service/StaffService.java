@@ -27,5 +27,8 @@ public interface StaffService {
 	void updateProStfForm(Map<String, Object> map);
 	
 	int insertStfRegist(Map<String, Object> map);
-	
+
+	int selectPmtOneGetTotalCount();
+
+	List<Map<String, Object>> selectListPmtList(Map<String, Object> map);
 }

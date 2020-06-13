@@ -470,30 +470,21 @@ public class StaffController {
 		if (pageNum == null) {
 			pageNum = "1";
 		}
-		System.out.println("pageNum=" + pageNum);
-		int totalRow = staffService.selectOneGetTotalCount();
-		System.out.println("totalRow=" + totalRow);
+		int totalRow = staffService.selectPmtOneGetTotalCount();
 
-		// Paging pv = new Paging(pageNum, 10 , 10, totalCount);
-		List<Map<String, Object>> selectListStfList;
+		List<Map<String, Object>> selectListPmtList;
 		PagingVO pagingVO = paging.setPagingInfo(totalRow, 5, pageNum); // 총 숫자,
 		// 한페이지에
 		// 노출 수
 		commandMap.put("startRow", paging.getStartRow(pageNum)); // 시작 열
 		commandMap.put("endRow", paging.getEndRow(pageNum)); // 끝 열
 		if (totalRow > 0) {
-			System.out.println("전체행의 갯수 1이상");
-			selectListStfList = staffService.selectListStfList(commandMap
-					.getMap());
-			// selectboardList =
-			// boardService.selectbnsList(commandMap.getMap());
-
+			selectListPmtList = staffService.selectListPmtList(commandMap.getMap());
 		} else {
-			selectListStfList = Collections.emptyList();
+			selectListPmtList = Collections.emptyList();
 		}
-		System.out.println("찍히낭");
 
-		mv.addObject("selectListStfList", selectListStfList);
+		mv.addObject("selectListPmtList", selectListPmtList);
 		mv.addObject("pagingVO", pagingVO);
 		mv.addObject("totalRow", totalRow);
 

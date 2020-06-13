@@ -65,8 +65,7 @@ public class LeftFrame_Fucntion {
 				}
 			} else if (mm.equals("firms")) {
 
-				String[] streName = { "docs", "staff", "asset", "pds", "mmail",
-						"accut", "promoter" };
+				String[] streName = { "docs", "staff", "asset", "pds", "mmail", "promoter" };
 				String[] strhKName = { "문서자료", "직원리스트", "자산리스트", "FTP자료실",
 						"계좌관리", "프로모터리스트" };
 				String[] strhEName = { "문서자료", "StaffList", "자산리스트", "FTP자료실",
