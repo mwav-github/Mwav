@@ -458,4 +458,50 @@ public class StaffController {
 		
 		return mv;
 	}
+
+	@RequestMapping(value = "/admins/staff/pmtList.mwav")
+	public ModelAndView selectListPmtList(CommandMap commandMap,
+										  HttpServletRequest request, HttpServletResponse reponse)
+			throws Exception {
+		ModelAndView mv = new ModelAndView("/Admins/CompanyMgr/Staff/PmtList");
+
+		String pageNum = (String) commandMap.get("pageNum");
+		Paging paging = new Paging();
+		if (pageNum == null) {
+			pageNum = "1";
+		}
+		System.out.println("pageNum=" + pageNum);
+		int totalRow = staffService.selectOneGetTotalCount();
+		System.out.println("totalRow=" + totalRow);
+
+		// Paging pv = new Paging(pageNum, 10 , 10, totalCount);
+		List<Map<String, Object>> selectListStfList;
+		PagingVO pagingVO = paging.setPagingInfo(totalRow, 5, pageNum); // 총 숫자,
+		// 한페이지에
+		// 노출 수
+		commandMap.put("startRow", paging.getStartRow(pageNum)); // 시작 열
+		commandMap.put("endRow", paging.getEndRow(pageNum)); // 끝 열
+		if (totalRow > 0) {
+			System.out.println("전체행의 갯수 1이상");
+			selectListStfList = staffService.selectListStfList(commandMap
+					.getMap());
+			// selectboardList =
+			// boardService.selectbnsList(commandMap.getMap());
+
+		} else {
+			selectListStfList = Collections.emptyList();
+		}
+		System.out.println("찍히낭");
+
+		mv.addObject("selectListStfList", selectListStfList);
+		mv.addObject("pagingVO", pagingVO);
+		mv.addObject("totalRow", totalRow);
+
+		String mm = "firms";
+		mv.addObject("mm", mm);
+		mv.addObject("mode", "m_stfList");
+
+		// mv.addObject("paging", pv.print());
+		return mv;
+	}
 }

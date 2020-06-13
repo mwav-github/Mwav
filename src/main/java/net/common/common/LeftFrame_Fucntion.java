@@ -66,17 +66,17 @@ public class LeftFrame_Fucntion {
 			} else if (mm.equals("firms")) {
 
 				String[] streName = { "docs", "staff", "asset", "pds", "mmail",
-						"accut" };
+						"accut", "promoter" };
 				String[] strhKName = { "문서자료", "직원리스트", "자산리스트", "FTP자료실",
-						"계좌관리" };
+						"계좌관리", "프로모터리스트" };
 				String[] strhEName = { "문서자료", "StaffList", "자산리스트", "FTP자료실",
-						"계좌관리" };
+						"계좌관리", "PromoterList" };
 				String[] strurl = { "#", "/admins/staff/stfList.mwav", "#",
-						"#", "#" };
-				String[] strmAuthority = { "1", "1", "1", "1", "1" };
-				String[] strdAuthority = { "*", "*", "*", "*", "*" };
+						"#", "#", "/admins/staff/pmtList.mwav" };
+				String[] strmAuthority = { "1", "1", "1", "1", "1", "1" };
+				String[] strdAuthority = { "*", "*", "*", "*", "*", "*" };
 
-				for (int i = 0; i < 5; i++) {
+				for (int i = 0; i < streName.length; i++) {
 					LeftFrame_VO vo = new LeftFrame_VO();
 					// 안에다가 생성할 경우 vo 라는 인스턴스 하나에 참조값 네개 가 생성된다.
 
