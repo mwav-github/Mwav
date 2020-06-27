@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd"
+	updateCheck="false">
+	
+	<!-- 박정은(20.03.13) -->
+	
+	<!-- <defaultCache
+		eternal="false"
+		maxElementsInMemory="50"
+		overflowToDisk="false"
+		diskPersistent="false"
+		timeToIdleSeconds="500"
+		timeToLiveSeconds="500"
+		memoryStoreEvictionPolicy="LRU" /> -->
+		
+	<!--
+		name: 캐시의 이름. @Cacheable("캐시이름")과 일치해야함
+		eternal: 한 번 캐시하면 영원히 유지할 것인지의 여부
+		maxElementsInMemory: 메모리에 보유할 최대 데이터 개수
+		overflowToDisk: 메모리 저장 공간이 부족할 때 Disk 사용 여부
+		timeToIdleSeconds: 데이터가 지정된 시간동안 재호출되지 않으면 휘발됨(초 단위)
+		timeToLiveSeconds: 한 번 저장된 데이터의 최대 저장 유지 시간(초 단위)
+		memoryStoreEvictionPolicy: 보관 사이즈를 넘어설 경우 불필요한 자료부터 삭제처리하는데, 필요한 자료에 대한 판단은 알고리즘을 통해서 함
+				+ "LRU": 최근에 이용한 것을 남기는 알고리즘
+				+ "FIFO": 먼저 입력된 것을 제거하는 알고리즘
+				+ "LFU": 가장 적게 이용된 것을 제거하는 알고리즘
+	-->
+	
+	<cache
+		name="xmlCache"
+		eternal="true"
+		maxElementsInMemory="100"
+		overflowToDisk="false"
+		diskPersistent="false"
+		memoryStoreEvictionPolicy="LRU" />
+		
+	<!-- <cache
+		name="xmlCache"
+		eternal="false"
+		maxElementsInMemory="100"
+		overflowToDisk="false"
+		diskPersistent="false"
+		timeToIdleSeconds="500"
+		timeToLiveSeconds="500"
+		memoryStoreEvictionPolicy="LRU" /> -->
+</ehcache>

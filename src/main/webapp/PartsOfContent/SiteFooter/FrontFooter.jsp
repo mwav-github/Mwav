@@ -351,4 +351,3 @@ css 중 가장 마지막에 호출되어야하며, include 되는 파일 중 css
 	logged_in_greeting="안녕하세요 Mwav 입니다. 무엇을 도와 드릴까요?"
 	logged_out_greeting="이용해주셔서 감사합니다.">
 </div>
-

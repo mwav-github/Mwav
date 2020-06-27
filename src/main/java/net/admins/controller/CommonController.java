@@ -1,10 +1,7 @@
 package net.admins.controller;
 
-import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -14,9 +11,6 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.stereotype.Component;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import net.admins.service.CommonService;
@@ -24,8 +18,6 @@ import net.common.common.CommandMap;
 import net.common.common.LeftFrame_Fucntion;
 import net.common.common.LeftFrame_VO;
 import net.mwav.common.module.Common_Utils;
-import net.mwav.common.module.Paging;
-import net.mwav.common.module.PagingVO;
 
 @Controller
 public class CommonController {
@@ -164,5 +156,18 @@ public class CommonController {
 
 		return insertGdsUpLoader;
 
+	}
+	
+	/**
+	 * @author 박정은
+	 * @since
+	 * @version 1.0
+	 * @see
+	 */
+	@RequestMapping(value = "/PartsOfContent/SiteFooter/FrontFooter.mwav")
+	public ModelAndView getFrontFooter(ModelAndView mv, HttpServletRequest request) throws Exception {
+		mv.setViewName("/PartsOfContent/SiteFooter/FrontFooter");
+		mv.addObject("generalConfig", CommonService.getFrontFooter(request, "footer"));
+		return mv;
 	}
 }

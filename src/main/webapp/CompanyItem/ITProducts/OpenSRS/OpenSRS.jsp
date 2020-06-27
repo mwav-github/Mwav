@@ -404,7 +404,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 	<!-- Footer -->
 	<footer>
 		<!--/////////////////////////////////////////////////// -->
-		<jsp:include page="/PartsOfContent/SiteFooter/FrontFooter.jsp"
+		<jsp:include page="/PartsOfContent/SiteFooter/FrontFooter.mwav"
 			flush="false" />
 		<!--/////////////////////////////////////////////////// -->
 	</footer>
