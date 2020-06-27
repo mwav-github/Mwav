@@ -342,9 +342,6 @@ css 중 가장 마지막에 호출되어야하며, include 되는 파일 중 css
         js = d.createElement(s); js.id = id;
         js.src = 'https://connect.facebook.net/ko_KR/sdk/xfbml.customerchat.js';
         fjs.parentNode.insertBefore(js, fjs);
-        
-        $(".fb_customer_chat_bubble_pop_in").css("bottom", "60px");
-        
       }(document, 'script', 'facebook-jssdk'));
 </script>
 
