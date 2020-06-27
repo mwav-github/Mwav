@@ -24,7 +24,7 @@ Company의 마스터 페이지 상에서 Header
 <jsp:include page="/Admins/AdminsHeader.jsp" flush="false" />
 <!--  //////////////////////////////////// -->
 <!-- Image Container
-container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다. 
+container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 -->
 
 <!--  ////////////////////////////////////
@@ -78,14 +78,15 @@ ${member} => request.getAttribute("member");
         <div class="col-md-9">
             <!-- 소제목 -->
             <div class="col-lg-12">
-                <h2 class="page-header">StaffList</h2>
+                <h2 class="page-header">PromoterList</h2>
             </div>
             <!-- ----- -->
 
             <!-- Content Column -->
             <div class="col-lg-12">
+                <% //TODO: 프로터터 등록 추가 ;%>
                 <button type="button" class="pull-right btn btn-default">
-                    <a href="/Admins/CompanyMgr/Staff/StfForm.mwav?mm=firms">관리자 등록</a>
+                    <a href="/Admins/CompanyMgr/Staff/StfForm.mwav?mm=firms">프로모터 등록</a>
                 </button>
                 <form name="StfList" method="post"
                       action="/admins/staff/stfList.mwav">
@@ -103,41 +104,33 @@ ${member} => request.getAttribute("member");
                             <table class="table table-striped">
                                 <thead>
                                 <tr>
-                                    <th>Images.</th>
-                                    <th class="hidden-xs">Number</th>
-                                    <th class="hidden-xs">DeptName</th>
-                                    <th class="hidden-xs">Class</th>
+                                    <th class="hidden-xs">NickName</th>
                                     <th class="hidden-xs">ID</th>
                                     <th class="hidden-xs">Phone</th>
                                     <th class="hidden-xs">Email</th>
                                     <th class="hidden-xs">Menu</th>
-                                    <%-- <th>관리메뉴</th> 삭제예정 --%>
-
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <c:choose>
-                                    <c:when test="${fn:length(selectListStfList) > 0}">
-                                        <c:forEach var="VselectListStfList"
-                                                   items="${selectListStfList}">
+                                    <c:when test="${fn:length(selectListPmtList) > 0}">
+                                        <c:forEach var="VselectListPmtList"
+                                                   items="${selectListPmtList}">
                                             <tr>
-                                                <input type="hidden" id="staff_id" name="staff_id"
-                                                       value="${VselectListStfList.staff_id }">
-                                                <td class="hidden-xs">${VselectListStfList.stfBusinessPic}</td>
-                                                <td class="hidden-xs">${VselectListStfList.stfNumber}</td>
-                                                <td class="hidden-xs">${VselectListStfList.stfDeptName}</td>
-                                                <td class="hidden-xs">${VselectListStfList.stfClass}</td>
-                                                <td class="hidden-xs">${VselectListStfList.stfLoginId}</td>
-                                                <td class="hidden-xs">${VselectListStfList.stfPhone}<br>
-                                                        ${VselectListStfList.stfCellularP}
-                                                </td>
-                                                <td class="hidden-xs">${VselectListStfList.stfEmail}</td>
+                                                <input type="hidden" id="staff_id" name="staff_id" value="${VselectListPmtList.promoter_id }">
+
+                                                <td class="hidden-xs">${VselectListPmtList.pmtNickName}</td>
+                                                <td class="hidden-xs">${VselectListPmtList.pmtLoginId}</td>
+                                                <td class="hidden-xs">${VselectListPmtList.pmtPhone}<br>${VselectListPmtList.pmtCellularPhone}</td>
+                                                <td class="hidden-xs">${VselectListPmtList.pmtMail}</td>
+
+                                                <% // TODO: 프로모터_상세보기_및_수정_필요; %>
                                                 <td>
                                                     <!-- <span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td> -->
                                                     <button type="button" class="btn btn-info"
-                                                            onclick="javascript:window.location.href='/admins/staff/stfView.mwav?staff_id=${VselectListStfList.staff_id}'">보기</button>&nbsp;
+                                                            onclick="javascript:window.location.href='/admins/staff/stfView.mwav?staff_id=${VselectListPmtList.promoter_id}'">보기</button>&nbsp;
                                                     <button type="button" class="btn btn-warning"
-                                                            onclick="javascript:window.location.href='/admins/staff/stfUpdate.mwav?staff_id=${VselectListStfList.staff_id}'">수정</button>
+                                                            onclick="javascript:window.location.href='/admins/staff/stfUpdate.mwav?staff_id=${VselectListPmtList.promoter_id}'">수정</button>
                                                 </td>
                                             </tr>
                                         </c:forEach>
