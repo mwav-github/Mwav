@@ -83,6 +83,15 @@ public class StaffServiceImpl implements StaffService {
 		return staffDAO.insertStfRegist(map);
 	}
 
+	@Override
+	public int selectPmtOneGetTotalCount() {
+		return staffDAO.selectPmtOneGetTotalCount();
+	}
+
+	@Override
+	public List<Map<String, Object>> selectListPmtList(Map<String, Object> map) {
+		return staffDAO.selectListPmtList(map);
+	}
 	
 
 }

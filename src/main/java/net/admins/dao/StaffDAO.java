@@ -328,4 +328,12 @@ public class StaffDAO extends AbstractDAO {
 	public int insertStfRegist(Map<String,Object> map){
 		return (int) insert("staff.insrtStfRegist",map);
 	}
+
+	public int selectPmtOneGetTotalCount() {
+		return (int) selectOne("staff.selectPmtOneGetTotalCount");
+	}
+
+	public List<Map<String, Object>> selectListPmtList(Map<String, Object> map) {
+		return (List<Map<String, Object>>) selectList("staff.selectListPmtList", map);
+	}
 }
