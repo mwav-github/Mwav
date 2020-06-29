@@ -498,14 +498,13 @@ public class StaffController {
 
 	@RequestMapping(value = "/admins/staff/pmtForm.mwav")
 	public ModelAndView insertPmtForm(CommandMap commandMap, HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("/Admins/CompanyMgr/Staff/StfLogin");
+		ModelAndView mv = new ModelAndView("redirect:/admins/staff/pmtList.mwav");
 
 		staffService.insertPmtForm(commandMap);
 
-		// TODO : 프로모터 수정 INSERT 필요
+		// TODO : 등록 후 mode, mm 쿼리스트링 수정필요
 		mv.addObject("mm", "firms");
 		mv.addObject("mode", "m_stfForm");
-
 		return mv;
 	}
 

@@ -100,7 +100,8 @@ var xhr;
 		var flag; // return false 여부 체크 이함수도 false 시켜야하므로 
 
 		//flag 마지막 값만 인식하므로 수정이 필요하긴 함.
-		//필수값은 아니다. 
+		//필수값은 아니다.
+		<% // TODO : 태현 프로모터 등록 유효성 검증 수정 %>
 		flag = emptyCheck(rest_address, "나머지 주소를 입력해주세요.");
 		flag = emptyCheck(Zipcode, "우편번호를 입력해주세요.");
 		flag = emptyCheck(Address, "주소를 입력해주세요.");
@@ -108,9 +109,9 @@ var xhr;
 		 if (flag == false || flag == undefined) {
 			return false;
 		} else {
-		 document.change_record.submit();
+		 	document.change_record.submit();
 		}
-		alert(flag);
+
 		 $("change_record").validate({
 		    submitHandler: function() {
 		        if(confirm("회원가입을 완료하겠습니까?")){
