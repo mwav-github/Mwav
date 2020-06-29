@@ -85,11 +85,8 @@ ${member} => request.getAttribute("member");
             <!-- Content Column -->
             <div class="col-lg-12">
                 <% //TODO: 프로터터 등록 추가 ;%>
-                <button type="button" class="pull-right btn btn-default">
-                    <a href="/Admins/CompanyMgr/Staff/StfForm.mwav?mm=firms">프로모터 등록</a>
-                </button>
-                <form name="StfList" method="post"
-                      action="/admins/staff/stfList.mwav">
+                <button type="button" class="pull-right btn btn-default" onclick="location.href='/Admins/CompanyMgr/Staff/PmtForm.mwav?mm=firms'">프로모터 등록</button>
+                <form name="StfList" method="post" action="/admins/staff/stfList.mwav">
                     <div class="row">
                         <div class="input-group custom-search-form">
                             <input type="text" class="form-control" placeholder="Search...">
