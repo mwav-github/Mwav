@@ -495,4 +495,18 @@ public class StaffController {
 		// mv.addObject("paging", pv.print());
 		return mv;
 	}
+
+	@RequestMapping(value = "/admins/staff/pmtForm.mwav")
+	public ModelAndView insertPmtForm(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("/Admins/CompanyMgr/Staff/StfLogin");
+
+		staffService.insertPmtForm(commandMap);
+
+		// TODO : 프로모터 수정 INSERT 필요
+		mv.addObject("mm", "firms");
+		mv.addObject("mode", "m_stfForm");
+
+		return mv;
+	}
+
 }

@@ -134,5 +134,14 @@
 	]]>
 	</select>
 
+	<insert id="insertPmtForm" parameterType="hashmap">
+		<![CDATA[
+		INSERT INTO Promoter_tbl (promoter_id, pmtLoginId, pmtLoginPw, pmtName, pmtGender, pmtNickName
+						, pmtCellularPhone, pmtMail, pmtZipcode, pmtAddress, pmtAddressDetail, pmtMark)
+		VALUES((SELECT IFNULL(max(pmt.promoter_id)+1,100000) FROM Promoter_tbl pmt), #{pmtLoginId}, #{pmtLoginPw}, #{pmtName}, #{pmtGender}, #{pmtNickname}
+								, #{pmtCellularP}, #{pmtEmail}, #{pmtZipcode}, #{pmtAddress}, #{pmtAddressDetail}, #{pmtMark})
+		]]>
+	</insert>
+
 </mapper>
 

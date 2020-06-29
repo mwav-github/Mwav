@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import net.admins.vo.Staff_VO;
+import net.common.common.CommandMap;
 
 public interface StaffService {
 
@@ -31,4 +32,6 @@ public interface StaffService {
 	int selectPmtOneGetTotalCount();
 
 	List<Map<String, Object>> selectListPmtList(Map<String, Object> map);
+
+	void insertPmtForm(CommandMap commandMap) throws Exception;
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import net.admins.vo.Staff_VO;
+import net.common.common.CommandMap;
 import net.common.dao.AbstractDAO;
 import net.mwav.common.module.AesEncryption;
 
@@ -335,5 +336,10 @@ public class StaffDAO extends AbstractDAO {
 
 	public List<Map<String, Object>> selectListPmtList(Map<String, Object> map) {
 		return (List<Map<String, Object>>) selectList("staff.selectListPmtList", map);
+	}
+
+	@Transactional
+	public void insertPmtForm(CommandMap commandMap) {
+		insert("staff.insertPmtForm", commandMap.getMap());
 	}
 }

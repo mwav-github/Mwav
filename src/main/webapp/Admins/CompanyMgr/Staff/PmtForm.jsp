@@ -658,10 +658,10 @@ var xhr;
 																	<td>
 																		<div class='form-group'>
 																			<div class='col-md-4'>
-																				<label for="pmtGenderMan">남</label> <input id="pmtGenderMan" name="pmtGender" type="radio" checked />
+																				<label for="pmtGenderMan">남</label> <input id="pmtGenderMan" name="pmtGender" type="radio" value="남성" checked />
 																			</div>
 																			<div class='col-md-4'>
-																				<label for="pmtGenderWoman">여</label> <input id="pmtGenderWoman" name="pmtGender" type="radio" />
+																				<label for="pmtGenderWoman">여</label> <input id="pmtGenderWoman" name="pmtGender" type="radio" value="여성" />
 																			</div>
 																		</div>
 																	</td>
@@ -731,11 +731,11 @@ var xhr;
 
 																			</p>
 																			<div class='col-md-8'>
-																				<input class="form-control" id="Address" name="pmtAddress_1" type="text" value=""
+																				<input class="form-control" id="Address" name="pmtAddress" type="text" value=""
 																					placeholder='주소' readonly="readonly" />
 																			</div>
 																			<div class='col-md-8'>
-																				<input class="form-control" name="pmtAddress_2" id='rest_Address'type="text"
+																				<input class="form-control" name="pmtAddressDetail" id='rest_Address'type="text"
 																					   placeholder='나머지 주소' required />
 																			</div>
 																		</div>
