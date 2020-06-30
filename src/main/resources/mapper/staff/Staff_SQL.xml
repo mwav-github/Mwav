@@ -143,5 +143,11 @@
 		]]>
 	</insert>
 
+	<select id="selectOnePmtLoginIdCheck" parameterType="string" resultType="int">
+		<![CDATA[
+	      SELECT Count(*) FROM Promoter_tbl WHERE pmtLoginId = #{pmtLoginId}
+		]]>
+	</select>
+
 </mapper>
 

@@ -508,4 +508,14 @@ public class StaffController {
 		return mv;
 	}
 
+	/*
+		return
+			true : 중복된 아이디가 없음으로 가입이 가능함
+			false: 이미 존재하는 아이디가 있으므로 가입이 불가능함
+	 */
+	@RequestMapping(value="/admins/staff/pmtLoginIdCheck.mwav")
+	public @ResponseBody boolean selectOneMbrPmtIdCheck(String pmtLoginId) throws Exception {
+		return staffService.selectOnePmtLoginIdCheck(pmtLoginId);
+	}
+
 }

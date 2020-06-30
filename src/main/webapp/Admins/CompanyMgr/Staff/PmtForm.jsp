@@ -6,14 +6,10 @@
 <html>
 
 <head>
-<link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"
-	rel="stylesheet">
-<script
-	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
-<script
-	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/additional-methods.min.js"></script>
-
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"
+	  rel="stylesheet">
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/additional-methods.min.js"></script>
 
 <!-- /////////// -->
 <jsp:include page="/PartsOfContent/Head_Import.jsp" flush="false" />
@@ -29,36 +25,31 @@ var xhr;
 	}
 
 	function idcheck() {
-		var id = document.getElementsByName("stfLoginId")[0].value;
-		<%--var id = document.getElementsByName("mbrLoginId")[0].value;
-		//alert(id);
-		//var html_object = document.getElementsByName("mbrLoginId");
-		//위에로 하면 HTMLCollection로 나오며 이는  리턴 결과가 복수인 경우에 사용하게 되는 객체다
-		// 아래는 HTML INPUTELEMENT? 하나 !
-		//유효성 체크  후 ajax --%>
-		var input_object = document.getElementById("chkLoginId");
-		
-		var flagPolicy = chkLoginPolicy(id,input_object);
-		
-		var queryString = "stfLoginId=" + id;
-		if (id.length < 6) {
-			document.getElementById("idcheckLayer").innerHTML = "<font color=red>6자리 이상 입력하세요.</font>";
-		} 
-		else if (flagPolicy == true){
-			<%-- 1. XMLHttpReqeust 객체 생성 --%>
-			createXhr();
-			<%-- 2. 이벤트 핸들러 등록 --%>
-			xhr.onreadystatechange = callback; 
-			<%-- callback 함수를 등록
-			// 3. open()를 통해 요청관련 설정을 설정 --%>
-			xhr.open("POST", "/admins/staff/stfLoginIdCheck.mwav", true);
-			<%-- 4. Header에 contentType 지정 - post --%>
-			xhr.setRequestHeader("Content-Type",
-					"application/x-www-form-urlencoded");
-			<%-- 5. send()를 통해 요청 // 요청 쿼리를 보내준다. --%>
-			xhr.send(queryString); 
-		}
+		// var id = document.getElementsByName("pmtLoginId")[0].value;
+		// var input_object = document.getElementById("chkLoginId");
+		var id = $('#chkLoginId').val();
+		var input_object = $("#chkLoginId");
 
+		// ID값 유효성 검증 (경고창 및 포커싱도 여기서 이루어짐)
+		var flagPolicy = chkLoginPolicy(id,input_object);
+
+		// ID값이 유효하다면 아이디 중복체크
+		if(flagPolicy){
+			$.ajax({
+				url:'/admins/staff/pmtLoginIdCheck.mwav',
+				type:'POST',
+				data:{
+					'pmtLoginId':id
+				},
+				dataType:'text',
+				success: function(obj){
+					alert('suc : ' + obj);
+				},
+				error: function(err){
+					alert('done : ' + err);
+				}
+			})
+		}
 
 	}
 	function callback() {
@@ -101,6 +92,7 @@ var xhr;
 
 		//flag 마지막 값만 인식하므로 수정이 필요하긴 함.
 		//필수값은 아니다.
+		alert(rest_address + ' : ' + Zipcode + ' : ' + Address)
 		<% // TODO : 태현 프로모터 등록 유효성 검증 수정 %>
 		flag = emptyCheck(rest_address, "나머지 주소를 입력해주세요.");
 		flag = emptyCheck(Zipcode, "우편번호를 입력해주세요.");
@@ -598,9 +590,7 @@ var xhr;
 																	<td><div class='form-group'>
 																			<div class='col-md-8'>
 
-																				<input class='form-control' name="pmtLoginId"
-																					id="chkLoginId" type='text' maxlength="15"
-																					onchange="idcheck()" required>
+																				<input class='form-control' name="pmtLoginId" id="chkLoginId" type='text' maxlength="15" onchange="idcheck()" required>
 																	<br>
 																	
 																<span class="col-md-12" id="idcheckLayer"></span>

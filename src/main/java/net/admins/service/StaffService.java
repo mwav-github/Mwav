@@ -34,4 +34,6 @@ public interface StaffService {
 	List<Map<String, Object>> selectListPmtList(Map<String, Object> map);
 
 	void insertPmtForm(CommandMap commandMap) throws Exception;
+
+	boolean selectOnePmtLoginIdCheck(String stfLoginId) throws Exception;
 }

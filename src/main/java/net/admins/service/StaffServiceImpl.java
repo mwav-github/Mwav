@@ -116,4 +116,7 @@ public class StaffServiceImpl implements StaffService {
 		staffDAO.insertPmtForm(commandMap);
 	}
 
+	public boolean selectOnePmtLoginIdCheck(String stfLoginId) throws Exception{
+		return staffDAO.selectOnePmtLoginIdCheck(stfLoginId) == 0 ? true : false;
+	}
 }

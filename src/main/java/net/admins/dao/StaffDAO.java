@@ -342,4 +342,9 @@ public class StaffDAO extends AbstractDAO {
 	public void insertPmtForm(CommandMap commandMap) {
 		insert("staff.insertPmtForm", commandMap.getMap());
 	}
+
+
+	public int selectOnePmtLoginIdCheck(String pmtLoginId) {
+		return (int) selectOne("staff.selectOnePmtLoginIdCheck", pmtLoginId);
+	}
 }
