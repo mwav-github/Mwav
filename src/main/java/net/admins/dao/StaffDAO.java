@@ -338,9 +338,8 @@ public class StaffDAO extends AbstractDAO {
 		return (List<Map<String, Object>>) selectList("staff.selectListPmtList", map);
 	}
 
-	@Transactional
-	public void insertPmtForm(CommandMap commandMap) {
-		insert("staff.insertPmtForm", commandMap.getMap());
+	public void insertPromoter_tbl(CommandMap commandMap) {
+		insert("staff.insertPmtForm1", commandMap.getMap());
 	}
 
 

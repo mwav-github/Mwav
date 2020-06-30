@@ -12,6 +12,7 @@ import net.common.common.CommandMap;
 import net.mwav.common.module.AesEncryption;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service("staffService")
 public class StaffServiceImpl implements StaffService {
@@ -95,6 +96,7 @@ public class StaffServiceImpl implements StaffService {
 		return staffDAO.selectListPmtList(map);
 	}
 
+	@Transactional
 	@Override
 	public void insertPmtForm(CommandMap commandMap) throws Exception {
 		StringBuffer pmtCellularP = new StringBuffer();
@@ -113,7 +115,8 @@ public class StaffServiceImpl implements StaffService {
 		// 암호화된 값이 String으로 반환
 		commandMap.put("pmtLoginPw", AesEncryption.aesEncodeBuf(encrypted));
 
-		staffDAO.insertPmtForm(commandMap);
+		// Promoter_tbl
+		staffDAO.insertPromoter_tbl(commandMap);
 	}
 
 	public boolean selectOnePmtLoginIdCheck(String stfLoginId) throws Exception{
