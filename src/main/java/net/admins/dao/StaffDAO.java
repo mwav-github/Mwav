@@ -338,10 +338,6 @@ public class StaffDAO extends AbstractDAO {
 		return (List<Map<String, Object>>) selectList("staff.selectListPmtList", map);
 	}
 
-	public void insertPromoter_tbl(CommandMap commandMap) {
-		insert("staff.insertPmtForm1", commandMap.getMap());
-	}
-
 
 	public int selectOnePmtLoginIdCheck(String pmtLoginId) {
 		return (int) selectOne("staff.selectOnePmtLoginIdCheck", pmtLoginId);
@@ -349,5 +345,17 @@ public class StaffDAO extends AbstractDAO {
 
 	public Map<String, Object> selectPmtView(String promoter_id) {
 		return (Map<String, Object>) selectOne("staff.selectPmtView", promoter_id);
+	}
+
+	public void insertPromoter_tbl(CommandMap commandMap) {
+		insert("staff.insertPmtForm", commandMap.getMap());
+	}
+
+	public void insertPromoterValue_tbl(CommandMap commandMap) {
+		insert("staff.insertPromoterValue_tbl", commandMap.getMap());
+	}
+
+	public void insertPromoterValueLog_tbl(CommandMap commandMap) {
+		insert("staff.insertPromoterValueLog_tbl", commandMap.getMap());
 	}
 }

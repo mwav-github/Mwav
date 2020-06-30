@@ -106,7 +106,6 @@ public class StaffServiceImpl implements StaffService {
 
 		//핸드폰 번호를 하나의 변수로 통합
 		commandMap.put("pmtCellularP", pmtCellularP.toString());
-
 		String b_stfLoginPw = (String) commandMap.get("pmtLoginPw");
 
 		// AES/CBC/IV 암호화 (키,암호화텍스트,iv)
@@ -117,6 +116,14 @@ public class StaffServiceImpl implements StaffService {
 
 		// Promoter_tbl
 		staffDAO.insertPromoter_tbl(commandMap);
+
+		// PromoterValue_tbl
+		staffDAO.insertPromoterValue_tbl(commandMap);
+
+		// PromoterValueLog_tbl
+		commandMap.put("pvlRemark", "신규 회원가입");
+		staffDAO.insertPromoterValueLog_tbl(commandMap);
+
 	}
 
 	public boolean selectOnePmtLoginIdCheck(String stfLoginId) throws Exception{

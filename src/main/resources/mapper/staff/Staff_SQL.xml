@@ -134,14 +134,6 @@
 	]]>
 	</select>
 
-	<insert id="insertPmtForm" parameterType="hashmap">
-		<![CDATA[
-		INSERT INTO Promoter_tbl (promoter_id, pmtLoginId, pmtLoginPw, pmtName, pmtGender, pmtNickName
-						, pmtCellularPhone, pmtMail, pmtZipcode, pmtAddress, pmtAddressDetail, pmtMark)
-		VALUES((SELECT IFNULL(max(pmt.promoter_id)+1,100000) FROM Promoter_tbl pmt), #{pmtLoginId}, #{pmtLoginPw}, #{pmtName}, #{pmtGender}, #{pmtNickname}
-								, #{pmtCellularP}, #{pmtEmail}, #{pmtZipcode}, #{pmtAddress}, #{pmtAddressDetail}, #{pmtMark})
-		]]>
-	</insert>
 
 	<select id="selectOnePmtLoginIdCheck" parameterType="string" resultType="int">
 		<![CDATA[
@@ -154,5 +146,33 @@
 	      SELECT * FROM Promoter_tbl WHERE promoter_id = #{promoter_id}
 		]]>
 	</select>
+
+	<insert id="insertPmtForm" parameterType="hashmap">
+		<![CDATA[
+		INSERT INTO Promoter_tbl (promoter_id, pmtLoginId, pmtLoginPw, pmtName, pmtGender, pmtNickName
+						, pmtCellularPhone, pmtMail, pmtZipcode, pmtAddress, pmtAddressDetail, pmtMark)
+		VALUES((SELECT IFNULL(max(pmt.promoter_id)+1,100000) FROM Promoter_tbl pmt), #{pmtLoginId}, #{pmtLoginPw}, #{pmtName}, #{pmtGender}, #{pmtNickname}
+								, #{pmtCellularP}, #{pmtEmail}, #{pmtZipcode}, #{pmtAddress}, #{pmtAddressDetail}, #{pmtMark})
+		]]>
+	</insert>
+
+	<insert id="insertPromoterValue_tbl" parameterType="hashmap">
+		<![CDATA[
+			INSERT INTO PromoterValue_tbl(promoter_id, pmtLevel, pmtVisitNbr, pmtEffects, pmtProfits, Promoter_tbl_promoter_id)
+			SELECT promoter_id, '2', '0', '', '', promoter_id
+			FROM Promoter_tbl
+			WHERE pmtLoginId = #{pmtLoginId}
+		]]>
+	</insert>
+
+	<insert id="insertPromoterValueLog_tbl" parameterType="hashmap">
+		<![CDATA[
+			INSERT INTO PromoterValueLog_tbl(promoterValueLog_id, promoter_id, pvlChagedPoint, pvlRemark, pvlInsertDt, PromoterValue_tbl_promoter_id)
+			SELECT (SELECT IFNULL(MAX(promoterValueLog_id)+1, 10000000) FROM PromoterValueLog_tbl), promoter_id, '0', #{pvlRemark}, NOW(), promoter_id
+			FROM Promoter_tbl
+			WHERE pmtLoginId = #{pmtLoginId}
+		]]>
+	</insert>
+
 </mapper>
 
