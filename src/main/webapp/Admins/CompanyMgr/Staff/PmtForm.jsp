@@ -24,14 +24,24 @@ var xhr;
 		}
 	}
 
+	//아이디 중복 체크
 	function idcheck() {
-		// var id = document.getElementsByName("pmtLoginId")[0].value;
-		// var input_object = document.getElementById("chkLoginId");
+		// #idcheckLayer 하위의 요소를 제거
+		$('#idcheckLayer').empty();
+
 		var id = $('#chkLoginId').val();
 		var input_object = $("#chkLoginId");
 
 		// ID값 유효성 검증 (경고창 및 포커싱도 여기서 이루어짐)
 		var flagPolicy = chkLoginPolicy(id,input_object);
+		if(!flagPolicy){
+			$('#idcheckLayer').append("<div class='alert alert-danger text-left'><strong>" +
+					"1. 4 ~ 20 자 사이의 문자길이 <br> 2. 첫 문자는 영어로 시작 <br> 3. 특수문자 사용금지 (제외문자: . _ -) <br>" +
+					" 4. 공백문자 사용금지  <br> 5. 대소문자는 식별이 가능하나 구분 및 구별을 하지 않음</strong></div>");
+			return false;
+		}
+
+		console.log('출력 : ' + flagPolicy);
 
 		// ID값이 유효하다면 아이디 중복체크
 		if(flagPolicy){
@@ -43,110 +53,56 @@ var xhr;
 				},
 				dataType:'text',
 				success: function(obj){
-					alert('suc : ' + obj);
+					// 중복여부에 따라 안내 박스 추가
+					if(obj === 'true'){
+						$('#idcheckLayer').append("<div class='alert alert-success text-left'><strong>사용할 수 있는 ID 입니다.</strong></div>");
+						flagPolicy = true;
+					}else{
+						$('#idcheckLayer').append("<div class='alert alert-danger text-left'><strong>이미 등록된 ID 입니다. 다시 입력해주세요.</strong></div>");
+						flagPolicy = false;
+					}
 				},
 				error: function(err){
-					alert('done : ' + err);
+					alert('일시적인 서버 오류입니다.');
 				}
 			})
 		}
 
-	}
-	function callback() {
-		if (xhr.readyState == 4) { // 응답을 다 받은 경우
-			if (xhr.status == 200) { // 응답코드가 200인 경우 - 정상인 경우
-				var resTxt1 = xhr.responseText; // 서버가 보낸 응답 text
-				//console.log(resTxt);
-				var resTxt = resTxt1.trim(); // 공백제거 안하면 같은게 안됨 
-				var imsiresTxt = "<div class='alert alert-success text-left'><strong>사용할 수 있는 ID 입니다.</strong></div>";
-				//alert(resTxt);
-				//alert(imsiresTxt);
-				if (resTxt == imsiresTxt) {
-					//아이디 중복되지 않음
-					//alert('1');
-					document.getElementById("idcheckLayer").innerHTML = resTxt;
-					
-				} else {
-					//아이디 중복
-					//alert('11');
-					document.getElementById("idcheckLayer").innerHTML = resTxt;
-
-					$('input[name="mbrLoginId"]').val('');
-					$('input[name="mbrLoginId"]').focus();
-					return false;
-				}
-			} else {
-				alert("요청 처리가 정상적으로 되지 않았습니다.\n" + xhr.status);
-			}
-		}
+		return flagPolicy;
 	}
 
+	// 최종 회원가입 유효성 검증
 	function msubmit() {
 
-		var Zipcode = $('#Zipcode').val()
-		var Address = $('#Address').val()
-		var rest_address = $('#rest_Address').val()
-
-		//html element에 대하여 null 또는 비어있는지 체크 및 alert 문구 노출
-		var flag; // return false 여부 체크 이함수도 false 시켜야하므로 
-
-		//flag 마지막 값만 인식하므로 수정이 필요하긴 함.
-		//필수값은 아니다.
-		alert(rest_address + ' : ' + Zipcode + ' : ' + Address)
-		<% // TODO : 태현 프로모터 등록 유효성 검증 수정 %>
-		flag = emptyCheck(rest_address, "나머지 주소를 입력해주세요.");
-		flag = emptyCheck(Zipcode, "우편번호를 입력해주세요.");
-		flag = emptyCheck(Address, "주소를 입력해주세요.");
-
-		 if (flag == false || flag == undefined) {
-			return false;
+		if(chkEmailPolicy($('#chkEmail').val(), $('#chkEmail')) &&									// 이메일 검증
+				idcheck() &&																		// 아이디 검증
+				chkPWPolicy($('#chkLoginPW').val(), $('#chkLoginPW')) &&							// 비밀번호 검증
+				thisEmptyCheck($('#pmtNameChk'), '이름은 필수로 입력하셔야합니다.') &&				// 이름 검사
+				thisEmptyCheck($('#pmtCellularP_1'), '핸드폰 번호는 필수로 입력하셔야합니다.') &&		// 핸드폰 검증
+				thisEmptyCheck($('#pmtCellularP_2'), '핸드폰 번호는 필수로 입력하셔야합니다.') &&		// 핸드폰 검증
+				thisEmptyCheck($('#pmtCellularP_3'), '핸드폰 번호는 필수로 입력하셔야합니다.') &&		// 핸드폰 검증
+				confirm("회원가입을 완료하겠습니까?")){												// 최종 검사
+			$('#formId').submit();
 		} else {
-		 	document.change_record.submit();
+			return false;
 		}
 
-		 $("change_record").validate({
-		    submitHandler: function() {
-		        if(confirm("회원가입을 완료하겠습니까?")){
-		            return true;
-		        } else {
-		            return false;
-		        }
-		    },
-		    //규칙
-		    rules: {
-		    	pmtLoginId: {
-		            required : true,
-		            minlength : 5,    
-		        },
-		        pmtLoginPw: {
-		            required : true,
-		            minlength : 10
-		        },
-		        pmtEmail: {
-		            required : true,
-		            minlength : 2,
-		            email : true
-		        }
-		    },
-		    //규칙체크 실패시 출력될 메시지
-		    messages : {
-		    	mbrLoginId: {
-		            required : "필수로입력하세요",
-		            minlength : "최소 {0}글자이상이어야 합니다",
-		            remote : "존재하는 아이디입니다"
-		        },
-		        mbrLoginPw: {
-		            required : "필수로입력하세요",
-		            minlength : "최소 {0}글자이상이어야 합니다"
-		        },
-		        mbrEmail: {
-		            required : "필수로입력하세요",
-		            minlength : "최소 {0}글자이상이어야 합니다",
-		            email : "메일규칙에 어긋납니다"
-		        }
-		    }
-		});	 
+	}
 
+	// validate.js 에서 emptyCheck를 가져옴
+	function thisEmptyCheck(checkObject, alert_txt_) {
+		var checkVar = checkObject.val();
+		var alert_txt = alert_txt_;
+
+		if(checkVar == "" || checkVar == null || checkVar == undefined || ( checkVar != null && typeof checkVar == "object" && !Object.keys(checkVar).length ) ){
+			alert(alert_txt);
+			checkObject.value = "";
+			checkObject.focus();
+			return false;
+		} else{
+			return true;
+		}
+		return false;
 	}
 </script>
 <script>
@@ -573,7 +529,7 @@ var xhr;
 
 							<c:otherwise>
 								<%-- 1. 회원정보 입력 --%>
-								<form class='form-horizontal' method="post" action="/admins/staff/pmtForm.mwav">
+								<form id='formId' class='form-horizontal' method="post" action="/admins/staff/pmtForm.mwav">
 									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
 										<div class="panel panel-primary">
@@ -590,7 +546,7 @@ var xhr;
 																	<td><div class='form-group'>
 																			<div class='col-md-8'>
 
-																				<input class='form-control' name="pmtLoginId" id="chkLoginId" type='text' maxlength="15" onchange="idcheck()" required>
+																				<input class='form-control' name="pmtLoginId" id="chkLoginId" type='text' maxlength="15" onchange="idcheck()" required />
 																	<br>
 																	
 																<span class="col-md-12" id="idcheckLayer"></span>
@@ -639,7 +595,7 @@ var xhr;
 																	<td>
 																		<div class='form-group'>
 																			<div class='col-md-8'>
-																				<input type="text" class='form-control' name="pmtName" maxlength="20" required>
+																				<input type="text" id="pmtNameChk" class='form-control' name="pmtName" maxlength="20" required>
 																			</div>
 																		</div>
 																	</td>
@@ -672,17 +628,17 @@ var xhr;
 																	<td>
 																		<div class='form-group'>
 																			<div class='col-md-3'>
-																				<input class="form-control" name="pmtCellularP_1"
+																				<input id='pmtCellularP_1' class="form-control" name="pmtCellularP_1"
 																					type="text" maxlength="4" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required />
 																			</div>
 
 																			<div class="col-md-3">
-																				<input class="form-control" name="pmtCellularP_2"
+																				<input id='pmtCellularP_2' class="form-control" name="pmtCellularP_2"
 																					type="text" maxlength="4" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required />
 																			</div>
 
 																			<div class='col-md-3'>
-																				<input class="form-control" name="pmtCellularP_3"
+																				<input id='pmtCellularP_3' class="form-control" name="pmtCellularP_3"
 																					type="text" maxlength="4" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required />
 																			</div>
 																		</div>
@@ -749,7 +705,7 @@ var xhr;
 												<div class="panel-footer">
 													<button type="button" class="btn btn-sm btn-primary" onclick="javascript:window.location.href='/admins/staff/pmtList.mwav'">리스트</button>
 													<button type="button" class="btn btn-sm btn-primary" onClick="javascript:history.go(-1)">뒤로가기</button>
-													<button onclick="msubmit()" type="submit" class="btn btn-sm btn-primary">가입하기</button>
+													<button onclick="msubmit()" type="button" class="btn btn-sm btn-primary">가입하기</button>
 												</div>
 
 											</div>
