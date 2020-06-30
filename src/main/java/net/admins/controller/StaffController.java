@@ -518,4 +518,15 @@ public class StaffController {
 		return staffService.selectOnePmtLoginIdCheck(pmtLoginId);
 	}
 
+	@RequestMapping(value = "/admins/staff/pmtView.mwav")
+	public ModelAndView selectPmtView(CommandMap commandMap, String promoter_id) throws Exception {
+		ModelAndView mv = new ModelAndView("/Admins/CompanyMgr/Staff/PmtView");
+		Map<String, Object> selectPmtView = staffService.selectPmtView(promoter_id);
+
+		mv.addObject("mm", "firms");
+		mv.addObject("mode", "m_stfView");
+		mv.addObject("selectPmtView", selectPmtView);
+
+		return mv;
+	}
 }

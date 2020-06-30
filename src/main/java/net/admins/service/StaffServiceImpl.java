@@ -119,4 +119,9 @@ public class StaffServiceImpl implements StaffService {
 	public boolean selectOnePmtLoginIdCheck(String stfLoginId) throws Exception{
 		return staffDAO.selectOnePmtLoginIdCheck(stfLoginId) == 0 ? true : false;
 	}
+
+	@Override
+	public Map<String, Object> selectPmtView(String promoter_id) {
+		return staffDAO.selectPmtView(promoter_id);
+	}
 }

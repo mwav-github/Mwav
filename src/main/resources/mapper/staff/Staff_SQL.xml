@@ -149,5 +149,10 @@
 		]]>
 	</select>
 
+	<select id="selectPmtView" parameterType="string" resultType="hashmap">
+		<![CDATA[
+	      SELECT * FROM Promoter_tbl WHERE promoter_id = #{promoter_id}
+		]]>
+	</select>
 </mapper>
 

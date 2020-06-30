@@ -347,4 +347,8 @@ public class StaffDAO extends AbstractDAO {
 	public int selectOnePmtLoginIdCheck(String pmtLoginId) {
 		return (int) selectOne("staff.selectOnePmtLoginIdCheck", pmtLoginId);
 	}
+
+	public Map<String, Object> selectPmtView(String promoter_id) {
+		return (Map<String, Object>) selectOne("staff.selectPmtView", promoter_id);
+	}
 }

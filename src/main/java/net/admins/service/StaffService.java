@@ -36,4 +36,6 @@ public interface StaffService {
 	void insertPmtForm(CommandMap commandMap) throws Exception;
 
 	boolean selectOnePmtLoginIdCheck(String stfLoginId) throws Exception;
+
+	Map<String, Object> selectPmtView(String promoter_id);
 }

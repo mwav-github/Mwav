@@ -84,8 +84,7 @@ ${member} => request.getAttribute("member");
 
             <!-- Content Column -->
             <div class="col-lg-12">
-                <% //TODO: 프로터터 등록 추가 ;%>
-                <button type="button" class="pull-right btn btn-default" onclick="location.href='/Admins/CompanyMgr/Staff/PmtForm.mwav?mm=firms'">프로모터 등록</button>
+                <button type="button" class="pull-right btn btn-success" onclick="location.href='/Admins/CompanyMgr/Staff/PmtForm.mwav?mm=firms'">프로모터 등록</button>
                 <form name="StfList" method="post" action="/admins/staff/stfList.mwav">
                     <div class="row">
                         <div class="input-group custom-search-form">
@@ -125,7 +124,7 @@ ${member} => request.getAttribute("member");
                                                 <td>
                                                     <!-- <span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td> -->
                                                     <button type="button" class="btn btn-info"
-                                                            onclick="javascript:window.location.href='/admins/staff/stfView.mwav?staff_id=${VselectListPmtList.promoter_id}'">보기</button>&nbsp;
+                                                            onclick="javascript:window.location.href='/admins/staff/pmtView.mwav?promoter_id=${VselectListPmtList.promoter_id}'">보기</button>&nbsp;
                                                     <button type="button" class="btn btn-warning"
                                                             onclick="javascript:window.location.href='/admins/staff/stfUpdate.mwav?staff_id=${VselectListPmtList.promoter_id}'">수정</button>
                                                 </td>
@@ -149,16 +148,16 @@ ${member} => request.getAttribute("member");
 
                                         <c:if test="${pagingVO.startPage > pagingVO.pageBlock}">
                                             <li><a
-                                                    href="/admins/staff/stfList.mwav?pageNum=${pagingVO.startPage - pagingVO.pageBlock}"><span
+                                                    href="/admins/staff/pmtList.mwav?pageNum=${pagingVO.startPage - pagingVO.pageBlock}"><span
                                                     class="glyphicon glyphicon-chevron-left"></span></a></li>
                                         </c:if>
                                         <c:forEach var="i" begin="${pagingVO.startPage}"
                                                    end="${pagingVO.endPage}">
-                                            <li><a href="/admins/staff/stfList.mwav?pageNum=${i}">${i}</a></li>
+                                            <li><a href="/admins/staff/pmtList.mwav?pageNum=${i}">${i}</a></li>
                                         </c:forEach>
                                         <c:if test="${pagingVO.endPage < pagingVO.pageCount}">
                                             <li><a
-                                                    href="/admins/staff/stfList.mwav?pageNum=${pagingVO.startPage + pagingVO.pageBlock}"><span
+                                                    href="/admins/staff/pmtList.mwav?pageNum=${pagingVO.startPage + pagingVO.pageBlock}"><span
                                                     class="glyphicon glyphicon-chevron-right"></span></a></li>
                                         </c:if>
                                         <!-- <li><a href="">&laquo;</a></li>
