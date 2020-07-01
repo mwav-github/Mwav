@@ -124,6 +124,28 @@ public class StaffServiceImpl implements StaffService {
 		commandMap.put("pvlRemark", "신규 회원가입");
 		staffDAO.insertPromoterValueLog_tbl(commandMap);
 
+		// PromoterSpecialty_tbl
+		staffDAO.insertPromoterSpecialty_tbl(commandMap);
+
+		// PromoterLicense_tbl
+		commandMap.put("pmtCompany", "회사명");
+		commandMap.put("pmtBizLicenseNo", "사업자 번호");
+		commandMap.put("pmtBizType", "업태");
+		staffDAO.insertPromoterLicense_tbl(commandMap);
+
+		// PromoterChannel_tbl
+		commandMap.put("pmtChannelId", "해당 채널");
+		commandMap.put("pmtChannelName", "채널명");
+		commandMap.put("pmtChannelDesc", "채널 설명");
+		commandMap.put("pmtChannelURL", "채널 URL");
+		commandMap.put("pmtChannelMember", 0);
+		commandMap.put("pmtChannelDaillyVisit", 0);
+		staffDAO.insertPromoterChannel_tbl(commandMap);
+
+		// PromoterAccount_tbl
+		commandMap.put("pmtBankName", "은행명");
+		commandMap.put("pmtBankAccount", "은행계좌");
+		staffDAO.insertPromoterAccount_tbl(commandMap);
 	}
 
 	public boolean selectOnePmtLoginIdCheck(String stfLoginId) throws Exception{

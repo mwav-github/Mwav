@@ -500,6 +500,9 @@ public class StaffController {
 	public ModelAndView insertPmtForm(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("redirect:/admins/staff/pmtList.mwav");
 
+		// PromoterValueLog_tbl 로그를 위해 최초 IP입력
+		commandMap.put("pvlIpAddress", request.getRemoteAddr());
+
 		staffService.insertPmtForm(commandMap);
 
 		// TODO : 등록 후 mode, mm 쿼리스트링 수정필요

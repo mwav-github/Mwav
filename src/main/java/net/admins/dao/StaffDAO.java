@@ -358,4 +358,20 @@ public class StaffDAO extends AbstractDAO {
 	public void insertPromoterValueLog_tbl(CommandMap commandMap) {
 		insert("staff.insertPromoterValueLog_tbl", commandMap.getMap());
 	}
+
+	public void insertPromoterSpecialty_tbl(CommandMap commandMap) {
+		insert("staff.insertPromoterSpecialty_tbl", commandMap.getMap());
+	}
+
+	public void insertPromoterLicense_tbl(CommandMap commandMap) {
+		insert("staff.insertPromoterLicense_tbl", commandMap.getMap());
+	}
+
+	public void insertPromoterChannel_tbl(CommandMap commandMap) {
+		insert("staff.insertPromoterChannel_tbl", commandMap.getMap());
+	}
+
+	public void insertPromoterAccount_tbl(CommandMap commandMap) {
+		insert("staff.insertPromoterAccount_tbl", commandMap.getMap());
+	}
 }
