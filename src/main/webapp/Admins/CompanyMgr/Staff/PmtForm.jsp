@@ -80,7 +80,7 @@ var xhr;
 
 			chkPWPolicy($('#chkLoginPW').val(), $('#chkLoginPW')) &&							// 비밀번호 검증
 			thisEmptyCheck($('#pmtNameChk'), '이름은 필수로 입력하셔야합니다.') &&				// 이름 검사
-			phoneCheck($('#pmtCellularP'), '핸드폰 번호는 필수로 입력하셔야합니다.') &&			// 핸드폰 검증
+			phoneCheck($('#pmtCellularP'), '핸드폰 번호가 공백이거나 유효하지 않은 번호입니다.') &&			// 핸드폰 검증
 
 			<% // TODO : 계좌번호 및 은행에 대한 검증 로직 필요 %>
 			thisEmptyCheck($('#pmtBankName'), '은행 명은 필수로 입력하셔야합니다.') &&			// 은행명 검증
@@ -133,6 +133,7 @@ var xhr;
 		}
 		return result;
 	}
+
 </script>
 <script>
 	$(document).ready(function() {
