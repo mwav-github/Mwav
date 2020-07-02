@@ -77,10 +77,7 @@ var xhr;
 
 			chkPWPolicy($('#chkLoginPW').val(), $('#chkLoginPW')) &&							// 비밀번호 검증
 			thisEmptyCheck($('#pmtNameChk'), '이름은 필수로 입력하셔야합니다.') &&				// 이름 검사
-
-			thisEmptyCheck($('#pmtCellularP_1'), '핸드폰 번호는 필수로 입력하셔야합니다.') &&		// 핸드폰 검증
-			thisEmptyCheck($('#pmtCellularP_2'), '핸드폰 번호는 필수로 입력하셔야합니다.') &&		// 핸드폰 검증
-			thisEmptyCheck($('#pmtCellularP_3'), '핸드폰 번호는 필수로 입력하셔야합니다.') &&		// 핸드폰 검증
+			phoneCheck($('#pmtCellularP'), '핸드폰 번호는 필수로 입력하셔야합니다.') &&			// 핸드폰 검증
 
 			<% // TODO : 계좌번호 및 은행에 대한 검증 로직 필요 %>
 			thisEmptyCheck($('#pmtBankName'), '은행 명은 필수로 입력하셔야합니다.') &&			// 은행명 검증
@@ -118,6 +115,20 @@ var xhr;
 			return true;
 		}
 		return false;
+	}
+
+	function phoneCheck(obj, msg) {
+		var nameObj = obj.target || obj;
+
+		// MbrInput.jsp 의 핸드폰번호 유효성 검증 함수를 가져옴
+		var result = /^\d{3}-\d{3,4}-\d{4}$/g.test(nameObj.val())
+				|| /^\d{10,11}$/g.test(nameObj.val());
+
+		if (!result) {
+			alert(msg);
+			obj.focus();
+		}
+		return result;
 	}
 </script>
 <script>
@@ -287,23 +298,11 @@ var xhr;
 															</td>
 														</tr>
 														<tr>
-															<% // TODO : 폰번호 검증 로직 필요 %>
 															<td class="required_Input form_td">핸드폰번호:</td>
 															<td>
 																<div class='form-group'>
-																	<div class='col-md-3'>
-																		<input id='pmtCellularP_1' class="form-control" name="pmtCellularP_1"
-																			type="text" maxlength="4" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required />
-																	</div>
-
-																	<div class="col-md-3">
-																		<input id='pmtCellularP_2' class="form-control" name="pmtCellularP_2"
-																			type="text" maxlength="4" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required />
-																	</div>
-
-																	<div class='col-md-3'>
-																		<input id='pmtCellularP_3' class="form-control" name="pmtCellularP_3"
-																			type="text" maxlength="4" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required />
+																	<div class='col-md-8'>
+																		<input id='pmtCellularP' class="form-control" name="pmtCellularP" type="text" placeholder="예) 010-1234-5678" value="${updatePmtForm.pmtCellularPhone}" required />
 																	</div>
 																</div>
 															</td>

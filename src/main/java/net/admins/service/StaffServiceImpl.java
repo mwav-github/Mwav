@@ -99,16 +99,8 @@ public class StaffServiceImpl implements StaffService {
 	@Transactional
 	@Override
 	public void insertPmtForm(CommandMap commandMap) throws Exception {
-		StringBuffer pmtCellularP = new StringBuffer();
-		pmtCellularP.append(commandMap.get("pmtCellularP_1"));
-		pmtCellularP.append(commandMap.get("pmtCellularP_2"));
-		pmtCellularP.append(commandMap.get("pmtCellularP_3"));
-
-		//핸드폰 번호를 하나의 변수로 통합
-		commandMap.put("pmtCellularP", pmtCellularP.toString());
-		String b_stfLoginPw = (String) commandMap.get("pmtLoginPw");
-
 		// AES/CBC/IV 암호화 (키,암호화텍스트,iv)
+		String b_stfLoginPw = (String) commandMap.get("pmtLoginPw");
 		byte[] encrypted = AesEncryption.aesEncryptCbc(AesEncryption.sKey, b_stfLoginPw, AesEncryption.sInitVector);
 
 		// 암호화된 값이 String으로 반환
