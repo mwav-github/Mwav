@@ -134,17 +134,11 @@ public class StaffServiceImpl implements StaffService {
 		staffDAO.insertPromoterLicense_tbl(commandMap);
 
 		// PromoterChannel_tbl
-		commandMap.put("pmtChannelId", "해당 채널");
-		commandMap.put("pmtChannelName", "채널명");
-		commandMap.put("pmtChannelDesc", "채널 설명");
-		commandMap.put("pmtChannelURL", "채널 URL");
 		commandMap.put("pmtChannelMember", 0);
 		commandMap.put("pmtChannelDaillyVisit", 0);
 		staffDAO.insertPromoterChannel_tbl(commandMap);
 
 		// PromoterAccount_tbl
-		commandMap.put("pmtBankName", "은행명");
-		commandMap.put("pmtBankAccount", "은행계좌");
 		staffDAO.insertPromoterAccount_tbl(commandMap);
 	}
 

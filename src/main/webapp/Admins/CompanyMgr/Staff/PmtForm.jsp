@@ -6,8 +6,7 @@
 <html>
 
 <head>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"
-	  rel="stylesheet">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/additional-methods.min.js"></script>
 
@@ -41,13 +40,13 @@ var xhr;
 			return false;
 		}
 
-		console.log('출력 : ' + flagPolicy);
-
 		// ID값이 유효하다면 아이디 중복체크
+		// flagPolicy 의 값이 ajax로 결정 되기 때문에 동기화를 시켜줌 -> async : false
 		if(flagPolicy){
 			$.ajax({
 				url:'/admins/staff/pmtLoginIdCheck.mwav',
 				type:'POST',
+				async: false,
 				data:{
 					'pmtLoginId':id
 				},
@@ -67,21 +66,33 @@ var xhr;
 				}
 			})
 		}
-
 		return flagPolicy;
 	}
 
 	// 최종 회원가입 유효성 검증
 	function msubmit() {
 
-		if(chkEmailPolicy($('#chkEmail').val(), $('#chkEmail')) &&									// 이메일 검증
-				idcheck() &&																		// 아이디 검증
-				chkPWPolicy($('#chkLoginPW').val(), $('#chkLoginPW')) &&							// 비밀번호 검증
-				thisEmptyCheck($('#pmtNameChk'), '이름은 필수로 입력하셔야합니다.') &&				// 이름 검사
-				thisEmptyCheck($('#pmtCellularP_1'), '핸드폰 번호는 필수로 입력하셔야합니다.') &&		// 핸드폰 검증
-				thisEmptyCheck($('#pmtCellularP_2'), '핸드폰 번호는 필수로 입력하셔야합니다.') &&		// 핸드폰 검증
-				thisEmptyCheck($('#pmtCellularP_3'), '핸드폰 번호는 필수로 입력하셔야합니다.') &&		// 핸드폰 검증
-				confirm("회원가입을 완료하겠습니까?")){												// 최종 검사
+		if(	idcheck() &&																		// 아이디 검증
+			chkEmailPolicy($('#chkEmail').val(), $('#chkEmail')) &&								// 이메일 검증
+
+			chkPWPolicy($('#chkLoginPW').val(), $('#chkLoginPW')) &&							// 비밀번호 검증
+			thisEmptyCheck($('#pmtNameChk'), '이름은 필수로 입력하셔야합니다.') &&				// 이름 검사
+
+			thisEmptyCheck($('#pmtCellularP_1'), '핸드폰 번호는 필수로 입력하셔야합니다.') &&		// 핸드폰 검증
+			thisEmptyCheck($('#pmtCellularP_2'), '핸드폰 번호는 필수로 입력하셔야합니다.') &&		// 핸드폰 검증
+			thisEmptyCheck($('#pmtCellularP_3'), '핸드폰 번호는 필수로 입력하셔야합니다.') &&		// 핸드폰 검증
+
+			<% // TODO : 계좌번호 및 은행에 대한 검증 로직 필요 %>
+			thisEmptyCheck($('#pmtBankName'), '은행 명은 필수로 입력하셔야합니다.') &&			// 은행명 검증
+			thisEmptyCheck($('#pmtBankAccount'), '계좌번호는 필수로 입력하셔야합니다.') &&		// 계좌번호 검증
+
+			thisEmptyCheck($('#pmtChannelId'), '채널 아이디는 필수로 입력하셔야합니다.') &&		// 채널아이디 검증
+			thisEmptyCheck($('#pmtChannelName'), '채널 명은 필수로 입력하셔야합니다.') &&			// 채널명 검증
+			thisEmptyCheck($('#pmtChannelURL'), '채널 URL은 필수로 입력하셔야합니다.') &&			// 채널URL 검증
+			thisEmptyCheck($('#pmtChannelDesc'), '채널 설명은 필수로 입력하셔야합니다.') &&		// 채널설명 검증
+
+			confirm("회원가입을 완료하겠습니까?"))												// 최종 검사
+		{
 			$('#formId').submit();
 		} else {
 			return false;
@@ -111,6 +122,16 @@ var xhr;
 	});
 </script>
 
+	<style>
+		.required_Input{
+			font-weight: bold;
+			width: 15%;
+		}
+
+		.fix_textarea{
+			resize: none;
+		}
+	</style>
 </head>
 
 <body>
@@ -542,7 +563,7 @@ var xhr;
 														<table class="table table-user-information">
 															<tbody>
 																<tr>
-																	<td>아이디:</td>
+																	<td class="required_Input">아이디*:</td>
 																	<td><div class='form-group'>
 																			<div class='col-md-8'>
 
@@ -569,7 +590,7 @@ var xhr;
 																</tr>
 															
 																<tr>
-																	<td>비밀번호:</td>
+																	<td class="required_Input">비밀번호*:</td>
 																	<td><div class='form-group'>
 																			<div class='col-md-8'>
 
@@ -591,7 +612,7 @@ var xhr;
 																	</td>
 																</tr>
 																<tr>
-																	<td>이름:</td>
+																	<td class="required_Input">이름*:</td>
 																	<td>
 																		<div class='form-group'>
 																			<div class='col-md-8'>
@@ -601,7 +622,7 @@ var xhr;
 																	</td>
 																</tr>
 																<tr>
-																	<td>성별:</td>
+																	<td class="required_Input">성별*:</td>
 																	<td>
 																		<div class='form-group'>
 																			<div class='col-md-4'>
@@ -624,17 +645,17 @@ var xhr;
 																	</td>
 																</tr>
 																<tr>
-																	<td>핸드폰번호:</td>
+																	<td class="required_Input">핸드폰번호*:</td>
 																	<td>
 																		<div class='form-group'>
 																			<div class='col-md-3'>
 																				<input id='pmtCellularP_1' class="form-control" name="pmtCellularP_1"
-																					type="text" maxlength="4" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required />
+																					type="text" maxlength="4" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required />-
 																			</div>
 
 																			<div class="col-md-3">
 																				<input id='pmtCellularP_2' class="form-control" name="pmtCellularP_2"
-																					type="text" maxlength="4" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required />
+																					type="text" maxlength="4" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required />-
 																			</div>
 
 																			<div class='col-md-3'>
@@ -645,7 +666,7 @@ var xhr;
 																	</td>
 																</tr>
 																<tr>
-																	<td>이메일:</td>
+																	<td class="required_Input">이메일*:</td>
 																	<td>
 																		<div class='form-group'>
 																			<div class='col-md-8'>
@@ -688,7 +709,40 @@ var xhr;
 																		</div>
 																	</td>
 																</tr>
-																<tr class="info">
+																<tr>
+																	<td class="required_Input">계좌정보*:</td>
+																	<td>
+																		<div class="form-group">
+																			<div class='col-md-5'>
+																				<input class="form-control" id="pmtBankName" name="pmtBankName" type="text" placeholder='은행명'/>
+																			</div>
+																			<br>
+																			<div class='col-md-8'>
+																				<input class="form-control" id="pmtBankAccount" name="pmtBankAccount" type="text" placeholder='계좌번호'/>
+																			</div>
+																			<% // TODO : 프로모터의 통장사본이미지 등록 구현 %>
+																		</div>
+																	</td>
+																</tr>
+
+																<tr>
+																	<td class="required_Input">판매채널*:</td>
+																	<td>
+																		<div class="form-group">
+																			<div class='col-md-7'>
+																				<input class="form-control" id="pmtChannelId" name="pmtChannelId" type="text" placeholder='채널 아이디'/>
+																			</div>
+																			<div class='col-md-7'>
+																				<input class="form-control" id="pmtChannelName" name="pmtChannelName" type="text" placeholder='채널 명'/>
+																			</div>
+																			<div class='col-md-7'>
+																				<input class="form-control" id="pmtChannelURL" name="pmtChannelURL" type="text" placeholder='채널 URL'/>
+																			</div>
+																			<div class='col-md-10'>
+																				<textarea class="form-control fix_textarea" id="pmtChannelDesc" name="pmtChannelDesc" rows="5" placeholder='채널 설명'></textarea>
+																			</div>
+																		</div>
+																	</td>
 																</tr>
 															</tbody>
 														</table>
@@ -696,8 +750,7 @@ var xhr;
 													<div class="col-md-12 ">
 														<span class="col-md-2">하고 싶은 말</span>
 														<div class='col-md-10 form-group center-block'>
-															<textarea class="form-control" name="pmtMark"
-																class="stfMark" rows="15">가입되신것을 환영합니다.</textarea>
+															<textarea class="form-control fix_textarea" name="pmtMark" class="stfMark" rows="15">가입되신것을 환영합니다.</textarea>
 														</div>
 
 													</div>

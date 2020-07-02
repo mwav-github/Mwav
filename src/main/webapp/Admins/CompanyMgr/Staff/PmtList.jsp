@@ -39,13 +39,13 @@ Header 끝
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
-                Admins <small> StfList</small>
+                Admins <small> PromoterList</small>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="index.html">Home</a></li>
                 <li>Admins</li>
                 <li>CompanyMgr</li>
-                <li class="active">StfList</li>
+                <li class="active">PmtList</li>
             </ol>
         </div>
     </div>
@@ -55,11 +55,6 @@ Header 끝
     <div class="row">
         <!-- Sidebar Column left메뉴 추후 변경 예정<시작>-->
         <div class="col-md-3">
-
-            <%--http://egloos.zum.com/tiger5net/v/5828786
-${param.name} => request.getParameter("name");
-${member} => request.getAttribute("member");
---%>
 
             <c:choose>
                 <c:when test="${param.mm eq null}">
@@ -85,15 +80,17 @@ ${member} => request.getAttribute("member");
             <!-- Content Column -->
             <div class="col-lg-12">
                 <button type="button" class="pull-right btn btn-success" onclick="location.href='/Admins/CompanyMgr/Staff/PmtForm.mwav?mm=firms'">프로모터 등록</button>
-                <form name="StfList" method="post" action="/admins/staff/stfList.mwav">
+                <form name="PmtList" method="post" action="/admins/staff/PmtList.mwav">
                     <div class="row">
+                        <% // TODO : 프로모터 검색 추가 %>
+                        <!-- 프로모터 검색 -->
                         <div class="input-group custom-search-form">
                             <input type="text" class="form-control" placeholder="Search...">
                             <span class="input-group-btn">
-									<button class="btn btn-default" type="submit">
-										<i class="fa fa-search"></i>
-									</button>
-								</span>
+                                <button class="btn btn-default" type="submit">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
                         </div>
 
                         <div class="table-responsive">
