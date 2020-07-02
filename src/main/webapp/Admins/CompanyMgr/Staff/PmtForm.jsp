@@ -156,6 +156,10 @@ var xhr;
 		.form_mg_b > div{
 			margin-bottom: 15px;
 		}
+
+		.required_Input_star{
+			color: red;
+		}
 	</style>
 </head>
 
@@ -236,7 +240,9 @@ var xhr;
 												<table class="table table-user-information">
 													<tbody>
 														<tr>
-															<td class="required_Input form_td">아이디*:</td>
+															<td class="required_Input form_td">아이디
+																<span class="required_Input_star">*</span>
+																:</td>
 															<td><div class='form-group'>
 																	<div class='col-md-8'>
 
@@ -263,7 +269,9 @@ var xhr;
 														</tr>
 
 														<tr>
-															<td class="required_Input form_td">비밀번호*:</td>
+															<td class="required_Input form_td">비밀번호
+																<span class="required_Input_star">*</span>
+																:</td>
 															<td><div class='form-group'>
 																	<div class='col-md-8'>
 
@@ -285,7 +293,9 @@ var xhr;
 															</td>
 														</tr>
 														<tr>
-															<td class="required_Input form_td">이름*:</td>
+															<td class="required_Input form_td">이름
+																<span class="required_Input_star">*</span>
+																:</td>
 															<td>
 																<div class='form-group'>
 																	<div class='col-md-8'>
@@ -295,7 +305,9 @@ var xhr;
 															</td>
 														</tr>
 														<tr>
-															<td class="required_Input form_td">성별*:</td>
+															<td class="required_Input form_td">성별
+																<span class="required_Input_star">*</span>
+																:</td>
 															<td>
 																<div class='form-group'>
 																	<div class='col-md-4'>
@@ -318,7 +330,9 @@ var xhr;
 															</td>
 														</tr>
 														<tr>
-															<td class="required_Input form_td">핸드폰번호*:</td>
+															<td class="required_Input form_td">핸드폰번호
+																<span class="required_Input_star">*</span>
+																:</td>
 															<td>
 																<div class='form-group'>
 																	<div class='col-md-8'>
@@ -328,7 +342,9 @@ var xhr;
 															</td>
 														</tr>
 														<tr>
-															<td class="required_Input form_td">이메일*:</td>
+															<td class="required_Input form_td">이메일
+																<span class="required_Input_star">*</span>
+																:</td>
 															<td>
 																<div class='form-group'>
 																	<div class='col-md-8'>
@@ -372,16 +388,20 @@ var xhr;
 															</td>
 														</tr>
 														<tr>
-															<td class="required_Input form_td">계좌정보*:</td>
+															<td class="required_Input form_td">계좌정보 : </td>
 															<td>
 																<div class="form-group form_mg_b">
 																	<div class='col-md-5'>
-																		<lable class="required_Input">은행명*:</lable>
+																		<lable class="required_Input">은행명
+																			<span class="required_Input_star">*</span>
+																			:</lable>
 																		<input class="form-control" id="pmtBankName" name="pmtBankName" type="text" placeholder='은행명'/>
 																	</div>
 																	<br>
 																	<div class='col-md-8'>
-																		<lable class="required_Input">계좌번호*:</lable>
+																		<lable class="required_Input">계좌번호
+																			<span class="required_Input_star">*</span>
+																			:</lable>
 																		<input class="form-control" id="pmtBankAccount" name="pmtBankAccount" type="text" placeholder='계좌번호'/>
 																	</div>
 																	<% // TODO : 프로모터의 통장사본이미지 등록 구현 %>
@@ -390,23 +410,31 @@ var xhr;
 														</tr>
 
 														<tr>
-															<td class="required_Input form_td">판매채널*:</td>
+															<td class="required_Input form_td">판매채널 : </td>
 															<td>
 																<div class="form-group form_mg_b">
 																	<div class='col-md-7'>
-																		<lable class="required_Input">채널 아이디*:</lable>
+																		<lable class="required_Input">채널 아이디
+																			<span class="required_Input_star">*</span>
+																			:</lable>
 																		<input class="form-control" id="pmtChannelId" name="pmtChannelId" type="text" placeholder='채널 아이디'/>
 																	</div>
 																	<div class='col-md-7'>
-																		<lable class="required_Input">채널 명*:</lable>
+																		<lable class="required_Input">채널 명
+																			<span class="required_Input_star">*</span>
+																			:</lable>
 																		<input class="form-control" id="pmtChannelName" name="pmtChannelName" type="text" placeholder='채널 명'/>
 																	</div>
 																	<div class='col-md-7'>
-																		<lable class="required_Input">채널 URL*:</lable>
+																		<lable class="required_Input">채널 URL
+																			<span class="required_Input_star">*</span>
+																			:</lable>
 																		<input class="form-control" id="pmtChannelURL" name="pmtChannelURL" type="text" placeholder='채널 URL'/>
 																	</div>
 																	<div class='col-md-10'>
-																		<lable class="required_Input">채널 설명*:</lable>
+																		<lable class="required_Input">채널 설명
+																			<span class="required_Input_star">*</span>
+																			:</lable>
 																		<textarea class="form-control fix_textarea" id="pmtChannelDesc" name="pmtChannelDesc" rows="5" placeholder='채널 설명'></textarea>
 																	</div>
 																</div>
@@ -418,15 +446,21 @@ var xhr;
 															<td>
 																<div class="form-group form_mg_b">
 																	<div class='col-md-7'>
-																		<lable class="required_Input">회사 명*:</lable>
+																		<lable class="required_Input">회사 명
+																			<span class="required_Input_star">*</span>
+																			:</lable>
 																		<input class="form-control" id="pmtCompany" name="pmtCompany" type="text" placeholder='회사 명'/>
 																	</div>
 																	<div class='col-md-7'>
-																		<lable class="required_Input">사업자 번호*:</lable>
+																		<lable class="required_Input">사업자 번호
+																			<span class="required_Input_star">*</span>
+																			:</lable>
 																		<input class="form-control" id="pmtBizLicenseNo" name="pmtBizLicenseNo" type="text" placeholder='사업자 번호'/>
 																	</div>
 																	<div class='col-md-7'>
-																		<lable class="required_Input">업태*:</lable>
+																		<lable class="required_Input">업태
+																			<span class="required_Input_star">*</span>
+																			:</lable>
 																		<input class="form-control" id="pmtBizType" name="pmtBizType" type="text" placeholder='업태'/>
 																	</div>
 																	<div class='col-md-7'>
