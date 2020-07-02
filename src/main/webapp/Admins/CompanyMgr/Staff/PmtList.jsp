@@ -123,7 +123,7 @@ Header 끝
                                                     <button type="button" class="btn btn-info"
                                                             onclick="javascript:window.location.href='/admins/staff/pmtView.mwav?promoter_id=${VselectListPmtList.promoter_id}'">보기</button>&nbsp;
                                                     <button type="button" class="btn btn-warning"
-                                                            onclick="javascript:window.location.href='/admins/staff/stfUpdate.mwav?staff_id=${VselectListPmtList.promoter_id}'">수정</button>
+                                                            onclick="javascript:window.location.href='/admins/staff/pmtUpdate.mwav?promoter_id=${VselectListPmtList.promoter_id}'">수정</button>
                                                 </td>
                                             </tr>
                                         </c:forEach>

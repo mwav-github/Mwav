@@ -532,4 +532,17 @@ public class StaffController {
 
 		return mv;
 	}
+
+	@RequestMapping(value = "/admins/staff/pmtUpdate.mwav")
+	public ModelAndView updatePmtform(CommandMap commandMap, String promoter_id) throws Exception {
+		ModelAndView mv = new ModelAndView("/Admins/CompanyMgr/Staff/PmtUpdate");
+		commandMap.put("promoter_id", promoter_id);
+
+		Map<String, Object> map = staffService.updatePmtForm(commandMap);
+
+		mv.addObject("mm", "firms");
+		mv.addObject("mode", "m_stfUpdate");
+		mv.addObject("updatePmtForm", map);
+		return mv;
+	}
 }

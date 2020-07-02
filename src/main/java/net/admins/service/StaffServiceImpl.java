@@ -147,4 +147,9 @@ public class StaffServiceImpl implements StaffService {
 	public Map<String, Object> selectPmtView(String promoter_id) {
 		return staffDAO.selectPmtView(promoter_id);
 	}
+
+	@Override
+	public Map<String, Object> updatePmtForm(CommandMap commandMap) {
+		return staffDAO.updatePmtForm(commandMap);
+	}
 }

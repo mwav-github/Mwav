@@ -38,4 +38,6 @@ public interface StaffService {
 	boolean selectOnePmtLoginIdCheck(String stfLoginId) throws Exception;
 
 	Map<String, Object> selectPmtView(String promoter_id);
+
+	Map<String, Object> updatePmtForm(CommandMap commandMap);
 }
