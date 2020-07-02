@@ -32,7 +32,7 @@
 					alert(errDesc);
 				} else {
 					if (xmlStr != null) {
-						showhide();
+						// showhide();
 						makeList(xmlStr);
 
 						var objSet = document.getElementById("resultpostseek");
@@ -292,7 +292,6 @@
 	}
 
 	function sendAddress(v_address, zcZipCode) {
-		alert(zipcode_id);
 		// $("#Address").attr('value', address);
 		// $("#Zipcode").attr('value', zcZipCode);
 		$(address_id).attr('value', v_address);

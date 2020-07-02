@@ -128,9 +128,6 @@ public class StaffServiceImpl implements StaffService {
 		staffDAO.insertPromoterSpecialty_tbl(commandMap);
 
 		// PromoterLicense_tbl
-		commandMap.put("pmtCompany", "회사명");
-		commandMap.put("pmtBizLicenseNo", "사업자 번호");
-		commandMap.put("pmtBizType", "업태");
 		staffDAO.insertPromoterLicense_tbl(commandMap);
 
 		// PromoterChannel_tbl

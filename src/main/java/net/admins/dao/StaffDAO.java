@@ -348,7 +348,7 @@ public class StaffDAO extends AbstractDAO {
 	}
 
 	public void insertPromoter_tbl(CommandMap commandMap) {
-		insert("staff.insertPmtForm", commandMap.getMap());
+		insert("staff.insertPromoter_tbl", commandMap.getMap());
 	}
 
 	public void insertPromoterValue_tbl(CommandMap commandMap) {

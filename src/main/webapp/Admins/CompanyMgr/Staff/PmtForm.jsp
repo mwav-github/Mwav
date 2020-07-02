@@ -91,6 +91,10 @@ var xhr;
 			thisEmptyCheck($('#pmtChannelURL'), '채널 URL은 필수로 입력하셔야합니다.') &&			// 채널URL 검증
 			thisEmptyCheck($('#pmtChannelDesc'), '채널 설명은 필수로 입력하셔야합니다.') &&		// 채널설명 검증
 
+			thisEmptyCheck($('#pmtCompany'), '회사 명은 필수로 입력하셔야합니다.') &&				// 회사 명 검증
+			thisEmptyCheck($('#pmtBizLicenseNo'), '사업자 번호는 필수로 입력하셔야합니다.') &&	// 사업자 번호 검증
+			thisEmptyCheck($('#pmtBizType'), '업태는 필수로 입력하셔야합니다.') &&				// 업태 검증
+
 			confirm("회원가입을 완료하겠습니까?"))												// 최종 검사
 		{
 			$('#formId').submit();
@@ -123,13 +127,20 @@ var xhr;
 </script>
 
 	<style>
+		.form_td{
+			width: 15%;
+		}
+
 		.required_Input{
 			font-weight: bold;
-			width: 15%;
 		}
 
 		.fix_textarea{
 			resize: none;
+		}
+
+		.form_mg_b > div{
+			margin-bottom: 15px;
 		}
 	</style>
 </head>
@@ -563,7 +574,7 @@ var xhr;
 														<table class="table table-user-information">
 															<tbody>
 																<tr>
-																	<td class="required_Input">아이디*:</td>
+																	<td class="required_Input form_td">아이디*:</td>
 																	<td><div class='form-group'>
 																			<div class='col-md-8'>
 
@@ -590,7 +601,7 @@ var xhr;
 																</tr>
 															
 																<tr>
-																	<td class="required_Input">비밀번호*:</td>
+																	<td class="required_Input form_td">비밀번호*:</td>
 																	<td><div class='form-group'>
 																			<div class='col-md-8'>
 
@@ -612,7 +623,7 @@ var xhr;
 																	</td>
 																</tr>
 																<tr>
-																	<td class="required_Input">이름*:</td>
+																	<td class="required_Input form_td">이름*:</td>
 																	<td>
 																		<div class='form-group'>
 																			<div class='col-md-8'>
@@ -622,7 +633,7 @@ var xhr;
 																	</td>
 																</tr>
 																<tr>
-																	<td class="required_Input">성별*:</td>
+																	<td class="required_Input form_td">성별*:</td>
 																	<td>
 																		<div class='form-group'>
 																			<div class='col-md-4'>
@@ -635,7 +646,7 @@ var xhr;
 																	</td>
 																</tr>
 																<tr>
-																	<td>닉네임:</td>
+																	<td class="form_td">닉네임:</td>
 																	<td>
 																		<div class='form-group'>
 																			<div class='col-md-8'>
@@ -645,17 +656,17 @@ var xhr;
 																	</td>
 																</tr>
 																<tr>
-																	<td class="required_Input">핸드폰번호*:</td>
+																	<td class="required_Input form_td">핸드폰번호*:</td>
 																	<td>
 																		<div class='form-group'>
 																			<div class='col-md-3'>
 																				<input id='pmtCellularP_1' class="form-control" name="pmtCellularP_1"
-																					type="text" maxlength="4" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required />-
+																					type="text" maxlength="4" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required />
 																			</div>
 
 																			<div class="col-md-3">
 																				<input id='pmtCellularP_2' class="form-control" name="pmtCellularP_2"
-																					type="text" maxlength="4" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required />-
+																					type="text" maxlength="4" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required />
 																			</div>
 
 																			<div class='col-md-3'>
@@ -666,7 +677,7 @@ var xhr;
 																	</td>
 																</tr>
 																<tr>
-																	<td class="required_Input">이메일*:</td>
+																	<td class="required_Input form_td">이메일*:</td>
 																	<td>
 																		<div class='form-group'>
 																			<div class='col-md-8'>
@@ -677,7 +688,7 @@ var xhr;
 																	</td>
 																</tr>
 																<tr>
-																	<td>우편번호:</td>
+																	<td class="form_td">우편번호:</td>
 																	<td><div class='form-group'>
 																			<div class='col-md-8'>
 																				<input class="form-control" id="Zipcode"
@@ -687,10 +698,10 @@ var xhr;
 																		</div></td>
 																</tr>
 																<tr>
-																	<td>주소:</td>
+																	<td class="form_td">주소:</td>
 																	<td>
 
-																		<div class='form-group'>
+																		<div class='form-group form_mg_b'>
 
 																			<p class="col-md-3 pull-right">
 																				<button class="btn btn-primary btn-block"
@@ -710,14 +721,16 @@ var xhr;
 																	</td>
 																</tr>
 																<tr>
-																	<td class="required_Input">계좌정보*:</td>
+																	<td class="required_Input form_td">계좌정보*:</td>
 																	<td>
-																		<div class="form-group">
+																		<div class="form-group form_mg_b">
 																			<div class='col-md-5'>
+																				<lable class="required_Input">은행명*:</lable>
 																				<input class="form-control" id="pmtBankName" name="pmtBankName" type="text" placeholder='은행명'/>
 																			</div>
 																			<br>
 																			<div class='col-md-8'>
+																				<lable class="required_Input">계좌번호*:</lable>
 																				<input class="form-control" id="pmtBankAccount" name="pmtBankAccount" type="text" placeholder='계좌번호'/>
 																			</div>
 																			<% // TODO : 프로모터의 통장사본이미지 등록 구현 %>
@@ -726,20 +739,75 @@ var xhr;
 																</tr>
 
 																<tr>
-																	<td class="required_Input">판매채널*:</td>
+																	<td class="required_Input form_td">판매채널*:</td>
 																	<td>
-																		<div class="form-group">
+																		<div class="form-group form_mg_b">
 																			<div class='col-md-7'>
+																				<lable class="required_Input">채널 아이디*:</lable>
 																				<input class="form-control" id="pmtChannelId" name="pmtChannelId" type="text" placeholder='채널 아이디'/>
 																			</div>
 																			<div class='col-md-7'>
+																				<lable class="required_Input">채널 명*:</lable>
 																				<input class="form-control" id="pmtChannelName" name="pmtChannelName" type="text" placeholder='채널 명'/>
 																			</div>
 																			<div class='col-md-7'>
+																				<lable class="required_Input">채널 URL*:</lable>
 																				<input class="form-control" id="pmtChannelURL" name="pmtChannelURL" type="text" placeholder='채널 URL'/>
 																			</div>
 																			<div class='col-md-10'>
+																				<lable class="required_Input">채널 설명*:</lable>
 																				<textarea class="form-control fix_textarea" id="pmtChannelDesc" name="pmtChannelDesc" rows="5" placeholder='채널 설명'></textarea>
+																			</div>
+																		</div>
+																	</td>
+																</tr>
+
+																<tr>
+																	<td class="form_td">사업자등록정보:</td>
+																	<td>
+																		<div class="form-group form_mg_b">
+																			<div class='col-md-7'>
+																				<lable class="required_Input">회사 명*:</lable>
+																				<input class="form-control" id="pmtCompany" name="pmtCompany" type="text" placeholder='회사 명'/>
+																			</div>
+																			<div class='col-md-7'>
+																				<lable class="required_Input">사업자 번호*:</lable>
+																				<input class="form-control" id="pmtBizLicenseNo" name="pmtBizLicenseNo" type="text" placeholder='사업자 번호'/>
+																			</div>
+																			<div class='col-md-7'>
+																				<lable class="required_Input">업태*:</lable>
+																				<input class="form-control" id="pmtBizType" name="pmtBizType" type="text" placeholder='업태'/>
+																			</div>
+																			<div class='col-md-7'>
+																				<lable class="">종목:</lable>
+																				<input class="form-control" id="pmtBizLine" name="pmtBizLine" type="text" placeholder='종목'/>
+																			</div>
+																			<div class='col-md-7'>
+																				<lable class="">법인등록번호:</lable>
+																				<input class="form-control" id="pmtCorpLicenseNo" name="pmtCorpLicenseNo" type="text" placeholder='법인등록번호'/>
+																			</div>
+																			<div class='col-md-7'>
+																				<lable class="">회사대표전화번호:</lable>
+																				<input class="form-control" id="pmtBizPhone" name="pmtBizPhone" type="text" placeholder='회사대표전화번호'/>
+																			</div>
+																			<div class='col-md-7'>
+																				<lable class="">사업자 등록 주소:</lable>
+																				<input class="form-control" id="pmtBizZipcode" name="pmtBizZipcode" type="text" maxlength="6" readonly="readonly" placeholder='우편번호'/>
+																			</div>
+																			<div class='col-md-12'>
+																				<p class="col-md-3 pull-right">
+																					<button class="btn btn-primary btn-block"
+																							type="button" data-toggle="modal"
+																							data-target=".modal_post" onclick="showhideAnother('pmtBizAddress', 'pmtBizZipcode');">주소찾기</button>
+																				</p>
+																				<div class='col-md-7' style="padding-left: 0; margin-bottom: 10px;">
+																					<input class="form-control" id="pmtBizAddress" name="pmtBizAddress" type="text" value=""
+																						   placeholder='주소' readonly="readonly" />
+																				</div>
+																				<div class='col-md-7' style="padding-left: 0;">
+																					<input class="form-control" id='pmtBizAddressDetail'name="pmtBizAddressDetail" type="text"
+																						   placeholder='나머지 주소' required />
+																				</div>
 																			</div>
 																		</div>
 																	</td>
@@ -750,7 +818,7 @@ var xhr;
 													<div class="col-md-12 ">
 														<span class="col-md-2">하고 싶은 말</span>
 														<div class='col-md-10 form-group center-block'>
-															<textarea class="form-control fix_textarea" name="pmtMark" class="stfMark" rows="15">가입되신것을 환영합니다.</textarea>
+															<textarea class="form-control fix_textarea" name="pmtMark" class="stfMark" rows="15" placeholder="가입되신것을 환영합니다."></textarea>
 														</div>
 
 													</div>

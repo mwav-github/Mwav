@@ -147,7 +147,7 @@
 		]]>
 	</select>
 
-	<insert id="insertPmtForm" parameterType="hashmap">
+	<insert id="insertPromoter_tbl" parameterType="hashmap">
 		<![CDATA[
 		INSERT INTO Promoter_tbl (promoter_id, pmtLoginId, pmtLoginPw, pmtName, pmtGender, pmtNickName
 						, pmtCellularPhone, pmtMail, pmtZipcode, pmtAddress, pmtAddressDetail, pmtMark)
@@ -185,8 +185,8 @@
 
 	<insert id="insertPromoterLicense_tbl" parameterType="hashmap">
 		<![CDATA[
-			INSERT INTO PromoterLicense_tbl(promoter_id, pmtCompany, pmtBizLicenseNo, pmtBizType, Promoter_tbl_promoter_id)
-			SELECT promoter_id, #{pmtCompany}, #{pmtBizLicenseNo}, #{pmtBizType}, promoter_id
+			INSERT INTO PromoterLicense_tbl(promoter_id, pmtCompany, pmtBizLicenseNo, pmtCorpLicenseNo, pmtBizType, pmtBizLine, pmtBizPhone, pmtBizZipcode, pmtBizAddress, pmtBizAddressDetail, Promoter_tbl_promoter_id)
+			SELECT promoter_id, #{pmtCompany}, #{pmtBizLicenseNo}, #{pmtCorpLicenseNo}, #{pmtBizType}, #{pmtBizLine}, #{pmtBizPhone}, #{pmtBizZipcode}, #{pmtBizAddress}, #{pmtBizAddressDetail}, promoter_id
 			FROM Promoter_tbl
 			WHERE pmtLoginId = #{pmtLoginId}
 		]]>
