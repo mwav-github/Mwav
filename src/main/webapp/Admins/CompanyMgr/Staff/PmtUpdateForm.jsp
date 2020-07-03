@@ -19,10 +19,8 @@
 	function msubmit() {
 
 		if(	chkEmailPolicy($('#chkEmail').val(), $('#chkEmail')) &&								// 이메일 검증
-
-			chkPWPolicy($('#chkLoginPW').val(), $('#chkLoginPW')) &&							// 비밀번호 검증
 			thisEmptyCheck($('#pmtNameChk'), '이름은 필수로 입력하셔야합니다.') &&				// 이름 검사
-			phoneCheck($('#pmtCellularPhone'), '핸드폰 번호는 필수로 입력하셔야합니다.') &&			// 핸드폰 검증
+			phoneCheck($('#pmtCellularPhone'), '핸드폰 번호는 필수로 입력하셔야합니다.') &&		// 핸드폰 검증
 
 			<% // TODO : 계좌번호 및 은행에 대한 검증 로직 필요 %>
 			thisEmptyCheck($('#pmtBankName'), '은행 명은 필수로 입력하셔야합니다.') &&			// 은행명 검증
@@ -74,6 +72,57 @@
 			obj.focus();
 		}
 		return result;
+	}
+
+	function showModifyPassword(){
+		var layerBtn = $('#PasswordModifyLayer');
+		$('#PasswordModifyLayer').slideToggle('slow', function () {
+			if($('#PasswordModifyLayer').css('display') == 'block'){
+				$('#showPasswordLayerBtn').text('비밀번호 변경 취소').removeClass('btn-info').addClass('btn-danger');
+			}else{
+				$('#showPasswordLayerBtn').text('비밀번호 변경').removeClass('btn-danger').addClass('btn-info');
+			}
+		});
+	}
+
+	function updatePassword(){
+		var npass = $('#modifyPassword');
+		var npass2 = $('#modifyPassword2');
+
+		// 신규 비밀번호의 유효성 검증
+		if( !(chkPWPolicy(npass.val(), npass) && chkPWPolicy(npass2.val(), npass2)) ){
+			return false;
+		}else if(npass.val() !== npass2.val()){	// 신규 비밀번호와 재입력값이 같아야함
+			alert('신규 비밀번호의 값이 서로 일치하지 않습니다.');
+			return false;
+		}else{
+			$.ajax({
+				url:'/admins/staff/pmtUpdatePassword.mwav',
+				data:{
+					'pmtLoginId' : $('#pmtLoginId').val(),
+					'promoter_id': $('#promoter_id').val(),
+					'pmtLoginPw' : npass.val(),
+					'pmtLoginPw2': npass2.val()
+				},
+				type:'POST',
+				async:false,
+				success: function(bool){
+					if(bool){
+						alert('비밀번호가 성공적으로 수정되었습니다.');
+						$('#PasswordModifyLayer').hide();
+						npass.val('');
+						npass2.val('');
+					}else{
+						alert('비밀번호 수정에 실패하였습니다.\n관리자에게 문의해주시길 바랍니다.')
+						npass.focus();
+					}
+				},
+				error: function (err) {
+					alert('일시적인 서버 오류입니다.\n관리자에게 문의해주시길 바랍니다.')
+				}
+
+			})
+		}
 	}
 </script>
 <script>
@@ -172,7 +221,7 @@
 						<form id='formId' class='form-horizontal' method="post" action="/admins/staff/pmtUpdate.mwav">
 
 							<%-- promoter_id 아이디 --%>
-							<input type="hidden" name="promoter_id" value="${updatePmtForm.promoter_id}">
+							<input type="hidden" id="promoter_id" name="promoter_id" value="${updatePmtForm.promoter_id}">
 
 							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 								<div class="panel panel-primary">
@@ -191,7 +240,7 @@
 															<td>
 																<div class='form-group'>
 																	<div class='col-md-8'>
-																		<input class='form-control' name="pmtLoginId" type='text' value="${updatePmtForm.pmtLoginId}" readonly/>
+																		<input class='form-control' id="pmtLoginId" name="pmtLoginId" type='text' value="${updatePmtForm.pmtLoginId}" readonly/>
 																	</div>
 																</div>
 															</td>
@@ -204,20 +253,37 @@
 															<td><div class='form-group'>
 																	<div class='col-md-8'>
 
-																		<input class='form-control' name="pmtLoginPw" id="chkLoginPW" type='password' value="${updatePmtForm.pmtLoginPw}"
-																			onchange="chkPWPolicy(this.value, this)" required>
-																	</div>
-													<a data-toggle="popover" data-placement="bottom" data-html="true" title="Password Rules"
-																				data-content="
-												1. 8~255자 사이의 문자길이  <br/>
-												2. 영문, 숫자, 특수문자로 구성 <br/>
-												3. 특수문자 한 개 이상 꼭 포함 <br/>
-												4. 공백문자 사용금지  <br/>
-												5. 영문 대문자와 소문자의 구분 ">
+																		<input class='form-control' name="pmtLoginPw" id="chkLoginPW" type='password' value="${updatePmtForm.pmtLoginPw}" readonly>
 
+																		<button type="button" id="showPasswordLayerBtn" onclick="showModifyPassword()" style="margin-top: 10px; " class="btn btn-sm btn-info">비밀번호 변경</button>
+
+																		<div id="PasswordModifyLayer" class="form_mg_b" style="margin-top: 15px; display: none;">
+																			<div class="form_mg_b">
+																				<label>신규 비밀번호
+																					<span class="required_Input_star">*</span>
+																					:</label>
+																				<input class="form-control" type="password" id="modifyPassword" name="pmtLoginPw">
+																			</div>
+																			<div class="form_mg_b">
+																				<label>신규 비밀번호 재입력
+																					<span class="required_Input_star">*</span>
+																					:</label>
+																				<input class="form-control" type="password" id="modifyPassword2" nam="pmtLoginPw2">
+																			</div>
+																			<button type="button" onclick="updatePassword();" class="btn btn-sm btn-success">비밀번호 변경</button>
+
+																			<a data-toggle="popover" data-placement="bottom" data-html="true" title="Password Rules"
+																										data-content="
+																				1. 8~255자 사이의 문자길이  <br/>
+																				2. 영문, 숫자, 특수문자로 구성 <br/>
+																				3. 특수문자 한 개 이상 꼭 포함 <br/>
+																				4. 공백문자 사용금지  <br/>
+																				5. 영문 대문자와 소문자의 구분 ">
 																				<span class="glyphicon glyphicon-question-sign fa-lg text-muted"></span>
 																			</a>
-																</div>
+																		</div>
+
+																	</div>
 															</td>
 														</tr>
 														<tr>
@@ -252,7 +318,7 @@
 															<td>
 																<div class='form-group'>
 																	<div class='col-md-8'>
-																		<input class="form-control" name="pmtNickname" type="text" maxlength="20" value="${updatePmtForm.pmtNickName}" />
+																		<input class="form-control" name="pmtNickName" type="text" maxlength="20" value="${updatePmtForm.pmtNickName}" />
 																	</div>
 																</div>
 															</td>

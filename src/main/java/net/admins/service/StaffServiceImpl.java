@@ -1,5 +1,6 @@
 package net.admins.service;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -170,5 +171,31 @@ public class StaffServiceImpl implements StaffService {
 
 		// PromoterAccount_tbl
 		staffDAO.updatePromoterAccount_tbl(commandMap);
+	}
+
+	@Transactional
+	@Override
+	public boolean updatePmtPassword(CommandMap commandMap) throws IOException {
+		String pmtLoginPw = (String) commandMap.get("pmtLoginPw");
+		String pmtLoginPw2 = (String) commandMap.get("pmtLoginPw2");
+
+		// 신규 비밀번호와 재입력한 비밀번호가 일치한지 재확인
+		boolean chkUpdate = pmtLoginPw.equals(pmtLoginPw2) ? true : false;
+
+		if(chkUpdate){
+			// AES/CBC/IV 암호화 (키,암호화텍스트,iv)
+			byte[] encrypted = AesEncryption.aesEncryptCbc(AesEncryption.sKey, pmtLoginPw, AesEncryption.sInitVector);
+			// 암호화된 값이 String으로 반환
+			commandMap.put("pmtLoginPw", AesEncryption.aesEncodeBuf(encrypted));
+
+			staffDAO.updatePmtPassword(commandMap);
+			chkUpdate = true;
+
+			// PromoterValueLog_tbl, TODO : 예외처리 객체를 만들어서 로그처리 필요함
+			commandMap.put("pvlRemark", "비밀번호 수정");
+			staffDAO.insertPromoterValueLog_tbl(commandMap);
+		}
+
+		return chkUpdate;
 	}
 }

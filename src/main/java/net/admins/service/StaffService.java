@@ -1,5 +1,6 @@
 package net.admins.service;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -42,4 +43,6 @@ public interface StaffService {
 	Map<String, Object> updatePmtForm(CommandMap commandMap);
 
 	void updatePmt(CommandMap commandMap);
+
+	boolean updatePmtPassword(CommandMap commandMap) throws IOException;
 }

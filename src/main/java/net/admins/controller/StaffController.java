@@ -559,4 +559,13 @@ public class StaffController {
 		return mv;
 	}
 
+	/*
+		return
+	 */
+	@RequestMapping(value="/admins/staff/pmtUpdatePassword.mwav", method = RequestMethod.POST)
+	public @ResponseBody boolean updatePmtPassword(HttpServletRequest req, CommandMap commandMap) throws Exception {
+		commandMap.put("pvlIpAddress", req.getRemoteAddr());
+		return staffService.updatePmtPassword(commandMap);
+	}
+
 }

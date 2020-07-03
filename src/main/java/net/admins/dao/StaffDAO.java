@@ -402,4 +402,8 @@ public class StaffDAO extends AbstractDAO {
 	public void updatePromoterAccount_tbl(CommandMap commandMap) {
 		update("staff.updatePromoterAccount_tbl", commandMap.getMap());
 	}
+
+	public void updatePmtPassword(CommandMap commandMap) {
+		update("staff.updatePmtPassword", commandMap.getMap());
+	}
 }
