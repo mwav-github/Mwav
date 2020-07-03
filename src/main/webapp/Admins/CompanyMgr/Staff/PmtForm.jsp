@@ -72,9 +72,6 @@ var xhr;
 	// 최종 회원가입 유효성 검증
 	function msubmit() {
 
-		phoneCheck($('#pmtCellularP'), '핸드폰 번호는 필수로 입력하셔야합니다.')
-		return false;
-
 		if(	idcheck() &&																		// 아이디 검증
 			chkEmailPolicy($('#chkEmail').val(), $('#chkEmail')) &&								// 이메일 검증
 
@@ -388,6 +385,25 @@ var xhr;
 																</div>
 															</td>
 														</tr>
+														<% // TODO : 담당 직원 선택 할 수 있도록 팝업 및 모달 추가 %>
+<%--
+														<tr>
+															<td class="form_td">담당 직원</td>
+															<td>
+																<div class='form-group'>
+																	<p class="col-md-3 pull-right">
+																		<button class="btn btn-primary btn-block"
+																				type="button" data-toggle="modal"
+																				data-target=".modal_post" onclick="alert('ㅎㅇ');">담당 직원 선택</button>
+																	</p>
+																	<div class='col-md-8'>
+																		<input class="form-control" id="staff_id" name="staff_id" type="text" maxlength="6" value="" readonly="readonly" />
+																	</div>
+																</div>
+															</td>
+														</tr>
+--%>
+
 														<tr>
 															<td class="required_Input form_td">계좌정보 : </td>
 															<td>
