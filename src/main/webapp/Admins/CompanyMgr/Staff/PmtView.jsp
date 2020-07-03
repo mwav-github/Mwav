@@ -28,6 +28,13 @@
 		}
 	}
 </script>
+
+	<style>
+		/* 테이블 첫번째 줄 */
+		.table > tbody > tr > td:nth-child(1){
+			width: 200px;
+		}
+	</style>
 </head>
 
 <body>
@@ -125,23 +132,23 @@
 												<table class="table">
 													<tbody>
 														<tr>
-															<td class="info">핸드폰 번호:</td>
+															<td class="info">핸드폰 번호</td>
 															<td>${selectPmtView.pmtCellularPhone}</td>
 														</tr>
 														<tr>
-															<td class="info">이메일:</td>
+															<td class="info">이메일</td>
 															<td>${selectPmtView.pmtMail}</td>
 														</tr>
 														<tr>
-															<td class="info">우편번호:</td>
+															<td class="info">우편번호</td>
 															<td>${selectPmtView.pmtZipcode}</td>
 														</tr>
 														<tr>
-															<td class="info">주소:</td>
+															<td class="info">주소</td>
 															<td>${selectPmtView.pmtAddress}</td>
 														</tr>
 														<tr>
-															<td class="info">상세 주소 : </td>
+															<td class="info">상세 주소</td>
 															<td>${selectPmtView.pmtAddressDetail}</td>
 														</tr>
 													</tbody>
@@ -151,55 +158,60 @@
 											<% // PromoterValue_tbl %>
 											<div class=" col-md-12 col-lg-12 ">
 												<table class="table">
+													<thead>
+														<tr>
+															<th colspan="2">Promoter Value</th>
+														</tr>
+													</thead>
 													<tbody>
-													<tr>
-														<td class="info">담당 직원:</td>
-														<td>${selectPmtView.staff_id}</td>
-													</tr>
-													<tr>
-														<td class="info">상위 프로모터:</td>
-														<td>${selectPmtView.pmtUpperPromoter_id}</td>
-													</tr>
-													<tr>
-														<td class="info">추천인 ID:</td>
-														<td>${selectPmtView.pmtRcmderId}</td>
-													</tr>
-													<tr>
-														<td class="info">프로모터 등급:</td>
-														<td>${selectPmtView.pmtLevel}</td>
-													</tr>
-													<tr>
-														<td class="info">방문 유도 수:</td>
-														<td>${selectPmtView.pmtVisitNbr}</td>
-													</tr>
-													<tr>
-														<td class="info">고객질의: </td>
-														<td>${selectPmtView.pmtEffects}</td>
-													</tr>
-													<tr>
-														<td class="info">프로모팅 성과(매출): </td>
-														<td>${selectPmtView.pmtProfits}</td>
-													</tr>
-													<tr>
-														<td class="info">적용그룹: </td>
-														<td>${selectPmtView.pmtGdsGroup}</td>
-													</tr>
-													<tr>
-														<td class="info">가입 일: </td>
-														<td>${selectPmtView.pmtJoinDt}</td>
-													</tr>
-													<tr>
-														<td class="info">수정 일: </td>
-														<td>${selectPmtView.pmtUpdateDt}</td>
-													</tr>
-													<tr>
-														<td class="info">탈퇴 일: </td>
-														<td>${selectPmtView.pmtLevel}</td>
-													</tr>
-													<tr>
-														<td class="info">최근 방문 일: </td>
-														<td>${selectPmtView.pmtRecentLoginDt}</td>
-													</tr>
+														<tr>
+															<td class="info">담당 직원</td>
+															<td>${selectPmtView.staff_id}</td>
+														</tr>
+														<tr>
+															<td class="info">상위 프로모터</td>
+															<td>${selectPmtView.pmtUpperPromoter_id}</td>
+														</tr>
+														<tr>
+															<td class="info">추천인 ID</td>
+															<td>${selectPmtView.pmtRcmderId}</td>
+														</tr>
+														<tr>
+															<td class="info">프로모터 등급</td>
+															<td>${selectPmtView.pmtLevel}</td>
+														</tr>
+														<tr>
+															<td class="info">방문 유도 수</td>
+															<td>${selectPmtView.pmtVisitNbr}</td>
+														</tr>
+														<tr>
+															<td class="info">고객질의</td>
+															<td>${selectPmtView.pmtEffects}</td>
+														</tr>
+														<tr>
+															<td class="info">프로모팅 성과(매출)</td>
+															<td>${selectPmtView.pmtProfits}</td>
+														</tr>
+														<tr>
+															<td class="info">적용그룹</td>
+															<td>${selectPmtView.pmtGdsGroup}</td>
+														</tr>
+														<tr>
+															<td class="info">가입 일</td>
+															<td>${selectPmtView.pmtJoinDt}</td>
+														</tr>
+														<tr>
+															<td class="info">수정 일</td>
+															<td>${selectPmtView.pmtUpdateDt}</td>
+														</tr>
+														<tr>
+															<td class="info">탈퇴 일</td>
+															<td>${selectPmtView.pmtLevel}</td>
+														</tr>
+														<tr>
+															<td class="info">최근 방문 일</td>
+															<td>${selectPmtView.pmtRecentLoginDt}</td>
+														</tr>
 													</tbody>
 												</table>
 											</div>
@@ -207,13 +219,18 @@
 											<% // PromoterSpecialty_tbl, TODO : 프로모터 전문분야 수정 필요 %>
 											<div class=" col-md-12 col-lg-12 ">
 												<table class="table">
+													<thead>
+														<tr>
+															<th colspan="2">Promoter Specialty</th>
+														</tr>
+													</thead>
 													<tbody>
 														<tr>
-															<td class="info">카테고리:</td>
+															<td class="info">카테고리</td>
 															<td>${selectPmtView.pmtSpecialtyName}</td>
 														</tr>
 														<tr>
-															<td class="info">스페셜티:</td>
+															<td class="info">스페셜티</td>
 															<td>${selectPmtView.pmtSpecialtyLevel}</td>
 														</tr>
 													</tbody>
@@ -223,41 +240,46 @@
 											<% // PromoterLicense_tbl %>
 											<div class=" col-md-12 col-lg-12 ">
 												<table class="table">
+													<thead>
+														<tr>
+															<th colspan="2">Promoter License</th>
+														</tr>
+													</thead>
 													<tbody>
 														<tr>
-															<td class="info">회사 명:</td>
+															<td class="info">회사 명</td>
 															<td>${selectPmtView.pmtCompany}</td>
 														</tr>
 														<tr>
-															<td class="info">사업자 번호:</td>
+															<td class="info">사업자 번호</td>
 															<td>${selectPmtView.pmtBizLicenseNo}</td>
 														</tr>
 														<tr>
-															<td class="info">법인등록번호:</td>
+															<td class="info">법인등록번호</td>
 															<td>${selectPmtView.pmtCorpLicenseNo}</td>
 														</tr>
 														<tr>
-															<td class="info">업태:</td>
+															<td class="info">업태</td>
 															<td>${selectPmtView.pmtBizType}</td>
 														</tr>
 														<tr>
-															<td class="info">종목:</td>
+															<td class="info">종목</td>
 															<td>${selectPmtView.pmtBizLine}</td>
 														</tr>
 														<tr>
-															<td class="info">회사대표전화번호:</td>
+															<td class="info">회사대표전화번호</td>
 															<td>${selectPmtView.pmtBizPhone}</td>
 														</tr>
 														<tr>
-															<td class="info">우편번호:</td>
+															<td class="info">우편번호</td>
 															<td>${selectPmtView.pmtBizZipcode}</td>
 														</tr>
 														<tr>
-															<td class="info">주소:</td>
+															<td class="info">주소</td>
 															<td>${selectPmtView.pmtBizAddress}</td>
 														</tr>
 														<tr>
-															<td class="info">상세주소:</td>
+															<td class="info">상세주소</td>
 															<td>${selectPmtView.pmtBizAddressDetail}</td>
 														</tr>
 													</tbody>
@@ -267,29 +289,34 @@
 											<% // PromoterChannel_tbl %>
 											<div class=" col-md-12 col-lg-12 ">
 												<table class="table">
+													<thead>
+														<tr>
+															<th colspan="2">Promoter Channel</th>
+														</tr>
+													</thead>
 													<tbody>
 														<tr>
-															<td class="info">채널 아이디:</td>
+															<td class="info">채널 아이디</td>
 															<td>${selectPmtView.pmtChannelId}</td>
 														</tr>
 														<tr>
-															<td class="info">채널 명:</td>
+															<td class="info">채널 명</td>
 															<td>${selectPmtView.pmtChannelName}</td>
 														</tr>
 														<tr>
-															<td class="info">채널 설명:</td>
+															<td class="info">채널 설명</td>
 															<td>${selectPmtView.pmtChannelDesc}</td>
 														</tr>
 														<tr>
-															<td class="info">채널 URL:</td>
+															<td class="info">채널 URL</td>
 															<td>${selectPmtView.pmtChannelURL}</td>
 														</tr>
 														<tr>
-															<td class="info">채널 가입자 수 또는 회원수:</td>
+															<td class="info">채널 가입자 수 또는 회원수</td>
 															<td>${selectPmtView.pmtChannelMember}</td>
 														</tr>
 														<tr>
-															<td class="info">평균 일 방문자수:</td>
+															<td class="info">평균 일 방문자수</td>
 															<td>${selectPmtView.pmtChannelDaillyVisit}</td>
 														</tr>
 													</tbody>
@@ -299,21 +326,26 @@
 											<% // PromoterAccount_tbl %>
 											<div class=" col-md-12 col-lg-12 ">
 												<table class="table">
+													<thead>
+														<tr>
+															<th colspan="2">Promoter Bank</th>
+														</tr>
+													</thead>
 													<tbody>
 														<tr>
-															<td class="info">은행명:</td>
+															<td class="info">은행명</td>
 															<td>${selectPmtView.pmtBankName}</td>
 														</tr>
 														<tr>
-															<td class="info">은행 계좌:</td>
+															<td class="info">은행 계좌</td>
 															<td>${selectPmtView.pmtBankAccount}</td>
 														</tr>
 														<tr>
-															<td class="info">통장사본 이미지 경로:</td>
+															<td class="info">통장사본 이미지 경로</td>
 															<td>${selectPmtView.pmtBankbookFileImage}</td>
 														</tr>
 														<tr>
-															<td class="info">계좌정보 입력일:</td>
+															<td class="info">계좌정보 입력일</td>
 															<td>${selectPmtView.pmtBankInsertedDt}</td>
 														</tr>
 													</tbody>
@@ -329,8 +361,8 @@
 
 										</div>
 										<div class="panel-footer">
-											<button type="button" class="btn btn-sm btn-primary" onclick="javascript:window.location.href='/admins/staff/pmtList.mwav'">리스트</button>
-											<button type="button" class="btn btn-sm btn-success" onClick="/admins/staff/pmtUpdateForm.mwav?promoter_id=${selectPmtView.promoter_id}">수정하기</button>
+											<button type="button" class="btn btn-sm btn-primary" onclick="location.href='/admins/staff/pmtList.mwav'">리스트</button>
+											<button type="button" class="btn btn-sm btn-success" onClick="location.href='/admins/staff/pmtUpdateForm.mwav?promoter_id=${selectPmtView.promoter_id}'">수정하기</button>
 											<% // TODO : 프로모터 탈퇴 구현 %>
 											<button type="submit" class="btn btn-sm btn-danger">탈퇴하기</button>
 											<input type="hidden" name="promoter_id" value="${selectPmtView.promoter_id}">
