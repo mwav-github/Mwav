@@ -152,7 +152,7 @@
 		INSERT INTO Promoter_tbl (promoter_id, pmtLoginId, pmtLoginPw, pmtName, pmtGender, pmtNickName
 						, pmtCellularPhone, pmtMail, pmtZipcode, pmtAddress, pmtAddressDetail, pmtMark)
 		VALUES((SELECT IFNULL(max(pmt.promoter_id)+1,100000) FROM Promoter_tbl pmt), #{pmtLoginId}, #{pmtLoginPw}, #{pmtName}, #{pmtGender}, #{pmtNickname}
-								, #{pmtCellularP}, #{pmtEmail}, #{pmtZipcode}, #{pmtAddress}, #{pmtAddressDetail}, #{pmtMark})
+								, #{pmtCellularPhone}, #{pmtMail}, #{pmtZipcode}, #{pmtAddress}, #{pmtAddressDetail}, #{pmtMark})
 		]]>
 	</insert>
 
@@ -232,5 +232,48 @@
 			WHERE T1.promoter_id = #{promoter_id}
 		]]>
 	</select>
+
+	<update id="updatePromoter_tbl" parameterType="hashmap">
+		<![CDATA[
+			UPDATE Promoter_tbl SET pmtName=#{pmtName}, pmtGender=#{pmtGender}, pmtNickName=#{pmtNickName}, pmtCellularPhone=#{pmtCellularPhone}
+								  , pmtMail=#{pmtMail}, pmtZipcode=#{pmtZipcode}, pmtAddress=#{pmtAddress}, pmtAddressDetail=#{pmtAddressDetail}, pmtMark=#{pmtMark}
+			WHERE promoter_id = #{promoter_id}
+		]]>
+	</update>
+
+	<update id="updatePromoterValue_tbl" parameterType="hashmap">
+		<![CDATA[
+
+		]]>
+	</update>
+
+	<update id="updatePromoterSpecialty_tbl" parameterType="hashmap">
+		<![CDATA[
+
+		]]>
+	</update>
+
+	<update id="updatePromoterLicense_tbl" parameterType="hashmap">
+		<![CDATA[
+			UPDATE PromoterLicense_tbl SET pmtCompany = #{pmtCompany}, pmtBizLicenseNo = #{pmtBizLicenseNo}, pmtCorpLicenseNo = #{pmtCorpLicenseNo}, pmtBizType = #{pmtBizType}
+										 , pmtBizLine = #{pmtBizLine}, pmtBizPhone = #{pmtBizPhone}, pmtBizZipcode = #{pmtBizZipcode}, pmtBizAddress = #{pmtBizAddress}, pmtBizAddressDetail = #{pmtBizAddressDetail}
+			WHERE promoter_id = #{promoter_id}
+		]]>
+	</update>
+
+	<update id="updatePromoterChannel_tbl" parameterType="hashmap">
+		<![CDATA[
+			UPDATE PromoterChannel_tbl SET pmtChannelId = #{pmtChannelId}, pmtChannelName = #{pmtChannelName}, pmtChannelDesc = #{pmtChannelDesc}, pmtChannelURL = #{pmtChannelURL}
+			WHERE promoter_id = #{promoter_id}
+		]]>
+	</update>
+
+	<update id="updatePromoterAccount_tbl" parameterType="hashmap">
+		<![CDATA[
+			UPDATE PromoterAccount_tbl SET pmtBankName = #{pmtBankName}, pmtBankAccount = #{pmtBankAccount}
+			WHERE promoter_id = #{promoter_id}
+		]]>
+	</update>
+
 </mapper>
 

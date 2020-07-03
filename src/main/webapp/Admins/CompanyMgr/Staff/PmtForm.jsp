@@ -73,11 +73,11 @@ var xhr;
 	function msubmit() {
 
 		if(	idcheck() &&																		// 아이디 검증
+			chkPWPolicy($('#chkLoginPW').val(), $('#chkLoginPW')) &&							// 비밀번호 검증
 			chkEmailPolicy($('#chkEmail').val(), $('#chkEmail')) &&								// 이메일 검증
 
-			chkPWPolicy($('#chkLoginPW').val(), $('#chkLoginPW')) &&							// 비밀번호 검증
 			thisEmptyCheck($('#pmtNameChk'), '이름은 필수로 입력하셔야합니다.') &&				// 이름 검사
-			phoneCheck($('#pmtCellularP'), '핸드폰 번호가 공백이거나 유효하지 않은 번호입니다.') &&			// 핸드폰 검증
+			phoneCheck($('#pmtCellularPhone'), '핸드폰 번호가 공백이거나 유효하지 않은 번호입니다.') &&			// 핸드폰 검증
 
 			<% // TODO : 계좌번호 및 은행에 대한 검증 로직 필요 %>
 			thisEmptyCheck($('#pmtBankName'), '은행 명은 필수로 입력하셔야합니다.') &&			// 은행명 검증
@@ -334,7 +334,7 @@ var xhr;
 															<td>
 																<div class='form-group'>
 																	<div class='col-md-8'>
-																		<input id='pmtCellularP' class="form-control" name="pmtCellularP" type="text" placeholder="예) 010-1234-5678" value="" required />
+																		<input id='pmtCellularPhone' class="form-control" name="pmtCellularPhone" type="text" placeholder="예) 010-1234-5678" value="" required />
 																	</div>
 																</div>
 															</td>
@@ -346,7 +346,7 @@ var xhr;
 															<td>
 																<div class='form-group'>
 																	<div class='col-md-8'>
-																		<input class="form-control" name="pmtEmail" id="chkEmail" type="text"
+																		<input class="form-control" name="pmtMail" id="chkEmail" type="text"
 																			onchange="chkEmailPolicy(this.value, this)" required />
 																	</div>
 																</div>

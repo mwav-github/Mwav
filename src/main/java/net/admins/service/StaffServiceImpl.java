@@ -144,4 +144,31 @@ public class StaffServiceImpl implements StaffService {
 	public Map<String, Object> updatePmtForm(CommandMap commandMap) {
 		return staffDAO.updatePmtForm(commandMap);
 	}
+
+	@Transactional
+	@Override
+	public void updatePmt(CommandMap commandMap) {
+
+		// Promoter_tbl
+		staffDAO.updatePromoter_tbl(commandMap);
+
+		// PromoterValue_tbl 보류
+//		staffDAO.updatePromoterValue_tbl(commandMap);
+
+		// PromoterValueLog_tbl
+		commandMap.put("pvlRemark", "프로모터 회원 정보 수정");
+		staffDAO.insertPromoterValueLog_tbl(commandMap);
+
+		// PromoterSpecialty_tbl, TODO : 프로모터 전문분야 업데이트 보류
+//		staffDAO.updatePromoterSpecialty_tbl(commandMap);
+
+		// PromoterLicense_tbl
+		staffDAO.updatePromoterLicense_tbl(commandMap);
+
+		// PromoterChannel_tbl
+		staffDAO.updatePromoterChannel_tbl(commandMap);
+
+		// PromoterAccount_tbl
+		staffDAO.updatePromoterAccount_tbl(commandMap);
+	}
 }

@@ -21,6 +21,7 @@ import net.mwav.common.module.PagingVO;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -533,9 +534,9 @@ public class StaffController {
 		return mv;
 	}
 
-	@RequestMapping(value = "/admins/staff/pmtUpdate.mwav")
+	@RequestMapping(value = "/admins/staff/pmtUpdateForm.mwav")
 	public ModelAndView updatePmtform(CommandMap commandMap, String promoter_id) throws Exception {
-		ModelAndView mv = new ModelAndView("/Admins/CompanyMgr/Staff/PmtUpdate");
+		ModelAndView mv = new ModelAndView("/Admins/CompanyMgr/Staff/PmtUpdateForm");
 		commandMap.put("promoter_id", promoter_id);
 
 		Map<String, Object> map = staffService.updatePmtForm(commandMap);
@@ -545,4 +546,17 @@ public class StaffController {
 		mv.addObject("updatePmtForm", map);
 		return mv;
 	}
+
+	@RequestMapping(value = "/admins/staff/pmtUpdate.mwav", method = RequestMethod.POST)
+	public ModelAndView updatePmt(CommandMap commandMap, HttpServletRequest request, String promoter_id) throws Exception {
+		ModelAndView mv = new ModelAndView("redirect:/admins/staff/pmtView.mwav");
+		// PromoterValueLog_tbl 로그를 위해 최초 IP입력
+		commandMap.put("pvlIpAddress", request.getRemoteAddr());
+
+		staffService.updatePmt(commandMap);
+
+		mv.addObject("promoter_id", promoter_id);
+		return mv;
+	}
+
 }

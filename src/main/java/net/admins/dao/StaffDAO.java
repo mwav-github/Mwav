@@ -378,4 +378,28 @@ public class StaffDAO extends AbstractDAO {
 	public Map<String, Object> updatePmtForm(CommandMap commandMap) {
 		return (Map<String, Object>) selectOne("staff.updatePmtForm", commandMap.getMap());
 	}
+
+    public void updatePromoter_tbl(CommandMap commandMap) {
+		update("staff.updatePromoter_tbl", commandMap.getMap());
+    }
+
+	public void updatePromoterValue_tbl(CommandMap commandMap) {
+		update("staff.updatePromoterValue_tbl", commandMap.getMap());
+	}
+
+	public void updatePromoterSpecialty_tbl(CommandMap commandMap) {
+		update("staff.updatePromoterSpecialty_tbl", commandMap.getMap());
+	}
+
+	public void updatePromoterLicense_tbl(CommandMap commandMap) {
+		update("staff.updatePromoterLicense_tbl", commandMap.getMap());
+	}
+
+	public void updatePromoterChannel_tbl(CommandMap commandMap) {
+		update("staff.updatePromoterChannel_tbl", commandMap.getMap());
+	}
+
+	public void updatePromoterAccount_tbl(CommandMap commandMap) {
+		update("staff.updatePromoterAccount_tbl", commandMap.getMap());
+	}
 }

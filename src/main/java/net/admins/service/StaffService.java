@@ -40,4 +40,6 @@ public interface StaffService {
 	Map<String, Object> selectPmtView(String promoter_id);
 
 	Map<String, Object> updatePmtForm(CommandMap commandMap);
+
+	void updatePmt(CommandMap commandMap);
 }

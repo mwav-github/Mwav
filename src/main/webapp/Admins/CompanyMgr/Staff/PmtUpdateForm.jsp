@@ -14,70 +14,15 @@
 <jsp:include page="/PartsOfContent/Head_Import.jsp" flush="false" />
 <!-- /////////// -->
 <script>
-var xhr;
-	function createXhr() {
-		if (window.ActiveXObject) { // IE 이전버전
-			xhr = new ActiveXObject("Microsoft.XMLHTTP");
-		} else {
-			xhr = new XMLHttpRequest();
-		}
-	}
-
-	//아이디 중복 체크
-	function idcheck() {
-		// #idcheckLayer 하위의 요소를 제거
-		$('#idcheckLayer').empty();
-
-		var id = $('#chkLoginId').val();
-		var input_object = $("#chkLoginId");
-
-		// ID값 유효성 검증 (경고창 및 포커싱도 여기서 이루어짐)
-		var flagPolicy = chkLoginPolicy(id,input_object);
-		if(!flagPolicy){
-			$('#idcheckLayer').append("<div class='alert alert-danger text-left'><strong>" +
-					"1. 4 ~ 20 자 사이의 문자길이 <br> 2. 첫 문자는 영어로 시작 <br> 3. 특수문자 사용금지 (제외문자: . _ -) <br>" +
-					" 4. 공백문자 사용금지  <br> 5. 대소문자는 식별이 가능하나 구분 및 구별을 하지 않음</strong></div>");
-			return false;
-		}
-
-		// ID값이 유효하다면 아이디 중복체크
-		// flagPolicy 의 값이 ajax로 결정 되기 때문에 동기화를 시켜줌 -> async : false
-		if(flagPolicy){
-			$.ajax({
-				url:'/admins/staff/pmtLoginIdCheck.mwav',
-				type:'POST',
-				async: false,
-				data:{
-					'pmtLoginId':id
-				},
-				dataType:'text',
-				success: function(obj){
-					// 중복여부에 따라 안내 박스 추가
-					if(obj === 'true'){
-						$('#idcheckLayer').append("<div class='alert alert-success text-left'><strong>사용할 수 있는 ID 입니다.</strong></div>");
-						flagPolicy = true;
-					}else{
-						$('#idcheckLayer').append("<div class='alert alert-danger text-left'><strong>이미 등록된 ID 입니다. 다시 입력해주세요.</strong></div>");
-						flagPolicy = false;
-					}
-				},
-				error: function(err){
-					alert('일시적인 서버 오류입니다.');
-				}
-			})
-		}
-		return flagPolicy;
-	}
 
 	// 최종 회원가입 유효성 검증
 	function msubmit() {
 
-		if(	idcheck() &&																		// 아이디 검증
-			chkEmailPolicy($('#chkEmail').val(), $('#chkEmail')) &&								// 이메일 검증
+		if(	chkEmailPolicy($('#chkEmail').val(), $('#chkEmail')) &&								// 이메일 검증
 
 			chkPWPolicy($('#chkLoginPW').val(), $('#chkLoginPW')) &&							// 비밀번호 검증
 			thisEmptyCheck($('#pmtNameChk'), '이름은 필수로 입력하셔야합니다.') &&				// 이름 검사
-			phoneCheck($('#pmtCellularP'), '핸드폰 번호는 필수로 입력하셔야합니다.') &&			// 핸드폰 검증
+			phoneCheck($('#pmtCellularPhone'), '핸드폰 번호는 필수로 입력하셔야합니다.') &&			// 핸드폰 검증
 
 			<% // TODO : 계좌번호 및 은행에 대한 검증 로직 필요 %>
 			thisEmptyCheck($('#pmtBankName'), '은행 명은 필수로 입력하셔야합니다.') &&			// 은행명 검증
@@ -92,7 +37,7 @@ var xhr;
 			thisEmptyCheck($('#pmtBizLicenseNo'), '사업자 번호는 필수로 입력하셔야합니다.') &&	// 사업자 번호 검증
 			thisEmptyCheck($('#pmtBizType'), '업태는 필수로 입력하셔야합니다.') &&				// 업태 검증
 
-			confirm("회원가입을 완료하겠습니까?"))												// 최종 검사
+			confirm("현재 기입하신대로 수정하시겠습니까?"))												// 최종 검사
 		{
 			$('#formId').submit();
 		} else {
@@ -152,6 +97,10 @@ var xhr;
 
 		.form_mg_b > div{
 			margin-bottom: 15px;
+		}
+
+		.required_Input_star{
+			color: red;
 		}
 	</style>
 </head>
@@ -221,8 +170,11 @@ var xhr;
 					<div class="row">
 						<%-- 1. 회원정보 입력 --%>
 						<form id='formId' class='form-horizontal' method="post" action="/admins/staff/pmtUpdate.mwav">
-							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
+							<%-- promoter_id 아이디 --%>
+							<input type="hidden" name="promoter_id" value="${updatePmtForm.promoter_id}">
+
+							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 								<div class="panel panel-primary">
 									<div class="panel-heading">
 										<h3 class="panel-title">Mwav - Promoter Modify Information</h3>
@@ -233,18 +185,22 @@ var xhr;
 												<table class="table table-user-information">
 													<tbody>
 														<tr>
-															<td class="required_Input form_td">아이디:</td>
+															<td class="required_Input form_td">아이디
+																<span class="required_Input_star">*</span>
+																:</td>
 															<td>
 																<div class='form-group'>
 																	<div class='col-md-8'>
-																		<input class='form-control' name="pmtLoginId" id="chkLoginId" type='text' value="${updatePmtForm.pmtLoginId}" readonly/>
+																		<input class='form-control' name="pmtLoginId" type='text' value="${updatePmtForm.pmtLoginId}" readonly/>
 																	</div>
 																</div>
 															</td>
 														</tr>
 
 														<tr>
-															<td class="required_Input form_td">비밀번호*:</td>
+															<td class="required_Input form_td">비밀번호
+																<span class="required_Input_star">*</span>
+																:</td>
 															<td><div class='form-group'>
 																	<div class='col-md-8'>
 
@@ -265,7 +221,9 @@ var xhr;
 															</td>
 														</tr>
 														<tr>
-															<td class="required_Input form_td">이름:</td>
+															<td class="required_Input form_td">이름
+																<span class="required_Input_star">*</span>
+																:</td>
 															<td>
 																<div class='form-group'>
 																	<div class='col-md-8'>
@@ -275,7 +233,9 @@ var xhr;
 															</td>
 														</tr>
 														<tr>
-															<td class="required_Input form_td">성별:</td>
+															<td class="required_Input form_td">성별
+																<span class="required_Input_star">*</span>
+																:</td>
 															<td>
 																<div class='form-group'>
 																	<div class='col-md-4'>
@@ -298,21 +258,25 @@ var xhr;
 															</td>
 														</tr>
 														<tr>
-															<td class="required_Input form_td">핸드폰번호:</td>
+															<td class="required_Input form_td">핸드폰번호
+																<span class="required_Input_star">*</span>
+																:</td>
 															<td>
 																<div class='form-group'>
 																	<div class='col-md-8'>
-																		<input id='pmtCellularP' class="form-control" name="pmtCellularP" type="text" placeholder="예) 010-1234-5678" value="${updatePmtForm.pmtCellularPhone}" required />
+																		<input id='pmtCellularPhone' class="form-control" name="pmtCellularPhone" type="text" placeholder="예) 010-1234-5678" value="${updatePmtForm.pmtCellularPhone}" required />
 																	</div>
 																</div>
 															</td>
 														</tr>
 														<tr>
-															<td class="required_Input form_td">이메일:</td>
+															<td class="required_Input form_td">이메일
+																<span class="required_Input_star">*</span>
+																:</td>
 															<td>
 																<div class='form-group'>
 																	<div class='col-md-8'>
-																		<input class="form-control" name="pmtEmail" id="chkEmail" type="text" value="${updatePmtForm.pmtMail}"
+																		<input class="form-control" name="pmtMail" id="chkEmail" type="text" value="${updatePmtForm.pmtMail}"
 																			onchange="chkEmailPolicy(this.value, this)" required />
 																	</div>
 																</div>
@@ -350,16 +314,22 @@ var xhr;
 															</td>
 														</tr>
 														<tr>
-															<td class="required_Input form_td">계좌정보*:</td>
+															<td class="required_Input form_td">계좌정보
+																<span class="required_Input_star">*</span>
+																:</td>
 															<td>
 																<div class="form-group form_mg_b">
 																	<div class='col-md-5'>
-																		<lable class="required_Input">은행명*:</lable>
+																		<lable class="required_Input">은행명
+																			<span class="required_Input_star">*</span>
+																			:</lable>
 																		<input class="form-control" id="pmtBankName" name="pmtBankName" type="text" placeholder='은행명' value="${updatePmtForm.pmtBankName}"/>
 																	</div>
 																	<br>
 																	<div class='col-md-8'>
-																		<lable class="required_Input">계좌번호*:</lable>
+																		<lable class="required_Input">계좌번호
+																			<span class="required_Input_star">*</span>
+																			:</lable>
 																		<input class="form-control" id="pmtBankAccount" name="pmtBankAccount" type="text" placeholder='계좌번호' value="${updatePmtForm.pmtBankAccount}"/>
 																	</div>
 																	<% // TODO : 프로모터의 통장사본이미지 등록 구현 %>
@@ -368,23 +338,33 @@ var xhr;
 														</tr>
 
 														<tr>
-															<td class="required_Input form_td">판매채널*:</td>
+															<td class="required_Input form_td">판매채널
+																<span class="required_Input_star">*</span>
+																:</td>
 															<td>
 																<div class="form-group form_mg_b">
 																	<div class='col-md-7'>
-																		<lable class="required_Input">채널 아이디*:</lable>
+																		<lable class="required_Input">채널 아이디
+																			<span class="required_Input_star">*</span>
+																			:</lable>
 																		<input class="form-control" id="pmtChannelId" name="pmtChannelId" type="text" placeholder='채널 아이디' value="${updatePmtForm.pmtBankAccount}"/>
 																	</div>
 																	<div class='col-md-7'>
-																		<lable class="required_Input">채널 명*:</lable>
+																		<lable class="required_Input">채널 명
+																			<span class="required_Input_star">*</span>
+																			:</lable>
 																		<input class="form-control" id="pmtChannelName" name="pmtChannelName" type="text" placeholder='채널 명' value="${updatePmtForm.pmtChannelName}"/>
 																	</div>
 																	<div class='col-md-7'>
-																		<lable class="required_Input">채널 URL*:</lable>
+																		<lable class="required_Input">채널 URL
+																			<span class="required_Input_star">*</span>
+																			:</lable>
 																		<input class="form-control" id="pmtChannelURL" name="pmtChannelURL" type="text" placeholder='채널 URL' value="${updatePmtForm.pmtChannelURL}"/>
 																	</div>
 																	<div class='col-md-10'>
-																		<lable class="required_Input">채널 설명*:</lable>
+																		<lable class="required_Input">채널 설명
+																			<span class="required_Input_star">*</span>
+																			:</lable>
 																		<textarea class="form-control fix_textarea" id="pmtChannelDesc" name="pmtChannelDesc" rows="5" placeholder='채널 설명'>${updatePmtForm.pmtChannelDesc}</textarea>
 																	</div>
 																</div>
@@ -396,15 +376,21 @@ var xhr;
 															<td>
 																<div class="form-group form_mg_b">
 																	<div class='col-md-7'>
-																		<lable class="required_Input">회사 명*:</lable>
+																		<lable class="required_Input">회사 명
+																			<span class="required_Input_star">*</span>
+																			:</lable>
 																		<input class="form-control" id="pmtCompany" name="pmtCompany" type="text" placeholder='회사 명' value="${updatePmtForm.pmtCompany}"/>
 																	</div>
 																	<div class='col-md-7'>
-																		<lable class="required_Input">사업자 번호*:</lable>
+																		<lable class="required_Input">사업자 번호
+																			<span class="required_Input_star">*</span>
+																			:</lable>
 																		<input class="form-control" id="pmtBizLicenseNo" name="pmtBizLicenseNo" type="text" placeholder='사업자 번호' value="${updatePmtForm.pmtBizLicenseNo}"/>
 																	</div>
 																	<div class='col-md-7'>
-																		<lable class="required_Input">업태*:</lable>
+																		<lable class="required_Input">업태
+																			<span class="required_Input_star">*</span>
+																			:</lable>
 																		<input class="form-control" id="pmtBizType" name="pmtBizType" type="text" placeholder='업태' value="${updatePmtForm.pmtBizType}"/>
 																	</div>
 																	<div class='col-md-7'>

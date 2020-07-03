@@ -119,11 +119,10 @@ Header 끝
 
                                                 <% // TODO: 프로모터_상세보기_및_수정_필요; %>
                                                 <td>
-                                                    <!-- <span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td> -->
                                                     <button type="button" class="btn btn-info"
                                                             onclick="javascript:window.location.href='/admins/staff/pmtView.mwav?promoter_id=${VselectListPmtList.promoter_id}'">보기</button>&nbsp;
                                                     <button type="button" class="btn btn-warning"
-                                                            onclick="javascript:window.location.href='/admins/staff/pmtUpdate.mwav?promoter_id=${VselectListPmtList.promoter_id}'">수정</button>
+                                                            onclick="javascript:window.location.href='/admins/staff/pmtUpdateForm.mwav?promoter_id=${VselectListPmtList.promoter_id}'">수정</button>
                                                 </td>
                                             </tr>
                                         </c:forEach>
