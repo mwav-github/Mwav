@@ -11,7 +11,6 @@
 <!-- /////////// -->
 <script>
 	function numberCheck(temp)
-
 	{
 
 		var temp = temp;
@@ -25,6 +24,12 @@
 
 			alert("입력된 값 : " + temp + " 제대로 입력했습니다.");
 
+		}
+	}
+
+	function pmtLeave() {
+		if(confirm("정말로 탈퇴시키겠습니까?")){
+			$('#pmtForm').submit();
 		}
 	}
 </script>
@@ -95,7 +100,7 @@
 
 					<div class="row">
 
-						<form class='form-horizontal' name="change_record" method="post" action="/admins/staff/pmt.mwav">
+						<form id="pmtForm" class='form-horizontal' name="change_record" method="post" action="/admins/staff/pmtLeave.mwav">
 							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
 								<div class="panel panel-primary">
@@ -206,7 +211,7 @@
 														</tr>
 														<tr>
 															<td class="info">탈퇴 일</td>
-															<td>${selectPmtView.pmtLevel}</td>
+															<td>${selectPmtView.pmtLeaveDt}</td>
 														</tr>
 														<tr>
 															<td class="info">최근 방문 일</td>
@@ -363,9 +368,8 @@
 										<div class="panel-footer">
 											<button type="button" class="btn btn-sm btn-primary" onclick="location.href='/admins/staff/pmtList.mwav'">리스트</button>
 											<button type="button" class="btn btn-sm btn-success" onClick="location.href='/admins/staff/pmtUpdateForm.mwav?promoter_id=${selectPmtView.promoter_id}'">수정하기</button>
-											<% // TODO : 프로모터 탈퇴 구현 %>
-											<button type="submit" class="btn btn-sm btn-danger">탈퇴하기</button>
-											<input type="hidden" name="promoter_id" value="${selectPmtView.promoter_id}">
+											<button type="button" class="btn btn-sm btn-danger" onClick="pmtLeave()">탈퇴 시키기</button>
+											<input type="hidden" id="promoter_id" name="promoter_id" value="${selectPmtView.promoter_id}">
 										</div>
 
 									</div>

@@ -406,4 +406,8 @@ public class StaffDAO extends AbstractDAO {
 	public void updatePmtPassword(CommandMap commandMap) {
 		update("staff.updatePmtPassword", commandMap.getMap());
 	}
+
+	public void leavePmt(CommandMap commandMap) {
+		update("staff.leavePmt", commandMap.getMap());
+	}
 }

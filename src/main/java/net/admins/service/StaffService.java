@@ -45,4 +45,6 @@ public interface StaffService {
 	void updatePmt(CommandMap commandMap);
 
 	boolean updatePmtPassword(CommandMap commandMap) throws IOException;
+
+	void leavePmt(CommandMap commandMap);
 }

@@ -198,4 +198,16 @@ public class StaffServiceImpl implements StaffService {
 
 		return chkUpdate;
 	}
+
+	@Transactional
+	@Override
+	public void leavePmt(CommandMap commandMap) {
+
+		// PromoterValue_tbl -> pmtLeaveDt
+		staffDAO.leavePmt(commandMap);
+
+		// PromoterValueLog_tbl
+		commandMap.put("pvlRemark", "관리자 -> 프로모터 탈퇴");
+		staffDAO.insertPromoterValueLog_tbl(commandMap);
+	}
 }

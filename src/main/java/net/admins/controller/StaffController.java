@@ -567,4 +567,14 @@ public class StaffController {
 		return staffService.updatePmtPassword(commandMap);
 	}
 
+	@RequestMapping(value = "/admins/staff/pmtLeave.mwav", method = RequestMethod.POST)
+	public ModelAndView leavePmt(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("redirect:/admins/staff/pmtList.mwav");
+		// PromoterValueLog_tbl 로그를 위해 최초 IP입력
+		commandMap.put("pvlIpAddress", request.getRemoteAddr());
+
+		staffService.leavePmt(commandMap);
+
+		return mv;
+	}
 }
