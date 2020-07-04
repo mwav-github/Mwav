@@ -88,8 +88,8 @@ public class StaffServiceImpl implements StaffService {
 	}
 
 	@Override
-	public int selectPmtOneGetTotalCount() {
-		return staffDAO.selectPmtOneGetTotalCount();
+	public int selectPmtOneGetTotalCount(CommandMap commandMap) {
+		return staffDAO.selectPmtOneGetTotalCount(commandMap);
 	}
 
 	@Override

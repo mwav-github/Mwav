@@ -330,8 +330,8 @@ public class StaffDAO extends AbstractDAO {
 		return (int) insert("staff.insrtStfRegist",map);
 	}
 
-	public int selectPmtOneGetTotalCount() {
-		return (int) selectOne("staff.selectPmtOneGetTotalCount");
+	public int selectPmtOneGetTotalCount(CommandMap commandMap) {
+		return (int) selectOne("staff.selectPmtOneGetTotalCount", commandMap.getMap());
 	}
 
 	public List<Map<String, Object>> selectListPmtList(Map<String, Object> map) {

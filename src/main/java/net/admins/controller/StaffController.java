@@ -461,9 +461,7 @@ public class StaffController {
 	}
 
 	@RequestMapping(value = "/admins/staff/pmtList.mwav")
-	public ModelAndView selectListPmtList(CommandMap commandMap,
-										  HttpServletRequest request, HttpServletResponse reponse)
-			throws Exception {
+	public ModelAndView selectListPmtList(CommandMap commandMap, HttpServletRequest request, HttpServletResponse reponse) throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/CompanyMgr/Staff/PmtList");
 
 		String pageNum = (String) commandMap.get("pageNum");
@@ -471,7 +469,8 @@ public class StaffController {
 		if (pageNum == null) {
 			pageNum = "1";
 		}
-		int totalRow = staffService.selectPmtOneGetTotalCount();
+		int totalRow = staffService.selectPmtOneGetTotalCount(commandMap);
+
 
 		List<Map<String, Object>> selectListPmtList;
 		PagingVO pagingVO = paging.setPagingInfo(totalRow, 5, pageNum); // 총 숫자,

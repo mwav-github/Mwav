@@ -80,12 +80,15 @@ Header 끝
             <!-- Content Column -->
             <div class="col-lg-12">
                 <button type="button" class="pull-right btn btn-success" onclick="location.href='/Admins/CompanyMgr/Staff/PmtForm.mwav?mm=firms'">프로모터 등록</button>
-                <form name="PmtList" method="post" action="/admins/staff/PmtList.mwav">
+                <form name="PmtList" method="post" action="/admins/staff/pmtList.mwav">
                     <div class="row">
                         <% // TODO : 프로모터 검색 추가 %>
                         <!-- 프로모터 검색 -->
                         <div class="input-group custom-search-form">
-                            <input type="text" class="form-control" placeholder="Search...">
+                            <span class="input-group-addon">ID</span>
+
+                            <input type="text" class="form-control" name="searchID" placeholder="Search...">
+
                             <span class="input-group-btn">
                                 <button class="btn btn-default" type="submit">
                                     <i class="fa fa-search"></i>
@@ -114,10 +117,9 @@ Header 끝
 
                                                 <td class="hidden-xs">${VselectListPmtList.pmtNickName}</td>
                                                 <td class="hidden-xs">${VselectListPmtList.pmtLoginId}</td>
-                                                <td class="hidden-xs">${VselectListPmtList.pmtPhone}<br>${VselectListPmtList.pmtCellularPhone}</td>
+                                                <td class="hidden-xs">${VselectListPmtList.pmtCellularPhone}</td>
                                                 <td class="hidden-xs">${VselectListPmtList.pmtMail}</td>
 
-                                                <% // TODO: 프로모터_상세보기_및_수정_필요; %>
                                                 <td>
                                                     <button type="button" class="btn btn-info"
                                                             onclick="javascript:window.location.href='/admins/staff/pmtView.mwav?promoter_id=${VselectListPmtList.promoter_id}'">보기</button>&nbsp;

@@ -30,7 +30,7 @@ public interface StaffService {
 	
 	int insertStfRegist(Map<String, Object> map);
 
-	int selectPmtOneGetTotalCount();
+	int selectPmtOneGetTotalCount(CommandMap commandMap);
 
 	List<Map<String, Object>> selectListPmtList(Map<String, Object> map);
 

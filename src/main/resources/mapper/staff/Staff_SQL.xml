@@ -122,15 +122,29 @@
 	</insert> -->
 
 	<!-- 프로모터 리스트 -->
-	<select id="selectPmtOneGetTotalCount" resultType="int">
+	<select id="selectPmtOneGetTotalCount" parameterType="hashmap" resultType="int">
 	<![CDATA[
 	   select count(*) from Promoter_tbl
 	]]>
+	   <if test="searchID != null">
+	   	WHERE pmtLoginId LIKE CONCAT('%', #{searchID}, '%')
+	   </if>
 	</select>
 
 	<select id="selectListPmtList" parameterType="hashmap" resultType="hashmap">
+		SELECT C.*
+		FROM (SELECT @ROWNUM := @ROWNUM + 1 AS ROWNUM, A.*
+				FROM (SELECT *
+						FROM Promoter_tbl
+		<if test="searchID != null">
+						WHERE pmtLoginId LIKE CONCAT('%', #{searchID}, '%')
+		</if>
+						ORDER BY promoter_id ) A,
+					 (SELECT @ROWNUM := 0) R
+			 ) C
 	<![CDATA[
-	select c.* from (select @ROWNUM := @ROWNUM + 1 AS ROWNUM, a.* from (select * from Promoter_tbl order by promoter_id) a,  (SELECT @ROWNUM := 0) R ) c where c.ROWNUM >= #{startRow} and c.ROWNUM <= #{endRow}
+		WHERE C.ROWNUM >= #{startRow}
+		AND   C.ROWNUM <= #{endRow}
 	]]>
 	</select>
 
