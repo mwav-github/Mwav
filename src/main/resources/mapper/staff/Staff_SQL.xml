@@ -320,5 +320,14 @@
 		]]>
 	</update>
 
+	<select id="selectPmtSpecialtyNames" parameterType="string" resultType="list">
+		SELECT pmtSpecialtyName, pmtSpecialtyLevel
+		FROM PromoterSpecialty_tbl
+		WHERE promoter_id = #{promoter_id}
+	</select>
+
+	<select id="selectOnePmtLoginId" parameterType="string" resultType="string">
+		SELECT promoter_id FROM Promoter_tbl WHERE pmtLoginId = #{pmtLoginId};
+	</select>
 </mapper>
 

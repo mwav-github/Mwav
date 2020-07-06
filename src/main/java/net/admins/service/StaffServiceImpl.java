@@ -1,6 +1,7 @@
 package net.admins.service;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -138,7 +139,9 @@ public class StaffServiceImpl implements StaffService {
 
 	@Override
 	public Map<String, Object> selectPmtView(String promoter_id) {
-		return staffDAO.selectPmtView(promoter_id);
+		Map<String, Object> resultMap = staffDAO.selectPmtView(promoter_id);
+		resultMap.put("pmtSpecialtyNames", staffDAO.selectPmtSpecialtyNames(promoter_id));
+		return resultMap;
 	}
 
 	@Override

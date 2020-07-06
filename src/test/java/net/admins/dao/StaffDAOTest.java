@@ -1,9 +1,7 @@
 package net.admins.dao;
 
 import net.common.common.CommandMap;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.runner.RunWith;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +12,15 @@ import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
 
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.*;
 
 /*
     Mybatis SQL Mapper 테스트
@@ -36,8 +39,11 @@ public class StaffDAOTest {
     @Autowired
     DataSourceTransactionManager transactionManager;
 
+    public static String Testpromoter_id = null;
+
     @Before
     public void initTest() throws SQLException {
+        System.out.println("--------------------------------- 테스트 시작 -----------------------------------");
         /*
             Mybatis 스프링 연동 모듈은 스프링의 SqlSession에 주입하기 때문에
             스프링이 항상 트랜잭션을 관리하기 때문에 별도로 트랜잭션을 처리해주어야함
@@ -45,11 +51,15 @@ public class StaffDAOTest {
             https://mybatis.org/spring/ko/transactions.html
         */
         TransactionStatus status = transactionManager.getTransaction(new DefaultTransactionDefinition());
-        insertPromoter_tbl(status);
+        if(Testpromoter_id == null){
+            insertPromoter_tbl();
+            TestSelectPmtId();
+        }
     }
 
     @After
     public void closeTest() {
+        System.out.println("--------------------------------- 테스트 끝 -----------------------------------");
         TransactionStatus status = transactionManager.getTransaction(new DefaultTransactionDefinition());
 
         // 모든 테스트가 끝이 난다면 롤백으로 초기화시킴
@@ -59,7 +69,7 @@ public class StaffDAOTest {
     /*
         프로모터 테스트를 위해서는 필수적으로 Promoter_tbl에 1개의 row가 필요함
      */
-    public void insertPromoter_tbl(TransactionStatus status) {
+    public void insertPromoter_tbl() throws SQLException {
         CommandMap commandMap = new CommandMap();
         commandMap.put("pmtLoginId", "TestpmtLoginId");
         commandMap.put("pmtLoginPw", "TestpmtLoginPw");
@@ -77,6 +87,14 @@ public class StaffDAOTest {
         assertThat(result, is(1));
     }
 
+    public void TestSelectPmtId() throws SQLException {
+        String promoter_id = null;
+        promoter_id = sqlSession.selectOne("staff.selectOnePmtLoginId", "TestpmtLoginId");
+        assertNotNull(promoter_id);
+
+        Testpromoter_id = promoter_id;
+    }
+
     @Test
     public void insertPromoterSpecialty_tbl() throws SQLException {
         String[] pmtSpecialtyName = new String[]{"반려동물용품","자동차용품", "가전디지털"};
@@ -88,7 +106,12 @@ public class StaffDAOTest {
 
         int result = sqlSession.insert("staff.insertPromoterSpecialty_tbl", commandMap.getMap());
         assertThat(result, is(pmtSpecialtyName.length));
+    }
 
+    @Test
+    public void selectPmtSpecialtyNames() {
+        List list = sqlSession.selectList("staff.selectPmtSpecialtyNames", Testpromoter_id);
+        System.out.println("출력 : " + list.size());
     }
 
 }

@@ -410,4 +410,8 @@ public class StaffDAO extends AbstractDAO {
 	public void leavePmt(CommandMap commandMap) {
 		update("staff.leavePmt", commandMap.getMap());
 	}
+
+	public List selectPmtSpecialtyNames(String promoter_id) {
+		return selectList("staff.selectPmtSpecialtyNames", promoter_id);
+	}
 }
