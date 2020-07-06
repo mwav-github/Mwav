@@ -237,6 +237,7 @@ var xhr;
 											<div class=" col-md-12 col-lg-12 ">
 												<table class="table table-user-information">
 													<tbody>
+														<!-- 프로모터 정보 -->
 														<tr>
 															<td class="required_Input form_td">아이디
 																<span class="required_Input_star">*</span>
@@ -403,7 +404,7 @@ var xhr;
 															</td>
 														</tr>
 --%>
-
+														<!-- 계좌정보 -->
 														<tr>
 															<td class="required_Input form_td">계좌정보 : </td>
 															<td>
@@ -426,6 +427,7 @@ var xhr;
 															</td>
 														</tr>
 
+														<!-- 판매채널 -->
 														<tr>
 															<td class="required_Input form_td">판매채널 : </td>
 															<td>
@@ -458,6 +460,7 @@ var xhr;
 															</td>
 														</tr>
 
+														<!-- 사업자등록정보 -->
 														<tr>
 															<td class="form_td">사업자등록정보:</td>
 															<td>
@@ -510,6 +513,60 @@ var xhr;
 																			<input class="form-control" id='pmtBizAddressDetail'name="pmtBizAddressDetail" type="text"
 																				   placeholder='나머지 주소' required />
 																		</div>
+																	</div>
+																</div>
+															</td>
+														</tr>
+
+														<!-- 프로모터 전문 분야 -->
+														<tr>
+															<td class="form_td">전문분야:</td>
+															<td>
+																<div class="form-group">
+																	<div class="checkbox col-md-3">
+																		<label><input type="checkbox" name="pmtSpecialtyName" value="패션의류/잡화">패션의류/잡화</label>
+																	</div>
+																	<div class="checkbox col-md-3">
+																		<label><input type="checkbox" name="pmtSpecialtyName" value="뷰티">뷰티</label>
+																	</div>
+																	<div class="checkbox col-md-3">
+																		<label><input type="checkbox" name="pmtSpecialtyName" value="출산/유아동">출산/유아동</label>
+																	</div>
+																	<div class="checkbox col-md-3">
+																		<label><input type="checkbox" name="pmtSpecialtyName" value="식품">식품</label>
+																	</div>
+																	<div class="checkbox col-md-3">
+																		<label><input type="checkbox" name="pmtSpecialtyName" value="주방용품">주방용품</label>
+																	</div>
+																	<div class="checkbox col-md-3">
+																		<label><input type="checkbox" name="pmtSpecialtyName" value="생활용품">생활용품</label>
+																	</div>
+																	<div class="checkbox col-md-3">
+																		<label><input type="checkbox" name="pmtSpecialtyName" value="홈인테리어">홈인테리어</label>
+																	</div>
+																	<div class="checkbox col-md-3">
+																		<label><input type="checkbox" name="pmtSpecialtyName" value="가전디지털">가전디지털</label>
+																	</div>
+																	<div class="checkbox col-md-3">
+																		<label><input type="checkbox" name="pmtSpecialtyName" value="스포츠/레저">스포츠/레저</label>
+																	</div>
+																	<div class="checkbox col-md-3">
+																		<label><input type="checkbox" name="pmtSpecialtyName" value="자동차용품">자동차용품</label>
+																	</div>
+																	<div class="checkbox col-md-3">
+																		<label><input type="checkbox" name="pmtSpecialtyName" value="도서/음반/DVD">도서/음반/DVD</label>
+																	</div>
+																	<div class="checkbox col-md-3">
+																		<label><input type="checkbox" name="pmtSpecialtyName" value="완구/취미">완구/취미</label>
+																	</div>
+																	<div class="checkbox col-md-3">
+																		<label><input type="checkbox" name="pmtSpecialtyName" value="문구/오피스">문구/오피스</label>
+																	</div>
+																	<div class="checkbox col-md-3">
+																		<label><input type="checkbox" name="pmtSpecialtyName" value="반려동물용품">반려동물용품</label>
+																	</div>
+																	<div class="checkbox col-md-3">
+																		<label><input type="checkbox" name="pmtSpecialtyName" value="헬스/건강식품">헬스/건강식품</label>
 																	</div>
 																</div>
 															</td>
