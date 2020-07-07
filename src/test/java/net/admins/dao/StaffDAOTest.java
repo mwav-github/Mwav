@@ -1,7 +1,9 @@
 package net.admins.dao;
 
 import net.common.common.CommandMap;
-import org.junit.*;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,15 +14,13 @@ import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Map;
 
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThat;
+import static org.junit.matchers.JUnitMatchers.either;
 
 /*
     Mybatis SQL Mapper 테스트
@@ -111,7 +111,8 @@ public class StaffDAOTest {
     @Test
     public void selectPmtSpecialtyNames() {
         List list = sqlSession.selectList("staff.selectPmtSpecialtyNames", Testpromoter_id);
-        System.out.println("출력 : " + list.size());
+        // 테스트 순서가 일정하지 않기 때문에 쿼리 값이 0 row 일수도 있고 3 row 일수도 있다.
+        assertThat(list.size(), either(is(0)).or(is(3)));
     }
 
 }

@@ -140,6 +140,7 @@ public class StaffServiceImpl implements StaffService {
 	@Override
 	public Map<String, Object> selectPmtView(String promoter_id) {
 		Map<String, Object> resultMap = staffDAO.selectPmtView(promoter_id);
+		// 프로모터 전문 분야는 N row가 나오기 때문에 별도로 조회
 		resultMap.put("pmtSpecialtyNames", staffDAO.selectPmtSpecialtyNames(promoter_id));
 		return resultMap;
 	}
