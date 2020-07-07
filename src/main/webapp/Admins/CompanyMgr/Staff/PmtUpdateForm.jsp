@@ -14,6 +14,13 @@
 <jsp:include page="/PartsOfContent/Head_Import.jsp" flush="false" />
 <!-- /////////// -->
 <script>
+	// ready는 DOM이 완성된 이후에 호출되는 callback 함수
+	$(document).ready(function () {
+		<c:forEach items="${updatePmtForm.pmtSpecialtyNames}" var="spec">
+		// JS 에서는 '/' 특수문자를 처리해주어야함
+		$('#${spec.pmtSpecialtyName}'.split('/').join('\\/')).attr('checked', true)
+		</c:forEach>
+	});
 
 	// 최종 회원가입 유효성 검증
 	function msubmit() {
@@ -493,6 +500,61 @@
 																</div>
 															</td>
 														</tr>
+
+														<!-- 프로모터 전문 분야 -->
+														<tr>
+															<td class="form_td">전문분야:</td>
+															<td>
+																<div class="form-group">
+																	<div class="checkbox col-md-3">
+																		<label><input type="checkbox" name="pmtSpecialtyName" id="패션의류/잡화" value="패션의류/잡화">패션의류/잡화</label>
+																	</div>
+																	<div class="checkbox col-md-3">
+																		<label><input type="checkbox" name="pmtSpecialtyName" id="뷰티" value="뷰티">뷰티</label>
+																	</div>
+																	<div class="checkbox col-md-3">
+																		<label><input type="checkbox" name="pmtSpecialtyName" id="출산/유아동" value="출산/유아동">출산/유아동</label>
+																	</div>
+																	<div class="checkbox col-md-3">
+																		<label><input type="checkbox" name="pmtSpecialtyName" id="식품" value="식품">식품</label>
+																	</div>
+																	<div class="checkbox col-md-3">
+																		<label><input type="checkbox" name="pmtSpecialtyName" id="주방용품" value="주방용품">주방용품</label>
+																	</div>
+																	<div class="checkbox col-md-3">
+																		<label><input type="checkbox" name="pmtSpecialtyName" id="생활용품" value="생활용품">생활용품</label>
+																	</div>
+																	<div class="checkbox col-md-3">
+																		<label><input type="checkbox" name="pmtSpecialtyName" id="홈인테리어" value="홈인테리어">홈인테리어</label>
+																	</div>
+																	<div class="checkbox col-md-3">
+																		<label><input type="checkbox" name="pmtSpecialtyName" id="가전디지털" value="가전디지털">가전디지털</label>
+																	</div>
+																	<div class="checkbox col-md-3">
+																		<label><input type="checkbox" name="pmtSpecialtyName" id="스포츠/레저" value="스포츠/레저">스포츠/레저</label>
+																	</div>
+																	<div class="checkbox col-md-3">
+																		<label><input type="checkbox" name="pmtSpecialtyName" id="자동차용품" value="자동차용품">자동차용품</label>
+																	</div>
+																	<div class="checkbox col-md-3">
+																		<label><input type="checkbox" name="pmtSpecialtyName" id="도서/음반/DVD" value="도서/음반/DVD">도서/음반/DVD</label>
+																	</div>
+																	<div class="checkbox col-md-3">
+																		<label><input type="checkbox" name="pmtSpecialtyName" id="완구/취미" value="완구/취미">완구/취미</label>
+																	</div>
+																	<div class="checkbox col-md-3">
+																		<label><input type="checkbox" name="pmtSpecialtyName" id="문구/오피스" value="문구/오피스">문구/오피스</label>
+																	</div>
+																	<div class="checkbox col-md-3">
+																		<label><input type="checkbox" name="pmtSpecialtyName" id="반려동물용품" value="반려동물용품">반려동물용품</label>
+																	</div>
+																	<div class="checkbox col-md-3">
+																		<label><input type="checkbox" name="pmtSpecialtyName" id="헬스/건강식품" value="헬스/건강식품">헬스/건강식품</label>
+																	</div>
+																</div>
+															</td>
+														</tr>
+
 													</tbody>
 												</table>
 											</div>

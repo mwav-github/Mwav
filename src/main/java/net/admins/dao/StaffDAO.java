@@ -375,8 +375,8 @@ public class StaffDAO extends AbstractDAO {
 		insert("staff.insertPromoterAccount_tbl", commandMap.getMap());
 	}
 
-	public Map<String, Object> updatePmtForm(CommandMap commandMap) {
-		return (Map<String, Object>) selectOne("staff.updatePmtForm", commandMap.getMap());
+	public Map<String, Object> updatePmtForm(String promoter_id) {
+		return (Map<String, Object>) selectOne("staff.updatePmtForm", promoter_id);
 	}
 
     public void updatePromoter_tbl(CommandMap commandMap) {
@@ -385,10 +385,6 @@ public class StaffDAO extends AbstractDAO {
 
 	public void updatePromoterValue_tbl(CommandMap commandMap) {
 		update("staff.updatePromoterValue_tbl", commandMap.getMap());
-	}
-
-	public void updatePromoterSpecialty_tbl(CommandMap commandMap) {
-		update("staff.updatePromoterSpecialty_tbl", commandMap.getMap());
 	}
 
 	public void updatePromoterLicense_tbl(CommandMap commandMap) {
@@ -413,5 +409,9 @@ public class StaffDAO extends AbstractDAO {
 
 	public List selectPmtSpecialtyNames(String promoter_id) {
 		return selectList("staff.selectPmtSpecialtyNames", promoter_id);
+	}
+
+	public void deletePromoterSpecialty_tbl(String promoter_id) {
+		delete("staff.deletePromoterSpecialty_tbl", promoter_id);
 	}
 }

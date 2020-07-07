@@ -118,8 +118,10 @@ public class StaffServiceImpl implements StaffService {
 		commandMap.put("pvlRemark", "신규 회원가입");
 		staffDAO.insertPromoterValueLog_tbl(commandMap);
 
-		// PromoterSpecialty_tbl
-		staffDAO.insertPromoterSpecialty_tbl(commandMap);
+		// PromoterSpecialty_tbl, 전문분야를 체크 했을 때만 쿼리를 실행
+		if(commandMap.get("pmtSpecialtyName") != null){
+			staffDAO.insertPromoterSpecialty_tbl(commandMap);
+		}
 
 		// PromoterLicense_tbl
 		staffDAO.insertPromoterLicense_tbl(commandMap);
@@ -146,8 +148,11 @@ public class StaffServiceImpl implements StaffService {
 	}
 
 	@Override
-	public Map<String, Object> updatePmtForm(CommandMap commandMap) {
-		return staffDAO.updatePmtForm(commandMap);
+	public Map<String, Object> updatePmtForm(String promoter_id) {
+		Map<String, Object> resultMap = staffDAO.updatePmtForm(promoter_id);
+		// 프로모터 전문 분야는 N row가 나오기 때문에 별도로 조회
+		resultMap.put("pmtSpecialtyNames", staffDAO.selectPmtSpecialtyNames(promoter_id));
+		return resultMap;
 	}
 
 	@Transactional
@@ -164,8 +169,12 @@ public class StaffServiceImpl implements StaffService {
 		commandMap.put("pvlRemark", "프로모터 회원 정보 수정");
 		staffDAO.insertPromoterValueLog_tbl(commandMap);
 
-		// PromoterSpecialty_tbl, TODO : 프로모터 전문분야 업데이트 보류
-//		staffDAO.updatePromoterSpecialty_tbl(commandMap);
+		// PromoterSpecialty_tbl, 체크했을때만 쿼리를 실행함
+		staffDAO.deletePromoterSpecialty_tbl((String) commandMap.get("promoter_id"));
+		// 이 테이블의 경우 DELETE -> INSERT 방식으로 업데이트를 진행
+		if(commandMap.get("pmtSpecialtyName") != null){
+			staffDAO.insertPromoterSpecialty_tbl(commandMap);
+		}
 
 		// PromoterLicense_tbl
 		staffDAO.updatePromoterLicense_tbl(commandMap);

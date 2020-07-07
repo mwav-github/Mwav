@@ -12,15 +12,11 @@
 <script>
 	// ready는 DOM이 완성된 이후에 호출되는 callback 함수
 	$(document).ready(function () {
-		var specialtyList = new Array();
 		<c:forEach items="${selectPmtView.pmtSpecialtyNames}" var="spec">
-			specialtyList.push( "${spec.pmtSpecialtyName}");
-
 			// JS 에서는 '/' 특수문자를 처리해주어야함
-			$('#${spec.pmtSpecialtyName}'.replace('/', '\\/')).attr('checked', true)
+			$('#${spec.pmtSpecialtyName}'.split('/').join('\\/')).attr('checked', true)
 										.parent().css('font-weight', 'bold');
 		</c:forEach>
-
 		$('input:checkbox').attr('disabled',true);
 	});
 

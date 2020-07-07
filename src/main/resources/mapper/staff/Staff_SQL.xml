@@ -238,19 +238,16 @@
 		]]>
 	</insert>
 
-	<select id="updatePmtForm" parameterType="hashmap"  resultType="hashmap">
+	<select id="updatePmtForm" parameterType="string"  resultType="hashmap">
 		<![CDATA[
 	       SELECT T1.promoter_id, T1.pmtLoginId, T1.pmtLoginPw, T1.pmtName, T1.pmtGender, T1.pmtNickName, T1.pmtCellularPhone, T1.pmtMail, T1.pmtZipcode, T1.pmtAddress, T1.pmtAddressDetail, T1.pmtMark
 				 , T2.pmtLevel, T2.pmtVisitNbr, T2.pmtEffects, T2.pmtProfits
-				 , T3.pmtSpecialtyName, T3.pmtSpecialtyLevel
 				 , T4.pmtCompany, T4.pmtBizLicenseNo, T4.pmtCorpLicenseNo, T4.pmtBizType, T4.pmtBizLine, T4.pmtBizPhone, T4.pmtBizZipcode, T4.pmtBizAddress, T4.pmtBizAddressDetail
 				 , T5.pmtChannelId, T5.pmtChannelName, T5.pmtChannelDesc, T5.pmtChannelURL, T5.pmtChannelMember, T5.pmtChannelDaillyVisit
 				 , T6.pmtBankName, T6.pmtBankAccount
 			FROM Promoter_tbl T1
 				LEFT OUTER JOIN PromoterValue_tbl T2
 					ON T1.promoter_id = T2.Promoter_tbl_promoter_id
-				LEFT OUTER JOIN PromoterSpecialty_tbl T3
-					ON T1.promoter_id = T3.Promoter_tbl_promoter_id
 				LEFT OUTER JOIN PromoterLicense_tbl T4
 					ON T1.promoter_id = T4.Promoter_tbl_promoter_id
 				LEFT OUTER JOIN PromoterChannel_tbl T5
@@ -326,5 +323,10 @@
 	<select id="selectOnePmtLoginId" parameterType="string" resultType="string">
 		SELECT promoter_id FROM Promoter_tbl WHERE pmtLoginId = #{pmtLoginId};
 	</select>
+
+	<delete id="deletePromoterSpecialty_tbl" parameterType="string">
+		DELETE FROM PromoterSpecialty_tbl
+		WHERE Promoter_tbl_promoter_id = #{promoter_id}
+	</delete>
 </mapper>
 

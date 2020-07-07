@@ -502,7 +502,7 @@ public class StaffController {
 
 		// PromoterValueLog_tbl 로그를 위해 최초 IP입력
 		commandMap.put("pvlIpAddress", request.getRemoteAddr());
-
+		commandMap.put("pmtSpecialtyName", request.getParameterValues("pmtSpecialtyName"));
 		staffService.insertPmtForm(commandMap);
 
 		// TODO : 등록 후 mode, mm 쿼리스트링 수정필요
@@ -536,9 +536,8 @@ public class StaffController {
 	@RequestMapping(value = "/admins/staff/pmtUpdateForm.mwav")
 	public ModelAndView updatePmtform(CommandMap commandMap, String promoter_id) throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/CompanyMgr/Staff/PmtUpdateForm");
-		commandMap.put("promoter_id", promoter_id);
 
-		Map<String, Object> map = staffService.updatePmtForm(commandMap);
+		Map<String, Object> map = staffService.updatePmtForm(promoter_id);
 
 		mv.addObject("mm", "firms");
 		mv.addObject("mode", "m_stfUpdate");
@@ -551,6 +550,8 @@ public class StaffController {
 		ModelAndView mv = new ModelAndView("redirect:/admins/staff/pmtView.mwav");
 		// PromoterValueLog_tbl 로그를 위해 최초 IP입력
 		commandMap.put("pvlIpAddress", request.getRemoteAddr());
+		// 전문 분야 체크 박스
+		commandMap.put("pmtSpecialtyName", request.getParameterValues("pmtSpecialtyName"));
 
 		staffService.updatePmt(commandMap);
 

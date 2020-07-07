@@ -97,7 +97,7 @@ public class StaffDAOTest {
 
     @Test
     public void insertPromoterSpecialty_tbl() throws SQLException {
-        String[] pmtSpecialtyName = new String[]{"반려동물용품","자동차용품", "가전디지털"};
+        String[] pmtSpecialtyName = new String[]{"반려동물용품", "헬스/건강식품"};
         String pmtLoginId = "TestpmtLoginId";
 
         CommandMap commandMap = new CommandMap();
