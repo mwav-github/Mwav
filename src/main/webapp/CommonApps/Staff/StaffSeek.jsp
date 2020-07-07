@@ -7,7 +7,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Insert title here</title>
+    <script>
+
+        <!-- 모든 직원 리스트를 불러옴 -->
+        function getStfList() {
+            var stfName = $('#stfName').val();
+
+            $.ajax({
+                url:'/admins/staff/selectStaffSeek.mwav',
+                data:{
+                    'stfName' : stfName
+                },
+                type:'post',
+                async:false,
+                success:function (obj) {
+                    console.log(obj);
+                },
+                error:function (err) {
+                    alert(err)
+                }
+            });
+
+        }
+
+        // 텍스트 엔터 이벤트
+        function stfEnterSearch() {
+            var evt_code = (window.netscape) ? ev.which : event.keyCode;
+            if (evt_code == 13) {
+                event.preventDefault();
+                getStfList();
+            }
+        }
+    </script>
 </head>
 <body>
 
@@ -37,9 +68,9 @@
                                                 <input type="hidden" name="countPerPage" value="5"/>
 
 												<span class="input-group-addon">직원 명</span>
-                                                <input type="text" name="keyword" class="form-control" placeholder="Press Enter" onkeydown="StfenterSearch();"/>
+                                                <input type="text" id='stfName' name="keyword" class="form-control" placeholder="Press Enter" onkeydown="stfEnterSearch();"/>
                                                 <span class="input-group-btn">
-													<button type="button" class="btn btn-default" onclick="getAddrLoc()">
+													<button type="button" class="btn btn-default" onclick="getStfList()">
 														<span class="glyphicon glyphicon-search">
 															<span class="sr-only">Search</span>
 														</span>
@@ -54,14 +85,12 @@
                                                     <thead>
 														<tr>
 															<th class="col-md-2 text-center">사번</th>
-															<th class="col-md-6 text-center">부서</th>
-															<th class="col-md-4 text-center">이름</th>
+															<th class="col-md-5 text-center">부서</th>
+                                                            <th class="col-md-2 text-center">직급</th>
+															<th class="col-md-3 text-center">이름</th>
 														</tr>
                                                     </thead>
                                                     <tbody id="stfResult" class="ondis" style="display: none">
-
-                                                    </tbody>
-                                                    <tbody id="stfNull">
 
                                                     </tbody>
                                                 </table>

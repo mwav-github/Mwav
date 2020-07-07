@@ -3,6 +3,7 @@ package net.admins.dao;
 import net.common.common.CommandMap;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -113,6 +114,35 @@ public class StaffDAOTest {
         List list = sqlSession.selectList("staff.selectPmtSpecialtyNames", Testpromoter_id);
         // 테스트 순서가 일정하지 않기 때문에 쿼리 값이 0 row 일수도 있고 3 row 일수도 있다.
         assertThat(list.size(), either(is(0)).or(is(3)));
+    }
+
+    /*
+        테스트 계정용 테스트 작업
+        기본은 @Ignore 처리 해놓고 개발자가 테스트시만 풀어서 사용
+     */
+    @Ignore
+    @Test
+    public void selectStaffSeekMaxCount() {
+        CommandMap commandMap = new CommandMap();
+        commandMap.put("stfName", "테스트 계정");
+
+        int maxCount = (int) sqlSession.selectOne("staff.selectStaffSeekMaxCount", commandMap.getMap());
+        assertThat(maxCount, is(1));
+    }
+
+    /*
+        테스트 계정용 테스트 작업
+        기본은 @Ignore 처리 해놓고 개발자가 테스트시만 풀어서 사용
+     */
+    @Ignore
+    @Test
+    public void selectStaffSeek() {
+        CommandMap commandMap = new CommandMap();
+        commandMap.put("page", 0);
+        commandMap.put("stfName", "테스트");
+
+        List list =  sqlSession.selectList("staff.selectStaffSeek",commandMap.getMap());
+        assertThat(list.size(), is(1));
     }
 
 }

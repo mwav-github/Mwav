@@ -47,4 +47,6 @@ public interface StaffService {
 	boolean updatePmtPassword(CommandMap commandMap) throws IOException;
 
 	void leavePmt(CommandMap commandMap);
+
+	Map<String, Object> selectStaffSeek(CommandMap commandMap);
 }

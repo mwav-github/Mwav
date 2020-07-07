@@ -328,5 +328,24 @@
 		DELETE FROM PromoterSpecialty_tbl
 		WHERE Promoter_tbl_promoter_id = #{promoter_id}
 	</delete>
+
+	<select id="selectStaffSeek" parameterType="hashmap" resultType="hashmap">
+		SELECT T1.staff_id, T1.stfName, T1.stfDeptName, T1.stfClass
+		FROM ( SELECT staff_id, stfName, stfDeptName, stfClass, @ROWNUM := @ROWNUM +1 AS ROWNUM
+				FROM Staff_tbl, (SELECT @ROWNUM := 0) R
+			<if test="stfName != null">
+				WHERE stfName LIKE CONCAT('%', #{stfName}, '%')
+			</if>
+			) T1
+		WHERE T1.ROWNUM LIMIT #{page}, 10
+	</select>
+
+	<select id="selectStaffSeekMaxCount" parameterType="hashmap" resultType="int">
+		SELECT COUNT(*) AS maxCount
+		FROM Staff_tbl
+		<if test="stfName != null">
+			WHERE stfName LIKE CONCAT('%', #{stfName}, '%')
+		</if>
+	</select>
 </mapper>
 

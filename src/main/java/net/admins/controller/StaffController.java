@@ -578,4 +578,9 @@ public class StaffController {
 
 		return mv;
 	}
+
+	@RequestMapping(value = "/admins/staff/selectStaffSeek.mwav", method = RequestMethod.POST)
+	public @ResponseBody Map<String, Object> selectStaffSeek(CommandMap commandMap){
+		return staffService.selectStaffSeek(commandMap);
+	}
 }

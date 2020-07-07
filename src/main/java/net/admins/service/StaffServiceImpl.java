@@ -223,4 +223,25 @@ public class StaffServiceImpl implements StaffService {
 		commandMap.put("pvlRemark", "관리자 -> 프로모터 탈퇴");
 		staffDAO.insertPromoterValueLog_tbl(commandMap);
 	}
+
+	@Override
+	public Map<String, Object> selectStaffSeek(CommandMap commandMap) {
+		int page = commandMap.get("page") != null ? (int) commandMap.get("page") : 0;
+		// 10페이지 단위
+		commandMap.put("page", page*10);
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("stfList", staffDAO.selectStaffSeek(commandMap));
+
+		int maxCount = staffDAO.selectStaffSeekMaxCount(commandMap);
+		resultMap.put("maxCount", maxCount);
+		resultMap.put("minCount", 0);
+
+		// 페이지의 최소값은 0보다 작을 수 없다.
+		resultMap.put("minPage", 0 > page-2 ? 0 : page-2);
+		// 페이지의 최댓값은 maxCount 보다 클 수 없다.
+		resultMap.put("maxPage", page+2 > maxCount ? maxCount : page+2);
+
+		return resultMap;
+	}
 }

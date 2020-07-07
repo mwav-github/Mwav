@@ -414,4 +414,12 @@ public class StaffDAO extends AbstractDAO {
 	public void deletePromoterSpecialty_tbl(String promoter_id) {
 		delete("staff.deletePromoterSpecialty_tbl", promoter_id);
 	}
+
+	public List selectStaffSeek(CommandMap commandMap) {
+		return selectList("staff.selectStaffSeek",commandMap.getMap());
+	}
+
+	public int selectStaffSeekMaxCount(CommandMap commandMap) {
+		return (int) selectOne("staff.selectStaffSeekMaxCount", commandMap.getMap());
+	}
 }
