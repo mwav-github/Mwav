@@ -20,8 +20,17 @@
                 },
                 type:'post',
                 async:false,
-                success:function (obj) {
-                    console.log(obj);
+                success:function (stf) {
+
+                    <% // TODO : 화면 리스트 출력 조정 필요 %>
+                    stf.stfList.forEach(function (item, index, arr){
+                        $('#stfResult').append('<tr>' +
+                                '<td>' + item.staff_id + '</td>' +
+                                '<td>' + item.stfClass + '</td>' +
+                                '<td>' + item.stfDeptName + '</td>' +
+                                '<td>' + item.stfName + '</td>' +
+                            '</tr>');
+                    })
                 },
                 error:function (err) {
                     alert(err)
@@ -90,7 +99,7 @@
 															<th class="col-md-3 text-center">이름</th>
 														</tr>
                                                     </thead>
-                                                    <tbody id="stfResult" class="ondis" style="display: none">
+                                                    <tbody id="stfResult" class="ondis">
 
                                                     </tbody>
                                                 </table>
