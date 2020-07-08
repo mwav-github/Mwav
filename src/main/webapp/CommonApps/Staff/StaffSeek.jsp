@@ -8,10 +8,35 @@
 <html>
 <head>
     <script>
-
         $(document).ready(function () {
             getStfList(0);
-        })
+        });
+
+        var staff_idInputTag = null;
+        var staff_nmInputTag = null;
+
+        // 개발자가 원하는 id input 태그를 정할 수 있도록 유동적으로 선택해준다.
+        // Output 사번과 직원명
+        function stfModalInputId(stfIdInputId, stfIdInputName){
+            if($('#'+stfIdInputId).length){
+                staff_idInputTag = $('#' + stfIdInputId);
+            }else{
+                staff_idInputTag = $('#staff_id');
+            }
+
+            if($('#' + stfIdInputName).length){
+                staff_nmInputTag = $('#' + stfIdInputName);
+            }else{
+                staff_nmInputTag = $('#staff_nm');
+            }
+        }
+
+        function insertStaffId(stfId, stfName) {
+            staff_idInputTag.val(stfId);
+            staff_nmInputTag.val(stfName);
+
+            $("#stf_modal_post").modal('hide');
+        }
 
         <!-- 모든 직원 리스트를 불러옴 -->
         function getStfList(page) {
@@ -33,7 +58,7 @@
 
                     // 직원 리스트 출력
                     stf.stfList.forEach(function (item, index, arr){
-                        $('#stfResult').append('<tr>' +
+                        $('#stfResult').append('<tr onclick="insertStaffId(\'' + item.staff_id + '\', \'' + item.stfName + '\')">' +
                                 '<td>' + item.staff_id + '</td>' +
                                 '<td>' + item.stfClass + '</td>' +
                                 '<td>' + item.stfDeptName + '</td>' +
@@ -94,7 +119,7 @@
 <!-- 모든필드 필수값으로 ~!  -->
 <div class="container">
     <!-- Modal -->
-    <div class="modal fade stf_modal_post " id="StaffSeekModal" aria-hidden="true" role="dialog">
+    <div class="modal fade stf_modal_post " id="stf_modal_post" aria-hidden="true" role="dialog">
         <div class="modal-dialog modal-md">
 
             <div class="modal-content">

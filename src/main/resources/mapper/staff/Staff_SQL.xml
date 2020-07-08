@@ -186,8 +186,8 @@
 
 	<insert id="insertPromoterValue_tbl" parameterType="hashmap">
 		<![CDATA[
-			INSERT INTO PromoterValue_tbl(promoter_id, pmtLevel, pmtVisitNbr, pmtEffects, pmtProfits, Promoter_tbl_promoter_id)
-			SELECT promoter_id, 2, 0, 0, 0, promoter_id
+			INSERT INTO PromoterValue_tbl(promoter_id, staff_id, pmtLevel, pmtVisitNbr, pmtEffects, pmtProfits, Promoter_tbl_promoter_id)
+			SELECT promoter_id, CASE WHEN LENGTH(#{staff_id}) = 0 THEN NULL ELSE #{staff_id} END, 2, 0, 0, 0, promoter_id
 			FROM Promoter_tbl
 			WHERE pmtLoginId = #{pmtLoginId}
 		]]>

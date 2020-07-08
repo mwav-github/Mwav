@@ -392,10 +392,11 @@ var xhr;
 															<td>
 																<div class='form-group'>
 																	<p class="col-md-3 pull-right">
-																		<button class="btn btn-primary btn-block" type="button" data-toggle="modal" data-target=".stf_modal_post" >담당 직원 선택</button>
+																		<button class="btn btn-primary btn-block" type="button" data-toggle="modal" data-target="#stf_modal_post" onclick="stfModalInputId('staff_id', 'staff_nm');">담당 직원 선택</button>
 																	</p>
 																	<div class='col-md-8'>
-																		<input class="form-control" id="staff_id" name="staff_id" type="text" maxlength="6" value="" readonly="readonly" />
+																		<input class="form-control" id="staff_nm" name="staff_nm" type="text" maxlength="6" value="" readonly="readonly" />
+																		<input type='hidden' id="staff_id" name='staff_id'/>
 																	</div>
 																</div>
 															</td>

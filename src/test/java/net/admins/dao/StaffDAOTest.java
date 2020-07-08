@@ -145,4 +145,11 @@ public class StaffDAOTest {
         assertThat(list.size(), is(1));
     }
 
+    @Test
+    public void insertPromoterValue_tbl() {
+        CommandMap commandMap = new CommandMap();
+        commandMap.put("pmtLoginId", "TestpmtLoginId");
+        commandMap.put("staff_id", null);
+        sqlSession.insert("staff.insertPromoterValue_tbl", commandMap.getMap());
+    }
 }
