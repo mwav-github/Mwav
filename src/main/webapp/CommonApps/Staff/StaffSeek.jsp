@@ -9,20 +9,29 @@
 <head>
     <script>
 
+        $(document).ready(function () {
+            getStfList(0);
+        })
+
         <!-- 모든 직원 리스트를 불러옴 -->
-        function getStfList() {
+        function getStfList(page) {
             var stfName = $('#stfName').val();
+
+            // 결과창 비움
+            $('#stfResult').empty();
+            $('#stfPageApi').empty();
 
             $.ajax({
                 url:'/admins/staff/selectStaffSeek.mwav',
                 data:{
-                    'stfName' : stfName
+                    'stfName' : stfName,
+                    'page' : page
                 },
                 type:'post',
                 async:false,
                 success:function (stf) {
 
-                    <% // TODO : 화면 리스트 출력 조정 필요 %>
+                    // 직원 리스트 출력
                     stf.stfList.forEach(function (item, index, arr){
                         $('#stfResult').append('<tr>' +
                                 '<td>' + item.staff_id + '</td>' +
@@ -30,7 +39,38 @@
                                 '<td>' + item.stfDeptName + '</td>' +
                                 '<td>' + item.stfName + '</td>' +
                             '</tr>');
-                    })
+                    });
+
+                    // 페이징 넘버 출력
+                    var minPage = stf.minPage;
+                    var maxPage = stf.maxPage;
+
+                    // 4 페이지 이상 부터는 가장 처음 페이지를 호출하는 버튼 생성
+                    if(page > 3){
+                        $('#stfPageApi').append('<li>\n' +
+                            '<a onclick="getStfList(\'0\')"><span class="glyphicon glyphicon-chevron-left"></span></a>\n' +
+                            '</li>');
+                    }
+
+                    for(; minPage <= maxPage; minPage++){
+                        var li = '<li>';
+                        // 현재 페이지 하이라이트
+                        if(page == minPage){
+                            li += '<a style="background: skyblue;" onclick="getStfList(' + minPage + ')">' + (minPage+1) + '</a>';
+                        }else{
+                            li += '<a onclick="getStfList(' + minPage + ')">' + (minPage+1) + '</a>';
+                        }
+                            li += '</li>';
+
+                        $('#stfPageApi').append(li);
+                    }
+
+                    // 마지막 페이지 -2 까지 가장 마지막 페이지를 호출하는 버튼 생성
+                    if(stf.maxCountPage-2 > page){
+                        $('#stfPageApi').append('<li>\n' +
+                            '<a onclick="getStfList(' + stf.maxCountPage + ')"><span class="glyphicon glyphicon-chevron-right"></span></a>\n' +
+                            '</li>');
+                    }
                 },
                 error:function (err) {
                     alert(err)
@@ -44,7 +84,7 @@
             var evt_code = (window.netscape) ? ev.which : event.keyCode;
             if (evt_code == 13) {
                 event.preventDefault();
-                getStfList();
+                getStfList(0);
             }
         }
     </script>
@@ -79,7 +119,7 @@
 												<span class="input-group-addon">직원 명</span>
                                                 <input type="text" id='stfName' name="keyword" class="form-control" placeholder="Press Enter" onkeydown="stfEnterSearch();"/>
                                                 <span class="input-group-btn">
-													<button type="button" class="btn btn-default" onclick="getStfList()">
+													<button type="button" class="btn btn-default" onclick="getStfList(0)">
 														<span class="glyphicon glyphicon-search">
 															<span class="sr-only">Search</span>
 														</span>
