@@ -386,7 +386,7 @@ var xhr;
 															</td>
 														</tr>
 
-														<% // TODO : 담당 직원 선택 할 수 있도록 팝업 및 모달 추가 %>
+														<!-- 담당 직원 -->
 														<tr>
 															<td class="form_td">담당 직원</td>
 															<td>
@@ -602,6 +602,7 @@ var xhr;
 	<%-- 아래의 내용을 위에 주소 위치에 둘 경우 form태그가 해당위치로 닫힌다 form태그 중복 추후 확인 필요 --%>
 	<jsp:include page="/CommonApps/PostSeek/PostSeek.jsp" flush="false" />
 
+	<%-- 직원 찾기 모달 --%>
 	<jsp:include page="/CommonApps/Staff/StaffSeek.jsp" flush="false" />
 	
 	<%-- <!-- --> 주석처리해도 include는 된다.  --%>

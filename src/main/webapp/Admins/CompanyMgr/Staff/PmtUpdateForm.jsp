@@ -386,6 +386,23 @@
 																</div>
 															</td>
 														</tr>
+
+														<!-- 담당 직원 -->
+														<tr>
+															<td class="form_td">담당 직원</td>
+															<td>
+																<div class='form-group'>
+																	<p class="col-md-3 pull-right">
+																		<button class="btn btn-primary btn-block" type="button" data-toggle="modal" data-target="#stf_modal_post" onclick="stfModalInputId('staff_id', 'staff_nm');">담당 직원 선택</button>
+																	</p>
+																	<div class='col-md-8'>
+																		<input class="form-control" id="staff_nm" name="staff_nm" type="text" maxlength="6" value="${updatePmtForm.stfName}" readonly="readonly" />
+																		<input type='hidden' id="staff_id" name='staff_id' value="${updatePmtForm.staff_id}"/>
+																	</div>
+																</div>
+															</td>
+														</tr>
+
 														<tr>
 															<td class="required_Input form_td">계좌정보
 																<span class="required_Input_star">*</span>
@@ -587,7 +604,9 @@
 
 	<%-- 아래의 내용을 위에 주소 위치에 둘 경우 form태그가 해당위치로 닫힌다 form태그 중복 추후 확인 필요 --%>
 	<jsp:include page="/CommonApps/PostSeek/PostSeek.jsp" flush="false" />
-	
+
+	<%-- 직원 찾기 모달 --%>
+	<jsp:include page="/CommonApps/Staff/StaffSeek.jsp" flush="false" />
 	
 	<%-- <!-- --> 주석처리해도 include는 된다.  --%>
 	<jsp:include page="/Admins/Goods/GdsUpLoader.jsp" flush="false" />

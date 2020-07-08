@@ -182,7 +182,7 @@
 													<tbody>
 														<tr>
 															<td class="info">담당 직원</td>
-															<td>${selectPmtView.staff_id}</td>
+															<td>${selectPmtView.stfName}</td>
 														</tr>
 														<tr>
 															<td class="info">상위 프로모터</td>
