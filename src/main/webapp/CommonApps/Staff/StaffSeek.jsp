@@ -66,6 +66,12 @@
                             '</tr>');
                     });
 
+                    if(stf.stfList.length == 0){
+                        $('#stfResult').append('<tr>' +
+                            '<td colspan="4" style="text-align: center;">조회 결과가 없습니다.</td>' +
+                            '</tr>');
+                    }
+
                     // 페이징 넘버 출력
                     var minPage = stf.minPage;
                     var maxPage = stf.maxPage;
@@ -98,7 +104,9 @@
                     }
                 },
                 error:function (err) {
-                    alert(err)
+                    $('#stfResult').append('<tr>' +
+                            '<td colspan="4" style="text-align: center;">서버 오류입니다. 다시 시도해주세요.</td>' +
+                        '</tr>');
                 }
             });
 

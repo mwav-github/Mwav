@@ -251,7 +251,7 @@ public class StaffServiceImpl implements StaffService {
 		// 페이지의 최댓값은 maxCount 보다 클 수 없으며, 페이지가 0, 1, 2 라면 5로 고정
 		int maxPage = page+2 > maxCountPage ? maxCountPage : page+2;
 		if(maxPage < 4){
-			if(maxCount < 4){
+			if(maxCountPage < 4){
 				maxPage = maxCountPage;
 			}else{
 				maxPage = 4;
