@@ -12,8 +12,10 @@ public class StaffServiceImplTest {
 
     @Test
     public void selectStaffSeek() {
+
         CommandMap commandMap = new CommandMap();
-        commandMap.put("page", 15);
+        commandMap.put("page", 5);
+        int maxCount = 91; // staffDAO.selectStaffSeekMaxCount(commandMap);
 
         int page = commandMap.get("page") != null ? Integer.parseInt(commandMap.get("page").toString()) : 0;
         // 10페이지 단위
@@ -22,7 +24,6 @@ public class StaffServiceImplTest {
         Map<String, Object> resultMap = new HashMap<String, Object>();
         // resultMap.put("stfList", staffDAO.selectStaffSeek(commandMap));
 
-        int maxCount = 138; // staffDAO.selectStaffSeekMaxCount(commandMap);
         resultMap.put("maxCount", maxCount);
         resultMap.put("minCount", 0);
 
@@ -30,11 +31,16 @@ public class StaffServiceImplTest {
 
         resultMap.put("maxCountPage", maxCountPage);
 
-        // 페이지의 최소값은 0보다 작을 수 없으며, 페이지가 maxCountPage, maxCountPage-1, maxCountPage-2 라면 maxCountPage 로 고정
-        int minPage = 0 > page-2 ? 0 : page-2;
-        if(minPage > maxCountPage-4 && maxCount != 0){
-            minPage = maxCountPage-4 < 0 ? 0 : maxCountPage-4;
-        }
+        /*
+             최소 페이지(minPage)는
+             전체 페이지 갯수(maxCountPage)의 -2 한 값보다 현재 페이지(page) 값이 크다면
+             전체 페이지 기준으로 -4 한 값으로 최소 페이지를 준다.
+             반대라면 현재 페이지에서 -2 한 값으로 준다.
+         */
+        int minPage = page > maxCountPage - 2 ? maxCountPage-4 : page-2;
+
+        // 페이지의 최소값은 0보다 작을 수 없음
+        minPage = minPage > 0 ? minPage : 0;
         resultMap.put("minPage", minPage);
 
         // 페이지의 최댓값은 maxCount 보다 클 수 없으며, 페이지가 0, 1, 2 라면 4로 고정
@@ -55,9 +61,17 @@ public class StaffServiceImplTest {
         System.out.println("minPage : " + resultMap.get("minPage"));
         System.out.println("maxPage : " + resultMap.get("maxPage") + "\n");
 
+        if(page > 3){
+            System.out.print("< ");
+        }
+
         // 페이지 번호 출력 상황
         for(int i = minPage; i <= maxPage; i++){
             System.out.print(i+1 + " ");
+        }
+
+        if(maxCountPage -2 > page){
+            System.out.print(">");
         }
     }
 }

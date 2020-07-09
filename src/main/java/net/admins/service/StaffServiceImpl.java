@@ -237,15 +237,20 @@ public class StaffServiceImpl implements StaffService {
 		resultMap.put("maxCount", maxCount);
 		resultMap.put("minCount", 0);
 
-		int maxCountPage = (int) Math.ceil(maxCount/10);
+		int maxCountPage = (maxCount-1)/10;
 
 		resultMap.put("maxCountPage", maxCountPage);
 
-		// 페이지의 최소값은 0보다 작을 수 없으며, 페이지가 maxCountPage, maxCountPage-1, maxCountPage-2 라면 maxCountPage 로 고정
-		int minPage = 0 > page-2 ? 0 : page-2;
-		if(minPage > maxCountPage-4 && maxCount != 0){
-			minPage = maxCountPage-4 < 0 ? 0 : maxCountPage-4;
-		}
+		/*
+             최소 페이지(minPage)는
+             전체 페이지 갯수(maxCountPage)의 -2 한 값보다 현재 페이지(page) 값이 크다면
+             전체 페이지 기준으로 -4 한 값으로 최소 페이지를 준다.
+             반대라면 현재 페이지에서 -2 한 값으로 준다.
+         */
+		int minPage = page > maxCountPage - 2 ? maxCountPage-4 : page-2;
+
+		// 페이지의 최소값은 0보다 작을 수 없음
+		minPage = minPage > 0 ? minPage : 0;
 		resultMap.put("minPage", minPage);
 
 		// 페이지의 최댓값은 maxCount 보다 클 수 없으며, 페이지가 0, 1, 2 라면 5로 고정
