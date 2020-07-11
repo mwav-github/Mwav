@@ -7,7 +7,7 @@ addAssignees: false
 
 # A list of reviewers to be added to pull requests (GitHub user name)
 reviewers:
-  - Geewon Jung 
+  - GeewonJung 
   - develmylife
 
 # A number of reviewers added to the pull request
