@@ -17,6 +17,7 @@ import org.springframework.transaction.support.DefaultTransactionDefinition;
 import javax.sql.DataSource;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertNotNull;
@@ -151,5 +152,13 @@ public class StaffDAOTest {
         commandMap.put("pmtLoginId", "TestpmtLoginId");
         commandMap.put("staff_id", null);
         sqlSession.insert("staff.insertPromoterValue_tbl", commandMap.getMap());
+    }
+
+    @Test
+    public void selectPmtView() {
+        String promoter_id = Testpromoter_id;
+        Map<String, Object> map = sqlSession.selectOne("staff.selectPmtView", promoter_id);
+
+        assertNotNull(map);
     }
 }
