@@ -121,6 +121,7 @@ Header 끝
                                                 <td class="hidden-xs">${VselectListPmtList.pmtMail}</td>
 
                                                 <td>
+                                                    <% // TODO: 탈퇴여부 조회 %>
                                                     <button type="button" class="btn btn-info"
                                                             onclick="javascript:window.location.href='/admins/staff/pmtView.mwav?promoter_id=${VselectListPmtList.promoter_id}'">보기</button>&nbsp;
                                                     <button type="button" class="btn btn-warning"
