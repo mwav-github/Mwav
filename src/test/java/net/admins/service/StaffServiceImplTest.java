@@ -25,7 +25,7 @@ public class StaffServiceImplTest {
     @Test
     public void selectStaffSeek(){
         // 요청한 페이지
-        int page = 7;
+        int page = 4;
 
         // staff Count(*)
         int maxCountPage = 51;
@@ -44,6 +44,7 @@ public class StaffServiceImplTest {
 
         int minPage = (int) map.get("minPage");
         int maxPage = (int) map.get("maxPage");
+        maxCountPage = (int) map.get("maxCountPage");
 
         if(page > 3){
             System.out.print("< ");

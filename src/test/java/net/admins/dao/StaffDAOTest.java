@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
@@ -114,6 +115,7 @@ public class StaffDAOTest {
         List list = sqlSession.selectList("staff.selectPmtSpecialtyNames", Testpromoter_id);
         // 테스트 순서가 일정하지 않기 때문에 쿼리 값이 0 row 일수도 있고 3 row 일수도 있다.
         assertNotNull(list);
+
     }
 
     /*
