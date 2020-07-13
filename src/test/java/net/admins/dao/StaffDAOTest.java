@@ -22,7 +22,6 @@ import java.util.Map;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
-import static org.junit.matchers.JUnitMatchers.either;
 
 /*
     Mybatis SQL Mapper 테스트
@@ -45,7 +44,6 @@ public class StaffDAOTest {
 
     @Before
     public void initTest() throws SQLException {
-        System.out.println("--------------------------------- 테스트 시작 -----------------------------------");
         /*
             Mybatis 스프링 연동 모듈은 스프링의 SqlSession에 주입하기 때문에
             스프링이 항상 트랜잭션을 관리하기 때문에 별도로 트랜잭션을 처리해주어야함
@@ -61,7 +59,6 @@ public class StaffDAOTest {
 
     @After
     public void closeTest() {
-        System.out.println("--------------------------------- 테스트 끝 -----------------------------------");
         TransactionStatus status = transactionManager.getTransaction(new DefaultTransactionDefinition());
 
         // 모든 테스트가 끝이 난다면 롤백으로 초기화시킴
@@ -87,6 +84,10 @@ public class StaffDAOTest {
 
         int result = sqlSession.insert("staff.insertPromoter_tbl", commandMap.getMap());
         assertThat(result, is(1));
+    }
+
+    public void insertPromoterValue_tbl(CommandMap commandMap) {
+        sqlSession.insert("staff.insertPromoterValue_tbl", commandMap.getMap());
     }
 
     public void TestSelectPmtId() throws SQLException {
