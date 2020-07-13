@@ -51,6 +51,8 @@ public class StaffDAOTest {
             https://mybatis.org/spring/ko/transactions.html
         */
         TransactionStatus status = transactionManager.getTransaction(new DefaultTransactionDefinition());
+
+        // 단 한번만 실행 해야함
         if(Testpromoter_id == null){
             insertPromoter_tbl();
             TestSelectPmtId();
@@ -84,10 +86,6 @@ public class StaffDAOTest {
 
         int result = sqlSession.insert("staff.insertPromoter_tbl", commandMap.getMap());
         assertThat(result, is(1));
-    }
-
-    public void insertPromoterValue_tbl(CommandMap commandMap) {
-        sqlSession.insert("staff.insertPromoterValue_tbl", commandMap.getMap());
     }
 
     public void TestSelectPmtId() throws SQLException {
@@ -152,7 +150,8 @@ public class StaffDAOTest {
         CommandMap commandMap = new CommandMap();
         commandMap.put("pmtLoginId", "TestpmtLoginId");
         commandMap.put("staff_id", null);
-        sqlSession.insert("staff.insertPromoterValue_tbl", commandMap.getMap());
+        int result = sqlSession.insert("staff.insertPromoterValue_tbl", commandMap.getMap());
+        assertThat(result, is(1));
     }
 
     @Test
@@ -161,5 +160,21 @@ public class StaffDAOTest {
         Map<String, Object> map = sqlSession.selectOne("staff.selectPmtView", promoter_id);
 
         assertNotNull(map);
+    }
+
+    @Test
+    public void insertPromoterChannel_tbl() {
+        CommandMap commandMap = new CommandMap();
+        commandMap.put("pmtLoginId", "TestpmtLoginId");
+        commandMap.put("pmtChannelType", "Youtube");
+        commandMap.put("pmtChannelId", "test");
+        commandMap.put("pmtChannelName", "채널테스트");
+        commandMap.put("pmtChannelDesc", "채널설명테스트");
+        commandMap.put("pmtChannelURL", "http://www.youtube.com/test");
+        commandMap.put("pmtChannelMember", 3000);
+        commandMap.put("pmtChannelDaillyVisit", 2000);
+
+        int result = sqlSession.insert("staff.insertPromoterChannel_tbl", commandMap.getMap());
+        assertThat(result, is(1));
     }
 }

@@ -431,6 +431,17 @@ var xhr;
 															<td>
 																<div class="form-group form_mg_b">
 																	<div class='col-md-7'>
+																		<lable class="required_Input">채널 타입
+																			<span class="required_Input_star">*</span>
+																			:</lable>
+																		<select class="form-control" id="pmtChannelType" name="pmtChannelType">
+																			<option value="SNS">SNS</option>
+																			<option value="Blog">Blog</option>
+																			<option value="Cafe">Cafe</option>
+																			<option value="ETC">ETC</option>
+																		</select>
+																	</div>
+																	<div class='col-md-7'>
 																		<lable class="required_Input">채널 아이디
 																			<span class="required_Input_star">*</span>
 																			:</lable>

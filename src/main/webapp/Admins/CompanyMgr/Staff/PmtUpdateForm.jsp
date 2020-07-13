@@ -434,6 +434,17 @@
 															<td>
 																<div class="form-group form_mg_b">
 																	<div class='col-md-7'>
+																		<lable class="required_Input">채널 타입
+																			<span class="required_Input_star">*</span>
+																			:</lable>
+																		<select class="form-control" id="pmtChannelType" name="pmtChannelType">
+																			<option value="SNS" ${updatePmtForm.pmtChannelType eq "SNS" ? "selected" : ""}>SNS</option>
+																			<option value="Blog" ${updatePmtForm.pmtChannelType eq "Blog" ? "selected" : ""}>Blog</option>
+																			<option value="Cafe" ${updatePmtForm.pmtChannelType eq "Cafe" ? "selected" : ""}>Cafe</option>
+																			<option value="ETC" ${updatePmtForm.pmtChannelType eq "ETC" ? "selected" : ""}>ETC</option>
+																		</select>
+																	</div>
+																	<div class='col-md-7'>
 																		<lable class="required_Input">채널 아이디
 																			<span class="required_Input_star">*</span>
 																			:</lable>

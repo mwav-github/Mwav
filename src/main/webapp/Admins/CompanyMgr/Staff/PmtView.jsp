@@ -312,6 +312,10 @@
 													</thead>
 													<tbody>
 														<tr>
+															<td class="info">채널 타입</td>
+															<td>${selectPmtView.pmtChannelType}</td>
+														</tr>
+														<tr>
 															<td class="info">채널 아이디</td>
 															<td>${selectPmtView.pmtChannelId}</td>
 														</tr>
