@@ -345,5 +345,12 @@
 			WHERE stfName LIKE CONCAT('%', #{stfName}, '%')
 		</if>
 	</select>
+
+	<update id="returnPmt" parameterType="hashmap">
+		<![CDATA[
+			UPDATE PromoterValue_tbl SET pmtLeaveDt = NULL
+			WHERE promoter_id = #{promoter_id}
+		]]>
+	</update>
 </mapper>
 

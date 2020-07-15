@@ -216,7 +216,7 @@ public class StaffServiceImpl implements StaffService {
 	@Override
 	public void leavePmt(CommandMap commandMap) {
 
-		// PromoterValue_tbl -> pmtLeaveDt
+		// PromoterValue_tbl -> pmtLeaveDt -> NOW()
 		staffDAO.leavePmt(commandMap);
 
 		// PromoterValueLog_tbl
@@ -265,5 +265,16 @@ public class StaffServiceImpl implements StaffService {
 		resultMap.put("maxPage", maxPage);
 
 		return resultMap;
+	}
+
+	@Transactional
+	@Override
+	public void returnPmt(CommandMap commandMap) {
+		// PromoterValue_tbl -> pmtLeaveDt -> Null
+		staffDAO.returnPmt(commandMap);
+
+		// PromoterValueLog_tbl
+		commandMap.put("pvlRemark", "관리자 -> 프로모터 복귀");
+		staffDAO.insertPromoterValueLog_tbl(commandMap);
 	}
 }

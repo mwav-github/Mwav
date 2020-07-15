@@ -49,4 +49,6 @@ public interface StaffService {
 	void leavePmt(CommandMap commandMap);
 
 	Map<String, Object> selectStaffSeek(CommandMap commandMap);
+
+	void returnPmt(CommandMap commandMap);
 }

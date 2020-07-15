@@ -39,7 +39,13 @@
 
 	function pmtLeave() {
 		if(confirm("정말로 탈퇴시키겠습니까?")){
-			$('#pmtForm').submit();
+			$('#pmtForm').attr('action', '/admins/staff/pmtLeave.mwav').submit();
+		}
+	}
+
+	function pmtReturn() {
+		if(confirm("정말로 탈퇴시키겠습니까?")){
+			$('#pmtForm').attr('action', '/admins/staff/pmtReturn.mwav').submit();
 		}
 	}
 </script>
@@ -111,7 +117,7 @@
 
 					<div class="row">
 
-						<form id="pmtForm" class='form-horizontal' name="change_record" method="post" action="/admins/staff/pmtLeave.mwav">
+						<form id="pmtForm" class='form-horizontal' name="change_record" method="post" action="">
 							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
 								<div class="panel panel-primary">
@@ -447,7 +453,14 @@
 										<div class="panel-footer">
 											<button type="button" class="btn btn-sm btn-primary" onclick="location.href='/admins/staff/pmtList.mwav'">리스트</button>
 											<button type="button" class="btn btn-sm btn-success" onClick="location.href='/admins/staff/pmtUpdateForm.mwav?promoter_id=${selectPmtView.promoter_id}'">수정하기</button>
-											<button type="button" class="btn btn-sm btn-danger" onClick="pmtLeave()">탈퇴 시키기</button>
+											<c:choose>
+												<c:when test="${empty selectPmtView.pmtLeaveDt}">
+													<button type="button" class="btn btn-sm btn-danger" onClick="pmtLeave()">탈퇴 시키기</button>
+												</c:when>
+												<c:otherwise>
+													<button type="button" class="btn btn-sm btn-info" onClick="pmtReturn()">복귀 시키기</button>
+												</c:otherwise>
+											</c:choose>
 											<input type="hidden" id="promoter_id" name="promoter_id" value="${selectPmtView.promoter_id}">
 										</div>
 

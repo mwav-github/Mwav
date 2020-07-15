@@ -583,4 +583,16 @@ public class StaffController {
 	public @ResponseBody Map<String, Object> selectStaffSeek(CommandMap commandMap){
 		return staffService.selectStaffSeek(commandMap);
 	}
+
+	@RequestMapping(value = "/admins/staff/pmtReturn.mwav", method = RequestMethod.POST)
+	public ModelAndView returnPmt(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("redirect:/admins/staff/pmtView.mwav");
+		// PromoterValueLog_tbl 로그를 위해 최초 IP입력
+		commandMap.put("pvlIpAddress", request.getRemoteAddr());
+
+		staffService.returnPmt(commandMap);
+
+		mv.addObject("promoter_id",commandMap.get("promoter_id"));
+		return mv;
+	}
 }

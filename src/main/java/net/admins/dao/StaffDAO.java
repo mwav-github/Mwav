@@ -422,4 +422,8 @@ public class StaffDAO extends AbstractDAO {
 	public int selectStaffSeekMaxCount(CommandMap commandMap) {
 		return (int) selectOne("staff.selectStaffSeekMaxCount", commandMap.getMap());
 	}
+
+	public void returnPmt(CommandMap commandMap) {
+		update("staff.returnPmt", commandMap.getMap());
+	}
 }
