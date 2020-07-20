@@ -233,7 +233,7 @@ css 중 가장 마지막에 호출되어야하며, include 되는 파일 중 css
 			<%-- Comodo Certificated 18.09.15 --%>
 			<script language="JavaScript" type="text/javascript">
 				TrustLogo(
-						"https://www.mwav.net/Images/TrustBanners/comodo_secure_seal_100x85_transp.png",
+						"/Images/TrustBanners/comodo_secure_seal_100x85_transp.png",
 						"CL1", "none");
 			</script>
 			<a href="https://www.positivessl.com/" id="comodoTL">Positive SSL</a>
