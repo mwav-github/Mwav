@@ -41,7 +41,7 @@
 								class="nav_fontsize">
 								<strong>IT Solutions</strong>
 							</h4></a></li>
-					<li><a href="https://www.mwav.net/CompanyItem/ITProducts/FusionCharts/FusionCharts.mwav"
+					<li><a href="/CompanyItem/ITProducts/FusionCharts/FusionCharts.mwav"
 						onclick="ga('send', 'event', 'GNB', 'click', 'ITProducts');"><h4
 								class="nav_fontsize">
 								<strong>IT Products</strong>
