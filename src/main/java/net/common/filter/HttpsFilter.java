@@ -16,6 +16,8 @@ import org.apache.log4j.Logger;
 public class HttpsFilter implements Filter {
 	Logger logger = Logger.getLogger(this.getClass());
 
+	jusung.kim@mwav.net
+	
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
