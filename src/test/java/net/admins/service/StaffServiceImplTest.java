@@ -9,6 +9,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -25,9 +26,22 @@ public class StaffServiceImplTest {
     StaffDAO staffDAO;
 
     @Test
-    public void selectStaffSeek(){
+    public void updatePmtPassword_프로모터_비밀번호_변경_비밀번호와_신규비밀번호_비교() throws IOException {
         // given
+        CommandMap commandMap = new CommandMap();
+        commandMap.put("pmtLoginPw", "mwav123!@#");
+        commandMap.put("pmtLoginPw2", "mwav123444");
 
+        // when
+        boolean result = staffService.updatePmtPassword(commandMap);
+
+        // then
+        Assertions.assertThat(result).isFalse();
+    }
+
+    @Test
+    public void selectStaffSeek_스태프_페이징(){
+        // given
         // 요청한 페이지
         int page = 4;
         // staff Count(*)

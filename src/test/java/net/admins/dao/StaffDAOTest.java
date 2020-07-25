@@ -5,6 +5,7 @@ import org.assertj.core.api.Assertions;
 import org.assertj.core.groups.Tuple;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -47,6 +48,7 @@ public class StaffDAOTest {
         MockitoAnnotations.initMocks(this);
     }
 
+    @Ignore
     @Test
     public void insertPromoter_tbl_프로모터_회원가입() throws SQLException {
         // given
@@ -71,6 +73,7 @@ public class StaffDAOTest {
         Assertions.assertThat(promoter_id).isNotNull();
     }
 
+    @Ignore
     @Test
     public void insertPromoterSpecialty_tbl_프로모터_회원가입_전문분야() throws SQLException {
         // given
@@ -106,6 +109,7 @@ public class StaffDAOTest {
                                 );
     }
 
+    @Ignore
     @Test
     public void selectPmtView_프로모터_조회() {
         // given
@@ -133,6 +137,7 @@ public class StaffDAOTest {
                 .isEqualTo("TestpmtLoginId");
     }
 
+    @Ignore
     @Test
     public void insertPromoterChannel_tbl() {
         // given
