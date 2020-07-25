@@ -12,8 +12,6 @@
 <script src="/CommonApps/Calendar/DateSelector/DatePicker.js"></script>
 <!-- /////////// -->
 
-
-
 <script type="text/javascript">
 	//open GdsUpLoader window
 	//참고로 수정 및 입력해서 if 분기시 분기 페이지 쪽에 스크립트 삽입이기 때문에 예를들어 수정에는 스크립트 들어가있고 // 입력에는 없으면
@@ -72,8 +70,6 @@
 	<jsp:include page="/Admins/AdminsHeader.jsp" flush="false" />
 	<!--  //////////////////////////////////// -->
 
-
-
 	<!-- Page Content -->
 	<div class="container">
 
@@ -126,60 +122,50 @@
 				<div class="col-lg-12">
 
 					<div class="row">
+						<%-- 1.입력 --%>
+						<form class='form-horizontal' method="post" action="/admins/goods/gdsForm.mwav">
+							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
-						<c:choose>
-							<c:when test="${fn:length(updateGdsForm) = 0}">
-
-								<%-- 1. 회원정보 수정 --%>
-								<form class='form-horizontal' method="post" action="/admins/goods/gdsForm.mwav">
-									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-
-										<div class="panel panel-primary">
-											<div class="panel-heading">
-												<h3 class="panel-title">Mwav - Goods Modify</h3>
-											</div>
-											<div class="panel-body">
+								<div class="panel panel-primary">
+									<div class="panel-heading">
+										<h3 class="panel-title">Mwav - Goods Registration</h3>
+									</div>
+									<div class="panel-body">
+										<div class="row">
+											<div class="col-sm-12 col-md-4 col-lg-4 " align="center">
+												<!-- Slider -->
 												<div class="row">
-
-
-													<div class="col-sm-12 col-md-4 col-lg-4 " align="center">
-														<%--http://bootsnipp.com/snippets/featured/carousel-extended-320-compatible --%>
-														<!-- Slider -->
+													<div class="col-xs-12" id="slider">
+														<!-- Top part of the slider -->
 														<div class="row">
-															<div class="col-xs-12" id="slider">
-																<!-- Top part of the slider -->
-																<div class="row">
-																	<div class="col-sm-12" id="carousel-bounding-box">
-																		<div class="carousel slide" id="myCarousel">
-																			<!-- Carousel items -->
+															<div class="col-sm-12" id="carousel-bounding-box">
+																<div class="carousel slide" id="myCarousel">
+																	<!-- Carousel items -->
+																	<div class="carousel-inner">
 
-																			<div class="carousel-inner">
+																		<%--http://bootsnipp.com/snippets/featured/bootstrap-lightbox --%>
+																		<div class="active item" data-slide-number="0">
+																			<a href="#" class="thumbnail" data-toggle="modal" data-target="#lightbox"> <img src="http://placehold.it/770x770&text=one">
+																			</a>
+																		</div>
 
+																		<div class="item" data-slide-number="1">
+																			<a href="#" class="thumbnail" data-toggle="modal" data-target="#lightbox"> <img src="http://placehold.it/770x770&text=two">
+																			</a>
+																		</div>
 
-																				<c:choose>
-																					<c:when test="${fn:length(goodsFileList) > 0}">
-																						<!-- http://fruitdev.tistory.com/132 -->
-																						<%--http://marobiana.tistory.com/9 --%>
-																						<c:forEach var="VgoodsFileList" items="${goodsFileList}" varStatus="status">
-																							<%--http://bootsnipp.com/snippets/featured/bootstrap-lightbox --%>
+																		<div class="item" data-slide-number="2">
+																			<a href="#" class="thumbnail" data-toggle="modal" data-target="#lightbox"> <img src="http://placehold.it/770x300&text=three">
+																			</a>
+																		</div>
 
-																							<div ${status.first ? 'class="active item"' : 'class="item"'} data-slide-number="${status.index}">
-																								<a href="#" class="thumbnail" data-toggle="modal" data-target="#lightbox"> <img src="/xUpload/GdsData/GC${updateGdsForm.goods_id}/${VgoodsFileList.fileName}">
-																								</a>
-																							</div>
+																		<div class="item" data-slide-number="3">
+																			<a href="#" class="thumbnail" data-toggle="modal" data-target="#lightbox"> <img src="http://placehold.it/770x300&text=four">
+																			</a>
+																		</div>
 
-																						</c:forEach>
-																					</c:when>
-
-																					<c:otherwise>
-																						<div class="active item" data-slide-number="0">
-																							<a href="#" class="thumbnail" data-toggle="modal" data-target="#lightbox"> <img src="http://placehold.it/770x300&text=one">
-																							</a>
-																						</div>
-																					</c:otherwise>
-																				</c:choose>
-																			</div>
-																			<%-- 
+																	</div>
+																	<%-- 
 																			<!-- Carousel nav -->
 																			<a class="left carousel-control" href="#myCarousel"
 																				role="button" data-slide="prev"> <span
@@ -188,989 +174,368 @@
 																				role="button" data-slide="next"> <span
 																				class="glyphicon glyphicon-chevron-right"></span>
 																			</a> --%>
-																		</div>
-																	</div>
-
-
 																</div>
 															</div>
+
+
 														</div>
-														<!--/Slider-->
+													</div>
+												</div>
+												<!--/Slider-->
 
-														<div class="row hidden-xs" id="slider-thumbs">
-															<!-- Bottom switcher of slider -->
-															<c:choose>
-																<c:when test="${fn:length(goodsFileList) > 0}">
-																	<!-- http://fruitdev.tistory.com/132 -->
-																	<%--http://marobiana.tistory.com/9 --%>
-																	<c:forEach var="VgoodsFileList" items="${goodsFileList}" varStatus="status">
-
-																		<ul class="hide-bullets">
-																			<li class="col-sm-6"><a class="thumbnail" <%--start.count는 1부터 시작 // index는 0부터 시작 --%>
-																				id="carousel-selector-${status.index}"><img src="/xUpload/GdsData/GC${updateGdsForm.goods_id}/${VgoodsFileList.fileName}"></a></li>
-																		</ul>
-																	</c:forEach>
-																</c:when>
-
-																<c:otherwise>
-																	<!-- <li class="col-sm-6"><a class="thumbnail"
-																		id="carousel-selector-0"><img
-																			src="http://placehold.it/170x100&text=one"></a></li> -->
-																</c:otherwise>
-															</c:choose>
-														</div>
+												<div class="row hidden-xs" id="slider-thumbs">
+													<!-- Bottom switcher of slider -->
+													<ul class="hide-bullets">
+														<li class="col-sm-6"><a class="thumbnail" id="carousel-selector-0"><img id="s-Base" src="http://placehold.it/170x100&text=one"></a></li>
+														<li class="col-sm-6"><a class="thumbnail" id="carousel-selector-1"><img id="s-Front" src="http://placehold.it/170x100&text=two"></a></li>
+														<li class="col-sm-6"><a class="thumbnail" id="carousel-selector-2"><img id="s-Rear" src="http://placehold.it/170x100&text=three"></a></li>
+														<li class="col-sm-6"><a class="thumbnail" id="carousel-selector-3"><img id="s-Right" src="http://placehold.it/170x100&text=four"></a></li>
+														<li class="col-sm-6"><a class="thumbnail" id="carousel-selector-4"><img id="s-Left" src="http://placehold.it/170x100&text=five"></a></li>
+														<li class="col-sm-6"><a class="thumbnail" id="carousel-selector-5"><img id="s-Top" src="http://placehold.it/170x100&text=six"></a></li>
+														<li class="col-sm-6"><a class="thumbnail" id="carousel-selector-6"><img id="s-Bottom" src="http://placehold.it/170x100&text=seven"></a></li>
+													</ul>
+												</div>
 
 
 
-														<jsp:include page="/Admins/Goods/LargeImageView.jsp" flush="false"></jsp:include></div>
+												<jsp:include page="/Admins/Goods/LargeImageView.jsp" flush="false"></jsp:include></div>
 
 
-													<div class="col-sm-12 col-md-8 col-lg-8 ">
-														<table class="table table-user-information">
-															<tbody>
-																<tr>
+											<div class="col-sm-12 col-md-8 col-lg-8 ">
+												<table class="table table-user-information">
+													<tbody>
+														<tr>
 
-																	<td>상품코드:</td>
-																	<td>
-																		<div class='form-group'>
-																			<div class='col-md-8'>
+															<td>상품코드:</td>
+															<td>
+																<div class='form-group'>
+																	<div class='col-md-8'>
 
-																				<input class='form-control' name="goods_id" type='text' maxlength="15" value="${updateGdsForm.goods_id}" readonly="readonly">
-																			</div>
-																		</div>
-																	</td>
-																</tr>
+																		<input class='form-control' name="goods_id" type='text' maxlength="15" readonly="readonly">
+																	</div>
+																</div>
+															</td>
+														</tr>
 
-																<%-- 테이블은 td 크기가 전체 영향 즉! 최상단 모델번호쪽에 col-md 먹으면 그 열은 전체가 다 쭉 아래로 똑같이 먹는다.
+														<%-- 테이블은 td 크기가 전체 영향 즉! 최상단 모델번호쪽에 col-md 먹으면 그 열은 전체가 다 쭉 아래로 똑같이 먹는다.
 																     유의 행 안에 또 잘게 쪼개야 한다.
 																     
 																     즉 tr td 자체에는 col-~ 사용하지 않기.
 																 --%>
-																<tr>
-																	<td>모델번호:</td>
-																	<td>
-																		<div class='form-group'>
-																			<div class="col-md-8">
-																				<input class='form-control' name="gModelNbr" value="${updateGdsForm.gModelNbr}" required>
-																			</div>
-																		</div>
-																	</td>
-																</tr>
-
-																<tr>
-																	<td>상품명:</td>
-																	<td>
-																		<div class='form-group'>
-																			<div class="col-md-8">
-																				<input class='form-control' name="gName" value="${updateGdsForm.gName}" required>
-																			</div>
-																		</div>
-																	</td>
-																</tr>
-
-																<tr>
-																	<td>셋트상품여부:</td>
-																	<td>
-																		<div class='form-group'>
-																			<div class="col-md-8">
-																				<select class='form-control' name="isGoodsSet" value="${updateGdsForm.isGoodsSet}" required>
-																					<option value="1">예</option>
-																					<option value="0">아니오</option>
-																				</select>
-																			</div>
-																		</div>
-																	</td>
-																</tr>
-
-
-																<%-- 한 행에 따른 대는 td 두개인데 여기만 4개 이렇게 할 수가 없다 그러면 틀어지기 때문에 아래와 같이 임시방편으로.. --%>
-																<tr>
-																	<td>일반판매가:</td>
-																	<td>
-																		<div class='form-group'>
-																			<div class="col-md-4">
-																				<input class='form-control' name="gConsumerPrice" value="${updateGdsForm.gConsumerPrice}" required>
-																			</div>
-
-
-																			<div class="col-md-3">
-
-																				<p>회원판매가:</p>
-																			</div>
-
-
-
-																			<div class="col-md-4">
-																				<input class='form-control' name="gMemberPrice" value="${updateGdsForm.gMemberPrice}" required>
-
-																			</div>
-																		</div>
-																	</td>
-																</tr>
-
-
-
-																<tr>
-																	<td>제조(개발)사:</td>
-																	<td>
-																		<div class='form-group'>
-																			<div class="col-md-8">
-																				<input class='form-control' name="gManufacturer" value="${updateGdsForm.gManufacturer}" required>
-																			</div>
-																		</div>
-																	</td>
-																</tr>
-
-																<tr>
-																	<td>원산지:</td>
-																	<td>
-																		<div class='form-group'>
-																			<div class="col-md-8">
-																				<input class='form-control' name="gPlaceofOrigin" value="${updateGdsForm.gPlaceofOrigin}" required>
-																			</div>
-																		</div>
-																	</td>
-																</tr>
-
-																<tr>
-																	<td>배송비 지불 주체:</td>
-																	<td>
-																		<div class='form-group'>
-																			<div class="col-md-4">
-																				<select class='form-control' name="gWhoDeliveryCost" value="${updateGdsForm.gWhoDeliveryCost}" required>
-																					<option value="C">고객</option>
-																					<option value="P">파트너사, 제조사</option>
-																					<option value="S">자사</option>
-																				</select>
-
-																			</div>
-																		</div>
-																	</td>
-																</tr>
-
-																<tr>
-																	<td>배송비:</td>
-																	<td>
-																		<div class='form-group'>
-																			<div class="col-md-4">
-																				<select class='form-control' name="gDeliveryCost" value="${updateGdsForm.gDeliveryCost}" required>
-																					<option value="2500">2500</option>
-																					<option value="0">0</option>
-																				</select>
-																				<p>※제주/도서산간의 경우 추가비용 발생</p>
-																			</div>
-																			<div class="col-md-3">
-
-																				<p>상품상태:</p>
-																			</div>
-																			<div class="col-md-4">
-																				<select class='form-control' name="gStatus" value="${updateGdsForm.gStatus}" required>
-																					<option value="1">판매가능</option>
-																				</select>
-																			</div>
-																		</div>
-																	</td>
-
-																</tr>
-
-
-																<tr>
-																	<td>적립금:</td>
-																	<td>
-																		<div class='form-group'>
-																			<div class="col-md-4">
-																				<input class='form-control' name="gRsvFund" value="${updateGdsForm.gRsvFund}">
-																			</div>
-																			<div class="col-md-3">
-
-																				<p>포인트:</p>
-																			</div>
-																			<div class="col-md-4">
-																				<input class='form-control' name="gPoint" value="${updateGdsForm.gPoint}">
-																			</div>
-																		</div>
-																	</td>
-
-																</tr>
-
-																<tr>
-																	<td>키워드:</td>
-																	<td>
-																		<div class='form-group'>
-																			<div class="col-md-8">
-																				<input class='form-control' name="gKeywords" value="${updateGdsForm.gKeywords}" required>
-
-																			</div>
-																		</div>
-																		<p>※키워드를 통한 웹 프로모션 메타페이지 다중생성[WebSpawner]</p>
-																	</td>
-																</tr>
-
-																<tr>
-																	<td>성과급률:</td>
-																	<td>
-																		<div class='form-group'>
-																			<div class="col-md-8">
-																				<input class='form-control' name="gFruitRate" value="${updateGdsForm.gFruitRate}" required>
-																			</div>
-																		</div>
-																		<p>% 성과급률은 0~100 숫자 안에서 입력하세요.</p>
-																	</td>
-																</tr>
-
-
-																<tr>
-																	<td>정렬순서:</td>
-																	<td>
-																		<div class='form-group'>
-																			<div class="col-md-8">
-																				<input class='form-control' name="gOrder" value="${updateGdsForm.gOrder}" required>
-																			</div>
-																		</div>
-																		<p>정렬순서는 -9999~99999 숫자 안에서 사이 값을 입력하세요.</p>
-																	</td>
-																</tr>
-
-
-																<tr>
-																	<td>게시기간:</td>
-																	<td>
-																		<div class='form-group'>
-																			<div class="col-md-3">
-																				<p>시작일 :</p>
-																			</div>
-																			<div class="col-md-8">
-																				<input type="text" name="gPostStart" class="form-control" id="datepicker_kor_1_1" value="${updateGdsForm.gPostStart}">
-																			</div>
-																			<div class="col-md-3">
-																				<p>종료일 :</p>
-																			</div>
-																			<div class="col-md-8">
-																				<input type="text" class="form-control" name="gPostEnd" id="datepicker_kor_1_2" value="${updateGdsForm.gPostEnd}">
-																			</div>
-																		</div>
-																	</td>
-																</tr>
-
-																<tr class="active">
-																	<td colspan="2">
-																		<p>이미지정보 (550 x 550픽셀 이상)</p>
-																	</td>
-																</tr>
-																<%-- <c:forEach var="FgoodsFileList" items="${goodsFileList}"
-																	varStatus="status">
-
-																	<c:set var="filePosition"
-																		value="${FgoodsFileList.filePosition} " />
-																	<c:out value="${filePosition}" />
-																	<c:set var="fileNameExcept"
-																		value="${FgoodsFileList.fileNameExcept} " />
-																	<c:out value="${fileNameExcept}" />
-																	<tr>
-																		<td class="active">${FgoodsFileList.fileName}</td>
-
-																		<td>
-																			<%--
-																			1.
-																			c:choose는 각각 when 마다 써줘야 한다. 
-																			
-																			2. 
-																			foreach를 각각 해줘야 한다.
-																			안그러면 case 마다 하나씩 생긴다 즉
-																			20개라면 아래 걸리는게 그럼 저 전체가 20개 생긴다.
-																			
-																			만약 저렇게 안하려면 foreach문으로 <tr> </tr> 하나만 커버해야하며 그럼 전체를 다 할 수 있게 해야 한다.
-																			--%>
-																<%--자바에서 공백을 제거한다고 하더라도 jstl 자체에서 공백이 생성된다.
-																		http://blog.hometown.co.kr/413
-																		
-																		추가로 만약 크기가 5개 쪼개지면 5개 아래 각각 나오기 때문에 조건을 AND 조건으로 두개 준다.
-																		 --%>
-																<%--  <c:choose>
-																				<c:when
-																					test="${ (fn:trim(fn:substring(fileNameExcept,0, 4)) == 's_S1')}">
-																					<div class='col-md-8'>
-
-																						<button type="button"
-																							name="bnUpload${status.index}"
-																							class="btn btn-sm btn-danger"
-																							onclick="showImageWindow('${fn:trim(filePosition)}')">재이미지업로드</button>
-																						<p class="text-danger">
-																							<strong>${FgoodsFileList.fileName} /
-																								${FgoodsFileList.fileSize} </strong>
-																							${FgoodsFileList.fileDate}
-																						</p>
-
-																					</div>
-																				</c:when>
-																				<c:otherwise>
-																					<div class='col-md-8'>
-																						<button type="button"
-																							name="bnUpload${status.index}"
-																							class="btn btn-sm btn-primary"
-																							onclick="showImageWindow('${filePosition}')">이미지업로드</button>
-																					</div>
-																				</c:otherwise>
-																			</c:choose>  --%>
-																<%-- <c:choose>
-																				<c:when
-																					test="${ (fn:trim(filePosition) == 'Base') && (fn:trim(fileNameExcept) == 's_S1_Base')}">
-																					<div class='col-md-8'>
-
-																						<button type="button" name="bnUpload0"
-																							class="btn btn-sm btn-danger"
-																							onclick="showImageWindow('Base')">재이미지업로드</button>
-																						<p class="text-danger">
-																							<strong>${FgoodsFileList.fileName} /
-																								${FgoodsFileList.fileSize} </strong>
-																							${FgoodsFileList.fileDate}
-																						</p>
-																					</div>
-																				</c:when>
-																				<c:otherwise>
-																					<div class='col-md-8'>
-																						<button type="button" name="bnUpload0"
-																							class="btn btn-sm btn-primary"
-																							onclick="showImageWindow('Base')">이미지업로드</button>
-																					</div>
-																				</c:otherwise>
-																			</c:choose> 
-																		</td>
-																	</tr>
-																</c:forEach>--%>
-
-
-
-
-																<tr>
-																	<td class="active">대표(표준)</td>
-																	<td>
-																		<c:forEach var="FgoodsFileList" items="${goodsFileList}" varStatus="status">
-
-																			<c:set var="filePosition" value="${FgoodsFileList.filePosition} " />
-																			<%-- <c:out value="${filePosition}" /> --%>
-																			<c:set var="fileNameExcept" value="${FgoodsFileList.fileNameExcept} " />
-																			<%-- <c:out value="${fileNameExcept}" /> --%>
-																			<c:choose>
-																				<c:when test="${ (fn:trim(filePosition) == 'Base') && (fn:trim(fileNameExcept) == 's_S1_Base')}">
-																					<div class='col-md-8'>
-
-																						<button type="button" name="bnUpload0" class="fileclear btn btn-sm btn-danger" onclick="showImageWindow('Base')">재이미지업로드</button>
-																						<p class="text-danger">
-																							<strong>${FgoodsFileList.fileName} / ${FgoodsFileList.fileSize} ${FgoodsFileList.fileDate} </strong>
-																						</p>
-																					</div>
-																				</c:when>
-																				<c:otherwise>
-
-																					<div class='col-md-8'>
-																						<button type="button" name="bnUpload0" class="fileclear btn btn-sm btn-primary" onclick="showImageWindow('Base')">이미지업로드</button>
-																					</div>
-																				</c:otherwise>
-																			</c:choose>
-																		</c:forEach>
-																	</td>
-																</tr>
-
-																<tr>
-																	<td class="active">전면</td>
-																	<td>
-																		<c:forEach var="FgoodsFileList" items="${goodsFileList}" varStatus="status">
-																			<c:choose>
-																				<c:when test="${ (fn:trim(filePosition) == 'Front') && (fn:trim(fileNameExcept) == 's_S1_Front')}">
-																					<div class='col-md-8'>
-
-																						<button type="button" name="bnUpload1" class="fileclear btn btn-sm btn-danger" onclick="showImageWindow('Front')">재이미지업로드</button>
-																						<p class="text-danger">
-																							<strong>${FgoodsFileList.fileName} / ${FgoodsFileList.fileSize} </strong> ${FgoodsFileList.fileDate}
-																						</p>
-																					</div>
-																				</c:when>
-																				<c:otherwise>
-
-																					<div class='col-md-8'>
-																						<button type="button" name="bnUpload1" class="fileclear btn btn-sm btn-primary" onclick="showImageWindow('Front')">이미지업로드</button>
-																					</div>
-																				</c:otherwise>
-																			</c:choose>
-																		</c:forEach>
-																	</td>
-																</tr>
-
-																<tr>
-																	<td class="active">후면</td>
-																	<td>
-																		<c:forEach var="FgoodsFileList" items="${goodsFileList}" varStatus="status">
-																			<c:choose>
-																				<c:when test="${ (fn:trim(filePosition) == 'Rear') && (fn:trim(fileNameExcept) == 's_S1_Rear')}">
-																					<div class='col-md-8'>
-
-																						<button type="button" name="bnUpload2" class="fileclear btn btn-sm btn-danger" onclick="showImageWindow('Rear')">재이미지업로드</button>
-																						<p class="text-danger">
-																							<strong>${FgoodsFileList.fileName} / ${FgoodsFileList.fileSize} </strong> ${FgoodsFileList.fileDate}
-																						</p>
-																					</div>
-																				</c:when>
-																				<c:otherwise>
-
-																					<div class='col-md-8'>
-																						<button type="button" name="bnUpload2" class="fileclear btn btn-sm btn-primary" onclick="showImageWindow('Rear')">이미지업로드</button>
-																					</div>
-																				</c:otherwise>
-																			</c:choose>
-																		</c:forEach>
-																	</td>
-																</tr>
-
-
-																<tr>
-																	<td class="active">우측면</td>
-																	<td>
-																		<c:forEach var="FgoodsFileList" items="${goodsFileList}" varStatus="status">
-																			<c:choose>
-																				<c:when test="${ (fn:trim(filePosition) == 'Right') && (fn:trim(fileNameExcept) == 's_S1_Right')}">
-																					<div class='col-md-8'>
-
-																						<button type="button" name="bnUpload3" class="fileclear btn btn-sm btn-danger" onclick="showImageWindow('Right')">재이미지업로드</button>
-																						<p class="text-danger">
-																							<strong>${FgoodsFileList.fileName} / ${FgoodsFileList.fileSize} </strong> ${FgoodsFileList.fileDate}
-																						</p>
-																					</div>
-																				</c:when>
-																				<c:otherwise>
-
-																					<div class='col-md-8'>
-																						<button type="button" name="bnUpload3" class="fileclear btn btn-sm btn-primary" onclick="showImageWindow('Right')">이미지업로드</button>
-																					</div>
-																				</c:otherwise>
-																			</c:choose>
-																		</c:forEach>
-																	</td>
-																</tr>
-
-
-																<tr>
-																	<td class="active">좌측면</td>
-																	<td>
-																		<c:forEach var="FgoodsFileList" items="${goodsFileList}" varStatus="status">
-																			<c:choose>
-																				<c:when test="${ (fn:trim(filePosition) == 'Left') && (fn:trim(fileNameExcept) == 's_S1_Left')}">
-																					<div class='col-md-8'>
-
-																						<button type="button" name="bnUpload4" class="fileclear btn btn-sm btn-danger" onclick="showImageWindow('Left')">재이미지업로드</button>
-																						<p class="text-danger">
-																							<strong>${FgoodsFileList.fileName} / ${FgoodsFileList.fileSize} </strong> ${FgoodsFileList.fileDate}
-																						</p>
-																					</div>
-																				</c:when>
-																				<c:otherwise>
-
-																					<div class='col-md-8'>
-																						<button type="button" name="bnUpload4" class="fileclear btn btn-sm btn-primary" onclick="showImageWindow('Left')">이미지업로드</button>
-																					</div>
-																				</c:otherwise>
-																			</c:choose>
-																		</c:forEach>
-																	</td>
-																</tr>
-
-																<tr>
-																	<td class="active">상단면</td>
-																	<td>
-																		<c:forEach var="FgoodsFileList" items="${goodsFileList}" varStatus="status">
-																			<c:choose>
-																				<c:when test="${ (fn:trim(filePosition) == 'Top') && (fn:trim(fileNameExcept) == 's_S1_Top')}">
-																					<div class='col-md-8'>
-
-																						<button type="button" name="bnUpload5" class="fileclear btn btn-sm btn-danger" onclick="showImageWindow('Left')">재이미지업로드</button>
-																						<p class="text-danger">
-																							<strong>${FgoodsFileList.fileName} / ${FgoodsFileList.fileSize} </strong> ${FgoodsFileList.fileDate}
-																						</p>
-																					</div>
-																				</c:when>
-																				<c:otherwise>
-
-																					<div class='col-md-8'>
-																						<button type="button" name="bnUpload5" class="fileclear btn btn-sm btn-primary" onclick="showImageWindow('Top')">이미지업로드</button>
-																					</div>
-																				</c:otherwise>
-																			</c:choose>
-																		</c:forEach>
-																	</td>
-																</tr>
-
-																<tr>
-																	<td class="active">하단면</td>
-																	<td>
-																		<c:forEach var="FgoodsFileList" items="${goodsFileList}" varStatus="status">
-																			<c:choose>
-																				<c:when test="${ (fn:trim(filePosition) == 'Bottom') && (fn:trim(fileNameExcept) == 's_S1_Bottom')}">
-																					<div class='col-md-8'>
-
-																						<button type="button" name="bnUpload6" class="fileclear btn btn-sm btn-danger" onclick="showImageWindow('Bottom')">재이미지업로드</button>
-																						<p class="text-danger">
-																							<strong>${FgoodsFileList.fileName} / ${FgoodsFileList.fileSize} </strong> ${FgoodsFileList.fileDate}
-																						</p>
-																					</div>
-																				</c:when>
-																				<c:otherwise>
-
-																					<div class='col-md-8'>
-																						<button type="button" name="bnUpload6" class="fileclear btn btn-sm btn-primary" onclick="showImageWindow('Bottom')">이미지업로드</button>
-																					</div>
-																				</c:otherwise>
-																			</c:choose>
-																		</c:forEach>
-																	</td>
-																</tr>
-
-
-															</tbody>
-														</table>
-													</div>
-													<div class="col-md-12 ">
-														<div class='col-md-12 form-group center-block'>
-															<textarea class="form-control" name="gNote" rows="15" value="${updateGdsForm.gNote}" placeholder="특이사항...."></textarea>
-														</div>
-
-													</div>
-												</div>
-												<div class="panel-footer">
-
-													<button type="button" class="btn btn-sm btn-primary" onclick="javascript:window.location.href='/admins/goods/gdsList.mwav'">리스트</button>
-
-													<button type="button" class="btn btn-sm btn-primary" onClick="javascript:history.go(-1)">뒤로가기</button>
-
-													<button type="submit" class="btn btn-sm btn-primary">등록하기</button>
-
-												</div>
-
-											</div>
-										</div>
-									</div>
-								</form>
-
-
-							</c:when>
-
-							<c:otherwise>
-								<%-- 1. 회원정보 입력 --%>
-								<form class='form-horizontal' method="post" action="/admins/goods/gdsForm.mwav">
-									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-
-										<div class="panel panel-primary">
-											<div class="panel-heading">
-												<h3 class="panel-title">Mwav - Goods Registration</h3>
-											</div>
-											<div class="panel-body">
-												<div class="row">
-													<div class="col-sm-12 col-md-4 col-lg-4 " align="center">
-														<!-- Slider -->
-														<div class="row">
-															<div class="col-xs-12" id="slider">
-																<!-- Top part of the slider -->
-																<div class="row">
-																	<div class="col-sm-12" id="carousel-bounding-box">
-																		<div class="carousel slide" id="myCarousel">
-																			<!-- Carousel items -->
-																			<div class="carousel-inner">
-
-																				<%--http://bootsnipp.com/snippets/featured/bootstrap-lightbox --%>
-																				<div class="active item" data-slide-number="0">
-																					<a href="#" class="thumbnail" data-toggle="modal" data-target="#lightbox"> <img src="http://placehold.it/770x770&text=one">
-																					</a>
-																				</div>
-
-																				<div class="item" data-slide-number="1">
-																					<a href="#" class="thumbnail" data-toggle="modal" data-target="#lightbox"> <img src="http://placehold.it/770x770&text=two">
-																					</a>
-																				</div>
-
-																				<div class="item" data-slide-number="2">
-																					<a href="#" class="thumbnail" data-toggle="modal" data-target="#lightbox"> <img src="http://placehold.it/770x300&text=three">
-																					</a>
-																				</div>
-
-																				<div class="item" data-slide-number="3">
-																					<a href="#" class="thumbnail" data-toggle="modal" data-target="#lightbox"> <img src="http://placehold.it/770x300&text=four">
-																					</a>
-																				</div>
-
-																			</div>
-																			<%-- 
-																			<!-- Carousel nav -->
-																			<a class="left carousel-control" href="#myCarousel"
-																				role="button" data-slide="prev"> <span
-																				class="glyphicon glyphicon-chevron-left"></span>
-																			</a> <a class="right carousel-control" href="#myCarousel"
-																				role="button" data-slide="next"> <span
-																				class="glyphicon glyphicon-chevron-right"></span>
-																			</a> --%>
-																		</div>
+														<tr>
+															<td>모델번호:</td>
+															<td>
+																<div class='form-group'>
+																	<div class="col-md-8">
+																		<input class='form-control' name="gModelNbr" value="" required>
+																	</div>
+																</div>
+															</td>
+														</tr>
+
+														<tr>
+															<td>상품명:</td>
+															<td>
+																<div class='form-group'>
+																	<div class="col-md-8">
+																		<input class='form-control' name="gName" value="" required>
+																	</div>
+																</div>
+															</td>
+														</tr>
+
+														<tr>
+															<td>셋트상품여부:</td>
+															<td>
+																<div class='form-group'>
+																	<div class="col-md-8">
+																		<select class='form-control' name="isGoodsSet" required>
+																			<option value="1">예</option>
+																			<option value="0">아니오</option>
+																		</select>
+																	</div>
+																</div>
+															</td>
+														</tr>
+
+
+														<%-- 한 행에 따른 대는 td 두개인데 여기만 4개 이렇게 할 수가 없다 그러면 틀어지기 때문에 아래와 같이 임시방편으로.. --%>
+														<tr>
+															<td>일반판매가:</td>
+															<td>
+																<div class='form-group'>
+																	<div class="col-md-4">
+																		<input class='form-control' name="gConsumerPrice" value="" required>
 																	</div>
 
 
+																	<div class="col-md-3">
+
+																		<p>회원판매가:</p>
+																	</div>
+
+
+
+																	<div class="col-md-4">
+																		<input class='form-control' name="gMemberPrice" value="" required>
+
+																	</div>
 																</div>
-															</div>
-														</div>
-														<!--/Slider-->
-
-														<div class="row hidden-xs" id="slider-thumbs">
-															<!-- Bottom switcher of slider -->
-															<ul class="hide-bullets">
-																<li class="col-sm-6"><a class="thumbnail" id="carousel-selector-0"><img id="s-Base" src="http://placehold.it/170x100&text=one"></a></li>
-																<li class="col-sm-6"><a class="thumbnail" id="carousel-selector-1"><img id="s-Front" src="http://placehold.it/170x100&text=two"></a></li>
-																<li class="col-sm-6"><a class="thumbnail" id="carousel-selector-2"><img id="s-Rear" src="http://placehold.it/170x100&text=three"></a></li>
-																<li class="col-sm-6"><a class="thumbnail" id="carousel-selector-3"><img id="s-Right" src="http://placehold.it/170x100&text=four"></a></li>
-																<li class="col-sm-6"><a class="thumbnail" id="carousel-selector-4"><img id="s-Left" src="http://placehold.it/170x100&text=five"></a></li>		
-																<li class="col-sm-6"><a class="thumbnail" id="carousel-selector-5"><img id="s-Top" src="http://placehold.it/170x100&text=six"></a></li>
-																<li class="col-sm-6"><a class="thumbnail" id="carousel-selector-6"><img id="s-Bottom" src="http://placehold.it/170x100&text=seven"></a></li>																		
-															</ul>
-														</div>
+															</td>
+														</tr>
 
 
 
-														<jsp:include page="/Admins/Goods/LargeImageView.jsp" flush="false"></jsp:include></div>
+														<tr>
+															<td>제조(개발)사:</td>
+															<td>
+																<div class='form-group'>
+																	<div class="col-md-8">
+																		<input class='form-control' name="gManufacturer" value="" required>
+																	</div>
+																</div>
+															</td>
+														</tr>
+
+														<tr>
+															<td>원산지:</td>
+															<td>
+																<div class='form-group'>
+																	<div class="col-md-8">
+																		<input class='form-control' name="gPlaceofOrigin" value="" required>
+																	</div>
+																</div>
+															</td>
+														</tr>
+
+														<tr>
+															<td>배송비 지불 주체:</td>
+															<td>
+																<div class='form-group'>
+																	<div class="col-md-4">
+																		<select class='form-control' name="gWhoDeliveryCost" required>
+																			<option value="C">고객</option>
+																			<option value="P">파트너사, 제조사</option>
+																			<option value="S">자사</option>
+																		</select>
+
+																	</div>
+																</div>
+															</td>
+														</tr>
+
+														<tr>
+															<td>배송비:</td>
+															<td>
+																<div class='form-group'>
+																	<div class="col-md-4">
+																		<select class='form-control' name="gDeliveryCost" required>
+																			<option value="2500">2500</option>
+																			<option value="0">0</option>
+																		</select>
+																		<p>※제주/도서산간의 경우 추가비용 발생</p>
+																	</div>
+																	<div class="col-md-3">
+
+																		<p>상품상태:</p>
+																	</div>
+																	<div class="col-md-4">
+																		<select class='form-control' name="gStatus" required>
+																			<option value="1">판매가능</option>
+																		</select>
+																	</div>
+																</div>
+															</td>
+
+														</tr>
 
 
-													<div class="col-sm-12 col-md-8 col-lg-8 ">
-														<table class="table table-user-information">
-															<tbody>
-																<tr>
+														<tr>
+															<td>적립금:</td>
+															<td>
+																<div class='form-group'>
+																	<div class="col-md-4">
+																		<input class='form-control' name="gRsvFund" value="">
+																	</div>
+																	<div class="col-md-3">
 
-																	<td>상품코드:</td>
-																	<td>
-																		<div class='form-group'>
-																			<div class='col-md-8'>
+																		<p>포인트:</p>
+																	</div>
+																	<div class="col-md-4">
+																		<input class='form-control' name="gPoint" value="">
+																	</div>
+																</div>
+															</td>
 
-																				<input class='form-control' name="goods_id" type='text' maxlength="15" readonly="readonly">
-																			</div>
-																		</div>
-																	</td>
-																</tr>
+														</tr>
 
-																<%-- 테이블은 td 크기가 전체 영향 즉! 최상단 모델번호쪽에 col-md 먹으면 그 열은 전체가 다 쭉 아래로 똑같이 먹는다.
-																     유의 행 안에 또 잘게 쪼개야 한다.
-																     
-																     즉 tr td 자체에는 col-~ 사용하지 않기.
-																 --%>
-																<tr>
-																	<td>모델번호:</td>
-																	<td>
-																		<div class='form-group'>
-																			<div class="col-md-8">
-																				<input class='form-control' name="gModelNbr" value="" required>
-																			</div>
-																		</div>
-																	</td>
-																</tr>
+														<tr>
+															<td>키워드:</td>
+															<td>
+																<div class='form-group'>
+																	<div class="col-md-8">
+																		<input class='form-control' name="gKeywords" value="" required>
 
-																<tr>
-																	<td>상품명:</td>
-																	<td>
-																		<div class='form-group'>
-																			<div class="col-md-8">
-																				<input class='form-control' name="gName" value="" required>
-																			</div>
-																		</div>
-																	</td>
-																</tr>
+																	</div>
+																</div>
+																<p>※키워드를 통한 웹 프로모션 메타페이지 다중생성[WebSpawner]</p>
+															</td>
+														</tr>
 
-																<tr>
-																	<td>셋트상품여부:</td>
-																	<td>
-																		<div class='form-group'>
-																			<div class="col-md-8">
-																				<select class='form-control' name="isGoodsSet" required>
-																					<option value="1">예</option>
-																					<option value="0">아니오</option>
-																				</select>
-																			</div>
-																		</div>
-																	</td>
-																</tr>
+														<tr>
+															<td>성과급률:</td>
+															<td>
+																<div class='form-group'>
+																	<div class="col-md-8">
+																		<input class='form-control' name="gFruitRate" value="" required>
+																	</div>
+																</div>
+																<p>% 성과급률은 0~100 숫자 안에서 입력하세요.</p>
+															</td>
+														</tr>
 
 
-																<%-- 한 행에 따른 대는 td 두개인데 여기만 4개 이렇게 할 수가 없다 그러면 틀어지기 때문에 아래와 같이 임시방편으로.. --%>
-																<tr>
-																	<td>일반판매가:</td>
-																	<td>
-																		<div class='form-group'>
-																			<div class="col-md-4">
-																				<input class='form-control' name="gConsumerPrice" value="" required>
-																			</div>
+														<tr>
+															<td>정렬순서:</td>
+															<td>
+																<div class='form-group'>
+																	<div class="col-md-8">
+																		<input class='form-control' name="gOrder" value="" required>
+																	</div>
+																</div>
+																<p>정렬순서는 -9999~99999 숫자 안에서 사이 값을 입력하세요.</p>
+															</td>
+														</tr>
 
 
-																			<div class="col-md-3">
+														<tr>
+															<td>게시기간:</td>
+															<td>
+																<div class='form-group'>
+																	<div class="col-md-3">
+																		<p>시작일 :</p>
+																	</div>
+																	<div class="col-md-8">
+																		<input type="text" name="gPostStart" class="form-control" id="datepicker_kor_1_1">
+																	</div>
+																	<div class="col-md-3">
+																		<p>종료일 :</p>
+																	</div>
+																	<div class="col-md-8">
+																		<input type="text" class="form-control" name="gPostEnd" id="datepicker_kor_1_2">
+																	</div>
+																</div>
+															</td>
+														</tr>
 
-																				<p>회원판매가:</p>
-																			</div>
+														<tr class="active">
+															<td colspan="2">
+																<p>이미지정보 (550 x 550픽셀 이상)</p>
+															</td>
+														</tr>
 
+														<tr>
+															<td class="active">대표(표준)</td>
+															<td>
+																<div class='col-md-8'>
+																	<button type="button" name="bnUpload0" class="fileclear btn btn-sm btn-primary" onclick="showImageWindow('Base')">이미지업로드</button>
+																</div>
+															</td>
+														</tr>
 
+														<tr>
+															<td class="active">전면</td>
+															<td>
+																<div class='col-md-8'>
+																	<button type="button" name="bnUpload1" class="fileclear btn btn-sm btn-primary" onclick="showImageWindow('Front')">이미지업로드</button>
+																</div>
+															</td>
+														</tr>
 
-																			<div class="col-md-4">
-																				<input class='form-control' name="gMemberPrice" value="" required>
-
-																			</div>
-																		</div>
-																	</td>
-																</tr>
-
-
-
-																<tr>
-																	<td>제조(개발)사:</td>
-																	<td>
-																		<div class='form-group'>
-																			<div class="col-md-8">
-																				<input class='form-control' name="gManufacturer" value="" required>
-																			</div>
-																		</div>
-																	</td>
-																</tr>
-
-																<tr>
-																	<td>원산지:</td>
-																	<td>
-																		<div class='form-group'>
-																			<div class="col-md-8">
-																				<input class='form-control' name="gPlaceofOrigin" value="" required>
-																			</div>
-																		</div>
-																	</td>
-																</tr>
-
-																<tr>
-																	<td>배송비 지불 주체:</td>
-																	<td>
-																		<div class='form-group'>
-																			<div class="col-md-4">
-																				<select class='form-control' name="gWhoDeliveryCost" required>
-																					<option value="C">고객</option>
-																					<option value="P">파트너사, 제조사</option>
-																					<option value="S">자사</option>
-																				</select>
-
-																			</div>
-																		</div>
-																	</td>
-																</tr>
-
-																<tr>
-																	<td>배송비:</td>
-																	<td>
-																		<div class='form-group'>
-																			<div class="col-md-4">
-																				<select class='form-control' name="gDeliveryCost" required>
-																					<option value="2500">2500</option>
-																					<option value="0">0</option>
-																				</select>
-																				<p>※제주/도서산간의 경우 추가비용 발생</p>
-																			</div>
-																			<div class="col-md-3">
-
-																				<p>상품상태:</p>
-																			</div>
-																			<div class="col-md-4">
-																				<select class='form-control' name="gStatus" required>
-																					<option value="1">판매가능</option>
-																				</select>
-																			</div>
-																		</div>
-																	</td>
-
-																</tr>
+														<tr>
+															<td class="active">후면</td>
+															<td>
+																<div class='col-md-8'>
+																	<button type="button" name="bnUpload2" class="fileclear btn btn-sm btn-primary" onclick="showImageWindow('Rear')">이미지업로드</button>
+																</div>
+															</td>
+														</tr>
 
 
-																<tr>
-																	<td>적립금:</td>
-																	<td>
-																		<div class='form-group'>
-																			<div class="col-md-4">
-																				<input class='form-control' name="gRsvFund" value="">
-																			</div>
-																			<div class="col-md-3">
+														<tr>
+															<td class="active">우측면</td>
+															<td>
 
-																				<p>포인트:</p>
-																			</div>
-																			<div class="col-md-4">
-																				<input class='form-control' name="gPoint" value="">
-																			</div>
-																		</div>
-																	</td>
-
-																</tr>
-
-																<tr>
-																	<td>키워드:</td>
-																	<td>
-																		<div class='form-group'>
-																			<div class="col-md-8">
-																				<input class='form-control' name="gKeywords" value="" required>
-
-																			</div>
-																		</div>
-																		<p>※키워드를 통한 웹 프로모션 메타페이지 다중생성[WebSpawner]</p>
-																	</td>
-																</tr>
-
-																<tr>
-																	<td>성과급률:</td>
-																	<td>
-																		<div class='form-group'>
-																			<div class="col-md-8">
-																				<input class='form-control' name="gFruitRate" value="" required>
-																			</div>
-																		</div>
-																		<p>% 성과급률은 0~100 숫자 안에서 입력하세요.</p>
-																	</td>
-																</tr>
+																<div class='col-md-8'>
+																	<button type="button" name="bnUpload3" class="fileclear btn btn-sm btn-primary" onclick="showImageWindow('Right')">이미지업로드</button>
+																</div>
+															</td>
+														</tr>
 
 
-																<tr>
-																	<td>정렬순서:</td>
-																	<td>
-																		<div class='form-group'>
-																			<div class="col-md-8">
-																				<input class='form-control' name="gOrder" value="" required>
-																			</div>
-																		</div>
-																		<p>정렬순서는 -9999~99999 숫자 안에서 사이 값을 입력하세요.</p>
-																	</td>
-																</tr>
+														<tr>
+															<td class="active">좌측면</td>
+															<td>
+																<div class='col-md-8'>
+																	<button type="button" name="bnUpload4" class="fileclear btn btn-sm btn-primary" onclick="showImageWindow('Left')">이미지업로드</button>
+																</div>
 
+															</td>
+														</tr>
 
-																<tr>
-																	<td>게시기간:</td>
-																	<td>
-																		<div class='form-group'>
-																			<div class="col-md-3">
-																				<p>시작일 :</p>
-																			</div>
-																			<div class="col-md-8">
-																				<input type="text" name="gPostStart" class="form-control" id="datepicker_kor_1_1">
-																			</div>
-																			<div class="col-md-3">
-																				<p>종료일 :</p>
-																			</div>
-																			<div class="col-md-8">
-																				<input type="text" class="form-control" name="gPostEnd" id="datepicker_kor_1_2">
-																			</div>
-																		</div>
-																	</td>
-																</tr>
+														<tr>
+															<td class="active">상단면</td>
+															<td>
+																<div class='col-md-8'>
+																	<button type="button" name="bnUpload5" class="fileclear btn btn-sm btn-primary" onclick="showImageWindow('Top')">이미지업로드</button>
+																</div>
+															</td>
+														</tr>
 
-																<tr class="active">
-																	<td colspan="2">
-																		<p>이미지정보 (550 x 550픽셀 이상)</p>
-																	</td>
-																</tr>
+														<tr>
+															<td class="active">하단면</td>
+															<td>
 
-																<tr>
-																	<td class="active">대표(표준)</td>
-																	<td>
-																		<div class='col-md-8'>
-																			<button type="button" name="bnUpload0" class="fileclear btn btn-sm btn-primary" onclick="showImageWindow('Base')">이미지업로드</button>
-																		</div>
-																	</td>
-																</tr>
+																<div class='col-md-8'>
+																	<button type="button" name="bnUpload6" class="fileclear btn btn-sm btn-primary" onclick="showImageWindow('Bottom')">이미지업로드</button>
+																</div>
+															</td>
+														</tr>
 
-																<tr>
-																	<td class="active">전면</td>
-																	<td>
-																		<div class='col-md-8'>
-																			<button type="button" name="bnUpload1" class="fileclear btn btn-sm btn-primary" onclick="showImageWindow('Front')">이미지업로드</button>
-																		</div>
-																	</td>
-																</tr>
-
-																<tr>
-																	<td class="active">후면</td>
-																	<td>
-																		<div class='col-md-8'>
-																			<button type="button" name="bnUpload2" class="fileclear btn btn-sm btn-primary" onclick="showImageWindow('Rear')">이미지업로드</button>
-																		</div>
-																	</td>
-																</tr>
-
-
-																<tr>
-																	<td class="active">우측면</td>
-																	<td>
-
-																		<div class='col-md-8'>
-																			<button type="button" name="bnUpload3" class="fileclear btn btn-sm btn-primary" onclick="showImageWindow('Right')">이미지업로드</button>
-																		</div>
-																	</td>
-																</tr>
-
-
-																<tr>
-																	<td class="active">좌측면</td>
-																	<td>
-																		<div class='col-md-8'>
-																			<button type="button" name="bnUpload4" class="fileclear btn btn-sm btn-primary" onclick="showImageWindow('Left')">이미지업로드</button>
-																		</div>
-
-																	</td>
-																</tr>
-
-																<tr>
-																	<td class="active">상단면</td>
-																	<td>
-																		<div class='col-md-8'>
-																			<button type="button" name="bnUpload5" class="fileclear btn btn-sm btn-primary" onclick="showImageWindow('Top')">이미지업로드</button>
-																		</div>
-																	</td>
-																</tr>
-
-																<tr>
-																	<td class="active">하단면</td>
-																	<td>
-
-																		<div class='col-md-8'>
-																			<button type="button" name="bnUpload6" class="fileclear btn btn-sm btn-primary" onclick="showImageWindow('Bottom')">이미지업로드</button>
-																		</div>
-																	</td>
-																</tr>
-
-																<script type="text/javascript">
-																	//open GdsUpLoader window
-																	function showImageWindow(position) {
-																		var modalUploadImages = position;
-																		$("#modalUploadImages").modal("show");
-																		$("#images_position").val(modalUploadImages);
-																		//$('.js-upload-finished').empty();
-																		$('#upload-finish-file').empty();
-																	}
-																</script>
-															</tbody>
-														</table>
-													</div>
-													<div class="col-md-12 ">
-														<div class='col-md-12 form-group center-block'>
-															<textarea class="form-control" name="gNote" rows="15" placeholder="특이사항...."></textarea>
-														</div>
-
-													</div>
-												</div>
-												<div class="panel-footer">
-
-													<button type="button" class="btn btn-sm btn-primary" onclick="javascript:window.location.href='/admins/goods/gdsList.mwav'">리스트</button>
-
-													<button type="button" class="btn btn-sm btn-primary" onClick="javascript:history.go(-1)">뒤로가기</button>
-
-													<button type="submit" class="btn btn-sm btn-primary">등록하기</button>
-
+														<script type="text/javascript">
+															//open GdsUpLoader window
+															function showImageWindow(position) {
+																var modalUploadImages = position;
+																$("#modalUploadImages").modal("show");
+																$("#images_position").val(modalUploadImages);
+																//$('.js-upload-finished').empty();
+																$('#upload-finish-file').empty();
+															}
+														</script>
+													</tbody>
+												</table>
+											</div>
+											<div class="col-md-12 ">
+												<div class='col-md-12 form-group center-block'>
+													<textarea class="form-control" name="gNote" rows="15" placeholder="특이사항...."></textarea>
 												</div>
 
 											</div>
 										</div>
-									</div>
-								</form>
+										<div class="panel-footer">
 
-							</c:otherwise>
-						</c:choose>
+											<button type="button" class="btn btn-sm btn-primary" onclick="javascript:window.location.href='/admins/goods/gdsList.mwav'">리스트</button>
+
+											<button type="button" class="btn btn-sm btn-primary" onClick="javascript:history.go(-1)">뒤로가기</button>
+
+											<button type="submit" class="btn btn-sm btn-primary">등록하기</button>
+
+										</div>
+
+									</div>
+								</div>
+							</div>
+						</form>
 					</div>
 
 				</div>
