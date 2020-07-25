@@ -3,7 +3,6 @@ package net.admins.dao;
 import net.common.common.CommandMap;
 import org.assertj.core.api.Assertions;
 import org.assertj.core.groups.Tuple;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -13,12 +12,9 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
@@ -32,7 +28,7 @@ import java.util.Map;
 @ContextConfiguration(locations = {"classpath:config/spring/mwav-data.xml"
                                  , "classpath:config/spring/mwav-mapper.xml"})
 @Transactional
-public class StaffDAOTest {
+public class PromoterDAOTest {
 
     @Autowired
     DataSource dataSource;
@@ -41,7 +37,7 @@ public class StaffDAOTest {
     SqlSessionTemplate sqlSession;
 
     @InjectMocks
-    StaffDAO dao;
+    PromoterDAO dao;
 
     @Before
     public void initTest() throws SQLException {

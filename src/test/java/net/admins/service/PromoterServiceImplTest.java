@@ -1,5 +1,6 @@
 package net.admins.service;
 
+import net.admins.dao.PromoterDAO;
 import net.admins.dao.StaffDAO;
 import net.common.common.CommandMap;
 import org.assertj.core.api.Assertions;
@@ -17,13 +18,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
-public class StaffServiceImplTest {
+public class PromoterServiceImplTest {
 
     @InjectMocks
-    private StaffServiceImpl staffService;
+    private PromoterServiceImpl pmtService;
 
     @Mock
-    StaffDAO staffDAO;
+    PromoterDAO pmtDAO;
 
     @Test
     public void updatePmtPassword_프로모터_비밀번호_변경_비밀번호와_신규비밀번호_비교() throws IOException {
@@ -33,7 +34,7 @@ public class StaffServiceImplTest {
         commandMap.put("pmtLoginPw2", "mwav123444");
 
         // when
-        boolean result = staffService.updatePmtPassword(commandMap);
+        boolean result = pmtService.updatePmtPassword(commandMap);
 
         // then
         Assertions.assertThat(result).isFalse();
@@ -51,10 +52,10 @@ public class StaffServiceImplTest {
         commandMap.put("page", page);
 
         // when
-        when(staffDAO.selectStaffSeekMaxCount(commandMap)).thenReturn(maxCountPage);
+        when(pmtDAO.selectStaffSeekMaxCount(commandMap)).thenReturn(maxCountPage);
 
         // then
-        Map<String, Object> map = staffService.selectStaffSeek(commandMap);
+        Map<String, Object> map = pmtService.selectStaffSeek(commandMap);
 
         map.forEach((s, o) -> {
             System.out.println(s + " : " + o);
