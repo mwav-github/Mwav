@@ -1,8 +1,9 @@
 package net.admins.service;
 
-import net.admins.dao.PromoterDAO;
+import net.admins.dao.AdminPromoterDAO;
 import net.common.common.CommandMap;
 import net.mwav.common.module.AesEncryption;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,11 +13,12 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class PromoterServiceImpl implements PromoterService{
+public class AdminPromoterServiceImpl implements AdminPromoterService {
 
-    private final PromoterDAO pmtDAO;
+    private final AdminPromoterDAO pmtDAO;
 
-    public PromoterServiceImpl(PromoterDAO pmtDAO) {
+    @Autowired
+    public AdminPromoterServiceImpl(AdminPromoterDAO pmtDAO) {
         this.pmtDAO = pmtDAO;
     }
 

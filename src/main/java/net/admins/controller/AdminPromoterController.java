@@ -1,6 +1,6 @@
 package net.admins.controller;
 
-import net.admins.service.PromoterService;
+import net.admins.service.AdminPromoterService;
 import net.common.common.CommandMap;
 import net.mwav.common.module.Paging;
 import net.mwav.common.module.PagingVO;
@@ -18,11 +18,12 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-public class PromoterController {
+public class AdminPromoterController {
 
-    private final PromoterService pmtService;
+    private final AdminPromoterService pmtService;
 
-    public PromoterController(PromoterService pmtService) {
+    @Autowired
+    public AdminPromoterController(AdminPromoterService pmtService) {
         this.pmtService = pmtService;
     }
 

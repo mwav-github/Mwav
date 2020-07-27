@@ -1,14 +1,11 @@
 package net.admins.controller;
 
-import net.admins.service.PromoterService;
-import net.admins.service.StaffService;
-import net.promoter.vo.Promoter;
+import net.admins.service.AdminPromoterService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -24,13 +21,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(MockitoJUnitRunner.class)
-public class PromoterControllerTest {
+public class AdminPromoterControllerTest {
 
     @InjectMocks
-    PromoterController controller;
+    AdminPromoterController controller;
 
     @Mock
-    PromoterService service;
+    AdminPromoterService service;
 
     MockMvc mockMvc;
 

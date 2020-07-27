@@ -7,8 +7,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Map;
 
-@Repository("promoterDAO")
-public class PromoterDAO extends AbstractDAO {
+@Repository
+public class AdminPromoterDAO extends AbstractDAO {
 
     public int selectPmtOneGetTotalCount(CommandMap commandMap) {
         return (int) selectOne("staff.selectPmtOneGetTotalCount", commandMap.getMap());

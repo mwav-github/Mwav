@@ -24,11 +24,12 @@ import java.util.Map;
 /*
     Mybatis SQL Mapper 테스트
  */
+@Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:config/spring/mwav-data.xml"
                                  , "classpath:config/spring/mwav-mapper.xml"})
 @Transactional
-public class PromoterDAOTest {
+public class AdminPromoterDAOTest {
 
     @Autowired
     DataSource dataSource;
@@ -37,14 +38,13 @@ public class PromoterDAOTest {
     SqlSessionTemplate sqlSession;
 
     @InjectMocks
-    PromoterDAO dao;
+    AdminPromoterDAO dao;
 
     @Before
     public void initTest() throws SQLException {
         MockitoAnnotations.initMocks(this);
     }
 
-    @Ignore
     @Test
     public void insertPromoter_tbl_프로모터_회원가입() throws SQLException {
         // given
@@ -69,7 +69,6 @@ public class PromoterDAOTest {
         Assertions.assertThat(promoter_id).isNotNull();
     }
 
-    @Ignore
     @Test
     public void insertPromoterSpecialty_tbl_프로모터_회원가입_전문분야() throws SQLException {
         // given
@@ -105,7 +104,6 @@ public class PromoterDAOTest {
                                 );
     }
 
-    @Ignore
     @Test
     public void selectPmtView_프로모터_조회() {
         // given
@@ -133,7 +131,6 @@ public class PromoterDAOTest {
                 .isEqualTo("TestpmtLoginId");
     }
 
-    @Ignore
     @Test
     public void insertPromoterChannel_tbl() {
         // given

@@ -1,7 +1,6 @@
 package net.admins.service;
 
-import net.admins.dao.PromoterDAO;
-import net.admins.dao.StaffDAO;
+import net.admins.dao.AdminPromoterDAO;
 import net.common.common.CommandMap;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
@@ -11,20 +10,19 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
-public class PromoterServiceImplTest {
+public class AdminPromoterServiceImplTest {
 
     @InjectMocks
-    private PromoterServiceImpl pmtService;
+    private AdminPromoterServiceImpl pmtService;
 
     @Mock
-    PromoterDAO pmtDAO;
+    AdminPromoterDAO pmtDAO;
 
     @Test
     public void updatePmtPassword_프로모터_비밀번호_변경_비밀번호와_신규비밀번호_비교() throws IOException {
