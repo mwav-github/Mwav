@@ -13,6 +13,9 @@
  <jsp:include page="/PartsOfContent/Head_Import.jsp" flush="false" />
  --%>
 <script language="javascript">
+	var address_id = '';
+	var zipcode_id = '';
+
 	function getAddrLoc() {
 		$.ajax({
 			url : "/sample/getAddrApi.mwav",
@@ -29,7 +32,7 @@
 					alert(errDesc);
 				} else {
 					if (xmlStr != null) {
-						showhide();
+						// showhide();
 						makeList(xmlStr);
 
 						var objSet = document.getElementById("resultpostseek");
@@ -127,8 +130,11 @@
 	}
 
 	function showhide() {
+		address_id = '#Address';
+		zipcode_id = '#Zipcode';
 
 		if ($(".ondis").css("display") == "none") {
+			// 기존의 id 값, 다른 페이지에서도 바뀌지 않도록 유지시켜준다.
 			//alert("on");
 			$(".ondis").show();
 			//$(".offdis").hide();
@@ -138,6 +144,19 @@
 							조회된 결과 값이 계속해서 나오지 않도록 empty로 해준다 상단 ajax 결과에서 참고~! 
 			 */
 
+		}
+	}
+
+	/*
+		하나의 페이지에 2개의 주소를 입력받아야 할때 이 함수를 호출하여
+		우편번호, 주소 id를 매개변수로 넘겨준다.
+	*/
+	function showhideAnother(addr, zip) {
+		address_id = '#'+addr;
+		zipcode_id = '#'+zip;
+
+		if ($(".ondis").css("display") == "none") {
+			$(".ondis").show();
 		}
 	}
 
@@ -272,15 +291,13 @@
 		}
 	}
 
-	function sendAddress(address, zcZipCode) {
-		var address = address;
-		var zcZipCode = zcZipCode;
+	function sendAddress(v_address, zcZipCode) {
+		// $("#Address").attr('value', address);
+		// $("#Zipcode").attr('value', zcZipCode);
+		$(address_id).attr('value', v_address);
+		$(zipcode_id).attr('value', zcZipCode);
 
-		$("#Address").attr('value', address);
-		$("#Zipcode").attr('value', zcZipCode);
-		//$("#PostModal").hide();
 		$("#PostModal").modal('hide');
-
 	}
 
 	function goPage(pageNum) {

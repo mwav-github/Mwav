@@ -55,10 +55,10 @@ https://developers.facebook.com/docs/sharing/webmasters/?locale=ko_KR
 	</c:when>
 	<c:otherwise>
 		<meta property="og:image"
-			content="http://www.mwav.net/Images/CompanyLogos/CompanyLogo.jpg" />
+			content="/Images/CompanyLogos/CompanyLogo.jpg" />
 		<%--트위터 --%>
 		<meta name="twitter:image"
-			content="http://www.mwav.net/Images/CompanyLogos/CompanyLogo.jpg" />
+			content="/Images/CompanyLogos/CompanyLogo.jpg" />
 	</c:otherwise>
 </c:choose>
 
