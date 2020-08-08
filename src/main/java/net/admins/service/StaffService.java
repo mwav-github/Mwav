@@ -1,11 +1,9 @@
 package net.admins.service;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
 import net.admins.vo.Staff_VO;
-import net.common.common.CommandMap;
 
 public interface StaffService {
 
@@ -29,5 +27,5 @@ public interface StaffService {
 	void updateProStfForm(Map<String, Object> map);
 	
 	int insertStfRegist(Map<String, Object> map);
-
+	
 }

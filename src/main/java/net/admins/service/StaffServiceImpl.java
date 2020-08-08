@@ -1,7 +1,5 @@
 package net.admins.service;
 
-import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,11 +8,8 @@ import javax.annotation.Resource;
 import net.admins.dao.StaffDAO;
 import net.admins.vo.Staff_VO;
 
-import net.common.common.CommandMap;
-import net.mwav.common.module.AesEncryption;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service("staffService")
 public class StaffServiceImpl implements StaffService {
@@ -87,5 +82,7 @@ public class StaffServiceImpl implements StaffService {
 	public int insertStfRegist(Map<String, Object> map) {
 		return staffDAO.insertStfRegist(map);
 	}
+
+	
 
 }

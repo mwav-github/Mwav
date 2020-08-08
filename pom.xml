@@ -559,12 +559,7 @@
 		    <scope>provided</scope>
 		</dependency>
 
-		<dependency>
-			<groupId>org.assertj</groupId>
-			<artifactId>assertj-core</artifactId>
-			<version>3.16.1</version>
-			<scope>test</scope>
-		</dependency>
+
 
 		<!-- @UserAgentAnalyis 171117 http://www.bitwalker.eu/software/user-agent-utils 
 			https://mvnrepository.com/search?q=eu.bitwalker https://javalibs.com/artifact/eu.bitwalker/UserAgentUtils 

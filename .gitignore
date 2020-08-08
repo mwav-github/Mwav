@@ -6,7 +6,3 @@
 .classpath
 bin/
 *.ucls
-
-# Intellij gitIgnore Setting
-.idea/**
-mwav.iml
