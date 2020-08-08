@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import net.admins.vo.Staff_VO;
+import net.common.common.CommandMap;
 import net.common.dao.AbstractDAO;
 import net.mwav.common.module.AesEncryption;
 
@@ -328,4 +329,5 @@ public class StaffDAO extends AbstractDAO {
 	public int insertStfRegist(Map<String,Object> map){
 		return (int) insert("staff.insrtStfRegist",map);
 	}
+
 }
