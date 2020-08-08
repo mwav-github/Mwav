@@ -30,19 +30,19 @@
 		<hr>
 		<div class="text-right">
 			<a class="btn btn-social-icon btn-facebook"
-				onClick="sendSns('http://www.mwav.net/board/buView.mwav?bUsers_id=${selectOneBuView.bUsers_id}', 'facebook', '${selectOneBuView.buTitle}', 'social', 'notices', '${selectOneBuView.buSubTitle}', '${param.pgl}')"><span
+				onClick="sendSns('https://www.mwav.net/board/buView.mwav?bUsers_id=${selectOneBuView.bUsers_id}', 'facebook', '${selectOneBuView.buTitle}', 'social', 'notices', '${selectOneBuView.buSubTitle}', '${param.pgl}')"><span
 				class="fa fa-facebook"></span></a> <a
 				class="btn btn-social-icon btn-google"
-				onClick="sendSns('http://www.mwav.net/board/buView.mwav?bUsers_id=${selectOneBuView.bUsers_id}','googleplus', '${selectOneBuView.buTitle}', 'social', 'notices', '${selectOneBuView.buSubTitle}', '${param.pgl}')"><span
+				onClick="sendSns('https://www.mwav.net/board/buView.mwav?bUsers_id=${selectOneBuView.bUsers_id}','googleplus', '${selectOneBuView.buTitle}', 'social', 'notices', '${selectOneBuView.buSubTitle}', '${param.pgl}')"><span
 				class="fa fa-google"></span></a> <a
 				class="btn btn-social-icon btn-linkedin"
-				onClick="sendSns('http://www.mwav.net/board/buView.mwav?bUsers_id=${selectOneBuView.bUsers_id}','linkedin', '${selectOneBuView.buTitle}', 'social', 'notices', '${selectOneBuView.buSubTitle}', '${param.pgl}')"><span
+				onClick="sendSns('https://www.mwav.net/board/buView.mwav?bUsers_id=${selectOneBuView.bUsers_id}','linkedin', '${selectOneBuView.buTitle}', 'social', 'notices', '${selectOneBuView.buSubTitle}', '${param.pgl}')"><span
 				class="fa fa-linkedin"></span></a> <a
 				class="btn btn-social-icon btn-twitter"
-				onClick="sendSns('http://www.mwav.net/board/buView.mwav?bUsers_id=${selectOneBuView.bUsers_id}','twitter', '${selectOneBuView.buTitle}', 'social', 'notices', '${selectOneBuView.buSubTitle}', '${param.pgl}')"><span
+				onClick="sendSns('https://www.mwav.net/board/buView.mwav?bUsers_id=${selectOneBuView.bUsers_id}','twitter', '${selectOneBuView.buTitle}', 'social', 'notices', '${selectOneBuView.buSubTitle}', '${param.pgl}')"><span
 				class="fa fa-twitter"></span></a> <a
 				class="btn btn-social-icon btn-kakao"
-				onClick="sendSns('http://www.mwav.net/board/buView.mwav?bUsers_id=${selectOneBuView.bUsers_id}','kakao', '${selectOneBuView.buTitle}', 'social', 'notices', '${selectOneBuView.buSubTitle}', '${param.pgl}', '${selectOneBuView.buRelatedLink}', ${selectOneBuView.buViewCount})">
+				onClick="sendSns('https://www.mwav.net/board/buView.mwav?bUsers_id=${selectOneBuView.bUsers_id}','kakao', '${selectOneBuView.buTitle}', 'social', 'notices', '${selectOneBuView.buSubTitle}', '${param.pgl}', '${selectOneBuView.buRelatedLink}', ${selectOneBuView.buViewCount})">
 			<span class="icon-kakao"> </span>
 			</a>
 		</div>
