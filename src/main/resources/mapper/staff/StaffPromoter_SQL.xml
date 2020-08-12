@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- #은 ' ' string // $ 은 숫자 ' ' 없음 -->
+<mapper namespace="staffPromoter">
+	
+	<!-- 프로모터 리스트 -->
+	<select id="selectPmtOneGetTotalCount" parameterType="hashmap" resultType="int">
+	<![CDATA[
+	   select count(*) from Promoter_tbl
+	]]>
+	   <if test="searchID != null">
+	   	WHERE pmtLoginId LIKE CONCAT('%', #{searchID}, '%')
+	   </if>
+	</select>
+
+	<select id="selectListPmtList" parameterType="hashmap" resultType="hashmap">
+		SELECT C.*
+		FROM (SELECT @ROWNUM := @ROWNUM + 1 AS ROWNUM, A.*
+				FROM (SELECT *
+						FROM Promoter_tbl
+		<if test="searchID != null">
+						WHERE pmtLoginId LIKE CONCAT('%', #{searchID}, '%')
+		</if>
+						ORDER BY promoter_id ) A,
+					 (SELECT @ROWNUM := 0) R
+			 ) C
+	<![CDATA[
+		WHERE C.ROWNUM >= #{startRow}
+		AND   C.ROWNUM <= #{endRow}
+	]]>
+	</select>
+
+
+	<select id="selectOnePmtLoginIdCheck" parameterType="string" resultType="int">
+		<![CDATA[
+	      SELECT Count(*) FROM Promoter_tbl WHERE pmtLoginId = #{pmtLoginId}
+		]]>
+	</select>
+
+	<select id="selectPmtView" parameterType="string" resultType="hashmap">
+		<![CDATA[
+			SELECT T1.promoter_id, T1.pmtLoginId, T1.pmtLoginPw, T1.pmtName, T1.pmtGender, T1.pmtNickName, T1.pmtCellularPhone, T1.pmtMail, T1.pmtZipcode, T1.pmtAddress, T1.pmtAddressDetail, T1.pmtMark
+				 , T2.staff_id, T7.stfName, T2.pmtUpperPromoter_id, T2.pmtRcmderId, T2.pmtLevel, T2.pmtVisitNbr, T2.pmtEffects, T2.pmtProfits, T2.pmtGoodsGroup, T2.pmtJoinDt, T2.pmtUpdateDt, T2.pmtLeaveDt, T2.pmtLevel, T2.pmtRecentLoginDt
+				 , T4.pmtCompany, T4.pmtBizLicenseNo, T4.pmtCorpLicenseNo, T4.pmtBizType, T4.pmtBizLine, T4.pmtBizPhone, T4.pmtBizZipcode, T4.pmtBizAddress, T4.pmtBizAddressDetail
+				 , T5.pmtChannelType, T5.pmtChannelId, T5.pmtChannelName, T5.pmtChannelDesc, T5.pmtChannelURL, T5.pmtChannelMember, T5.pmtChannelDaillyVisit
+				 , T6.pmtBankName, T6.pmtBankAccount, T6.pmtBankbookFileImage, T6.pmtBankInsertDt
+			FROM Promoter_tbl T1
+				LEFT OUTER JOIN PromoterValue_tbl T2
+					ON T1.promoter_id = T2.Promoter_tbl_promoter_id
+				LEFT OUTER JOIN PromoterLicense_tbl T4
+					ON T1.promoter_id = T4.Promoter_tbl_promoter_id
+				LEFT OUTER JOIN PromoterChannel_tbl T5
+					ON T1.promoter_id = T5.Promoter_tbl_promoter_id
+				LEFT OUTER JOIN PromoterAccount_tbl T6
+					ON T1.promoter_id = T6.Promoter_tbl_promoter_id
+				LEFT OUTER JOIN Staff_tbl T7
+					ON T2.staff_id = T7.staff_id
+			WHERE T1.promoter_id = #{promoter_id}
+		]]>
+	</select>
+
+	<insert id="insertPromoter_tbl" parameterType="hashmap">
+		<![CDATA[
+		INSERT INTO Promoter_tbl (promoter_id, pmtLoginId, pmtLoginPw, pmFirstName, pmLastName, pmtGender, pmtNickName
+						, pmtCellularPhone, pmtMail, pmtZipcode, pmtAddress, pmtAddressDetail, pmtMark)
+		VALUES((SELECT IFNULL(max(pmt.promoter_id)+1,100000) FROM Promoter_tbl pmt), #{pmtLoginId}, #{pmtLoginPw}, #{pmFirstName}, #{pmLastName}, #{pmtGender}, #{pmtNickname}
+								, #{pmtCellularPhone}, #{pmtMail}, #{pmtZipcode}, #{pmtAddress}, #{pmtAddressDetail}, #{pmtMark})
+		]]>
+	</insert>
+
+	<insert id="insertPromoterValue_tbl" parameterType="hashmap">
+		<![CDATA[
+			INSERT INTO PromoterValue_tbl(promoter_id, staff_id, pmtLevel, pmtVisitNbr, pmtEffects, pmtProfits, Promoter_tbl_promoter_id)
+			SELECT promoter_id, CASE WHEN LENGTH(#{staff_id}) = 0 THEN NULL ELSE #{staff_id} END, 1, 0, 0, 0, promoter_id
+			FROM Promoter_tbl
+			WHERE pmtLoginId = #{pmtLoginId}
+		]]>
+	</insert>
+
+	<insert id="insertPromoterValueLog_tbl" parameterType="hashmap">
+		<![CDATA[
+			INSERT INTO PromoterValueLog_tbl(promoterValueLog_id, promoter_id, pvlChagedPoint, pvlRemark, pvlInsertDt, pvlIpAddress, PromoterValue_tbl_promoter_id)
+			SELECT (SELECT IFNULL(MAX(promoterValueLog_id)+1, 10000000) FROM PromoterValueLog_tbl), promoter_id, 0, #{pvlRemark}, NOW(), #{pvlIpAddress}, promoter_id
+			FROM Promoter_tbl
+			WHERE pmtLoginId = #{pmtLoginId}
+		]]>
+	</insert>
+
+	<insert id="insertPromoterSpecialty_tbl" parameterType="hashmap">
+		INSERT INTO PromoterSpecialty_tbl(promoterSpecialty_id, promoter_id, pmtSpecialtyName, Promoter_tbl_promoter_id)
+		<foreach collection="pmtSpecialtyName" item="specialty" index="index" separator="UNION ALL">
+			SELECT (SELECT IFNULL(MAX(promoterSpecialty_id)+1, 1000000)+#{index} FROM PromoterSpecialty_tbl), promoter_id, #{specialty}, promoter_id
+			FROM Promoter_tbl
+			WHERE pmtLoginId = #{pmtLoginId}
+		</foreach>
+	</insert>
+
+	<insert id="insertPromoterLicense_tbl" parameterType="hashmap">
+		<![CDATA[
+			INSERT INTO PromoterLicense_tbl(promoter_id, pmtCompany, pmtBizLicenseNo, pmtCorpLicenseNo, pmtBizType, pmtBizLine, pmtBizPhone, pmtBizZipcode, pmtBizAddress, pmtBizAddressDetail, Promoter_tbl_promoter_id)
+			SELECT promoter_id, #{pmtCompany}, #{pmtBizLicenseNo}, #{pmtCorpLicenseNo}, #{pmtBizType}, #{pmtBizLine}, #{pmtBizPhone}, #{pmtBizZipcode}, #{pmtBizAddress}, #{pmtBizAddressDetail}, promoter_id
+			FROM Promoter_tbl
+			WHERE pmtLoginId = #{pmtLoginId}
+		]]>
+	</insert>
+
+	<insert id="insertPromoterChannel_tbl" parameterType="hashmap">
+		<![CDATA[
+			INSERT INTO PromoterChannel_tbl(promoterChannel_id, promoter_id, pmtChannelType, pmtChannelId, pmtChannelName, pmtChannelDesc, pmtChannelURL, pmtChannelMember, pmtChannelDaillyVisit, Promoter_tbl_promoter_id)
+			SELECT (SELECT IFNULL(MAX(promoterChannel_id)+1, 100000) FROM PromoterChannel_tbl), promoter_id, #{pmtChannelType}, #{pmtChannelId}, #{pmtChannelName}, #{pmtChannelDesc}, #{pmtChannelURL}, #{pmtChannelMember}, #{pmtChannelDaillyVisit}, promoter_id
+			FROM Promoter_tbl
+			WHERE pmtLoginId = #{pmtLoginId}
+		]]>
+	</insert>
+
+	<insert id="insertPromoterAccount_tbl" parameterType="hashmap">
+		<![CDATA[
+			INSERT INTO PromoterAccount_tbl(promoter_id, pmtBankName, pmtBankAccount, Promoter_tbl_promoter_id)
+			SELECT promoter_id, #{pmtBankName}, #{pmtBankAccount}, promoter_id
+			FROM Promoter_tbl
+			WHERE pmtLoginId = #{pmtLoginId}
+		]]>
+	</insert>
+
+	<select id="updatePmtForm" parameterType="string"  resultType="hashmap">
+		<![CDATA[
+	       SELECT T1.promoter_id, T1.pmtLoginId, T1.pmtLoginPw, T1.pmtName, T1.pmtGender, T1.pmtNickName, T1.pmtCellularPhone, T1.pmtMail, T1.pmtZipcode, T1.pmtAddress, T1.pmtAddressDetail, T1.pmtMark
+				 , T2.staff_id, T7.stfName, T2.pmtLevel, T2.pmtVisitNbr, T2.pmtEffects, T2.pmtProfits
+				 , T4.pmtCompany, T4.pmtBizLicenseNo, T4.pmtCorpLicenseNo, T4.pmtBizType, T4.pmtBizLine, T4.pmtBizPhone, T4.pmtBizZipcode, T4.pmtBizAddress, T4.pmtBizAddressDetail
+				 , T5.pmtChannelType, T5.pmtChannelId, T5.pmtChannelName, T5.pmtChannelDesc, T5.pmtChannelURL, T5.pmtChannelMember, T5.pmtChannelDaillyVisit
+				 , T6.pmtBankName, T6.pmtBankAccount
+			FROM Promoter_tbl T1
+				LEFT OUTER JOIN PromoterValue_tbl T2
+					ON T1.promoter_id = T2.Promoter_tbl_promoter_id
+				LEFT OUTER JOIN PromoterLicense_tbl T4
+					ON T1.promoter_id = T4.Promoter_tbl_promoter_id
+				LEFT OUTER JOIN PromoterChannel_tbl T5
+					ON T1.promoter_id = T5.Promoter_tbl_promoter_id
+				LEFT OUTER JOIN PromoterAccount_tbl T6
+					ON T1.promoter_id = T6.Promoter_tbl_promoter_id
+				LEFT OUTER JOIN Staff_tbl T7
+					ON T2.staff_id = T7.staff_id
+			WHERE T1.promoter_id = #{promoter_id}
+		]]>
+	</select>
+
+	<update id="updatePromoter_tbl" parameterType="hashmap">
+		<![CDATA[
+			UPDATE Promoter_tbl SET pmtName=#{pmtName}, pmtGender=#{pmtGender}, pmtNickName=#{pmtNickName}, pmtCellularPhone=#{pmtCellularPhone}
+								  , pmtMail=#{pmtMail}, pmtZipcode=#{pmtZipcode}, pmtAddress=#{pmtAddress}, pmtAddressDetail=#{pmtAddressDetail}, pmtMark=#{pmtMark}
+			WHERE promoter_id = #{promoter_id}
+		]]>
+	</update>
+
+	<update id="updatePromoterValue_tbl" parameterType="hashmap">
+		<![CDATA[
+
+		]]>
+	</update>
+
+	<update id="updatePromoterLicense_tbl" parameterType="hashmap">
+		<![CDATA[
+			UPDATE PromoterLicense_tbl SET pmtCompany = #{pmtCompany}, pmtBizLicenseNo = #{pmtBizLicenseNo}, pmtCorpLicenseNo = #{pmtCorpLicenseNo}, pmtBizType = #{pmtBizType}
+										 , pmtBizLine = #{pmtBizLine}, pmtBizPhone = #{pmtBizPhone}, pmtBizZipcode = #{pmtBizZipcode}, pmtBizAddress = #{pmtBizAddress}, pmtBizAddressDetail = #{pmtBizAddressDetail}
+			WHERE promoter_id = #{promoter_id}
+		]]>
+	</update>
+
+	<update id="updatePromoterChannel_tbl" parameterType="hashmap">
+		<![CDATA[
+			UPDATE PromoterChannel_tbl SET pmtChannelType = #{pmtChannelType}, pmtChannelId = #{pmtChannelId}, pmtChannelName = #{pmtChannelName}, pmtChannelDesc = #{pmtChannelDesc}, pmtChannelURL = #{pmtChannelURL}
+			WHERE promoter_id = #{promoter_id}
+		]]>
+	</update>
+
+	<update id="updatePromoterAccount_tbl" parameterType="hashmap">
+		<![CDATA[
+			UPDATE PromoterAccount_tbl SET pmtBankName = #{pmtBankName}, pmtBankAccount = #{pmtBankAccount}
+			WHERE promoter_id = #{promoter_id}
+		]]>
+	</update>
+
+	<update id="updatePmtPassword" parameterType="hashmap">
+		<![CDATA[
+			UPDATE Promoter_tbl SET pmtLoginPw = #{pmtLoginPw}
+			WHERE promoter_id = #{promoter_id}
+		]]>
+	</update>
+
+	<update id="leavePmt" parameterType="hashmap">
+		<![CDATA[
+			UPDATE PromoterValue_tbl SET pmtLeaveDt = NOW()
+			WHERE promoter_id = #{promoter_id}
+		]]>
+	</update>
+
+	<select id="selectPmtSpecialtyNames" parameterType="string" resultType="hashmap">
+		SELECT pmtSpecialtyName, pmtSpecialtyLevel
+		FROM PromoterSpecialty_tbl
+		WHERE Promoter_tbl_promoter_id = #{promoter_id}
+	</select>
+
+	<select id="selectOnePmtLoginId" parameterType="string" resultType="string">
+		SELECT promoter_id FROM Promoter_tbl WHERE pmtLoginId = #{pmtLoginId};
+	</select>
+
+	<delete id="deletePromoterSpecialty_tbl" parameterType="string">
+		DELETE FROM PromoterSpecialty_tbl
+		WHERE Promoter_tbl_promoter_id = #{promoter_id}
+	</delete>
+
+	<select id="selectStaffSeek" parameterType="hashmap" resultType="hashmap">
+		SELECT T1.staff_id, T1.stfName, T1.stfDeptName, T1.stfClass
+		FROM ( SELECT staff_id, stfName, stfDeptName, stfClass, @ROWNUM := @ROWNUM +1 AS ROWNUM
+				FROM Staff_tbl, (SELECT @ROWNUM := 0) R
+			<if test="stfName != null">
+				WHERE stfName LIKE CONCAT('%', #{stfName}, '%')
+			</if>
+			) T1
+		WHERE T1.ROWNUM LIMIT #{page}, 10
+	</select>
+
+	<select id="selectStaffSeekMaxCount" parameterType="hashmap" resultType="int">
+		SELECT COUNT(*) AS maxCount
+		FROM Staff_tbl
+		<if test="stfName != null">
+			WHERE stfName LIKE CONCAT('%', #{stfName}, '%')
+		</if>
+	</select>
+
+	<update id="returnPmt" parameterType="hashmap">
+		<![CDATA[
+			UPDATE PromoterValue_tbl SET pmtLeaveDt = NULL
+			WHERE promoter_id = #{promoter_id}
+		]]>
+	</update>
+</mapper>
+
