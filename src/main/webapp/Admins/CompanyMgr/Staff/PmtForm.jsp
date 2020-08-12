@@ -76,7 +76,8 @@ var xhr;
 			chkPWPolicy($('#chkLoginPW').val(), $('#chkLoginPW')) &&							// 비밀번호 검증
 			chkEmailPolicy($('#chkEmail').val(), $('#chkEmail')) &&								// 이메일 검증
 
-			thisEmptyCheck($('#pmtNameChk'), '이름은 필수로 입력하셔야합니다.') &&				// 이름 검사
+			thisEmptyCheck($('#chkPmFirstName'), '이름은 필수로 입력하셔야합니다.') &&				// 이름 검사
+			thisEmptyCheck($('#chkPmLastName'), '이름은 필수로 입력하셔야합니다.') &&				    // 이름 검사
 			phoneCheck($('#pmtCellularPhone'), '핸드폰 번호가 공백이거나 유효하지 않은 번호입니다.') &&			// 핸드폰 검증
 
 			thisEmptyCheck($('#pmtBankName'), '은행 명은 필수로 입력하셔야합니다.') &&			// 은행명 검증
@@ -296,8 +297,11 @@ var xhr;
 																:</td>
 															<td>
 																<div class='form-group'>
-																	<div class='col-md-8'>
-																		<input type="text" id="pmtNameChk" class='form-control' name="pmtName" maxlength="20" required>
+																	<div class='col-md-3'>
+																		<input type="text" id="chkPmFirstName" class='form-control' name="pmFirstName" maxlength="20" placeholder="FirstName" required>
+																	</div>
+																	<div class='col-md-4'>
+																		<input type="text" id="chkPmLastName" class='form-control' name="pmLastName" maxlength="20" placeholder="LastName" required>
 																	</div>
 																</div>
 															</td>
