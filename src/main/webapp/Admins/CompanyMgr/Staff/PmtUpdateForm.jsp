@@ -26,8 +26,8 @@
 	function msubmit() {
 
 		if(	chkEmailPolicy($('#chkEmail').val(), $('#chkEmail')) &&								// 이메일 검증
-			thisEmptyCheck($('#chkPmFirstName'), '이름은 필수로 입력하셔야합니다.') &&				// 이름 검사
-			thisEmptyCheck($('#chkPmLastName'), '이름은 필수로 입력하셔야합니다.') &&				    // 이름 검사
+			thisEmptyCheck($('#chkPmtFirstName'), '이름은 필수로 입력하셔야합니다.') &&				// 이름 검사
+			thisEmptyCheck($('#chkPmtLastName'), '이름은 필수로 입력하셔야합니다.') &&				    // 이름 검사
 			phoneCheck($('#pmtCellularPhone'), '핸드폰 번호는 필수로 입력하셔야합니다.') &&		// 핸드폰 검증
 
 			thisEmptyCheck($('#pmtBankName'), '은행 명은 필수로 입력하셔야합니다.') &&			// 은행명 검증
@@ -300,10 +300,10 @@
 															<td>
 																<div class='form-group'>
 																	<div class='col-md-3'>
-																		<input type="text" id="chkPmFirstName" class='form-control' name="pmFirstName" maxlength="20" placeholder="FirstName" value="${updatePmtForm.pmFirstName}" required>
+																		<input type="text" id="chkPmtFirstName" class='form-control' name="pmtFirstName" maxlength="20" placeholder="FirstName" value="${updatePmtForm.pmtFirstName}" required>
 																	</div>
 																	<div class='col-md-4'>
-																		<input type="text" id="chkPmLastName" class='form-control' name="pmLastName" maxlength="20" placeholder="LastName" value="${updatePmtForm.pmLastName}" required>
+																		<input type="text" id="chkPmtLastName" class='form-control' name="pmtLastName" maxlength="20" placeholder="LastName" value="${updatePmtForm.pmtLastName}" required>
 																	</div>
 																</div>
 															</td>
