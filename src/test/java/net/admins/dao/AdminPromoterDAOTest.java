@@ -77,7 +77,8 @@ public class AdminPromoterDAOTest {
         CommandMap commandMap = new CommandMap();
         commandMap.put("pmtLoginId", "TestpmtLoginId");
         commandMap.put("pmtLoginPw", "TestpmtLoginPw");
-        commandMap.put("pmtName", "TestpmtName");
+        commandMap.put("pmFirstName", "kong");
+        commandMap.put("pmLastName", "taehyun");
         commandMap.put("pmtGender", "남성");
         commandMap.put("pmtNickname", "TestpmtNickname");
         commandMap.put("pmtCellularPhone", "01011112222");
@@ -111,7 +112,8 @@ public class AdminPromoterDAOTest {
         CommandMap commandMap = new CommandMap();
         commandMap.put("pmtLoginId", "TestpmtLoginId");
         commandMap.put("pmtLoginPw", "TestpmtLoginPw");
-        commandMap.put("pmtName", "TestpmtName");
+        commandMap.put("pmFirstName", "kong");
+        commandMap.put("pmLastName", "taehyun");
         commandMap.put("pmtGender", "남성");
         commandMap.put("pmtNickname", "TestpmtNickname");
         commandMap.put("pmtCellularPhone", "01011112222");
@@ -139,7 +141,8 @@ public class AdminPromoterDAOTest {
         CommandMap commandMap = new CommandMap();
         commandMap.put("pmtLoginId", "TestpmtLoginId");
         commandMap.put("pmtLoginPw", "TestpmtLoginPw");
-        commandMap.put("pmtName", "TestpmtName");
+        commandMap.put("pmFirstName", "kong");
+        commandMap.put("pmLastName", "taehyun");
         commandMap.put("pmtGender", "남성");
         commandMap.put("pmtNickname", "TestpmtNickname");
         commandMap.put("pmtCellularPhone", "01011112222");

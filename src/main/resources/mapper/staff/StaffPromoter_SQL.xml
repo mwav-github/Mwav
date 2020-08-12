@@ -40,7 +40,7 @@
 
 	<select id="selectPmtView" parameterType="string" resultType="hashmap">
 		<![CDATA[
-			SELECT T1.promoter_id, T1.pmtLoginId, T1.pmtLoginPw, T1.pmtName, T1.pmtGender, T1.pmtNickName, T1.pmtCellularPhone, T1.pmtMail, T1.pmtZipcode, T1.pmtAddress, T1.pmtAddressDetail, T1.pmtMark
+			SELECT T1.promoter_id, T1.pmtLoginId, T1.pmtLoginPw, T1.pmFirstName, T1.pmLastName, T1.pmtGender, T1.pmtNickName, T1.pmtCellularPhone, T1.pmtMail, T1.pmtZipcode, T1.pmtAddress, T1.pmtAddressDetail, T1.pmtMark
 				 , T2.staff_id, T7.stfName, T2.pmtUpperPromoter_id, T2.pmtRcmderId, T2.pmtLevel, T2.pmtVisitNbr, T2.pmtEffects, T2.pmtProfits, T2.pmtGoodsGroup, T2.pmtJoinDt, T2.pmtUpdateDt, T2.pmtLeaveDt, T2.pmtLevel, T2.pmtRecentLoginDt
 				 , T4.pmtCompany, T4.pmtBizLicenseNo, T4.pmtCorpLicenseNo, T4.pmtBizType, T4.pmtBizLine, T4.pmtBizPhone, T4.pmtBizZipcode, T4.pmtBizAddress, T4.pmtBizAddressDetail
 				 , T5.pmtChannelType, T5.pmtChannelId, T5.pmtChannelName, T5.pmtChannelDesc, T5.pmtChannelURL, T5.pmtChannelMember, T5.pmtChannelDaillyVisit
@@ -125,7 +125,7 @@
 
 	<select id="updatePmtForm" parameterType="string"  resultType="hashmap">
 		<![CDATA[
-	       SELECT T1.promoter_id, T1.pmtLoginId, T1.pmtLoginPw, T1.pmtName, T1.pmtGender, T1.pmtNickName, T1.pmtCellularPhone, T1.pmtMail, T1.pmtZipcode, T1.pmtAddress, T1.pmtAddressDetail, T1.pmtMark
+	       SELECT T1.promoter_id, T1.pmtLoginId, T1.pmtLoginPw, T1.pmFirstName, T1.pmLastName, T1.pmtGender, T1.pmtNickName, T1.pmtCellularPhone, T1.pmtMail, T1.pmtZipcode, T1.pmtAddress, T1.pmtAddressDetail, T1.pmtMark
 				 , T2.staff_id, T7.stfName, T2.pmtLevel, T2.pmtVisitNbr, T2.pmtEffects, T2.pmtProfits
 				 , T4.pmtCompany, T4.pmtBizLicenseNo, T4.pmtCorpLicenseNo, T4.pmtBizType, T4.pmtBizLine, T4.pmtBizPhone, T4.pmtBizZipcode, T4.pmtBizAddress, T4.pmtBizAddressDetail
 				 , T5.pmtChannelType, T5.pmtChannelId, T5.pmtChannelName, T5.pmtChannelDesc, T5.pmtChannelURL, T5.pmtChannelMember, T5.pmtChannelDaillyVisit
@@ -147,7 +147,7 @@
 
 	<update id="updatePromoter_tbl" parameterType="hashmap">
 		<![CDATA[
-			UPDATE Promoter_tbl SET pmtName=#{pmtName}, pmtGender=#{pmtGender}, pmtNickName=#{pmtNickName}, pmtCellularPhone=#{pmtCellularPhone}
+			UPDATE Promoter_tbl SET pmFirstName=#{pmFirstName}, pmLastName=#{pmLastName}, pmtGender=#{pmtGender}, pmtNickName=#{pmtNickName}, pmtCellularPhone=#{pmtCellularPhone}
 								  , pmtMail=#{pmtMail}, pmtZipcode=#{pmtZipcode}, pmtAddress=#{pmtAddress}, pmtAddressDetail=#{pmtAddressDetail}, pmtMark=#{pmtMark}
 			WHERE promoter_id = #{promoter_id}
 		]]>
