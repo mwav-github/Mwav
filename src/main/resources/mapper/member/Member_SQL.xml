@@ -29,7 +29,7 @@
 	<insert id="insertMemberValue_tbl" parameterType="hashmap">
 		<![CDATA[
 	INSERT INTO MemberValue_tbl
-	    Values(#{member_id},'0','0','0','0','0','0','0','0','0',null,now(),null,null,null,null,null,null,null,null,null)
+	    Values(#{member_id},'0','0','0','0','0','0','0','0','0',null,now(),null,null,null,null,null,null,null,null,null, DATE_ADD(NOW(),INTERVAL 6 MONTH))
 		]]>
 	</insert>
 
@@ -60,7 +60,9 @@
 
 	<update id="updateMbrLoginPw" parameterType="hashmap" >
 		<![CDATA[
-		UPDATE Member_tbl SET mbrLoginPw = #{mbrLoginPw} WHERE mbrTempLoginPw = #{imsi_mbrLoginPw} and mbrLoginPw != #{hope_mbrLoginPw}
+		UPDATE Member_tbl
+		SET mbrLoginPw = #{mbrLoginPw}
+		WHERE mbrTempLoginPw = #{imsi_mbrLoginPw} and mbrLoginPw != #{hope_mbrLoginPw}
 		]]>
 	</update>
 

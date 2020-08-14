@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="login">
+	
+	<!--  -->
+	<select id="getLoginFailCount" parameterType="net.mwav.login.vo.LoginVO" resultType="net.mwav.login.vo.LoginVO">
+		<!-- SELECT 
+			  IFNULL(auditLogin_id, '') auditLogin_id
+			, IFNULL(alFailCount, 0) alFailCount
+		 FROM
+		(
+		SELECT 
+			CASE WHEN alEntityType = #{alEntityType} AND alEntityTarget_id = #{alEntityTarget_id} THEN auditLogin_id END auditLogin_id
+		    , CASE WHEN alEntityType = #{alEntityType} AND alEntityTarget_id = #{alEntityTarget_id} THEN alFailCount END alFailCount
+		FROM AuditLogin_tbl
+		) audit -->
+		
+		SELECT 
+			(SELECT 
+				IFNULL((SELECT 
+							auditLogin_id
+						FROM AuditLogin_tbl
+		                WHERE alEntityType = #{alEntityType}
+		                AND alEntityTarget_id = #{alEntityTarget_id}),
+				'')
+			) auditLogin_id
+		    , (SELECT 
+				IFNULL((SELECT 
+							alFailCount
+						FROM AuditLogin_tbl
+		                WHERE alEntityType = #{alEntityType}
+		                AND alEntityTarget_id = #{alEntityTarget_id}),
+		       0)
+			) alFailCount
+	</select>
+	
+	<!--/*========================================등록========================================*/  -->
+	<insert id="insertAuditLogin" parameterType="net.mwav.login.vo.LoginVO">
+		INSERT INTO AuditLogin_tbl
+		(
+			auditLogin_id,
+			alEntityType,
+			alEntityTarget_id,
+			alFailCount,
+			alDatetime,
+			alIpAddress
+		)
+		VALUES
+		(
+			(SELECT auditLogin_id FROM (SELECT IFNULL(MAX(auditLogin_id) + 1, 10000) auditLogin_id FROM AuditLogin_tbl) tb),
+			#{alEntityType},
+			#{alEntityTarget_id},
+			1,
+			now(),
+			#{alIpAddress}
+		)
+	</insert>
+
+	<!--/*======================+==================수정========================================*/  -->
+	
+	<update id="updateAuditLogin" parameterType="net.mwav.login.vo.LoginVO">
+	    UPDATE AuditLogin_tbl 
+		SET 
+		    alFailCount = alFailCount + 1, alDatetime = now()
+		WHERE
+		    auditLogin_id = #{auditLogin_id}
+    </update>
+    
+	
+	<delete id="deleteAuditLogin" parameterType="net.mwav.login.vo.LoginVO">
+	    DELETE FROM AuditLogin_tbl
+		WHERE alEntityType = #{alEntityType}
+		AND alEntityTarget_id = #{alEntityTarget_id}
+    </delete>
+    
+    <select id="getUpdatePwYN" parameterType="net.mwav.member.vo.Member_tbl_VO" resultType="int">
+    	SELECT CASE WHEN DATE_FORMAT(NOW(), '%Y-%m-%d')  >= DATE_FORMAT(mbrNextUpdateDt, '%Y-%m-%d') THEN 1 ELSE 0 END pwUpdate
+		FROM MemberValue_tbl
+		WHERE member_id = #{member_id}
+    </select>
+    
+    <update id="pwUpdateLater" parameterType="net.mwav.member.vo.Member_tbl_VO">
+    	UPDATE MemberValue_tbl
+    	SET
+    		mbrNextUpdateDt = DATE_ADD(NOW(),INTERVAL 6 MONTH)
+    	WHERE member_id = #{member_id}
+    </update>
+    
+    <select id="selectMbrLoginPw" parameterType="net.mwav.member.vo.Member_tbl_VO" resultType="String" >
+		<![CDATA[
+		select mbrLoginPw from Member_tbl where member_id = #{member_id}
+		]]>
+	</select>
+	
+	<update id="updateMbrLoginPw" parameterType="net.mwav.member.vo.Member_tbl_VO" >
+		<![CDATA[
+		UPDATE Member_tbl
+		SET mbrLoginPw = #{hope_mbrLoginPw}
+		WHERE member_id = #{member_id}
+		]]>
+	</update>
+</mapper>

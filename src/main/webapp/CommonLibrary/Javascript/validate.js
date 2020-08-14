@@ -194,7 +194,7 @@ function chkPWPolicy(validate_string, input_object) {
 
 	// alert('chk_LoginPW'+chk_LoginPW)
 
-	var re1 = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,255}$/; // 영문+숫자+특수문자를
+	var re1 = /^(?=.*[a-zA-Z])(?=.*[!@#$%^&*+=-])(?=.*[0-9]).{8,255}$/; // 영문+숫자+특수문자를
 																		// 혼용하여
 																		// 사용
 																		// 255자사용.

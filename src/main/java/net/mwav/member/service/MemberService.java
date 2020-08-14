@@ -20,7 +20,7 @@ public interface MemberService {
 	Map<String, Object> selectMbrView(Map<String, Object> map);
 
 	/*========================================수정========================================*/
-	boolean updateMbrLoginPw(Map<String, Object> map) throws IOException;
+	boolean updateMbrLoginPwTmp(Map<String, Object> map) throws IOException;
 	
 	Map<String, Object> updateMbrForm(Map<String, Object> map);
 	
@@ -43,7 +43,7 @@ public interface MemberService {
 	
 	
 	/*========================================삭제========================================*/
-	boolean deleteMbrDelete(Map<String, Object> map);
+	boolean deleteMbrDelete(Map<String, Object> map) throws Exception;
 
 	
 	List<String> selectListZcGunGuSeek(String zcSiDoName);

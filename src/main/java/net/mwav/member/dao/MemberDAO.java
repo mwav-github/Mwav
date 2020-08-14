@@ -8,6 +8,7 @@ import java.util.Map;
 import net.common.dao.AbstractDAO;
 import net.mwav.common.module.AesEncryption;
 import net.mwav.common.module.Common_Utils;
+import net.mwav.common.module.SecurityLib;
 import net.mwav.member.vo.Member_tbl_VO;
 
 import org.springframework.stereotype.Repository;
@@ -17,7 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class MemberDAO extends AbstractDAO {
 
 	byte[] decrypted = null;
-	byte[] encrypted = null;
+	String encrypted = null;
 
 	Common_Utils cu = new Common_Utils();
 
@@ -68,7 +69,7 @@ public class MemberDAO extends AbstractDAO {
 	}
 
 	@SuppressWarnings("unchecked")
-	public boolean updateMbrLoginPw(Map<String, Object> map) throws IOException {
+	public boolean updateMbrLoginPwTmp(Map<String, Object> map) throws IOException {
 		// TODO Auto-generated method stub
 
 		boolean flag = true;
@@ -82,25 +83,23 @@ public class MemberDAO extends AbstractDAO {
 			System.out.println("    - TEXT : " + b_mbrLoginPw);
 
 			// AES/CBC/IV 암호화
-			encrypted = AesEncryption.aesEncryptCbc(AesEncryption.sKey,
-					b_mbrLoginPw, AesEncryption.sInitVector);
-			String sBase = AesEncryption.aesEncodeBuf(encrypted);
+			encrypted = SecurityLib.getInstance().encryptToString(AesEncryption.sKey, AesEncryption.sInitVector, b_mbrLoginPw);	
 
 			// String b2_mbrLoginPw = AesTest.toHexString(encrypted);
-			System.out.println("    - TEXT2 : " + sBase);
+			System.out.println("    - TEXT2 : " + encrypted);
 
-			map.put("hope_mbrLoginPw", sBase);
+			map.put("hope_mbrLoginPw", encrypted);
 			if (encrypted == null) {
 				System.out.println("    - Encrypted : ERROR!!!");
 			} else {
-				System.out.println("    - Encrypted : " + sBase);
+				System.out.println("    - Encrypted : " + encrypted);
 			}
 			// 이전 pw워드와 동일한것으로 바뀌었는지 여부
 			String before_mbrLoginPw = (String) selectOne(
 					"member.selectMbrLoginPw", map);
 			System.out.println("이전" + before_mbrLoginPw);
-			System.out.println("입력" + sBase);
-			if (before_mbrLoginPw.equals(sBase)) {
+			System.out.println("입력" + encrypted);
+			if (before_mbrLoginPw.equals(encrypted)) {
 				// 이전비밀번호 입력과 동일하다.
 				// 1차로 거르는거
 				flag = false;
@@ -201,7 +200,7 @@ public class MemberDAO extends AbstractDAO {
 	 */
 
 	@SuppressWarnings("unchecked")
-	public boolean deleteMbrDelete(Map<String, Object> map) {
+	public boolean deleteMbrDelete(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		String b_mbrLoginPw = (String) map.get("mbrLoginPw");
 		System.out.println("* AES/CBC/IV");
@@ -211,24 +210,16 @@ public class MemberDAO extends AbstractDAO {
 		System.out.println("    - TEXT : " + b_mbrLoginPw);
 
 		// AES/CBC/IV 암호화
-		encrypted = AesEncryption.aesEncryptCbc(AesEncryption.sKey,
-				b_mbrLoginPw, AesEncryption.sInitVector);
-		String sBase = null;
-		try {
-			sBase = AesEncryption.aesEncodeBuf(encrypted);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		encrypted = SecurityLib.getInstance().encryptToString(AesEncryption.sKey, AesEncryption.sInitVector, b_mbrLoginPw);	
 
 		// String b2_mbrLoginPw = AesTest.toHexString(encrypted);
-		System.out.println("    - TEXT2 : " + sBase);
+		System.out.println("    - TEXT2 : " + encrypted);
 
-		map.put("mbrLoginPw", sBase);
+		map.put("mbrLoginPw", encrypted);
 		if (encrypted == null) {
 			System.out.println("    - Encrypted : ERROR!!!");
 		} else {
-			System.out.println("    - Encrypted : " + sBase);
+			System.out.println("    - Encrypted : " + encrypted);
 		}
 
 		int imsiflag = (int) update("member.deleteMbrDelete", map);
@@ -307,7 +298,7 @@ public class MemberDAO extends AbstractDAO {
 	public Map<String, Object> selectLogin(Map<String, Object> map)
 			throws IOException {
 		// TODO Auto-generated method stub
-		byte[] decrypted = null;
+		String decrypted = null;
 		// (Map<String, Object>) selectOne("member.selectLogin", map)
 		int logincheck; // loginCheck = 0 로그인 안됨 //loginCheck=1 로그인
 
@@ -326,21 +317,18 @@ public class MemberDAO extends AbstractDAO {
 			Decrypt_mbrLoginPw = (String) memberLogin.get("mbrLoginPw");
 
 			// 복호화 전 암호화된 값 바이트 배열로 변경
-			byte[] b_decrypted = AesEncryption.aesDecodeBuf(Decrypt_mbrLoginPw);
+			
+			//byte[] b_decrypted = AesEncryption.aesDecodeBuf(Decrypt_mbrLoginPw);
 
 			// 복호화 메소드 (키, 복호화대상, iv)
-			decrypted = AesEncryption.aesDecryptCbc(AesEncryption.sKey,
-					b_decrypted, AesEncryption.sInitVector);
-			String decrypted1 = null;
-			decrypted1 = new String(decrypted);
-			System.out.println("decrypted1=" + decrypted1);
+			decrypted = SecurityLib.getInstance().decryptToString(AesEncryption.sKey, AesEncryption.sInitVector, Decrypt_mbrLoginPw);
 
 			System.out.println("?");
 
 			System.out.println("mbrLeaveDt =" + mbrLeaveDt);
 
 			SimpleDateFormat sdfCurrent = new SimpleDateFormat();
-			memberLogin.put("mbrLoginPw", decrypted1);
+			memberLogin.put("mbrLoginPw", decrypted);
 			mbrLeaveDt = sdfCurrent.format(memberLogin.get("mbrLeaveDt")); // java.sql.Timestamp
 																			// cannot
 																			// be
