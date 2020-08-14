@@ -116,14 +116,11 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 				key_id = Integer.toString(staff.getStaff_id());
 
 			}
-			if (auth_url != null
-					&& (auth_url.equals("/Admins")
-							|| auth_url.equals("/admins") || auth_url
-								.equals("/admin/"))) {
-				if (!(request.getRequestURI()
-						.equals("/admins/staff/stfLogin.mwav"))
-						&& (key_id == null || key_id.equals("") || key_id
-								.equals("null"))) {
+			if (auth_url != null &&
+					(auth_url.equals("/Admins") || auth_url.equals("/admins") || auth_url.equals("/admin/"))) {
+
+				if (!(request.getRequestURI().equals("/admins/staff/stfLogin.mwav"))
+						&& (key_id == null || key_id.equals("") || key_id.equals("null"))) {
 
 					/*
 					 * [중요] http://enosent.tistory.com/34
@@ -151,9 +148,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 					// 위에서 !(auth_url.equals("/admins/staff/stfLogin.mwav") 체크
 					// 안하면 로그인 시도해도 그냥 로그인페이지로 리다이렉트
 					log.info("로그인상태 (staff)");
-					if ("/Admins/".equals(request
-							.getRequestURI()) || "/Admins".equals(request
-									.getRequestURI())) {
+					if ("/Admins/".equals(request.getRequestURI()) || "/Admins".equals(request.getRequestURI())) {
 						// 들어왔나?
 						response.sendRedirect("/admins/Default.mwav");
 
