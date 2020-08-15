@@ -145,7 +145,7 @@
 												<div class="col-sm-4 col-md-4">
 													<div class="panel panel-info">
 														<div class="panel-heading">직원명</div>
-														<div class="panel-body">${selectPmtView.pmtName}</div>
+														<div class="panel-body">${selectPmtView.pmtFirstName} ${selectPmtView.pmtLastName}</div>
 													</div>
 												</div>
 											</div>

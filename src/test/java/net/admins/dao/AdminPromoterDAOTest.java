@@ -24,7 +24,6 @@ import java.util.Map;
 /*
     Mybatis SQL Mapper 테스트
  */
-@Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:config/spring/mwav-data.xml"
                                  , "classpath:config/spring/mwav-mapper.xml"})
@@ -52,6 +51,8 @@ public class AdminPromoterDAOTest {
         commandMap.put("pmtLoginId", "TestpmtLoginId");
         commandMap.put("pmtLoginPw", "TestpmtLoginPw");
         commandMap.put("pmtName", "TestpmtName");
+        commandMap.put("pmtFirstName", "kong");
+        commandMap.put("pmtLastName", "taehyun");
         commandMap.put("pmtGender", "남성");
         commandMap.put("pmtNickname", "TestpmtNickname");
         commandMap.put("pmtCellularPhone", "01011112222");
@@ -65,7 +66,7 @@ public class AdminPromoterDAOTest {
         dao.insertPromoter_tbl(commandMap);
 
         // then
-        String promoter_id = sqlSession.selectOne("staff.selectOnePmtLoginId", commandMap.get("pmtLoginId"));
+        String promoter_id = sqlSession.selectOne("staffPromoter.selectOnePmtLoginId", commandMap.get("pmtLoginId"));
         Assertions.assertThat(promoter_id).isNotNull();
     }
 
@@ -76,7 +77,8 @@ public class AdminPromoterDAOTest {
         CommandMap commandMap = new CommandMap();
         commandMap.put("pmtLoginId", "TestpmtLoginId");
         commandMap.put("pmtLoginPw", "TestpmtLoginPw");
-        commandMap.put("pmtName", "TestpmtName");
+        commandMap.put("pmtFirstName", "kong");
+        commandMap.put("pmtLastName", "taehyun");
         commandMap.put("pmtGender", "남성");
         commandMap.put("pmtNickname", "TestpmtNickname");
         commandMap.put("pmtCellularPhone", "01011112222");
@@ -94,7 +96,7 @@ public class AdminPromoterDAOTest {
         dao.insertPromoterSpecialty_tbl(commandMap);
 
         // then
-        String promoter_id = sqlSession.selectOne("staff.selectOnePmtLoginId", commandMap.get("pmtLoginId"));
+        String promoter_id = sqlSession.selectOne("staffPromoter.selectOnePmtLoginId", commandMap.get("pmtLoginId"));
         List result = dao.selectPmtSpecialtyNames(promoter_id);
         Assertions.assertThat(result)
                 .hasSize(2)
@@ -110,7 +112,8 @@ public class AdminPromoterDAOTest {
         CommandMap commandMap = new CommandMap();
         commandMap.put("pmtLoginId", "TestpmtLoginId");
         commandMap.put("pmtLoginPw", "TestpmtLoginPw");
-        commandMap.put("pmtName", "TestpmtName");
+        commandMap.put("pmtFirstName", "kong");
+        commandMap.put("pmtLastName", "taehyun");
         commandMap.put("pmtGender", "남성");
         commandMap.put("pmtNickname", "TestpmtNickname");
         commandMap.put("pmtCellularPhone", "01011112222");
@@ -122,7 +125,7 @@ public class AdminPromoterDAOTest {
 
         // when
         dao.insertPromoter_tbl(commandMap);
-        String promoter_id = sqlSession.selectOne("staff.selectOnePmtLoginId", commandMap.get("pmtLoginId"));
+        String promoter_id = sqlSession.selectOne("staffPromoter.selectOnePmtLoginId", commandMap.get("pmtLoginId"));
         Map<String, Object> map = dao.selectPmtView(promoter_id);
 
         // then
@@ -138,7 +141,8 @@ public class AdminPromoterDAOTest {
         CommandMap commandMap = new CommandMap();
         commandMap.put("pmtLoginId", "TestpmtLoginId");
         commandMap.put("pmtLoginPw", "TestpmtLoginPw");
-        commandMap.put("pmtName", "TestpmtName");
+        commandMap.put("pmtFirstName", "kong");
+        commandMap.put("pmtLastName", "taehyun");
         commandMap.put("pmtGender", "남성");
         commandMap.put("pmtNickname", "TestpmtNickname");
         commandMap.put("pmtCellularPhone", "01011112222");
@@ -162,7 +166,7 @@ public class AdminPromoterDAOTest {
         dao.insertPromoterChannel_tbl(commandMap);
 
         // then
-        String promoter_id = sqlSession.selectOne("staff.selectOnePmtLoginId", commandMap.get("pmtLoginId"));
+        String promoter_id = sqlSession.selectOne("staffPromoter.selectOnePmtLoginId", commandMap.get("pmtLoginId"));
         Map<String, Object> map = dao.selectPmtView(promoter_id);
 
         Assertions.assertThat(map)
