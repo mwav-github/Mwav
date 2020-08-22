@@ -88,9 +88,9 @@
 		<!-- 포트번호 기본 25 구글 587 -->
 		<property name="defaultEncoding" value="utf-8" />
 		<!-- 기본인코딩 -->
-		<property name="username" value="" />
+		<property name="username" value="mwavemailtest@gmail.com" />
 		<!-- 메일주소 -->
-		<property name="password" value="" />
+		<property name="password" value="mwavtest1234" />
 		<!-- 메일비밀번호 -->
 		<property name="javaMailProperties">
 			<props>
