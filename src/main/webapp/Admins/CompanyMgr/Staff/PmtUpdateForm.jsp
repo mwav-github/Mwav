@@ -26,10 +26,10 @@
 	function msubmit() {
 
 		if(	chkEmailPolicy($('#chkEmail').val(), $('#chkEmail')) &&								// 이메일 검증
-			thisEmptyCheck($('#pmtNameChk'), '이름은 필수로 입력하셔야합니다.') &&				// 이름 검사
+			thisEmptyCheck($('#chkPmtFirstName'), '이름은 필수로 입력하셔야합니다.') &&				// 이름 검사
+			thisEmptyCheck($('#chkPmtLastName'), '이름은 필수로 입력하셔야합니다.') &&				    // 이름 검사
 			phoneCheck($('#pmtCellularPhone'), '핸드폰 번호는 필수로 입력하셔야합니다.') &&		// 핸드폰 검증
 
-			<% // TODO : 계좌번호 및 은행에 대한 검증 로직 필요 %>
 			thisEmptyCheck($('#pmtBankName'), '은행 명은 필수로 입력하셔야합니다.') &&			// 은행명 검증
 			thisEmptyCheck($('#pmtBankAccount'), '계좌번호는 필수로 입력하셔야합니다.') &&		// 계좌번호 검증
 
@@ -299,8 +299,11 @@
 																:</td>
 															<td>
 																<div class='form-group'>
-																	<div class='col-md-8'>
-																		<input type="text" id="pmtNameChk" class='form-control' name="pmtName" maxlength="20" value="${updatePmtForm.pmtName}" required>
+																	<div class='col-md-3'>
+																		<input type="text" id="chkPmtFirstName" class='form-control' name="pmtFirstName" maxlength="20" placeholder="FirstName" value="${updatePmtForm.pmtFirstName}" required>
+																	</div>
+																	<div class='col-md-4'>
+																		<input type="text" id="chkPmtLastName" class='form-control' name="pmtLastName" maxlength="20" placeholder="LastName" value="${updatePmtForm.pmtLastName}" required>
 																	</div>
 																</div>
 															</td>

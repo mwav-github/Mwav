@@ -146,7 +146,6 @@
 
 		}
 	}
-
 	/*
 		하나의 페이지에 2개의 주소를 입력받아야 할때 이 함수를 호출하여
 		우편번호, 주소 id를 매개변수로 넘겨준다.
@@ -171,7 +170,6 @@
 							$("#postnull").empty();
 							조회된 결과 값이 계속해서 나오지 않도록 empty로 해준다 상단 ajax 결과에서 참고~! 
 			 */
-
 		}
 		// prevent default browser behaviour
 		event.preventDefault();
