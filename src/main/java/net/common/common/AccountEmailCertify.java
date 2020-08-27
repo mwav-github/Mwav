@@ -20,14 +20,12 @@ public class AccountEmailCertify {
      * <pre>description : 이메일 인증 발송과 동시에 이메일 인증 확인 페이지로 포워딩</pre>
      * @param id
      * @param account
-     * @param req
      * @return
      * @throws Exception
      */
     @RequestMapping("/certify")
     public String certify(@RequestParam(required = true) String id,
-                          @RequestParam(required = true) String account,
-                          HttpServletRequest req) throws Exception {
+                          @RequestParam(required = true) String account) throws Exception {
         final String realPath = servletContext.getRealPath("/xConfig/mail.xml.config");
 
         XmlLib xmlLib = XmlLib.getInstance();
