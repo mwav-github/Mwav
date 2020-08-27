@@ -1,39 +1,42 @@
 package net.common.common;
 
-import net.mwav.common.module.MailLib;
-import net.mwav.common.module.MessageBuilder;
-import net.mwav.common.module.SecurityLib;
-import org.aspectj.org.eclipse.jdt.internal.eval.IRequestor;
+import net.mwav.common.module.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.mail.Message;
-import javax.mail.MessagingException;
-import java.io.UnsupportedEncodingException;
-import java.util.Properties;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class AccountEmailCertify {
 
+    @Autowired
+    ServletContext servletContext;
+
+    /**
+     * <pre>description : 이메일 인증 발송과 동시에 이메일 인증 확인 페이지로 포워딩</pre>
+     * @param id
+     * @param account
+     * @param req
+     * @return
+     * @throws Exception
+     */
     @RequestMapping("/certify")
     public String certify(@RequestParam(required = true) String id,
-                            @RequestParam(required = true) String account) throws UnsupportedEncodingException, MessagingException {
+                          @RequestParam(required = true) String account,
+                          HttpServletRequest req) throws Exception {
+        final String realPath = servletContext.getRealPath("/xConfig/mail.xml.config");
 
-        SecurityLib securityLib = SecurityLib.getInstance();
+        XmlLib xmlLib = XmlLib.getInstance();
+        MailConfig config = (MailConfig) xmlLib.unmarshal(realPath, MailConfig.class);
 
-        Properties props = new Properties();
-        props.put("mail.smtp.host", "smtp.gmail.com");
-        props.put("mail.smtp.port", "587");
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.starttls.enable", "true");
-        props.put("mail.smtp.user", "tony950620@gmail.com");
-        props.put("mail.smtp.password", "fkttfondlwbuppqu");
-
-        Message msg = new MessageBuilder(props)
+        Message msg = new MessageBuilder(config.getCollectAllFieldProp())
                                     .setRecipient("tony950620@naver.com")
                                     .setFrom("tony950620@gmail.com")
-                                    .setSubject("제목")
+                                    .setSubject("제목2")
                                     .setContent("컨텐츠").build();
 
         MailLib mailLib = MailLib.getInstance();
