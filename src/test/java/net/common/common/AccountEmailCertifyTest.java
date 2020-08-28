@@ -22,6 +22,7 @@ import javax.mail.Message;
 import javax.servlet.ServletContext;
 
 import java.lang.reflect.*;
+import java.util.Date;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -92,7 +93,7 @@ public class AccountEmailCertifyTest {
 
         //then
         mockMvc.perform(get("/certify")
-                        .param("id", "test")
-                        .param("account", "test"));
+                        .param("id", "memberId")
+                        .param("account", "promoter"));
     }
 }
