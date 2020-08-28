@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.mail.Message;
 import javax.servlet.ServletContext;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class AccountEmailCertify {
