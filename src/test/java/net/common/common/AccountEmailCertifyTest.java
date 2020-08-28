@@ -93,6 +93,7 @@ public class AccountEmailCertifyTest {
 
         //then
         mockMvc.perform(get("/certify")
+                        .param("email", "tony950620@naver.com")
                         .param("id", "memberId")
                         .param("account", "promoter"));
     }

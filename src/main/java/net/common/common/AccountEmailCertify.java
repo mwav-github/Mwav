@@ -29,8 +29,9 @@ public class AccountEmailCertify {
      * @throws Exception
      */
     @RequestMapping("/certify")
-    public String certify(@RequestParam(required = true) String id,
-                          @RequestParam(required = true) String account) throws Exception {
+    public String certify(@RequestParam(required = true) String email,
+                          @RequestParam(required = true) String account,
+                          @RequestParam(required = true) String id) throws Exception {
         // 이메일 설정 불러오기
         final String realPath = servletContext.getRealPath("/xConfig/mail.xml.config");
         XmlLib xmlLib = XmlLib.getInstance();
@@ -46,7 +47,7 @@ public class AccountEmailCertify {
 
         // 이메일 양식 작성
         Message msg = new MessageBuilder(config.getCollectAllFieldProp())
-                                    .setRecipient("tony950620@naver.com")
+                                    .setRecipient(email)
                                     .setFrom("tony950620@gmail.com")
                                     .setSubject("이메일 인증 요청")
                                     .setContent("<h1>이메일 인증</h1> <br> " + encryptQuery).build();
