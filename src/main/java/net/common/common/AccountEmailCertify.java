@@ -3,12 +3,16 @@ package net.common.common;
 import net.mwav.common.module.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.mail.Message;
 import javax.servlet.ServletContext;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.StringTokenizer;
 
 @Controller
 @RequestMapping("/accounts/email")
@@ -36,6 +40,7 @@ public class AccountEmailCertify {
         MailConfig config = (MailConfig) xmlLib.unmarshal(realPath, MailConfig.class);
 
         // id 및 account, time 이중 암호화
+        // TODO: IV 하드코딩, 별도의 관리 필요
         SecurityLib securityLib = SecurityLib.getInstance();
         String encryptAccount = securityLib.encryptToString(EncryptKey, "account", account);
         String encryptId = securityLib.encryptToString(EncryptKey, "id", id);
@@ -55,6 +60,27 @@ public class AccountEmailCertify {
         mailLib.send(msg);
 
         return "checkEmail";
+    }
+
+    @RequestMapping("/authority/{key}")
+    public String authority(@PathVariable(value = "key") String key) throws Exception {
+        // TODO: IV 하드코딩, 별도의 관리 필요
+        String[] ivList = {"account", "id", "time"};
+        Map<String, String> keyMap = new HashMap<String, String>();
+
+        // path로 받은 key를 복호화
+        SecurityLib securityLib = SecurityLib.getInstance();
+        final String decryptKey = securityLib.decryptToString(EncryptKey, "total", key);
+
+        // key를 분배
+        StringTokenizer tokenizer = new StringTokenizer(decryptKey, "==");
+
+        int index = 0;
+        while(tokenizer.hasMoreTokens()){
+            keyMap.put(ivList[index++], tokenizer.nextToken());
+        }
+
+        return "/";
     }
 
 }

@@ -1,6 +1,7 @@
 package net.common.common;
 
 import net.mwav.common.module.MailLib;
+import net.mwav.common.module.SecurityLib;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,6 +19,7 @@ import javax.mail.Message;
 import javax.servlet.ServletContext;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
+import java.util.Date;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
@@ -92,6 +94,13 @@ public class AccountEmailCertifyTest {
                         .param("id", "memberId")
                         .param("account", "promoter"))
                 .andExpect(status().isOk())
+                .andDo(print());
+    }
+
+    @Test
+    public void authority_이메일_인증_후_인증완료_체크() throws Exception {
+
+        mockMvc.perform(get("/accounts/email/authority/9INuwYNJSrEqzo84tHVhu4smeDaffpAi+pjnsEKyzd8Gpc/P6CCqOiZRKkhH7RPQxsnh3gGTYDkopTyNd0ItaAELggwIUFI+nhlOsLQjPTM="))
                 .andDo(print());
     }
 }
