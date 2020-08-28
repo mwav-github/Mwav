@@ -8,12 +8,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.mail.Message;
 import javax.servlet.ServletContext;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-import java.util.StringTokenizer;
 
 @Controller
+@RequestMapping("/accounts/email")
 public class AccountEmailCertify {
 
     @Autowired

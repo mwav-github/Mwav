@@ -1,9 +1,6 @@
 package net.common.common;
 
-import net.mwav.common.module.MailConfig;
 import net.mwav.common.module.MailLib;
-import net.mwav.common.module.MessageBuilder;
-import net.mwav.common.module.XmlLib;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,14 +13,11 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import sun.text.resources.cldr.or.FormatData_or;
 
 import javax.mail.Message;
 import javax.servlet.ServletContext;
-
-import java.lang.reflect.*;
-import java.util.Date;
-import java.util.List;
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
@@ -93,7 +87,7 @@ public class AccountEmailCertifyTest {
         makeMockMailLib();
 
         //then
-        mockMvc.perform(get("/certify")
+        mockMvc.perform(get("/accounts/email/certify")
                         .param("email", "tony950620@naver.com")
                         .param("id", "memberId")
                         .param("account", "promoter"))
