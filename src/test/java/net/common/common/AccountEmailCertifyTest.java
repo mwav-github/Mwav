@@ -29,6 +29,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 //@RunWith(MockitoJUnitRunner.class)
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -87,7 +88,7 @@ public class AccountEmailCertifyTest {
     }
 
     @Test
-    public void certify() throws Exception {
+    public void certify_이메일_발송_및_이메일_확인_페이지로_포워딩() throws Exception {
         //given & when
         makeMockMailLib();
 
@@ -95,6 +96,8 @@ public class AccountEmailCertifyTest {
         mockMvc.perform(get("/certify")
                         .param("email", "tony950620@naver.com")
                         .param("id", "memberId")
-                        .param("account", "promoter"));
+                        .param("account", "promoter"))
+                .andExpect(status().isOk())
+                .andDo(print());
     }
 }
