@@ -90,7 +90,7 @@
 		<!-- 기본인코딩 -->
 		<property name="username" value="mwavemailtest@gmail.com" />
 		<!-- 메일주소 -->
-		<property name="password" value="mwavtest1234" />
+		<property name="password" value="mwavtest1!!" />
 		<!-- 메일비밀번호 -->
 		<property name="javaMailProperties">
 			<props>

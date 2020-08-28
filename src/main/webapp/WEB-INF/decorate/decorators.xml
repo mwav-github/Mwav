@@ -50,7 +50,7 @@ Sitemesh의 경우 URL BASE로
     <decorator name="headerImport" page="/PartsOfContent/Head_Import.jsp" />
     <decorator name="headerMaster" page="/PartsOfContent/SiteHeader/FrontHeader_Master.jsp" />
     <decorator name="header" page="/PartsOfContent/SiteHeader/FrontHeader.jsp" />
-    <decorator name="footer" page="/PartsOfContent/SiteFooter/FrontFooter.jsp" />
+    <decorator name="footer" page="/PartsOfContent/SiteFooter/FrontFooter.mwav" />
 
 	<!--<excludes>
         <pattern>/*.mwav</pattern>
