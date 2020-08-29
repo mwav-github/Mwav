@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import net.bizLogin.promoter.service.PromoterService;
+import net.bizLogin.board.service.PmtBoardService;
 import net.common.common.CommandMap;
 
 
@@ -31,13 +31,13 @@ import net.common.common.CommandMap;
  * @see #method(String)
  */
 @Controller
-public class PromoterController {
+public class PmtBoardController {
 	Logger log = Logger.getLogger(this.getClass());
 
 
 	String mode;
-	@Resource(name = "promoterService")
-	private PromoterService promoterService;
+	@Resource(name = "pmtBoardService")
+	private PmtBoardService pmtBoardService;
 
 	
 	/**
@@ -56,11 +56,11 @@ public class PromoterController {
 	 * @since 작성 버전
 	 * @version 현재 버전
 	*/
-	@RequestMapping(value = "/sample/openBoardList.mwav")
+	@RequestMapping(value = "/sample/ab.mwav")
 	public ModelAndView openBoardList(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("/sample/boardList");
 
-		promoterService.insertBoard(commandMap.getMap());
+		pmtBoardService.insertBoard(commandMap.getMap());
 
 		return mv;
 	}

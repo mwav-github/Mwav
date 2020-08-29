@@ -1,8 +1,8 @@
-package net.bizLogin.board.service;
+package net.bizLogin.goods.service;
 
 import java.util.Map;
 
-public interface PromoterService {
+public interface PmtGoodsService {
 
 	void insertBoard(Map<String, Object> map);
 

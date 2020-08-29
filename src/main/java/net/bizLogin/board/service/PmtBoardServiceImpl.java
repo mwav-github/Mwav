@@ -1,18 +1,17 @@
-package net.bizLogin.promoter.service;
+package net.bizLogin.board.service;
 
 import java.util.Map;
 
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
-import net.bizLogin.promoter.dao.PromoterDAO;
+import net.bizLogin.board.dao.PmtBoardDAO;
 
+@Service("pmtBoardService")
+public class PmtBoardServiceImpl implements PmtBoardService {
 
-@Service("promoterService")
-public class PromoterServiceImpl implements PromoterService {
-
-	@Resource(name = "promoterDAO")
-	private PromoterDAO promoterDAO;
+	@Resource(name = "pmtBoardDAO")
+	private PmtBoardDAO pmtBoardDAO;
 
 
 	/**
