@@ -123,6 +123,26 @@
 		</property>
 	</bean>
 
+	<!-- Start Thymeleaf -->
+	<bean id="templateResolver"
+		  class="org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver" >
+		<property name="prefix" value="/WEB-INF/templates/" />
+		<property name="suffix" value=".html" />
+		<property name="templateMode" value="HTML" />
+		<property name="cacheable" value="true" />
+	</bean>
+	<bean id="templateEngine"
+		  class="org.thymeleaf.spring4.SpringTemplateEngine">
+		<property name="templateResolver" ref="templateResolver" />
+		<!-- Enabling the SpringEL compiler with Spring 4.2.4 or newer can speed up  -->
+		<!-- execution in most scenarios, but might be incompatible with specific    -->
+		<!-- cases when expressions in one template are reused across different data -->
+		<!-- ypes, so this flag is "false" by default for safer backwards            -->
+		<!-- compatibility.                                                          -->
+		<property name="enableSpringELCompiler" value="true" />
+	</bean>
+	<!-- End Thymeleaf -->
+
 
 	<!-- 등록안하는 경우 하기 에러 발생 Caused by: org.springframework.beans.factory.BeanCreationException: 
 		Could not autowire field: -->

@@ -1,5 +1,6 @@
 package net.sample.controller;
 
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.ui.Model;
 
 import net.common.common.CommandMap;
 import net.mwav.common.module.FileLib;
@@ -153,4 +155,15 @@ public class SampleController {
 
 		return mv;
 	}
+	@RequestMapping(value = "/sample/thymleaf_hello.mwav")
+	public ModelAndView helloThymleaf(Model model) throws Exception {
+		ModelAndView mv = new ModelAndView("thymleaf/thymleaf_hello");
+		String message = "Hello Mwav from Thymleaf ";
+		List<String> tasks = Arrays.asList("Work", "Hard", "Play", "Hard");
+		mv.addObject("message", message);
+		mv.addObject("tasks", tasks);
+
+		return mv;
+	}
+
 }

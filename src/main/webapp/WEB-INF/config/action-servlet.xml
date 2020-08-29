@@ -59,26 +59,39 @@
 	<!-- ViewResolver구요~ jsp와 name을 매핑시켜주는 녀석 Controller을 설명할 때, 서블릿 설정이 자동으로 prefix와 suffix를 붙인다고 해줬는데, 그 역할을 담당한다. 즉, 우리가 일일이 전체경로와 .jsp를 붙이지 않아도 되도록 도와준다. -->
 	<!-- 위에 prefix로 컨트롤러로 넘겨주는 url 결정 만약 /WEB-INF/views 로 되어있다면 앞에 자동으로 붇는다. -->
 	<!-- tiles(161130)추가에 따라 order 1>2로 변경. order 이란 순서를 의미하는데타일즈를 위한 UrlBasedViewResolver가 InternalResourceViewResolver보다 우선순위가 높아야 제대로 적용이된다. 이건 InternalResourceViewResolver는 아니지만 어쨌든 -->
-	<bean class="org.springframework.web.servlet.view.UrlBasedViewResolver" p:order="2" p:viewClass="org.springframework.web.servlet.view.JstlView" p:prefix="/" p:suffix=".jsp">
+	<bean class="org.springframework.web.servlet.view.UrlBasedViewResolver" p:order="2" p:viewClass="org.springframework.web.servlet.view.JstlView" p:prefix="/" p:suffix=".jsp" >
 		<!-- prefix는 페이지의 기본 루트 // 페이지의 기본 확장자 -->
 	</bean>
 
 
 	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver" p:order="3" />
 
-	<bean id="tilesView" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+	<!-- SpringResourceTemplateResolver automatically integrates with Spring's own -->
+	<!-- resource resolution infrastructure, which is highly recommended.          -->
+	<bean id="templateResolver" class="org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver">
+		<property name="prefix" value="/WEB-INF/thymleaf/" />
+		<property name="suffix" value=".jsp" />
+		<property name="cacheable" value="false" />
 		<property name="order" value="1" />
-		<property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView" />
+	</bean>
+	<bean id="templateEngine" class="org.thymeleaf.spring4.SpringTemplateEngine">
+		<property name="templateResolver" ref="templateResolver" />
+		<property name="enableSpringELCompiler" value="true" />
 	</bean>
 
+<!--	<bean id="tilesView" class="org.springframework.web.servlet.view.UrlBasedViewResolver">-->
+<!--		<property name="order" value="8" />-->
+<!--		<property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView" />-->
+<!--	</bean>-->
 
-	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
-		<property name="definitions">
-			<list>
-				<value>/WEB-INF/tiles/tiles.xml</value>
-			</list>
-		</property>
-	</bean>
+
+<!--	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">-->
+<!--		<property name="definitions">-->
+<!--			<list>-->
+<!--				<value>/WEB-INF/tiles/tiles.xml</value>-->
+<!--			</list>-->
+<!--		</property>-->
+<!--	</bean>-->
 
 
 
