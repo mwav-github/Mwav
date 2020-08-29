@@ -132,5 +132,8 @@ Structure101
 		return (Date) selectOne("promoter.selectChkPmtCertifyDt",promoter_id);
 	}
 
+	public int updatePmtCertifyDt(String promoter_id){
+		return (int) update("promoter.updatePmtCertifyDt", promoter_id);
+	}
 }
 

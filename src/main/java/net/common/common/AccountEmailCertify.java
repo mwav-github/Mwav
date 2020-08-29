@@ -44,7 +44,7 @@ public class AccountEmailCertify {
                           @RequestParam(required = true) String id,
                         HttpServletResponse res,
                         Model model) throws Exception {
-        String view = "checkEmail";
+        String view = "SendEmail";
 
         // 구분자에 맞춰 DB에서 인증여부 검색
         switch (account){
@@ -93,7 +93,11 @@ public class AccountEmailCertify {
     }
 
     @RequestMapping("/authority/{key}")
-    public String authority(@PathVariable(value = "key") String key) throws Exception {
+    public String authority(@PathVariable(value = "key") String key
+                        , Model model
+                        , HttpServletResponse res) throws Exception {
+        String view = "CheckCertify";
+
         // TODO: IV 하드코딩, 별도의 관리 필요
         String[] ivList = {"account", "id", "time"};
         Map<String, String> keyMap = new HashMap<String, String>();
@@ -113,7 +117,22 @@ public class AccountEmailCertify {
             index+=1;
         }
 
-        return "/";
+        // 구분자에 맞춰 DB에서 인증여부 검색
+        switch (keyMap.get("account")){
+            case "promoter" :
+                if(promoterDAO.selectChkPmtCertifyDt(keyMap.get("id")) != null){
+                    model.addAttribute("msg", "이미 인증받은 사용자입니다.");
+                    return view;
+                }
+                break;
+            case "member" : break;  // Member는 미구현
+            default: res.setStatus(HttpServletResponse.SC_BAD_REQUEST); //잘못된 구분값이 온다면 400 반환
+        }
+
+        promoterDAO.updatePmtCertifyDt(keyMap.get("id"));
+
+        model.addAttribute("msg", "이메일 인증되었습니다.");
+       return view;
     }
 
 }

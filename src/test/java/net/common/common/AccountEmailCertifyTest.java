@@ -127,9 +127,12 @@ public class AccountEmailCertifyTest {
         encryptQuery = encryptQuery.replaceAll("/","~");
 
         //when
+        when(promoterDAO.selectChkPmtCertifyDt(id)).thenReturn(null);   //pmtCertifyDt 의 값이 null 인 유저
+        when(promoterDAO.updatePmtCertifyDt(anyString())).thenReturn(1);
 
         //then
         mockMvc.perform(get("/accounts/email/authority/" + encryptQuery))
+                .andExpect(model().attribute("msg", "이메일 인증되었습니다."))
                 .andDo(print());
     }
 }
