@@ -100,7 +100,7 @@ public class AccountEmailCertifyTest {
     @Test
     public void authority_이메일_인증_후_인증완료_체크() throws Exception {
 
-        mockMvc.perform(get("/accounts/email/authority/9INuwYNJSrEqzo84tHVhu4smeDaffpAi+pjnsEKyzd8Gpc/P6CCqOiZRKkhH7RPQxsnh3gGTYDkopTyNd0ItaAELggwIUFI+nhlOsLQjPTM="))
+        mockMvc.perform(get("/accounts/email/authority/9INuwYNJSrEqzo84tHVhu4smeDaffpAi+pjnsEKyzd8Gpc~P6CCqOiZRKkhH7RPQG27Mx+lkn9~2U+BxJrJTsIHtB+mXCVT5jTc55iwH9nU="))
                 .andDo(print());
     }
 }

@@ -25,8 +25,8 @@ public class AccountEmailCertify {
 
     /**
      * <pre>description : 이메일 인증 발송과 동시에 이메일 인증 확인 페이지로 포워딩</pre>
-     * @param id
-     * @param account
+     * @param id    :   Member, Promoter의 LoginId
+     * @param account   : Member, Promoter 등의 구분자 (member or promoter)
      * @return
      * @throws Exception
      */
@@ -34,6 +34,8 @@ public class AccountEmailCertify {
     public String certify(@RequestParam(required = true) String email,
                           @RequestParam(required = true) String account,
                           @RequestParam(required = true) String id) throws Exception {
+        String view = "checkEmail";
+
         // 이메일 설정 불러오기
         final String realPath = servletContext.getRealPath("/xConfig/mail.xml.config");
         XmlLib xmlLib = XmlLib.getInstance();
@@ -47,6 +49,8 @@ public class AccountEmailCertify {
         String encryptTime = securityLib.encryptToString(EncryptKey, "time", String.valueOf(new Date().getTime()));
 
         String encryptQuery = securityLib.encryptToString(EncryptKey, "total", encryptAccount + encryptId + encryptTime);
+        encryptQuery = encryptQuery.replaceAll("/","~");
+
 
         // 이메일 양식 작성
         Message msg = new MessageBuilder(config.getCollectAllFieldProp())
@@ -59,7 +63,7 @@ public class AccountEmailCertify {
         MailLib mailLib = MailLib.getInstance();
         mailLib.send(msg);
 
-        return "checkEmail";
+        return view;
     }
 
     @RequestMapping("/authority/{key}")
@@ -70,14 +74,17 @@ public class AccountEmailCertify {
 
         // path로 받은 key를 복호화
         SecurityLib securityLib = SecurityLib.getInstance();
+
+        key = key.replaceAll("~","/");
         final String decryptKey = securityLib.decryptToString(EncryptKey, "total", key);
 
-        // key를 분배
+        // key를 분배 후 복호화하여 map에 등록
         StringTokenizer tokenizer = new StringTokenizer(decryptKey, "==");
 
         int index = 0;
         while(tokenizer.hasMoreTokens()){
-            keyMap.put(ivList[index++], tokenizer.nextToken());
+            keyMap.put(ivList[index], securityLib.decryptToString(ivList[index],ivList[index],"tokenizer.nextToken()"));
+            index+=1;
         }
 
         return "/";
