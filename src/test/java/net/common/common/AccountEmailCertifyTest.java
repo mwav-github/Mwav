@@ -1,6 +1,7 @@
 package net.common.common;
 
 import net.mwav.common.module.MailLib;
+import net.mwav.common.module.SecurityLib;
 import net.promoter.dao.PromoterDAO;
 import org.junit.Before;
 import org.junit.Test;
@@ -92,9 +93,9 @@ public class AccountEmailCertifyTest {
     public void certify_이메일_발송_및_이메일_확인_페이지로_포워딩() throws Exception {
         //given
         makeMockMailLib();
-        String id = "testPmtId";
-        String account = "promoter";
-        String email = "testEmail@naver.com";
+        final String id = "testPmtId";
+        final String account = "promoter";
+        final String email = "testEmail@naver.com";
 
         //when
         when(promoterDAO.selectChkPmtCertifyDt(id)).thenReturn(null);   //pmtCertifyDt 의 값이 null 인 유저
@@ -112,8 +113,23 @@ public class AccountEmailCertifyTest {
 
     @Test
     public void authority_이메일_인증_후_인증완료_체크() throws Exception {
+        //given
+        final String testEncryptKey = "EncryptKey";
+        final String account = "promoter";
+        final String id = "testPmtId";
 
-        mockMvc.perform(get("/accounts/email/authority/9INuwYNJSrEqzo84tHVhu4smeDaffpAi+pjnsEKyzd8Gpc~P6CCqOiZRKkhH7RPQG27Mx+lkn9~2U+BxJrJTsIHtB+mXCVT5jTc55iwH9nU="))
+        SecurityLib securityLib = SecurityLib.getInstance();
+        String encryptAccount = securityLib.encryptToString(testEncryptKey, "account", account);
+        String encryptId = securityLib.encryptToString(testEncryptKey, "id", id);
+        String encryptTime = securityLib.encryptToString(testEncryptKey, "time", String.valueOf(new Date().getTime()));
+
+        String encryptQuery = securityLib.encryptToString(testEncryptKey, "total", encryptAccount + encryptId + encryptTime);
+        encryptQuery = encryptQuery.replaceAll("/","~");
+
+        //when
+
+        //then
+        mockMvc.perform(get("/accounts/email/authority/" + encryptQuery))
                 .andDo(print());
     }
 }

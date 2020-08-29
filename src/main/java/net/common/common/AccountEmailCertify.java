@@ -109,7 +109,7 @@ public class AccountEmailCertify {
 
         int index = 0;
         while(tokenizer.hasMoreTokens()){
-            keyMap.put(ivList[index], securityLib.decryptToString(ivList[index],ivList[index],"tokenizer.nextToken()"));
+            keyMap.put(ivList[index], securityLib.decryptToString(EncryptKey, ivList[index], tokenizer.nextToken()+"=="));
             index+=1;
         }
 
