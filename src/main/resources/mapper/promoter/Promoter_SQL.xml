@@ -166,5 +166,15 @@
 		,#{sftJoinDt},#{sftDeleteDt},#{sftInserDt},#{sftUpdateDt},#{sftRecentLoginDt},#{sftIpAddress}
 		)
 	</insert> -->
+
+	<select id="selectChkPmtCertifyDt" parameterType="string" resultType="date">
+		<![CDATA[
+		SELECT T2.pmtCertifyDt
+		FROM Promoter_tbl T1
+			JOIN PromoterValue_tbl T2
+				ON T1.promoter_id = T2.promoter_id
+		WHERE T1.promoter_id = #{promoter_id}
+		]]>
+	</select>
 </mapper>
 

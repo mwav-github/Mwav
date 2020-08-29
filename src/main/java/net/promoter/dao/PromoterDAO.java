@@ -1,5 +1,6 @@
 package net.promoter.dao;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -125,6 +126,10 @@ Structure101
 	}
 	public Promoter_VO selectPmtLogin(Map<String, Object> map){
 		return (Promoter_VO)selectOne("promoter.selectPmtLogin",map);
+	}
+
+	public Date selectChkPmtCertifyDt(String promoter_id){
+		return (Date) selectOne("promoter.selectChkPmtCertifyDt",promoter_id);
 	}
 
 }

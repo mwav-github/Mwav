@@ -1,11 +1,12 @@
 package net.common.common;
 
 import net.mwav.common.module.MailLib;
-import net.mwav.common.module.SecurityLib;
+import net.promoter.dao.PromoterDAO;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 //@RunWith(MockitoJUnitRunner.class)
@@ -32,6 +34,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ContextConfiguration(locations = {"classpath:config/spring/mwav-mvc.xml"})
 @WebAppConfiguration
 public class AccountEmailCertifyTest {
+
+    @Mock
+    PromoterDAO promoterDAO;
 
     @Spy @Autowired
     ServletContext servletContext;
@@ -85,15 +90,23 @@ public class AccountEmailCertifyTest {
 
     @Test
     public void certify_이메일_발송_및_이메일_확인_페이지로_포워딩() throws Exception {
-        //given & when
+        //given
         makeMockMailLib();
+        String id = "testPmtId";
+        String account = "promoter";
+        String email = "testEmail@naver.com";
+
+        //when
+        when(promoterDAO.selectChkPmtCertifyDt(id)).thenReturn(null);   //pmtCertifyDt 의 값이 null 인 유저
 
         //then
         mockMvc.perform(get("/accounts/email/certify")
-                        .param("email", "tony950620@naver.com")
-                        .param("id", "memberId")
-                        .param("account", "promoter"))
+                        .param("email", email)
+                        .param("id", id)
+                        .param("account", account))
                 .andExpect(status().isOk())
+                .andExpect(model().attribute("status","sendMail"))
+                .andExpect(model().attribute("msg", "인증 메일을 발송하였습니다."))
                 .andDo(print());
     }
 

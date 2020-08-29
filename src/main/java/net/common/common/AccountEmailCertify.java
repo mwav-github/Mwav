@@ -1,14 +1,19 @@
 package net.common.common;
 
 import net.mwav.common.module.*;
+import net.promoter.dao.PromoterDAO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.mail.Message;
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -20,6 +25,9 @@ public class AccountEmailCertify {
 
     @Autowired
     ServletContext servletContext;
+
+    @Autowired
+    PromoterDAO promoterDAO;
 
     private final String EncryptKey = "EncryptKey";
 
@@ -33,8 +41,23 @@ public class AccountEmailCertify {
     @RequestMapping("/certify")
     public String certify(@RequestParam(required = true) String email,
                           @RequestParam(required = true) String account,
-                          @RequestParam(required = true) String id) throws Exception {
+                          @RequestParam(required = true) String id,
+                        HttpServletResponse res,
+                        Model model) throws Exception {
         String view = "checkEmail";
+
+        // 구분자에 맞춰 DB에서 인증여부 검색
+        switch (account){
+            case "promoter" :
+                if(promoterDAO.selectChkPmtCertifyDt(id) != null){
+                    model.addAttribute("status", "pmtLogin");
+                    model.addAttribute("msg", "이미 인증받은 사용자입니다<br>로그인 페이지로 이동합니다.");
+                    return view;
+                }
+                break;
+            case "member" : break;  // Member는 미구현
+            default: res.setStatus(HttpServletResponse.SC_BAD_REQUEST); //잘못된 구분값이 온다면 400 반환
+        }
 
         // 이메일 설정 불러오기
         final String realPath = servletContext.getRealPath("/xConfig/mail.xml.config");
@@ -53,6 +76,7 @@ public class AccountEmailCertify {
 
 
         // 이메일 양식 작성
+        // TODO: 이메일 템플릿 작성 필요
         Message msg = new MessageBuilder(config.getCollectAllFieldProp())
                                     .setRecipient(email)
                                     .setFrom("tony950620@gmail.com")
@@ -63,6 +87,8 @@ public class AccountEmailCertify {
         MailLib mailLib = MailLib.getInstance();
         mailLib.send(msg);
 
+        model.addAttribute("status", "sendMail");
+        model.addAttribute("msg", "인증 메일을 발송하였습니다.");
         return view;
     }
 
