@@ -181,7 +181,7 @@
 		<![CDATA[
 		UPDATE PromoterValue_tbl SET pmtCertifyDt = NOW()
 		WHERE promoter_id = (SELECT promoter_id FROM Promoter_tbl WHERE pmtLoginId = #{promoter_id})
-		]]
+		]]>
 	</update>
 </mapper>
 
