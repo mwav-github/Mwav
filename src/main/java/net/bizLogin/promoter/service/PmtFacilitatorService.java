@@ -2,7 +2,7 @@ package net.bizLogin.promoter.service;
 
 import java.util.Map;
 
-public interface PromoterService {
+public interface PmtFacilitatorService {
 
 	void insertBoard(Map<String, Object> map);
 

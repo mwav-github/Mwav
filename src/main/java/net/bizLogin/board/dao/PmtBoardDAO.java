@@ -4,8 +4,8 @@ import net.common.dao.AbstractDAO;
 import org.springframework.stereotype.Repository;
 
 
-@Repository("promoterDAO")
-public class PromoterDAO extends AbstractDAO{
+@Repository("pmtBoardDAO")
+public class PmtBoardDAO extends AbstractDAO{
 
 
 }

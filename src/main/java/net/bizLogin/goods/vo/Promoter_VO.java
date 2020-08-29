@@ -1,4 +1,4 @@
-package net.bizLogin.good.vo;
+package net.bizLogin.goods.vo;
 
 public class Promoter_VO extends Promoter {
 

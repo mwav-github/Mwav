@@ -1,4 +1,4 @@
-package net.bizLogin.good.vo;
+package net.bizLogin.goods.vo;
 
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
