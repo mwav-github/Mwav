@@ -33,7 +33,7 @@ public class AccountEmailCertify {
     private final String EncryptKey = "EncryptKey";
 
     /**
-     * <pre>description : 이메일 인증 발송과 동시에 이메일 인증 확인 페이지로 포워딩</pre>
+     * <pre>description : 이메일 인증 발송, 성공여부와 메세지를 응답함</pre>
      * @param id    :   Member, Promoter의 LoginId
      * @param account   : Member, Promoter 등의 구분자 (member or promoter)
      * @param email :   발송할 이메일
@@ -105,7 +105,7 @@ public class AccountEmailCertify {
     public String authority(@PathVariable(value = "key") String key
                         , Model model
                         , HttpServletResponse res) throws Exception {
-        String view = "CheckCertify";
+        String view = "/CommonApps/AccountCertification/CheckCertify";
 
         // TODO: IV 하드코딩, 별도의 관리 필요
         String[] ivList = {"account", "id", "time"};
