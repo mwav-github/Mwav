@@ -52,18 +52,18 @@ public class AccountEmailCertify {
             case "pmt" :
                 String certifyDtYN = promoterDAO.selectChkPmtCertifyDtYN(id);
                 if("Y".equals(certifyDtYN)){
-                    body.put("status", "Already");
+                    body.put("status", "ALREADY");
                     body.put("msg", "이미 인증받은 사용자입니다.");
                     return new ResponseEntity(body, HttpStatus.BAD_REQUEST);
                 }else if(certifyDtYN == null){
-                    body.put("status", "notExist");
+                    body.put("status", "NOT_EXIST");
                     body.put("msg", "존재하지 않는 사용자 입니다.");
                     return new ResponseEntity(body, HttpStatus.BAD_REQUEST);
                 }
                 break;
             case "member" : break;  // Member는 미구현
             default:
-                body.put("status", "badRequest");
+                body.put("status", "BAD_REQUEST");
                 body.put("msg", "잘못된 요청입니다.");
                 return new ResponseEntity(body, HttpStatus.BAD_REQUEST);
         }
@@ -96,7 +96,7 @@ public class AccountEmailCertify {
         MailLib mailLib = MailLib.getInstance();
         mailLib.send(msg);
 
-        body.put("status", "sendEmail");
+        body.put("status", "SEND_MAIL");
         body.put("msg", "인증 메일을 발송하였습니다.");
         return new ResponseEntity(body, HttpStatus.OK);
     }
@@ -126,14 +126,21 @@ public class AccountEmailCertify {
             index+=1;
         }
 
-        // TODO: time값이 30분 이내인지 유효성 체크
+        // time값이 30분 이내인지 유효성 체크, 1800000 = 30분(1 milliseconds)
+        Long keyTime = Long.valueOf(keyMap.get("time"));
+        Long nowTime = new Date().getTime() - 1800000;
+        if(nowTime > keyTime){
+            model.addAttribute("status", "TIME_OUT");
+            model.addAttribute("msg", "인증 유효기간이 지났습니다.");
+            return view;
+        }
 
         // 구분자에 맞춰 DB에서 인증여부 검색
         switch (keyMap.get("account")){
             case "pmt" :
                 String certifyDtYN = promoterDAO.selectChkPmtCertifyDtYN(keyMap.get("id"));
                 if("Y".equals(certifyDtYN)){
-                    model.addAttribute("status", "pmtLogin");
+                    model.addAttribute("status", "ALREADY");
                     model.addAttribute("msg", "이미 인증받은 사용자입니다.");
                     return view;
                 }else if(certifyDtYN == null){
@@ -147,6 +154,7 @@ public class AccountEmailCertify {
 
         promoterDAO.updatePmtCertifyDt(keyMap.get("id"));
 
+        model.addAttribute("status", "SUCCESS");
         model.addAttribute("msg", "이메일 인증되었습니다.");
        return view;
     }

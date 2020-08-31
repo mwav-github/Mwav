@@ -114,7 +114,7 @@ public class AccountEmailCertifyTest {
                         .param("account", account))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(content().string("{\"msg\":\"인증 메일을 발송하였습니다.\",\"status\":\"sendEmail\"}"));
+                .andExpect(content().string("{\"msg\":\"인증 메일을 발송하였습니다.\",\"status\":\"SEND_MAIL\"}"));
     }
 
     @Test
