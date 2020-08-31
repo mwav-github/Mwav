@@ -41,28 +41,31 @@ public class AccountEmailCertify {
      * @throws Exception
      */
     @RequestMapping("/certify")
-    public String certify(@RequestParam(required = true) String email,
+    public ResponseEntity certify(@RequestParam(required = true) String email,
                           @RequestParam(required = true) String account,
                           @RequestParam(required = true) String id,
-                        HttpServletResponse res,
-                        Model model) throws Exception {
-        String view = "SendEmail";
+                        HttpServletResponse res) throws Exception {
+        Map<String, String> body = new HashMap<String, String>();
 
         // 구분자에 맞춰 DB에서 인증여부 검색
         switch (account){
             case "pmt" :
                 String certifyDtYN = promoterDAO.selectChkPmtCertifyDtYN(id);
                 if("Y".equals(certifyDtYN)){
-                    model.addAttribute("status", "pmtLogin");
-                    model.addAttribute("msg", "이미 인증받은 사용자입니다.");
-                    return view;
+                    body.put("status", "Already");
+                    body.put("msg", "이미 인증받은 사용자입니다.");
+                    return new ResponseEntity(body, HttpStatus.BAD_REQUEST);
                 }else if(certifyDtYN == null){
-                    return "redirect: /";
+                    body.put("status", "notExist");
+                    body.put("msg", "존재하지 않는 사용자 입니다.");
+                    return new ResponseEntity(body, HttpStatus.BAD_REQUEST);
                 }
                 break;
             case "member" : break;  // Member는 미구현
             default:
-                return "redirect: /";
+                body.put("status", "badRequest");
+                body.put("msg", "잘못된 요청입니다.");
+                return new ResponseEntity(body, HttpStatus.BAD_REQUEST);
         }
 
         // 이메일 설정 불러오기
@@ -82,20 +85,20 @@ public class AccountEmailCertify {
 
 
         // 이메일 양식 작성
-        // TODO: 이메일 템플릿 작성 필요
+        // TODO: 이메일 템플릿 작성 필요, 배포시 도메인을 수정해야함
         Message msg = new MessageBuilder(config.getCollectAllFieldProp())
                                     .setRecipient(email)
                                     .setFrom("tony950620@gmail.com")
                                     .setSubject("이메일 인증 요청")
-                                    .setContent("<h1>이메일 인증</h1> <br> " + encryptQuery).build();
+                                    .setContent("<h1>이메일 인증</h1> <br> <a href='http://localhost:8080/accounts/email/authority/" + encryptQuery + "'>인증하기</a>").build();
 
         // 메일 발송
         MailLib mailLib = MailLib.getInstance();
         mailLib.send(msg);
 
-        model.addAttribute("status", "sendMail");
-        model.addAttribute("msg", "인증 메일을 발송하였습니다.");
-        return view;
+        body.put("status", "sendEmail");
+        body.put("msg", "인증 메일을 발송하였습니다.");
+        return new ResponseEntity(body, HttpStatus.OK);
     }
 
     @RequestMapping("/authority/{key}")
@@ -122,6 +125,8 @@ public class AccountEmailCertify {
             keyMap.put(ivList[index], securityLib.decryptToString(EncryptKey, ivList[index], tokenizer.nextToken()+"=="));
             index+=1;
         }
+
+        // TODO: time값이 30분 이내인지 유효성 체크
 
         // 구분자에 맞춰 DB에서 인증여부 검색
         switch (keyMap.get("account")){
