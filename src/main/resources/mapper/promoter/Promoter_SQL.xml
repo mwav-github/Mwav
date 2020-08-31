@@ -167,9 +167,11 @@
 		)
 	</insert> -->
 
-	<select id="selectChkPmtCertifyDt" parameterType="string" resultType="date">
+	<select id="selectChkPmtCertifyDtYN" parameterType="string" resultType="string">
 		<![CDATA[
-		SELECT T2.pmtCertifyDt
+		SELECT CASE WHEN T2.pmtCertifyDt IS NOT NULL THEN 'Y'
+					ELSE 'N'
+					END	CertifyDtYN
 		FROM Promoter_tbl T1
 			JOIN PromoterValue_tbl T2
 				ON T1.promoter_id = T2.promoter_id

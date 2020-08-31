@@ -35,6 +35,7 @@ public class AccountEmailCertify {
      * <pre>description : 이메일 인증 발송과 동시에 이메일 인증 확인 페이지로 포워딩</pre>
      * @param id    :   Member, Promoter의 LoginId
      * @param account   : Member, Promoter 등의 구분자 (member or promoter)
+     * @param email :   발송할 이메일
      * @return
      * @throws Exception
      */
@@ -49,9 +50,13 @@ public class AccountEmailCertify {
         // 구분자에 맞춰 DB에서 인증여부 검색
         switch (account){
             case "promoter" :
-                if(promoterDAO.selectChkPmtCertifyDt(id) != null){
+                String certifyDtYN = promoterDAO.selectChkPmtCertifyDtYN(id);
+                if("Y".equals(certifyDtYN)){
                     model.addAttribute("status", "pmtLogin");
-                    model.addAttribute("msg", "이미 인증받은 사용자입니다<br>로그인 페이지로 이동합니다.");
+                    model.addAttribute("msg", "이미 인증받은 사용자입니다.");
+                    return view;
+                }else if(certifyDtYN == null){
+                    res.setStatus(HttpServletResponse.SC_BAD_REQUEST); //존재하지 않는 id가 왔을때
                     return view;
                 }
                 break;
@@ -120,8 +125,13 @@ public class AccountEmailCertify {
         // 구분자에 맞춰 DB에서 인증여부 검색
         switch (keyMap.get("account")){
             case "promoter" :
-                if(promoterDAO.selectChkPmtCertifyDt(keyMap.get("id")) != null){
+                String certifyDtYN = promoterDAO.selectChkPmtCertifyDtYN(keyMap.get("id"));
+                if("Y".equals(certifyDtYN)){
+                    model.addAttribute("status", "pmtLogin");
                     model.addAttribute("msg", "이미 인증받은 사용자입니다.");
+                    return view;
+                }else if(certifyDtYN == null){
+                    res.setStatus(HttpServletResponse.SC_BAD_REQUEST); //존재하지 않는 id가 왔을때
                     return view;
                 }
                 break;

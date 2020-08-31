@@ -128,8 +128,8 @@ Structure101
 		return (Promoter_VO)selectOne("promoter.selectPmtLogin",map);
 	}
 
-	public Date selectChkPmtCertifyDt(String promoter_id){
-		return (Date) selectOne("promoter.selectChkPmtCertifyDt",promoter_id);
+	public String selectChkPmtCertifyDtYN(String promoter_id){
+		return (String) selectOne("promoter.selectChkPmtCertifyDtYN",promoter_id);
 	}
 
 	public int updatePmtCertifyDt(String promoter_id){

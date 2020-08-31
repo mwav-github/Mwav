@@ -4,18 +4,21 @@ import net.mwav.common.module.MailLib;
 import net.mwav.common.module.SecurityLib;
 import net.promoter.dao.PromoterDAO;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.mail.Message;
 import javax.servlet.ServletContext;
@@ -30,9 +33,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-//@RunWith(MockitoJUnitRunner.class)
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:config/spring/mwav-mvc.xml"})
+@ContextConfiguration(locations = {"classpath:config/spring/mwav-mvc.xml"
+                                    , "classpath:config/spring/mwav-data.xml"
+                                    , "classpath:config/spring/mwav-mapper.xml"})
 @WebAppConfiguration
 public class AccountEmailCertifyTest {
 
@@ -46,6 +50,9 @@ public class AccountEmailCertifyTest {
     AccountEmailCertify controller;
 
     MockMvc mockMvc;
+
+    @Autowired
+    SqlSessionTemplate sqlSession;
 
     @Before
     public void setup(){
@@ -98,7 +105,7 @@ public class AccountEmailCertifyTest {
         final String email = "testEmail@naver.com";
 
         //when
-        when(promoterDAO.selectChkPmtCertifyDt(id)).thenReturn(null);   //pmtCertifyDt 의 값이 null 인 유저
+        when(promoterDAO.selectChkPmtCertifyDtYN(id)).thenReturn("N");   //pmtCertifyDt 의 값이 null 인 유저
 
         //then
         mockMvc.perform(get("/accounts/email/certify")
@@ -127,12 +134,51 @@ public class AccountEmailCertifyTest {
         encryptQuery = encryptQuery.replaceAll("/","~");
 
         //when
-        when(promoterDAO.selectChkPmtCertifyDt(id)).thenReturn(null);   //pmtCertifyDt 의 값이 null 인 유저
+        when(promoterDAO.selectChkPmtCertifyDtYN(id)).thenReturn("N");   //pmtCertifyDt 의 값이 null 인 유저
         when(promoterDAO.updatePmtCertifyDt(anyString())).thenReturn(1);
 
         //then
         mockMvc.perform(get("/accounts/email/authority/" + encryptQuery))
+                .andExpect(status().isOk())
                 .andExpect(model().attribute("msg", "이메일 인증되었습니다."))
                 .andDo(print());
+    }
+
+    @Ignore
+    @Transactional
+    @Test
+    public void 이메일_인증할_유저가_존재하는지_인증됐는지_여부(){
+        // given
+        // PromoterValue_tbl Dump Data Insert
+        String pmtLoginId = "TestpmtLoginId";
+
+        CommandMap commandMap = new CommandMap();
+        commandMap.put("pmtLoginId", pmtLoginId);
+        commandMap.put("pmtLoginPw", "TestpmtLoginPw");
+        commandMap.put("pmtFirstName", "kong");
+        commandMap.put("pmtLastName", "taehyun");
+        commandMap.put("pmtGender", "남성");
+        commandMap.put("pmtNickname", "TestpmtNickname");
+        commandMap.put("pmtCellularPhone", "01011112222");
+        commandMap.put("pmtMail", "TestpmtMail@mwav.net");
+        commandMap.put("pmtZipcode", "0000");
+        commandMap.put("pmtAddress", "TestpmtAddress");
+        commandMap.put("pmtAddressDetail", "TestpmtAddressDetail");
+        commandMap.put("pmtMark", "TestpmtMark");
+
+        commandMap.put("promoter_id", "999999");
+        commandMap.put("Promoter_tbl_promoter_id", "999999");
+
+        sqlSession.insert("staffPromoter.insertPromoter_tbl", commandMap.getMap());
+        sqlSession.insert("staffPromoter.insertPromoterValue_tbl", commandMap.getMap());
+
+        String promoter_id = sqlSession.selectOne("staffPromoter.selectOnePmtLoginId", pmtLoginId);
+        sqlSession.update("promoter.updatePmtCertifyDt", pmtLoginId);
+
+        // when
+
+        // then
+        final String pmtCertifyDt = sqlSession.selectOne("promoter.selectChkPmtCertifyDtYN", promoter_id);
+        assertThat(pmtCertifyDt).isEqualTo("Y");
     }
 }
