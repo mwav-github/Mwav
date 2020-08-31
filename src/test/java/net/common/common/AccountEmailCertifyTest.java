@@ -101,28 +101,28 @@ public class AccountEmailCertifyTest {
         //given
         makeMockMailLib();
         final String id = "testPmtId";
-        final String account = "promoter";
+        final String account = "pmt";
         final String email = "testEmail@naver.com";
 
         //when
-        when(promoterDAO.selectChkPmtCertifyDtYN(id)).thenReturn("N");   //pmtCertifyDt 의 값이 null 인 유저
+        when(promoterDAO.selectChkPmtCertifyDtYN(id)).thenReturn(null);   //pmtCertifyDt 의 값이 null 인 유저
 
         //then
         mockMvc.perform(get("/accounts/email/certify")
                         .param("email", email)
                         .param("id", id)
                         .param("account", account))
+                .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("status","sendMail"))
-                .andExpect(model().attribute("msg", "인증 메일을 발송하였습니다."))
-                .andDo(print());
+                .andExpect(model().attribute("msg", "인증 메일을 발송하였습니다."));
     }
 
     @Test
     public void authority_이메일_인증_후_인증완료_체크() throws Exception {
         //given
         final String testEncryptKey = "EncryptKey";
-        final String account = "promoter";
+        final String account = "pmt";
         final String id = "testPmtId";
 
         SecurityLib securityLib = SecurityLib.getInstance();

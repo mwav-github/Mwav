@@ -175,7 +175,7 @@
 		FROM Promoter_tbl T1
 			JOIN PromoterValue_tbl T2
 				ON T1.promoter_id = T2.promoter_id
-		WHERE T1.promoter_id = #{promoter_id}
+		WHERE T1.pmtLoginId = #{promoter_id}
 		]]>
 	</select>
 

@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -49,19 +50,19 @@ public class AccountEmailCertify {
 
         // 구분자에 맞춰 DB에서 인증여부 검색
         switch (account){
-            case "promoter" :
+            case "pmt" :
                 String certifyDtYN = promoterDAO.selectChkPmtCertifyDtYN(id);
                 if("Y".equals(certifyDtYN)){
                     model.addAttribute("status", "pmtLogin");
                     model.addAttribute("msg", "이미 인증받은 사용자입니다.");
                     return view;
                 }else if(certifyDtYN == null){
-                    res.setStatus(HttpServletResponse.SC_BAD_REQUEST); //존재하지 않는 id가 왔을때
-                    return view;
+                    return "redirect: /";
                 }
                 break;
             case "member" : break;  // Member는 미구현
-            default: res.setStatus(HttpServletResponse.SC_BAD_REQUEST); //잘못된 구분값이 온다면 400 반환
+            default:
+                return "redirect: /";
         }
 
         // 이메일 설정 불러오기
@@ -124,19 +125,19 @@ public class AccountEmailCertify {
 
         // 구분자에 맞춰 DB에서 인증여부 검색
         switch (keyMap.get("account")){
-            case "promoter" :
+            case "pmt" :
                 String certifyDtYN = promoterDAO.selectChkPmtCertifyDtYN(keyMap.get("id"));
                 if("Y".equals(certifyDtYN)){
                     model.addAttribute("status", "pmtLogin");
                     model.addAttribute("msg", "이미 인증받은 사용자입니다.");
                     return view;
                 }else if(certifyDtYN == null){
-                    res.setStatus(HttpServletResponse.SC_BAD_REQUEST); //존재하지 않는 id가 왔을때
-                    return view;
+                    return "redirect: /";
                 }
                 break;
             case "member" : break;  // Member는 미구현
-            default: res.setStatus(HttpServletResponse.SC_BAD_REQUEST); //잘못된 구분값이 온다면 400 반환
+            default:
+                return "redirect: /";
         }
 
         promoterDAO.updatePmtCertifyDt(keyMap.get("id"));
