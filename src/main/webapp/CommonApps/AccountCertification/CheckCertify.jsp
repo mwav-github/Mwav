@@ -7,12 +7,12 @@
     <jsp:include page="/PartsOfContent/Head_Import.jsp" flush="false" />
 
     <script>
-        $.ready(function(){
+        $(document).ready(function(){
             alert('${status}')
         })
     </script>
 </head>
 <body>
-    <h1>이메일 인증 완료</h1>
+    <h1>${msg}</h1>
 </body>
 </html>

@@ -20,12 +20,17 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.velocity.VelocityEngineUtils;
+import org.springframework.web.servlet.view.velocity.VelocityConfigurer;
 
 import javax.mail.Message;
 import javax.servlet.ServletContext;
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
@@ -179,5 +184,16 @@ public class AccountEmailCertifyTest {
         // then
         final String pmtCertifyDt = sqlSession.selectOne("promoter.selectChkPmtCertifyDtYN", promoter_id);
         assertThat(pmtCertifyDt).isEqualTo("Y");
+    }
+
+    @Test
+    public void velocityLocationTest() throws IOException {
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("key", "encryptQuery");
+        VelocityConfigurer velocityConfig = new VelocityConfigurer();
+
+        //client에서 템플릿엔진 라이브러리르 호출하여 html코드로 파싱 후 문자열로 반환
+        String content = VelocityEngineUtils.mergeTemplateIntoString(velocityConfig.createVelocityEngine()
+                , servletContext.getRealPath("/Templates/GeneralMail/PWSeekEmail.vm"), "UTF-8", map);
     }
 }

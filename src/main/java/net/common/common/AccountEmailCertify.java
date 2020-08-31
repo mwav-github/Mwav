@@ -7,10 +7,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.velocity.VelocityEngineUtils;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.view.velocity.VelocityConfigurer;
 
 import javax.mail.Message;
 import javax.servlet.ServletContext;
@@ -85,12 +87,20 @@ public class AccountEmailCertify {
 
 
         // 이메일 양식 작성
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("key", encryptQuery);
+        VelocityConfigurer velocityConfig = new VelocityConfigurer();
+
+        //client에서 템플릿엔진 라이브러리르 호출하여 html코드로 파싱 후 문자열로 반환
+        String content = VelocityEngineUtils.mergeTemplateIntoString(velocityConfig.createVelocityEngine()
+                , servletContext.getRealPath("Templates/GeneralMail/AccountCertify.vm"), "UTF-8", map);
+
         // TODO: 이메일 템플릿 작성 필요, 배포시 도메인을 수정해야함
         Message msg = new MessageBuilder(config.getCollectAllFieldProp())
                                     .setRecipient(email)
                                     .setFrom("tony950620@gmail.com")
-                                    .setSubject("이메일 인증 요청")
-                                    .setContent("<h1>이메일 인증</h1> <br> <a href='http://localhost:8080/accounts/email/authority/" + encryptQuery + "'>인증하기</a>").build();
+                                    .setSubject("[Mwav] 이메일 인증")
+                                    .setContent(content).build();
 
         // 메일 발송
         MailLib mailLib = MailLib.getInstance();
