@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.velocity.VelocityEngineUtils;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,6 +30,9 @@ public class AccountEmailCertify {
 
     @Autowired
     PromoterDAO promoterDAO;
+
+    @Autowired
+    VelocityConfigurer velocityConfig;
 
     private final String EncryptKey = "EncryptKey";
 
@@ -89,11 +91,10 @@ public class AccountEmailCertify {
         // 이메일 양식 작성
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("key", encryptQuery);
-        VelocityConfigurer velocityConfig = new VelocityConfigurer();
 
         //client에서 템플릿엔진 라이브러리르 호출하여 html코드로 파싱 후 문자열로 반환
         String content = VelocityEngineUtils.mergeTemplateIntoString(velocityConfig.createVelocityEngine()
-                , servletContext.getRealPath("Templates/GeneralMail/AccountCertify.vm"), "UTF-8", map);
+                , "/GeneralMail/AccountCertify.vm", "UTF-8", map);
 
         // TODO: 이메일 템플릿 작성 필요, 배포시 도메인을 수정해야함
         Message msg = new MessageBuilder(config.getCollectAllFieldProp())

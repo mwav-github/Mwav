@@ -17,20 +17,15 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.ui.velocity.VelocityEngineUtils;
 import org.springframework.web.servlet.view.velocity.VelocityConfigurer;
 
 import javax.mail.Message;
 import javax.servlet.ServletContext;
-import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
@@ -41,7 +36,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:config/spring/mwav-mvc.xml"
                                     , "classpath:config/spring/mwav-data.xml"
-                                    , "classpath:config/spring/mwav-mapper.xml"})
+                                    , "classpath:config/spring/mwav-mapper.xml"
+                                    , "classpath:config/spring/mwav-common.xml"})
 @WebAppConfiguration
 public class AccountEmailCertifyTest {
 
@@ -50,6 +46,9 @@ public class AccountEmailCertifyTest {
 
     @Spy @Autowired
     ServletContext servletContext;
+
+    @Spy @Autowired
+    VelocityConfigurer velocityConfig;
 
     @InjectMocks
     AccountEmailCertify controller;
@@ -186,14 +185,4 @@ public class AccountEmailCertifyTest {
         assertThat(pmtCertifyDt).isEqualTo("Y");
     }
 
-    @Test
-    public void velocityLocationTest() throws IOException {
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put("key", "encryptQuery");
-        VelocityConfigurer velocityConfig = new VelocityConfigurer();
-
-        //client에서 템플릿엔진 라이브러리르 호출하여 html코드로 파싱 후 문자열로 반환
-        String content = VelocityEngineUtils.mergeTemplateIntoString(velocityConfig.createVelocityEngine()
-                , servletContext.getRealPath("/Templates/GeneralMail/PWSeekEmail.vm"), "UTF-8", map);
-    }
 }
