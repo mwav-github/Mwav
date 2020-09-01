@@ -67,7 +67,7 @@ public class AccountEmailCertify {
                     return new ResponseEntity(body, HttpStatus.BAD_REQUEST);
                 }
                 break;
-            case "member" : break;  // Member는 미구현
+            case "member" :   // Member는 미구현
             default:
                 body.put("status", "BAD_REQUEST");
                 body.put("msg", "잘못된 요청입니다.");
@@ -166,7 +166,7 @@ public class AccountEmailCertify {
                     return "redirect: /";
                 }
                 break;
-            case "member" : break;  // Member는 미구현
+            case "member" :   // Member는 미구현
             default:
                 return "redirect: /";
         }
