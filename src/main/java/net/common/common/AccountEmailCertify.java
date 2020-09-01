@@ -2,6 +2,7 @@ package net.common.common;
 
 import net.mwav.common.module.*;
 import net.promoter.dao.PromoterDAO;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +25,7 @@ import java.util.StringTokenizer;
 @Controller
 @RequestMapping("/accounts/email")
 public class AccountEmailCertify {
+    Logger log = Logger.getLogger(this.getClass());
 
     @Autowired
     ServletContext servletContext;
@@ -122,19 +124,25 @@ public class AccountEmailCertify {
         String[] ivList = {"account", "id", "time"};
         Map<String, String> keyMap = new HashMap<String, String>();
 
-        // path로 받은 key를 복호화
-        SecurityLib securityLib = SecurityLib.getInstance();
+        // 잘못된 암호문 요청시 복호화 에러로 인해 예외처리
+        try{
+           // path로 받은 key를 복호화
+            SecurityLib securityLib = SecurityLib.getInstance();
 
-        key = key.replaceAll("~","/");
-        final String decryptKey = securityLib.decryptToString(EncryptKey, "total", key);
+            key = key.replaceAll("~","/");
+            final String decryptKey = securityLib.decryptToString(EncryptKey, "total", key);
 
-        // key를 분배 후 복호화하여 map에 등록
-        StringTokenizer tokenizer = new StringTokenizer(decryptKey, "==");
+            // key를 분배 후 복호화하여 map에 등록
+            StringTokenizer tokenizer = new StringTokenizer(decryptKey, "==");
 
-        int index = 0;
-        while(tokenizer.hasMoreTokens()){
-            keyMap.put(ivList[index], securityLib.decryptToString(EncryptKey, ivList[index], tokenizer.nextToken()+"=="));
-            index+=1;
+            int index = 0;
+            while(tokenizer.hasMoreTokens()){
+                keyMap.put(ivList[index], securityLib.decryptToString(EncryptKey, ivList[index], tokenizer.nextToken()+"=="));
+                index+=1;
+            }
+        }catch(Exception ex){
+            log.error(ex.getMessage());
+            return "redirect: /";
         }
 
         // time값이 30분 이내인지 유효성 체크, 1800000 = 30분(1 milliseconds)
