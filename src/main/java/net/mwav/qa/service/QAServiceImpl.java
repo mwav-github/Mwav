@@ -45,6 +45,7 @@ public class QAServiceImpl implements QAService {
 		// TODO Auto-generated method stub
 
 		String uqIpAddress = null;
+		
 		uqIpAddress = cou.getClientIP(request);
 		map.put("uqIpAddress", uqIpAddress);
 
@@ -69,6 +70,8 @@ public class QAServiceImpl implements QAService {
 			//메일 문의 답변 템플릿
 			String content = VelocityEngineUtils.mergeTemplateIntoString(velocityConfig.createVelocityEngine(), "QnAnswer/Question.vm", "UTF-8", map);
 			
+			//Webmaster메일 발신.
+			
 			//문의자에게 답변 메일 발신
 			Message recipientMsg = new MessageBuilder(mailConfig.getCollectAllFieldProp())
 							.setSubject("[고객센터] Mwav에서 문의하신 내용이 접수되었습니다.")		//제목
@@ -76,6 +79,15 @@ public class QAServiceImpl implements QAService {
 							.setFrom("webmaster@mwav.net")		//발신자
 							.setRecipient((String) map.get("uqUserEmail"))			//수신자
 							.build();
+
+			//Webmaster메일 발신.
+			 recipientMsg = new MessageBuilder(mailConfig.getCollectAllFieldProp())
+					.setSubject("문의가 접수되었습니다.")		//제목
+					.setContent((String) map.get("uqUserEmail") + "이메일로 문의 접수되었습니다.")				//내용
+					.setFrom("webmaster@mwav.net")		//발신자
+					.setRecipient("webmaster@mwav.net")			//수신자
+					.build();
+			
 			MailLib.getInstance().send(recipientMsg);
 				
 		} else if (imsi_flag == null) {
