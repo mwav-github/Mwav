@@ -84,7 +84,7 @@
 						</div>
 						<!-- 로그인 후 -->
 						<div class="widget-header dropdown">
-							<a href="#" data-toggle="dropdown" class="dropdown-toggle"
+							<!-- 	<a href="#" data-toggle="dropdown" class="dropdown-toggle"
 								data-offset="20,10">
 								<div class="icon icon-sm rounded-circle border ">
 									<i class="fa fa-user"></i>
@@ -96,26 +96,30 @@
 								<hr class="dropdown-divider">
 								<a class="dropdown-item" href="#">Log out</a>
 							</div>
-							<!-- dropdown-menu .//-->
+							dropdown-menu .//
+						</div> -->
+							<!-- widget-header .// -->
 						</div>
-						<!-- widget-header .// -->
+						<!-- widgets-wrap.// -->
 					</div>
-					<!-- widgets-wrap.// -->
+					<!-- col.// -->
 				</div>
-				<!-- col.// -->
+				<!-- row.// -->
 			</div>
-			<!-- row.// -->
 		</div>
 		<!-- container.// -->
 	</section>
 	<!-- header-main .// -->
+
+
 	<nav
 		class="navbar navbar-light navbar-expand-md navbar-main border-bottom">
+
 		<div class="container">
 			<form class="d-md-none my-2">
 				<div class="input-group">
 					<input type="search" name="search" class="form-control"
-						placeholder="Search" required="">
+						placeholder="Search">
 					<div class="input-group-append">
 						<button type="submit" class="btn btn-secondary">
 							<i class="fas fa-search"></i>
@@ -129,26 +133,42 @@
 				<span class="navbar-toggler-icon"></span>
 			</button>
 
-			<div class="navbar-collapse collapse show" id="dropdown6" style="">
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item"><a class="nav-link" href="page-deal.html">Hot
-							deals</a></li>
-					<li class="nav-item"><a class="nav-link" href="page-blog.html">Markets</a>
-					</li>
-					<li class="nav-item"><a class="nav-link" href="page-blog.html">Blog</a>
-					</li>
-				</ul>
+			<div class="navbar-collapse collapse justify-content-center"
+				id="dropdown6" style="">
+				<ul class="navbar-nav text-center">
+					<!-- mr-auto로 class 지정시 좌측 정렬 / justify-content-center 중앙정렬 -->
+					<!-- ml-5 GNB 사이 간격 -->
+					<li class="nav-item ml-5"><a class="nav-link"
+						href="page-deal.html">소개</a></li>
+					<li class="nav-item ml-5"><a class="nav-link"
+						href="page-blog.html">인플루언서</a></li>
+					<li class="nav-item ml-5"><a class="nav-link"
+						href="/Promoter/Goods/PmtGoodsList.mwav">상품조회</a></li>
+					<li class="nav-item ml-5 dropdown"><a
+						class="nav-link dropdown-toggle" data-toggle="dropdown" href=""
+						aria-expanded="false">고객센터</a>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" href="#">자주묻는질문</a> <a
+								class="dropdown-item"
+								href="/Promoter/CommonApps/BoardNotice/PmtNoticeList.mwav">공지사항</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="#">1:1문의</a>
 
-				<ul class="navbar-nav">
-					<li class="nav-item"><a href="/Promoter/Goods/PmtGoodsList.mwav" class="nav-link">상품조회</a></li>
-					<li class="nav-item"><a href="/Promoter/Goods/PmtGoodsDetail.mwav"
-						class="btn btn-primary ml-md-4"><i class="fa fa-plus"></i>
-							Post item </a></li>
+						</div></li>
 				</ul>
 			</div>
 			<!-- collapse .// -->
 		</div>
-		<!-- container .// -->
+		<!-- 
+				<ul class="navbar-nav">
+					<li class="nav-item"><a
+						href="/Promoter/Goods/PmtGoodsList.mwav" class="nav-link">상품조회</a></li>
+					<li class="nav-item"><a
+						href="/Promoter/Goods/PmtGoodsDetail.mwav"
+						class="btn btn-primary ml-md-4"><i class="fa fa-plus"></i>
+							Post item </a></li>
+				</ul>
+ -->
 	</nav>
 </header>
 <!-- header-main .// -->
