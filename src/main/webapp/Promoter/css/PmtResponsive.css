@@ -52,6 +52,11 @@
   .section-header .search {
     margin-top: 1rem; }
 
+  .border-left{
+   border-left: ;
+  }
+  
+
   .navbar-expand .navbar-collapse {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
