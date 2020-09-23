@@ -327,6 +327,10 @@ public class FileUtils {
 
 		return list;
 	}
+	
+	public File readFromFileSys(String fullFileName) {
+		return new File(fullFileName);		
+	}	
 
 	// 실제 등록시 (temp > imageutil 후 이동)
 	// goods_id 기준 db에 temp는 저장되어있기 때문에 가져온다.

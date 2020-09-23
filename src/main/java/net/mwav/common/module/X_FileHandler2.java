@@ -14,24 +14,50 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.io.FileUtils;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+
+
 /**
- * HandlerFile
- * @author 정재현
- * @version 2019.06.01 v1.0
+ *@class name : FileHandler.java
+ *@description : 
+ *@author : (정) 정재현
+ *@since : 2019. 7. 20.
+ *@version : v1.0
+ *@see  
+ * @history :
+   ----------------------------------------
+   * Modification Information(개정이력)
+   ----------------------------------------
+           수정일                   수정자                        수정내용
+   --------    --------    ----------------    
  */
-public class FileHandler {
+public class X_FileHandler2 {
     private String filePath; // common
     private MultipartHttpServletRequest multipartRequest; // upload
     private Map<String, List<String>> fileNames; // upload
     private String oldName; // down
     private HttpServletResponse response; // down
     private byte[] fileByte; // down
-    public FileHandler() {}
-    
-    /**
-     * common filePath
-     * @return filePath
-     */
+    public X_FileHandler2() {}
+      
+    /** 
+     * @method name : getFilePath
+     * @author : (정) 정재현
+     * @since  : 2019. 7. 20.
+     * @version : v1.0
+     * @see :
+       #method : 저장경로 가져오기       
+     * @description :
+     * @history :
+       ----------------------------------------
+       * Modification Information(개정이력)
+       ----------------------------------------
+               수정일                  수정자                       수정내용
+       --------    --------    ----------------
+       2019.7.20.   정재현                최초작성     
+     * @param :
+     * @return : String
+     * @throws :
+    */
     public String getFilePath(){
         return filePath;
     }
@@ -39,8 +65,8 @@ public class FileHandler {
      * upload 생성자
      * @param multipartRequest
      * @param filePath
-     */
-    public FileHandler(MultipartHttpServletRequest multipartRequest, String filePath) {
+     */    
+    public X_FileHandler2(MultipartHttpServletRequest multipartRequest, String filePath) {
         this.multipartRequest = multipartRequest;
         this.filePath = filePath;
         fileNames = new HashMap<String, List<String>>();
@@ -49,7 +75,7 @@ public class FileHandler {
      * upload 임시저장 처리 생성자
      * @param multipartRequest
      */
-    public FileHandler(MultipartHttpServletRequest multipartRequest) {
+    public X_FileHandler2(MultipartHttpServletRequest multipartRequest) {
         this.multipartRequest = multipartRequest;
         this.filePath = multipartRequest.getSession().getServletContext().getRealPath("/resources/tempfile");
         fileNames = new HashMap<String, List<String>>();
@@ -60,7 +86,7 @@ public class FileHandler {
      * @param filePath
      * @return this
      */
-    public FileHandler setUpload(MultipartHttpServletRequest multipartRequest, String filePath) {
+    public X_FileHandler2 setUpload(MultipartHttpServletRequest multipartRequest, String filePath) {
         this.multipartRequest = multipartRequest;
         this.filePath = filePath;
         fileNames = new HashMap<String, List<String>>();
@@ -71,7 +97,7 @@ public class FileHandler {
      * @param multipartRequest
      * @return this
      */
-    public FileHandler setUpload(MultipartHttpServletRequest multipartRequest) {
+    public X_FileHandler2 setUpload(MultipartHttpServletRequest multipartRequest) {
         this.multipartRequest = multipartRequest;
         this.filePath = multipartRequest.getSession().getServletContext().getRealPath("/resources/tempfile");
         fileNames = new HashMap<String, List<String>>();
@@ -146,7 +172,7 @@ public class FileHandler {
      * @param saveName
      * @param oldName
      */
-    public FileHandler(HttpServletResponse response, String filePath, String saveName, String oldName) {
+    public X_FileHandler2(HttpServletResponse response, String filePath, String saveName, String oldName) {
         this.response = response;
         this.filePath = filePath + "/" + saveName;
         this.oldName = oldName;
@@ -159,7 +185,7 @@ public class FileHandler {
      * @param oldName
      * @return this
      */
-    public FileHandler setDown(HttpServletResponse response, String filePath, String saveName, String oldName) {
+    public X_FileHandler2 setDown(HttpServletResponse response, String filePath, String saveName, String oldName) {
         this.response = response;
         this.filePath = filePath + "/" + saveName;
         this.oldName = oldName;
@@ -194,7 +220,7 @@ public class FileHandler {
      * @param filePath
      * @param saveName
      */
-    public FileHandler(String filePath, String saveName) {
+    public X_FileHandler2(String filePath, String saveName) {
         this.filePath = filePath + "/" + saveName;
     }
     /**
@@ -203,7 +229,7 @@ public class FileHandler {
      * @param saveName
      * @return this
      */
-    public FileHandler setDelete(String filePath, String saveName) {
+    public X_FileHandler2 setDelete(String filePath, String saveName) {
         this.filePath = filePath + "/" + saveName;
         return this;
     }
