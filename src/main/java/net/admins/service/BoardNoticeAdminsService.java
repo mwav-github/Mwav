@@ -38,9 +38,11 @@ public interface BoardNoticeAdminsService {
 	 */
 
 	int selectOneGetNtmTotalCount();
+	int selectOneGetPmtNtmTotalCount();	
 
 	List<Map<String, Object>> selectListNtmList(Map<String, Object> map);
-
+	List<Map<String, Object>> selectListPmtNtmList(Map<String, Object> map);
+	
 	List<Map<String, Object>> selectListNtmFrontList(Map<String, Object> map)
 			throws Exception;
 
@@ -50,7 +52,7 @@ public interface BoardNoticeAdminsService {
 	 */
 
 	void deleteNtmDelete(Map<String, Object> map) throws Exception;
-
+	void deletePmtNtmDelete(Map<String, Object> map) throws Exception;
 	
 
 

@@ -243,6 +243,8 @@ public class BoardNoticeAdminsController {
 		return mv;
 	}
 
+	
+	
 	/*
 	 * ========================================삭제================================
 	 * ========
@@ -263,4 +265,72 @@ public class BoardNoticeAdminsController {
 		return mv;
 	}
 
+	
+	
+	/*
+	 * =============================Promoter 공지사항 기능===============================
+	 */
+	
+	// (1) Promoter 공지사항 리스트
+	@RequestMapping(value = "/admins/promoter/boardmgr/PmtNoticeList.mwav")
+	public ModelAndView selectListPmtNtmList(CommandMap commandMap,
+			HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("/Admins/Promoter/BoardMgr/PmtNoticeList");
+
+		String pageNum = (String) commandMap.get("pageNum");
+		Paging paging = new Paging();
+		if (pageNum == null || pageNum == "") {
+			pageNum = "1";
+		}
+		int totalRow = BoardNoticeAdminsService.selectOneGetPmtNtmTotalCount();
+		System.out.println("totalRow=" + totalRow);
+
+		List<Map<String, Object>> selectListPmtNtmList;
+		PagingVO pagingVO = paging.setPagingInfo(totalRow, 5, pageNum); // 총 숫자,
+																		// 한페이지에
+																		// 노출 수
+		commandMap.put("startRow", paging.getStartRow(pageNum)); // 시작 열
+		commandMap.put("endRow", paging.getEndRow(pageNum)); // 끝 열
+		
+		if (totalRow > 0) {
+			selectListPmtNtmList = BoardNoticeAdminsService.selectListPmtNtmList(commandMap.getMap());
+		} else {
+			selectListPmtNtmList = Collections.emptyList();
+		}
+		
+		String mm = "site";
+		mv.addObject("mm", mm);
+		
+		/*
+		mv.addObject("mode", "m_ntmList");
+		mv.addObject("depth_1", depth_1);
+		mv.addObject("depth_2", depth_2);
+		mv.addObject("depth_3", "NtmList");
+		*/
+
+		mv.addObject("selectListPmtNtmList", selectListPmtNtmList);
+		mv.addObject("pagingVO", pagingVO);
+		mv.addObject("totalRow", totalRow);
+
+		return mv;
+	}
+
+	
+	// Promoter 공지사항 삭제
+	@RequestMapping(value = "/admins/promoter/boardmgr/PmtNoticeDelete.mwav")
+	public ModelAndView deletePmtNtmDelete(CommandMap commandMap,
+			HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("/Admins/Promoter/BoardMgr/PmtNoticeList");
+
+		BoardNoticeAdminsService.deletePmtNtmDelete(commandMap.getMap());
+
+		/*
+		mv.addObject("depth_1", depth_1);
+		mv.addObject("depth_2", depth_2);
+		mv.addObject("depth_3", "NtmDelete");
+		*/
+		
+		return mv;
+	}	
+	
 }

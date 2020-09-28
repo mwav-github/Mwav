@@ -41,10 +41,10 @@ public class LeftFrame_Fucntion {
 				 */
 			} else if (mm.equals("site")) {
 
-				String[] streName = { "ntl", "nsl", "qal", "pl", "mmail" };
-				String[] strhName = { "공지관리", "뉴스관리", "Q&A관리", "폴관리", "회원메일발송" };
-				String[] strhEName = { "공지관리", "뉴스관리", "Q&A관리", "폴관리", "회원메일발송" };
-				String[] strurl = { "/admin/boardNotice/ntmList.mwav",
+				String[] streName = { "pmtnt", "ntl", "nsl", "qal", "pl", "mmail" };
+				String[] strhName = { "Promoter 공지관리","공지관리", "뉴스관리", "Q&A관리", "폴관리", "회원메일발송" };
+				String[] strhEName = { "Promoter 공지관리", "공지관리", "뉴스관리", "Q&A관리", "폴관리", "회원메일발송" };
+				String[] strurl = { "/admins/promoter/boardmgr/PmtNoticeList.mwav", "/admin/boardNotice/ntmList.mwav",
 						"/admin/boardNews/nsmList.mwav",
 						"/admin/boardQnA/qnaList.mwav", "#", "#" };
 				String[] strmAuthority = { "1", "1", "1", "1", "1" };

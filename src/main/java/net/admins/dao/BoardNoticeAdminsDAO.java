@@ -69,6 +69,11 @@ public class BoardNoticeAdminsDAO extends AbstractDAO {
 		return (int) selectOne("boardNoticeAdminsDAO.selectOneGetNtmTotalCount");
 	}
 
+	public int selectOneGetPmtNtmTotalCount() {
+		// TODO Auto-generated method stub
+		return (int) selectOne("boardNoticeAdminsDAO.selectOneGetPmtNtmTotalCount");
+	}	
+	
 	@SuppressWarnings("unchecked")
 	public List<Map<String, Object>> selectListNtmFrontList(
 			Map<String, Object> map) throws Exception {
@@ -84,6 +89,13 @@ public class BoardNoticeAdminsDAO extends AbstractDAO {
 
 	}
 
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> selectListPmtNtmList(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return (List<Map<String, Object>>) selectList(
+				"boardNoticeAdminsDAO.selectListPmtNtmList", map);
+
+	}
 	/*
 	 * ========================================삭제================================
 	 * ========
@@ -94,4 +106,10 @@ public class BoardNoticeAdminsDAO extends AbstractDAO {
 		update("boardNoticeAdminsDAO.deleteNtmDelete", map);
 	}
 
+	public void deletePmtNtmDelete(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		update("boardNoticeAdminsDAO.deletePmtNtmDelete", map);
+	}	
+	
+	
 }

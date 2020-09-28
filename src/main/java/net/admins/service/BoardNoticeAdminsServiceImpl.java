@@ -95,6 +95,12 @@ public class BoardNoticeAdminsServiceImpl implements BoardNoticeAdminsService {
 	}
 
 	@Override
+	public int selectOneGetPmtNtmTotalCount() {
+		// TODO Auto-generated method stub
+		return boardNoticeAdminsDAO.selectOneGetPmtNtmTotalCount();
+	}	
+	
+	@Override
 	public List<Map<String, Object>> selectListNtmFrontList(
 			Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
@@ -108,6 +114,13 @@ public class BoardNoticeAdminsServiceImpl implements BoardNoticeAdminsService {
 		return boardNoticeAdminsDAO.selectListNtmList(map);
 	}
 
+	@Override
+	public List<Map<String, Object>> selectListPmtNtmList(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+
+		return boardNoticeAdminsDAO.selectListPmtNtmList(map);
+	}	
+	
 	/*
 	 * ========================================삭제================================
 	 * ========
@@ -118,4 +131,11 @@ public class BoardNoticeAdminsServiceImpl implements BoardNoticeAdminsService {
 		boardNoticeAdminsDAO.deleteNtmDelete(map);
 	}
 
+	@Override
+	public void deletePmtNtmDelete(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		boardNoticeAdminsDAO.deletePmtNtmDelete(map);
+	}
+	
+	
 }

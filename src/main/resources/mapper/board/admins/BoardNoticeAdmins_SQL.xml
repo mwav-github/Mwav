@@ -48,6 +48,12 @@
 	   select count(*) from BoardUser_tbl WHERE buDeleteDt IS NULL
 	]]>
 	</select>
+
+	<select id="selectOneGetPmtNtmTotalCount" resultType="int">
+	<![CDATA[
+	   select count(*) from BoardPromoter_tbl WHERE bpDeleteDt IS NULL
+	]]>
+	</select>
 	
 	<select id="selectListNtmFrontList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
@@ -69,7 +75,12 @@
 	select c.* from (select @ROWNUM := @ROWNUM + 1 AS ROWNUM, a.* from (select * from BoardUser_tbl where buDeleteDt IS NULL order by buInsertDt desc) a,  (SELECT @ROWNUM := 0) R ) c where c.ROWNUM >= #{startRow} and c.ROWNUM <= #{endRow}
 	]]>
 	</select>
-	
+
+	<select id="selectListPmtNtmList" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+	select c.* from (select @ROWNUM := @ROWNUM + 1 AS ROWNUM, a.* from (select * from BoardPromoter_tbl where bpDeleteDt IS NULL order by bpInsertDt desc) a,  (SELECT @ROWNUM := 0) R ) c where c.ROWNUM >= #{startRow} and c.ROWNUM <= #{endRow}
+	]]>
+	</select>	
 	
 	<!--/*========================================삭제========================================*/  -->
 	
@@ -79,5 +90,12 @@
         update BoardUser_tbl set buDeleteDt = NOW() where bUsers_id = #{bUsers_id}
     ]]>
     </update>
+
+	<update id="deletePmtNtmDelete" parameterType="hashmap">
+    <![CDATA[
+        update BoardPromoter_tbl set bpDeleteDt = NOW() where boardPromoter_id = #{boardPromoter_id}
+    ]]>
+    </update>
+
 
 </mapper>
