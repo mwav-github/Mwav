@@ -101,7 +101,7 @@ public class AccountEmailCertify {
         // TODO: 이메일 템플릿 작성 필요, 배포시 도메인을 수정해야함
         Message msg = new MessageBuilder(config.getCollectAllFieldProp())
                                     .setRecipient(email)
-                                    .setFrom("tony950620@gmail.com")
+                                    .setFrom(config.getFrom())
                                     .setSubject("[Mwav] 이메일 인증")
                                     .setContent(content).build();
 
