@@ -7,8 +7,9 @@ import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
-import sun.misc.BASE64Decoder;
-import sun.misc.BASE64Encoder;
+import java.util.Base64;
+import java.util.Base64.Decoder;
+import java.util.Base64.Encoder;
 // 아파치로 변경 예정
 
 
@@ -225,19 +226,15 @@ public class AesEncryption {
     //Base 64란 8비트(=1바이트) 데이터를 문자코드에 영향을 받지 않는 공통 ASCII 문자로 이루어진 6비트 데이터로 변환하는 것이다. 
     //http://118k.tistory.com/34
     public static byte[] aesDecodeBuf (String decryptVariable) throws IOException{
-    
-    	byte[] decryptVarDecoding = null;
-    	decryptVarDecoding = new BASE64Decoder().decodeBuffer(decryptVariable);  // 2진데이터를 문자로 변경 
-		
-    	return decryptVarDecoding;
+    	Decoder decoder = Base64.getDecoder();
+    	return decoder.decode(decryptVariable);
     }
     
   //BaseEncoding  암호화된 기본 값이 base64 encode
-    public static String aesEncodeBuf (byte[] encryptVariable) throws IOException{ 
-    
+    public static String aesEncodeBuf (byte[] encryptVariable) throws IOException{
     	String encryptEncoding = new BASE64Encoder().encode(encryptVariable);
-		
-    	return encryptEncoding;
+    	Encoder encoder = Base64.getEncoder();
+        return encoder.encodeToString(encryptVariable);
     }
     
     public static byte[] hexToByteArray(String s) { // 16진수 문자열을 바이트 배열로
