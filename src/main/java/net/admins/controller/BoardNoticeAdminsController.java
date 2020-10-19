@@ -316,7 +316,7 @@ public class BoardNoticeAdminsController {
 	}
 
 	
-	// Promoter 공지사항 삭제
+	// (2) Promoter 공지사항 삭제
 	@RequestMapping(value = "/admins/promoter/boardmgr/PmtNoticeDelete.mwav")
 	public ModelAndView deletePmtNtmDelete(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
@@ -333,4 +333,62 @@ public class BoardNoticeAdminsController {
 		return mv;
 	}	
 	
+	// (3) Promoter 공지사항 등록
+	@RequestMapping(value = "/admins/promoter/boardmgr/PmtNoticeForm.mwav")
+	// http://egloos.zum.com/nadostar/v/210497
+	public ModelAndView insertPmtNtmForm(CommandMap commandMap,
+			HttpServletRequest request) throws Exception {
+
+		ModelAndView mv = new ModelAndView("/Admins/Promoter/BoardMgr/PmtNoticeForm");
+
+		BoardNoticeAdminsService.insertPmtNtmForm(commandMap.getMap());
+
+		String mm = "site";
+		mv.addObject("mm", mm);
+		
+		
+		mv.addObject("mode", "m_ntmForm");
+
+		mv.addObject("depth_1", depth_1);
+		mv.addObject("depth_2", depth_2);
+		mv.addObject("depth_3", "NtmForm");
+		
+		// mv.addObject("insertBnsForm", insertBnsForm);
+		// mv.addObject("IDX", commandMap.get("IDX"));
+
+		return mv;
+	}
+
+	// (4) Promoter 공지사항 등록
+	@RequestMapping(value = "/admins/promoter/boardmgr/PmtNoticeUpdatePro.mwav")
+	public ModelAndView updateProPmtNtmForm(CommandMap commandMap,
+			HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("/Admins/Promoter/BoardMgr/PmtNoticeList");
+
+		BoardNoticeAdminsService.updateProPmtNtmForm(commandMap.getMap());
+		
+		String mm = "site";
+		mv.addObject("mm", mm);
+		mv.addObject("mode", "m_ntmList");
+		
+		return mv;
+	}	
+
+	// Promoter 공지사항 업데이트
+	@RequestMapping(value = "/admins/promoter/boardmgr/PmtNoticeUpdate.mwav")
+	public ModelAndView updatePmtNtmForm(CommandMap commandMap,
+			HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("/Admins/Promoter/BoardMgr/PmtNoticeForm");
+
+
+		Map<String, Object> updatePmtNtmForm = BoardNoticeAdminsService.updatePmtNtmForm(commandMap.getMap());
+
+		if (updatePmtNtmForm != null && !updatePmtNtmForm.isEmpty()) {
+			String mm = "site";
+			mv.addObject("mm", mm);
+			mv.addObject("mode", "m_nsmUpdate");
+			mv.addObject("updatePmtNtmForm", updatePmtNtmForm);
+		}
+		return mv;
+	}
 }

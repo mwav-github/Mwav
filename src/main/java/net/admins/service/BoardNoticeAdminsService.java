@@ -15,6 +15,7 @@ public interface BoardNoticeAdminsService {
 	 */
 
 	void insertNtmForm(Map<String, Object> map) throws Exception;
+	void insertPmtNtmForm(Map<String, Object> map) throws Exception;
 
 	/*
 	 * ========================================보기================================
@@ -30,7 +31,11 @@ public interface BoardNoticeAdminsService {
 	 */
 	Map<String, Object> updateNtmForm(Map<String, Object> map) throws Exception;
 	
+	Map<String, Object> updatePmtNtmForm(Map<String, Object> map) throws Exception;
+	
 	void updateProNtmForm(Map<String, Object> map) throws Exception;
+	
+	void updateProPmtNtmForm(Map<String, Object> map) throws Exception;
 
 	/*
 	 * ========================================리스트(SelectOne, SelectList

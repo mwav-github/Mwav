@@ -25,6 +25,11 @@ public class BoardNoticeAdminsDAO extends AbstractDAO {
 		insert("boardNoticeAdminsDAO.insertNtmForm", map);
 	}
 
+	public void insertPmtNtmForm(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+
+		insert("boardNoticeAdminsDAO.insertPmtNtmForm", map);
+	}
 	/*
 	 * ========================================보기================================
 	 * ========
@@ -49,11 +54,23 @@ public class BoardNoticeAdminsDAO extends AbstractDAO {
 	
 		return (Map<String, Object>) selectOne("boardNoticeAdminsDAO.updateNtmform", map);
 	}
+
+	public Map<String, Object> updatePmtNtmForm(Map<String, Object> map) {
+		// TODO Auto-generated method stub
 	
+		return (Map<String, Object>) selectOne("boardNoticeAdminsDAO.updatePmtNtmForm", map);
+	}	
+
 	public void updateProNtmform(Map<String, Object> map) {
 		// TODO Auto-generated method stub
 		update("boardNoticeAdminsDAO.updateProNtmform", map);
 	}
+	
+	public void updateProPmtNtmForm(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		update("boardNoticeAdminsDAO.updateProPmtNtmForm", map);
+	}
+	
 	// 조회수 증가
 	public void updateNtmHitCnt(Map<String, Object> map) throws Exception {
 		update("boardNoticeAdminsDAO.updateNtmHitCnt", map);

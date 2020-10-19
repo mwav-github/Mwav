@@ -11,6 +11,12 @@
 		]]>
 	</insert>
 
+	<insert id="insertPmtNtmForm" parameterType="hashmap">
+		<![CDATA[
+				INSERT INTO BoardPromoter_tbl
+				SELECT IFNULL(max(boardPromoter_id)+1,100001), #{bpGroup}, #{bpHighLight}, #{bpTitle}, #{bpSubTitle}, 'bpKeyword', 'bpTitleImageLink', #{bpRelatedLink}, #{bpContent}, #{bpViewCount}, #{bpOrder}, #{bpStatus}, #{staff_id}, NOW(), NOW(), null, 'ipaddress' FROM BoardPromoter_tbl
+		]]>
+	</insert>
     <!--/*========================================보기========================================*/  -->
 
    <select id="selectOneNtmView" parameterType="hashmap" resultType="hashmap">
@@ -33,13 +39,24 @@
         select * from BoardUser_tbl where bUsers_id = #{bUsers_id}
     ]]>
     </select>
-    
+
+     <select id="updatePmtNtmForm" parameterType="hashmap" resultType="hashmap">
+    <![CDATA[
+        select * from BoardPromoter_tbl where boardPromoter_id = #{boardPromoter_id}
+    ]]>
+    </select>
+        
     <update id="updateProNtmform" parameterType="hashmap">
     <![CDATA[
         update BoardUser_tbl set buGroup= #{buGroup}, buHighLight= #{buHighLight}, buTitle= #{buTitle}, buSubTitle= #{buSubTitle}, buRelatedLink= #{buRelatedLink}, buContent= #{buContent},  buUpdateDt= NOW() where bUsers_id = #{bUsers_id}
     ]]>
     </update>
  
+     <update id="updateProPmtNtmForm" parameterType="hashmap">
+    <![CDATA[
+        update BoardPromoter_tbl set bpGroup= #{bpGroup}, bpHighLight= #{bpHighLight}, bpTitle= #{bpTitle}, bpSubTitle= #{bpSubTitle}, bpRelatedLink= #{bpRelatedLink}, bpContent= #{bpContent},  bpUpdateDt= NOW() where boardPromoter_id = #{boardPromoter_id}
+    ]]>
+    </update>
 	
 	<!--/*========================================리스트(SelctOne, SelectList 순)========================================*/  -->
 	

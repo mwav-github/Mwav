@@ -40,6 +40,14 @@ public class BoardNoticeAdminsServiceImpl implements BoardNoticeAdminsService {
 		boardNoticeAdminsDAO.insertNtmForm(map);
 	}
 
+	@Override
+	public void insertPmtNtmForm(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		System.out.println("map=" + map);
+
+		map.put("bpPStatus", 1);
+		boardNoticeAdminsDAO.insertPmtNtmForm(map);
+	}
 	/*
 	 * ========================================보기================================
 	 * ========
@@ -78,10 +86,22 @@ public class BoardNoticeAdminsServiceImpl implements BoardNoticeAdminsService {
 	}
 
 	@Override
+	public Map<String, Object> updatePmtNtmForm(Map<String, Object> map)
+			throws Exception {
+		// TODO Auto-generated method stub
+		return boardNoticeAdminsDAO.updatePmtNtmForm(map);
+	}
+	
+	@Override
 	public void updateProNtmForm(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		boardNoticeAdminsDAO.updateProNtmform(map);
 	}
+
+	public void updateProPmtNtmForm(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		boardNoticeAdminsDAO.updateProPmtNtmForm(map);
+	}	
 
 	/*
 	 * ========================================리스트(SelectOne, SelectList
