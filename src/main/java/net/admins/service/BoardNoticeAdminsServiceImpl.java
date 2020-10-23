@@ -45,7 +45,7 @@ public class BoardNoticeAdminsServiceImpl implements BoardNoticeAdminsService {
 		// TODO Auto-generated method stub
 		System.out.println("map=" + map);
 
-		map.put("bpPStatus", 1);
+		map.put("bpStatus", 1);
 		boardNoticeAdminsDAO.insertPmtNtmForm(map);
 	}
 	/*
@@ -74,6 +74,27 @@ public class BoardNoticeAdminsServiceImpl implements BoardNoticeAdminsService {
 		return resultMap;
 	}
 
+	
+	@Override
+	public Map<String, Object> selectOnePmtNtmView(Map<String, Object> map)
+			throws Exception {
+		// TODO Auto-generated method stub
+		boardNoticeAdminsDAO.updatePmtNtmHitCnt(map);
+		Set set = map.entrySet();
+		Iterator iterator = set.iterator();
+		while (iterator.hasNext()) {
+			Map.Entry entry = (Map.Entry) iterator.next();
+			System.out.println("key : " + entry.getKey() + ", value : " + entry.getValue());
+		}
+
+		Map<String, Object> resultMap = boardNoticeAdminsDAO.selectOnePmtNtmView(map);
+		int test = (int) resultMap.get("bpStatus");
+		String result = cou.TypeIntToString("board", test);
+		resultMap.put("bpStatus", result);
+
+		return resultMap;
+	}
+	
 	/*
 	 * ========================================수정================================
 	 * ========
