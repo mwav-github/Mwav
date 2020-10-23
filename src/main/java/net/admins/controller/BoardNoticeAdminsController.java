@@ -333,7 +333,7 @@ public class BoardNoticeAdminsController {
 		return mv;
 	}	
 	
-	// (3) Promoter 공지사항 등록
+	// Promoter 공지사항 등록
 	@RequestMapping(value = "/admins/promoter/boardmgr/PmtNoticeForm.mwav")
 	// http://egloos.zum.com/nadostar/v/210497
 	public ModelAndView insertPmtNtmForm(CommandMap commandMap,
@@ -359,7 +359,7 @@ public class BoardNoticeAdminsController {
 		return mv;
 	}
 
-	// (4) Promoter 공지사항 등록
+	// Promoter 공지사항 등록
 	@RequestMapping(value = "/admins/promoter/boardmgr/PmtNoticeUpdatePro.mwav")
 	public ModelAndView updateProPmtNtmForm(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
@@ -391,4 +391,30 @@ public class BoardNoticeAdminsController {
 		}
 		return mv;
 	}
+	
+	// Promoter 공지사항 View
+	@RequestMapping(value = "/admins/promoter/boardmgr/PmtNoticeView.mwav")
+	public ModelAndView selectOnePmtNtmView(CommandMap commandMap,
+			HttpServletRequest request, HttpSession session) throws Exception {
+		ModelAndView mv = new ModelAndView("/Admins/Promoter/BoardMgr/PmtNoticeView");
+
+		Map<String, Object> selectOnePmtNtmView = BoardNoticeAdminsService
+				.selectOnePmtNtmView(commandMap.getMap());
+
+		if (selectOnePmtNtmView != null && !selectOnePmtNtmView.isEmpty()) {
+
+			String mm = "site";
+			mv.addObject("mm", mm);
+			mv.addObject("mode", "m_pmtntmView");
+
+			mv.addObject("depth_1", depth_1);
+			mv.addObject("depth_2", depth_2);
+			mv.addObject("depth_3", "PmtNtmView");
+
+			mv.addObject("selectOnePmtNtmView", selectOnePmtNtmView);
+		}
+
+		return mv;
+	}
+	
 }
