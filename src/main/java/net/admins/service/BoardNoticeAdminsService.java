@@ -25,8 +25,6 @@ public interface BoardNoticeAdminsService {
 	Map<String, Object> selectOneNtmView(Map<String, Object> map)
 			throws Exception;
 
-	Map<String, Object> selectOnePmtNtmView(Map<String, Object> map)
-			throws Exception;
 	/*
 	 * ========================================수정================================
 	 * ========

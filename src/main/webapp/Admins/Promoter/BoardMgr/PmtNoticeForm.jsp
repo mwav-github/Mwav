@@ -61,41 +61,31 @@
 
 						<%--================================================시작========================================================== --%>
 
-						<script>
-							function check() {
-						
-								if (confirm("정말 입력 또는 수정하시겠습니까??") == true){    //확인
-									if (document.bpForm.bpTitle.value == "") {
-										alert("제목을 입력하십시요.");
-										document.bpForm.bpTitle.focus();
-										return false;
-									}
-								
-									// contents 빈값 체크기능 추가 (textarea 값의 길이 체크하자!)
-									
-									alert("공지가 등록/수정 되었습니다.");
-									location.href= "/admins/promoter/boardmgr/PmtNoticeList.mwav?pageNum=1";
-									document.bpForm.submit();
-									
-									// location.href= "/admins/promoter/boardmgr/PmtNoticeList.mwav?pageNum=1";
-									
-									
-									return true;
-								}else{   //취소
-								    return false;
-								}
-							
-							}
-						</script>
-						
+<script>
+	function check() {
+
+		if (confirm("정말 입력 또는 수정하시겠습니까??") == true){    //확인
+			if (document.bpForm.bpTitle.value == "") {
+				alert("제목을 입력하십시요.");
+				document.bpForm.bpTitle.focus();
+				return false;
+			}
+		
+			// contents 빈값 체크기능 추가 (textarea 값의 길이 체크하자!)
+		
+			document.bpForm.submit();
+		}else{   //취소
+		    return true;
+		}
+	
+	}
+</script>
 						<!-- Content Column -->
 						<div class="table-responsive">
 							<c:choose>
 								<c:when test="${fn:length(updatePmtNtmForm) > 0}">
 									<form role="form" method="post" name="bpForm"
-										action="/admins/promoter/boardmgr/PmtNoticeUpdatePro.mwav"
-										target="iframe">
-										
+										action="/admins/promoter/boardmgr/PmtNoticeUpdatePro.mwav">
 										<table class="table table-striped">
 
 											<thead>
@@ -213,24 +203,20 @@
 										<br style="clear: both">
 										<p class="pull-right">
 											<button type="button" class="btn btn-success"
-												onClick="javascript:window.location.href='/admins/promoter/boardmgr/PmtNoticeList.mwav'">All List</button>
+												onClick="javascript:window.location.href='/admin/boardNotice/ntmList.mwav'">All List</button>
 											<button type="button" class="btn btn-warning"
 												onClick="javascript:history.go(-1)">BACK</button>
 
 
 											<button type="button" class="btn btn-primary"
 												onclick="check()">Modify</button>
-										
 										</p>
 									</form>
-									<iframe src="#" name="iframe" style="width:1px; height:1px; border:0; visibility:hidden;"></iframe>
+
 								</c:when>
-								
 								<c:otherwise>
 									<form role="form" method="post" name="bpForm"
-										action="/admins/promoter/boardmgr/PmtNoticeForm.mwav"
-										target="iframe">
-										
+										action="/admins/promoter/boardmgr/PmtNoticeForm.mwav">
 										<table class="table table-striped">
 
 											<thead>
@@ -319,13 +305,14 @@
 										<br style="clear: both">
 										<p class="pull-right">
 											<button type="button" class="btn btn-success"
-												onClick="javascript:window.location.href='/admins/promoter/boardmgr/PmtNoticeList.mwav?pageNum=1'">All List</button>
-											<button type="button" class="btn btn-warning" onClick="javascript:history.go(-1)">BACK</button>
+												onClick="javascript:window.location.href='/boardNotice/buList.mwav?pageNum=${i}'">All List</button>
+											<button type="button" class="btn btn-warning"
+												onClick="javascript:history.go(-1)">BACK</button>
+											<!-- 공지 등록 check가 완료되면 list 화면으로 이동 -->
 											<button type="button" class="btn btn-primary"
-												onclick="check()">Insert</button>
+												onclick="return check(); javascript:window.location.href='/admins/promoter/boardmgr/PmtNoticeList.mwav'">Insert</button>
 										</p>
 									</form>
-									<iframe src="#" name="iframe" style="width:1px; height:1px; border:0; visibility:hidden;"></iframe>
 								</c:otherwise>
 							</c:choose>
 						</div>

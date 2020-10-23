@@ -24,13 +24,7 @@
 	    select * from BoardUser_tbl where bUsers_id = #{bUsers_id}
 	]]>
 	</select>
-
-   <select id="selectOnePmtNtmView" parameterType="hashmap" resultType="hashmap">
-	<![CDATA[
-	    select * from BoardPromoter_tbl where boardPromoter_id = #{boardPromoter_id}
-	]]>
-	</select>
-		
+	
 	<!--/*======================+==================수정========================================*/  -->
 	
 	<update id="updateNtmHitCnt" parameterType="hashmap">

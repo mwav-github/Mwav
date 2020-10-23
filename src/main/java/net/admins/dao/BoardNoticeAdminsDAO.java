@@ -44,13 +44,6 @@ public class BoardNoticeAdminsDAO extends AbstractDAO {
 				"boardNoticeAdminsDAO.selectOneNtmView", map);
 	}
 
-	@SuppressWarnings("unchecked")
-	public Map<String, Object> selectOnePmtNtmView(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-
-		return (Map<String, Object>) selectOne(
-				"boardNoticeAdminsDAO.selectOnePmtNtmView", map);
-	}
 	/*
 	 * ========================================수정================================
 	 * ========
@@ -83,10 +76,6 @@ public class BoardNoticeAdminsDAO extends AbstractDAO {
 		update("boardNoticeAdminsDAO.updateNtmHitCnt", map);
 	}
 
-	// 조회수 증가
-	public void updatePmtNtmHitCnt(Map<String, Object> map) throws Exception {
-		update("boardNoticeAdminsDAO.updateNtmHitCnt", map);
-	}
 	/*
 	 * ========================================리스트(SelectOne, SelectList
 	 * 순)========================================
