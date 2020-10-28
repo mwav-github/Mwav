@@ -42,8 +42,11 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
  */
 public class GoodsAdminsFileHandler {	
 
+	
+	@Resource(name = "goodsAdminsService")
+	private GoodsAdminsService goodsAdminsService;
+	
 	HttpServletRequest request;
-
 	Logger log = Logger.getLogger(this.getClass());
 	// Member
 	private static final String filePath_Member = "xUpload\\MbrData\\Avata\\";
