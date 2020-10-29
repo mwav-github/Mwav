@@ -119,11 +119,21 @@ public class BoardNoticeAdminsServiceImpl implements BoardNoticeAdminsService {
 		boardNoticeAdminsDAO.updateProNtmform(map);
 	}
 
+	@Override
 	public void updateProPmtNtmForm(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		boardNoticeAdminsDAO.updateProPmtNtmForm(map);
 	}	
 
+
+	// 공지게시, 임시저장 기능
+	@Override
+	public void updatePmtNoticeStatus(Map<String, Object> map)
+			throws Exception {
+		// TODO Auto-generated method stub
+		boardNoticeAdminsDAO.updatePmtNoticeStatus(map);
+	}
+	
 	/*
 	 * ========================================리스트(SelectOne, SelectList
 	 * 순)========================================

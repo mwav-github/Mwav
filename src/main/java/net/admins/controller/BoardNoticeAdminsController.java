@@ -321,7 +321,7 @@ public class BoardNoticeAdminsController {
 	public ModelAndView deletePmtNtmDelete(CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/Promoter/BoardMgr/PmtNoticeList");
-
+		
 		BoardNoticeAdminsService.deletePmtNtmDelete(commandMap.getMap());
 
 		/*
@@ -416,5 +416,28 @@ public class BoardNoticeAdminsController {
 
 		return mv;
 	}
-	
+
+	// Promoter 공지사항 노출/비노출 설정
+	@RequestMapping(value = "/admins/promoter/boardmgr/PmtNoticeStatusUpdate.mwav")
+	public ModelAndView updateNsmBnStatusNotice(CommandMap commandMap,
+			HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ModelAndView mv = new ModelAndView("/Admins/Promoter/BoardMgr/PmtNoticeList");
+
+		BoardNoticeAdminsService.updatePmtNoticeStatus(commandMap.getMap());
+
+		String bpStatus = request.getParameter("bpStatus"); //웹에서 전달받은 값
+		String boardPromoter_id = request.getParameter("boardPromoter_id"); //웹에서 전달받은 값
+		
+		String mm = "site";
+		mv.addObject("mm", mm);
+		mv.addObject("mode", "m_ntmList");
+		
+		mv.addObject("boardPromoter_id", boardPromoter_id);
+		mv.addObject("bpStatus", bpStatus);
+
+		response.sendRedirect("/admins/promoter/boardmgr/PmtNoticeList.mwav?pageNum=1"); // 공지사항 노출,비노출 설정 후 리스트 화면으로 이동
+		
+		return mv;
+	}	
+
 }

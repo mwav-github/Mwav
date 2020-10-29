@@ -38,6 +38,10 @@ public interface BoardNoticeAdminsService {
 	void updateProNtmForm(Map<String, Object> map) throws Exception;
 	
 	void updateProPmtNtmForm(Map<String, Object> map) throws Exception;
+	
+	//void updatePmtNoticeStatus(String boardPromoter_id, String bpStatus);
+	//Map<String, Object> updatePmtNoticeStatus(Map<String, Object> map) throws Exception;
+	void updatePmtNoticeStatus(Map<String, Object> map) throws Exception;
 
 	/*
 	 * ========================================리스트(SelectOne, SelectList

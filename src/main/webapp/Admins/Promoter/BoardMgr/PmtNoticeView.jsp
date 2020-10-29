@@ -87,13 +87,13 @@
 									<thead>
 										<tr>
 										    <c:set var ="bpStatus" value="${selectOnePmtNtmView.bpStatus }"/>
-											<c:if test="${fn:contains(bpStatus, '삭제완료.')}">
+											<c:if test="${fn:contains(bpStatus, '삭제완료')}">
 												<span class="pull-right text-danger"><strong>${selectOnePmtNtmView.bpStatus }</strong></span>
 											</c:if>
-											<c:if test="${fn:contains(bpStatus, '임시저장.')}">
+											<c:if test="${fn:contains(bpStatus, '비노출')}">
 												<span class="pull-right text-primary"><strong>${selectOnePmtNtmView.bpStatus }</strong></span>
 											</c:if>
-											<c:if test="${fn:contains(bpStatus, '공지완료.')}">
+											<c:if test="${fn:contains(bpStatus, '공지게시')}">
 												<span class="pull-right text-success"><strong>${selectOnePmtNtmView.bpStatus } </strong></span>
 											</c:if>
 											<div class="enter"></div>
@@ -169,8 +169,10 @@
 							<p class="pull-right">
 								<button type="button" class="btn btn-success"
 									onClick="javascript:window.location.href='/admins/promoter/boardmgr/PmtNoticeList.mwav'">All List</button>
+								<!--
 								<button type="button" class="btn btn-danger"
 									onclick="delete_check(${selectOnePmtNtmView.boardPromoter_id})">Delete</button>
+								-->
 							</p>
 
 						</div>

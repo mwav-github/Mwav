@@ -63,7 +63,21 @@
         update BoardPromoter_tbl set bpGroup= #{bpGroup}, bpHighLight= #{bpHighLight}, bpTitle= #{bpTitle}, bpSubTitle= #{bpSubTitle}, bpRelatedLink= #{bpRelatedLink}, bpContent= #{bpContent},  bpUpdateDt= NOW() where boardPromoter_id = #{boardPromoter_id}
     ]]>
     </update>
-	
+
+	<!-- 
+     <update id="updatePmtNoticeStatus" parameterType="string">
+    <![CDATA[
+        UPDATE BoardPromoter_tbl SET bpStatus=#{bpStatus} WHERE boardPromoter_id = #{boardPromoter_id};
+    ]]>
+    </update>
+    -->
+ 
+      <update id="updatePmtNoticeStatus" parameterType="hashmap">
+    <![CDATA[
+        UPDATE BoardPromoter_tbl SET bpStatus=#{bpStatus} WHERE boardPromoter_id = #{boardPromoter_id};
+    ]]>
+    </update>   
+    
 	<!--/*========================================리스트(SelctOne, SelectList 순)========================================*/  -->
 	
 	<select id="selectOneGetNtmTotalCount" resultType="int">

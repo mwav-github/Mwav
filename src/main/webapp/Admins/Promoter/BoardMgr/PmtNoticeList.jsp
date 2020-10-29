@@ -63,6 +63,22 @@
 
 					<div class="row">
 						<%--================================================시작========================================================== --%>
+						<script>
+							function delete_check(obj) {
+								if (confirm("정말 삭제하시겠습니까??") == true){    //확인
+									var tmp = obj;
+									location.href= "/admins/promoter/boardmgr/PmtNoticeDelete.mwav?boardPromoter_id="+tmp;
+									alert("공지가 삭제되었습니다.")
+									location.href= "/admins/promoter/boardmgr/PmtNoticeList.mwav?pageNum=1";
+								}else{   //취소
+								    return;
+								}
+						
+							}
+						</script>
+						
+						
+						
 						<button type="button" class="pull-right btn btn-default"><a href="/Admins/Promoter/BoardMgr/PmtNoticeForm.mwav?mm=site">공지사항 등록</a></button>
 						
 						<form name="ntmList" method="post"
@@ -101,10 +117,10 @@
 														<input type="hidden" id="boardPromoter_id" name="boardPromoter_id" value="${RselectListPmtNtmList.boardPromoter_id }">
 														<td class="hidden-xs">${RselectListPmtNtmList.boardPromoter_id}</td>
 														<c:if test="${RselectListPmtNtmList.bpStatus eq '1'}">
-															<td><span class="label label-primary">비노출 </span></td>
+															<td><span class="label label-default">비노출 </span></td>
 														</c:if>
 														<c:if test="${RselectListPmtNtmList.bpStatus eq '2'}">
-															<td><span class="label label-primary">노출완료 </span></td>
+															<td><span class="label label-primary">공지게시 </span></td>
 														</c:if>														
 														<td>
 															<a href="javascript:window.location.href='/admins/promoter/boardmgr/PmtNoticeView.mwav?boardPromoter_id=${RselectListPmtNtmList.boardPromoter_id}'">${RselectListPmtNtmList.bpTitle}</a>
@@ -112,12 +128,12 @@
 														<td class="hidden-xs">${RselectListPmtNtmList.bpInsertDt}</td>		
 																	
 														<td>
-															<button type="button" class="btn btn-info"
+															<button type="button" class="btn btn"
 																onclick="javascript:window.location.href='/admins/promoter/boardmgr/PmtNoticeView.mwav?boardPromoter_id=${RselectListPmtNtmList.boardPromoter_id}'">보기</button>&nbsp;
-															<button type="button" class="btn btn-warning"
+															<button type="button" class="btn btn-success"
 																onclick="javascript:window.location.href='/admins/promoter/boardmgr/PmtNoticeUpdate.mwav?boardPromoter_id=${RselectListPmtNtmList.boardPromoter_id}'">수정</button>
-															<button type="button" class="btn btn-warning"
-																onclick="javascript:window.location.href='/admins/promoter/boardmgr/PmtNoticeDelete.mwav?boardPromoter_id=${RselectListPmtNtmList.boardPromoter_id}'">삭제</button>
+															<button type="button" class="btn btn-danger"
+																onclick="delete_check(${RselectListPmtNtmList.boardPromoter_id})">삭제</button>	
 														</td>
 													</tr>
 												

@@ -87,6 +87,18 @@ public class BoardNoticeAdminsDAO extends AbstractDAO {
 	public void updatePmtNtmHitCnt(Map<String, Object> map) throws Exception {
 		update("boardNoticeAdminsDAO.updateNtmHitCnt", map);
 	}
+	
+	/*
+	public void updatePmtNoticeStatus(String boardPromoter_id, String bpStatus) {
+		// TODO Auto-generated method stub
+		update("boardNoticeAdminsDAO.updatePmtNoticeStatus", boardPromoter_id, bpStatus);
+	}	
+	*/
+
+	public void updatePmtNoticeStatus(Map<String, Object> map) {
+		update("boardNoticeAdminsDAO.updatePmtNoticeStatus", map);
+	}
+	
 	/*
 	 * ========================================리스트(SelectOne, SelectList
 	 * 순)========================================

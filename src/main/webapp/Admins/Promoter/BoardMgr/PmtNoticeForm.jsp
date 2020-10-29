@@ -62,9 +62,13 @@
 						<%--================================================시작========================================================== --%>
 
 						<script>
-							function check() {
-						
-								if (confirm("정말 입력 또는 수정하시겠습니까??") == true){    //확인
+							function check(msg) {
+								// msg : 공지등록 / 수정 / 비노출 / 공지게시
+								// bpStatus : 1(비노출) / 2(공지게시)
+								
+								if (confirm("정말 " + msg + " 하시겠습니까?") == true){    //확인
+									
+									// 제목 빈값 체크
 									if (document.bpForm.bpTitle.value == "") {
 										alert("제목을 입력하십시요.");
 										document.bpForm.bpTitle.focus();
@@ -73,14 +77,24 @@
 								
 									// contents 빈값 체크기능 추가 (textarea 값의 길이 체크하자!)
 									
-									alert("공지가 등록/수정 되었습니다.");
-									location.href= "/admins/promoter/boardmgr/PmtNoticeList.mwav?pageNum=1";
-									document.bpForm.submit();
 									
-									// location.href= "/admins/promoter/boardmgr/PmtNoticeList.mwav?pageNum=1";
+									alert(msg + " 되었습니다.");
 									
+									
+									if (msg == '공지등록'){
+										location.href = "/admins/promoter/boardmgr/PmtNoticeList.mwav?pageNum=1";
+										document.bpForm.submit();
+									}
+									
+									
+									else {
+										var bpStatus = {'비노출':1, '공지게시':2};
+										location.href = "/admins/promoter/boardmgr/PmtNoticeStatusUpdate.mwav?boardPromoter_id=${updatePmtNtmForm.boardPromoter_id}&&bpStatus="+bpStatus[msg];
+										
+									}
 									
 									return true;
+									
 								}else{   //취소
 								    return false;
 								}
@@ -126,7 +140,7 @@
 														</c:if>
 														<c:if test="${fn:contains(bpStatus, '2')}">
 															<span class="pull-right text-success">
-															<strong>게시중 </strong>
+															<strong>공지완료</strong>
 															</span>
 														</c:if>
 
@@ -212,15 +226,21 @@
 
 										<br style="clear: both">
 										<p class="pull-right">
-											<button type="button" class="btn btn-success"
+											<button type="button" class="btn btn"
 												onClick="javascript:window.location.href='/admins/promoter/boardmgr/PmtNoticeList.mwav'">All List</button>
+											<!--
 											<button type="button" class="btn btn-warning"
 												onClick="javascript:history.go(-1)">BACK</button>
+											-->
 
+											<button type="button" class="btn btn-success"
+												onclick="check('비노출')">비노출</button>
 
-											<button type="button" class="btn btn-primary"
-												onclick="check()">Modify</button>
-										
+											<button type="button" class="btn btn-success"
+												onclick="check('공지게시')">공지게시</button>
+												
+											<button type="button" class="btn btn-danger"
+												onclick="check('수정')">Modify</button>																						
 										</p>
 									</form>
 									<iframe src="#" name="iframe" style="width:1px; height:1px; border:0; visibility:hidden;"></iframe>
@@ -318,11 +338,10 @@
 										</table>
 										<br style="clear: both">
 										<p class="pull-right">
-											<button type="button" class="btn btn-success"
+											<button type="button" class="btn btn"
 												onClick="javascript:window.location.href='/admins/promoter/boardmgr/PmtNoticeList.mwav?pageNum=1'">All List</button>
-											<button type="button" class="btn btn-warning" onClick="javascript:history.go(-1)">BACK</button>
-											<button type="button" class="btn btn-primary"
-												onclick="check()">Insert</button>
+											<!--  <button type="button" class="btn btn-warning" onClick="javascript:history.go(-1)">BACK</button> -->
+											<button type="button" class="btn btn-danger" onclick="check('공지등록')">Insert</button>
 										</p>
 									</form>
 									<iframe src="#" name="iframe" style="width:1px; height:1px; border:0; visibility:hidden;"></iframe>
