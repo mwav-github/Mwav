@@ -81,7 +81,7 @@
 									alert(msg + " 되었습니다.");
 									
 									
-									if (msg == '공지등록'){
+									if (msg == '공지등록' || msg == '수정'){
 										location.href = "/admins/promoter/boardmgr/PmtNoticeList.mwav?pageNum=1";
 										document.bpForm.submit();
 									}
