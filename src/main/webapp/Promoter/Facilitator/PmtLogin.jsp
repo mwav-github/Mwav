@@ -113,19 +113,7 @@ function loginWithKakao() {
 		success: function(authObj) {
 			Kakao.API.request({
 				url: '/v2/user/me',
-				success: function(res) {
-					console.log(JSON.stringify(res));
-					// console.log(JSON.stringify(authObj));
-					// alert(JSON.stringify(res)); //<---- kakao.api.request 에서 불러온 결과값 json형태로 출력
-					// alert(JSON.stringify(authObj)); //<----Kakao.Auth.createLoginButton에서 불러온 결과값 json형태로 출력
-					console.log('-------------------------------------------------');
-					console.log(res.id);//<---- 콘솔 로그에 id 정보 출력(id는 res안에 있기 때문에 res.id 로 불러온다)
-					console.log(res.kakao_account['email']);//<---- 콘솔 로그에 email 정보 출력 (어딨는지 알겠죠?)
-					console.log(res.properties['nickname']);//<---- 콘솔 로그에 닉네임 출력(properties에 있는 nickname 접근 
-					console.log(res.kakao_account['is_email_verified']);
-					// res.properties.nickname으로도 접근 가능 )
-					console.log(authObj.access_token);//<---- 콘솔 로그에 토큰값 출력
-					
+				success: function(res) {				
 					var userData = {
 							spNickname: res.properties['nickname'],
 							spPromoterId: res.kakao_account['email'],
