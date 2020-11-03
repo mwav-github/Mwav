@@ -155,6 +155,54 @@
 	  where promoter_id= #{promoter_id}
 	]]>
 	</update>
+	
+	<select id="checkSocialLogin" parameterType = "net.bizLogin.promoter.vo.PmtFacilitatorSO" resultType="net.bizLogin.promoter.vo.PmtFacilitatorVO">
+		SELECT snsPromoter_id
+			 , spPromoterId
+		     , spFirstName
+		     , spLastName
+		     , spMiddleName
+		     , spNickname
+		     , spEmail
+		     , spGender
+		     , spProfileImage
+		     , spURL
+		     , promoter_id
+		 FROM SnsPromoter_tbl
+		WHERE 1=1
+		AND spPromoterId = #{spPromoterId}
+	</select>
+	
+	<insert id="joinSocialLogin" parameterType="net.bizLogin.promoter.vo.PmtFacilitatorSO">
+		INSERT INTO SnsPromoter_tbl
+		VALUES (
+				  (SELECT snsPromoter_id FROM (SELECT IFNULL(MAX(snsPromoter_id) + 1, 10000) snsPromoter_id FROM SnsPromoter_tbl) tb)
+				, #{spPromoterId}
+				, #{spSnsType}
+				, #{spFirstName}
+				, #{spLastName}
+				, #{spMiddleName}
+				, #{spNickName}
+				, #{spEmail}
+				, #{spGender}
+				, #{spProfileImage}
+				, #{spURL}
+				<choose>
+					<when test="isEmailVerified == 'true' or isEmailVerified == 'Y'">
+					, NOW()
+					</when>
+					<otherwise>
+					, NULL
+					</otherwise>
+				</choose>
+<!-- 				, #{spCertifyMailDt} -->
+				, #{promoter_id}
+				, NOW()
+				, #{spUpdateDt}
+				, #{spDeleteDt}
+				, #{spIpAddress}
+				)
+	</insert>
 
 
 
