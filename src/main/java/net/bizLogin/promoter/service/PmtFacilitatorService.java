@@ -1,13 +1,13 @@
 package net.bizLogin.promoter.service;
 
+import net.common.common.CommandMap;
+
 import java.util.Map;
 
 public interface PmtFacilitatorService {
-
-	void insertBoard(Map<String, Object> map);
-
 	/*========================================등록========================================*/
-
+	void insertPmtForm(CommandMap commandMap) throws Exception ;
+	boolean selectOnePmtLoginIdCheck(String stfLoginId) throws Exception;
 	/*========================================업데이트========================================*/
 
 }
