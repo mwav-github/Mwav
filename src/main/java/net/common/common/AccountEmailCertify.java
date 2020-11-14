@@ -56,6 +56,7 @@ public class AccountEmailCertify {
         // 구분자에 맞춰 DB에서 인증여부 검색
         switch (account){
             case "pmt" :
+                //  매개변수로 받은 프로모터가 이미 인증을 받았는지 확인
                 String certifyDtYN = promoterDAO.selectChkPmtCertifyDtYN(id);
                 if("Y".equals(certifyDtYN)){
                     body.put("status", "ALREADY");
@@ -109,11 +110,18 @@ public class AccountEmailCertify {
         MailLib mailLib = MailLib.getInstance();
         mailLib.send(msg);
 
+        //  메일 발송 성공여부를 status와 msg를 통해 넘겨줌
         body.put("status", "SEND_MAIL");
         body.put("msg", "인증 메일을 발송하였습니다.");
         return new ResponseEntity(body, HttpStatus.OK);
     }
 
+    /**
+     * <pre>description : 이메일로 받은 URL를 받아 암호화된 email, account, id를 복호화 후 인증확인 후 DB에 등록</pre>
+     * @param key    :     account, id, time 암호문
+     * @return
+     * @throws Exception
+     */
     @RequestMapping("/authority/{key}")
     public String authority(@PathVariable(value = "key") String key
                         , Model model
@@ -157,6 +165,7 @@ public class AccountEmailCertify {
         // 구분자에 맞춰 DB에서 인증여부 검색
         switch (keyMap.get("account")){
             case "pmt" :
+                //  매개변수로 받은 프로모터가 이미 인증을 받았는지 확인
                 String certifyDtYN = promoterDAO.selectChkPmtCertifyDtYN(keyMap.get("id"));
                 if("Y".equals(certifyDtYN)){
                     model.addAttribute("status", "ALREADY");
@@ -171,8 +180,10 @@ public class AccountEmailCertify {
                 return "redirect: /";
         }
 
+        //  DB에 이메일 인증을 현재 날짜로 입력함
         promoterDAO.updatePmtCertifyDt(keyMap.get("id"));
 
+        //  인증 성공여부를 status, msg로 페이지에 넘겨줌
         model.addAttribute("status", "SUCCESS");
         model.addAttribute("msg", "이메일 인증되었습니다.");
        return view;
