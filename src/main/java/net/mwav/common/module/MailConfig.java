@@ -31,6 +31,10 @@ public class MailConfig implements Serializable {
 	
 	@XmlElement(name = "mail.smtp.password")
 	private String password;
+	
+	@XmlElement(name = "mail.smtp.from")
+	private String from;
+
 
 	public MailConfig() {
 		super();
@@ -60,6 +64,10 @@ public class MailConfig implements Serializable {
 		return password;
 	}
 	
+	public String getFrom() {
+		return from;
+	}
+	
 	public Properties getCollectAllFieldProp() {
 		Properties prop = new Properties(); 
 		prop.setProperty("mail.smtp.host", host);
@@ -68,6 +76,7 @@ public class MailConfig implements Serializable {
 		prop.setProperty("mail.smtp.starttls.enable", starttls);
 		prop.setProperty("mail.smtp.user", user);
 		prop.setProperty("mail.smtp.password", password);
+		prop.setProperty("mail.smtp.from", from);
 		return prop;
 	}
 	
