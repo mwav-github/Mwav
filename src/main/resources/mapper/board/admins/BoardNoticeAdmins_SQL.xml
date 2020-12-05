@@ -7,7 +7,7 @@
 	<insert id="insertNtmForm" parameterType="hashmap">
 		<![CDATA[
 				INSERT INTO BoardUser_tbl
-				SELECT IFNULL(max(bUsers_id)+1,100001), #{buGroup}, #{buHighLight}, #{buTitle}, #{buSubTitle}, #{buRelatedLink}, #{buContent}, #{buViewCount}, #{buOrder}, #{buStatus}, #{staff_id}, NOW(), NOW(), null FROM BoardUser_tbl
+				SELECT IFNULL(max(boardUser_id)+1,100001), #{buGroup}, #{buHighLight}, #{buTitle}, #{buSubTitle}, #{buRelatedLink}, #{buContent}, #{buViewCount}, #{buOrder}, #{buStatus}, #{staff_id}, NOW(), NOW(), null FROM BoardUser_tbl
 		]]>
 	</insert>
 
@@ -15,7 +15,7 @@
 
    <select id="selectOneNtmView" parameterType="hashmap" resultType="hashmap">
 	<![CDATA[
-	    select * from BoardUser_tbl where bUsers_id = #{bUsers_id}
+	    select * from BoardUser_tbl where boardUser_id = #{boardUser_id}
 	]]>
 	</select>
 	
@@ -23,20 +23,20 @@
 	
 	<update id="updateNtmHitCnt" parameterType="hashmap">
     <![CDATA[
-        update BoardUser_tbl set buViewCount = iFnull(BuViewCount, 0) +1 where bUsers_id = #{bUsers_id} 
+        update BoardUser_tbl set buViewCount = iFnull(BuViewCount, 0) +1 where boardUser_id = #{boardUser_id} 
     ]]>
     </update>
     
  
      <select id="updateNtmform" parameterType="hashmap" resultType="hashmap">
     <![CDATA[
-        select * from BoardUser_tbl where bUsers_id = #{bUsers_id}
+        select * from BoardUser_tbl where boardUser_id = #{boardUser_id}
     ]]>
     </select>
     
     <update id="updateProNtmform" parameterType="hashmap">
     <![CDATA[
-        update BoardUser_tbl set buGroup= #{buGroup}, buHighLight= #{buHighLight}, buTitle= #{buTitle}, buSubTitle= #{buSubTitle}, buRelatedLink= #{buRelatedLink}, buContent= #{buContent},  buUpdateDt= NOW() where bUsers_id = #{bUsers_id}
+        update BoardUser_tbl set buGroup= #{buGroup}, buHighLight= #{buHighLight}, buTitle= #{buTitle}, buSubTitle= #{buSubTitle}, buRelatedLink= #{buRelatedLink}, buContent= #{buContent},  buUpdateDt= NOW() where boardUser_id = #{boardUser_id}
     ]]>
     </update>
  
@@ -51,7 +51,7 @@
 	
 	<select id="selectListNtmFrontList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			SELECT bUsers_id, buTitle, date_format(buInsertDt,'%Y%m%d') as buInsertDt
+			SELECT boardUser_id, buTitle, date_format(buInsertDt,'%Y%m%d') as buInsertDt
 		    FROM BoardUser_tbl
 		    WHERE buDeleteDt IS NULL ORDER BY buUpdateDt DESC Limit 5
 		]]>
@@ -59,7 +59,7 @@
 
 	
 	<!-- .
-	normal : select bNews_id, bnGroup, bnTitle, bnSubTitle, bnSubTitle, date_format(bnUpdateDt,'%d %b %Y %T') as bnUpdateDt from BoardNews_tbl WHERE bnDeleteDt IS NULL ORDER BY bNews_id;
+	normal : select boardNews_id, bnGroup, bnTitle, bnSubTitle, bnSubTitle, date_format(bnUpdateDt,'%d %b %Y %T') as bnUpdateDt from BoardNews_tbl WHERE bnDeleteDt IS NULL ORDER BY boardNews_id;
 	mysql : select c.* from (select @ROWNUM := @ROWNUM + 1 AS ROWNUM, a.* from (select * from BoardNews_tbl order by bnInsertDt desc) a,  (SELECT @ROWNUM := 0) R ) c where c.ROWNUM >= 0 and c.ROWNUM <= 10
     oracle : select * from (select rownum rnum, news_id, bnGroup, bnHighLight, bnTitle, bnSubTitle, bnRelatedLink, bnContent, bnViewCount, bnOrder, bnStatus, staff_id, bnWriteDt, bnModifyDt, bnDeleteDt from (select * from BoardNews_tbl order by bnWriteDt desc)) where rnum >= ? and rnum <= ?	
 	-->
@@ -76,7 +76,7 @@
 	
 	<update id="deleteNtmDelete" parameterType="hashmap">
     <![CDATA[
-        update BoardUser_tbl set buDeleteDt = NOW() where bUsers_id = #{bUsers_id}
+        update BoardUser_tbl set buDeleteDt = NOW() where boardUser_id = #{boardUser_id}
     ]]>
     </update>
 

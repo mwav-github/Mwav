@@ -49,7 +49,7 @@ public class APIGoogleShorten {
 
 		// 성냥 : Google Shorten URL API는 JSON으로 longUrl 파라미터를 사용하므로, JSON String
 		// 데이터 생성
-		String originalUrlJsonStr = "{\"longUrl\":\"" + "http://www.mwav.net/board/buView.mwav?bUsers_id=100010&utm_source=twitter&utm_campaign=[업무제휴]Mwav&FusionCharts와업무제휴체결.&utm_medium=social&utm_content=notices&pgl=#news_top" + "\"}";
+		String originalUrlJsonStr = "{\"longUrl\":\"" + "http://www.mwav.net/board/buView.mwav?boardUser_id=100010&utm_source=twitter&utm_campaign=[업무제휴]Mwav&FusionCharts와업무제휴체결.&utm_medium=social&utm_content=notices&pgl=#news_top" + "\"}";
 		System.out.println("[DEBUG] INPUT_JSON : " + originalUrlJsonStr);
 
 		// 성냥 : Google에 변환 요청을 보내기위해 java.net.URL, java.net.HttpURLConnection 사용

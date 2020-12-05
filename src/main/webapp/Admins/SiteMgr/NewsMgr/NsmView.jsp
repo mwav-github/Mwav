@@ -80,7 +80,7 @@
 	function check2(obj) {
 		if (confirm("정말 삭제하시겠습니까??") == true){    //확인
 			var bbb = obj;
-			location.href= "/admin/boardNews/nsmDelete.mwav?bNews_id="+bbb;
+			location.href= "/admin/boardNews/nsmDelete.mwav?boardNews_id="+bbb;
 		}else{   //취소
 		    return;
 		}
@@ -106,7 +106,7 @@
 													</strong></span>
 												</c:if></td>
 											<td><a
-												href="/board/bnsView.mwav?bNews_id=${selectOneNsmView.bNews_id}" target="_blank">게시글
+												href="/board/bnsView.mwav?boardNews_id=${selectOneNsmView.boardNews_id}" target="_blank">게시글
 													확인</a></td>
 											<div class="enter"></div>
 										</tr>
@@ -123,7 +123,7 @@
 
 									<tbody>
 										<tr>
-											<td>${selectOneNsmView.bNews_id}</td>
+											<td>${selectOneNsmView.boardNews_id}</td>
 											<td>${selectOneNsmView.bnGroup}</td>
 											<td>${selectOneNsmView.bnViewCount}</td>
 											<td>${selectOneNsmView.bnInsertDt}</td>
@@ -182,9 +182,9 @@
 							<br style="clear: both">
 							<p class="pull-right">
 								<button type="button" class="btn btn-success"
-									onClick="javascript:window.location.href='/admin/boardNews/nsmBnStatusUpdate.mwav?bNews_id=${selectOneNsmView.bNews_id}'">임시저장</button>
+									onClick="javascript:window.location.href='/admin/boardNews/nsmBnStatusUpdate.mwav?boardNews_id=${selectOneNsmView.boardNews_id}'">임시저장</button>
 								<button type="button" class="btn btn-success"
-									onClick="javascript:window.location.href='/admin/boardNews/nsmBnStatusNoticeUpdate.mwav?bNews_id=${selectOneNsmView.bNews_id}'">공지완료</button>
+									onClick="javascript:window.location.href='/admin/boardNews/nsmBnStatusNoticeUpdate.mwav?boardNews_id=${selectOneNsmView.boardNews_id}'">공지완료</button>
 
 								<button type="button" class="btn btn-success"
 									onClick="javascript:window.location.href='/admin/boardNews/nsmList.mwav?pageNum=${pageNum}'">All
@@ -192,7 +192,7 @@
 								<button type="button" class="btn btn-warning"
 									onClick="javascript:history.go(-1)">BACK</button>
 								<button type="button" class="btn btn-danger"
-									onclick="check2(${selectOneNsmView.bNews_id})">Delete</button>
+									onclick="check2(${selectOneNsmView.boardNews_id})">Delete</button>
 							</p>
 
 						</div>

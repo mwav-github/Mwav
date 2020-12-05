@@ -113,18 +113,18 @@
 
 													<%-- <c:if test="${RselectListNsmList.bnDeleteDt ne null}"> --%>
 													<tr>
-														<input type="hidden" id="bNews_id" name="bNews_id"
-															value="${RselectListNsmList.bNews_id}">
-														<td class="hidden-xs">${RselectListNsmList.bNews_id}</td>
+														<input type="hidden" id="boardNews_id" name="boardNews_id"
+															value="${RselectListNsmList.boardNews_id}">
+														<td class="hidden-xs">${RselectListNsmList.boardNews_id}</td>
 														<td class="hidden-xs">${RselectListNsmList.bnGroup}</td>
 														<td><a
-															href="javascript:window.location.href='/admin/boardNews/nsmView.mwav?bNews_id=${RselectListNsmList.bNews_id}'">${RselectListNsmList.bnTitle}</a></td>
+															href="javascript:window.location.href='/admin/boardNews/nsmView.mwav?boardNews_id=${RselectListNsmList.boardNews_id}'">${RselectListNsmList.bnTitle}</a></td>
 														<td class="hidden-xs">${RselectListNsmList.bnInsertDt}</td>
 														<td>
 															<button type="button" class="btn btn-info"
-																onclick="javascript:window.location.href='/admin/boardNews/nsmView.mwav?bNews_id=${RselectListNsmList.bNews_id}&pageNum=${pageNum}'">보기</button>&nbsp;
+																onclick="javascript:window.location.href='/admin/boardNews/nsmView.mwav?boardNews_id=${RselectListNsmList.boardNews_id}&pageNum=${pageNum}'">보기</button>&nbsp;
 															<button type="button" class="btn btn-warning"
-																onclick="javascript:window.location.href='/admin/boardNews/nsmUpdate.mwav?bNews_id=${RselectListNsmList.bNews_id}&pageNum=${pageNum}'">수정</button>
+																onclick="javascript:window.location.href='/admin/boardNews/nsmUpdate.mwav?boardNews_id=${RselectListNsmList.boardNews_id}&pageNum=${pageNum}'">수정</button>
 														</td>
 													</tr>
 													<%-- </c:if> --%>

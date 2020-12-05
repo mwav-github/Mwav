@@ -62,7 +62,7 @@ select distinct SUBSTRING_INDEX(SUBSTRING_INDEX(stBrowserInfo, '(', -1),')', 1) 
 	</select>
 	
 	<select id="selectListBoardKeyword" resultType="String" parameterType="hashmap" >
-          SELECT bnKeyword From BoardNews_tbl where bNews_id = #{bNews_id};
+          SELECT bnKeyword From BoardNews_tbl where boardNews_id = #{boardNews_id};
         
 	</select>
 	

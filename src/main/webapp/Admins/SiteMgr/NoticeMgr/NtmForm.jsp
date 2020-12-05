@@ -113,8 +113,8 @@
 
 													<div class="pull-right">
 														<%--기본값 --%>
-														<input type="hidden" name="bUsers_id"
-															value="${updateNtmForm.bUsers_id}" /> <input
+														<input type="hidden" name="boardUser_id"
+															value="${updateNtmForm.boardUser_id}" /> <input
 															type="hidden" name="buHighLight" value="0" /> <input
 															type="hidden" name="buViewCount" value="0" MaxLength="10" />
 														<input type="hidden" name="buInsertDt"
@@ -152,7 +152,7 @@
 											</thead>
 											<tbody>
 												<tr>
-													<td>${updateNtmForm.bUsers_id}</td>
+													<td>${updateNtmForm.boardUser_id}</td>
 													<td><select name="buGroup"
 														value="${updateNtmForm.buGroup}">
 															<option value="전체">전체</option>
@@ -244,7 +244,7 @@
 
 													<div class="pull-right">
 														<%--기본값 --%>
-														<input type="hidden" name="bUsers_id" /> <input
+														<input type="hidden" name="boardUser_id" /> <input
 															type="hidden" name="buHighLight" value="0" /> <input
 															type="hidden" name="buViewCount" value="0" MaxLength="10" />
 
