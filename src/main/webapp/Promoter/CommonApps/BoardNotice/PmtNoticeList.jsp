@@ -41,8 +41,8 @@
 			<c:choose>
 				<c:when test="${fn:length(selectListBuList) > 0}">
 					<c:forEach var="VselectListBuList" items="${selectListBuList}"> --%>
-				<input type="hidden" id="bNews_id" name="bNews_id"
-							value="${VselectListBuList.bUsers_id }">
+				<input type="hidden" id="boardNews_id" name="boardNews_id"
+							value="${VselectListBuList.boardUser_id }">
 						<table class="table">
 							<thead>
 								<tr>
@@ -54,7 +54,7 @@
 								<tr>
 									<td style="width: 80%" class="text-left"><i
 										class="fas fa-exclamation-circle"></i> <a
-										href="javascript:window.location.href='/board/buView.mwav?bUsers_id=${VselectListBuList.bUsers_id}'">${VselectListBuList.buTitle}</a></td>
+										href="javascript:window.location.href='/board/buView.mwav?boardUser_id=${VselectListBuList.boardUser_id}'">${VselectListBuList.buTitle}</a></td>
 									<td style="width: 20%" class="text-center text-secondary"><c:if
 											test="${VselectListBuList.fmbuInsertDt ne null}"> 
 						Date - ${VselectListBuList.fmbuInsertDt}</c:if></td>

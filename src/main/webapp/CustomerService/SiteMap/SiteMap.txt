@@ -247,43 +247,43 @@
 
        <!-- News -->
 	<url>
-		<loc>https://www.mwav.net/board/bnsView.mwav?bNews_id=100007</loc>
+		<loc>https://www.mwav.net/board/bnsView.mwav?boardNews_id=100007</loc>
 		<lastmod>2017-09-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>1.0</priority>
 	</url>
 	<url>
-		<loc>https://www.mwav.net/board/bnsView.mwav?bNews_id=100006</loc>
+		<loc>https://www.mwav.net/board/bnsView.mwav?boardNews_id=100006</loc>
 		<lastmod>2017-09-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>1.0</priority>
 	</url>
 	<url>
-		<loc>https://www.mwav.net/board/bnsView.mwav?bNews_id=100005</loc>
+		<loc>https://www.mwav.net/board/bnsView.mwav?boardNews_id=100005</loc>
 		<lastmod>2017-09-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>1.0</priority>
 	</url>
 	<url>
-		<loc>https://www.mwav.net/board/bnsView.mwav?bNews_id=100004</loc>
+		<loc>https://www.mwav.net/board/bnsView.mwav?boardNews_id=100004</loc>
 		<lastmod>2017-09-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>1.0</priority>
 	</url>
 	<url>
-		<loc>https://www.mwav.net/board/bnsView.mwav?bNews_id=100003</loc>
+		<loc>https://www.mwav.net/board/bnsView.mwav?boardNews_id=100003</loc>
 		<lastmod>2017-09-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>1.0</priority>
 	</url>
         <url>
-		<loc>https://www.mwav.net/board/bnsView.mwav?bNews_id=100002</loc>
+		<loc>https://www.mwav.net/board/bnsView.mwav?boardNews_id=100002</loc>
 		<lastmod>2017-09-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>1.0</priority>
 	</url>
         <url>
-		<loc>https://www.mwav.net/board/bnsView.mwav?bNews_id=100001</loc>
+		<loc>https://www.mwav.net/board/bnsView.mwav?boardNews_id=100001</loc>
 		<lastmod>2017-09-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>1.0</priority>
@@ -304,25 +304,25 @@
 
 	<!-- Notice -->
 	<url>
-		<loc>https://www.mwav.net/board/buView.mwav?bUsers_id=100005</loc>
+		<loc>https://www.mwav.net/board/buView.mwav?boardUser_id=100005</loc>
 		<lastmod>2017-09-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.7</priority>
 	</url>
 	<url>
-		<loc>https://www.mwav.net/board/buView.mwav?bUsers_id=100004</loc>
+		<loc>https://www.mwav.net/board/buView.mwav?boardUser_id=100004</loc>
 		<lastmod>2017-09-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.7</priority>
 	</url>
 	<url>
-		<loc>https://www.mwav.net/board/buView.mwav?bUsers_id=100002</loc>
+		<loc>https://www.mwav.net/board/buView.mwav?boardUser_id=100002</loc>
 		<lastmod>2017-09-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.7</priority>
 	</url>
 	<url>
-		<loc>https://www.mwav.net/board/buView.mwav?bUsers_id=100001</loc>
+		<loc>https://www.mwav.net/board/buView.mwav?boardUser_id=100001</loc>
 		<lastmod>2017-09-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.7</priority>

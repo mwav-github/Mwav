@@ -128,8 +128,8 @@
 
 													<div class="pull-right">
 														<%--기본값 --%>
-														<input type="hidden" name="bNews_id"
-															value="${updateNsmForm.bNews_id}" /> <input
+														<input type="hidden" name="boardNews_id"
+															value="${updateNsmForm.boardNews_id}" /> <input
 															type="hidden" name="bnHighLight" value="0" /> <input
 															type="hidden" name="bnViewCount" value="0" MaxLength="10" />
 														<input type="hidden" name="bnInsertDt"
@@ -170,7 +170,7 @@
 											</thead>
 											<tbody>
 												<tr>
-													<td>${updateNsmForm.bNews_id}</td>
+													<td>${updateNsmForm.boardNews_id}</td>
 													<td><select name="bnGroup"
 														value="${updateNsmForm.bnGroup}">
 															<option value="전체">전체</option>
@@ -260,7 +260,7 @@
 
 													<div class="pull-right">
 														<%--기본값 --%>
-														<input type="hidden" name="bNews_id" /> <input
+														<input type="hidden" name="boardNews_id" /> <input
 															type="hidden" name="bnHighLight" value="0" /> <input
 															type="hidden" name="bnViewCount" value="0" MaxLength="10" />
 

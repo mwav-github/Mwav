@@ -11,14 +11,14 @@
 	<c:when test="${fn:length(selectListBuList) > 0}">
 	
 		<c:forEach var="VselectListBuList" items="${selectListBuList}">
-			<input type="hidden" id="bNews_id" name="bNews_id"
-				value="${VselectListBuList.bUsers_id }">
+			<input type="hidden" id="boardNews_id" name="boardNews_id"
+				value="${VselectListBuList.boardUser_id }">
 			<div class="row">
 				<div class="col-md-12">
 
 					<h4 style="color: #23527c !important;">
 						<strong><a
-							href="javascript:window.location.href='/board/buView.mwav?bUsers_id=${VselectListBuList.bUsers_id}'">${VselectListBuList.buTitle}</a></strong>
+							href="javascript:window.location.href='/board/buView.mwav?boardUser_id=${VselectListBuList.boardUser_id}'">${VselectListBuList.buTitle}</a></strong>
 					</h4>
 					<p style="color: #78828D;">${VselectListBuList.buSubTitle}</p>
 
@@ -102,14 +102,14 @@
 		var comSubmit = new ComSubmit();
 		comSubmit.setUrl("<c:url value='/boardNotice/buView.mwav'/>");
 		alert('sdf');
-		comSubmit.addParam("bUsers_id", $("#bUsers_id").val());
+		comSubmit.addParam("boardUser_id", $("#boardUser_id").val());
 		comSubmit.submit();
 	}
 
 	function fn_deleteBoard() {
 		var comSubmit = new ComSubmit();
 		comSubmit.setUrl("<c:url value='/boardNotice/buDelete.mwav' />");
-		comSubmit.addParam("bUsers_id", $("#bUsers_id").val());
+		comSubmit.addParam("boardUser_id", $("#boardUser_id").val());
 		comSubmit.submit();
 
 	}

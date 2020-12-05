@@ -33,15 +33,15 @@ container 안에 포함시키면된다.
 					<c:forEach var="VselectListBnsList" items="${selectListBnsList}">
 					
 						<tr>
-							<input type="hidden" id="bNews_id" name="bNews_id"
-								value="${VselectListBnsList.bNews_id }">
-							<td class="hidden-xs">${VselectListBnsList.bNews_id}</td>
+							<input type="hidden" id="boardNews_id" name="boardNews_id"
+								value="${VselectListBnsList.boardNews_id }">
+							<td class="hidden-xs">${VselectListBnsList.boardNews_id}</td>
 							<td class="hidden-xs">${VselectListBnsList.bnGroup}</td>
 							<td><a
-								href="javascript:window.location.href='/board/bnsView.mwav?bNews_id=${VselectListBnsList.bNews_id}'">${VselectListBnsList.bnTitle}</a></td>
+								href="javascript:window.location.href='/board/bnsView.mwav?boardNews_id=${VselectListBnsList.boardNews_id}'">${VselectListBnsList.bnTitle}</a></td>
 							<td class="hidden-xs">${VselectListBnsList.fmbnInsertDt}</td>
-							<td> <button type="button" class="btn btn-info" onclick="javascript:window.location.href='/board/bnsView.mwav?bNews_id=${FrontboardList.bNews_id}'">보기</button>&nbsp;
-<button type="button" class="btn btn-warning" onclick="javascript:window.location.href='/board/bnsModify.mwav?bNews_id=${FrontboardList.bNews_id}'">수정</button>
+							<td> <button type="button" class="btn btn-info" onclick="javascript:window.location.href='/board/bnsView.mwav?boardNews_id=${FrontboardList.boardNews_id}'">보기</button>&nbsp;
+<button type="button" class="btn btn-warning" onclick="javascript:window.location.href='/board/bnsModify.mwav?boardNews_id=${FrontboardList.boardNews_id}'">수정</button>
 </td>
 						</tr>
 					
@@ -64,14 +64,14 @@ container 안에 포함시키면된다.
 	<c:when test="${fn:length(selectListBnsList) > 0}">
 		<c:forEach var="VselectListBnsList" items="${selectListBnsList}">
 				<c:if test="${VselectListBnsList.bnStatus eq '2'}">
-			<input type="hidden" id="bNews_id" name="bNews_id"
-				value="${VselectListBnsList.bNews_id }">
+			<input type="hidden" id="boardNews_id" name="boardNews_id"
+				value="${VselectListBnsList.boardNews_id }">
 			<div class="row">
 				<div class="col-md-12">
 
 					<h4 style="color: #23527c !important;">
 						<strong><a
-							href="javascript:window.location.href='/board/bnsView.mwav?bNews_id=${VselectListBnsList.bNews_id}'">${VselectListBnsList.bnTitle}</a></strong>
+							href="javascript:window.location.href='/board/bnsView.mwav?boardNews_id=${VselectListBnsList.boardNews_id}'">${VselectListBnsList.bnTitle}</a></strong>
 					</h4>
 
 					<p style="color: #78828D;">${VselectListBnsList.bnSubTitle}</p>
@@ -153,14 +153,14 @@ container 안에 포함시키면된다.
 		var comSubmit = new ComSubmit();
 		comSubmit.setUrl("<c:url value='/board/bnsView.mwav'/>");
 		alert('sdf');
-		comSubmit.addParam("bNews_id", $("#bNews_id").val());
+		comSubmit.addParam("boardNews_id", $("#boardNews_id").val());
 		comSubmit.submit();
 	}
 
 	function fn_deleteBoard() {
 		var comSubmit = new ComSubmit();
 		comSubmit.setUrl("<c:url value='/board/bnsDelete.mwav' />");
-		comSubmit.addParam("bNews_id", $("#bNews_id").val());
+		comSubmit.addParam("boardNews_id", $("#boardNews_id").val());
 		comSubmit.submit();
 
 	}
