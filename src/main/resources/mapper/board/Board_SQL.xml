@@ -92,7 +92,6 @@
 	    select *, date_format(buInsertDt,'%Y-%m-%d') as fmbuInsertDt from BoardUser_tbl where boardUser_id = #{boardUser_id}
 	]]>
 	</select>
-	
 	<!--/*========================================수정========================================*/  -->
 	
 	<update id="updateNoticeHitCnt" parameterType="hashmap">
