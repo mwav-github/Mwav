@@ -442,4 +442,11 @@ public class MemberDAO extends AbstractDAO {
 		}
 	}
 
+	public int insertMemberOption_tbl(Map<String, Object> map) {
+		return (int) insert("member.insertMemberOption_tbl", map);
+	}
+
+	public int insertMemberJob_tbl(Map<String, Object> map) {
+		return (int) insert("member.insertMemberJob_tbl", map);
+	}
 }
