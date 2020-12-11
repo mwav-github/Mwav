@@ -29,7 +29,7 @@
 	<insert id="insertMemberJob_tbl" parameterType="hashmap">
 		<![CDATA[
 			INSERT INTO MemberJob_tbl(member_id, mbrCompany, mbrWebsite, mbrJobType, mbrOfficePhone, mbrOfficeZipcode, mbrOfficeAddress, mbrOfficeAddressDetail)
-			VALUES(#{member_id}, '-', null, null, null, null, null, null)
+			VALUES(#{member_id}, '-99', null, null, null, null, null, null)
 		]]>
 	</insert>
 
