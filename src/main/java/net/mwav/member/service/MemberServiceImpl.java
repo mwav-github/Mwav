@@ -84,13 +84,21 @@ public class MemberServiceImpl implements MemberService {
 			}
 			map.put("mbrLoginPw", encrypted);
 
-			// 5. Member_tbl, MemberValue_tbl insert
+			// 5. MemberValue_tbl insert
+			memberDAO.insertMemberValue_tbl(map);
+
+			// 6. MemberOption_tbl insert
+			memberDAO.insertMemberOption_tbl(map);
+
+			// 7. MemberJob_tbl insert
+			memberDAO.insertMemberJob_tbl(map);
+
+			// 8. Member_tbl insert
 			if (memberDAO.insertMbrForm(map) == 0) {
 				result.put("result", "30");
 				result.put("message", "NO_AFFECTED");
 			}
-			
-			memberDAO.insertMemberValue_tbl(map);
+
 			emailSender.sendRegistrationEmail(map);
 			result.put("result", "1");
 			result.put("message", "SUCCESS");
