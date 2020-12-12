@@ -78,7 +78,7 @@ public class SignService {
 				result.put("result", "30");
 				result.put("message", "NO_AFFECTED");
 			}
-			memberDao.insertMemberValue_tbl(signUpMap);
+			memberDao.insertMemberValue(signUpMap);
 
 			// sns 테이블 INSERT
 			Map<String, Object> snsMap = new HashMap<String, Object>();

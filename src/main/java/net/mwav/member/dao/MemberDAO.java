@@ -33,8 +33,8 @@ public class MemberDAO extends AbstractDAO {
 		
 	}
 	
-	public int insertMemberValue_tbl(Map<String, Object> map) throws Exception {
-		return (int) insert("member.insertMemberValue_tbl", map);
+	public int insertMemberValue(Map<String, Object> map) throws Exception {
+		return (int) insert("member.insertMemberValue", map);
 	}
 
 	/*
@@ -442,11 +442,11 @@ public class MemberDAO extends AbstractDAO {
 		}
 	}
 
-	public int insertMemberOption_tbl(Map<String, Object> map) {
-		return (int) insert("member.insertMemberOption_tbl", map);
+	public int insertMemberOption(Map<String, Object> map) {
+		return (int) insert("member.insertMemberOption", map);
 	}
 
-	public int insertMemberJob_tbl(Map<String, Object> map) {
-		return (int) insert("member.insertMemberJob_tbl", map);
+	public int insertMemberJob(Map<String, Object> map) {
+		return (int) insert("member.insertMemberJob", map);
 	}
 }

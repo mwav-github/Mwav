@@ -12,21 +12,21 @@
 		]]>
 	</insert>
 
-	<insert id="insertMemberValue_tbl" parameterType="hashmap">
+	<insert id="insertMemberValue" parameterType="hashmap">
 		<![CDATA[
 			INSERT INTO MemberValue_tbl (member_id, mbrLevel, mbrHowMuch, mbrHowMany, mbrRsvFund, mbrRsvFundAc, mbrPoint, mbrPointAc, mbrUnpaid, mbrUnpaidAc, mbrRcmderId, mbrInsertDt, mbrCertifyDt, mbrModifyDt, mbrRecentLoginDt, mbrAutoLoginDt, mbrLeaveDt, mbrNextPwUpdateDt, mbrIpAddress, mbrBadRemark, mbrBadDt, mbrMgrMemo)
 	    	Values(#{member_id},'0','0','0','0','0','0','0','0','0',null,now(),null,null,null,null,null,DATE_ADD(NOW(),INTERVAL 6 MONTH),null,null,null, null)
 		]]>
 	</insert>
 
-	<insert id="insertMemberOption_tbl" parameterType="hashmap">
+	<insert id="insertMemberOption" parameterType="hashmap">
 		<![CDATA[
 			INSERT INTO  MemberOption_tbl(member_id, mbrGender, mbrNickname, mbrHomepage, mbrMessengerName, mbrMessengerId, mbrHobbies, mbrCarInfo, mbrChildren, mbrAvataImg, mbrIncome, mbrMark, mbrClearanceNo)
 			VALUES(#{member_id}, null, null, null, null, null, null, null, null, null, null, null, null)
 		]]>
 	</insert>
 
-	<insert id="insertMemberJob_tbl" parameterType="hashmap">
+	<insert id="insertMemberJob" parameterType="hashmap">
 		<![CDATA[
 			INSERT INTO MemberJob_tbl(member_id, mbrCompany, mbrWebsite, mbrJobType, mbrOfficePhone, mbrOfficeZipcode, mbrOfficeAddress, mbrOfficeAddressDetail)
 			VALUES(#{member_id}, '-99', null, null, null, null, null, null)
