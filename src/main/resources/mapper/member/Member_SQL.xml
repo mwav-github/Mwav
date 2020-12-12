@@ -15,7 +15,7 @@
 	<insert id="insertMemberValue_tbl" parameterType="hashmap">
 		<![CDATA[
 			INSERT INTO MemberValue_tbl (member_id, mbrLevel, mbrHowMuch, mbrHowMany, mbrRsvFund, mbrRsvFundAc, mbrPoint, mbrPointAc, mbrUnpaid, mbrUnpaidAc, mbrRcmderId, mbrInsertDt, mbrCertifyDt, mbrModifyDt, mbrRecentLoginDt, mbrAutoLoginDt, mbrLeaveDt, mbrNextPwUpdateDt, mbrIpAddress, mbrBadRemark, mbrBadDt, mbrMgrMemo)
-	    	Values(#{member_id},'0','0','0','0','0','0','0','0','0',null,now(),null,null,null,null,null,now(),null,null,null, DATE_ADD(NOW(),INTERVAL 6 MONTH))
+	    	Values(#{member_id},'0','0','0','0','0','0','0','0','0',null,now(),null,null,null,null,null,DATE_ADD(NOW(),INTERVAL 6 MONTH),null,null,null, null)
 		]]>
 	</insert>
 

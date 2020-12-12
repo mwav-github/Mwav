@@ -75,7 +75,7 @@
     </delete>
     
     <select id="getUpdatePwYN" parameterType="net.mwav.member.vo.Member_tbl_VO" resultType="int">
-    	SELECT CASE WHEN DATE_FORMAT(NOW(), '%Y-%m-%d')  >= DATE_FORMAT(mbrNextUpdateDt, '%Y-%m-%d') THEN 1 ELSE 0 END pwUpdate
+    	SELECT CASE WHEN DATE_FORMAT(NOW(), '%Y-%m-%d')  >= DATE_FORMAT(mbrNextPwUpdateDt, '%Y-%m-%d') THEN 1 ELSE 0 END pwUpdate
 		FROM MemberValue_tbl
 		WHERE member_id = #{member_id}
     </select>
