@@ -170,9 +170,7 @@ public class QAController {
 		ModelAndView mv = new ModelAndView("/CustomerService/CS-MasterPage");
 
 		log.debug("인터셉터 테스트");
-		Map<String, Object> selectOneQAView = qaService
-				.selectOneQAView(commandMap.getMap());
-		// System.out.println("값" + selectOneQAView.get("QnA_id_2"));
+		Map<String, Object> selectOneQAView = qaService.selectOneQAView(commandMap.getMap());
 
 		System.out.println("sdf" + selectOneQAView.get("uqStatus"));
 

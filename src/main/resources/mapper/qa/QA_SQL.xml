@@ -19,14 +19,14 @@
 
 	 <select id="selectOneQAView" parameterType="hashmap" resultType="hashmap">
 	<![CDATA[
-	    select *, date_format(uqInsertDt,'%Y/%m/%d') as fmuqInsertDt from UserQuestion_tbl where userQuestion_id = #{QnA_id}
+	    select *, date_format(uqInsertDt,'%Y/%m/%d') as fmuqInsertDt from UserQuestion_tbl where userQuestion_id = #{userQuestion_id}
 	]]>
 	</select>
 	
 	
    <select id="selectOneQAUaView" parameterType="hashmap" resultType="hashmap">
 	<![CDATA[
-	    select * from UserAnswer_tbl where userQuestion_id = #{QnA_id}
+	    select * from UserAnswer_tbl where userAnswer_id = #{userQuestion_id}
 	]]>
 	</select>
 	
@@ -39,14 +39,14 @@
 	<!--/*======================+==================수정========================================*/  -->
 	<update id="updateQAHitCnt" parameterType="hashmap">
     <![CDATA[
-       update UserQuestion_tbl set uqViewCount = iFnull(uqViewCount, 0) +1 where userQuestion_id = #{QnA_id}
+       update UserQuestion_tbl set uqViewCount = iFnull(uqViewCount, 0) +1 where userQuestion_id = #{userQuestion_id}
     ]]>
     </update>
 	
 	
 	<update id="updateUABeReadDt" parameterType="hashmap">
     <![CDATA[
-       update UserAnswer_tbl set uaBeReadDt = NOW() where userAnswer_id = #{QnA_id}
+       update UserAnswer_tbl set uaBeReadDt = NOW() where userAnswer_id = #{userQuestion_id}
     ]]>
     </update>
 	
