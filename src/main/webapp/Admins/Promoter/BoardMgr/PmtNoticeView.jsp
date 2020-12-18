@@ -65,20 +65,25 @@
 				<div class="col-lg-12">
 
 					<div class="row">
-						<%--================================================시작========================================================== --%>
+						<%--================================================시작========================================================== --%>		
 						<script>
-							function delete_check(obj) {
-								if (confirm("정말 삭제하시겠습니까??") == true){    //확인
-									var tmp = obj;
-									location.href= "/admins/promoter/boardmgr/PmtNoticeDelete.mwav?boardPromoter_id="+tmp;
-									alert("공지가 삭제되었습니다.")
-									location.href= "/admins/promoter/boardmgr/PmtNoticeList.mwav?pageNum=1";
-								}else{   //취소
-								    return;
+							function check(msg) {
+								// msg : 비노출 / 공지게시
+								// bpStatus : 1(비노출) / 2(공지게시)
+								
+								if (confirm("정말 " + msg + " 하시겠습니까?") == true){    //확인
+									
+									alert(msg + " 되었습니다.");
+									
+									var bpStatus = {'비노출':1, '공지게시':2};
+									location.href = "/admins/promoter/boardmgr/PmtNoticeStatusUpdate.mwav?boardPromoter_id=${selectOnePmtNtmView.boardPromoter_id}&&bpStatus="+bpStatus[msg];																			
+									return true;
+
 								}
-						
+							
 							}
 						</script>
+						
 						
 						<!-- Content Column -->
 						<div class="table-responsive">
@@ -86,17 +91,19 @@
 								<table class="table table-striped">
 									<thead>
 										<tr>
-										    <c:set var ="bpStatus" value="${selectOnePmtNtmView.bpStatus }"/>
-											<c:if test="${fn:contains(bpStatus, '삭제완료')}">
-												<span class="pull-right text-danger"><strong>${selectOnePmtNtmView.bpStatus }</strong></span>
-											</c:if>
-											<c:if test="${fn:contains(bpStatus, '비노출')}">
-												<span class="pull-right text-primary"><strong>${selectOnePmtNtmView.bpStatus }</strong></span>
-											</c:if>
-											<c:if test="${fn:contains(bpStatus, '공지게시')}">
-												<span class="pull-right text-success"><strong>${selectOnePmtNtmView.bpStatus } </strong></span>
-											</c:if>
-											<div class="enter"></div>
+											<div class="pull-right">
+											    <c:set var ="bpStatus" value="${selectOnePmtNtmView.bpStatus}"/>
+												<c:if test="${fn:contains(bpStatus, 1)}">
+													<span class="label label-default">
+													<strong>비노출</strong>
+													</span>
+												</c:if>
+												<c:if test="${fn:contains(bpStatus, 2)}">
+													<span class="label label-primary">
+													<strong>공지게시</strong>
+													</span>
+												</c:if>									
+											</div>
 										</tr>
 										<tr class="active">
 											<th>NO.</th>
@@ -146,7 +153,14 @@
 									<tr>
 										<td>${selectOnePmtNtmView.bpRelatedLink}</td>
 									</tr>
-									
+
+									<tr>
+										<th class="active">Image Link</th>
+									</tr>
+									<tr>
+										<td>${selectOnePmtNtmView.bpTitleImageLink}</td>
+									</tr>
+																		
 									<tr>
 										<th class="active">Keywords</th>
 									</tr>
@@ -167,12 +181,12 @@
 
 							<br style="clear: both">
 							<p class="pull-right">
-								<button type="button" class="btn btn-success"
+								<button type="button" class="btn btn"
 									onClick="javascript:window.location.href='/admins/promoter/boardmgr/PmtNoticeList.mwav'">All List</button>
-								<!--
-								<button type="button" class="btn btn-danger"
-									onclick="delete_check(${selectOnePmtNtmView.boardPromoter_id})">Delete</button>
-								-->
+								<button type="button" class="btn btn-success"
+									onclick="check('비노출')">비노출</button>
+								<button type="button" class="btn btn-success"
+									onclick="check('공지게시')">공지게시</button>
 							</p>
 
 						</div>

@@ -43,9 +43,9 @@ public class BoardNoticeAdminsServiceImpl implements BoardNoticeAdminsService {
 	@Override
 	public void insertPmtNtmForm(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
-		System.out.println("map=" + map);
 
 		map.put("bpStatus", 1);
+		
 		boardNoticeAdminsDAO.insertPmtNtmForm(map);
 	}
 	/*
@@ -88,9 +88,8 @@ public class BoardNoticeAdminsServiceImpl implements BoardNoticeAdminsService {
 		}
 
 		Map<String, Object> resultMap = boardNoticeAdminsDAO.selectOnePmtNtmView(map);
-		int test = (int) resultMap.get("bpStatus");
-		String result = cou.TypeIntToString("board", test);
-		resultMap.put("bpStatus", result);
+		int bpStatus = (int) resultMap.get("bpStatus");
+		resultMap.put("bpStatus", bpStatus);
 
 		return resultMap;
 	}
@@ -126,7 +125,7 @@ public class BoardNoticeAdminsServiceImpl implements BoardNoticeAdminsService {
 	}	
 
 
-	// 공지게시, 임시저장 기능
+	// 공지게시, 비노출 기능
 	@Override
 	public void updatePmtNoticeStatus(Map<String, Object> map)
 			throws Exception {

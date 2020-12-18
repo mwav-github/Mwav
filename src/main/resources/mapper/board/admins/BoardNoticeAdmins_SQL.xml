@@ -14,7 +14,7 @@
 	<insert id="insertPmtNtmForm" parameterType="hashmap">
 		<![CDATA[
 				INSERT INTO BoardPromoter_tbl
-				SELECT IFNULL(max(boardPromoter_id)+1,100001), #{bpGroup}, #{bpHighLight}, #{bpTitle}, #{bpSubTitle}, 'bpKeyword', 'bpTitleImageLink', #{bpRelatedLink}, #{bpContent}, #{bpViewCount}, #{bpOrder}, #{bpStatus}, #{staff_id}, NOW(), NOW(), null, 'ipaddress' FROM BoardPromoter_tbl
+				SELECT IFNULL(max(boardPromoter_id)+1,100001), #{bpGroup}, #{bpHighLight}, #{bpTitle}, #{bpSubTitle}, #{bpKeyword}, #{bpTitleImageLink}, #{bpRelatedLink}, #{bpContent}, #{bpViewCount}, #{bpOrder}, #{bpStatus}, #{staff_id}, NOW(), NOW(), null, 'bpIpAddress_temp' FROM BoardPromoter_tbl
 		]]>
 	</insert>
     <!--/*========================================보기========================================*/  -->
@@ -60,7 +60,7 @@
  
      <update id="updateProPmtNtmForm" parameterType="hashmap">
     <![CDATA[
-        update BoardPromoter_tbl set bpGroup= #{bpGroup}, bpHighLight= #{bpHighLight}, bpTitle= #{bpTitle}, bpSubTitle= #{bpSubTitle}, bpRelatedLink= #{bpRelatedLink}, bpContent= #{bpContent},  bpUpdateDt= NOW() where boardPromoter_id = #{boardPromoter_id}
+        update BoardPromoter_tbl set bpGroup= #{bpGroup}, bpHighLight= #{bpHighLight}, bpTitle= #{bpTitle}, bpSubTitle= #{bpSubTitle}, bpRelatedLink= #{bpRelatedLink}, bpContent= #{bpContent},  bpUpdateDt= NOW(), bpTitleImageLink=#{bpTitleImageLink}, bpKeyword=#{bpKeyword} where boardPromoter_id = #{boardPromoter_id}
     ]]>
     </update>
 

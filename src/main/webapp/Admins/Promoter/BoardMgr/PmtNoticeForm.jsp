@@ -63,8 +63,7 @@
 
 						<script>
 							function check(msg) {
-								// msg : 공지등록 / 수정 / 비노출 / 공지게시
-								// bpStatus : 1(비노출) / 2(공지게시)
+								// msg : 공지등록 / 수정 
 								
 								if (confirm("정말 " + msg + " 하시겠습니까?") == true){    //확인
 									
@@ -80,18 +79,9 @@
 									
 									alert(msg + " 되었습니다.");
 									
-									
-									if (msg == '공지등록' || msg == '수정'){
-										location.href = "/admins/promoter/boardmgr/PmtNoticeList.mwav?pageNum=1";
-										document.bpForm.submit();
-									}
-									
-									
-									else {
-										var bpStatus = {'비노출':1, '공지게시':2};
-										location.href = "/admins/promoter/boardmgr/PmtNoticeStatusUpdate.mwav?boardPromoter_id=${updatePmtNtmForm.boardPromoter_id}&&bpStatus="+bpStatus[msg];
-										
-									}
+									location.href = "/admins/promoter/boardmgr/PmtNoticeList.mwav?pageNum=1";
+									document.bpForm.submit();
+
 									
 									return true;
 									
@@ -107,8 +97,7 @@
 							<c:choose>
 								<c:when test="${fn:length(updatePmtNtmForm) > 0}">
 									<form role="form" method="post" name="bpForm"
-										action="/admins/promoter/boardmgr/PmtNoticeUpdatePro.mwav"
-										target="iframe">
+										action="/admins/promoter/boardmgr/PmtNoticeUpdatePro.mwav">
 										
 										<table class="table table-striped">
 
@@ -129,18 +118,18 @@
 
 														<c:set var="bpStatus" value="${updatePmtNtmForm.bpStatus }" />
 														<c:if test="${fn:contains(bpStatus, '0')}">
-															<span class="pull-right text-danger">
-															<strong>삭제</strong>
+															<span class="label label-default">
+															<strong>삭제완료</strong>
 															</span>
 														</c:if>
 														<c:if test="${fn:contains(bpStatus, '1')}">
-															<span class="pull-right text-primary">
-															<strong>임시저장</strong>
+															<span class="label label-default">
+															<strong>비노출</strong>
 															</span>
 														</c:if>
 														<c:if test="${fn:contains(bpStatus, '2')}">
-															<span class="pull-right text-success">
-															<strong>공지완료</strong>
+															<span class="label label-primary">
+															<strong>공지게시</strong>
 															</span>
 														</c:if>
 
@@ -200,7 +189,14 @@
 													placeholder="Text input" name="bpRelatedLink"
 													value="${updatePmtNtmForm.bpRelatedLink}"></td>
 											</tr>
-											
+
+											<tr>
+												<th class="active">Image Link</th>
+												<td><input type="text" class="form-control"
+													placeholder="Text input" name="bpTitleImageLink"
+													value="${updatePmtNtmForm.bpTitleImageLink}"></td>
+											</tr>
+																						
 											<tr>
 												<th class="active">Keywords</th>
 												<td><input type="text" class="form-control"
@@ -228,28 +224,17 @@
 										<p class="pull-right">
 											<button type="button" class="btn btn"
 												onClick="javascript:window.location.href='/admins/promoter/boardmgr/PmtNoticeList.mwav'">All List</button>
-											<!--
-											<button type="button" class="btn btn-warning"
-												onClick="javascript:history.go(-1)">BACK</button>
-											-->
-
-											<button type="button" class="btn btn-success"
-												onclick="check('비노출')">비노출</button>
-
-											<button type="button" class="btn btn-success"
-												onclick="check('공지게시')">공지게시</button>
 												
 											<button type="button" class="btn btn-danger"
 												onclick="check('수정')">Modify</button>																						
 										</p>
 									</form>
-									<iframe src="#" name="iframe" style="width:1px; height:1px; border:0; visibility:hidden;"></iframe>
+									
 								</c:when>
 								
 								<c:otherwise>
 									<form role="form" method="post" name="bpForm"
-										action="/admins/promoter/boardmgr/PmtNoticeForm.mwav"
-										target="iframe">
+										action="/admins/promoter/boardmgr/PmtNoticeForm.mwav">
 										
 										<table class="table table-striped">
 
@@ -320,7 +305,14 @@
 												<td><input type="text" class="form-control"
 													placeholder="Text input" name="bpRelatedLink"></td>
 											</tr>
-											
+
+											<tr>
+												<th class="active">Image Link</th>
+												<td><input type="text" class="form-control"
+													placeholder="Text input" name="bpTitleImageLink"
+													value="${updatePmtNtmForm.bpTitleImageLink}"></td>
+											</tr>
+																						
 											<tr>
 												<th class="active">Keywords</th>
 												<td><input type="text" class="form-control"
@@ -344,7 +336,6 @@
 											<button type="button" class="btn btn-danger" onclick="check('공지등록')">Insert</button>
 										</p>
 									</form>
-									<iframe src="#" name="iframe" style="width:1px; height:1px; border:0; visibility:hidden;"></iframe>
 								</c:otherwise>
 							</c:choose>
 						</div>
