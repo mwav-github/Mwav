@@ -229,6 +229,11 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
+	public String selectNextSnsPk(){
+		return memberDAO.selectNextSnsPk();
+	}
+
+	@Override
 	public boolean selectOneSnsMbrLoginIdCheck(String smMember_id) {
 		// TODO Auto-generated method stub
 		return memberDAO.selectOneSnsMbrLoginIdCheck(smMember_id);

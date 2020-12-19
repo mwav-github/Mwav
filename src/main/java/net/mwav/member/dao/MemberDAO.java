@@ -393,6 +393,11 @@ public class MemberDAO extends AbstractDAO {
 		return selectOne("member.selectOneSnsMbrLoginIdCheck", fsmMember_id) == null ? false : true;
 	}
 
+	public String selectNextSnsPk() {
+		Object pk = selectOne("member.selectNextSnsPk");
+		return pk != null ? (String) pk : "1";
+	}
+
 	public String selectOneMemberPkCheck() {
 		// TODO Auto-generated method stub
 		Map<String, Object> memberid = (Map<String, Object>) selectOne("member.selectNextPk");

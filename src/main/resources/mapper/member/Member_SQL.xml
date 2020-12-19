@@ -168,14 +168,16 @@ select * from postcodebuildinfo_tbl where 시도명 = '서울특별시' and 시�
 	<!-- /*========================================SNS========================================*/ -->
 	<select id="insertSnsForm" parameterType="hashmap">
 		<![CDATA[
-			/* TODO: PK를 임시로 -99 설정 빠른 수정 필요함*/
 			INSERT INTO SnsMember_tbl(snsMember_id, smMemberId, smFirstName, smLastName, smMiddleName, smEmail, smGender, smProfileImage, smURL, member_id)
-			VALUES(-99, #{smMember_id}, #{smFirstName}, #{smLastName}, #{smMiddleName}, #{smEmail}, #{smGender}, #{smProfileImage}, #{smURL}, #{member_id})
-			/*Values(#{smMember_id}, #{First_Name}, #{Last_Name}, NULL, #{Email}, #{Gender}, #{Picture}, #{Link}, #{member_id})*/
+			VALUES(#{snsMember_id}, #{smMember_id}, #{smFirstName}, #{smLastName}, #{smMiddleName}, #{smEmail}, #{smGender}, #{smProfileImage}, #{smURL}, #{member_id})
 		]]>
 	</select>
 
-
+	<select id="selectNextSnsPk" parameterType="String" resultType="String">
+		<![CDATA[
+			SELECT	MAX(snsMember_id) + 1 snsMember_id FROM SnsMember_tbl
+		]]>
+	</select>
 
 	<select id="selectOneSnsMbrLoginIdCheck" parameterType="String" resultType="String">
 		<![CDATA[
