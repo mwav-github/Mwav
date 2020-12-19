@@ -168,8 +168,10 @@ select * from postcodebuildinfo_tbl where 시도명 = '서울특별시' and 시�
 	<!-- /*========================================SNS========================================*/ -->
 	<select id="insertSnsForm" parameterType="hashmap">
 		<![CDATA[
-			INSERT INTO SnsMember_tbl
-			Values(#{smMember_id}, #{First_Name}, #{Last_Name}, NULL, #{Email}, #{Gender}, #{Picture}, #{Link}, #{member_id})
+			/* TODO: PK를 임시로 -99 설정 빠른 수정 필요함*/
+			INSERT INTO SnsMember_tbl(snsMember_id, smMemberId, smFirstName, smLastName, smMiddleName, smEmail, smGender, smProfileImage, smURL, member_id)
+			VALUES(-99, #{smMember_id}, #{smFirstName}, #{smLastName}, #{smMiddleName}, #{smEmail}, #{smGender}, #{smProfileImage}, #{smURL}, #{member_id})
+			/*Values(#{smMember_id}, #{First_Name}, #{Last_Name}, NULL, #{Email}, #{Gender}, #{Picture}, #{Link}, #{member_id})*/
 		]]>
 	</select>
 
@@ -177,13 +179,13 @@ select * from postcodebuildinfo_tbl where 시도명 = '서울특별시' and 시�
 
 	<select id="selectOneSnsMbrLoginIdCheck" parameterType="String" resultType="String">
 		<![CDATA[
-			select smMember_id from SnsMember_tbl where smMember_id IN (#{smMember_id});
+			select smMemberId from SnsMember_tbl where smMemberId IN (#{smMember_id});
 		]]>
 	</select>
 
 	<select id="selectOneSmMemberPkCheck" parameterType="String" resultType="String">
 		<![CDATA[
-			select member_id from SnsMember_tbl where smMember_id = #{smMember_id};
+			select member_id from SnsMember_tbl where smMemberId = #{smMember_id};
 		]]>
 	</select>
 
