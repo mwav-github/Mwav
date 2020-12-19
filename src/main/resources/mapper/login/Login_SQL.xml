@@ -83,7 +83,7 @@
     <update id="pwUpdateLater" parameterType="net.mwav.member.vo.Member_tbl_VO">
     	UPDATE MemberValue_tbl
     	SET
-    		mbrNextUpdateDt = DATE_ADD(NOW(),INTERVAL 6 MONTH)
+    		mbrNextPwUpdateDt = DATE_ADD(NOW(),INTERVAL 6 MONTH)
     	WHERE member_id = #{member_id}
     </update>
     
