@@ -100,7 +100,7 @@
 				<li><a href="/Admins/Goods/GdsCaInsert.mwav?mm=category"
 					title="1.카테고리등록">카테고리등록</a></li>
 				<li class="active"><a
-					href="/admins/goods/gdsList.mwav" title="1.상품입력 2.상품 리스트">상품관리</a></li>
+					href="/admins/goods/goodsList.mwav" title="1.상품입력 2.상품 리스트">상품관리</a></li>
 				<li><a href="#"
 					title="1.상품재고관리">재고관리</a></li>
 				<li class="active"><a
