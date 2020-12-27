@@ -2,109 +2,147 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="goodsAdmins">
-	
-	<!--/*========================================등록========================================*/  -->
+
+	<!--/*========================================등록========================================*/ -->
 	<!-- goods_id 체크를 해줘야할듯 왜냐면 재등록시 goodid에 대한 체크가 필요할듯 -->
 	<insert id="insertGdsFiles" parameterType="hashmap">
 		<![CDATA[
 			INSERT INTO GoodsFiles_tbl VALUES(#{gFileName}, #{goods_id}, #{gFileDesc});
 		]]>
 	</insert>
-	
-	<insert id="insertGdsForm" parameterType="hashmap" >
+
+	<insert id="insertGdsForm" parameterType="hashmap">
 		<![CDATA[
 	INSERT INTO GoodsMaster_tbl
 		VALUES(#{goods_id}, #{isGoodsSet}, #{gModelNbr}, #{gName}, #{gMemberPrice}, #{gConsumerPrice}, #{gPoint}, #{gRsvFund}, #{gWhoDeliveryCost}, #{gDeliveryCost}, #{gManufacturer}, #{gPlaceofOrigin}, #{gAuthCode}, #{gNote}, #{gDescription}, #{gDetailPageUrl}, #{gFruitRate}, #{gOrder}, #{gPostStart}, #{gPostEnd}, #{gStatus}, #{gKeywords}, Now(), #{gUdateDt}, #{gRegister}, #{gRegisterId}, #{gIpAddress}, #{gCompetitiveness}, #{gCompetitiveMark}, #{gPayMethod}, #{gDistAllowedLv}, #{gDistAllowedGrp}, #{gManualFileName}, #{partner_id})   
 		]]>
 	</insert>
-	
-	<select id="goodsfiles" parameterType="hashmap" resultType="hashmap">
+
+	<!-- 상품은 별도 DB이고 별도 진행이므로 상관없다. -->
+	<update id="updateProGdsform" parameterType="hashmap">
+    <![CDATA[
+        update  GoodsMaster_tbl set 
+		        isGoodsSet      =#{isGoodsSet      },
+			    gModelNbr       =#{gModelNbr       },
+				gName           =#{gName           },
+				gMemberPrice    =#{gMemberPrice    },
+				gConsumerPrice  =#{gConsumerPrice  },
+				gPoint          =#{gPoint          },
+				gRsvFund        =#{gRsvFund        },
+				gWhoDeliveryCost=#{gWhoDeliveryCost},
+				gDeliveryCost   =#{gDeliveryCost   },
+				gManufacturer   =#{gManufacturer   },
+				gPlaceofOrigin  =#{gPlaceofOrigin  },
+				gAuthCode       =#{gAuthCode       },
+				gNote           =#{gNote           },
+				gDescription    =#{gDescription    },
+				gDetailPageUrl  =#{gDetailPageUrl  },
+				gFruitRate      =#{gFruitRate      },
+				gOrder          =#{gOrder          },
+				gPostStart      =#{gPostStart      },
+				gPostEnd        =#{gPostEnd        },
+				gStatus         =#{gStatus         },
+				gKeywords       =#{gKeywords       },
+				gInsertDt       =#{gInsertDt       },
+				gUdateDt        =Now(),
+				gRegister       =#{gRegister       },
+				gRegisterId     =#{gRegisterId     },
+				gIpAddress      =#{gIpAddress      },
+				gCompetitiveness=#{gCompetitiveness},
+				gCompetitiveMark=#{gCompetitiveMark},
+				gPayMethod      =#{gPayMethod      },
+				gDistAllowedLv  =#{gDistAllowedLv  },
+				gDistAllowedGrp =#{gDistAllowedGrp },
+				gManualFileName =#{gManualFileName },
+				partner_id      =#{partner_id      }	
+        where goods_id = #{goods_id}
+    ]]>
+	</update>
+
+	<update id="modifyGoodsFiles" parameterType="hashmap">
+		<![CDATA[
+         INSERT INTO GoodsFiles_tbl VALUES(#{gFileName}, #{goods_id}, #{gFileDesc})
+   			 ON DUPLICATE KEY
+   		 UPDATE GFILENAME = #{gFileName},
+      			GOODS_ID  = #{goods_id},
+      			GFILEDESC = #{gFileDesc}
+        ]]>
+	</update>
+
+	<select id="goodsfiles" parameterType="hashmap"
+		resultType="hashmap">
     <![CDATA[
        select * FROM goodsfiles_tbl 
         where goods_id = #{goods_id};
     ]]>
-    </select>
+	</select>
 
-    <!--/*========================================보기========================================*/  -->
-	
-	<!--/*========================================수정========================================*/  -->
-	
-	<!--b.goods_id = a.goods_id 뺀다 왜냐면 상품에 이미지가 없는 경우 쿼리 결과가 출력안된다.  
-	    그러나 위의 것을 안하는 경우 이미지가 있는 pk만 출력 즉 10005인데도 10001로 출력된다. 
-	    비즈니스 로직 딴에서 처리한다. 
-	    goodsfiles 추가해서 별도로 처리
-	    
-	    원래
-	        select
-       a.*,
-       b.*
-  FROM goodsfiles_tbl a,
-       goodsmaster_tbl b
-        where b.goods_id = #{goods_id};
-	-->
-    <select id="updateGdsform" parameterType="hashmap" resultType="hashmap">
+	<!--/*========================================보기========================================*/ -->
+
+	<!--/*========================================수정========================================*/ -->
+
+	<!--b.goods_id = a.goods_id 뺀다 왜냐면 상품에 이미지가 없는 경우 쿼리 결과가 출력안된다. 그러나 위의 것을 
+		안하는 경우 이미지가 있는 pk만 출력 즉 10005인데도 10001로 출력된다. 비즈니스 로직 딴에서 처리한다. goodsfiles 
+		추가해서 별도로 처리 원래 select a.*, b.* FROM goodsfiles_tbl a, goodsmaster_tbl b where 
+		b.goods_id = #{goods_id}; -->
+	<select id="updateGdsform" parameterType="hashmap"
+		resultType="hashmap">
     <![CDATA[
        select
-       * FROM goodsmaster_tbl
+       * FROM GoodsMaster_tbl
         where goods_id = #{goods_id};
     ]]>
-    </select>
-    
-    
+	</select>
 
-   <!-- 상품은 별도 DB이고 별도 진행이므로 상관없다. -->
-   <update id="updateProGdsform" parameterType="hashmap">
-    <![CDATA[
-        update GoodsMaster_tbl set #{isGoodsSet}, #{gModelNbr}, #{gName}, #{gMemberPrice}, #{gConsumerPrice}, #{gPoint}, #{gRsvFund}, #{gWhoDeliveryCost}, #{gDeliveryCost}, #{gManufacturer}, #{gPlaceofOrigin}, #{gAuthCode}, #{gNote}, #{gDescription}, #{gDetailPageUrl}, #{gFruitRate}, #{gOrder}, #{gPostStart}, #{gPostEnd}, #{gStatus}, #{gKeywords}, #{gInsertDt}, Now(), #{gRegister}, #{gRegisterId}, #{gIpAddress}, #{gCompetitiveness}, #{gCompetitiveMark}, #{gPayMethod}, #{gDistAllowedLv}, #{gDistAllowedGrp}, #{gManualFileName}, #{partner_id} where goods_id = #{goods_id}
-    ]]>
-    </update>
+	<!--/*========================================리스트(SelctOne, SelectList 순)========================================*/ -->
 
-
-	<!--/*========================================리스트(SelctOne, SelectList 순)========================================*/  -->
-	
 	<!-- 카데고리 릴레이션에 사용 -->
-	<select id="selectCategoryGoodsList" parameterType="hashmap" resultType="hashmap">
+	<select id="selectCategoryGoodsList" parameterType="hashmap"
+		resultType="hashmap">
 		<![CDATA[
 	       select goods_id, gName from GoodsMaster_tbl
 		]]>
 	</select>
-	
-	
-	 <select id="selectNextGoodsPk" parameterType="hashmap" resultType="java.lang.String">
+
+
+	<select id="selectNextGoodsPk" parameterType="hashmap"
+		resultType="java.lang.String">
 		<![CDATA[
 	        select IFNULL(max(goods_id+1) , 10000) AS goods_id from GoodsMaster_tbl
 		]]>
 	</select>
-	
-	<select id="selectOneGdsView" parameterType="hashmap" resultType="hashmap">
+
+	<select id="selectOneGdsView" parameterType="hashmap"
+		resultType="hashmap">
 		<![CDATA[
 	        select * from GoodsMaster_tbl where goods_id = #{goods_id}
 		]]>
 	</select>
-	
+
 	<select id="selectOneGetGdsTotalCount" resultType="int">
 	<![CDATA[
 	   select count(*) from GoodsMaster_tbl
 	]]>
 	</select>
-	
-	<select id="selectListGdsList" parameterType="hashmap" resultType="hashmap">
+
+	<select id="selectListGdsList" parameterType="hashmap"
+		resultType="hashmap">
 	<![CDATA[
 	select c.* from (select @ROWNUM := @ROWNUM + 1 AS ROWNUM, a.* from (select * from GoodsMaster_tbl order by gInsertDt desc) a,  (SELECT @ROWNUM := 0) R ) c where c.ROWNUM >= #{startRow} and c.ROWNUM <= #{endRow}
 	]]>
 	</select>
-	
-	<select id="selectListGdsFilesList" parameterType="hashmap" resultType="hashmap">
+
+	<select id="selectListGdsFilesList" parameterType="hashmap"
+		resultType="hashmap">
 	<![CDATA[
 	      select * from GoodsFiles_tbl where goods_id = #{goods_id};
 	]]>
-	</select>	
-	<!--/*========================================삭제========================================*/  -->
-	
-	
+	</select>
+
+	<!--/* 삭제 */ -->
 	<update id="deleteGdsDelete" parameterType="hashmap">
     <![CDATA[
         update GoodsMaster_tbl set gPostEnd = null where goods_id = #{goods_id};
     ]]>
-    </update>
+	</update>
 </mapper>
