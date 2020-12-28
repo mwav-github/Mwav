@@ -1,5 +1,7 @@
 package net.common.charts.dao;
 
+import net.common.charts.vo.FusionChartVo;
+import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.sql.DataSource;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -39,13 +42,14 @@ public class FusionChartDaoTest {
     }
 
     @Test
-    public void selectWeeklyUsersList() {
+    public void selectWeeklyUsersList_주간사용자접속차트조회() {
         // given
 
         // when
+        final List<FusionChartVo> list = dao.selectWeeklyUsersList(null);
 
         // then
-
+        Assertions.assertThat(list).isNotNull();
     }
 
     @Test
