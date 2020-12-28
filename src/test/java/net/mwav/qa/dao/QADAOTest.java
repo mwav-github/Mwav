@@ -179,12 +179,47 @@ public class QADAOTest {
     }
 
     @Test
-    public void selectListQAFrontList() {
+    public void selectListQAFrontList_QA페이지에서보여줄최대5개의리스트조회() {
         // given
+        // UserQuestion_tbl에 insert
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("userQuestion_id", 9999999);
+        map.put("uqGroup", "-");
+        map.put("uqGroupItem", "-");
+        map.put("member_id", "9999");
+        map.put("uqUserName", "-");
+        map.put("uqUserEmail", "email.@google.com");
+        map.put("uqUserPw", "-");
+        map.put("uqUserPhone", "-");
+        map.put("uqTitle", "-");
+        map.put("uqContent", "-");
+        map.put("uqStatus", 10);
+        map.put("uqAttachFile", "-");
+        map.put("uqRelatedLink", "-");
+        map.put("uqUpdateDt", null);
+        map.put("uqDeleteDt", null);
+        map.put("uqIpAddress", "-");
+        map.put("uqOption1", "-");
+        map.put("uqOption2", "-");
+        map.put("uqOption3", "-");
+        map.put("uqInvoker", "M");
+        map.put("uqInvoker_id", 9999999);
+        map.put("statistics_id", 9999999);
+        map.put("uqAdminNotice", "-");
+        map.put("startRow", 0); // 시작 열
+        map.put("endRow", 10); // 끝 열
+
+        Map<String, Object> imsimap = new HashMap<String, Object>();
+        imsimap.put("QnA_id", 9999999);
+
+        when(sqlSession.selectOne("qa.selectNextPk", map)).thenReturn(imsimap);
+        dao.insertQAForm(map, null);
 
         // when
+        final List<Map<String, Object>> list = dao.selectListQAFrontList(null);
 
         // then
+        Assertions.assertThat(list).extracting("userQuestion_id").containsOnly(9999999);
     }
 
     @Test
