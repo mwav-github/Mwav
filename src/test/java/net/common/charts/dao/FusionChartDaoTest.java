@@ -57,8 +57,10 @@ public class FusionChartDaoTest {
         // given
 
         // when
+        final List<FusionChartVo> list = dao.selectTop10PageList(null);
 
         // then
+        Assertions.assertThat(list).isNotNull();
 
     }
 
@@ -67,8 +69,10 @@ public class FusionChartDaoTest {
         // given
 
         // when
+        final List<FusionChartVo> list = dao.selectClientScreenSizeList(null);
 
         // then
+        Assertions.assertThat(list).isNotNull();
 
     }
 }
