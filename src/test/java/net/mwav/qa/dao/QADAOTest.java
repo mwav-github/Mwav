@@ -108,12 +108,22 @@ public class QADAOTest {
     }
 
     @Test
-    public void selectOneGetTotalCount() {
+    public void selectOneGetTotalCount_테이블의총로우수를조회함() {
         // given
+        String member_id = "9999999";
+        String uqUserEmail = "email.@google.com";
 
         // when
+        // 회원일 경우 리스트 조회
+        final int memberTotalCount = dao.selectOneGetTotalCount(member_id, uqUserEmail);
+
+        // 비회원일 경우 리스트 조회
+        member_id = null;
+        final int nonMemberTotalCount = dao.selectOneGetTotalCount(member_id, uqUserEmail);
 
         // then
+        Assertions.assertThat(memberTotalCount).isNotNull();
+        Assertions.assertThat(nonMemberTotalCount).isNotNull();
     }
 
     @Test
