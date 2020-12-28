@@ -18,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.sql.DataSource;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static org.mockito.Matchers.*;
@@ -85,12 +86,25 @@ public class QADAOTest {
     }
 
     @Test
-    public void selectListQAList() {
+    public void selectListQAList_QA리스트페이징처리조회() {
         // given
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("member_id", "9999999");
+        map.put("startRow", 0); // 시작 열
+        map.put("endRow", 1); // 끝 열
+        map.put("uqUserEmail", "email.@google.com");
 
         // when
+        // 회원일 경우 리스트 조회
+        final List<Map<String, Object>> memberList = dao.selectListQAList(map);
+
+        // 비회원일 경우 리스트 조회
+        map.remove("member_id");
+        final List<Map<String, Object>> nonMemberList = dao.selectListQAList(map);
 
         // then
+        Assertions.assertThat(memberList).isNotNull();
+        Assertions.assertThat(nonMemberList).isNotNull();
     }
 
     @Test
