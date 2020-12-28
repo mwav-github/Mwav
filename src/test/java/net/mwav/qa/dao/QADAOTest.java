@@ -316,11 +316,17 @@ public class QADAOTest {
     }
 
     @Test
-    public void uaSatisfactionUpdateAjax() {
+    public void uaSatisfactionUpdateAjax_QA만족도갱신() {
         // given
+        // UserAnswer_tbl INSERT dao가 없음 ...
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("uaSatisfaction", 100);
+        map.put("QnA_id", 9999999);
 
         // when
+        final boolean result = dao.uaSatisfactionUpdateAjax(map);
 
         // then
+        Assertions.assertThat(result).isFalse();
     }
 }
