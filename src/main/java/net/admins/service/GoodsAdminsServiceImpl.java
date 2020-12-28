@@ -3,23 +3,14 @@ package net.admins.service;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-
 import javax.annotation.Resource;
 import javax.imageio.ImageIO;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import net.admins.dao.GoodsAdminsDAO;
-import net.common.common.CommandMap;
 import net.mwav.common.module.Constants;
 import net.mwav.common.module.FileLib;
 import net.mwav.common.module.FileUtils;
@@ -30,8 +21,6 @@ import org.apache.log4j.Logger;
 import org.codehaus.plexus.util.DirectoryScanner;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 @Service("goodsAdminsService")
 public class GoodsAdminsServiceImpl implements GoodsAdminsService {
@@ -122,13 +111,15 @@ public class GoodsAdminsServiceImpl implements GoodsAdminsService {
 	@Override
 	public void updateProGdsForm(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-
+		try {
+			goodsAdminsDAO.updateProGdsform(map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public List<Map<String, Object>> selectListGdsFilesList(Map<String, Object> map) {
-		System.out.println("selectListGdsFilesList 왔나?");
-
 		// TODO Auto-generated method stub
 		return goodsAdminsDAO.selectListGdsFilesList(map);
 	}
@@ -220,6 +211,12 @@ public class GoodsAdminsServiceImpl implements GoodsAdminsService {
 		for (File tmpImgFile : tmpImgFiles) {
 			fileName = saveImage(tmpImgFile, path, "S1");
 			modifyGoodsFilesTbl(fileName, goodsId, "");
+
+			fileName = saveImage(tmpImgFile, path, "S2");
+			modifyGoodsFilesTbl(fileName, goodsId, "");
+
+			// S3~S5 추가 구현 필요
+
 		}
 	}
 
@@ -247,12 +244,15 @@ public class GoodsAdminsServiceImpl implements GoodsAdminsService {
 
 		String fileName = "";
 		BufferedImage bufferedImg = null;
-
+		String locationIndex = getFileLocationIndex(file);
 		switch (imageSizeIndex) {
 		case "S1":
-			String locationIndex = getFileLocationIndex(file);
 			fileName = "S1" + "-" + locationIndex + c.dot + FilenameUtils.getExtension(file.getName());
 			bufferedImg = imageResize(file, 100, 100);
+			break;
+		case "S2":
+			fileName = "S2" + "-" + locationIndex + c.dot + FilenameUtils.getExtension(file.getName());
+			bufferedImg = imageResize(file, 200, 200);
 			break;
 		}
 
@@ -270,7 +270,7 @@ public class GoodsAdminsServiceImpl implements GoodsAdminsService {
 			return resizedImg;
 		}
 		BufferedImage sourceImg = ImageIO.read(file);
-		resizedImg = ImageUtill.scaleSize(sourceImg, 100, 100); // 이미지 유틸
+		resizedImg = ImageUtill.scaleSize(sourceImg, width, height); // 이미지 유틸
 		return resizedImg;
 	}
 
