@@ -22,8 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 import static org.mockito.Matchers.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:config/spring/mwav-data.xml"
@@ -223,12 +222,51 @@ public class QADAOTest {
     }
 
     @Test
-    public void selectOneQAView() {
+    public void selectOneQAView_QA상세보기조회() {
         // given
+        // UserQuestion_tbl에 insert
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("userQuestion_id", "9999999");
+        map.put("uqGroup", "-");
+        map.put("uqGroupItem", "-");
+        map.put("member_id", "9999");
+        map.put("uqUserName", "-");
+        map.put("uqUserEmail", "email.@google.com");
+        map.put("uqUserPw", "-");
+        map.put("uqUserPhone", "-");
+        map.put("uqTitle", "-");
+        map.put("uqContent", "-");
+        map.put("uqStatus", 10);
+        map.put("uqAttachFile", "-");
+        map.put("uqRelatedLink", "-");
+        map.put("uqUpdateDt", null);
+        map.put("uqDeleteDt", null);
+        map.put("uqIpAddress", "-");
+        map.put("uqOption1", "-");
+        map.put("uqOption2", "-");
+        map.put("uqOption3", "-");
+        map.put("uqInvoker", "M");
+        map.put("uqInvoker_id", 9999999);
+        map.put("statistics_id", 9999999);
+        map.put("uqAdminNotice", "-");
+
+        Map<String, Object> imsimap = new HashMap<String, Object>();
+        imsimap.put("QnA_id", 9999999);
+
+        when(sqlSession.selectOne("qa.selectNextPk", map)).thenReturn(imsimap);
+        dao.insertQAForm(map, null);
 
         // when
+        when(sqlSession.selectOne("qa.selectOneQAUaView", map)).thenReturn(null);
+        when(sqlSession.update("qa.updateUABeReadDt", null)).thenReturn(0);
+        when(sqlSession.selectOne("qa.selectOneMAXQAView")).thenReturn(0);
+
+        final Map<String, Object> result = dao.selectOneQAView(map);
 
         // then
+        Assertions.assertThat(result)
+                .extracting("userQuestion_id")
+                .isEqualTo(9999999);
     }
 
     @Test
