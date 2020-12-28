@@ -232,7 +232,6 @@ public class AesEncryption {
     
   //BaseEncoding  암호화된 기본 값이 base64 encode
     public static String aesEncodeBuf (byte[] encryptVariable) throws IOException{
-    	String encryptEncoding = new BASE64Encoder().encode(encryptVariable);
     	Encoder encoder = Base64.getEncoder();
         return encoder.encodeToString(encryptVariable);
     }

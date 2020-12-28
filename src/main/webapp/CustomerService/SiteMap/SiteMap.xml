@@ -268,102 +268,102 @@
        <!-- News -->
 
 	<url>
-		<loc>https://www.mwav.net/board/bnsView.mwav?bNews_id=100018</loc>
+		<loc>https://www.mwav.net/board/bnsView.mwav?boardNews_id=100018</loc>
 		<lastmod>2020-07-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>1.0</priority>
 	</url>	<url>
-		<loc>https://www.mwav.net/board/bnsView.mwav?bNews_id=100017</loc>
+		<loc>https://www.mwav.net/board/bnsView.mwav?boardNews_id=100017</loc>
 		<lastmod>2020-07-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>1.0</priority>
 	</url>
 	<url>
-		<loc>https://www.mwav.net/board/bnsView.mwav?bNews_id=100016</loc>
+		<loc>https://www.mwav.net/board/bnsView.mwav?boardNews_id=100016</loc>
 		<lastmod>2020-07-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>1.0</priority>
 	</url>
 	<url>
-		<loc>https://www.mwav.net/board/bnsView.mwav?bNews_id=100014</loc>
+		<loc>https://www.mwav.net/board/bnsView.mwav?boardNews_id=100014</loc>
 		<lastmod>2020-07-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>1.0</priority>
 	</url>
 	<url>
-		<loc>https://www.mwav.net/board/bnsView.mwav?bNews_id=100013</loc>
+		<loc>https://www.mwav.net/board/bnsView.mwav?boardNews_id=100013</loc>
 		<lastmod>2020-07-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>1.0</priority>
 	</url>
 	<url>
-		<loc>https://www.mwav.net/board/bnsView.mwav?bNews_id=100012</loc>
+		<loc>https://www.mwav.net/board/bnsView.mwav?boardNews_id=100012</loc>
 		<lastmod>2020-07-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>1.0</priority>
 	</url>
 	<url>
-		<loc>https://www.mwav.net/board/bnsView.mwav?bNews_id=100011</loc>
+		<loc>https://www.mwav.net/board/bnsView.mwav?boardNews_id=100011</loc>
 		<lastmod>2020-07-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>1.0</priority>
 	</url>
 	<url>
-		<loc>https://www.mwav.net/board/bnsView.mwav?bNews_id=100010</loc>
+		<loc>https://www.mwav.net/board/bnsView.mwav?boardNews_id=100010</loc>
 		<lastmod>2020-07-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>1.0</priority>
 	</url>
 	<url>
-		<loc>https://www.mwav.net/board/bnsView.mwav?bNews_id=100009</loc>
+		<loc>https://www.mwav.net/board/bnsView.mwav?boardNews_id=100009</loc>
 		<lastmod>2020-07-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>1.0</priority>
 	</url>
 	<url>
-		<loc>https://www.mwav.net/board/bnsView.mwav?bNews_id=100008</loc>
+		<loc>https://www.mwav.net/board/bnsView.mwav?boardNews_id=100008</loc>
 		<lastmod>2020-07-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>1.0</priority>
 	</url>
 	<url>
-		<loc>https://www.mwav.net/board/bnsView.mwav?bNews_id=100007</loc>
+		<loc>https://www.mwav.net/board/bnsView.mwav?boardNews_id=100007</loc>
 		<lastmod>2020-07-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>1.0</priority>
 	</url>
 	<url>
-		<loc>https://www.mwav.net/board/bnsView.mwav?bNews_id=100006</loc>
+		<loc>https://www.mwav.net/board/bnsView.mwav?boardNews_id=100006</loc>
 		<lastmod>2020-07-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>1.0</priority>
 	</url>
 	<url>
-		<loc>https://www.mwav.net/board/bnsView.mwav?bNews_id=100005</loc>
+		<loc>https://www.mwav.net/board/bnsView.mwav?boardNews_id=100005</loc>
 		<lastmod>2020-07-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>1.0</priority>
 	</url>
 	<url>
-		<loc>https://www.mwav.net/board/bnsView.mwav?bNews_id=100004</loc>
+		<loc>https://www.mwav.net/board/bnsView.mwav?boardNews_id=100004</loc>
 		<lastmod>2020-07-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>1.0</priority>
 	</url>
 	<url>
-		<loc>https://www.mwav.net/board/bnsView.mwav?bNews_id=100003</loc>
+		<loc>https://www.mwav.net/board/bnsView.mwav?boardNews_id=100003</loc>
 		<lastmod>2020-07-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>1.0</priority>
 	</url>
         <url>
-		<loc>https://www.mwav.net/board/bnsView.mwav?bNews_id=100002</loc>
+		<loc>https://www.mwav.net/board/bnsView.mwav?boardNews_id=100002</loc>
 		<lastmod>2020-07-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>1.0</priority>
 	</url>
         <url>
-		<loc>https://www.mwav.net/board/bnsView.mwav?bNews_id=100001</loc>
+		<loc>https://www.mwav.net/board/bnsView.mwav?boardNews_id=100001</loc>
 		<lastmod>2020-07-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>1.0</priority>
@@ -384,55 +384,55 @@
 
 	<!-- Notice -->
 	<url>
-		<loc>https://www.mwav.net/board/buView.mwav?bUsers_id=100010</loc>
+		<loc>https://www.mwav.net/board/buView.mwav?boardUser_id=100010</loc>
 		<lastmod>2020-07-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.7</priority>
 	</url>
 	<url>
-		<loc>https://www.mwav.net/board/buView.mwav?bUsers_id=100009</loc>
+		<loc>https://www.mwav.net/board/buView.mwav?boardUser_id=100009</loc>
 		<lastmod>2020-07-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.7</priority>
 	</url>
 	<url>
-		<loc>https://www.mwav.net/board/buView.mwav?bUsers_id=100008</loc>
+		<loc>https://www.mwav.net/board/buView.mwav?boardUser_id=100008</loc>
 		<lastmod>2020-07-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.7</priority>
 	</url>
 	<url>
-		<loc>https://www.mwav.net/board/buView.mwav?bUsers_id=100007</loc>
+		<loc>https://www.mwav.net/board/buView.mwav?boardUser_id=100007</loc>
 		<lastmod>2020-07-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.7</priority>
 	</url>
 	<url>
-		<loc>https://www.mwav.net/board/buView.mwav?bUsers_id=100006</loc>
+		<loc>https://www.mwav.net/board/buView.mwav?boardUser_id=100006</loc>
 		<lastmod>2020-07-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.7</priority>
 	</url>
 	<url>
-		<loc>https://www.mwav.net/board/buView.mwav?bUsers_id=100005</loc>
+		<loc>https://www.mwav.net/board/buView.mwav?boardUser_id=100005</loc>
 		<lastmod>2020-07-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.7</priority>
 	</url>
 	<url>
-		<loc>https://www.mwav.net/board/buView.mwav?bUsers_id=100004</loc>
+		<loc>https://www.mwav.net/board/buView.mwav?boardUser_id=100004</loc>
 		<lastmod>2020-07-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.7</priority>
 	</url>
 	<url>
-		<loc>https://www.mwav.net/board/buView.mwav?bUsers_id=100002</loc>
+		<loc>https://www.mwav.net/board/buView.mwav?boardUser_id=100002</loc>
 		<lastmod>2020-07-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.7</priority>
 	</url>
 	<url>
-		<loc>https://www.mwav.net/board/buView.mwav?bUsers_id=100001</loc>
+		<loc>https://www.mwav.net/board/buView.mwav?boardUser_id=100001</loc>
 		<lastmod>2020-07-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.7</priority>

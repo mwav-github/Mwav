@@ -1,6 +1,8 @@
 package net.bizLogin.promoter.dao;
 
 import net.common.common.CommandMap;
+import net.bizLogin.promoter.vo.PmtFacilitatorSO;
+import net.bizLogin.promoter.vo.PmtFacilitatorVO;
 import net.common.dao.AbstractDAO;
 import org.springframework.stereotype.Repository;
 
@@ -21,5 +23,12 @@ public class PmtFacilitatorDAO extends AbstractDAO{
         return (int) selectOne("promoterFacilitator.selectOnePmtLoginIdCheck", pmtLoginId);
     }
 
+	public PmtFacilitatorVO checkSocialJoin(PmtFacilitatorSO so) {
+		return (PmtFacilitatorVO) selectOne("promoter.checkSocialLogin", so);
+	}
+	
+	public int joinSocialLogin(PmtFacilitatorSO so) {
+		return (int) insert("promoter.joinSocialLogin", so);
+	}
 }
 

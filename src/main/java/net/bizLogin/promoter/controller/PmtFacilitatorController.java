@@ -7,16 +7,26 @@ import java.util.Set;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.apache.log4j.Logger;
 import org.apache.maven.model.Model;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import net.bizLogin.promoter.service.PmtFacilitatorService;
+import net.bizLogin.promoter.vo.PmtFacilitatorSO;
+import net.bizLogin.promoter.vo.PmtFacilitatorVO;
 import net.common.common.CommandMap;
+import net.common.common.Status;
+import net.mwav.common.module.Common_Utils;
 
 
 /**
@@ -44,6 +54,8 @@ public class PmtFacilitatorController {
 	String mode;
 	@Resource(name = "pmtFacilitatorService")
 	private PmtFacilitatorService pmtFacilitatorService;
+	
+	Common_Utils cu = new Common_Utils();
 
 	/**
 	 * 메서드에 대한 설명
@@ -79,5 +91,34 @@ public class PmtFacilitatorController {
 	public @ResponseBody
 	boolean selectOneMbrPmtIdCheck(String pmtLoginId) throws Exception {
 		return pmtFacilitatorService.selectOnePmtLoginIdCheck(pmtLoginId);
+	}
+	
+	@RequestMapping(value = "/Promoter/Index.mwav")
+	public String index(CommandMap commandMap) throws Exception {
+		return "/Promoter/Index";
+	}
+	
+	@RequestMapping(value = "/promoter/kakaoLogin.mwav", method = RequestMethod.POST)
+	public @ResponseBody String promoterKakaoLogin(@RequestBody PmtFacilitatorSO so, HttpServletRequest request) throws Exception {
+		HttpSession session = request.getSession();
+		so.setSpIpAddress(cu.getClientIP(request));
+		PmtFacilitatorVO pmtFacilitatorVO = pmtFacilitatorService.joinSocialLogin(so);
+		session.setAttribute("promoter", pmtFacilitatorVO);
+		return pmtFacilitatorVO.getSpPromoterId();
+	}
+	
+	@RequestMapping(value = "/promoter/kakaoLogout.mwav")
+	@ResponseBody
+	public Status promoterKakaoLogout(HttpServletRequest request, HttpSession session, HttpServletResponse response) throws Exception {
+		Object obj = session.getAttribute("promoter");
+		
+		if (obj != null) {
+			session.removeAttribute("promoter");
+			session.invalidate();
+			log.info("promoter session remove");
+		} else {
+			log.info("세션에 프로모터 로그인 정보가 없어 로그아웃하지 못하였습니다");
+		}
+		return Status.OK;
 	}
 }

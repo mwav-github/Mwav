@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import net.bizLogin.promoter.dao.PmtFacilitatorDAO;
 import org.springframework.transaction.annotation.Transactional;
+import net.bizLogin.promoter.vo.PmtFacilitatorSO;
+import net.bizLogin.promoter.vo.PmtFacilitatorVO;
 
 
 @Service("pmtFacilitatorService")
@@ -62,7 +64,23 @@ public class PmtFacilitatorServiceImpl implements PmtFacilitatorService {
 	public boolean selectOnePmtLoginIdCheck(String stfLoginId) throws Exception{
 		return pmtFacilitatorDAO.selectOnePmtLoginIdCheck(stfLoginId) == 0 ? true : false;
 	}
+	
+	@Override
+	public PmtFacilitatorVO checkSocialJoin(PmtFacilitatorSO so) {
+		PmtFacilitatorVO vo = pmtFacilitatorDAO.checkSocialJoin(so);
+		return vo;
+	}
 
 
+	@Override
+	public PmtFacilitatorVO joinSocialLogin(PmtFacilitatorSO so) {
+		PmtFacilitatorVO check = checkSocialJoin(so); // boolean 말고 VO로 받아서 밑에 if문에서 id가 null인지 체크
+		// 기가입된 소셜계정이 아니라면 가입시킨다
+		if(check == null) {
+			pmtFacilitatorDAO.joinSocialLogin(so); // insert 한 뒤 error나는 경우 처리 해주기
+			check = checkSocialJoin(so);
+		}
+		return check; // return VO를 해준다..
+	}
 
 }

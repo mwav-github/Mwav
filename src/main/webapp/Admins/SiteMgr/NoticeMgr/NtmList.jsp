@@ -108,18 +108,18 @@
 													items="${selectListNtmList}">
 												
 													<tr>
-														<input type="hidden" id="bUsers_id" name="bUsers_id"
-															value="${RselectListNtmList.bUsers_id }">
-														<td class="hidden-xs">${RselectListNtmList.bUsers_id}</td>
+														<input type="hidden" id="boardUser_id" name="boardUser_id"
+															value="${RselectListNtmList.boardUser_id }">
+														<td class="hidden-xs">${RselectListNtmList.boardUser_id}</td>
 														<td class="hidden-xs">${RselectListNtmList.buGroup}</td>
 														<td><a
-															href="javascript:window.location.href='/admin/boardNotice/ntmView.mwav?bUsers_id=${RselectListNtmList.bUsers_id}'">${RselectListNtmList.buTitle}</a></td>
+															href="javascript:window.location.href='/admin/boardNotice/ntmView.mwav?boardUser_id=${RselectListNtmList.boardUser_id}'">${RselectListNtmList.buTitle}</a></td>
 														<td class="hidden-xs">${RselectListNtmList.buInsertDt}</td>
 														<td>
 															<button type="button" class="btn btn-info"
-																onclick="javascript:window.location.href='/admin/boardNotice/ntmView.mwav?bUsers_id=${RselectListNtmList.bUsers_id}'">보기</button>&nbsp;
+																onclick="javascript:window.location.href='/admin/boardNotice/ntmView.mwav?boardUser_id=${RselectListNtmList.boardUser_id}'">보기</button>&nbsp;
 															<button type="button" class="btn btn-warning"
-																onclick="javascript:window.location.href='/admin/boardNotice/ntmUpdate.mwav?bUsers_id=${RselectListNtmList.bUsers_id}'">수정</button>
+																onclick="javascript:window.location.href='/admin/boardNotice/ntmUpdate.mwav?boardUser_id=${RselectListNtmList.boardUser_id}'">수정</button>
 														</td>
 													</tr>
 												

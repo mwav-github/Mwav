@@ -155,6 +155,54 @@
 	  where promoter_id= #{promoter_id}
 	]]>
 	</update>
+	
+	<select id="checkSocialLogin" parameterType = "net.bizLogin.promoter.vo.PmtFacilitatorSO" resultType="net.bizLogin.promoter.vo.PmtFacilitatorVO">
+		SELECT snsPromoter_id
+			 , spPromoterId
+		     , spFirstName
+		     , spLastName
+		     , spMiddleName
+		     , spNickname
+		     , spEmail
+		     , spGender
+		     , spProfileImage
+		     , spURL
+		     , promoter_id
+		 FROM SnsPromoter_tbl
+		WHERE 1=1
+		AND spPromoterId = #{spPromoterId}
+	</select>
+	
+	<insert id="joinSocialLogin" parameterType="net.bizLogin.promoter.vo.PmtFacilitatorSO">
+		INSERT INTO SnsPromoter_tbl
+		VALUES (
+				  (SELECT snsPromoter_id FROM (SELECT IFNULL(MAX(snsPromoter_id) + 1, 10000) snsPromoter_id FROM SnsPromoter_tbl) tb)
+				, #{spPromoterId}
+				, #{spSnsType}
+				, #{spFirstName}
+				, #{spLastName}
+				, #{spMiddleName}
+				, #{spNickName}
+				, #{spEmail}
+				, #{spGender}
+				, #{spProfileImage}
+				, #{spURL}
+				<choose>
+					<when test="isEmailVerified == 'true' or isEmailVerified == 'Y'">
+					, NOW()
+					</when>
+					<otherwise>
+					, NULL
+					</otherwise>
+				</choose>
+<!-- 				, #{spCertifyMailDt} -->
+				, #{promoter_id}
+				, NOW()
+				, #{spUpdateDt}
+				, #{spDeleteDt}
+				, #{spIpAddress}
+				)
+	</insert>
 
 
 
@@ -166,5 +214,24 @@
 		,#{sftJoinDt},#{sftDeleteDt},#{sftInserDt},#{sftUpdateDt},#{sftRecentLoginDt},#{sftIpAddress}
 		)
 	</insert> -->
+
+	<select id="selectChkPmtCertifyDtYN" parameterType="string" resultType="string">
+		<![CDATA[
+		SELECT CASE WHEN T2.pmtCertifyDt IS NOT NULL THEN 'Y'
+					ELSE 'N'
+					END	CertifyDtYN
+		FROM Promoter_tbl T1
+			JOIN PromoterValue_tbl T2
+				ON T1.promoter_id = T2.promoter_id
+		WHERE T1.pmtLoginId = #{promoter_id}
+		]]>
+	</select>
+
+	<update id="updatePmtCertifyDt" parameterType="string">
+		<![CDATA[
+		UPDATE PromoterValue_tbl SET pmtCertifyDt = NOW()
+		WHERE promoter_id = (SELECT promoter_id FROM Promoter_tbl WHERE pmtLoginId = #{promoter_id})
+		]]>
+	</update>
 </mapper>
 

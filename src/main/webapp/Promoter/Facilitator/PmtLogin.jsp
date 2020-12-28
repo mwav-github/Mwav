@@ -17,7 +17,7 @@
 	});
 	// jquery end
 </script>
-</head>
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <!-- ========================= Head & Meta Area END ========================= -->
 
 <body>
@@ -40,9 +40,10 @@
 				<!-- <h4 class="card-title mb-4">Sign in</h4> -->
 				<form>
 					<div class="img-wrap mb-4">
+						<a class="btn-overlay" href="javascript:loginWithKakao()">
 						<img
 							src="https://developers.kakao.com/tool/resource/static/img/button/login/full/ko/kakao_login_large_wide.png">
-						<a class="btn-overlay" href="#"></a>
+						</a>
 					</div>
 					<!-- <a href="#" class="btn btn-facebook btn-block mb-2"> <i
 						class="fab fa-facebook-f"></i> &nbsp Sign in with Facebook
@@ -105,3 +106,44 @@
 
 </body>
 </html>
+
+<script type="text/javascript">	
+function loginWithKakao() {
+	Kakao.Auth.loginForm({
+		success: function(authObj) {
+			Kakao.API.request({
+				url: '/v2/user/me',
+				success: function(res) {				
+					var userData = {
+							spNickname: res.properties['nickname'],
+							spPromoterId: res.kakao_account['email'],
+							spEmail: res.kakao_account['email'],
+							isEmailVerified: res.kakao_account['is_email_verified'],
+							spProfileImage: res.properties['profile_image'],
+							spSnsType: 'Kakao'
+					}
+					
+					$.ajax({
+						type: 'POST',
+						url: '/promoter/kakaoLogin.mwav',
+						data : JSON.stringify(userData),
+						contentType : "application/json",
+						success: function (data) {
+							if (data != null) {
+								location.href = "/Promoter/Index.mwav";
+							}
+						},
+						fail: function(error) {
+							alert(JSON.stringify(error));
+						}
+					});
+				}
+			})
+		},
+
+		fail: function(err) {
+			alert(JSON.stringify(err))
+		},
+	})
+}
+</script>

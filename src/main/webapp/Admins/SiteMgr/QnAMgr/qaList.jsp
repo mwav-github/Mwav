@@ -134,7 +134,7 @@
 															<button type="button" class="btn btn-info"
 																onclick="javascript:window.location.href='/admin/boardQnA/qaView.mwav?QnA_id=${RselectListQnAList.QnA_id}'">보기</button>&nbsp;
 															<button type="button" class="btn btn-warning"
-																onclick="javascript:window.location.href='/admin/boardNotice/ntmUpdate.mwav?bUsers_id=${RselectListNtmList.bUsers_id}'">수정</button>
+																onclick="javascript:window.location.href='/admin/boardNotice/ntmUpdate.mwav?boardUser_id=${RselectListNtmList.boardUser_id}'">수정</button>
 														</td>
 													</tr>
 

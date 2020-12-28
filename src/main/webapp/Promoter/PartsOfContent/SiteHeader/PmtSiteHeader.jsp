@@ -1,6 +1,8 @@
 <%-- Promoter 사이트 헤더 jsp 파일 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 
 
 <nav class="navbar navbar-dark navbar-expand p-0 bg-primary">
@@ -71,6 +73,7 @@
 							</div>
 						</a>
 						<!-- 로그인 전 -->
+						<c:if test="${sessionScope.promoter eq null }">
 						<div class="widget-header icontext">
 							<a href="#" class="icon icon-sm rounded-circle border"><i
 								class="fa fa-user"></i></a>
@@ -82,9 +85,11 @@
 								</div>
 							</div>
 						</div>
+						</c:if>
 						<!-- 로그인 후 -->
+						<c:if test="${sessionScope.promoter ne null }">
 						<div class="widget-header dropdown">
-							<!-- 	<a href="#" data-toggle="dropdown" class="dropdown-toggle"
+							<a href="#" data-toggle="dropdown" class="dropdown-toggle"
 								data-offset="20,10">
 								<div class="icon icon-sm rounded-circle border ">
 									<i class="fa fa-user"></i>
@@ -94,10 +99,11 @@
 								<a class="dropdown-item" href="/Promoter/Facilitator/PmtView.mwav">Profile setting</a> <a
 									class="dropdown-item" href="#">My orders</a>
 								<hr class="dropdown-divider">
-								<a class="dropdown-item" href="#">Log out</a>
+								<a class="dropdown-item" href="javascript:kakaoLogout()">Log out</a>
 							</div>
-							dropdown-menu .//
-						</div> -->
+							<!-- dropdown-menu .// -->
+						</div>
+						</c:if>
 							<!-- widget-header .// -->
 						</div>
 						<!-- widgets-wrap.// -->
@@ -172,3 +178,31 @@
 	</nav>
 </header>
 <!-- header-main .// -->
+
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script type="text/javascript">
+Kakao.init('b66e3d6516bdc422b77b51024332a218');
+
+function kakaoLogout() {
+	$.ajax({
+		type: 'GET',
+		url: '/promoter/kakaoLogout.mwav',
+		success: function (data) {
+			console.log(data);
+			// if (data == 'OK') {
+				location.reload();
+			// }
+		},
+		fail: function(error) {
+			alert(JSON.stringify(error));
+		}
+	});
+	
+	if (!Kakao.Auth.getAccessToken()) {
+      alert('Not logged in.');
+      return;
+    }
+    Kakao.Auth.logout(function() {
+    });
+}
+</script>
