@@ -270,12 +270,49 @@ public class QADAOTest {
     }
 
     @Test
-    public void selectOneQALogin() {
+    public void selectOneQALogin_QA로그인() {
         // given
+        String email = "email@google.com";
+
+        // UserQuestion_tbl에 insert
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("userQuestion_id", "9999999");
+        map.put("uqGroup", "-");
+        map.put("uqGroupItem", "-");
+        map.put("member_id", "9999");
+        map.put("uqUserName", "-");
+        map.put("uqUserEmail", email);
+        map.put("uqUserPw", "123456789");
+        map.put("uqUserPhone", "-");
+        map.put("uqTitle", "-");
+        map.put("uqContent", "-");
+        map.put("uqStatus", 10);
+        map.put("uqAttachFile", "-");
+        map.put("uqRelatedLink", "-");
+        map.put("uqUpdateDt", null);
+        map.put("uqDeleteDt", null);
+        map.put("uqIpAddress", "-");
+        map.put("uqOption1", "-");
+        map.put("uqOption2", "-");
+        map.put("uqOption3", "-");
+        map.put("uqInvoker", "M");
+        map.put("uqInvoker_id", 9999999);
+        map.put("statistics_id", 9999999);
+        map.put("uqAdminNotice", "-");
+
+        Map<String, Object> imsimap = new HashMap<String, Object>();
+        imsimap.put("QnA_id", 9999999);
+
+        when(sqlSession.selectOne("qa.selectNextPk", map)).thenReturn(imsimap);
+        dao.insertQAForm(map, null);
 
         // when
+        // 로그인할때는 원문으로 로그인시도
+        map.replace("uqUserPw", "123456789");
+        final String loginEmail = dao.selectOneQALogin(map);
 
         // then
+        Assertions.assertThat(loginEmail).isEqualTo(email);
     }
 
     @Test
