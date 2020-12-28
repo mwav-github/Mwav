@@ -85,10 +85,10 @@
 		FROM (SELECT FORMAT(@ROWNUM := @ROWNUM +1, 0) AS ROWNUM, A.*
 				FROM (SELECT *
 						FROM UserQuestion_tbl
-						WHERE UQUSEREMAIL = #{UQUSEREMAIL} AND UQDELETEDT IS NULL
+						WHERE UQUSEREMAIL = #{uqUserEmail} AND UQDELETEDT IS NULL
 						ORDER BY userQuestion_id DESC) A, (SELECT @ROWNUM := 0) R
 						) C
-						WHERE C.ROWNUM >= #{STARTROW} AND C.ROWNUM <= #{ENDROW}
+						WHERE C.ROWNUM >= #{startRow} AND C.ROWNUM <= #{endRow}
 	]]>
 	</select>
 	
@@ -98,9 +98,9 @@
 		FROM (SELECT FORMAT(@ROWNUM := @ROWNUM +1, 0) AS ROWNUM, A.*
 				FROM (SELECT *
 						FROM UserQuestion_tbl
-						WHERE MEMBER_ID = #{MEMBER_ID} AND UQDELETEDT IS NULL
+						WHERE MEMBER_ID = #{member_id} AND UQDELETEDT IS NULL
 						ORDER BY USERQUESTION_ID DESC) A,  (SELECT @ROWNUM := 0) R ) C
-		WHERE C.ROWNUM >= #{STARTROW} AND C.ROWNUM <= #{ENDROW}
+		WHERE C.ROWNUM >= #{startRow} AND C.ROWNUM <= #{endRow}
 	]]>
 	</select>
 	

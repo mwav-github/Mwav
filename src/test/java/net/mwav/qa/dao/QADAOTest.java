@@ -127,12 +127,55 @@ public class QADAOTest {
     }
 
     @Test
-    public void updateQAHitCnt() {
+    public void updateQAHitCnt_QA조회수증가() throws Exception {
         // given
+        String member_id = "9999";
+        String uqUserEmail = "email.@google.com";
+
+        // UserQuestion_tbl에 insert
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("userQuestion_id", 9999999);
+        map.put("uqGroup", "-");
+        map.put("uqGroupItem", "-");
+        map.put("member_id", member_id);
+        map.put("uqUserName", "-");
+        map.put("uqUserEmail", uqUserEmail);
+        map.put("uqUserPw", "-");
+        map.put("uqUserPhone", "-");
+        map.put("uqTitle", "-");
+        map.put("uqContent", "-");
+        map.put("uqStatus", 10);
+        map.put("uqAttachFile", "-");
+        map.put("uqRelatedLink", "-");
+        map.put("uqUpdateDt", null);
+        map.put("uqDeleteDt", null);
+        map.put("uqIpAddress", "-");
+        map.put("uqOption1", "-");
+        map.put("uqOption2", "-");
+        map.put("uqOption3", "-");
+        map.put("uqInvoker", "M");
+        map.put("uqInvoker_id", 9999999);
+        map.put("statistics_id", 9999999);
+        map.put("uqAdminNotice", "-");
+        map.put("startRow", 0); // 시작 열
+        map.put("endRow", 10); // 끝 열
+
+        Map<String, Object> imsimap = new HashMap<String, Object>();
+        imsimap.put("QnA_id", 9999999);
+
+        when(sqlSession.selectOne("qa.selectNextPk", map)).thenReturn(imsimap);
+        dao.insertQAForm(map, null);
 
         // when
+        // 조회수 1 증가
+        dao.updateQAHitCnt(map);
+        // 조회수 조회
+        final List<Map<String, Object>> memberList = dao.selectListQAList(map);
 
         // then
+        Assertions.assertThat(memberList)
+                .extracting("uqViewCount")
+                .containsOnly(1);
     }
 
     @Test
