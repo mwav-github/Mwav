@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
@@ -21,11 +20,11 @@
 	// 입력에서는 호출이 안된다 그래서 head에 올림.
 	function showImageWindow(position) {
 		//var myBookId = $(this).data('id');
-		
+
 		var modalUploadImages = position;
 		$("#modalUploadImages").modal("show");
 		$("#images_position").val(modalUploadImages);
-		
+
 		//기존 정보 초기화 
 		$('#filebody').empty();
 	}
@@ -39,61 +38,28 @@
 </style>
 
 <script>
-															jQuery(document)
-																	.ready(
-																			function(
-																					$) {
+	jQuery(document).ready(function($) {
 
-																				$(
-																						'#myCarousel')
-																						.carousel(
-																								{
-																									interval : false
-																								});
+		$('#myCarousel').carousel({
+			interval : false
+		});
 
-																				$(
-																						'#carousel-text')
-																						.html(
-																								$(
-																										'#slide-content-0')
-																										.html());
+		$('#carousel-text').html($('#slide-content-0').html());
 
-																				//Handles the carousel thumbnails
-																				$(
-																						'[id^=carousel-selector-]')
-																						.click(
-																								function() {
-																									var id = this.id
-																											.substr(this.id
-																													.lastIndexOf("-") + 1);
-																									var id = parseInt(id);
-																									$(
-																											'#myCarousel')
-																											.carousel(
-																													id);
-																								});
+		//Handles the carousel thumbnails
+		$('[id^=carousel-selector-]').click(function() {
+			var id = this.id.substr(this.id.lastIndexOf("-") + 1);
+			var id = parseInt(id);
+			$('#myCarousel').carousel(id);
+		});
 
-																				// When the carousel slides, auto update the text
-																				$(
-																						'#myCarousel')
-																						.on(
-																								'slid.bs.carousel',
-																								function(
-																										e) {
-																									var id = $(
-																											'.item.active')
-																											.data(
-																													'slide-number');
-																									$(
-																											'#carousel-text')
-																											.html(
-																													$(
-																															'#slide-content-'
-																																	+ id)
-																															.html());
-																								});
-																			});
-														</script>
+		// When the carousel slides, auto update the text
+		$('#myCarousel').on('slid.bs.carousel', function(e) {
+			var id = $('.item.active').data('slide-number');
+			$('#carousel-text').html($('#slide-content-' + id).html());
+		});
+	});
+</script>
 <%--http://bootsnipp.com/snippets/featured/carousel-extended-320-compatible --%>
 
 </head>
@@ -103,9 +69,6 @@
 	<!--  //////////////////////////////////// -->
 	<jsp:include page="/Admins/AdminsHeader.jsp" flush="false" />
 	<!--  //////////////////////////////////// -->
-
-
-
 	<!-- Page Content -->
 	<div class="container">
 
@@ -160,9 +123,7 @@
 
 					<div class="row">
 						<%-- 1. 회원정보 입력 --%>
-						<form class='form-horizontal' method="post"
-							action="/admins/goods/gdsDelete.mwav"
-							onsubmit="return myconfirm('delete')">
+						<form class='form-horizontal' method="post" action="/admins/goods/gdsDelete.mwav" onsubmit="return myconfirm('delete')">
 							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
 								<div class="panel panel-primary">
@@ -190,16 +151,13 @@
 																			<c:when test="${fn:length(selectListGdsList) > 0}">
 																				<!-- http://fruitdev.tistory.com/132 -->
 																				<%--http://marobiana.tistory.com/9 --%>
-																				<c:forEach var="VgoodsFileList"
-																					items="${selectListGdsList}" varStatus="status">
+																				<c:forEach var="VgoodsFileList" items="${selectListGdsList}" varStatus="status">
 																					<%--http://bootsnipp.com/snippets/featured/bootstrap-lightbox --%>
 
-																					<div
-																						${status.first ? 'class="active item"' : 'class="item"'}
-																						data-slide-number="${status.index}">
-																						<a href="#" class="thumbnail" data-toggle="modal"
-																							data-target="#lightbox"> <img
-																							src="/xUpload/GdsData/GC${selectOneGdsView.goods_id}/${VgoodsFileList.fileName}">
+																					<div ${status.first ? 'class="active item"' : 'class="item"'} data-slide-number="${status.index}">
+																						<a href="#" class="thumbnail" data-toggle="modal" data-target="#lightbox"> <img
+																							src="/xUpload/GdsData/GC${selectOneGdsView.goods_id}/${VgoodsFileList.fileName}"
+																						>
 																						</a>
 																					</div>
 
@@ -208,9 +166,7 @@
 
 																			<c:otherwise>
 																				<div class="active item" data-slide-number="0">
-																					<a href="#" class="thumbnail" data-toggle="modal"
-																						data-target="#lightbox"> <img
-																						src="http://placehold.it/770x300&text=one">
+																					<a href="#" class="thumbnail" data-toggle="modal" data-target="#lightbox"> <img src="http://placehold.it/770x300&text=one">
 																					</a>
 																				</div>
 																			</c:otherwise>
@@ -240,14 +196,13 @@
 														<c:when test="${fn:length(selectListGdsList) > 0}">
 															<!-- http://fruitdev.tistory.com/132 -->
 															<%--http://marobiana.tistory.com/9 --%>
-															<c:forEach var="VgoodsFileList"
-																items="${selectListGdsList}" varStatus="status">
+															<c:forEach var="VgoodsFileList" items="${selectListGdsList}" varStatus="status">
 
 																<ul class="hide-bullets">
-																	<li class="col-sm-6"><a class="thumbnail"
-																		<%--start.count는 1부터 시작 // index는 0부터 시작 --%>
+																	<li class="col-sm-6"><a class="thumbnail" <%--start.count는 1부터 시작 // index는 0부터 시작 --%>
 																				id="carousel-selector-${status.index}"><img
-																			src="/xUpload/GdsData/GC${selectOneGdsView.goods_id}/${VgoodsFileList.fileName}"></a></li>
+																			src="/xUpload/GdsData/GC${selectOneGdsView.goods_id}/${VgoodsFileList.fileName}"
+																		></a></li>
 																</ul>
 															</c:forEach>
 														</c:when>
@@ -262,15 +217,13 @@
 
 
 
-												<jsp:include page="/Admins/Goods/LargeImageView.jsp"
-													flush="false"></jsp:include></div>
+												<jsp:include page="/Admins/Goods/LargeImageView.jsp" flush="false"></jsp:include></div>
 
 
 											<div class="col-sm-12 col-md-8 col-lg-8 ">
 												<table class="table table-user-information">
 													<tbody>
-														<input type="hidden" name="goods_id"
-															value="${selectOneGdsView.goods_id }" />
+														<input type="hidden" name="goods_id" value="${selectOneGdsView.goods_id }" />
 														<tr>
 
 															<td class="info">상품코드:</td>
@@ -301,9 +254,9 @@
 														<%-- 한 행에 따른 대는 td 두개인데 여기만 4개 이렇게 할 수가 없다 그러면 틀어지기 때문에 아래와 같이 임시방편으로.. --%>
 														<tr>
 															<td class="info">일반판매가:</td>
-															<td><div class='form-group'>
-																	<div class="col-md-4">${selectOneGdsView.gConsumerPrice}
-																	</div>
+															<td>
+																<div class='form-group'>
+																	<div class="col-md-4">${selectOneGdsView.gConsumerPrice}</div>
 
 																	<div class="col-md-3">
 
@@ -312,9 +265,9 @@
 
 
 
-																	<div class="col-md-4">
-																		${selectOneGdsView.gMemberPrice}</div>
-																</div></td>
+																	<div class="col-md-4">${selectOneGdsView.gMemberPrice}</div>
+																</div>
+															</td>
 														</tr>
 
 
@@ -336,36 +289,34 @@
 
 														<tr>
 															<td class="info">배송비:</td>
-															<td><div class='form-group'>
-																	<div class="col-md-4">
-
-																		${selectOneGdsView.gDeliveryCost}</div>
+															<td>
+																<div class='form-group'>
+																	<div class="col-md-4">${selectOneGdsView.gDeliveryCost}</div>
 																	<div class="col-md-3">
 
 																		<p>상품상태:</p>
 																	</div>
-																	<div class="col-md-4">
-
-																		${selectOneGdsView.gStatus}</div>
-																</div></td>
+																	<div class="col-md-4">${selectOneGdsView.gStatus}</div>
+																</div>
+															</td>
 
 														</tr>
 
 
 														<tr>
 															<td class="info">적립금:</td>
-															<td><div class='form-group'>
-																	<div class="col-md-4">
-																		${selectOneGdsView.gRsvFund}</div>
+															<td>
+																<div class='form-group'>
+																	<div class="col-md-4">${selectOneGdsView.gRsvFund}</div>
 
 
 																	<div class="col-md-3">
 
 																		<p>포인트:</p>
 																	</div>
-																	<div class="col-md-4">${selectOneGdsView.gPoint}
-																	</div>
-																</div></td>
+																	<div class="col-md-4">${selectOneGdsView.gPoint}</div>
+																</div>
+															</td>
 
 														</tr>
 
@@ -388,39 +339,34 @@
 
 														<tr>
 															<td class="info">게시기간:</td>
-															<td><div class='form-group'>
+															<td>
+																<div class='form-group'>
 																	<div class="col-md-3">
 																		<p>시작일 :</p>
 																	</div>
-																	<div class="col-md-3">
-																		${selectOneGdsView.gPostStart}</div>
+																	<div class="col-md-3">${selectOneGdsView.gPostStart}</div>
 																	<div class="col-md-3">
 																		<p>종료일 :</p>
 																	</div>
-																	<div class="col-md-3">
-																		${selectOneGdsView.gPostEnd}</div>
-																</div></td>
+																	<div class="col-md-3">${selectOneGdsView.gPostEnd}</div>
+																</div>
+															</td>
 														</tr>
 													</tbody>
 												</table>
 											</div>
 											<div class="col-md-12 ">
-												<div class='col-md-12 form-group center-block'>
-													${selectOneGdsView.gNote}</div>
+												<div class='col-md-12 form-group center-block'>${selectOneGdsView.gNote}</div>
 
 											</div>
 										</div>
 										<div class="panel-footer">
 
-											<button type="button" class="btn btn-sm btn-primary"
-												onclick="javascript:window.location.href='/admins/goods/gdsList.mwav'">
-												리스트</button>
+											<button type="button" class="btn btn-sm btn-primary" onclick="javascript:window.location.href='/admins/goods/gdsList.mwav'">리스트</button>
 
-											<button type="button" class="btn btn-sm btn-primary"
-												onClick="javascript:history.go(-1)">뒤로가기</button>
+											<button type="button" class="btn btn-sm btn-primary" onClick="javascript:history.go(-1)">뒤로가기</button>
 
-											<button type="submit" class="btn btn-sm btn-danger">삭제하기
-											</button>
+											<button type="submit" class="btn btn-sm btn-danger">삭제하기</button>
 
 										</div>
 

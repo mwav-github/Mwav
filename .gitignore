@@ -15,6 +15,9 @@ web/
 .LSOverride
 
 ### Jetbrain ### 
-.idea
+.idea/**
 
 
+
+# Intellij gitIgnore Setting
+mwav.iml

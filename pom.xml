@@ -495,7 +495,7 @@
 		<dependency>
 			<groupId>net.mwav</groupId>
 			<artifactId>framework</artifactId>
-			<version>1.0.1</version>
+			<version>1.0.2</version>
 		</dependency>
 
 		<!-- @UserAgentDetector -->
@@ -559,7 +559,12 @@
 		    <scope>provided</scope>
 		</dependency>
 
-
+		<dependency>
+			<groupId>org.assertj</groupId>
+			<artifactId>assertj-core</artifactId>
+			<version>3.16.1</version>
+			<scope>test</scope>
+		</dependency>
 
 		<!-- @UserAgentAnalyis 171117 http://www.bitwalker.eu/software/user-agent-utils 
 			https://mvnrepository.com/search?q=eu.bitwalker https://javalibs.com/artifact/eu.bitwalker/UserAgentUtils 
@@ -643,9 +648,12 @@
                    </goals>
                    <configuration>
                      <tasks>
-                       <!-- mwav-data 소스를 제거 후 Staging용 소스로 교체 -->
+                       <!-- mwav-data 소스를 제거 후 prd용 소스로 교체 -->
                        <delete file="src/main/resources/config/spring/mwav-data.xml"/>
                        <copy file="/app/dev_file/mwav-data-prd.xml" tofile="src/main/resources/config/spring/mwav-data.xml" />
+			<!-- application.properties 소스를 제거 후 prd용 소스로 교체 -->
+                       <delete file="src/main/resources/googleProperties/application.properties"/>
+                       <copy file="/app/dev_file/prd-application.properties" tofile="src/main/resources/googleProperties/application.properties" />
                      </tasks>
                    </configuration>
                  </execution>

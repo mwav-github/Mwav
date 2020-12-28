@@ -13,13 +13,15 @@ import java.nio.file.WatchService;
 import java.nio.file.WatchEvent.Kind;
 
 import java.util.List;
+
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class WatchServiceTest {
 
 	private WatchKey watchKey;
 
-	@Test
+	@Test @Ignore
 	public void test() throws IOException {
 		boolean testBoolean = fileChanged();
 		assertEquals(testBoolean, true);
