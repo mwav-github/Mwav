@@ -138,8 +138,7 @@
 																	<div class="carousel-inner">
 																		<%--http://bootsnipp.com/snippets/featured/bootstrap-lightbox --%>
 																		<div class="active item" data-slide-number="0">
-																			<a href="#" class="thumbnail" data-toggle="modal" data-target="#lightbox">
-																				<img id="m-Base" src="${!empty S1_Base_Path ? S1_Base_Path : '/resources/images/Goods/770x770&text=one.png'}" width="232" height="232" />
+																			<a href="#" class="thumbnail" data-toggle="modal" data-target="#lightbox"> <img id="m-Base" src="${!empty S1_Base_Path ? S1_Base_Path : '/resources/images/Goods/770x770&text=one.png'}" width="232" height="232" />
 																			</a>
 																		</div>
 																		<div class="item" data-slide-number="1">
@@ -231,7 +230,7 @@
 															<td>모델번호:</td>
 															<td>
 																<div class='form-group'>
-																	<div class="col-md-8">																		
+																	<div class="col-md-8">
 																		<input class='form-control' name="gModelNbr" value="${isM ? updateGdsForm.gModelNbr : ''}" required>
 																	</div>
 																</div>
@@ -383,7 +382,7 @@
 															<td>
 																<div class='form-group'>
 																	<div class="col-md-8">
-																		<input class='form-control' name="gFruitRate" value="${isM ? updateGdsForm.gFruitRate : ''}" required>
+																		<input type="number" min="0" max="100" class='form-control' name="gFruitRate" value="${isM ? updateGdsForm.gFruitRate : ''}" required>
 																	</div>
 																</div>
 																<p>% 성과급률은 0~100 숫자 안에서 입력하세요.</p>
@@ -394,10 +393,10 @@
 															<td>
 																<div class='form-group'>
 																	<div class="col-md-8">
-																		<input class='form-control' name="gOrder" value="${isM ? updateGdsForm.gOrder : ''}" required>
+																		<input type="number" min="-9999" max="9999" class='form-control' name="gOrder" value="${isM ? updateGdsForm.gOrder : ''}" required>
 																	</div>
 																</div>
-																<p>정렬순서는 -9999~99999 숫자 안에서 사이 값을 입력하세요.</p>
+																<p>정렬순서는 -9999~9999 숫자 안에서 사이 값을 입력하세요.</p>
 															</td>
 														</tr>
 														<tr>
@@ -530,11 +529,8 @@
 									</div>
 								</div>
 							</div>
-							<input type="hidden" id="gInsertDt" name="gInsertDt" value="${updateGdsForm.gInsertDt}" /> 
-							<input type="hidden" id="gRegister" name="gRegister" value="${updateGdsForm.gRegister}" /> 
-							<input type="hidden" id="gRegisterId" name="gRegisterId" value="${updateGdsForm.gRegisterId}" /> 
-							<input type="hidden" id="gIpAddress" name="gIpAddress" value="${updateGdsForm.gIpAddress}" />
-							
+							<input type="hidden" id="gInsertDt" name="gInsertDt" value="${updateGdsForm.gInsertDt}" /> <input type="hidden" id="gRegister" name="gRegister" value="${updateGdsForm.gRegister}" /> <input type="hidden" id="gRegisterId" name="gRegisterId" value="${updateGdsForm.gRegisterId}" /> <input type="hidden" id="gIpAddress" name="gIpAddress" value="${updateGdsForm.gIpAddress}" />
+
 						</form>
 					</div>
 				</div>
