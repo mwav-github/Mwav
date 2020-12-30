@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import net.common.common.CommandMap;
 import net.mwav.common.module.AesEncryption;
+import net.promoter.vo.Promoter_VO;
 import org.springframework.stereotype.Service;
 
 import net.bizLogin.promoter.dao.PmtFacilitatorDAO;
@@ -43,7 +44,6 @@ public class PmtFacilitatorServiceImpl implements PmtFacilitatorService {
 		// AES/CBC/IV 암호화 (키,암호화텍스트,iv)\
 		String pmtLoginPw = (String) commandMap.get("pmtLoginPw");
 		byte[] encrypted = AesEncryption.aesEncryptCbc(AesEncryption.sKey, pmtLoginPw, AesEncryption.sInitVector);
-
 		// 암호화된 값이 String으로 반환
 		commandMap.put("pmtLoginPw", AesEncryption.aesEncodeBuf(encrypted));
 		String pmtGender = (String)commandMap.get("pmtGender");
@@ -60,6 +60,7 @@ public class PmtFacilitatorServiceImpl implements PmtFacilitatorService {
 		// PromoterValueLog_tbl
 		commandMap.put("pvlRemark", "신규 회원가입");
 		pmtFacilitatorDAO.insertPromoterValueLog_tbl (commandMap);
+
 	}
 	public boolean selectOnePmtLoginIdCheck(String stfLoginId) throws Exception{
 		return pmtFacilitatorDAO.selectOnePmtLoginIdCheck(stfLoginId) == 0 ? true : false;
@@ -81,6 +82,10 @@ public class PmtFacilitatorServiceImpl implements PmtFacilitatorService {
 			check = checkSocialJoin(so);
 		}
 		return check; // return VO를 해준다..
+	}
+	@Override
+	public PmtFacilitatorVO selectPmtFacLogin(Map<String, Object> map) throws Exception{
+		return  (PmtFacilitatorVO)pmtFacilitatorDAO.selectPmtLogin(map);
 	}
 
 }

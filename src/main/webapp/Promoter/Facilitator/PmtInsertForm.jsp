@@ -147,6 +147,22 @@
 		return false
 	}
 
+	function sendEmail(){
+		$.ajax({
+			url:'/accounts/email/certify',
+			data: "email="+$('input[name=pmtMail]').val()+"&account=pmt"+"&id="+$('input[name=pmtLoginId]').val(),
+			type: "POST",
+			async: false,
+			success: function(data){
+				return true;
+			},
+			error:function(request,status,error){
+				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+				alert('Error!\n관리자에게 문의하여 주시기 바랍니다.\n' + err);
+				return false;
+			}
+		});
+	}
 
 	// jquery end
 </script>
