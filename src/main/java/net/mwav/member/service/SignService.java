@@ -78,7 +78,10 @@ public class SignService {
 				result.put("result", "30");
 				result.put("message", "NO_AFFECTED");
 			}
-			memberDao.insertMemberValue_tbl(signUpMap);
+
+			// snsMember_tbl - MAX(snsMember_id) + 1
+			signUpMap.put("snsMember_id", memberDao.selectNextSnsPk());
+			memberDao.insertMemberValue(signUpMap);
 
 			// sns 테이블 INSERT
 			Map<String, Object> snsMap = new HashMap<String, Object>();

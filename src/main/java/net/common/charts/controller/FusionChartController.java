@@ -33,7 +33,7 @@ public class FusionChartController {
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		
 		paramMap = Common_Utils.typeToChar(request);
-		paramMap.put("stPromoterId", paramMap.get("value"));
+		paramMap.put("stInvoker_id", paramMap.get("value"));
 		
 		return fusionChartService.selectWeeklyUsersList(paramMap);
 	}
@@ -46,7 +46,7 @@ public class FusionChartController {
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		
 		paramMap = Common_Utils.typeToChar(request);
-		paramMap.put("stPromoterId", paramMap.get("value"));
+		paramMap.put("stInvoker_id", paramMap.get("value"));
 		
 		return URLEncoder.encode(fusionChartService.selectTop10PageList(paramMap), "UTF-8");
 	}
@@ -59,7 +59,7 @@ public class FusionChartController {
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		
 		paramMap = Common_Utils.typeToChar(request);
-		paramMap.put("stPromoterId", paramMap.get("value"));
+		paramMap.put("stInvoker_id", paramMap.get("value"));
 		
 		return fusionChartService.selectClientScreenSizeList(paramMap);
 	}

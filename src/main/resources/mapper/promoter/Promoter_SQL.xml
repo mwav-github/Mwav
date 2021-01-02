@@ -43,20 +43,15 @@
 
 	<insert id="insertPmtForm" parameterType="net.promoter.vo.Promoter_VO">
 		<![CDATA[
-			INSERT INTO Promoter_tbl
-		    	values(#{promoter_id}, #{pmtLoginId}, #{pmtLoginPw}, #{pmtName},
-			    #{pmtMail}, #{pmtPhone}, #{pmtCellularPhone},0, #{pmtZipcode},
-			    #{pmtAddress}, #{pmtJobType}, null, null, #{pmtSsn1},#{pmtSsn2},#{pmtMarried},#{pmtMarkl}
-			);
+			INSERT INTO Promoter_tbl(promoter_id, pmtLoginId, pmtLoginPw, pmtGender, pmtFirstName, pmtLastName, pmtMail, pmtPhone, pmtCellularPhone)
+			VALUES(#{promoter_id}, #{pmtLoginId}, #{pmtLoginPw}, '-99', #{pmtName}, #{pmtName}, #{pmtMail}, #{pmtPhone}, #{pmtCellularPhone})
 		]]>
 	</insert>
 
 	<insert id="insertPmtValueForm" parameterType="net.promoter.vo.Promoter_VO">
 		<![CDATA[
-			insert INTO PromoterValue_tbl
-			values(#{promoter_id}, null,null, #{pmtRcmderId}, 2,0,0,0,null,
-				SYSDATE(),NULL,NULL,NULL,SYSDATE(),NULL
-			);
+			INSERT INTO PromoterValue_tbl (promoter_id, Promoter_tbl_promoter_id)
+			VALUES(#{promoter_id}, #{promoter_id})
 		]]>
 	</insert>
 
@@ -131,7 +126,7 @@
 	<update id="updatePmtPro" parameterType="hashmap">
 	<![CDATA[
 	  update Promoter_tbl
-	  set pmtName=#{pmtName} ,pmtCellularPhone= #{pmtCellularPhone},pmtMail=#{pmtMail},pmtPhone=#{pmtPhone}, pmtMarkl= #{pmtMaikl}
+	  set pmtFirstName=#{pmtName} ,pmtCellularPhone= #{pmtCellularPhone},pmtMail=#{pmtMail},pmtPhone=#{pmtPhone}, pmtMark= #{pmtMaikl}
 	]]>
 	  <if test= "#{pmtNewPw}!=null">
 	       , pmtLoginPw = #{pmtNewPw}
