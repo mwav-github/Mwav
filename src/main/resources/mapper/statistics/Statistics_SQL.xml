@@ -8,22 +8,22 @@
 	
 	<select id="insertFirstStatics" parameterType="net.mwav.statistics.vo.StatisticsVO">
 		<![CDATA[
-			INSERT INTO Statistics_tbl(statistics_id, stPageName, stUrlScheme, stUrlHost, stUrlPort, stUrlLocalPath, stQueryString, stUrlPathAndQuery, stPrePageName, stUrlReferrerHost, stUrlReferrer, stSessionId, stUserHostAddress, stUserAgent)
- 			Values(#{statistics_id}, #{stPageName}, #{stUrlScheme}, #{stUrlHost}, #{stUrlPort}, #{stUrlLocalPath}, #{stQueryString}, #{stUrlPathAndQuery}, #{stPrePageName}, #{stUrlReferrerHost}, #{stUrlReferrer}, #{stSessionId}, #{stUserHostAddress}, #{stUserAgent})
+			INSERT INTO Statistics_tbl(statistics_id, stPageName, stUrlScheme, stUrlHost, stUrlPort, stUrlLocalPath, stQueryString, stUrlPathAndQuery, stPrePageName, stUrlReferrerHost, stUrlReferrer, stSessionId, stUserHostAddress, stUserAgent, stInsertDt)
+ 			Values(#{statistics_id}, #{stPageName}, #{stUrlScheme}, #{stUrlHost}, #{stUrlPort}, #{stUrlLocalPath}, #{stQueryString}, #{stUrlPathAndQuery}, #{stPrePageName}, #{stUrlReferrerHost}, #{stUrlReferrer}, #{stSessionId}, #{stUserHostAddress}, #{stUserAgent}, now())
 		]]>
 	</select>
 	
 	<select id="insertStatistics" parameterType="net.mwav.statistics.vo.StatisticsLogVO">
 		<![CDATA[
-			INSERT INTO StatisticsLog_tbl(statistics_id, slStatLogDt, slPageName, slUrlHost, slUrlLocalPath, slQueryString)
-			Values(#{statistics_id}, now(6), #{slPageName}, #{slUrlHost}, #{slUrlLocalPath}, #{slQueryString})
+			INSERT INTO StatisticsLog_tbl(statistics_id, slStatLogDt, slPageName, slUrlHost, slUrlLocalPath, slQueryString, stInsertDt)
+			Values(#{statistics_id}, now(6), #{slPageName}, #{slUrlHost}, #{slUrlLocalPath}, #{slQueryString}, now())
 		]]>
 	</select>
 	
 	<select id="insertErrorStatistics" parameterType="net.mwav.statistics.vo.StatisticsLogVO">
 		<![CDATA[
-			INSERT INTO StatisticsLog_tbl(statistics_id, slStatLogDt, slPageName, slUrlHost, slUrlLocalPath, slQueryString)
-			Values(#{statistics_id}, DATE_ADD(now(), INTERVAL 1 SECOND), #{slPageName}, #{slUrlHost}, #{slUrlLocalPath}, #{slQueryString})
+			INSERT INTO StatisticsLog_tbl(statistics_id, slStatLogDt, slPageName, slUrlHost, slUrlLocalPath, slQueryString, stInsertDt)
+			Values(#{statistics_id}, DATE_ADD(now(), INTERVAL 1 SECOND), #{slPageName}, #{slUrlHost}, #{slUrlLocalPath}, #{slQueryString}, now())
 		]]>
 	</select>
 	<!-- /*========================================보기========================================*/ -->
