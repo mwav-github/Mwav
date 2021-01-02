@@ -6,8 +6,8 @@
 	<!--/*========================================등록========================================*/  -->
 	<insert id="insertQAForm" parameterType="hashmap">
 		<![CDATA[
-			INSERT INTO UserQuestion_tbl(userQuestion_id, uqGroup, uqGroupItem, member_id, uqUserName, uqUserEmail, uqUserPw, uqUserPhone, uqTitle, uqContent, uqStatus, uqAttachFile, uqRelatedLink, uqUpdateDt, uqDeleteDt, uqIpAddress, uqOption1, uqOption2, uqOption3, uqInvoker, uqInvoker_id, statistics_id, uqAdminNotice)
-			VALUES(#{QnA_id}, #{uqGroup}, #{uqGroupItem}, #{member_id}, #{uqUserName}, #{uqUserEmail}, #{uqUserPw}, #{uqUserPhone}, #{uqTitle}, #{uqContent}, #{uqStatus}, #{uqAttachFile}, #{uqRelatedLink}, #{uqUpdateDt}, #{uqDeleteDt}, #{uqIpAddress}, #{uqOption1}, #{uqOption2}, #{uqOption3}, #{uqInvoker}, #{uqInvoker_id}, #{statistics_id}, #{uqAdminNotice})
+			INSERT INTO UserQuestion_tbl(userQuestion_id, uqGroup, uqGroupItem, member_id, uqUserName, uqUserEmail, uqUserPw, uqUserPhone, uqTitle, uqContent, uqStatus, uqAttachFile, uqRelatedLink, uqUpdateDt, uqDeleteDt, uqIpAddress, uqOption1, uqOption2, uqOption3, uqInvoker, uqInvoker_id, statistics_id, uqAdminNotice, uqInsertDt)
+			VALUES(#{QnA_id}, #{uqGroup}, #{uqGroupItem}, #{member_id}, #{uqUserName}, #{uqUserEmail}, #{uqUserPw}, #{uqUserPhone}, #{uqTitle}, #{uqContent}, #{uqStatus}, #{uqAttachFile}, #{uqRelatedLink}, #{uqUpdateDt}, #{uqDeleteDt}, #{uqIpAddress}, #{uqOption1}, #{uqOption2}, #{uqOption3}, #{uqInvoker}, #{uqInvoker_id}, #{statistics_id}, #{uqAdminNotice}, now())
 		]]>
 	</insert>
     <!--/*========================================보기========================================*/  -->
