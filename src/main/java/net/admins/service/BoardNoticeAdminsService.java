@@ -15,6 +15,7 @@ public interface BoardNoticeAdminsService {
 	 */
 
 	void insertNtmForm(Map<String, Object> map) throws Exception;
+	void insertPmtNtmForm(Map<String, Object> map) throws Exception;
 
 	/*
 	 * ========================================보기================================
@@ -24,13 +25,23 @@ public interface BoardNoticeAdminsService {
 	Map<String, Object> selectOneNtmView(Map<String, Object> map)
 			throws Exception;
 
+	Map<String, Object> selectOnePmtNtmView(Map<String, Object> map)
+			throws Exception;
 	/*
 	 * ========================================수정================================
 	 * ========
 	 */
 	Map<String, Object> updateNtmForm(Map<String, Object> map) throws Exception;
 	
+	Map<String, Object> updatePmtNtmForm(Map<String, Object> map) throws Exception;
+	
 	void updateProNtmForm(Map<String, Object> map) throws Exception;
+	
+	void updateProPmtNtmForm(Map<String, Object> map) throws Exception;
+	
+	//void updatePmtNoticeStatus(String boardPromoter_id, String bpStatus);
+	//Map<String, Object> updatePmtNoticeStatus(Map<String, Object> map) throws Exception;
+	void updatePmtNoticeStatus(Map<String, Object> map) throws Exception;
 
 	/*
 	 * ========================================리스트(SelectOne, SelectList
@@ -38,9 +49,11 @@ public interface BoardNoticeAdminsService {
 	 */
 
 	int selectOneGetNtmTotalCount();
+	int selectOneGetPmtNtmTotalCount();	
 
 	List<Map<String, Object>> selectListNtmList(Map<String, Object> map);
-
+	List<Map<String, Object>> selectListPmtNtmList(Map<String, Object> map);
+	
 	List<Map<String, Object>> selectListNtmFrontList(Map<String, Object> map)
 			throws Exception;
 
@@ -50,7 +63,7 @@ public interface BoardNoticeAdminsService {
 	 */
 
 	void deleteNtmDelete(Map<String, Object> map) throws Exception;
-
+	void deletePmtNtmDelete(Map<String, Object> map) throws Exception;
 	
 
 

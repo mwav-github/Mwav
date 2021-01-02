@@ -40,6 +40,14 @@ public class BoardNoticeAdminsServiceImpl implements BoardNoticeAdminsService {
 		boardNoticeAdminsDAO.insertNtmForm(map);
 	}
 
+	@Override
+	public void insertPmtNtmForm(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+
+		map.put("bpStatus", 1);
+		
+		boardNoticeAdminsDAO.insertPmtNtmForm(map);
+	}
 	/*
 	 * ========================================보기================================
 	 * ========
@@ -66,6 +74,26 @@ public class BoardNoticeAdminsServiceImpl implements BoardNoticeAdminsService {
 		return resultMap;
 	}
 
+	
+	@Override
+	public Map<String, Object> selectOnePmtNtmView(Map<String, Object> map)
+			throws Exception {
+		// TODO Auto-generated method stub
+		boardNoticeAdminsDAO.updatePmtNtmHitCnt(map);
+		Set set = map.entrySet();
+		Iterator iterator = set.iterator();
+		while (iterator.hasNext()) {
+			Map.Entry entry = (Map.Entry) iterator.next();
+			System.out.println("key : " + entry.getKey() + ", value : " + entry.getValue());
+		}
+
+		Map<String, Object> resultMap = boardNoticeAdminsDAO.selectOnePmtNtmView(map);
+		int bpStatus = (int) resultMap.get("bpStatus");
+		resultMap.put("bpStatus", bpStatus);
+
+		return resultMap;
+	}
+	
 	/*
 	 * ========================================수정================================
 	 * ========
@@ -78,11 +106,33 @@ public class BoardNoticeAdminsServiceImpl implements BoardNoticeAdminsService {
 	}
 
 	@Override
+	public Map<String, Object> updatePmtNtmForm(Map<String, Object> map)
+			throws Exception {
+		// TODO Auto-generated method stub
+		return boardNoticeAdminsDAO.updatePmtNtmForm(map);
+	}
+	
+	@Override
 	public void updateProNtmForm(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		boardNoticeAdminsDAO.updateProNtmform(map);
 	}
 
+	@Override
+	public void updateProPmtNtmForm(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		boardNoticeAdminsDAO.updateProPmtNtmForm(map);
+	}	
+
+
+	// 공지게시, 비노출 기능
+	@Override
+	public void updatePmtNoticeStatus(Map<String, Object> map)
+			throws Exception {
+		// TODO Auto-generated method stub
+		boardNoticeAdminsDAO.updatePmtNoticeStatus(map);
+	}
+	
 	/*
 	 * ========================================리스트(SelectOne, SelectList
 	 * 순)========================================
@@ -94,6 +144,12 @@ public class BoardNoticeAdminsServiceImpl implements BoardNoticeAdminsService {
 		return boardNoticeAdminsDAO.selectOneGetNtmTotalCount();
 	}
 
+	@Override
+	public int selectOneGetPmtNtmTotalCount() {
+		// TODO Auto-generated method stub
+		return boardNoticeAdminsDAO.selectOneGetPmtNtmTotalCount();
+	}	
+	
 	@Override
 	public List<Map<String, Object>> selectListNtmFrontList(
 			Map<String, Object> map) throws Exception {
@@ -108,6 +164,13 @@ public class BoardNoticeAdminsServiceImpl implements BoardNoticeAdminsService {
 		return boardNoticeAdminsDAO.selectListNtmList(map);
 	}
 
+	@Override
+	public List<Map<String, Object>> selectListPmtNtmList(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+
+		return boardNoticeAdminsDAO.selectListPmtNtmList(map);
+	}	
+	
 	/*
 	 * ========================================삭제================================
 	 * ========
@@ -118,4 +181,11 @@ public class BoardNoticeAdminsServiceImpl implements BoardNoticeAdminsService {
 		boardNoticeAdminsDAO.deleteNtmDelete(map);
 	}
 
+	@Override
+	public void deletePmtNtmDelete(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		boardNoticeAdminsDAO.deletePmtNtmDelete(map);
+	}
+	
+	
 }
