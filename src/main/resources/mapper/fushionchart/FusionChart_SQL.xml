@@ -4,12 +4,12 @@
 	
 	<select id="selectWeeklyUsersList" resultType="net.common.charts.vo.FusionChartVo" parameterType="hashmap" >
 		  SELECT /* fusionChart.selectWeeklyUsersList */ 
-		  			DATE_FORMAT(stStatisticsDt, '%W') AS 'name',
+		  			DATE_FORMAT(stInsertDt, '%W') AS 'name',
           			COUNT('statistics_id') AS 'data'
           FROM Statistics_tbl
-          WHERE <![CDATA[ TO_DAYS(NOW()) - TO_DAYS(stStatisticsDt) <= 7 ]]>
-          			<if test="stPromoterId != null and stPromoterId != ''" >
-	      			  AND  stPromoterId = #{stPromoterId}
+          WHERE <![CDATA[ TO_DAYS(NOW()) - TO_DAYS(stInsertDt) <= 7 ]]>
+          			<if test="stInvoker_id != null and stInvoker_id != ''" >
+	      			  AND  stInvoker_id = #{stInvoker_id}
 	      			</if>
           GROUP BY `name`
           ORDER BY `name` DESC
@@ -21,8 +21,8 @@
 	      			COUNT(*) AS 'data' 
 	      FROM Statistics_tbl a, StatisticsLog_tbl b
 	      WHERE <![CDATA[ slPageName IS NOT NULL ]]> 
-	          		<if test="stPromoterId != null and stPromoterId != ''" >
-	      			  AND  stPromoterId = #{stPromoterId}
+	          		<if test="stInvoker_id != null and stInvoker_id != ''" >
+	      			  AND  stInvoker_id = #{stInvoker_id}
 	      			</if>
 	          		AND a.statistics_id = b.statistics_id
 	      GROUP BY `name`
@@ -35,9 +35,9 @@
 	      			COUNT(*) AS 'data', 
 	      			stClientScreen AS 'name' 
 	      FROM Statistics_tbl 
-	      WHERE <![CDATA[ stClientScreen IS NOT NULL AND TO_DAYS(NOW()) - TO_DAYS(stStatisticsDt) <= 30 ]]>
-	      			<if test="stPromoterId != null and stPromoterId != ''" >
-	      			  AND  stPromoterId = #{stPromoterId}
+	      WHERE <![CDATA[ stClientScreen IS NOT NULL AND TO_DAYS(NOW()) - TO_DAYS(stInsertDt) <= 30 ]]>
+	      			<if test="stInvoker_id != null and stInvoker_id != ''" >
+	      			  AND  stInvoker_id = #{stInvoker_id}
 	      			</if>
 	      GROUP BY `name`
 	      ORDER BY `data` DESC 

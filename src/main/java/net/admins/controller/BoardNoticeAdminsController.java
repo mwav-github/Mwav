@@ -243,6 +243,8 @@ public class BoardNoticeAdminsController {
 		return mv;
 	}
 
+	
+	
 	/*
 	 * ========================================삭제================================
 	 * ========
@@ -262,5 +264,180 @@ public class BoardNoticeAdminsController {
 
 		return mv;
 	}
+
+	
+	
+	/*
+	 * =============================Promoter 공지사항 기능===============================
+	 */
+	
+	// (1) Promoter 공지사항 리스트
+	@RequestMapping(value = "/admins/promoter/boardmgr/PmtNoticeList.mwav")
+	public ModelAndView selectListPmtNtmList(CommandMap commandMap,
+			HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("/Admins/Promoter/BoardMgr/PmtNoticeList");
+
+		String pageNum = (String) commandMap.get("pageNum");
+		Paging paging = new Paging();
+		if (pageNum == null || pageNum == "") {
+			pageNum = "1";
+		}
+		int totalRow = BoardNoticeAdminsService.selectOneGetPmtNtmTotalCount();
+		System.out.println("totalRow=" + totalRow);
+
+		List<Map<String, Object>> selectListPmtNtmList;
+		PagingVO pagingVO = paging.setPagingInfo(totalRow, 5, pageNum); // 총 숫자,
+																		// 한페이지에
+																		// 노출 수
+		commandMap.put("startRow", paging.getStartRow(pageNum)); // 시작 열
+		commandMap.put("endRow", paging.getEndRow(pageNum)); // 끝 열
+		
+		if (totalRow > 0) {
+			selectListPmtNtmList = BoardNoticeAdminsService.selectListPmtNtmList(commandMap.getMap());
+		} else {
+			selectListPmtNtmList = Collections.emptyList();
+		}
+		
+		String mm = "site";
+		mv.addObject("mm", mm);
+		
+		/*
+		mv.addObject("mode", "m_ntmList");
+		mv.addObject("depth_1", depth_1);
+		mv.addObject("depth_2", depth_2);
+		mv.addObject("depth_3", "NtmList");
+		*/
+
+		mv.addObject("selectListPmtNtmList", selectListPmtNtmList);
+		mv.addObject("pagingVO", pagingVO);
+		mv.addObject("totalRow", totalRow);
+
+		return mv;
+	}
+
+	
+	// (2) Promoter 공지사항 삭제
+	@RequestMapping(value = "/admins/promoter/boardmgr/PmtNoticeDelete.mwav")
+	public ModelAndView deletePmtNtmDelete(CommandMap commandMap,
+			HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("/Admins/Promoter/BoardMgr/PmtNoticeList");
+		
+		BoardNoticeAdminsService.deletePmtNtmDelete(commandMap.getMap());
+
+		/*
+		mv.addObject("depth_1", depth_1);
+		mv.addObject("depth_2", depth_2);
+		mv.addObject("depth_3", "NtmDelete");
+		*/
+		
+		return mv;
+	}	
+	
+	// Promoter 공지사항 등록
+	@RequestMapping(value = "/admins/promoter/boardmgr/PmtNoticeForm.mwav")
+	// http://egloos.zum.com/nadostar/v/210497
+	public ModelAndView insertPmtNtmForm(CommandMap commandMap,
+			HttpServletRequest request) throws Exception {
+
+		ModelAndView mv = new ModelAndView("/Admins/Promoter/BoardMgr/PmtNoticeForm");
+
+		BoardNoticeAdminsService.insertPmtNtmForm(commandMap.getMap());
+
+		String mm = "site";
+		mv.addObject("mm", mm);
+		
+		
+		mv.addObject("mode", "m_ntmForm");
+
+		mv.addObject("depth_1", depth_1);
+		mv.addObject("depth_2", depth_2);
+		mv.addObject("depth_3", "NtmForm");
+		
+		// mv.addObject("insertBnsForm", insertBnsForm);
+		// mv.addObject("IDX", commandMap.get("IDX"));
+
+		return mv;
+	}
+
+	// Promoter 공지사항 등록
+	@RequestMapping(value = "/admins/promoter/boardmgr/PmtNoticeUpdatePro.mwav")
+	public ModelAndView updateProPmtNtmForm(CommandMap commandMap,
+			HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("/Admins/Promoter/BoardMgr/PmtNoticeList");
+
+		BoardNoticeAdminsService.updateProPmtNtmForm(commandMap.getMap());
+		
+		String mm = "site";
+		mv.addObject("mm", mm);
+		mv.addObject("mode", "m_ntmList");
+		
+		return mv;
+	}	
+
+	// Promoter 공지사항 업데이트
+	@RequestMapping(value = "/admins/promoter/boardmgr/PmtNoticeUpdate.mwav")
+	public ModelAndView updatePmtNtmForm(CommandMap commandMap,
+			HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("/Admins/Promoter/BoardMgr/PmtNoticeForm");
+
+
+		Map<String, Object> updatePmtNtmForm = BoardNoticeAdminsService.updatePmtNtmForm(commandMap.getMap());
+
+		if (updatePmtNtmForm != null && !updatePmtNtmForm.isEmpty()) {
+			String mm = "site";
+			mv.addObject("mm", mm);
+			mv.addObject("mode", "m_nsmUpdate");
+			mv.addObject("updatePmtNtmForm", updatePmtNtmForm);
+		}
+		return mv;
+	}
+	
+	// Promoter 공지사항 View
+	@RequestMapping(value = "/admins/promoter/boardmgr/PmtNoticeView.mwav")
+	public ModelAndView selectOnePmtNtmView(CommandMap commandMap,
+			HttpServletRequest request, HttpSession session) throws Exception {
+		ModelAndView mv = new ModelAndView("/Admins/Promoter/BoardMgr/PmtNoticeView");
+
+		Map<String, Object> selectOnePmtNtmView = BoardNoticeAdminsService
+				.selectOnePmtNtmView(commandMap.getMap());
+
+		if (selectOnePmtNtmView != null && !selectOnePmtNtmView.isEmpty()) {
+
+			String mm = "site";
+			mv.addObject("mm", mm);
+			mv.addObject("mode", "m_pmtntmView");
+
+			mv.addObject("depth_1", depth_1);
+			mv.addObject("depth_2", depth_2);
+			mv.addObject("depth_3", "PmtNtmView");
+
+			mv.addObject("selectOnePmtNtmView", selectOnePmtNtmView);
+		}
+
+		return mv;
+	}
+
+	// Promoter 공지사항 노출/비노출 설정
+	@RequestMapping(value = "/admins/promoter/boardmgr/PmtNoticeStatusUpdate.mwav")
+	public ModelAndView updateNsmBnStatusNotice(CommandMap commandMap,
+			HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ModelAndView mv = new ModelAndView("/Admins/Promoter/BoardMgr/PmtNoticeList");
+
+		BoardNoticeAdminsService.updatePmtNoticeStatus(commandMap.getMap());
+
+		String bpStatus = request.getParameter("bpStatus"); //웹에서 전달받은 값
+		String boardPromoter_id = request.getParameter("boardPromoter_id"); //웹에서 전달받은 값
+		
+		String mm = "site";
+		mv.addObject("mm", mm);
+		mv.addObject("mode", "m_ntmList");
+		
+		mv.addObject("boardPromoter_id", boardPromoter_id);
+		mv.addObject("bpStatus", bpStatus);
+
+		response.sendRedirect("/admins/promoter/boardmgr/PmtNoticeList.mwav?pageNum=1"); // 공지사항 노출,비노출 설정 후 리스트 화면으로 이동
+		
+		return mv;
+	}	
 
 }

@@ -25,6 +25,11 @@ public class BoardNoticeAdminsDAO extends AbstractDAO {
 		insert("boardNoticeAdminsDAO.insertNtmForm", map);
 	}
 
+	public void insertPmtNtmForm(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+
+		insert("boardNoticeAdminsDAO.insertPmtNtmForm", map);
+	}
 	/*
 	 * ========================================보기================================
 	 * ========
@@ -39,6 +44,13 @@ public class BoardNoticeAdminsDAO extends AbstractDAO {
 				"boardNoticeAdminsDAO.selectOneNtmView", map);
 	}
 
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> selectOnePmtNtmView(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+
+		return (Map<String, Object>) selectOne(
+				"boardNoticeAdminsDAO.selectOnePmtNtmView", map);
+	}
 	/*
 	 * ========================================수정================================
 	 * ========
@@ -49,16 +61,44 @@ public class BoardNoticeAdminsDAO extends AbstractDAO {
 	
 		return (Map<String, Object>) selectOne("boardNoticeAdminsDAO.updateNtmform", map);
 	}
+
+	public Map<String, Object> updatePmtNtmForm(Map<String, Object> map) {
+		// TODO Auto-generated method stub
 	
+		return (Map<String, Object>) selectOne("boardNoticeAdminsDAO.updatePmtNtmForm", map);
+	}	
+
 	public void updateProNtmform(Map<String, Object> map) {
 		// TODO Auto-generated method stub
 		update("boardNoticeAdminsDAO.updateProNtmform", map);
 	}
+	
+	public void updateProPmtNtmForm(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		update("boardNoticeAdminsDAO.updateProPmtNtmForm", map);
+	}
+	
 	// 조회수 증가
 	public void updateNtmHitCnt(Map<String, Object> map) throws Exception {
 		update("boardNoticeAdminsDAO.updateNtmHitCnt", map);
 	}
 
+	// 조회수 증가
+	public void updatePmtNtmHitCnt(Map<String, Object> map) throws Exception {
+		update("boardNoticeAdminsDAO.updateNtmHitCnt", map);
+	}
+	
+	/*
+	public void updatePmtNoticeStatus(String boardPromoter_id, String bpStatus) {
+		// TODO Auto-generated method stub
+		update("boardNoticeAdminsDAO.updatePmtNoticeStatus", boardPromoter_id, bpStatus);
+	}	
+	*/
+
+	public void updatePmtNoticeStatus(Map<String, Object> map) {
+		update("boardNoticeAdminsDAO.updatePmtNoticeStatus", map);
+	}
+	
 	/*
 	 * ========================================리스트(SelectOne, SelectList
 	 * 순)========================================
@@ -69,6 +109,11 @@ public class BoardNoticeAdminsDAO extends AbstractDAO {
 		return (int) selectOne("boardNoticeAdminsDAO.selectOneGetNtmTotalCount");
 	}
 
+	public int selectOneGetPmtNtmTotalCount() {
+		// TODO Auto-generated method stub
+		return (int) selectOne("boardNoticeAdminsDAO.selectOneGetPmtNtmTotalCount");
+	}	
+	
 	@SuppressWarnings("unchecked")
 	public List<Map<String, Object>> selectListNtmFrontList(
 			Map<String, Object> map) throws Exception {
@@ -84,6 +129,13 @@ public class BoardNoticeAdminsDAO extends AbstractDAO {
 
 	}
 
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> selectListPmtNtmList(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return (List<Map<String, Object>>) selectList(
+				"boardNoticeAdminsDAO.selectListPmtNtmList", map);
+
+	}
 	/*
 	 * ========================================삭제================================
 	 * ========
@@ -94,4 +146,10 @@ public class BoardNoticeAdminsDAO extends AbstractDAO {
 		update("boardNoticeAdminsDAO.deleteNtmDelete", map);
 	}
 
+	public void deletePmtNtmDelete(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		update("boardNoticeAdminsDAO.deletePmtNtmDelete", map);
+	}	
+	
+	
 }
