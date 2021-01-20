@@ -70,14 +70,16 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					<div class="enter"></div>
 					<div class="col-xs-12 col-sm-12 col-md-12 text-center">
 						<h3>
-							<strong>OfficeSuite 완벽한 6-in-1 오피스팩으로 <br>문서의 완성도를
-								극대화 하는 놀라운 경험을 누려보세요. 
+							<strong>OfficeSuite 완벽한 6-in-1 오피스팩과 21년 신규 출시 된 PDF
+								Extra로 <br>문서의 완성도를 극대화 하는 놀라운 경험을 누려보세요.<hr>
 							</strong>
 						</h3>
-						<p><br>OfficeSuite for Windows는 문서 작업을 수행하는 데 필요한 모든 도구를 제공합니다.
+						<p>
+							<br>OfficeSuite for Windows는 문서 작업을 수행하는 데 필요한 모든 도구를 제공합니다.
 							문서, 스프레드시트, 프레젠테이션을 만들고 PDF에서 파일을 내보내고 변환할 수 있는 PDF편집기를 이용할 수 있을
 							뿐만 아니라, 작업이 완료되면 MobiSystems드라이브에 파일을 업로드하거나 통합 메일을 통해서 파일 전송이
-							가능합니다.</p>
+							가능합니다.
+						</p>
 						<br>
 					</div>
 				</div>
@@ -148,19 +150,20 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 									src="/CompanyItem/ITProducts/OfficeSuite/Images/CloudIcons.png">
 							</p>
 							<h5 class="text-left">
-								<strong>다양한 클라우드 서비스로 원활하게 작업 가능합니다. <br>Dropbox, Box,
-									OneDrive 클라우드 저장소를 연결하고 OfficeSuite에서 액세스 하세요.</strong>
+								<strong>다양한 클라우드 서비스로 원활하게 작업 가능합니다. <br>Dropbox,
+									Box, OneDrive 클라우드 저장소를 연결하고 OfficeSuite에서 액세스 하세요.
+								</strong>
 							</h5>
 						</div>
-						<div
-							class="col-xs-12 col-sm-6 col-md-6">
+						<div class="col-xs-12 col-sm-6 col-md-6">
 							<p class="col-md-10">
-							<img class="img-responsive" alt="mobisystem"
-								src="/CompanyItem/ITProducts/OfficeSuite/Images/mobisystemdrive.png">
-								</p>
+								<img class="img-responsive" alt="mobisystem"
+									src="/CompanyItem/ITProducts/OfficeSuite/Images/mobisystemdrive.png">
+							</p>
 							<h5 class="text-left">
-								<strong>MobiSystems 드라이브에 50GB의 스토리지를 확보하십시오. <br>문서를 저장,
-									관리 및 동기화하여 언제 어디서나 관리 할 수 있습니다.</strong>
+								<strong>MobiSystems 드라이브에 50GB의 스토리지를 확보하십시오. <br>문서를
+									저장, 관리 및 동기화하여 언제 어디서나 관리 할 수 있습니다.
+								</strong>
 							</h5>
 						</div>
 					</div>
@@ -275,6 +278,89 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 
 						</tbody>
 					</table>
+					<div class="enter"></div>
+				</div>
+
+				<!-- 2번 -->
+				<div class="col-xs-12 col-sm-12 col-md-12 text-center">
+					<h3>
+						<br><strong>2021년 새로운 PDF Extra 출시. </strong><hr><br>
+					</h3>
+				</div>
+
+				<!-- 2.1번 -->
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-6">
+						<img class="thumbnail img-responsive" alt="21pdfextra_01"
+							src="/CompanyItem/ITProducts/OfficeSuite/Images/21pdfextra_01.png">
+					</div>
+					<div class="col-xs-12 col-sm-12 col-md-6">
+						<h3 class="text-left mgb3" style="">텍스트 & 이미지 수정 기능.</h3>
+						<p>PDF문서에서 텍스트와 이미지를 빠르고 손쉽게 변경할 수 있습니다.</p>
+					</div>
+				</div>
+
+				<!-- 2.2번 -->
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-6 col-md-push-6">
+						<img class="thumbnail img-responsive" alt="21pdfextra_02"
+							src="/CompanyItem/ITProducts/OfficeSuite/Images/21pdfextra_02.png">
+					</div>
+
+					<div class="col-xs-12 col-sm-12 col-md-6 col-md-pull-6">
+						<h3 class="text-left mgb3">서명 기능</h3>
+						<p>인쇄/스캔 작업 없이 PDF문서에 손쉽게 서명할 수 있습니다.</p>
+					</div>
+				</div>
+				<!-- 2.3번 -->
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-6">
+						<img class="thumbnail img-responsive" alt="21pdfextra_03"
+							src="/CompanyItem/ITProducts/OfficeSuite/Images/21pdfextra_03.png">
+					</div>
+					<div class="col-xs-12 col-sm-12 col-md-6">
+						<h3 class="text-left mgb3" style="">문서 변환 기능.</h3>
+						<p>PDF문서에서 Word & Excel & EPub로 손쉽게 변환 가능합니다.</p>
+					</div>
+				</div>
+
+				<!-- 2.4번 -->
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-6 col-md-push-6">
+						<img class="thumbnail img-responsive" alt="21pdfextra_04"
+							src="/CompanyItem/ITProducts/OfficeSuite/Images/21pdfextra_04.png">
+					</div>
+
+					<div class="col-xs-12 col-sm-12 col-md-6 col-md-pull-6">
+						<h3 class="text-left mgb3">문서 보안</h3>
+						<p>대외비 등 중요 문서에 대하여 안전하게 암호화 및 비밀번호 설정이 가능합니다.</p>
+					</div>
+				</div>
+
+				<!-- 2.5번 -->
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-6">
+						<img class="thumbnail img-responsive" alt="21pdfextra_05"
+							src="/CompanyItem/ITProducts/OfficeSuite/Images/21pdfextra_05.png">
+					</div>
+					<div class="col-xs-12 col-sm-12 col-md-6">
+						<h3 class="text-left mgb3" style="">클라우드 스토리지 제공.(5GB)</h3>
+						<p>PDF문서를 MobiDrive 클라우드 스토리지에 저장 및 관리가 가능합니다.</p>
+					</div>
+				</div>
+
+				<!-- 2.2번 -->
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-6 col-md-push-6">
+						<img class="thumbnail img-responsive" alt="21pdfextra_06"
+							src="/CompanyItem/ITProducts/OfficeSuite/Images/21pdfextra_06.png">
+					</div>
+
+					<div class="col-xs-12 col-sm-12 col-md-6 col-md-pull-6">
+						<h3 class="text-left mgb3">다양한 서식 기능</h3>
+						<p>협업을 위한 다양한 PDF 주석/서식(메모, 마크업, 텍스트 설명선, 형관펜 강조, 언더라인)이용
+							가능합니다.</p>
+					</div>
 				</div>
 
 
