@@ -2,40 +2,35 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script>
-	$(document).ready(function() {
-		
-		var url = $( location ).attr( 'pathname' ) + $( location ).attr( 'search' )
-		console.log(url);
-		if ( url == "/CompanyItem/ITProducts/FusionCharts/FusionCharts.mwav?overview" ) {
-			$('html, body').animate({
-				scrollTop : $("#fusionchart_features_position").offset().top
-			}, 1000)
-		}/* , $('div.middle').click(function() {
-			$('html, body').animate({
-				scrollTop : $("div.bottom").offset().top
-			}, 1000)
-		}), $('div.bottom').click(function() {
-			$('html, body').animate({
-				scrollTop : $("div.top").offset().top
-			}, 1000)
-		}) */
-	});
-
+	var url = $(location).attr('pathname') + $(location).attr('search');
+	$(document)
+			.ready(
+					function() {
+						//URL 비교 후 LeftMenu 활성화 상태를 유지시켜주는 부분.		
+						if (url == "/CompanyItem/ITProducts/FusionCharts/FusionCharts.mwav?type=overview"
+								|| url == "/CompanyItem/ITProducts/FusionCharts/FusionCharts.mwav?type=Dashboards"
+								|| url == "/CompanyItem/ITProducts/FusionCharts/FusionCharts.mwav?type=FusionExport"
+								|| url == "/CompanyItem/ITProducts/FusionCharts/FusionCharts.mwav?type=FusionChartsSuiteXT"
+								|| url == "/CompanyItem/ITProducts/FusionCharts/FusionCharts.mwav?type=FusionTime") {
+							$("#list_menu_fusioncharts").collapse('show');
+							$(this).addClass("active");
+						} 
+					});
+	//LeftMenu 내 Active (색상) 활성화 하는 부분.
 	$(function() {
-
 		var pgurl = window.location.pathname;
 		var pgurl_ = window.location.search;
-
+		console.log(pgurl);
 		$("#left_menu a").each(
 				function() {
 
-					if ($(this).attr("href") == pgurl
+					if ($(this).attr("href") == url
 							|| $(this).attr("href") == ''
-							|| $(this).attr("alt") == pgurl) {
+							|| $(this).attr("alt") == url) {
 						$(this).addClass("active");
 					} /* else if($(this).attr("href") == pgurl){
-																	
-																} */
+																					
+																				} */
 				})
 
 	});
@@ -43,19 +38,33 @@
 <div class="panel-group">
 	<div class="panel list-group" id="left_menu">
 
-		<a class="btn list-group-item " data-toggle="collapse"
-			data-target="#list_menu_fusioncharts"
-			alt="/CompanyItem/ITProducts/HighSofts/HighSofts.mwav"
+		<a class="btn list-group-item multiple_leftMenu" data-toggle="collapse"
+			data-target="#list_menu_fusioncharts" alt=""
 			style="text-align: left !important">FusionCharts</a>
 		<div id="list_menu_fusioncharts" class="collapse child_left_menu">
-			<a href="/CompanyItem/ITProducts/FusionCharts/FusionCharts.mwav"
+			<a
+				href="/CompanyItem/ITProducts/FusionCharts/FusionCharts.mwav?type=overview"
 				class="list-group-item " data-toggle="tooltip" data-placement="top"
 				data-original-title="Overview"><span
-				class="glyphicon glyphicon-chevron-right"></span> Overview</a> <a
-				href="/CompanyItem/ITProducts/FusionCharts/FusionCharts.mwav?overview"
+				class="glyphicon glyphicon-chevron-right"></span> Overview</a>
+			<!-- <a
+				href="/CompanyItem/ITProducts/FusionCharts/FusionCharts.mwav?type=FusionChartsSuiteXT"
 				class="list-group-item " data-toggle="tooltip" data-placement="top"
 				data-original-title="Features"><span
-				class="glyphicon glyphicon-chevron-right"></span> Features</a>
+				class="glyphicon glyphicon-chevron-right"></span> FusionCharts
+				SuiteXT</a> <a
+				href="/CompanyItem/ITProducts/FusionCharts/FusionCharts.mwav?type=FusionTime"
+				class="list-group-item " data-toggle="tooltip" data-placement="top"
+				data-original-title="Features"><span
+				class="glyphicon glyphicon-chevron-right"></span> FusionTime</a> <a
+				href="/CompanyItem/ITProducts/FusionCharts/FusionCharts.mwav?type=FusionExport"
+				class="list-group-item " data-toggle="tooltip" data-placement="top"
+				data-original-title="Features"><span
+				class="glyphicon glyphicon-chevron-right"></span> FusionExport</a> <a
+				href="/CompanyItem/ITProducts/FusionCharts/FusionCharts.mwav?type=Dashboards"
+				class="list-group-item " data-toggle="tooltip" data-placement="top"
+				data-original-title="Features"><span
+				class="glyphicon glyphicon-chevron-right"></span> FusionExport</a> -->
 		</div>
 
 		<%--사용자 시각에서 hover시 포인터가 떠야한다.
@@ -129,6 +138,7 @@
 				data-original-title="Highmaps"><span
 				class="glyphicon glyphicon-chevron-right"></span> Highmaps</a>
 		</div>
+
 		<a href="/CompanyItem/ITProducts/QuickHeal/QuickHeal.mwav"
 			class="list-group-item " data-toggle="tooltip" data-placement="top"
 			data-original-title="QuickHeal">Quick Heal</a> <a
@@ -149,7 +159,10 @@
 			data-original-title="Windows">Windows</a> <a
 			href="/CompanyItem/ITProducts/MSOffice/MSOffice.mwav"
 			class="list-group-item" data-toggle="tooltip" data-placement="top"
-			data-original-title="MSOffice">MSOffice</a> <a
+			data-original-title="MSOffice">MSOffice</a><a
+			href="/CompanyItem/ITProducts/OfficeSuite/OfficeSuite.mwav"
+			class="list-group-item " data-toggle="tooltip" data-placement="top"
+			data-original-title="OfficeSuite">OfficeSuite</a> <a
 			href="/CompanyItem/ITProducts/InsWave/InsWave.mwav"
 			class="list-group-item " data-toggle="tooltip" data-placement="top"
 			data-original-title="InsWave">InsWave</a>
