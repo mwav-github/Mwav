@@ -15,7 +15,7 @@
 	
 	<select id="insertStatistics" parameterType="net.mwav.statistics.vo.StatisticsLogVO">
 		<![CDATA[
-			INSERT INTO StatisticsLog_tbl(statistics_id, slStatLogDt, slPageName, slUrlHost, slUrlLocalPath, slQueryString, stInsertDt)
+			INSERT INTO StatisticsLog_tbl(statistics_id, slStatLogDt, slPageName, slUrlHost, slUrlLocalPath, slQueryString, slInsertDt)
 			Values(#{statistics_id}, now(6), #{slPageName}, #{slUrlHost}, #{slUrlLocalPath}, #{slQueryString}, now())
 		]]>
 	</select>

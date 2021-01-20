@@ -7,7 +7,7 @@
 	<insert id="insertNtmForm" parameterType="hashmap">
 		<![CDATA[
 				INSERT INTO BoardUser_tbl
-				SELECT IFNULL(max(boardUser_id)+1,100001), #{buGroup}, #{buHighLight}, #{buTitle}, #{buSubTitle}, #{buRelatedLink}, #{buContent}, #{buViewCount}, #{buOrder}, #{buStatus}, #{staff_id}, NOW(), NOW(), null FROM BoardUser_tbl
+				SELECT IFNULL(max(boardUser_id)+1,100001), #{buGroup}, #{buHighLight}, #{buTitle}, #{buSubTitle}, #{buRelatedLink}, #{buContent}, #{buViewCount}, #{buOrder}, #{buStatus}, #{staff_id}, NOW(), NOW(), null, '-' FROM BoardUser_tbl
 		]]>
 	</insert>
 

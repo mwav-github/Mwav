@@ -7,7 +7,7 @@
 	<insert id="insertBnsForm" parameterType="hashmap">
 		<![CDATA[
 			INSERT INTO BoardNews_tbl
-				SELECT IFNULL(max(boardNews_id)+1,100001), #{bnGroup}, #{bnHighLight}, #{bnTitle}, #{bnSubTitle}, #{bnRelatedLink}, #{bnContent}, #{bnViewCount}, #{bnOrder}, #{bnStatus}, #{staff_id}, NOW(), NOW(), null FROM BoardNews_tbl
+				SELECT IFNULL(max(boardNews_id)+1,100001), #{bnGroup}, #{bnHighLight}, #{bnTitle}, #{bnSubTitle}, #{bnRelatedLink}, #{bnContent}, #{bnViewCount}, #{bnOrder}, #{bnStatus}, #{staff_id}, NOW(), NOW(), null, '-' FROM BoardNews_tbl
 		]]>
 	</insert>
 
@@ -81,7 +81,7 @@
 	<insert id="insertBuForm" parameterType="hashmap">
 		<![CDATA[
 			INSERT INTO BoardUser_tbl
-				SELECT IFNULL(max(boardUser_id)+1,100001), #{buGroup}, #{buHighLight}, #{buTitle}, #{buSubTitle}, #{buRelatedLink}, #{buContent}, #{buViewCount}, #{buOrder}, #{buStatus}, #{staff_id}, NOW(), NOW(), null FROM BoardUser_tbl
+				SELECT IFNULL(max(boardUser_id)+1,100001), #{buGroup}, #{buHighLight}, #{buTitle}, #{buSubTitle}, #{buRelatedLink}, #{buContent}, #{buViewCount}, #{buOrder}, #{buStatus}, #{staff_id}, NOW(), NOW(), null, '-' FROM BoardUser_tbl
 		]]>
 	</insert>
     
