@@ -21,7 +21,41 @@
 	<!-- 상품은 별도 DB이고 별도 진행이므로 상관없다. -->
 	<update id="updateProGdsform" parameterType="hashmap">
     <![CDATA[
-        update GoodsMaster_tbl set #{isGoodsSet}, #{gModelNbr}, #{gName}, #{gMemberPrice}, #{gConsumerPrice}, #{gPoint}, #{gRsvFund}, #{gWhoDeliveryCost}, #{gDeliveryCost}, #{gManufacturer}, #{gPlaceofOrigin}, #{gAuthCode}, #{gNote}, #{gDescription}, #{gDetailPageUrl}, #{gFruitRate}, #{gOrder}, #{gPostStart}, #{gPostEnd}, #{gStatus}, #{gKeywords}, #{gInsertDt}, Now(), #{gRegister}, #{gRegisterId}, #{gIpAddress}, #{gCompetitiveness}, #{gCompetitiveMark}, #{gPayMethod}, #{gDistAllowedLv}, #{gDistAllowedGrp}, #{gManualFileName}, #{partner_id} where goods_id = #{goods_id}
+        update  GoodsMaster_tbl set 
+		        isGoodsSet      =#{isGoodsSet      },
+			    gModelNbr       =#{gModelNbr       },
+				gName           =#{gName           },
+				gMemberPrice    =#{gMemberPrice    },
+				gConsumerPrice  =#{gConsumerPrice  },
+				gPoint          =#{gPoint          },
+				gRsvFund        =#{gRsvFund        },
+				gWhoDeliveryCost=#{gWhoDeliveryCost},
+				gDeliveryCost   =#{gDeliveryCost   },
+				gManufacturer   =#{gManufacturer   },
+				gPlaceofOrigin  =#{gPlaceofOrigin  },
+				gAuthCode       =#{gAuthCode       },
+				gNote           =#{gNote           },
+				gDescription    =#{gDescription    },
+				gDetailPageUrl  =#{gDetailPageUrl  },
+				gFruitRate      =#{gFruitRate      },
+				gOrder          =#{gOrder          },
+				gPostStart      =#{gPostStart      },
+				gPostEnd        =#{gPostEnd        },
+				gStatus         =#{gStatus         },
+				gKeywords       =#{gKeywords       },
+				gInsertDt       =#{gInsertDt       },
+				gUdateDt        =Now(),
+				gRegister       =#{gRegister       },
+				gRegisterId     =#{gRegisterId     },
+				gIpAddress      =#{gIpAddress      },
+				gCompetitiveness=#{gCompetitiveness},
+				gCompetitiveMark=#{gCompetitiveMark},
+				gPayMethod      =#{gPayMethod      },
+				gDistAllowedLv  =#{gDistAllowedLv  },
+				gDistAllowedGrp =#{gDistAllowedGrp },
+				gManualFileName =#{gManualFileName },
+				partner_id      =#{partner_id      }	
+        where goods_id = #{goods_id}
     ]]>
 	</update>
 
@@ -55,7 +89,7 @@
 		resultType="hashmap">
     <![CDATA[
        select
-       * FROM goodsmaster_tbl
+       * FROM GoodsMaster_tbl
         where goods_id = #{goods_id};
     ]]>
 	</select>
@@ -104,9 +138,8 @@
 	      select * from GoodsFiles_tbl where goods_id = #{goods_id};
 	]]>
 	</select>
-	<!--/*========================================삭제========================================*/ -->
 
-
+	<!--/* 삭제 */ -->
 	<update id="deleteGdsDelete" parameterType="hashmap">
     <![CDATA[
         update GoodsMaster_tbl set gPostEnd = null where goods_id = #{goods_id};

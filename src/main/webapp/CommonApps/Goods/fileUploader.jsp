@@ -13,7 +13,8 @@
 <link rel="stylesheet" href="/CommonApps/Goods/fileUploader.css">
 
 <script src="/resources/JsFramework/jQuery/jquery-1.11.0.js"></script>
-<script src="/resources/JsFramework/Bootstrap/bootstrap.min.js"></script>
+<script src="/resources/JsFramework/Bootstrap/bootstrap.min.js" ></script> 
+	
 <script src="/CommonApps/Common/image.js"></script>
 <script src="/CommonApps/Common/upload.js"></script>
 <script src="/CommonApps/Goods/fileUploader.js"></script>

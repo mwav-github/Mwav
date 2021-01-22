@@ -1,12 +1,9 @@
 package net.admins.controller;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,7 +25,6 @@ import net.mwav.common.module.Common_Utils;
 import net.mwav.common.module.Constants;
 import net.mwav.common.module.FileLib;
 import net.mwav.common.module.FileUtils;
-import net.mwav.common.module.ImageUtill;
 import net.mwav.common.module.Paging;
 import net.mwav.common.module.PagingVO;
 
@@ -63,29 +59,26 @@ public class GoodsAdminsController {
 	@Resource(name = "constants")
 	private Constants c;
 
-	/** 
+	/**
 	 * @method name : insertGdsForm
 	 * @author : (정) 정재현
-	 * @since  : 2020. 1. 4.
+	 * @since : 2020. 1. 4.
 	 * @version : v1.0
-	 * @see :
-	   #method 
-	 * @description : staff 상품등록, http://localhost:8080/Admins/Goods/GoodsRegForm.mwav?mm=cGds에서 '상품등록'버튼을 누를시 동작
-	 * @history :
-	   ----------------------------------------
-	   * Modification Information(개정이력)
-	   ----------------------------------------
-	           수정일                  수정자                       수정내용
-	   --------    --------    ----------------
-	   2020. 1. 4.  정재현     
+	 * @see : #method
+	 * @description : staff 상품등록,
+	 *              http://localhost:8080/Admins/Goods/GoodsRegForm.mwav?mm=cGds에서
+	 *              '상품등록'버튼을 누를시 동작
+	 * @history : ---------------------------------------- Modification
+	 *          Information(개정이력) ---------------------------------------- 수정일 수정자
+	 *          수정내용 -------- -------- ---------------- 2020. 1. 4. 정재현
 	 * @param :
 	 * @return :
 	 * @throws :
-	*/
-	@RequestMapping(value = "/admins/goods/gdsForm.mwav")
-	public ModelAndView insertGdsForm(CommandMap commandMap, HttpServletRequest request, HttpSession session)
+	 */
+	@RequestMapping(value = "/admins/goods/goodsRegist.mwav")
+	public boolean insertGdsForm(CommandMap commandMap, HttpServletRequest request, HttpSession session)
 			throws Exception {
-		ModelAndView mv = new ModelAndView("/Admins/Goods/GdsCellList");
+		// ModelAndView mv = new ModelAndView("/Admins/Goods/GdsCellList");
 
 		// 상품DB등록
 		Map<String, Object> map = goodsAdminsService.insertGdsForm(commandMap.getMap());
@@ -93,29 +86,70 @@ public class GoodsAdminsController {
 		// 임시파일을 이용해서 이미지 저장
 		goodsAdminsService.saveImage(map.get("goods_id").toString());
 
+		return true;
+	}
+
+	@RequestMapping(value = "/admins/goods/goodsUpdate.mwav")
+	public boolean goodsUpdate(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		goodsAdminsService.updateProGdsForm(commandMap.getMap());
+		goodsAdminsService.saveImage(commandMap.getMap().get("goods_id").toString());
+		return true;
+	}	
+
+	@RequestMapping(value = "/admins/goods/goodsList.mwav")
+	public ModelAndView selectListGdsList(CommandMap commandMap, HttpServletRequest request,
+			HttpServletResponse reponse, HttpSession session) throws Exception {
+		ModelAndView mv = new ModelAndView("/Admins/Goods/GoodsList");
+
+		String pageNum = (String) commandMap.get("pageNum");
+		Paging paging = new Paging();
+		if (pageNum == null) {
+			pageNum = "1";
+		}
+		System.out.println("pageNum=" + pageNum);
+		int totalRow = goodsAdminsService.selectOneGetGdsTotalCount();
+		System.out.println("totalRow=" + totalRow);
+
+		// Paging pv = new Paging(pageNum, 10 , 10, totalCount);
+		List<Map<String, Object>> selectListGdsList;
+		PagingVO pagingVO = paging.setPagingInfo(totalRow, 5, pageNum); // 총 숫자,
+																		// 한페이지에
+																		// 노출 수
+		commandMap.put("startRow", paging.getStartRow(pageNum)); // 시작 열
+		commandMap.put("endRow", paging.getEndRow(pageNum)); // 끝 열
+		if (totalRow > 0) {
+			System.out.println("전체행의 갯수 1이상");
+			selectListGdsList = goodsAdminsService.selectListGdsList(commandMap.getMap());
+			// selectboardList =
+			// boardService.selectbnsList(commandMap.getMap());
+
+		} else {
+			selectListGdsList = Collections.emptyList();
+		}
+		System.out.println("찍히낭");
+
+		mv.addObject("selectListGdsList", selectListGdsList);
+		mv.addObject("pagingVO", pagingVO);
+		mv.addObject("totalRow", totalRow);
+
+		String mm = "cGds";
+		mv.addObject("mm", mm);
+		mv.addObject("mode", "m_stfList");
+
+		// mv.addObject("paging", pv.print());
+
 		return mv;
 	}
 
-	/*
-	 * ========================================수정================================
-	 * ========
-	 */
-
-	// 1번 bnsView : 수정/삭제가능
-	@RequestMapping(value = "/admins/goods/gdsView.mwav")
+	@RequestMapping(value = "/admins/goods/goodsView.mwav")
 	public ModelAndView selectOneGdsView(CommandMap commandMap, HttpServletRequest request, HttpSession session)
 			throws Exception {
-		ModelAndView mv = new ModelAndView("/Admins/Goods/GdsCellView");
-
-		log.debug("인터셉터 테스트");
-		System.out.println("테스트");
+		ModelAndView mv = new ModelAndView("/Admins/Goods/GoodsView");
 		Map<String, Object> selectOneGdsView = goodsAdminsService.selectOneGdsView(commandMap.getMap());
 
 		List<Map<String, Object>> selectListGdsList = goodsAdminsService.selectListGdsList(commandMap.getMap());
 
 		if (selectOneGdsView != null && !selectOneGdsView.isEmpty()) {
-			System.out.println("view 줄랭");
-
 			String mm = "cGds";
 			mv.addObject("mm", mm);
 
@@ -123,25 +157,18 @@ public class GoodsAdminsController {
 			mv.addObject("selectListGdsList", selectListGdsList);
 		}
 
+		List<Map<String, Object>> goodsFiles = goodsAdminsService.selectListGdsFilesList(commandMap.getMap());
+		mv.addObject("goodsFiles", goodsFiles);
 		return mv;
 	}
 
-	/*
-	 * ========================================수정================================
-	 * ========
-	 */
-
-	// 1번 bnsUpdate : 리스트 업데이트
 	@RequestMapping(value = "/admin/goods/gdsUpdate.mwav")
 	public ModelAndView updateGdsForm(CommandMap commandMap, HttpServletRequest request, HttpSession session)
 			throws Exception {
-		ModelAndView mv = new ModelAndView("/Admins/Goods/GdsCellForm");
-
-		// 위의 view랑 동일하게 사용
+		ModelAndView mv = new ModelAndView("/Admins/Goods/GoodsRegForm");
 
 		Map<String, Object> updateGdsForm = goodsAdminsService.updateGdsForm(commandMap.getMap());
 		if (updateGdsForm != null && !updateGdsForm.isEmpty()) {
-			System.out.println("view 줄랭");
 			String mm = "cGds";
 
 			mv.addObject("mm", mm);
@@ -153,10 +180,8 @@ public class GoodsAdminsController {
 
 			// 파일 루트 경로 표현시 / 이 아닌, \\ 로 표기해야한다.
 			String path = uploadRootPath + "\\xUpload\\GdsData\\GC" + goods_id + "\\";
-			// String path = "\\xUpload\\GdsData\\GC"+goods_id+"\\";
-			System.out.println("경로 ==" + path);
-
 			mv.addObject("updateGdsForm", updateGdsForm);
+			mv.addObject("isM", true);
 
 			/*
 			 * http://www.tutorialspoint.com/java/util/arrays_aslist.htm > aslist란
@@ -206,62 +231,22 @@ public class GoodsAdminsController {
 		return mv;
 	}
 
-	// 1번 bnsUpdate : 리스트 업데이트
-	@RequestMapping(value = "/admin/goods/gdsUpdatePro.mwav")
-	public ModelAndView updateProGdsForm(CommandMap commandMap, HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("/Admins/Goods/GdsCellList");
+	@RequestMapping(value = "/admin/goods/goodsUpdateForm.mwav")
+	public ModelAndView updateGoodsForm(CommandMap commandMap, HttpServletRequest request, HttpSession session)
+			throws Exception {
+		ModelAndView mv = new ModelAndView("/Admins/Goods/GoodsRegForm");
 
-		// 위의 view랑 동일하게 사용
-
-		goodsAdminsService.updateProGdsForm(commandMap.getMap());
-
-		String mm = "cGds";
-		mv.addObject("mm", mm);
-
-		return mv;
-	}
-
-	@RequestMapping(value = "/admins/goods/gdsList.mwav")
-	public ModelAndView selectListGdsList(CommandMap commandMap, HttpServletRequest request,
-			HttpServletResponse reponse, HttpSession session) throws Exception {
-		ModelAndView mv = new ModelAndView("/Admins/Goods/GdsCellList");
-
-		String pageNum = (String) commandMap.get("pageNum");
-		Paging paging = new Paging();
-		if (pageNum == null) {
-			pageNum = "1";
+		Map<String, Object> updateGdsForm = goodsAdminsService.updateGdsForm(commandMap.getMap());
+		if (updateGdsForm != null && !updateGdsForm.isEmpty()) {
+			String mm = "cGds";
+			mv.addObject("mm", mm);
+			mv.addObject("updateGdsForm", updateGdsForm);
+			mv.addObject("isM", true);
 		}
-		System.out.println("pageNum=" + pageNum);
-		int totalRow = goodsAdminsService.selectOneGetGdsTotalCount();
-		System.out.println("totalRow=" + totalRow);
 
-		// Paging pv = new Paging(pageNum, 10 , 10, totalCount);
-		List<Map<String, Object>> selectListGdsList;
-		PagingVO pagingVO = paging.setPagingInfo(totalRow, 5, pageNum); // 총 숫자,
-																		// 한페이지에
-																		// 노출 수
-		commandMap.put("startRow", paging.getStartRow(pageNum)); // 시작 열
-		commandMap.put("endRow", paging.getEndRow(pageNum)); // 끝 열
-		if (totalRow > 0) {
-			System.out.println("전체행의 갯수 1이상");
-			selectListGdsList = goodsAdminsService.selectListGdsList(commandMap.getMap());
-			// selectboardList =
-			// boardService.selectbnsList(commandMap.getMap());
-
-		} else {
-			selectListGdsList = Collections.emptyList();
-		}
-		System.out.println("찍히낭");
-
-		mv.addObject("selectListGdsList", selectListGdsList);
-		mv.addObject("pagingVO", pagingVO);
-		mv.addObject("totalRow", totalRow);
-
-		String mm = "cGds";
-		mv.addObject("mm", mm);
-		mv.addObject("mode", "m_stfList");
-
-		// mv.addObject("paging", pv.print());
+		// 파일(이미지)
+		List<Map<String, Object>> goodsFiles = goodsAdminsService.selectListGdsFilesList(commandMap.getMap());
+		mv.addObject("goodsFiles", goodsFiles);
 
 		return mv;
 	}
@@ -296,7 +281,7 @@ public class GoodsAdminsController {
 
 			if (goodsAdminsService.deletePreTempFile(tempFilename))
 				System.out.println("goodsAdminsService.deletePreTempFile success");
-			
+
 			byte[] contents = multipartFile.getBytes();
 			fileLib.upload(contents, c.goods.tmpImgFilePath, tempFileFullname);
 		}
