@@ -633,6 +633,9 @@
 			<!-- application.properties 소스를 제거 후 prd용 소스로 교체 -->
                        <delete file="src/main/resources/googleProperties/application.properties"/>
                        <copy file="/app/dev_file/prd-application.properties" tofile="src/main/resources/googleProperties/application.properties" />
+			<!-- mail.xml.config 소스를 제거 후 prd용 소스로 교체 -->
+                       <delete file="src/main/webapp/xConfig/mail.xml.config"/>
+                       <copy file="/app/dev_file/prd-mail.xml.config" tofile="src/main/webapp/xConfig/mail.xml.config" />			     
                      </tasks>
                    </configuration>
                  </execution>
