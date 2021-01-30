@@ -18,6 +18,35 @@
     border-radius: 3px;
 }
 
+/* mwav card section_2  
+ * 사용 URL : CompanyItem/ITProducts/OfficeSuite/OfficeSuite.mwav
+ * */
+.social-box .box{
+    background: #FFF;
+    border-radius: 10px; 
+    padding: 40px 10px;
+    margin: 20px 0px;
+    cursor: pointer;
+    transition: all 0.5s ease-out;
+    box-shadow: 0 0 10px rgba(0,0,0,.15);
+}
+
+.social-box .box:hover{
+   box-shadow: 0 0 6px #4183D7;
+}
+
+.social-box .box .box-text{
+    margin:20px 0px;
+    font-size: 15px;
+    line-height: 30px;
+}
+
+.social-box .box .box-btn{
+    text-decoration: none;
+    color: #4183D7;
+    font-size: 14px;
+}
+
 /* mwav card section_3  
  * 사용 URL : /CompanyItem/WebSiteBuilding/WebSiteBuilding.mwav
  * */
@@ -363,8 +392,31 @@ p.more2 {
 	padding: 3px 15px;
 	font-size:12px;
 }
+.smallcat_lightblue {
+	background: #007FFF;
+	color: #fff;
+	text-transform: uppercase;
+	position: absolute;
+	left: 0;
+	top: 20px;
+	z-index: 1;
+	padding: 3px 15px;
+	font-size:12px;
+}
 .smallcat_orange {
 	background: #F07241;
+	color: #fff;
+	text-transform: uppercase;
+	position: absolute;
+	left: 0;
+	top: 20px;
+	z-index: 1;
+	padding: 3px 15px;
+	font-size:12px;
+}
+
+.smallcat_green {
+	background: #6CBB3C;
 	color: #fff;
 	text-transform: uppercase;
 	position: absolute;

@@ -746,10 +746,10 @@ public class MemberController {
 			} else {
 				commandMap.put("Gender", 0);
 			}
+			// snsMember_tbl - MAX(snsMember_id) + 1
+			commandMap.put("snsMember_id", memberService.selectNextSnsPk());
 
 			memberService.insertSnsForm(commandMap.getMap());
-			System.out.println("insertSnsForm 성공!!!!!!");
-
 		} else {
 			// 기존 있는 경우
 		}

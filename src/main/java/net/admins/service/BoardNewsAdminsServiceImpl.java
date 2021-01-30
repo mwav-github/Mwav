@@ -115,15 +115,15 @@ public class BoardNewsAdminsServiceImpl implements BoardNewsAdminsService {
 	}
 
 	@Override
-	public void updateNsmBnStatus(String bNews_id) {
+	public void updateNsmBnStatus(String boardNews_id) {
 		// TODO Auto-generated method stub
-		boardNewsAdminsDAO.updateNsmBnStatus(bNews_id);
+		boardNewsAdminsDAO.updateNsmBnStatus(boardNews_id);
 	}
 
 	@Override
-	public void updateNsmBnStatusNotice(String bNews_id) {
+	public void updateNsmBnStatusNotice(String boardNews_id) {
 		// TODO Auto-generated method stub
-		boardNewsAdminsDAO.updateNsmBnStatusNotice(bNews_id);
+		boardNewsAdminsDAO.updateNsmBnStatusNotice(boardNews_id);
 	}
 
 }

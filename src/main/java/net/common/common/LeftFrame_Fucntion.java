@@ -41,10 +41,10 @@ public class LeftFrame_Fucntion {
 				 */
 			} else if (mm.equals("site")) {
 
-				String[] streName = { "ntl", "nsl", "qal", "pl", "mmail" };
-				String[] strhName = { "공지관리", "뉴스관리", "Q&A관리", "폴관리", "회원메일발송" };
-				String[] strhEName = { "공지관리", "뉴스관리", "Q&A관리", "폴관리", "회원메일발송" };
-				String[] strurl = { "/admin/boardNotice/ntmList.mwav",
+				String[] streName = { "pmtnt", "ntl", "nsl", "qal", "pl", "mmail" };
+				String[] strhName = { "Promoter 공지관리","공지관리", "뉴스관리", "Q&A관리", "폴관리", "회원메일발송" };
+				String[] strhEName = { "Promoter 공지관리", "공지관리", "뉴스관리", "Q&A관리", "폴관리", "회원메일발송" };
+				String[] strurl = { "/admins/promoter/boardmgr/PmtNoticeList.mwav", "/admin/boardNotice/ntmList.mwav",
 						"/admin/boardNews/nsmList.mwav",
 						"/admin/boardQnA/qnaList.mwav", "#", "#" };
 				String[] strmAuthority = { "1", "1", "1", "1", "1" };
@@ -96,8 +96,8 @@ public class LeftFrame_Fucntion {
 				String[] streName = { "gcl", "gci" };
 				String[] strhKName = { "상품리스트", "상품등록" };
 				String[] strhEName = { "상품리스트", "상품등록" };
-				String[] strurl = { "/admins/goods/gdsList.mwav",
-						"/Admins/Goods/GdsCellForm.mwav?mm=cGds", };
+				String[] strurl = { "/admins/goods/goodsList.mwav",
+						"/Admins/Goods/GoodsRegForm.mwav?mm=cGds", };
 				String[] strmAuthority = { "1", "1" };
 				String[] strdAuthority = { "*", "*" };
 

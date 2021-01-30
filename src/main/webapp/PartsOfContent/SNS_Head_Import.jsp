@@ -10,7 +10,7 @@
 
 <%--og:url 기준으로 좋아요 등이 측정된다. 그러나 mwav.net 대표 url 오면 나머지 og 태그도 해당 페이지 기준으로 세팅되므로 현재 url로 세팅해야한다.
 https://developers.facebook.com/docs/sharing/webmasters/?locale=ko_KR 
-<meta property="og:url" content="http://www.mwav.net/board/bnsView.mwav?pgl=10001001&bNews_id=100009#news_top" />--%>
+<meta property="og:url" content="http://www.mwav.net/board/bnsView.mwav?pgl=10001001&boardNews_id=100009#news_top" />--%>
 <%-- 웹 사이트의 제목 --%>
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Mwav.net" />

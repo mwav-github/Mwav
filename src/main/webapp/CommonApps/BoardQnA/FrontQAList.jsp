@@ -10,7 +10,7 @@
 <script>
 	function page_move2(s_value) {
 		var f = document.NsmNews; //폼 name
-		f.bNews_id.value = s_value; //POST방식으로 넘기고 싶은 값 (이건 실제 내부 내용)
+		f.boardNews_id.value = s_value; //POST방식으로 넘기고 싶은 값 (이건 실제 내부 내용)
 		f.submit();
 	}
 </script>
@@ -33,8 +33,8 @@
 					<c:when test="${fn:length(selectListQAFrontList) > 0}">
 						<c:forEach var="VselectListQAFrontList"
 							items="${selectListQAFrontList}">
-							<input type="hidden" name="QnA_id"
-								value="${VselectListQAFrontList.QnA_id}" />
+							<input type="hidden" name="userQuestion_id"
+								value="${VselectListQAFrontList.userQuestion_id}" />
 							<input type="hidden" name="uqViewCount"
 								value="${VselectListQAFrontList.uqViewCount}" />
 							<input type="hidden" name="member_id"
@@ -42,8 +42,7 @@
 						
 							<tr>
 								<!-- a태그로 처리요망 -->
-								<td class="col-md-3"><a
-									href="/qa/qaView.mwav?QnA_id=${VselectListQAFrontList.QnA_id}">${VselectListQAFrontList.uqTitle}</a></td>
+								<td class="col-md-3"><a href="/qa/qaView.mwav?userQuestion_id=${VselectListQAFrontList.userQuestion_id}">${VselectListQAFrontList.uqTitle}</a></td>
 									<td class="col-md-3">${VselectListQAFrontList.uqGroup}</td>
 									<td class="col-md-3">${VselectListQAFrontList.member_id}</td>
 								<%--view를 구현하는 방법에 따라 달라진다. get 문 형태 유망 --%>

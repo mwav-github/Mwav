@@ -61,8 +61,7 @@
 		<%--소셜 로그인 연동부분 
 		중요사항 : col-md-12 외 나머지 것들 col-sm-12 등을 넣으면 버튼 동작이 하지 않음.
 		<input type="hidden" name="autoLoginChk" class="autoLoginChk" value="off"> 확인 필요. 
-		
-		--%>
+		(20.12.12) 서비스 중지에 따른 disable 처리 
 		<!-- GOOGLE SIGNIN -->
 		<div class="col-md-12 ">
 			<form action="<c:url value="/signin/google.mwav"/>" method="POST"
@@ -80,7 +79,7 @@
 					class="autoLoginChk" value="off" />
 			</form>
 		</div>
-
+        --%>
 		<!-- facebook SIGNIN -->
 		<div class="col-md-12">
 			<form action="<c:url value="/signin/facebook.mwav"/>" method="POST"
@@ -196,7 +195,8 @@
 
 	<%--소셜 로그인 연동부분 
 		중요사항 : col-md-12 외 나머지 것들 col-sm-12 등을 넣으면 버튼 동작이 하지 않음.
-		--%>
+		(20.12.12) 서비스 중지에 따른 disable 처리 
+
 	<!-- GOOGLE SIGNIN -->
 	<div class="col-md-12 ">
 		<div class="enter"></div>
@@ -215,7 +215,7 @@
 				type="hidden" name="autoLoginChk" class="autoLoginChk" value="off" />
 		</form>
 	</div>
-
+	--%>
 	<%--naver sign in --%>
 	<div class="col-md-12 mgb3">
 		<form action="${naver_url}" method="POST"

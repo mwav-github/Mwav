@@ -103,6 +103,9 @@ public class BoardController {
 //			 naverLabJsonString = apiNaverTrend.requestNaverTrend(bnKeyword);
 
 			 String bnKeyword = null;
+			 System.out.println("keeeeyy" + selectOneBnsView.get("bnKeyword"));
+			 System.out.println("trueeee" + Common_Utils.isEmpty(selectOneBnsView.get("bnKeyword")));
+
 			 String dataJsonString = null;
 			 if (Common_Utils.isEmpty(selectOneBnsView.get("bnKeyword")) ==
 			 false) {
@@ -457,4 +460,5 @@ public class BoardController {
 		return mv;
 	}
 
+	
 }

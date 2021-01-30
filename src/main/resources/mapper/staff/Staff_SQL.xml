@@ -52,10 +52,11 @@
 	</select>
 	
 	<!-- /*========================================등록========================================*/ -->
+	<!-- TODO: Staff_tbl 항목 추가 필요 -->
 	<insert id="insertStfForm" parameterType="hashmap">
 		<![CDATA[
-		INSERT INTO Staff_tbl 
-		SELECT IFNULL(max(staff_id)+1,101), #{stfLoginId}, #{stfLoginPw}, #{stfNumber}, #{stfName}, #{stfNickname}, #{stfBranch}, #{stfDeptName}, #{stfClass}, #{stfSubJobs}, #{stfPhone}, #{stfCellularP}, #{stfExtNbr},#{stfEmail},#{stfSsn1},#{stfSsn2},#{stfZipcode},#{stfAddress},#{stfMessengerName},#{stfMessengerId},#{stfHomepage},#{stfMark},#{stfLevel},#{stfBusinessPic},#{stfAvataImage},#{stfData},#{stfPoint},#{stfPointAc},#{stfJoinDt},#{stfDeleteDt},NOW(),#{stfUpdateDt},#{stfRecentLoginDt},#{stfIpAddress} FROM Staff_tbl
+			INSERT INTO Staff_tbl(staff_id, stfLoginId, stfLoginPw, stfIdNumber, stfName, stfBranch, stfDeptName, stfClass, stfPhone, stfCellularP, stfEmail, stfZipcode, stfAddress, stfAddressDetail)
+			VALUES ((SELECT IFNULL(max(staff_id)+1,101) FROM Staff_tbl A), #{stfLoginId}, #{stfLoginPw}, #{stfNumber}, #{stfName}, #{stfBranch}, #{stfDeptName}, #{stfClass}, #{stfPhone}, #{stfCellularP}, #{stfEmail}, #{stfZipcode}, #{stfAddress}, #{stfAddressDetail})
 		]]>
 	</insert>
 	

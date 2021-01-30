@@ -15,6 +15,7 @@ import java.util.Map.Entry;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import net.admins.vo.Staff_VO;
 import net.common.Interceptor.StatisticsInterceptor;
 import net.common.common.CommandMap;
 import net.mwav.member.vo.Member_tbl_VO;
@@ -265,9 +266,12 @@ public class Common_Utils {
 				type = 'S';
 				key = request.getParameter("staff");
 				log.info("staff은 request 값");
-			} else if ((String) session.getAttribute("staff") != null) {
+			} else if (session.getAttribute("staff") != null) {
 				type = 'S';
-				key = (String) session.getAttribute("staff");
+
+//				key = (Staff_VO) session.getAttribute("staff");
+//				TODO: staff_id 세션 추가 필요?
+				key = "staff";
 				log.info("staff은 세션값");
 			} else if (cookieBox.isExist("staff")) {
 				type = 'S';

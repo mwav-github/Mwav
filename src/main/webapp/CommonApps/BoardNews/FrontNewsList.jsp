@@ -7,7 +7,7 @@
 <script>
 	function page_move2(s_value) {
 		var f = document.NsmNews; //폼 name
-		f.bNews_id.value = s_value; //POST방식으로 넘기고 싶은 값 (이건 실제 내부 내용)
+		f.boardNews_id.value = s_value; //POST방식으로 넘기고 싶은 값 (이건 실제 내부 내용)
 		f.submit();
 	}
 </script>
@@ -57,8 +57,8 @@
 
 
 							<c:if test="${VselectListBnsFrontList.bnStatus eq '2'}">
-								<input type="hidden" name="bNews_id"
-									value="${VselectListBnsFrontList.bNews_id}" />
+								<input type="hidden" name="boardNews_id"
+									value="${VselectListBnsFrontList.boardNews_id}" />
 								<input type="hidden" name="bnViewCount"
 									value="${VselectListBnsFrontList.bnViewCount}" />
 								<tr>
@@ -67,7 +67,7 @@
 											test="${parseTdate - parseAgo > 0}">
 											<span class="label label-danger">new</span>
 										</c:if> <a
-										href="/board/bnsView.mwav?bNews_id=${VselectListBnsFrontList.bNews_id}#news_top">
+										href="/board/bnsView.mwav?boardNews_id=${VselectListBnsFrontList.boardNews_id}#news_top">
 											<%-- <c:if test="${parseTdate -parseAgo < 20 && parseTdate -parseAgo > 0}"> --%>
 											<c:choose>
 												<c:when
@@ -135,8 +135,8 @@
 							<!-- //// -->
 
 							<c:if test="${VselectListBnsFrontList.bnStatus eq '2'}">
-								<input type="hidden" name="bNews_id"
-									value="${VselectListBnsFrontList.bNews_id}" />
+								<input type="hidden" name="boardNews_id"
+									value="${VselectListBnsFrontList.boardNews_id}" />
 								<input type="hidden" name="bnViewCount"
 									value="${VselectListBnsFrontList.bnViewCount}" />
 								<tr class="center-block">
@@ -144,7 +144,7 @@
 											test="${parseTdate - parseAgo > 0}">
 											<span class="label label-danger">new</span>
 										</c:if><a
-										href="/board/bnsView.mwav?bNews_id=${VselectListBnsFrontList.bNews_id}">
+										href="/board/bnsView.mwav?boardNews_id=${VselectListBnsFrontList.boardNews_id}">
 											<%-- <c:if test="${parseTdate -parseAgo < 20 && parseTdate -parseAgo > 0}"> --%>
 											<c:choose>
 												<c:when
@@ -177,13 +177,13 @@
 						<c:forEach var="VselectListBnsFrontList"
 							items="${selectListBnsFrontList}" begin="0" end="1" step="1">
 							
-							<input type="hidden" name="bNews_id"
-								value="${VselectListBnsFrontList.bNews_id}" />
+							<input type="hidden" name="boardNews_id"
+								value="${VselectListBnsFrontList.boardNews_id}" />
 							<input type="hidden" name="bnViewCount"
 								value="${VselectListBnsFrontList.bnViewCount}" />
 							<tr>
 								<td class="col-xs-12 text-left "><a
-									href="/board/bnsView.mwav?bNews_id=${VselectListBnsFrontList.bNews_id}">${VselectListBnsFrontList.bnTitle}</a></td>
+									href="/board/bnsView.mwav?boardNews_id=${VselectListBnsFrontList.boardNews_id}">${VselectListBnsFrontList.bnTitle}</a></td>
 							</tr>
 						</c:forEach>
 					</c:when>

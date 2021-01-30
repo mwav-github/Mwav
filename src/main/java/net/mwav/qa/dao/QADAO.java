@@ -142,7 +142,7 @@ public class QADAO extends AbstractDAO {
 		// TODO Auto-generated method stub
 		 
 		//##이전 게시글 처리 
-		int QnA_id = Integer.parseInt((String) map.get("QnA_id"));
+		int QnA_id = Integer.parseInt((String) map.get("userQuestion_id"));
 		Map<String, Object> map1 = new HashMap<String, Object>();
 
 		Map<String, Object> map2 = new HashMap<String, Object>();

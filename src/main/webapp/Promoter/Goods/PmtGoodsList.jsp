@@ -61,7 +61,7 @@
 								<a href="#" data-toggle="collapse" data-target="#collapse_1"
 									aria-expanded="true" class=""> <i
 									class="icon-control fa fa-chevron-down"></i>
-									<h6 class="title">Category type</h6>
+									<h6 class="title">추천 검색어</h6>
 								</a>
 							</header>
 							<div class="filter-content collapse show" id="collapse_1"
@@ -79,13 +79,10 @@
 									</form>
 
 									<ul class="list-menu">
-										<li><a href="#">People </a></li>
-										<li><a href="#">Watches </a></li>
-										<li><a href="#">Cinema </a></li>
-										<li><a href="#">Clothes </a></li>
-										<li><a href="#">Home items </a></li>
-										<li><a href="#">Animals</a></li>
-										<li><a href="#">People </a></li>
+										<li><a href="#">#삼겹살 </a></li>
+										<li><a href="#">#추석선물세트 </a></li>
+										<li><a href="#">#생활용품 </a></li>
+										<li><a href="#">#가을옷 </a></li>
 									</ul>
 
 								</div>
@@ -198,7 +195,8 @@
 						<figure class="card card-product-grid">
 							<div class="img-wrap">
 								<span class="badge badge-danger"> NEW </span> <img
-									src="/Promoter/Goods/zImage/orange.jpg"> <a class="btn-overlay" href="#"><i
+									src="/Promoter/Goods/zImage/orange.jpg"> <a
+									class="btn-overlay" href="/Promoter/Goods/PmtGoodsDetail.mwav"><i
 									class="fa fa-search-plus"></i> Quick view</a>
 							</div>
 							<!-- img-wrap.// -->
@@ -220,8 +218,9 @@
 					<div class="col-md-4">
 						<figure class="card card-product-grid">
 							<div class="img-wrap">
-								<img src="/Promoter/Goods/zImage/orange.jpg"> <a class="btn-overlay"
-									href="#"><i class="fa fa-search-plus"></i> Quick view</a>
+								<img src="/Promoter/Goods/zImage/orange.jpg"> <a
+									class="btn-overlay" href="#"><i class="fa fa-search-plus"></i>
+									Quick view</a>
 							</div>
 							<!-- img-wrap.// -->
 							<figcaption class="info-wrap">
@@ -242,118 +241,9 @@
 					<div class="col-md-4">
 						<figure class="card card-product-grid">
 							<div class="img-wrap">
-								<img src="/Promoter/Goods/zImage/orange.jpg"> <a class="btn-overlay"
-									href="#"><i class="fa fa-search-plus"></i> Quick view</a>
-							</div>
-							<!-- img-wrap.// -->
-							<figcaption class="info-wrap">
-								<div class="fix-height">
-									<a href="#" class="title">Product name goes here just for
-										demo item</a>
-									<div class="price-wrap mt-2">
-										<span class="price">$1280</span>
-									</div>
-									<!-- price-wrap.// -->
-								</div>
-								<a href="#" class="btn btn-block btn-primary">Add to cart </a>
-							</figcaption>
-						</figure>
-					</div>
-					<!-- col.// -->
-
-					<div class="col-md-4">
-						<figure class="card card-product-grid">
-							<div class="img-wrap">
-								<img src="/Promoter/Goods/zImage/orange.jpg"> <a class="btn-overlay"
-									href="#"><i class="fa fa-search-plus"></i> Quick view</a>
-							</div>
-							<!-- img-wrap.// -->
-							<figcaption class="info-wrap">
-								<div class="fix-height">
-									<a href="#" class="title">Product name goes here just for
-										demo item</a>
-									<div class="price-wrap mt-2">
-										<span class="price">$1280</span>
-									</div>
-									<!-- price-wrap.// -->
-								</div>
-								<a href="#" class="btn btn-block btn-primary">Add to cart </a>
-							</figcaption>
-						</figure>
-					</div>
-					<!-- col.// -->
-
-					<div class="col-md-4">
-						<figure class="card card-product-grid">
-							<div class="img-wrap">
-								<img src="/Promoter/Goods/zImage/orange.jpg"> <a class="btn-overlay"
-									href="#"><i class="fa fa-search-plus"></i> Quick view</a>
-							</div>
-							<!-- img-wrap.// -->
-							<figcaption class="info-wrap">
-								<div class="fix-height">
-									<a href="#" class="title">Product name goes here just for
-										demo item</a>
-									<div class="price-wrap mt-2">
-										<span class="price">$1280</span>
-									</div>
-									<!-- price-wrap.// -->
-								</div>
-								<a href="#" class="btn btn-block btn-primary">Add to cart </a>
-							</figcaption>
-						</figure>
-					</div>
-					<!-- col.// -->
-
-					<div class="col-md-4">
-						<figure class="card card-product-grid">
-							<div class="img-wrap">
-								<img src="/Promoter/Goods/zImage/orange.jpg"> <a class="btn-overlay"
-									href="#"><i class="fa fa-search-plus"></i> Quick view</a>
-							</div>
-							<!-- img-wrap.// -->
-							<figcaption class="info-wrap">
-								<div class="fix-height">
-									<a href="#" class="title">Product name goes here just for
-										demo item</a>
-									<div class="price-wrap mt-2">
-										<span class="price">$1280</span>
-									</div>
-									<!-- price-wrap.// -->
-								</div>
-								<a href="#" class="btn btn-block btn-primary">Add to cart </a>
-							</figcaption>
-						</figure>
-					</div>
-					<!-- col.// -->
-
-					<div class="col-md-4">
-						<figure class="card card-product-grid">
-							<div class="img-wrap">
-								<img src="/Promoter/Goods/zImage/orange.jpg"> <a class="btn-overlay"
-									href="#"><i class="fa fa-search-plus"></i> Quick view</a>
-							</div>
-							<!-- img-wrap.// -->
-							<figcaption class="info-wrap">
-								<div class="fix-height">
-									<a href="#" class="title">Product name goes here just for
-										demo item</a>
-									<div class="price-wrap mt-2">
-										<span class="price">$1280</span>
-									</div>
-									<!-- price-wrap.// -->
-								</div>
-								<a href="#" class="btn btn-block btn-primary">Add to cart </a>
-							</figcaption>
-						</figure>
-					</div>
-					<!-- col.// -->
-
-					<div class="col-md-4">
-						<figure class="card card-product-grid">
-							<div class="img-wrap">
-								<img src="/Promoter/Goods/zImage/orange.jpg"> <a class="btn-overlay"
-									href="#"><i class="fa fa-search-plus"></i> Quick view</a>
+								<img src="/Promoter/Goods/zImage/orange.jpg"> <a
+									class="btn-overlay" href="#"><i class="fa fa-search-plus"></i>
+									Quick view</a>
 							</div>
 							<!-- img-wrap.// -->
 							<figcaption class="info-wrap">

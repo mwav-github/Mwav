@@ -386,7 +386,7 @@ p:last-child {
 
 .navbar-main .nav-link {
   font-weight: 600;
-  color: #1c1c1c; }
+  color: #1c1c1c !important; }
   .navbar-main .nav-link:hover {
     color: #666; }
 
@@ -1391,3 +1391,63 @@ p {
     object-fit: cover
 }
 /* =====================Sign Up END =============================*/
+
+/*========================================start 라인 ========================================*/
+/* bootstrap 기본 hr 변형 */
+.hr_b {
+	border-top: 3px solid #337ab7 !important;
+}
+
+.hr_g {
+	border-top: 2px solid #a1d490 !important;
+}
+
+.hr_gray {
+	border-top: 3px solid #78828D !important;
+}
+
+.hr_gray_separator {
+    clear: both;
+    margin-top: 10px;
+    margin-bottom: 13px;
+    border: 0;
+    height: 1px;
+    background-image: -webkit-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,.15),rgba(0,0,0,0));
+}
+.hr_orange {
+	border-top: 2px solid #e67525 !important;
+}
+
+
+/*========================================뉴스 가독성을 위한 별도 정책 및 CSS========================================*/
+/* 
+ *  https://webdesign.tutsplus.com/ko/tutorials/comprehensive-guide-when-to-use-em-vs-rem--cms-23984 
+ * */
+.news_fontfamilly {
+  font-family : 'Arial','sans-serif', '맑은 고딕', 'Malgun Gothic', '굴림', 'Gulim',
+		'NanumGothic' !important;
+}
+
+.news_title {
+ font-size: 2.5em !important;
+  line-height: 1.357em !important;
+}
+
+.news_subtitle {
+   font-size : 1.500em !important;
+  line-height: 1.5em !important;
+}
+.news_contents {
+    font-size: 1.286em !important;
+  line-height: 1.886em !important;
+}
+.news_emphasis {
+    font-size : 1.500rem !important;
+  line-height: 2.143rem !important;
+  font-weight: bold !important; 
+}
+
+/*========================================ICON========================================*/
+.icon-kakao {
+    background: url(/Images/ImgIcons/sns_kakao_s.png) no-repeat;
+}

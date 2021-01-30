@@ -44,11 +44,11 @@
 				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 					Integer in feugiat lorem.</p>
 
-				<form class="form-inline mb-3">
+				<form class="form-group mb-2">
 					<input type="text" placeholder="Email" class="form-control" name="">
-					<button class="btn ml-2 btn-warning">Subscribe</button>
+					<button class="btn btn-warning form-control mt-2">Subscribe</button>
 				</form>
-
+				
 				<p class="text-white-50 mb-2">Follow us on social media</p>
 				<div>
 					<a href="#" class="btn btn-icon btn-light"><i
@@ -80,4 +80,54 @@
 	</section>
 </div>
 <!-- //container -->
+
+
+<div class="modal fade" id="pmtPolicy" tabindex="-1" role="dialog"
+	aria-labelledby="exampleModalCenterTitle"
+	aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header"
+				style="border-bottom: 0px solid #eee; background-color: #f8f9fa !important">
+				<h4 class="modal-title">이용약관</h4>
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<br>
+			<ul id="myTab" class="nav nav-pills nav-justified">
+				<li class="nav-item active"><a href="#terms1"
+					class="nav-link active" data-toggle="tab">이메일 주소무단수집거부</a></li>
+				<li class="nav-item"><a href="#terms2" class="nav-link"
+					data-toggle="tab">청소년보호정책</a></li>
+				<li class="nav-item"><a href="#terms3" class="nav-link"
+					data-toggle="tab">개인정보취급방침</a></li>
+			</ul>
+			<%--max-height로 아래 설정하면 영역이 안잡혀서 안먹힌다. --%>
+			<div class="modal-body" style="overflow-y: scroll; height: 300px;">
+				<div class="container-fluid">
+					<div id="myTabContent" class="tab-content">
+						<div class="tab-pane fade show active" id="terms1">
+							<jsp:include page="/CustomerService/Policy/_EmailExtract.jsp"
+								flush="false" />
+						</div>
+						<div class="tab-pane fade" id="terms2">
+
+							<jsp:include page="/CustomerService/Policy/_Juvenile.jsp"
+								flush="false" />
+						</div>
+						<div class="tab-pane fade" id="terms3">
+							<jsp:include page="/CustomerService/Policy/_PrivateInfo.jsp"
+								flush="false" />
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
 
