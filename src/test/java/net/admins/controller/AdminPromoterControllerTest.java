@@ -71,7 +71,7 @@ public class AdminPromoterControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("mm","firms"))
                 .andExpect(model().attribute("selectPmtView", map))
-                .andExpect(view().name("/Admins/CompanyMgr/Staff/PmtView"))
+                .andExpect(view().name("/Admins/Promoter/Facilitator/PmtView"))
                 .andDo(print());
     }
 }
