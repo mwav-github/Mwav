@@ -168,6 +168,19 @@ public class AccountEmailCertifyTest {
                 .andExpect(content().string("{\"msg\":\"인증 메일을 발송하였습니다.\",\"status\":\"SEND_MAIL\"}"));
     }
 
+    /**
+     * <pre>
+     * {@code
+     *      <p>이메일를 수신받은 유저가 이메일인증을 클릭했을때 DB에 정상적으로 인증여부가 체크되는지 테스트</p>
+     * }
+     * </pre>
+     * @param
+     * @return void
+     * @throws Exception
+     * @see AccountEmailCertify.authority
+     * @since 1.0.1
+     * @version 1.0.0
+     */
     @Test
     public void authority_이메일_인증_후_인증완료_체크() throws Exception {
         //given
@@ -194,6 +207,19 @@ public class AccountEmailCertifyTest {
                 .andDo(print());
     }
 
+    /**
+     * <pre>
+     * {@code
+     *      <p>유저에게 이메일 인증 후 인증여부 확인 하는 테스트</p>
+     * }
+     * </pre>
+     * @param
+     * @return void
+     * @throws Exception
+     * @see AccountEmailCertify.authority
+     * @since 1.0.1
+     * @version 1.0.0
+     */
     @Ignore
     @Transactional
     @Test
