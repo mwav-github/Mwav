@@ -24,6 +24,18 @@ import java.util.Map;
 import static org.mockito.Matchers.*;
 import static org.mockito.Mockito.*;
 
+/**
+ * <pre>
+ * {@code
+ *  <p>QA 페이지 DB 연동 테스트</p>
+ * }
+ * </pre>
+ * @author 공태현
+ * @since 1.0.1
+ * @version 1.0.0
+ * @see net.mwav.qa.dao.QADAO
+ *
+ */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:config/spring/mwav-data.xml"
         , "classpath:config/spring/mwav-mapper.xml"})
@@ -40,11 +52,38 @@ public class QADAOTest {
     @InjectMocks
     QADAO dao;
 
+    /**
+     * <pre>
+     * {@code
+     *      <p>@InjectMocks 어노테이션을 활성화시키기 위한 설정</p>
+     *      <p>QADAOTest 클래스 하위의 모든 테스크케이스들은 매번 실행시 마다 initTest 메소드를 실행하게 된다.</p>
+     * }
+     * </pre>
+     * @param
+     * @return void
+     * @throws SQLException
+     * @see org.springframework.test.web.servlet.MockMvc
+     * @since 1.0.1
+     * @version 1.0.0
+     */
     @Before
     public void initTest() throws SQLException {
         MockitoAnnotations.initMocks(this);
     }
 
+    /**
+     * <pre>
+     * {@code
+     *      <p>QA 게시글을 등록하는 테스트</p>
+     * }
+     * </pre>
+     * @param
+     * @return void
+     * @throws
+     * @see QADAOTest.insertQAForm_QA
+     * @since 1.0.1
+     * @version 1.0.0
+     */
     @Test
     public void insertQAForm_QA등록() {
         // given
@@ -84,6 +123,19 @@ public class QADAOTest {
         Assertions.assertThat(flag).isEqualTo("9999999");
     }
 
+    /**
+     * <pre>
+     * {@code
+     *      <p>QA 게시글 리스트 페이징 처리 테스트</p>
+     * }
+     * </pre>
+     * @param
+     * @return void
+     * @throws
+     * @see QADAOTest.selectListQAList_QA
+     * @since 1.0.1
+     * @version 1.0.0
+     */
     @Test
     public void selectListQAList_QA리스트페이징처리조회() {
         // given
@@ -106,6 +158,19 @@ public class QADAOTest {
         Assertions.assertThat(nonMemberList).isNotNull();
     }
 
+    /**
+     * <pre>
+     * {@code
+     *      <p>QA 테스트의 총 로우를 조회하기 위한 테스트</p>
+     * }
+     * </pre>
+     * @param
+     * @return void
+     * @throws
+     * @see QADAOTest.selectOneGetTotalCount
+     * @since 1.0.1
+     * @version 1.0.0
+     */
     @Test
     public void selectOneGetTotalCount_테이블의총로우수를조회함() {
         // given
@@ -125,6 +190,19 @@ public class QADAOTest {
         Assertions.assertThat(nonMemberTotalCount).isNotNull();
     }
 
+    /**
+     * <pre>
+     * {@code
+     *      <p>QA 게시글 조회수 증가 테스트</p>
+     * }
+     * </pre>
+     * @param
+     * @return void
+     * @throws Exception
+     * @see QADAOTest.updateQAHitCnt_QA
+     * @since 1.0.1
+     * @version 1.0.0
+     */
     @Test
     public void updateQAHitCnt_QA조회수증가() throws Exception {
         // given
@@ -177,6 +255,19 @@ public class QADAOTest {
                 .containsOnly(1);
     }
 
+    /**
+     * <pre>
+     * {@code
+     *      <p>QA 페이지 리스트에서 최대 5개의 리스트 조회되는지 테스트</p>
+     * }
+     * </pre>
+     * @param
+     * @return void
+     * @throws
+     * @see QADAOTest.selectListQAFrontList_QA
+     * @since 1.0.1
+     * @version 1.0.0
+     */
     @Test
     public void selectListQAFrontList_QA페이지에서보여줄최대5개의리스트조회() {
         // given
@@ -221,6 +312,19 @@ public class QADAOTest {
         Assertions.assertThat(list).extracting("userQuestion_id").containsOnly(9999999);
     }
 
+    /**
+     * <pre>
+     * {@code
+     *      <p>QA 게시글 상세보기 조회</p>
+     * }
+     * </pre>
+     * @param
+     * @return void
+     * @throws
+     * @see QADAOTest.selectOneQAView_QA
+     * @since 1.0.1
+     * @version 1.0.0
+     */
     @Test
     public void selectOneQAView_QA상세보기조회() {
         // given
@@ -269,6 +373,19 @@ public class QADAOTest {
                 .isEqualTo(9999999);
     }
 
+    /**
+     * <pre>
+     * {@code
+     *      <p>QA 로그인 여부 테스트</p>
+     * }
+     * </pre>
+     * @param
+     * @return void
+     * @throws
+     * @see QADAOTest.selectOneQALogin_QA
+     * @since 1.0.1
+     * @version 1.0.0
+     */
     @Test
     public void selectOneQALogin_QA로그인() {
         // given
@@ -315,6 +432,19 @@ public class QADAOTest {
         Assertions.assertThat(loginEmail).isEqualTo(email);
     }
 
+    /**
+     * <pre>
+     * {@code
+     *      <p>QA의 만족도 업데이트 여부</p>
+     * }
+     * </pre>
+     * @param
+     * @return void
+     * @throws
+     * @see QADAOTest.uaSatisfactionUpdateAjax_QA
+     * @since 1.0.1
+     * @version 1.0.0
+     */
     @Test
     public void uaSatisfactionUpdateAjax_QA만족도갱신() {
         // given
