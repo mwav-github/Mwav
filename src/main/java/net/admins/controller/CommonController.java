@@ -1,10 +1,13 @@
 package net.admins.controller;
 
+import java.io.File;
+import java.net.URLEncoder;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
@@ -18,6 +21,8 @@ import net.common.common.CommandMap;
 import net.common.common.LeftFrame_Fucntion;
 import net.common.common.LeftFrame_VO;
 import net.mwav.common.module.Common_Utils;
+import net.mwav.common.module.FileLib;
+import org.apache.commons.io.FileUtils;
 
 @Controller
 public class CommonController {
@@ -35,8 +40,8 @@ public class CommonController {
 
 	// 페이지별 세션지정 -> GET문
 	/*
-	 * 1. bnsForm : mode = SbnsForm /CommonApps/BoardNews/bnsForm.jsp 2. bnsList
-	 * : mode = SbnsList /CommonApps/BoardNews/bnsList.jsp 3. bnsView : mode =
+	 * 1. bnsForm : mode = SbnsForm /CommonApps/BoardNews/bnsForm.jsp 2. bnsList :
+	 * mode = SbnsList /CommonApps/BoardNews/bnsList.jsp 3. bnsView : mode =
 	 * SbnsView /CommonApps/BoardNews/bnsView.jsp 4. FrontNewsList : mode =
 	 * SFbnsList /CommonApps/BoardNews/FrontNewsList.jsp 5. bnsUpdate : mode =
 	 * SbnsUpdate /CommonApps/BoardNews/bnsForm.jsp
@@ -52,8 +57,7 @@ public class CommonController {
 	 */
 	// 1번 StfForm : Form 입력만 가능 (뒤로가기, list)
 	@RequestMapping(value = "/admins/Default.mwav")
-	public ModelAndView adminDefault(CommandMap commandMap,
-			HttpServletRequest request) throws Exception {
+	public ModelAndView adminDefault(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/AdminsIndex");
 
 		// mode = "SbnsForm";
@@ -66,21 +70,20 @@ public class CommonController {
 	}
 
 	@RequestMapping(value = "/admins/LeftMenu.mwav")
-	public ModelAndView getLeftMenu(CommandMap commandMap,
-			HttpServletRequest request) throws Exception {
+	public ModelAndView getLeftMenu(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/AdminsLeftMenu");
 
 		/*
 		 * 현재 전달 프로세스가 ! 예)
 		 * 
-		 * 문제 제기 : get문이 아닌 header에다가 값 저장 후 left 구분값을 가져오고 싶다. 그러나 한페이지에서 두번의
-		 * 비즈니스 로직을 호출하는 경우 세션이 아닌 이상 값 전달이 안된다.
+		 * 문제 제기 : get문이 아닌 header에다가 값 저장 후 left 구분값을 가져오고 싶다. 그러나 한페이지에서 두번의 비즈니스 로직을
+		 * 호출하는 경우 세션이 아닌 이상 값 전달이 안된다.
 		 * 
 		 * StaffList 인 경우 > StaffController > mm 지정 > staffList에서 left 메뉴 호출
 		 * 
-		 * - 그러나 여기 한 페이지에서 /admins/stfList.mwav 와 /admins/LeftMenu.mwav 를 호출 - 즉
-		 * 저장된 mm값이 /admins/LeftMenu.mwav 로 넘어가지 않는다. - jstl 에서 param 이용 하여 전달한다.
-		 * - 비즈니스 로직에서 페이지 보여주는 경우 get문으로 mm값을 전달하지 않기 위하여 - 추후 권한 과도 연계
+		 * - 그러나 여기 한 페이지에서 /admins/stfList.mwav 와 /admins/LeftMenu.mwav 를 호출 - 즉 저장된
+		 * mm값이 /admins/LeftMenu.mwav 로 넘어가지 않는다. - jstl 에서 param 이용 하여 전달한다. - 비즈니스
+		 * 로직에서 페이지 보여주는 경우 get문으로 mm값을 전달하지 않기 위하여 - 추후 권한 과도 연계
 		 */
 
 		/* Service 쪽 안간다. */
@@ -117,9 +120,9 @@ public class CommonController {
 
 	@RequestMapping(value = "/common/fileUpLoader.mwav")
 	@ResponseBody
-	public Map<String, Object> insertGdsUpLoader(CommandMap commandMap,
-			HttpServletRequest request, HttpSession session) throws Exception {
-		//ModelAndView mv = new ModelAndView("/Admins/Goods/GdsUpLoader");
+	public Map<String, Object> insertGdsUpLoader(CommandMap commandMap, HttpServletRequest request, HttpSession session)
+			throws Exception {
+		// ModelAndView mv = new ModelAndView("/Admins/Goods/GdsUpLoader");
 
 		// http://stackoverflow.com/questions/19922358/how-to-upload-an-image-to-webapp-resources-images-directory-using-spring-mvc
 		// 서버 루트로 파일저장
@@ -135,21 +138,21 @@ public class CommonController {
 		// 1.4.7
 
 		System.out.println("uploadRootPath : " + uploadRootPath);
-/*
-		int staff_id = 0;
-		staff_id =  (int) session.getAttribute("staff_id");
-*/		String goods_id = null;
+		/*
+		 * int staff_id = 0; staff_id = (int) session.getAttribute("staff_id");
+		 */ String goods_id = null;
 		goods_id = (String) commandMap.get("goods_id");
-		// staff_id 로그인 !!  후가 아닌 입력시 시점
+		// staff_id 로그인 !! 후가 아닌 입력시 시점
 		System.out.println("goods_id=" + goods_id);
-		
-		/*goods_id = String.valueOf(commandMap.get("goods_id"));
-		System.out.println("goods_id =" + goods_id);*/
-		
-		
-		//System.out.println("staff_id=" + staff_id);
-		
-		//commandMap.put("staff_id", staff_id);		
+
+		/*
+		 * goods_id = String.valueOf(commandMap.get("goods_id"));
+		 * System.out.println("goods_id =" + goods_id);
+		 */
+
+		// System.out.println("staff_id=" + staff_id);
+
+		// commandMap.put("staff_id", staff_id);
 		commandMap.put("uploadRootPath", uploadRootPath);
 
 		Map<String, Object> insertGdsUpLoader = CommonService.insertGdsUpLoader(commandMap.getMap(), request);
@@ -157,7 +160,7 @@ public class CommonController {
 		return insertGdsUpLoader;
 
 	}
-	
+
 	/**
 	 * @author 박정은
 	 * @since
@@ -169,5 +172,29 @@ public class CommonController {
 		mv.setViewName("/PartsOfContent/SiteFooter/FrontFooter");
 		mv.addObject("generalConfig", CommonService.getFrontFooter(request, "footer"));
 		return mv;
+	}
+
+	@RequestMapping(value = "/common/downloadFile.mwav")
+	public void downloadFile(CommandMap commandMap, HttpServletRequest request, HttpServletResponse response, HttpSession session)
+			throws Exception {
+		String parent = request.getParameter("parent"); //"/CompanyItem/ITProducts/OfficeSuite";
+		String child =  request.getParameter("child"); //"OfficeSuiteSetupFile.zip";
+		FileLib fileLib = FileLib.getInstance();
+		//System.out.println("1위치" + "1");
+
+		String uploadRootPath = session.getServletContext().getRealPath("\\");
+		parent = uploadRootPath + parent + "\\";
+		
+		//byte fileByte[] = FileUtils.readFileToByteArray(new File("C:\\MwavDev\\Mwav(github)\\Mwav\\src\\main\\webapp\\CompanyItem\\ITProducts\\OfficeSuite\\" + child));
+		byte fileByte[] = fileLib.dowonload(parent, child);
+		System.out.println("fileByte" + fileByte);
+		response.setContentType("application/octet-stream");
+		response.setContentLength(fileByte.length);
+		response.setHeader("Content-Disposition",
+				"attachment; fileName=\"" + URLEncoder.encode(child, "UTF-8") + "\";");
+		response.setHeader("Content-Transfer-Encoding", "binary");
+		response.getOutputStream().write(fileByte);
+		response.getOutputStream().flush();
+		response.getOutputStream().close();
 	}
 }
