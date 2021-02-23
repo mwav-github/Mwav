@@ -21,7 +21,8 @@ import net.common.common.CommandMap;
 import net.common.common.LeftFrame_Fucntion;
 import net.common.common.LeftFrame_VO;
 import net.mwav.common.module.Common_Utils;
-import net.mwav.common.module.FileLib;
+import net.mwav.framework.FileLib;
+
 import org.apache.commons.io.FileUtils;
 
 @Controller
@@ -174,6 +175,23 @@ public class CommonController {
 		return mv;
 	}
 
+	/**
+		 * 메서드에 대한 설명
+		 * <pre>
+		 * {@code
+		 * // 예제코드 작성
+		 *  <a href="/common/downloadFile.mwav?parent=/CompanyItem/ITProducts/OfficeSuite&child=OfficeSuiteSetupFile.zip" 
+		 *      target="_blank" onclick="ga('send', 'event', 'OfficeSuite', 'click', 'Install');">
+		 * }
+		 * </pre>
+		 * @param parent : 다운로드 파일 경로 
+	     * @param child  : 다운로드 파일명 (확장자 포함)
+		 * @return return 값에 대한 설명(필수)
+		 * @throws Exception 발생하는 예외에 대한 설명(필수) 
+	 * @see 해당 메서드와 연관된 메서드 net.mwav.framework.FileLib
+	 * @since 작성 버전
+	 * @version 현재 버전
+	*/
 	@RequestMapping(value = "/common/downloadFile.mwav")
 	public void downloadFile(CommandMap commandMap, HttpServletRequest request, HttpServletResponse response, HttpSession session)
 			throws Exception {
