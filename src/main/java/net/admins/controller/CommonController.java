@@ -189,6 +189,9 @@ public class CommonController {
 		 * @return return 값에 대한 설명(필수)
 		 * @throws Exception 발생하는 예외에 대한 설명(필수) 
 	 * @see 해당 메서드와 연관된 메서드 net.mwav.framework.FileLib
+	 *      참조 URL : 
+	 *      https://happy-hs.tistory.com/23
+	 *      https://backback.tistory.com/226
 	 * @since 작성 버전
 	 * @version 현재 버전
 	*/
