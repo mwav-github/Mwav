@@ -77,7 +77,7 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 						</h3>
 						<!-- 평가판 다운로드 -->
 						<h4 class="text-right">
-							<span class=""> <a href="/common/downloadFile.mwav?parent=/CompanyItem/ITProducts/OfficeSuite&child=OfficeSuiteSetupFile.zip" target="_blank" onclick="ga('send', 'event', 'OfficeSuite', 'click', 'Install');">
+							<span class=""> <a href="/common/downloadFile.mwav?parent=CompanyItem/ITProducts/OfficeSuite&child=OfficeSuiteSetupFile.zip" target="_blank" onclick="ga('send', 'event', 'OfficeSuite', 'click', 'Install');">
 									<button class="btn-custom-default btn btn-md btn-primary">
 										<i class="fa fa-download"></i> 30일 무료 평가판 다운로드
 									</button>
