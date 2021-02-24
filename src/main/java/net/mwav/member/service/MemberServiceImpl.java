@@ -1,9 +1,6 @@
 package net.mwav.member.service;
 
-import net.mwav.common.module.AesEncryption;
-import net.mwav.common.module.EmailSender;
-import net.mwav.common.module.SecurityLib;
-import net.mwav.common.module.ValidationLib;
+import net.mwav.common.module.*;
 import net.mwav.member.dao.MemberDAO;
 import net.mwav.member.vo.Member_tbl_VO;
 import org.apache.log4j.Logger;
@@ -11,9 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailAuthenticationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.velocity.VelocityEngineUtils;
+import org.springframework.web.servlet.view.velocity.VelocityConfigurer;
 import org.springframework.web.util.WebUtils;
 
 import javax.annotation.Resource;
+import javax.mail.Message;
+import javax.servlet.ServletContext;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -35,6 +36,12 @@ public class MemberServiceImpl implements MemberService {
 
 	@Autowired
 	EmailSender emailSender;
+
+	@Autowired
+	ServletContext servletContext;
+
+	@Autowired
+	VelocityConfigurer velocityConfig;
 	/*
 	 * ========================================등록========================================
 	 */
@@ -97,7 +104,30 @@ public class MemberServiceImpl implements MemberService {
 				result.put("message", "NO_AFFECTED");
 			}
 
-			emailSender.sendRegistrationEmail(map);
+//			emailSender.sendRegistrationEmail(map);
+//          ########################## 이메일 발송 ###########################
+			// 이메일 설정 불러오기
+			final String realPath = servletContext.getRealPath("/xConfig/mail.xml.config");
+			XmlLib xmlLib = XmlLib.getInstance();
+			MailConfig config = (MailConfig) xmlLib.unmarshal(realPath, MailConfig.class);
+
+			//client에서 템플릿엔진 라이브러리르 호출하여 html코드로 파싱 후 문자열로 반환
+			String content = VelocityEngineUtils.mergeTemplateIntoString(velocityConfig.createVelocityEngine()
+					, "/GeneralMail/GeneralMail_Registration.vm", "UTF-8", map);
+
+			// Mail의 정보를 담음
+			Message msg = new MessageBuilder(config.getCollectAllFieldProp())
+					.setRecipient((String) map.get("mbrEmail"))
+					.setFrom(config.getFrom())
+					.setSubject("[Mwav]" + (String) map.get("mbrLoginId") + "님, 회원가입을 환영합니다.")
+					.setContent(content).build();
+
+			// 메일 발송
+			MailLib mailLib = MailLib.getInstance();
+			mailLib.send(msg);
+
+//			###################################################################
+
 			result.put("result", "1");
 			result.put("message", "SUCCESS");
 		} catch (MailAuthenticationException e) {
