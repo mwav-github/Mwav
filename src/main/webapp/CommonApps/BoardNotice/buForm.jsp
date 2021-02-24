@@ -37,7 +37,7 @@
 	function check2(obj) {
 		if (confirm("정말 삭제하시겠습니까??") == true){    //확인
 			var bbb = obj;
-			location.href= "/boardNotice/buDelete.mwav?bUsers_id="+bbb;
+			location.href= "/boardNotice/buDelete.mwav?boardUser_id="+bbb;
 		}else{   //취소
 		    return;
 		}
@@ -85,8 +85,8 @@
 
 							<div class="pull-right">
 								<%--기본값 --%>
-								<input type="hidden" name="bUsers_id"
-									value="${selectboardUpdate.bUsers_id}" /> <input type="hidden"
+								<input type="hidden" name="boardUser_id"
+									value="${selectboardUpdate.boardUser_id}" /> <input type="hidden"
 									name="buHighLight" value="0" /> <input type="hidden"
 									name="buViewCount" value="0" MaxLength="10" /> <input
 									type="hidden" name="buInsertDt"
@@ -114,7 +114,7 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td>${selectboardUpdate.bUsers_id}</td>
+							<td>${selectboardUpdate.boardUser_id}</td>
 							<td><select name="buGroup"
 								value="${selectboardUpdate.buGroup}">
 									<option value="전체">전체</option>
@@ -183,7 +183,7 @@
 						onClick="javascript:history.go(-1)">BACK</button>
 
 					<button type="button" class="btn btn-danger"
-						onclick="check2(${selectboardUpdate.bUsers_id})">Delete</button>
+						onclick="check2(${selectboardUpdate.boardUser_id})">Delete</button>
 					<button type="button" class="btn btn-primary" onclick="check()">Modify</button>
 				</p>
 			</form>
@@ -199,7 +199,7 @@
 
 							<div class="pull-right">
 								<%--기본값 --%>
-								<input type="hidden" name="bUsers_id" /> 
+								<input type="hidden" name="boardUser_id" /> 
 								<input type="hidden" name="buHighLight" value="0" /> 
 								<input type="hidden" name="buViewCount" value="0" MaxLength="10" />
 

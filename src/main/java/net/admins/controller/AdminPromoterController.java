@@ -29,7 +29,7 @@ public class AdminPromoterController {
 
     @RequestMapping(value = "/admins/staff/pmtList.mwav")
     public ModelAndView selectListPmtList(CommandMap commandMap, HttpServletRequest request, HttpServletResponse reponse) throws Exception {
-        ModelAndView mv = new ModelAndView("/Admins/CompanyMgr/Staff/PmtList");
+        ModelAndView mv = new ModelAndView("/Admins/Promoter/Facilitator/PmtList");
 
         String pageNum = (String) commandMap.get("pageNum");
         Paging paging = new Paging();
@@ -91,7 +91,7 @@ public class AdminPromoterController {
 
     @RequestMapping(value = "/admins/staff/pmtView.mwav")
     public ModelAndView selectPmtView(CommandMap commandMap, String promoter_id) throws Exception {
-        ModelAndView mv = new ModelAndView("/Admins/CompanyMgr/Staff/PmtView");
+        ModelAndView mv = new ModelAndView("/Admins/Promoter/Facilitator/PmtView");
         Map<String, Object> selectPmtView = pmtService.selectPmtView(promoter_id);
 
         mv.addObject("mm", "firms");
@@ -103,7 +103,7 @@ public class AdminPromoterController {
 
     @RequestMapping(value = "/admins/staff/pmtUpdateForm.mwav")
     public ModelAndView updatePmtform(CommandMap commandMap, String promoter_id) throws Exception {
-        ModelAndView mv = new ModelAndView("/Admins/CompanyMgr/Staff/PmtUpdateForm");
+        ModelAndView mv = new ModelAndView("/Admins/Promoter/Facilitator/PmtUpdateForm");
 
         Map<String, Object> map = pmtService.updatePmtForm(promoter_id);
 

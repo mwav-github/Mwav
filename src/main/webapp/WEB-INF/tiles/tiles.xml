@@ -9,7 +9,7 @@
 		<put-attribute name="footer" value="/AdminPmt/default-footer.jsp" />
 	</definition>
 
-	<definition name="/Promoter/Index" extends="adminLayouts-tiles">
+<!-- 	<definition name="/Promoter/Index" extends="adminLayouts-tiles">
 		<put-attribute name="content" value="/AdminPmt/Index.jsp" />
 	</definition>
 
@@ -27,7 +27,7 @@
 	
 	<definition name="/Promoter/*/*/*/*" extends="adminLayouts-tiles">
 		<put-attribute name="content" value="/AdminPmt/{1}/{2}/{3}/{4}.jsp" />
-	</definition>
+	</definition> -->
 	<!--
 	중요 tiles 는 runtime 시 수정 되므로, 접속하는 url  과 body 부분 include 하는 url 이 동일하는 경우 에러가 생긴다.
 즉 -> 부품 조립하는 것처럼 사용할 때 commonapps 등 조립 등에서 사용하면 좋을

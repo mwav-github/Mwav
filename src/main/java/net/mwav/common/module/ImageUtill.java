@@ -52,8 +52,7 @@ public class ImageUtill {
 	 * 사이즈로 이미지를 변환하여 반환하는 메소드 파라미터- srcImage: 변환시킬 원본이미지. width: 변환시킬 이미지의 넓이값.
 	 * height: 변환시킬 이미지의 높이값. 리턴값- rescaledImage: 변환된 이미지.
 	 */
-	public static BufferedImage scaleSize(BufferedImage srcImage,
-			double maxWidth, double maxHeight) {
+	public static BufferedImage scaleSize(BufferedImage srcImage, double maxWidth, double maxHeight) {
 		double x = srcImage.getHeight();
 		double y = srcImage.getWidth();
 		System.out.println("원본이미지의 넓이: " + x);
@@ -87,13 +86,12 @@ public class ImageUtill {
 	 * 이미지를 저장하는 메소드 파라미터- path: 이미지가 저장될 경로. rescaledImage: 저장시킬 이미지. format:
 	 * 저장시의 확장자.
 	 */
-	public static void saveImage(String path, BufferedImage rescaledImage,
-			String format) {
-		System.out.println("path= "+path);
+	public static void saveImage(String path, BufferedImage rescaledImage, String format) {
+		System.out.println("path= " + path);
 		File destFile = new File(path);
 		try {
-			
-			System.out.println("rescaledImage ="+rescaledImage);
+
+			System.out.println("rescaledImage =" + rescaledImage);
 			ImageIO.write(rescaledImage, format, destFile);
 			System.out.println("성공적으로 저장되었습니다.");
 		} catch (IOException e) {

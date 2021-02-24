@@ -79,7 +79,7 @@
 	function check2(obj) {
 		if (confirm("정말 삭제하시겠습니까??") == true){    //확인
 			var bbb = obj;
-			location.href= "/admin/boardNotice/ntmDelete.mwav?bUsers_id="+bbb;
+			location.href= "/admin/boardNotice/ntmDelete.mwav?boardUser_id="+bbb;
 		}else{   //취소
 		    return;
 		}
@@ -119,7 +119,7 @@
 
 									<tbody>
 										<tr>
-											<td>${selectOneNtmView.bUsers_id}</td>
+											<td>${selectOneNtmView.boardUser_id}</td>
 											<td>${selectOneNtmView.buGroup}</td>
 											<td>${selectOneNtmView.buViewCount}</td>
 											<td>${selectOneNtmView.buInsertDt}</td>
@@ -181,7 +181,7 @@
 								<button type="button" class="btn btn-warning"
 									onClick="javascript:history.go(-1)">BACK</button>
 								<button type="button" class="btn btn-danger"
-									onclick="check2(${selectOneNtmView.bUsers_id})">Delete</button>
+									onclick="check2(${selectOneNtmView.boardUser_id})">Delete</button>
 							</p>
 
 						</div>

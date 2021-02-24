@@ -6,53 +6,53 @@
 	<!--/*========================================등록========================================*/  -->
 	<insert id="insertQAForm" parameterType="hashmap">
 		<![CDATA[
-			INSERT INTO UserQuestion_tbl
-				Values(#{QnA_id}, #{uqGroup}, #{uqGroupItem}, #{member_id}, #{uqUserName}, #{uqUserEmail}, #{uqUserPw}, #{uqUserPhone}, #{uqRelatedLink}, #{uqTitle}, #{uqContent}, #{uqStatus}, #{uqAttachFile}, NOW(), #{uqUpdateDt}, #{uqDeleteDt}, #{uqIpAddress}, "1", #{uqOption1}, #{uqOption2}, #{uqOption3}, #{uqInvoker}, #{uqInvoker_id}, #{statistics_id}, #{uqAdminNotice} )
+			INSERT INTO UserQuestion_tbl(userQuestion_id, uqGroup, uqGroupItem, member_id, uqUserName, uqUserEmail, uqUserPw, uqUserPhone, uqTitle, uqContent, uqStatus, uqAttachFile, uqRelatedLink, uqUpdateDt, uqDeleteDt, uqIpAddress, uqOption1, uqOption2, uqOption3, uqInvoker, uqInvoker_id, statistics_id, uqAdminNotice, uqInsertDt)
+			VALUES(#{QnA_id}, #{uqGroup}, #{uqGroupItem}, #{member_id}, #{uqUserName}, #{uqUserEmail}, #{uqUserPw}, #{uqUserPhone}, #{uqTitle}, #{uqContent}, #{uqStatus}, #{uqAttachFile}, #{uqRelatedLink}, #{uqUpdateDt}, #{uqDeleteDt}, #{uqIpAddress}, #{uqOption1}, #{uqOption2}, #{uqOption3}, #{uqInvoker}, #{uqInvoker_id}, #{statistics_id}, #{uqAdminNotice}, now())
 		]]>
 	</insert>
     <!--/*========================================보기========================================*/  -->
 	<select id="selectNextPk" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-	       select IFNULL(max(QnA_id+1) ,1000000) AS QnA_id from UserQuestion_tbl 
+	       select IFNULL(max(userQuestion_id+1) ,1000000) AS QnA_id from UserQuestion_tbl
 		]]>
 	</select>
 
 	 <select id="selectOneQAView" parameterType="hashmap" resultType="hashmap">
 	<![CDATA[
-	    select *, date_format(uqInsertDt,'%Y/%m/%d') as fmuqInsertDt from UserQuestion_tbl where QnA_id = #{QnA_id}
+	    select *, date_format(uqInsertDt,'%Y/%m/%d') as fmuqInsertDt from UserQuestion_tbl where userQuestion_id = #{userQuestion_id}
 	]]>
 	</select>
 	
 	
    <select id="selectOneQAUaView" parameterType="hashmap" resultType="hashmap">
 	<![CDATA[
-	    select * from UserAnswer_tbl where QnA_id = #{QnA_id}
+	    select * from UserAnswer_tbl where userAnswer_id = #{userQuestion_id}
 	]]>
 	</select>
 	
 	  <select id="selectOneMAXQAView" parameterType="hashmap" resultType="Integer">
 	<![CDATA[
-	    select MAX(QnA_id) as maxQnA_id from UserQuestion_tbl
+	    select MAX(userQuestion_id) as maxQnA_id from UserQuestion_tbl
 	]]>
 	</select>
  
 	<!--/*======================+==================수정========================================*/  -->
 	<update id="updateQAHitCnt" parameterType="hashmap">
     <![CDATA[
-       update UserQuestion_tbl set uqViewCount = iFnull(uqViewCount, 0) +1 where QnA_id = #{QnA_id} 
+       update UserQuestion_tbl set uqViewCount = iFnull(uqViewCount, 0) +1 where userQuestion_id = #{userQuestion_id}
     ]]>
     </update>
 	
 	
 	<update id="updateUABeReadDt" parameterType="hashmap">
     <![CDATA[
-       update UserAnswer_tbl set uaBeReadDt = NOW() where QnA_id = #{QnA_id} 
+       update UserAnswer_tbl set uaBeReadDt = NOW() where userAnswer_id = #{userQuestion_id}
     ]]>
     </update>
 	
 	<update id="uaSatisfactionUpdateAjax" parameterType="hashmap">
     <![CDATA[
-       update UserAnswer_tbl set uaSatisfaction = #{uaSatisfaction} where QnA_id = #{QnA_id} 
+       update UserAnswer_tbl set uaSatisfaction = #{uaSatisfaction} where userAnswer_id = #{QnA_id}
     ]]>
     </update>
  
@@ -72,7 +72,7 @@
 	
 	<select id="selectListQAFrontList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			SELECT QnA_id, uqViewCount, member_id, uqGroup,  uqTitle, date_format(uqInsertDt,'%Y/%m/%d') as uqInsertDt
+			SELECT userQuestion_id, uqViewCount, member_id, uqGroup,  uqTitle, date_format(uqInsertDt,'%Y/%m/%d') as uqInsertDt
 		    FROM UserQuestion_tbl
 		    WHERE uqDeleteDt IS NULL ORDER BY uqDeleteDt DESC Limit 5
 		]]>
@@ -81,13 +81,26 @@
 	
 	<select id="selectListNonMemberQAList" parameterType="hashmap" resultType="hashmap">
 	<![CDATA[
-	select c.*, date_format(uqInsertDt,'%Y/%m/%d') as fmuqInsertDt from (select FORMAT(@ROWNUM := @ROWNUM +1, 0) AS ROWNUM, a.* from (select * from UserQuestion_tbl where uqUserEmail = #{uqUserEmail} and uqDeleteDt IS NULL order by QnA_id desc) a,  (SELECT @ROWNUM := 0) R ) c where c.ROWNUM >= #{startRow} and c.ROWNUM <= #{endRow} 
+		SELECT C.*, DATE_FORMAT(UQINSERTDT,'%Y/%M/%D') AS FMUQINSERTDT
+		FROM (SELECT FORMAT(@ROWNUM := @ROWNUM +1, 0) AS ROWNUM, A.*
+				FROM (SELECT *
+						FROM UserQuestion_tbl
+						WHERE UQUSEREMAIL = #{uqUserEmail} AND UQDELETEDT IS NULL
+						ORDER BY userQuestion_id DESC) A, (SELECT @ROWNUM := 0) R
+						) C
+						WHERE C.ROWNUM >= #{startRow} AND C.ROWNUM <= #{endRow}
 	]]>
 	</select>
 	
 	<select id="selectListMemberQAList" parameterType="hashmap" resultType="hashmap">
 	<![CDATA[
-	select c.*, date_format(uqInsertDt,'%Y/%m/%d') as fmuqInsertDt from (select FORMAT(@ROWNUM := @ROWNUM +1, 0) AS ROWNUM, a.* from (select * from UserQuestion_tbl where member_id = #{member_id} and uqDeleteDt IS NULL order by QnA_id desc) a,  (SELECT @ROWNUM := 0) R ) c where c.ROWNUM >= #{startRow} and c.ROWNUM <= #{endRow} 
+		SELECT C.*, DATE_FORMAT(UQINSERTDT,'%Y/%M/%D') AS FMUQINSERTDT
+		FROM (SELECT FORMAT(@ROWNUM := @ROWNUM +1, 0) AS ROWNUM, A.*
+				FROM (SELECT *
+						FROM UserQuestion_tbl
+						WHERE MEMBER_ID = #{member_id} AND UQDELETEDT IS NULL
+						ORDER BY USERQUESTION_ID DESC) A,  (SELECT @ROWNUM := 0) R ) C
+		WHERE C.ROWNUM >= #{startRow} AND C.ROWNUM <= #{endRow}
 	]]>
 	</select>
 	

@@ -7,7 +7,7 @@
 	<insert id="insertNsmForm" parameterType="hashmap">
 		<![CDATA[
 			INSERT INTO BoardNews_tbl
-				SELECT IFNULL(max(bNews_id)+1,100001), #{bnGroup}, #{bnHighLight}, #{bnTitle}, #{bnSubTitle}, #{bnKeyword}, #{bnTitleImageLink}, #{bnRelatedLink}, #{bnContent}, #{bnViewCount}, #{bnOrder}, #{bnStatus}, #{staff_id}, NOW(), NOW(), null FROM BoardNews_tbl
+				SELECT IFNULL(max(boardNews_id)+1,100001), #{bnGroup}, #{bnHighLight}, #{bnTitle}, #{bnSubTitle}, #{bnKeyword}, #{bnTitleImageLink}, #{bnRelatedLink}, #{bnContent}, #{bnViewCount}, #{bnOrder}, #{bnStatus}, #{staff_id}, NOW(), NOW(), null, '-' FROM BoardNews_tbl
 		]]>
 	</insert>
 
@@ -15,7 +15,7 @@
 
    <select id="selectOneNsmView" parameterType="hashmap" resultType="hashmap">
 	<![CDATA[
-	    select * from BoardNews_tbl where bNews_id = #{bNews_id}
+	    select * from BoardNews_tbl where boardNews_id = #{boardNews_id}
 	]]>
 	</select>
 	
@@ -23,31 +23,31 @@
 	
 	<update id="updateNsmHitCnt" parameterType="hashmap">
     <![CDATA[
-       update BoardNews_tbl set bnViewCount = iFnull(bnViewCount, 0) +1 where bNews_id = #{bNews_id} 
+       update BoardNews_tbl set bnViewCount = iFnull(bnViewCount, 0) +1 where boardNews_id = #{boardNews_id} 
     ]]>
     </update>
     
     <select id="updateNsmform" parameterType="hashmap" resultType="hashmap">
     <![CDATA[
-        select * from BoardNews_tbl where bNews_id = #{bNews_id}
+        select * from BoardNews_tbl where boardNews_id = #{boardNews_id}
     ]]>
     </select>
     
     <update id="updateProNsmform" parameterType="hashmap">
     <![CDATA[
-        update BoardNews_tbl set bnGroup= #{bnGroup}, bnHighLight= #{bnHighLight}, bnTitle= #{bnTitle}, bnSubTitle= #{bnSubTitle}, bnKeyword= #{bnKeyword}, bnTitleImageLink= #{bnTitleImageLink}, bnRelatedLink= #{bnRelatedLink}, bnContent= #{bnContent}, bnUpdateDt= NOW() where bNews_id = #{bNews_id}
+        update BoardNews_tbl set bnGroup= #{bnGroup}, bnHighLight= #{bnHighLight}, bnTitle= #{bnTitle}, bnSubTitle= #{bnSubTitle}, bnKeyword= #{bnKeyword}, bnTitleImageLink= #{bnTitleImageLink}, bnRelatedLink= #{bnRelatedLink}, bnContent= #{bnContent}, bnUpdateDt= NOW() where boardNews_id = #{boardNews_id}
     ]]>
     </update>
     
      <update id="updateNsmBnStatus" parameterType="String">
     <![CDATA[
-        UPDATE BoardNews_tbl SET bnStatus='1' WHERE bNews_id = #{bNews_id};
+        UPDATE BoardNews_tbl SET bnStatus='1' WHERE boardNews_id = #{boardNews_id};
     ]]>
     </update>
     
      <update id="updateNsmBnStatusNotice" parameterType="String">
     <![CDATA[
-        UPDATE BoardNews_tbl SET bnStatus='2' WHERE bNews_id = #{bNews_id};
+        UPDATE BoardNews_tbl SET bnStatus='2' WHERE boardNews_id = #{boardNews_id};
     ]]>
     </update>
  
@@ -62,7 +62,7 @@
 	
 	<select id="selectListNsmFrontList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			SELECT bNews_id, bnTitle, date_format(bnUpdateDt,'%Y%m%d') as bnUpdateDt
+			SELECT boardNews_id, bnTitle, date_format(bnUpdateDt,'%Y%m%d') as bnUpdateDt
 		    FROM BoardNews_tbl
 		    WHERE bnDeleteDt IS NULL ORDER BY bnUpdateDt DESC Limit 5
 		]]>
@@ -70,7 +70,7 @@
 
 	
 	<!-- .
-	normal : select bNews_id, bnGroup, bnTitle, bnSubTitle, bnSubTitle, date_format(bnUpdateDt,'%d %b %Y %T') as bnUpdateDt from BoardNews_tbl WHERE bnDeleteDt IS NULL ORDER BY bNews_id;
+	normal : select boardNews_id, bnGroup, bnTitle, bnSubTitle, bnSubTitle, date_format(bnUpdateDt,'%d %b %Y %T') as bnUpdateDt from BoardNews_tbl WHERE bnDeleteDt IS NULL ORDER BY boardNews_id;
 	mysql : select c.* from (select @ROWNUM := @ROWNUM + 1 AS ROWNUM, a.* from (select * from BoardNews_tbl order by bnInsertDt desc) a,  (SELECT @ROWNUM := 0) R ) c where c.ROWNUM >= 0 and c.ROWNUM <= 10
     oracle : select * from (select rownum rnum, news_id, bnGroup, bnHighLight, bnTitle, bnSubTitle, bnRelatedLink, bnContent, bnViewCount, bnOrder, bnStatus, staff_id, bnWriteDt, bnModifyDt, bnDeleteDt from (select * from BoardNews_tbl order by bnWriteDt desc)) where rnum >= ? and rnum <= ?	
 	-->
@@ -87,7 +87,7 @@
 	
 	<update id="deleteNsmDelete" parameterType="hashmap">
     <![CDATA[
-        update BoardNews_tbl set bnDeleteDt = NOW() where bNews_id = #{bNews_id}
+        update BoardNews_tbl set bnDeleteDt = NOW() where boardNews_id = #{boardNews_id}
     ]]>
     </update>
 

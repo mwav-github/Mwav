@@ -43,20 +43,15 @@
 
 	<insert id="insertPmtForm" parameterType="net.promoter.vo.Promoter_VO">
 		<![CDATA[
-			INSERT INTO Promoter_tbl
-		    	values(#{promoter_id}, #{pmtLoginId}, #{pmtLoginPw}, #{pmtName},
-			    #{pmtMail}, #{pmtPhone}, #{pmtCellularPhone},0, #{pmtZipcode},
-			    #{pmtAddress}, #{pmtJobType}, null, null, #{pmtSsn1},#{pmtSsn2},#{pmtMarried},#{pmtMarkl}
-			);
+			INSERT INTO Promoter_tbl(promoter_id, pmtLoginId, pmtLoginPw, pmtGender, pmtFirstName, pmtLastName, pmtMail, pmtPhone, pmtCellularPhone)
+			VALUES(#{promoter_id}, #{pmtLoginId}, #{pmtLoginPw}, '-99', #{pmtName}, #{pmtName}, #{pmtMail}, #{pmtPhone}, #{pmtCellularPhone})
 		]]>
 	</insert>
 
 	<insert id="insertPmtValueForm" parameterType="net.promoter.vo.Promoter_VO">
 		<![CDATA[
-			insert INTO PromoterValue_tbl
-			values(#{promoter_id}, null,null, #{pmtRcmderId}, 2,0,0,0,null,
-				SYSDATE(),NULL,NULL,NULL,SYSDATE(),NULL
-			);
+			INSERT INTO PromoterValue_tbl (promoter_id, Promoter_tbl_promoter_id)
+			VALUES(#{promoter_id}, #{promoter_id})
 		]]>
 	</insert>
 
@@ -131,7 +126,7 @@
 	<update id="updatePmtPro" parameterType="hashmap">
 	<![CDATA[
 	  update Promoter_tbl
-	  set pmtName=#{pmtName} ,pmtCellularPhone= #{pmtCellularPhone},pmtMail=#{pmtMail},pmtPhone=#{pmtPhone}, pmtMarkl= #{pmtMaikl}
+	  set pmtFirstName=#{pmtName} ,pmtCellularPhone= #{pmtCellularPhone},pmtMail=#{pmtMail},pmtPhone=#{pmtPhone}, pmtMark= #{pmtMaikl}
 	]]>
 	  <if test= "#{pmtNewPw}!=null">
 	       , pmtLoginPw = #{pmtNewPw}
@@ -155,6 +150,54 @@
 	  where promoter_id= #{promoter_id}
 	]]>
 	</update>
+	
+	<select id="checkSocialLogin" parameterType = "net.bizLogin.promoter.vo.PmtFacilitatorSO" resultType="net.bizLogin.promoter.vo.PmtFacilitatorVO">
+		SELECT snsPromoter_id
+			 , spPromoterId
+		     , spFirstName
+		     , spLastName
+		     , spMiddleName
+		     , spNickname
+		     , spEmail
+		     , spGender
+		     , spProfileImage
+		     , spURL
+		     , promoter_id
+		 FROM SnsPromoter_tbl
+		WHERE 1=1
+		AND spPromoterId = #{spPromoterId}
+	</select>
+	
+	<insert id="joinSocialLogin" parameterType="net.bizLogin.promoter.vo.PmtFacilitatorSO">
+		INSERT INTO SnsPromoter_tbl
+		VALUES (
+				  (SELECT snsPromoter_id FROM (SELECT IFNULL(MAX(snsPromoter_id) + 1, 10000) snsPromoter_id FROM SnsPromoter_tbl) tb)
+				, #{spPromoterId}
+				, #{spSnsType}
+				, #{spFirstName}
+				, #{spLastName}
+				, #{spMiddleName}
+				, #{spNickName}
+				, #{spEmail}
+				, #{spGender}
+				, #{spProfileImage}
+				, #{spURL}
+				<choose>
+					<when test="isEmailVerified == 'true' or isEmailVerified == 'Y'">
+					, NOW()
+					</when>
+					<otherwise>
+					, NULL
+					</otherwise>
+				</choose>
+<!-- 				, #{spCertifyMailDt} -->
+				, #{promoter_id}
+				, NOW()
+				, #{spUpdateDt}
+				, #{spDeleteDt}
+				, #{spIpAddress}
+				)
+	</insert>
 
 
 
@@ -166,5 +209,24 @@
 		,#{sftJoinDt},#{sftDeleteDt},#{sftInserDt},#{sftUpdateDt},#{sftRecentLoginDt},#{sftIpAddress}
 		)
 	</insert> -->
+
+	<select id="selectChkPmtCertifyDtYN" parameterType="string" resultType="string">
+		<![CDATA[
+		SELECT CASE WHEN T2.pmtCertifyDt IS NOT NULL THEN 'Y'
+					ELSE 'N'
+					END	CertifyDtYN
+		FROM Promoter_tbl T1
+			JOIN PromoterValue_tbl T2
+				ON T1.promoter_id = T2.promoter_id
+		WHERE T1.pmtLoginId = #{promoter_id}
+		]]>
+	</select>
+
+	<update id="updatePmtCertifyDt" parameterType="string">
+		<![CDATA[
+		UPDATE PromoterValue_tbl SET pmtCertifyDt = NOW()
+		WHERE promoter_id = (SELECT promoter_id FROM Promoter_tbl WHERE pmtLoginId = #{promoter_id})
+		]]>
+	</update>
 </mapper>
 

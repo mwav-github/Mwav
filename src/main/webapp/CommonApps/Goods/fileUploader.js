@@ -3,8 +3,12 @@
 	// ======================
 	var dropZone;
 	var uploadForm;
+	var uploadData;
 
-	$(document).ready(function() {
+	const imgUploadMng = new ImageUpload();
+	const imgMng = new ImageMng();
+
+	$(document).ready(function() {		
 		dropZone = document.getElementById('drop-zone');
 		uploadForm = document.getElementById('js-upload-form');
 		uploadFiles = document.getElementById('js-upload-files');
@@ -23,6 +27,25 @@
 		});
 	});
 
+	var createPreviewImg = function(files) {
+		var img = $('<img/>', {
+			id : 'dynamic',
+			width : 250,
+			height : 200
+		});
+		var file = files[0];
+		var reader = new FileReader();
+		// Set preview image into the popover data-content
+		reader.onload = function(e) {
+			$(".image-preview-input-title").text("Change");
+			$(".image-preview-clear").show();
+			$(".image-preview-filename").val(file.name);
+			img.attr('src', e.target.result);
+			$(".image-preview").attr("data-content", $(img)[0].outerHTML).popover("show");
+		}
+		reader.readAsDataURL(file);
+	}
+
 	var eventBind = function() {
 		uploadForm.addEventListener("submit", function(e) {
 			e.preventDefault();
@@ -32,7 +55,9 @@
 		dropZone.ondrop = function(e) {
 			e.preventDefault();
 			this.className = 'upload-drop-zone';
-			tempUpload(e.dataTransfer.files);
+
+			uploadFiles.files = e.dataTransfer.files;
+			createPreviewImg(e.dataTransfer.files);
 		}
 
 		dropZone.ondragover = function() {
@@ -46,8 +71,21 @@
 		}
 	}
 
+	var resizeImage = function(readerResult) {
+		var img = document.createElement("img");
+		img.src = readerResult;
+
+		var canvas = document.createElement("canvas");
+		var ctx = canvas.getContext("2d");
+		ctx.drawImage(img, 0, 0);
+
+		var dataurl = canvas.toDataURL("image/jpeg");
+		return dataurl;
+	}
+
 	var tempUpload = function(files) {
-		console.log(files);
+		//console.log(files);
+		if(files == null || files.length == 0){ alert("파일이 없습니다."); return false;}
 		tempFileUpload(files);
 		setSuccessBar(files);
 	}
@@ -64,33 +102,62 @@
 		}
 	}
 
-	function tempFileUpload(files) {
-		if (files == null || files.length == 0) {
-			alert('파일이 없습니다.');
-			return;
-		}
-
+	function tempFileUpload(files) {		
 		var fd = new FormData();
 		fd.append(files[0].name, files[0]);
+		fd.append("imgLocation", $("#images_position").val());
 
-		$.ajax({
-			type : "POST",
-			url : "/FileTestSample/TempUpload.mwav", // Upload URL
-			data : fd,
-			contentType : false,
-			processData : false,
-			cache : false,
-			success : function(data) {
-				if (data) {
-					alert('업로드 성공');
-				} else {
-					alert('업로드 실패');
+		isError.isErr = false;
+		imgUploadMng.tempUpload(fd, "/admins/goods/tmpUpload.mwav", isError);
+
+		if (!isError.isErr) {
+			//setSuccessBar(e.dataTransfer.files);
+			alert("업로드성공");
+
+			//로드 한 후
+			var imgVal = $("#images_position").val();
+			var smallImgId = "#s-";
+			smallImgId = smallImgId.concat(imgVal);			
+			
+			/*var smallImg = document.querySelector(smallImgId);
+			var reader = new FileReader();
+
+			reader.onload = function() {
+				smallImg.src = reader.result;
+				smallImg.onload = function() {
+					smallImg.src = imgMng.getResizeDataurl(smallImg, '95', '56', 'jpeg');
 				}
-			}
-		});
-
+			};
+			reader.readAsDataURL(files[0]);*/			
+			var smallImgs = document.querySelectorAll(smallImgId);			
+			smallImgs.forEach(function(smallImg) {
+				var reader = new FileReader();
+				reader.onload = function() {
+					smallImg.src = reader.result;
+					smallImg.onload = function() {
+						smallImg.src = imgMng.getResizeDataurl(smallImg, '95', '56', 'jpeg');
+					}
+				};
+				reader.readAsDataURL(files[0]);
+			});			
+			
+			//middle image setting
+			var middleImgId = "#m-";			
+			middleImgId = middleImgId.concat(imgVal);
+			var middleImgs = document.querySelectorAll(middleImgId);			
+			middleImgs.forEach(function(middleImg) {
+				var reader = new FileReader();
+				reader.onload = function() {
+					middleImg.src = reader.result;
+					middleImg.onload = function() {
+						middleImg.src = imgMng.getResizeDataurl(middleImg, '231', '231', 'jpeg');
+					}
+				};
+				reader.readAsDataURL(files[0]);
+			});
+		} 
+		else { alert("업로드실패"); }
 	}
-
 })(jQuery);
 
 $(function() {
@@ -121,24 +188,22 @@ $(function() {
 	});
 
 	// Create the preview image
-	$(".image-preview-input input:file").change(
-			function() {
-				var img = $('<img/>', {
-					id : 'dynamic',
-					width : 250,
-					height : 200
-				});
-				var file = this.files[0];
-				var reader = new FileReader();
-				// Set preview image into the popover data-content
-				reader.onload = function(e) {
-					$(".image-preview-input-title").text("Change");
-					$(".image-preview-clear").show();
-					$(".image-preview-filename").val(file.name);
-					img.attr('src', e.target.result);
-					$(".image-preview").attr("data-content",
-							$(img)[0].outerHTML).popover("show");
-				}
-				reader.readAsDataURL(file);
-			});
+	$(".image-preview-input input:file").change(function() {
+		var img = $('<img/>', {
+			id : 'dynamic',
+			width : 250,
+			height : 200
+		});
+		var file = this.files[0];
+		var reader = new FileReader();
+		// Set preview image into the popover data-content
+		reader.onload = function(e) {
+			$(".image-preview-input-title").text("Change");
+			$(".image-preview-clear").show();
+			$(".image-preview-filename").val(file.name);
+			img.attr('src', e.target.result);
+			$(".image-preview").attr("data-content", $(img)[0].outerHTML).popover("show");
+		}
+		reader.readAsDataURL(file);
+	});
 });

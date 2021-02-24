@@ -42,8 +42,8 @@
 <script src="/CommonLibrary/Javascript/validate.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+<!--  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script> -->
+<script src="/resources/JsFramework/Bootstrap/bootstrap.min.js" ></script>
 
 <script>
 	$(window).resize(function() {

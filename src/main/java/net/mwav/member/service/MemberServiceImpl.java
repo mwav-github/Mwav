@@ -1,17 +1,11 @@
 package net.mwav.member.service;
 
-import java.io.IOException;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.annotation.Resource;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
+import net.mwav.common.module.AesEncryption;
+import net.mwav.common.module.EmailSender;
+import net.mwav.common.module.SecurityLib;
+import net.mwav.common.module.ValidationLib;
+import net.mwav.member.dao.MemberDAO;
+import net.mwav.member.vo.Member_tbl_VO;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailAuthenticationException;
@@ -19,12 +13,16 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.util.WebUtils;
 
-import net.mwav.common.module.AesEncryption;
-import net.mwav.common.module.EmailSender;
-import net.mwav.common.module.SecurityLib;
-import net.mwav.common.module.ValidationLib;
-import net.mwav.member.dao.MemberDAO;
-import net.mwav.member.vo.Member_tbl_VO;
+import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Service("memberService")
 public class MemberServiceImpl implements MemberService {
@@ -84,13 +82,21 @@ public class MemberServiceImpl implements MemberService {
 			}
 			map.put("mbrLoginPw", encrypted);
 
-			// 5. Member_tbl, MemberValue_tbl insert
+			// 5. MemberValue insert
+			memberDAO.insertMemberValue(map);
+
+			// 6. MemberOption insert
+			memberDAO.insertMemberOption(map);
+
+			// 7. MemberJob insert
+			memberDAO.insertMemberJob(map);
+
+			// 8. Member_tbl insert
 			if (memberDAO.insertMbrForm(map) == 0) {
 				result.put("result", "30");
 				result.put("message", "NO_AFFECTED");
 			}
-			
-			memberDAO.insertMemberValue_tbl(map);
+
 			emailSender.sendRegistrationEmail(map);
 			result.put("result", "1");
 			result.put("message", "SUCCESS");
@@ -220,6 +226,11 @@ public class MemberServiceImpl implements MemberService {
 	public Map<String, Object> insertSnsForm(Map<String, Object> map) {
 		// TODO Auto-generated method stub
 		return memberDAO.insertSnsForm(map);
+	}
+
+	@Override
+	public String selectNextSnsPk(){
+		return memberDAO.selectNextSnsPk();
 	}
 
 	@Override

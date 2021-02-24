@@ -145,11 +145,11 @@ public class BoardNewsAdminsController {
 			HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/SiteMgr/NewsMgr/NsmList");
 
-		String bNews_id = (String) commandMap.get("bNews_id");
+		String boardNews_id = (String) commandMap.get("boardNews_id");
 		String mm = "site";
 		mv.addObject("mm", mm);
 		mv.addObject("mode", "m_ntmList");
-		boardNewsAdminsService.updateNsmBnStatus(bNews_id);
+		boardNewsAdminsService.updateNsmBnStatus(boardNews_id);
 		return mv;
 	}
 	
@@ -158,12 +158,12 @@ public class BoardNewsAdminsController {
 			HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/SiteMgr/NewsMgr/NsmList");
 
-		String bNews_id = (String) commandMap.get("bNews_id");
+		String boardNews_id = (String) commandMap.get("boardNews_id");
 
 		String mm = "site";
 		mv.addObject("mm", mm);
 		mv.addObject("mode", "m_ntmList");
-		boardNewsAdminsService.updateNsmBnStatusNotice(bNews_id);
+		boardNewsAdminsService.updateNsmBnStatusNotice(boardNews_id);
 		return mv;
 	}
 

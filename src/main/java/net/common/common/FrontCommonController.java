@@ -167,6 +167,17 @@ public class FrontCommonController {
 
 		return mv;
 	}
+	
+	@RequestMapping(value = "/Promoter/**")
+	public ModelAndView redirectPromoterController(HttpServletRequest request) throws Exception {
+
+		String url = request.getRequestURI();
+		int pos = url.lastIndexOf(".");
+		ext_url = url.substring(0, pos);
+		ModelAndView mv = new ModelAndView(ext_url);
+
+		return mv;
+	}
 
 	@RequestMapping(value = "/filter.mwav", method = RequestMethod.GET)
 	public ModelAndView filter(HttpServletRequest request) {

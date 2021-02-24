@@ -50,7 +50,9 @@ public class HTMLTagFilter implements Filter {
 		log.info("PATH확인 TRUE면 해당 URL"+path.startsWith("/Admins/SiteMgr/"));
 
 		// ckeditor를 사용하는 경우 제외시켜야한다.
-		if (path.startsWith("/admin/boardNews") || path.startsWith("/admin/boardNotice") || path.startsWith("/admin/marketing") || path.startsWith("/member/mbrTempLoginPwUpdate") || path.startsWith("/qa")) {
+		if (path.startsWith("/admin/boardNews") || path.startsWith("/admin/boardNotice") || path.startsWith("/admin/marketing") || path.startsWith("/member/mbrTempLoginPwUpdate") || path.startsWith("/qa")
+			|| path.startsWith("/admins/promoter/boardmgr")) 
+		{
 			chain.doFilter(request, response); // 그냥 진행
 		} else {
 			chain.doFilter(new HTMLTagFilterRequestWrapper(

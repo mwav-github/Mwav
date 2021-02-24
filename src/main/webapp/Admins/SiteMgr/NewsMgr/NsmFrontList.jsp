@@ -10,7 +10,7 @@
 <script>
 	function page_move2(s_value) {
 		var f = document.NsmNews; //폼 name
-		f.bNews_id.value = s_value; //POST방식으로 넘기고 싶은 값 (이건 실제 내부 내용)
+		f.boardNews_id.value = s_value; //POST방식으로 넘기고 싶은 값 (이건 실제 내부 내용)
 		f.submit();
 	}
 	
@@ -31,12 +31,12 @@
 				<c:choose>
 					<c:when test="${fn:length(selectListNsmFrontList) > 0}">
 						<c:forEach var="selectListNsmFrontList" items="${selectListNsmFrontList}">
-							<input type="hidden" name="bNews_id" value="${selectListNsmFrontList.bNews_id}" />
+							<input type="hidden" name="boardNews_id" value="${selectListNsmFrontList.boardNews_id}" />
 							<input type="hidden" name="bnViewCount" value="${selectListNsmFrontList.bnViewCount}" />
 							<tr>
 								<!-- a태그로 처리요망 -->
 								<td><a
-									href="/admin/boardNews/nsmView.mwav?bNews_id=${selectListNsmFrontList.bNews_id}">${selectListNsmFrontList.bnTitle}</a></td>
+									href="/admin/boardNews/nsmView.mwav?boardNews_id=${selectListNsmFrontList.boardNews_id}">${selectListNsmFrontList.bnTitle}</a></td>
 								<%--view를 구현하는 방법에 따라 달라진다. get 문 형태 유망 --%>
 								<td>${selectListNsmFrontList.bnUpdateDt}</td>
 							</tr>
