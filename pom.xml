@@ -484,13 +484,6 @@
 			<version>1</version>
 		</dependency>
 
-		<!--@ Framework -->
-		<dependency>
-			<groupId>MwavFrameWork</groupId>
-			<artifactId>MwavFrameWork</artifactId>
-			<version>1.0.1</version>
-		</dependency>
-		
 		<!-- net.mwav.framework -->
 		<dependency>
 			<groupId>net.mwav</groupId>

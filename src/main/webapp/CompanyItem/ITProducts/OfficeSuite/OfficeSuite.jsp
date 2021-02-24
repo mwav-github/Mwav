@@ -71,9 +71,20 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 					<div class="col-xs-12 col-sm-12 col-md-12 text-center">
 						<h3>
 							<strong>OfficeSuite 완벽한 6-in-1 오피스팩과 21년 신규 출시 된 PDF
-								Extra로 <br>문서의 완성도를 극대화 하는 놀라운 경험을 누려보세요.<hr>
+								Extra로 <br>문서의 완성도를 극대화 하는 놀라운 경험을 누려보세요.
+								<hr>
 							</strong>
 						</h3>
+						<!-- 평가판 다운로드 -->
+						<h4 class="text-right">
+							<span class=""> <a href="/common/downloadFile.mwav?parent=/CompanyItem/ITProducts/OfficeSuite&child=OfficeSuiteSetupFile.zip" target="_blank" onclick="ga('send', 'event', 'OfficeSuite', 'click', 'Install');">
+									<button class="btn-custom-default btn btn-md btn-primary">
+										<i class="fa fa-download"></i> 30일 무료 평가판 다운로드
+									</button>
+							</a>
+							</span>
+						</h4>
+
 						<p>
 							<br>OfficeSuite for Windows는 문서 작업을 수행하는 데 필요한 모든 도구를 제공합니다.
 							문서, 스프레드시트, 프레젠테이션을 만들고 PDF에서 파일을 내보내고 변환할 수 있는 PDF편집기를 이용할 수 있을
@@ -284,7 +295,9 @@ container 가 아닌 row로 하는 경우는 전체 영역 다 차지한다.
 				<!-- 2번 -->
 				<div class="col-xs-12 col-sm-12 col-md-12 text-center">
 					<h3>
-						<br><strong>2021년 새로운 PDF Extra 출시. </strong><hr><br>
+						<br> <strong>2021년 새로운 PDF Extra 출시. </strong>
+						<hr>
+						<br>
 					</h3>
 				</div>
 
