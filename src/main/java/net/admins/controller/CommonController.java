@@ -192,6 +192,7 @@ public class CommonController {
 	 *      참조 URL : 
 	 *      https://happy-hs.tistory.com/23
 	 *      https://backback.tistory.com/226
+	 *      https://fruitdev.tistory.com/169 (rootpath)
 	 * @since 작성 버전
 	 * @version 현재 버전
 	*/
@@ -201,18 +202,17 @@ public class CommonController {
 		String parent = request.getParameter("parent"); //"/CompanyItem/ITProducts/OfficeSuite";
 		String child =  request.getParameter("child"); //"OfficeSuiteSetupFile.zip";
 		FileLib fileLib = FileLib.getInstance();
-		//System.out.println("1위치" + "1");
 
 		//String uploadRootPath = session.getServletContext().getRealPath("\\");
 		//System.out.println("root1"+uploadRootPath);
 		String rootPath = request.getSession().getServletContext().getRealPath("/") ;
-		System.out.println("root2"+rootPath);
+		//System.out.println("root2"+rootPath);
 		parent = rootPath + parent + "/";
-		System.out.println("path="+parent+"-"+child);
+		//System.out.println("path="+parent+"-"+child);
 		
 		//byte fileByte[] = FileUtils.readFileToByteArray(new File("C:\\MwavDev\\Mwav(github)\\Mwav\\src\\main\\webapp\\CompanyItem\\ITProducts\\OfficeSuite\\" + child));
 		byte fileByte[] = fileLib.dowonload(parent, child);
-		System.out.println("fileByte" + fileByte);
+		//System.out.println("fileByte" + fileByte);
 		response.setContentType("application/octet-stream");
 		response.setContentLength(fileByte.length);
 		response.setHeader("Content-Disposition",
