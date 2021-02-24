@@ -4,13 +4,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.mail.Message;
+import javax.servlet.ServletContext;
 
+import net.mwav.common.module.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailAuthenticationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import net.mwav.common.module.EmailSender;
 import net.mwav.member.dao.MemberDAO;
+import org.springframework.ui.velocity.VelocityEngineUtils;
+import org.springframework.web.servlet.view.velocity.VelocityConfigurer;
 
 @Service
 public class SignService {
@@ -19,6 +24,12 @@ public class SignService {
 
 	@Inject
 	EmailSender emailSender;
+
+	@Autowired
+	ServletContext servletContext;
+
+	@Autowired
+	VelocityConfigurer velocityConfig;
 
 	/**
 	 * 
@@ -92,7 +103,29 @@ public class SignService {
 
 			memberDao.insertSnsForm(snsMap);
 
-			emailSender.sendRegistrationEmail(signUpMap);
+//			emailSender.sendRegistrationEmail(signUpMap);
+//          ########################## 이메일 발송 ###########################
+			// 이메일 설정 불러오기
+			final String realPath = servletContext.getRealPath("/xConfig/mail.xml.config");
+			XmlLib xmlLib = XmlLib.getInstance();
+			MailConfig config = (MailConfig) xmlLib.unmarshal(realPath, MailConfig.class);
+
+			//client에서 템플릿엔진 라이브러리르 호출하여 html코드로 파싱 후 문자열로 반환
+			String content = VelocityEngineUtils.mergeTemplateIntoString(velocityConfig.createVelocityEngine()
+					, "/GeneralMail/GeneralMail_Registration.vm", "UTF-8", signUpMap);
+
+			// Mail의 정보를 담음
+			Message msg = new MessageBuilder(config.getCollectAllFieldProp())
+					.setRecipient((String) signUpMap.get("mbrEmail"))
+					.setFrom(config.getFrom())
+					.setSubject("[Mwav]" + (String) signUpMap.get("mbrLoginId") + "님, 회원가입을 환영합니다.")
+					.setContent(content).build();
+
+			// 메일 발송
+			MailLib mailLib = MailLib.getInstance();
+			mailLib.send(msg);
+//			###################################################################
+
 			result.put("result", "1");
 			result.put("message", "SUCCESS");
 
