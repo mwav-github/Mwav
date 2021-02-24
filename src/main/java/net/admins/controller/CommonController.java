@@ -203,8 +203,12 @@ public class CommonController {
 		FileLib fileLib = FileLib.getInstance();
 		//System.out.println("1위치" + "1");
 
-		String uploadRootPath = session.getServletContext().getRealPath("\\");
-		parent = uploadRootPath + parent + "\\";
+		//String uploadRootPath = session.getServletContext().getRealPath("\\");
+		//System.out.println("root1"+uploadRootPath);
+		String rootPath = request.getSession().getServletContext().getRealPath("/") ;
+		System.out.println("root2"+rootPath);
+		parent = rootPath + parent + "/";
+		System.out.println("path="+parent+"-"+child);
 		
 		//byte fileByte[] = FileUtils.readFileToByteArray(new File("C:\\MwavDev\\Mwav(github)\\Mwav\\src\\main\\webapp\\CompanyItem\\ITProducts\\OfficeSuite\\" + child));
 		byte fileByte[] = fileLib.dowonload(parent, child);
