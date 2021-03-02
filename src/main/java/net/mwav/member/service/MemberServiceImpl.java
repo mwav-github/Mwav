@@ -105,28 +105,10 @@ public class MemberServiceImpl implements MemberService {
 			}
 
 //			emailSender.sendRegistrationEmail(map);
-//          ########################## 이메일 발송 ###########################
-			// 이메일 설정 불러오기
-			final String realPath = servletContext.getRealPath("/xConfig/mail.xml.config");
-			XmlLib xmlLib = XmlLib.getInstance();
-			MailConfig config = (MailConfig) xmlLib.unmarshal(realPath, MailConfig.class);
-
-			//client에서 템플릿엔진 라이브러리르 호출하여 html코드로 파싱 후 문자열로 반환
-			String content = VelocityEngineUtils.mergeTemplateIntoString(velocityConfig.createVelocityEngine()
-					, "/GeneralMail/GeneralMail_Registration.vm", "UTF-8", map);
-
-			// Mail의 정보를 담음
-			Message msg = new MessageBuilder(config.getCollectAllFieldProp())
-					.setRecipient((String) map.get("mbrEmail"))
-					.setFrom(config.getFrom())
-					.setSubject("[Mwav]" + (String) map.get("mbrLoginId") + "님, 회원가입을 환영합니다.")
-					.setContent(content).build();
-
-			// 메일 발송
-			MailLib mailLib = MailLib.getInstance();
-			mailLib.send(msg);
-
-//			###################################################################
+			// 멤버에게 회원가입 성공 메일 발송
+			this.emailMemberSender(map);
+			// 관리자에게 멤버 회원가입 알림 메일 발송
+			this.emailAdminSender();
 
 			result.put("result", "1");
 			result.put("message", "SUCCESS");
@@ -139,6 +121,76 @@ public class MemberServiceImpl implements MemberService {
 			throw e;
 		}
 		return result;
+	}
+
+	/**
+	 * <pre>
+	 * {@code
+	 *      <p>회원가입한 멤버에게 환영메일을 발송</p>
+	 * }
+	 * </pre>
+	 * @param
+	 * @return void
+	 * @throws Exception
+	 * @see javax.mail
+	 * 		net.mwav.common.module.XmlLib
+	 * 		net.mwav.common.module.MailLib
+	 * @since 1.0.1
+	 * @version 1.0.0
+	 */
+	public void emailMemberSender(Map<String, Object> map) throws Exception {
+		// 이메일 설정 불러오기
+		final String realPath = servletContext.getRealPath("/xConfig/mail.xml.config");
+		XmlLib xmlLib = XmlLib.getInstance();
+		MailConfig config = (MailConfig) xmlLib.unmarshal(realPath, MailConfig.class);
+
+		//client에서 템플릿엔진 라이브러리르 호출하여 html코드로 파싱 후 문자열로 반환
+		String content = VelocityEngineUtils.mergeTemplateIntoString(velocityConfig.createVelocityEngine()
+				, "/GeneralMail/GeneralMail_Registration.vm", "UTF-8", map);
+
+		// Mail의 정보를 담음
+		Message msg = new MessageBuilder(config.getCollectAllFieldProp())
+				.setRecipient((String) map.get("mbrEmail"))
+				.setFrom(config.getFrom())
+				.setSubject("[Mwav]" + (String) map.get("mbrLoginId") + "님, 회원가입을 환영합니다.")
+				.setContent(content).build();
+
+		// 메일 발송
+		MailLib mailLib = MailLib.getInstance();
+		mailLib.send(msg);
+	}
+
+	/**
+	 * <pre>
+	 * {@code
+	 *      <p>관리자에게 멤버 회원가입 알림 메일을 발송</p>
+	 * }
+	 * </pre>
+	 * @param
+	 * @return void
+	 * @throws Exception
+	 * @see javax.mail
+	 * 		net.mwav.common.module.XmlLib
+	 * 		net.mwav.common.module.MailLib
+	 * @since 1.0.1
+	 * @version 1.0.0
+	 */
+	public void emailAdminSender() throws Exception {
+		// 이메일 설정 불러오기
+		final String realPath = servletContext.getRealPath("/xConfig/mail.xml.config");
+		XmlLib xmlLib = XmlLib.getInstance();
+		MailConfig config = (MailConfig) xmlLib.unmarshal(realPath, MailConfig.class);
+
+		// Mail의 정보를 담음
+		Message msg = new MessageBuilder(config.getCollectAllFieldProp())
+				.setRecipient("webmaster@mwav.net")
+				.setFrom(config.getFrom())
+				.setSubject("회원이 가입되었습니다.")
+				.setContent("").build();
+
+		// 메일 발송
+		MailLib mailLib = MailLib.getInstance();
+		mailLib.send(msg);
 	}
 
 	/*

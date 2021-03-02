@@ -3,6 +3,7 @@ package net.mwav.member.service;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.mail.Message;
 import javax.servlet.ServletContext;
@@ -22,14 +23,8 @@ public class SignService {
 	@Inject
 	MemberDAO memberDao;
 
-	@Inject
-	EmailSender emailSender;
-
-	@Autowired
-	ServletContext servletContext;
-
-	@Autowired
-	VelocityConfigurer velocityConfig;
+	@Resource(name = "memberService")
+	private MemberService memberService;
 
 	/**
 	 * 
@@ -104,27 +99,10 @@ public class SignService {
 			memberDao.insertSnsForm(snsMap);
 
 //			emailSender.sendRegistrationEmail(signUpMap);
-//          ########################## 이메일 발송 ###########################
-			// 이메일 설정 불러오기
-			final String realPath = servletContext.getRealPath("/xConfig/mail.xml.config");
-			XmlLib xmlLib = XmlLib.getInstance();
-			MailConfig config = (MailConfig) xmlLib.unmarshal(realPath, MailConfig.class);
-
-			//client에서 템플릿엔진 라이브러리르 호출하여 html코드로 파싱 후 문자열로 반환
-			String content = VelocityEngineUtils.mergeTemplateIntoString(velocityConfig.createVelocityEngine()
-					, "/GeneralMail/GeneralMail_Registration.vm", "UTF-8", signUpMap);
-
-			// Mail의 정보를 담음
-			Message msg = new MessageBuilder(config.getCollectAllFieldProp())
-					.setRecipient((String) signUpMap.get("mbrEmail"))
-					.setFrom(config.getFrom())
-					.setSubject("[Mwav]" + (String) signUpMap.get("mbrLoginId") + "님, 회원가입을 환영합니다.")
-					.setContent(content).build();
-
-			// 메일 발송
-			MailLib mailLib = MailLib.getInstance();
-			mailLib.send(msg);
-//			###################################################################
+			// 멤버에게 회원가입 성공 메일 발송
+			memberService.emailMemberSender(signUpMap);
+			// 관리자에게 멤버 회원가입 알림 메일 발송
+			memberService.emailAdminSender();
 
 			result.put("result", "1");
 			result.put("message", "SUCCESS");

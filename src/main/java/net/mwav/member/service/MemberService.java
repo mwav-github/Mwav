@@ -67,4 +67,8 @@ public interface MemberService {
 	boolean updateAutoLoginDel(HttpServletRequest request,HttpSession session, HttpServletResponse response);
 	
 	Member_tbl_VO selectAutoLogin(int member_id);
+
+	void emailMemberSender(Map<String, Object> map) throws Exception;
+
+	void emailAdminSender() throws Exception;
 }
