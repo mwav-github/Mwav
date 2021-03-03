@@ -124,8 +124,8 @@ public class StatisticsInterceptor extends HandlerInterceptorAdapter {
 			/* (사용자 기기체크) if (!(localMachineName.equals("DESKTOP-T79AHJS"))) { */
 
 			String auth_url = request.getRequestURI();
-			log.info("auth_url 추적." + auth_url);
-			log.info("statistics_id" + statistics_id);
+			log.info("auth_url 추적: " + auth_url);
+			log.info("statistics_id: " + statistics_id);
 			/*
 			 * //Java/1.8.0_25 부분 서버로그 남기지 않을 때. String userAgent =
 			 * request.getHeader("User-Agent"); log.info("userAgent" +
@@ -149,7 +149,8 @@ public class StatisticsInterceptor extends HandlerInterceptorAdapter {
 
 				String PageName = null;
 				PageName = Common_Utils.setPageName(auth_url);
-				log.info("임시" + PageName);
+				log.info("임시: " + PageName);
+
 				if (statistics_id == null || statistics_id.equals("")) {
 					// Java/1.8.0_25
 					if (userAgent.contains("Java")) {
@@ -163,17 +164,20 @@ public class StatisticsInterceptor extends HandlerInterceptorAdapter {
 					
 					
 					
-					log.info("statistics_id insertFirstStatics."
-							+ statistics_id);
+					log.info("statistics_id insertFirstStatics: " + statistics_id);
 					session.setAttribute("statistics_id", statistics_id);
 					request.setAttribute("stClientScreen", "firstTime");
 
-				} else {				
+				} else {
+					log.info("debug: "+ statisticsController.isValidSessionId(statistics_id));
+					if(!statisticsController.isValidSessionId(statistics_id)){
+						statistics_id = statisticsController.insertFirstStatics(request, member_id, statistics_id, session_id);
+						log.info("updated statistics_id insertStatics." + statistics_id);
+					}
 					log.info("statistics_id insertStatics." + statistics_id);
 					log.info("auth_url" + auth_url);
-						request.setAttribute("slPageName", PageName);
-						statisticsController.insertStatics(request,
-								statistics_id);
+					request.setAttribute("slPageName", PageName);
+					statisticsController.insertStatics(request, statistics_id);
 				}
 			}
 		} catch (Exception e) {

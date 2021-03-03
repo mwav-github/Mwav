@@ -174,7 +174,6 @@ public class StatisticsController {
 		st_id = statistics_id;
 		String getURI = request.getRequestURI();
 
-		System.out.println("st_id" + st_id);
 		try {
 			StatisticsLogVO log_vo = new StatisticsLogVO();
 
@@ -208,7 +207,6 @@ public class StatisticsController {
 			 * queryString = getURI.substring(getURI.indexOf('?') + 1,
 			 * getURI.length());
 			 */
-			System.out.println("queryString" + queryString);
 			log_vo.setSlQueryString(queryString);
 
 			statisticsService.insertStatistics(log_vo);
@@ -218,6 +216,17 @@ public class StatisticsController {
 
 		return null;
 
+	}
+
+	public boolean isValidSessionId( String statistics_id) throws Exception {
+		boolean ret = false;
+		try {
+			if (statisticsService.isValidSessionId(statistics_id) == null) ret = false;
+			else ret = statisticsService.isValidSessionId(statistics_id).equals("1") ? true : false;
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return ret;
 	}
 
 	// 사용하지 않음 삭제필요.

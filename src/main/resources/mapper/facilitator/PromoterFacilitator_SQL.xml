@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- #은 ' ' string // $ 은 숫자 ' ' 없음 -->
+<mapper namespace="promoterFacilitator">
+	<select id="selectOnePmtLoginIdCheck" parameterType="string" resultType="int">
+		<![CDATA[
+	      SELECT Count(*) FROM Promoter_tbl WHERE pmtLoginId = #{pmtLoginId}
+		]]>
+	</select>
+
+	<insert id="insertPromoter_tbl" parameterType="hashmap">
+		<![CDATA[
+		INSERT INTO Promoter_tbl (promoter_id, pmtLoginId, pmtLoginPw, pmtFirstName, pmtLastName, pmtGender
+						, pmtCellularPhone, pmtMail)
+		VALUES((SELECT IFNULL(MAX(pmt.promoter_id)+1,100000) FROM Promoter_tbl pmt), #{pmtLoginId}, #{pmtLoginPw}, #{pmtFirstName}, #{pmtLastName}, #{pmtGender}
+								, #{pmtCellularPhone}, #{pmtMail})
+		]]>
+	</insert>
+
+	<insert id="insertPromoterValue_tbl" parameterType="hashmap">
+		<![CDATA[
+			INSERT INTO PromoterValue_tbl(promoter_id, pmtLevel, pmtVisitNbr, pmtEffects, pmtProfits, Promoter_tbl_promoter_id)
+			SELECT promoter_id, 1, 0, 0, 0, promoter_id
+			FROM Promoter_tbl
+			WHERE pmtLoginId = #{pmtLoginId}
+		]]>
+	</insert>
+
+	<insert id="insertPromoterValueLog_tbl" parameterType="hashmap">
+		<![CDATA[
+			INSERT INTO PromoterValueLog_tbl(promoterValueLog_id, promoter_id, pvlChagedPoint, pvlRemark, pvlInsertDt, pvlIpAddress, PromoterValue_tbl_promoter_id)
+			SELECT (SELECT IFNULL(MAX(promoterValueLog_id)+1, 10000000) FROM PromoterValueLog_tbl), promoter_id, 0, #{pvlRemark}, NOW(), #{pvlIpAddress}, promoter_id
+			FROM Promoter_tbl
+			WHERE pmtLoginId = #{pmtLoginId}
+		]]>
+	</insert>
+
+</mapper>
+

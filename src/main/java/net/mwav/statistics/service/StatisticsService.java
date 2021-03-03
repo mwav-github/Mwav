@@ -17,6 +17,7 @@ public interface StatisticsService {
 	void insertErrorStatistics(StatisticsLogVO log_vo);
 	
 	void updateStClientScreen(Map<String, Object> map);
+	String isValidSessionId(String statistics_id);
 
 /////////////////////////////////////Goods/////////////////////////////////////
 
