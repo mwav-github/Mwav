@@ -1,18 +1,16 @@
 package net.bizLogin.promoter.service;
 
-import java.util.Map;
-
-import javax.annotation.Resource;
-
-import net.common.common.CommandMap;
-import net.mwav.common.module.AesEncryption;
-import net.promoter.vo.Promoter_VO;
-import org.springframework.stereotype.Service;
-
 import net.bizLogin.promoter.dao.PmtFacilitatorDAO;
-import org.springframework.transaction.annotation.Transactional;
 import net.bizLogin.promoter.vo.PmtFacilitatorSO;
 import net.bizLogin.promoter.vo.PmtFacilitatorVO;
+import net.common.common.CommandMap;
+import net.mwav.common.module.AesEncryption;
+import net.mwav.framework.cryption.AES128Lib;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.annotation.Resource;
+import java.util.Map;
 
 
 @Service("pmtFacilitatorService")
@@ -43,7 +41,8 @@ public class PmtFacilitatorServiceImpl implements PmtFacilitatorService {
 		commandMap.put("pmtLoginId", pmtLoginId);
 		// AES/CBC/IV 암호화 (키,암호화텍스트,iv)\
 		String pmtLoginPw = (String) commandMap.get("pmtLoginPw");
-		byte[] encrypted = AesEncryption.aesEncryptCbc(AesEncryption.sKey, pmtLoginPw, AesEncryption.sInitVector);
+		byte[] encrypted = AES128Lib.getInstance().encrypt("Mwav.net", "Mwav", pmtLoginPw);
+
 		// 암호화된 값이 String으로 반환
 		commandMap.put("pmtLoginPw", AesEncryption.aesEncodeBuf(encrypted));
 		String pmtGender = (String)commandMap.get("pmtGender");
