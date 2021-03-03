@@ -5,11 +5,14 @@ import net.bizLogin.promoter.vo.PmtFacilitatorSO;
 import net.bizLogin.promoter.vo.PmtFacilitatorVO;
 import net.common.common.CommandMap;
 import net.mwav.common.module.AesEncryption;
+import net.mwav.common.module.ValidationLib;
 import net.mwav.framework.cryption.AES128Lib;
+import org.springframework.mail.MailAuthenticationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.Map;
 
 
@@ -36,31 +39,76 @@ public class PmtFacilitatorServiceImpl implements PmtFacilitatorService {
 	 */
 	@Transactional
 	@Override
-	public void insertPmtForm(CommandMap commandMap) throws Exception {
-		String pmtLoginId = commandMap.get("pmtLoginId").toString().trim();
-		commandMap.put("pmtLoginId", pmtLoginId);
-		// AES/CBC/IV 암호화 (키,암호화텍스트,iv)\
-		String pmtLoginPw = (String) commandMap.get("pmtLoginPw");
-		byte[] encrypted = AES128Lib.getInstance().encrypt("Mwav.net", "Mwav", pmtLoginPw);
+	public Map<String, Object> insertPmtForm(CommandMap commandMap) throws Exception {
+		Map<String, Object> result = new HashMap<String, Object>();
 
-		// 암호화된 값이 String으로 반환
-		commandMap.put("pmtLoginPw", AesEncryption.aesEncodeBuf(encrypted));
-		String pmtGender = (String)commandMap.get("pmtGender");
-		commandMap.put("pmtGender", (pmtGender.equals("M") ? "0" :"1"));
+		try{
+			ValidationLib validation = ValidationLib.getInstance();
+			// 1. 아이디 중복 검사
+			if (selectOnePmtLoginIdCheck((String) commandMap.get("mbrLoginId"))) {
+				result.put("result", "31");
+				result.put("message", "DUPLICATED");
+				return result;
+			}
 
-		String pmtFirstName = commandMap.get("pmtFirstName").toString().trim();
-		String pmtLastName = commandMap.get("pmtLastName").toString().trim();
-		commandMap.put("pmtFirstName", pmtFirstName);
-		commandMap.put("pmtLastName", pmtLastName);
+			// 2. 유효성 검증(추후에 유효성 검증 구현체 개발 시 변환)
+			boolean isValid = validation.matches((String) commandMap.get("pmtLoginId").toString(), "^[a-zA-Z]{1}[a-zA-Z0-9_-]{3,19}$")
+					|| validation.matches((String) commandMap.get("pmtLoginPw").toString(), "^(?=.*[\\{\\}\\[\\]\\/?.,;:|\\)*~`!^\\-_+<>@\\#$%&\\\\\\=\\(\\'\\\"])(?=.*[0-9])(?=.*[a-zA-Z])[\\{\\}\\[\\]\\/?.,;:|\\)*~`!^\\-_+<>@\\#$%&\\\\\\=\\(\\'\\\"0-9a-zA-Z]{8,255}$")
+					|| validation.isKorName((String) commandMap.get("pmtFirstName").toString(), (String) commandMap.get("pmtLastName").toString())
+					|| validation.iskorCellurar((String) commandMap.get("pmtCellularPhone").toString())
+					|| validation.isEmail((String) commandMap.get("pmtMail").toString());
+			if (!isValid) {
+				result.put("result", "42");
+				result.put("message", "INVALID");
+				return result;
+			}
 
-		// Promoter_tbl
-		pmtFacilitatorDAO.insertPromoter_tbl(commandMap);
-		pmtFacilitatorDAO.insertPromoterValue_tbl(commandMap);
-		// PromoterValueLog_tbl
-		commandMap.put("pvlRemark", "신규 회원가입");
-		pmtFacilitatorDAO.insertPromoterValueLog_tbl (commandMap);
+			// 3. 비밀번호 암호화, 암호화된 값이 String으로 반환
+			final AES128Lib aes128Lib = AES128Lib.getInstance();
+			String pmtLoginPw = (String) commandMap.get("pmtLoginPw");
+			byte[] encrypted = aes128Lib.encrypt("Mwav.net", "Mwav", pmtLoginPw);
 
+			commandMap.put("pmtLoginPw", AesEncryption.aesEncodeBuf(encrypted));
+			if (encrypted == null) {
+				result.put("result", "99");
+				result.put("message", "EXCEPTION");
+				return result;
+			}
+
+			// 4. 성별 코드 변경 및 이름의 공백 제거
+			String pmtGender = (String)commandMap.get("pmtGender");
+			commandMap.put("pmtGender", (pmtGender.equals("M") ? "0" :"1"));
+
+			String pmtFirstName = commandMap.get("pmtFirstName").toString().trim();
+			String pmtLastName = commandMap.get("pmtLastName").toString().trim();
+			commandMap.put("pmtFirstName", pmtFirstName);
+			commandMap.put("pmtLastName", pmtLastName);
+
+			// 5. Promoter_tbl insertPromoter_tbl
+			pmtFacilitatorDAO.insertPromoter_tbl(commandMap);
+
+			// 6. PromoterValue_tbl insertPromoterValue_tbl
+			pmtFacilitatorDAO.insertPromoterValue_tbl(commandMap);
+
+			// 7. PromoterValueLog_tbl
+			commandMap.put("pvlRemark", "신규 회원가입");
+			pmtFacilitatorDAO.insertPromoterValueLog_tbl (commandMap);
+
+			result.put("result", "1");
+			result.put("message", "SUCCESS");
+		} catch (
+		MailAuthenticationException e) {
+			e.printStackTrace();
+			result.put("result", "91");
+			result.put("message", "MAIL_EXCEPTION");
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+
+		return result;
 	}
+
 	public boolean selectOnePmtLoginIdCheck(String stfLoginId) throws Exception{
 		return pmtFacilitatorDAO.selectOnePmtLoginIdCheck(stfLoginId) == 0 ? true : false;
 	}

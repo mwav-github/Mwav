@@ -10,7 +10,7 @@ import net.promoter.vo.Promoter_VO;
 
 public interface PmtFacilitatorService {
 	/*========================================등록========================================*/
-	void insertPmtForm(CommandMap commandMap) throws Exception ;
+	Map<String, Object> insertPmtForm(CommandMap commandMap) throws Exception ;
 	boolean selectOnePmtLoginIdCheck(String stfLoginId) throws Exception;
 	/*========================================업데이트========================================*/
 	

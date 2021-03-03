@@ -1,40 +1,31 @@
 package net.bizLogin.promoter.controller;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import net.promoter.vo.Promoter_VO;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpUriRequest;
-import org.apache.http.client.methods.RequestBuilder;
-import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.log4j.Logger;
-import org.apache.maven.model.Model;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
-
 import net.bizLogin.promoter.service.PmtFacilitatorService;
 import net.bizLogin.promoter.vo.PmtFacilitatorSO;
 import net.bizLogin.promoter.vo.PmtFacilitatorVO;
 import net.common.common.CommandMap;
 import net.common.common.Status;
 import net.mwav.common.module.Common_Utils;
+import net.mwav.common.module.ValidationLib;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpUriRequest;
+import org.apache.http.client.methods.RequestBuilder;
+import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.log4j.Logger;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.util.Map;
 
 
 /**
@@ -100,17 +91,22 @@ public class PmtFacilitatorController {
 	 */
 	@RequestMapping(value = "/bizLogin/promoter/facilitator/pmtForm.mwav", method = RequestMethod.POST)
 	public ModelAndView pmtFacilitatorInsert(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		// 1. MaV의 View를 정의하여 성공시 로그인 페이지로 리다이렉트
 		ModelAndView mv = new ModelAndView("redirect:/Promoter/Facilitator/PmtLogin.mwav");
 
-		// PromoterValueLog_tbl 로그를 위해 최초 IP입력
+		// 2. PromoterValueLog_tbl 로그를 위해 최초 IP를 map에 등록
 		commandMap.put("pvlIpAddress", request.getRemoteAddr());
-		pmtFacilitatorService.insertPmtForm(commandMap);
 
+		// 3. 비즈니스 로직 실행
+		final Map<String, Object> pmtFormResult = pmtFacilitatorService.insertPmtForm(commandMap);
 
+		// 4. Model에 Attribute 등록
 		// TODO : 등록 후 mode, mm 쿼리스트링 수정필요
+		mv.addAllObjects(pmtFormResult);
 		mv.addObject("mm", "firms");
 		mv.addObject("mode", "m_stfForm");
 
+		// 5. 이메일 발송
 		final String uri = "http://localhost:8080/accounts/email/certify";
 		HttpClient client = HttpClientBuilder.create().build();
 		HttpUriRequest req = RequestBuilder.post()
@@ -121,13 +117,10 @@ public class PmtFacilitatorController {
 				.build();
 		HttpResponse response = client.execute(req);
 		int statusCode = response.getStatusLine().getStatusCode();
-//		if statusCode == 200 {
-//			return mv;
-//		}
+
 		return mv;
-
-
 	}
+
 	/*
         return
             true : 중복된 아이디가 없음으로 가입이 가능함
