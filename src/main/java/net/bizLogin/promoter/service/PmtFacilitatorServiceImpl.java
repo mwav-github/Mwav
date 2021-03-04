@@ -53,10 +53,10 @@ public class PmtFacilitatorServiceImpl implements PmtFacilitatorService {
 
 			// 2. 유효성 검증(추후에 유효성 검증 구현체 개발 시 변환)
 			boolean isValid = validation.matches((String) commandMap.get("pmtLoginId").toString(), "^[a-zA-Z]{1}[a-zA-Z0-9_-]{3,19}$")
-					|| validation.matches((String) commandMap.get("pmtLoginPw").toString(), "^(?=.*[\\{\\}\\[\\]\\/?.,;:|\\)*~`!^\\-_+<>@\\#$%&\\\\\\=\\(\\'\\\"])(?=.*[0-9])(?=.*[a-zA-Z])[\\{\\}\\[\\]\\/?.,;:|\\)*~`!^\\-_+<>@\\#$%&\\\\\\=\\(\\'\\\"0-9a-zA-Z]{8,255}$")
-					|| validation.isKorName((String) commandMap.get("pmtFirstName").toString(), (String) commandMap.get("pmtLastName").toString())
-					|| validation.iskorCellurar((String) commandMap.get("pmtCellularPhone").toString())
-					|| validation.isEmail((String) commandMap.get("pmtMail").toString());
+					&& validation.matches((String) commandMap.get("pmtLoginPw").toString(), "^(?=.*[\\{\\}\\[\\]\\/?.,;:|\\)*~`!^\\-_+<>@\\#$%&\\\\\\=\\(\\'\\\"])(?=.*[0-9])(?=.*[a-zA-Z])[\\{\\}\\[\\]\\/?.,;:|\\)*~`!^\\-_+<>@\\#$%&\\\\\\=\\(\\'\\\"0-9a-zA-Z]{8,255}$")
+					&& validation.isKorName((String) commandMap.get("pmtFirstName").toString(), (String) commandMap.get("pmtLastName").toString())
+					&& validation.iskorCellurar((String) commandMap.get("pmtCellularPhone").toString())
+					&& validation.isEmail((String) commandMap.get("pmtMail").toString());
 			if (!isValid) {
 				result.put("result", "42");
 				result.put("message", "INVALID");
