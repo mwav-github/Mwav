@@ -11,6 +11,7 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import static org.mockito.Matchers.any;
@@ -88,7 +89,7 @@ public class PmtFacilitatorServiceImplTest {
         // 멤버 로그인시 중복된 아이디가 1개 존재한다.
         when(dao.selectOnePmtLoginIdCheck(anyString())).thenReturn(1);
 
-        // 아이디 중복 테스트이기 때문에 insert 는 무시한다.
+        // 비즈니스 로직 테스트 이기 떄문에 insert 는 무시한다.
         doNothing().when(dao).insertPromoter_tbl(any());
         doNothing().when(dao).insertPromoterValue_tbl(any());
         doNothing().when(dao).insertPromoterValueLog_tbl(any());
@@ -119,15 +120,14 @@ public class PmtFacilitatorServiceImplTest {
     @Test
     public void insertPmtForm_INVALID() throws Exception {
         // given
-
-        // when
         // 입력받아온 pmtLoginId값이 한글이라 유효성조건에 일치하지않는 경우
         commandMap.put("pmtLoginId", "엠웨이브");
 
+        // when
         // 멤버 로그인시 중복된 아이디는 없다.(정상)
         when(dao.selectOnePmtLoginIdCheck(anyString())).thenReturn(0);
 
-        // 아이디 중복 테스트이기 때문에 insert 는 무시한다.
+        // 비즈니스 로직 테스트 이기 떄문에 insert 는 무시한다.
         doNothing().when(dao).insertPromoter_tbl(any());
         doNothing().when(dao).insertPromoterValue_tbl(any());
         doNothing().when(dao).insertPromoterValueLog_tbl(any());
@@ -140,5 +140,44 @@ public class PmtFacilitatorServiceImplTest {
         Assertions.assertThat(map)
                 .extracting("result", "message")
                 .containsOnly("42", "INVALID");
+    }
+
+    /**
+     * <pre>
+     * {@code
+     *      <p>멤버 회원가입이 정상적으로 진행됐을때를 확인</p>
+     * }
+     * </pre>
+     * @param
+     * @return void
+     * @throws IOException
+     * @see PmtFacilitatorService.insertPmtForm
+     * @since 1.0.4
+     * @version 1.0.0
+     */
+    @Test
+    public void insertPmtForm_SUCCESS() throws Exception {
+        // given
+        Map<String, Object> pmtMap = new HashMap<String, Object>();
+        pmtMap.put("pmtLoginId", (String) commandMap.get("pmtLoginId"));
+
+        // when
+        // 멤버 로그인시 중복된 아이디는 없다.(정상)
+        when(dao.selectOnePmtLoginIdCheck(anyString())).thenReturn(0);
+
+        // service를 실행하여 결과를 반환한다.
+        final Map<String, Object> map = service.insertPmtForm(this.commandMap);
+
+        // 비즈니스 로직 테스트 이기 떄문에 insert 는 무시한다.
+        doNothing().when(dao).insertPromoter_tbl(any());
+        doNothing().when(dao).insertPromoterValue_tbl(any());
+        doNothing().when(dao).insertPromoterValueLog_tbl(any());
+
+        // then
+        // 반환된 결과 map의 키와 값이 containsOnly에 들어가야한다.
+        // INSERT가 됐는지에 대한 검사는 DAO 단위 테스트에서 진행해야한다.
+        Assertions.assertThat(map)
+                .extracting("result", "message")
+                .containsOnly("1", "SUCCESS");
     }
 }
