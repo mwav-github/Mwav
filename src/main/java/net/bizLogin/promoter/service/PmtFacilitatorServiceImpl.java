@@ -45,7 +45,7 @@ public class PmtFacilitatorServiceImpl implements PmtFacilitatorService {
 		try{
 			ValidationLib validation = ValidationLib.getInstance();
 			// 1. 아이디 중복 검사
-			if (selectOnePmtLoginIdCheck((String) commandMap.get("mbrLoginId"))) {
+			if (!selectOnePmtLoginIdCheck((String) commandMap.get("pmtLoginId"))) {
 				result.put("result", "31");
 				result.put("message", "DUPLICATED");
 				return result;
