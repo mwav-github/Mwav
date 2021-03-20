@@ -52,6 +52,10 @@ public  class StatisticsServiceImpl implements StatisticsService {
 		// TODO Auto-generated method stub
 		statisticsDAO.insertErrorStatistics(log_vo);
 	}
+	@Override
+	public String isValidSessionId(String statistics_id){
+		return statisticsDAO.isValidSessionId(statistics_id);
+	}
 
 	
 

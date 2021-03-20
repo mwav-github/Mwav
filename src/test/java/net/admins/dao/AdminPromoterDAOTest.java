@@ -21,8 +21,17 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
-/*
-    Mybatis SQL Mapper 테스트
+/**
+ * <pre>
+ * {@code
+ *  <p>관리자페이지의 프로모터쪽 DB CRUD 테스트</p>
+ * }
+ * </pre>
+ * @author 공태현
+ * @since 1.0.1
+ * @version 1.0.0
+ * @see net.admins.dao.AdminPromoterDAO
+ *
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:config/spring/mwav-data.xml"
@@ -39,11 +48,38 @@ public class AdminPromoterDAOTest {
     @InjectMocks
     AdminPromoterDAO dao;
 
+    /**
+     * <pre>
+     * {@code
+     *      <p>@InjectMocks 어노테이션을 활성화시키기 위한 설정</p>
+     *      <p>AdminPromoterDAO 클래스 하위의 모든 테스크케이스들은 매번 실행시 마다 initTest 메소드를 실행하게 된다.</p>
+     * }
+     * </pre>
+     * @param
+     * @return void
+     * @throws
+     * @see
+     * @since 1.0.1
+     * @version 1.0.0
+     */
     @Before
     public void initTest() throws SQLException {
         MockitoAnnotations.initMocks(this);
     }
 
+    /**
+     * <pre>
+     * {@code
+     *      <p>프로모터 회원가입 INSERT 쿼리가 정상적으로 됐는지 테스트</p>
+     * }
+     * </pre>
+     * @param
+     * @return void
+     * @throws SQLException
+     * @see AdminPromoterDAO.insertPromoter_tbl
+     * @since 1.0.1
+     * @version 1.0.0
+     */
     @Test
     public void insertPromoter_tbl_프로모터_회원가입() throws SQLException {
         // given
@@ -70,6 +106,19 @@ public class AdminPromoterDAOTest {
         Assertions.assertThat(promoter_id).isNotNull();
     }
 
+    /**
+     * <pre>
+     * {@code
+     *      <p>프로모터의 전문분야 리스트 쿼리가 정상적으로 불러와지는지 테스트</p>
+     * }
+     * </pre>
+     * @param
+     * @return void
+     * @throws SQLException
+     * @see AdminPromoterDAO.insertPromoterSpecialty_tbl
+     * @since 1.0.1
+     * @version 1.0.0
+     */
     @Test
     public void insertPromoterSpecialty_tbl_프로모터_회원가입_전문분야() throws SQLException {
         // given
@@ -106,6 +155,19 @@ public class AdminPromoterDAOTest {
                                 );
     }
 
+    /**
+     * <pre>
+     * {@code
+     *      <p>프로모터 상세정보가 DB에서 정상적으로 불러와지는지 테스트</p>
+     * }
+     * </pre>
+     * @param
+     * @return void
+     * @throws
+     * @see AdminPromoterDAO.selectPmtView
+     * @since 1.0.1
+     * @version 1.0.0
+     */
     @Test
     public void selectPmtView_프로모터_조회() {
         // given
@@ -134,6 +196,19 @@ public class AdminPromoterDAOTest {
                 .isEqualTo("TestpmtLoginId");
     }
 
+    /**
+     * <pre>
+     * {@code
+     *      <p>프로모터 채널 데이터가 정상적으로 INSERT 됐는지 테스트</p>
+     * }
+     * </pre>
+     * @param
+     * @return void
+     * @throws
+     * @see AdminPromoterDAO.insertPromoterChannel_tbl
+     * @since 1.0.1
+     * @version 1.0.0
+     */
     @Test
     public void insertPromoterChannel_tbl() {
         // given

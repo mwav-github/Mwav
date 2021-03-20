@@ -39,6 +39,11 @@ public class StatisticsDAO extends AbstractDAO {
 		insert("statistics.insertErrorStatistics", log_vo);
 	}
 
+	public String isValidSessionId(String statistics_id) {
+		// TODO Auto-generated method stub
+		return (String) selectOne("statistics.isValidSessionId", statistics_id);
+	}
+
 
 
 }

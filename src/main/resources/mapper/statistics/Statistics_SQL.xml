@@ -17,6 +17,7 @@
 		<![CDATA[
 			INSERT INTO StatisticsLog_tbl(statistics_id, slStatLogDt, slPageName, slUrlHost, slUrlLocalPath, slQueryString, slInsertDt)
 			Values(#{statistics_id}, now(6), #{slPageName}, #{slUrlHost}, #{slUrlLocalPath}, #{slQueryString}, now())
+			ON DUPLICATE KEY UPDATE slPageName=#{slPageName}
 		]]>
 	</select>
 	
@@ -46,6 +47,18 @@
 		<![CDATA[
 	       select IFNULL(max(statistics_id+1) , 1000000000) AS statistics_id from Statistics_tbl 
 		]]>
-	</select>	
+	</select>
+
+	<select id="select" resultType="String">
+		<![CDATA[
+		select IFNULL(max(statistics_id+1) , 1000000000) AS statistics_id from Statistics_tbl
+		]]>
+	</select>
+
+	<select id="isValidSessionId" parameterType="string" resultType="String">
+		<![CDATA[
+		select count(1) from Statistics_tbl where statistics_id = #{statistics_id}
+		]]>
+	</select>
 </mapper>
 

@@ -33,6 +33,18 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+/**
+ * <pre>
+ * {@code
+ *  <p>이메일 인증 테스트</p>
+ * }
+ * </pre>
+ * @author 공태현
+ * @since 1.0.1
+ * @version 1.0.0
+ * @see net.common.common.AccountEmailCertify
+ *
+ */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:config/spring/mwav-mvc.xml"
                                     , "classpath:config/spring/mwav-data.xml"
@@ -58,6 +70,20 @@ public class AccountEmailCertifyTest {
     @Autowired
     SqlSessionTemplate sqlSession;
 
+    /**
+     * <pre>
+     * {@code
+     *      <p>AccountEmailCertify 컨트롤러의 핸들링을 MockMvc 객체로 생성하기 위한 setup</p>
+     *      <p>AccountEmailCertify 클래스 하위의 모든 테스크케이스들은 매번 실행시 마다 setup 메소드를 실행하게 된다.</p>
+     * }
+     * </pre>
+     * @param
+     * @return void
+     * @throws
+     * @see MockMvc
+     * @since 1.0.1
+     * @version 1.0.0
+     */
     @Before
     public void setup(){
         MockitoAnnotations.initMocks(this);
@@ -68,12 +94,19 @@ public class AccountEmailCertifyTest {
 
     /**
      * <pre>
+     * {@code
      *     이메일 테스트를 위해 이메일 발송를 Mock으로 대체해야하지만
      *     MailLib는 Bill Pugh Singleton 패턴으로 이루어져 있기 때문에
      *     inner class, private, final을 무시하는 reflection 기술로
      *     runtime에 MailLib.MailLibSingleton.instance의 값을 mock으로 수정함
+     * }
      * </pre>
+     * @param
+     * @return void
      * @throws Exception
+     * @see net.mwav.common.module.MailLib
+     * @since 1.0.1
+     * @version 1.0.0
      */
     private void makeMockMailLib() throws Exception {
         //구현된 mock객체를 미리 선언
@@ -100,6 +133,20 @@ public class AccountEmailCertifyTest {
         doNothing().when(mailLib).send(any(Message.class));
     }
 
+    /**
+     * <pre>
+     * {@code
+     *      <p>테스트를 위해 이메일 발송은 Mock으로 대체하여 무시하고
+     *          만약 이메일이 정상적으로 발송되었다면 발송여부를 JSON으로 반환되는지 확인</p>
+     * }
+     * </pre>
+     * @param
+     * @return void
+     * @throws Exception
+     * @see AccountEmailCertify.certify
+     * @since 1.0.1
+     * @version 1.0.0
+     */
     @Test
     public void certify_이메일_발송_및_이메일_확인_페이지로_포워딩() throws Exception {
         //given
@@ -121,6 +168,19 @@ public class AccountEmailCertifyTest {
                 .andExpect(content().string("{\"msg\":\"인증 메일을 발송하였습니다.\",\"status\":\"SEND_MAIL\"}"));
     }
 
+    /**
+     * <pre>
+     * {@code
+     *      <p>이메일를 수신받은 유저가 이메일인증을 클릭했을때 DB에 정상적으로 인증여부가 체크되는지 테스트</p>
+     * }
+     * </pre>
+     * @param
+     * @return void
+     * @throws Exception
+     * @see AccountEmailCertify.authority
+     * @since 1.0.1
+     * @version 1.0.0
+     */
     @Test
     public void authority_이메일_인증_후_인증완료_체크() throws Exception {
         //given
@@ -147,6 +207,19 @@ public class AccountEmailCertifyTest {
                 .andDo(print());
     }
 
+    /**
+     * <pre>
+     * {@code
+     *      <p>유저에게 이메일 인증 후 인증여부 확인 하는 테스트</p>
+     * }
+     * </pre>
+     * @param
+     * @return void
+     * @throws Exception
+     * @see AccountEmailCertify.authority
+     * @since 1.0.1
+     * @version 1.0.0
+     */
     @Ignore
     @Transactional
     @Test

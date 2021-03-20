@@ -70,7 +70,7 @@
 					</div>
 					<!-- form-group form-check .// -->
 					<div class="form-group">
-						<button type="submit" class="btn btn-primary btn-block btn-lg" alt="Sign in">로그인</button>
+						<a href="/Promoter/Facilitator/pmtFacilitatorLogin.mwav" type="submit" class="btn btn-primary btn-block btn-lg" alt="Sign in">로그인</a>
 					</div>
 
 					<div class="form-group">

@@ -107,7 +107,7 @@ public class EmailTemplates {
 		msg.setSubject(title);
 		msg.setText("");
 		msg.setFrom(new InternetAddress("webmaster@mwav.net"));
-		msg.setRecipients(MimeMessage.RecipientType.TO, InternetAddress.parse("jusung.kim@mwav.net"));
+		msg.setRecipients(MimeMessage.RecipientType.TO, InternetAddress.parse("webmaster@mwav.net"));
 
 		mailSender.send(msg);
 	}

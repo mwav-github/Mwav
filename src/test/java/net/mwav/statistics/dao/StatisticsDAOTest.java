@@ -19,6 +19,18 @@ import javax.sql.DataSource;
 import java.sql.SQLException;
 import java.util.Date;
 
+/**
+ * <pre>
+ * {@code
+ *  <p>통계 페이지 DB 연동 테스트</p>
+ * }
+ * </pre>
+ * @author 공태현
+ * @since 1.0.1
+ * @version 1.0.0
+ * @see net.mwav.statistics.dao.StatisticsDAOTest
+ *
+ */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:config/spring/mwav-data.xml"
         , "classpath:config/spring/mwav-mapper.xml"})
@@ -35,11 +47,38 @@ public class StatisticsDAOTest {
     @InjectMocks
     StatisticsDAO dao;
 
+    /**
+     * <pre>
+     * {@code
+     *      <p>@InjectMocks 어노테이션을 활성화시키기 위한 설정</p>
+     *      <p>StatisticsDAOTest 클래스 하위의 모든 테스크케이스들은 매번 실행시 마다 initTest 메소드를 실행하게 된다.</p>
+     * }
+     * </pre>
+     * @param
+     * @return void
+     * @throws SQLException
+     * @see org.springframework.test.web.servlet.MockMvc
+     * @since 1.0.1
+     * @version 1.0.0
+     */
     @Before
     public void initTest() throws SQLException {
         MockitoAnnotations.initMocks(this);
     }
 
+    /**
+     * <pre>
+     * {@code
+     *      <p>유저가 처음 접속했을때 INSERT 여부 테스트</p>
+     * }
+     * </pre>
+     * @param
+     * @return void
+     * @throws
+     * @see StatisticsDAO.insertFirstStatics
+     * @since 1.0.1
+     * @version 1.0.0
+     */
     @Test
     public void insertFirstStatics_유저가처음으로접속했을때삽입() {
         // given
@@ -66,6 +105,19 @@ public class StatisticsDAOTest {
         // select 쿼리가 없어...
     }
 
+    /**
+     * <pre>
+     * {@code
+     *      <p>이미 접속했었던 유저의 정보를 INSERT 테스트</p>
+     * }
+     * </pre>
+     * @param
+     * @return void
+     * @throws
+     * @see StatisticsDAO.insertStatistics
+     * @since 1.0.1
+     * @version 1.0.0
+     */
     @Test
     public void insertStatistics_접속했던유저의접속경로의정보를삽입() {
         // given
