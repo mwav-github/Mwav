@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+Disallow: /Admins/
+
+Sitemap: https://www.mwav.net/CustomerService/SiteMap/SiteMap.xml
