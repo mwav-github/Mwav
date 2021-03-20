@@ -108,7 +108,7 @@ public class MemberServiceImpl implements MemberService {
 			// 멤버에게 회원가입 성공 메일 발송
 			this.emailMemberSender(map);
 			// 관리자에게 멤버 회원가입 알림 메일 발송
-			this.emailAdminSender();
+			this.emailAdminSender(map);
 
 			result.put("result", "1");
 			result.put("message", "SUCCESS");
@@ -174,8 +174,9 @@ public class MemberServiceImpl implements MemberService {
 	 * 		net.mwav.common.module.MailLib
 	 * @since 1.0.1
 	 * @version 1.0.0
+	 * @param map 
 	 */
-	public void emailAdminSender() throws Exception {
+	public void emailAdminSender(Map<String, Object> map) throws Exception {
 		// 이메일 설정 불러오기
 		final String realPath = servletContext.getRealPath("/xConfig/mail.xml.config");
 		XmlLib xmlLib = XmlLib.getInstance();
@@ -183,10 +184,10 @@ public class MemberServiceImpl implements MemberService {
 
 		// Mail의 정보를 담음
 		Message msg = new MessageBuilder(config.getCollectAllFieldProp())
-				.setRecipient("webmaster@mwav.net")
+				.setRecipient(config.getFrom())
 				.setFrom(config.getFrom())
-				.setSubject("회원이 가입되었습니다.")
-				.setContent("").build();
+				.setSubject(map.get("mbrLoginId") + "회원이 가입되었습니다.")
+				.setContent("가입한 이메일은 " +map.get("mbrEmail") + "입니다.").build();
 
 		// 메일 발송
 		MailLib mailLib = MailLib.getInstance();

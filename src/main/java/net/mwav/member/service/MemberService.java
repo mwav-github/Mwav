@@ -70,5 +70,5 @@ public interface MemberService {
 
 	void emailMemberSender(Map<String, Object> map) throws Exception;
 
-	void emailAdminSender() throws Exception;
+	void emailAdminSender(Map<String, Object> map) throws Exception;
 }

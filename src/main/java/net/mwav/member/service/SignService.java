@@ -102,7 +102,7 @@ public class SignService {
 			// 멤버에게 회원가입 성공 메일 발송
 			memberService.emailMemberSender(signUpMap);
 			// 관리자에게 멤버 회원가입 알림 메일 발송
-			memberService.emailAdminSender();
+			memberService.emailAdminSender(snsMap);
 
 			result.put("result", "1");
 			result.put("message", "SUCCESS");
