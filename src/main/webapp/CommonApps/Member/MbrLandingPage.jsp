@@ -16,7 +16,7 @@ h1 {
 }
 
 .lead {
-	color: #DDCCEE;
+	color: #ffff;
 }
 
 /* Custom container */
@@ -43,15 +43,9 @@ h1 {
 	<div class="row">
 
 		<div class="col-lg-12 text-center v-center">
-
-			<h1>Hello</h1><%--추후 필요시 정보가져와서 보여주기  --%>
-			<p class="lead">Mwav 회원가입을 축하합니다.!</p>
-
-			<br>
-			<br>
-			<br>
-
-			<form class="col-lg-12">
+			<br><br><h1 class ="lead">Mwav 회원가입을 축하합니다.!</h1>
+			<h2 class ="lead">항상 고객을 먼저 생각하는 Mwav가 되도록 노력하겠습니다. </h2><br>
+			<!-- <form class="col-lg-12">
 				<div class="input-group"
 					style="width: 340px; text-align: center; margin: 0 auto;">
 					<input class="form-control input-lg"
@@ -60,16 +54,15 @@ h1 {
 						class="input-group-btn"><button
 							class="btn btn-lg btn-primary" type="button">OK</button></span>
 				</div>
-			</form>
+			</form> -->
 			<form class="col-lg-12 pdt1_5">
 				<div class="input-group"
 					style="width: 340px; text-align: center; margin: 0 auto;">
 					<span class="input-group-btn"><button
-							class="btn btn-lg btn-primary" type="button">More
-							Registartion</button></span> <span class="input-group-btn"><button
-							class="btn btn-lg btn-primary" type="button" onclick="location.href='/'" >Main Page</button></span>
+							class="btn btn-lg btn-primary btn-block"" onclick="location.href='/MasterPage.mwav?mode=SMbrLogin&returnUrl=/login/post.mwav'" type="button">로그인</button></span> <span class="input-group-btn"><button
+							class="btn btn-lg btn-default btn-block"" type="button" onclick="location.href='/'" >홈으로</button></span>
 				</div>
-			</form>
+			</form> 
 		</div>
 
 	</div>

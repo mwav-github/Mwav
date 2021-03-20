@@ -3,22 +3,28 @@ package net.mwav.member.service;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.inject.Inject;
+import javax.mail.Message;
+import javax.servlet.ServletContext;
 
+import net.mwav.common.module.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailAuthenticationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import net.mwav.common.module.EmailSender;
 import net.mwav.member.dao.MemberDAO;
+import org.springframework.ui.velocity.VelocityEngineUtils;
+import org.springframework.web.servlet.view.velocity.VelocityConfigurer;
 
 @Service
 public class SignService {
 	@Inject
 	MemberDAO memberDao;
 
-	@Inject
-	EmailSender emailSender;
+	@Resource(name = "memberService")
+	private MemberService memberService;
 
 	/**
 	 * 
@@ -92,7 +98,12 @@ public class SignService {
 
 			memberDao.insertSnsForm(snsMap);
 
-			emailSender.sendRegistrationEmail(signUpMap);
+//			emailSender.sendRegistrationEmail(signUpMap);
+			// 멤버에게 회원가입 성공 메일 발송
+			memberService.emailMemberSender(signUpMap);
+			// 관리자에게 멤버 회원가입 알림 메일 발송
+			memberService.emailAdminSender(snsMap);
+
 			result.put("result", "1");
 			result.put("message", "SUCCESS");
 

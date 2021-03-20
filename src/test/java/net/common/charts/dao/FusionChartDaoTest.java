@@ -20,6 +20,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * <pre>
+ * {@code
+ *  <p>퓨전차트 DB CURD 테스트</p>
+ * }
+ * </pre>
+ * @author 공태현
+ * @since 1.0.1
+ * @version 1.0.0
+ * @see net.common.charts.dao.FusionChartDao
+ *
+ */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:config/spring/mwav-data.xml"
         , "classpath:config/spring/mwav-mapper.xml"})
@@ -36,11 +48,38 @@ public class FusionChartDaoTest {
     @InjectMocks
     FusionChartDao dao;
 
+    /**
+     * <pre>
+     * {@code
+     *      <p>@InjectMocks 어노테이션을 활성화시키기 위한 설정</p>
+     *      <p>FusionChartDao 클래스 하위의 모든 테스크케이스들은 매번 실행시 마다 initTest 메소드를 실행하게 된다.</p>
+     * }
+     * </pre>
+     * @param
+     * @return void
+     * @throws
+     * @see
+     * @since 1.0.1
+     * @version 1.0.0
+     */
     @Before
     public void initTest() throws SQLException {
         MockitoAnnotations.initMocks(this);
     }
 
+    /**
+     * <pre>
+     * {@code
+     *      <p>퓨전차트 주간사용자 접속 차트 조회 쿼리 테스트</p>
+     * }
+     * </pre>
+     * @param
+     * @return void
+     * @throws
+     * @see FusionChartDao.selectWeeklyUsersList
+     * @since 1.0.1
+     * @version 1.0.0
+     */
     @Test
     public void selectWeeklyUsersList_주간사용자접속차트조회() {
         // given
@@ -52,6 +91,19 @@ public class FusionChartDaoTest {
         Assertions.assertThat(list).isNotNull();
     }
 
+    /**
+     * <pre>
+     * {@code
+     *      <p>퓨전차트 최상위 10개의 쿼리 조회 테스트</p>
+     * }
+     * </pre>
+     * @param
+     * @return void
+     * @throws
+     * @see FusionChartDao.selectTop10PageList
+     * @since 1.0.1
+     * @version 1.0.0
+     */
     @Test
     public void selectTop10PageList() {
         // given
@@ -64,6 +116,19 @@ public class FusionChartDaoTest {
 
     }
 
+    /**
+     * <pre>
+     * {@code
+     *      <p>퓨전차트 쿼리 조회 테스트</p>
+     * }
+     * </pre>
+     * @param
+     * @return void
+     * @throws
+     * @see FusionChartDao.selectClientScreenSizeList
+     * @since 1.0.1
+     * @version 1.0.0
+     */
     @Test
     public void selectClientScreenSizeList() {
         // given
