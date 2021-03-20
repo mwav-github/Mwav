@@ -6,7 +6,18 @@
 .classpath
 bin/
 *.ucls
+web/
+
+### macOS ###
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
+
+### Jetbrain ### 
+.idea/**
+
+
 
 # Intellij gitIgnore Setting
-.idea/**
 mwav.iml
