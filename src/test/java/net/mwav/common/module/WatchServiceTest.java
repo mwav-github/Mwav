@@ -35,6 +35,8 @@ public class WatchServiceTest {
 		// 해당 디렉토리 경로에 와치서비스와 이벤트 등록
 		path.register(watchService, StandardWatchEventKinds.ENTRY_MODIFY);
 
+		System.out.println("수정");
+		
 		while (true) {
 			try {
 				watchKey = watchService.take();// 이벤트가 오길 대기(Blocking)

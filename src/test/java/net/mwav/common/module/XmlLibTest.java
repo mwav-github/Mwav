@@ -17,6 +17,8 @@ public class XmlLibTest {
 		GeneralConfig generalConfig = (GeneralConfig) XmlLib.getInstance().unmarshal(path, GeneralConfig.class);
 		List<CompanyInfo> list = new ArrayList<CompanyInfo>();
 
+		System.out.println("수정");
+		
 		Map<String, CompanyInfo> map = new HashMap<>();
 
 		map.put("general", generalConfig.getCompanyInfo());
