@@ -1,6 +1,7 @@
 package net.bizLogin.promoter.service;
 
 import net.bizLogin.promoter.dao.PmtFacilitatorDAO;
+import net.bizLogin.promoter.vo.BizPromoter_VO;
 import net.bizLogin.promoter.vo.PmtFacilitatorSO;
 import net.bizLogin.promoter.vo.PmtFacilitatorVO;
 import net.common.common.CommandMap;
@@ -131,8 +132,22 @@ public class PmtFacilitatorServiceImpl implements PmtFacilitatorService {
 		return check; // return VO를 해준다..
 	}
 	@Override
-	public PmtFacilitatorVO selectPmtFacLogin(Map<String, Object> map) throws Exception{
-		return  (PmtFacilitatorVO)pmtFacilitatorDAO.selectPmtLogin(map);
+	public BizPromoter_VO selectBizPmtLogin(Map<String, Object> map) throws Exception{
+
+		// 1. 유효성 검증, 비정상적인 값이 들어오면 null로 반환
+		if( ((String) map.get("pmtLoginPw")).length()<3 || ((String) map.get("pmtLoginId")).length()<3 ){
+			return null;
+		}
+
+		// 2. 로그인 확인하기 위해 비밀번호 암호화
+		final AES128Lib aes128Lib = AES128Lib.getInstance();
+		String pmtLoginPw = (String) map.get("pmtLoginPw");
+		byte[] encrypted = aes128Lib.encrypt("Mwav.net", "Mwav", pmtLoginPw);
+
+		// 3. DB에서 pmtLoginId & pmtLoginPw 이 일치하는 로우를 가져옴
+		final BizPromoter_VO bizPromoterVo = pmtFacilitatorDAO.selectBizPmtLogin(map);
+
+		return  bizPromoterVo;
 	}
 
 }

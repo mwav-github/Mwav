@@ -228,5 +228,17 @@
 		WHERE promoter_id = (SELECT promoter_id FROM Promoter_tbl WHERE pmtLoginId = #{promoter_id})
 		]]>
 	</update>
+
+	<!-- BizLogin Promoter Login -->
+	<select id="selectBizPmtLogin" parameterType="hashmap" resultType="net.bizLogin.promoter.vo.BizPromoter_VO">
+		<![CDATA[
+		SELECT promoter_id, pmtLoginId, pmtLoginPw, pmtGender, pmtFirstName, pmtLastName, pmtMiddleName, pmtNickName
+			 , pmtMail, pmtPhone, pmtCellularPhone, pmtAddrFlag, pmtZipcode, pmtAddress, pmtAddressDetail, pmtJobType, pmtMarried, pmtMark, pmtRcmderId
+		FROM  Promoter_tbl
+		WHERE pmtLoginId = #{pmtLoginId}
+		AND   pmtLoginPw = #{pmtLoginPw}
+		]]>
+	</select>
+
 </mapper>
 

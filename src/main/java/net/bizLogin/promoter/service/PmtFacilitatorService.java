@@ -1,5 +1,6 @@
 package net.bizLogin.promoter.service;
 
+import net.bizLogin.promoter.vo.BizPromoter_VO;
 import net.common.common.CommandMap;
 
 import java.util.Map;
@@ -17,5 +18,5 @@ public interface PmtFacilitatorService {
 	public PmtFacilitatorVO checkSocialJoin(PmtFacilitatorSO vo);
 	
 	public PmtFacilitatorVO joinSocialLogin(PmtFacilitatorSO vo);
-	PmtFacilitatorVO selectPmtFacLogin(Map<String, Object> map) throws Exception;
+	BizPromoter_VO selectBizPmtLogin(Map<String, Object> map) throws Exception;
 }

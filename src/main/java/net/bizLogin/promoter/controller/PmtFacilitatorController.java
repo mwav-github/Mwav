@@ -1,6 +1,7 @@
 package net.bizLogin.promoter.controller;
 
 import net.bizLogin.promoter.service.PmtFacilitatorService;
+import net.bizLogin.promoter.vo.BizPromoter_VO;
 import net.bizLogin.promoter.vo.PmtFacilitatorSO;
 import net.bizLogin.promoter.vo.PmtFacilitatorVO;
 import net.common.common.CommandMap;
@@ -56,27 +57,37 @@ public class PmtFacilitatorController {
 	
 	Common_Utils cu = new Common_Utils();
 
-	//로그인
-	@RequestMapping(value = "/Promoter/Facilitator/pmtFacilitatorLogin.mwav",method = RequestMethod.POST)
-	public ModelAndView selectLoginPro(CommandMap commandMap, HttpServletRequest request, RedirectAttributes rtr) throws Exception {
-		ModelAndView mv = new ModelAndView("redirect:/Promoter/Index");
-		PmtFacilitatorVO pmtFacilitator = null;
-		Map<String, Object> pmt = commandMap.getMap();
-		if( ((String) pmt.get("pmtLoginPw")).length()<3 || ((String) pmt.get("pmtLoginId")).length()<3 ){
-			rtr.addFlashAttribute("msg", "비밀번호와 아이디를 확인해주세요");
-			return mv;
-		}
-		pmtFacilitator = (PmtFacilitatorVO)pmtFacilitatorService.selectPmtFacLogin(commandMap.getMap());
-		if(pmtFacilitator==null){
+	/**
+	 * <pre>
+	 *     	프로모터 로그인 핸들러
+	 * </pre>
+	 * @param CommandMap
+	 * @param param2
+	 * @return return 값에 대한 설명(필수)
+	 * @throws Exception 발생하는 예외에 대한 설명(필수)
+	 * @see
+	 * @since 21st/May/2021
+	 * @version v1.0.0
+	 */
+	@RequestMapping(value = "/bizLogin/promoter/facilitator/pmtFacilitatorLogin.mwav",method = RequestMethod.POST)
+	public ModelAndView selectBizPmtLogin(CommandMap commandMap, HttpServletRequest request, RedirectAttributes rtr) throws Exception {
+		ModelAndView mv = new ModelAndView();
+
+		// Promoter 로그인 성공시 값을 가져옴
+		BizPromoter_VO bizPromoterVo = pmtFacilitatorService.selectBizPmtLogin(commandMap.getMap());
+
+		if(bizPromoterVo == null){
 			log.info("프로모터 로그인 실패");
+			mv.setViewName("redirect:/Promoter/Facilitator/PmtLogin.mwav");
 			rtr.addFlashAttribute("msg", "비밀번호와 아이디를 확인해주세요");
-		}
-		else {
+		}else {
 			log.info("프로모터 로그인 성공");
-			request.getSession().setAttribute("promoterId",pmtFacilitator.getPromoter_id() );
+			mv.setViewName("redirect:/Promoter/Index");
+			request.getSession().setAttribute("bizPromoter", bizPromoterVo);
 		}
 		return mv;
 	}
+
 	/**
 	 * 메서드에 대한 설명
 	 * <pre>

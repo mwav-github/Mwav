@@ -37,27 +37,19 @@
 		<!-- ============================ COMPONENT LOGIN   ================================= -->
 		<div class="card mx-auto" style="max-width: 380px; margin-top: 50px;">
 			<div class="card-body">
-				<!-- <h4 class="card-title mb-4">Sign in</h4> -->
-				<form>
+				<form action="/bizLogin/promoter/facilitator/pmtFacilitatorLogin.mwav" method="post">
 					<div class="img-wrap mb-4">
 						<a class="btn-overlay" href="javascript:loginWithKakao()">
 						<img
 							src="https://developers.kakao.com/tool/resource/static/img/button/login/full/ko/kakao_login_large_wide.png">
 						</a>
 					</div>
-					<!-- <a href="#" class="btn btn-facebook btn-block mb-2"> <i
-						class="fab fa-facebook-f"></i> &nbsp Sign in with Facebook
-					</a> <a href="#" class="btn btn-google btn-block mb-4"> <i
-						class="fab fa-google"></i> &nbsp Sign in with Google
-					</a> -->
 					<div class="form-group">
-						<input name="" class="form-control" placeholder="Username"
-							type="text">
+						<input name="pmtLoginId" class="form-control" placeholder="Username" type="text">
 					</div>
 					<!-- form-group// -->
 					<div class="form-group">
-						<input name="" class="form-control" placeholder="Password"
-							type="password">
+						<input name="pmtLoginPw" class="form-control" placeholder="Password" type="password">
 					</div>
 					<!-- form-group// -->
 
@@ -70,7 +62,7 @@
 					</div>
 					<!-- form-group form-check .// -->
 					<div class="form-group">
-						<a href="/Promoter/Facilitator/pmtFacilitatorLogin.mwav" type="submit" class="btn btn-primary btn-block btn-lg" alt="Sign in">로그인</a>
+						<button type="submit" class="btn btn-primary btn-block btn-lg" alt="Sign in">로그인</button>
 					</div>
 
 					<div class="form-group">
