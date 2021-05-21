@@ -138,4 +138,17 @@ function loginWithKakao() {
 		},
 	})
 }
+
+// 해당 page에 접근 시 msg 가 있다면 alert 으로 출력
+function controlDisplay() {
+	var msg = '${requestScope.msg}';
+	if(msg.length > 0 ){
+		alert(msg);
+	}
+}
+
+// document.Ready
+$(function() {
+	controlDisplay();
+});
 </script>

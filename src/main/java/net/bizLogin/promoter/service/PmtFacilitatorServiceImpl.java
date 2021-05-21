@@ -143,6 +143,7 @@ public class PmtFacilitatorServiceImpl implements PmtFacilitatorService {
 		final AES128Lib aes128Lib = AES128Lib.getInstance();
 		String pmtLoginPw = (String) map.get("pmtLoginPw");
 		byte[] encrypted = aes128Lib.encrypt("Mwav.net", "Mwav", pmtLoginPw);
+		map.put("pmtLoginPw", AesEncryption.aesEncodeBuf(encrypted));
 
 		// 3. DB에서 pmtLoginId & pmtLoginPw 이 일치하는 로우를 가져옴
 		final BizPromoter_VO bizPromoterVo = pmtFacilitatorDAO.selectBizPmtLogin(map);

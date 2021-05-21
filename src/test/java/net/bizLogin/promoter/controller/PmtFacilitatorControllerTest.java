@@ -18,8 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class PmtFacilitatorControllerTest {
@@ -56,6 +55,7 @@ public class PmtFacilitatorControllerTest {
         // 테스트는 간단하게하여 리다이렉션 처리가 정상적으로 이루어지는지 확인함
         mockMvc.perform(post("/bizLogin/promoter/facilitator/pmtFacilitatorLogin.mwav"))
                 .andDo(print())
+                .andExpect(flash().attributeExists("msg"))
                 .andExpect(status().is(302));
     }
 }
