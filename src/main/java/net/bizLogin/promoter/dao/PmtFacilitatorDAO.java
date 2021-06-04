@@ -41,5 +41,9 @@ public class PmtFacilitatorDAO extends AbstractDAO{
     public BizPromoter_VO selectBizPmtLogin(Map<String, Object> map){
         return (BizPromoter_VO)selectOne("promoter.selectBizPmtLogin",map);
     }
+
+    public boolean selectChkEmailYN(String pmtLoginId) {
+        return (boolean) selectOne("promoter.selectChkEmailYN",pmtLoginId);
+    }
 }
 

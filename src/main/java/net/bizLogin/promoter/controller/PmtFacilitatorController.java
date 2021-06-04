@@ -76,6 +76,11 @@ public class PmtFacilitatorController {
 		// Promoter 로그인 성공시 값을 가져옴
 		BizPromoter_VO bizPromoterVo = pmtFacilitatorService.selectBizPmtLogin(commandMap.getMap());
 
+		// 로그인한 사용자가 이메일을 인증했는지 검증
+		if(bizPromoterVo.isPmtCertifyDt()){
+			boolean chkEmailYN = pmtFacilitatorService.selectChkEmailYN(bizPromoterVo.getPmtLoginId());
+		}
+
 		if(bizPromoterVo == null){
 			log.info("프로모터 로그인 실패");
 			mv.setViewName("redirect:/Promoter/Facilitator/PmtLogin.mwav");

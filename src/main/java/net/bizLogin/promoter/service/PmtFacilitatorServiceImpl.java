@@ -151,4 +151,9 @@ public class PmtFacilitatorServiceImpl implements PmtFacilitatorService {
 		return  bizPromoterVo;
 	}
 
+	@Override
+	public boolean selectChkEmailYN(String pmtLoginId) {
+		return pmtFacilitatorDAO.selectChkEmailYN(pmtLoginId);
+	}
+
 }

@@ -240,5 +240,17 @@
 		]]>
 	</select>
 
+	<!-- BizLogin Promoter Email Certify Check -->
+	<select id="selectChkEmailYN" parameterType="string" resultType="boolean">
+		<![CDATA[
+		SELECT IF(T2.pmtCertifyDt IS NOT NULL, 'Y', 'N') pmtCertifyDt
+		FROM Promoter_tbl T1
+			JOIN PromoterValue_tbl T2
+				ON T1.promoter_id = T2.promoter_id
+		WHERE 1=1
+		AND   T1.pmtLoginId = #{pmtLoginId}
+		]]>
+	</select>
+
 </mapper>
 

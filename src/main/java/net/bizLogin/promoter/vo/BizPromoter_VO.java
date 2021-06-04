@@ -22,29 +22,14 @@ public class BizPromoter_VO {
     private String pmtMark;
     private String pmtRcmderId;
 
-    public BizPromoter_VO() {
+    private boolean pmtCertifyDt;
+
+    public boolean isPmtCertifyDt() {
+        return pmtCertifyDt;
     }
 
-    public BizPromoter_VO(String promoter_id, String pmtLoginId, String pmtLoginPw, String pmtGender, String pmtFirstName, String pmtLastName, String pmtMiddleName, String pmtNickName, String pmtMail, String pmtPhone, String pmtCellularPhone, String pmtAddrFlag, String pmtZipcode, String pmtAddress, String pmtAddressDetail, String pmtJobType, String pmtMarried, String pmtMark, String pmtRcmderId) {
-        this.promoter_id = promoter_id;
-        this.pmtLoginId = pmtLoginId;
-        this.pmtLoginPw = pmtLoginPw;
-        this.pmtGender = pmtGender;
-        this.pmtFirstName = pmtFirstName;
-        this.pmtLastName = pmtLastName;
-        this.pmtMiddleName = pmtMiddleName;
-        this.pmtNickName = pmtNickName;
-        this.pmtMail = pmtMail;
-        this.pmtPhone = pmtPhone;
-        this.pmtCellularPhone = pmtCellularPhone;
-        this.pmtAddrFlag = pmtAddrFlag;
-        this.pmtZipcode = pmtZipcode;
-        this.pmtAddress = pmtAddress;
-        this.pmtAddressDetail = pmtAddressDetail;
-        this.pmtJobType = pmtJobType;
-        this.pmtMarried = pmtMarried;
-        this.pmtMark = pmtMark;
-        this.pmtRcmderId = pmtRcmderId;
+    public void setPmtCertifyDt(boolean pmtCertifyDt) {
+        this.pmtCertifyDt = pmtCertifyDt;
     }
 
     public String getPromoter_id() {
