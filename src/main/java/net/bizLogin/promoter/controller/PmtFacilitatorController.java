@@ -96,7 +96,11 @@ public class PmtFacilitatorController {
 				// 이메일 인증이 안되어있는 사용자라면 인증 페이지로 redirect
 				log.info("이메일 인증되지 않은 사용자 로그인");
 				mv.setViewName("redirect:/Promoter/Facilitator/PmtLogin.mwav");
-				rtr.addFlashAttribute("msg", "이메일 인증이 필요합니다.\n입력하신 이메일로 인증메일 발송하였습니다.");
+				rtr.addFlashAttribute("msg", "이메일 인증이 필요합니다.\\n입력하신 이메일로 인증메일 발송하였습니다.");
+
+				// 이메일 발송
+				String serverUrl = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
+				boolean isOk = pmtFacilitatorService.sendCertifyMail(serverUrl, bizPromoterVo.getPmtMail(), bizPromoterVo.getPmtLoginId());
 
 			}
 
@@ -134,16 +138,8 @@ public class PmtFacilitatorController {
 		mv.addObject("mode", "m_stfForm");
 
 		// 5. 이메일 발송
-		final String uri = "http://localhost:8080/accounts/email/certify";
-		HttpClient client = HttpClientBuilder.create().build();
-		HttpUriRequest req = RequestBuilder.post()
-				.setUri(uri)
-				.addParameter("email", (String)commandMap.get("pmtMail"))
-				.addParameter("account","pmt")
-				.addParameter("id",(String)commandMap.get("pmtLoginId"))
-				.build();
-		HttpResponse response = client.execute(req);
-		int statusCode = response.getStatusLine().getStatusCode();
+		String serverUrl = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
+		boolean isOk = pmtFacilitatorService.sendCertifyMail(serverUrl, (String)commandMap.get("pmtMail"), (String)commandMap.get("pmtLoginId"));
 
 		return mv;
 	}

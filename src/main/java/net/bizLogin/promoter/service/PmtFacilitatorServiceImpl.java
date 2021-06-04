@@ -8,11 +8,17 @@ import net.common.common.CommandMap;
 import net.mwav.common.module.AesEncryption;
 import net.mwav.common.module.ValidationLib;
 import net.mwav.framework.cryption.AES128Lib;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpUriRequest;
+import org.apache.http.client.methods.RequestBuilder;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.springframework.mail.MailAuthenticationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -149,6 +155,25 @@ public class PmtFacilitatorServiceImpl implements PmtFacilitatorService {
 		BizPromoter_VO bizPromoterVo = pmtFacilitatorDAO.selectBizPmtLogin(map);
 
 		return  bizPromoterVo;
+	}
+
+	@Override
+	public boolean sendCertifyMail(String serverUrl, String pmtMail, String pmtLoginId) throws IOException {
+
+		// 이메일 발송
+		final String uri = serverUrl + "/accounts/email/certify";
+		HttpClient client = HttpClientBuilder.create().build();
+		HttpUriRequest req = RequestBuilder.post()
+				.setUri(uri)
+				.addParameter("email", pmtMail)
+				.addParameter("account","pmt")
+				.addParameter("id", pmtLoginId)
+				.build();
+		HttpResponse response = client.execute(req);
+		int statusCode = response.getStatusLine().getStatusCode();
+		System.out.println(statusCode);
+
+		return false;
 	}
 
 }
