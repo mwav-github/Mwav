@@ -8,6 +8,7 @@ import net.common.dao.AbstractDAO;
 import net.promoter.vo.Promoter_VO;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
 import java.util.Map;
 
 
@@ -44,6 +45,10 @@ public class PmtFacilitatorDAO extends AbstractDAO{
 
     public String selectOnePmtId(String pmtLoginId) {
         return (String)selectOne("promoter.selectOnePmtId", pmtLoginId);
+    }
+
+    public int updatePmtEmail(Map<String, String> param) {
+        return (int) selectOne("promoter.updatePmtEmail", param);
     }
 }
 

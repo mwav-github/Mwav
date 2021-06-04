@@ -23,4 +23,6 @@ public interface PmtFacilitatorService {
 	boolean sendCertifyMail(String serverUrl, String pmtMail, String pmtLoginId) throws IOException;
 
     String selectOnePmtId(String pmtLoginId);
+
+	int updatePmtEmail(String changeEmail, String promoter_id);
 }

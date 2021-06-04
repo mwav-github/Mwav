@@ -181,4 +181,13 @@ public class PmtFacilitatorServiceImpl implements PmtFacilitatorService {
 		return pmtFacilitatorDAO.selectOnePmtId(pmtLoginId);
 	}
 
+	@Override
+	public int updatePmtEmail(String changeEmail, String promoter_id) {
+		Map<String, String> param = new HashMap<String, String>();
+		param.put("changeEmail", changeEmail);
+		param.put("promoter_id", promoter_id);
+
+		return pmtFacilitatorDAO.updatePmtEmail(param);
+	}
+
 }

@@ -23,6 +23,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.Map;
 
 
@@ -120,18 +121,28 @@ public class PmtFacilitatorController {
 	public ModelAndView certifyEmail(@RequestParam(required = true) String initEmail
 								   , @RequestParam(required = true) String changeEmail
 								   , @RequestParam(required = true) String promoter_id
-								   , HttpServletRequest request){
+								   , HttpServletRequest request
+								   , RedirectAttributes rtr) throws IOException {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("redirect:/Promoter/Facilitator/PmtLogin.mwav");
 
 		// 초기 이메일과 변경된 이메일이 다르면, 변경된 이메일 DB 값을 수정한다.
 		if(initEmail.equalsIgnoreCase(changeEmail)){
-			// TODO: UPDATE PROMOTER EMAIL
+			// UPDATE PROMOTER EMAIL
+			pmtFacilitatorService.updatePmtEmail(changeEmail, promoter_id);
 		}
 
-		// TODO: 이메일 발송, pmtLoginId 로 인증하면 SNS 로그인쪽은 어떡함?
-//		String serverUrl = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
-//		boolean isOk = pmtFacilitatorService.sendCertifyMail(serverUrl, changeEmail, bizPromoterVo.getPmtLoginId());
+		// 입력된 이메일로 인증 메일을 발송한다.
+		String serverUrl = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
+		boolean isOk = pmtFacilitatorService.sendCertifyMail(serverUrl, changeEmail, promoter_id);
+
+		// 성공적으로 메일을 발송했다면 msg로 확인 하라고 알림
+		if(isOk){
+			mv.setViewName("redirect:/Promoter/Facilitator/PmtLogin.mwav");
+			rtr.addAttribute("msg", "인증 메일을 발송하였습니다.\\n인증완료 후 다시 로그인해주세요.");
+		}else{
+			mv.setViewName("redirect:/Promoter/Facilitator/PmtCertifyPage.mwav");
+			rtr.addAttribute("msg", "메일 발송 오류입니다.\\n다시 시도해주세요.");
+		}
 
 		return mv;
 	}

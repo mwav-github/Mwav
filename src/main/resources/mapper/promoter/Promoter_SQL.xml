@@ -252,5 +252,12 @@
 		]]>
 	</select>
 
+	<update id="updatePmtEmail" parameterType="hashmap">
+		<![CDATA[
+		UPDATE Promoter_tbl SET pmtMail = #{changeEmail}
+		WHERE promoter_id = #{promoter_id}
+		]]>
+	</update>
+
 </mapper>
 
