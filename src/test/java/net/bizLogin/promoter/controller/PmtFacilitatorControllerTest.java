@@ -15,11 +15,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.flash;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(MockitoJUnitRunner.class)
 public class PmtFacilitatorControllerTest {
@@ -28,7 +29,7 @@ public class PmtFacilitatorControllerTest {
     PmtFacilitatorController controller;
 
     @Mock
-    PmtFacilitatorService service;
+    PmtFacilitatorService pmtFacilitatorService;
 
     MockMvc mockMvc;
 
@@ -48,9 +49,10 @@ public class PmtFacilitatorControllerTest {
         BizPromoter_VO bizPromoterVo = new BizPromoter_VO();
         bizPromoterVo.setPmtLoginId((String) map.get("pmtLoginId"));
         bizPromoterVo.setPmtLoginPw((String) map.get("pmtLoginPw"));
+        bizPromoterVo.setPmtCertifyDt(null);
 
         // when
-        when(service.selectBizPmtLogin(map)).thenReturn(bizPromoterVo);
+        when(pmtFacilitatorService.selectBizPmtLogin(any())).thenReturn(bizPromoterVo);
 
         // then
         // 테스트는 간단하게하여 리다이렉션 처리가 정상적으로 이루어지는지 확인함

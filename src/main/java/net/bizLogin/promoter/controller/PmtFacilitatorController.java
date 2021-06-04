@@ -15,10 +15,7 @@ import org.apache.http.client.methods.RequestBuilder;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -74,7 +71,7 @@ public class PmtFacilitatorController {
 		ModelAndView mv = new ModelAndView();
 		boolean chkEmailYN = false;
 
-				// Promoter 로그인 성공시 값을 가져옴
+		// Promoter 로그인 성공시 값을 가져옴
 		BizPromoter_VO bizPromoterVo = pmtFacilitatorService.selectBizPmtLogin(commandMap.getMap());
 
 		// 로그인 성공여부에 따라 페이지및 statusCode, msg 변경
@@ -95,16 +92,47 @@ public class PmtFacilitatorController {
 			}else{
 				// 이메일 인증이 안되어있는 사용자라면 인증 페이지로 redirect
 				log.info("이메일 인증되지 않은 사용자 로그인");
-				mv.setViewName("redirect:/Promoter/Facilitator/PmtLogin.mwav");
-				rtr.addFlashAttribute("msg", "이메일 인증이 필요합니다.\\n입력하신 이메일로 인증메일 발송하였습니다.");
-
-				// 이메일 발송
-				String serverUrl = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
-				boolean isOk = pmtFacilitatorService.sendCertifyMail(serverUrl, bizPromoterVo.getPmtMail(), bizPromoterVo.getPmtLoginId());
+				mv.setViewName("redirect:/Promoter/Facilitator/PmtCertifyPage.mwav");
+				rtr.addFlashAttribute("msg", "이메일 인증이 필요합니다.");
+				rtr.addFlashAttribute("promoter_id", bizPromoterVo.getPromoter_id());
+				rtr.addFlashAttribute("pmtMail", bizPromoterVo.getPmtMail());
 
 			}
 
 		}
+		return mv;
+	}
+
+	/**
+	 * <pre>
+	 *     	프로모터 이메일 인증
+	 * </pre>
+	 * @param initEmail 회원가입시 사용된 이메일
+	 * @param changeEmail 변경할 이메일
+	 * @param promoter_id 프로모터 PK
+	 * @return ModelAndView
+	 * @throws Exception
+	 * @see
+	 * @since 21st/May/2021
+	 * @version v1.0.0
+	 */
+	@RequestMapping(value = "/bizLogin/promoter/facilitator/certifyEmail", method = RequestMethod.POST)
+	public ModelAndView certifyEmail(@RequestParam(required = true) String initEmail
+								   , @RequestParam(required = true) String changeEmail
+								   , @RequestParam(required = true) String promoter_id
+								   , HttpServletRequest request){
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("redirect:/Promoter/Facilitator/PmtLogin.mwav");
+
+		// 초기 이메일과 변경된 이메일이 다르면, 변경된 이메일 DB 값을 수정한다.
+		if(initEmail.equalsIgnoreCase(changeEmail)){
+			// TODO: UPDATE PROMOTER EMAIL
+		}
+
+		// TODO: 이메일 발송, pmtLoginId 로 인증하면 SNS 로그인쪽은 어떡함?
+//		String serverUrl = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
+//		boolean isOk = pmtFacilitatorService.sendCertifyMail(serverUrl, changeEmail, bizPromoterVo.getPmtLoginId());
+
 		return mv;
 	}
 
