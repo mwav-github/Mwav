@@ -232,23 +232,14 @@
 	<!-- BizLogin Promoter Login -->
 	<select id="selectBizPmtLogin" parameterType="hashmap" resultType="net.bizLogin.promoter.vo.BizPromoter_VO">
 		<![CDATA[
-		SELECT promoter_id, pmtLoginId, pmtLoginPw, pmtGender, pmtFirstName, pmtLastName, pmtMiddleName, pmtNickName
-			 , pmtMail, pmtPhone, pmtCellularPhone, pmtAddrFlag, pmtZipcode, pmtAddress, pmtAddressDetail, pmtJobType, pmtMarried, pmtMark, pmtRcmderId
-		FROM  Promoter_tbl
+		SELECT T1.promoter_id, T1.pmtLoginId, T1.pmtLoginPw, T1.pmtGender, T1.pmtFirstName, T1.pmtLastName, T1.pmtMiddleName, T1.pmtNickName
+			 , T1.pmtMail, T1.pmtPhone, T1.pmtCellularPhone, T1.pmtAddrFlag, T1.pmtZipcode, T1.pmtAddress, T1.pmtAddressDetail, T1.pmtJobType, T1.pmtMarried, T1.pmtMark, T1.pmtRcmderId
+			 , T2.pmtCertifyDt
+		FROM  Promoter_tbl T1
+			  JOIN PromoterValue_tbl T2
+			  	   ON T1.promoter_id = T2.promoter_id
 		WHERE pmtLoginId = #{pmtLoginId}
 		AND   pmtLoginPw = #{pmtLoginPw}
-		]]>
-	</select>
-
-	<!-- BizLogin Promoter Email Certify Check -->
-	<select id="selectChkEmailYN" parameterType="string" resultType="boolean">
-		<![CDATA[
-		SELECT IF(T2.pmtCertifyDt IS NOT NULL, 'Y', 'N') pmtCertifyDt
-		FROM Promoter_tbl T1
-			JOIN PromoterValue_tbl T2
-				ON T1.promoter_id = T2.promoter_id
-		WHERE 1=1
-		AND   T1.pmtLoginId = #{pmtLoginId}
 		]]>
 	</select>
 

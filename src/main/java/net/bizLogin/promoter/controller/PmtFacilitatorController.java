@@ -72,23 +72,34 @@ public class PmtFacilitatorController {
 	@RequestMapping(value = "/bizLogin/promoter/facilitator/pmtFacilitatorLogin.mwav",method = RequestMethod.POST)
 	public ModelAndView selectBizPmtLogin(CommandMap commandMap, HttpServletRequest request, RedirectAttributes rtr) throws Exception {
 		ModelAndView mv = new ModelAndView();
+		boolean chkEmailYN = false;
 
-		// Promoter 로그인 성공시 값을 가져옴
+				// Promoter 로그인 성공시 값을 가져옴
 		BizPromoter_VO bizPromoterVo = pmtFacilitatorService.selectBizPmtLogin(commandMap.getMap());
 
-		// 로그인한 사용자가 이메일을 인증했는지 검증
-		if(bizPromoterVo.isPmtCertifyDt()){
-			boolean chkEmailYN = pmtFacilitatorService.selectChkEmailYN(bizPromoterVo.getPmtLoginId());
-		}
-
+		// 로그인 성공여부에 따라 페이지및 statusCode, msg 변경
 		if(bizPromoterVo == null){
 			log.info("프로모터 로그인 실패");
 			mv.setViewName("redirect:/Promoter/Facilitator/PmtLogin.mwav");
 			rtr.addFlashAttribute("msg", "비밀번호와 아이디를 확인해주세요");
 		}else {
-			log.info("프로모터 로그인 성공");
-			mv.setViewName("redirect:/Promoter/Index");
-			request.getSession().setAttribute("bizPromoter", bizPromoterVo);
+
+			// 로그인한 사용자가 이메일을 인증했는지 검증
+			chkEmailYN = bizPromoterVo.getPmtCertifyDt() != null ? true : false;
+
+			// 이메일 인증된 사용자의 경우
+			if(chkEmailYN){
+				log.info("프로모터 로그인 성공");
+				mv.setViewName("redirect:/Promoter/Index");
+				request.getSession().setAttribute("bizPromoter", bizPromoterVo);
+			}else{
+				// 이메일 인증이 안되어있는 사용자라면 인증 페이지로 redirect
+				log.info("이메일 인증되지 않은 사용자 로그인");
+				mv.setViewName("redirect:/Promoter/Facilitator/PmtLogin.mwav");
+				rtr.addFlashAttribute("msg", "이메일 인증이 필요합니다.\n입력하신 이메일로 인증메일 발송하였습니다.");
+
+			}
+
 		}
 		return mv;
 	}

@@ -1,5 +1,7 @@
 package net.bizLogin.promoter.vo;
 
+import java.util.Date;
+
 public class BizPromoter_VO {
 
     private String promoter_id;
@@ -22,13 +24,13 @@ public class BizPromoter_VO {
     private String pmtMark;
     private String pmtRcmderId;
 
-    private boolean pmtCertifyDt;
+    private Date pmtCertifyDt;
 
-    public boolean isPmtCertifyDt() {
+    public Date getPmtCertifyDt() {
         return pmtCertifyDt;
     }
 
-    public void setPmtCertifyDt(boolean pmtCertifyDt) {
+    public void setPmtCertifyDt(Date pmtCertifyDt) {
         this.pmtCertifyDt = pmtCertifyDt;
     }
 

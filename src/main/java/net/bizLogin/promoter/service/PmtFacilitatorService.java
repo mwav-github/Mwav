@@ -20,5 +20,4 @@ public interface PmtFacilitatorService {
 	public PmtFacilitatorVO joinSocialLogin(PmtFacilitatorSO vo);
 	BizPromoter_VO selectBizPmtLogin(Map<String, Object> map) throws Exception;
 
-    boolean selectChkEmailYN(String pmtLoginId);
 }

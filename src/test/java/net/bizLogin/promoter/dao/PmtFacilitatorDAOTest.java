@@ -68,33 +68,4 @@ public class PmtFacilitatorDAOTest {
         MockitoAnnotations.initMocks(this);
     }
 
-    /**
-     * <pre>
-     * {@code
-     *      <p>
-     *          이메일 인증 쿼리가 정상적으로 작동하는지 확인
-     *          임시용으로 하여 실제 테스트에서는 테스트 X
-     *      </p>
-     * }
-     * </pre>
-     * @param
-     * @return void
-     * @throws IOException
-     * @see PmtFacilitatorService.insertPmtForm
-     * @since 1.0.4
-     * @version 1.0.0
-     */
-    @Ignore
-    @Test
-    public void selectChkEmailYN() {
-        // given
-        String pmtLoginId = "tony950620";
-
-        // when
-        final boolean emailYN = dao.selectChkEmailYN(pmtLoginId);
-
-        // then
-        Assertions.assertThat(emailYN)
-                  .isTrue();
-    }
 }

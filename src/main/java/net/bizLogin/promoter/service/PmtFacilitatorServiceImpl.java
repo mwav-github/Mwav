@@ -146,14 +146,9 @@ public class PmtFacilitatorServiceImpl implements PmtFacilitatorService {
 		map.put("pmtLoginPw", AesEncryption.aesEncodeBuf(encrypted));
 
 		// 3. DB에서 pmtLoginId & pmtLoginPw 이 일치하는 로우를 가져옴
-		final BizPromoter_VO bizPromoterVo = pmtFacilitatorDAO.selectBizPmtLogin(map);
+		BizPromoter_VO bizPromoterVo = pmtFacilitatorDAO.selectBizPmtLogin(map);
 
 		return  bizPromoterVo;
-	}
-
-	@Override
-	public boolean selectChkEmailYN(String pmtLoginId) {
-		return pmtFacilitatorDAO.selectChkEmailYN(pmtLoginId);
 	}
 
 }
