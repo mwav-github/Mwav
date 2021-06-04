@@ -218,14 +218,14 @@
 		FROM Promoter_tbl T1
 			JOIN PromoterValue_tbl T2
 				ON T1.promoter_id = T2.promoter_id
-		WHERE T1.pmtLoginId = #{promoter_id}
+		WHERE T1.promoter_id = #{promoter_id}
 		]]>
 	</select>
 
 	<update id="updatePmtCertifyDt" parameterType="string">
 		<![CDATA[
 		UPDATE PromoterValue_tbl SET pmtCertifyDt = NOW()
-		WHERE promoter_id = (SELECT promoter_id FROM Promoter_tbl WHERE pmtLoginId = #{promoter_id})
+		WHERE promoter_id = #{promoter_id}
 		]]>
 	</update>
 
@@ -240,6 +240,15 @@
 			  	   ON T1.promoter_id = T2.promoter_id
 		WHERE pmtLoginId = #{pmtLoginId}
 		AND   pmtLoginPw = #{pmtLoginPw}
+		]]>
+	</select>
+
+	<!-- BizLogin Promoter_id -->
+	<select id="selectOnePmtId" parameterType="string" resultType="string">
+		<![CDATA[
+		SELECT promoter_id
+		FROM   Promoter_tbl
+		WHERE  pmtLoginId = #{pmtLoginId}
 		]]>
 	</select>
 

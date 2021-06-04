@@ -21,4 +21,6 @@ public interface PmtFacilitatorService {
 	BizPromoter_VO selectBizPmtLogin(Map<String, Object> map) throws Exception;
 
 	boolean sendCertifyMail(String serverUrl, String pmtMail, String pmtLoginId) throws IOException;
+
+    String selectOnePmtId(String pmtLoginId);
 }

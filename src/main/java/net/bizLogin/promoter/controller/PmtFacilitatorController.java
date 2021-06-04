@@ -159,15 +159,19 @@ public class PmtFacilitatorController {
 		// 3. 비즈니스 로직 실행
 		final Map<String, Object> pmtFormResult = pmtFacilitatorService.insertPmtForm(commandMap);
 
-		// 4. Model에 Attribute 등록
+		// 4. INSERT 한 promoter_id 를 가져옴
+		final String pmtLoginId = (String) commandMap.getMap().get("pmtLoginId");
+		String promoter_id = pmtFacilitatorService.selectOnePmtId(pmtLoginId);
+
+		// 5. Model에 Attribute 등록
 		// TODO : 등록 후 mode, mm 쿼리스트링 수정필요
 		mv.addAllObjects(pmtFormResult);
 		mv.addObject("mm", "firms");
 		mv.addObject("mode", "m_stfForm");
 
-		// 5. 이메일 발송
+		// 6. 이메일 발송
 		String serverUrl = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
-		boolean isOk = pmtFacilitatorService.sendCertifyMail(serverUrl, (String)commandMap.get("pmtMail"), (String)commandMap.get("pmtLoginId"));
+		boolean isOk = pmtFacilitatorService.sendCertifyMail(serverUrl, (String)commandMap.get("pmtMail"), promoter_id);
 
 		return mv;
 	}

@@ -158,7 +158,7 @@ public class PmtFacilitatorServiceImpl implements PmtFacilitatorService {
 	}
 
 	@Override
-	public boolean sendCertifyMail(String serverUrl, String pmtMail, String pmtLoginId) throws IOException {
+	public boolean sendCertifyMail(String serverUrl, String pmtMail, String promoter_id) throws IOException {
 
 		// 이메일 발송
 		final String uri = serverUrl + "/accounts/email/certify";
@@ -167,13 +167,18 @@ public class PmtFacilitatorServiceImpl implements PmtFacilitatorService {
 				.setUri(uri)
 				.addParameter("email", pmtMail)
 				.addParameter("account","pmt")
-				.addParameter("id", pmtLoginId)
+				.addParameter("id", promoter_id)
 				.build();
 		HttpResponse response = client.execute(req);
 		int statusCode = response.getStatusLine().getStatusCode();
 		System.out.println(statusCode);
 
 		return false;
+	}
+
+	@Override
+	public String selectOnePmtId(String pmtLoginId) {
+		return pmtFacilitatorDAO.selectOnePmtId(pmtLoginId);
 	}
 
 }
