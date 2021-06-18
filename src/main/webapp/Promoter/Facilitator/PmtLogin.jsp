@@ -37,7 +37,8 @@
 		<!-- ============================ COMPONENT LOGIN   ================================= -->
 		<div class="card mx-auto" style="max-width: 380px; margin-top: 50px;">
 			<div class="card-body">
-				<form action="/bizLogin/promoter/facilitator/pmtFacilitatorLogin.mwav" method="post">
+				<form name="login_form" action="/bizLogin/promoter/facilitator/pmtFacilitatorLogin.mwav" method="post"
+					  onsubmit="return re_check(document.login_form);">
 					<div class="img-wrap mb-4">
 						<a class="btn-overlay" href="javascript:loginWithKakao()">
 						<img
@@ -60,6 +61,14 @@
 							<div class="custom-control-label" alt="Remember">자동 로그인</div>
 						</label>
 					</div>
+
+					<%--recapCha --%>
+					<div class="col-md-12">
+						<div class="g-recaptcha"
+							 data-sitekey="6LcdRxoUAAAAAA4OI0FIN2bv2W0ersTRjqHJdLG-"
+							 style="transform: scale(0.88); -webkit-transform: scale(0.88); transform-origin: 0 0; -webkit-transform-origin: 0 0;"></div>
+					</div>
+
 					<!-- form-group form-check .// -->
 					<div class="form-group">
 						<button type="submit" class="btn btn-primary btn-block btn-lg" alt="Sign in">로그인</button>
@@ -145,6 +154,23 @@ function controlDisplay() {
 	if(msg.length > 0 ){
 		alert(msg);
 	}
+}
+
+// form 전송 data를 검증하는 함수인 것으로 추정
+function re_check(form) {
+	var robot_flag = robot_check();
+
+	if (robot_flag == true) {
+		if (emptyCheck(form.pmtLoginId, "아이디를 입력해주세요.") == true
+				&& emptyCheck(form.pmtLoginPw, "비밀번호를 입력해주세요.") == true) {
+			return true;
+		} else {
+			return false;
+		}
+	} else {
+		return false;
+	}
+	return false;
 }
 
 // document.Ready
