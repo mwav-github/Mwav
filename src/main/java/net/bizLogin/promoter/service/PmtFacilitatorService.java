@@ -18,7 +18,7 @@ public interface PmtFacilitatorService {
 	public PmtFacilitatorVO checkSocialJoin(PmtFacilitatorSO vo);
 	
 	public PmtFacilitatorVO joinSocialLogin(PmtFacilitatorSO vo);
-	BizPromoter_VO selectBizPmtLogin(Map<String, Object> map) throws Exception;
+	Map<String, Object> selectBizPmtLogin(Map<String, Object> map) throws Exception;
 
 	boolean sendCertifyMail(String serverUrl, String pmtMail, String pmtLoginId) throws IOException;
 

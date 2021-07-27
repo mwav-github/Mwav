@@ -18,7 +18,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import javax.json.Json;
+import javax.json.JsonObject;
+import javax.json.JsonReader;
+import javax.net.ssl.HttpsURLConnection;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -138,11 +145,23 @@ public class PmtFacilitatorServiceImpl implements PmtFacilitatorService {
 		return check; // return VO를 해준다..
 	}
 	@Override
-	public BizPromoter_VO selectBizPmtLogin(Map<String, Object> map) throws Exception{
+	public Map<String, Object> selectBizPmtLogin(Map<String, Object> map) throws Exception{
+
+		Map<String, Object> mapVo = new HashMap<String, Object>();
 
 		// 1. 유효성 검증, 비정상적인 값이 들어오면 null로 반환
 		if( ((String) map.get("pmtLoginPw")).length()<3 || ((String) map.get("pmtLoginId")).length()<3 ){
-			return null;
+			mapVo.put("status", 2);
+			mapVo.put("vo", null);
+			return mapVo;
+		}
+
+		// 1-1. ReCaptcha 유효성 검증
+		String token = (String) map.get("token");
+		if(!this.recaptcha(token)){
+			mapVo.put("status", 3);
+			mapVo.put("vo", null);
+			return mapVo;
 		}
 
 		// 2. 로그인 확인하기 위해 비밀번호 암호화
@@ -153,8 +172,14 @@ public class PmtFacilitatorServiceImpl implements PmtFacilitatorService {
 
 		// 3. DB에서 pmtLoginId & pmtLoginPw 이 일치하는 로우를 가져옴
 		BizPromoter_VO bizPromoterVo = pmtFacilitatorDAO.selectBizPmtLogin(map);
+		if(bizPromoterVo != null){
+			mapVo.put("status", 1);
+		}else{
+			mapVo.put("status", 2);
+		}
+		mapVo.put("vo", bizPromoterVo);
 
-		return  bizPromoterVo;
+		return  mapVo;
 	}
 
 	@Override
@@ -188,6 +213,64 @@ public class PmtFacilitatorServiceImpl implements PmtFacilitatorService {
 		param.put("promoter_id", promoter_id);
 
 		return pmtFacilitatorDAO.updatePmtEmail(param);
+	}
+
+	public boolean recaptcha(String token){
+		//TODO: 임시용으로 VerifyRecaptcha 의 메소드 기능만 빼와서 사용. 추후 교체요망
+		final String SECRET_KEY = "6LdhTbYbAAAAAHFtrOEfPcyjW7XwgWGwxY0RrLVe";
+		final String SITE_VERIFY_URL = "https://www.google.com/recaptcha/api/siteverify";
+
+		if (token == null || token.length() == 0) {
+			return false;
+		}
+
+		try {
+			URL verifyUrl = new URL(SITE_VERIFY_URL);
+
+			// Open Connection to URL
+			HttpsURLConnection conn = (HttpsURLConnection) verifyUrl
+					.openConnection();
+
+			// Add Request Header
+			conn.setRequestMethod("POST");
+
+			// Data will be sent to the server.
+			String postParams = "secret=" + SECRET_KEY + "&response="
+					+ token;
+
+			// Send Request
+			conn.setDoOutput(true);
+
+			// Get the output stream of Connection
+			// Write data in this stream, which means to send data to Server.
+			OutputStream outStream = conn.getOutputStream();
+			outStream.write(postParams.getBytes());
+
+			outStream.flush();
+			outStream.close();
+
+			// Response code return from server.
+			// HTTP.STATUS CODE
+			int responseCode = conn.getResponseCode();
+			System.out.println("responseCode=" + responseCode);
+
+			// Get the InputStream from Connection to read data sent from the
+			// server.
+			InputStream is = conn.getInputStream();
+
+			JsonReader jsonReader = Json.createReader(is);
+			JsonObject jsonObject = jsonReader.readObject();
+			jsonReader.close();
+
+			System.out.println("Response: " + jsonObject);
+
+			boolean success = jsonObject.getBoolean("success");
+			return success;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+
 	}
 
 }

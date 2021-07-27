@@ -52,7 +52,7 @@ public class PmtFacilitatorControllerTest {
         bizPromoterVo.setPmtCertifyDt(null);
 
         // when
-        when(pmtFacilitatorService.selectBizPmtLogin(any())).thenReturn(bizPromoterVo);
+//        when(pmtFacilitatorService.selectBizPmtLogin(any())).thenReturn(bizPromoterVo);
 
         // then
         // 테스트는 간단하게하여 리다이렉션 처리가 정상적으로 이루어지는지 확인함
