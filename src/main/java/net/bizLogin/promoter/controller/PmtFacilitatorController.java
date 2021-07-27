@@ -20,10 +20,17 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.annotation.Resource;
+import javax.json.Json;
+import javax.json.JsonObject;
+import javax.json.JsonReader;
+import javax.net.ssl.HttpsURLConnection;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URL;
 import java.util.Map;
 
 
@@ -71,6 +78,14 @@ public class PmtFacilitatorController {
 	public ModelAndView selectBizPmtLogin(CommandMap commandMap, HttpServletRequest request, RedirectAttributes rtr) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		boolean chkEmailYN = false;
+
+		// 임시용으로 Controller 로직 삽입
+		final Object token = commandMap.getMap().get("token");
+		if(this.recaptcha(token.toString())){
+			log.info("프로모터 로그인 실패");
+			mv.setViewName("redirect:/Promoter/Facilitator/PmtLogin.mwav");
+			rtr.addFlashAttribute("msg", "로봇으로 감지되었습니다. 다시 시도해주세요");
+		}
 
 		// Promoter 로그인 성공시 값을 가져옴
 		BizPromoter_VO bizPromoterVo = pmtFacilitatorService.selectBizPmtLogin(commandMap.getMap());
@@ -225,5 +240,74 @@ public class PmtFacilitatorController {
 			log.info("세션에 프로모터 로그인 정보가 없어 로그아웃하지 못하였습니다");
 		}
 		return Status.OK;
+	}
+
+	public boolean recaptcha(String token){
+		//TODO: 임시용으로 VerifyRecaptcha 의 메소드 기능만 빼와서 사용. 추후 교체요망
+		final String SECRET_KEY = "6LdhTbYbAAAAAHFtrOEfPcyjW7XwgWGwxY0RrLVe";
+		final String SITE_VERIFY_URL = "https://www.google.com/recaptcha/api/siteverify";
+
+		if (token == null || token.length() == 0) {
+			return false;
+		}
+
+		try {
+			URL verifyUrl = new URL(SITE_VERIFY_URL);
+
+			// Open Connection to URL
+			HttpsURLConnection conn = (HttpsURLConnection) verifyUrl
+					.openConnection();
+
+			// Add Request Header
+			conn.setRequestMethod("POST");
+			//conn.setRequestProperty("User-Agent", "Mozilla/5.0");
+			//conn.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
+
+			// Data will be sent to the server.
+			String postParams = "secret=" + SECRET_KEY + "&response="
+					+ token;
+
+			// Send Request
+			conn.setDoOutput(true);
+
+			// Get the output stream of Connection
+			// Write data in this stream, which means to send data to Server.
+			OutputStream outStream = conn.getOutputStream();
+			outStream.write(postParams.getBytes());
+
+			outStream.flush();
+			outStream.close();
+
+			// Response code return from server.
+			// HTTP.STATUS CODE
+			int responseCode = conn.getResponseCode();
+			System.out.println("responseCode=" + responseCode);
+
+			// Get the InputStream from Connection to read data sent from the
+			// server.
+			InputStream is = conn.getInputStream();
+
+			JsonReader jsonReader = Json.createReader(is);
+			JsonObject jsonObject = jsonReader.readObject();
+			jsonReader.close();
+
+			// ==> {"success": true}
+			//예)
+			/*{
+				  "success": true|false,
+				  "challenge_ts": timestamp,  // timestamp of the challenge load (ISO format yyyy-MM-dd'T'HH:mm:ssZZ)
+				  "hostname": string,         // the hostname of the site where the reCAPTCHA was solved
+				  "error-codes": [...]        // optional
+				}*/
+
+			System.out.println("Response: " + jsonObject);
+
+			boolean success = jsonObject.getBoolean("success");
+			return success;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+
 	}
 }

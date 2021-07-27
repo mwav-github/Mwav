@@ -39,6 +39,9 @@
 			<div class="card-body">
 				<form name="login_form" action="/bizLogin/promoter/facilitator/pmtFacilitatorLogin.mwav" method="post"
 					  onsubmit="return re_check(document.login_form);">
+
+					<input type="hidden" id="token" name="token" value="">
+
 					<div class="img-wrap mb-4">
 						<a class="btn-overlay" href="javascript:loginWithKakao()">
 						<img
@@ -60,13 +63,6 @@
 							type="checkbox" class="custom-control-input" checked="">
 							<div class="custom-control-label" alt="Remember">자동 로그인</div>
 						</label>
-					</div>
-
-					<%--recapCha --%>
-					<div class="col-md-12">
-						<div class="g-recaptcha"
-							 data-sitekey="6LcdRxoUAAAAAA4OI0FIN2bv2W0ersTRjqHJdLG-"
-							 style="transform: scale(0.88); -webkit-transform: scale(0.88); transform-origin: 0 0; -webkit-transform-origin: 0 0;"></div>
 					</div>
 
 					<!-- form-group form-check .// -->
@@ -158,23 +154,27 @@ function controlDisplay() {
 
 // form 전송 data를 검증하는 함수인 것으로 추정
 function re_check(form) {
-	var robot_flag = robot_check();
-
-	if (robot_flag == true) {
-		if (emptyCheck(form.pmtLoginId, "아이디를 입력해주세요.") == true
-				&& emptyCheck(form.pmtLoginPw, "비밀번호를 입력해주세요.") == true) {
-			return true;
-		} else {
-			return false;
-		}
+	if (emptyCheck(form.pmtLoginId, "아이디를 입력해주세요.") == true
+			&& emptyCheck(form.pmtLoginPw, "비밀번호를 입력해주세요.") == true) {
+		return true;
 	} else {
 		return false;
 	}
-	return false;
+}
+
+// 구글 리캡챠 펑션
+function reCapt() {
+	grecaptcha.ready(function() {
+		grecaptcha.execute('6LdhTbYbAAAAACn-5-QwU92JmHyAoi25He6wRbGa', {action: 'submit'}).then(function(token) {
+			$('#token').val(token);
+		});
+	});
 }
 
 // document.Ready
 $(function() {
+	reCapt();	// 페이지 로드시 Google Recaptcha token를 받아옴
 	controlDisplay();
 });
 </script>
+<script src="https://www.google.com/recaptcha/api.js?render=6LdhTbYbAAAAACn-5-QwU92JmHyAoi25He6wRbGa"></script>
