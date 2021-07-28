@@ -151,7 +151,7 @@ public class PmtFacilitatorServiceImpl implements PmtFacilitatorService {
 
 		// 1. 유효성 검증, 비정상적인 값이 들어오면 null로 반환
 		if( ((String) map.get("pmtLoginPw")).length()<3 || ((String) map.get("pmtLoginId")).length()<3 ){
-			mapVo.put("status", 2);
+			mapVo.put("status", "INVALID_ID_PWD");
 			mapVo.put("vo", null);
 			return mapVo;
 		}
@@ -159,7 +159,7 @@ public class PmtFacilitatorServiceImpl implements PmtFacilitatorService {
 		// 1-1. ReCaptcha 유효성 검증
 		String token = (String) map.get("token");
 		if(!this.recaptcha(token)){
-			mapVo.put("status", 3);
+			mapVo.put("status", "RECAPTCHA_ERROR");
 			mapVo.put("vo", null);
 			return mapVo;
 		}
@@ -173,9 +173,9 @@ public class PmtFacilitatorServiceImpl implements PmtFacilitatorService {
 		// 3. DB에서 pmtLoginId & pmtLoginPw 이 일치하는 로우를 가져옴
 		BizPromoter_VO bizPromoterVo = pmtFacilitatorDAO.selectBizPmtLogin(map);
 		if(bizPromoterVo != null){
-			mapVo.put("status", 1);
+			mapVo.put("status", "LOGIN_SUCCESS");
 		}else{
-			mapVo.put("status", 2);
+			mapVo.put("status", "INVALID_ID_PWD");
 		}
 		mapVo.put("vo", bizPromoterVo);
 

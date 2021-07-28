@@ -67,11 +67,11 @@ public class PmtFacilitatorController {
 
 		// Promoter 로그인 성공시 값을 가져옴
 		Map<String, Object> mapVo = pmtFacilitatorService.selectBizPmtLogin(commandMap.getMap());
-		int status = (int) mapVo.get("status");
+		String status = (String) mapVo.get("status");
 
 		// 로그인 성공여부에 따라 페이지및 statusCode, msg 변경
 		switch(status){
-			case 1:
+			case "LOGIN_SUCCESS":
 				// 로그인한 사용자가 이메일을 인증했는지 검증
 				BizPromoter_VO bizPromoterVo = (BizPromoter_VO) mapVo.get("vo");
 				boolean chkEmailYN = false;
@@ -91,12 +91,12 @@ public class PmtFacilitatorController {
 					redirectAttr.addFlashAttribute("pmtMail", bizPromoterVo.getPmtMail());
 				}
 				break;
-			case 2:
+			case "INVALID_ID_PWD":
 				log.info("프로모터 로그인 실패(아이디, 비밀번호 오류)");
 				mv.setViewName("redirect:/Promoter/Facilitator/PmtLogin.mwav");
 				redirectAttr.addFlashAttribute("msg", "비밀번호와 아이디를 확인해주세요");
 				break;
-			case 3:
+			case "RECAPTCHA_ERROR":
 				log.info("프로모터 로그인 실패(리캡챠 유효성 검증 실패)");
 				mv.setViewName("redirect:/Promoter/Facilitator/PmtLogin.mwav");
 				redirectAttr.addFlashAttribute("msg", "로봇으로 감지되었습니다. 다시 시도해주세요");
