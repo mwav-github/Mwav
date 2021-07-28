@@ -62,7 +62,7 @@ public class PmtFacilitatorController {
 	 * @version v1.0.0
 	 */
 	@RequestMapping(value = "/bizLogin/promoter/facilitator/pmtFacilitatorLogin.mwav",method = RequestMethod.POST)
-	public ModelAndView selectBizPmtLogin(CommandMap commandMap, HttpServletRequest request, RedirectAttributes rtr) throws Exception {
+	public ModelAndView selectBizPmtLogin(CommandMap commandMap, HttpServletRequest request, RedirectAttributes redirectAttr) throws Exception {
 		ModelAndView mv = new ModelAndView();
 
 		// Promoter 로그인 성공시 값을 가져옴
@@ -86,20 +86,20 @@ public class PmtFacilitatorController {
 					// 이메일 인증이 안되어있는 사용자라면 인증 페이지로 redirect
 					log.info("이메일 인증되지 않은 사용자 로그인");
 					mv.setViewName("redirect:/Promoter/Facilitator/PmtCertifyPage.mwav");
-					rtr.addFlashAttribute("msg", "이메일 인증이 필요합니다.");
-					rtr.addFlashAttribute("promoter_id", bizPromoterVo.getPromoter_id());
-					rtr.addFlashAttribute("pmtMail", bizPromoterVo.getPmtMail());
+					redirectAttr.addFlashAttribute("msg", "이메일 인증이 필요합니다.");
+					redirectAttr.addFlashAttribute("promoter_id", bizPromoterVo.getPromoter_id());
+					redirectAttr.addFlashAttribute("pmtMail", bizPromoterVo.getPmtMail());
 				}
 				break;
 			case 2:
 				log.info("프로모터 로그인 실패(아이디, 비밀번호 오류)");
 				mv.setViewName("redirect:/Promoter/Facilitator/PmtLogin.mwav");
-				rtr.addFlashAttribute("msg", "비밀번호와 아이디를 확인해주세요");
+				redirectAttr.addFlashAttribute("msg", "비밀번호와 아이디를 확인해주세요");
 				break;
 			case 3:
 				log.info("프로모터 로그인 실패(리캡챠 유효성 검증 실패)");
 				mv.setViewName("redirect:/Promoter/Facilitator/PmtLogin.mwav");
-				rtr.addFlashAttribute("msg", "로봇으로 감지되었습니다. 다시 시도해주세요");
+				redirectAttr.addFlashAttribute("msg", "로봇으로 감지되었습니다. 다시 시도해주세요");
 				break;
 
 		}
