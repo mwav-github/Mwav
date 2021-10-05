@@ -40,6 +40,12 @@
 				<!-- <h4 class="card-title mb-4">Sign in</h4> -->
 				<form>
 					<div class="img-wrap mb-4">
+						<a class="btn-overlay" href="#">
+						<img
+							src="zImage/btnG_naver_complete.png">
+						</a>
+					</div>
+					<div class="img-wrap mb-4">
 						<a class="btn-overlay" href="javascript:loginWithKakao()">
 						<img
 							src="https://developers.kakao.com/tool/resource/static/img/button/login/full/ko/kakao_login_large_wide.png">
