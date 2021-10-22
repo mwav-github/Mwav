@@ -1,23 +1,23 @@
 package net.bizLogin.promoter.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.scribejava.core.model.OAuth2AccessToken;
+import net.bizLogin.promoter.auth.PmtNaverUrl;
 import net.bizLogin.promoter.service.PmtFacilitatorService;
 import net.bizLogin.promoter.vo.PmtFacilitatorSO;
 import net.bizLogin.promoter.vo.PmtFacilitatorVO;
 import net.common.common.CommandMap;
 import net.common.common.Status;
 import net.mwav.common.module.Common_Utils;
-import net.mwav.common.module.ValidationLib;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.client.methods.RequestBuilder;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -34,7 +34,7 @@ import java.util.Map;
  * <pre>
  * {@code
  * // 예제코드 작성
- * 
+ *
  * }
  * </pre>
  * @author 저자1
@@ -53,7 +53,10 @@ public class PmtFacilitatorController {
 	String mode;
 	@Resource(name = "pmtFacilitatorService")
 	private PmtFacilitatorService pmtFacilitatorService;
-	
+
+	@Autowired
+	PmtNaverUrl pmtNaverUrl;
+
 	Common_Utils cu = new Common_Utils();
 
 	//로그인
@@ -131,12 +134,12 @@ public class PmtFacilitatorController {
 	boolean selectOneMbrPmtIdCheck(String pmtLoginId) throws Exception {
 		return pmtFacilitatorService.selectOnePmtLoginIdCheck(pmtLoginId);
 	}
-	
+
 	@RequestMapping(value = "/Promoter/Index.mwav")
 	public String index(CommandMap commandMap) throws Exception {
 		return "/Promoter/Index";
 	}
-	
+
 	@RequestMapping(value = "/promoter/kakaoLogin.mwav", method = RequestMethod.POST)
 	public @ResponseBody String promoterKakaoLogin(@RequestBody PmtFacilitatorSO so, HttpServletRequest request) throws Exception {
 		HttpSession session = request.getSession();
@@ -145,12 +148,12 @@ public class PmtFacilitatorController {
 		session.setAttribute("promoter", pmtFacilitatorVO);
 		return pmtFacilitatorVO.getSpPromoterId();
 	}
-	
+
 	@RequestMapping(value = "/promoter/kakaoLogout.mwav")
 	@ResponseBody
 	public Status promoterKakaoLogout(HttpServletRequest request, HttpSession session, HttpServletResponse response) throws Exception {
 		Object obj = session.getAttribute("promoter");
-		
+
 		if (obj != null) {
 			session.removeAttribute("promoter");
 			session.invalidate();
@@ -159,5 +162,49 @@ public class PmtFacilitatorController {
 			log.info("세션에 프로모터 로그인 정보가 없어 로그아웃하지 못하였습니다");
 		}
 		return Status.OK;
+	}
+
+	@RequestMapping("/promoter/naver/signin.mwav")
+	@ResponseBody
+	public String callbackNaverUrl(@RequestParam String code, @RequestParam String state, HttpSession session) throws Exception {
+
+		// 1. code를 이용해서 access_token 받아오기
+		// 2. access_token을 이용해서 사용자 profile 정보 가져오기
+//		PmtNaverUrl pmtNaverUrlUtil = new PmtNaverUrl();
+		OAuth2AccessToken accessToken = pmtNaverUrl.getAccessToken(state, code);
+		String userProfile = pmtNaverUrl.getUserProfile(accessToken);
+
+		ObjectMapper mapper = new ObjectMapper();
+		Map<String, Object> userProfileMap = mapper.readValue(userProfile, Map.class);
+
+		System.out.println("userProfileMap = " + userProfileMap);
+
+		// 3. DB 해당 유저가 존재하는지 체크
+		if (userProfileMap.get("resultcode").equals("00")) {
+			Map<String, Object> response1 = (Map<String, Object>) userProfileMap.get("response");
+
+			PmtFacilitatorSO so = new PmtFacilitatorSO();
+
+			so.setPromoter_id(Integer.parseInt(response1.get("id").toString()));
+			so.setSpPromoterId(response1.get("email").toString());
+			so.setSpNickname(response1.get("name").toString());
+			so.setSpEmail(response1.get("email").toString());
+			so.setSpSnsType("Naver");
+
+			PmtFacilitatorVO check = pmtFacilitatorService.checkSocialJoin(so);
+
+			System.out.println("check = " + check);
+
+			// 4. 존재 시 강제로그인, 미 존재시 가입하고 로그인
+			if (check != null) {
+				System.out.println("아이디 있음");
+			}else{
+//				PmtFacilitatorVO vo = pmtFacilitatorService.joinSocialLogin(so);
+//				System.out.println("vo = " + vo);
+			}
+		}
+
+
+		return "ok";
 	}
 }

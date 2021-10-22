@@ -40,9 +40,9 @@
 				<!-- <h4 class="card-title mb-4">Sign in</h4> -->
 				<form>
 					<div class="img-wrap mb-4">
-						<a class="btn-overlay" href="#">
+						<a class="btn-overlay" href="${naver_url}">
 						<img
-							src="zImage/btnG_naver_complete.png">
+							src="zImage/btnG_naver_complete.png" style="width:100%; height:51.38px;">
 						</a>
 					</div>
 					<div class="img-wrap mb-4">
