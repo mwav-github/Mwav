@@ -37,27 +37,23 @@
 		<!-- ============================ COMPONENT LOGIN   ================================= -->
 		<div class="card mx-auto" style="max-width: 380px; margin-top: 50px;">
 			<div class="card-body">
-				<!-- <h4 class="card-title mb-4">Sign in</h4> -->
-				<form>
+				<form name="login_form" action="/bizLogin/promoter/facilitator/pmtFacilitatorLogin.mwav" method="post"
+					  onsubmit="return re_check(document.login_form);">
+
+					<input type="hidden" id="token" name="token" value="">
+
 					<div class="img-wrap mb-4">
 						<a class="btn-overlay" href="javascript:loginWithKakao()">
 						<img
 							src="https://developers.kakao.com/tool/resource/static/img/button/login/full/ko/kakao_login_large_wide.png">
 						</a>
 					</div>
-					<!-- <a href="#" class="btn btn-facebook btn-block mb-2"> <i
-						class="fab fa-facebook-f"></i> &nbsp Sign in with Facebook
-					</a> <a href="#" class="btn btn-google btn-block mb-4"> <i
-						class="fab fa-google"></i> &nbsp Sign in with Google
-					</a> -->
 					<div class="form-group">
-						<input name="" class="form-control" placeholder="Username"
-							type="text">
+						<input name="pmtLoginId" class="form-control" placeholder="Username" type="text">
 					</div>
 					<!-- form-group// -->
 					<div class="form-group">
-						<input name="" class="form-control" placeholder="Password"
-							type="password">
+						<input name="pmtLoginPw" class="form-control" placeholder="Password" type="password">
 					</div>
 					<!-- form-group// -->
 
@@ -68,9 +64,10 @@
 							<div class="custom-control-label" alt="Remember">자동 로그인</div>
 						</label>
 					</div>
+
 					<!-- form-group form-check .// -->
 					<div class="form-group">
-						<a href="/Promoter/Facilitator/pmtFacilitatorLogin.mwav" type="submit" class="btn btn-primary btn-block btn-lg" alt="Sign in">로그인</a>
+						<button type="submit" class="btn btn-primary btn-block btn-lg" alt="Sign in">로그인</button>
 					</div>
 
 					<div class="form-group">
@@ -146,4 +143,38 @@ function loginWithKakao() {
 		},
 	})
 }
+
+// 해당 page에 접근 시 msg 가 있다면 alert 으로 출력
+function controlDisplay() {
+	var msg = '${requestScope.msg}';
+	if(msg.length > 0 ){
+		alert(msg);
+	}
+}
+
+// form 전송 data를 검증하는 함수인 것으로 추정
+function re_check(form) {
+	if (emptyCheck(form.pmtLoginId, "아이디를 입력해주세요.") == true
+			&& emptyCheck(form.pmtLoginPw, "비밀번호를 입력해주세요.") == true) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+// 구글 리캡챠 펑션
+function reCapt() {
+	grecaptcha.ready(function() {
+		grecaptcha.execute('6LdhTbYbAAAAACn-5-QwU92JmHyAoi25He6wRbGa', {action: 'submit'}).then(function(token) {
+			$('#token').val(token);
+		});
+	});
+}
+
+// document.Ready
+$(function() {
+	reCapt();	// 페이지 로드시 Google Recaptcha token를 받아옴
+	controlDisplay();
+});
 </script>
+<script src="https://www.google.com/recaptcha/api.js?render=6LdhTbYbAAAAACn-5-QwU92JmHyAoi25He6wRbGa"></script>
