@@ -80,7 +80,7 @@
 			</form>
 		</div>
         --%>
-		<!-- facebook SIGNIN -->
+<%-- 		<!-- facebook SIGNIN -->
 		<div class="col-md-12">
 			<form action="<c:url value="/signin/facebook.mwav"/>" method="POST"
 				onSubmit="return robot_check();">
@@ -113,7 +113,7 @@
 			</form>
 		</div>
 
-		<%--twitter sign in --%>
+		twitter sign in
 		<div class="col-md-12 mgb3">
 			<form action="<c:url value="/signin/twitter.mwav"/>" method="POST"
 				onSubmit="return robot_check();">
@@ -127,7 +127,7 @@
 			</form>
 		</div>
 
-		<%--naver sign in --%>
+		naver sign in
 		<div class="col-md-12 mgb3">
 			<form action="${naver_url}" method="POST"
 				onSubmit="return robot_check();">
@@ -139,7 +139,7 @@
 					value="${_csrf.token}" /> <input type="hidden" name="autoLoginChk"
 					class="autoLoginChk" value="off" />
 			</form>
-		</div>
+		</div> --%>
 
 		<%--아이디 비밀번호 찾기 --%>
 		<div class="col-md-12">
@@ -217,7 +217,7 @@
 	</div>
 	--%>
 	<%--naver sign in --%>
-	<div class="col-md-12 mgb3">
+<%-- 	<div class="col-md-12 mgb3">
 		<form action="${naver_url}" method="POST"
 			onSubmit="return robot_check();">
 			<button type="submit" class="btn btn-block btn-social btn-naver">
@@ -262,7 +262,7 @@
 		</form>
 	</div>
 
-	<%--twitter sign in --%>
+	twitter sign in
 	<div class="col-md-12 mgb3">
 		<form action="<c:url value="/signin/twitter.mwav"/>" method="POST"
 			onSubmit="return robot_check();">
@@ -274,7 +274,7 @@
 				value="${_csrf.token}" /> <input type="hidden" name="autoLoginChk"
 				class="autoLoginChk" value="off" />
 		</form>
-	</div>
+	</div> --%>
 
 
 	<div class="form-group ">
