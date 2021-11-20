@@ -47,132 +47,224 @@
 			<div class="row">
 				<aside class="col-md-3">
 					<ul class="list-group">
-						<a class="list-group-item active" href="#"> Account overview </a>
-						<a class="list-group-item" href="#"> My Orders </a>
-						<a class="list-group-item" href="#"> My wishlist </a>
-						<a class="list-group-item" href="#"> Return and refunds </a>
-						<a class="list-group-item" href="#">Settings </a>
-						<a class="list-group-item" href="#"> My Selling Items </a>
-						<a class="list-group-item" href="#"> Received orders </a>
+						<a class="list-group-item active" href="#"> 회원 정보 </a>
+						<a class="list-group-item" href="#"> 켐페인 성과 </a>
+						<a class="list-group-item" href="#"> 비밀번호 변경 </a>
+						<a class="list-group-item" href="#"> 환급 받기 </a>
+						<a class="list-group-item" href="#"> 친구 초대 </a>
+						<a class="list-group-item" href="#"> 도움말 및 자주 묻는 질문 </a>
 					</ul>
 				</aside>
-				<!-- col.// -->
-				<main class="col-md-9">
-
-				<article class="card mb-3">
-					<div class="card-body">
-
-						<figure class="icontext">
-							<div class="icon">
-								<img class="rounded-circle img-sm border"
-									src="images/avatars/avatar3.jpg">
-							</div>
-							<div class="text">
-								<strong> Mr. Jackson Someone </strong> <br>
-								myloginname@gmail.com <br> <a href="#">Edit</a>
-							</div>
-						</figure>
-						<hr>
-						<p>
-							<i class="fa fa-map-marker text-muted"></i> &nbsp; My address: <br>
-							Tashkent city, Street name, Building 123, House 321 &nbsp; <a
-								href="#" class="btn-link"> Edit</a>
-						</p>
 
 
 
-						<article class="card-group">
+				<div class="card col-md-9">
+					<div class="col-md-12">
+
+						<article class="card-group text-center">
 							<figure class="card bg">
-								<div class="p-3">
-									<h5 class="card-title">38</h5>
-									<span>Orders</span>
+								<div class="p-4">
+									<h4 class="card-title">환급 가능</h4>
+									<span>38,000원</span>
 								</div>
 							</figure>
 							<figure class="card bg">
-								<div class="p-3">
-									<h5 class="card-title">5</h5>
-									<span>Wishlists</span>
+								<div class="p-4">
+									<h4 class="card-title">승인 대기</h4>
+									<span>5,000원</span>
 								</div>
 							</figure>
 							<figure class="card bg">
-								<div class="p-3">
-									<h5 class="card-title">12</h5>
-									<span>Awaiting delivery</span>
+								<div class="p-4">
+									<h4 class="card-title">환급 완료</h4>
+									<span>10,000원</span>
 								</div>
 							</figure>
-							<figure class="card bg">
+							<!-- <figure class="card bg">
 								<div class="p-3">
-									<h5 class="card-title">50</h5>
+									<h4 class="card-title">50</h4>
 									<span>Delivered items</span>
 								</div>
-							</figure>
+							</figure> -->
 						</article>
+						<br />
 
-
-					</div>
-					<!-- card-body .// -->
-				</article>
-				<!-- card.// -->
-
-				<article class="card  mb-3">
-					<div class="card-body">
-						<h5 class="card-title mb-4">Recent orders</h5>
 
 						<div class="row">
-							<div class="col-md-6">
-								<figure class="itemside  mb-3">
-									<div class="aside">
-										<img src="images/items/1.jpg" class="border img-sm">
-									</div>
-									<figcaption class="info">
-										<time class="text-muted">
-											<i class="fa fa-calendar-alt"></i> 12.09.2019
-										</time>
-										<p>Great item name goes here</p>
-										<span class="text-warning">Pending</span>
-									</figcaption>
-								</figure>
+							<div class="col-md-12">
+								<br />
+								<h4>
+									<strong>회원 정보 - </strong><span class="badge badge-success">이메일
+										인증완료</span> <span class="badge badge-secondary">이메일 인증 미완료</span>
+								</h4>
+								<hr>
+								<br />
 							</div>
-							<!-- col.// -->
-							<div class="col-md-6">
-								<figure class="itemside  mb-3">
-									<div class="aside">
-										<img src="images/items/2.jpg" class="border img-sm">
-									</div>
-									<figcaption class="info">
-										<time class="text-muted">
-											<i class="fa fa-calendar-alt"></i> 12.09.2019
-										</time>
-										<p>Machine for kitchen to blend</p>
-										<span class="text-success">Departured</span>
-									</figcaption>
-								</figure>
-							</div>
-							<!-- col.// -->
-							<div class="col-md-6">
-								<figure class="itemside mb-3">
-									<div class="aside">
-										<img src="images/items/3.jpg" class="border img-sm">
-									</div>
-									<figcaption class="info">
-										<time class="text-muted">
-											<i class="fa fa-calendar-alt"></i> 12.09.2019
-										</time>
-										<p>Ladies bag original leather</p>
-										<span class="text-success">Shipped </span>
-									</figcaption>
-								</figure>
-							</div>
-							<!-- col.// -->
 						</div>
-						<!-- row.// -->
+						<div class="row">
+							<div class="col-md-12">
+								<form>
+									<div class="form-group row">
+										<label for="username" class="col-4 col-form-label">아이디</label>
+										<div class="col-8">
+											<input id="userid" name="userid" placeholder="아이디"
+												class="form-control here" required="required" type="text">
+										</div>
+									</div>
+									<div class="form-group row">
+										<label for="select" class="col-4 col-form-label">이메일 <span
+											class="text-danger"><strong>*</strong></span></label>
+										<div class="col-8">
+											<input type="email" class="form-control" placeholder="이메일">
+											<small class="form-text text-muted">We'll never share
+												your email with anyone else.</small>
+										</div>
+									</div>
+									<div class="form-group row">
+										<label for="gender" class="col-4 col-form-label">성별</label>
+										<div class="col-8">
+											<label
+												class="custom-control custom-radio custom-control-inline">
+												<input class="custom-control-input" checked="" type="radio"
+												name="gender" value="option1"> <span
+												class="custom-control-label"> Male </span>
+											</label> <label
+												class="custom-control custom-radio custom-control-inline">
+												<input class="custom-control-input" type="radio"
+												name="gender" value="option2"> <span
+												class="custom-control-label"> Female </span>
+											</label>
+										</div>
+									</div>
+									<div class="form-group row">
+										<label for="name" class="col-4 col-form-label">이름</label>
+										<div class="col-8">
+											<input id="name" name="name" placeholder="이름"
+												class="form-control here" type="text">
+										</div>
+									</div>
+									<!-- 휴대폰 번호 선택 가능하도록 SelectBox 형태로 고민 -->
+									<div class="form-group row">
+										<label for="text" class="col-4 col-form-label">전화번호</label>
+										<div class="col-8">
+											<input id="text" name="text" placeholder="휴대폰 번호"
+												class="form-control here" required="required" type="text">
+										</div>
+									</div>
 
-						<a href="#" class="btn btn-outline-primary"> See all orders </a>
+									<div class="form-group row">
+										<label for="address" class="col-4 col-form-label">주소</label>
+										<div class="col-8">
+											<input id="address" name="address" placeholder="주소"
+												class="form-control here" required="required" type="text">
+										</div>
+									</div>
+									
+									<div class="form-group row">
+										<label for="postcode" class="col-4 col-form-label">우편번호</label>
+										<div class="col-8">
+											<input id="postcode" name="postcode" placeholder="우편번호"
+												class="form-control here" required="required" type="text">
+										</div>
+									</div>
+
+									<div class="form-group row">
+										<div class="offset-4 col-8">
+											<button name="submit" type="submit"
+												class="btn btn-primary btn-md btn-block">회원정보 수정하기</button>
+										</div>
+									</div>
+								</form>
+							</div>
+
+
+							<div class="col-md-12">
+								<br />
+								<hr>
+								<h4>
+									<strong>환급 계좌번호</strong>
+								</h4>
+								<br>
+								<!-- SelectBox 형태로 고민 - Toss check(은행코드) -->
+								<div class="form-group row">
+									<label for="bankname" class="col-4 col-form-label">은행명</label>
+									<div class="col-8">
+										<input id="bankname" name="bankname" placeholder="은행이름"
+											class="form-control here" type="text">
+									</div>
+								</div>
+
+								<div class="form-group row">
+									<label for="account holder" class="col-4 col-form-label">예금주</label>
+									<div class="col-8">
+										<div class="btn-group">
+											<input id="accountholder" name="accountholder" placeholder="예금주"
+												class="form-control here" type="text">
+
+											<button type="button"
+												class="ml-3 btn btn-secondary btn-block">예금주 조회</button>
+										</div>
+									</div>
+								</div>
+
+								<div class="form-group row">
+									<label for="text" class="col-4 col-form-label">계좌번호</label>
+									<div class="col-8">
+										<input id="accountnumber" name="accountnumber" placeholder="계좌번호"
+											class="form-control here" required="required" type="text">
+									</div>
+								</div>
+							</div>
+
+
+							<div class="col-md-12">
+								<br />
+								<hr>
+								<h4>
+									<strong>SNS 계정 연결관리</strong>
+								</h4>
+								<br>
+								<div class="table-responsive">
+									<table class="table table-hover text-center">
+										<thead class="thead-light">
+											<tr>
+												<th scope="col">SNS 구분</th>
+												<th scope="col">연결 계정</th>
+												<th scope="col">연결 일자</th>
+												<th scope="col">연결 설정</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td><img
+													src="https://image.rocketpunch.com/company/5466/naver_logo.png?s=400x400&t=inside"
+													class="img-xs border"></td>
+												<td>
+													<p>mymg99@naver.com</p>
+												</td>
+												<td><p>2021.10.28</p></td>
+												<td><a href="#" class="btn btn-outline-primary btn-sm">연결
+														하기</a> <a href="#" class="btn btn-light btn-sm">연결 해제</a></td>
+											</tr>
+											<tr>
+												<td><img
+													src="https://blog.kakaocdn.net/dn/Sq4OD/btqzlkr13eD/dYwFnscXEA6YIOHckdPDDk/img.jpg"
+													class="img-xs border"></td>
+												<td>
+													<p>mymg99@naver.com</p>
+												</td>
+												<td><p>2021.10.28</p></td>
+												<td><a href="#" class="btn btn-outline-primary btn-sm">연결
+														하기</a> <a href="#" class="btn btn-light btn-sm">연결 해제</a></td>
+											</tr>
+
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
 					</div>
-					<!-- card-body .// -->
-				</article>
-				<!-- card.// --> </main>
-				<!-- col.// -->
+				</div>
 			</div>
 
 		</div>
