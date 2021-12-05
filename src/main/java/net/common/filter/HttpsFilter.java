@@ -11,79 +11,77 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.util.StringUtils;
 
+/**
+ * https protocol로 redirect
+ * @author 김주성
+ *
+ */
 public class HttpsFilter implements Filter {
-	Logger logger = Logger.getLogger(this.getClass());
 
+	private static final Logger logger = LoggerFactory.getLogger(HttpsFilter.class);
+
+	/**
+	 * https 연결로 redirect
+	 * 개발환경/https 연결은 그대로 진행
+	 * 
+	 * url patterns
+	 * - https://mwav.net
+	 * - http://www.mwav.net
+	 * - http://mwav.net
+	 * - http://www.mwav.net/MasterPage_1.mwav?mode=Default
+	 */
 	@Override
-	public void doFilter(ServletRequest request, ServletResponse response,
-			FilterChain chain) throws IOException, ServletException {
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
-		logger.info("User call url : " + req.getRequestURL());
 
-		String getUri = req.getRequestURI();
-		String getProtocol = req.getScheme().toLowerCase();
-		String getDomain = req.getServerName();
-		String getPort = Integer.toString(req.getServerPort());
-		String getParameters = req.getQueryString();
+		String uri = req.getRequestURI();
+		String protocol = req.getScheme().toLowerCase();
+		String domain = req.getServerName();
+		String parameter = req.getQueryString();
 
-		/*
-		 * 
-           https://mwav.net
-           http://www.mwav.net
-           http://mwav.net
-           http://www.mwav.net/MasterPage_1.mwav?mode=Default
-           --> (도메인 포워딩 정책 : 301redirect) https://www.mwav.net/directory?param=abc
-		 */
-		
-		if(getDomain.contains("localhost") || getDomain.contains("mwavtst.nanuminet") || getDomain.contains("koreacentral.cloudapp.azure")){
-			// localhost 테스트 환경에서 filter 타지 않도록 로직 구현 : localhost:8080 으로 접근가능
-			logger.info("Dev / Stg 환경 call : localhost:8080");
-		} else { // http, https 구분없이 filter 적용
+		boolean isDev = domain.contains("localhost") || domain.contains("mwavtst.nanuminet") || domain.contains("koreacentral.cloudapp.azure");
+		boolean isHttps = protocol.equals("https") && domain.contains("www.");
 
-			if(getProtocol.equals("https") && getDomain.contains("www.")){ 
-				// https://www.mwav.net 으로 들어오면 filter pass
-			} else {
-				String httpsRedirectPath = "https://";
-				if( getDomain.contains("www.") == false ){// Set www. domain style
-					getDomain = "www." + getDomain; 
-				}
-				if( getUri == null || getUri.equals("") || getUri.equals("/")){
-					getUri = ""; // Set URI // paramter 없을때 "/" 슬러시 추가되는 이슈해결 안됨. Browser 스펙상 "/" 강제추가됨 >> 상관없음 됨.
-				}
-				if( getParameters == null ){ // Set query string
-					getParameters = "";
-				} else {
-					if( getParameters.equals("") ){
-						getParameters = "";
-					} else {
-						getParameters = "?" + getParameters;
-					}
-				}
+		// 운영 환경에서 https 접속이 아닌경우
+		if (!isHttps && !isDev) {
+			String httpsRedirectPath = "https://";
 
-				httpsRedirectPath = httpsRedirectPath + getDomain + getUri + getParameters; // New location to be redirected
-				logger.info("https converted check : " + httpsRedirectPath);
+			// www.domain 형태로 설정
+			domain = (domain.contains("www.")) ? domain : "www." + domain;
 
-				res.setContentType("text/html"); // Set response content type
-				res.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY); // http 요청시 301 redirect
-				res.setHeader("Location", httpsRedirectPath);
-				//res.sendRedirect(httpsRedirectPath);
-				return;
+			// paramter가 존재하지 않을 시 브라우저 스펙상 경로에 / 추가되는 이슈가 존재 
+			if (uri == null || uri.equals("") || uri.equals("/")) {
+				uri = "";
 			}
+
+			// paramter 생성
+			parameter = (StringUtils.isEmpty(parameter)) ? "" : "?" + parameter;
+
+			httpsRedirectPath = httpsRedirectPath + domain + uri + parameter;
+
+			// content-type : text/html
+			// response : 301 redirect
+			res.setContentType("text/html");
+			res.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
+			res.setHeader("Location", httpsRedirectPath);
+
+			logger.debug("https redirected : " + httpsRedirectPath);
+			return;
 		}
-		
-		// Pass request back down the filter chain
+
 		chain.doFilter(req, res);
 	}
 
 	@Override
 	public void init(FilterConfig config) throws ServletException {
-		logger.debug("HttpsFilter init()");
 	}
+
 	@Override
 	public void destroy() {
-		logger.debug("HttpsFilter destroy()");
 	}
 }

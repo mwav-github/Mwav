@@ -1,6 +1,10 @@
 package net.admins.vo;
 
-public class Staff_VO extends Staff {
+import java.io.Serializable;
+
+public class Staff_VO extends Staff implements Serializable {
+
+	private static final long serialVersionUID = 411859812457517281L;
 	private String stfLoginId; // 직원아이디
 	private String stfLoginPw; // 직원패스워드
 	private String stfNumber; // 사번
@@ -17,12 +21,12 @@ public class Staff_VO extends Staff {
 	private String stfSsn1; // 앞 주민번호
 	private String stfSsn2; // 뒷 주민번호
 	private String stfZipcode; // 주소, 상세주소
-	private String stfAddress; 
-	private String stfMessengerName; 
-	private String stfMessengerId; 
-	private String stfHomepage; 
-	private String stfMark; 
-	private int stfLoginCheck; 
+	private String stfAddress;
+	private String stfMessengerName;
+	private String stfMessengerId;
+	private String stfHomepage;
+	private String stfMark;
+	private int stfLoginCheck;
 	private byte stfLevel;
 	private String stfBusinessPic; // 직원평가데이터(자격증)
 	private String stfAvataImage; // 아바타 이미지
@@ -35,7 +39,7 @@ public class Staff_VO extends Staff {
 	private java.sql.Timestamp stfUpdateDt; // 수정일
 	private java.sql.Timestamp stfRecentLoginDt; // 최근접속일
 	private String stfIpAddress; // PC아이피
-	
+
 	public String getStfLoginId() {
 		return stfLoginId;
 	}
@@ -310,25 +314,12 @@ public class Staff_VO extends Staff {
 
 	@Override
 	public String toString() {
-		return "Staff_VO의 정보입니다 [staff_id=" + super.getStaff_id() + ", stfLoginId=" + stfLoginId
-				+ ", stfLoginPw=" + stfLoginPw + ", stfNumber=" + stfNumber
-				+ ", stfName=" + stfName + ", stfNickname=" + stfNickname
-				+ ", stfBranch=" + stfBranch + ", stfDeptName=" + stfDeptName
-				+ ", stfClass=" + stfClass + ", stfSubJobs=" + stfSubJobs
-				+ ", stfPhone=" + stfPhone + ", stfCellularP=" + stfCellularP
-				+ ", stfExtNbr=" + stfExtNbr + ", stfEmail=" + stfEmail
-				+ ", stfSsn1=" + stfSsn1 + ", stfSsn2=" + stfSsn2
-				+ ", stfZipcode=" + stfZipcode + ", stfAddress=" + stfAddress
-				+ ", stfMessengerName=" + stfMessengerName
-				+ ", stfMessengerId=" + stfMessengerId + ", stfHomepage="
-				+ stfHomepage + ", stfMark=" + stfMark + ", stfLevel="
-				+ stfLevel + ", stfBusinessPic=" + stfBusinessPic
-				+ ", stfAvataImage=" + stfAvataImage + ", stfData=" + stfData
-				+ ", stfPoint=" + stfPoint + ", stfPointAc=" + stfPointAc
-				+ ", stfJoinDt=" + stfJoinDt + ", stfDeleteDt=" + stfDeleteDt
-				+ ", stfInsertDt=" + stfInsertDt + ", stfUpdateDt="
-				+ stfUpdateDt + ", stfRecentLoginDt=" + stfRecentLoginDt
-				+ ", stfIpAddress=" + stfIpAddress + "]";
+		return "Staff_VO [stfLoginId=" + stfLoginId + ", stfLoginPw=" + stfLoginPw + ", stfNumber=" + stfNumber + ", stfName=" + stfName + ", stfNickname=" + stfNickname + ", stfBranch=" + stfBranch
+				+ ", stfDeptName=" + stfDeptName + ", stfClass=" + stfClass + ", stfSubJobs=" + stfSubJobs + ", stfPhone=" + stfPhone + ", stfCellularP=" + stfCellularP + ", stfExtNbr=" + stfExtNbr
+				+ ", stfEmail=" + stfEmail + ", stfSsn1=" + stfSsn1 + ", stfSsn2=" + stfSsn2 + ", stfZipcode=" + stfZipcode + ", stfAddress=" + stfAddress + ", stfMessengerName=" + stfMessengerName
+				+ ", stfMessengerId=" + stfMessengerId + ", stfHomepage=" + stfHomepage + ", stfMark=" + stfMark + ", stfLoginCheck=" + stfLoginCheck + ", stfLevel=" + stfLevel + ", stfBusinessPic="
+				+ stfBusinessPic + ", stfAvataImage=" + stfAvataImage + ", stfData=" + stfData + ", stfPoint=" + stfPoint + ", stfPointAc=" + stfPointAc + ", stfJoinDt=" + stfJoinDt + ", stfDeleteDt="
+				+ stfDeleteDt + ", stfInsertDt=" + stfInsertDt + ", stfUpdateDt=" + stfUpdateDt + ", stfRecentLoginDt=" + stfRecentLoginDt + ", stfIpAddress=" + stfIpAddress + "]";
 	}
-	
+
 }

@@ -19,7 +19,6 @@
 		<commons-configuration>1.10</commons-configuration>
 	</properties>
 
-
 	<!-- 빌트플랫폼인 메이븐 디펜던시를 관리해주는 녀석 http://www.egovframe.go.kr/wiki/doku.php?id=egovframework:dev:dep:build:maven 
 		중요 -->
 	<repositories>
@@ -162,7 +161,6 @@
 			<version>2.0</version>
 		</dependency>
 
-
 		<!-- MyBatis https://okky.kr/article/290317 http://www.mybatis.org/mybatis-3/ko/sqlmap-xml.html 
 			mybatis 3.3.0이상부터 include사용가능 3.2.2 -> 3.4.1 -->
 		<dependency>
@@ -235,7 +233,6 @@
 			<scope>provided</scope>
 		</dependency>
 
-
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
@@ -270,8 +267,6 @@
 			<version>0.2.7</version>
 			<!-- http://addio3305.tistory.com/66 -->
 		</dependency>
-
-
 
 		<!-- MappingJacksonJsonView -->
 		<dependency>
@@ -314,14 +309,12 @@
 			<version>1.2.2</version>
 		</dependency>
 
-
 		<!-- java-image-scaling http://mvnrepository.com/artifact/com.mortennobel/java-image-scaling/0.8.6 -->
 		<dependency>
 			<groupId>com.mortennobel</groupId>
 			<artifactId>java-image-scaling</artifactId>
 			<version>0.8.6</version>
 		</dependency>
-
 
 		<!-- Apache Codec -->
 		<dependency>
@@ -506,11 +499,11 @@
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-cache -->
-		<dependency>
+<!-- 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-cache</artifactId>
 			<version>2.2.5.RELEASE</version>
-		</dependency>
+		</dependency> -->
 
 		<!-- EHCache 모듈 (박정은) -->
 		<dependency>
@@ -518,8 +511,6 @@
 			<artifactId>ehcache</artifactId>
 			<version>2.10.6</version>
 		</dependency>
-
-
 
 		<!-- https://mvnrepository.com/artifact/org.powermock/powermock-module-junit4 -->
 		<dependency>
