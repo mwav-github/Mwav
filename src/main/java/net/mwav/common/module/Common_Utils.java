@@ -148,27 +148,23 @@ public class Common_Utils {
 
 	public void selectCommandMapList(CommandMap commandMap) {
 		if (commandMap.isEmpty() == false) {
-			System.out.println("들어옴");
 			Iterator<Entry<String, Object>> iterator = commandMap.getMap().entrySet().iterator();
 			Entry<String, Object> entry = null;
 			while (iterator.hasNext()) {
 				entry = iterator.next();
 				log.debug("key : " + entry.getKey() + ",\tvalue : " + entry.getValue());
-				System.out.println("key : " + entry.getKey() + ",\tvalue : " + entry.getValue());
 			}
 		}
 	}
 
 	public void selectMap(Map<String, Object> map) {
 		if (map.isEmpty() == false) {
-			System.out.println("들어옴");
 			Iterator<Entry<String, Object>> iterator = map.entrySet().iterator();
 			// map.entryset vs mapkeySet 차이 찾아보기
 			Entry<String, Object> entry = null;
 			while (iterator.hasNext()) {
 				entry = iterator.next();
 				log.debug("key : " + entry.getKey() + ",\tvalue : " + entry.getValue());
-				System.out.println("key : " + entry.getKey() + ",\tvalue : " + entry.getValue());
 			}
 		}
 	}
@@ -234,7 +230,6 @@ public class Common_Utils {
 	public static Map<String, Object> typeToChar(HttpServletRequest request) {
 		char type = 0;
 
-		System.out.println("들어왔다.");
 		Map<String, Object> map = new HashMap<String, Object>();
 
 		String key = null;
@@ -410,7 +405,6 @@ public class Common_Utils {
 				result = selectIdFinder.get(i).replace(extract_textData, "***");
 
 			}
-			System.out.println("dd" + result);
 			selectIdFinder.set(i, result);
 		}
 		return selectIdFinder;
@@ -502,7 +496,6 @@ public class Common_Utils {
 						continue;
 					} else {
 						result = new String(search_parameter.getBytes(charset[i]), charset[j]);
-						System.out.println(charset[i] + " : " + charset[j] + " :" + result + "<br>");
 					}
 				}
 			}
@@ -881,8 +874,6 @@ public class Common_Utils {
 			thumbnail = (String) metaData.get("thumbnail");
 			keywords = (String) metaData.get("newsKeyword") + " " + keywords_default;
 
-			System.out.println("thumbnail" + thumbnail);
-			System.out.println("keywords " + keywords);
 		} else {
 			description = "This is the website for Mwav.net. We are an IT development company possessing total E-Commerce platform based on the fancy technologies. You can contact at https://www.mwav.net/CustomerService/Contact/Contact.mwav?modal=Q&A if you have a question or an inquiry on the site.";
 			thumbnail = "https://www.mwav.net/Images/CompanyLogos/CompanyLogo_L.jpg";
@@ -947,7 +938,6 @@ public class Common_Utils {
 				} else {
 					// .do 등등 일단은 고객친화적이게 임시 변환
 					set_Title = "[Mwav.net] - " + main_Title;
-					// System.out.println("열로3");
 				}
 			}
 		}
