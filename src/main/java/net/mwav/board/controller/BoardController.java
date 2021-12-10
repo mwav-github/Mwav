@@ -1,9 +1,7 @@
 package net.mwav.board.controller;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -17,7 +15,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import net.common.charts.controller.HighChartsController;
+import com.fasterxml.jackson.core.JsonParser.Feature;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import net.common.charts.service.HighChartsService;
 import net.common.charts.vo.DataVO;
 import net.common.charts.vo.SeriesTypeOneVO;
@@ -28,11 +30,6 @@ import net.mwav.board.service.BoardService;
 import net.mwav.common.module.Common_Utils;
 import net.mwav.common.module.Paging;
 import net.mwav.common.module.PagingVO;
-
-import com.fasterxml.jackson.core.JsonParser.Feature;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
 public class BoardController {
@@ -61,9 +58,7 @@ public class BoardController {
 
 	// 1번 bnsForm : Form 입력만 가능 (뒤로가기, list)
 	@RequestMapping(value = "/board/bnsForm.mwav")
-	public ModelAndView insertBnsForm(CommandMap commandMap,
-			HttpServletRequest request) throws Exception {
-		log.info("insertBnsForm()");
+	public ModelAndView insertBnsForm(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/Company/CompanyMasterPage_1");
 
 		/*
@@ -87,93 +82,74 @@ public class BoardController {
 
 	// 1번 bnsView : 수정/삭제가능
 	@RequestMapping(value = "/board/bnsView.mwav")
-	public ModelAndView selectOneBnsView(CommandMap commandMap,
-			HttpServletRequest request, HttpSession session) throws Exception {
-		log.info("selectOneBnsView()");
+	public ModelAndView selectOneBnsView(CommandMap commandMap, HttpServletRequest request, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView("/Company/CompanyMasterPage_1");
 		String charDataSeries = null;
 		String categories = null;
 		DataVO vo = null;
 		try {
-			 Map<String, Object> selectOneBnsView =
-			 boardService.selectOneBnsView(commandMap.getMap());
-//			 String bnKeyword = selectOneBnsView.get("bnKeyword").toString();
-//			 String naverLabJsonString = null;
-//			 if (Common_Utils.isEmpty(bnKeyword) == false) {
-//			 naverLabJsonString = apiNaverTrend.requestNaverTrend(bnKeyword);
+			Map<String, Object> selectOneBnsView = boardService.selectOneBnsView(commandMap.getMap());
+			//			 String bnKeyword = selectOneBnsView.get("bnKeyword").toString();
+			//			 String naverLabJsonString = null;
+			//			 if (Common_Utils.isEmpty(bnKeyword) == false) {
+			//			 naverLabJsonString = apiNaverTrend.requestNaverTrend(bnKeyword);
 
-			 String bnKeyword = null;
-			 System.out.println("keeeeyy" + selectOneBnsView.get("bnKeyword"));
-			 System.out.println("trueeee" + Common_Utils.isEmpty(selectOneBnsView.get("bnKeyword")));
+			String bnKeyword = null;
 
-			 String dataJsonString = null;
-			 if (Common_Utils.isEmpty(selectOneBnsView.get("bnKeyword")) ==
-			 false) {
-			 bnKeyword = selectOneBnsView.get("bnKeyword").toString();
-			 dataJsonString = apiNaverTrend
-			 .requestNaverTrend(selectOneBnsView.get("bnKeyword")
-			 .toString());
+			String dataJsonString = null;
+			if (Common_Utils.isEmpty(selectOneBnsView.get("bnKeyword")) == false) {
+				bnKeyword = selectOneBnsView.get("bnKeyword").toString();
+				dataJsonString = apiNaverTrend.requestNaverTrend(selectOneBnsView.get("bnKeyword").toString());
 
-			// http://noritersand.tistory.com/240
-			 System.out.println("dataJsonString>>>>");
-			 System.out.println(dataJsonString);
+				// http://noritersand.tistory.com/240
 
-			ObjectMapper mapper = new ObjectMapper();
-			// https://stackoverflow.com/questions/4486787/jackson-with-json-unrecognized-field-not-marked-as-ignorable
-			// 쌍 따옴표 허용
-			mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,
-					false);
-			// mapper.configure(Feature.ALLOW_SINGLE_QUOTES, true);
-			// mapper.configure(Feature.ALLOW_UNQUOTED_CONTROL_CHARS, true);
-			// mapper.configure(Feature.ALLOW_UNQUOTED_FIELD_NAMES, false);
+				ObjectMapper mapper = new ObjectMapper();
+				// https://stackoverflow.com/questions/4486787/jackson-with-json-unrecognized-field-not-marked-as-ignorable
+				// 쌍 따옴표 허용
+				mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+				// mapper.configure(Feature.ALLOW_SINGLE_QUOTES, true);
+				// mapper.configure(Feature.ALLOW_UNQUOTED_CONTROL_CHARS, true);
+				// mapper.configure(Feature.ALLOW_UNQUOTED_FIELD_NAMES, false);
 
-			Map<String, Object> map = new HashMap<String, Object>();
+				Map<String, Object> map = new HashMap<String, Object>();
 
-			 //convert JSON string to Map http://starplaying.tistory.com/492
-			 map = mapper.readValue(dataJsonString,
-			 new TypeReference<Map<String, Object>>() {
-			 });
+				//convert JSON string to Map http://starplaying.tistory.com/492
+				map = mapper.readValue(dataJsonString, new TypeReference<Map<String, Object>>() {
+				});
 
-			Map<String, Object> map2 = new HashMap<String, Object>();
-			 String results = map.get("results").toString();
-			 String jsonInString = mapper.writeValueAsString(results);
-			 jsonInString = mapper.writerWithDefaultPrettyPrinter()
-			 .writeValueAsString(jsonInString);
+				Map<String, Object> map2 = new HashMap<String, Object>();
+				String results = map.get("results").toString();
+				String jsonInString = mapper.writeValueAsString(results);
+				jsonInString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(jsonInString);
 
-			 System.out.println("jsonString" + jsonInString);
-			 String results2 = results.substring(1, results.length() - 1);
-			 System.out.println("re" + results2);
-			System.out.println(mapper.writeValueAsString(map.get("results")));
+				String results2 = results.substring(1, results.length() - 1);
 
-			 results2 = results2.replace("=", ":");
+				results2 = results2.replace("=", ":");
 
-			 results2 = mapper.writeValueAsString(map.get("results"));
-			 int a1 = results2.indexOf("period"); // 1 // 맨 처음값의 위치를 찾음
-			 results2 = results2.substring(a1 - 3, results2.length() - 2);
-			 System.out.println("results2" + results2);
-			 results2 = results2.replace("period", "name");
-			 results2 = results2.replace("ratio", "data");
+				results2 = mapper.writeValueAsString(map.get("results"));
+				int a1 = results2.indexOf("period"); // 1 // 맨 처음값의 위치를 찾음
+				results2 = results2.substring(a1 - 3, results2.length() - 2);
+				results2 = results2.replace("period", "name");
+				results2 = results2.replace("ratio", "data");
 
-			mapper.configure(
-					DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
+				mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
 
-			mapper.configure(Feature.ALLOW_UNQUOTED_FIELD_NAMES, true);
-			 List<SeriesTypeOneVO> map21 = mapper.readValue(results2, new
-			 TypeReference<List<SeriesTypeOneVO>>() {});
+				mapper.configure(Feature.ALLOW_UNQUOTED_FIELD_NAMES, true);
+				List<SeriesTypeOneVO> map21 = mapper.readValue(results2, new TypeReference<List<SeriesTypeOneVO>>() {
+				});
 
-			System.out.println("=====");
-			 vo = highChartService.selectListKeyword(map21, bnKeyword);
-			 
-			/* String json = new ObjectMapper().writeValueAsString(vo);
-			 System.out.println("!+0"+json);*/
-			 
-			 List<SeriesTypeTwoVO> chartDataList  = vo.getSeries();
-			 charDataSeries = new ObjectMapper().writeValueAsString(chartDataList);
-			 
-			 List<String> categoriesList  = vo.getCategories();
-			 categories = new ObjectMapper().writeValueAsString(categoriesList);
-			 
-			 }
+				vo = highChartService.selectListKeyword(map21, bnKeyword);
+
+				/* String json = new ObjectMapper().writeValueAsString(vo);
+				 System.out.println("!+0"+json);*/
+
+				List<SeriesTypeTwoVO> chartDataList = vo.getSeries();
+				charDataSeries = new ObjectMapper().writeValueAsString(chartDataList);
+
+				List<String> categoriesList = vo.getCategories();
+				categories = new ObjectMapper().writeValueAsString(categoriesList);
+
+			}
 			if (selectOneBnsView != null && !selectOneBnsView.isEmpty()) {
 
 				mv.addObject("mm", "site");
@@ -189,9 +165,8 @@ public class BoardController {
 				metaData.put("thumbnail", (String) selectOneBnsView.get("bnTitleImageLink"));
 				metaData.put("newsKeyword", bnKeyword);
 				metaData.put("isCheck", false);
-				System.out.println("dsf"+bnKeyword);
-				
-					
+				System.out.println("dsf" + bnKeyword);
+
 				request.setAttribute("boardMetaData", metaData);
 				// meta태그 이미지
 				mv.addObject("selectOneBnsView", selectOneBnsView);
@@ -199,7 +174,7 @@ public class BoardController {
 				mv.addObject("charData", vo);
 				mv.addObject("categories", categories);
 			}
-			 
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -208,9 +183,7 @@ public class BoardController {
 
 	// 1번 bnsUpdate : 리스트 업데이트
 	@RequestMapping(value = "/board/bnsUpdate.mwav")
-	public ModelAndView updateBnsform(CommandMap commandMap,
-			HttpServletRequest request) throws Exception {
-		log.info("updateBnsform()");
+	public ModelAndView updateBnsform(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/Company/CompanyMasterPage_1");
 		request.setAttribute("mode", "SbnsUpdate");
 
@@ -232,15 +205,11 @@ public class BoardController {
 
 	// 1번 FrontNewsList : 메인페이지 앞단 5개씩 출력, 작성일 기준
 	@RequestMapping(value = "/board/bnsFrontList.mwav")
-	public ModelAndView selectListBnsFrontList(CommandMap commandMap,
-			HttpServletRequest request) throws Exception {
-		log.info("selectListBnsFrontList()");
-		ModelAndView mv = new ModelAndView(
-				"/CommonApps/BoardNews/FrontNewsList");
+	public ModelAndView selectListBnsFrontList(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("/CommonApps/BoardNews/FrontNewsList");
 
 		cou.selectCommandMapList(commandMap); // 키 출력
-		List<Map<String, Object>> selectListBnsFrontList = boardService
-				.selectListBnsFrontList(commandMap.getMap());
+		List<Map<String, Object>> selectListBnsFrontList = boardService.selectListBnsFrontList(commandMap.getMap());
 
 		if (selectListBnsFrontList != null && !selectListBnsFrontList.isEmpty()) {
 			request.setAttribute("mode", "SFbnsList");
@@ -253,9 +222,7 @@ public class BoardController {
 
 	// 2번 bnsList : 리스트
 	@RequestMapping(value = "/board/bnsList.mwav")
-	public ModelAndView selectListBnsList(CommandMap commandMap,
-			HttpServletRequest request) throws Exception {
-		log.info("selectListBnsList()");
+	public ModelAndView selectListBnsList(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/CommonApps/BoardNews/bnsList");
 
 		String pageNum = (String) commandMap.get("pageNum");
@@ -264,7 +231,6 @@ public class BoardController {
 			pageNum = "1";
 		}
 		int totalRow = boardService.selectOneGetTotalCount();
-		System.out.println("totalRow=" + totalRow);
 
 		// Paging pv = new Paging(pageNum, 10 , 10, totalCount);
 		List<Map<String, Object>> selectListBnsList;
@@ -274,8 +240,7 @@ public class BoardController {
 		commandMap.put("startRow", paging.getStartRow(pageNum)); // 시작 열
 		commandMap.put("endRow", paging.getEndRow(pageNum)); // 끝 열
 		if (totalRow > 0) {
-			selectListBnsList = boardService.selectListBnsList(commandMap
-					.getMap());
+			selectListBnsList = boardService.selectListBnsList(commandMap.getMap());
 
 		} else {
 			selectListBnsList = Collections.emptyList();
@@ -295,8 +260,7 @@ public class BoardController {
 
 	// 1번 bnsDelete
 	@RequestMapping(value = "/board/bnsDelete.mwav")
-	public ModelAndView deleteBnsDelete(CommandMap commandMap,
-			HttpServletRequest request) throws Exception {
+	public ModelAndView deleteBnsDelete(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/Company/CompanyMasterPage_1");
 		boardService.deleteBnsDelete(commandMap.getMap());
 		return mv;
@@ -305,9 +269,7 @@ public class BoardController {
 	// Notice
 	// 1번 BuForm : Form 입력만 가능 (뒤로가기, list)
 	@RequestMapping(value = "/board/buForm.mwav")
-	public ModelAndView insertBuForm(CommandMap commandMap,
-			HttpServletRequest request) throws Exception {
-		log.info("insertBuForm()");
+	public ModelAndView insertBuForm(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/CustomerService/CS-MasterPage_1");
 
 		boardService.insertBuForm(commandMap.getMap());
@@ -323,9 +285,7 @@ public class BoardController {
 
 	// 2번 BuView : 수정/삭제가능
 	@RequestMapping(value = "/board/buView.mwav")
-	public ModelAndView selectOneBuView(CommandMap commandMap,
-			HttpServletRequest request, HttpSession session) throws Exception {
-		log.info("selectOneBuView()");
+	public ModelAndView selectOneBuView(CommandMap commandMap, HttpServletRequest request, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView("/CustomerService/CS-MasterPage");
 
 		// Common_Util.selectListCommandMap(commandMap); // 키 출력
@@ -338,8 +298,7 @@ public class BoardController {
 		 * System.out.println("key : " + entry.getKey() + ",\tvalue : " +
 		 * entry.getValue()); } }
 		 */
-		Map<String, Object> selectOneBuView = boardService
-				.selectOneBuView(commandMap.getMap());
+		Map<String, Object> selectOneBuView = boardService.selectOneBuView(commandMap.getMap());
 
 		if (selectOneBuView != null && !selectOneBuView.isEmpty()) {
 
@@ -348,17 +307,15 @@ public class BoardController {
 			mv.addObject("breadcrumb", "Announcement");
 			mv.addObject("page_header", "Announcement");
 
-			
 			Map<String, Object> metaData = new HashMap<String, Object>();
 			// meta태그 이미지
 			metaData.put("title", (String) selectOneBuView.get("buTitle"));
 			metaData.put("description", (String) selectOneBuView.get("buSubTitle"));
 			metaData.put("thumbnail", (String) selectOneBuView.get("buRelatedLink"));
-			
-				
+
 			request.setAttribute("boardMetaData", metaData);
 			// meta태그 이미지
-			
+
 			// meta태그 이미지
 			mv.addObject("selectOneBuView", selectOneBuView);
 		}
@@ -367,9 +324,7 @@ public class BoardController {
 
 	// 3번 BuUpdate : 리스트 업데이트
 	@RequestMapping(value = "/board/buUpdate.mwav")
-	public ModelAndView updateBuform(CommandMap commandMap,
-			HttpServletRequest request) throws Exception {
-		log.info("updateBuform()");
+	public ModelAndView updateBuform(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/CustomerService/CS-MasterPage_1");
 
 		request.setAttribute("mode", "SbuUpdate");
@@ -393,17 +348,13 @@ public class BoardController {
 	 */
 	// 4번 FrontNewsList : 메인페이지 앞단 5개씩 출력, 작성일 기준
 	@RequestMapping(value = "/board/buFrontList.mwav")
-	public ModelAndView selectListBuFrontList(CommandMap commandMap,
-			HttpServletRequest request) throws Exception {
-		log.info("selectListBuFrontList()");
-		ModelAndView mv = new ModelAndView(
-				"/CommonApps/BoardNotice/FrontNoticeList");
+	public ModelAndView selectListBuFrontList(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("/CommonApps/BoardNotice/FrontNoticeList");
 
 		// * action-servlet.xml에서 위에 .jsp 설정해줘서 위의 CommonApps 부터 되는거
 		cou.selectCommandMapList(commandMap); // 키 출력
 
-		List<Map<String, Object>> selectListBuFrontList = boardService
-				.selectListBuFrontList(commandMap.getMap());
+		List<Map<String, Object>> selectListBuFrontList = boardService.selectListBuFrontList(commandMap.getMap());
 
 		if (selectListBuFrontList != null && !selectListBuFrontList.isEmpty()) {
 			request.setAttribute("mode", "SFbuList");
@@ -416,9 +367,7 @@ public class BoardController {
 
 	// 5번 BuList : 리스트
 	@RequestMapping(value = "/board/buList.mwav")
-	public ModelAndView selectListBuList(CommandMap commandMap,
-			HttpServletRequest request) throws Exception {
-		log.info("selectListBuList()");
+	public ModelAndView selectListBuList(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/CommonApps/BoardNotice/buList");
 
 		String pageNum = (String) commandMap.get("pageNum");
@@ -434,8 +383,7 @@ public class BoardController {
 		commandMap.put("startRow", paging.getStartRow(pageNum));
 		commandMap.put("endRow", paging.getEndRow(pageNum));
 		if (totalRow > 0) {
-			selectListBuList = boardService.selectListBuList(commandMap
-					.getMap());
+			selectListBuList = boardService.selectListBuList(commandMap.getMap());
 		} else {
 			selectListBuList = Collections.emptyList();
 		}
@@ -452,13 +400,10 @@ public class BoardController {
 
 	// 6번 BuDelete
 	@RequestMapping(value = "/board/buDelete.mwav")
-	public ModelAndView deleteBuDelete(CommandMap commandMap,
-			HttpServletRequest request) throws Exception {
-		log.info("deleteBuDelete()");
+	public ModelAndView deleteBuDelete(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/CustomerService/CS-MasterPage");
 		boardService.deleteBuDelete(commandMap.getMap());
 		return mv;
 	}
 
-	
 }

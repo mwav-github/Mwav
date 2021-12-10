@@ -6,7 +6,8 @@ import java.util.concurrent.ExecutionException;
 
 import javax.servlet.http.HttpSession;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
@@ -19,7 +20,6 @@ import com.github.scribejava.core.model.OAuthRequest;
 import com.github.scribejava.core.model.Response;
 import com.github.scribejava.core.model.Verb;
 import com.github.scribejava.core.oauth.OAuth20Service;
-
 
 /**
  * 
@@ -43,7 +43,8 @@ import com.github.scribejava.core.oauth.OAuth20Service;
 @PropertySource("classpath:googleProperties/application.properties")
 @Component
 public class NaverUrlBuilder {
-	Logger log = Logger.getLogger(this.getClass());
+
+	private static final Logger logger = LoggerFactory.getLogger(NaverUrlBuilder.class);
 
 	@Value("${naver.appKey}")
 	private String appKey;
@@ -68,9 +69,9 @@ public class NaverUrlBuilder {
 
 	public String getAuthorizationUrl(HttpSession session) {
 		String state = generateRandomString();
-		log.info("appKey :" + appKey);
-		log.info("appSecret : " + appSecret);
-		log.info("callbackUrl : " + callbackUrl);
+		logger.debug("appKey :" + appKey);
+		logger.debug("appSecret : " + appSecret);
+		logger.debug("callbackUrl : " + callbackUrl);
 
 		setSession(session, "state", state);
 
@@ -94,7 +95,7 @@ public class NaverUrlBuilder {
 	public String getUserProfile(OAuth2AccessToken token) throws IOException {
 		OAuth20Service oauthService = new ServiceBuilder().apiKey(appKey).apiSecret(appSecret).callback(callbackUrl).build(NaverAPI.getInstance());
 		OAuthRequest request = new OAuthRequest(Verb.GET, "https://openapi.naver.com/v1/nid/me", oauthService);
-		
+
 		oauthService.signRequest(token, request);
 		Response response = request.send();
 		return response.getBody();
