@@ -165,7 +165,7 @@ public class PmtFacilitatorController {
 	}
 
 	@RequestMapping("/promoter/naver/signin.mwav")
-	@ResponseBody
+//	@ResponseBody
 	public String callbackNaverUrl(@RequestParam String code, @RequestParam String state, HttpSession session) throws Exception {
 
 		// 1. code를 이용해서 access_token 받아오기
@@ -181,30 +181,19 @@ public class PmtFacilitatorController {
 
 		// 3. DB 해당 유저가 존재하는지 체크
 		if (userProfileMap.get("resultcode").equals("00")) {
-			Map<String, Object> response1 = (Map<String, Object>) userProfileMap.get("response");
+			Map<String, Object> ufResult = (Map<String, Object>) userProfileMap.get("response");
 
-			PmtFacilitatorSO so = new PmtFacilitatorSO();
-
-			so.setPromoter_id(Integer.parseInt(response1.get("id").toString()));
-			so.setSpPromoterId(response1.get("email").toString());
-			so.setSpNickname(response1.get("name").toString());
-			so.setSpEmail(response1.get("email").toString());
-			so.setSpSnsType("Naver");
-
-			PmtFacilitatorVO check = pmtFacilitatorService.checkSocialJoin(so);
+			int check = pmtFacilitatorService.checkNaverAccount(ufResult);
 
 			System.out.println("check = " + check);
 
 			// 4. 존재 시 강제로그인, 미 존재시 가입하고 로그인
-			if (check != null) {
-				System.out.println("아이디 있음");
+			if (check == 0) {
+				pmtFacilitatorService.saveNaverAccount(ufResult);
 			}else{
-//				PmtFacilitatorVO vo = pmtFacilitatorService.joinSocialLogin(so);
-//				System.out.println("vo = " + vo);
+
 			}
 		}
-
-
-		return "ok";
+		return "redirect:/Promoter/Index.mwav";
 	}
 }

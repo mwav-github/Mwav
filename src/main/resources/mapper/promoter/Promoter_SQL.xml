@@ -228,5 +228,52 @@
 		WHERE promoter_id = (SELECT promoter_id FROM Promoter_tbl WHERE pmtLoginId = #{promoter_id})
 		]]>
 	</update>
+
+
+	<!-- SocialNaver -->
+	<select id="checkNaverAccount" parameterType="net.bizLogin.promoter.vo.PmtFacilitatorVO" resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		  FROM SnsPromoter_tbl
+		 WHERE 1=1
+<!--		   AND snsPromoter_id = #{snsPromoter_id}-->
+		   AND spPromoterId = #{spPromoterId}
+		   AND spSnsType = 'Naver'
+	</select>
+
+	<insert id="saveNaverAccount" parameterType="net.bizLogin.promoter.vo.PmtFacilitatorVO">
+		INSERT INTO SnsPromoter_tbl (
+			snsPromoter_id,
+			spSnsType,
+			spPromoterId,
+			spEmail,
+			spEmailVerified,
+			<if test="spNickName != null">
+				spNickName,
+			</if>
+			<if test="spTemGender != null">
+				spGender,
+			</if>
+			<if test="spMobile != null">
+				spMobile,
+			</if>
+			spInsertDt
+		) VALUES(
+			10001,
+			#{spSnsType},
+			#{spPromoterId},
+			#{spEmail},
+			#{spEmailVerified},
+			<if test="spNickName != null">
+				#{spNickName},
+			</if>
+			<if test="spTemGender != null">
+				#{spTemGender},
+			</if>
+			<if test="spMobile != null">
+				#{spMobile},
+			</if>
+			NOW()
+		)
+	</insert>
 </mapper>
 

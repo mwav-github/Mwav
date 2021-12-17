@@ -37,6 +37,12 @@ public class PmtFacilitatorVO {
 	private String spIpAddress;
 	/* SNS (소셜서비스) 종류 - 영문표기: Twitter, Facebook, Linkedin, Kakao, Naver */
 	private String spSnsType;
+	/* (임시) 이메일 인증 여부 - true(1) or false(0) */
+	private int spEmailVerified;
+	/* (임시) 개인전화 */
+	private String spMobile;
+	/* (임시) 성별 */
+	private int spTemGender;
 	
 	public Integer getSnsPromoter_id() {
 		return snsPromoter_id;
@@ -145,5 +151,26 @@ public class PmtFacilitatorVO {
 	}
 	public void setSpSnsType(String spSnsType) {
 		this.spSnsType = spSnsType;
+	}
+	public void setSpNickName(String spNickName) {
+		this.spNickName = spNickName;
+	}
+	public int getSpEmailVerified() {
+		return spEmailVerified;
+	}
+	public void setSpEmailVerified(int spEmailVerified) {
+		this.spEmailVerified = spEmailVerified;
+	}
+	public String getSpMobile() {
+		return spMobile;
+	}
+	public void setSpMobile(String spMobile) {
+		this.spMobile = spMobile;
+	}
+	public int getSpTemGender() {
+		return spTemGender;
+	}
+	public void setSpTemGender(int spTemGender) {
+		this.spTemGender = spTemGender;
 	}
 }

@@ -18,4 +18,8 @@ public interface PmtFacilitatorService {
 	
 	public PmtFacilitatorVO joinSocialLogin(PmtFacilitatorSO vo);
 	PmtFacilitatorVO selectPmtFacLogin(Map<String, Object> map) throws Exception;
+
+	/*======================================SocialNaver==========================================*/
+	public int checkNaverAccount(Map<String, Object> map);
+	public void saveNaverAccount(Map<String, Object> map);
 }

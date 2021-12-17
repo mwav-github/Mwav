@@ -40,5 +40,13 @@ public class PmtFacilitatorDAO extends AbstractDAO{
     public PmtFacilitatorVO selectPmtLogin(Map<String, Object> map){
         return (PmtFacilitatorVO)selectOne("promoter.selectPmtLogin",map);
     }
+
+    public int checkNaverAccount(PmtFacilitatorVO vo){
+        return (int) selectOne("promoter.checkNaverAccount", vo);
+    }
+
+    public void saveNaverAccount(PmtFacilitatorVO vo){
+        insert("promoter.saveNaverAccount", vo);
+    }
 }
 

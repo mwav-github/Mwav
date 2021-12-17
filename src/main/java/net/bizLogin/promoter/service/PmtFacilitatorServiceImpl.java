@@ -135,4 +135,57 @@ public class PmtFacilitatorServiceImpl implements PmtFacilitatorService {
 		return  (PmtFacilitatorVO)pmtFacilitatorDAO.selectPmtLogin(map);
 	}
 
+
+	/* SocialNaver */
+	@Override
+	public int checkNaverAccount(Map<String, Object> map) {
+		PmtFacilitatorVO vo = new PmtFacilitatorVO();
+
+		vo.setSpSnsType("Naver");
+		vo.setSpPromoterId(map.get("id").toString());
+		vo.setSpEmail(map.get("email").toString());
+
+		return pmtFacilitatorDAO.checkNaverAccount(vo);
+	}
+
+	@Override
+	public void saveNaverAccount(Map<String, Object> map) {
+
+		PmtFacilitatorVO vo = new PmtFacilitatorVO();
+
+		vo.setSpSnsType("Naver");
+		vo.setSpPromoterId(map.get("id").toString());
+		vo.setSpEmail(map.get("email").toString());
+
+		// 이메일 인증 값을 위한 이메일 체크
+		if (checkEmail(map).equals("naver.com")) {
+			vo.setSpEmailVerified(1); // true;
+		}else{
+			vo.setSpEmailVerified(0); // false;
+		}
+
+		// 필수 값이 아닌 데이터 체크
+		if(map.get("gender") != null){
+			if(map.get("gender").equals("M")){
+				vo.setSpTemGender(0); // 남자
+			}else if(map.get("gender").equals("F")){
+				vo.setSpTemGender(1); // 여자
+			}
+		}
+		if(map.get("mobile") != null){
+			vo.setSpMobile(map.get("mobile").toString());
+		}
+		if(map.get("name") != null){
+			vo.setSpNickname(map.get("name").toString());
+		}
+
+		pmtFacilitatorDAO.saveNaverAccount(vo);
+	}
+
+	private String checkEmail(Map<String, Object> map) {
+		String email = map.get("email").toString();
+		String pureEmail = email.substring(email.length()-9, email.length());
+
+		return pureEmail;
+	}
 }
