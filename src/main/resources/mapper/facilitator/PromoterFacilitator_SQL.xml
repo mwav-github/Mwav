@@ -1,40 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<!-- #은 ' ' string // $ 은 숫자 ' ' 없음 -->
+<!-- 프로모터 로그인 -->
 <mapper namespace="promoterFacilitator">
+
+	<!-- 프로모터 등록여부 확인 -->
 	<select id="selectOnePmtLoginIdCheck" parameterType="string" resultType="int">
 		<![CDATA[
-	      SELECT Count(*) FROM Promoter_tbl WHERE pmtLoginId = #{pmtLoginId}
+		SELECT COUNT(1) /* promoterFacilitator.selectOnePmtLoginIdCheck */
+		FROM mwav.Promoter_tbl
+		WHERE 1 = 1
+			AND pmtLoginId = #{pmtLoginId, jdbcType=VARCHAR}
 		]]>
 	</select>
-
+	
+	<!-- 프로모터 등록 -->
 	<insert id="insertPromoter_tbl" parameterType="hashmap">
 		<![CDATA[
-		INSERT INTO Promoter_tbl (promoter_id, pmtLoginId, pmtLoginPw, pmtFirstName, pmtLastName, pmtGender
-						, pmtCellularPhone, pmtMail)
-		VALUES((SELECT IFNULL(MAX(pmt.promoter_id)+1,100000) FROM Promoter_tbl pmt), #{pmtLoginId}, #{pmtLoginPw}, #{pmtFirstName}, #{pmtLastName}, #{pmtGender}
-								, #{pmtCellularPhone}, #{pmtMail})
+		INSERT INTO mwav.Promoter_tbl /* promoterFacilitator.insertPromoter_tbl */
+		(
+			  promoter_id, pmtLoginId, pmtLoginPw
+			, pmtFirstName, pmtLastName, pmtGender
+			, pmtCellularPhone, pmtMail
+		)
+		VALUES
+		(
+			  (SELECT IFNULL(MAX(pmt.promoter_id)+1,100000) FROM Promoter_tbl pmt), #{pmtLoginId, jdbcType=VARCHAR}, #{pmtLoginPw, jdbcType=VARCHAR}
+			, #{pmtFirstName, jdbcType=VARCHAR}, #{pmtLastName, jdbcType=VARCHAR}, #{pmtGender, jdbcType=VARCHAR}
+			, #{pmtCellularPhone, jdbcType=VARCHAR}, #{pmtMail, jdbcType=VARCHAR}
+		)
 		]]>
 	</insert>
-
+	
+	<!-- 프로모터 가치정보 등록 -->
 	<insert id="insertPromoterValue_tbl" parameterType="hashmap">
 		<![CDATA[
-			INSERT INTO PromoterValue_tbl(promoter_id, pmtLevel, pmtVisitNbr, pmtEffects, pmtProfits, Promoter_tbl_promoter_id)
-			SELECT promoter_id, 1, 0, 0, 0, promoter_id
-			FROM Promoter_tbl
-			WHERE pmtLoginId = #{pmtLoginId}
+		INSERT INTO mwav.PromoterValue_tbl /* promoterFacilitator.insertPromoterValue_tbl */
+		(
+			  promoter_id, pmtLevel, pmtVisitNbr
+			, pmtEffects, pmtProfits, Promoter_tbl_promoter_id
+		)
+		SELECT 
+			  A.promoter_id, 1, 0
+			, 0, 0, A.promoter_id
+		FROM mwav.Promoter_tbl A
+		WHERE 1 = 1
+			AND pmtLoginId = #{pmtLoginId, jdbcType=VARCHAR}
 		]]>
 	</insert>
-
+	
+	<!-- 프로모터 가치정보 로그 등록 -->
 	<insert id="insertPromoterValueLog_tbl" parameterType="hashmap">
 		<![CDATA[
-			INSERT INTO PromoterValueLog_tbl(promoterValueLog_id, promoter_id, pvlChagedPoint, pvlRemark, pvlInsertDt, pvlIpAddress, PromoterValue_tbl_promoter_id)
-			SELECT (SELECT IFNULL(MAX(promoterValueLog_id)+1, 10000000) FROM PromoterValueLog_tbl), promoter_id, 0, #{pvlRemark}, NOW(), #{pvlIpAddress}, promoter_id
-			FROM Promoter_tbl
-			WHERE pmtLoginId = #{pmtLoginId}
+		INSERT INTO mwav.PromoterValueLog_tbl /* promoterFacilitator.insertPromoterValueLog_tbl */
+		(
+			  promoterValueLog_id, promoter_id, pvlChagedPoint
+			, pvlRemark, pvlInsertDt
+			, pvlIpAddress, PromoterValue_tbl_promoter_id
+		)
+		SELECT
+			  (SELECT IFNULL(MAX(promoterValueLog_id)+1, 10000000) FROM PromoterValueLog_tbl), A.promoter_id, 0
+			, #{pvlRemark, jdbcType=VARCHAR}, NOW()
+			, #{pvlIpAddress, jdbcType=VARCHAR}, A.promoter_id
+		FROM mwav.Promoter_tbl A
+		WHERE 1 = 1
+			AND A.pmtLoginId = #{pmtLoginId, jdbcType=VARCHAR}
 		]]>
 	</insert>
 
 </mapper>
-
