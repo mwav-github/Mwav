@@ -13,7 +13,7 @@ import net.common.common.CommandMap;
  *
  */
 public interface PmtFacilitatorService {
-	
+
 	/**
 	 * 프로모터 등록여부 확인
 	 * @param stfLoginId
@@ -21,7 +21,7 @@ public interface PmtFacilitatorService {
 	 * @throws Exception
 	 */
 	public boolean selectOnePmtLoginIdCheck(String stfLoginId) throws Exception;
-	
+
 	/**
 	 * 프로모터 회원가입
 	 * @param commandMap
@@ -34,7 +34,7 @@ public interface PmtFacilitatorService {
 
 	public PmtFacilitatorVO joinSocialLogin(PmtFacilitatorSO vo);
 
-	public Map<String, Object> selectBizPmtLogin(Map<String, Object> map) throws Exception;
+	public Map<String, Object> login(Map<String, Object> param) throws Exception;
 
 	public boolean sendCertifyMail(String serverUrl, String pmtMail, String pmtLoginId) throws IOException;
 

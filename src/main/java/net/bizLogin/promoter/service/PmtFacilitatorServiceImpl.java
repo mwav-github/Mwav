@@ -21,6 +21,7 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.springframework.mail.MailAuthenticationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import net.bizLogin.promoter.dao.PmtFacilitatorDAO;
 import net.bizLogin.promoter.vo.BizPromoter_VO;
@@ -41,7 +42,7 @@ public class PmtFacilitatorServiceImpl implements PmtFacilitatorService {
 
 	@Inject
 	private PmtFacilitatorDAO pmtFacilitatorDAO;
-	
+
 	/**
 	 * 프로모터 등록여부 확인
 	 */
@@ -140,41 +141,53 @@ public class PmtFacilitatorServiceImpl implements PmtFacilitatorService {
 	}
 
 	@Override
-	public Map<String, Object> selectBizPmtLogin(Map<String, Object> map) throws Exception {
+	public Map<String, Object> login(Map<String, Object> param) throws Exception {
 
-		Map<String, Object> mapVo = new HashMap<String, Object>();
+		Map<String, Object> result = new HashMap<String, Object>();
+		String pmtLoginId = (String) param.get("pmtLoginId");
+		String pmtLoginPw = (String) param.get("pmtLoginPw");
+		String token = (String) param.get("token");
 
-		// 1. 유효성 검증, 비정상적인 값이 들어오면 null로 반환
-		if (((String) map.get("pmtLoginPw")).length() < 3 || ((String) map.get("pmtLoginId")).length() < 3) {
-			mapVo.put("status", "INVALID_ID_PWD");
-			mapVo.put("vo", null);
-			return mapVo;
+		boolean isValid = !StringUtils.isEmpty(pmtLoginId) && pmtLoginId.length() >= 3 && !StringUtils.isEmpty(pmtLoginPw) && pmtLoginPw.length() >= 3;
+
+		// 1. 유효성 검증
+		if (!isValid) {
+			result.put("status", "INVALID_PARAM");
+			result.put("msg", "아이디와 비밀번호를 확인해주세요.");
+			return result;
 		}
 
-		// 1-1. ReCaptcha 유효성 검증
-		String token = (String) map.get("token");
-		if (!this.recaptcha(token)) {
-			mapVo.put("status", "RECAPTCHA_ERROR");
-			mapVo.put("vo", null);
-			return mapVo;
+		// 2. ReCaptcha 유효성 검증
+		if (!recaptcha(token)) {
+			result.put("status", "INVALID_PARAM");
+			result.put("msg", "로봇으로 감지되었습니다. 다시 시도해주세요");
+			return result;
 		}
 
-		// 2. 로그인 확인하기 위해 비밀번호 암호화
-		final AES128Lib aes128Lib = AES128Lib.getInstance();
-		String pmtLoginPw = (String) map.get("pmtLoginPw");
-		byte[] encrypted = aes128Lib.encrypt("Mwav.net", "Mwav", pmtLoginPw);
-		map.put("pmtLoginPw", AesEncryption.aesEncodeBuf(encrypted));
+		// 3. 비밀번호 암호화
+		AES128Lib aes128Lib = AES128Lib.getInstance();
+		result.put("pmtLoginPw", aes128Lib.encryptToString("Mwav.net", "Mwav", pmtLoginPw));
 
-		// 3. DB에서 pmtLoginId & pmtLoginPw 이 일치하는 로우를 가져옴
-		BizPromoter_VO bizPromoterVo = pmtFacilitatorDAO.selectBizPmtLogin(map);
-		if (bizPromoterVo != null) {
-			mapVo.put("status", "LOGIN_SUCCESS");
-		} else {
-			mapVo.put("status", "INVALID_ID_PWD");
+		// 4. DB에서 pmtLoginId & pmtLoginPw 이 일치하는 로우를 가져옴
+		BizPromoter_VO bizPromoterVo = pmtFacilitatorDAO.selectBizPmtLogin(param);
+
+		if (bizPromoterVo == null) {
+			result.put("status", "INVALID_PARAM");
+			result.put("msg", "아이디와 비밀번호를 확인해주세요.");
+			return result;
 		}
-		mapVo.put("vo", bizPromoterVo);
 
-		return mapVo;
+		if (bizPromoterVo.getPmtCertifyDt() == null) {
+			result.put("status", "NOT_CERTIFICATED");
+			result.put("msg", "이메일 인증이 필요합니다.");
+			return result;
+		}
+
+		result.put("status", "LOGIN_SUCCESS");
+		result.put("msg", "로그인에 성공하였습니다.");
+		result.put("promoter", bizPromoterVo);
+
+		return result;
 	}
 
 	@Override

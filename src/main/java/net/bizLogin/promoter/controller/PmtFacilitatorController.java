@@ -20,7 +20,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import net.bizLogin.promoter.service.PmtFacilitatorService;
-import net.bizLogin.promoter.vo.BizPromoter_VO;
 import net.bizLogin.promoter.vo.PmtFacilitatorSO;
 import net.bizLogin.promoter.vo.PmtFacilitatorVO;
 import net.common.common.CommandMap;
@@ -30,6 +29,7 @@ import net.mwav.common.module.Common_Utils;
 /**
  * 프로모터 로그인
  * @author 공태현
+ * @author 남동희
  *
  */
 @Controller
@@ -44,55 +44,34 @@ public class PmtFacilitatorController {
 
 	/**
 	 * 프로모터 로그인
-	 * @param commandMap 
-	 * @param request
-	 * @param redirectAttr
+	 * @param param
+	 * @param redirect
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/bizLogin/promoter/facilitator/pmtFacilitatorLogin.mwav", method = RequestMethod.POST)
-	public ModelAndView selectBizPmtLogin(CommandMap commandMap, HttpServletRequest request, RedirectAttributes redirectAttr) throws Exception {
-		ModelAndView mv = new ModelAndView();
+	@RequestMapping(value = "/promoter/facilitator/login.mwav", method = RequestMethod.POST)
+	public ModelAndView login(@RequestParam Map<String, Object> param, HttpSession session, RedirectAttributes redirect) throws Exception {
+		ModelAndView view = new ModelAndView();
+		Map<String, Object> result = pmtFacilitatorService.login(param);
 
-		// Promoter 로그인 성공시 값을 가져옴
-		Map<String, Object> mapVo = pmtFacilitatorService.selectBizPmtLogin(commandMap.getMap());
-		String status = (String) mapVo.get("status");
-
-		// 로그인 성공여부에 따라 페이지및 statusCode, msg 변경
-		switch (status) {
+		switch ((String) result.get("status")) {
 		case "LOGIN_SUCCESS":
-			// 로그인한 사용자가 이메일을 인증했는지 검증
-			BizPromoter_VO bizPromoterVo = (BizPromoter_VO) mapVo.get("vo");
-			boolean chkEmailYN = false;
-			chkEmailYN = bizPromoterVo.getPmtCertifyDt() != null ? true : false;
-
-			// 이메일 인증된 사용자의 경우
-			if (chkEmailYN) {
-				logger.debug("프로모터 로그인 성공");
-				mv.setViewName("redirect:/Promoter/Index");
-				request.getSession().setAttribute("bizPromoter", bizPromoterVo);
-			} else {
-				// 이메일 인증이 안되어있는 사용자라면 인증 페이지로 redirect
-				logger.debug("이메일 인증되지 않은 사용자 로그인");
-				mv.setViewName("redirect:/Promoter/Facilitator/PmtCertifyPage.mwav");
-				redirectAttr.addFlashAttribute("msg", "이메일 인증이 필요합니다.");
-				redirectAttr.addFlashAttribute("promoter_id", bizPromoterVo.getPromoter_id());
-				redirectAttr.addFlashAttribute("pmtMail", bizPromoterVo.getPmtMail());
-			}
+			session.setAttribute("bizPromoter", result.get("promoter"));
+			view.setViewName("redirect:/Promoter/Index");
 			break;
-		case "INVALID_ID_PWD":
-			logger.debug("프로모터 로그인 실패(아이디, 비밀번호 오류)");
-			mv.setViewName("redirect:/Promoter/Facilitator/PmtLogin.mwav");
-			redirectAttr.addFlashAttribute("msg", "비밀번호와 아이디를 확인해주세요");
+		case "INVALID_PARAM":
+			view.setViewName("redirect:/Promoter/Facilitator/PmtLogin.mwav");
 			break;
-		case "RECAPTCHA_ERROR":
-			logger.debug("프로모터 로그인 실패(리캡챠 유효성 검증 실패)");
-			mv.setViewName("redirect:/Promoter/Facilitator/PmtLogin.mwav");
-			redirectAttr.addFlashAttribute("msg", "로봇으로 감지되었습니다. 다시 시도해주세요");
+		case "NOT_CERTIFICATED":
+			view.setViewName("redirect:/Promoter/Facilitator/PmtCertifyPage.mwav");
 			break;
-
+		default:
+			view.setViewName("redirect:/Promoter/Facilitator/PmtLogin.mwav");
+			break;
 		}
-		return mv;
+		redirect.addFlashAttribute("msg", result.get("msg"));
+
+		return view;
 	}
 
 	/**
