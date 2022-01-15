@@ -1,30 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/beans" xmlns:mvc="http://www.springframework.org/schema/mvc"
-	xmlns:tx="http://www.springframework.org/schema/tx"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
-       http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
-       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+<beans xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.springframework.org/schema/beans" xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
 
-	<!-- net 하위 모든 패키지에 있는 파일의 어노테이션을 스캔해서 빈으로 등록하겠다는 말 즉 사용하는 bean을 일일이 xml에 선언하지 않고도 필요한 것을 어노테이션(Annotation)을 자동으로 인식하게 하는 역할 <context:component 이것과 <mvc:annotation-driven> 이두개의 설정이 즉 아래 모든 패키지에 스캔을하면서 어노테이션을 확인하면서 전체 다 주입해준다.!!! 원래는 각각각 어디어디어디에 다 지정해서 주입해줘야 했다. 주의할점 : 프로젝트 내 주입할 객체 타입은 하나만 있어야 한다. 만약 
-		두개이상이 있다면 @Qualify 라는 걸로 어떤게 맞는지 체크해줘야 한다. http://mainichibenkyo.tistory.com/242 -->
-	<context:component-scan base-package="net"></context:component-scan>
-
-
-	<!-- 이걸 안쓰면js, css 등은 dispatcher servlet를 타지않는다.!!! > http://changpd.blogspot.kr/2013/02/spring.html >http://toby.epril.com/?p=1107 http://ismydream.tistory.com/139 jsp와 같은 특정 확장자를 가진 URL말고는 모두 DispatcherServlet이 다 받는다 -->
+	<context:component-scan base-package="net" name-generator="net.bizlogin.common.service.FullBeanNameGenerator" />
+	<mybatis-spring:scan base-package="net.bizlogin" />
+	
+	<!-- .html, .css, .js를 default servlet에서 처리 -->
 	<mvc:default-servlet-handler />
 
 	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
 
-	<!-- Configures transaction management around @Transactional components -->
 	<tx:annotation-driven transaction-manager="transactionManager" />
 
-	<!-- 구글 프로퍼티 파일 연결 -->
 	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="ignoreResourceNotFound" value="true" />
 		<property name="locations">
 			<list>
-				<!-- <value>classpath:googleProperties/googleApi.properties</value> -->
 				<value>classpath:googleProperties/version.properties</value>
 				<value>classpath:googleProperties/datasource.properties</value>
 				<value>classpath:googleProperties/application.properties</value>
@@ -32,11 +29,6 @@
 		</property>
 	</bean>
 
-
-	<!-- Enables the Spring MVC @Controller programming model -->
-	<!-- CustomMapArgumentResolver는 root context 영역에 등록이 되어야 한다. -->
-	<!-- 어노테이션을 사용하겠다고 선언 -->
-	<!-- <mvc:argument-resolvers> 태그를 이용하여 우리가 만든 CustomMapArgumentResolver의 빈(bean)을 수동으로 등록했다. -->
 	<mvc:annotation-driven>
 		<mvc:argument-resolvers>
 			<bean class="net.common.resolver.CustomMapArgumentResolver"></bean>
@@ -45,24 +37,10 @@
 
 	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
 
-
 	<bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJacksonJsonView" />
 
-
-	<!-- tiles org.springframework.web.servlet.view.BeanNameViewResolver org.springframework.web.servlet.view.tiles3.TilesViewResolver org.springframework.web.servlet.view.UrlBasedViewResolver -->
-	<!-- <bean id="tilesViewResolver" class="org.springframework.web.servlet.view.tiles3.TilesViewResolver"> <property name="order" value="0"></property> </bean> <bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer"> <property name="definitions"> <list> <value>/WEB-INF/tiles/tiles.xml</value> 
-		</list> </property> </bean> -->
-
-
-
-	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
-	<!-- ViewResolver구요~ jsp와 name을 매핑시켜주는 녀석 Controller을 설명할 때, 서블릿 설정이 자동으로 prefix와 suffix를 붙인다고 해줬는데, 그 역할을 담당한다. 즉, 우리가 일일이 전체경로와 .jsp를 붙이지 않아도 되도록 도와준다. -->
-	<!-- 위에 prefix로 컨트롤러로 넘겨주는 url 결정 만약 /WEB-INF/views 로 되어있다면 앞에 자동으로 붇는다. -->
-	<!-- tiles(161130)추가에 따라 order 1>2로 변경. order 이란 순서를 의미하는데타일즈를 위한 UrlBasedViewResolver가 InternalResourceViewResolver보다 우선순위가 높아야 제대로 적용이된다. 이건 InternalResourceViewResolver는 아니지만 어쨌든 -->
 	<bean class="org.springframework.web.servlet.view.UrlBasedViewResolver" p:order="2" p:viewClass="org.springframework.web.servlet.view.JstlView" p:prefix="/" p:suffix=".jsp">
-		<!-- prefix는 페이지의 기본 루트 // 페이지의 기본 확장자 -->
 	</bean>
-
 
 	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver" p:order="3" />
 
@@ -70,7 +48,6 @@
 		<property name="order" value="1" />
 		<property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView" />
 	</bean>
-
 
 	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
 		<property name="definitions">
@@ -80,20 +57,6 @@
 		</property>
 	</bean>
 
-
-
-	<!-- 위와 같이 리졸버랑 같이있어야 인터셉터 적용되는듯 -->
-	<!-- @RequestMapping 어노테이션을 이용하여 컨트롤러와 매핑한다. DefaultAnnotationHandlerMapping은 URL 단위로 interceptor를 적용할 수 없는 듯 체크 필요! [이슈확인 필요] >https://www.egovframe.go.kr/wiki/doku.php?id=egovframework:rte:ptl:handlermapping SimpleUrlAnnotationHandlerMapping은 @Controller 사용시에 url 단위로 Interceptor를 적용하기 위해 개발됬다. 비슷한 
-		고민과 비슷한 해결 방법을 제시한 분이 있다. Scott Murphy의 블로그를 참고하라. -->
-	<!-- <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" /> -->
-
-
-	<!-- Interceptor는 Controller가 요청되기 전에 수행된다. 즉, Interceptor는 DispatcherServlet과 같은 위치에 등록이 되어있어야지 정상적으로 수행이 된다. -->
-	<!-- Log4js 설정 http://dev.anyframejava.org/docs/anyframe/plugin/essential/core/1.6.0/reference/html/ch21.html http://logging.apache.org/log4j/1.2/apidocs/index.html -->
-	<!-- 20160223 admin 권한부여를 위하여 변경 <mvc:interceptors> <mvc:interceptor> <mvc:mapping path="/**" /> 지금 작성하는 로거는 모든 요청에서 동작을 하기때문에 전체 패스를 의미하는 "/**" 로 설정하였다. <bean id="loggerInterceptor" class="net.common.logger.LoggerInterceptor"></bean> </mvc:interceptor> </mvc:interceptors> <mvc:mapping path="/admins/**" 
-		/> -->
-	<!-- 제외하고 싶을떄 http://krespo.net/192 -->
-	<!-- 여러개 쓸때 http://kdsr2z0.github.io/spring_interceptor/ (순서대로실행) -->
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**" />
@@ -117,11 +80,8 @@
 			<!--<mvc:mapping path="/member/**" /> -->
 			<bean id="loginInterceptor" class="net.common.Interceptor.LoginInterceptor"></bean>
 		</mvc:interceptor>
-
 		<mvc:interceptor>
 			<mvc:mapping path="/promoter/**" />
-			<!--<mvc:mapping path="/member/**" /> -->
-			<!-- 프로모터 회원가입시 인증을 위한 interceptor exclude 처리 -->
 			<mvc:exclude-mapping path="/promoter/pmtLoginIdCheck.mwav" />
 			<mvc:exclude-mapping path="/promoter/PmtForm.mwav" />
 			<bean id="pmtInterceptor" class="net.common.Interceptor.PmtInterceptor"></bean>
@@ -131,7 +91,6 @@
 			<mvc:mapping path="/signin/google.mwav" />
 			<mvc:mapping path="/signin/twitter.mwav" />
 			<mvc:mapping path="/signin/facebook.mwav" />
-			<!--<mvc:mapping path="/member/**" /> -->
 			<bean id="autoLoginInterceptor" class="net.common.Interceptor.AutoLoginInterceptor"></bean>
 		</mvc:interceptor>
 		<mvc:interceptor>

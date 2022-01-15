@@ -1,39 +1,32 @@
 package net.mwav.qa.controller;
 
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
-import javax.annotation.Resource;
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import net.common.common.CommandMap;
-import net.mwav.member.vo.Member_tbl_VO;
-import net.mwav.qa.service.QAService;
-import net.mwav.shop.service.GoodsService;
 import net.mwav.common.module.Common_Utils;
 import net.mwav.common.module.Paging;
 import net.mwav.common.module.PagingVO;
+import net.mwav.member.vo.Member_tbl_VO;
+import net.mwav.qa.service.QAService;
 
 @Controller
 public class QAController {
-	Logger log = Logger.getLogger(this.getClass());
-	// HttpServlsetRequest request = null;
-	// 자바에서 세션사용을 위해서는 아래와 같이 필요
-	// 세션 관련 설정은 prehandle 에서 추후 지정(들어오는 url에 따라서)
-	// HttpSession session = request.getSession();
+
+	private static final Logger logger = LoggerFactory.getLogger(QAController.class);
+
 	Common_Utils cou = new Common_Utils();
 	Paging paging = new Paging();
 	String mode;
@@ -49,10 +42,10 @@ public class QAController {
 	 * SFbnsList /CommonApps/BoardNews/FrontNewsList.jsp 5. bnsUpdate : mode =
 	 * SbnsUpdate /CommonApps/BoardNews/bnsForm.jsp
 	 */
-	@Resource(name = "qaService")
+	@Inject
 	private QAService qaService;
 
-	@Autowired
+	@Inject
 	Member_tbl_VO member_tbl_VO;
 
 	/*
@@ -63,8 +56,7 @@ public class QAController {
 	// 1번 bnsForm : Form 입력만 가능 (뒤로가기, list)
 
 	@RequestMapping(value = "/qa/qaFormAjax.mwav")
-	public @ResponseBody boolean insertQAFormaAjax(CommandMap commandMap,
-			HttpServletRequest request) throws Exception {
+	public @ResponseBody boolean insertQAFormaAjax(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		boolean flag = false;
 		int member_id = 0;
 		int statistics_id = 0;
@@ -79,14 +71,12 @@ public class QAController {
 
 			// 통계키 넣기.
 			if (session.getAttribute("statistics_id") != null) {
-				statistics_id = Integer.parseInt((String) session
-						.getAttribute("statistics_id"));
+				statistics_id = Integer.parseInt((String) session.getAttribute("statistics_id"));
 			}
 
 			// 정리 필요.
 			int uqInvoker_id;
-			String uqInvoker_id_string = (String) commandMap
-					.get("uqInvoker_id");
+			String uqInvoker_id_string = (String) commandMap.get("uqInvoker_id");
 			if (Common_Utils.isEmpty(uqInvoker_id_string) == true) {
 				// null인경우
 				uqInvoker_id = 0;
@@ -95,10 +85,10 @@ public class QAController {
 
 			commandMap.put("member_id", member_id);
 			commandMap.put("statistics_id", statistics_id);
-			
+
 			//템플릿 경로
 			commandMap.put("xmlPath", request.getRealPath("/xConfig/mail.xml.config"));
-			
+
 			flag = qaService.insertQAForm(commandMap.getMap(), request);
 
 		} catch (Exception e) {
@@ -109,8 +99,7 @@ public class QAController {
 	}
 
 	@RequestMapping(value = "/qa/qaForm.mwav")
-	public ModelAndView insertQAForm(CommandMap commandMap,
-			HttpServletRequest request) throws Exception {
+	public ModelAndView insertQAForm(CommandMap commandMap, HttpServletRequest request) throws Exception {
 
 		ModelAndView mv = new ModelAndView("/CustomerService/CS-MasterPage");
 
@@ -125,16 +114,15 @@ public class QAController {
 
 		// 통계키 넣기.
 		if (session.getAttribute("statistics_id") != null) {
-			statistics_id = Integer.parseInt((String) session
-					.getAttribute("statistics_id"));
+			statistics_id = Integer.parseInt((String) session.getAttribute("statistics_id"));
 		}
 		commandMap.put("member_id", member_id);
 		commandMap.put("statistics_id", statistics_id);
-		
+
 		String referer = request.getHeader("Referer");
 		//mwav url 제외할지 추후 고민 
 		commandMap.put("uqRelatedLink", referer);
-		
+
 		// 정리 필요.
 		int uqInvoker_id;
 		String uqInvoker_id_string = (String) commandMap.get("uqInvoker_id");
@@ -144,11 +132,11 @@ public class QAController {
 			commandMap.put("uqInvoker_id", uqInvoker_id);
 		}
 
-		log.info("인터셉터 테스트");
+		logger.info("인터셉터 테스트");
 
 		//템플릿 경로
 		commandMap.put("xmlPath", request.getRealPath("/xConfig/mail.xml.config"));
-		
+
 		// 아직 까지는 한벌로
 		boolean flag = qaService.insertQAForm(commandMap.getMap(), request);
 		request.setAttribute("check", flag);
@@ -165,14 +153,10 @@ public class QAController {
 	 * ========
 	 */
 	@RequestMapping(value = "/qa/qaView.mwav")
-	public ModelAndView selectOneNsmView(CommandMap commandMap,
-			HttpServletRequest request, HttpSession session) throws Exception {
+	public ModelAndView selectOneNsmView(CommandMap commandMap, HttpServletRequest request, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView("/CustomerService/CS-MasterPage");
 
-		log.debug("인터셉터 테스트");
 		Map<String, Object> selectOneQAView = qaService.selectOneQAView(commandMap.getMap());
-
-		System.out.println("sdf" + selectOneQAView.get("uqStatus"));
 
 		if (selectOneQAView != null && !selectOneQAView.isEmpty()) {
 
@@ -189,25 +173,9 @@ public class QAController {
 	}
 
 	@RequestMapping(value = "/qa/uaSatisfactionUpdateAjax.mwav")
-	public @ResponseBody boolean updateQnAUaForm(CommandMap commandMap,
-			HttpServletRequest request) throws Exception {
-
-		// HttpSession session = request.getSession();
-
-		/*
-		 * int uaSatisfaction = 0; uaSatisfaction = (int)
-		 * request.getAttribute("uaSatisfaction");
-		 */
-		/*
-		 * System.out.println("uaSatisfaction = "+uaSatisfaction);
-		 * 
-		 * uaSatisfaction = qaService .uaSatisfactionUpdateAjax(uaSatisfaction);
-		 */
-
+	@ResponseBody
+	public boolean updateQnAUaForm(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		boolean flag = qaService.uaSatisfactionUpdateAjax(commandMap.getMap());
-
-		// mv.addObject("insertBnsForm", insertBnsForm);
-		// mv.addObject("IDX", commandMap.get("IDX"));
 
 		return flag;
 
@@ -217,21 +185,14 @@ public class QAController {
 	 * ========================================수정================================
 	 * ========
 	 */
-
-	/*
-	 * ========================================리스트(SelectOne, SelectList
-	 * 순)========================================
-	 */
 	// 조인해서 가져와야 할듯.
 	@RequestMapping(value = "/qa/qaFrontList.mwav")
-	public ModelAndView selectListBnsFrontList(CommandMap commandMap,
-			HttpServletRequest request) throws Exception {
+	public ModelAndView selectListBnsFrontList(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/CommonApps/BoardQnA/FrontQAList");
 
 		cou.selectCommandMapList(commandMap); // 키 출력
 
-		List<Map<String, Object>> selectListQAFrontList = qaService
-				.selectListQAFrontList(commandMap.getMap());
+		List<Map<String, Object>> selectListQAFrontList = qaService.selectListQAFrontList(commandMap.getMap());
 
 		if (selectListQAFrontList != null && !selectListQAFrontList.isEmpty()) {
 
@@ -248,20 +209,18 @@ public class QAController {
 
 	// 2번 bnsList : 리스트
 	@RequestMapping(value = "/qa/qaList.mwav")
-	public ModelAndView selectListQAList(CommandMap commandMap,
-			HttpServletRequest request) throws Exception {
+	public ModelAndView selectListQAList(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/CustomerService/CS-MasterPage");
 
 		HttpSession session = request.getSession();
 
 		try {
 			// 회원로그인시
-			Member_tbl_VO member = (Member_tbl_VO) session
-					.getAttribute("member");
+			Member_tbl_VO member = (Member_tbl_VO) session.getAttribute("member");
 			String m_email = null;
 			String m_id = null;
 
-			if (cou.isEmpty(member)) {
+			if (Common_Utils.isEmpty(member)) {
 				// 비회원인경우
 
 				m_email = (String) commandMap.get("uqUserEmail");
@@ -291,8 +250,7 @@ public class QAController {
 			commandMap.put("startRow", paging.getStartRow(pageNum)); // 시작 열
 			commandMap.put("endRow", paging.getEndRow(pageNum)); // 끝 열
 			if (totalRow > 0) {
-				selectListQAList = qaService.selectListQAList(commandMap
-						.getMap());
+				selectListQAList = qaService.selectListQAList(commandMap.getMap());
 				// selectboardList =
 				// boardService.selectbnsList(commandMap.getMap());
 
@@ -305,7 +263,6 @@ public class QAController {
 			mv.addObject("NO", "qaList");
 
 			mv.addObject("breadcrumb", "IT Trends");
-			// mv.addObject("page_header", "IT Trends");
 			mv.addObject("page_header", null);
 
 			mv.addObject("selectListQAList", selectListQAList);
@@ -318,8 +275,7 @@ public class QAController {
 	}
 
 	@RequestMapping(value = "/qa/qaLogin.mwav")
-	public ModelAndView selectListQALogin(CommandMap commandMap,
-			HttpServletRequest request) throws Exception {
+	public ModelAndView selectListQALogin(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/CustomerService/QnA/QnA");
 
 		int loginCheck = 0; // 초기값
@@ -341,9 +297,5 @@ public class QAController {
 
 		return mv;
 	}
-	/*
-	 * ========================================삭제================================
-	 * ========
-	 */
 
 }

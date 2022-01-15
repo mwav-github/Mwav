@@ -4,7 +4,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
@@ -37,7 +37,7 @@ public class SampleController {
 	 
 	 만약 Inject/ Autowired 이면 타입으로 연결(BoardService)
 	 * */
-	@Resource(name = "sampleService")
+	@Inject
 	private SampleService sampleService;
 
 	/*@RequestMapping 이라는 부분이 웹 클라이언트 (jsp)에서 들어온 요청에 해당하는 비지니스 로직을 찾아주는 역할을 한다.

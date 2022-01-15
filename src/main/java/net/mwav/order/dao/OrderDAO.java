@@ -1,7 +1,5 @@
 package net.mwav.order.dao;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -9,23 +7,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 
+import org.springframework.stereotype.Repository;
+
 import net.common.dao.AbstractDAO;
 import net.mwav.order.vo.OrderCartVO;
 
-import org.springframework.stereotype.Repository;
-
-@Repository("orderDAO")
+@Repository
+@SuppressWarnings("unchecked")
 public class OrderDAO extends AbstractDAO {
 
-	// Abstrat로 변경
-
-	/*
-	 * ========================================등록================================
-	 * ========
-	 */
-
 	public int insertOrderForm(OrderCartVO vo) {
-		// TODO Auto-generated method stub
 		int flag = 0;
 
 		String orderCart_id = vo.getOrderCart_id();
@@ -97,21 +88,15 @@ public class OrderDAO extends AbstractDAO {
 	 */
 
 	public int selectOneOrderTotalCount() {
-		// TODO Auto-generated method stub
 		return (int) selectOne("order.selectOneOrderTotalCount");
 	}
 
-	public List<Map<String, Object>> selectListOrderCartList(
-			Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return (List<Map<String, Object>>) selectList(
-				"order.selectListOrderCartList", map);
+	public List<Map<String, Object>> selectListOrderCartList(Map<String, Object> map) {
+		return (List<Map<String, Object>>) selectList("order.selectListOrderCartList", map);
 
 	}
 
 	public int updateOrderCart(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-
 		String goods_id = (String) map.get("goods_id");
 		System.out.println("진짜 goods_id" + goods_id);
 
@@ -160,25 +145,20 @@ public class OrderDAO extends AbstractDAO {
 		return check;
 	}
 
-	public List<Map<String, Object>> selectOrderCartCalculate(
-			Map<String, Object> map) {
+	public List<Map<String, Object>> selectOrderCartCalculate(Map<String, Object> map) {
 		// TODO Auto-generated method stub
 
-		return (List<Map<String, Object>>) selectList(
-				"order.selectOrderCartCalculate", map);
+		return (List<Map<String, Object>>) selectList("order.selectOrderCartCalculate", map);
 	}
 
-	public List<Map<String, Object>> selectListOrderCartChecked(
-			Map<String, Object> map, Vector<String> goods_id,
-			Vector<String> ocChoiceDt) {
+	public List<Map<String, Object>> selectListOrderCartChecked(Map<String, Object> map, Vector<String> goods_id, Vector<String> ocChoiceDt) {
 		// TODO Auto-generated method stub
 
 		Map<String, Object> selectListOrderCart = null;
 		List<Map<String, Object>> selectListOrderCartChecked = new ArrayList<Map<String, Object>>();
 		// List<OrderCartVO> articleList = null;
-		
+
 		//selectListOrderCart = selectList("order.selectOrderCartCalculate", map);
-		
 
 		//System.out.println("사이즈" + selectListOrderCart.size());
 		//System.out.println("사이즈1" + goods_id.size());
@@ -190,49 +170,35 @@ public class OrderDAO extends AbstractDAO {
 			System.out.println("12"
 					+ String.valueOf(selectListOrderCart.get(i).get(
 							"ocChoiceDt")));
-
+			
 			System.out.println("21" + goods_id.elementAt(i));
 			System.out
 					.println("22"
 							+ String.valueOf(selectListOrderCart.get(i).get(
 									"goods_id")));*/
-			map.put("ocChoiceDt",ocChoiceDt.elementAt(i));
-			map.put("goods_id",goods_id.elementAt(i));
-			
+			map.put("ocChoiceDt", ocChoiceDt.elementAt(i));
+			map.put("goods_id", goods_id.elementAt(i));
+
 			selectListOrderCart = (Map<String, Object>) selectOne("order.selectOrderCartCalculate2", map);
-			
-			if (ocChoiceDt.elementAt(i)
-					.equals(String.valueOf(selectListOrderCart.get(
-							"ocChoiceDt")))
-					&& goods_id.elementAt(i).equals(
-							String.valueOf(selectListOrderCart.get(
-									"goods_id")))) {
-			map = new HashMap<String, Object>();
-			
-			
-			map.put("goods_id", selectListOrderCart.get("goods_id"));
-			map.put("orderCart_id",
-					selectListOrderCart.get("orderCart_id"));
-			map.put("ocChoiceDt",
-					selectListOrderCart.get("ocChoiceDt"));
-			map.put("ocAmount", selectListOrderCart.get("ocAmount"));
-			map.put("gcr_id", selectListOrderCart.get("gcr_id"));
-			map.put("ocIpaddress",
-					selectListOrderCart.get("ocIpaddress"));
-			map.put("statistics_id",
-					selectListOrderCart.get("statistics_id"));
 
-			map.put("gManufacturer",
-					selectListOrderCart.get("gManufacturer"));
-			map.put("gName", selectListOrderCart.get("gName"));
-			map.put("gMemberPrice",
-					selectListOrderCart.get("gMemberPrice"));
-			map.put("gConsumerPrice",
-					selectListOrderCart.get("gConsumerPrice"));
-			map.put("gDeliveryCost",
-					selectListOrderCart.get("gDeliveryCost"));
+			if (ocChoiceDt.elementAt(i).equals(String.valueOf(selectListOrderCart.get("ocChoiceDt"))) && goods_id.elementAt(i).equals(String.valueOf(selectListOrderCart.get("goods_id")))) {
+				map = new HashMap<String, Object>();
 
-			selectListOrderCartChecked.add(map);
+				map.put("goods_id", selectListOrderCart.get("goods_id"));
+				map.put("orderCart_id", selectListOrderCart.get("orderCart_id"));
+				map.put("ocChoiceDt", selectListOrderCart.get("ocChoiceDt"));
+				map.put("ocAmount", selectListOrderCart.get("ocAmount"));
+				map.put("gcr_id", selectListOrderCart.get("gcr_id"));
+				map.put("ocIpaddress", selectListOrderCart.get("ocIpaddress"));
+				map.put("statistics_id", selectListOrderCart.get("statistics_id"));
+
+				map.put("gManufacturer", selectListOrderCart.get("gManufacturer"));
+				map.put("gName", selectListOrderCart.get("gName"));
+				map.put("gMemberPrice", selectListOrderCart.get("gMemberPrice"));
+				map.put("gConsumerPrice", selectListOrderCart.get("gConsumerPrice"));
+				map.put("gDeliveryCost", selectListOrderCart.get("gDeliveryCost"));
+
+				selectListOrderCartChecked.add(map);
 			}
 
 			/*if (ocChoiceDt.elementAt(i)
@@ -249,7 +215,7 @@ public class OrderDAO extends AbstractDAO {
 				// 2. 위와 같이 map 객체 여기서 생성시 맞을때 마다 map 객체 생성 즉 두번이면 두개 생성되서 넣으니!! 
 				
 				//선택하는 기준과 // db상 (
-
+			
 				map.put("goods_id", selectListOrderCart.get(i).get("goods_id"));
 				map.put("orderCart_id",
 						selectListOrderCart.get(i).get("orderCart_id"));
@@ -261,7 +227,7 @@ public class OrderDAO extends AbstractDAO {
 						selectListOrderCart.get(i).get("ocIpaddress"));
 				map.put("statistics_id",
 						selectListOrderCart.get(i).get("statistics_id"));
-
+			
 				map.put("gManufacturer",
 						selectListOrderCart.get(i).get("gManufacturer"));
 				map.put("gName", selectListOrderCart.get(i).get("gName"));
@@ -271,7 +237,7 @@ public class OrderDAO extends AbstractDAO {
 						selectListOrderCart.get(i).get("gConsumerPrice"));
 				map.put("gDeliveryCost",
 						selectListOrderCart.get(i).get("gDeliveryCost"));
-
+			
 				selectListOrderCartChecked.add(map);
 			}*/
 		}

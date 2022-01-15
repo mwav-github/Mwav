@@ -15,40 +15,31 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
 import javax.imageio.ImageIO;
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
-import net.admins.dao.GoodsAdminsDAO;
-import net.admins.service.BoardNewsAdminsService;
-import net.admins.service.GoodsAdminsService;
-import net.admins.service.GoodsAdminsServiceImpl;
-
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-/*일단 기본적으로 외부스토리지를 사용하지 않는다고 가정할 경우, 프로젝트의 webapp 밑에 해당 파일이 존재해야 이미지 미리보기를 할 수가 있습니다. */
+import net.admins.service.GoodsAdminsService;
 
-@Component("fileUtils")
-/*
- * @Component 어노테이션을 이용하여 이 객체의 관리를 스프링이 담당하도록 할 계획이다.
- * 
- * 사용시 new 를 사용하여 객체를 만드는것이 아니라, 위에서 보는것과 같이 @Resource 어노테이션을 이용하여 객체의 선언만 해주면
- * 된다.
- * 
- * @Resource(name="fileUtils") private FileUtils fileUtils;
+/**
+ * 일단 기본적으로 외부스토리지를 사용하지 않는다고 가정할 경우, 프로젝트의 webapp 밑에 해당 파일이 존재해야 이미지 미리보기를 할 수가 있습니다. 
  */
+@Component
 public class FileUtils {
 
-	@Resource(name = "goodsAdminsService")
+	@Inject
 	private GoodsAdminsService goodsAdminsService;
 
 	HttpServletRequest request;
 
-	Logger log = Logger.getLogger(this.getClass());
+	private static final Logger logger = LoggerFactory.getLogger(FileUtils.class);
+
 	// Member
 	private static final String filePath_Member = "xUpload\\MbrData\\Avata\\";
 	private static final String filePath_TempImages_Member = "xUpload\\MbrData\\Avata\\Avata.bak\\";
@@ -63,10 +54,7 @@ public class FileUtils {
 
 	// 파일저장 위치
 	// 공통으로 가져가야하기 때문에 goods, staff 등등에 따라 나뉘어야함
-
-	public List<Map<String, Object>> parseInsertFileInfo(
-			Map<String, Object> map, HttpServletRequest request)
-			throws Exception {
+	public List<Map<String, Object>> parseInsertFileInfo(Map<String, Object> map, HttpServletRequest request) throws Exception {
 		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
 		Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
 		/*
@@ -82,28 +70,15 @@ public class FileUtils {
 		 * Iterator를 통해서 모든 name값을 알아서 가져오게 하면, 개발자는 name이 무엇인지를 몰라도, 쉽게 그 값을
 		 * 사용할수 있다. Iterator에 대한 자세한 설명은 추후 따로 포스팅을 할 예정이다.
 		 */
-		System.out.println("iterator" + iterator);
-
 		Calendar calender = Calendar.getInstance();
 		// yyyyMMddHHmmssSSS
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
 		String now = dateFormat.format(calender.getTime());
-		System.out.println("현재시간 " + now);
 
 		String file_classification = (String) map.get("file_classification");
 		String images_position = (String) map.get("images_position");
-		System.out.println("파일 구분 " + file_classification);
-		System.out.println("이미지위치" + images_position);
-
 		String goods_id = (String) map.get("goods_id");
-		System.out.println("goods_id = " + goods_id);
-		/*
-		 * goods
-		 */
-
 		String uploadRootPath = (String) map.get("uploadRootPath");
-
-		System.out.println("uploadRootPath : " + uploadRootPath);
 
 		MultipartFile multipartFile = null;
 		String originalFileName = null;
@@ -120,11 +95,9 @@ public class FileUtils {
 		 */
 		Map<String, Object> listMap = null;
 
-		// int staff_id = (int) map.get("staff_id");
 		/*
 		 * good면키가 있어야 하니 그 키부분
 		 */
-
 		try {
 
 			if (file_classification.equals("goods")) {
@@ -142,33 +115,19 @@ public class FileUtils {
 
 			// 이쯤에서 파일 유효성 체크 모듈로 필요할듯 file_validation 예)
 			while (iterator.hasNext()) {
-				System.out.println("파일생성진행");
-				multipartFile = multipartHttpServletRequest.getFile(iterator
-						.next());
-				System.out.println("name =" + multipartFile.getName());
-				System.out.println("filename ="
-						+ multipartFile.getOriginalFilename());
-				System.out.println("size =" + multipartFile.getSize());
+				multipartFile = multipartHttpServletRequest.getFile(iterator.next());
 
 				if (multipartFile.isEmpty() == false) { // 비어있는지 체크
 
 					// 원래 파일이름
 					originalFileName = multipartFile.getOriginalFilename();
-					System.out
-							.println("originalFileName = " + originalFileName);
 
 					// 확장자 이름만.
-					originalFileExtension = originalFileName
-							.substring(originalFileName.lastIndexOf("."));
-					System.out.println("originalFileExtension = "
-							+ originalFileExtension);
+					originalFileExtension = originalFileName.substring(originalFileName.lastIndexOf("."));
 
 					// 확장자 제외 파일이름
-					originalExceptFileExtension = originalFileName.substring(0,
-							originalFileName.lastIndexOf("."));
+					originalExceptFileExtension = originalFileName.substring(0, originalFileName.lastIndexOf("."));
 
-					System.out.println("originalExceptFileExtension = "
-							+ originalExceptFileExtension);
 					/*
 					 * storedFileName = cu.getString(32, "A1") +
 					 * originalFileExtension;
@@ -183,10 +142,6 @@ public class FileUtils {
 					 * storedBFileName = staff_AvaPic + staff_id +
 					 * originalFileExtension;
 					 */
-
-					System.out.println("storedRFileName = " + storedRFileName);
-					System.out.println("storedBFileName = " + storedBFileName);
-					System.out.println("====================================");
 					/*
 					 * getString() 메서드를 이용하여 32자리의 랜덤한 파일이름을 생성하고 원본파일의 확장자를 다시
 					 * 붙여주었다.
@@ -212,19 +167,12 @@ public class FileUtils {
 						 */
 
 						// 여기는 임시파일 저장이니까 안도니다. ㅠ
-						storedRFileName = "S1" + "_" + images_position
-								+ originalFileExtension;
+						storedRFileName = "S1" + "_" + images_position + originalFileExtension;
 
-						storedBFileName = cu.getString(5, "A1") + "_" + now
-								+ "_" + images_position + originalFileExtension;
+						storedBFileName = cu.getString(5, "A1") + "_" + now + "_" + images_position + originalFileExtension;
 
-						String RfilePath = uploadRootPath
-								+ filePath_TempImages_Goods + storedBFileName;
+						String RfilePath = uploadRootPath + filePath_TempImages_Goods + storedBFileName;
 
-						System.out.println("(실 파일명)_storedRFileName = "
-								+ storedRFileName);
-						System.out.println("(백업파일명)_storedBFileName = "
-								+ RfilePath);
 						/*
 						 * String BfilePath = uploadRootPath +
 						 * filePath_TempImages + storedBFileName;
@@ -246,7 +194,6 @@ public class FileUtils {
 						// 실제
 
 						File file = new File(RfilePath);
-						System.out.println("파일생성경로" + RfilePath);
 						multipartFile.transferTo(file);
 						/*
 						 * 서버에 실제 파일을 저장하는 부분이다. multipartFile.transferTo() 메서드를
@@ -254,8 +201,6 @@ public class FileUtils {
 						 */
 
 						int getbyte = storedBFileName.getBytes().length;
-						System.out
-								.println("문자열 byte 크기 = " + getbyte + "bytes");
 						/*
 						 * 문자열 크기를 구한다. gFileName varchar(30)
 						 * 
@@ -264,10 +209,8 @@ public class FileUtils {
 
 						if (goods_id.equals("") || goods_id == null) {
 							// 최초 상품등록인경우 무조권 이건은 goods_id 생성이지
-							System.out.println("====최초상품등록인 경우====");
 
-							String selectNextPk = goodsAdminsService
-									.selectNextPk();
+							String selectNextPk = goodsAdminsService.selectNextPk();
 							/*
 							 * 중요 해당 클래스 위의 selectNextPk 와 같이 service 쪽 메소드 사용은
 							 * 위해서는 클래스 최상단에 resource ! 로 빈등록 후
@@ -280,29 +223,20 @@ public class FileUtils {
 							 */
 
 							// String selectNextPk = "10000";
-							System.out.println("pk" + selectNextPk);
-							System.out
-									.println("gFileName = " + storedBFileName);
 
 							map.put("gFileName", storedBFileName);
 							map.put("goods_id", selectNextPk);
 							map.put("gFileDesc", images_position);
-							System.out.println("");
 							/*
 							 * System.out.println("GoodsId가 NULL인 경우");
 							 * map.put("gNullCheck", "empty");
 							 */
-
 							goodsAdminsService.insertGdsFiles(map);
 							// DB에 파일저장 대표파일만
 
 						} else {
 							// 수정인경우
-							System.out.println("====수정인 경우====");
-
 							map.put("gFileName", storedBFileName);
-							System.out
-									.println("gFileName = " + storedBFileName);
 							map.put("goods_id", goods_id);
 							map.put("gFileDesc", images_position);
 							// map.put("gNullCheck", "notEmpty");
@@ -327,10 +261,10 @@ public class FileUtils {
 
 		return list;
 	}
-	
+
 	public File readFromFileSys(String fullFileName) {
-		return new File(fullFileName);		
-	}	
+		return new File(fullFileName);
+	}
 
 	// 실제 등록시 (temp > imageutil 후 이동)
 	// goods_id 기준 db에 temp는 저장되어있기 때문에 가져온다.
@@ -345,13 +279,11 @@ public class FileUtils {
 		List<Map<String, Object>> dirListMap = null;
 		try {
 
-			log.debug(dirListMap);
 			String mm = (String) map.get("goods_id");
 			System.out.println("(출력)goods_id" + mm);
 
 			dirListMap = goodsAdminsService.selectListGdsFilesList(map);
 			String goods_id = (String) map.get("goods_id");
-			System.out.println("goods_id" + goods_id);
 
 			List<String> dirList = new ArrayList<String>();
 			// List<File> dirList = null;
@@ -365,13 +297,6 @@ public class FileUtils {
 				// 임시파일에서 이기 때문에 난수_+now (20자)
 
 				String gFileNameExcept = gFileName.substring(20);
-
-				System.out.println("파일네임 다포함= " + gFileName);
-				System.out.println("파일네임 미포함= " + gFileNameExcept);
-
-				System.out.println("파일경로 =" + filePath_TempImages_Goods
-						+ gFileName);
-
 				// String fullFileName = filePath_TempImages_Goods + gFileName;
 
 				// String fullFileName_test =
@@ -382,10 +307,8 @@ public class FileUtils {
 				// session.getServletContext().getRealPath(filePath_TempImages_Goods+gFileName);
 
 				String uploadRootPath = (String) map.get("uploadRootPath");
-				String fullFileName = uploadRootPath
-						+ filePath_TempImages_Goods + gFileName;
+				String fullFileName = uploadRootPath + filePath_TempImages_Goods + gFileName;
 
-				System.out.println("실 경로 =" + fullFileName);
 				File file = new File(fullFileName);
 				// File filetest = new File(fullFileName_test);
 
@@ -394,26 +317,19 @@ public class FileUtils {
 				// /i번째 저장되어 있는 파일을 불러온다.
 				// String fileName = dirList.get(i).getName();
 
-				System.out.println("image resizing");
-				BufferedImage resizeimage50 = ImageUtill.scaleSize(srcimage,
-						100, 100); // 이미지 유틸
-				BufferedImage resizeimage30 = ImageUtill.scaleSize(srcimage,
-						250, 250);
+				BufferedImage resizeimage50 = ImageUtill.scaleSize(srcimage, 100, 100); // 이미지 유틸
+				BufferedImage resizeimage30 = ImageUtill.scaleSize(srcimage, 250, 250);
 
-				String moveFilePath = uploadRootPath + filePath_Goods + "GC"
-						+ goods_id;
+				String moveFilePath = uploadRootPath + filePath_Goods + "GC" + goods_id;
 
 				/*
 				 * String moveFilePath_images = uploadRootPath + filePath_Goods
 				 * + goods_id ;
 				 */
 
-				System.out.println("이동시킬 경로" + moveFilePath);
-
 				File file_move = new File(moveFilePath);
 				if (file_move.exists() == false) {
 					file_move.mkdirs();
-					System.out.println("폴더생성");
 				}
 
 				String Ltargetpath = moveFilePath + "\\L_" + gFileNameExcept;// 만들
@@ -429,12 +345,9 @@ public class FileUtils {
 				// 이미지경로
 				// File stargetpath = new File(stargetpath);
 
-				String format = gFileName
-						.substring(gFileName.lastIndexOf(".") + 1);// 확장자
-				System.out.println("확장자=" + format);
+				String format = gFileName.substring(gFileName.lastIndexOf(".") + 1);// 확장자
 				// 이미지 저장..
 				// 각 goods_id에 맞게
-				System.out.println("image save");
 				ImageUtill.saveImage(mtargetpath, resizeimage50, format); // 이미지
 																			// 유틸
 																			// 클래스
@@ -444,11 +357,9 @@ public class FileUtils {
 				// temp > 실제 파일이동시에는 db 저장은 없다.
 
 				// 원본이미지 이동..
-				System.out.println("image move");
 				fileMove(fullFileName, Ltargetpath);
 				// File toFile = new File(moveFilePath);
 				// boolean result = file.renameTo(toFile);
-				// System.out.println("이동 성공여부 : " + result);
 
 				// 파일 삭제를 원한다면
 				// fileDelete(inFolder+"\\"+fileName);
@@ -557,15 +468,12 @@ public class FileUtils {
 		// Map<String, Object> dirFileMap = null;
 		// List<Map<String, Object>> dirFileListMap = null;
 
-		System.out.println("들어오나");
-
-		System.out.println("dirpath=" + dirPath);
 		// 파일 목록을 요청한 디렉토리를 가지고 파일 객체를 생성함
 		File dir = new File(dirPath);
 
 		// 디렉토리가 존재하지 않는다면
 		if (dir.exists() == false) {
-			System.out.println("경로가 존재하지 않습니다 또는 해당 상품코드에 이미지파일이 존재하지 않습니다. ");
+			logger.debug("경로가 존재하지 않습니다 또는 해당 상품코드에 이미지파일이 존재하지 않습니다.");
 		}
 
 		if (dir.exists()) {
@@ -573,8 +481,6 @@ public class FileUtils {
 
 			// 폴더라면 폴더가 가진 파일객체를 리스트로 받는다.
 			File[] files = dir.listFiles();
-
-			System.out.println("들어오나");
 
 			// 파일 배열을 파일 리스트로 변화함
 			dirFileList = Arrays.asList(files);
@@ -592,68 +498,45 @@ public class FileUtils {
 					Date d = new Date(f.lastModified());
 
 					// 파일명, 날짜, 크기를 출력한다.
-					System.out.println(f.getName() + "\t" + d.toString() + "\t"
-							+ f.length());
 					fileName = f.getName();
 
 					// List에 파일이름만 넣는다. !!
 					// dirFileList 아래 contain 을 못한다.
 
 					FileName.add(fileName);
-
-					System.out.println("FileName.size() = " + FileName.size());
-					System.out.println("dirFileList.size() = "
-							+ dirFileList.size());
-
-					// dirFileMap.put("FileName", fileName);
 				}
 
 			}
 			for (int i = 0; i < FileName.size(); i++) {
-				System.out.println(i + ") = " + FileName.get(i));
-				System.out.println("파일사이즈 =" + FileName.size());
 				// contains를 이용한 방법(true, false 반환)
 				// http://fruitdev.tistory.com/72
 
 				if (FileName.get(i).contains("Basic")) {
-					System.out.println("Basic 파일있음!");
 					filePosition = "Basic";
 					integerMap.put("filePosition", filePosition);
-
 				} else if (FileName.get(i).contains("Front")) {
-					System.out.println("Front 파일있음!");
 					filePosition = "Front";
 					integerMap.put("filePosition", filePosition);
-
 				} else if (FileName.get(i).contains("Rear")) {
-					System.out.println("Rear 파일있음!");
 					filePosition = "Rear";
 					integerMap.put("filePosition", filePosition);
 				} else if (FileName.get(i).contains("Right")) {
-					System.out.println("Right 파일있음!");
 					filePosition = "Right";
 					integerMap.put("filePosition", filePosition);
 				} else if (FileName.get(i).contains("Left")) {
-					System.out.println("Left 파일있음!");
 					filePosition = "Left";
 					integerMap.put("filePosition", filePosition);
 				} else if (FileName.get(i).contains("Top")) {
-					System.out.println("Top");
 					filePosition = "Top";
 					integerMap.put("filePosition", filePosition);
 				} else if (FileName.get(i).contains("Bottom")) {
-					System.out.println("Bottom");
 					filePosition = "Bottom";
 					integerMap.put("filePosition", filePosition);
 				}
 
 				integerMap.put("fileName", FileName.get(i).trim());
 				// 확장자 제외
-				integerMap.put(
-						"fileNameExcept",
-						FileName.get(i)
-								.substring(0, FileName.get(i).lastIndexOf('.'))
-								.trim());
+				integerMap.put("fileNameExcept", FileName.get(i).substring(0, FileName.get(i).lastIndexOf('.')).trim());
 
 				integerMap.put("fileSize", FileName.get(i).length());
 				// integerMap.put("fileDate", d.toString().trim());

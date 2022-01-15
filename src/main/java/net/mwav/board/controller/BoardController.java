@@ -5,12 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -33,19 +31,17 @@ import net.mwav.common.module.PagingVO;
 
 @Controller
 public class BoardController {
-	Logger log = Logger.getLogger(this.getClass());
 
-	@Resource(name = "boardService")
+	@Inject
 	private BoardService boardService;
 
-	@Autowired
+	@Inject
 	private HighChartsService highChartService;
 
-	@Autowired
+	@Inject
 	private APINaverTrend apiNaverTrend;
 
 	private Common_Utils cou = new Common_Utils();
-	private String mode = null;
 
 	// - Controller > Service > ServiceImpl > DAO > SQL(XML) > Controller > JSP
 	/*
@@ -117,7 +113,6 @@ public class BoardController {
 				map = mapper.readValue(dataJsonString, new TypeReference<Map<String, Object>>() {
 				});
 
-				Map<String, Object> map2 = new HashMap<String, Object>();
 				String results = map.get("results").toString();
 				String jsonInString = mapper.writeValueAsString(results);
 				jsonInString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(jsonInString);
@@ -139,9 +134,6 @@ public class BoardController {
 				});
 
 				vo = highChartService.selectListKeyword(map21, bnKeyword);
-
-				/* String json = new ObjectMapper().writeValueAsString(vo);
-				 System.out.println("!+0"+json);*/
 
 				List<SeriesTypeTwoVO> chartDataList = vo.getSeries();
 				charDataSeries = new ObjectMapper().writeValueAsString(chartDataList);
@@ -165,7 +157,6 @@ public class BoardController {
 				metaData.put("thumbnail", (String) selectOneBnsView.get("bnTitleImageLink"));
 				metaData.put("newsKeyword", bnKeyword);
 				metaData.put("isCheck", false);
-				System.out.println("dsf" + bnKeyword);
 
 				request.setAttribute("boardMetaData", metaData);
 				// meta태그 이미지
@@ -288,16 +279,6 @@ public class BoardController {
 	public ModelAndView selectOneBuView(CommandMap commandMap, HttpServletRequest request, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView("/CustomerService/CS-MasterPage");
 
-		// Common_Util.selectListCommandMap(commandMap); // 키 출력
-		/*
-		 * if (commandMap.isEmpty() == false) { System.out.println("들어옴");
-		 * Iterator<Entry<String, Object>> iterator = commandMap.getMap()
-		 * .entrySet().iterator(); Entry<String, Object> entry = null; while
-		 * (iterator.hasNext()) { entry = iterator.next(); log.debug("key : " +
-		 * entry.getKey() + ",\tvalue : " + entry.getValue());
-		 * System.out.println("key : " + entry.getKey() + ",\tvalue : " +
-		 * entry.getValue()); } }
-		 */
 		Map<String, Object> selectOneBuView = boardService.selectOneBuView(commandMap.getMap());
 
 		if (selectOneBuView != null && !selectOneBuView.isEmpty()) {

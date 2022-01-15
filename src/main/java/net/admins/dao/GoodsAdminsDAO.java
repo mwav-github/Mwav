@@ -3,36 +3,32 @@ package net.admins.dao;
 import java.util.List;
 import java.util.Map;
 
-import net.common.dao.AbstractDAO;
-
 import org.springframework.stereotype.Repository;
 
-@Repository("goodsAdminsDAO")
+import net.common.dao.AbstractDAO;
+
+@Repository
+@SuppressWarnings("unchecked")
 public class GoodsAdminsDAO extends AbstractDAO {
 
 	public Map<String, Object> insertGdsForm(Map<String, Object> map) {
-		// TODO Auto-generated method stub
 		String selectNextPk = null;
-		// System.out.println("11=="+selectOne("goodsAdminsDAO.selectNextPk"));
 		selectNextPk = (String) selectOne("goodsAdmins.selectNextGoodsPk");
-		System.out.println("selectNextPk ="+selectNextPk);
 		map.put("goods_id", selectNextPk);
 		insert("goodsAdmins.insertGdsForm", map); // Membertbl
 		return map;
 	}
-	
+
 	public Map<String, Object> modifyGoodsFiles(Map<String, Object> map) {
-		insert("goodsAdmins.modifyGoodsFiles", map); 
+		insert("goodsAdmins.modifyGoodsFiles", map);
 		return map;
 	}
 
 	public int selectOneGetGdsTotalCount() {
-		// TODO Auto-generated method stub
 		return (int) selectOne("goodsAdmins.selectOneGetGdsTotalCount");
 	}
 
 	public void insertGdsFiles(Map<String, Object> map) {
-		// TODO Auto-generated method stub
 		/*String gNullCheck = null;
 		
 		gNullCheck = (String) map.get("gNullCheck");
@@ -51,53 +47,36 @@ public class GoodsAdminsDAO extends AbstractDAO {
 		String g_pk = String.valueOf(imsimap.get("goods_id"));
 		map.put("goods_id", g_pk);
 		}*/
-		
+
 		insert("goodsAdmins.insertGdsFiles", map); // Membertbl
 	}
 
 	public String selectNextPk() {
-		// TODO Auto-generated method stub
-		System.out.println("시작");
 		String selectNextPk = null;
-		// System.out.println("11=="+selectOne("goodsAdminsDAO.selectNextPk"));
 		selectNextPk = (String) selectOne("goodsAdmins.selectNextGoodsPk");
 
 		// selectNextPk = (String) selectOne("goodsAdminsDAO.selectNextPk"); //
 		// Membertbl
 		// selectNextPk = (String) imsimap.get("goods_id");
-		System.out.println("selectNextPk" + selectNextPk);
 		return selectNextPk;
 	}
 
-	@SuppressWarnings("unchecked")
-	public List<Map<String, Object>> selectListGdsFilesList(
-			Map<String, Object> map) {
-		// TODO Auto-generated method stub
-
-		return (List<Map<String, Object>>) selectList(
-				"goodsAdmins.selectListGdsFilesList", map); // Membertbl
+	public List<Map<String, Object>> selectListGdsFilesList(Map<String, Object> map) {
+		return (List<Map<String, Object>>) selectList("goodsAdmins.selectListGdsFilesList", map); // Membertbl
 	}
 
-	@SuppressWarnings("unchecked")
 	public List<Map<String, Object>> selectListGdsList(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-
-		return (List<Map<String, Object>>) selectList(
-				"goodsAdmins.selectListGdsList", map); // Membertbl
+		return (List<Map<String, Object>>) selectList("goodsAdmins.selectListGdsList", map); // Membertbl
 	}
 
-	@SuppressWarnings("unchecked")
 	public Map<String, Object> updateGdsForm(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-
-		Map<String, Object> imsi_gdsMasterMap = (Map<String, Object>) selectOne(
-				"goodsAdmins.updateGdsform", map);
+		Map<String, Object> imsi_gdsMasterMap = (Map<String, Object>) selectOne("goodsAdmins.updateGdsform", map);
 
 		/*
 		String gdsMaster_goodsid = null;
-
+		
 		Map<String, Object> resultmap = null;
-
+		
 		// java.lang.Integer cannot be cast to java.lang.String 에러를
 		// String.valueOf로 처리
 		
@@ -106,16 +85,16 @@ public class GoodsAdminsDAO extends AbstractDAO {
 		 * 
 		gdsMaster_goodsid = String.valueOf(imsi_gdsMasterMap.get("goods_id"));
 		System.out.println("gdsMaster_goodsid =" + gdsMaster_goodsid);
-
+		
 		
 		 
 		 * Map<String, Object> imsi_gdsFilesMap = (Map<String, Object>) selectOne(
 				"goods.goodsfiles", map);
 		String gdsFiles_goodsid = null;
-
+		
 		try {
 			
-
+		
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -124,41 +103,35 @@ public class GoodsAdminsDAO extends AbstractDAO {
 			resultmap = imsi_gdsMasterMap;
 		} else if (gdsFiles_goodsid == gdsMaster_goodsid) {
 			// 파일도 마스터에도 있는 경우
-
+		
 			
 			 * map 끼리 merge commonutill 생성
 			 * http://stackoverflow.com/questions/8795945/merging-two-maps
 			 
 			String gFileName = (String) imsi_gdsFilesMap.get("gFileName");
 			String gFileDesc = (String) imsi_gdsFilesMap.get("gFileDesc");
-
+		
 			imsi_gdsMasterMap.put("gFileName", gFileName);
 			imsi_gdsMasterMap.put("gFileDesc", gFileDesc);
 			resultmap = imsi_gdsMasterMap;
-
+		
 		}*/
 		return imsi_gdsMasterMap;
 	}
 
 	public void updateProGdsform(Map<String, Object> map) {
-		// TODO Auto-generated method stub
 		update("goodsAdmins.updateProGdsform", map);
 	}
 
 	public Map<String, Object> selectOneGdsView(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return (Map<String, Object>) selectOne(
-				"goodsAdmins.selectOneGdsView", map);
+		return (Map<String, Object>) selectOne("goodsAdmins.selectOneGdsView", map);
 	}
 
 	public List<Map<String, Object>> selectCategoryGoodsList() {
-		// TODO Auto-generated method stub
-		return (List<Map<String, Object>>) selectList(
-				"goods.selectCategoryGoodsList");
+		return (List<Map<String, Object>>) selectList("goods.selectCategoryGoodsList");
 	}
 
 	public void deleteGdsDelete(Map<String, Object> map) {
-		// TODO Auto-generated method stub
 		update("goodsAdmins.deleteGdsDelete", map);
 	}
 

@@ -3,8 +3,6 @@ package net.admins.service;
 import java.util.List;
 import java.util.Map;
 
-import net.common.common.CommandMap;
-
 public interface BoardQaAdminsService {
 
 	void insertQnAForm(Map<String, Object> map);
@@ -22,9 +20,5 @@ public interface BoardQaAdminsService {
 	boolean insertQnAUaForm(Map<String, Object> map) throws Exception;
 
 	boolean updateQnAUaForm(Map<String, Object> map);
-
-/////////////////////////////////////BoardNews/////////////////////////////////////
-
-
 
 }

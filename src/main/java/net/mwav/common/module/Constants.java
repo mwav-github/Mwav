@@ -2,7 +2,7 @@ package net.mwav.common.module;
 
 import org.springframework.stereotype.Component;
 
-@Component("constants")
+@Component
 public final class Constants {
 
 	public static final boolean SUCEESS = true;

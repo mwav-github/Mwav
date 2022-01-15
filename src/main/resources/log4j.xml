@@ -22,7 +22,7 @@
     
 	<!-- Application Loggers-->
 	<logger name="net" additivity="false">
-		<level value="info" />
+		<level value="debug" />
 		<appender-ref ref="console" />
 		<appender-ref ref="file" />
 	</logger>

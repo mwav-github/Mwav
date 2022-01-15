@@ -1,32 +1,17 @@
-/*
- * Copyright 2014 the original author or authors.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+
 package net.mwav.member.controller;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.log4j.Logger;
 import org.apache.maven.model.Model;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.social.ExpiredAuthorizationException;
 import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.ConnectionFactoryLocator;
@@ -50,14 +35,17 @@ import net.mwav.member.vo.Member_tbl_VO;
 
 @Controller
 public class SignController {
-	Logger logger = Logger.getLogger(this.getClass());
+
+	private static final Logger logger = LoggerFactory.getLogger(SignController.class);
+
 	private final ProviderSignInUtils providerSignInUtils;
 
 	private Facebook facebook;
-	@Autowired
+
+	@Inject
 	Member_tbl_VO member_tbl_VO;
 
-	@Resource(name = "memberService")
+	@Inject
 	private MemberService memberService;
 
 	@Inject
@@ -67,8 +55,7 @@ public class SignController {
 	SignService signService;
 
 	@Inject
-	public SignController(ConnectionFactoryLocator connectionFactoryLocator,
-			UsersConnectionRepository connectionRepository) {
+	public SignController(ConnectionFactoryLocator connectionFactoryLocator, UsersConnectionRepository connectionRepository) {
 		this.providerSignInUtils = new ProviderSignInUtils(connectionFactoryLocator, connectionRepository);
 	}
 
@@ -83,19 +70,13 @@ public class SignController {
 	}
 
 	@RequestMapping(value = "/signup.mwav", method = { RequestMethod.GET, RequestMethod.POST })
-	public String signupForm2(WebRequest req, Model model, HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
+	public String signupForm2(WebRequest req, Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		Connection<?> connection = providerSignInUtils.getConnectionFromSession(req);
 
 		int loginCheck = 0;
 		Map<String, Object> map = new HashMap<String, Object>();
 		HttpSession session = request.getSession();
 
-		/*
-		 * API 마다 메소드가 다르기때문에 이부분은 체크 필요. http://docs.spring.io/spring-social/docs
-		 * /1.0.3.RELEASE/api/org/springframework
-		 * /social/connect/Connection.html#fetchUserProfile()
-		 */
 		String social = connection.getKey().getProviderId();
 		String smMember_id = null;
 		String First_Name = null;
@@ -104,7 +85,6 @@ public class SignController {
 		String Gender = null;
 		String Link = null;
 		String Picture = null;
-		System.out.println("뭔소셜이냐" + social);
 
 		if (social.equals("facebook")) {
 			facebook = (Facebook) connection.getApi();
@@ -208,8 +188,7 @@ public class SignController {
 			member_tbl_VO.setMember_id(member_id);
 			session.setAttribute("member", member_tbl_VO);
 			if (request.getSession().getAttribute("autoLoginChk") != null) {
-				memberService.updateAutoLogin((String) request.getSession().getAttribute("autoLoginChk"), response,
-						member_tbl_VO.getMember_id());
+				memberService.updateAutoLogin((String) request.getSession().getAttribute("autoLoginChk"), response, member_tbl_VO.getMember_id());
 				request.getSession().removeAttribute("autoLoginChk");
 			}
 			logger.info("insertSnsForm success!!!!!!");
@@ -229,13 +208,11 @@ public class SignController {
 			session.setAttribute("member", member_tbl_VO);
 			System.out.println("자동로그인값" + request.getSession().getAttribute("autoLoginChk"));
 			if (request.getSession().getAttribute("autoLoginChk") != null) {
-				memberService.updateAutoLogin((String) request.getSession().getAttribute("autoLoginChk"), response,
-						member_tbl_VO.getMember_id());
+				memberService.updateAutoLogin((String) request.getSession().getAttribute("autoLoginChk"), response, member_tbl_VO.getMember_id());
 				request.getSession().removeAttribute("autoLoginChk");
 			}
 		}
 
-		String mbrLoginId = connection.getDisplayName();
 		// System.out.println("mbrLoginId___" + mbrLoginId);
 
 		loginCheck = 1;
@@ -264,13 +241,11 @@ public class SignController {
 	 */
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/naver/signin.mwav")
-	public String naverCallBack(@RequestParam String code, @RequestParam String state, HttpSession session,
-			HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public String naverCallBack(@RequestParam String code, @RequestParam String state, HttpSession session, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		try {
 			OAuth2AccessToken token = naverUrlBuilder.getAccessToken(session, code, state);
 
-			Map<String, Object> userInfo = new ObjectMapper().readValue(naverUrlBuilder.getUserProfile(token),
-					Map.class);
+			Map<String, Object> userInfo = new ObjectMapper().readValue(naverUrlBuilder.getUserProfile(token), Map.class);
 
 			if ("00".equals(userInfo.get("resultcode"))) {
 				Map<String, Object> result = signService.signService((Map<String, Object>) userInfo.get("response"));
@@ -279,14 +254,13 @@ public class SignController {
 				// 로그인, 신규 가입이 성공한 경우
 				case "1":
 				case "11":
-				// mail exception
+					// mail exception
 				case "91":
 					// 왜 굳이 INT형을?
 					member_tbl_VO.setMember_id(Integer.parseInt(result.get("memberId").toString()));
 					session.setAttribute("member", member_tbl_VO);
 					if (request.getSession().getAttribute("autoLoginChk") != null) {
-						memberService.updateAutoLogin((String) request.getSession().getAttribute("autoLoginChk"),
-								response, member_tbl_VO.getMember_id());
+						memberService.updateAutoLogin((String) request.getSession().getAttribute("autoLoginChk"), response, member_tbl_VO.getMember_id());
 						request.getSession().removeAttribute("autoLoginChk");
 					}
 					break;

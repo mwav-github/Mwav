@@ -8,58 +8,41 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.annotation.Resource;
+
 import javax.imageio.ImageIO;
-import net.admins.dao.GoodsAdminsDAO;
-import net.mwav.common.module.Constants;
-import net.mwav.common.module.FileLib;
-import net.mwav.common.module.FileUtils;
-import net.mwav.common.module.ImageUtill;
+import javax.inject.Inject;
 
 import org.apache.commons.io.FilenameUtils;
-import org.apache.log4j.Logger;
 import org.codehaus.plexus.util.DirectoryScanner;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
 
-@Service("goodsAdminsService")
+import net.admins.dao.GoodsAdminsDAO;
+import net.mwav.common.module.Constants;
+import net.mwav.common.module.FileLib;
+import net.mwav.common.module.ImageUtill;
+
+@Service
 public class GoodsAdminsServiceImpl implements GoodsAdminsService {
-	Logger log = Logger.getLogger(this.getClass());
 
-	@Resource(name = "fileUtils")
-	private FileUtils fileUtils;
-
-	@Resource(name = "goodsAdminsDAO")
+	@Inject
 	private GoodsAdminsDAO goodsAdminsDAO;
 
-	@Resource(name = "constants")
+	@Inject
 	private Constants c;
 
 	@Override
 	public Map<String, Object> insertGdsForm(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-
 		map.put("gRegister", "S");
 		map.put("gRegisterId", 123);
 		map.put("gIpAddress", "mm");
 
 		map = goodsAdminsDAO.insertGdsForm(map);
 
-		// 탬프이미지를 이동;
-		/*
-		 * try { FileUtils.totalFileProcess(map); } catch (Exception e) { // TODO
-		 * Auto-generated catch block e.printStackTrace(); }
-		 */
 		return map;
 	}
 
 	public void insertGdsFiles(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		/*
-		 * String aaa = (String) map.get("gFileName");
-		 * System.out.println("sdfsfsfsfssffsdf1="+aaa);
-		 */
-
 		try {
 			goodsAdminsDAO.insertGdsFiles(map);
 		} catch (Exception e) {
@@ -68,20 +51,12 @@ public class GoodsAdminsServiceImpl implements GoodsAdminsService {
 	}
 
 	public String selectNextPk() {
-		// TODO Auto-generated method stub
-
 		// map으로 안넣으면 지속해서 에러뜬다.!!
 		// -> insertGdsFiles 내에 포함시키는걸로 변경
-
 		String selectNextPk = null;
 		try {
 
 			selectNextPk = goodsAdminsDAO.selectNextPk();
-
-			// selectNextPk = (String) selectOne("goodsAdminsDAO.selectNextPk");
-			// // Membertbl
-			// selectNextPk = (String) imsimap.get("goods_id");
-			System.out.println("selectNextPk" + selectNextPk);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -90,27 +65,21 @@ public class GoodsAdminsServiceImpl implements GoodsAdminsService {
 
 	@Override
 	public int selectOneGetGdsTotalCount() {
-		// TODO Auto-generated method stub
-
 		return goodsAdminsDAO.selectOneGetGdsTotalCount();
 	}
 
 	@Override
 	public List<Map<String, Object>> selectListGdsList(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-
 		return goodsAdminsDAO.selectListGdsList(map);
 	}
 
 	@Override
 	public Map<String, Object> updateGdsForm(Map<String, Object> map) {
-		// TODO Auto-generated method stub
 		return goodsAdminsDAO.updateGdsForm(map);
 	}
 
 	@Override
 	public void updateProGdsForm(Map<String, Object> map) {
-		// TODO Auto-generated method stub
 		try {
 			goodsAdminsDAO.updateProGdsform(map);
 		} catch (Exception e) {
@@ -120,42 +89,34 @@ public class GoodsAdminsServiceImpl implements GoodsAdminsService {
 
 	@Override
 	public List<Map<String, Object>> selectListGdsFilesList(Map<String, Object> map) {
-		// TODO Auto-generated method stub
 		return goodsAdminsDAO.selectListGdsFilesList(map);
 	}
 
 	@Override
 	public Map<String, Object> selectOneGdsView(Map<String, Object> map) {
-		// TODO Auto-generated method stub
 		return goodsAdminsDAO.selectOneGdsView(map);
 	}
 
 	@Override
 	public List<Map<String, Object>> selectCategoryGoodsList() {
-		// TODO Auto-generated method stub
 		return goodsAdminsDAO.selectCategoryGoodsList();
 	}
 
 	@Override
 	public void deleteGdsDelete(Map<String, Object> map) {
-		// TODO Auto-generated method stub
 		goodsAdminsDAO.deleteGdsDelete(map);
 	}
 
 	@Override
 	public String mkTempImgFileName(String imgLocation) {
-
-		// Ex> vkz25mmqcitube55l32xyxmz-S5-Front_1024x768.jpg (.jpg는 사용자가 업로드한 확장자인가 ?)
 		String tempFileName = "";
 		tempFileName = RequestContextHolder.currentRequestAttributes().getSessionId();
 		tempFileName = tempFileName + "-S5-" + imgLocation;
 
 		return tempFileName;
-
 	}
 
 	private ArrayList<File> getFilesFromSvr(String scanKey, String path) {
-
 		DirectoryScanner scanner = new DirectoryScanner();
 		scanner.setIncludes(new String[] { scanKey });
 		scanner.setBasedir(c.goods.tmpImgFilePath);
@@ -216,7 +177,6 @@ public class GoodsAdminsServiceImpl implements GoodsAdminsService {
 			modifyGoodsFilesTbl(fileName, goodsId, "");
 
 			// S3~S5 추가 구현 필요
-
 		}
 	}
 
@@ -241,7 +201,6 @@ public class GoodsAdminsServiceImpl implements GoodsAdminsService {
 	}
 
 	private String saveImage(File file, String path, String imageSizeIndex) throws Exception {
-
 		String fileName = "";
 		BufferedImage bufferedImg = null;
 		String locationIndex = getFileLocationIndex(file);
@@ -263,7 +222,6 @@ public class GoodsAdminsServiceImpl implements GoodsAdminsService {
 	}
 
 	private BufferedImage imageResize(File file, double width, double height) throws IOException {
-
 		BufferedImage resizedImg = null;
 
 		if (file == null) {

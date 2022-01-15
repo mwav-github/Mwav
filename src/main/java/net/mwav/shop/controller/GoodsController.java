@@ -1,12 +1,9 @@
 package net.mwav.shop.controller;
 
-import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
-import javax.annotation.Resource;
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -17,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import net.common.common.CommandMap;
-import net.mwav.shop.service.GoodsService;
 import net.mwav.common.module.Common_Utils;
+import net.mwav.shop.service.GoodsService;
 
 @Controller
 public class GoodsController {
@@ -41,7 +38,7 @@ public class GoodsController {
 	 * SFbnsList /CommonApps/BoardNews/FrontNewsList.jsp 5. bnsUpdate : mode =
 	 * SbnsUpdate /CommonApps/BoardNews/bnsForm.jsp
 	 */
-	@Resource(name = "goodsService")
+	@Inject
 	private GoodsService goodsService;
 
 	/*

@@ -1,10 +1,19 @@
 package net.mwav.member.service;
 
-import net.mwav.common.module.*;
-import net.mwav.member.dao.MemberDAO;
-import net.mwav.member.vo.Member_tbl_VO;
-import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
+import java.io.IOException;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.inject.Inject;
+import javax.mail.Message;
+import javax.servlet.ServletContext;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.mail.MailAuthenticationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,44 +21,34 @@ import org.springframework.ui.velocity.VelocityEngineUtils;
 import org.springframework.web.servlet.view.velocity.VelocityConfigurer;
 import org.springframework.web.util.WebUtils;
 
-import javax.annotation.Resource;
-import javax.mail.Message;
-import javax.servlet.ServletContext;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.io.IOException;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import net.mwav.common.module.AesEncryption;
+import net.mwav.common.module.EmailSender;
+import net.mwav.common.module.MailConfig;
+import net.mwav.common.module.MailLib;
+import net.mwav.common.module.MessageBuilder;
+import net.mwav.common.module.SecurityLib;
+import net.mwav.common.module.ValidationLib;
+import net.mwav.common.module.XmlLib;
+import net.mwav.member.dao.MemberDAO;
+import net.mwav.member.vo.Member_tbl_VO;
 
-@Service("memberService")
+@Service
 public class MemberServiceImpl implements MemberService {
-	Logger log = Logger.getLogger(this.getClass());
 
-	String encrypted = null;
-
-	@Resource(name = "memberDAO")
+	@Inject
 	private MemberDAO memberDAO;
 
-	@Autowired
+	@Inject
 	EmailSender emailSender;
 
-	@Autowired
+	@Inject
 	ServletContext servletContext;
 
-	@Autowired
+	@Inject
 	VelocityConfigurer velocityConfig;
-	/*
-	 * ========================================등록========================================
-	 */
 
 	/**
-	 * @date 2016.04.27
-	 * @author Kim YJ
-	 * @see 서비스단 로직 활용
+	 * 등록
 	 */
 	@Transactional(rollbackFor = { Exception.class }, readOnly = false)
 	@Override
@@ -67,8 +66,7 @@ public class MemberServiceImpl implements MemberService {
 			// 2. 유효성 검증(추후에 유효성 검증 구현체 개발 시 변환)
 			boolean isValid = validation.matches(map.get("mbrLoginId").toString(), "^[a-zA-Z]{1}[a-zA-Z0-9_-]{3,19}$")
 					|| validation.matches(map.get("mbrLoginPw").toString(), "^(?=.*[\\{\\}\\[\\]\\/?.,;:|\\)*~`!^\\-_+<>@\\#$%&\\\\\\=\\(\\'\\\"])(?=.*[0-9])(?=.*[a-zA-Z])[\\{\\}\\[\\]\\/?.,;:|\\)*~`!^\\-_+<>@\\#$%&\\\\\\=\\(\\'\\\"0-9a-zA-Z]{8,255}$")
-					|| validation.isKorName(map.get("mbrFirstName").toString(), map.get("mbrLastName").toString()) 
-					|| validation.iskorCellurar(map.get("mbrCellPhone").toString()) 
+					|| validation.isKorName(map.get("mbrFirstName").toString(), map.get("mbrLastName").toString()) || validation.iskorCellurar(map.get("mbrCellPhone").toString())
 					|| validation.isEmail(map.get("mbrEmail").toString());
 			if (!isValid) {
 				result.put("result", "42");
@@ -82,7 +80,7 @@ public class MemberServiceImpl implements MemberService {
 			// 4. 비밀번호 암호화
 			String b_mbrLoginPw = map.get("mbrLoginPw").toString();
 			//AES/CBC/IV 암호화 (키,암호화텍스트,iv)
-			encrypted = SecurityLib.getInstance().encryptToString(AesEncryption.sKey, AesEncryption.sInitVector, b_mbrLoginPw);	
+			String encrypted = SecurityLib.getInstance().encryptToString(AesEncryption.sKey, AesEncryption.sInitVector, b_mbrLoginPw);
 			if (encrypted == null) {
 				result.put("result", "99");
 				result.put("message", "EXCEPTION");
@@ -104,7 +102,7 @@ public class MemberServiceImpl implements MemberService {
 				result.put("message", "NO_AFFECTED");
 			}
 
-//			emailSender.sendRegistrationEmail(map);
+			//			emailSender.sendRegistrationEmail(map);
 			// 멤버에게 회원가입 성공 메일 발송
 			this.emailMemberSender(map);
 			// 관리자에게 멤버 회원가입 알림 메일 발송
@@ -145,15 +143,11 @@ public class MemberServiceImpl implements MemberService {
 		MailConfig config = (MailConfig) xmlLib.unmarshal(realPath, MailConfig.class);
 
 		//client에서 템플릿엔진 라이브러리르 호출하여 html코드로 파싱 후 문자열로 반환
-		String content = VelocityEngineUtils.mergeTemplateIntoString(velocityConfig.createVelocityEngine()
-				, "/GeneralMail/GeneralMail_Registration.vm", "UTF-8", map);
+		String content = VelocityEngineUtils.mergeTemplateIntoString(velocityConfig.createVelocityEngine(), "/GeneralMail/GeneralMail_Registration.vm", "UTF-8", map);
 
 		// Mail의 정보를 담음
-		Message msg = new MessageBuilder(config.getCollectAllFieldProp())
-				.setRecipient((String) map.get("mbrEmail"))
-				.setFrom(config.getFrom())
-				.setSubject("[Mwav]" + (String) map.get("mbrLoginId") + "님, 회원가입을 환영합니다.")
-				.setContent(content).build();
+		Message msg = new MessageBuilder(config.getCollectAllFieldProp()).setRecipient((String) map.get("mbrEmail")).setFrom(config.getFrom()).setSubject("[Mwav]" + (String) map.get("mbrLoginId")
+				+ "님, 회원가입을 환영합니다.").setContent(content).build();
 
 		// 메일 발송
 		MailLib mailLib = MailLib.getInstance();
@@ -183,11 +177,8 @@ public class MemberServiceImpl implements MemberService {
 		MailConfig config = (MailConfig) xmlLib.unmarshal(realPath, MailConfig.class);
 
 		// Mail의 정보를 담음
-		Message msg = new MessageBuilder(config.getCollectAllFieldProp())
-				.setRecipient(config.getFrom())
-				.setFrom(config.getFrom())
-				.setSubject(map.get("mbrLoginId") + "회원이 가입되었습니다.")
-				.setContent("가입한 이메일은 " +map.get("mbrEmail") + "입니다.").build();
+		Message msg = new MessageBuilder(config.getCollectAllFieldProp()).setRecipient(config.getFrom()).setFrom(config.getFrom()).setSubject(map.get("mbrLoginId")
+				+ "회원이 가입되었습니다.").setContent("가입한 이메일은 " + map.get("mbrEmail") + "입니다.").build();
 
 		// 메일 발송
 		MailLib mailLib = MailLib.getInstance();
@@ -312,7 +303,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public String selectNextSnsPk(){
+	public String selectNextSnsPk() {
 		return memberDAO.selectNextSnsPk();
 	}
 

@@ -4,11 +4,12 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -23,11 +24,8 @@ import net.mwav.common.module.PagingVO;
 
 @Controller
 public class BoardQaAdminsController {
-	Logger log = Logger.getLogger(this.getClass());
-	// HttpServletRequest request = null;
-	// 자바에서 세션사용을 위해서는 아래와 같이 필요
-	// 세션 관련 설정은 prehandle 에서 추후 지정(들어오는 url에 따라서)
-	// HttpSession session = request.getSession();
+
+	private static final Logger logger = LoggerFactory.getLogger(BoardQaAdminsController.class);
 
 	Common_Utils cou = new Common_Utils();
 
@@ -36,18 +34,15 @@ public class BoardQaAdminsController {
 	String depth_2 = "QnAMgr";
 	String depth_3 = "";
 
-	@Resource(name = "boardQaAdminsService")
+	@Inject
 	private BoardQaAdminsService BoardQaAdminsService;
 
-	// ///////////////////////////////////BoardNews/////////////////////////////////////
 	@RequestMapping(value = "/admin/boardQnA/qaForm.mwav")
-	// http://egloos.zum.com/nadostar/v/210497
-	public ModelAndView insertQnAForm(CommandMap commandMap,
-			HttpServletRequest request) throws Exception {
+	public ModelAndView insertQnAForm(CommandMap commandMap, HttpServletRequest request) throws Exception {
 
 		ModelAndView mv = new ModelAndView("/Admins/SiteMgr/QnAMgr/qaForm");
 
-		log.debug("인터셉터 테스트");
+		logger.debug("인터셉터 테스트");
 		BoardQaAdminsService.insertQnAForm(commandMap.getMap());
 
 		String mm = "site";
@@ -58,25 +53,17 @@ public class BoardQaAdminsController {
 		mv.addObject("depth_2", depth_2);
 		mv.addObject("depth_3", "QnAForm");
 
-		// mv.addObject("insertBnsForm", insertBnsForm);
-		// mv.addObject("IDX", commandMap.get("IDX"));
-
 		return mv;
 	}
 
 	@RequestMapping(value = "/admin/boardQnA/qaView.mwav")
-	public ModelAndView selectOneQnAView(CommandMap commandMap,
-			HttpServletRequest request, HttpSession session) throws Exception {
+	public ModelAndView selectOneQnAView(CommandMap commandMap, HttpServletRequest request, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/SiteMgr/QnAMgr/qaView");
 
-		log.debug("인터셉터 테스트");
-		System.out.println("테스트");
-		Map<String, Object> selectOneQnAView = BoardQaAdminsService
-				.selectOneQnAView(commandMap.getMap());
+		logger.debug("인터셉터 테스트");
+		Map<String, Object> selectOneQnAView = BoardQaAdminsService.selectOneQnAView(commandMap.getMap());
 
 		if (selectOneQnAView != null && !selectOneQnAView.isEmpty()) {
-			System.out.println("view 줄랭");
-
 			String mm = "site";
 			mv.addObject("mm", mm);
 			mv.addObject("mode", "m_qnaView");
@@ -92,8 +79,7 @@ public class BoardQaAdminsController {
 	}
 
 	@RequestMapping(value = "/admin/boardQnA/qnaList.mwav")
-	public ModelAndView selectListQnAList(CommandMap commandMap,
-			HttpServletRequest request) throws Exception {
+	public ModelAndView selectListQnAList(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/SiteMgr/QnAMgr/qaList");
 
 		String pageNum = (String) commandMap.get("pageNum");
@@ -102,25 +88,15 @@ public class BoardQaAdminsController {
 			pageNum = "1";
 		}
 		int totalRow = BoardQaAdminsService.selectOneGetQnATotalCount();
-		System.out.println("totalRow=" + totalRow);
-		System.out.println("pageNum=" + pageNum);
-		// Paging pv = new Paging(pageNum, 10 , 10, totalCount);
 		List<Map<String, Object>> selectListQnAList;
-		PagingVO pagingVO = paging.setPagingInfo(totalRow, 5, pageNum); // 총 숫자,
-																		// 한페이지에
-																		// 노출 수
-		commandMap.put("startRow", paging.getStartRow(pageNum)); // 시작 열
-		commandMap.put("endRow", paging.getEndRow(pageNum)); // 끝 열
+		PagingVO pagingVO = paging.setPagingInfo(totalRow, 5, pageNum);
+		commandMap.put("startRow", paging.getStartRow(pageNum));// 시작 열
+		commandMap.put("endRow", paging.getEndRow(pageNum));// 끝 열
 		if (totalRow > 0) {
-			selectListQnAList = BoardQaAdminsService
-					.selectListQnAList(commandMap.getMap());
-			// selectboardList =
-			// boardService.selectbnsList(commandMap.getMap());
-
+			selectListQnAList = BoardQaAdminsService.selectListQnAList(commandMap.getMap());
 		} else {
 			selectListQnAList = Collections.emptyList();
 		}
-		System.out.println("찍히낭");
 		String mm = "site";
 		mv.addObject("mm", mm);
 		mv.addObject("mode", "m_qnaList");
@@ -132,19 +108,16 @@ public class BoardQaAdminsController {
 		mv.addObject("selectListQnAList", selectListQnAList);
 		mv.addObject("pagingVO", pagingVO);
 		mv.addObject("totalRow", totalRow);
-		// mv.addObject("paging", pv.print());
 		return mv;
 	}
 
 	@RequestMapping(value = "/admin/boardQnA/qaFrontList.mwav")
-	public ModelAndView selectListBnsFrontList(CommandMap commandMap,
-			HttpServletRequest request) throws Exception {
+	public ModelAndView selectListBnsFrontList(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/SiteMgr/QnAMgr/qaFrontList");
 
-		cou.selectCommandMapList(commandMap); // 키 출력
+		cou.selectCommandMapList(commandMap);// 키 출력
 
-		List<Map<String, Object>> selectListQnAFrontList = BoardQaAdminsService
-				.selectListQnAFrontList(commandMap.getMap());
+		List<Map<String, Object>> selectListQnAFrontList = BoardQaAdminsService.selectListQnAFrontList(commandMap.getMap());
 
 		if (selectListQnAFrontList != null && !selectListQnAFrontList.isEmpty()) {
 
@@ -160,8 +133,7 @@ public class BoardQaAdminsController {
 	}
 
 	@RequestMapping(value = "/admin/boardQnA/qnaDelete.mwav")
-	public ModelAndView deleteQnADelete(CommandMap commandMap,
-			HttpServletRequest request) throws Exception {
+	public ModelAndView deleteQnADelete(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/SiteMgr/QnAMgr/qaList");
 
 		BoardQaAdminsService.deleteQnADelete(commandMap.getMap());
@@ -173,62 +145,41 @@ public class BoardQaAdminsController {
 		return mv;
 	}
 
-	/*
+	/**
 	 * 답변달기
 	 */
 	@RequestMapping(value = "/admin/boardQnA/uaFormAjax.mwav")
-	// http://egloos.zum.com/nadostar/v/210497
-	public @ResponseBody boolean insertQnAUaForm(CommandMap commandMap,
-			HttpServletRequest request) throws Exception {
+	@ResponseBody
+	public boolean insertQnAUaForm(CommandMap commandMap, HttpServletRequest request) throws Exception {
 
 		HttpSession session = request.getSession();
-		Staff_VO selectStfLogin = (Staff_VO) session.getAttribute("staff"); 
-		
-		
-		System.out.println("qna_id__"+commandMap.get("QnA_id"));
-		
-		if(selectStfLogin != null){
-		commandMap.put("uaResponser", 'S');
-		int staff_id = selectStfLogin.getStaff_id();
-	
-		commandMap.put("uaResponser_id", staff_id);
-		
-		String realIp = cou.getClientIP(request);
-		commandMap.put("uaIpAddress", realIp);
+		Staff_VO selectStfLogin = (Staff_VO) session.getAttribute("staff");
+
+		if (selectStfLogin != null) {
+			commandMap.put("uaResponser", 'S');
+			int staff_id = selectStfLogin.getStaff_id();
+
+			commandMap.put("uaResponser_id", staff_id);
+
+			String realIp = cou.getClientIP(request);
+			commandMap.put("uaIpAddress", realIp);
 		}
-		
+
 		commandMap.put("xmlPath", request.getRealPath("/xConfig/mail.xml.config"));
 		commandMap.put("staff", selectStfLogin);
-		
+
 		boolean flag = BoardQaAdminsService.insertQnAUaForm(commandMap.getMap());
-		//System.out.println("df" + flag);
-		// mv.addObject("insertBnsForm", insertBnsForm);
-		// mv.addObject("IDX", commandMap.get("IDX"));
 
 		return flag;
-
 	}
-	
-	
-	/*
+
+	/**
 	 * 답변달기
 	 */
 	@RequestMapping(value = "/admin/boardQnA/uaFormUpdateAjax.mwav")
-	public @ResponseBody boolean updateQnAUaForm(CommandMap commandMap,
-			HttpServletRequest request) throws Exception {
-
-		//HttpSession session = request.getSession();
-		
-		
-		boolean flag = BoardQaAdminsService
-				.updateQnAUaForm(commandMap.getMap());
-
-		System.out.println("df" + flag);
-		// mv.addObject("insertBnsForm", insertBnsForm);
-		// mv.addObject("IDX", commandMap.get("IDX"));
+	public @ResponseBody boolean updateQnAUaForm(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		boolean flag = BoardQaAdminsService.updateQnAUaForm(commandMap.getMap());
 
 		return flag;
-
 	}
-
 }

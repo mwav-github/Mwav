@@ -3,12 +3,10 @@ package net.mwav.qa.service;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
+import javax.inject.Inject;
 import javax.mail.Message;
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.velocity.VelocityEngineUtils;
 import org.springframework.web.servlet.view.velocity.VelocityConfigurer;
@@ -21,29 +19,25 @@ import net.mwav.common.module.MessageBuilder;
 import net.mwav.common.module.XmlLib;
 import net.mwav.qa.dao.QADAO;
 
-@Service("qaService")
+@Service
 public class QAServiceImpl implements QAService {
-	Logger log = Logger.getLogger(this.getClass());
 	Common_Utils cou = new Common_Utils();
 
-	@Resource(name = "qaDAO")
+	@Inject
 	private QADAO qaDAO;
 
-	@Autowired
+	@Inject
 	EmailSender emailSender;
 
-	@Autowired
+	@Inject
 	VelocityConfigurer velocityConfig;
-	
+
 	/*
 	 * ========================================등록================================
 	 * ========
 	 */
-
 	@Override
-	public boolean insertQAForm(Map<String, Object> map, HttpServletRequest request) throws Exception{
-		// TODO Auto-generated method stub
-
+	public boolean insertQAForm(Map<String, Object> map, HttpServletRequest request) throws Exception {
 		String uqIpAddress = null;
 		uqIpAddress = cou.getClientIP(request);
 		map.put("uqIpAddress", uqIpAddress);
@@ -57,27 +51,26 @@ public class QAServiceImpl implements QAService {
 
 		if (imsi_flag != null) {
 			flag = true;
-			
+
 			map.put("QnA_id", imsi_flag);
 			//QA문의 발송
-//				emailSender.sendQuestionEmail(map);
-			
+			//				emailSender.sendQuestionEmail(map);
+
 			String path = String.valueOf(map.get("xmlPath"));
 			System.out.println("패스 : " + path);
 			MailConfig mailConfig = (MailConfig) XmlLib.getInstance().unmarshal(path, MailConfig.class);
-			
+
 			//메일 문의 답변 템플릿
 			String content = VelocityEngineUtils.mergeTemplateIntoString(velocityConfig.createVelocityEngine(), "QnAnswer/Question.vm", "UTF-8", map);
-			
+
 			//문의자에게 답변 메일 발신
-			Message recipientMsg = new MessageBuilder(mailConfig.getCollectAllFieldProp())
-							.setSubject("[고객센터] Mwav에서 문의하신 내용이 접수되었습니다.")		//제목
-							.setContent(content)				//내용
-							.setFrom("webmaster@mwav.net")		//발신자
-							.setRecipient((String) map.get("uqUserEmail"))			//수신자
-							.build();
+			Message recipientMsg = new MessageBuilder(mailConfig.getCollectAllFieldProp()).setSubject("[고객센터] Mwav에서 문의하신 내용이 접수되었습니다.") //제목
+					.setContent(content) //내용
+					.setFrom("webmaster@mwav.net") //발신자
+					.setRecipient((String) map.get("uqUserEmail")) //수신자
+					.build();
 			MailLib.getInstance().send(recipientMsg);
-				
+
 		} else if (imsi_flag == null) {
 			flag = false;
 		}
@@ -86,7 +79,6 @@ public class QAServiceImpl implements QAService {
 
 	@Override
 	public List<Map<String, Object>> selectListQAList(Map<String, Object> map) {
-		// TODO Auto-generated method stub
 		return qaDAO.selectListQAList(map);
 	}
 
@@ -94,72 +86,36 @@ public class QAServiceImpl implements QAService {
 	 * ========================================보기================================
 	 * ========
 	 */
-
 	@Override
 	public int selectOneGetTotalCount(String member_id, String uqUserEmail) {
-		// TODO Auto-generated method stub
 		return qaDAO.selectOneGetTotalCount(member_id, uqUserEmail);
 	}
 
 	@Override
-	public List<Map<String, Object>> selectListQAFrontList(
-			Map<String, Object> map) {
-		// TODO Auto-generated method stub
+	public List<Map<String, Object>> selectListQAFrontList(Map<String, Object> map) {
 		return qaDAO.selectListQAFrontList(map);
 	}
 
 	@Override
 	public Map<String, Object> selectOneQAView(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		// TODO Auto-generated method stub
 		try {
 			qaDAO.updateQAHitCnt(map);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		/*
-		 * //map 출력 cou.selectMap(map);
-		 */
-
 		Map<String, Object> resultMap = qaDAO.selectOneQAView(map);
-
 		return resultMap;
 	}
 
 	@Override
 	public String selectOneQALogin(Map<String, Object> map) {
-		// TODO Auto-generated method stub
 		return qaDAO.selectOneQALogin(map);
 	}
 
 	@Override
 	public boolean uaSatisfactionUpdateAjax(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		/*
-		 * if (uaSatisfaction == 0){ uaSatisfaction = 0; }else if(uaSatisfaction
-		 * == 1){ uaSatisfaction = 20; }else if(uaSatisfaction == 2){
-		 * uaSatisfaction = 40; }else if(uaSatisfaction == 3){ uaSatisfaction =
-		 * 60; }else if(uaSatisfaction == 4){ uaSatisfaction = 80; }else
-		 * if(uaSatisfaction == 5){ uaSatisfaction = 100; }
-		 */
 		return qaDAO.uaSatisfactionUpdateAjax(map);
 	}
-
-	/*
-	 * ========================================수정================================
-	 * ========
-	 */
-
-	/*
-	 * ========================================리스트(SelectOne, SelectList
-	 * 순)========================================
-	 */
-
-	/*
-	 * ========================================삭제================================
-	 * ========
-	 */
 
 }

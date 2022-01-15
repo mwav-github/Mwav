@@ -1,34 +1,29 @@
 package net.admins.controller;
 
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
-import javax.annotation.Resource;
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import net.common.common.CommandMap;
 import net.admins.service.BoardNewsAdminsService;
+import net.common.common.CommandMap;
 import net.mwav.common.module.Common_Utils;
 import net.mwav.common.module.Paging;
 import net.mwav.common.module.PagingVO;
 
 @Controller
 public class BoardNewsAdminsController {
-	Logger log = Logger.getLogger(this.getClass());
-	// HttpServletRequest request = null;
-	// 자바에서 세션사용을 위해서는 아래와 같이 필요
-	// 세션 관련 설정은 prehandle 에서 추후 지정(들어오는 url에 따라서)
-	// HttpSession session = request.getSession();
+
+	private static final Logger logger = LoggerFactory.getLogger(BoardNewsAdminsController.class);
 
 	Common_Utils cou = new Common_Utils();
 	Paging paging = new Paging();
@@ -48,7 +43,7 @@ public class BoardNewsAdminsController {
 	 * SFbnsList /CommonApps/BoardNews/FrontNewsList.jsp 5. bnsUpdate : mode =
 	 * SbnsUpdate /CommonApps/BoardNews/bnsForm.jsp
 	 */
-	@Resource(name = "boardNewsAdminsService")
+	@Inject
 	private BoardNewsAdminsService boardNewsAdminsService;
 
 	// ///////////////////////////////////BoardNews/////////////////////////////////////
@@ -60,12 +55,11 @@ public class BoardNewsAdminsController {
 	// 1번 bnsForm : Form 입력만 가능 (뒤로가기, list)
 	@RequestMapping(value = "/admin/boardNews/nsmForm.mwav")
 	// http://egloos.zum.com/nadostar/v/210497
-	public ModelAndView insertNsmForm(CommandMap commandMap,
-			HttpServletRequest request) throws Exception {
+	public ModelAndView insertNsmForm(CommandMap commandMap, HttpServletRequest request) throws Exception {
 
 		ModelAndView mv = new ModelAndView("/Admins/SiteMgr/NewsMgr/NsmForm");
 
-		log.debug("인터셉터 테스트");
+		logger.debug("인터셉터 테스트");
 		boardNewsAdminsService.insertNsmForm(commandMap.getMap());
 
 		String mm = "site";
@@ -84,17 +78,13 @@ public class BoardNewsAdminsController {
 
 	// 1번 bnsView : 수정/삭제가능
 	@RequestMapping(value = "/admin/boardNews/nsmView.mwav")
-	public ModelAndView selectOneNsmView(CommandMap commandMap,
-			HttpServletRequest request, HttpSession session) throws Exception {
+	public ModelAndView selectOneNsmView(CommandMap commandMap, HttpServletRequest request, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/SiteMgr/NewsMgr/NsmView");
 
-		log.debug("인터셉터 테스트");
-		System.out.println("테스트");
-		Map<String, Object> selectOneNsmView = boardNewsAdminsService
-				.selectOneNsmView(commandMap.getMap());
+		logger.debug("인터셉터 테스트");
+		Map<String, Object> selectOneNsmView = boardNewsAdminsService.selectOneNsmView(commandMap.getMap());
 
 		if (selectOneNsmView != null && !selectOneNsmView.isEmpty()) {
-			System.out.println("view 줄랭");
 
 			String mm = "site";
 			mv.addObject("mm", mm);
@@ -103,8 +93,7 @@ public class BoardNewsAdminsController {
 			mv.addObject("depth_1", depth_1);
 			mv.addObject("depth_2", depth_2);
 			mv.addObject("depth_3", "NsmView");
-			mv.addObject("pageNum",
-					paging.getPageNum((String) commandMap.get("pageNum")));
+			mv.addObject("pageNum", paging.getPageNum((String) commandMap.get("pageNum")));
 
 			mv.addObject("selectOneNsmView", selectOneNsmView);
 		}
@@ -119,19 +108,15 @@ public class BoardNewsAdminsController {
 
 	// 1번 bnsUpdate : 리스트 업데이트
 	@RequestMapping(value = "/admin/boardNews/nsmUpdate.mwav")
-	public ModelAndView updateNsmForm(CommandMap commandMap,
-			HttpServletRequest request) throws Exception {
+	public ModelAndView updateNsmForm(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/SiteMgr/NewsMgr/NsmForm");
 
 		// 위의 view랑 동일하게 사용
 
-		Map<String, Object> updateNsmForm = boardNewsAdminsService
-				.updateNsmForm(commandMap.getMap());
+		Map<String, Object> updateNsmForm = boardNewsAdminsService.updateNsmForm(commandMap.getMap());
 		if (updateNsmForm != null && !updateNsmForm.isEmpty()) {
-			System.out.println("view 줄랭");
 			String mm = "site";
-			mv.addObject("pageNum",
-					paging.getPageNum((String) commandMap.get("pageNum")));
+			mv.addObject("pageNum", paging.getPageNum((String) commandMap.get("pageNum")));
 			mv.addObject("mm", mm);
 			mv.addObject("mode", "m_nsmUpdate");
 
@@ -141,8 +126,7 @@ public class BoardNewsAdminsController {
 	}
 
 	@RequestMapping(value = "/admin/boardNews/nsmBnStatusUpdate.mwav")
-	public ModelAndView updateNsmBnStatus(CommandMap commandMap,
-			HttpServletRequest request) throws Exception {
+	public ModelAndView updateNsmBnStatus(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/SiteMgr/NewsMgr/NsmList");
 
 		String boardNews_id = (String) commandMap.get("boardNews_id");
@@ -152,10 +136,9 @@ public class BoardNewsAdminsController {
 		boardNewsAdminsService.updateNsmBnStatus(boardNews_id);
 		return mv;
 	}
-	
+
 	@RequestMapping(value = "/admin/boardNews/nsmBnStatusNoticeUpdate.mwav")
-	public ModelAndView updateNsmBnStatusNotice(CommandMap commandMap,
-			HttpServletRequest request) throws Exception {
+	public ModelAndView updateNsmBnStatusNotice(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/SiteMgr/NewsMgr/NsmList");
 
 		String boardNews_id = (String) commandMap.get("boardNews_id");
@@ -167,17 +150,13 @@ public class BoardNewsAdminsController {
 		return mv;
 	}
 
-	
-	
 	// 1번 bnsUpdate : 리스트 업데이트
 	@RequestMapping(value = "/admin/boardNews/nsmUpdatePro.mwav")
-	public ModelAndView updateProNsmForm(CommandMap commandMap,
-			HttpServletRequest request) throws Exception {
+	public ModelAndView updateProNsmForm(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/SiteMgr/NewsMgr/NsmList");
 
 		// 위의 view랑 동일하게 사용
-		mv.addObject("pageNum",
-				paging.getPageNum((String) commandMap.get("pageNum")));
+		mv.addObject("pageNum", paging.getPageNum((String) commandMap.get("pageNum")));
 		boardNewsAdminsService.updateProNsmForm(commandMap.getMap());
 
 		String mm = "site";
@@ -202,22 +181,13 @@ public class BoardNewsAdminsController {
 	 */
 	// 1번 FrontNewsList : 메인페이지 앞단 5개씩 출력, 작성일 기준
 	@RequestMapping(value = "/admin/boardNews/nsmFrontList.mwav")
-	public ModelAndView selectListNsmFrontList(CommandMap commandMap,
-			HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView(
-				"/Admins/SiteMgr/NewsMgr/NsmFrontList");
-		/*
-		 * mode = "SFbnsList"; session.setAttribute("mode", mode); String
-		 * sessiontest = (String) session.getAttribute(mode);
-		 * 
-		 * System.out.println("sessiontest=" + sessiontest);
-		 */
+	public ModelAndView selectListNsmFrontList(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("/Admins/SiteMgr/NewsMgr/NsmFrontList");
 
 		// * action-servlet.xml에서 위에 .jsp 설정해줘서 위의 CommonApps 부터 되는거
 		cou.selectCommandMapList(commandMap); // 키 출력
 
-		List<Map<String, Object>> selectListNsmFrontList = boardNewsAdminsService
-				.selectListNsmFrontList(commandMap.getMap());
+		List<Map<String, Object>> selectListNsmFrontList = boardNewsAdminsService.selectListNsmFrontList(commandMap.getMap());
 
 		if (selectListNsmFrontList != null && !selectListNsmFrontList.isEmpty()) {
 
@@ -232,15 +202,13 @@ public class BoardNewsAdminsController {
 
 	// 2번 bnsList : 리스트
 	@RequestMapping(value = "/admin/boardNews/nsmList.mwav")
-	public ModelAndView selectListNsmList(CommandMap commandMap,
-			HttpServletRequest request) throws Exception {
+	public ModelAndView selectListNsmList(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/SiteMgr/NewsMgr/NsmList");
 
 		String pageNum = paging.getPageNum((String) commandMap.get("pageNum"));
 
 		// 중요한건 이거 역시삭제한것제외하고 가야한다.
 		int totalRow = boardNewsAdminsService.selectOneGetNsmTotalCount();
-		System.out.println("totalRow=" + totalRow);
 
 		// Paging pv = new Paging(pageNum, 10 , 10, totalCount);
 		List<Map<String, Object>> selectListNsmList;
@@ -250,15 +218,12 @@ public class BoardNewsAdminsController {
 		commandMap.put("startRow", paging.getStartRow(pageNum)); // 시작 열
 		commandMap.put("endRow", paging.getEndRow(pageNum)); // 끝 열
 		if (totalRow > 0) {
-			selectListNsmList = boardNewsAdminsService
-					.selectListNsmList(commandMap.getMap());
-			// selectboardList =
-			// boardService.selectbnsList(commandMap.getMap());
+			selectListNsmList = boardNewsAdminsService.selectListNsmList(commandMap.getMap());
 
 		} else {
 			selectListNsmList = Collections.emptyList();
 		}
-		System.out.println("찍히낭");
+		
 		String mm = "site";
 		mv.addObject("mm", mm);
 		mv.addObject("mode", "m_nsmList");
@@ -281,14 +246,12 @@ public class BoardNewsAdminsController {
 	 */
 	// 1번 bnsDelete
 	@RequestMapping(value = "/admin/boardNews/nsmDelete.mwav")
-	public ModelAndView deleteNsmDelete(CommandMap commandMap,
-			HttpServletRequest request) throws Exception {
+	public ModelAndView deleteNsmDelete(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/SiteMgr/NewsMgr/NsmList");
 
 		boardNewsAdminsService.deleteNsmDelete(commandMap.getMap());
 
-		mv.addObject("pageNum",
-				paging.getPageNum((String) commandMap.get("pageNum")));
+		mv.addObject("pageNum", paging.getPageNum((String) commandMap.get("pageNum")));
 
 		mv.addObject("depth_1", depth_1);
 		mv.addObject("depth_2", depth_2);

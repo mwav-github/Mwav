@@ -151,7 +151,7 @@
 	]]>
 	</update>
 	
-	<select id="checkSocialLogin" parameterType = "net.bizLogin.promoter.vo.PmtFacilitatorSO" resultType="net.bizLogin.promoter.vo.PmtFacilitatorVO">
+	<select id="checkSocialLogin" parameterType = "net.bizlogin.common.entity.PmtFacilitatorSO" resultType="net.bizlogin.common.entity.PmtFacilitatorVO">
 		SELECT snsPromoter_id
 			 , spPromoterId
 		     , spFirstName
@@ -168,7 +168,7 @@
 		AND spPromoterId = #{spPromoterId}
 	</select>
 	
-	<insert id="joinSocialLogin" parameterType="net.bizLogin.promoter.vo.PmtFacilitatorSO">
+	<insert id="joinSocialLogin" parameterType="net.bizlogin.common.entity.PmtFacilitatorSO">
 		INSERT INTO SnsPromoter_tbl
 		VALUES (
 				  (SELECT snsPromoter_id FROM (SELECT IFNULL(MAX(snsPromoter_id) + 1, 10000) snsPromoter_id FROM SnsPromoter_tbl) tb)
@@ -230,7 +230,7 @@
 	</update>
 
 	<!-- BizLogin Promoter Login -->
-	<select id="selectBizPmtLogin" parameterType="hashmap" resultType="net.bizLogin.promoter.vo.BizPromoter_VO">
+	<select id="selectBizPmtLogin" parameterType="hashmap" resultType="net.bizlogin.common.entity.BizPromoter_VO">
 		<![CDATA[
 		SELECT T1.promoter_id, T1.pmtLoginId, T1.pmtLoginPw, T1.pmtGender, T1.pmtFirstName, T1.pmtLastName, T1.pmtMiddleName, T1.pmtNickName
 			 , T1.pmtMail, T1.pmtPhone, T1.pmtCellularPhone, T1.pmtAddrFlag, T1.pmtZipcode, T1.pmtAddress, T1.pmtAddressDetail, T1.pmtJobType, T1.pmtMarried, T1.pmtMark, T1.pmtRcmderId
