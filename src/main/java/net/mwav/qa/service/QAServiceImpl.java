@@ -1,33 +1,28 @@
 package net.mwav.qa.service;
 
-import java.util.List;
-import java.util.Map;
-
-import javax.inject.Inject;
-import javax.mail.Message;
-import javax.servlet.http.HttpServletRequest;
-
+import net.mwav.common.module.*;
+import net.mwav.qa.dao.QADAO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.velocity.VelocityEngineUtils;
 import org.springframework.web.servlet.view.velocity.VelocityConfigurer;
 
-import net.mwav.common.module.Common_Utils;
-import net.mwav.common.module.EmailSender;
-import net.mwav.common.module.MailConfig;
-import net.mwav.common.module.MailLib;
-import net.mwav.common.module.MessageBuilder;
-import net.mwav.common.module.XmlLib;
-import net.mwav.qa.dao.QADAO;
+import javax.inject.Inject;
+import javax.mail.Message;
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class QAServiceImpl implements QAService {
+
+	private static final Logger logger = LoggerFactory.getLogger(QAServiceImpl.class);
+
 	Common_Utils cou = new Common_Utils();
 
 	@Inject
 	private QADAO qaDAO;
-
-	@Inject
-	EmailSender emailSender;
 
 	@Inject
 	VelocityConfigurer velocityConfig;
@@ -57,7 +52,7 @@ public class QAServiceImpl implements QAService {
 			//				emailSender.sendQuestionEmail(map);
 
 			String path = String.valueOf(map.get("xmlPath"));
-			System.out.println("패스 : " + path);
+			logger.debug("패스 : " + path);
 			MailConfig mailConfig = (MailConfig) XmlLib.getInstance().unmarshal(path, MailConfig.class);
 
 			//메일 문의 답변 템플릿

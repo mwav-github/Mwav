@@ -1,31 +1,22 @@
 package net.mwav.common.module;
 
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-
-import javax.imageio.ImageIO;
-import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
-
+import net.admins.service.GoodsAdminsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import net.admins.service.GoodsAdminsService;
+import javax.imageio.ImageIO;
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * 일단 기본적으로 외부스토리지를 사용하지 않는다고 가정할 경우, 프로젝트의 webapp 밑에 해당 파일이 존재해야 이미지 미리보기를 할 수가 있습니다. 
@@ -104,7 +95,7 @@ public class FileUtils {
 				File file = new File(filePath_TempImages_Goods);
 				if (file.exists() == false) {
 					file.mkdirs();
-					System.out.println("폴더생성");
+					logger.debug("폴더생성");
 				}
 			}
 			/*
@@ -179,7 +170,7 @@ public class FileUtils {
 						 */
 						/*
 						 * // .bak 파일 file = new File(BfilePath);
-						 * System.out.println("파일생성경로" + BfilePath);
+						 * logger.debug("파일생성경로" + BfilePath);
 						 */
 
 						/*
@@ -228,7 +219,7 @@ public class FileUtils {
 							map.put("goods_id", selectNextPk);
 							map.put("gFileDesc", images_position);
 							/*
-							 * System.out.println("GoodsId가 NULL인 경우");
+							 * logger.debug("GoodsId가 NULL인 경우");
 							 * map.put("gNullCheck", "empty");
 							 */
 							goodsAdminsService.insertGdsFiles(map);
@@ -280,7 +271,7 @@ public class FileUtils {
 		try {
 
 			String mm = (String) map.get("goods_id");
-			System.out.println("(출력)goods_id" + mm);
+			logger.debug("(출력)goods_id" + mm);
 
 			dirListMap = goodsAdminsService.selectListGdsFilesList(map);
 			String goods_id = (String) map.get("goods_id");

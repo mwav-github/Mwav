@@ -1,22 +1,23 @@
 package net.mwav.qa.dao;
 
+import net.common.dao.AbstractDAO;
+import net.mwav.common.module.AesEncryption;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
+
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.springframework.stereotype.Repository;
-
-import net.common.dao.AbstractDAO;
-import net.mwav.common.module.AesEncryption;
-
 @Repository
 @SuppressWarnings("unchecked")
 public class QADAO extends AbstractDAO {
 
+	private static final Logger logger = LoggerFactory.getLogger(QADAO.class);
 	/*
 	 * ========================================등록================================
 	 * ========
@@ -41,7 +42,7 @@ public class QADAO extends AbstractDAO {
 					e.printStackTrace();
 				}
 
-				System.out.println("    - TEXT2 : " + sBase);
+				logger.debug("    - TEXT2 : " + sBase);
 
 				map.put("uqUserPw", sBase);
 			}
@@ -53,7 +54,7 @@ public class QADAO extends AbstractDAO {
 
 			String check = String.valueOf(insert("qa.insertQAForm", map));
 			String QnA_id = q_pk;
-			System.out.println("check" + check);
+			logger.debug("check" + check);
 			if (check.equals("1")) {
 				flag = QnA_id;
 			} else {
@@ -67,7 +68,7 @@ public class QADAO extends AbstractDAO {
 
 	public List<Map<String, Object>> selectListQAList(Map<String, Object> map) {
 		String member_id = (String) map.get("member_id");
-		System.out.println("member_id" + member_id);
+		logger.debug("member_id" + member_id);
 		List<Map<String, Object>> qaList = null;
 		if (member_id == null || member_id.equals("") || member_id.equals("null")) {
 			// 비회원
@@ -83,7 +84,7 @@ public class QADAO extends AbstractDAO {
 
 	public int selectOneGetTotalCount(String member_id, String uqUserEmail) {
 		int totalCount = 0;
-		System.out.println("member_id" + member_id);
+		logger.debug("member_id" + member_id);
 		if (member_id == null || member_id.equals("null") || member_id == "") {
 			// 비회원
 			totalCount = (int) selectOne("qa.selectOneNonMemberGetTotalCount", uqUserEmail);
@@ -136,7 +137,7 @@ public class QADAO extends AbstractDAO {
 		}
 
 		Date uaBeReadDt = (Date) map1.get("uaBeReadDt");
-		System.out.println("uaBeReadDt" + uaBeReadDt);
+		logger.debug("uaBeReadDt" + uaBeReadDt);
 
 		//답변달린 후 최초 조회.
 		if (uaBeReadDt == null) {
@@ -183,13 +184,13 @@ public class QADAO extends AbstractDAO {
 		map.put("uqUserPw", sBase);
 
 		qaLogin = (int) selectOne("qa.selectOneQALogin", map);
-		System.out.println("qaLogin" + qaLogin);
+		logger.debug("qaLogin" + qaLogin);
 
 		String uqUserEmail = null;
 		if (qaLogin == 0) {
 			uqUserEmail = null;
 		} else {
-			System.out.println("b_uqUserEmail" + b_uqUserEmail);
+			logger.debug("b_uqUserEmail" + b_uqUserEmail);
 			uqUserEmail = b_uqUserEmail;
 		}
 
@@ -203,7 +204,7 @@ public class QADAO extends AbstractDAO {
 
 			String check = String.valueOf(update("qa.uaSatisfactionUpdateAjax", map));
 
-			System.out.println("check" + check);
+			logger.debug("check" + check);
 			if (check.equals("1")) {
 
 				flag = true;

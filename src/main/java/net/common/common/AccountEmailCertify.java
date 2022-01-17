@@ -2,7 +2,8 @@ package net.common.common;
 
 import net.mwav.common.module.*;
 import net.promoter.dao.PromoterDAO;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +26,7 @@ import java.util.StringTokenizer;
 @Controller
 @RequestMapping("/accounts/email")
 public class AccountEmailCertify {
-    Logger log = Logger.getLogger(this.getClass());
+    private static final Logger logger = LoggerFactory.getLogger(AccountEmailCertify.class);
 
     @Autowired
     ServletContext servletContext;
@@ -149,7 +150,7 @@ public class AccountEmailCertify {
                 index+=1;
             }
         }catch(Exception ex){
-            log.error(ex.getMessage());
+            logger.error(ex.getMessage());
             return "redirect: /";
         }
 

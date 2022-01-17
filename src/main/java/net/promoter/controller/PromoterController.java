@@ -1,22 +1,5 @@
 package net.promoter.controller;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-
-import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import org.apache.log4j.Logger;
-import org.springframework.stereotype.Controller;
-import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import net.common.common.CommandMap;
 import net.mwav.common.module.AesEncryption;
 import net.mwav.common.module.Common_Utils;
@@ -24,12 +7,26 @@ import net.mwav.common.module.Paging;
 import net.mwav.common.module.PagingVO;
 import net.promoter.service.PromoterService;
 import net.promoter.vo.Promoter_VO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 public class PromoterController {
-	Logger log = Logger.getLogger(this.getClass());
-
-	Common_Utils cou = new Common_Utils();
+	private static final Logger logger = LoggerFactory.getLogger(PromoterController.class);
 
 	String mode;
 
@@ -68,8 +65,8 @@ public class PromoterController {
 
 		// AES/ECB 복호화
 		decrypted = AesEncryption.aesDecryptEcb(AesEncryption.sKey, decrypted);
-		System.out.println("암호화 : " + pmtUpperPromoId);
-		System.out.println("복호화 : " + new String(decrypted, "UTF-8"));
+		logger.debug("암호화 : " + pmtUpperPromoId);
+		logger.debug("복호화 : " + new String(decrypted, "UTF-8"));
 
 		//암호화된 추천인 아이디를 넘겨준다.
 		request.setAttribute("p", pmtUpperPromoId);
@@ -110,11 +107,11 @@ public class PromoterController {
 		}
 		promoter = (Promoter_VO) promoterService.selectPmtLogin(commandMap.getMap());
 		if (promoter == null) {
-			log.info("프로모터 로그인 실패");
+			logger.debug("프로모터 로그인 실패");
 			rtr.addFlashAttribute("msg", "비밀번호와 아이디를 확인해주세요");
 		} else {
-			log.info("프로모터 로그인 성공");
-			log.info("pw!!!!!!" + promoter.getPmtLoginPw());
+			logger.debug("프로모터 로그인 성공");
+			logger.debug("password= " + promoter.getPmtLoginPw());
 			request.getSession().setAttribute("promoterId", promoter.getPromoter_id());
 		}
 		return mv;
@@ -192,9 +189,9 @@ public class PromoterController {
 		if (pageNum == null) {
 			pageNum = "1";
 		}
-		System.out.println("pageNum=" + pageNum);
+		logger.debug("pageNum=" + pageNum);
 		int totalRow = promoterService.selectOneGetTotalCount();
-		System.out.println("totalRow=" + totalRow);
+		logger.debug("totalRow=" + totalRow);
 
 		// Paging pv = new Paging(pageNum, 10 , 10, totalCount);
 		List<Map<String, Object>> selectListPmtList;
@@ -204,15 +201,13 @@ public class PromoterController {
 		commandMap.put("startRow", paging.getStartRow(pageNum)); // 시작 열
 		commandMap.put("endRow", paging.getEndRow(pageNum)); // 끝 열
 		if (totalRow > 0) {
-			System.out.println("전체행의 갯수 1이상");
+			logger.debug("전체행의 갯수 1이상");
 			selectListPmtList = promoterService.selectListPmtList(commandMap.getMap());
 			// selectboardList = boardService.selectbnsList(commandMap.getMap());
 
 		} else {
 			selectListPmtList = Collections.emptyList();
 		}
-		System.out.println("찍히낭");
-
 		mv.addObject("selectListPmtList", selectListPmtList);
 		mv.addObject("pagingVO", pagingVO);
 		mv.addObject("totalRow", totalRow);
@@ -247,8 +242,7 @@ public class PromoterController {
 		commandMap.put("promoter_id", request.getParameter("promoter_id"));
 		Promoter_VO promoter = promoterService.selectOnePmtInfo((String) commandMap.getMap().get("promoter_id"));
 		if (promoter != null) {
-			System.out.println("view 줄랭");
-			System.out.println("mode 출력" + mode);
+			logger.debug("mode 출력" + mode);
 			mv.addObject("mode", mode);
 			mv.addObject("updatePmtForm", promoter);
 		}
@@ -265,7 +259,7 @@ public class PromoterController {
 		if (!pmtPw1.equals("") && pmtPw1 != null) { //첫번째 비밀번호와 두번째 비밀번호가 같을경우 수정
 			if (pmtPw1.equalsIgnoreCase(pmtPw2))
 				commandMap.put("pmtNewPw", pmtPw1);
-			System.out.println("비밀번호가 다름");
+			logger.debug("비밀번호가 다름");
 		}
 
 		promoterService.updatePmtPro(commandMap.getMap());

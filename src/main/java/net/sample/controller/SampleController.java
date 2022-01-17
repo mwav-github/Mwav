@@ -1,13 +1,10 @@
 package net.sample.controller;
 
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-
-import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
-
-import org.apache.log4j.Logger;
+import net.common.common.CommandMap;
+import net.mwav.common.module.FileLib;
+import net.sample.service.SampleService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,9 +13,11 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import net.common.common.CommandMap;
-import net.mwav.common.module.FileLib;
-import net.sample.service.SampleService;
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 /* 
  * - Controller > Service > ServiceImpl > DAO > SQL(XML) > JSP
@@ -29,7 +28,7 @@ import net.sample.service.SampleService;
 
 @Controller
 public class SampleController {
-	Logger log = Logger.getLogger(this.getClass());
+	private static final Logger logger = LoggerFactory.getLogger(SampleController.class);
 
 	/*Service 영역의 접근을 위한 선언 
 	  @Resource어노테이션을 통해서 필요한 빈(bean)을 수동으로 등록하는것이다. 
@@ -92,14 +91,11 @@ public class SampleController {
 	@RequestMapping(value = "/FileTest/**")
 	public ModelAndView redirectTemplatesController(HttpServletRequest request) throws Exception {
 
-		// System.out.println("열로들어오나");
 		String url = request.getRequestURI();
 		int pos = url.lastIndexOf(".");
 		// String ext = url.substring(pos + 1);
 		String ext_url = null;
 		ext_url = url.substring(0, pos);
-		// System.out.println("확장자 제외" + ext);
-		// System.out.println("return URL"+ext_url);
 		ModelAndView mv = new ModelAndView(ext_url);
 
 		return mv;
@@ -113,8 +109,7 @@ public class SampleController {
 		String url = request.getRequestURI();
 		int pos = url.lastIndexOf(".");
 
-		String ext_url = null;
-		ext_url = url.substring(0, pos);
+//		String ext_url = url.substring(0, pos);
 		ModelAndView mv = new ModelAndView("CommonApps/Goods/fileUploader");
 
 		return mv;

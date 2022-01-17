@@ -1,19 +1,22 @@
 package net.promoter.dao;
 
-import java.util.List;
-import java.util.Map;
-
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
-
 import net.common.dao.AbstractDAO;
 import net.mwav.common.module.AesEncryption;
 import net.promoter.vo.Promoter_VO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.Map;
 
 @Repository
 public class PromoterDAO extends AbstractDAO {
 	byte[] decrypted = null;
 	byte[] encrypted = null;
+
+	private static final Logger logger = LoggerFactory.getLogger(PromoterDAO.class);
 
 	/*
 	 * ========================================등록================================
@@ -28,7 +31,7 @@ public class PromoterDAO extends AbstractDAO {
 	public int selectOnePmtLoginIdCheck(String pmtLoginId) {
 		// TODO Auto-generated method stub
 		int check;
-		System.out.println("값이?=" + selectOne("promoter.selectOnePmtLoginIdCheck", pmtLoginId));
+		logger.debug("값이?=" + selectOne("promoter.selectOnePmtLoginIdCheck", pmtLoginId));
 		if (selectOne("promoter.selectOnePmtLoginIdCheck", pmtLoginId) == null) {
 			check = 0; // 아이디가 없는 경우
 		} else {
@@ -50,13 +53,13 @@ public class PromoterDAO extends AbstractDAO {
 			//			String b_PmtLoginPw = (String) map.get("pmtLoginPw");
 			String b_PmtLoginPw = promoter.getPmtLoginPw();
 
-			System.out.println("* AES/CBC/IV");
-			System.out.println("b_stfLoginPw=" + b_PmtLoginPw);
-			System.out.println("    - KEY : " + AesEncryption.sKey); // Static
+			logger.debug("* AES/CBC/IV");
+			logger.debug("b_stfLoginPw=" + b_PmtLoginPw);
+			logger.debug("    - KEY : " + AesEncryption.sKey); // Static
 																		// 변수
-			System.out.println("    - IV : " + AesEncryption.sInitVector); // Static
+			logger.debug("    - IV : " + AesEncryption.sInitVector); // Static
 																			// 변수
-			System.out.println("    - TEXT : " + b_PmtLoginPw);
+			logger.debug("    - TEXT : " + b_PmtLoginPw);
 
 			// AES/CBC/IV 암호화 (키,암호화텍스트,iv)
 			encrypted = AesEncryption.aesEncryptCbc(AesEncryption.sKey, b_PmtLoginPw, AesEncryption.sInitVector);
@@ -65,15 +68,15 @@ public class PromoterDAO extends AbstractDAO {
 			String sBase = AesEncryption.aesEncodeBuf(encrypted);
 
 			// String b2_mbrLoginPw = AesTest.toHexString(encrypted);
-			System.out.println("    - TEXT2 : " + sBase);
+			logger.debug("    - TEXT2 : " + sBase);
 
 			//			map.put("pmtLoginPw", sBase);
 			promoter.setPmtLoginPw(sBase);
 
 			if (encrypted == null) {
-				System.out.println("    - Encrypted : ERROR!!!");
+				logger.debug("    - Encrypted : ERROR!!!");
 			} else {
-				System.out.println("    - Encrypted : " + sBase); // 암호화된 String
+				logger.debug("    - Encrypted : " + sBase); // 암호화된 String
 																	// 값
 			}
 		} catch (Exception e) {
@@ -84,7 +87,7 @@ public class PromoterDAO extends AbstractDAO {
 		int promoterid = (int) selectOne("promoter.selectNextPmtPk"); //Promoter_tbl.promoter_id의 가장 max 값을 가져온다.
 
 		promoter.setPromoter_id(promoterid);
-		System.out.println(" 최종 : " + promoter);
+		logger.debug(" 최종 : " + promoter);
 		result = (int) insert("promoter.insertPmtForm", promoter); //한쪽이 에러가 나는 경우를 대비해 트랜잭션 처리를 해야함.. 근데 처리를 위해선 구조를 크게 바꿔야함 (보류)
 		result = (int) insert("promoter.insertPmtValueForm", promoter);
 

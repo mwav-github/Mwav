@@ -1,14 +1,13 @@
 package net.sample.service;
 
-import java.util.List;
-import java.util.Map;
-
-import javax.inject.Inject;
-
-import org.apache.log4j.Logger;
+import net.sample.dao.SampleDAO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import net.sample.dao.SampleDAO;
+import javax.inject.Inject;
+import java.util.List;
+import java.util.Map;
 
 /*ServiceImpl 클래스는 Service 인터페이스를 통해 정의된 메서드를 실제로 구현하는 클래스
  @Servcie 어노테이션을 이용하여 Service 객체임을 선언하였고, 이 객체의 이름은 "sampleService"라고 선언하였다. 
@@ -18,7 +17,7 @@ import net.sample.dao.SampleDAO;
 */
 @Service
 public class SampleServiceImpl implements SampleService {
-	Logger log = Logger.getLogger(this.getClass());
+	private static final Logger logger = LoggerFactory.getLogger(SampleServiceImpl.class);
 
 	/*마찬가지로 수동으로 빈 등록
 	  Controller에서 Service 접근을 위한 선언을 한것과 마찬가지로, 

@@ -1,10 +1,16 @@
 package net.mwav.member.service;
 
-import java.io.IOException;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import net.mwav.common.module.*;
+import net.mwav.member.dao.MemberDAO;
+import net.mwav.member.vo.Member_tbl_VO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.mail.MailAuthenticationException;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.velocity.VelocityEngineUtils;
+import org.springframework.web.servlet.view.velocity.VelocityConfigurer;
+import org.springframework.web.util.WebUtils;
 
 import javax.inject.Inject;
 import javax.mail.Message;
@@ -13,33 +19,19 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import org.springframework.mail.MailAuthenticationException;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.ui.velocity.VelocityEngineUtils;
-import org.springframework.web.servlet.view.velocity.VelocityConfigurer;
-import org.springframework.web.util.WebUtils;
-
-import net.mwav.common.module.AesEncryption;
-import net.mwav.common.module.EmailSender;
-import net.mwav.common.module.MailConfig;
-import net.mwav.common.module.MailLib;
-import net.mwav.common.module.MessageBuilder;
-import net.mwav.common.module.SecurityLib;
-import net.mwav.common.module.ValidationLib;
-import net.mwav.common.module.XmlLib;
-import net.mwav.member.dao.MemberDAO;
-import net.mwav.member.vo.Member_tbl_VO;
+import java.io.IOException;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class MemberServiceImpl implements MemberService {
 
-	@Inject
-	private MemberDAO memberDAO;
+	private static final Logger logger = LoggerFactory.getLogger(MemberServiceImpl.class);
 
 	@Inject
-	EmailSender emailSender;
+	private MemberDAO memberDAO;
 
 	@Inject
 	ServletContext servletContext;
@@ -327,10 +319,10 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override //오토로그인 날짜데이터 추가
 	public boolean updateAutoLogin(String onOff, HttpServletResponse response, int member_id) {
-		System.out.println("autologin안에 들어옴");
-		System.out.println("autologin 값" + onOff);
+		logger.debug("autologin안에 들어옴");
+		logger.debug("autologin 값" + onOff);
 		if (onOff != null && onOff.equals("on")) {
-			System.out.println("autologin실행됨");
+			logger.debug("autologin실행됨");
 			//int amount = 60 * 60 * 24 * 14; //일주일
 			long amount = 60 * 60 * 24 * 180; //반년 주의) 반년계산시에는 int 형은 안된다.
 			HashMap<String, Object> map = new HashMap<String, Object>();
@@ -355,14 +347,14 @@ public class MemberServiceImpl implements MemberService {
 		Cookie loginCookie = WebUtils.getCookie(request, "autoLogin");
 		Member_tbl_VO member = (Member_tbl_VO) session.getAttribute("member");
 		if (member != null) {
-			System.out.println("세션의 멤버가 눌이 아님");
+			logger.debug("세션의 멤버가 눌이 아님");
 			if (loginCookie != null) {
 				loginCookie.setPath("/");
 				loginCookie.setValue(null);
 				loginCookie.setMaxAge(0);
 				response.addCookie(loginCookie);
 				;
-				System.out.println("오토로그인 삭제 성공");
+				logger.debug("오토로그인 삭제 성공");
 				return memberDAO.updateAutoLoginDel(member.getMember_id());
 
 			}

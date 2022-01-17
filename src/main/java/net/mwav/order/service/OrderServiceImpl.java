@@ -1,18 +1,20 @@
 package net.mwav.order.service;
 
+import net.mwav.order.dao.OrderDAO;
+import net.mwav.order.vo.OrderCartVO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
+
+import javax.inject.Inject;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 
-import javax.inject.Inject;
-
-import org.springframework.stereotype.Service;
-
-import net.mwav.order.dao.OrderDAO;
-import net.mwav.order.vo.OrderCartVO;
-
 @Service
 public class OrderServiceImpl implements OrderService {
+
+	private static final Logger logger = LoggerFactory.getLogger(OrderServiceImpl.class);
 
 	@Inject
 	private OrderDAO orderDAO;
@@ -57,26 +59,26 @@ public class OrderServiceImpl implements OrderService {
 
 		for (int i = 0; i < selectOrderCartCalculate.size(); i++) {
 			//excelMap = selectOrderCartCalculate.get(i);
-			System.out.println("=============" + selectOrderCartCalculate.get(i).get("gConsumerPrice"));
+			logger.debug("=============" + selectOrderCartCalculate.get(i).get("gConsumerPrice"));
 
 			int ocAmount = (int) selectOrderCartCalculate.get(i).get("ocAmount");
 
 			int imsigConsumberPrice = ocAmount * (int) selectOrderCartCalculate.get(i).get("gConsumerPrice");
-			System.out.println("=============" + imsigConsumberPrice);
+			logger.debug("=============" + imsigConsumberPrice);
 			totalConsumerPrice += imsigConsumberPrice;
 
 			int imsigDeliveryCost = (int) selectOrderCartCalculate.get(i).get("gDeliveryCost");
 			totalDeliveryCost += imsigDeliveryCost;
 
-			System.out.println("=============" + totalDeliveryCost);
+			logger.debug("=============" + totalDeliveryCost);
 
 			int imsigMemberPrice = ocAmount * (int) selectOrderCartCalculate.get(i).get("gMemberPrice");
 			totalMemberPrice += imsigMemberPrice;
-			System.out.println("=============" + imsigMemberPrice);
+			logger.debug("=============" + imsigMemberPrice);
 		}
-		System.out.println("totalDeliveryCost" + totalDeliveryCost);
-		System.out.println("totalMemberPrice" + totalMemberPrice);
-		System.out.println("totalConsumerPrice" + totalConsumerPrice);
+		logger.debug("totalDeliveryCost" + totalDeliveryCost);
+		logger.debug("totalMemberPrice" + totalMemberPrice);
+		logger.debug("totalConsumerPrice" + totalConsumerPrice);
 
 		AllTotal_MemberPrice = totalDeliveryCost + totalMemberPrice;
 		AllTotal_ConsumerPrice = totalDeliveryCost + totalConsumerPrice;

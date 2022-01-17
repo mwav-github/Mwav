@@ -50,8 +50,6 @@ public class PostController {
 			sb.append(tempStr);
 		}
 
-		System.out.println("xml전문" + sb.toString());
-
 		//sb.append(pagingVO);
 		br.close();
 		response.setCharacterEncoding("UTF-8");

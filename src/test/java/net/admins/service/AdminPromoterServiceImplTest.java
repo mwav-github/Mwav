@@ -8,6 +8,8 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.Map;
@@ -29,6 +31,8 @@ import static org.mockito.Mockito.when;
  */
 @RunWith(MockitoJUnitRunner.class)
 public class AdminPromoterServiceImplTest {
+
+    private static final Logger logger = LoggerFactory.getLogger(AdminPromoterServiceImplTest.class);
 
     @InjectMocks
     private AdminPromoterServiceImpl pmtService;
@@ -94,7 +98,7 @@ public class AdminPromoterServiceImplTest {
         Map<String, Object> map = pmtService.selectStaffSeek(commandMap);
 
         map.forEach((s, o) -> {
-            System.out.println(s + " : " + o);
+            logger.debug(s + " : " + o);
         });
 
         assertThat(map).extractingByKey("minPage").isEqualTo(1);

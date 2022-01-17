@@ -1,14 +1,12 @@
 
 package net.mwav.member.controller;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.scribejava.core.model.OAuth2AccessToken;
+import net.mwav.member.auth.naver.NaverUrlBuilder;
+import net.mwav.member.service.MemberService;
+import net.mwav.member.service.SignService;
+import net.mwav.member.vo.Member_tbl_VO;
 import org.apache.maven.model.Model;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,13 +23,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.WebRequest;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.scribejava.core.model.OAuth2AccessToken;
-
-import net.mwav.member.auth.naver.NaverUrlBuilder;
-import net.mwav.member.service.MemberService;
-import net.mwav.member.service.SignService;
-import net.mwav.member.vo.Member_tbl_VO;
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 public class SignController {
@@ -61,7 +58,7 @@ public class SignController {
 
 	@RequestMapping(value = "/signin", method = { RequestMethod.GET, RequestMethod.POST })
 	public void signin() {
-		System.out.println("출력3");
+		logger.debug("출력3");
 	}
 
 	@RequestMapping("/google/expired")
@@ -90,7 +87,7 @@ public class SignController {
 			facebook = (Facebook) connection.getApi();
 			String[] fields = { "id", "email", "first_name", "last_name", "gender", "birthday", "link" };
 			/*
-			 * System.out.println("이건뭘까" + facebook.userOperations().getUserProfile());
+			 * logger.debug("이건뭘까" + facebook.userOperations().getUserProfile());
 			 */
 			User user = facebook.fetchObject("me", User.class, fields);
 
@@ -132,7 +129,7 @@ public class SignController {
 		/*
 		 * ID가 없으면 (Insert), 있으면 (로그인)
 		 */
-		System.out.println("smMember_id" + smMember_id);
+		logger.debug("smMember_id" + smMember_id);
 		boolean check;
 		int member_id = 0;
 		String m_id = null;
@@ -143,7 +140,7 @@ public class SignController {
 
 			m_id = memberService.selectOneMemberPkCheck();
 			member_id = Integer.parseInt(m_id);
-			System.out.println("멤버아이디=" + member_id);
+			logger.debug("멤버아이디=" + member_id);
 			// 메번로그인할때마다 생성하면 애매하니까
 
 			if (First_Name == null) {
@@ -206,14 +203,14 @@ public class SignController {
 
 			member_tbl_VO.setMember_id(member_id);
 			session.setAttribute("member", member_tbl_VO);
-			System.out.println("자동로그인값" + request.getSession().getAttribute("autoLoginChk"));
+			logger.debug("자동로그인값" + request.getSession().getAttribute("autoLoginChk"));
 			if (request.getSession().getAttribute("autoLoginChk") != null) {
 				memberService.updateAutoLogin((String) request.getSession().getAttribute("autoLoginChk"), response, member_tbl_VO.getMember_id());
 				request.getSession().removeAttribute("autoLoginChk");
 			}
 		}
 
-		// System.out.println("mbrLoginId___" + mbrLoginId);
+		// logger.debug("mbrLoginId___" + mbrLoginId);
 
 		loginCheck = 1;
 		// session.setAttribute("member_id", member_id);

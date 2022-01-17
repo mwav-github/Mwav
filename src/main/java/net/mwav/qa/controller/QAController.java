@@ -1,13 +1,11 @@
 package net.mwav.qa.controller;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-
-import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
+import net.common.common.CommandMap;
+import net.mwav.common.module.Common_Utils;
+import net.mwav.common.module.Paging;
+import net.mwav.common.module.PagingVO;
+import net.mwav.member.vo.Member_tbl_VO;
+import net.mwav.qa.service.QAService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -15,12 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import net.common.common.CommandMap;
-import net.mwav.common.module.Common_Utils;
-import net.mwav.common.module.Paging;
-import net.mwav.common.module.PagingVO;
-import net.mwav.member.vo.Member_tbl_VO;
-import net.mwav.qa.service.QAService;
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 public class QAController {
@@ -238,7 +236,7 @@ public class QAController {
 			}
 			// totalcount 도 조정이 필요하다. (회원 비회원에 따라)
 			int totalRow = qaService.selectOneGetTotalCount(m_id, m_email);
-			System.out.println("totalRow=" + totalRow);
+			logger.debug("totalRow=" + totalRow);
 
 			// Paging pv = new Paging(pageNum, 10 , 10, totalCount);
 			List<Map<String, Object>> selectListQAList;
@@ -285,7 +283,7 @@ public class QAController {
 		// String uqUserPw = null;
 		if (uqUserEmail == null) {
 			// 0은 아이디 또는 pw가 틀린 것
-			System.out.println("loginCheck =" + loginCheck);
+			logger.debug("loginCheck =" + loginCheck);
 			loginCheck = 0;
 		} else {
 			loginCheck = 1;

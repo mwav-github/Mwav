@@ -1,25 +1,24 @@
 package net.mwav.shop.controller;
 
-import java.util.List;
-import java.util.Map;
+import net.common.common.CommandMap;
+import net.mwav.common.module.Common_Utils;
+import net.mwav.shop.service.GoodsService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import org.apache.log4j.Logger;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
-
-import net.common.common.CommandMap;
-import net.mwav.common.module.Common_Utils;
-import net.mwav.shop.service.GoodsService;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 public class GoodsController {
-	Logger log = Logger.getLogger(this.getClass());
+	private static final Logger logger = LoggerFactory.getLogger(GoodsController.class);
 	// HttpServlsetRequest request = null;
 	// 자바에서 세션사용을 위해서는 아래와 같이 필요
 	// 세션 관련 설정은 prehandle 에서 추후 지정(들어오는 url에 따라서)
@@ -63,8 +62,6 @@ public class GoodsController {
 		
 
 		if (selectOneGdsView != null && !selectOneGdsView.isEmpty()) {
-			System.out.println("view 줄랭");
-
 			String mm = "cGds";
 			mv.addObject("mm", mm);
 
@@ -94,8 +91,6 @@ public class GoodsController {
 		List<Map<String, Object>> selectListGdsList;
 
 		selectListGdsList = goodsService.selectListGdsList(commandMap.getMap());
-
-		System.out.println("찍히낭");
 
 		mv.addObject("selectListGdsList", selectListGdsList);
 

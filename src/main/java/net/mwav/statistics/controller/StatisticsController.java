@@ -1,27 +1,26 @@
 package net.mwav.statistics.controller;
 
-import java.util.Map;
-
-import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
 import net.common.common.CommandMap;
 import net.mwav.common.module.Common_Utils;
 import net.mwav.statistics.service.StatisticsService;
 import net.mwav.statistics.vo.StatisticsLogVO;
 import net.mwav.statistics.vo.StatisticsVO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.util.Map;
 
 @Controller
 public class StatisticsController {
-	Logger log = Logger.getLogger(this.getClass());
+	private static final Logger logger = LoggerFactory.getLogger(StatisticsController.class);
 
 	@Autowired
 	private HttpServletRequest request;
@@ -227,13 +226,13 @@ public class StatisticsController {
 		st_id = statistics_id;
 		String getURI = request.getRequestURI();
 
-		log.info("st_id" + st_id);
-		log.info("여기들어옴" + st_id);
+		logger.info("st_id" + st_id);
+		logger.info("여기들어옴" + st_id);
 
-		log.info("status_code : " + request.getAttribute("javax.servlet.error.status_code"));
-		log.info("message  : " + request.getAttribute("javax.servlet.error.message"));
-		log.info("request_uri : " + request.getAttribute("javax.servlet.error.request_uri"));
-		log.info("exception_type	 : " + request.getAttribute("javax.servlet.error.exception"));
+		logger.info("status_code : " + request.getAttribute("javax.servlet.error.status_code"));
+		logger.info("message  : " + request.getAttribute("javax.servlet.error.message"));
+		logger.info("request_uri : " + request.getAttribute("javax.servlet.error.request_uri"));
+		logger.info("exception_type	 : " + request.getAttribute("javax.servlet.error.exception"));
 
 		try {
 			StatisticsLogVO log_vo = new StatisticsLogVO();
@@ -264,7 +263,7 @@ public class StatisticsController {
 			if (queryString.length() > 500) {
 				queryString = queryString.substring(0, 495);
 			}
-			System.out.println("queryString" + queryString);
+			logger.debug("queryString" + queryString);
 			log_vo.setSlQueryString(queryString);
 
 			statisticsService.insertErrorStatistics(log_vo);
@@ -285,13 +284,11 @@ public class StatisticsController {
 
 			statistics_id = (String) session.getAttribute("statistics_id");
 			commandMap.put("statistics_id", statistics_id);
-			System.out.println("statistics_id찍힝?" + statistics_id);
+			logger.debug("statistics_id= " + statistics_id);
 			/*
 			 * //가로: screen.width 세로: screen.height ※ 단 클라이언트 PC의 메인이 되는 정보만을
 			 * 참조하므로 듀얼로 사용할경우 두가지 화면에 다른 크기정보를 얻을 수 없다
 			 */
-
-			// System.out.println("stClientScreen"+commandMap.get("stClientScreen"));
 
 			statisticsService.updateStClientScreen(commandMap.getMap());
 

@@ -1,18 +1,17 @@
 package net.mwav.shop.service;
 
+import net.mwav.shop.dao.GoodsDAO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
+
+import javax.inject.Inject;
 import java.util.List;
 import java.util.Map;
 
-import javax.inject.Inject;
-
-import org.apache.log4j.Logger;
-import org.springframework.stereotype.Service;
-
-import net.mwav.shop.dao.GoodsDAO;
-
 @Service
 public class GoodsServiceImpl implements GoodsService {
-	Logger log = Logger.getLogger(this.getClass());
+	private static final Logger logger = LoggerFactory.getLogger(GoodsServiceImpl.class);
 
 	@Inject
 	private GoodsDAO goodsDAO;

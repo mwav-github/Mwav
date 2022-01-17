@@ -16,14 +16,15 @@ package net.common.filter;
  * limitations under the License.
  */
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 
-import org.apache.log4j.Logger;
-
 public class HTMLTagFilterRequestWrapper extends HttpServletRequestWrapper {
 
-	Logger log = Logger.getLogger(this.getClass());
+	private static final Logger logger = LoggerFactory.getLogger(HTMLTagFilterRequestWrapper.class);
 
 	public HTMLTagFilterRequestWrapper(HttpServletRequest request) {
 		super(request);

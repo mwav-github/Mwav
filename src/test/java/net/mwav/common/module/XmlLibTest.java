@@ -1,15 +1,19 @@
 package net.mwav.common.module;
 
-import static org.junit.Assert.assertEquals;
+import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
 
 public class XmlLibTest {
+
+	private static final Logger logger = LoggerFactory.getLogger(XmlLibTest.class);
 
 	@Test
 	public void test() throws Exception {
@@ -26,7 +30,7 @@ public class XmlLibTest {
 		String expectedAddress = "GV-4F, 5-5, Ttukseom-ro 46-gil, Gwangjin-gu, Seoul , Korea [05099]";
 		assertEquals(expectedAddress, address);
 		
-		System.out.println(map.get("general").getAddress());
+		logger.debug(map.get("general").getAddress());
 
 		// CompanyInfo of tel verification
 		String tel = generalConfig.getCompanyInfo().getTel();

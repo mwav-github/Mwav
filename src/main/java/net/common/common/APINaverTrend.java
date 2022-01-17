@@ -1,5 +1,8 @@
 package net.common.common;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.InputStreamReader;
@@ -7,7 +10,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
@@ -15,7 +17,9 @@ import java.util.List;
 
 
 public class APINaverTrend {
-	
+
+	private static final Logger logger = LoggerFactory.getLogger(APINaverTrend.class);
+
 	public String requestNaverTrend(String bnKeywords) {
 		StringBuffer response = new StringBuffer();
 
@@ -36,8 +40,8 @@ public class APINaverTrend {
 		calendarObj.set(Calendar.YEAR, previousYear);
 		String privousDate = simpleDataFormat.format(dateObj);
 
-//		System.out.println("currentDate : " + currentDate);
-//		System.out.println("privousDate : " + privousDate);
+//		logger.debug("currentDate : " + currentDate);
+//		logger.debug("privousDate : " + privousDate);
 		
 		try {
 			String apiURL = "https://openapi.naver.com/v1/datalab/search";
@@ -64,7 +68,7 @@ public class APINaverTrend {
 //      		body += "],\"device\":\"\",\"ages\": [],\"gender\":\"\"}";
 			
 			
-			System.out.println("body : " + body);
+			logger.debug("body : " + body);
 			
 			URL url = new URL(apiURL);
 			HttpURLConnection con = (HttpURLConnection)url.openConnection();
@@ -94,7 +98,7 @@ public class APINaverTrend {
 				response.append(inputLine);
 			}
 			br.close();
-			System.out.println("response.toString() : " + response.toString());
+			logger.debug("response.toString() : " + response.toString());
 			
 			return response.toString(); // 정상로직
 		} catch (Exception e) {

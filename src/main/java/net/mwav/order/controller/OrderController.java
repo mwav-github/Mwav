@@ -1,35 +1,28 @@
 package net.mwav.order.controller;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Vector;
-
-import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
-
 import net.common.common.CommandMap;
 import net.mwav.common.module.Common_Utils;
 import net.mwav.common.module.Paging;
 import net.mwav.common.module.PagingVO;
 import net.mwav.order.service.OrderService;
 import net.mwav.order.vo.OrderCartVO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @Controller
 public class OrderController {
 
-	Common_Utils cou = new Common_Utils();
-	String mode;
+	private static final Logger logger = LoggerFactory.getLogger(OrderController.class);
 
 	@Inject
 	private OrderService orderService;
@@ -63,15 +56,15 @@ public class OrderController {
 		String orderCart_id = lId;
 		session.setAttribute("orderCart_id", lId);
 
-		System.out.println("비회원 세션 id " + lId);
+		logger.debug("비회원 세션 id " + lId);
 
 		int goods_id = Integer.parseInt(request.getParameter("goods_id"));
-		System.out.println("OrderCartPutAction goods_id=" + goods_id);
+		logger.debug("OrderCartPutAction goods_id=" + goods_id);
 
-		System.out.println("OrderCartPutAction ocAmount=" + request.getParameter("ocAmount"));
-		System.out.println("OrderCartPutAction ocChoiceDt=" + request.getParameter("ocChoiceDt"));
-		System.out.println("OrderCartPutAction gcr_id=" + request.getParameter("gcr_id"));
-		System.out.println("OrderCartPutAction type=" + request.getParameter("type"));
+		logger.debug("OrderCartPutAction ocAmount=" + request.getParameter("ocAmount"));
+		logger.debug("OrderCartPutAction ocChoiceDt=" + request.getParameter("ocChoiceDt"));
+		logger.debug("OrderCartPutAction gcr_id=" + request.getParameter("gcr_id"));
+		logger.debug("OrderCartPutAction type=" + request.getParameter("type"));
 
 		Common_Utils cu = new Common_Utils();
 
@@ -98,7 +91,7 @@ public class OrderController {
 
 		//flag = 0 기등록 / 1 신규등록 성공 / 2 신규등록 실패
 
-		System.out.println("dfs" + flag);
+		logger.debug("dfs" + flag);
 		//request.setAttribute("flag", flag);
 		//request.setAttribute("goods_id", goods_id);
 		// 재고가 없을 경우 장바구니에 담겨지지 않게 체크하기 위함, 재고는 후에 구현
@@ -142,16 +135,16 @@ public class OrderController {
 		/* orderCart.jsp 에서 가져오는 것  */
 		Vector<String> goods_id = new Vector<String>();
 		Vector<String> ocChoiceDt = new Vector<String>();
-		System.out.println("if문 들어가기 직전");
+		logger.debug("if문 들어가기 직전");
 		if (listNum != null) { //장바구니에서 선택된 것이 있다.
-			System.out.println("if문 들어옴");
+			logger.debug("if문 들어옴");
 			for (int i = 0; i < listNum.length; i++) {
-				System.out.println("for문 들어옴");
-				System.out.println("listNum : " + listNum[i]);
+				logger.debug("for문 들어옴");
+				logger.debug("listNum : " + listNum[i]);
 				goods_id.add((String) commandMap.get("goods_idCount" + listNum[i]));
-				System.out.println(goods_id);
+				logger.debug(goods_id.toString());
 				ocChoiceDt.add((String) commandMap.get("ocChoiceDtCount" + listNum[i]));
-				System.out.println(ocChoiceDt);
+				logger.debug(ocChoiceDt.toString());
 			} /* good_id status.count값으로 세팅되어있는 것이다.
 				  http://kbill.tistory.com/entry/JSTL-core-cforEach-%EC%82%AC%EC%9A%A9%EB%B2%95%EA%B3%BC-varStatus-%EC%83%81%ED%83%9C%EA%B0%92
 				   참고)
@@ -162,9 +155,9 @@ public class OrderController {
 
 			for (int i = 0; i < selectListOrderCartChecked.size(); i++) {
 				Map<String, Object> excelMap = selectListOrderCartChecked.get(i);
-				System.out.println("=============" + excelMap.get("goods_id"));
+				logger.debug("=============" + excelMap.get("goods_id"));
 			}
-			System.out.println("고고");
+			logger.debug("고고");
 			mv.addObject("selectListOrderCartChecked", selectListOrderCartChecked);
 		}
 
@@ -190,7 +183,7 @@ public class OrderController {
 		// String ocAmount = request.getParameter("ocAmount");
 
 		String ocChoiceDt_ = (String) commandMap.get("ocChoiceDt");
-		System.out.println("ocChoiceDt==" + ocChoiceDt_);
+		logger.debug("ocChoiceDt==" + ocChoiceDt_);
 		// SimpleDateFormat dateFormat = new
 		// SimpleDateFormat("yyyyMMddHHmmssSSS");
 		// Date ocChoiceDt = dateFormat.parse(ocChoiceDt_);
@@ -206,7 +199,7 @@ public class OrderController {
 		if (check == 1) {
 			// 성공
 			ocAmount = (String) commandMap.get("ocAmount");
-			System.out.println("ocAmount =" + ocAmount);
+			logger.debug("ocAmount =" + ocAmount);
 
 			map.put("ocAmount", ocAmount);
 
@@ -238,12 +231,12 @@ public class OrderController {
 			orderCart_id = session.getId(); // 임의로
 
 		String goods_id = request.getParameter("goods_id");
-		System.out.println("goods_id+" + goods_id);
+		logger.debug("goods_id+" + goods_id);
 		if (goods_id == null || goods_id.trim().equals("")) {
 			goods_id = "0";
 		}
 
-		System.out.println("orderCart_id" + orderCart_id);
+		logger.debug("orderCart_id" + orderCart_id);
 
 		commandMap.put("orderCart_id", orderCart_id);
 
@@ -253,7 +246,7 @@ public class OrderController {
 			pageNum = "1";
 		}
 		int totalRow = orderService.selectOneOrderTotalCount();
-		System.out.println("totalRow=" + totalRow);
+		logger.debug("totalRow=" + totalRow);
 
 		// Paging pv = new Paging(pageNum, 10 , 10, totalCount);
 		List<Map<String, Object>> selectListOrderCartList;
@@ -296,7 +289,7 @@ public class OrderController {
 		int check = 0;
 
 		check = orderService.deleteOrderCartDelete(commandMap.getMap());
-		System.out.println("check=sdfdf" + check);
+		logger.debug("check=sdfdf" + check);
 
 		String goods_id = (String) commandMap.get("goods_id");
 

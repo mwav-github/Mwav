@@ -1,8 +1,16 @@
 package net.mwav.common.module;
 
-import java.io.File;
-import java.io.UnsupportedEncodingException;
-import java.util.Map;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailException;
+import org.springframework.mail.MailParseException;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.mail.javamail.MimeMessagePreparator;
+import org.springframework.ui.velocity.VelocityEngineUtils;
+import org.springframework.util.StringUtils;
+import org.springframework.web.servlet.view.velocity.VelocityConfig;
 
 import javax.activation.DataSource;
 import javax.activation.FileDataSource;
@@ -10,20 +18,11 @@ import javax.mail.MessagingException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeUtility;
-
-import org.apache.velocity.app.VelocityEngine;
-import org.springframework.ui.velocity.VelocityEngineUtils;
-import org.springframework.util.StringUtils;
-import org.springframework.web.servlet.view.velocity.VelocityConfig;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.FileSystemResource;
-import org.springframework.mail.MailException;
-import org.springframework.mail.MailParseException;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.mail.javamail.MimeMessagePreparator;
+import java.io.UnsupportedEncodingException;
 
 public class EmailTemplates {
+
+	private static final Logger logger = LoggerFactory.getLogger(EmailTemplates.class);
 	// Autowired 관련 http://expert0226.tistory.com/195
 
 	// MailSender 인터페이스를 상속받은 JavaMailSender는 Java Mail API의 MimeMessage를 이용해서
@@ -93,15 +92,15 @@ public class EmailTemplates {
 			this.mailSender.send(preparator);
 
 		} catch (Exception e) {
-			System.out.println("MailException발생");
+			logger.debug("MailException발생");
 			// 상세내용을 알수 있따.
 			e.printStackTrace();
 		}
 	}
 
 	public void sendAlertEmail(String title) throws Exception {
-		System.out.println("mailSender" + mailSender);
-		System.out.println("출력" + mailSender.createMimeMessage());
+		logger.debug("mailSender" + mailSender);
+		logger.debug("출력" + mailSender.createMimeMessage());
 		msg = mailSender.createMimeMessage(); // MimeMessage 객체 생성
 
 		msg.setSubject(title);
@@ -114,8 +113,8 @@ public class EmailTemplates {
 
 	public void sendBasicEmail(EmailVO email) throws Exception {
 		try {
-			System.out.println("mailSender" + mailSender);
-			System.out.println("출력" + mailSender.createMimeMessage());
+			logger.debug("mailSender" + mailSender);
+			logger.debug("출력" + mailSender.createMimeMessage());
 			msg = mailSender.createMimeMessage(); // MimeMessage 객체 생성
 
 			msg.setSubject(email.getSubject());
@@ -124,13 +123,13 @@ public class EmailTemplates {
 			msg.setRecipients(MimeMessage.RecipientType.TO, InternetAddress.parse(email.getReceiver()));
 		} catch (MessagingException e) {
 			e.printStackTrace();
-			System.out.println("MessagingException");
+			logger.debug("MessagingException");
 		}
 		try {
 			mailSender.send(msg);
 
 		} catch (MailException e) {
-			System.out.println("MailException발생");
+			logger.debug("MailException발생");
 			// 상세내용을 알수 있따.
 			e.printStackTrace();
 		}

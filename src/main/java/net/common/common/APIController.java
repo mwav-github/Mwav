@@ -1,46 +1,32 @@
 package net.common.common;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
-import org.apache.log4j.Logger;
-import org.apache.maven.model.Model;
+import net.mwav.common.module.Common_Utils;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import net.common.common.CommandMap;
-import net.mwav.common.module.Common_Utils;
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class APIController {
-	Logger log = Logger.getLogger(this.getClass());
-
-	Common_Utils cou = new Common_Utils();
+	private static final Logger logger = LoggerFactory.getLogger(APIController.class);
 
 	@RequestMapping(value = "/API/googleShorten.mwav")
 	public @ResponseBody String insertQAFormaAjax(@RequestBody String data,
 			HttpServletRequest request) throws Exception {
 
 		String originalURL = data;
-		System.out.println("originalURL=" + originalURL);
+		logger.debug("originalURL=" + originalURL);
 		String shortenURL = null;
 
 		try {
 			shortenURL = APIGoogleShorten.getShortenUrl(originalURL);
-			System.out.println("url출력" + shortenURL);
+			logger.debug("url출력" + shortenURL);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
