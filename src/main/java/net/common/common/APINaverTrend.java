@@ -20,6 +20,7 @@ public class APINaverTrend {
 
 	private static final Logger logger = LoggerFactory.getLogger(APINaverTrend.class);
 
+	@SuppressWarnings("deprecation")
 	public String requestNaverTrend(String bnKeywords) {
 		StringBuffer response = new StringBuffer();
 

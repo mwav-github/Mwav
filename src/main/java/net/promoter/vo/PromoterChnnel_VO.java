@@ -1,9 +1,6 @@
 package net.promoter.vo;
 
-import java.io.UnsupportedEncodingException;
-import java.nio.charset.Charset;
 import java.util.Date;
-import java.util.Locale;
 
 public class PromoterChnnel_VO extends Promoter {
 	public int pChannel_id;

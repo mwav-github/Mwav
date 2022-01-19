@@ -27,7 +27,9 @@ import java.util.Map;
  */
 
 @Controller
+@SuppressWarnings("unused")
 public class SampleController {
+
 	private static final Logger logger = LoggerFactory.getLogger(SampleController.class);
 
 	/*Service 영역의 접근을 위한 선언 
@@ -87,7 +89,7 @@ public class SampleController {
 
 		return mv;
 	}
-	
+
 	@RequestMapping(value = "/FileTest/**")
 	public ModelAndView redirectTemplatesController(HttpServletRequest request) throws Exception {
 
@@ -106,13 +108,7 @@ public class SampleController {
 	 */
 	@RequestMapping(value = "/FileTestSample/FileTestMain.mwav")
 	public ModelAndView redirectFileTestSampleController(HttpServletRequest request) throws Exception {
-		String url = request.getRequestURI();
-		int pos = url.lastIndexOf(".");
-
-//		String ext_url = url.substring(0, pos);
-		ModelAndView mv = new ModelAndView("CommonApps/Goods/fileUploader");
-
-		return mv;
+		return new ModelAndView("CommonApps/Goods/fileUploader");
 	}
 
 	/*
@@ -123,16 +119,16 @@ public class SampleController {
 	public boolean tempUpload(MultipartHttpServletRequest multipartRequest) throws Exception {
 		String filePath = "/xUpload/Temp";
 		FileLib fileLib = FileLib.getInstance();
-		
+
 		Iterator<String> iterator = multipartRequest.getFileNames();
-		while(iterator.hasNext()) {
+		while (iterator.hasNext()) {
 			MultipartFile multipartFile = multipartRequest.getFile(iterator.next());
-			String originalFileName = multipartFile.getOriginalFilename();			
+			String originalFileName = multipartFile.getOriginalFilename();
 			byte[] contents = multipartFile.getBytes();
-			
+
 			fileLib.upload(contents, filePath, originalFileName);
 		}
-		
+
 		return true;
 	}
 

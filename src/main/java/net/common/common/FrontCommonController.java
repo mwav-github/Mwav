@@ -1,22 +1,21 @@
 package net.common.common;
 
-import net.mwav.common.module.Common_Utils;
-import net.mwav.member.auth.naver.NaverUrlBuilder;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.Enumeration;
+
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import java.util.Enumeration;
+import net.mwav.common.module.Common_Utils;
+import net.mwav.member.auth.naver.NaverUrlBuilder;
 
 @Controller
 public class FrontCommonController {
-	private static final Logger logger = LoggerFactory.getLogger(FrontCommonController.class);
 
 	Common_Utils cou = new Common_Utils();
 	String mode;

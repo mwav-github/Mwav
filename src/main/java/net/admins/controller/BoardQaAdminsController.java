@@ -148,6 +148,7 @@ public class BoardQaAdminsController {
 	/**
 	 * 답변달기
 	 */
+	@SuppressWarnings("deprecation")
 	@RequestMapping(value = "/admin/boardQnA/uaFormAjax.mwav")
 	@ResponseBody
 	public boolean insertQnAUaForm(CommandMap commandMap, HttpServletRequest request) throws Exception {

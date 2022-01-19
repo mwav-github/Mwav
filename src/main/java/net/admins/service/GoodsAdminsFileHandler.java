@@ -23,6 +23,7 @@ import org.springframework.stereotype.Component;
 import net.mwav.common.module.ImageUtill;
 
 @Component
+@SuppressWarnings("unused")
 public class GoodsAdminsFileHandler {
 
 	@Inject
@@ -55,12 +56,9 @@ public class GoodsAdminsFileHandler {
 		List<Map<String, Object>> dirListMap = null;
 		try {
 
-			String mm = (String) map.get("goods_id");
-
 			dirListMap = goodsAdminsService.selectListGdsFilesList(map);
 			String goods_id = (String) map.get("goods_id");
 
-			List<String> dirList = new ArrayList<String>();
 			for (int i = 0; i < dirListMap.size(); i++) {
 				String gFileName = (String) dirListMap.get(i).get("gFileName");
 
@@ -319,12 +317,6 @@ public class GoodsAdminsFileHandler {
 
 			}
 			maps.add(integerMap);
-			// dirFileListMap.add(dirFileMap);
-
-			for (Map map : maps) { // loop through the maps
-				FileName.addAll(map.values()); // append the values in
-												// listOfValue
-			}
 		}
 		return maps;
 	}

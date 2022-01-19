@@ -12,24 +12,18 @@ import java.util.List;
 import java.util.Map;
 
 @Repository
+@SuppressWarnings("unchecked")
 public class PromoterDAO extends AbstractDAO {
 	byte[] decrypted = null;
 	byte[] encrypted = null;
 
 	private static final Logger logger = LoggerFactory.getLogger(PromoterDAO.class);
 
-	/*
-	 * ========================================등록================================
-	 * ========
-	Structure101
-	 */
-
 	public int selectNextPmtPk() {
 		return (int) selectOne("promoter.selectNextPmtPk");
 	}
 
 	public int selectOnePmtLoginIdCheck(String pmtLoginId) {
-		// TODO Auto-generated method stub
 		int check;
 		logger.debug("값이?=" + selectOne("promoter.selectOnePmtLoginIdCheck", pmtLoginId));
 		if (selectOne("promoter.selectOnePmtLoginIdCheck", pmtLoginId) == null) {
@@ -43,22 +37,13 @@ public class PromoterDAO extends AbstractDAO {
 
 	@Transactional
 	public int insertPmtForm(Promoter_VO promoter) {
-		// TODO Auto-generated method stub
 		try {
-			/*
-			 * String sKey = "ABC"; String sInitVector = "123가나다";
-			 */
-			// byte[] encrypted = null;
-
-			//			String b_PmtLoginPw = (String) map.get("pmtLoginPw");
 			String b_PmtLoginPw = promoter.getPmtLoginPw();
 
 			logger.debug("* AES/CBC/IV");
 			logger.debug("b_stfLoginPw=" + b_PmtLoginPw);
 			logger.debug("    - KEY : " + AesEncryption.sKey); // Static
-																		// 변수
 			logger.debug("    - IV : " + AesEncryption.sInitVector); // Static
-																			// 변수
 			logger.debug("    - TEXT : " + b_PmtLoginPw);
 
 			// AES/CBC/IV 암호화 (키,암호화텍스트,iv)
@@ -77,7 +62,7 @@ public class PromoterDAO extends AbstractDAO {
 				logger.debug("    - Encrypted : ERROR!!!");
 			} else {
 				logger.debug("    - Encrypted : " + sBase); // 암호화된 String
-																	// 값
+															// 값
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -95,7 +80,6 @@ public class PromoterDAO extends AbstractDAO {
 	}
 
 	public List<Map<String, Object>> selectListPmtList(Map<String, Object> map) {
-		// TODO Auto-generated method stub
 		return (List<Map<String, Object>>) selectList("promoter.selectListPmtList", map);
 	}
 
@@ -108,7 +92,6 @@ public class PromoterDAO extends AbstractDAO {
 	}
 
 	//update
-
 	public int updatePmtPro(Map<String, Object> map) {
 		return (int) update("promoter.updatePmtPro", map);
 	}

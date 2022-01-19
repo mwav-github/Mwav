@@ -1,27 +1,37 @@
 package net.mwav.common.module;
 
-import net.admins.service.GoodsAdminsService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-
-import javax.imageio.ImageIO;
-import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import javax.imageio.ImageIO;
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
+import net.admins.service.GoodsAdminsService;
 
 /**
  * 일단 기본적으로 외부스토리지를 사용하지 않는다고 가정할 경우, 프로젝트의 webapp 밑에 해당 파일이 존재해야 이미지 미리보기를 할 수가 있습니다. 
  */
 @Component
+@SuppressWarnings("unused")
 public class FileUtils {
 
 	@Inject
@@ -74,10 +84,8 @@ public class FileUtils {
 		MultipartFile multipartFile = null;
 		String originalFileName = null;
 		String originalFileExtension = null;
-		String originalExceptFileExtension = null;
 		String storedRFileName = null;
 		String storedBFileName = null;
-		String staff_AvaPic = "AvaPic_";
 
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 		/*
@@ -115,9 +123,6 @@ public class FileUtils {
 
 					// 확장자 이름만.
 					originalFileExtension = originalFileName.substring(originalFileName.lastIndexOf("."));
-
-					// 확장자 제외 파일이름
-					originalExceptFileExtension = originalFileName.substring(0, originalFileName.lastIndexOf("."));
 
 					/*
 					 * storedFileName = cu.getString(32, "A1") +
@@ -186,18 +191,12 @@ public class FileUtils {
 
 						File file = new File(RfilePath);
 						multipartFile.transferTo(file);
-						/*
-						 * 서버에 실제 파일을 저장하는 부분이다. multipartFile.transferTo() 메서드를
-						 * 이용하여 지정된 경로에 파일을 생성하는것을 알 수 있다.
-						 */
 
-						int getbyte = storedBFileName.getBytes().length;
 						/*
 						 * 문자열 크기를 구한다. gFileName varchar(30)
 						 * 
 						 * 한글은 15자리 영문은 30자리
 						 */
-
 						if (goods_id.equals("") || goods_id == null) {
 							// 최초 상품등록인경우 무조권 이건은 goods_id 생성이지
 
@@ -213,15 +212,9 @@ public class FileUtils {
 							 * 주석처리한 것 같이 string 값 주면서 분기해준다.
 							 */
 
-							// String selectNextPk = "10000";
-
 							map.put("gFileName", storedBFileName);
 							map.put("goods_id", selectNextPk);
 							map.put("gFileDesc", images_position);
-							/*
-							 * logger.debug("GoodsId가 NULL인 경우");
-							 * map.put("gNullCheck", "empty");
-							 */
 							goodsAdminsService.insertGdsFiles(map);
 							// DB에 파일저장 대표파일만
 
@@ -230,7 +223,6 @@ public class FileUtils {
 							map.put("gFileName", storedBFileName);
 							map.put("goods_id", goods_id);
 							map.put("gFileDesc", images_position);
-							// map.put("gNullCheck", "notEmpty");
 							goodsAdminsService.insertGdsFiles(map);
 						}
 
@@ -241,9 +233,6 @@ public class FileUtils {
 					listMap.put("STORED_FILE_NAME", storedRFileName);
 					listMap.put("FILE_SIZE", multipartFile.getSize());
 					list.add(listMap);
-					/*
-					 * 줄은 위에서 만든 정보를 list에 추가하는 부분이다.
-					 */
 				}
 			}
 		} catch (Exception e) {
@@ -276,8 +265,6 @@ public class FileUtils {
 			dirListMap = goodsAdminsService.selectListGdsFilesList(map);
 			String goods_id = (String) map.get("goods_id");
 
-			List<String> dirList = new ArrayList<String>();
-			// List<File> dirList = null;
 			for (int i = 0; i < dirListMap.size(); i++) {
 				String gFileName = (String) dirListMap.get(i).get("gFileName");
 
@@ -312,12 +299,6 @@ public class FileUtils {
 				BufferedImage resizeimage30 = ImageUtill.scaleSize(srcimage, 250, 250);
 
 				String moveFilePath = uploadRootPath + filePath_Goods + "GC" + goods_id;
-
-				/*
-				 * String moveFilePath_images = uploadRootPath + filePath_Goods
-				 * + goods_id ;
-				 */
-
 				File file_move = new File(moveFilePath);
 				if (file_move.exists() == false) {
 					file_move.mkdirs();
@@ -395,7 +376,6 @@ public class FileUtils {
 		try {
 			f1.createNewFile();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -420,7 +400,6 @@ public class FileUtils {
 			fos.close();
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -442,7 +421,6 @@ public class FileUtils {
 			// fileDelete(inFileName);
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -483,17 +461,11 @@ public class FileUtils {
 				// FileName.add(fileName);
 				// 파일일 경우만 출력
 				if (f.isFile()) {
-
-					// 날짜 출력을 위한 Date객체 생성 생성자로 마지막 수정날짜인 lastModified메소드의
-					// long리턴값을 넣는다.
-					Date d = new Date(f.lastModified());
-
 					// 파일명, 날짜, 크기를 출력한다.
 					fileName = f.getName();
 
 					// List에 파일이름만 넣는다. !!
 					// dirFileList 아래 contain 을 못한다.
-
 					FileName.add(fileName);
 				}
 
@@ -530,16 +502,8 @@ public class FileUtils {
 				integerMap.put("fileNameExcept", FileName.get(i).substring(0, FileName.get(i).lastIndexOf('.')).trim());
 
 				integerMap.put("fileSize", FileName.get(i).length());
-				// integerMap.put("fileDate", d.toString().trim());
-
 			}
 			maps.add(integerMap);
-			// dirFileListMap.add(dirFileMap);
-
-			for (Map map : maps) { // loop through the maps
-				FileName.addAll(map.values()); // append the values in
-												// listOfValue
-			}
 		}
 		return maps;
 	}

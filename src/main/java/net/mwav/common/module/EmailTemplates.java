@@ -1,5 +1,14 @@
 package net.mwav.common.module;
 
+import java.io.UnsupportedEncodingException;
+
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
+import javax.mail.MessagingException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeUtility;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,14 +20,6 @@ import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.ui.velocity.VelocityEngineUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.view.velocity.VelocityConfig;
-
-import javax.activation.DataSource;
-import javax.activation.FileDataSource;
-import javax.mail.MessagingException;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeUtility;
-import java.io.UnsupportedEncodingException;
 
 public class EmailTemplates {
 
@@ -37,9 +38,6 @@ public class EmailTemplates {
 
 	@Autowired
 	private VelocityConfig velocityConfig;
-
-	@Autowired
-	private EmailVO email;
 
 	Common_Utils cu = new Common_Utils();
 

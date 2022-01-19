@@ -1,9 +1,7 @@
 package net.admins.service;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javax.inject.Inject;
 
@@ -39,12 +37,6 @@ public class BoardNoticeAdminsServiceImpl implements BoardNoticeAdminsService {
 	@Override
 	public Map<String, Object> selectOneNtmView(Map<String, Object> map) throws Exception {
 		boardNoticeAdminsDAO.updateNtmHitCnt(map);
-		Set set = map.entrySet();
-		Iterator iterator = set.iterator();
-		while (iterator.hasNext()) {
-			Map.Entry entry = (Map.Entry) iterator.next();
-		}
-
 		Map<String, Object> resultMap = boardNoticeAdminsDAO.selectOneNtmView(map);
 		int test = (int) resultMap.get("buStatus");
 		String result = cou.TypeIntToString("board", test);
@@ -56,12 +48,6 @@ public class BoardNoticeAdminsServiceImpl implements BoardNoticeAdminsService {
 	@Override
 	public Map<String, Object> selectOnePmtNtmView(Map<String, Object> map) throws Exception {
 		boardNoticeAdminsDAO.updatePmtNtmHitCnt(map);
-		Set set = map.entrySet();
-		Iterator iterator = set.iterator();
-		while (iterator.hasNext()) {
-			Map.Entry entry = (Map.Entry) iterator.next();
-		}
-
 		Map<String, Object> resultMap = boardNoticeAdminsDAO.selectOnePmtNtmView(map);
 		int bpStatus = (int) resultMap.get("bpStatus");
 		resultMap.put("bpStatus", bpStatus);

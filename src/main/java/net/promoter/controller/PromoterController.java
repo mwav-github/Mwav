@@ -1,12 +1,13 @@
 package net.promoter.controller;
 
-import net.common.common.CommandMap;
-import net.mwav.common.module.AesEncryption;
-import net.mwav.common.module.Common_Utils;
-import net.mwav.common.module.Paging;
-import net.mwav.common.module.PagingVO;
-import net.promoter.service.PromoterService;
-import net.promoter.vo.Promoter_VO;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -16,13 +17,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import net.common.common.CommandMap;
+import net.mwav.common.module.AesEncryption;
+import net.mwav.common.module.Paging;
+import net.mwav.common.module.PagingVO;
+import net.promoter.service.PromoterService;
+import net.promoter.vo.Promoter_VO;
 
 @Controller
 public class PromoterController {
@@ -234,7 +234,6 @@ public class PromoterController {
 		ModelAndView mv = new ModelAndView("/Promoter/PmtForm2");
 
 		mode = "PmtUpdate";
-		HttpSession session = request.getSession();
 
 		/*		Promoter_VO promoter = (Promoter_VO) session.getAttribute("admin");
 				commandMap.put("member_id", promoter.getPromoter_id());*/
@@ -253,7 +252,6 @@ public class PromoterController {
 	@RequestMapping(value = "/promoter/PmtUpdatePro.mwav", method = RequestMethod.POST)
 	public String PmtUpdatePro(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		//1번 상황 성공 2번 실패 3번 비밀번호 값이 다름
-		int result = 1;
 		String pmtPw1 = (String) commandMap.get("pmtLogiNewPw");
 		String pmtPw2 = (String) commandMap.get("pmtLogiNewPw");
 		if (!pmtPw1.equals("") && pmtPw1 != null) { //첫번째 비밀번호와 두번째 비밀번호가 같을경우 수정
@@ -263,7 +261,6 @@ public class PromoterController {
 		}
 
 		promoterService.updatePmtPro(commandMap.getMap());
-		ModelAndView mv = new ModelAndView("/Promoter/PmtForm");
 		return "redirect:/promoter/pmtList.mwav";
 	}
 

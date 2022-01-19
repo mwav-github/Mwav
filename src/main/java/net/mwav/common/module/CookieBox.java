@@ -3,6 +3,7 @@ package net.mwav.common.module;
 import java.io.IOException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.Cookie;
@@ -29,7 +30,7 @@ public class CookieBox {
 	 */
 
 	// 쿠키를 <쿠키이름, cookie 객체> 쌍으로 저장하는 맵
-	private Map cookieMap = new java.util.HashMap();
+	private Map<String, Object> cookieMap = new HashMap<String, Object>();
 
 	/**
 	 * 생성자 cookie배열을 cookieMap에 저장한다.
@@ -53,8 +54,7 @@ public class CookieBox {
 	 * @return cookie
 	 * @throws IOException
 	 */
-	public static Cookie createCookie(String name, String value)
-			throws IOException {
+	public static Cookie createCookie(String name, String value) throws IOException {
 		return new Cookie(name, URLEncoder.encode(value, "utf-8"));
 	}
 
@@ -68,8 +68,7 @@ public class CookieBox {
 	 * @return cookie
 	 * @throws IOException
 	 */
-	public static Cookie createCookie(String name, String value, String path,
-			int maxAge) throws IOException {
+	public static Cookie createCookie(String name, String value, String path, int maxAge) throws IOException {
 		Cookie cookie = new Cookie(name, URLEncoder.encode(value, "utf-8"));
 		cookie.setPath(path);
 		cookie.setMaxAge(maxAge);
@@ -87,16 +86,14 @@ public class CookieBox {
 	 * @return cookie
 	 * @throws IOException
 	 */
-	
-	public static Cookie createCookie(String name, String value, String domain,
-			String path, int maxAge) throws IOException {
+
+	public static Cookie createCookie(String name, String value, String domain, String path, int maxAge) throws IOException {
 		Cookie cookie = new Cookie(name, URLEncoder.encode(value, "utf-8"));
 		cookie.setDomain(domain);
 		cookie.setPath(path);
 		cookie.setMaxAge(maxAge);
 		return cookie;
 	}
-	
 
 	/**
 	 * 쿠키를 가져온다
@@ -155,7 +152,7 @@ public class CookieBox {
 	 * @param name
 	 * @return 존재 : true, 미존재 : false
 	 */
-	public boolean isExist(String name) throws IOException  {
+	public boolean isExist(String name) throws IOException {
 		return cookieMap.get(name) != null;
 	}
 

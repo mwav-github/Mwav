@@ -5,7 +5,7 @@ public class MwavFactory {
 	public ValidationLib validationLib;
 	
 	public MwavFactory() {
-		validationLib = validationLib.getInstance();
+		validationLib = ValidationLib.getInstance();
 	}
 
 }

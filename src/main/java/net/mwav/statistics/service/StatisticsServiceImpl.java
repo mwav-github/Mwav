@@ -1,18 +1,17 @@
 package net.mwav.statistics.service;
 
+import java.util.Map;
+
+import javax.inject.Inject;
+
+import org.springframework.stereotype.Service;
+
 import net.mwav.statistics.dao.StatisticsDAO;
 import net.mwav.statistics.vo.StatisticsLogVO;
 import net.mwav.statistics.vo.StatisticsVO;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Service;
-
-import javax.inject.Inject;
-import java.util.Map;
 
 @Service
 public class StatisticsServiceImpl implements StatisticsService {
-	private static final Logger logger = LoggerFactory.getLogger(StatisticsServiceImpl.class);
 
 	@Inject
 	private StatisticsDAO statisticsDAO;

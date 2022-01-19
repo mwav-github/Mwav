@@ -1,32 +1,27 @@
 package net.mwav.statistics.controller;
 
-import net.common.common.CommandMap;
-import net.mwav.common.module.Common_Utils;
-import net.mwav.statistics.service.StatisticsService;
-import net.mwav.statistics.vo.StatisticsLogVO;
-import net.mwav.statistics.vo.StatisticsVO;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.Map;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import net.common.common.CommandMap;
+import net.mwav.common.module.Common_Utils;
+import net.mwav.statistics.service.StatisticsService;
+import net.mwav.statistics.vo.StatisticsLogVO;
+import net.mwav.statistics.vo.StatisticsVO;
 
 @Controller
 public class StatisticsController {
 	private static final Logger logger = LoggerFactory.getLogger(StatisticsController.class);
-
-	@Autowired
-	private HttpServletRequest request;
-
-	// 싱글톤 형태.
-	//	HtmlLib htmlLib = HtmlLib.getInstance();
 
 	static Common_Utils cou = new Common_Utils();
 	String mode;
@@ -39,17 +34,12 @@ public class StatisticsController {
 
 		// 실 IP
 		String realIp = cou.getClientIP(request);
-		// staticMap.put("IP", realIp);
 
-		Map<String, Object> staticMap = cou.getHeadersInfo(request);
 		// 출력
-		// cou.selectMap(staticMap);
 		String st_id = null;
 		if (statistics_id == null || statistics_id == "") {
 			st_id = statisticsService.selectNextPk();
-			// 세션생성
 		} else {
-
 			st_id = statistics_id;
 		}
 
@@ -70,8 +60,6 @@ public class StatisticsController {
 			// vo.setStHTTP_UA_CPU((String) staticMap.get("os"));
 			// userAgent(클라이언트 환경)
 			vo.setStUserAgent(request.getHeader("User-Agent"));
-			String userAgent = request.getHeader("User-Agent");
-			//			htmlLib.getParseUserAgent(userAgent, vo);
 
 			int m_id = 0;
 
@@ -158,27 +146,13 @@ public class StatisticsController {
 	}
 
 	public StatisticsVO insertStatics(HttpServletRequest request, String statistics_id) throws Exception {
-
 		String st_id = null;
 		st_id = statistics_id;
-		String getURI = request.getRequestURI();
 
 		try {
 			StatisticsLogVO log_vo = new StatisticsLogVO();
-
 			log_vo.setStatistics_id(Long.parseLong(st_id));
-			/*
-			 * Timestamp stamp = new Timestamp(System.currentTimeMillis());
-			 * System.out.println("stamp" + stamp);
-			 * log_vo.setSlStatLogDt(stamp);
-			 */
 
-			String prePageName = null;
-			String referer = null;
-			referer = request.getHeader("Referer");
-			if (referer != null) {
-				prePageName = request.getHeader("Referer").substring(request.getHeader("Referer").lastIndexOf("/"));
-			}
 			String slPageName = (String) request.getAttribute("slPageName");
 			log_vo.setSlPageName(slPageName);
 
@@ -224,29 +198,10 @@ public class StatisticsController {
 
 		String st_id = null;
 		st_id = statistics_id;
-		String getURI = request.getRequestURI();
-
-		logger.info("st_id" + st_id);
-		logger.info("여기들어옴" + st_id);
-
-		logger.info("status_code : " + request.getAttribute("javax.servlet.error.status_code"));
-		logger.info("message  : " + request.getAttribute("javax.servlet.error.message"));
-		logger.info("request_uri : " + request.getAttribute("javax.servlet.error.request_uri"));
-		logger.info("exception_type	 : " + request.getAttribute("javax.servlet.error.exception"));
 
 		try {
 			StatisticsLogVO log_vo = new StatisticsLogVO();
-
 			log_vo.setStatistics_id(Long.parseLong(st_id));
-			/*
-			 * Timestamp stamp = new Timestamp(System.currentTimeMillis());
-			 * stamp. System.out.println("stamp"+stamp);
-			 * log_vo.setSlStatLogDt(stamp)
-			 */
-
-			String prePageName = null;
-			String referer = null;
-			referer = (String) request.getAttribute("javax.servlet.error.request_uri");
 
 			String slPageName = (String) request.getAttribute("slPageName");
 			log_vo.setSlPageName(slPageName);

@@ -52,7 +52,7 @@ public class QAController {
 	 */
 
 	// 1번 bnsForm : Form 입력만 가능 (뒤로가기, list)
-
+	@SuppressWarnings("deprecation")
 	@RequestMapping(value = "/qa/qaFormAjax.mwav")
 	public @ResponseBody boolean insertQAFormaAjax(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		boolean flag = false;
@@ -96,6 +96,7 @@ public class QAController {
 		return flag;
 	}
 
+	@SuppressWarnings("deprecation")
 	@RequestMapping(value = "/qa/qaForm.mwav")
 	public ModelAndView insertQAForm(CommandMap commandMap, HttpServletRequest request) throws Exception {
 
