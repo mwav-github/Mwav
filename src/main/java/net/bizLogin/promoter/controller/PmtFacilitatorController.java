@@ -166,7 +166,7 @@ public class PmtFacilitatorController {
 
 	@RequestMapping("/promoter/naver/signin.mwav")
 //	@ResponseBody
-	public String callbackNaverUrl(@RequestParam String code, @RequestParam String state, HttpSession session) throws Exception {
+	public String callbackNaverUrl(@RequestParam String code, @RequestParam String state, HttpSession session, HttpServletRequest request) throws Exception {
 
 		// 1. code를 이용해서 access_token 받아오기
 		// 2. access_token을 이용해서 사용자 profile 정보 가져오기
@@ -185,14 +185,9 @@ public class PmtFacilitatorController {
 
 			int check = pmtFacilitatorService.checkNaverAccount(ufResult);
 
-			System.out.println("check = " + check);
-
 			// 4. 존재 시 강제로그인, 미 존재시 가입하고 로그인
-			if (check == 0) {
-				pmtFacilitatorService.saveNaverAccount(ufResult);
-			}else{
+			if (check == 0) pmtFacilitatorService.saveNaverAccount(ufResult, request);
 
-			}
 		}
 		return "redirect:/Promoter/Index.mwav";
 	}

@@ -5,6 +5,7 @@ import net.bizLogin.promoter.vo.PmtFacilitatorSO;
 import net.bizLogin.promoter.vo.PmtFacilitatorVO;
 import net.common.common.CommandMap;
 import net.mwav.common.module.AesEncryption;
+import net.mwav.common.module.Common_Utils;
 import net.mwav.common.module.ValidationLib;
 import net.mwav.framework.cryption.AES128Lib;
 import org.springframework.mail.MailAuthenticationException;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,6 +24,8 @@ public class PmtFacilitatorServiceImpl implements PmtFacilitatorService {
 	@Resource(name = "pmtFacilitatorDAO")
 	private PmtFacilitatorDAO pmtFacilitatorDAO;
 
+	Common_Utils cou = new Common_Utils();
+
 	/**
 	 * 메서드에 대한 설명
 	 * <pre>
@@ -30,10 +34,10 @@ public class PmtFacilitatorServiceImpl implements PmtFacilitatorService {
 	 *
 	 * }
 	 * </pre>
-	 * @param CommonMap Customized CommonMap
+	 * @param  Customized CommonMap
 	 * @return return 값에 대한 설명(필수)
 	 * @throws Exception 발생하는 예외에 대한 설명(필수)
-	 * @see 해당 메서드와 연관된 메서드
+	 * @see  메서드와 연관된 메서드
 	 * @since 작성 버전
 	 * @version 현재 버전
 	 */
@@ -149,7 +153,7 @@ public class PmtFacilitatorServiceImpl implements PmtFacilitatorService {
 	}
 
 	@Override
-	public void saveNaverAccount(Map<String, Object> map) {
+	public void saveNaverAccount(Map<String, Object> map, HttpServletRequest request) {
 
 		PmtFacilitatorVO vo = new PmtFacilitatorVO();
 
@@ -167,18 +171,19 @@ public class PmtFacilitatorServiceImpl implements PmtFacilitatorService {
 		// 필수 값이 아닌 데이터 체크
 		if(map.get("gender") != null){
 			if(map.get("gender").equals("M")){
-				vo.setSpTemGender(0); // 남자
+				vo.setSpGender(1); // 남자
 			}else if(map.get("gender").equals("F")){
-				vo.setSpTemGender(1); // 여자
+				vo.setSpGender(0); // 여자
 			}
 		}
 		if(map.get("mobile") != null){
-			vo.setSpMobile(map.get("mobile").toString());
+			vo.setSpCellularP(map.get("mobile").toString());
 		}
 		if(map.get("name") != null){
-			vo.setSpNickname(map.get("name").toString());
+			checkName(map.get("name").toString(), vo);
 		}
 
+		vo.setSpIpAddress(cou.getClientIP(request));
 		pmtFacilitatorDAO.saveNaverAccount(vo);
 	}
 
@@ -187,5 +192,20 @@ public class PmtFacilitatorServiceImpl implements PmtFacilitatorService {
 		String pureEmail = email.substring(email.length()-9, email.length());
 
 		return pureEmail;
+	}
+
+	private void checkName(String name, PmtFacilitatorVO vo){
+		int nameLength = name.length();
+
+		if(nameLength == 3){
+			String firstName = name.substring(0, 1);
+			String lastName = name.substring(1, nameLength);
+
+			vo.setSpFirstName(firstName);
+			vo.setSpLastName(lastName);
+		}else{
+			String fullName = name;
+			vo.setSpFirstName(fullName);
+		}
 	}
 }

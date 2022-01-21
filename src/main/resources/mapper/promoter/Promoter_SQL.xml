@@ -235,9 +235,9 @@
 		SELECT COUNT(*)
 		  FROM SnsPromoter_tbl
 		 WHERE 1=1
-<!--		   AND snsPromoter_id = #{snsPromoter_id}-->
 		   AND spPromoterId = #{spPromoterId}
 		   AND spSnsType = 'Naver'
+		   AND spEmail = #{spEmail}
 	</select>
 
 	<insert id="saveNaverAccount" parameterType="net.bizLogin.promoter.vo.PmtFacilitatorVO">
@@ -247,32 +247,40 @@
 			spPromoterId,
 			spEmail,
 			spEmailVerified,
-			<if test="spNickName != null">
-				spNickName,
+			<if test="spFirstName != null">
+				spFirstName,
 			</if>
-			<if test="spTemGender != null">
+			<if test="spLastName != null">
+				spLastName,
+			</if>
+			<if test="spGender != null">
 				spGender,
 			</if>
-			<if test="spMobile != null">
-				spMobile,
+			<if test="spCellularP != null">
+				spCellularP,
 			</if>
-			spInsertDt
+			spInsertDt,
+			spIpAddress
 		) VALUES(
-			10001,
+			(SELECT IFNULL(MAX(snsPromoter_id) + 1, 10000) FROM SnsPromoter_tbl AS snsPromoter_id),
 			#{spSnsType},
 			#{spPromoterId},
 			#{spEmail},
 			#{spEmailVerified},
-			<if test="spNickName != null">
-				#{spNickName},
+			<if test="spFirstName != null">
+				#{spFirstName},
 			</if>
-			<if test="spTemGender != null">
-				#{spTemGender},
+			<if test="spLastName != null">
+				#{spLastName},
 			</if>
-			<if test="spMobile != null">
-				#{spMobile},
+			<if test="spGender != null">
+				#{spGender},
 			</if>
-			NOW()
+			<if test="spCellularP != null">
+				#{spCellularP},
+			</if>
+			NOW(),
+			#{spIpAddress}
 		)
 	</insert>
 </mapper>
