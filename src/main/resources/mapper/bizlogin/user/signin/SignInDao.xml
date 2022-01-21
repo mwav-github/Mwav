@@ -3,6 +3,19 @@
 
 <!-- 로그인 -->
 <mapper namespace="net.bizlogin.user.signup.dao.SignInDao">
-
+	
+	<select id="getPromoter" parameterType="map" resultType="map">
+		SELECT /* net.bizlogin.user.signup.dao.SignInDao.getPromoter */
+			  A.promoter_id, A.pmtLoginId, A.pmtLoginPw
+			, A.pmtGender, A.pmtFirstName, A.pmtLastName, A.pmtMiddleName, A.pmtNickName
+			, A.pmtMail, A.pmtPhone, A.pmtCellularPhone, A.pmtAddrFlag, A.pmtZipcode
+			, A.pmtAddress, A.pmtAddressDetail, A.pmtJobType, A.pmtMarried, A.pmtMark
+			, A.pmtRcmderId, B.pmtCertifyDt
+		FROM  Promoter_tbl A
+		INNER JOIN PromoterValue_tbl B ON B.promoter_id = A.promoter_id
+		WHERE 1 = 1
+			AND A.pmtLoginId = #{pmtLoginId, jdbcType=VARCHAR}
+			AND A.pmtLoginPw = #{pmtLoginPw, jdbcType=VARCHAR}
+	</select>
 </mapper>
 

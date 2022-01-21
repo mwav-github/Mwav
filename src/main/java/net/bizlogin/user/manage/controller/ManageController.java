@@ -20,4 +20,13 @@ public class ManageController {
 		logger.debug("/bizlogin/user/manage/profile");
 		return new ModelAndView("/bizlogin/user/manage/profile");
 	}
+	
+	/**
+	 * 이메일 인증
+	 */
+	@RequestMapping(value = "/bizlogin/user/manage/certification", method = RequestMethod.GET)
+	public ModelAndView certification() throws Exception {
+		logger.debug("/bizlogin/user/manage/certification");
+		return new ModelAndView("/bizlogin/user/manage/certification");
+	}
 }

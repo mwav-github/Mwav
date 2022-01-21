@@ -12,9 +12,8 @@
 	<section class="section-conten padding-y" style="min-height: 84vh">
 		<div class="card mx-auto" style="max-width: 380px; margin-top: 50px;">
 			<div class="card-body">
-				<form name="login_form" action="<c:url value='/bizlogin/user/signin' />" method="post"
-					onsubmit="return re_check(document.login_form);">
-
+				<form id="promoter" name="promoter" action="<c:url value='/bizlogin/user/signin' />" method="post"
+					autocomplete="off">
 					<input type="hidden" id="token" name="token" value="">
 
 					<div class="img-wrap mb-4">
@@ -23,11 +22,11 @@
 						</a>
 					</div>
 					<div class="form-group">
-						<input name="pmtLoginId" class="form-control" placeholder="Username" type="text">
+						<input id="pmtLoginId" name="pmtLoginId" class="form-control" placeholder="Username" type="text">
 					</div>
 					<!-- form-group// -->
 					<div class="form-group">
-						<input name="pmtLoginPw" class="form-control" placeholder="Password" type="password">
+						<input id="pmtLoginPw" name="pmtLoginPw" class="form-control" placeholder="Password" type="password">
 					</div>
 					<!-- form-group// -->
 
@@ -44,7 +43,8 @@
 					</div>
 
 					<div class="form-group">
-						<a href="<c:url value='/bizlogin/user/signup/form' />" class="btn btn-block btn-outline-primary btn-lg" alt="Sign up">회원가입</a>
+						<a href="<c:url value='/bizlogin/user/signup/form' />" class="btn btn-block btn-outline-primary btn-lg"
+							alt="Sign up">회원가입</a>
 					</div>
 				</form>
 			</div>
@@ -99,30 +99,21 @@
 			},
 
 			fail : function(err) {
-				alert(JSON.stringify(err))
+				alert(JSON.stringify(err));
 			},
 		})
 	}
 
 	// 해당 page에 접근 시 msg 가 있다면 alert 으로 출력
-	function controlDisplay() {
-		var msg = '${requestScope.msg}';
-		if (msg.length > 0) {
+	function showMessage() {
+		var msg = '${msg}';
+		if (msg) {
 			alert(msg);
 		}
 	}
 
-	// form 전송 data를 검증하는 함수인 것으로 추정
-	function re_check(form) {
-		if (emptyCheck(form.pmtLoginId, "아이디를 입력해주세요.") == true && emptyCheck(form.pmtLoginPw, "비밀번호를 입력해주세요.") == true) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
 	// 구글 리캡챠 펑션
-	function reCapt() {
+	function recaptcha() {
 		grecaptcha.ready(function() {
 			grecaptcha.execute('6LdhTbYbAAAAACn-5-QwU92JmHyAoi25He6wRbGa', {
 				action : 'submit'
@@ -132,9 +123,35 @@
 		});
 	}
 
-	// document.Ready
+	document.querySelector('#promoter').onsubmit = function(event) {
+		var promoter = event.target;
+		if (!promoter) {
+			return false;
+		}
+		
+		var pmtLoginId = promoter.pmtLoginId;
+		var pmtLoginPw = promoter.pmtLoginPw;
+		if (!pmtLoginId || !pmtLoginPw) {
+			return false;
+		}
+		
+		if (!pmtLoginId.value) {
+			alert('아이디를 입력해주세요.');
+			pmtLoginId.focus();
+			return false;
+		}
+		
+		if (!pmtLoginPw.value) {
+			alert('비밀번호를 입력해주세요.');
+			pmtLoginPw.focus();
+			return false;
+		}
+		
+		return true;
+	};
+	
 	$(function() {
-		reCapt(); // 페이지 로드시 Google Recaptcha token를 받아옴
-		controlDisplay();
+		recaptcha(); // 페이지 로드시 Google Recaptcha token를 받아옴
+		showMessage();
 	});
 </script>

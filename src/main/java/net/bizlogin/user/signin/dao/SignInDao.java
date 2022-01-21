@@ -1,5 +1,7 @@
 package net.bizlogin.user.signin.dao;
 
+import java.util.Map;
+
 import org.springframework.stereotype.Repository;
 
 /**
@@ -7,5 +9,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface SignInDao {
+
+	public Map<String, Object> getPromoter(Map<String, Object> param) throws Exception;
 
 }
