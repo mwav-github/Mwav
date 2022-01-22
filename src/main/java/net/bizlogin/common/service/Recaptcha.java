@@ -26,7 +26,7 @@ public class Recaptcha {
 
 	private static final Logger logger = LoggerFactory.getLogger(Recaptcha.class);
 
-	private String key = "6LcdRxoUAAAAAEhlMG_bH6mhyxLMIoBLTuAhtA1E";
+	private String key = "6LdhTbYbAAAAAHFtrOEfPcyjW7XwgWGwxY0RrLVe";
 
 	private String url = "https://www.google.com/recaptcha/api/siteverify";
 

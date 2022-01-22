@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- 로그인 -->
-<mapper namespace="net.bizlogin.user.signup.dao.SignInDao">
+<mapper namespace="net.bizlogin.user.signin.dao.SignInDao">
 	
 	<select id="getPromoter" parameterType="map" resultType="map">
 		SELECT /* net.bizlogin.user.signup.dao.SignInDao.getPromoter */
@@ -12,7 +12,7 @@
 			, A.pmtAddress, A.pmtAddressDetail, A.pmtJobType, A.pmtMarried, A.pmtMark
 			, A.pmtRcmderId, B.pmtCertifyDt
 		FROM  Promoter_tbl A
-		INNER JOIN PromoterValue_tbl B ON B.promoter_id = A.promoter_id
+		LEFT JOIN PromoterValue_tbl B ON B.promoter_id = A.promoter_id
 		WHERE 1 = 1
 			AND A.pmtLoginId = #{pmtLoginId, jdbcType=VARCHAR}
 			AND A.pmtLoginPw = #{pmtLoginPw, jdbcType=VARCHAR}
