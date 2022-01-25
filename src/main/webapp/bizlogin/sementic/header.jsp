@@ -75,9 +75,9 @@
 								<div class="text">
 									<span class="text-muted">Welcome!</span>
 									<div>
-										<a href="<c:url value='/bizlogin/user/signin/form' />">Sign in</a>
+										<a href="<c:url value='/bizlogin/promoter/signin/form' />">Sign in</a>
 										|
-										<a href="<c:url value='/bizlogin/user/signup/form' />">Register</a>
+										<a href="<c:url value='/bizlogin/promoter/signup/form' />">Register</a>
 									</div>
 								</div>
 							</div>
@@ -92,7 +92,7 @@
 									<span class="sr-only">Profile actions</span>
 								</a>
 								<div class="dropdown-menu dropdown-menu-right">
-									<a class="dropdown-item" href="<c:url value='/bizlogin/user/manage/profile' />">Profile setting</a>
+									<a class="dropdown-item" href="<c:url value='/bizlogin/promoter/manage/profile' />">Profile setting</a>
 									<a class="dropdown-item" href="#">My orders</a>
 									<hr class="dropdown-divider">
 									<a class="dropdown-item" href="javascript:kakaoLogout()">Log out</a>

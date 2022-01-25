@@ -190,7 +190,6 @@ client_secret : client_id를 위한 secret 값이다. 이 값으로 Client를 �
 	@Override
 	public UsersConnectionRepository getUsersConnectionRepository(ConnectionFactoryLocator connectionFactoryLocator) {
 	
-		logger.debug("여기까지왔다.");
 		logger.debug("inside the usersConnectionRepository");
 		
 		JdbcUsersConnectionRepository repository = new JdbcUsersConnectionRepository(
@@ -240,7 +239,6 @@ client_secret : client_id를 위한 secret 값이다. 이 값으로 Client를 �
 	            ConnectionFactoryLocator connectionFactoryLocator,
 	            UsersConnectionRepository usersConnectionRepository) {
 		
-		logger.debug("여기까지왔다.");
 	    ProviderSignInController controller = new ProviderSignInController(
 	        connectionFactoryLocator,
 	        usersConnectionRepository,

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 로그인 -->
+<mapper namespace="net.bizlogin.promoter.signin.dao.SignInDao">
+	
+	<select id="getPromoter" parameterType="map" resultType="map">
+		SELECT /* net.bizlogin.promoter.signup.dao.SignInDao.getPromoter */
+			  A.promoter_id, A.pmtLoginId, A.pmtLoginPw
+			, A.pmtGender, A.pmtFirstName, A.pmtLastName, A.pmtMiddleName, A.pmtNickName
+			, A.pmtMail, A.pmtPhone, A.pmtCellularPhone, A.pmtAddrFlag, A.pmtZipcode
+			, A.pmtAddress, A.pmtAddressDetail, A.pmtJobType, A.pmtMarried, A.pmtMark
+			, A.pmtRcmderId, B.pmtCertifyDt
+		FROM  Promoter_tbl A
+		LEFT JOIN PromoterValue_tbl B ON B.promoter_id = A.promoter_id
+		WHERE 1 = 1
+			AND A.pmtLoginId = #{pmtLoginId, jdbcType=VARCHAR}
+			AND A.pmtLoginPw = #{pmtLoginPw, jdbcType=VARCHAR}
+	</select>
+</mapper>
+
