@@ -115,20 +115,18 @@
 			let result = false;
 
 			$.ajax({
-				url : '/promoter/pmtLoginIdCheck.mwav',
+				url : "<c:url value='/bizlogin/promoter/signup/getPromoter' />",
 				data : {
-					type : type,
-					value : value
+					'pmtLoginId' : value
 				},
 				async : false,
 				success : function(data) {
-					//해당 아이디가 존재하면 1, 없는 아이디면 0
-					if (data <= 0) {
-						alert('해당 아이디는 사용하실수 있는 아이디입니다.');
-						result = true;
-					} else {
+					if (data) {
 						alert('이미 존재하는 아이디입니다.');
 						result = false;
+					} else {
+						alert('해당 아이디는 사용하실수 있는 아이디입니다.');
+						result = true;
 					}
 				},
 				error : function(err) {
@@ -215,6 +213,7 @@
 
 			return true; //유효성 체크에 이상이없다면 true
 		}
+		
 		function validateCheck(type) {
 			let value = $('input[name=' + type + ']').val();
 			//정규식 유효성 체크

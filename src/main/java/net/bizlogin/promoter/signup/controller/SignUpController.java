@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import net.bizlogin.promoter.signup.service.SignUpService;
@@ -27,6 +28,16 @@ public class SignUpController {
 
 	@Inject
 	private SignUpService signUpService;
+	
+	/**
+	 * 회원찾기
+	 */
+	@RequestMapping(value = "/promoter/signup/getPromoter", method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> getPromoter(@RequestParam Map<String, Object> param) throws Exception {
+		logger.debug("/promoter/signup/getPromoter");
+		return signUpService.getPromoter(param);
+	}
 
 	/**
 	 * 회원가입 form

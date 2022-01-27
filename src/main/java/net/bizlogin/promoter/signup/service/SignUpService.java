@@ -31,7 +31,10 @@ public class SignUpService {
 
 	@Inject
 	private PasswordEncoder passwordEncoder;
-
+	
+	/**
+	 * 회원찾기
+	 */
 	public Map<String, Object> getPromoter(Map<String, Object> param) throws Exception {
 		return signUpDao.getPromoter(param);
 	}
