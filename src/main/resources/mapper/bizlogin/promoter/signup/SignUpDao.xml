@@ -21,7 +21,7 @@
 		)
 		VALUES
 		(
-			  (SELECT IFNULL(MAX(pmt.promoter_id)+1,100000) FROM Promoter_tbl pmt), #{pmtLoginId, jdbcType=VARCHAR}
+			  (SELECT IFNULL(MAX(pmt.promoter_id) + 1, 100000) FROM Promoter_tbl pmt), #{pmtLoginId, jdbcType=VARCHAR}
 			, #{pmtLoginPw, jdbcType=VARCHAR}, TRIM(#{pmtFirstName, jdbcType=VARCHAR}), TRIM(#{pmtLastName, jdbcType=VARCHAR})
 			, IF(#{pmtGender, jdbcType=VARCHAR} = 'M', 0, 1), #{pmtCellularPhone, jdbcType=VARCHAR}, #{pmtMail, jdbcType=VARCHAR}
 		)

@@ -31,7 +31,11 @@ public class SignUpService {
 
 	@Inject
 	private PasswordEncoder passwordEncoder;
-	
+
+	public Map<String, Object> getPromoter(Map<String, Object> param) throws Exception {
+		return signUpDao.getPromoter(param);
+	}
+
 	/**
 	 * 회원가입
 	 */
@@ -79,15 +83,16 @@ public class SignUpService {
 
 		return result;
 	}
-	
+
 	/**
 	 * 인증 메일 발송
 	 */
-	public void sendAuthentication(Map<String, Object> param) throws ClientProtocolException, IOException {
-
+	public void sendVerificationMail(Map<String, Object> param) throws ClientProtocolException, IOException {
 		String serverUrl = (String) param.get("serverUrl");
 		String pmtMail = (String) param.get("pmtMail");
-		String promoterId = (String) param.get("promoter_id");
+		String promoterId = String.valueOf(param.get("promoter_id"));
+
+		logger.debug(param.toString());
 
 		// 이메일 발송
 		String uri = serverUrl + "/accounts/email/certify";
@@ -95,7 +100,8 @@ public class SignUpService {
 		HttpUriRequest req = RequestBuilder.post().setUri(uri).addParameter("email", pmtMail)
 				.addParameter("account", "pmt").addParameter("id", promoterId).build();
 		HttpResponse response = client.execute(req);
-		logger.debug("response : " + response);
+		int statusCode = response.getStatusLine().getStatusCode();
+		logger.debug("statusCode : " + statusCode);
 	}
 
 }

@@ -53,10 +53,13 @@ public class SignUpController {
 
 		// 3. 비즈니스 로직 실행
 		signUpService.signup(param);
+		
+		Map<String, Object> promoter = signUpService.getPromoter(param);
+		param.put("promoter_id", promoter.get("promoter_id"));
 
 		// 4. 이메일 발송
 		param.put("serverUrl", request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort());
-		signUpService.sendAuthentication(param);
+		signUpService.sendVerificationMail(param);
 
 		return view;
 	}
