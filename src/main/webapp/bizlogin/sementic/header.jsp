@@ -138,13 +138,13 @@
 						<a class="nav-link" href="page-blog.html">인플루언서</a>
 					</li>
 					<li class="nav-item ml-5">
-						<a class="nav-link" href="/Promoter/Goods/PmtGoodsList.mwav">상품조회</a>
+						<a class="nav-link" href="<c:url value='/bizlogin/goods/catalog/list' />">상품조회</a>
 					</li>
 					<li class="nav-item ml-5 dropdown">
 						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="" aria-expanded="false">고객센터</a>
 						<div class="dropdown-menu">
 							<a class="dropdown-item" href="#">자주묻는질문</a>
-							<a class="dropdown-item" href="/Promoter/CommonApps/BoardNotice/PmtNoticeList.mwav">공지사항</a>
+							<a class="dropdown-item" href="<c:url value='/bizlogin/cs/notice/list' />">공지사항</a>
 							<div class="dropdown-divider"></div>
 							<a class="dropdown-item" href="#">1:1문의</a>
 
@@ -156,3 +156,40 @@
 		</div>
 	</nav>
 </header>
+
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script src='https://www.google.com/recaptcha/api.js?onload=CaptchaCallback&render=explicit' async defer></script>
+<script type="text/javascript">
+	Kakao.init('b66e3d6516bdc422b77b51024332a218');
+
+	function kakaoLogout() {
+		$.ajax({
+			type : 'GET',
+			url : '<c:url value="/bizlogin/promoter/signout/kakao" />',
+			success : function(data) {
+				location.reload();
+			},
+			fail : function(error) {
+				alert(JSON.stringify(error));
+			}
+		});
+
+		if (!Kakao.Auth.getAccessToken()) {
+			alert('Not logged in.');
+			return;
+		}
+		
+		Kakao.Auth.logout(function() {
+		});
+	}
+	
+	// 리캡챠 여러개 사용시 활용
+	var CaptchaCallback = function() {
+		$('.g-recaptcha').each(function(index, el) {
+			var widgetId = grecaptcha.render(el, {
+				'sitekey' : '6LcdRxoUAAAAAA4OI0FIN2bv2W0ersTRjqHJdLG-'
+			});
+			jQuery(this).attr('data-widget-id', widgetId);
+		});
+	};
+</script>

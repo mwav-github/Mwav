@@ -14,5 +14,7 @@ public interface SignUpDao {
 	public void createPromoterValue(Map<String, Object> param) throws Exception;
 
 	public void createPromoterValueLog(Map<String, Object> param) throws Exception;
+	
+	public void createSnsPromoter(Map<String, Object> param) throws Exception;
 
 }

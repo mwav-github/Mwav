@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <style>
 fieldset {
 	display: none
@@ -63,50 +62,48 @@ a:hover {
 }
 </style>
 <script>
-$(document).ready(function(){
+	$(document).ready(function() {
 
-$(".tabs").click(function(){
+		$(".tabs").click(function() {
 
-$(".tabs").removeClass("active");
-$(".tabs h6").removeClass("font-weight-bold");
-$(".tabs h6").addClass("text-muted");
-$(this).children("h6").removeClass("text-muted");
-$(this).children("h6").addClass("font-weight-bold");
-$(this).addClass("active");
+			$(".tabs").removeClass("active");
+			$(".tabs h6").removeClass("font-weight-bold");
+			$(".tabs h6").addClass("text-muted");
+			$(this).children("h6").removeClass("text-muted");
+			$(this).children("h6").addClass("font-weight-bold");
+			$(this).addClass("active");
 
-current_fs = $(".active");
+			current_fs = $(".active");
 
-next_fs = $(this).attr('id');
-next_fs = "#" + next_fs + "1";
+			next_fs = $(this).attr('id');
+			next_fs = "#" + next_fs + "1";
 
-$("fieldset").removeClass("show");
-$(next_fs).addClass("show");
+			$("fieldset").removeClass("show");
+			$(next_fs).addClass("show");
 
-current_fs.animate({}, {
-step: function() {
-current_fs.css({
-'display': 'none',
-'position': 'relative'
-});
-next_fs.css({
-'display': 'block'
-});
-}
-});
-});
+			current_fs.animate({}, {
+				step : function() {
+					current_fs.css({
+						'display' : 'none',
+						'position' : 'relative'
+					});
+					next_fs.css({
+						'display' : 'block'
+					});
+				}
+			});
+		});
 
-});
+	});
 </script>
 
 <%-- Policy(Terms of use using modal) --%>
 <!-- Modal-->
-<div id="pmtPolicy" tabindex="-1" role="dialog"
-	aria-labelledby="exampleModalLabel" aria-hidden="true"
+<div id="pmtPolicy" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"
 	class="modal fade text-left">
 	<div role="document" class="modal-dialog">
 		<div class="modal-content">
-			<div
-				class="modal-header row d-flex justify-content-between mx-1 mx-sm-3 mb-0 pb-0 border-0">
+			<div class="modal-header row d-flex justify-content-between mx-1 mx-sm-3 mb-0 pb-0 border-0">
 				<div class="tabs" id="tab01">
 					<h6 class="text-muted">My Apps</h6>
 				</div>
@@ -135,16 +132,16 @@ next_fs.css({
 							<span class="fa fa-android"></span> Suggested Apps
 						</h6>
 						<h6 class="text-primary pb-2">
-							<a href="#">Opera Browser</a> <span class="text-secondary">-
-								One of the best browsers</span>
+							<a href="#">Opera Browser</a>
+							<span class="text-secondary">- One of the best browsers</span>
 						</h6>
 						<h6 class="text-primary pb-2">
-							<a href="#">Camscanner</a> <span class="text-secondary">-
-								Easily scan your documents</span>
+							<a href="#">Camscanner</a>
+							<span class="text-secondary">- Easily scan your documents</span>
 						</h6>
 						<h6 class="text-primary pb-4">
-							<a href="#">Coursera</a> <span class="text-secondary">-
-								Learn online, lecturers from top universities</span>
+							<a href="#">Coursera</a>
+							<span class="text-secondary">- Learn online, lecturers from top universities</span>
 						</h6>
 					</div>
 				</fieldset>
@@ -183,8 +180,7 @@ next_fs.css({
 						<h5 class="text-center mb-4 mt-0 pt-4">Communities</h5>
 						<form>
 							<div class="form-group pb-5 px-3 row justify-content-center">
-								<button type="button" class="btn btn-primary">New
-									Community +</button>
+								<button type="button" class="btn btn-primary">New Community +</button>
 							</div>
 						</form>
 					</div>
@@ -205,14 +201,10 @@ next_fs.css({
 				</fieldset>
 			</div>
 			<div class="line"></div>
-			<div
-				class="modal-footer d-flex flex-column justify-content-center border-0">
+			<div class="modal-footer d-flex flex-column justify-content-center border-0">
 				<p class="text-muted">Can't find what you're looking for?</p>
-				<button type="button" class="btn btn-primary">Contact
-					Support Team</button>
+				<button type="button" class="btn btn-primary">Contact Support Team</button>
 			</div>
 		</div>
 	</div>
 </div>
-
-

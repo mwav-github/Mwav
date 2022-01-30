@@ -76,19 +76,19 @@
 							spNickname : res.properties['nickname'],
 							spPromoterId : res.kakao_account['email'],
 							spEmail : res.kakao_account['email'],
-							isEmailVerified : res.kakao_account['is_email_verified'],
+							spEmailVerified : res.kakao_account['is_email_verified'],
 							spProfileImage : res.properties['profile_image'],
 							spSnsType : 'Kakao'
 						}
 
 						$.ajax({
 							type : 'POST',
-							url : '/promoter/kakaoLogin.mwav',
+							url : '<c:url value="/bizlogin/promoter/signin/kakao" />',
 							data : JSON.stringify(userData),
 							contentType : "application/json",
 							success : function(data) {
 								if (data != null) {
-									location.href = "/Promoter/Index.mwav";
+									location.href = '<c:url value="/bizlogin" />';
 								}
 							},
 							fail : function(error) {

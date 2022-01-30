@@ -13,13 +13,14 @@ import org.springframework.util.StringUtils;
 import net.bizlogin.common.service.PasswordEncoder;
 import net.bizlogin.common.service.Recaptcha;
 import net.bizlogin.promoter.signin.dao.SignInDao;
+import net.bizlogin.promoter.signup.dao.SignUpDao;
 
 /**
  * 로그인
  */
 @Service
 public class SignInService {
-	
+
 	@SuppressWarnings("unused")
 	private static final Logger logger = LoggerFactory.getLogger(SignInService.class);
 
@@ -27,11 +28,14 @@ public class SignInService {
 	private SignInDao signInDao;
 
 	@Inject
+	private SignUpDao signUpDao;
+
+	@Inject
 	private Recaptcha recaptcha;
-	
+
 	@Inject
 	private PasswordEncoder passwordEncoder;
-	
+
 	/**
 	 * 로그인 
 	 * @param param {pmtLoginId, pmtLoginPw, token : Recaptcha 인증토큰}
@@ -66,7 +70,7 @@ public class SignInService {
 
 		// 4. 프로모터 검색
 		Map<String, Object> promoter = signInDao.getPromoter(param);
-		
+
 		if (promoter == null) {
 			result.put("status", "INVALID_PARAM");
 			result.put("msg", "아이디와 비밀번호를 확인해주세요.");
@@ -85,6 +89,19 @@ public class SignInService {
 		result.put("promoter", promoter);
 
 		return result;
+	}
+
+	/**
+	 * 카카오 로그인
+	 */
+	public Map<String, Object> signInKakao(Map<String, Object> param) throws Exception {
+		Map<String, Object> snsPromoter = signInDao.getSnsPromoter(param);
+
+		if (snsPromoter == null) {
+			signUpDao.createSnsPromoter(param);
+			snsPromoter = signInDao.getSnsPromoter(param);
+		}
+		return snsPromoter;
 	}
 
 }

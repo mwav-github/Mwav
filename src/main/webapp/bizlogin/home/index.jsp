@@ -68,6 +68,7 @@
 	</header>
 
 	<section class="section-content padding-bottom-sm">
+		<jsp:include page="/bizlogin/goods/catalog/frontList.jsp" flush="false" />
 	</section>
 
 	<section class="section-name bg padding-y-sm">

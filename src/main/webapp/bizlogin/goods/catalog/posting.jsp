@@ -1,55 +1,31 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<!-- 상품 포스팅 -->
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE HTML>
 <html lang="en">
-<!-- ========================= Head & Meta Area ========================= -->
 <head>
-<jsp:include
-	page="/Promoter/PartsOfContent/SiteHeader/PmtSiteMetaHeader.jsp"
-	flush="false" />
-<script type="text/javascript">
-	/// some script
-
-	// jquery ready start
-	$(document).ready(function() {
-		// jQuery code
-
-	});
-	// jquery end
-</script>
+<jsp:include page="/bizlogin/sementic/meta.jsp" flush="false" />
 </head>
-<!-- ========================= Head & Meta Area END ========================= -->
-
 <body>
-	<!-- ========================= Header ========================= -->
 	<header class="section-header">
-		<jsp:include
-			page="/Promoter/PartsOfContent/SiteHeader/PmtSiteHeader.jsp"
-			flush="false" />
+		<jsp:include page="/bizlogin/sementic/header.jsp" flush="false" />
 	</header>
-	<!-- section-header.// -->
-	<!-- ========================= Header END ========================= -->
+	<!-- .section-header -->
 
-
-	<!-- ========================= SECTION ONE ========================= -->
 	<section class="section-pagetop bg">
 		<div class="container">
 			<h2 class="title-page">제품 포스팅하기</h2>
 		</div>
-		<!-- container //  -->
+		<!-- .container -->
 	</section>
 
-	<!-- ========================= SECTION TWO ========================= -->
 	<section class="section-content padding-y">
-		<div class="list-group mx-auto"
-			style="max-width: 940px; margin-top: 0px;">
+		<div class="list-group mx-auto" style="max-width: 940px; margin-top: 0px;">
 			<article class="list-group-item">
 				<header class="filter-header">
-					<a href="#" data-toggle="collapse" data-target="#collapse1"
-						aria-expanded="true" class=""> <i
-						class="icon-control fa fa-chevron-down"></i>
-						<h6 class="news_emphasis text-center" style="color: black;">내용
-							및 해시태그 복사</h6>
+					<a href="#" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" class="">
+						<i class="icon-control fa fa-chevron-down"></i>
+						<h6 class="news_emphasis text-center" style="color: black;">내용 및 해시태그 복사</h6>
 					</a>
 				</header>
 				<div class="filter-content collapse show" id="collapse1" style="">
@@ -104,57 +80,48 @@
 						<br>
 					</p>
 				</div>
-				<!-- collapse -filter-content  .// -->
+				<!-- .collapse -filter-content -->
 			</article>
 			<article class="list-group-item">
 				<header class="filter-header">
-					<a href="#" data-toggle="collapse" data-target="#collapse2"
-						aria-expanded="false" class="collapsed"> <i
-						class="icon-control fa fa-chevron-down"></i>
+					<a href="#" data-toggle="collapse" data-target="#collapse2" aria-expanded="false" class="collapsed">
+						<i class="icon-control fa fa-chevron-down"></i>
 						<h6 class="news_emphasis text-center" style="color: black;">유의사항</h6>
 					</a>
 				</header>
 				<div class="filter-content collapse" id="collapse2" style="">
 					<p>
-						※ 다음 홍보 컨텐츠를 활용하여 본인의 SNS 계정에 포스팅을 작성해주세요. <br> <br>※ 위
-						링크를 통해 판매가 이루어져야 개인의 수익이 정산됩니다. 해당 링크를 꼭 포스팅해 주세요. <br> <br>※
-						복사하기 버튼 클릭 시 포스팅 등록이 완료됩니다.
+						※ 다음 홍보 컨텐츠를 활용하여 본인의 SNS 계정에 포스팅을 작성해주세요.
+						<br>
+						<br>
+						※ 위 링크를 통해 판매가 이루어져야 개인의 수익이 정산됩니다. 해당 링크를 꼭 포스팅해 주세요.
+						<br>
+						<br>
+						※ 복사하기 버튼 클릭 시 포스팅 등록이 완료됩니다.
 					</p>
-
 				</div>
 			</article>
 			<article class="list-group-item">
 				<header class="filter-header">
-					<a href="#" data-toggle="collapse" data-target="#collapse3"
-						class="collapsed" aria-expanded="false"> <i
-						class="icon-control fa fa-chevron-down"></i>
-						<h6 class="news_emphasis text-center" style="color: black;">홍보
-							이미지 저장</h6>
+					<a href="#" data-toggle="collapse" data-target="#collapse3" class="collapsed" aria-expanded="false">
+						<i class="icon-control fa fa-chevron-down"></i>
+						<h6 class="news_emphasis text-center" style="color: black;">홍보 이미지 저장</h6>
 					</a>
 				</header>
 				<div class="filter-content collapse" id="collapse3" style="">
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-						sed do eiusmod tempor incididunt deserunt mollit anim id est
-						laborum.</p>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt deserunt mollit
+						anim id est laborum.</p>
 				</div>
 			</article>
 
-			<a href="/Promoter/Goods/PmtGoodsDetail.mwav"
-				class="btn btn-secondary btn-lg mt-5"> <span class="text">제품 상세로 돌아가기</span>
+			<a href="<c:url value="/bizlogin/goods/catalog/detail" />" class="btn btn-secondary btn-lg mt-5">
+				<span class="text">제품 상세로 돌아가기</span>
 			</a>
-			
-
 		</div>
 	</section>
-	<!-- ========================= FOOTER ========================= -->
+	
 	<footer class="section-footer border-top">
-		<jsp:include
-			page="/Promoter/PartsOfContent/SiteFooter/PmtSiteFooter.jsp"
-			flush="false" />
+		<jsp:include page="/bizlogin/sementic/footer.jsp" flush="false" />
 	</footer>
-	<!-- ========================= FOOTER END // ========================= -->
-
-
-
 </body>
 </html>
