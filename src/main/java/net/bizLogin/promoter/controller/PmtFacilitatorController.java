@@ -108,7 +108,7 @@ public class PmtFacilitatorController {
 
 	/**
 	 * <pre>
-	 *     	프로모터 이메일 인증
+	 *     	프로모터 이메일 인증11
 	 * </pre>
 	 * @param initEmail 회원가입시 사용된 이메일
 	 * @param changeEmail 변경할 이메일
