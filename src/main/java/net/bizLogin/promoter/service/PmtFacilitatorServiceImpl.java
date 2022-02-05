@@ -136,6 +136,11 @@ public class PmtFacilitatorServiceImpl implements PmtFacilitatorService {
 		PmtFacilitatorVO vo = pmtFacilitatorDAO.checkSocialJoin(so);
 		return vo;
 	}
+	
+	@Override
+	public PmtFacilitatorVO selectPmtFacLogin(Map<String, Object> map) throws Exception{
+		return  (PmtFacilitatorVO)pmtFacilitatorDAO.selectPmtLogin(map);
+	}
 
 
 	@Override
@@ -148,6 +153,7 @@ public class PmtFacilitatorServiceImpl implements PmtFacilitatorService {
 		}
 		return check; // return VO를 해준다..
 	}
+	
 	@Override
 	public Map<String, Object> selectBizPmtLogin(Map<String, Object> map) throws Exception{
 
