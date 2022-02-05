@@ -6,6 +6,7 @@ import net.bizLogin.promoter.vo.PmtFacilitatorSO;
 import net.bizLogin.promoter.vo.PmtFacilitatorVO;
 import net.common.common.CommandMap;
 import net.mwav.common.module.AesEncryption;
+import net.mwav.common.module.Common_Utils;
 import net.mwav.common.module.ValidationLib;
 import net.mwav.framework.cryption.AES128Lib;
 import org.apache.http.HttpResponse;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
@@ -36,6 +38,8 @@ public class PmtFacilitatorServiceImpl implements PmtFacilitatorService {
 	@Resource(name = "pmtFacilitatorDAO")
 	private PmtFacilitatorDAO pmtFacilitatorDAO;
 
+	Common_Utils cou = new Common_Utils();
+
 	/**
 	 * 메서드에 대한 설명
 	 * <pre>
@@ -44,10 +48,10 @@ public class PmtFacilitatorServiceImpl implements PmtFacilitatorService {
 	 *
 	 * }
 	 * </pre>
-	 * @param CommonMap Customized CommonMap
+	 * @param  Customized CommonMap
 	 * @return return 값에 대한 설명(필수)
 	 * @throws Exception 발생하는 예외에 대한 설명(필수)
-	 * @see 해당 메서드와 연관된 메서드
+	 * @see  메서드와 연관된 메서드
 	 * @since 작성 버전
 	 * @version 현재 버전
 	 */
@@ -132,6 +136,11 @@ public class PmtFacilitatorServiceImpl implements PmtFacilitatorService {
 		PmtFacilitatorVO vo = pmtFacilitatorDAO.checkSocialJoin(so);
 		return vo;
 	}
+	
+	@Override
+	public PmtFacilitatorVO selectPmtFacLogin(Map<String, Object> map) throws Exception{
+		return  (PmtFacilitatorVO)pmtFacilitatorDAO.selectPmtLogin(map);
+	}
 
 
 	@Override
@@ -144,6 +153,7 @@ public class PmtFacilitatorServiceImpl implements PmtFacilitatorService {
 		}
 		return check; // return VO를 해준다..
 	}
+	
 	@Override
 	public Map<String, Object> selectBizPmtLogin(Map<String, Object> map) throws Exception{
 
@@ -273,4 +283,73 @@ public class PmtFacilitatorServiceImpl implements PmtFacilitatorService {
 
 	}
 
+
+	/* SocialNaver */
+	@Override
+	public int checkNaverAccount(Map<String, Object> map) {
+		PmtFacilitatorVO vo = new PmtFacilitatorVO();
+
+		vo.setSpSnsType("Naver");
+		vo.setSpPromoterId(map.get("id").toString());
+		vo.setSpEmail(map.get("email").toString());
+
+		return pmtFacilitatorDAO.checkNaverAccount(vo);
+	}
+
+	@Override
+	public void saveNaverAccount(Map<String, Object> map, HttpServletRequest request) {
+
+		PmtFacilitatorVO vo = new PmtFacilitatorVO();
+
+		vo.setSpSnsType("Naver");
+		vo.setSpPromoterId(map.get("id").toString());
+		vo.setSpEmail(map.get("email").toString());
+
+		// 이메일 인증 값을 위한 이메일 체크
+		if (checkEmail(map).equals("naver.com")) {
+			vo.setSpEmailVerified(1); // true;
+		}else{
+			vo.setSpEmailVerified(0); // false;
+		}
+
+		// 필수 값이 아닌 데이터 체크
+		if(map.get("gender") != null){
+			if(map.get("gender").equals("M")){
+				vo.setSpGender(1); // 남자
+			}else if(map.get("gender").equals("F")){
+				vo.setSpGender(0); // 여자
+			}
+		}
+		if(map.get("mobile") != null){
+			vo.setSpCellularP(map.get("mobile").toString());
+		}
+		if(map.get("name") != null){
+			checkName(map.get("name").toString(), vo);
+		}
+
+		vo.setSpIpAddress(cou.getClientIP(request));
+		pmtFacilitatorDAO.saveNaverAccount(vo);
+	}
+
+	private String checkEmail(Map<String, Object> map) {
+		String email = map.get("email").toString();
+		String pureEmail = email.substring(email.length()-9, email.length());
+
+		return pureEmail;
+	}
+
+	private void checkName(String name, PmtFacilitatorVO vo){
+		int nameLength = name.length();
+
+		if(nameLength == 3){
+			String firstName = name.substring(0, 1);
+			String lastName = name.substring(1, nameLength);
+
+			vo.setSpFirstName(firstName);
+			vo.setSpLastName(lastName);
+		}else{
+			String fullName = name;
+			vo.setSpFirstName(fullName);
+		}
+	}
 }

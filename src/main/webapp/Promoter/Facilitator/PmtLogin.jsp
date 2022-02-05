@@ -43,6 +43,12 @@
 					<input type="hidden" id="token" name="token" value="">
 
 					<div class="img-wrap mb-4">
+						<a class="btn-overlay" href="${naver_url}">
+						<img
+							src="zImage/btnG_naver_complete.png" style="width:100%; height:51.38px;">
+						</a>
+					</div>
+					<div class="img-wrap mb-4">
 						<a class="btn-overlay" href="javascript:loginWithKakao()">
 						<img
 							src="https://developers.kakao.com/tool/resource/static/img/button/login/full/ko/kakao_login_large_wide.png">

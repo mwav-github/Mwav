@@ -42,6 +42,10 @@ public class PmtFacilitatorDAO extends AbstractDAO{
     public BizPromoter_VO selectBizPmtLogin(Map<String, Object> map){
         return (BizPromoter_VO)selectOne("promoter.selectBizPmtLogin",map);
     }
+    
+    public PmtFacilitatorVO selectPmtLogin(Map<String, Object> map){
+        return (PmtFacilitatorVO)selectOne("promoter.selectPmtLogin",map);
+    }
 
     public String selectOnePmtId(String pmtLoginId) {
         return (String)selectOne("promoter.selectOnePmtId", pmtLoginId);
@@ -49,6 +53,14 @@ public class PmtFacilitatorDAO extends AbstractDAO{
 
     public int updatePmtEmail(Map<String, String> param) {
         return (int) selectOne("promoter.updatePmtEmail", param);
+    }
+
+    public int checkNaverAccount(PmtFacilitatorVO vo){
+        return (int) selectOne("promoter.checkNaverAccount", vo);
+    }
+
+    public void saveNaverAccount(PmtFacilitatorVO vo){
+        insert("promoter.saveNaverAccount", vo);
     }
 }
 

@@ -1,6 +1,6 @@
 package net.mwav.statistics.dao;
 
-import com.sun.org.apache.bcel.internal.generic.NEW;
+//import com.sun.org.apache.bcel.internal.generic.NEW;
 import net.mwav.statistics.vo.StatisticsLogVO;
 import net.mwav.statistics.vo.StatisticsVO;
 import org.junit.Before;

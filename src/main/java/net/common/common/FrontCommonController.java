@@ -6,6 +6,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import net.bizLogin.promoter.auth.PmtNaverUrl;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +25,9 @@ public class FrontCommonController {
 
 	@Inject
 	NaverUrlBuilder naverUrlBuilder;
+
+	@Inject
+	PmtNaverUrl pmtNaverUrl;
 
 	/*
 	 * ========================================등록================================
@@ -147,11 +151,16 @@ public class FrontCommonController {
 	}
 
 	@RequestMapping(value = "/Promoter/**")
-	public ModelAndView redirectPromoterController(HttpServletRequest request) throws Exception {
+	public ModelAndView redirectPromoterController(HttpSession session, HttpServletRequest request) throws Exception {
 		String url = request.getRequestURI();
 		int pos = url.lastIndexOf(".");
 		ext_url = url.substring(0, pos);
 		ModelAndView mv = new ModelAndView(ext_url);
+
+//		PmtNaverUrl pmtNaverUrlUtil = new PmtNaverUrl();
+		String authorizationUrl = pmtNaverUrl.getAuthorizationUrl(session);
+
+		mv.addObject("naver_url", authorizationUrl); // 네이버 로그인
 
 		return mv;
 	}

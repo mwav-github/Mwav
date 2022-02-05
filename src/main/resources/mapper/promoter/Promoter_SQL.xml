@@ -229,6 +229,60 @@
 		]]>
 	</update>
 
+	<!-- SocialNaver -->
+	<select id="checkNaverAccount" parameterType="net.bizLogin.promoter.vo.PmtFacilitatorVO" resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		  FROM SnsPromoter_tbl
+		 WHERE 1=1
+		   AND spPromoterId = #{spPromoterId}
+		   AND spSnsType = 'Naver'
+		   AND spEmail = #{spEmail}
+	</select>
+
+	<insert id="saveNaverAccount" parameterType="net.bizLogin.promoter.vo.PmtFacilitatorVO">
+		INSERT INTO SnsPromoter_tbl (
+			snsPromoter_id,
+			spSnsType,
+			spPromoterId,
+			spEmail,
+			spEmailVerified,
+			<if test="spFirstName != null">
+				spFirstName,
+			</if>
+			<if test="spLastName != null">
+				spLastName,
+			</if>
+			<if test="spGender != null">
+				spGender,
+			</if>
+			<if test="spCellularP != null">
+				spCellularP,
+			</if>
+			spInsertDt,
+			spIpAddress
+		) VALUES(
+			(SELECT IFNULL(MAX(snsPromoter_id) + 1, 10000) FROM SnsPromoter_tbl AS snsPromoter_id),
+			#{spSnsType},
+			#{spPromoterId},
+			#{spEmail},
+			#{spEmailVerified},
+			<if test="spFirstName != null">
+				#{spFirstName},
+			</if>
+			<if test="spLastName != null">
+				#{spLastName},
+			</if>
+			<if test="spGender != null">
+				#{spGender},
+			</if>
+			<if test="spCellularP != null">
+				#{spCellularP},
+			</if>
+			NOW(),
+			#{spIpAddress}
+		)
+	</insert>
+
 	<!-- BizLogin Promoter Login -->
 	<select id="selectBizPmtLogin" parameterType="hashmap" resultType="net.bizLogin.promoter.vo.BizPromoter_VO">
 		<![CDATA[

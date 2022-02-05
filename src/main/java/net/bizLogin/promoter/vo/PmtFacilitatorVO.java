@@ -15,8 +15,8 @@ public class PmtFacilitatorVO {
 	private String spNickName;
 	/* 이메일 */
 	private String spEmail;
-	/* 성별 */
-	private String spGender;
+	/* (수정) 성별 - 남(1) or 여(0) */
+	private int spGender;
 	/* 프로필 이미지 경로 */
 	private String spProfileImage;
 	/* URL */
@@ -37,6 +37,12 @@ public class PmtFacilitatorVO {
 	private String spIpAddress;
 	/* SNS (소셜서비스) 종류 - 영문표기: Twitter, Facebook, Linkedin, Kakao, Naver */
 	private String spSnsType;
+	/* (추가) 이메일 인증 여부 - true(1) or false(0) */
+	private int spEmailVerified;
+	/* (추가) 개인전화 */
+	private String spCellularP;
+	/* (추가) 성별 - 남(1) or 여(0) */
+//	private int spTemGender;
 	
 	public Integer getSnsPromoter_id() {
 		return snsPromoter_id;
@@ -80,10 +86,10 @@ public class PmtFacilitatorVO {
 	public void setSpEmail(String spEmail) {
 		this.spEmail = spEmail;
 	}
-	public String getSpGender() {
+	public int getSpGender() {
 		return spGender;
 	}
-	public void setSpGender(String spGender) {
+	public void setSpGender(int spGender) {
 		this.spGender = spGender;
 	}
 	public String getSpProfileImage() {
@@ -146,4 +152,25 @@ public class PmtFacilitatorVO {
 	public void setSpSnsType(String spSnsType) {
 		this.spSnsType = spSnsType;
 	}
+	public void setSpNickName(String spNickName) {
+		this.spNickName = spNickName;
+	}
+	public int getSpEmailVerified() {
+		return spEmailVerified;
+	}
+	public void setSpEmailVerified(int spEmailVerified) {
+		this.spEmailVerified = spEmailVerified;
+	}
+	public String getSpCellularP() {
+		return spCellularP;
+	}
+	public void setSpCellularP(String spCellularP) {
+		this.spCellularP = spCellularP;
+	}
+//	public int getSpTemGender() {
+//		return spTemGender;
+//	}
+//	public void setSpTemGender(int spTemGender) {
+//		this.spTemGender = spTemGender;
+//	}
 }
