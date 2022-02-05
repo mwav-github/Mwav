@@ -1,6 +1,7 @@
 package net.bizLogin.promoter.service;
 
 import net.bizLogin.promoter.dao.PmtFacilitatorDAO;
+import net.bizLogin.promoter.vo.BizPromoter_VO;
 import net.bizLogin.promoter.vo.PmtFacilitatorSO;
 import net.bizLogin.promoter.vo.PmtFacilitatorVO;
 import net.common.common.CommandMap;
@@ -8,12 +9,25 @@ import net.mwav.common.module.AesEncryption;
 import net.mwav.common.module.Common_Utils;
 import net.mwav.common.module.ValidationLib;
 import net.mwav.framework.cryption.AES128Lib;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpUriRequest;
+import org.apache.http.client.methods.RequestBuilder;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.springframework.mail.MailAuthenticationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.json.Json;
+import javax.json.JsonObject;
+import javax.json.JsonReader;
+import javax.net.ssl.HttpsURLConnection;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -135,8 +149,132 @@ public class PmtFacilitatorServiceImpl implements PmtFacilitatorService {
 		return check; // return VO를 해준다..
 	}
 	@Override
-	public PmtFacilitatorVO selectPmtFacLogin(Map<String, Object> map) throws Exception{
-		return  (PmtFacilitatorVO)pmtFacilitatorDAO.selectPmtLogin(map);
+	public Map<String, Object> selectBizPmtLogin(Map<String, Object> map) throws Exception{
+
+		Map<String, Object> mapVo = new HashMap<String, Object>();
+
+		// 1. 유효성 검증, 비정상적인 값이 들어오면 null로 반환
+		if( ((String) map.get("pmtLoginPw")).length()<3 || ((String) map.get("pmtLoginId")).length()<3 ){
+			mapVo.put("status", "INVALID_ID_PWD");
+			mapVo.put("vo", null);
+			return mapVo;
+		}
+
+		// 1-1. ReCaptcha 유효성 검증
+		String token = (String) map.get("token");
+		if(!this.recaptcha(token)){
+			mapVo.put("status", "RECAPTCHA_ERROR");
+			mapVo.put("vo", null);
+			return mapVo;
+		}
+
+		// 2. 로그인 확인하기 위해 비밀번호 암호화
+		final AES128Lib aes128Lib = AES128Lib.getInstance();
+		String pmtLoginPw = (String) map.get("pmtLoginPw");
+		byte[] encrypted = aes128Lib.encrypt("Mwav.net", "Mwav", pmtLoginPw);
+		map.put("pmtLoginPw", AesEncryption.aesEncodeBuf(encrypted));
+
+		// 3. DB에서 pmtLoginId & pmtLoginPw 이 일치하는 로우를 가져옴
+		BizPromoter_VO bizPromoterVo = pmtFacilitatorDAO.selectBizPmtLogin(map);
+		if(bizPromoterVo != null){
+			mapVo.put("status", "LOGIN_SUCCESS");
+		}else{
+			mapVo.put("status", "INVALID_ID_PWD");
+		}
+		mapVo.put("vo", bizPromoterVo);
+
+		return  mapVo;
+	}
+
+	@Override
+	public boolean sendCertifyMail(String serverUrl, String pmtMail, String promoter_id) throws IOException {
+
+		// 이메일 발송
+		final String uri = serverUrl + "/accounts/email/certify";
+		HttpClient client = HttpClientBuilder.create().build();
+		HttpUriRequest req = RequestBuilder.post()
+				.setUri(uri)
+				.addParameter("email", pmtMail)
+				.addParameter("account","pmt")
+				.addParameter("id", promoter_id)
+				.build();
+		HttpResponse response = client.execute(req);
+		int statusCode = response.getStatusLine().getStatusCode();
+		System.out.println(statusCode);
+
+		return false;
+	}
+
+	@Override
+	public String selectOnePmtId(String pmtLoginId) {
+		return pmtFacilitatorDAO.selectOnePmtId(pmtLoginId);
+	}
+
+	@Override
+	public int updatePmtEmail(String changeEmail, String promoter_id) {
+		Map<String, String> param = new HashMap<String, String>();
+		param.put("changeEmail", changeEmail);
+		param.put("promoter_id", promoter_id);
+
+		return pmtFacilitatorDAO.updatePmtEmail(param);
+	}
+
+	public boolean recaptcha(String token){
+		//TODO: 임시용으로 VerifyRecaptcha 의 메소드 기능만 빼와서 사용. 추후 교체요망
+		final String SECRET_KEY = "6LdhTbYbAAAAAHFtrOEfPcyjW7XwgWGwxY0RrLVe";
+		final String SITE_VERIFY_URL = "https://www.google.com/recaptcha/api/siteverify";
+
+		if (token == null || token.length() == 0) {
+			return false;
+		}
+
+		try {
+			URL verifyUrl = new URL(SITE_VERIFY_URL);
+
+			// Open Connection to URL
+			HttpsURLConnection conn = (HttpsURLConnection) verifyUrl
+					.openConnection();
+
+			// Add Request Header
+			conn.setRequestMethod("POST");
+
+			// Data will be sent to the server.
+			String postParams = "secret=" + SECRET_KEY + "&response="
+					+ token;
+
+			// Send Request
+			conn.setDoOutput(true);
+
+			// Get the output stream of Connection
+			// Write data in this stream, which means to send data to Server.
+			OutputStream outStream = conn.getOutputStream();
+			outStream.write(postParams.getBytes());
+
+			outStream.flush();
+			outStream.close();
+
+			// Response code return from server.
+			// HTTP.STATUS CODE
+			int responseCode = conn.getResponseCode();
+			System.out.println("responseCode=" + responseCode);
+
+			// Get the InputStream from Connection to read data sent from the
+			// server.
+			InputStream is = conn.getInputStream();
+
+			JsonReader jsonReader = Json.createReader(is);
+			JsonObject jsonObject = jsonReader.readObject();
+			jsonReader.close();
+
+			System.out.println("Response: " + jsonObject);
+
+			boolean success = jsonObject.getBoolean("success");
+			return success;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+
 	}
 
 

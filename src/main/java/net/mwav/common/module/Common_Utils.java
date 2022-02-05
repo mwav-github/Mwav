@@ -9,39 +9,24 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 import java.util.Map.Entry;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import net.admins.vo.Staff_VO;
-import net.common.Interceptor.StatisticsInterceptor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import net.common.common.CommandMap;
 import net.mwav.member.vo.Member_tbl_VO;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.apache.log4j.Category;
-import org.apache.log4j.Logger;
-
 public class Common_Utils {
-	protected static Log log = LogFactory.getLog(Common_Utils.class);
+
+	private static final Logger log = LoggerFactory.getLogger(Common_Utils.class);
 
 	private static String pattern = "[a-zA-Z0-9]+$";
 	private static StringBuffer returnString = null;
-
-	public static void main(String[] args) {
-		Common_Utils rndStr = new Common_Utils();
-
-		System.out.println("[랜덤 문자열]");
-		System.out.println("숫자 (50자리) : " + rndStr.getString(50, "1"));
-		System.out.println("대문자 (16자리) : " + rndStr.getString(16, "A"));
-		System.out.println("소문자 (16자리) : " + rndStr.getString(16, "a"));
-		System.out.println("대문자 + 숫자 (32자리) : " + rndStr.getString(32, "A1"));
-		System.out.println("소문자 + 숫자 (32자리) : " + rndStr.getString(32, "a1"));
-		System.out.println("대문자 + 소문자 + 숫자 (32자리) : " + rndStr.getString(15, ""));
-	}
 
 	// Overload Constructor
 	public Common_Utils() {
@@ -72,9 +57,8 @@ public class Common_Utils {
 
 	// Get Random Character
 	private static void getRndChar() {
-		int r = (int) Math.round(Math.random() * 1000);
 
-		java.util.Random random = new java.util.Random();
+		Random random = new java.util.Random();
 		int rnd = random.nextInt(1000);
 
 		if (test(pattern, String.valueOf((char) rnd))) {
@@ -164,27 +148,23 @@ public class Common_Utils {
 
 	public void selectCommandMapList(CommandMap commandMap) {
 		if (commandMap.isEmpty() == false) {
-			System.out.println("들어옴");
 			Iterator<Entry<String, Object>> iterator = commandMap.getMap().entrySet().iterator();
 			Entry<String, Object> entry = null;
 			while (iterator.hasNext()) {
 				entry = iterator.next();
 				log.debug("key : " + entry.getKey() + ",\tvalue : " + entry.getValue());
-				System.out.println("key : " + entry.getKey() + ",\tvalue : " + entry.getValue());
 			}
 		}
 	}
 
 	public void selectMap(Map<String, Object> map) {
 		if (map.isEmpty() == false) {
-			System.out.println("들어옴");
 			Iterator<Entry<String, Object>> iterator = map.entrySet().iterator();
 			// map.entryset vs mapkeySet 차이 찾아보기
 			Entry<String, Object> entry = null;
 			while (iterator.hasNext()) {
 				entry = iterator.next();
 				log.debug("key : " + entry.getKey() + ",\tvalue : " + entry.getValue());
-				System.out.println("key : " + entry.getKey() + ",\tvalue : " + entry.getValue());
 			}
 		}
 	}
@@ -250,7 +230,6 @@ public class Common_Utils {
 	public static Map<String, Object> typeToChar(HttpServletRequest request) {
 		char type = 0;
 
-		System.out.println("들어왔다.");
 		Map<String, Object> map = new HashMap<String, Object>();
 
 		String key = null;
@@ -265,63 +244,63 @@ public class Common_Utils {
 			if (request.getParameter("staff") != null) {
 				type = 'S';
 				key = request.getParameter("staff");
-				log.info("staff은 request 값");
+				log.debug("staff은 request 값");
 			} else if (session.getAttribute("staff") != null) {
 				type = 'S';
 
-//				key = (Staff_VO) session.getAttribute("staff");
-//				TODO: staff_id 세션 추가 필요?
+				//				key = (Staff_VO) session.getAttribute("staff");
+				//				TODO: staff_id 세션 추가 필요?
 				key = "staff";
-				log.info("staff은 세션값");
+				log.debug("staff은 세션값");
 			} else if (cookieBox.isExist("staff")) {
 				type = 'S';
 				key = cookieBox.getValue("staff");
-				log.info("staff은 쿠키값");
+				log.debug("staff은 쿠키값");
 			}
 
 			// 파트너영역
 			else if (request.getParameter("partner") != null) {
 				type = 'A';
 				key = request.getParameter("partner");
-				log.info("partner은 request 값");
+				log.debug("partner은 request 값");
 			} else if ((String) session.getAttribute("partner") != null) {
 				type = 'A';
 				key = (String) session.getAttribute("partner");
-				log.info("partner은 세션값");
+				log.debug("partner은 세션값");
 			} else if (cookieBox.isExist("partner")) {
 				type = 'A';
 				key = cookieBox.getValue("partner");
-				log.info("partner은 쿠키값");
+				log.debug("partner은 쿠키값");
 			}
 			// 회원영역
 			else if (request.getParameter("member") != null) {
 				type = 'M';
 				key = request.getParameter("member");
 
-				log.info("member은 request 값");
+				log.debug("member은 request 값");
 			} else if ((Member_tbl_VO) session.getAttribute("member") != null) {
 				type = 'M';
 				Member = (Member_tbl_VO) session.getAttribute("member");
 				key = String.valueOf(Member.getMember_id());
-				log.info("member은 세션값");
+				log.debug("member은 세션값");
 			} else if (cookieBox.isExist("member")) {
 				type = 'M';
 				key = cookieBox.getValue("member");
-				log.info("member은 쿠키값");
+				log.debug("member은 쿠키값");
 			}
 			// 프로모터 영역
 			else if (request.getParameter("pgl") != null) {
 				type = 'P';
 				key = request.getParameter("pgl");
-				log.info("pgl은 request 값");
+				log.debug("pgl은 request 값");
 			} else if ((String) session.getAttribute("pgl") != null) {
 				type = 'P';
 				key = (String) session.getAttribute("pgl");
-				log.info("pgl은 세션값");
+				log.debug("pgl은 세션값");
 			} else if (cookieBox.isExist("pgl")) {
 				type = 'P';
 				key = cookieBox.getValue("pgl");
-				log.info("pgl은 쿠키값");
+				log.debug("pgl은 쿠키값");
 			} else {
 				type = 'N';
 
@@ -375,18 +354,18 @@ public class Common_Utils {
 			 * String todate= formatter.format(new Date());
 			 * 
 			 * 
-			 * log.info("현재시간 년월일 = " + todate01); log.info("현재시간 년월일 = " + todate02);
-			 * log.info("현재시간 년월일 = " + todate03);
+			 * log.debug("현재시간 년월일 = " + todate01); log.debug("현재시간 년월일 = " + todate02);
+			 * log.debug("현재시간 년월일 = " + todate03);
 			 * 
 			 * String testDate = "20160421"; Date todate_date = formatter03.parse(todate03);
 			 * Date test_date = formatter03.parse(testDate);
 			 * 
-			 * log.info(todate_date + "====== " + test_date); long diff =
+			 * log.debug(todate_date + "====== " + test_date); long diff =
 			 * todate_date.getTime() - test_date.getTime(); // 시간차이를 시간,분,초를 곱한 값으로 나누면 하루
 			 * 단위가 나옴 long diffDays = diff / (24 * 60 * 60 * 1000);
 			 * 
-			 * log.info("날짜계산차이 : " + diff); log.info("일차이 : " + diffDays);
-			 * log.info("년차이 : " + diffDays / 365);
+			 * log.debug("날짜계산차이 : " + diff); log.debug("일차이 : " + diffDays);
+			 * log.debug("년차이 : " + diffDays / 365);
 			 */
 
 		} catch (Exception ex) {
@@ -426,7 +405,6 @@ public class Common_Utils {
 				result = selectIdFinder.get(i).replace(extract_textData, "***");
 
 			}
-			System.out.println("dd" + result);
 			selectIdFinder.set(i, result);
 		}
 		return selectIdFinder;
@@ -437,7 +415,7 @@ public class Common_Utils {
 
 		Map<String, Object> map = new HashMap<String, Object>();
 
-		Enumeration headerNames = request.getHeaderNames();
+		Enumeration<?> headerNames = request.getHeaderNames();
 		while (headerNames.hasMoreElements()) {
 			String key = (String) headerNames.nextElement();
 			String value = (String) request.getHeader(key);
@@ -452,9 +430,9 @@ public class Common_Utils {
 		String os = "";
 		String browser = "";
 
-		log.info("User Agent for the request is===>" + browserDetails);
-		System.out.println("User Agent for the request is===>" + browserDetails);
-		// =================OS=======================
+		log.debug("User Agent for the request is===>" + browserDetails);
+
+		// OS
 		if (userAgent.toLowerCase().indexOf("windows") >= 0) {
 			os = "Windows";
 		} else if (userAgent.toLowerCase().indexOf("mac") >= 0) {
@@ -468,24 +446,21 @@ public class Common_Utils {
 		} else {
 			os = "UnKnown, More-Info: " + userAgent;
 		}
-		// ===============Browser===========================
+
+		// Browser
 		if (user.contains("msie")) {
 			String substring = userAgent.substring(userAgent.indexOf("MSIE")).split(";")[0];
 			browser = substring.split(" ")[0].replace("MSIE", "IE") + "-" + substring.split(" ")[1];
 		} else if (user.contains("safari") && user.contains("version")) {
-			browser = (userAgent.substring(userAgent.indexOf("Safari")).split(" ")[0]).split("/")[0] + "-"
-					+ (userAgent.substring(userAgent.indexOf("Version")).split(" ")[0]).split("/")[1];
+			browser = (userAgent.substring(userAgent.indexOf("Safari")).split(" ")[0]).split("/")[0] + "-" + (userAgent.substring(userAgent.indexOf("Version")).split(" ")[0]).split("/")[1];
 		} else if (user.contains("opr") || user.contains("opera")) {
 			if (user.contains("opera"))
-				browser = (userAgent.substring(userAgent.indexOf("Opera")).split(" ")[0]).split("/")[0] + "-"
-						+ (userAgent.substring(userAgent.indexOf("Version")).split(" ")[0]).split("/")[1];
+				browser = (userAgent.substring(userAgent.indexOf("Opera")).split(" ")[0]).split("/")[0] + "-" + (userAgent.substring(userAgent.indexOf("Version")).split(" ")[0]).split("/")[1];
 			else if (user.contains("opr"))
-				browser = ((userAgent.substring(userAgent.indexOf("OPR")).split(" ")[0]).replace("/", "-"))
-						.replace("OPR", "Opera");
+				browser = ((userAgent.substring(userAgent.indexOf("OPR")).split(" ")[0]).replace("/", "-")).replace("OPR", "Opera");
 		} else if (user.contains("chrome")) {
 			browser = (userAgent.substring(userAgent.indexOf("Chrome")).split(" ")[0]).replace("/", "-");
-		} else if ((user.indexOf("mozilla/7.0") > -1) || (user.indexOf("netscape6") != -1)
-				|| (user.indexOf("mozilla/4.7") != -1) || (user.indexOf("mozilla/4.78") != -1)
+		} else if ((user.indexOf("mozilla/7.0") > -1) || (user.indexOf("netscape6") != -1) || (user.indexOf("mozilla/4.7") != -1) || (user.indexOf("mozilla/4.78") != -1)
 				|| (user.indexOf("mozilla/4.08") != -1) || (user.indexOf("mozilla/3") != -1)) {
 			// browser=(userAgent.substring(userAgent.indexOf("MSIE")).split("
 			// ")[0]).replace("/",
@@ -499,8 +474,10 @@ public class Common_Utils {
 		} else {
 			browser = "UnKnown, More-Info: " + userAgent;
 		}
-		log.info("Operating System======>" + os);
-		log.info("Browser Name==========>" + browser);
+
+		log.debug("Operating System======>" + os);
+		log.debug("Browser Name==========>" + browser);
+
 		map.put("os", os);
 		map.put("browser", browser);
 		return map;
@@ -513,20 +490,17 @@ public class Common_Utils {
 		if (search_parameter != null && search_parameter != "") {
 			String charset[] = { "KSC5601", "8859_1", "ascii", "UTF-8", "EUC-KR", "MS949" };
 
-			System.out.println("Not convert charset : " + search_parameter + "<br>");
 			for (int i = 0; i < charset.length; i++) {
 				for (int j = 0; j < charset.length; j++) {
 					if (i == j) {
 						continue;
 					} else {
 						result = new String(search_parameter.getBytes(charset[i]), charset[j]);
-						System.out.println(charset[i] + " : " + charset[j] + " :" + result + "<br>");
 					}
 				}
 			}
 		}
 
-		System.out.println("========여기까지 인코딩의 종류이다.=========");
 		return result;
 	}
 
@@ -537,12 +511,12 @@ public class Common_Utils {
 	 * Loop돌며 2. Field.setAccessible(true)를 통해 private 필드접근을 가능하도록 한다. 3. 그담엔? 필드명을
 	 * Key로하고 값을 저장하여 Map을 뱉어내면 끝~!!
 	 */
-	public static Map ConverObjectToMap(Object obj) {
+	public static Map<String, Object> ConverObjectToMap(Object obj) {
 		try {
 			// Field[] fields = obj.getClass().getFields(); //private field는 나오지
 			// 않음.
 			Field[] fields = obj.getClass().getDeclaredFields();
-			Map resultMap = new HashMap();
+			Map<String, Object> resultMap = new HashMap<String, Object>();
 			for (int i = 0; i <= fields.length - 1; i++) {
 				fields[i].setAccessible(true);
 				resultMap.put(fields[i].getName(), fields[i].get(obj));
@@ -576,15 +550,12 @@ public class Common_Utils {
 
 			if (second_slash != -1) {
 				url_1depth = url.substring(first_slash + 1, second_slash);
-				log.info("url_1depth" + url_1depth);
 			}
 			if (third_slash != -1) {
 				url_2depth = url.substring(second_slash + 1, third_slash);
-				log.info("url_2depth" + url_2depth);
 			}
 			if (lastDot != -1) {
 				last_depth = url.substring(last_slash + 1, lastDot);
-				// System.out.println("last_depth"+last_depth);
 			}
 
 			// url 은 전체 url_1depth은 /제외
@@ -857,7 +828,7 @@ public class Common_Utils {
 		String url_2depth = null;
 		String url_3depth = null;
 		String last_depth = null;
-		
+
 		if (second_slash != -1) {
 			url_1depth = url.substring(first_slash + 1, second_slash);
 		}
@@ -886,13 +857,12 @@ public class Common_Utils {
 		String main_Title = "Unleash your infinite possibilities with IT Optimization!!";
 		String aervision_Title = "Biometric authentication & computer vision & machine learning";
 
-		
 		String keywords_default = "Digital Marketing, E-Consulting, IT Consulting, WebSite Building, Cloud, AI, MR, VR, ARIoT Platform, Deep Learning, Agile, DevOps, Domain, Web Hosting, Server Hosting, Hosting, HomePage, IT Solution, IT Product, DataBase, Maintenance, EC, Shopping Mall, Web Mail, News Solution, 디지털마케팅, E-컨설팅, IT컨설팅, 웹사이트 제작, 클라우드, 인공지능, 증강현실, 혼합현실, 가상현실, IOT 플랫폼, 딥 러닝, 에자일, 데브옵스, 도메인, 웹호스팅, 서버호스팅, 호스팅, 홈페이지, 웹사이트, 솔루션개발, 데이터베이스, 유지보수, 전자상거래, 쇼핑몰, 웹메일, 뉴스솔루션";
 		String keywords = null;
-		
+
 		//
 		String thumbnail = null;
-		
+
 		String description = null;
 
 		// 대분류 안에 소분류로 !
@@ -904,8 +874,6 @@ public class Common_Utils {
 			thumbnail = (String) metaData.get("thumbnail");
 			keywords = (String) metaData.get("newsKeyword") + " " + keywords_default;
 
-			System.out.println("thumbnail"+thumbnail);
-			System.out.println("keywords "+keywords);
 		} else {
 			description = "This is the website for Mwav.net. We are an IT development company possessing total E-Commerce platform based on the fancy technologies. You can contact at https://www.mwav.net/CustomerService/Contact/Contact.mwav?modal=Q&A if you have a question or an inquiry on the site.";
 			thumbnail = "https://www.mwav.net/Images/CompanyLogos/CompanyLogo_L.jpg";
@@ -937,8 +905,7 @@ public class Common_Utils {
 					} else if (url_3depth.equals("OrgChart")) {
 						set_Title = "[Mwav.net] >> [" + url_3depth + "] - " + main_Title;
 
-						keywords = "OrgChart Platinum, OrgChart Now, OrgChart Enterprise, OrgChart Pro, "
-								+ keywords_default;
+						keywords = "OrgChart Platinum, OrgChart Now, OrgChart Enterprise, OrgChart Pro, " + keywords_default;
 					} else if (url_3depth.equals("Azure")) {
 						set_Title = "[Mwav.net] >> [" + url_3depth + "] - " + main_Title;
 
@@ -971,14 +938,10 @@ public class Common_Utils {
 				} else {
 					// .do 등등 일단은 고객친화적이게 임시 변환
 					set_Title = "[Mwav.net] - " + main_Title;
-					// System.out.println("열로3");
 				}
 			}
 		}
-		log.info("title" + set_Title);
-		log.info("keywords" + keywords);
-		log.info("description" + description);
-		
+
 		map.put("mainTitle", main_Title);
 		map.put("title", set_Title);
 		map.put("keywords", keywords);

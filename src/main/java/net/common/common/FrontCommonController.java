@@ -46,11 +46,10 @@ public class FrontCommonController {
 	@RequestMapping(value = { "/", "/Index" })
 	public ModelAndView redirectIndexController(HttpServletRequest request) throws Exception {
 		ModelAndView mv = null;
-				
+
 		try {
 			String url = request.getRequestURI();
 			int pos = url.lastIndexOf(".");
-			System.out.println("pos" + pos);
 
 			// Root 인경우
 			if (pos != -1) {
@@ -59,10 +58,9 @@ public class FrontCommonController {
 			}
 			// Index 인경우
 			else {
-
 				mv = new ModelAndView("/Index");
 			}
-			
+
 		}
 
 		catch (Exception e) {
@@ -75,28 +73,18 @@ public class FrontCommonController {
 	public ModelAndView redirectShopIndexController(HttpServletRequest request) throws Exception {
 		String url = request.getRequestURI();
 		int pos = url.lastIndexOf(".");
-		// String ext = url.substring(pos + 1);
 		ext_url = url.substring(0, pos);
-		// System.out.println("확장자 제외" + ext);
-		// System.out.println("return URL"+ext_url);
 		ModelAndView mv = new ModelAndView(ext_url);
 
 		return mv;
-
 	}
 
 	// 1번 bnsForm : Form 입력만 가능 (뒤로가기, list)
 	@RequestMapping(value = "/hightsofts/hightsofts.mwav")
-	// http://egloos.zum.com/nadostar/v/210497
 	public ModelAndView highsots(CommandMap commandMap, HttpServletRequest request) throws Exception {
-
 		ModelAndView mv = new ModelAndView("/CompanyItem/ITProducts/HighSofts/HighSofts");
-
-		// String items =(String) request.getAttribute("items");
 		String items = (String) commandMap.get("items");
 
-		// String c_items = null;
-		// System.out.println("itmes" + items);
 		if (items.equals("Highcharts")) {
 			mv.addObject("item", "Highcharts");
 
@@ -143,7 +131,6 @@ public class FrontCommonController {
 
 	@RequestMapping(value = "/CompanyItem/**")
 	public ModelAndView redirectCompanyItemController(HttpServletRequest request) throws Exception {
-
 		String url = request.getRequestURI();
 		int pos = url.lastIndexOf(".");
 		ext_url = url.substring(0, pos);
@@ -154,11 +141,6 @@ public class FrontCommonController {
 
 	@RequestMapping(value = "/CustomerService/**")
 	public ModelAndView redirectCustomerServiceItemController(HttpServletRequest request) throws Exception {
-
-		// tiles 의 경우 해당 경로로 들어가게되면, 서블릿을 탄다.
-		// 그런데 main 에서
-
-		// System.out.println("열로들어오나");
 		String url = request.getRequestURI();
 		int pos = url.lastIndexOf(".");
 		ext_url = url.substring(0, pos);
@@ -167,10 +149,9 @@ public class FrontCommonController {
 
 		return mv;
 	}
-	
+
 	@RequestMapping(value = "/Promoter/**")
 	public ModelAndView redirectPromoterController(HttpSession session, HttpServletRequest request) throws Exception {
-
 		String url = request.getRequestURI();
 		int pos = url.lastIndexOf(".");
 		ext_url = url.substring(0, pos);
@@ -186,9 +167,7 @@ public class FrontCommonController {
 
 	@RequestMapping(value = "/filter.mwav", method = RequestMethod.GET)
 	public ModelAndView filter(HttpServletRequest request) {
-		log.info("call filter.do");
 		String param = (String) request.getParameter("param");
-		log.info("call filter.value" + param);
 
 		ModelAndView mv = new ModelAndView("/filter");
 		mv.addObject("param1", param);
@@ -197,7 +176,6 @@ public class FrontCommonController {
 
 	@RequestMapping(value = "/Company/**")
 	public ModelAndView redirectCompanyController(HttpServletRequest request) throws Exception {
-
 		String url = request.getRequestURI();
 		int pos = url.lastIndexOf(".");
 		ext_url = url.substring(0, pos);
@@ -208,7 +186,6 @@ public class FrontCommonController {
 
 	@RequestMapping(value = "/Admins/**")
 	public ModelAndView redirectAdminsController(HttpServletRequest request) throws Exception {
-
 		String url = request.getRequestURI();
 		int pos = url.lastIndexOf(".");
 		ext_url = url.substring(0, pos);
@@ -219,7 +196,6 @@ public class FrontCommonController {
 
 	@RequestMapping(value = "/Templates/**")
 	public ModelAndView redirectTemplatesController(HttpServletRequest request) throws Exception {
-
 		String url = request.getRequestURI();
 		int pos = url.lastIndexOf(".");
 		ext_url = url.substring(0, pos);
@@ -237,16 +213,14 @@ public class FrontCommonController {
 	@RequestMapping(value = "/MasterPage")
 	public ModelAndView redirectMasterPageController(HttpSession session, HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("/MasterPage");
-
 		Enumeration<?> param = request.getParameterNames();
 
 		while (param.hasMoreElements()) {
 			String paramName = (String) param.nextElement();
 			mv.addObject(paramName, request.getParameter(paramName));
 		}
-		
+
 		String naverAuthUrl = naverUrlBuilder.getAuthorizationUrl(session);
-		log.info("url : " + naverAuthUrl);
 		mv.addObject("naver_url", naverAuthUrl);
 
 		return mv;
@@ -254,7 +228,6 @@ public class FrontCommonController {
 
 	@RequestMapping(value = "/MasterPage_1")
 	public ModelAndView redirectMasterPage1Controller(HttpServletRequest request) throws Exception {
-
 		String url = request.getRequestURI();
 		int pos = url.lastIndexOf(".");
 		ext_url = url.substring(0, pos);
