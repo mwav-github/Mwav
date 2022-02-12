@@ -7,13 +7,16 @@ package net.common.common;
 //출처: http://groovysunday.tistory.com/135 [성냥의 불친절한 IT 이야기]
 //#############################################################################################
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 
 // 성냥   : Map으로 사용하고자 할 경우 import
 //import java.util.HashMap;
@@ -23,6 +26,8 @@ import org.json.simple.parser.JSONParser;
 
 public class APIGoogleShorten {
 
+	private static final Logger logger = LoggerFactory.getLogger(APIGoogleShorten.class);
+	
 	// 성냥 : Google 단축URL 사용을 위한 URL
 	public static final String SHORTENER_URL = "https://www.googleapis.com/urlshortener/v1/url?key=";
 
@@ -42,7 +47,7 @@ public class APIGoogleShorten {
 	// #######################################################################################
 	public static String getShortenUrl(String originalUrl) {
 
-		System.out.println("[DEBUG] INPUT_URL : " + originalUrl);
+		logger.debug("[DEBUG] INPUT_URL : " + originalUrl);
 
 		// 성냥 : Exception에 대비해 결과 URL은 처음에 입력 URL로 셋팅
 		String resultUrl = originalUrl;
@@ -50,7 +55,7 @@ public class APIGoogleShorten {
 		// 성냥 : Google Shorten URL API는 JSON으로 longUrl 파라미터를 사용하므로, JSON String
 		// 데이터 생성
 		String originalUrlJsonStr = "{\"longUrl\":\"" + "http://www.mwav.net/board/buView.mwav?boardUser_id=100010&utm_source=twitter&utm_campaign=[업무제휴]Mwav&FusionCharts와업무제휴체결.&utm_medium=social&utm_content=notices&pgl=#news_top" + "\"}";
-		System.out.println("[DEBUG] INPUT_JSON : " + originalUrlJsonStr);
+		logger.debug("[DEBUG] INPUT_JSON : " + originalUrlJsonStr);
 
 		// 성냥 : Google에 변환 요청을 보내기위해 java.net.URL, java.net.HttpURLConnection 사용
 		URL url = null;
@@ -66,10 +71,10 @@ public class APIGoogleShorten {
 		// 데이터) 를 셋팅하여 전송
 		try {
 			url = new URL(SHORTENER_URL + API_KEY);
-			System.out.println("[DEBUG] DESTINATION_URL : " + url.toString());
+			logger.debug("[DEBUG] DESTINATION_URL : " + url.toString());
 
 		} catch (Exception e) {
-			System.out.println("[ERROR] URL set Failed");
+			logger.debug("[ERROR] URL set Failed");
 			e.printStackTrace();
 			return resultUrl;
 		}
@@ -83,7 +88,7 @@ public class APIGoogleShorten {
 			connection.setDoOutput(true);
 			connection.setRequestProperty("Content-Type", "application/json");
 		} catch (Exception e) {
-			System.out.println("[ERROR] Connection open Failed");
+			logger.debug("[ERROR] Connection open Failed");
 			e.printStackTrace();
 			return resultUrl;
 		}
@@ -106,7 +111,7 @@ public class APIGoogleShorten {
 			while ((buf = br.readLine()) != null) {
 				sb.append(buf);
 			}
-			System.out.println("[DEBUG] RESULT_JSON_DATA : " + sb.toString());
+			logger.debug("[DEBUG] RESULT_JSON_DATA : " + sb.toString());
 
 			// 성냥 : Google에서 받은 JSON String을 JSONObject로 변환
 			JSONParser parser = new JSONParser();
@@ -117,7 +122,7 @@ public class APIGoogleShorten {
 			// 성냥 : 결과 JSON Object의 데이터 확인 (주석처리)
 			// String[] str = JSONObject.getNames(jsonObj);
 			// for( String idx : str ){
-			// System.out.println("[DEBUG] PARSING_JSON_DATA : [" + idx +
+			// logger.debug("[DEBUG] PARSING_JSON_DATA : [" + idx +
 			// "] - [" + jsonObj.getString(idx) + "]");
 			// }
 
@@ -130,7 +135,7 @@ public class APIGoogleShorten {
 			// resultUrl = (String) map.get("id"); // Map 으로 저장했을 때
 
 			resultUrl = (String) jsonObj.get("id");
-			System.out.println("resultUrl"+resultUrl);
+			logger.debug("resultUrl"+resultUrl);
 
 		} catch (Exception e) {
 			System.out
@@ -152,7 +157,7 @@ public class APIGoogleShorten {
 				}
 		}
 
-		System.out.println("[DEBUG] RESULT_URL : " + resultUrl);
+		logger.debug("[DEBUG] RESULT_URL : " + resultUrl);
 		return resultUrl;
 	}
 
@@ -162,7 +167,7 @@ public class APIGoogleShorten {
 	// : getShortenUrl(String originalUrl) 은 static 이므로 객체생성없이 바로 사용
 	public static void main(String[] args) {
 		String originalUrl = "http://www.google.com";
-		System.out.println("[DEBUG] main() RESULT_URL  : "
+		logger.debug("[DEBUG] main() RESULT_URL  : "
 				+ APIGoogleShorten.getShortenUrl(originalUrl));
 	}
 }

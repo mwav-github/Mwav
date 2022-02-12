@@ -27,12 +27,6 @@
 		<appender-ref ref="file" />
 	</logger>
 
-	<logger name="net.mwav.statistics.dao" additivity="false">
-		<level value="warn" />
-		<appender-ref ref="console" />
-		<appender-ref ref="file" />
-	</logger>
-	
 	<!-- 3rdparty Loggers -->
 	<logger name="org.springframework.core" additivity="false">
 		<level value="info" />

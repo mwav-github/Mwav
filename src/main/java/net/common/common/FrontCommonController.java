@@ -6,7 +6,6 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,7 +16,6 @@ import net.mwav.member.auth.naver.NaverUrlBuilder;
 
 @Controller
 public class FrontCommonController {
-	Logger log = Logger.getLogger(this.getClass());
 
 	Common_Utils cou = new Common_Utils();
 	String mode;

@@ -14,6 +14,5 @@ public interface StatisticsAdminsService {
 	List<Map<String, Object>> selectListStatLogList(int statistics_id);
 
 	List<Map<String, Object>> selectListStatLogDateList(int statistics_id);
-	
-	
+
 }

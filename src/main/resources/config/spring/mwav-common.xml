@@ -24,7 +24,7 @@
 	<!-- 여기서 안하는 경우 아래 이메일 쪽에서 찾지를 못한다.
 	     패키지 스캔 후 진행해야하니 이메일쪽만 아래 스캔하면 될듯.
 	 -->
-	<context:component-scan base-package="net"></context:component-scan>
+	<!-- <context:component-scan base-package="net"></context:component-scan> -->
 
 
 	<!-- 소셜로그인 프로퍼티 파일 연결 -->

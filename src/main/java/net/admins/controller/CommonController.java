@@ -1,16 +1,14 @@
 package net.admins.controller;
 
-import java.io.File;
 import java.net.URLEncoder;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -23,15 +21,8 @@ import net.common.common.LeftFrame_VO;
 import net.mwav.common.module.Common_Utils;
 import net.mwav.framework.FileLib;
 
-import org.apache.commons.io.FileUtils;
-
 @Controller
 public class CommonController {
-	Logger log = Logger.getLogger(this.getClass());
-	// HttpServletRequest request = null;
-	// 자바에서 세션사용을 위해서는 아래와 같이 필요
-	// 세션 관련 설정은 prehandle 에서 추후 지정(들어오는 url에 따라서)
-	// HttpSession session = request.getSession();
 
 	Common_Utils cou = new Common_Utils();
 
@@ -47,7 +38,7 @@ public class CommonController {
 	 * SFbnsList /CommonApps/BoardNews/FrontNewsList.jsp 5. bnsUpdate : mode =
 	 * SbnsUpdate /CommonApps/BoardNews/bnsForm.jsp
 	 */
-	@Resource(name = "CommonService")
+	@Inject
 	private CommonService CommonService;
 
 	/* ======================Staff====================== */
@@ -60,13 +51,6 @@ public class CommonController {
 	@RequestMapping(value = "/admins/Default.mwav")
 	public ModelAndView adminDefault(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/AdminsIndex");
-
-		// mode = "SbnsForm";
-		// request.setAttribute("mode", mode);
-
-		// mv.addObject("insertBnsForm", insertBnsForm);
-		// mv.addObject("IDX", commandMap.get("IDX"));
-
 		return mv;
 	}
 
@@ -94,35 +78,24 @@ public class CommonController {
 
 		if (mm != null) {
 
-			System.out.println("mm이 controller 까지 = " + mm);
 			List<LeftFrame_VO> vo = null;
 			LeftFrame_Fucntion voF = new LeftFrame_Fucntion();
-			System.out.println("mm=" + mm);
 
 			vo = voF.getMbrList(mm);
-			System.out.println("mm 나가기전" + vo);
 
 			request.setAttribute("mm", mm);
 			request.setAttribute("url", url);
 			request.setAttribute("vo", vo);
 		} else {
-			System.out.println("이쪽으로 온다.");
 			request.setAttribute("mm", null);
 		}
-
-		// mode = "SbnsForm";
-		// request.setAttribute("mode", mode);
-
-		// mv.addObject("insertBnsForm", insertBnsForm);
-		// mv.addObject("IDX", commandMap.get("IDX"));
 
 		return mv;
 	}
 
 	@RequestMapping(value = "/common/fileUpLoader.mwav")
 	@ResponseBody
-	public Map<String, Object> insertGdsUpLoader(CommandMap commandMap, HttpServletRequest request, HttpSession session)
-			throws Exception {
+	public Map<String, Object> insertGdsUpLoader(CommandMap commandMap, HttpServletRequest request, HttpSession session) throws Exception {
 		// ModelAndView mv = new ModelAndView("/Admins/Goods/GdsUpLoader");
 
 		// http://stackoverflow.com/questions/19922358/how-to-upload-an-image-to-webapp-resources-images-directory-using-spring-mvc
@@ -138,20 +111,10 @@ public class CommonController {
 		// https://docs.google.com/document/d/1fYoWD_0-3sGxHjHNHKgGNLmONVTQ9DmaLwO-MSXVCHU/edit
 		// 1.4.7
 
-		System.out.println("uploadRootPath : " + uploadRootPath);
 		/*
 		 * int staff_id = 0; staff_id = (int) session.getAttribute("staff_id");
-		 */ String goods_id = null;
-		goods_id = (String) commandMap.get("goods_id");
-		// staff_id 로그인 !! 후가 아닌 입력시 시점
-		System.out.println("goods_id=" + goods_id);
-
-		/*
-		 * goods_id = String.valueOf(commandMap.get("goods_id"));
-		 * System.out.println("goods_id =" + goods_id);
 		 */
-
-		// System.out.println("staff_id=" + staff_id);
+		// staff_id 로그인 !! 후가 아닌 입력시 시점
 
 		// commandMap.put("staff_id", staff_id);
 		commandMap.put("uploadRootPath", uploadRootPath);
@@ -159,7 +122,6 @@ public class CommonController {
 		Map<String, Object> insertGdsUpLoader = CommonService.insertGdsUpLoader(commandMap.getMap(), request);
 
 		return insertGdsUpLoader;
-
 	}
 
 	/**
@@ -197,26 +159,20 @@ public class CommonController {
 	 * @version 현재 버전
 	*/
 	@RequestMapping(value = "/common/downloadFile.mwav")
-	public void downloadFile(CommandMap commandMap, HttpServletRequest request, HttpServletResponse response, HttpSession session)
-			throws Exception {
+	public void downloadFile(CommandMap commandMap, HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception {
 		String parent = request.getParameter("parent"); //"/CompanyItem/ITProducts/OfficeSuite";
-		String child =  request.getParameter("child"); //"OfficeSuiteSetupFile.zip";
+		String child = request.getParameter("child"); //"OfficeSuiteSetupFile.zip";
 		FileLib fileLib = FileLib.getInstance();
 
 		//String uploadRootPath = session.getServletContext().getRealPath("\\");
-		//System.out.println("root1"+uploadRootPath);
-		String rootPath = request.getSession().getServletContext().getRealPath("/") ;
-		//System.out.println("root2"+rootPath);
+		String rootPath = request.getSession().getServletContext().getRealPath("/");
 		parent = rootPath + parent + "/";
-		//System.out.println("path="+parent+"-"+child);
-		
+
 		//byte fileByte[] = FileUtils.readFileToByteArray(new File("C:\\MwavDev\\Mwav(github)\\Mwav\\src\\main\\webapp\\CompanyItem\\ITProducts\\OfficeSuite\\" + child));
 		byte fileByte[] = fileLib.dowonload(parent, child);
-		//System.out.println("fileByte" + fileByte);
 		response.setContentType("application/octet-stream");
 		response.setContentLength(fileByte.length);
-		response.setHeader("Content-Disposition",
-				"attachment; fileName=\"" + URLEncoder.encode(child, "UTF-8") + "\";");
+		response.setHeader("Content-Disposition", "attachment; fileName=\"" + URLEncoder.encode(child, "UTF-8") + "\";");
 		response.setHeader("Content-Transfer-Encoding", "binary");
 		response.getOutputStream().write(fileByte);
 		response.getOutputStream().flush();

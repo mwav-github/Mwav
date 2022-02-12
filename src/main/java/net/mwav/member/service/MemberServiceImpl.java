@@ -3,8 +3,8 @@ package net.mwav.member.service;
 import net.mwav.common.module.*;
 import net.mwav.member.dao.MemberDAO;
 import net.mwav.member.vo.Member_tbl_VO;
-import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.mail.MailAuthenticationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,7 +12,7 @@ import org.springframework.ui.velocity.VelocityEngineUtils;
 import org.springframework.web.servlet.view.velocity.VelocityConfigurer;
 import org.springframework.web.util.WebUtils;
 
-import javax.annotation.Resource;
+import javax.inject.Inject;
 import javax.mail.Message;
 import javax.servlet.ServletContext;
 import javax.servlet.http.Cookie;
@@ -25,31 +25,22 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Service("memberService")
+@Service
 public class MemberServiceImpl implements MemberService {
-	Logger log = Logger.getLogger(this.getClass());
 
-	String encrypted = null;
+	private static final Logger logger = LoggerFactory.getLogger(MemberServiceImpl.class);
 
-	@Resource(name = "memberDAO")
+	@Inject
 	private MemberDAO memberDAO;
 
-	@Autowired
-	EmailSender emailSender;
-
-	@Autowired
+	@Inject
 	ServletContext servletContext;
 
-	@Autowired
+	@Inject
 	VelocityConfigurer velocityConfig;
-	/*
-	 * ========================================등록========================================
-	 */
 
 	/**
-	 * @date 2016.04.27
-	 * @author Kim YJ
-	 * @see 서비스단 로직 활용
+	 * 등록
 	 */
 	@Transactional(rollbackFor = { Exception.class }, readOnly = false)
 	@Override
@@ -67,8 +58,7 @@ public class MemberServiceImpl implements MemberService {
 			// 2. 유효성 검증(추후에 유효성 검증 구현체 개발 시 변환)
 			boolean isValid = validation.matches(map.get("mbrLoginId").toString(), "^[a-zA-Z]{1}[a-zA-Z0-9_-]{3,19}$")
 					|| validation.matches(map.get("mbrLoginPw").toString(), "^(?=.*[\\{\\}\\[\\]\\/?.,;:|\\)*~`!^\\-_+<>@\\#$%&\\\\\\=\\(\\'\\\"])(?=.*[0-9])(?=.*[a-zA-Z])[\\{\\}\\[\\]\\/?.,;:|\\)*~`!^\\-_+<>@\\#$%&\\\\\\=\\(\\'\\\"0-9a-zA-Z]{8,255}$")
-					|| validation.isKorName(map.get("mbrFirstName").toString(), map.get("mbrLastName").toString()) 
-					|| validation.iskorCellurar(map.get("mbrCellPhone").toString()) 
+					|| validation.isKorName(map.get("mbrFirstName").toString(), map.get("mbrLastName").toString()) || validation.iskorCellurar(map.get("mbrCellPhone").toString())
 					|| validation.isEmail(map.get("mbrEmail").toString());
 			if (!isValid) {
 				result.put("result", "42");
@@ -82,7 +72,7 @@ public class MemberServiceImpl implements MemberService {
 			// 4. 비밀번호 암호화
 			String b_mbrLoginPw = map.get("mbrLoginPw").toString();
 			//AES/CBC/IV 암호화 (키,암호화텍스트,iv)
-			encrypted = SecurityLib.getInstance().encryptToString(AesEncryption.sKey, AesEncryption.sInitVector, b_mbrLoginPw);	
+			String encrypted = SecurityLib.getInstance().encryptToString(AesEncryption.sKey, AesEncryption.sInitVector, b_mbrLoginPw);
 			if (encrypted == null) {
 				result.put("result", "99");
 				result.put("message", "EXCEPTION");
@@ -104,7 +94,7 @@ public class MemberServiceImpl implements MemberService {
 				result.put("message", "NO_AFFECTED");
 			}
 
-//			emailSender.sendRegistrationEmail(map);
+			//			emailSender.sendRegistrationEmail(map);
 			// 멤버에게 회원가입 성공 메일 발송
 			this.emailMemberSender(map);
 			// 관리자에게 멤버 회원가입 알림 메일 발송
@@ -145,15 +135,11 @@ public class MemberServiceImpl implements MemberService {
 		MailConfig config = (MailConfig) xmlLib.unmarshal(realPath, MailConfig.class);
 
 		//client에서 템플릿엔진 라이브러리르 호출하여 html코드로 파싱 후 문자열로 반환
-		String content = VelocityEngineUtils.mergeTemplateIntoString(velocityConfig.createVelocityEngine()
-				, "/GeneralMail/GeneralMail_Registration.vm", "UTF-8", map);
+		String content = VelocityEngineUtils.mergeTemplateIntoString(velocityConfig.createVelocityEngine(), "/GeneralMail/GeneralMail_Registration.vm", "UTF-8", map);
 
 		// Mail의 정보를 담음
-		Message msg = new MessageBuilder(config.getCollectAllFieldProp())
-				.setRecipient((String) map.get("mbrEmail"))
-				.setFrom(config.getFrom())
-				.setSubject("[Mwav]" + (String) map.get("mbrLoginId") + "님, 회원가입을 환영합니다.")
-				.setContent(content).build();
+		Message msg = new MessageBuilder(config.getCollectAllFieldProp()).setRecipient((String) map.get("mbrEmail")).setFrom(config.getFrom()).setSubject("[Mwav]" + (String) map.get("mbrLoginId")
+				+ "님, 회원가입을 환영합니다.").setContent(content).build();
 
 		// 메일 발송
 		MailLib mailLib = MailLib.getInstance();
@@ -183,11 +169,8 @@ public class MemberServiceImpl implements MemberService {
 		MailConfig config = (MailConfig) xmlLib.unmarshal(realPath, MailConfig.class);
 
 		// Mail의 정보를 담음
-		Message msg = new MessageBuilder(config.getCollectAllFieldProp())
-				.setRecipient(config.getFrom())
-				.setFrom(config.getFrom())
-				.setSubject(map.get("mbrLoginId") + "회원이 가입되었습니다.")
-				.setContent("가입한 이메일은 " +map.get("mbrEmail") + "입니다.").build();
+		Message msg = new MessageBuilder(config.getCollectAllFieldProp()).setRecipient(config.getFrom()).setFrom(config.getFrom()).setSubject(map.get("mbrLoginId")
+				+ "회원이 가입되었습니다.").setContent("가입한 이메일은 " + map.get("mbrEmail") + "입니다.").build();
 
 		// 메일 발송
 		MailLib mailLib = MailLib.getInstance();
@@ -312,7 +295,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public String selectNextSnsPk(){
+	public String selectNextSnsPk() {
 		return memberDAO.selectNextSnsPk();
 	}
 
@@ -336,10 +319,10 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override //오토로그인 날짜데이터 추가
 	public boolean updateAutoLogin(String onOff, HttpServletResponse response, int member_id) {
-		System.out.println("autologin안에 들어옴");
-		System.out.println("autologin 값" + onOff);
+		logger.debug("autologin안에 들어옴");
+		logger.debug("autologin 값" + onOff);
 		if (onOff != null && onOff.equals("on")) {
-			System.out.println("autologin실행됨");
+			logger.debug("autologin실행됨");
 			//int amount = 60 * 60 * 24 * 14; //일주일
 			long amount = 60 * 60 * 24 * 180; //반년 주의) 반년계산시에는 int 형은 안된다.
 			HashMap<String, Object> map = new HashMap<String, Object>();
@@ -364,14 +347,14 @@ public class MemberServiceImpl implements MemberService {
 		Cookie loginCookie = WebUtils.getCookie(request, "autoLogin");
 		Member_tbl_VO member = (Member_tbl_VO) session.getAttribute("member");
 		if (member != null) {
-			System.out.println("세션의 멤버가 눌이 아님");
+			logger.debug("세션의 멤버가 눌이 아님");
 			if (loginCookie != null) {
 				loginCookie.setPath("/");
 				loginCookie.setValue(null);
 				loginCookie.setMaxAge(0);
 				response.addCookie(loginCookie);
 				;
-				System.out.println("오토로그인 삭제 성공");
+				logger.debug("오토로그인 삭제 성공");
 				return memberDAO.updateAutoLoginDel(member.getMember_id());
 
 			}

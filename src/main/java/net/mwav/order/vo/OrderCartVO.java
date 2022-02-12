@@ -1,6 +1,5 @@
 package net.mwav.order.vo;
 
-import java.sql.Timestamp;
 import java.util.Date;
 
 /*DB와 칼럼명 맞춰줘야한다. */

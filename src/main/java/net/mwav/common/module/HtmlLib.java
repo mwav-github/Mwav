@@ -1,16 +1,17 @@
 package net.mwav.common.module;
 
-import org.apache.log4j.Logger;
-
 import net.mwav.statistics.vo.StatisticsVO;
-import net.pieroxy.ua.detection.*;
+import net.pieroxy.ua.detection.UserAgentDetectionResult;
+import net.pieroxy.ua.detection.UserAgentDetector;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author student
  *
  */
 public class HtmlLib {
-	Logger log = Logger.getLogger(this.getClass());
+	private static final Logger logger = LoggerFactory.getLogger(HtmlLib.class);
 	StatisticsVO statisticsVO;
 
 	private static HtmlLib htmlLib;
@@ -65,7 +66,7 @@ public class HtmlLib {
  */
 			
 
-			log.info("userAgent" + userAgent);
+			logger.info("userAgent" + userAgent);
 			UserAgentDetectionResult res = new UserAgentDetector()
 					.parseUserAgent(userAgent);
 
@@ -127,11 +128,11 @@ public class HtmlLib {
 			// 8, 8S, X 모두 iPhone OS 11_0 iPhone 8 - (750px x 1334px)  / iPhone 8 Plus - (1242px x 2208px)/ iPhone X - (1125px x 2436px)
 			//https://stackoverflow.com/questions/46261031/what-would-be-the-user-agent-string-for-iphone-8-iphone-8-plus-and-iphone-x
 			// -> As far as I know, user agent for iPhone 8, iPhone 8 plus and iPhone X are same. To detect device we need to check screen size of the device.
-			log.info("DeviceType = " + vo.getStDeviceType());
-			log.info("DeviceInfo = " + vo.getStDeviceInfo());
-			log.info("BrowerInfo = " + vo.getStBrowserInfo());
-			log.info("CountryInfo = " + vo.getStCountryInfo());
-			log.info("CPU" + vo.getStHTTP_UA_CPU());
+			logger.info("DeviceType = " + vo.getStDeviceType());
+			logger.info("DeviceInfo = " + vo.getStDeviceInfo());
+			logger.info("BrowerInfo = " + vo.getStBrowserInfo());
+			logger.info("CountryInfo = " + vo.getStCountryInfo());
+			logger.info("CPU" + vo.getStHTTP_UA_CPU());
 			
 		} catch (Exception e) {
 			e.printStackTrace();

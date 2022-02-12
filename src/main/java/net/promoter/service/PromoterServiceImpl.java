@@ -3,22 +3,21 @@ package net.promoter.service;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
+import javax.inject.Inject;
+
+import org.springframework.stereotype.Service;
 
 import net.promoter.dao.PromoterDAO;
 import net.promoter.vo.Promoter_VO;
 
-import org.springframework.stereotype.Service;
-
-@Service("promoterService")
+@Service
 public class PromoterServiceImpl implements PromoterService {
 
-	@Resource(name = "promoterDAO")
+	@Inject
 	private PromoterDAO promoterDAO;
 
 	@Override
 	public int selectNextPmtPk() throws Exception {
-		// TODO Auto-generated method stub
 		return promoterDAO.selectNextPmtPk();
 	}
 
@@ -53,7 +52,7 @@ public class PromoterServiceImpl implements PromoterService {
 	@Override
 	public Promoter_VO selectPmtLogin(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return  (Promoter_VO)promoterDAO.selectPmtLogin(map);
+		return (Promoter_VO) promoterDAO.selectPmtLogin(map);
 	}
 
 	@Override

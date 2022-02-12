@@ -1,25 +1,15 @@
 package net.common.common;
 
-import java.io.IOException;
-import java.nio.file.FileSystems;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardWatchEventKinds;
-import java.nio.file.WatchEvent;
-import java.nio.file.WatchEvent.Kind;
-import java.nio.file.WatchKey;
-import java.nio.file.WatchService;
-import java.util.List;
-
-import javax.annotation.Resource;
-import javax.servlet.ServletContext;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RestController;
-
-import net.admins.service.CommonService;
 import net.admins.vo.WatchVO;
 import net.sf.ehcache.CacheManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.io.IOException;
+import java.nio.file.*;
+import java.nio.file.WatchEvent.Kind;
+import java.util.List;
 
 /**
  * @author 박정은
@@ -29,6 +19,9 @@ import net.sf.ehcache.CacheManager;
  */
 @RestController
 public class WatchController {
+
+    private static final Logger logger = LoggerFactory.getLogger(WatchController.class);
+
     private WatchKey watchKey;
     private final static WatchController INSTANCE = new WatchController();
     
@@ -60,7 +53,7 @@ public class WatchController {
                 for(WatchEvent<?> event : events) {
                     //이벤트 종류
                     Kind<?> kind = event.kind();
-                    System.out.println("경로출력" + watchVO.getFilePath() + watchVO.getFileName());
+                    logger.debug("경로출력" + watchVO.getFilePath() + watchVO.getFileName());
                     if(kind.equals(StandardWatchEventKinds.ENTRY_MODIFY)) {
                     	Path changed = (Path) event.context();
                     	try {

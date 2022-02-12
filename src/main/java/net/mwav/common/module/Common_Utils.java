@@ -537,14 +537,9 @@ public class Common_Utils {
 		String slPageName = null;
 		String url_1depth = null;
 		String url_2depth = null;
-		String last_depth = null;
 		int first_slash = url.indexOf("/");
 		int second_slash = url.indexOf("/", first_slash + 1);
 		int third_slash = url.indexOf("/", second_slash + 1);
-		// int fourth_slash = url.indexOf("/", third_slash + 1);
-		// int last_slash = url.lastIndexOf("/");
-		int last_slash = url.lastIndexOf("/");
-		int lastDot = url.lastIndexOf('.');
 
 		try {
 
@@ -553,9 +548,6 @@ public class Common_Utils {
 			}
 			if (third_slash != -1) {
 				url_2depth = url.substring(second_slash + 1, third_slash);
-			}
-			if (lastDot != -1) {
-				last_depth = url.substring(last_slash + 1, lastDot);
 			}
 
 			// url 은 전체 url_1depth은 /제외
@@ -866,8 +858,7 @@ public class Common_Utils {
 		String description = null;
 
 		// 대분류 안에 소분류로 !
-		StringLib stringLib = StringLib.getInstance();
-		if (!(stringLib.isEmpty(metaData))) {
+		if (!(StringLib.isEmpty(metaData))) {
 			main_Title = "[Mwav.net] >> [" + url_1depth + " > " + last_depth + "] - " + (String) metaData.get("title");
 			set_Title = (String) metaData.get("title");
 			description = (String) metaData.get("description");

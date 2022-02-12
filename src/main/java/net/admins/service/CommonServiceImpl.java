@@ -1,60 +1,40 @@
 package net.admins.service;
 
-import java.nio.file.FileSystems;
-import java.nio.file.WatchService;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
 
-import javax.annotation.Resource;
+import javax.inject.Inject;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
-import net.admins.dao.CommonDAO;
-import net.admins.dao.StaffDAO;
-import net.admins.vo.WatchVO;
-import net.common.common.CommandMap;
-import net.common.common.WatchController;
-import net.mwav.common.module.FileUtils;
-import net.mwav.common.module.GeneralConfig;
-import net.mwav.common.module.XmlLib;
-
-import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.servlet.ModelAndView;
 
-@Service("CommonService")
+import net.admins.vo.WatchVO;
+import net.common.common.WatchController;
+import net.mwav.common.module.GeneralConfig;
+import net.mwav.common.module.XmlLib;
+
+@Service
 @PropertySource("classpath:googleProperties/application.properties")
 public class CommonServiceImpl implements CommonService {
-	Logger log = Logger.getLogger(this.getClass());
 
-	@Resource(name = "fileUtils")
-	private FileUtils fileUtils;
+	private static final Logger logger = LoggerFactory.getLogger(CommonServiceImpl.class);
 
-	@Resource(name = "commonDAO")
-	private CommonDAO commonDAO;
-	
 	@Value("${cache.fileName}")
 	private String fileName;
-	
-	@Autowired private ServletContext servletContext;
+
+	@Inject
+	private ServletContext servletContext;
 
 	@Override
 	public Map<String, Object> insertGdsUpLoader(Map<String, Object> map, HttpServletRequest request) throws Exception {
-		// TODO Auto-generated method stub
 		/*
 		 * 파일업로드
 		 * 
@@ -63,8 +43,6 @@ public class CommonServiceImpl implements CommonService {
 		 */
 		// /////////////////////////
 		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
-		System.out.println("ㅇㅇ");
-		System.out.println("multipartHttpServletRequest=" + multipartHttpServletRequest);
 		/*
 		 * (MultipartHttpServletRequest)request; 부분이다. 위에서 첨부파일은 Multipart 형식의 데이터이며,
 		 * HttpServletRequest에 담겨서 서버로 전송된다고 이야기하였다. HttpServletRequest 그 자체로는
@@ -72,7 +50,6 @@ public class CommonServiceImpl implements CommonService {
 		 * 하였다.
 		 */
 		Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
-		System.out.println("d" + multipartHttpServletRequest.getFileNames());
 		/*
 		 * 
 		 * 이터레이터(Iterator) 패턴을 이용하여 request에 전송된 모든 name을 이용하려고 하는 부분이다. Iterator는 어떤
@@ -84,16 +61,11 @@ public class CommonServiceImpl implements CommonService {
 		MultipartFile multipartFile = null;
 		multipartFile = multipartHttpServletRequest.getFile(iterator.next());
 
-		System.out.println(multipartFile.getName());
-		System.out.println(multipartFile.getOriginalFilename());
-		System.out.println(multipartFile.getSize());
-		log.debug("------------- file start -------------");
-		log.debug("name : " + multipartFile.getName());
-		log.debug("filename : " + multipartFile.getOriginalFilename());
-		log.debug("size : " + multipartFile.getSize());
-		log.debug("-------------- file end --------------\n");
-
-		List<Map<String, Object>> list = fileUtils.parseInsertFileInfo(map, request);
+		logger.debug("------------- file start -------------");
+		logger.debug("name : " + multipartFile.getName());
+		logger.debug("filename : " + multipartFile.getOriginalFilename());
+		logger.debug("size : " + multipartFile.getSize());
+		logger.debug("-------------- file end --------------\n");
 
 		while (iterator.hasNext()) {
 			multipartFile = multipartHttpServletRequest.getFile(iterator.next());
@@ -110,11 +82,11 @@ public class CommonServiceImpl implements CommonService {
 			 * getOriginalFilename(), getSize() 메서드 등을 통해서 파일의 정보를 출력하고 있다.
 			 */
 			if (multipartFile.isEmpty() == false) {
-				log.debug("------------- file start -------------");
-				log.debug("name : " + multipartFile.getName());
-				log.debug("filename : " + multipartFile.getOriginalFilename());
-				log.debug("size : " + multipartFile.getSize());
-				log.debug("-------------- file end --------------\n");
+				logger.debug("------------- file start -------------");
+				logger.debug("name : " + multipartFile.getName());
+				logger.debug("filename : " + multipartFile.getOriginalFilename());
+				logger.debug("size : " + multipartFile.getSize());
+				logger.debug("-------------- file end --------------\n");
 			}
 		}
 		// ////////////////////////
@@ -132,13 +104,12 @@ public class CommonServiceImpl implements CommonService {
 	public GeneralConfig getFrontFooter(HttpServletRequest request, String xml) throws Exception {
 		WatchVO watchVO = new WatchVO();
 		WatchController watchController = new WatchController();
-		
+
 		watchVO.setCacheKey(xml);
 		CreateWatchMap(watchVO);
 		watchController.watchService(watchVO);
-		
-		GeneralConfig generalConfig = (GeneralConfig) XmlLib.getInstance().unmarshal(watchVO.getFilePath() + watchVO.getFileName(),
-				GeneralConfig.class);
+
+		GeneralConfig generalConfig = (GeneralConfig) XmlLib.getInstance().unmarshal(watchVO.getFilePath() + watchVO.getFileName(), GeneralConfig.class);
 		return generalConfig;
 	}
 
