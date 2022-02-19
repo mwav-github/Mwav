@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>net.company</groupId>
@@ -19,8 +18,6 @@
 		<commons-configuration>1.10</commons-configuration>
 	</properties>
 
-	<!-- 빌트플랫폼인 메이븐 디펜던시를 관리해주는 녀석 http://www.egovframe.go.kr/wiki/doku.php?id=egovframework:dev:dep:build:maven 
-		중요 -->
 	<repositories>
 		<!-- legacy -->
 		<repository>
@@ -98,10 +95,6 @@
 			<version>${org.springframework-version}</version>
 		</dependency>
 
-		<!--jdbc 는 스프링에서 테스트용이라서 나중에 삭제 하기 <dependency> <groupId>org.springframework</groupId> 
-			<artifactId>spring-jdbc</artifactId> <version>${org.springframework-version}</version> 
-			</dependency> -->
-
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-tx</artifactId>
@@ -124,7 +117,6 @@
 
 		<!-- Tiles 추가 16/11/30 단순한 tiles 기능만 사용한다면 extras만 받아도 상관없다고 한다. - tiles3을 
 			이용한다. tiles2와의 차이는 여기를 참고하길바란다. iles3을 사용하기 위해서는 spring 3.2이상 버전을 사용해야한다. -->
-
 		<!-- http://mvnrepository.com/artifact/org.apache.tiles/tiles-core -->
 		<dependency>
 			<groupId>org.apache.tiles</groupId>
@@ -147,7 +139,6 @@
 			<artifactId>tiles-jsp</artifactId>
 			<version>3.0.5</version>
 		</dependency>
-
 
 		<!-- velocity 170325 추가 (이메일) -->
 		<dependency>
@@ -195,9 +186,6 @@
 			<version>5.1.31</version>
 		</dependency>
 
-		<!-- Oracle <dependency> <groupId>com.oracle</groupId> <artifactId>ojdbc14</artifactId> 
-			<version>10.2.0.4.0</version> </dependency> -->
-
 		<!-- AspectJ -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
@@ -244,28 +232,24 @@
 			<artifactId>jsr250-api</artifactId>
 			<version>1.0</version>
 		</dependency>
+		
+		<!-- log4j2 -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>2.17.1</version>
+		</dependency>
 
-		<!-- Logging org.lazyluke http://sbs20011.tistory.com/entry/log4j-%EC%84%A4%EC%A0%95 -->
 		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>${org.slf4j-version}</version>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-slf4j-impl</artifactId>
+			<version>2.17.1</version>
 		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>jcl-over-slf4j</artifactId>
-			<version>${org.slf4j-version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>${org.slf4j-version}</version>
-		</dependency>
+
 		<dependency>
 			<groupId>org.lazyluke</groupId>
 			<artifactId>log4jdbc-remix</artifactId>
 			<version>0.2.7</version>
-			<!-- http://addio3305.tistory.com/66 -->
 		</dependency>
 
 		<!-- MappingJacksonJsonView -->
@@ -321,31 +305,6 @@
 			<groupId>commons-codec</groupId>
 			<artifactId>commons-codec</artifactId>
 			<version>1.10</version>
-		</dependency>
-
-		<!-- Log4j -->
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>1.2.15</version>
-			<exclusions>
-				<exclusion>
-					<groupId>javax.mail</groupId>
-					<artifactId>mail</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>javax.jms</groupId>
-					<artifactId>jms</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>com.sun.jdmk</groupId>
-					<artifactId>jmxtools</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>com.sun.jmx</groupId>
-					<artifactId>jmxri</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 
 		<dependency>
@@ -498,13 +457,6 @@
 			<version>2.2.11</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-cache -->
-<!-- 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-cache</artifactId>
-			<version>2.2.5.RELEASE</version>
-		</dependency> -->
-
 		<!-- EHCache 모듈 (박정은) -->
 		<dependency>
 			<groupId>net.sf.ehcache</groupId>
@@ -537,10 +489,10 @@
 
 		<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
 		<dependency>
-		    <groupId>javax.servlet</groupId>
-		    <artifactId>javax.servlet-api</artifactId>
-		    <version>4.0.1</version>
-		    <scope>provided</scope>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>4.0.1</version>
+			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
@@ -561,95 +513,95 @@
     	스테이징용 Profile
     	1. data-source의 DB의 정보는 Jenkins 서버가 가지고 있기 때문에 교체 작업
     -->
-    <profiles>
-	  <profile>
+	<profiles>
+		<profile>
          <!-- mvn -Pdev clean package -->
-         <id>dev</id>
-		 <build>
-			 <plugins>
-				 <plugin>
-					 <artifactId>maven-antrun-plugin</artifactId>
-					 <version>1.3</version>
-					 <executions>
-						 <execution>
+			<id>dev</id>
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-antrun-plugin</artifactId>
+						<version>1.3</version>
+						<executions>
+							<execution>
 							 <!-- clean 작업 후 task 시작 -->
-							 <phase>clean</phase>
-							 <goals>
-								 <goal>run</goal>
-							 </goals>
-						 </execution>
-					 </executions>
-				 </plugin>
-			 </plugins>
-		 </build>
-	  </profile>
-      <profile>
+								<phase>clean</phase>
+								<goals>
+									<goal>run</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
          <!-- mvn -Pstg clean package -->
-         <id>stg</id>
-         <build>
-           <plugins>
-             <plugin>
+			<id>stg</id>
+			<build>
+				<plugins>
+					<plugin>
                <!-- antrun 플러그인을 사용 -->
-               <artifactId>maven-antrun-plugin</artifactId>
-               <version>1.3</version>
-               <executions>
-                 <execution>
+						<artifactId>maven-antrun-plugin</artifactId>
+						<version>1.3</version>
+						<executions>
+							<execution>
                    <!-- clean 작업 후 task 시작 -->
-                   <phase>clean</phase>
-                   <goals>
-                     <goal>run</goal>
-                   </goals>
-                   <configuration>
-                     <tasks>
+								<phase>clean</phase>
+								<goals>
+									<goal>run</goal>
+								</goals>
+								<configuration>
+									<tasks>
                        <!-- mwav-data 소스를 제거 후 Staging용 소스로 교체 -->
-                       <delete file="src/main/resources/config/spring/mwav-data.xml"/>
-                       <copy file="/app/dev_file/mwav-data-stg.xml" tofile="src/main/resources/config/spring/mwav-data.xml" />
-                     </tasks>
-                   </configuration>
-                 </execution>
-               </executions>
-             </plugin>
+										<delete file="src/main/resources/config/spring/mwav-data.xml" />
+										<copy file="/app/dev_file/mwav-data-stg.xml" tofile="src/main/resources/config/spring/mwav-data.xml" />
+									</tasks>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
 
-           </plugins>
-         </build>
-       </profile>
+				</plugins>
+			</build>
+		</profile>
 
-      <profile>
+		<profile>
          <!-- mvn -Pprd clean package -->
-         <id>prd</id>
-         <build>
-           <plugins>
-             <plugin>
+			<id>prd</id>
+			<build>
+				<plugins>
+					<plugin>
                <!-- antrun 플러그인을 사용 -->
-               <artifactId>maven-antrun-plugin</artifactId>
-               <version>1.3</version>
-               <executions>
-                 <execution>
+						<artifactId>maven-antrun-plugin</artifactId>
+						<version>1.3</version>
+						<executions>
+							<execution>
                    <!-- clean 작업 후 task 시작 -->
-                   <phase>clean</phase>
-                   <goals>
-                     <goal>run</goal>
-                   </goals>
-                   <configuration>
-                     <tasks>
+								<phase>clean</phase>
+								<goals>
+									<goal>run</goal>
+								</goals>
+								<configuration>
+									<tasks>
                        <!-- mwav-data 소스를 제거 후 prd용 소스로 교체 -->
-                       <delete file="src/main/resources/config/spring/mwav-data.xml"/>
-                       <copy file="/app/dev_file/mwav-data-prd.xml" tofile="src/main/resources/config/spring/mwav-data.xml" />
+										<delete file="src/main/resources/config/spring/mwav-data.xml" />
+										<copy file="/app/dev_file/mwav-data-prd.xml" tofile="src/main/resources/config/spring/mwav-data.xml" />
 			<!-- application.properties 소스를 제거 후 prd용 소스로 교체 -->
-                       <delete file="src/main/resources/googleProperties/application.properties"/>
-                       <copy file="/app/dev_file/prd-application.properties" tofile="src/main/resources/googleProperties/application.properties" />
+										<delete file="src/main/resources/googleProperties/application.properties" />
+										<copy file="/app/dev_file/prd-application.properties" tofile="src/main/resources/googleProperties/application.properties" />
 			<!-- mail.xml.config 소스를 제거 후 prd용 소스로 교체 -->
-                       <delete file="src/main/webapp/xConfig/mail.xml.config"/>
-                       <copy file="/app/dev_file/prd-mail.xml.config" tofile="src/main/webapp/xConfig/mail.xml.config" />			     
-                     </tasks>
-                   </configuration>
-                 </execution>
-               </executions>
-             </plugin>
-           </plugins>
-         </build>
-      </profile>	    
-    </profiles>
+										<delete file="src/main/webapp/xConfig/mail.xml.config" />
+										<copy file="/app/dev_file/prd-mail.xml.config" tofile="src/main/webapp/xConfig/mail.xml.config" />
+									</tasks>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 
 
 	<build>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+
+	<Appenders>
+		<Console name="console" target="SYSTEM_OUT">
+			<PatternLayout pattern="%d %p [%c:%L] %m%n" />
+		</Console>
+		<RollingFile name="file" fileName="${catalina.home}/logs/MwavLog.log" filePattern="${catalina.home}/logs/MwavLog.log.%d{yyyy-MM-dd-hh-mm}">
+			<PatternLayout pattern="%d %5p [%c] %m%n" />
+			<Policies>
+				<SizeBasedTriggeringPolicy size="1000" />
+			</Policies>
+			<DefaultRolloverStrategy max="7" fileIndex="min" />
+		</RollingFile>
+	</Appenders>
+
+	<Loggers>
+		<!-- Application Loggers-->
+		<Logger name="net" additivity="false" level="info">
+			<AppenderRef ref="console" />
+			<AppenderRef ref="file" />
+		</Logger>
+
+		<!-- 3rdparty Loggers -->
+		<Logger name="org.springframework.core" additivity="false" level="info">
+			<AppenderRef ref="console" />
+		</Logger>
+
+		<Logger name="org.springframework.beans" additivity="false" level="info">
+			<AppenderRef ref="console" />
+		</Logger>
+
+		<Logger name="org.springframework.context" additivity="false" level="info">
+			<AppenderRef ref="console" />
+		</Logger>
+
+		<Logger name="org.springframework.web" additivity="false" level="info">
+			<AppenderRef ref="console" />
+		</Logger>
+	
+		<!-- sql Loggers -->
+		<Logger name="jdbc.sqltiming" additivity="false" level="info">
+			<AppenderRef ref="console" />
+			<AppenderRef ref="file" />
+		</Logger>
+
+		<Logger name="jdbc.sqlonly" additivity="false" level="off">
+			<AppenderRef ref="console" />
+		</Logger>
+
+		<Logger name="jdbc.audit" additivity="false" level="off">
+		</Logger>
+
+		<Logger name="jdbc.resultset" additivity="false" level="off">
+		</Logger>
+
+		<Logger name="jdbc.resultsettable" additivity="false" level="off">
+		</Logger>
+
+		<Logger name="jdbc.connection" additivity="false" level="off">
+		</Logger>
+
+		<Root level="info">
+			<AppenderRef ref="console" />
+			<AppenderRef ref="file" />
+		</Root>
+	</Loggers>
+
+</Configuration>
