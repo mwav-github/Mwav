@@ -37,7 +37,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 		Member_tbl_VO member = (Member_tbl_VO) session.getAttribute("member");
 		Staff_VO staff = (Staff_VO) session.getAttribute("staff");
 		String uri = request.getRequestURI();
-		String url = uri.substring(0, Math.min(7, uri.length()));
+		String domain = uri.substring(0, Math.min(7, uri.length()));
 		
 		String memberId = (member == null) ? "null" : String.valueOf(member.getMember_id());
 		String staffId = (staff == null) ? "null" : String.valueOf(staff.getStaff_id());
@@ -47,27 +47,27 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 		logger.debug("staffId : " + staffId);
 		logger.debug("memberId : " + memberId);
 		logger.debug("====================================== END ======================================");
-
-		if (uri.equals("/Admins/CompanyMgr/Staff/StfLogin.mwav")) {
+		
+		// 로그인 페이지 및 로그인 동작 시 통과
+		if ("/Admins/CompanyMgr/Staff/StfLogin.mwav".equals(uri) || "/admins/staff/stfLogin.mwav".equals(uri)) {
 			return true;
 		}
 
-		boolean isAdmin = "/Admins".equals(url) || "/admins".equals(url) || "/admin/".equals(url);
+		boolean isAdmin = "/Admins".equals(domain) || "/admins".equals(domain) || "/admin/".equals(domain);
 
+		// 관리자 uri 접근 및 인증된 경우
+		if (isAdmin && staff != null) {
+			return true;
+		}
+		
 		// 관리자 uri 접근 및 미인증된 경우
 		if (isAdmin && staff == null) {
 			response.sendRedirect("/Admins/CompanyMgr/Staff/StfLogin.mwav");
 			return false;
 		}
 
-		// 관리자 uri 접근 및 인증된 경우
-		if (isAdmin && staff != null) {
-			response.sendRedirect("/admins/Default.mwav");
-			return false;
-		}
-
 		// 특정 url에 접근하는 경우 및 미인증된 경우
-		if (urls.contains(url) && member == null) {
+		if (urls.contains(uri) && member == null) {
 			response.sendRedirect("/MasterPage.mwav?mode=SMbrLogin&returnUrl=" + uri);
 			return false;
 		}
