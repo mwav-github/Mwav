@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- 로그인 -->
-<mapper namespace="net.bizlogin.promoter.manage.dao">
+<mapper namespace="net.bizlogin.promoter.manage.dao.ManageDao">
 	
 	<!-- 프로모터 검색 -->
 	<select id="getPromoter" parameterType="map" resultType="map">

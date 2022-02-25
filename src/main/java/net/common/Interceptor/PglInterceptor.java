@@ -33,7 +33,7 @@ public class PglInterceptor extends HandlerInterceptorAdapter {
 		if (pglValue == null || pglValue.equals(""))
 			return true;
 
-		// pgl값이 있을 경우 세션과 쿠키에 저장하고 푸터에 표시함 
+		// pgl값이 있을 경우 세션과 쿠키에 저장하고 푸터에 표시함
 		// 세션과 쿠키에는 방문자수는 1회만 저장하면 된다.
 		if (request.getSession().getAttribute("pmtPK") != pglValue) {
 			try {
@@ -64,8 +64,8 @@ public class PglInterceptor extends HandlerInterceptorAdapter {
 
 		if (promoter != null) {
 			response.addCookie(pmtPK); //쿠키에 pgp 등록등록
-			request.getSession().setAttribute("pmtName", promoter.get("pmtName"));
-			request.getSession().setAttribute("pmtNick", promoter.get("pmtNick"));
+			request.getSession().setAttribute("pmtName", promoter.get("pmtFirstName"));
+			request.getSession().setAttribute("pmtNick", promoter.get("pmtNickName"));
 			request.getSession().setAttribute("pmtPK", promoter.get("promoter_id"));
 
 			if (manageDao.increaseVisitCount(param) == 1) {
