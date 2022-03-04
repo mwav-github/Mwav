@@ -18,6 +18,12 @@
 					<input type="hidden" id="token" name="token" value="">
 
 					<div class="img-wrap mb-4">
+						<a class="btn-overlay" href="${naver_url}">
+							<img src="<c:url value='/resources/bizlogin/images/oauth/btnG_naver_complete.png' />" style="width: 100%; height: 51.38px;">
+						</a>
+					</div>
+
+					<div class="img-wrap mb-4">
 						<a class="btn-overlay" href="javascript:loginWithKakao()">
 							<img src="https://developers.kakao.com/tool/resource/static/img/button/login/full/ko/kakao_login_large_wide.png">
 						</a>
@@ -129,28 +135,28 @@
 		if (!promoter) {
 			return false;
 		}
-		
+
 		var pmtLoginId = promoter.pmtLoginId;
 		var pmtLoginPw = promoter.pmtLoginPw;
 		if (!pmtLoginId || !pmtLoginPw) {
 			return false;
 		}
-		
+
 		if (!pmtLoginId.value) {
 			alert('아이디를 입력해주세요.');
 			pmtLoginId.focus();
 			return false;
 		}
-		
+
 		if (!pmtLoginPw.value) {
 			alert('비밀번호를 입력해주세요.');
 			pmtLoginPw.focus();
 			return false;
 		}
-		
+
 		return true;
 	};
-	
+
 	$(function() {
 		recaptcha(); // 페이지 로드시 Google Recaptcha token를 받아옴
 		showMessage();
