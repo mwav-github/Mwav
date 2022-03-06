@@ -18,7 +18,7 @@
 					<input type="hidden" id="token" name="token" value="">
 
 					<div class="img-wrap mb-4">
-						<a class="btn-overlay" href="${naver_url}">
+						<a class="btn-overlay" href="<c:url value='/bizlogin/oauth/naver/access' />">
 							<img src="<c:url value='/resources/bizlogin/images/oauth/btnG_naver_complete.png' />" style="width: 100%; height: 51.38px;">
 						</a>
 					</div>

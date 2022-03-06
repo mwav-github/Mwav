@@ -1,6 +1,5 @@
 package net.bizlogin.promoter.signin.controller;
 
-import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -18,7 +17,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import net.bizlogin.common.service.OAuthService;
 import net.bizlogin.promoter.signin.service.SignInService;
 import net.mwav.framework.web.RequestLib;
 
@@ -34,9 +32,6 @@ public class SignInController {
 	@Inject
 	private SignInService signInService;
 	
-	@Inject
-	private List<OAuthService> oauthservices;
-
 	/**
 	 * 로그인 form
 	 */
@@ -44,14 +39,6 @@ public class SignInController {
 	public ModelAndView form(HttpSession session) throws Exception {
 		logger.debug("/bizlogin/promoter/signin/form");
 		ModelAndView mav = new ModelAndView("/bizlogin/promoter/signin/form");
-		
-		String state;
-		for (OAuthService o : oauthservices) {
-			state = o.generateState();
-			session.setAttribute(o.getStateName(), state);
-			mav.addObject(o.getAuthorizationUrlName(), o.getAuthorizationUrl(state));
-		}
-		
 		return mav;
 	}
 

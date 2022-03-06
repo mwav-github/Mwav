@@ -1,4 +1,6 @@
-package net.bizlogin.common.service;
+package net.bizlogin.common.service.oauth;
+
+import javax.annotation.PostConstruct;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,16 +37,21 @@ public class OAuthNaverService extends OAuthService {
 
 	@Value("${bizlogin.naver.callbackUrl}")
 	private String callbackUrl;
-	
+
 	private String authorizationUrlName = "naver_url";
-	
+
 	private String stateName = "naver_state";
 	
+	@PostConstruct
+	public void set() {
+		this.oauthService = createService();
+	}
+
 	@Override
 	public String getAuthorizationUrlName() throws Exception {
 		return this.authorizationUrlName;
 	}
-	
+
 	@Override
 	public String getStateName() throws Exception {
 		return this.stateName;
@@ -53,19 +60,23 @@ public class OAuthNaverService extends OAuthService {
 	@Override
 	public OAuth20Service createService() {
 		OAuth20Service oauthService = new ServiceBuilder(appKey)
-								.apiSecret(appSecret)
-								.callback(callbackUrl)
-								.build(NaverApi.instance());
+				.apiSecret(appSecret)
+				.callback(callbackUrl)
+				.build(NaverApi.instance());
 		return oauthService;
 	}
 
 	@Override
+	public boolean isValidToken(String token) throws Exception {
+		return true;
+	}
+
+	@Override
 	public Response getUserProfile(OAuth2AccessToken token) throws Exception {
-		OAuth20Service oauthService = createService();
 		OAuthRequest request = new OAuthRequest(Verb.GET, "https://openapi.naver.com/v1/nid/me");
 		oauthService.signRequest(token, request);
 
-		Response response = oauthService.execute(request);
+		Response response = this.oauthService.execute(request);
 		return response;
 	}
 
