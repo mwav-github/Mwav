@@ -1,22 +1,18 @@
-package net.bizlogin.common.service.oauth;
+package net.bizlogin.oauth;
 
-import java.util.UUID;
+import javax.annotation.PostConstruct;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
-import com.github.scribejava.core.model.Response;
 import com.github.scribejava.core.oauth.OAuth20Service;
 
-public abstract class OAuthService {
-	
+public abstract class AbstractOAuthService {
+
 	protected OAuth20Service oauthService;
 
-	public String generateState() {
-		return UUID.randomUUID().toString();
+	@PostConstruct
+	public void init() {
+		this.oauthService = this.createService();
 	}
-
-	public abstract String getAuthorizationUrlName() throws Exception;
-
-	public abstract String getStateName() throws Exception;
 
 	public abstract OAuth20Service createService();
 
@@ -24,9 +20,10 @@ public abstract class OAuthService {
 		String authorizationUrl = this.oauthService.getAuthorizationUrl(state);
 		return authorizationUrl;
 	}
-	
+
 	public abstract boolean isValidToken(String token) throws Exception;
 
+	// access_token, refresh_token, token_type, expires_in
 	public OAuth2AccessToken getAccessToken(String code) throws Exception {
 		OAuth2AccessToken token = this.oauthService.getAccessToken(code);
 		return token;
@@ -40,7 +37,5 @@ public abstract class OAuthService {
 	public void revokeToken(String tokenToRevoke) throws Exception {
 		this.oauthService.revokeToken(tokenToRevoke);
 	}
-
-	public abstract Response getUserProfile(OAuth2AccessToken token) throws Exception;
 
 }
