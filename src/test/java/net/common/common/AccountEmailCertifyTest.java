@@ -1,8 +1,23 @@
 package net.common.common;
 
-import net.mwav.common.module.MailLib;
-import net.mwav.common.module.SecurityLib;
-import net.promoter.dao.PromoterDAO;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.spy;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+import java.util.Date;
+
+import javax.mail.Message;
+import javax.servlet.ServletContext;
+
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -21,17 +36,9 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.servlet.view.velocity.VelocityConfigurer;
 
-import javax.mail.Message;
-import javax.servlet.ServletContext;
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
-import java.util.Date;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import net.bizlogin.promoter.manage.dao.ManageDao;
+import net.mwav.common.module.MailLib;
+import net.mwav.common.module.SecurityLib;
 
 /**
  * <pre>
@@ -54,7 +61,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class AccountEmailCertifyTest {
 
     @Mock
-    PromoterDAO promoterDAO;
+    ManageDao manageDao;
 
     @Spy @Autowired
     ServletContext servletContext;
@@ -155,9 +162,6 @@ public class AccountEmailCertifyTest {
         final String account = "pmt";
         final String email = "testEmail@naver.com";
 
-        //when
-        when(promoterDAO.selectChkPmtCertifyDtYN(id)).thenReturn("N");   //pmtCertifyDt 의 값이 null 인 유저
-
         //then
         mockMvc.perform(get("/accounts/email/certify")
                         .param("email", email)
@@ -195,10 +199,6 @@ public class AccountEmailCertifyTest {
 
         String encryptQuery = securityLib.encryptToString(testEncryptKey, "total", encryptAccount + encryptId + encryptTime);
         encryptQuery = encryptQuery.replaceAll("/","~");
-
-        //when
-        when(promoterDAO.selectChkPmtCertifyDtYN(id)).thenReturn("N");   //pmtCertifyDt 의 값이 null 인 유저
-        when(promoterDAO.updatePmtCertifyDt(anyString())).thenReturn(1);
 
         //then
         mockMvc.perform(get("/accounts/email/authority/" + encryptQuery))
