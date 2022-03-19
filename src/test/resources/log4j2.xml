@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration>
-
+<Configuration status="warn">
 	<Appenders>
 		<Console name="console" target="SYSTEM_OUT">
 			<PatternLayout pattern="%d %p [%c:%L] %m%n" />
+			<RegexFilter regex="(?s).*statistics.*" onMatch="DENY" onMismatch="NEUTRAL" />
 		</Console>
 		<RollingFile name="file" fileName="${sys:catalina.home}/logs/MwavLog.log" filePattern="${sys:catalina.home}/logs/MwavLog.log.%d{yyyy-MM-dd-hh-mm}">
 			<PatternLayout pattern="%d %5p [%c] %m%n" />
+			<RegexFilter regex="(?s).*statistics.*" onMatch="DENY" onMismatch="NEUTRAL" />
 			<Policies>
 				<SizeBasedTriggeringPolicy size="1000" />
 			</Policies>
@@ -65,5 +66,4 @@
 			<AppenderRef ref="file" />
 		</Root>
 	</Loggers>
-
 </Configuration>
