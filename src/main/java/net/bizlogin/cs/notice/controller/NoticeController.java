@@ -14,7 +14,7 @@ public class NoticeController {
 	private static final Logger logger = LoggerFactory.getLogger(NoticeController.class);
 
 	@RequestMapping(value = "/cs/notice/list", method = RequestMethod.GET)
-	public ModelAndView form() throws Exception {
+	public ModelAndView form() {
 		logger.debug("/bizlogin/cs/notice/list");
 		return new ModelAndView("/bizlogin/cs/notice/list");
 	}

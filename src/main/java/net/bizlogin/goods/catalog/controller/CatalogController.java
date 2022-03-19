@@ -14,25 +14,25 @@ public class CatalogController {
 	private static final Logger logger = LoggerFactory.getLogger(CatalogController.class);
 
 	@RequestMapping(value = "/goods/catalog/frontList", method = RequestMethod.GET)
-	public ModelAndView form() throws Exception {
+	public ModelAndView form() {
 		logger.debug("/bizlogin/goods/catalog/frontList");
 		return new ModelAndView("/bizlogin/goods/catalog/frontList");
 	}
 
 	@RequestMapping(value = "/goods/catalog/list", method = RequestMethod.GET)
-	public ModelAndView list() throws Exception {
+	public ModelAndView list() {
 		logger.debug("/bizlogin/goods/catalog/list");
 		return new ModelAndView("/bizlogin/goods/catalog/list");
 	}
 
 	@RequestMapping(value = "/goods/catalog/detail", method = RequestMethod.GET)
-	public ModelAndView detail() throws Exception {
+	public ModelAndView detail() {
 		logger.debug("/bizlogin/goods/catalog/detail");
 		return new ModelAndView("/bizlogin/goods/catalog/detail");
 	}
 
 	@RequestMapping(value = "/goods/catalog/posting", method = RequestMethod.GET)
-	public ModelAndView posting() throws Exception {
+	public ModelAndView posting() {
 		logger.debug("/bizlogin/goods/catalog/posting");
 		return new ModelAndView("/bizlogin/goods/catalog/posting");
 	}

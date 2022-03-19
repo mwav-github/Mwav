@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 회원가입 -->
+<mapper namespace="net.bizlogin.oauth.naver.dao.NaverDao">
+	
+	<select id="getSnsPromoter" parameterType="map" resultType="map">
+		SELECT /* net.bizlogin.oauth.naver.dao.NaverDao.getSnsPromoter */
+			  snsPromoter_id, spSnsType, spPromoterId
+			, spFirstName, spLastName, spMiddleName
+			, spNickname, spEmailVerified, spCellularP
+			, spEmail, spGender, spProfileImage
+			, spURL, spCertifyMailDt, promoter_id
+			, spInsertDt, spUpdateDt, spDeleteDt
+			, spIpAddress
+		FROM SnsPromoter_tbl
+		WHERE 1 = 1
+		   AND spPromoterId = '45577195'
+		   AND spSnsType 	= 'Naver'
+		   AND spEmail 		= '7837167@naver.com'
+	</select>
+	
+	<!-- 프로모터 sns 가입 -->
+	<update id="createSnsPromoter" parameterType="map">
+		INSERT INTO SnsPromoter_tbl /* net.bizlogin.promoter.signup.dao.SignUpDao.createSnsPromoter */
+		(
+			  snsPromoter_id
+			, spSnsType, spPromoterId
+			, spEmail, spEmailVerified, spFirstName
+			, spGender
+			, spCellularP, spInsertDt, spIpAddress
+		)
+		VALUES
+		(
+			  (SELECT S.snsPromoter_id FROM (SELECT IFNULL(MAX(snsPromoter_id) + 1, 10000) AS snsPromoter_id FROM SnsPromoter_tbl) S)
+			, 'Naver', #{id, jdbcType=VARCHAR}
+			, #{email, jdbcType=VARCHAR}, 1, #{name, jdbcType=VARCHAR}
+			, (CASE WHEN #{gender, jdbcType=VARCHAR} = 'M' THEN 1
+					WHEN #{gender, jdbcType=VARCHAR} = 'F' THEN 0
+					ELSE NULL
+					END)
+			, #{mobile, jdbcType=VARCHAR}, NOW(), #{spIpAddress, jdbcType=VARCHAR}
+		)
+	</update>
+</mapper>
+
