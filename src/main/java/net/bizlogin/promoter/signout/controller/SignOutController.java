@@ -12,7 +12,7 @@ public class SignOutController {
 
 	@RequestMapping(value = "/promoter/signout/kakao")
 	@ResponseBody
-	public String signOutKakao(HttpSession session) throws Exception {
+	public String signOutKakao(HttpSession session) {
 		Object obj = session.getAttribute("promoter");
 
 		if (obj != null) {

@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -51,6 +52,7 @@ public class NaverServiceImpl extends AbstractOAuthService {
 		return oauthService;
 	}
 
+	@Transactional(rollbackFor = { Exception.class }, readOnly = false)
 	@SuppressWarnings("unchecked")
 	public void signin(OAuth2Authorization auth, Map<String, Object> param) throws JsonParseException, JsonMappingException, IOException, InterruptedException, ExecutionException {
 		OAuth2AccessToken accessToken = getAccessToken(auth.getCode());

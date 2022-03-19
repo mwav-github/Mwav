@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.github.scribejava.apis.KakaoApi;
 import com.github.scribejava.core.builder.ServiceBuilder;
@@ -22,7 +23,8 @@ public class KakaoServiceImpl extends AbstractOAuthService {
 
 	@Value("${bizlogin.kakao.callbackUrl}")
 	private String callbackUrl;
-
+	
+	@Transactional(rollbackFor = { Exception.class }, readOnly = false)
 	public void signin(OAuth2Authorization auth) {
 		logger.debug(oauthService.toString());
 	}

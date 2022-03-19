@@ -34,7 +34,7 @@ public class SignUpController {
 	 */
 	@RequestMapping(value = "/promoter/signup/getPromoter", method = RequestMethod.GET)
 	@ResponseBody
-	public Map<String, Object> getPromoter(@RequestParam Map<String, Object> param) throws Exception {
+	public Map<String, Object> getPromoter(@RequestParam Map<String, Object> param) {
 		logger.debug("/promoter/signup/getPromoter");
 		return signUpService.getPromoter(param);
 	}
@@ -43,7 +43,7 @@ public class SignUpController {
 	 * 회원가입 form
 	 */
 	@RequestMapping(value = "/promoter/signup/form", method = RequestMethod.GET)
-	public ModelAndView form() throws Exception {
+	public ModelAndView form() {
 		logger.debug("/promoter/signup/form");
 		return new ModelAndView("/bizlogin/promoter/signup/form");
 	}
