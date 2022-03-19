@@ -1,64 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-
 <mapper namespace="statistics">
 	
-	<!-- /*========================================등록========================================*/ -->
-	
 	<select id="insertFirstStatics" parameterType="net.mwav.statistics.vo.StatisticsVO">
-		<![CDATA[
-			INSERT INTO Statistics_tbl(statistics_id, stPageName, stUrlScheme, stUrlHost, stUrlPort, stUrlLocalPath, stQueryString, stUrlPathAndQuery, stPrePageName, stUrlReferrerHost, stUrlReferrer, stSessionId, stUserHostAddress, stUserAgent, stInsertDt)
- 			Values(#{statistics_id}, #{stPageName}, #{stUrlScheme}, #{stUrlHost}, #{stUrlPort}, #{stUrlLocalPath}, #{stQueryString}, #{stUrlPathAndQuery}, #{stPrePageName}, #{stUrlReferrerHost}, #{stUrlReferrer}, #{stSessionId}, #{stUserHostAddress}, #{stUserAgent}, now())
-		]]>
+		INSERT INTO /* statistics.insertFirstStatics */
+			Statistics_tbl(statistics_id, stPageName, stUrlScheme, stUrlHost, stUrlPort, stUrlLocalPath, stQueryString, stUrlPathAndQuery, stPrePageName, stUrlReferrerHost, stUrlReferrer, stSessionId, stUserHostAddress, stUserAgent, stInsertDt)
+		VALUES(#{statistics_id}, #{stPageName}, #{stUrlScheme}, #{stUrlHost}, #{stUrlPort}, #{stUrlLocalPath}, #{stQueryString}, #{stUrlPathAndQuery}, #{stPrePageName}, #{stUrlReferrerHost}, #{stUrlReferrer}, #{stSessionId}, #{stUserHostAddress}, #{stUserAgent}, now())
 	</select>
 	
 	<select id="insertStatistics" parameterType="net.mwav.statistics.vo.StatisticsLogVO">
-		<![CDATA[
-			INSERT INTO StatisticsLog_tbl(statistics_id, slStatLogDt, slPageName, slUrlHost, slUrlLocalPath, slQueryString, slInsertDt)
-			Values(#{statistics_id}, now(6), #{slPageName}, #{slUrlHost}, #{slUrlLocalPath}, #{slQueryString}, now())
-			ON DUPLICATE KEY UPDATE slPageName=#{slPageName}
-		]]>
+		INSERT INTO /* statistics.insertStatistics */ 
+			StatisticsLog_tbl(statistics_id, slStatLogDt, slPageName, slUrlHost, slUrlLocalPath, slQueryString, slInsertDt)
+		VALUES(#{statistics_id}, now(6), #{slPageName}, #{slUrlHost}, #{slUrlLocalPath}, #{slQueryString}, now())
+		ON DUPLICATE KEY UPDATE slPageName=#{slPageName}
 	</select>
 	
 	<select id="insertErrorStatistics" parameterType="net.mwav.statistics.vo.StatisticsLogVO">
-		<![CDATA[
-			INSERT INTO StatisticsLog_tbl(statistics_id, slStatLogDt, slPageName, slUrlHost, slUrlLocalPath, slQueryString, stInsertDt)
-			Values(#{statistics_id}, DATE_ADD(now(), INTERVAL 1 SECOND), #{slPageName}, #{slUrlHost}, #{slUrlLocalPath}, #{slQueryString}, now())
-		]]>
+		INSERT INTO /* statistics.insertErrorStatistics */ 
+			StatisticsLog_tbl(statistics_id, slStatLogDt, slPageName, slUrlHost, slUrlLocalPath, slQueryString, stInsertDt)
+		VALUES(#{statistics_id}, DATE_ADD(now(), INTERVAL 1 SECOND), #{slPageName}, #{slUrlHost}, #{slUrlLocalPath}, #{slQueryString}, now())
 	</select>
-	<!-- /*========================================보기========================================*/ -->
 
-	
-	<!-- /*========================================수정========================================*/ -->
+	<!-- 수정 -->
 	<update id="updateStClientScreen" parameterType="hashmap" >
-		<![CDATA[
-	       update Statistics_tbl set stClientScreen=#{stClientScreen} where statistics_id = #{statistics_id}
-		]]>
+		UPDATE Statistics_tbl /* statistics.updateStClientScreen */ 
+		SET stClientScreen=#{stClientScreen} 
+		WHERE statistics_id = #{statistics_id}
 	</update>
 	
-	<!--/*========================================리스트(SelectOne, SelectList 순)========================================*/-->
-	
-	
-	
-	<!--/*========================================삭제========================================*/-->
-	
     <select id="selectNextPk" resultType="String">
-		<![CDATA[
-	       select IFNULL(max(statistics_id+1) , 1000000000) AS statistics_id from Statistics_tbl 
-		]]>
+		SELECT /* statistics.selectNextPk */
+			IFNULL(max(statistics_id+1) , 1000000000) AS statistics_id 
+		FROM Statistics_tbl
 	</select>
 
 	<select id="select" resultType="String">
-		<![CDATA[
-		select IFNULL(max(statistics_id+1) , 1000000000) AS statistics_id from Statistics_tbl
-		]]>
+		SELECT /* statistics.select */
+			IFNULL(max(statistics_id+1) , 1000000000) AS statistics_id
+		FROM Statistics_tbl
 	</select>
 
 	<select id="isValidSessionId" parameterType="string" resultType="String">
-		<![CDATA[
-		select count(1) from Statistics_tbl where statistics_id = #{statistics_id}
-		]]>
+		SELECT /* statistics.isValidSessionId */
+			count(1)
+		FROM Statistics_tbl where statistics_id = #{statistics_id}
 	</select>
 </mapper>
 
