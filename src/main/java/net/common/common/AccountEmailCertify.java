@@ -1,10 +1,17 @@
 package net.common.common;
 
-import net.mwav.common.module.*;
-import net.promoter.dao.PromoterDAO;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.StringTokenizer;
+
+import javax.inject.Inject;
+import javax.mail.Message;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -15,26 +22,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.view.velocity.VelocityConfigurer;
 
-import javax.mail.Message;
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletResponse;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.StringTokenizer;
+import net.bizlogin.promoter.manage.dao.ManageDao;
+import net.mwav.common.module.MailConfig;
+import net.mwav.common.module.MailLib;
+import net.mwav.common.module.MessageBuilder;
+import net.mwav.common.module.SecurityLib;
+import net.mwav.common.module.XmlLib;
 
 @Controller
 @RequestMapping("/accounts/email")
 public class AccountEmailCertify {
 	private static final Logger logger = LoggerFactory.getLogger(AccountEmailCertify.class);
 
-	@Autowired
+	@Inject
 	ServletContext servletContext;
 
-	@Autowired
-	PromoterDAO promoterDAO;
+	@Inject
+	private ManageDao manageDao;
 
-	@Autowired
+	@Inject
 	VelocityConfigurer velocityConfig;
 
 	private final String EncryptKey = "EncryptKey";
@@ -55,16 +61,23 @@ public class AccountEmailCertify {
 		switch (account) {
 		case "pmt":
 			//  매개변수로 받은 프로모터가 이미 인증을 받았는지 확인
-			String certifyDtYN = promoterDAO.selectChkPmtCertifyDtYN(id);
-			if ("Y".equals(certifyDtYN)) {
-				body.put("status", "ALREADY");
-				body.put("msg", "이미 인증받은 사용자입니다.");
-				return new ResponseEntity<Map<String, String>>(body, HttpStatus.BAD_REQUEST);
-			} else if (certifyDtYN == null) {
+			Map<String, Object> param = new HashMap<>();
+			param.put("promoter_id", id);
+			Map<String, Object> promoter = manageDao.getPromoter(param);
+			
+			if (promoter == null || promoter.isEmpty()) {
 				body.put("status", "NOT_EXIST");
 				body.put("msg", "존재하지 않는 사용자 입니다.");
-				return new ResponseEntity<Map<String, String>>(body, HttpStatus.BAD_REQUEST);
+				return new ResponseEntity<Map<String, String>>(body, HttpStatus.BAD_REQUEST);				
 			}
+			
+			boolean isVerified = (promoter.get("pmtCertifyDt") == null) ? false : true;
+			if (isVerified) {
+				body.put("status", "ALREADY");
+				body.put("msg", "이미 인증받은 사용자입니다.");
+				return new ResponseEntity<Map<String, String>>(body, HttpStatus.BAD_REQUEST);				
+			}
+
 			break;
 		case "member": // Member는 미구현
 		default:
@@ -120,7 +133,7 @@ public class AccountEmailCertify {
 
 		// TODO: IV 하드코딩, 별도의 관리 필요
 		String[] ivList = { "account", "id", "time" };
-		Map<String, String> keyMap = new HashMap<String, String>();
+		Map<String, Object> keyMap = new HashMap<String, Object>();
 
 		// 잘못된 암호문 요청시 복호화 에러로 인해 예외처리
 		try {
@@ -144,7 +157,7 @@ public class AccountEmailCertify {
 		}
 
 		// time값이 30분 이내인지 유효성 체크, 1800000 = 30분(1 milliseconds)
-		Long keyTime = Long.valueOf(keyMap.get("time"));
+		Long keyTime = Long.valueOf(String.valueOf(keyMap.get("time")));
 		Long nowTime = new Date().getTime() - 1800000;
 		if (nowTime > keyTime) {
 			model.addAttribute("status", "TIME_OUT");
@@ -153,16 +166,20 @@ public class AccountEmailCertify {
 		}
 
 		// 구분자에 맞춰 DB에서 인증여부 검색
-		switch (keyMap.get("account")) {
+		switch (String.valueOf(keyMap.get("account"))) {
 		case "pmt":
 			//  매개변수로 받은 프로모터가 이미 인증을 받았는지 확인
-			String certifyDtYN = promoterDAO.selectChkPmtCertifyDtYN(keyMap.get("id"));
-			if ("Y".equals(certifyDtYN)) {
+			keyMap.put("promoter_id", keyMap.get("id"));
+			Map<String, Object> promoter = manageDao.getPromoter(keyMap);
+			if (promoter == null || promoter.isEmpty()) {
+				return "redirect: /";
+			}
+			
+			boolean isVerified = (promoter.get("pmtCertifyDt") == null) ? false : true;
+			if (isVerified) {
 				model.addAttribute("status", "ALREADY");
 				model.addAttribute("msg", "이미 인증받은 사용자입니다.");
 				return view;
-			} else if (certifyDtYN == null) {
-				return "redirect: /";
 			}
 			break;
 		case "member": // Member는 미구현
@@ -171,7 +188,7 @@ public class AccountEmailCertify {
 		}
 
 		//  DB에 이메일 인증을 현재 날짜로 입력함
-		promoterDAO.updatePmtCertifyDt(keyMap.get("id"));
+		manageDao.updateCertifyDt(keyMap);
 
 		//  인증 성공여부를 status, msg로 페이지에 넘겨줌
 		model.addAttribute("status", "SUCCESS");
