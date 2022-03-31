@@ -3,12 +3,12 @@
 	<Appenders>
 		<Console name="console" target="SYSTEM_OUT">
 			<PatternLayout pattern="%d %5p [%c][%L LINE] %m%n" />
-			<RegexFilter regex="(?s).*statistics.*" onMatch="DENY" onMismatch="NEUTRAL" />
+			<!-- <RegexFilter regex="(?s).*statistics.*" onMatch="DENY" onMismatch="NEUTRAL" /> -->
 		</Console>
 
 		<RollingFile name="file" fileName="${sys:catalina.home}/logs/MwavLog.log" filePattern="${sys:catalina.home}/logs/MwavLog.%d{yyyy-MM-dd}.log">
 			<PatternLayout pattern="%d %5p [%c][%L LINE] %m%n" />
-			<RegexFilter regex="(?s).*statistics.*" onMatch="DENY" onMismatch="NEUTRAL" />
+			<!-- <RegexFilter regex="(?s).*statistics.*" onMatch="DENY" onMismatch="NEUTRAL" /> -->
 			<Policies>
 				<TimeBasedTriggeringPolicy interval="1" />
 			</Policies>
@@ -17,7 +17,7 @@
 
 	<Loggers>
 		<!-- Application Loggers-->
-		<Logger name="net" additivity="false" level="info">
+		<Logger name="net" additivity="false" level="debug">
 			<AppenderRef ref="console" />
 			<AppenderRef ref="file" />
 		</Logger>
@@ -49,7 +49,9 @@
 			<AppenderRef ref="console" />
 		</Logger>
 
-		<Logger name="jdbc.audit" additivity="false" level="off">
+		<Logger name="jdbc.audit" additivity="false" level="debug">
+			<AppenderRef ref="console" />
+			<AppenderRef ref="file" />
 		</Logger>
 
 		<Logger name="jdbc.resultset" additivity="false" level="off">
@@ -58,7 +60,9 @@
 		<Logger name="jdbc.resultsettable" additivity="false" level="off">
 		</Logger>
 
-		<Logger name="jdbc.connection" additivity="false" level="off">
+		<Logger name="jdbc.connection" additivity="false" level="debug">
+			<AppenderRef ref="console" />
+			<AppenderRef ref="file" />
 		</Logger>
 
 		<Root level="info">
