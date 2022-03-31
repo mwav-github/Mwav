@@ -35,7 +35,7 @@
 		<property name="url" value="jdbc:log4jdbc:mysql://mwav.net:3306/mwav?characterEncoding=utf8" />
 		<property name="username" value="mwav" />
 		<property name="password" value="lewis201902!!" />
-		<property name="connectionProperties" value="serverTimezone=Asia/Seoul" />
+		<property name="connectionProperties" value="serverTimezone=Asia/Seoul;connectTimeout=20000;socketTimeout=20000" />
 
 		<property name="maxTotal" value="100" />
 		<property name="maxWaitMillis" value="3000" />
