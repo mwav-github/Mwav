@@ -6,18 +6,11 @@
 						http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">
-	<!-- 데이터베이스 정보 name은 위에서 등록한 sqlSession 빈(bean)에서 사용할 이름이 dataSource이고, 
-	     ref의 dataSource는 우리가 context-datasource.xml에서 정의한 빈(bean)을 참조하는 것을 의미한다. -->
 		<property name="dataSource" ref="dataSource" /> 
-		
-		<!-- 매퍼 xml이 있는 경로 정의   SQL이 위치할 mapper 폴더를 잡아주고, 
-		        그 안에 모든 폴더를 의미하는 **를 붙여준 후, 마지막으로 _SQL로 끝나는 모든 xml 파일을 읽어주도록 한다-->
-		<property name="mapperLocations" value="classpath:/mapper/**/*_SQL.xml" /> 
+		<property name="mapperLocations" value="classpath:/mapper/**/*.xml" /> 
 	</bean>
-	<!-- 
-	10번째 줄의 sqlSessionTemplate은 마이바티스 스프링 연동모듈의 핵심이다. 
-	SQLSessionTemplate은 SqlSession을 구현하고, 코드에서 SqlSessoin을 대체하는 역할을 한다.  -->
+
 	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
         <constructor-arg index="0" ref="sqlSession"/>
-    </bean>  
+    </bean>
 </beans>

@@ -1,16 +1,19 @@
 package net.mwav.common.module;
 
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.URL;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
 import javax.net.ssl.HttpsURLConnection;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URL;
 
 public class VerifyRecaptcha {
 
+	private static final Logger logger = LoggerFactory.getLogger(VerifyRecaptcha.class);
 	// http://o7planning.org/en/10397/using-google-recaptcha-with-java-web-application
 	// 구현법
 
@@ -58,7 +61,7 @@ public class VerifyRecaptcha {
 			// Response code return from server.
 			// HTTP.STATUS CODE 
 			int responseCode = conn.getResponseCode();
-			System.out.println("responseCode=" + responseCode);
+			logger.debug("responseCode=" + responseCode);
 
 			// Get the InputStream from Connection to read data sent from the
 			// server.
@@ -77,7 +80,7 @@ public class VerifyRecaptcha {
 				  "error-codes": [...]        // optional
 				}*/
 			
-			System.out.println("Response: " + jsonObject);
+			logger.debug("Response: " + jsonObject);
 
 			boolean success = jsonObject.getBoolean("success");
 			return success;

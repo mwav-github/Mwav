@@ -9,8 +9,6 @@ public interface CategoryAdminsService {
 
 	void insertCategoryRelationForm(Map<String, Object> map);
 
-
 	List<Map<String, Object>> selectListCategory(Map<String, Object> map);
-	
-	
+
 }

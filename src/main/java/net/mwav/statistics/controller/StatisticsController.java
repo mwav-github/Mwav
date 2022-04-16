@@ -1,62 +1,45 @@
 package net.mwav.statistics.controller;
 
-import java.sql.Timestamp;
 import java.util.Map;
 
-import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import net.common.common.CommandMap;
+import net.mwav.common.module.Common_Utils;
 import net.mwav.statistics.service.StatisticsService;
 import net.mwav.statistics.vo.StatisticsLogVO;
 import net.mwav.statistics.vo.StatisticsVO;
-import net.mwav.common.module.Common_Utils;
-//import net.mwav.common.module.HtmlLib;
 
 @Controller
 public class StatisticsController {
-	Logger log = Logger.getLogger(this.getClass());
-
-	@Autowired
-	private HttpServletRequest request;
-
-	// 싱글톤 형태.
-//	HtmlLib htmlLib = HtmlLib.getInstance();
+	private static final Logger logger = LoggerFactory.getLogger(StatisticsController.class);
 
 	static Common_Utils cou = new Common_Utils();
 	String mode;
 	String statistics_id;
 
-	@Resource(name = "statisticsService")
+	@Inject
 	private StatisticsService statisticsService;
 
-	public String insertFirstStatics(HttpServletRequest request,
-			String member_id, String statistics_id, String session_id)
-			throws Exception {
+	public String insertFirstStatics(HttpServletRequest request, String member_id, String statistics_id, String session_id) throws Exception {
 
 		// 실 IP
 		String realIp = cou.getClientIP(request);
-		// staticMap.put("IP", realIp);
 
-		Map<String, Object> staticMap = cou.getHeadersInfo(request);
 		// 출력
-		// cou.selectMap(staticMap);
 		String st_id = null;
 		if (statistics_id == null || statistics_id == "") {
 			st_id = statisticsService.selectNextPk();
-			// 세션생성
 		} else {
-
 			st_id = statistics_id;
 		}
 
@@ -77,8 +60,6 @@ public class StatisticsController {
 			// vo.setStHTTP_UA_CPU((String) staticMap.get("os"));
 			// userAgent(클라이언트 환경)
 			vo.setStUserAgent(request.getHeader("User-Agent"));
-			String userAgent = request.getHeader("User-Agent");
-//			htmlLib.getParseUserAgent(userAgent, vo);
 
 			int m_id = 0;
 
@@ -99,8 +80,7 @@ public class StatisticsController {
 			String referer = null;
 			referer = request.getHeader("Referer");
 			if (referer != null) {
-				prePageName = request.getHeader("Referer").substring(
-						request.getHeader("Referer").lastIndexOf("/") + 1);
+				prePageName = request.getHeader("Referer").substring(request.getHeader("Referer").lastIndexOf("/") + 1);
 			}
 			vo.setStPrePageName(prePageName);
 			// urlReferrer.PathAndQuery = 211.238.38.238 어느 페이지에서 왔노?
@@ -109,9 +89,8 @@ public class StatisticsController {
 			// 프로모터 PK_id (위의 member_id 처럼 비교 필요)
 
 			Map<String, Object> map = Common_Utils.typeToChar(request);
-			
+
 			char stPromoterType = (char) map.get("type");
-			
 
 			if (stPromoterType != 'N') {
 				vo.setStPromoterId(Integer.valueOf((String) map.get("value")));
@@ -135,8 +114,7 @@ public class StatisticsController {
 			// qgrp=etc&ga=bbc
 			vo.setStQueryString(request.getQueryString());
 			// url.PathAndQuery; /CustomerServices/QnA/QnA_form.aspx?qgrp=etc
-			vo.setStUrlPathAndQuery(request.getRequestURI() + "?"
-					+ request.getQueryString());
+			vo.setStUrlPathAndQuery(request.getRequestURI() + "?" + request.getQueryString());
 			// ========================================
 
 			vo.setStUrlPort(request.getServerPort());
@@ -167,30 +145,14 @@ public class StatisticsController {
 
 	}
 
-	public StatisticsVO insertStatics(HttpServletRequest request,
-			String statistics_id) throws Exception {
-
+	public StatisticsVO insertStatics(HttpServletRequest request, String statistics_id) throws Exception {
 		String st_id = null;
 		st_id = statistics_id;
-		String getURI = request.getRequestURI();
 
 		try {
 			StatisticsLogVO log_vo = new StatisticsLogVO();
-
 			log_vo.setStatistics_id(Long.parseLong(st_id));
-			/*
-			 * Timestamp stamp = new Timestamp(System.currentTimeMillis());
-			 * System.out.println("stamp" + stamp);
-			 * log_vo.setSlStatLogDt(stamp);
-			 */
 
-			String prePageName = null;
-			String referer = null;
-			referer = request.getHeader("Referer");
-			if (referer != null) {
-				prePageName = request.getHeader("Referer").substring(
-						request.getHeader("Referer").lastIndexOf("/"));
-			}
 			String slPageName = (String) request.getAttribute("slPageName");
 			log_vo.setSlPageName(slPageName);
 
@@ -218,51 +180,28 @@ public class StatisticsController {
 
 	}
 
-	public boolean isValidSessionId( String statistics_id) throws Exception {
+	public boolean isValidSessionId(String statistics_id) throws Exception {
 		boolean ret = false;
 		try {
-			if (statisticsService.isValidSessionId(statistics_id) == null) ret = false;
-			else ret = statisticsService.isValidSessionId(statistics_id).equals("1") ? true : false;
-		}catch (Exception e) {
+			if (statisticsService.isValidSessionId(statistics_id) == null)
+				ret = false;
+			else
+				ret = statisticsService.isValidSessionId(statistics_id).equals("1") ? true : false;
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return ret;
 	}
 
 	// 사용하지 않음 삭제필요.
-	public StatisticsVO insertErrorStatics(HttpServletRequest request,
-			String statistics_id) throws Exception {
+	public StatisticsVO insertErrorStatics(HttpServletRequest request, String statistics_id) throws Exception {
 
 		String st_id = null;
 		st_id = statistics_id;
-		String getURI = request.getRequestURI();
-
-		log.info("st_id" + st_id);
-		log.info("여기들어옴" + st_id);
-
-		log.info("status_code : "
-				+ request.getAttribute("javax.servlet.error.status_code"));
-		log.info("message  : "
-				+ request.getAttribute("javax.servlet.error.message"));
-		log.info("request_uri : "
-				+ request.getAttribute("javax.servlet.error.request_uri"));
-		log.info("exception_type	 : "
-				+ request.getAttribute("javax.servlet.error.exception"));
 
 		try {
 			StatisticsLogVO log_vo = new StatisticsLogVO();
-
 			log_vo.setStatistics_id(Long.parseLong(st_id));
-			/*
-			 * Timestamp stamp = new Timestamp(System.currentTimeMillis());
-			 * stamp. System.out.println("stamp"+stamp);
-			 * log_vo.setSlStatLogDt(stamp)
-			 */
-
-			String prePageName = null;
-			String referer = null;
-			referer = (String) request
-					.getAttribute("javax.servlet.error.request_uri");
 
 			String slPageName = (String) request.getAttribute("slPageName");
 			log_vo.setSlPageName(slPageName);
@@ -275,12 +214,11 @@ public class StatisticsController {
 			String queryString = null;
 
 			// (중요).jsp 형태라면 ok but .mwav라서 null 값 찍힌다.
-			queryString = (String) request
-					.getAttribute("javax.servlet.error.message");
+			queryString = (String) request.getAttribute("javax.servlet.error.message");
 			if (queryString.length() > 500) {
 				queryString = queryString.substring(0, 495);
 			}
-			System.out.println("queryString" + queryString);
+			logger.debug("queryString" + queryString);
 			log_vo.setSlQueryString(queryString);
 
 			statisticsService.insertErrorStatistics(log_vo);
@@ -293,9 +231,7 @@ public class StatisticsController {
 	}
 
 	@RequestMapping(value = "/statistics/stClientScreenUpdateAjax.mwav")
-	public @ResponseBody void updateStClientScreen(CommandMap commandMap,
-			HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
+	public @ResponseBody void updateStClientScreen(CommandMap commandMap, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		try {
 
@@ -303,13 +239,11 @@ public class StatisticsController {
 
 			statistics_id = (String) session.getAttribute("statistics_id");
 			commandMap.put("statistics_id", statistics_id);
-			System.out.println("statistics_id찍힝?" + statistics_id);
+			logger.debug("statistics_id= " + statistics_id);
 			/*
 			 * //가로: screen.width 세로: screen.height ※ 단 클라이언트 PC의 메인이 되는 정보만을
 			 * 참조하므로 듀얼로 사용할경우 두가지 화면에 다른 크기정보를 얻을 수 없다
 			 */
-
-			// System.out.println("stClientScreen"+commandMap.get("stClientScreen"));
 
 			statisticsService.updateStClientScreen(commandMap.getMap());
 

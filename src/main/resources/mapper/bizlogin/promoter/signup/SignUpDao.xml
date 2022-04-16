@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 회원가입 -->
+<mapper namespace="net.bizlogin.promoter.signup.dao.SignUpDao">
+	
+	<select id="getPromoter" parameterType="map" resultType="map">
+		SELECT /* net.bizlogin.promoter.signup.dao.SignUpDao.getPromoter */
+			promoter_id, pmtLoginId
+		FROM Promoter_tbl
+		WHERE 1 = 1
+			AND pmtLoginId = #{pmtLoginId, jdbcType=VARCHAR}
+	</select>
+	
+	<update id="createPromoter" parameterType="map">
+		INSERT INTO Promoter_tbl /* net.bizlogin.promoter.signup.dao.SignUpDao.createPromoter */
+		(
+			  promoter_id, pmtLoginId
+			, pmtLoginPw, pmtFirstName, pmtLastName
+			, pmtGender, pmtCellularPhone, pmtMail
+		)
+		VALUES
+		(
+			  (SELECT IFNULL(MAX(pmt.promoter_id) + 1, 100000) FROM Promoter_tbl pmt), #{pmtLoginId, jdbcType=VARCHAR}
+			, #{pmtLoginPw, jdbcType=VARCHAR}, TRIM(#{pmtFirstName, jdbcType=VARCHAR}), TRIM(#{pmtLastName, jdbcType=VARCHAR})
+			, IF(#{pmtGender, jdbcType=VARCHAR} = 'M', 0, 1), #{pmtCellularPhone, jdbcType=VARCHAR}, #{pmtMail, jdbcType=VARCHAR}
+		)
+	</update>
+
+	<update id="createPromoterValue" parameterType="map">
+		INSERT INTO PromoterValue_tbl /* net.bizlogin.promoter.signup.dao.SignUpDao.createPromoterValue */
+		(
+			  promoter_id, pmtLevel, pmtVisitNbr
+			, pmtEffects, pmtProfits, Promoter_tbl_promoter_id
+		)
+		SELECT
+			  promoter_id, 1, 0
+			, 0, 0, promoter_id
+		FROM Promoter_tbl
+		WHERE pmtLoginId = #{pmtLoginId, jdbcType=VARCHAR}
+	</update>
+
+	<update id="createPromoterValueLog" parameterType="map">
+		INSERT INTO PromoterValueLog_tbl /* net.bizlogin.promoter.signup.dao.SignUpDao.createPromoterValueLog */
+		(
+			  promoterValueLog_id, promoter_id
+			, pvlChagedPoint, pvlRemark
+			, pvlInsertDt, pvlIpAddress, PromoterValue_tbl_promoter_id
+		)
+		SELECT 
+			  (SELECT IFNULL(MAX(promoterValueLog_id)+1, 10000000) FROM PromoterValueLog_tbl), promoter_id
+			, 0, '신규 회원가입'
+			, NOW(), #{pvlIpAddress, jdbcType=VARCHAR}, promoter_id
+		FROM Promoter_tbl
+		WHERE pmtLoginId = #{pmtLoginId, jdbcType=VARCHAR}
+	</update>
+	
+	<!-- 프로모터 sns 가입 -->
+	<update id="createSnsPromoter" parameterType="map">
+		INSERT INTO SnsPromoter_tbl /* net.bizlogin.promoter.signup.dao.SignUpDao.createSnsPromoter */
+		(
+			  snsPromoter_id
+			, spSnsType, spPromoterId
+			, spFirstName, spLastName
+			, spMiddleName, spNickname
+			, spEmailVerified, spCellularP, spEmail
+			, spGender, spProfileImage
+			, spURL, promoter_id
+			, spCertifyMailDt
+			, spInsertDt, spUpdateDt
+			, spDeleteDt, spIpAddress
+		)
+		VALUES
+		(
+			  (SELECT snsPromoter_id FROM (SELECT IFNULL(MAX(snsPromoter_id) + 1, 10000) snsPromoter_id FROM SnsPromoter_tbl) tb)
+			, #{spSnsType, jdbcType=VARCHAR}, #{spPromoterId, jdbcType=VARCHAR}
+			, #{spFirstName, jdbcType=VARCHAR}, #{spLastName, jdbcType=VARCHAR}
+			, #{spMiddleName, jdbcType=VARCHAR}, #{spNickName, jdbcType=VARCHAR}
+			, #{spEmailVerified, jdbcType=VARCHAR}, #{spCellularP, jdbcType=VARCHAR}, #{spEmail, jdbcType=VARCHAR}
+			, #{spGender, jdbcType=VARCHAR}, #{spProfileImage, jdbcType=VARCHAR}
+			, #{spURL, jdbcType=VARCHAR}, #{promoter_id, jdbcType=VARCHAR}
+			, (CASE WHEN #{spEmailVerified, jdbcType=VARCHAR} = 1 THEN NOW()
+					ELSE NULL
+					END)
+			, NOW(), NOW()
+			, NULL, #{spIpAddress, jdbcType=VARCHAR}
+		)
+	</update>
+</mapper>
+

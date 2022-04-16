@@ -2,11 +2,10 @@ package net.mwav.login.service;
 
 import java.io.IOException;
 
-import javax.annotation.Resource;
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import net.common.common.Status;
@@ -14,12 +13,10 @@ import net.mwav.login.dao.LoginDAO;
 import net.mwav.login.vo.LoginVO;
 import net.mwav.member.vo.Member_tbl_VO;
 
-@Service("loginService")
+@Service
 public class LoginServiceImpl implements LoginService {
-	
-	Logger log = Logger.getLogger(this.getClass());
 
-	@Resource(name = "loginDAO")
+	@Inject
 	private LoginDAO loginDAO;
 
 	@Override
@@ -32,8 +29,8 @@ public class LoginServiceImpl implements LoginService {
 		LoginVO vo = loginDAO.getLoginFailCount(loginVO);
 		loginVO.setAlFailCount(vo.getAlFailCount());
 		loginVO.setAuditLogin_id(vo.getAuditLogin_id());
-		
-		if(loginVO.getAlFailCount() == 0) {
+
+		if (loginVO.getAlFailCount() == 0) {
 			return loginDAO.insertAuditLogin(loginVO);
 		} else {
 			return loginDAO.updateAuditLogin(loginVO);
@@ -43,13 +40,12 @@ public class LoginServiceImpl implements LoginService {
 	@Override
 	public void deleteAuditLogin(LoginVO loginVO) {
 		loginDAO.deleteAuditLogin(loginVO);
-		
 	}
 
 	@Override
 	public Integer getUpdatePwYN(Member_tbl_VO member_tbl_VO) {
 		return loginDAO.getUpdatePwYN(member_tbl_VO);
-	}                                 
+	}
 
 	@Override
 	public Integer pwUpdateLater(Member_tbl_VO member_tbl_VO) {

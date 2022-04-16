@@ -14,10 +14,7 @@ public class LeftFrame_Fucntion {
 
 				String[] streName = { "mbb", "mbo", "mbv", "mbj" };
 				String[] strhName = { "회원리스트", "회원부가정보", "회원평가치", "회원가입" };
-				String[] strurl = { "/HomePage/mbrList.mwav?mm=mbrs",
-						"/HomePage/mbrOptList.mwav?mm=mbrs",
-						"/HomePage/mbrValList.mwav?mm=mbrs",
-						"/HomePage/MbrForm.mwav?mm=mbrs" };
+				String[] strurl = { "/HomePage/mbrList.mwav?mm=mbrs", "/HomePage/mbrOptList.mwav?mm=mbrs", "/HomePage/mbrValList.mwav?mm=mbrs", "/HomePage/MbrForm.mwav?mm=mbrs" };
 				String[] strmAuthority = { "1", "1", "1", "1" };
 				String[] strdAuthority = { "*", "*", "*", "*" };
 
@@ -33,20 +30,12 @@ public class LeftFrame_Fucntion {
 
 					menuList.add(vo);
 				}
-
-				/*
-				 * System.out.println(); Iterator<LeftFrame_VO> it =
-				 * menuList.iterator(); while(it.hasNext()){
-				 * System.out.println(it.next()); }
-				 */
 			} else if (mm.equals("site")) {
 
 				String[] streName = { "pmtnt", "ntl", "nsl", "qal", "pl", "mmail" };
-				String[] strhName = { "Promoter 공지관리","공지관리", "뉴스관리", "Q&A관리", "폴관리", "회원메일발송" };
+				String[] strhName = { "Promoter 공지관리", "공지관리", "뉴스관리", "Q&A관리", "폴관리", "회원메일발송" };
 				String[] strhEName = { "Promoter 공지관리", "공지관리", "뉴스관리", "Q&A관리", "폴관리", "회원메일발송" };
-				String[] strurl = { "/admins/promoter/boardmgr/PmtNoticeList.mwav", "/admin/boardNotice/ntmList.mwav",
-						"/admin/boardNews/nsmList.mwav",
-						"/admin/boardQnA/qnaList.mwav", "#", "#" };
+				String[] strurl = { "/admins/promoter/boardmgr/PmtNoticeList.mwav", "/admin/boardNotice/ntmList.mwav", "/admin/boardNews/nsmList.mwav", "/admin/boardQnA/qnaList.mwav", "#", "#" };
 				String[] strmAuthority = { "1", "1", "1", "1", "1" };
 				String[] strdAuthority = { "*", "*", "*", "*", "*" };
 
@@ -66,12 +55,9 @@ public class LeftFrame_Fucntion {
 			} else if (mm.equals("firms")) {
 
 				String[] streName = { "docs", "staff", "asset", "pds", "mmail", "promoter" };
-				String[] strhKName = { "문서자료", "직원리스트", "자산리스트", "FTP자료실",
-						"계좌관리", "프로모터리스트" };
-				String[] strhEName = { "문서자료", "StaffList", "자산리스트", "FTP자료실",
-						"계좌관리", "PromoterList" };
-				String[] strurl = { "#", "/admins/staff/stfList.mwav", "#",
-						"#", "#", "/admins/staff/pmtList.mwav" };
+				String[] strhKName = { "문서자료", "직원리스트", "자산리스트", "FTP자료실", "계좌관리", "프로모터리스트" };
+				String[] strhEName = { "문서자료", "StaffList", "자산리스트", "FTP자료실", "계좌관리", "PromoterList" };
+				String[] strurl = { "#", "/admins/staff/stfList.mwav", "#", "#", "#", "/admins/staff/pmtList.mwav" };
 				String[] strmAuthority = { "1", "1", "1", "1", "1", "1" };
 				String[] strdAuthority = { "*", "*", "*", "*", "*", "*" };
 
@@ -96,8 +82,7 @@ public class LeftFrame_Fucntion {
 				String[] streName = { "gcl", "gci" };
 				String[] strhKName = { "상품리스트", "상품등록" };
 				String[] strhEName = { "상품리스트", "상품등록" };
-				String[] strurl = { "/admins/goods/goodsList.mwav",
-						"/Admins/Goods/GoodsRegForm.mwav?mm=cGds", };
+				String[] strurl = { "/admins/goods/goodsList.mwav", "/Admins/Goods/GoodsRegForm.mwav?mm=cGds", };
 				String[] strmAuthority = { "1", "1" };
 				String[] strdAuthority = { "*", "*" };
 
@@ -119,9 +104,7 @@ public class LeftFrame_Fucntion {
 				String[] streName = { "caset", "gci" };
 				String[] strhName = { "카테고리등록", "릴레이션등록" };
 				String[] strhEName = { "카테고리등록", "릴레이션등록" };
-				String[] strurl = {
-						"/Admins/Goods/GdsCaInsert.mwav?mm=category",
-						"/admins/goods/categoryList.mwav?mm=category",
+				String[] strurl = { "/Admins/Goods/GdsCaInsert.mwav?mm=category", "/admins/goods/categoryList.mwav?mm=category",
 
 				};
 				String[] strmAuthority = { "1", "1" };
@@ -145,9 +128,7 @@ public class LeftFrame_Fucntion {
 				String[] streName = { "stati", "sche" };
 				String[] strhName = { "StatisticsMgr", "ScheduleMgr" };
 				String[] strhEName = { "통계관리", "일정관리" };
-				String[] strurl = {
-						"/admins/marketing/statistics/statsList.mwav?mm=crm",
-						"/Admins/Marketing/ScheduleMgr/ScheView.mwav?mm=crm",
+				String[] strurl = { "/admins/marketing/statistics/statsList.mwav?mm=crm", "/Admins/Marketing/ScheduleMgr/ScheView.mwav?mm=crm",
 
 				};
 				String[] strmAuthority = { "1", "1" };

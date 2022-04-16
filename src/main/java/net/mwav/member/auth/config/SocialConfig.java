@@ -16,13 +16,11 @@
 package net.mwav.member.auth.config;
 
 
-import javax.inject.Inject;
-import javax.sql.DataSource;
 import net.mwav.member.auth.VersionProperty;
 import net.mwav.member.auth.google.PostToWallAfterConnectInterceptor;
 import net.mwav.member.auth.util.SimpleSignInAdapter;
-
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
@@ -43,19 +41,16 @@ import org.springframework.social.connect.UsersConnectionRepository;
 import org.springframework.social.connect.jdbc.JdbcUsersConnectionRepository;
 import org.springframework.social.connect.web.ConnectController;
 import org.springframework.social.connect.web.ProviderSignInController;
-import org.springframework.social.connect.web.ReconnectFilter;
+import org.springframework.social.facebook.api.Facebook;
 import org.springframework.social.facebook.connect.FacebookConnectionFactory;
 import org.springframework.social.google.api.Google;
 import org.springframework.social.google.connect.GoogleConnectionFactory;
 import org.springframework.social.linkedin.api.LinkedIn;
 import org.springframework.social.linkedin.connect.LinkedInConnectionFactory;
-import org.springframework.social.facebook.api.Facebook;
-import org.springframework.social.facebook.connect.FacebookConnectionFactory;
-
-import org.springframework.social.twitter.api.Twitter;
 import org.springframework.social.twitter.connect.TwitterConnectionFactory;
 
-import net.mwav.member.auth.config.SimpleConnectionSignUp;
+import javax.inject.Inject;
+import javax.sql.DataSource;
 
 
 /**
@@ -116,7 +111,8 @@ getUsersConnectionRepository() 메소드의 구현은 다음 단계를 거친다
 @EnableSocial
 public class SocialConfig implements SocialConfigurer {
 
-	Logger logger = Logger.getLogger(this.getClass());
+	private static final Logger logger = LoggerFactory.getLogger(SocialConfig.class);
+
 	@Inject
 	private DataSource dataSource;
 	
@@ -194,8 +190,6 @@ client_secret : client_id를 위한 secret 값이다. 이 값으로 Client를 �
 	@Override
 	public UsersConnectionRepository getUsersConnectionRepository(ConnectionFactoryLocator connectionFactoryLocator) {
 	
-		logger.debug("여기까지왔다.");
-		System.out.println("요기요기");
 		logger.debug("inside the usersConnectionRepository");
 		
 		JdbcUsersConnectionRepository repository = new JdbcUsersConnectionRepository(
@@ -245,7 +239,6 @@ client_secret : client_id를 위한 secret 값이다. 이 값으로 Client를 �
 	            ConnectionFactoryLocator connectionFactoryLocator,
 	            UsersConnectionRepository usersConnectionRepository) {
 		
-		logger.debug("여기까지왔다.");
 	    ProviderSignInController controller = new ProviderSignInController(
 	        connectionFactoryLocator,
 	        usersConnectionRepository,

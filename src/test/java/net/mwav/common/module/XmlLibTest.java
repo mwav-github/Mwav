@@ -2,31 +2,32 @@ package net.mwav.common.module;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class XmlLibTest {
+
+	private static final Logger logger = LoggerFactory.getLogger(XmlLibTest.class);
 
 	@Test
 	public void test() throws Exception {
 		String path = "./src/main/webapp/xConfig/general.xml.config";
 		GeneralConfig generalConfig = (GeneralConfig) XmlLib.getInstance().unmarshal(path, GeneralConfig.class);
-		List<CompanyInfo> list = new ArrayList<CompanyInfo>();
 
 		Map<String, CompanyInfo> map = new HashMap<>();
 
 		map.put("general", generalConfig.getCompanyInfo());
-		
+
 		// CompanyInfo of address verification
 		String address = generalConfig.getCompanyInfo().getAddress();
 		String expectedAddress = "GV-4F, 5-5, Ttukseom-ro 46-gil, Gwangjin-gu, Seoul , Korea [05099]";
 		assertEquals(expectedAddress, address);
-		
-		System.out.println(map.get("general").getAddress());
+
+		logger.debug(map.get("general").getAddress());
 
 		// CompanyInfo of tel verification
 		String tel = generalConfig.getCompanyInfo().getTel();

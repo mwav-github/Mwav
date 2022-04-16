@@ -1,20 +1,5 @@
 package net.common.filter;
 
-/*
- * Copyright 2008-2009 MOPAS(MINISTRY OF SECURITY AND PUBLIC ADMINISTRATION).
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 import java.io.IOException;
 
 import javax.servlet.Filter;
@@ -25,14 +10,20 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-//
-//javax.servlet-api-2.5jar 포함 필요
-// http://linguist79.tistory.com/47
+/**
+ * 
+ * @author 김주성
+ * @see javax.servlet-api-2.5
+ * @see http://linguist79.tistory.com/47
+ */
+@SuppressWarnings("unused")
 public class HTMLTagFilter implements Filter {
 
-	Logger log = Logger.getLogger(this.getClass());
+	private static final Logger logger = LoggerFactory.getLogger(HTMLTagFilter.class);
+
 	private FilterConfig config;
 
 	@Override
@@ -41,23 +32,21 @@ public class HTMLTagFilter implements Filter {
 	}
 
 	@Override
-	public void doFilter(ServletRequest request, ServletResponse response,
-			FilterChain chain) throws IOException, ServletException {
-		log.info("======================================          Filter Start       ======================================");
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 
 		String path = ((HttpServletRequest) request).getRequestURI();
-		log.info("path"+path);
-		log.info("PATH확인 TRUE면 해당 URL"+path.startsWith("/Admins/SiteMgr/"));
 
-		// ckeditor를 사용하는 경우 제외시켜야한다.
-		if (path.startsWith("/admin/boardNews") || path.startsWith("/admin/boardNotice") || path.startsWith("/admin/marketing") || path.startsWith("/member/mbrTempLoginPwUpdate") || path.startsWith("/qa")
-			|| path.startsWith("/admins/promoter/boardmgr")) 
-		{
-			chain.doFilter(request, response); // 그냥 진행
+		if (path == null || "".equals(path)) {
+			chain.doFilter(request, response);
+		}
+
+		boolean isEditor = path.startsWith("/admin/boardNews") || path.startsWith("/admin/boardNotice") || path.startsWith("/admin/marketing") || path.startsWith("/member/mbrTempLoginPwUpdate")
+				|| path.startsWith("/qa") || path.startsWith("/admins/promoter/boardmgr");
+
+		if (isEditor) {
+			chain.doFilter(request, response);
 		} else {
-			chain.doFilter(new HTMLTagFilterRequestWrapper(
-					(HttpServletRequest) request), response); // Just continue
-																// chain.
+			chain.doFilter(new HTMLTagFilterRequestWrapper((HttpServletRequest) request), response);
 		}
 
 	}

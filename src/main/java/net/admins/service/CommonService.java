@@ -11,9 +11,7 @@ public interface CommonService {
 
 	Map<String, Object> insertGdsUpLoader(Map<String, Object> map, HttpServletRequest request) throws Exception;
 
-	/*========================================등록========================================*/
-	
 	public GeneralConfig getFrontFooter(HttpServletRequest request, String xml) throws Exception;
-	
+
 	public void CreateWatchMap(WatchVO watchVO);
 }

@@ -1,5 +1,8 @@
 package net.mwav.common.module;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.IOException;
 import java.util.Arrays;
  
@@ -36,7 +39,9 @@ import java.util.Base64.Encoder;
 - 암호화가 병렬처리가 아닌 순차적으로 수행되어야 한다. (단점)
  */
 public class AesEncryption {
- 
+
+    private static final Logger logger = LoggerFactory.getLogger(AesEncryption.class);
+    
     public static final String sKey = "Mwav.net";
     public static final String sInitVector = "Mwav";
     
@@ -259,9 +264,9 @@ public class AesEncryption {
         byte[] decrypted = null;
  
         try {
-            System.out.println("* AES/ECB");
-            System.out.println("    - KEY : " + sKey);
-            System.out.println("    - TEXT : " + sText);
+            logger.debug("* AES/ECB");
+            logger.debug("    - KEY : " + sKey);
+            logger.debug("    - TEXT : " + sText);
  
             // AES/ECB 암호화
             encrypted = aesEncryptEcb(sKey, sText);
@@ -270,21 +275,21 @@ public class AesEncryption {
             decrypted = aesDecryptEcb(sKey, encrypted);
  
             if (encrypted == null) {
-                System.out.println("    - Encrypted : ERROR!!!");
+                logger.debug("    - Encrypted : ERROR!!!");
             } else {
-                System.out.println("    - Encrypted : " + toHexString(encrypted));
+                logger.debug("    - Encrypted : " + toHexString(encrypted));
             }
  
             if (decrypted == null) {
-                System.out.println("    - Decrypted : ERROR!!!");
+                logger.debug("    - Decrypted : ERROR!!!");
             } else {
-                System.out.println("    - Decrypted : " + new String(decrypted, "UTF-8"));
+                logger.debug("    - Decrypted : " + new String(decrypted, "UTF-8"));
             }
  
-            System.out.println("* AES/CBC");
-            System.out.println("    - KEY : " + sKey);
-            System.out.println("    - TEXT : " + sText);
-            System.out.println("    - IV : (Empty)");
+            logger.debug("* AES/CBC");
+            logger.debug("    - KEY : " + sKey);
+            logger.debug("    - TEXT : " + sText);
+            logger.debug("    - IV : (Empty)");
  
             // AES/CBC 암호화
             encrypted = aesEncryptCbc(sKey, sText);
@@ -293,21 +298,21 @@ public class AesEncryption {
             decrypted = aesDecryptCbc(sKey, encrypted);
  
             if (encrypted == null) {
-                System.out.println("    - Encrypted : ERROR!!!");
+                logger.debug("    - Encrypted : ERROR!!!");
             } else {
-                System.out.println("    - Encrypted : " + toHexString(encrypted));
+                logger.debug("    - Encrypted : " + toHexString(encrypted));
             }
  
             if (decrypted == null) {
-                System.out.println("    - Decrypted : ERROR!!!");
+                logger.debug("    - Decrypted : ERROR!!!");
             } else {
-                System.out.println("    - Decrypted : " + new String(decrypted, "UTF-8"));
+                logger.debug("    - Decrypted : " + new String(decrypted, "UTF-8"));
             }
  
-            System.out.println("* AES/CBC/IV");
-            System.out.println("    - KEY : " + sKey);
-            System.out.println("    - TEXT : " + sText);
-            System.out.println("    - IV : " + sInitVector);
+            logger.debug("* AES/CBC/IV");
+            logger.debug("    - KEY : " + sKey);
+            logger.debug("    - TEXT : " + sText);
+            logger.debug("    - IV : " + sInitVector);
  
             // AES/CBC/IV 암호화
             encrypted = aesEncryptCbc(sKey, sText, sInitVector);
@@ -318,15 +323,15 @@ public class AesEncryption {
             decrypted = aesDecryptCbc(sKey, encrypted, sInitVector);
  
             if (encrypted == null) {
-                System.out.println("    - Encrypted : ERROR!!!");
+                logger.debug("    - Encrypted : ERROR!!!");
             } else {
-                System.out.println("    - Encrypted : " + toHexString(encrypted));
+                logger.debug("    - Encrypted : " + toHexString(encrypted));
             }
  
             if (decrypted == null) {
-                System.out.println("    - Decrypted : ERROR!!!");
+                logger.debug("    - Decrypted : ERROR!!!");
             } else {
-                System.out.println("    - Decrypted : " + new String(decrypted, "UTF-8"));
+                logger.debug("    - Decrypted : " + new String(decrypted, "UTF-8"));
             }
         } catch (Exception e) {
             e.printStackTrace();

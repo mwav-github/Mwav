@@ -1,5 +1,8 @@
 package net.common.common;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -7,6 +10,8 @@ import java.net.URL;
 
 public class APINaverShorten {
 
+    private static final Logger logger = LoggerFactory.getLogger(APINaverShorten.class);
+    
 	public static String getNaverShortenUrl(String originalUrl) {
         String clientId = "IgsxtB0uBqToYHbY1TEK";//애플리케이션 클라이언트 아이디값";
         String clientSecret = "Md4yzO3biF";//애플리케이션 클라이언트 시크릿값";
@@ -33,10 +38,10 @@ public class APINaverShorten {
                 response.append(inputLine);
             }
             br.close();
-            System.out.println(response.toString());
+            logger.debug(response.toString());
             result = response.toString();
         } catch (Exception e) {
-            System.out.println(e);
+            logger.debug(e.toString());
         }
         return result; // response!=200 이면 오류 텍스트 검출, catch문 이동시 예외 오류 텍스트 검출
     }

@@ -1,10 +1,14 @@
 package net.admins.dao;
 
-import net.common.common.CommandMap;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
+
+import javax.sql.DataSource;
+
 import org.assertj.core.api.Assertions;
 import org.assertj.core.groups.Tuple;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -16,10 +20,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.sql.DataSource;
-import java.sql.SQLException;
-import java.util.List;
-import java.util.Map;
+import net.common.common.CommandMap;
 
 /**
  * <pre>
@@ -146,7 +147,7 @@ public class AdminPromoterDAOTest {
 
         // then
         String promoter_id = sqlSession.selectOne("staffPromoter.selectOnePmtLoginId", commandMap.get("pmtLoginId"));
-        List result = dao.selectPmtSpecialtyNames(promoter_id);
+        List<?> result = dao.selectPmtSpecialtyNames(promoter_id);
         Assertions.assertThat(result)
                 .hasSize(2)
                     .extracting("pmtSpecialtyName", "pmtSpecialtyLevel")

@@ -1,23 +1,20 @@
 package net.mwav.common.module;
 
-import static org.junit.Assert.*;
-
-import java.io.IOException;
-import java.nio.file.FileSystems;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardWatchEventKinds;
-import java.nio.file.WatchEvent;
-import java.nio.file.WatchKey;
-import java.nio.file.WatchService;
-import java.nio.file.WatchEvent.Kind;
-
-import java.util.List;
-
 import org.junit.Ignore;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.IOException;
+import java.nio.file.*;
+import java.nio.file.WatchEvent.Kind;
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
 
 public class WatchServiceTest {
+
+	private static final Logger logger = LoggerFactory.getLogger(WatchServiceTest.class);
 
 	private WatchKey watchKey;
 
@@ -45,7 +42,7 @@ public class WatchServiceTest {
 			for (WatchEvent<?> event : events) {
 				// 이벤트 종류
 				Kind<?> kind = event.kind();
-				System.out.println("경로출력" + "./src/main/webapp/xConfig/footer.xml");
+				logger.debug("경로출력" + "./src/main/webapp/xConfig/footer.xml");
 				if (kind.equals(StandardWatchEventKinds.ENTRY_MODIFY)) {
 					modified = true;
 					break;

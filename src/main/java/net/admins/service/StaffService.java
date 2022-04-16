@@ -1,15 +1,12 @@
 package net.admins.service;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
 import net.admins.vo.Staff_VO;
-import net.common.common.CommandMap;
 
 public interface StaffService {
 
-	/*========================================등록========================================*/
 	int selectNextStfPk() throws Exception;
 	
 	public boolean selectOneStfLoginIdCheck(String stfLoginId) throws Exception;

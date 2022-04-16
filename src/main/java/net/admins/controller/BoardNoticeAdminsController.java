@@ -1,34 +1,30 @@
 package net.admins.controller;
 
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
-import javax.annotation.Resource;
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import net.common.common.CommandMap;
 import net.admins.service.BoardNoticeAdminsService;
+import net.common.common.CommandMap;
 import net.mwav.common.module.Common_Utils;
 import net.mwav.common.module.Paging;
 import net.mwav.common.module.PagingVO;
 
 @Controller
 public class BoardNoticeAdminsController {
-	Logger log = Logger.getLogger(this.getClass());
-	// HttpServletRequest request = null;
-	// 자바에서 세션사용을 위해서는 아래와 같이 필요
-	// 세션 관련 설정은 prehandle 에서 추후 지정(들어오는 url에 따라서)
-	// HttpSession session = request.getSession();
+
+	private static final Logger logger = LoggerFactory.getLogger(BoardNoticeAdminsController.class);
 
 	Common_Utils cou = new Common_Utils();
 
@@ -47,7 +43,7 @@ public class BoardNoticeAdminsController {
 	 * SFbnsList /CommonApps/BoardNews/FrontNewsList.jsp 5. bnsUpdate : mode =
 	 * SbnsUpdate /CommonApps/BoardNews/bnsForm.jsp
 	 */
-	@Resource(name = "boardNoticeAdminsService")
+	@Inject
 	private BoardNoticeAdminsService BoardNoticeAdminsService;
 
 	// ///////////////////////////////////BoardNews/////////////////////////////////////
@@ -59,12 +55,11 @@ public class BoardNoticeAdminsController {
 	// 1번 bnsForm : Form 입력만 가능 (뒤로가기, list)
 	@RequestMapping(value = "/admin/boardNotice/ntmForm.mwav")
 	// http://egloos.zum.com/nadostar/v/210497
-	public ModelAndView insertNtmForm(CommandMap commandMap,
-			HttpServletRequest request) throws Exception {
+	public ModelAndView insertNtmForm(CommandMap commandMap, HttpServletRequest request) throws Exception {
 
 		ModelAndView mv = new ModelAndView("/Admins/SiteMgr/NoticeMgr/NtmForm");
 
-		log.debug("인터셉터 테스트");
+		logger.debug("인터셉터 테스트");
 		BoardNoticeAdminsService.insertNtmForm(commandMap.getMap());
 
 		String mm = "site";
@@ -83,17 +78,13 @@ public class BoardNoticeAdminsController {
 
 	// 1번 bnsView : 수정/삭제가능
 	@RequestMapping(value = "/admin/boardNotice/ntmView.mwav")
-	public ModelAndView selectOneNtmView(CommandMap commandMap,
-			HttpServletRequest request, HttpSession session) throws Exception {
+	public ModelAndView selectOneNtmView(CommandMap commandMap, HttpServletRequest request, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/SiteMgr/NoticeMgr/NtmView");
 
-		log.debug("인터셉터 테스트");
-		System.out.println("테스트");
-		Map<String, Object> selectOneNtmView = BoardNoticeAdminsService
-				.selectOneNtmView(commandMap.getMap());
+		logger.debug("인터셉터 테스트");
+		Map<String, Object> selectOneNtmView = BoardNoticeAdminsService.selectOneNtmView(commandMap.getMap());
 
 		if (selectOneNtmView != null && !selectOneNtmView.isEmpty()) {
-			System.out.println("view 줄랭");
 
 			String mm = "site";
 			mv.addObject("mm", mm);
@@ -116,17 +107,14 @@ public class BoardNoticeAdminsController {
 
 	// 1번 bnsUpdate : 리스트 업데이트
 	@RequestMapping(value = "/admin/boardNotice/ntmUpdate.mwav")
-	public ModelAndView updateNtmForm(CommandMap commandMap,
-			HttpServletRequest request) throws Exception {
+	public ModelAndView updateNtmForm(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/SiteMgr/NoticeMgr/NtmForm");
 
 		// 위의 view랑 동일하게 사용
 
-		Map<String, Object> updateNtmForm = BoardNoticeAdminsService
-				.updateNtmForm(commandMap.getMap());
+		Map<String, Object> updateNtmForm = BoardNoticeAdminsService.updateNtmForm(commandMap.getMap());
 
 		if (updateNtmForm != null && !updateNtmForm.isEmpty()) {
-			System.out.println("view 줄랭");
 			String mm = "site";
 			mv.addObject("mm", mm);
 			mv.addObject("mode", "m_nsmUpdate");
@@ -138,18 +126,17 @@ public class BoardNoticeAdminsController {
 
 	// 1번 bnsUpdate : 리스트 업데이트
 	@RequestMapping(value = "/admin/boardNotice/ntmUpdatePro.mwav")
-	public ModelAndView updateProNsmForm(CommandMap commandMap,
-			HttpServletRequest request) throws Exception {
+	public ModelAndView updateProNsmForm(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/SiteMgr/NoticeMgr/NtmList");
 
 		// 위의 view랑 동일하게 사용
 
 		BoardNoticeAdminsService.updateProNtmForm(commandMap.getMap());
-		
+
 		String mm = "site";
 		mv.addObject("mm", mm);
 		mv.addObject("mode", "m_ntmList");
-		
+
 		return mv;
 	}
 
@@ -169,22 +156,13 @@ public class BoardNoticeAdminsController {
 	 */
 	// 1번 FrontNewsList : 메인페이지 앞단 5개씩 출력, 작성일 기준
 	@RequestMapping(value = "/admin/boardNotice/ntmFrontList.mwav")
-	public ModelAndView selectListNtmFrontList(CommandMap commandMap,
-			HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView(
-				"/Admins/SiteMgr/NoticeMgr/NtmFrontList");
-		/*
-		 * mode = "SFbnsList"; session.setAttribute("mode", mode); String
-		 * sessiontest = (String) session.getAttribute(mode);
-		 * 
-		 * System.out.println("sessiontest=" + sessiontest);
-		 */
+	public ModelAndView selectListNtmFrontList(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("/Admins/SiteMgr/NoticeMgr/NtmFrontList");
 
 		// * action-servlet.xml에서 위에 .jsp 설정해줘서 위의 CommonApps 부터 되는거
 		cou.selectCommandMapList(commandMap); // 키 출력
 
-		List<Map<String, Object>> selectListNtmFrontList = BoardNoticeAdminsService
-				.selectListNtmFrontList(commandMap.getMap());
+		List<Map<String, Object>> selectListNtmFrontList = BoardNoticeAdminsService.selectListNtmFrontList(commandMap.getMap());
 
 		if (selectListNtmFrontList != null && !selectListNtmFrontList.isEmpty()) {
 
@@ -199,8 +177,7 @@ public class BoardNoticeAdminsController {
 
 	// 2번 bnsList : 리스트
 	@RequestMapping(value = "/admin/boardNotice/ntmList.mwav")
-	public ModelAndView selectListNtmList(CommandMap commandMap,
-			HttpServletRequest request) throws Exception {
+	public ModelAndView selectListNtmList(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/SiteMgr/NoticeMgr/NtmList");
 
 		String pageNum = (String) commandMap.get("pageNum");
@@ -209,7 +186,6 @@ public class BoardNoticeAdminsController {
 			pageNum = "1";
 		}
 		int totalRow = BoardNoticeAdminsService.selectOneGetNtmTotalCount();
-		System.out.println("totalRow=" + totalRow);
 
 		// Paging pv = new Paging(pageNum, 10 , 10, totalCount);
 		List<Map<String, Object>> selectListNtmList;
@@ -219,15 +195,13 @@ public class BoardNoticeAdminsController {
 		commandMap.put("startRow", paging.getStartRow(pageNum)); // 시작 열
 		commandMap.put("endRow", paging.getEndRow(pageNum)); // 끝 열
 		if (totalRow > 0) {
-			selectListNtmList = BoardNoticeAdminsService
-					.selectListNtmList(commandMap.getMap());
+			selectListNtmList = BoardNoticeAdminsService.selectListNtmList(commandMap.getMap());
 			// selectboardList =
 			// boardService.selectbnsList(commandMap.getMap());
 
 		} else {
 			selectListNtmList = Collections.emptyList();
 		}
-		System.out.println("찍히낭");
 		String mm = "site";
 		mv.addObject("mm", mm);
 		mv.addObject("mode", "m_ntmList");
@@ -243,18 +217,14 @@ public class BoardNoticeAdminsController {
 		return mv;
 	}
 
-	
-	
 	/*
 	 * ========================================삭제================================
 	 * ========
 	 */
 	// 1번 bnsDelete
 	@RequestMapping(value = "/admin/boardNotice/ntmDelete.mwav")
-	public ModelAndView deleteNtmDelete(CommandMap commandMap,
-			HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView(
-				"/Admins/SiteMgr/NoticeMgr/NtmList");
+	public ModelAndView deleteNtmDelete(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("/Admins/SiteMgr/NoticeMgr/NtmList");
 
 		BoardNoticeAdminsService.deleteNtmDelete(commandMap.getMap());
 
@@ -265,16 +235,13 @@ public class BoardNoticeAdminsController {
 		return mv;
 	}
 
-	
-	
 	/*
 	 * =============================Promoter 공지사항 기능===============================
 	 */
-	
+
 	// (1) Promoter 공지사항 리스트
 	@RequestMapping(value = "/admins/promoter/boardmgr/PmtNoticeList.mwav")
-	public ModelAndView selectListPmtNtmList(CommandMap commandMap,
-			HttpServletRequest request) throws Exception {
+	public ModelAndView selectListPmtNtmList(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/Promoter/BoardMgr/PmtNoticeList");
 
 		String pageNum = (String) commandMap.get("pageNum");
@@ -283,7 +250,6 @@ public class BoardNoticeAdminsController {
 			pageNum = "1";
 		}
 		int totalRow = BoardNoticeAdminsService.selectOneGetPmtNtmTotalCount();
-		System.out.println("totalRow=" + totalRow);
 
 		List<Map<String, Object>> selectListPmtNtmList;
 		PagingVO pagingVO = paging.setPagingInfo(totalRow, 5, pageNum); // 총 숫자,
@@ -291,16 +257,16 @@ public class BoardNoticeAdminsController {
 																		// 노출 수
 		commandMap.put("startRow", paging.getStartRow(pageNum)); // 시작 열
 		commandMap.put("endRow", paging.getEndRow(pageNum)); // 끝 열
-		
+
 		if (totalRow > 0) {
 			selectListPmtNtmList = BoardNoticeAdminsService.selectListPmtNtmList(commandMap.getMap());
 		} else {
 			selectListPmtNtmList = Collections.emptyList();
 		}
-		
+
 		String mm = "site";
 		mv.addObject("mm", mm);
-		
+
 		/*
 		mv.addObject("mode", "m_ntmList");
 		mv.addObject("depth_1", depth_1);
@@ -315,13 +281,11 @@ public class BoardNoticeAdminsController {
 		return mv;
 	}
 
-	
 	// (2) Promoter 공지사항 삭제
 	@RequestMapping(value = "/admins/promoter/boardmgr/PmtNoticeDelete.mwav")
-	public ModelAndView deletePmtNtmDelete(CommandMap commandMap,
-			HttpServletRequest request) throws Exception {
+	public ModelAndView deletePmtNtmDelete(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/Promoter/BoardMgr/PmtNoticeList");
-		
+
 		BoardNoticeAdminsService.deletePmtNtmDelete(commandMap.getMap());
 
 		/*
@@ -329,15 +293,14 @@ public class BoardNoticeAdminsController {
 		mv.addObject("depth_2", depth_2);
 		mv.addObject("depth_3", "NtmDelete");
 		*/
-		
+
 		return mv;
-	}	
-	
+	}
+
 	// Promoter 공지사항 등록
 	@RequestMapping(value = "/admins/promoter/boardmgr/PmtNoticeForm.mwav")
 	// http://egloos.zum.com/nadostar/v/210497
-	public ModelAndView insertPmtNtmForm(CommandMap commandMap,
-			HttpServletRequest request) throws Exception {
+	public ModelAndView insertPmtNtmForm(CommandMap commandMap, HttpServletRequest request) throws Exception {
 
 		ModelAndView mv = new ModelAndView("/Admins/Promoter/BoardMgr/PmtNoticeForm");
 
@@ -345,14 +308,13 @@ public class BoardNoticeAdminsController {
 
 		String mm = "site";
 		mv.addObject("mm", mm);
-		
-		
+
 		mv.addObject("mode", "m_ntmForm");
 
 		mv.addObject("depth_1", depth_1);
 		mv.addObject("depth_2", depth_2);
 		mv.addObject("depth_3", "NtmForm");
-		
+
 		// mv.addObject("insertBnsForm", insertBnsForm);
 		// mv.addObject("IDX", commandMap.get("IDX"));
 
@@ -361,25 +323,22 @@ public class BoardNoticeAdminsController {
 
 	// Promoter 공지사항 등록
 	@RequestMapping(value = "/admins/promoter/boardmgr/PmtNoticeUpdatePro.mwav")
-	public ModelAndView updateProPmtNtmForm(CommandMap commandMap,
-			HttpServletRequest request) throws Exception {
+	public ModelAndView updateProPmtNtmForm(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/Promoter/BoardMgr/PmtNoticeList");
 
 		BoardNoticeAdminsService.updateProPmtNtmForm(commandMap.getMap());
-		
+
 		String mm = "site";
 		mv.addObject("mm", mm);
 		mv.addObject("mode", "m_ntmList");
-		
+
 		return mv;
-	}	
+	}
 
 	// Promoter 공지사항 업데이트
 	@RequestMapping(value = "/admins/promoter/boardmgr/PmtNoticeUpdate.mwav")
-	public ModelAndView updatePmtNtmForm(CommandMap commandMap,
-			HttpServletRequest request) throws Exception {
+	public ModelAndView updatePmtNtmForm(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/Promoter/BoardMgr/PmtNoticeForm");
-
 
 		Map<String, Object> updatePmtNtmForm = BoardNoticeAdminsService.updatePmtNtmForm(commandMap.getMap());
 
@@ -391,15 +350,13 @@ public class BoardNoticeAdminsController {
 		}
 		return mv;
 	}
-	
+
 	// Promoter 공지사항 View
 	@RequestMapping(value = "/admins/promoter/boardmgr/PmtNoticeView.mwav")
-	public ModelAndView selectOnePmtNtmView(CommandMap commandMap,
-			HttpServletRequest request, HttpSession session) throws Exception {
+	public ModelAndView selectOnePmtNtmView(CommandMap commandMap, HttpServletRequest request, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/Promoter/BoardMgr/PmtNoticeView");
 
-		Map<String, Object> selectOnePmtNtmView = BoardNoticeAdminsService
-				.selectOnePmtNtmView(commandMap.getMap());
+		Map<String, Object> selectOnePmtNtmView = BoardNoticeAdminsService.selectOnePmtNtmView(commandMap.getMap());
 
 		if (selectOnePmtNtmView != null && !selectOnePmtNtmView.isEmpty()) {
 
@@ -419,25 +376,24 @@ public class BoardNoticeAdminsController {
 
 	// Promoter 공지사항 노출/비노출 설정
 	@RequestMapping(value = "/admins/promoter/boardmgr/PmtNoticeStatusUpdate.mwav")
-	public ModelAndView updateNsmBnStatusNotice(CommandMap commandMap,
-			HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView updateNsmBnStatusNotice(CommandMap commandMap, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mv = new ModelAndView("/Admins/Promoter/BoardMgr/PmtNoticeList");
 
 		BoardNoticeAdminsService.updatePmtNoticeStatus(commandMap.getMap());
 
 		String bpStatus = request.getParameter("bpStatus"); //웹에서 전달받은 값
 		String boardPromoter_id = request.getParameter("boardPromoter_id"); //웹에서 전달받은 값
-		
+
 		String mm = "site";
 		mv.addObject("mm", mm);
 		mv.addObject("mode", "m_ntmList");
-		
+
 		mv.addObject("boardPromoter_id", boardPromoter_id);
 		mv.addObject("bpStatus", bpStatus);
 
 		response.sendRedirect("/admins/promoter/boardmgr/PmtNoticeList.mwav?pageNum=1"); // 공지사항 노출,비노출 설정 후 리스트 화면으로 이동
-		
+
 		return mv;
-	}	
+	}
 
 }

@@ -1,6 +1,5 @@
 package net.common.charts.vo;
 
-
 import java.util.List;
 
 import org.codehaus.jackson.annotate.JsonProperty;
@@ -35,37 +34,34 @@ import org.codehaus.jackson.annotate.JsonProperty;
  * @see Series 타입 분리
  *
  */
-
 public class SeriesTypeThreeVO {
-    @JsonProperty("name")
-    private String name;
-    @JsonProperty("data")
-    private List<SeriesDataTypeOneVO> data;
+	@JsonProperty("name")
+	private String name;
 
-  //http://marobiana.tistory.com/119 만들어야한다. 안그러면 오류.
-    private SeriesTypeThreeVO() {} // 디폴트 생성자
-    
-    public SeriesTypeThreeVO(String name, List<SeriesDataTypeOneVO> list) {
-        this.name = name;
-        this.data = list;
-      }
+	@JsonProperty("data")
+	private List<SeriesDataTypeOneVO> data;
 
+	public SeriesTypeThreeVO() {
+	}
 
-    public String getName() {
-        return name;
-    }
+	public SeriesTypeThreeVO(String name, List<SeriesDataTypeOneVO> list) {
+		this.name = name;
+		this.data = list;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public String getName() {
+		return name;
+	}
 
+	public void setName(String name) {
+		this.name = name;
+	}
 
+	public List<SeriesDataTypeOneVO> getData() {
+		return data;
+	}
 
-    public List<SeriesDataTypeOneVO> getData() {
-        return data;
-    }
-
-    public void setData(List<SeriesDataTypeOneVO> data) {
-        this.data = data;
-    }
+	public void setData(List<SeriesDataTypeOneVO> data) {
+		this.data = data;
+	}
 }

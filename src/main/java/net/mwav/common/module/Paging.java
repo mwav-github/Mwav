@@ -1,6 +1,11 @@
 package net.mwav.common.module;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class Paging {
+
+	private static final Logger logger = LoggerFactory.getLogger(Paging.class);
 
 	PagingVO paging = new PagingVO();
 	int pageSize; // 한 페이지의 글의 개수
@@ -49,14 +54,14 @@ public class Paging {
 		}
 
 		pageCount = totalRow / pageSize + remainRow;
-		System.out.println("pageCount" + pageCount);
+		logger.debug("pageCount" + pageCount);
 		pageBlock = 5; // <<1,2,3,4,5>>
 
 		result = (currentPage - 1) / pageBlock;
-		System.out.println("result=" + result);
+		logger.debug("result=" + result);
 
 		startPage = result * pageBlock + 1;
-		System.out.println("startPage=" + startPage);
+		logger.debug("startPage=" + startPage);
 
 		endPage = startPage + pageBlock - 1;
 		startRow = (currentPage - 1) * pageSize + 1;
@@ -80,9 +85,9 @@ public class Paging {
 	public int getStartRow(String pageNum) { // 현재 페이지에서 첫 열 계산
 		// currentPage = Integer.parseInt(pageNum);
 		startRow = (currentPage - 1) * pageSize + 1;
-		System.out.println("currentPage=" + currentPage);
-		// System.out.println("pageSize="+pageSize);
-		System.out.println("startRow=" + startRow);
+		logger.debug("currentPage=" + currentPage);
+		// logger.debug("pageSize="+pageSize);
+		logger.debug("startRow=" + startRow);
 		return startRow;
 
 	}
@@ -90,16 +95,16 @@ public class Paging {
 	public int getEndRow(String pageNum) { // 현재 페이지에 마지막 열 계산
 		currentPage = Integer.parseInt(pageNum);
 		endRow = currentPage * pageSize;
-		// System.out.println("currentPage="+currentPage);
-		// System.out.println("pageSize="+pageSize);
-		System.out.println("endRow=" + endRow);
+		// logger.debug("currentPage="+currentPage);
+		// logger.debug("pageSize="+pageSize);
+		logger.debug("endRow=" + endRow);
 		return endRow;
 
 	}
 
 	public String getPageNum(String imsi_pageNum) {
 		String pageNum = imsi_pageNum;
-		System.out.println("pageNum=" + pageNum);
+		logger.debug("pageNum=" + pageNum);
 
 		if (imsi_pageNum == null || imsi_pageNum == "") {
 			pageNum = "1";

@@ -1,8 +1,9 @@
 package net.mwav.statistics.dao;
 
-import com.sun.org.apache.bcel.internal.generic.NEW;
-import net.mwav.statistics.vo.StatisticsLogVO;
-import net.mwav.statistics.vo.StatisticsVO;
+import java.sql.SQLException;
+
+import javax.sql.DataSource;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,9 +16,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.sql.DataSource;
-import java.sql.SQLException;
-import java.util.Date;
+import net.mwav.statistics.vo.StatisticsLogVO;
+import net.mwav.statistics.vo.StatisticsVO;
 
 /**
  * <pre>
