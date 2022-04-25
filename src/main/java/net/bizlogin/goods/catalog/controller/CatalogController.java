@@ -14,7 +14,7 @@ public class CatalogController {
 	private static final Logger logger = LoggerFactory.getLogger(CatalogController.class);
 
 	@RequestMapping(value = "/goods/catalog/frontList", method = RequestMethod.GET)
-	public ModelAndView form() {
+	public ModelAndView frontList() throws Exception {
 		logger.debug("/bizlogin/goods/catalog/frontList");
 		return new ModelAndView("/bizlogin/goods/catalog/frontList");
 	}

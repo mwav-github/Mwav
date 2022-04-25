@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 로그인 -->
+<mapper namespace="net.bizlogin.promoter.manage.dao.ManageDao">
+	
+	<!-- 프로모터 검색 -->
+	<select id="getPromoter" parameterType="map" resultType="map">
+		SELECT /* net.bizlogin.promoter.manage.dao.getPromoter */
+			  A.promoter_id, A.pmtLoginId, A.pmtLoginPw
+			, A.pmtGender, A.pmtFirstName, A.pmtLastName, A.pmtMiddleName, A.pmtNickName
+			, A.pmtMail, A.pmtPhone, A.pmtCellularPhone, A.pmtAddrFlag, A.pmtZipcode
+			, A.pmtAddress, A.pmtAddressDetail, A.pmtJobType, A.pmtMarried, A.pmtMark
+			, A.pmtRcmderId, B.pmtCertifyDt
+		FROM  Promoter_tbl A
+		INNER JOIN PromoterValue_tbl B ON B.promoter_id = A.promoter_id
+		WHERE 1 = 1
+			AND A.promoter_id = #{promoter_id, jdbcType=VARCHAR}
+	</select>
+	
+	<!-- 이메일 인증 -->
+	<update id="updateCertifyDt" parameterType="map">
+		UPDATE PromoterValue_tbl /* net.bizlogin.promoter.manage.dao.updateCertifyDt */ 
+		SET pmtCertifyDt = NOW()
+		WHERE 1 = 1
+			AND promoter_id = #{promoter_id, jdbcType=VARCHAR}
+	</update>
+	
+	<update id="increaseVisitCount" parameterType="map">
+		UPDATE PromoterValue_tbl /* net.bizlogin.promoter.manage.dao.increaseVisitNumber */
+		SET PmtVisitNbr = PmtVisitNbr + 1
+		WHERE 1 = 1
+			AND promoter_id= #{promoter_id, jdbcType=VARCHAR}
+	</update>
+</mapper>
+
