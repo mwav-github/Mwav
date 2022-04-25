@@ -27,6 +27,10 @@ import com.github.scribejava.core.model.OAuthConstants;
 import net.bizlogin.oauth.naver.service.NaverServiceImpl;
 import net.mwav.framework.web.RequestLib;
 
+/**
+ * 프로모터 네이버 로그인 
+ *
+ */
 @Controller
 @RequestMapping(value = "/bizlogin")
 public class NaverController {
@@ -35,32 +39,36 @@ public class NaverController {
 
 	@Inject
 	private NaverServiceImpl naverServiceImpl;
-	
+
 	/**
-	 * 네이버 로그인 접근
+	 * 네이버 로그인 인증 사이트 접근
 	 */
 	@RequestMapping(value = "/oauth/naver/access", method = RequestMethod.GET)
 	public RedirectView access(HttpSession session) {
+		logger.debug("/bizlogin/oauth/naver/access");
+
 		String state = UUID.randomUUID().toString();
 		session.setAttribute(OAuthConstants.STATE, state);
 		String authorizationUrl = naverServiceImpl.getAuthorizationUrl(state);
 
 		return new RedirectView(authorizationUrl);
 	}
-	
+
 	/**
-	 * 네이버 로그인 후 callback되는 경로 
+	 * 네이버 로그인
 	 * @param auth {code, state}
 	 */
 	@RequestMapping(value = "/oauth/naver/signin", method = RequestMethod.GET)
-	public ModelAndView signin(@ModelAttribute OAuth2Authorization auth, HttpServletRequest request) throws JsonParseException, JsonMappingException, IOException, InterruptedException, ExecutionException {
+	public ModelAndView signin(@ModelAttribute OAuth2Authorization auth, HttpServletRequest request, HttpSession session) throws JsonParseException, JsonMappingException, IOException, InterruptedException, ExecutionException {
 		logger.debug("/bizlogin/oauth/naver/signin");
-		RequestLib requestLib = RequestLib.getInstance(request);
-		
+
 		Map<String, Object> param = new HashMap<>();
+		RequestLib requestLib = RequestLib.getInstance(request);
 		param.put("spIpAddress", requestLib.getRemoteAddr());
 		
-		naverServiceImpl.signin(auth, param);
+		Map<String, Object> result = naverServiceImpl.signin(auth, param);
+		session.setAttribute("promoter", result.get("promoter"));
+		
 		return new ModelAndView("redirect:/bizlogin");
 	}
 }

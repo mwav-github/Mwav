@@ -13,12 +13,11 @@
 	<section class="section-conten padding-y" style="min-height: 84vh">
 		<div class="card mx-auto" style="max-width: 380px; margin-top: 50px;">
 			<div class="card-body">
-				<form id="promoter" name="promoter" action="<c:url value='/bizlogin/promoter/signin' />" method="post"
-					autocomplete="off">
+				<form id="promoter" name="promoter" action="<c:url value='/bizlogin/promoter/signin' />" method="post" autocomplete="off">
 					<input type="hidden" id="token" name="token" value="">
 
 					<div class="img-wrap mb-4">
-						<a class="btn-overlay" href="<c:url value='/bizlogin/oauth/naver/access' />">
+						<a class="btn-overlay" href="<c:url value="/bizlogin/oauth/naver/access" />">
 							<img src="<c:url value='/resources/bizlogin/images/oauth/btnG_naver_complete.png' />" style="width: 100%; height: 51.38px;">
 						</a>
 					</div>
@@ -50,8 +49,7 @@
 					</div>
 
 					<div class="form-group">
-						<a href="<c:url value='/bizlogin/promoter/signup/form' />" class="btn btn-block btn-outline-primary btn-lg"
-							alt="Sign up">회원가입</a>
+						<a href="<c:url value='/bizlogin/promoter/signup/form' />" class="btn btn-block btn-outline-primary btn-lg" alt="Sign up">회원가입</a>
 					</div>
 				</form>
 			</div>

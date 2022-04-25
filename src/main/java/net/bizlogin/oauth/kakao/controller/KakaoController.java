@@ -21,6 +21,10 @@ import com.github.scribejava.core.model.OAuthConstants;
 
 import net.bizlogin.oauth.kakao.service.KakaoServiceImpl;
 
+/**
+ * 프로모터 카카오 로그인
+ *
+ */
 @Controller
 @RequestMapping(value = "/bizlogin")
 public class KakaoController {
@@ -30,6 +34,9 @@ public class KakaoController {
 	@Inject
 	private KakaoServiceImpl kakaoServiceImpl;
 
+	/**
+	 * 카카오 로그인 인증 사이트 접근
+	 */
 	@RequestMapping(value = "/oauth/kakao/access", method = RequestMethod.GET)
 	public RedirectView access(HttpSession session) {
 		logger.debug("/bizlogin/oauth/kakao/access");
@@ -39,7 +46,11 @@ public class KakaoController {
 
 		return new RedirectView(authorizationUrl);
 	}
-	
+
+	/**
+	 * 카카오 로그인
+	 * @param auth {code, state}
+	 */
 	@RequestMapping(value = "/oauth/kakao/signin", method = RequestMethod.GET)
 	public ModelAndView signin(@ModelAttribute OAuth2Authorization auth, HttpSession session) throws IOException, InterruptedException, ExecutionException {
 		logger.debug("/bizlogin/oauth/kakao/signin");

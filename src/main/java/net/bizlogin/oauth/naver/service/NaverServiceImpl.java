@@ -1,9 +1,11 @@
 package net.bizlogin.oauth.naver.service;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
+import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 import org.slf4j.Logger;
@@ -25,11 +27,17 @@ import com.github.scribejava.core.model.Response;
 import com.github.scribejava.core.model.Verb;
 import com.github.scribejava.core.oauth.OAuth20Service;
 
-import net.bizlogin.oauth.AbstractOAuthService;
 import net.bizlogin.oauth.naver.dao.NaverDao;
 
+/**
+ * 프로모터 네이버 로그인 
+ *
+ */
 @Service
-public class NaverServiceImpl extends AbstractOAuthService {
+public class NaverServiceImpl {
+
+	@SuppressWarnings("unused")
+	private static final Logger logger = LoggerFactory.getLogger(NaverServiceImpl.class);
 
 	@Value("${bizlogin.naver.appKey}")
 	private String appKey;
@@ -40,24 +48,42 @@ public class NaverServiceImpl extends AbstractOAuthService {
 	@Value("${bizlogin.naver.callbackUrl}")
 	private String callbackUrl;
 
-	private static final Logger logger = LoggerFactory.getLogger(NaverServiceImpl.class);
+	private OAuth20Service oauthService;
 
 	@Inject
 	private NaverDao naverDao;
 
-	@Override
-	public OAuth20Service createService() {
-		OAuth20Service oauthService = new ServiceBuilder(appKey).apiSecret(appSecret).callback(callbackUrl)
+	/**
+	 * 네이버 oauthService 생성
+	 */
+	@PostConstruct
+	public void createService() {
+		this.oauthService = new ServiceBuilder(appKey).apiSecret(appSecret)
+				.callback(callbackUrl)
 				.build(NaverApi.instance());
-		return oauthService;
 	}
 
+	/**
+	 * 네이버 로그인 인증 url 생성
+	 * @param state
+	 * @return url
+	 */
+	public String getAuthorizationUrl(String state) {
+		String authorizationUrl = this.oauthService.getAuthorizationUrl(state);
+		return authorizationUrl;
+	}
+
+	/**
+	 * 네이버 로그인
+	 * @param auth {code, state}
+	 * @param param {spIpAddress}
+	 */
 	@Transactional(rollbackFor = { Exception.class }, readOnly = false)
 	@SuppressWarnings("unchecked")
-	public void signin(OAuth2Authorization auth, Map<String, Object> param) throws JsonParseException, JsonMappingException, IOException, InterruptedException, ExecutionException {
+	public Map<String, Object> signin(OAuth2Authorization auth, Map<String, Object> param) throws JsonParseException, JsonMappingException, IOException, InterruptedException, ExecutionException {
+		Map<String, Object> result = new HashMap<String, Object>();
 		OAuth2AccessToken accessToken = getAccessToken(auth.getCode());
 		Response response = getUserProfile(accessToken);
-		logger.debug(response.toString());
 
 		ObjectMapper mapper = new ObjectMapper();
 		Map<String, Object> responseMap = mapper.readValue(response.getBody(), Map.class);
@@ -73,16 +99,49 @@ public class NaverServiceImpl extends AbstractOAuthService {
 		if (naverPromoter == null || naverPromoter.isEmpty()) {
 			naverDao.createSnsPromoter(userProfile);
 		}
+
+		result.put("promoter", naverPromoter);
+		return result;
 	}
 
-	@Override
+	/**
+	 * 토큰 유효성 검증
+	 */
 	public boolean isValidToken(String token) throws IOException, InterruptedException, ExecutionException {
 		return true;
 	}
 
 	/**
+	 * 접근 토큰 발행
+	 * @param code
+	 * @return {accessToken, refreshToken, tokenType, expiresIn, ...}
+	 */
+	public OAuth2AccessToken getAccessToken(String code) throws IOException, InterruptedException, ExecutionException {
+		OAuth2AccessToken token = this.oauthService.getAccessToken(code);
+		return token;
+	}
+
+	/**
+	 * 토큰 재발급
+	 * @param refreshToken
+	 * @return {accessToken, refreshToken, tokenType, expiresIn, ...}
+	 */
+	public OAuth2AccessToken refreshToken(String refreshToken) throws IOException, InterruptedException, ExecutionException {
+		OAuth2AccessToken token = this.oauthService.refreshAccessToken(refreshToken);
+		return token;
+	}
+
+	/**
+	 * 토큰 회수
+	 * @param tokenToRevoke
+	 */
+	public void revokeToken(String tokenToRevoke) throws IOException, InterruptedException, ExecutionException {
+		this.oauthService.revokeToken(tokenToRevoke);
+	}
+
+	/**
 	 * 네이버 프로필 조회
-	 * @param token
+	 * @param token {accessToken, refreshToken, tokenType, expiresIn, ...}
 	 * @return Response {resultcode, message, response : { profile }}
 	 */
 	public Response getUserProfile(OAuth2AccessToken token) throws InterruptedException, ExecutionException, IOException {
@@ -92,4 +151,5 @@ public class NaverServiceImpl extends AbstractOAuthService {
 		Response response = oauthService.execute(request);
 		return response;
 	}
+
 }
