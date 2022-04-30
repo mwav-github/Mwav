@@ -19,7 +19,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import com.github.scribejava.core.model.OAuth2Authorization;
 import com.github.scribejava.core.model.OAuthConstants;
 
-import net.bizlogin.oauth.kakao.service.KakaoServiceImpl;
+import net.bizlogin.oauth.kakao.service.KakaoService;
 
 /**
  * 프로모터 카카오 로그인
@@ -32,7 +32,7 @@ public class KakaoController {
 	private static final Logger logger = LoggerFactory.getLogger(KakaoController.class);
 
 	@Inject
-	private KakaoServiceImpl kakaoServiceImpl;
+	private KakaoService kakaoService;
 
 	/**
 	 * 카카오 로그인 인증 사이트 접근
@@ -42,7 +42,7 @@ public class KakaoController {
 		logger.debug("/bizlogin/oauth/kakao/access");
 		String state = UUID.randomUUID().toString();
 		session.setAttribute(OAuthConstants.STATE, state);
-		String authorizationUrl = kakaoServiceImpl.getAuthorizationUrl(state);
+		String authorizationUrl = kakaoService.getAuthorizationUrl(state);
 
 		return new RedirectView(authorizationUrl);
 	}
@@ -54,7 +54,7 @@ public class KakaoController {
 	@RequestMapping(value = "/oauth/kakao/signin", method = RequestMethod.GET)
 	public ModelAndView signin(@ModelAttribute OAuth2Authorization auth, HttpSession session) throws IOException, InterruptedException, ExecutionException {
 		logger.debug("/bizlogin/oauth/kakao/signin");
-		kakaoServiceImpl.signin(auth);
+		kakaoService.signin(auth);
 
 		return new ModelAndView("redirect:/bizlogin");
 	}

@@ -18,9 +18,9 @@ import com.github.scribejava.core.oauth.OAuth20Service;
  *
  */
 @Service
-public class KakaoServiceImpl {
+public class KakaoService {
 
-	private static final Logger logger = LoggerFactory.getLogger(KakaoServiceImpl.class);
+	private static final Logger logger = LoggerFactory.getLogger(KakaoService.class);
 
 	@Value("${bizlogin.kakao.appKey}")
 	private String appKey;

@@ -24,7 +24,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.github.scribejava.core.model.OAuth2Authorization;
 import com.github.scribejava.core.model.OAuthConstants;
 
-import net.bizlogin.oauth.naver.service.NaverServiceImpl;
+import net.bizlogin.oauth.naver.service.NaverService;
 import net.mwav.framework.web.RequestLib;
 
 /**
@@ -38,7 +38,7 @@ public class NaverController {
 	private static final Logger logger = LoggerFactory.getLogger(NaverController.class);
 
 	@Inject
-	private NaverServiceImpl naverServiceImpl;
+	private NaverService naverService;
 
 	/**
 	 * 네이버 로그인 인증 사이트 접근
@@ -49,7 +49,7 @@ public class NaverController {
 
 		String state = UUID.randomUUID().toString();
 		session.setAttribute(OAuthConstants.STATE, state);
-		String authorizationUrl = naverServiceImpl.getAuthorizationUrl(state);
+		String authorizationUrl = naverService.getAuthorizationUrl(state);
 
 		return new RedirectView(authorizationUrl);
 	}
@@ -66,7 +66,7 @@ public class NaverController {
 		RequestLib requestLib = RequestLib.getInstance(request);
 		param.put("spIpAddress", requestLib.getRemoteAddr());
 		
-		Map<String, Object> result = naverServiceImpl.signin(auth, param);
+		Map<String, Object> result = naverService.signin(auth, param);
 		session.setAttribute("promoter", result.get("promoter"));
 		
 		return new ModelAndView("redirect:/bizlogin");

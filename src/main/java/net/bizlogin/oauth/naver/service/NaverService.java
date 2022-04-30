@@ -34,10 +34,10 @@ import net.bizlogin.oauth.naver.dao.NaverDao;
  *
  */
 @Service
-public class NaverServiceImpl {
+public class NaverService {
 
 	@SuppressWarnings("unused")
-	private static final Logger logger = LoggerFactory.getLogger(NaverServiceImpl.class);
+	private static final Logger logger = LoggerFactory.getLogger(NaverService.class);
 
 	@Value("${bizlogin.naver.appKey}")
 	private String appKey;
