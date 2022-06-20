@@ -20,19 +20,19 @@ public class CatalogController {
 	}
 
 	@RequestMapping(value = "/goods/catalog/list", method = RequestMethod.GET)
-	public ModelAndView list() throws Exception {
+	public ModelAndView list() {
 		logger.debug("/bizlogin/goods/catalog/list");
 		return new ModelAndView("/bizlogin/goods/catalog/list");
 	}
 
 	@RequestMapping(value = "/goods/catalog/detail", method = RequestMethod.GET)
-	public ModelAndView detail() throws Exception {
+	public ModelAndView detail() {
 		logger.debug("/bizlogin/goods/catalog/detail");
 		return new ModelAndView("/bizlogin/goods/catalog/detail");
 	}
 
 	@RequestMapping(value = "/goods/catalog/posting", method = RequestMethod.GET)
-	public ModelAndView posting() throws Exception {
+	public ModelAndView posting() {
 		logger.debug("/bizlogin/goods/catalog/posting");
 		return new ModelAndView("/bizlogin/goods/catalog/posting");
 	}

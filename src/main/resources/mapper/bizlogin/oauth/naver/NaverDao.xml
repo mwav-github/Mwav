@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 프로모터 네이버 로그인 -->
+<mapper namespace="net.bizlogin.oauth.naver.dao.NaverDao">
+	
+	<!-- 프로모터 네이버 사용자 조회 -->
+	<select id="getSnsPromoter" parameterType="map" resultType="map">
+		SELECT /* net.bizlogin.oauth.naver.dao.NaverDao.getSnsPromoter */
+			  snsPromoter_id, spSnsType, spPromoterId
+			, spFirstName, spLastName, spMiddleName
+			, spNickname, spEmailVerified, spCellularP
+			, spEmail, spGender, spProfileImage
+			, spURL, spCertifyMailDt, promoter_id
+			, spInsertDt, spUpdateDt, spDeleteDt
+			, spIpAddress
+		FROM SnsPromoter_tbl
+		WHERE 1 = 1
+		   AND spPromoterId = #{id, jdbcType=VARCHAR}
+		   AND spSnsType 	= 'Naver'
+		   AND spEmail 		= #{email, jdbcType=VARCHAR}
+	</select>
+	
+	<!-- 프로모터 네이버 사용자 가입 -->
+	<update id="createSnsPromoter" parameterType="map">
+		INSERT INTO SnsPromoter_tbl /* net.bizlogin.promoter.signup.dao.SignUpDao.createSnsPromoter */
+		(
+			  snsPromoter_id
+			, spSnsType
+			, spPromoterId
+			, spEmail
+			, spEmailVerified
+			, spFirstName
+			, spLastName
+			, spGender
+			, spCellularP
+			, spInsertDt
+			, spUpdateDt
+			, spIpAddress
+		)
+		VALUES
+		(
+			  (SELECT S.snsPromoter_id FROM (SELECT IFNULL(MAX(snsPromoter_id) + 1, 10000) AS snsPromoter_id FROM SnsPromoter_tbl) S)
+			, 'Naver'
+			, #{id, jdbcType=VARCHAR}
+			, #{email, jdbcType=VARCHAR}
+			, (CASE WHEN SUBSTR(#{email, jdbcType=VARCHAR}, INSTR(#{email, jdbcType=VARCHAR}, '@') + 1, CHAR_LENGTH(#{email, jdbcType=VARCHAR})) = 'naver.com' THEN 1
+					ELSE 0
+					END)
+			, (CASE WHEN CHAR_LENGTH(#{name, jdbcType=VARCHAR}) = 3 THEN SUBSTR(#{name, jdbcType=VARCHAR}, 1, 1)
+					ELSE #{name, jdbcType=VARCHAR}
+					END)
+			, (CASE WHEN CHAR_LENGTH(#{name, jdbcType=VARCHAR}) = 3 THEN SUBSTR(#{name, jdbcType=VARCHAR}, 2, 2)
+					ELSE NULL
+					END)
+			, (CASE WHEN #{gender, jdbcType=VARCHAR} = 'M' THEN 1
+					WHEN #{gender, jdbcType=VARCHAR} = 'F' THEN 0
+					ELSE NULL
+					END)
+			, #{mobile, jdbcType=VARCHAR}
+			, NOW()
+			, NOW()
+			, #{spIpAddress, jdbcType=VARCHAR}
+		)
+	</update>
+</mapper>
+
