@@ -18,9 +18,7 @@ public class NewMemberController {
      */
     @RequestMapping(value = "/signUp")
     public ModelAndView signUpForm(){
-//        ModelAndView mav = new ModelAndView();
-//        mav.setViewName("NewMember/SignUp/form");
-        ModelAndView mv = new ModelAndView("/Admins/form");
+        ModelAndView mv = new ModelAndView("/NewMember/SignUp/form");
         return mv;
     }
 
