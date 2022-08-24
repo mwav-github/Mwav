@@ -1,5 +1,6 @@
 package net.newmember.controller;
 
+import net.newmember.vo.NewMemberVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -24,9 +25,12 @@ public class NewMemberController {
     }
 
     @RequestMapping(value = "register", method = RequestMethod.POST)
-    public ModelAndView signUpRegister(){
-        ModelAndView mv = new ModelAndView("/NewMember/SignUp/form");
-        logger.debug("register Controller connect");
+    public ModelAndView signUpRegister(NewMemberVO vo){
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("/NewMember/SignUp/form");
+
+        System.out.println("테스트 - " + vo.getName());
+
         return mv;
     }
 
