@@ -1,14 +1,18 @@
 package net.newmember.controller;
 
+import net.newmember.service.NewMemberService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Matchers.anyObject;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -20,6 +24,9 @@ public class NewMemberControllerTest {
 
     @InjectMocks
     NewMemberController controller;
+
+    @Mock
+    NewMemberService service;
 
     MockMvc mockMvc;
 
@@ -46,6 +53,7 @@ public class NewMemberControllerTest {
         // given
 
         // when
+        when(service.signUpRegister(anyObject())).thenReturn(false);
 
         // then
         mockMvc.perform(post("/newMember/register")

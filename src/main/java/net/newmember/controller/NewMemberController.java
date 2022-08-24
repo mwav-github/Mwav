@@ -1,5 +1,6 @@
 package net.newmember.controller;
 
+import net.newmember.service.NewMemberService;
 import net.newmember.vo.NewMemberVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,9 +9,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+
 @Controller
 @RequestMapping("/newMember")
 public class NewMemberController {
+
+    @Inject
+    private NewMemberService service;
 
     private static final Logger logger = LoggerFactory.getLogger(NewMemberController.class);
 
@@ -24,12 +31,30 @@ public class NewMemberController {
         return mv;
     }
 
+    /**
+     * 신규 멤버 form 등록
+     * @param vo
+     * @return viewName
+     */
     @RequestMapping(value = "register", method = RequestMethod.POST)
-    public ModelAndView signUpRegister(NewMemberVO vo){
+    public ModelAndView signUpRegister(NewMemberVO vo, HttpServletRequest request){
         ModelAndView mv = new ModelAndView();
         mv.setViewName("/NewMember/SignUp/form");
 
-        System.out.println("테스트 - " + vo.getName());
+        String clientIP = request.getRemoteAddr();
+        String clientIP2 = request.getHeader("X-Forwarded-For");
+        String stPageName = (String) request.getAttribute("stPageName");
+        String referer = request.getHeader("Referer");
+        String user_agent = request.getHeader("User-Agent");
+
+        System.out.println("clientIP = " + clientIP
+                        + "\nclientIP2 = " + clientIP2
+                        + "\nstPageName = " + stPageName
+                        + "\nreferer = " + referer
+                        + "\nuser_agent = " + user_agent);
+
+        // 가입성공 = Y, 가입실패 = N
+        boolean registerYN = service.signUpRegister(vo);
 
         return mv;
     }
