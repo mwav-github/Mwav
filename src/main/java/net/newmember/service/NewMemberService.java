@@ -29,6 +29,6 @@ public class NewMemberService {
         // 신규 가입자 신청
         newMemberDao.createSignUpRegister(vo);
 
-        return false;
+        return true;
     }
 }

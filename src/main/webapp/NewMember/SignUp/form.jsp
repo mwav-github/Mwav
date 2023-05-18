@@ -129,12 +129,25 @@
 		}
 
 		function sendEmail() {
+
+			var data = {
+				email : $('input[name=email]').val(),
+				name : $('input[name=name]').val(),
+				hopeField : $('input[name=hopeField]').val(),
+				age : $('input[name=age]').val(),
+				career : $('input[name=career]').val(),
+				purpose : $('input[name=purpose]').val(),
+				gender : $('input[name=gender]').val()
+			};
+
 			$.ajax({
-				url : '/accounts/email/certify',
-				data : "email=" + $('input[name=pmtMail]').val() + "&account=pmt" + "&id=" + $('input[name=pmtLoginId]').val(),
+				url : '/newMember/emailSend',
+				data : JSON.stringify(data),
 				type : "POST",
+				contentType : "application/json",
 				async : false,
 				success : function(data) {
+					alert('success : ' + data);
 					return true;
 				},
 				error : function(request, status, error) {
