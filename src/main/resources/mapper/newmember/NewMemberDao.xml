@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 로그인 -->
+<mapper namespace="net.newmember.dao.NewMemberDao">
+	
+	<!-- 프로모터 검색 -->
+	<select id="createSignUpRegister" parameterType="net.newmember.vo.NewMemberVO">
+		INSERT INTO NewMemberJoin_tbl (nmName
+										, nmEmail
+										, nmHopeField
+										, nmAge
+										, nmCareer
+										, nmPurpose
+										, nmGender
+										, nmRemoteAddr
+										, nmXFF
+										, nmUserAgent
+										, InsertDt)
+		VALUES (#{name}
+				,#{email}
+				,#{hopeField}
+				,#{age}
+				,#{career}
+				,#{purpose}
+				,#{gender}
+				,#{remoteAddr}
+				,#{XFF}
+				,#{userAgent}
+				, NOW());
+	</select>
+
+</mapper>
+

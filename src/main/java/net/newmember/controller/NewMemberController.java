@@ -41,17 +41,10 @@ public class NewMemberController {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("/NewMember/SignUp/form");
 
-        String clientIP = request.getRemoteAddr();
-        String clientIP2 = request.getHeader("X-Forwarded-For");
-        String stPageName = (String) request.getAttribute("stPageName");
-        String referer = request.getHeader("Referer");
-        String user_agent = request.getHeader("User-Agent");
-
-        System.out.println("clientIP = " + clientIP
-                        + "\nclientIP2 = " + clientIP2
-                        + "\nstPageName = " + stPageName
-                        + "\nreferer = " + referer
-                        + "\nuser_agent = " + user_agent);
+        vo.setRemoteAddr(request.getRemoteAddr());
+        vo.setXFF(request.getHeader("X-Forwarded-For"));
+        vo.setReferer(request.getHeader("Referer"));
+        vo.setUserAgent(request.getHeader("User-Agent"));
 
         // 가입성공 = Y, 가입실패 = N
         boolean registerYN = service.signUpRegister(vo);

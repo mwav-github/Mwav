@@ -18,7 +18,45 @@ public class NewMemberVO implements Serializable {
 
     public String gender;
 
+    public String remoteAddr;
 
+    public String XFF;
+
+    public String referer;
+
+    public String userAgent;
+
+    public String getRemoteAddr() {
+        return remoteAddr;
+    }
+
+    public void setRemoteAddr(String remoteAddr) {
+        this.remoteAddr = remoteAddr;
+    }
+
+    public String getXFF() {
+        return XFF;
+    }
+
+    public void setXFF(String XFF) {
+        this.XFF = XFF;
+    }
+
+    public String getReferer() {
+        return referer;
+    }
+
+    public void setReferer(String referer) {
+        this.referer = referer;
+    }
+
+    public String getUserAgent() {
+        return userAgent;
+    }
+
+    public void setUserAgent(String userAgent) {
+        this.userAgent = userAgent;
+    }
 
     public String getName() {
         return name;
