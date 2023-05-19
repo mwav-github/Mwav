@@ -15,7 +15,7 @@
 		<div class="card mx-auto" style="max-width: 520px; margin-top: 0px;">
 			<article class="card-body">
 				<header class="mb-4">
-					<form action="<c:url value='/newMember/register' />" method="POST" onsubmit="return pmtSubmit();">
+					<div>
 						<div class="form-group">
 							<label class="font-weight-bold" alt="Login ID">성함</label>
 							<input id="name" name="name" type="text" class="form-control"
@@ -60,12 +60,19 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<button type="submit" class="btn btn-primary btn-block" alt="Register">접수하기</button>
-							<p class="alert alert-success mt-3">
+							<button id= "regist_btn" type="button" class="btn btn-primary btn-block" alt="Register" style="display: block" onclick="memberRegist()" style="display: none">접수하기</button>
+							<div id= "joining_btn" class="btn btn-primary btn-block" alt="Register" style="display: none"><img src="/Images/btn_loading.gif" width="12%"></div>
+							<div id= "success_btn" class="btn btn-success btn-block" alt="Register" style="display: none">접수완료</div>
+
+							<p id= "success_msg" class="alert alert-success mt-3" style="display: none">
 								<i class="fa fa-envelope-square mt-2"></i> 정상적으로 접수 되었으며, 수 일내 해당 이메일로 연락드리겠습니다.
 							</p>
+							<p id= "failure_msg" class="alert alert-danger mt-3" style="display: none">
+								<i class="fa fa-envelope-square mt-2"></i> 접수 중 오류가 발생하였습니다, <br>webmater@mwav.net 메일주소로 접수 내용을 전달해주시면 수 일내로 회신드리겠습니다
+							</p>
+
 						</div>
-					</form>
+					</div>
 			</article>
 		</div>
 		<br>
@@ -118,16 +125,7 @@
 			}
 		}
 
-		//모든 값들이 유효하다면 submit
-		function pmtSubmit() {
-			if (NameCheckYN && EmailCheckYN) {
-				return true;
-			} else {
-				alert('잘못된 입력이 있습니다.');
-			}
-			return false;
-		}
-
+        // 마스터 메일로 발송
 		function sendEmail() {
 
 			var data = {
@@ -135,9 +133,9 @@
 				name : $('input[name=name]').val(),
 				hopeField : $('input[name=hopeField]').val(),
 				age : $('input[name=age]').val(),
-				career : $('input[name=career]').val(),
-				purpose : $('input[name=purpose]').val(),
-				gender : $('input[name=gender]').val()
+				career : $('textarea[name=career]').val(),
+				purpose : $('textarea[name=purpose]').val(),
+				gender : $('input[name=gender]:checked').val()
 			};
 
 			$.ajax({
@@ -146,8 +144,8 @@
 				type : "POST",
 				contentType : "application/json",
 				async : false,
-				success : function(data) {
-					alert('success : ' + data);
+				success : function(res_data) {
+					alert('success : ' + res_data);
 					return true;
 				},
 				error : function(request, status, error) {
@@ -157,6 +155,48 @@
 				}
 			});
 		}
+
+        // 접수신청 내용을 입력
+        function memberRegist(){
+
+            //모든 값들이 유효하다면 submit
+            if (NameCheckYN && EmailCheckYN) {
+				$("#regist_btn").hide();
+				$("#joining_btn").show();
+
+				var data = {
+					email : $('input[name=email]').val(),
+					name : $('input[name=name]').val(),
+					hopeField : $('input[name=hopeField]').val(),
+					age : $('input[name=age]').val(),
+					career : $('textarea[name=career]').val(),
+					purpose : $('textarea[name=purpose]').val(),
+					gender : $('input[name=gender]:checked').val()
+				};
+
+				// 유효성 검증에 이상없음 접수정보를 서버에 요청
+				$.ajax({
+					url : '/newMember/register',
+					data : JSON.stringify(data),
+					type : 'POST',
+					contentType : "application/json",
+					async : false,
+					success : function (res_data){
+						$("#joining_btn").hide();
+						$("#success_btn").show();
+						$("#success_msg").show();
+					},
+					error : function(request, status, error){
+						$("#failure_msg").show();
+					}
+				})
+
+            }else{
+                alert('성함과 이메일을 정확히 입력해주시기 바랍니다.');
+			}
+
+        }
+
 	</script>
 </body>
 </html>

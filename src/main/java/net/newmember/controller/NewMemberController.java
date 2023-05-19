@@ -60,7 +60,8 @@ public class NewMemberController {
      * @return viewName
      */
     @RequestMapping(value = "register", method = RequestMethod.POST)
-    public ModelAndView signUpRegister(NewMemberVO vo, HttpServletRequest request){
+    public ModelAndView signUpRegister(@RequestBody NewMemberVO vo
+                                        , HttpServletRequest request) {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("/NewMember/SignUp/form");
 
