@@ -145,12 +145,11 @@
 				contentType : "application/json",
 				async : false,
 				success : function(res_data) {
-					alert('success : ' + res_data);
+					console.log('!success send mail');
 					return true;
 				},
 				error : function(request, status, error) {
-					alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
-					alert('Error!\n관리자에게 문의하여 주시기 바랍니다.\n' + err);
+					console.log('fail send mail')
 					return false;
 				}
 			});
@@ -185,6 +184,9 @@
 						$("#joining_btn").hide();
 						$("#success_btn").show();
 						$("#success_msg").show();
+
+						// 정상적으로 DB에 접수 정보가 입력돼면 webmaster 계정으로 메일을 보낸다
+						sendEmail();
 					},
 					error : function(request, status, error){
 						$("#failure_msg").show();

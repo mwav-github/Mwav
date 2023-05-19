@@ -93,13 +93,26 @@ public class NewMemberController {
 
         // 이메일 양식 작성
         Map<String, Object> map = new HashMap<String, Object>();
+        map.put("name", vo.getName());
+        map.put("age", vo.getAge());
+        map.put("email", vo.getEmail());
+        map.put("hopeField", vo.getHopeField());
+        map.put("purpose", vo.getPurpose());
+        map.put("career", vo.getCareer());
 
         //client에서 템플릿엔진 라이브러리르 호출하여 html코드로 파싱 후 문자열로 반환
-        // TODO: 메일 템플릿 추가 필요
-        String content = VelocityEngineUtils.mergeTemplateIntoString(velocityConfig.createVelocityEngine(), "/GeneralMail/AccountCertify.vm", "UTF-8", map);
+        String content = VelocityEngineUtils.mergeTemplateIntoString(velocityConfig.createVelocityEngine()
+                                                                        , "/GeneralMail/NewMemberAlarmEmail.vm"
+                                                                        , "UTF-8"
+                                                                        , map);
 
         // 이메일 템플릿 작성 필요
-        Message msg = new MessageBuilder(config.getCollectAllFieldProp()).setRecipient(vo.getEmail()).setFrom(config.getFrom()).setSubject("[Mwav] 이메일 인증").setContent(content).build();
+        Message msg = new MessageBuilder(config.getCollectAllFieldProp())
+                            .setRecipient(vo.getEmail())
+                            .setFrom(config.getFrom())
+                            .setSubject("[Mwav] 신규멤버신청 접수")
+                            .setContent(content)
+                            .build();
 
         // 메일 발송
         MailLib mailLib = MailLib.getInstance();
