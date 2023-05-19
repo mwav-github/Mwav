@@ -8,4 +8,5 @@ public interface NewMemberDao {
 
     public void createSignUpRegister(NewMemberVO vo);
 
+    public void createSignUpRegisterValue(NewMemberVO vo);
 }

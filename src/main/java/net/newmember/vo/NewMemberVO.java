@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 public class NewMemberVO implements Serializable {
 
+    public int follower_id;
+
     public String name;
 
     public String email;
@@ -25,6 +27,14 @@ public class NewMemberVO implements Serializable {
     public String referer;
 
     public String userAgent;
+
+    public int getFollower_id() {
+        return follower_id;
+    }
+
+    public void setFollower_id(int follower_id) {
+        this.follower_id = follower_id;
+    }
 
     public String getRemoteAddr() {
         return remoteAddr;

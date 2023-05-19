@@ -28,6 +28,7 @@ public class NewMemberService {
 
         // 신규 가입자 신청
         newMemberDao.createSignUpRegister(vo);
+        newMemberDao.createSignUpRegisterValue(vo);
 
         return true;
     }
