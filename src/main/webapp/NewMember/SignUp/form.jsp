@@ -44,7 +44,7 @@
 						<div class="form-group">
 							<label class="font-weight-bold" alt="Email">참여 취지</label>
                             <textarea name="purpose" id="purpose" rows="5" style="resize:none;"
-                                      class="form-control" placeholder="참여 취지을 입력해주세요." ></textarea>
+                                      class="form-control input_custom col-xs-12 col-sm-12 ckeditor" placeholder="참여 취지을 입력해주세요." ></textarea>
 						</div>
 						<div class="form-group">
 							<label class="font-weight-bold" alt="Gender">성별</label>
@@ -204,7 +204,7 @@
 				hopeField : $('input[name=hopeField]').val(),
 				age : $('input[name=age]').val(),
 				career : $('textarea[name=career]').val(),
-				purpose : $('textarea[name=purpose]').val(),
+				purpose : CKEDITOR.instances['purpose'].getData(),
 				gender : $('input[name=gender]:checked').val()
 			};
 
@@ -244,7 +244,7 @@
 					hopeField : $('input[name=hopeField]').val(),
 					age : $('input[name=age]').val(),
 					career : $('textarea[name=career]').val(),
-					purpose : $('textarea[name=purpose]').val(),
+					purpose : CKEDITOR.instances['purpose'].getData(),
 					gender : $('input[name=gender]:checked').val()
 				};
 
