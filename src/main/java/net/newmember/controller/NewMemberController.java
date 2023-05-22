@@ -96,9 +96,11 @@ public class NewMemberController {
         map.put("name", vo.getName());
         map.put("age", vo.getAge());
         map.put("email", vo.getEmail());
+//        map.put("email", "itstudy136@gmail.com");
         map.put("hopeField", vo.getHopeField());
         map.put("purpose", vo.getPurpose());
         map.put("career", vo.getCareer());
+        map.put("gender", vo.getGender());
 
         //client에서 템플릿엔진 라이브러리르 호출하여 html코드로 파싱 후 문자열로 반환
         String content = VelocityEngineUtils.mergeTemplateIntoString(velocityConfig.createVelocityEngine()
