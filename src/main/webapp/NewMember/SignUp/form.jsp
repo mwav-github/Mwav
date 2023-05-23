@@ -130,6 +130,13 @@
 						<!-- 약관 안내 박스 END -->
 
 						<div class="form-group">
+							<a class="btn btn-social-icon btn-kakao"
+							   onClick="sendSns('http://localhost:8080/newMember/signUp','kakao', 'Mwav 스터디 접수 신청', 'social', 'news', '', '', '', 0)">
+								<span class="icon-kakao"> </span>
+							</a>
+						</div>
+
+						<div class="form-group">
 							<button id= "regist_btn" type="button" class="btn btn-primary btn-block" alt="Register" style="display: block" onclick="memberRegist()" style="display: none">접수하기</button>
 							<div id= "joining_btn" class="btn btn-primary btn-block" alt="Register" style="display: none"><img src="/Images/btn_loading.gif" width="12%"></div>
 							<div id= "success_btn" class="btn btn-success btn-block" alt="Register" style="display: none">접수완료</div>
