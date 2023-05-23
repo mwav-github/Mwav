@@ -131,7 +131,7 @@
 
 						<div class="form-group">
 							<a class="btn btn-social-icon btn-kakao"
-							   onClick="sendSns('http://localhost:8080/newMember/signUp','kakao', 'Mwav 스터디 접수 신청', 'social', 'news', '', '', '', 0)">
+							   onClick="sendSns('https://mwav.net/newMember/signUp','kakao', 'Mwav 스터디 접수 신청', 'social', 'news', '', '', '', 0)">
 								<span class="icon-kakao"> </span>
 							</a>
 						</div>
