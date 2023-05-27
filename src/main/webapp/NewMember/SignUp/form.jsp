@@ -60,7 +60,7 @@
 							</div>
 						</div>
 
-						<!-- 약관 안내 박스 START -->
+<%--						<!-- 약관 안내 박스 START -->
 						<hr class="hr_gray_separator">
 
 						<div class="form-group">
@@ -127,7 +127,7 @@
 						</div>
 
 						<hr class="hr_gray_separator">
-						<!-- 약관 안내 박스 END -->
+						<!-- 약관 안내 박스 END -->--%>
 
 						<div class="form-group">
 							<a class="btn btn-social-icon btn-kakao"
@@ -234,11 +234,12 @@
 
         // 접수신청 내용을 입력
         function memberRegist(){
-
+/*
 			if($('input[name=uqRules]').is(':checked') == false){
 				alert('개인정보 수집 동의를 해주세요.');
 				return false;
 			}
+*/
 
             //모든 값들이 유효하다면 submit
             if (NameCheckYN && EmailCheckYN) {

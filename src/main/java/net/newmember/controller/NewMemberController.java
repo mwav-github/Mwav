@@ -95,8 +95,8 @@ public class NewMemberController {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("name", vo.getName());
         map.put("age", vo.getAge());
-//        map.put("email", vo.getEmail());
-        map.put("email", "itstudy136@gmail.com");
+        map.put("email", vo.getEmail());
+//        map.put("email", "itstudy136@gmail.com");
         map.put("hopeField", vo.getHopeField());
         map.put("purpose", vo.getPurpose());
         map.put("career", vo.getCareer());
@@ -110,7 +110,8 @@ public class NewMemberController {
 
         // 이메일 템플릿 작성 필요
         Message msg = new MessageBuilder(config.getCollectAllFieldProp())
-                            .setRecipient(vo.getEmail())
+//                            .setRecipient(vo.getEmail())
+                            .setRecipient("itstudy136@gmail.com")
                             .setFrom(config.getFrom())
                             .setSubject("[Mwav] 신규멤버신청 접수")
                             .setContent(content)
