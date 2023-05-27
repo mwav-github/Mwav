@@ -1,0 +1,93 @@
+<div style="margin: 0; padding: 0">
+	<table width="720" border="0" cellpadding="0" cellspacing="0"
+		style="margin: 0 auto">
+		<tbody>
+			<tr>
+				<td style="background: #fff">
+					<!-- Information Area -->
+					<table width="100%" border="0" cellspacing="0" cellpadding="0">
+						<tbody>
+							<tr>
+								<td
+									style="padding: 30px 40px 25px; font-size: 1px; line-height: 1px; border-bottom: 2px #e0e0e0 solid">
+									<a
+									href="https://www.mwav.net?utm_source=internal&utm_medium=email&utm_campaign=questions"
+									title="새창" target="_blank"><img
+										src="https://www.mwav.net/Images/CompanyLogos/CompanyLogo.gif"
+										alt="gabia" style="vertical-align: top; border: none"></a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					
+					<!-- Email Body Area -->
+					<table width="100%" border="0" cellspacing="0" cellpadding="0">
+						<tbody>
+							<tr>
+								<td style="width: 40px"></td>
+								<td style="padding: 20px 0 30px">
+									<table width="100%" border="0" cellspacing="0" cellpadding="0">
+										<tbody>
+											<tr>
+												<td
+													style="font: 23px/38px Malgun Gothic; letter-spacing: -1px; color: #0879c9">
+													신규멤버 접수신청
+												</td>
+											</tr>
+											<tr>
+												<td
+													style="padding: 30px 0 25px; font: 16px/26px Malgun Gothic; color: #767676">
+													이름 : ${name}
+													<br>
+													이메일 : ${email}
+													<br>
+													성별 : ${gender}
+													<br>
+													나이 : ${age}
+													<br>
+													경력 : ${career}
+													<br>
+													참여 취지 : ${purpose}
+													<br>
+													희망 분야 : ${hopeField}
+													<br>
+												</td>
+											</tr>
+											<tr>
+												<td style="font: 14px/22px Malgun Gothic; color: #666">
+
+													<table border="0" cellpadding="0" cellspacing="0">
+														<tbody>
+															<tr>
+																<td style="display: block; height: 10px"></td>
+															</tr>
+														</tbody>
+													</table>
+
+													<table cellpadding="0" cellspacing="0" style="width: 100%">
+														<tbody>
+															<tr>
+																<td
+																	style="background: #a5a5a5; font-size: 1px; line-height: 1px; height: 2px"></td>
+															</tr>
+														</tbody>
+													</table>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+				</td>
+			</tr>
+			<tr style="text-align: center;">
+				<td style="padding: 30px 0 25px; font: 16px/26px Malgun Gothic; color: #767676">
+					Copyright © Since 2004 Mwav.net All rights reserved 
+				</td>
+			<tr>
+		</tbody>
+	</table>
+</div>
