@@ -11,11 +11,18 @@
 	Kakao.init('b66e3d6516bdc422b77b51024332a218');
 
 	//소셜 공유하기
-	function sendSns(url, utm_source, utm_campaign, utm_medium, utm_content, subTitle, pgl, thumbnail_link, count)
+	function sendSns(utm_source, utm_campaign, utm_medium, utm_content, subTitle, pgl, thumbnail_link, count)
 	{
 		// TODO 통계기 추가 필요
 		var o;
 		var _br = encodeURIComponent('\r\n'); // 보안이슈 인코딩 처리.
+		var url = window.location.hostname;
+		var port = location.port;
+		if(port.length != 0){
+			url = url + ':' + port + '/newMember/signUp';
+		} else{
+			url = url + '/newMember/signUp';
+		}
 
 		//trim 처리를 안하는 경우 url이 중간에 짤려서 다 인식못함.
 //		var googleAnalytics_var = '&utm_source=' + utm_source +'&utm_campaign=' + trim(utm_campaign) +'&utm_medium=' + utm_medium + '&utm_content=' + utm_content;
@@ -33,8 +40,8 @@
 					utm_content : utm_content,
 					subTitle : subTitle,
 //					pgl : pgl,
-					count : count,
-					params : url.split("mwav.net/")[1]
+					count : count
+//					params : url.split("mwav.net/")[1]
 				};
 				break;
 			default:
@@ -42,7 +49,6 @@
 				break;
 				return;
 		}
-
 
 		switch(o.method) {
 			case 'kakao' :
