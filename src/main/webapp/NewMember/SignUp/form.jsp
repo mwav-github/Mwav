@@ -50,11 +50,11 @@
 							<label class="font-weight-bold" alt="Gender">성별</label>
 							<div class="form-group">
 								<label class="custom-control custom-radio custom-control-inline">
-									<input class="custom-control-input" checked="" type="radio" name="gender" value="M">
+									<input class="custom-control-input" checked="" type="radio" name="gender" value="1">
 									<span class="custom-control-label">남자 </span>
 								</label>
 								<label class="custom-control custom-radio custom-control-inline">
-									<input class="custom-control-input" type="radio" name="gender" value="F">
+									<input class="custom-control-input" type="radio" name="gender" value="0">
 									<span class="custom-control-label"> 여자 </span>
 								</label>
 							</div>
@@ -145,7 +145,7 @@
 								<i class="fa fa-envelope-square mt-2"></i> 정상적으로 접수 되었으며, 수 일내 해당 이메일로 연락드리겠습니다.
 							</p>
 							<p id= "failure_msg" class="alert alert-danger mt-3" style="display: none">
-								<i class="fa fa-envelope-square mt-2"></i> 접수 중 오류가 발생하였습니다, <br>webmater@mwav.net 메일주소로 접수 내용을 전달해주시면 수 일내로 회신드리겠습니다
+								<i class="fa fa-envelope-square mt-2"></i> 접수 중 오류가 발생하였습니다, <br>itstudy136@gmail.com 메일주소로 접수 내용을 전달해주시면 수 일내로 회신드리겠습니다
 							</p>
 
 						</div>
