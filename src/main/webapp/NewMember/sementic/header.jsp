@@ -74,6 +74,49 @@
 	}
 </script>
 
+<script>
+	// GA 스크립트
+	(function(i, s, o, g, r, a, m) {
+		i['GoogleAnalyticsObject'] = r;
+		i[r] = i[r] || function() {
+			(i[r].q = i[r].q || []).push(arguments)
+		}, i[r].l = 1 * new Date();
+		a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+		a.async = 1;
+		a.src = g;
+		m.parentNode.insertBefore(a, m)
+	})(window, document, 'script', '//www.google-analytics.com/analytics.js',
+			'ga');
+	var perfData = window.performance.timing;
+	var pageLoadTime = perfData.mwavmComplete - perfData.navigationStart;
+	var loadTime = "";
+	var userId = '';
+	var pgl = ''; //세션으로 변경
+	var statistics_id = '1000199344'; //세션으로 변경
+	ga('create', 'UA-63623427-1', {
+		'cookieDomain' : 'www.mwav.net',
+		'siteSpeedSampleRate' : 100
+	}); // 사이트 속도 측정 100은 전체 체크 (2017_01_10)
+	//171102 usderid세팅.
+	if (!(gfn_isNull(userId))) {
+		ga('set', 'userId', userId);
+	}
+	//171104 맞춤 측정기준 설정(세션).
+	//https://support.google.com/analytics/answer/2709828?hl=ko
+	//ga('send', 'pageview'); 위에 존재해야한다.
+	if (!(gfn_isNull(pgl))) {
+		ga('set', 'dimension1', pgl);
+	}
+	if (!(gfn_isNull(statistics_id))) {
+		ga('set', 'dimension2', statistics_id);
+	}
+	ga('require', 'GTM-ML32Q9G');
+	ga('send', 'pageview');
+	ga('require', 'displayfeatures');
+	ga('require', 'linkid', 'linkid.js');
+</script>
+
+
 <header class="section-header">
 
 	<nav class="navbar navbar-light navbar-expand-md navbar-main border-bottom">

@@ -24,7 +24,7 @@
 						<div class="form-group">
 							<label class="font-weight-bold" alt="Create password">이메일</label>
 							<input id="email" name="email" class="form-control"
-								onfocusout='validateCheck("email");' placeholder="예) mwav@mwav.net">
+								onfocusout='validateCheck("email");' placeholder="예) study@gmail.com">
 						</div>
 						<div class="form-group ">
 							<label class="font-weight-bold" alt="Repeat password">희망 분야</label>
@@ -37,7 +37,7 @@
 								class="form-control" type="text" placeholder="나이를 입력해주세요.">
 						</div>
 						<div class="form-group">
-							<label class="font-weight-bold" alt="Name">경력</label>
+							<label class="font-weight-bold" alt="Name">경력 (기간 및 프로젝트 경험 등)</label>
 							<textarea name="career" id="career" rows="5" style="resize:none;"
                                       class="form-control" placeholder="경력을 입력해주세요." ></textarea>
 						</div>
@@ -130,6 +130,7 @@
 						<!-- 약관 안내 박스 END -->--%>
 
 						<div class="form-group">
+							<label>링크 공유 : </label>
 							<a class="btn btn-social-icon btn-kakao"
 							   onClick="sendSns('https://mwav.net/newMember/signUp','kakao', 'Mwav 스터디 접수 신청', 'social', 'news', '', '', '', 0)">
 								<span class="icon-kakao"> </span>
