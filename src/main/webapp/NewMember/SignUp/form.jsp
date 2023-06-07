@@ -132,7 +132,7 @@
 						<div class="form-group">
 							<label>링크 공유 : </label>
 							<a class="btn btn-social-icon btn-kakao"
-							   onClick="sendSns('kakao', 'Mwav 스터디 접수 신청', 'social', 'news', '', '', '', 0)">
+							   onClick="sendSns()">
 								<span class="icon-kakao"> </span>
 							</a>
 						</div>
