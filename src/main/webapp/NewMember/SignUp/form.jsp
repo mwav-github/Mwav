@@ -221,7 +221,7 @@
 				data : JSON.stringify(data),
 				type : "POST",
 				contentType : "application/json",
-				async : false,
+				async : true,
 				success : function(res_data) {
 					console.log('!success send mail');
 					return true;

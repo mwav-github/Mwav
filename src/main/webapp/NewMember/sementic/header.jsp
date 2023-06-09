@@ -88,19 +88,7 @@
 		'cookieDomain' : 'www.mwav.net',
 		'siteSpeedSampleRate' : 100
 	}); // 사이트 속도 측정 100은 전체 체크 (2017_01_10)
-	//171102 usderid세팅.
-	if (!(gfn_isNull(userId))) {
-		ga('set', 'userId', userId);
-	}
-	//171104 맞춤 측정기준 설정(세션).
-	//https://support.google.com/analytics/answer/2709828?hl=ko
-	//ga('send', 'pageview'); 위에 존재해야한다.
-	if (!(gfn_isNull(pgl))) {
-		ga('set', 'dimension1', pgl);
-	}
-	if (!(gfn_isNull(statistics_id))) {
-		ga('set', 'dimension2', statistics_id);
-	}
+
 	ga('require', 'GTM-ML32Q9G');
 	ga('send', 'pageview');
 	ga('require', 'displayfeatures');
