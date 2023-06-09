@@ -233,6 +233,30 @@
 			});
 		}
 
+		// 접수자에게 접수완료 메일 발송
+		function sendEmailToNewMember() {
+
+			var data = {
+				email : $('input[name=email]').val()
+			};
+
+			$.ajax({
+				url : '/newMember/emailSendToNewMember',
+				data : JSON.stringify(data),
+				type : "POST",
+				contentType : "application/json",
+				async : true,
+				success : function(res_data) {
+					console.log('!success send mail to New Member');
+					return true;
+				},
+				error : function(request, status, error) {
+					console.log('fail send mail to New Member')
+					return false;
+				}
+			});
+		}
+
         // 접수신청 내용을 입력
         function memberRegist(){
 /*
@@ -269,8 +293,10 @@
 						$("#success_btn").show();
 						$("#success_msg").show();
 
-						// 정상적으로 DB에 접수 정보가 입력돼면 webmaster 계정으로 메일을 보낸다
+						// 정상적으로 DB에 접수 정보가 입력되면 webmaster 계정으로 메일을 보낸다
 						sendEmail();
+						// 정상적으로 webmaster 계정으로 메일을 보내면 접수자에게 접수완료메일을 발송한다
+						//sendEmailToNewMember();
 					},
 					error : function(request, status, error){
 						$("#failure_msg").show();
