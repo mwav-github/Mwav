@@ -18,7 +18,7 @@ public class NewMemberVO implements Serializable {
 
     public String purpose;
 
-    public String gender;
+    public int gender;
 
     public String remoteAddr;
 
@@ -116,11 +116,11 @@ public class NewMemberVO implements Serializable {
         this.purpose = purpose;
     }
 
-    public String getGender() {
+    public int getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(int gender) {
         this.gender = gender;
     }
 }

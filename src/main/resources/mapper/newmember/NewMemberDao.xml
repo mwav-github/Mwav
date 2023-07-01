@@ -26,7 +26,7 @@
 		</selectKey>
 
 		INSERT INTO FollowerValue_tbl(follower_id, fReferer, fUserAgent, fIpAddress, fInsertDt, Follower_tbl_follower_id)
-		VALUES(#{follower_id}, #{referer}, #{userAgent}, #{XFF}, NOW(), #{follower_id})
+		VALUES(#{follower_id}, #{referer}, #{userAgent}, IFNULL(#{XFF}, #{remoteAddr}), NOW(), #{follower_id})
 	</insert>
 
 </mapper>

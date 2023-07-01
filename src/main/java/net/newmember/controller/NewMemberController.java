@@ -79,7 +79,7 @@ public class NewMemberController {
     /**
      * 신규가입 접수시 mwavmaster에게 메일 발송
      * @param vo
-     * @return viewName
+     * @return
      */
     @RequestMapping("/emailSend")
     public ResponseEntity<Map<String, String>> emailSend(@RequestBody NewMemberVO vo
@@ -116,6 +116,48 @@ public class NewMemberController {
                             .setSubject("[Mwav] 신규멤버신청 접수")
                             .setContent(content)
                             .build();
+
+        // 메일 발송
+        MailLib mailLib = MailLib.getInstance();
+        mailLib.send(msg);
+
+        //  메일 발송 성공여부를 status와 msg를 통해 넘겨줌
+        body.put("status", "SEND_MAIL");
+        body.put("msg", "인증 메일을 발송하였습니다.");
+        return new ResponseEntity<>(body, HttpStatus.OK);
+    }
+
+    /**
+     * 접수자에게도 접수완료 메일 발송
+     * @param vo
+     * @return
+     */
+    @RequestMapping("/emailSendToNewMember")
+    public ResponseEntity<Map<String, String>> emailSendToNewMember(@RequestBody NewMemberVO vo
+            , HttpServletResponse res) throws Exception {
+        Map<String, String> body = new HashMap<String, String>();
+
+        // 이메일 설정 불러오기
+        final String realPath = servletContext.getRealPath("/xConfig/mail.xml.config");
+        XmlLib xmlLib = XmlLib.getInstance();
+        MailConfig config = (MailConfig) xmlLib.unmarshal(realPath, MailConfig.class);
+
+        // TODO : 접수완료메일 템플릿 추가
+        //client에서 템플릿엔진 라이브러리르 호출하여 html코드로 파싱 후 문자열로 반환
+        String content = VelocityEngineUtils.mergeTemplateIntoString(velocityConfig.createVelocityEngine()
+                , "/GeneralMail/NewMemberAlarmEmail.vm"
+                , "UTF-8"
+                , null);
+
+        // TODO : 메일 발송시 발송자 메일주소 변경필요 From 함수로는 안되고있음
+        // 이메일 템플릿 작성 필요
+        Message msg = new MessageBuilder(config.getCollectAllFieldProp())
+                .setRecipient(vo.getEmail())
+//                .setFrom(config.getFrom())
+                .setFrom("itstudy136@gmail.com")
+                .setSubject("[Mwav] 접수 신청 완료")
+                .setContent(content)
+                .build();
 
         // 메일 발송
         MailLib mailLib = MailLib.getInstance();

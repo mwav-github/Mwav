@@ -24,7 +24,7 @@
 						<div class="form-group">
 							<label class="font-weight-bold" alt="Create password">이메일</label>
 							<input id="email" name="email" class="form-control"
-								onfocusout='validateCheck("email");' placeholder="예) mwav@mwav.net">
+								onfocusout='validateCheck("email");' placeholder="예) study@gmail.com">
 						</div>
 						<div class="form-group ">
 							<label class="font-weight-bold" alt="Repeat password">희망 분야</label>
@@ -37,7 +37,7 @@
 								class="form-control" type="text" placeholder="나이를 입력해주세요.">
 						</div>
 						<div class="form-group">
-							<label class="font-weight-bold" alt="Name">경력</label>
+							<label class="font-weight-bold" alt="Name">경력 (기간 및 프로젝트 경험 등)</label>
 							<textarea name="career" id="career" rows="5" style="resize:none;"
                                       class="form-control" placeholder="경력을 입력해주세요." ></textarea>
 						</div>
@@ -50,11 +50,11 @@
 							<label class="font-weight-bold" alt="Gender">성별</label>
 							<div class="form-group">
 								<label class="custom-control custom-radio custom-control-inline">
-									<input class="custom-control-input" checked="" type="radio" name="gender" value="M">
+									<input class="custom-control-input" checked="" type="radio" name="gender" value="1">
 									<span class="custom-control-label">남자 </span>
 								</label>
 								<label class="custom-control custom-radio custom-control-inline">
-									<input class="custom-control-input" type="radio" name="gender" value="F">
+									<input class="custom-control-input" type="radio" name="gender" value="0">
 									<span class="custom-control-label"> 여자 </span>
 								</label>
 							</div>
@@ -130,8 +130,9 @@
 						<!-- 약관 안내 박스 END -->--%>
 
 						<div class="form-group">
+							<label>링크 공유 : </label>
 							<a class="btn btn-social-icon btn-kakao"
-							   onClick="sendSns('https://mwav.net/newMember/signUp','kakao', 'Mwav 스터디 접수 신청', 'social', 'news', '', '', '', 0)">
+							   onClick="sendSns()">
 								<span class="icon-kakao"> </span>
 							</a>
 						</div>
@@ -145,7 +146,7 @@
 								<i class="fa fa-envelope-square mt-2"></i> 정상적으로 접수 되었으며, 수 일내 해당 이메일로 연락드리겠습니다.
 							</p>
 							<p id= "failure_msg" class="alert alert-danger mt-3" style="display: none">
-								<i class="fa fa-envelope-square mt-2"></i> 접수 중 오류가 발생하였습니다, <br>webmater@mwav.net 메일주소로 접수 내용을 전달해주시면 수 일내로 회신드리겠습니다
+								<i class="fa fa-envelope-square mt-2"></i> 접수 중 오류가 발생하였습니다, <br>itstudy136@gmail.com 메일주소로 접수 내용을 전달해주시면 수 일내로 회신드리겠습니다
 							</p>
 
 						</div>
@@ -220,13 +221,37 @@
 				data : JSON.stringify(data),
 				type : "POST",
 				contentType : "application/json",
-				async : false,
+				async : true,
 				success : function(res_data) {
 					console.log('!success send mail');
 					return true;
 				},
 				error : function(request, status, error) {
 					console.log('fail send mail')
+					return false;
+				}
+			});
+		}
+
+		// 접수자에게 접수완료 메일 발송
+		function sendEmailToNewMember() {
+
+			var data = {
+				email : $('input[name=email]').val()
+			};
+
+			$.ajax({
+				url : '/newMember/emailSendToNewMember',
+				data : JSON.stringify(data),
+				type : "POST",
+				contentType : "application/json",
+				async : true,
+				success : function(res_data) {
+					console.log('!success send mail to New Member');
+					return true;
+				},
+				error : function(request, status, error) {
+					console.log('fail send mail to New Member')
 					return false;
 				}
 			});
@@ -268,8 +293,10 @@
 						$("#success_btn").show();
 						$("#success_msg").show();
 
-						// 정상적으로 DB에 접수 정보가 입력돼면 webmaster 계정으로 메일을 보낸다
+						// 정상적으로 DB에 접수 정보가 입력되면 webmaster 계정으로 메일을 보낸다
 						sendEmail();
+						// 정상적으로 webmaster 계정으로 메일을 보내면 접수자에게 접수완료메일을 발송한다
+						//sendEmailToNewMember();
 					},
 					error : function(request, status, error){
 						$("#failure_msg").show();

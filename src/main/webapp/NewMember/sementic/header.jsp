@@ -11,38 +11,29 @@
 	Kakao.init('b66e3d6516bdc422b77b51024332a218');
 
 	//소셜 공유하기
-	function sendSns(url, utm_source, utm_campaign, utm_medium, utm_content, subTitle, pgl, thumbnail_link, count)
+	function sendSns()
 	{
 		// TODO 통계기 추가 필요
 		var o;
 		var _br = encodeURIComponent('\r\n'); // 보안이슈 인코딩 처리.
-
-		//trim 처리를 안하는 경우 url이 중간에 짤려서 다 인식못함.
-//		var googleAnalytics_var = '&utm_source=' + utm_source +'&utm_campaign=' + trim(utm_campaign) +'&utm_medium=' + utm_medium + '&utm_content=' + utm_content;
-//		var pgl = '&pgl='+pgl
-//		var _url = encodeURIComponent(url + googleAnalytics_var + pgl + '#news_top');
-
-		switch(utm_source){
-			case 'kakao':
-				o = {
-					method:'kakao',
-					url : url,
-					utm_source : utm_source,
-					utm_campaign : utm_campaign,
-					utm_medium : utm_medium,
-					utm_content : utm_content,
-					subTitle : subTitle,
-//					pgl : pgl,
-					count : count,
-					params : url.split("mwav.net/")[1]
-				};
-				break;
-			default:
-				alert('곧 지원될 예정입니다.');
-				break;
-				return;
+		var url = window.location.hostname;
+		var port = location.port;
+		if(port.length != 0){
+			url = 'http://' + url + ':' + port + '/newMember/signUp?utm_source=studyform&utm_medium=kakao&utm_campaign=';
+		} else{
+			url = 'http://' + url + '/newMember/signUp?utm_source=studyform&utm_medium=kakao&utm_campaign=';
 		}
 
+		o = {
+			method:'kakao',
+			url : url,
+			utm_source : 'studyform',
+			utm_campaign : 'Mwav 스터디 접수 신청',
+			utm_medium : 'kakao',
+			utm_content : 'studyform',
+			subTitle : '',
+			count : 0
+		};
 
 		switch(o.method) {
 			case 'kakao' :
@@ -51,7 +42,7 @@
 					,content: {
 						title: o.utm_campaign   // 콘텐츠의 타이틀
 						, description: o.subTitle  // 콘텐츠 상세설명
-						, imageUrl: thumbnail_link // 썸네일 이미지
+						, imageUrl: 'thumbnail_link' // 썸네일 이미지
 						, link: {
 							mobileWebUrl: o.url   // 모바일 카카오톡에서 사용하는 웹 링크 URL
 							, webUrl: o.url // PC버전 카카오톡에서 사용하는 웹 링크 URL
@@ -73,6 +64,37 @@
 		}
 	}
 </script>
+
+<script>
+	// GA 스크립트
+	(function(i, s, o, g, r, a, m) {
+		i['GoogleAnalyticsObject'] = r;
+		i[r] = i[r] || function() {
+			(i[r].q = i[r].q || []).push(arguments)
+		}, i[r].l = 1 * new Date();
+		a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+		a.async = 1;
+		a.src = g;
+		m.parentNode.insertBefore(a, m)
+	})(window, document, 'script', '//www.google-analytics.com/analytics.js',
+			'ga');
+	var perfData = window.performance.timing;
+	var pageLoadTime = perfData.mwavmComplete - perfData.navigationStart;
+	var loadTime = "";
+	var userId = '';
+	var pgl = ''; //세션으로 변경
+	var statistics_id = '1000199344'; //세션으로 변경
+	ga('create', 'UA-63623427-1', {
+		'cookieDomain' : 'www.mwav.net',
+		'siteSpeedSampleRate' : 100
+	}); // 사이트 속도 측정 100은 전체 체크 (2017_01_10)
+
+	ga('require', 'GTM-ML32Q9G');
+	ga('send', 'pageview');
+	ga('require', 'displayfeatures');
+	ga('require', 'linkid', 'linkid.js');
+</script>
+
 
 <header class="section-header">
 
