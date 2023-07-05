@@ -87,11 +87,13 @@ public class NewMemberController {
         Map<String, String> body = new HashMap<String, String>();
 
         // 이메일 설정 불러오기
+        logger.debug("/emailSend - read mail config file(/xConfig/mail.xml.config)");
         final String realPath = servletContext.getRealPath("/xConfig/mail.xml.config");
         XmlLib xmlLib = XmlLib.getInstance();
         MailConfig config = (MailConfig) xmlLib.unmarshal(realPath, MailConfig.class);
 
         // 이메일 양식 작성
+        logger.debug("create param map - name: " + vo.getName() + ", email: " + vo.getEmail());
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("name", vo.getName());
         map.put("age", vo.getAge());
@@ -103,14 +105,14 @@ public class NewMemberController {
         map.put("gender", vo.getGender());
 
         //client에서 템플릿엔진 라이브러리르 호출하여 html코드로 파싱 후 문자열로 반환
+        logger.debug("generate mail template");
         String content = VelocityEngineUtils.mergeTemplateIntoString(velocityConfig.createVelocityEngine()
-                                                                        , "/GeneralMail/NewMemberAlarmEmail.vm"
+                                                                        , "/GeneralMail/NewMemberAlarmEmail."
                                                                         , "UTF-8"
                                                                         , map);
 
         // 이메일 템플릿 작성 필요
         Message msg = new MessageBuilder(config.getCollectAllFieldProp())
-//                            .setRecipient(vo.getEmail())
                             .setRecipient("itstudy136@gmail.com")
                             .setFrom(config.getFrom())
                             .setSubject("[Mwav] 신규멤버신청 접수")
@@ -118,6 +120,7 @@ public class NewMemberController {
                             .build();
 
         // 메일 발송
+        logger.debug("send mail");
         MailLib mailLib = MailLib.getInstance();
         mailLib.send(msg);
 
@@ -135,6 +138,7 @@ public class NewMemberController {
     @RequestMapping("/emailSendToNewMember")
     public ResponseEntity<Map<String, String>> emailSendToNewMember(@RequestBody NewMemberVO vo
             , HttpServletResponse res) throws Exception {
+        logger.debug("/emailSendToNewMember - read mail config file(/xConfig/mail.xml.config)");
         Map<String, String> body = new HashMap<String, String>();
 
         // 이메일 설정 불러오기
@@ -142,10 +146,9 @@ public class NewMemberController {
         XmlLib xmlLib = XmlLib.getInstance();
         MailConfig config = (MailConfig) xmlLib.unmarshal(realPath, MailConfig.class);
 
-        // TODO : 접수완료메일 템플릿 추가
         //client에서 템플릿엔진 라이브러리르 호출하여 html코드로 파싱 후 문자열로 반환
         String content = VelocityEngineUtils.mergeTemplateIntoString(velocityConfig.createVelocityEngine()
-                , "/GeneralMail/NewMemberAlarmEmail.vm"
+                , "/GeneralMail/NewMemberSendEmail.vm"
                 , "UTF-8"
                 , null);
 

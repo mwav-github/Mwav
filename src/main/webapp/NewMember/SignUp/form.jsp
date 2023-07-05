@@ -228,6 +228,10 @@
 				},
 				error : function(request, status, error) {
 					console.log('fail send mail')
+					$("#joining_btn").hide();
+					$("#success_btn").hide();
+					$("#success_msg").hide();
+					$("#failure_msg").show();
 					return false;
 				}
 			});
@@ -252,6 +256,10 @@
 				},
 				error : function(request, status, error) {
 					console.log('fail send mail to New Member')
+					$("#joining_btn").hide();
+					$("#success_btn").hide();
+					$("#success_msg").hide();
+					$("#failure_msg").show();
 					return false;
 				}
 			});
@@ -296,7 +304,7 @@
 						// 정상적으로 DB에 접수 정보가 입력되면 webmaster 계정으로 메일을 보낸다
 						sendEmail();
 						// 정상적으로 webmaster 계정으로 메일을 보내면 접수자에게 접수완료메일을 발송한다
-						//sendEmailToNewMember();
+						sendEmailToNewMember();
 					},
 					error : function(request, status, error){
 						$("#failure_msg").show();
