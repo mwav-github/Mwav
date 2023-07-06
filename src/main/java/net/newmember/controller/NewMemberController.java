@@ -107,7 +107,7 @@ public class NewMemberController {
         //client에서 템플릿엔진 라이브러리르 호출하여 html코드로 파싱 후 문자열로 반환
         logger.debug("generate mail template");
         String content = VelocityEngineUtils.mergeTemplateIntoString(velocityConfig.createVelocityEngine()
-                                                                        , "/GeneralMail/NewMemberAlarmEmail."
+                                                                        , "/GeneralMail/NewMemberAlarmEmail.vm"
                                                                         , "UTF-8"
                                                                         , map);
 
