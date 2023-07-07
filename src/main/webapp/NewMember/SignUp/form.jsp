@@ -217,7 +217,7 @@
 			};
 
 			$.ajax({
-				url : '/newMember/emailSend',
+				url : '/newMember/emailSend.mwav',
 				data : JSON.stringify(data),
 				type : "POST",
 				contentType : "application/json",
@@ -245,7 +245,7 @@
 			};
 
 			$.ajax({
-				url : '/newMember/emailSendToNewMember',
+				url : '/newMember/emailSendToNewMember.mwav',
 				data : JSON.stringify(data),
 				type : "POST",
 				contentType : "application/json",
@@ -291,7 +291,7 @@
 
 				// 유효성 검증에 이상없음 접수정보를 서버에 요청
 				$.ajax({
-					url : '/newMember/register',
+					url : '/newMember/register.mwav',
 					data : JSON.stringify(data),
 					type : 'POST',
 					contentType : "application/json",
