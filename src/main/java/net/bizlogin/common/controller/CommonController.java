@@ -12,7 +12,7 @@ public class CommonController {
 	private static final Logger logger = LoggerFactory.getLogger(CommonController.class);
 
 	@RequestMapping(value = "/bizlogin")
-	public ModelAndView home() throws Exception {
+	public ModelAndView home() {
 		logger.debug("/bizlogin");
 		return new ModelAndView("/bizlogin/home/index");
 	}

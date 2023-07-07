@@ -35,14 +35,14 @@ public class SignUpService {
 	/**
 	 * 회원찾기
 	 */
-	public Map<String, Object> getPromoter(Map<String, Object> param) throws Exception {
+	public Map<String, Object> getPromoter(Map<String, Object> param) {
 		return signUpDao.getPromoter(param);
 	}
 
 	/**
 	 * 회원가입
 	 */
-	@Transactional
+	@Transactional(rollbackFor = { Exception.class }, readOnly = false)
 	public Map<String, Object> signup(Map<String, Object> param) throws Exception {
 		Map<String, Object> result = new HashMap<>();
 

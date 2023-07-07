@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 신규가입 폼 -->
+<mapper namespace="net.newmember.dao.NewMemberDao">
+	
+	<!-- 신규가입자 정보 입력 -->
+	<insert id="createSignUpRegister" parameterType="net.newmember.vo.NewMemberVO">
+
+		<selectKey keyProperty="follower_id" resultType="int" order="BEFORE">
+			SELECT IFNULL(MAX(follower_id), 0) + 1 follower_id FROM Follower_tbl
+		</selectKey>
+
+		INSERT INTO Follower_tbl(follower_id, fName, fEmail, fAgeGroup, fCareer, fPurpose, fHopeField, fGender)
+		VALUES(#{follower_id}, #{name}, #{email}, #{age}, #{career}, #{purpose}, #{hopeField}, #{gender})
+
+	</insert>
+
+	<!-- 신규가입자 상세정보 입력 -->
+	<insert id="createSignUpRegisterValue" parameterType="net.newmember.vo.NewMemberVO">
+		<selectKey keyProperty="follower_id" resultType="int" order="BEFORE">
+			SELECT MAX(follower_id)
+			  FROM Follower_tbl
+			 WHERE fName = #{name}
+			   AND fEmail = #{email}
+		</selectKey>
+
+		INSERT INTO FollowerValue_tbl(follower_id, fReferer, fUserAgent, fIpAddress, fInsertDt, Follower_tbl_follower_id)
+		VALUES(#{follower_id}, #{referer}, #{userAgent}, IFNULL(#{XFF}, #{remoteAddr}), NOW(), #{follower_id})
+	</insert>
+
+</mapper>
+

@@ -13,7 +13,7 @@ public class OrderController {
 	private static final Logger logger = LoggerFactory.getLogger(OrderController.class);
 
 	@RequestMapping(value = "/bizlogin/goods/order/wishList", method = RequestMethod.GET)
-	public ModelAndView wishList() throws Exception {
+	public ModelAndView wishList() {
 		logger.debug("/bizlogin/goods/order/wishList");
 		return new ModelAndView("/bizlogin/goods/order/wishList");
 	}

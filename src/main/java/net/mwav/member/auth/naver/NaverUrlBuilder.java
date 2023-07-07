@@ -14,6 +14,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
+import com.github.scribejava.apis.NaverApi;
 import com.github.scribejava.core.builder.ServiceBuilder;
 import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.github.scribejava.core.model.OAuthRequest;
@@ -22,22 +23,8 @@ import com.github.scribejava.core.model.Verb;
 import com.github.scribejava.core.oauth.OAuth20Service;
 
 /**
- * 
- * @class name : NaverUrlBuilder.java
- * @description : 네이버 로그인 인증 url 생성<br>
- * 				  application.properties의 값을 참조
- * @author : (정) 남동희
-             (부)
- * @since : 2019. 7. 13
- * @version : v1.1
- * @see
- * @history :
-   ----------------------------------------
- * Modification Information(개정이력)
-   ----------------------------------------
-     수정일              	수정자                수정내용
-   --------    --------    ----------------
- * 2019.07.13    남동희          		최초 생성		
+ * 네이버 로그인 인증 url 생성
+ * @author 남동희
  */
 @Configuration
 @PropertySource("classpath:googleProperties/application.properties")
@@ -75,16 +62,21 @@ public class NaverUrlBuilder {
 
 		setSession(session, "state", state);
 
-		OAuth20Service oauthService = new ServiceBuilder().apiKey(appKey).apiSecret(appSecret).callback(callbackUrl).state(state).build(NaverAPI.getInstance());
-
-		return oauthService.getAuthorizationUrl();
+		OAuth20Service oauthService = new ServiceBuilder(appKey)
+									.apiSecret(appSecret)
+									.callback(callbackUrl)
+									.build(NaverApi.instance());
+		return oauthService.getAuthorizationUrl(state);
 	}
 
 	public OAuth2AccessToken getAccessToken(HttpSession session, String code, String state) throws IOException, InterruptedException, ExecutionException {
 		String sessionState = getSession(session, "state");
 
 		if (StringUtils.pathEquals(sessionState, state)) {
-			OAuth20Service oauthService = new ServiceBuilder().apiKey(appKey).apiSecret(appSecret).callback(callbackUrl).state(state).build(NaverAPI.getInstance());
+			OAuth20Service oauthService = new ServiceBuilder(appKey)
+										.apiSecret(appSecret)
+										.callback(callbackUrl)
+										.build(NaverApi.instance());
 
 			OAuth2AccessToken token = oauthService.getAccessToken(code);
 			return token;
@@ -92,12 +84,15 @@ public class NaverUrlBuilder {
 		return null;
 	}
 
-	public String getUserProfile(OAuth2AccessToken token) throws IOException {
-		OAuth20Service oauthService = new ServiceBuilder().apiKey(appKey).apiSecret(appSecret).callback(callbackUrl).build(NaverAPI.getInstance());
-		OAuthRequest request = new OAuthRequest(Verb.GET, "https://openapi.naver.com/v1/nid/me", oauthService);
-
+	public String getUserProfile(OAuth2AccessToken token) throws IOException, InterruptedException, ExecutionException {
+		OAuth20Service oauthService = new ServiceBuilder(appKey)
+										.apiSecret(appSecret)
+										.callback(callbackUrl)
+										.build(NaverApi.instance());
+		OAuthRequest request = new OAuthRequest(Verb.GET, "https://openapi.naver.com/v1/nid/me");
 		oauthService.signRequest(token, request);
-		Response response = request.send();
+		
+		Response response = oauthService.execute(request);
 		return response.getBody();
 	}
 }

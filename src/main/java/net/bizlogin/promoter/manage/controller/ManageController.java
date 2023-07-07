@@ -17,7 +17,7 @@ public class ManageController {
 	 * 내 정보
 	 */
 	@RequestMapping(value = "/promoter/manage/profile", method = RequestMethod.GET)
-	public ModelAndView profile() throws Exception {
+	public ModelAndView profile() {
 		logger.debug("/promoter/manage/profile");
 		return new ModelAndView("/bizlogin/promoter/manage/profile");
 	}
@@ -26,7 +26,7 @@ public class ManageController {
 	 * 이메일 인증
 	 */
 	@RequestMapping(value = "/promoter/manage/verification", method = RequestMethod.GET)
-	public ModelAndView certification() throws Exception {
+	public ModelAndView certification() {
 		logger.debug("/promoter/manage/verification");
 		return new ModelAndView("/bizlogin/promoter/manage/verification");
 	}

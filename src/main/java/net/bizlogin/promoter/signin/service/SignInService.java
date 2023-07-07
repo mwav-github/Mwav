@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import net.bizlogin.common.service.PasswordEncoder;
@@ -40,6 +41,7 @@ public class SignInService {
 	 * 로그인 
 	 * @param param {pmtLoginId, pmtLoginPw, token : Recaptcha 인증토큰}
 	 */
+	@Transactional(rollbackFor = { Exception.class }, readOnly = false)
 	public Map<String, Object> signin(Map<String, Object> param) throws Exception {
 
 		Map<String, Object> result = new HashMap<String, Object>();
@@ -94,7 +96,8 @@ public class SignInService {
 	/**
 	 * 카카오 로그인
 	 */
-	public Map<String, Object> signInKakao(Map<String, Object> param) throws Exception {
+	@Transactional(rollbackFor = { Exception.class }, readOnly = false)
+	public Map<String, Object> signInKakao(Map<String, Object> param) {
 		Map<String, Object> snsPromoter = signInDao.getSnsPromoter(param);
 
 		if (snsPromoter == null) {

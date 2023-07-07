@@ -36,9 +36,10 @@ public class SignInController {
 	 * 로그인 form
 	 */
 	@RequestMapping(value = "/promoter/signin/form", method = RequestMethod.GET)
-	public ModelAndView form() throws Exception {
+	public ModelAndView form(HttpSession session) {
 		logger.debug("/bizlogin/promoter/signin/form");
-		return new ModelAndView("/bizlogin/promoter/signin/form");
+		ModelAndView mav = new ModelAndView("/bizlogin/promoter/signin/form");
+		return mav;
 	}
 
 	/**
@@ -46,8 +47,7 @@ public class SignInController {
 	 * @param param {pmtLoginId, pmtLoginPw, token : Recaptcha 인증토큰}
 	 */
 	@RequestMapping(value = "/promoter/signin", method = RequestMethod.POST)
-	public ModelAndView signin(@RequestParam Map<String, Object> param, HttpSession session,
-			RedirectAttributes redirect) throws Exception {
+	public ModelAndView signin(@RequestParam Map<String, Object> param, HttpSession session, RedirectAttributes redirect) throws Exception {
 		logger.debug("/bizlogin/promoter/signin");
 		ModelAndView view = new ModelAndView();
 
@@ -79,7 +79,7 @@ public class SignInController {
 	 */
 	@RequestMapping(value = "/promoter/signin/kakao", method = RequestMethod.POST)
 	@ResponseBody
-	public String signInKakao(@RequestBody Map<String, Object> param, HttpServletRequest request) throws Exception {
+	public String signInKakao(@RequestBody Map<String, Object> param, HttpServletRequest request) {
 		RequestLib requestLib = RequestLib.getInstance(request);
 		param.put("spIpAddress", requestLib.getRemoteAddr());
 
