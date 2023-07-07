@@ -59,7 +59,7 @@ public class NewMemberController {
      * @param vo
      * @return viewName
      */
-    @RequestMapping(value = "register", method = RequestMethod.POST)
+    @RequestMapping(value = "register.mwav", method = RequestMethod.POST)
     public ModelAndView signUpRegister(@RequestBody NewMemberVO vo
                                         , HttpServletRequest request) {
         ModelAndView mv = new ModelAndView();
@@ -81,7 +81,7 @@ public class NewMemberController {
      * @param vo
      * @return
      */
-    @RequestMapping("/emailSend")
+    @RequestMapping("/emailSend.mwav")
     public ResponseEntity<Map<String, String>> emailSend(@RequestBody NewMemberVO vo
                                                         , HttpServletResponse res) throws Exception {
         Map<String, String> body = new HashMap<String, String>();
@@ -135,7 +135,7 @@ public class NewMemberController {
      * @param vo
      * @return
      */
-    @RequestMapping("/emailSendToNewMember")
+    @RequestMapping("/emailSendToNewMember.mwav")
     public ResponseEntity<Map<String, String>> emailSendToNewMember(@RequestBody NewMemberVO vo
             , HttpServletResponse res) throws Exception {
         logger.debug("/emailSendToNewMember - read mail config file(/xConfig/mail.xml.config)");
