@@ -158,7 +158,7 @@ public class NewMemberController {
                 .setRecipient(vo.getEmail())
 //                .setFrom(config.getFrom())
                 .setFrom("itstudy136@gmail.com")
-                .setSubject("[Mwav] 접수 신청 완료")
+                .setSubject("신규 스터디 멤버 신청 접수 완료")
                 .setContent(content)
                 .build();
 
