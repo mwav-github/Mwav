@@ -19,16 +19,16 @@
 		var url = window.location.hostname;
 		var port = location.port;
 		if(port.length != 0){
-			url = 'http://' + url + ':' + port + '/newMember/signUp?utm_source=studyform&utm_medium=kakao&utm_campaign=';
+			url = 'http://' + url + ':' + port + '/newMember/signUp.mwav?utm_source=studyform&utm_medium=kakao&utm_campaign=';
 		} else{
-			url = 'http://' + url + '/newMember/signUp?utm_source=studyform&utm_medium=kakao&utm_campaign=';
+			url = 'http://' + url + '/newMember/signUp.mwav?utm_source=studyform&utm_medium=kakao&utm_campaign=';
 		}
 
 		o = {
 			method:'kakao',
 			url : url,
 			utm_source : 'studyform',
-			utm_campaign : 'Mwav 스터디 접수 신청',
+			utm_campaign : '스터디 접수 신청',
 			utm_medium : 'kakao',
 			utm_content : 'studyform',
 			subTitle : '',
